@@ -52,7 +52,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     svgIconProps,
     ...rest
 }) => {
-    const { resourceName, id } = useResource({
+    const { resourceName, id, resource } = useResource({
         resourceNameOrRouteName,
         recordItemId,
     });
@@ -68,7 +68,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     const { data } = useCan({
         resource: resourceName,
         action: "delete",
-        params: { id },
+        params: { id, resource },
         queryOptions: {
             enabled: !ignoreAccessControlProvider,
         },

@@ -12,8 +12,7 @@ export type RefineCrudListProps<
     TExtraProps extends {} = {},
 > = {
     // Common Props
-    title?: string;
-    goBack?: React.ReactNode;
+    title?: React.ReactNode;
     resource?: string;
     wrapperProps?: TWrapperProps;
     headerProps?: THeaderProps;
@@ -40,13 +39,14 @@ export type RefineCrudCreateProps<
     TExtraProps extends {} = {},
 > = {
     // Common Props
-    title?: string;
-    goBack?: React.ReactNode;
+    title?: React.ReactNode;
     resource?: string;
     wrapperProps?: TWrapperProps;
     headerProps?: THeaderProps;
     contentProps?: TContentProps;
     breadcrumb?: React.ReactNode;
+    // Back Props
+    goBack?: React.ReactNode;
     // Header Action Buttons Props
     headerButtons?: React.ReactNode;
     headerButtonProps?: THeaderButtonProps;
@@ -72,13 +72,14 @@ export type RefineCrudEditProps<
     TExtraProps extends {} = {},
 > = {
     // Common Props
-    title?: string;
-    goBack?: React.ReactNode;
+    title?: React.ReactNode;
     resource?: string;
     wrapperProps?: TWrapperProps;
     headerProps?: THeaderProps;
     contentProps?: TContentProps;
     breadcrumb?: React.ReactNode;
+    // Back Props
+    goBack?: React.ReactNode;
     // Header Action Buttons Props
     headerButtons?: React.ReactNode;
     headerButtonProps?: THeaderButtonProps;
@@ -108,13 +109,14 @@ export type RefineCrudShowProps<
     TExtraProps extends {} = {},
 > = {
     // Common Props
-    title?: string;
-    goBack?: React.ReactNode;
+    title?: React.ReactNode;
     resource?: string;
     wrapperProps?: TWrapperProps;
     headerProps?: THeaderProps;
     contentProps?: TContentProps;
     breadcrumb?: React.ReactNode;
+    // Back Props
+    goBack?: React.ReactNode;
     // Header Action Buttons Props
     headerButtons?: React.ReactNode;
     headerButtonProps?: THeaderButtonProps;

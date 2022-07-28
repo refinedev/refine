@@ -203,7 +203,7 @@ ButtonProps
 | -------- | -------- |
 | resource | `string` |
 | action   | `string` |
-| params?  | `any`    |
+| params?  | { `resource`?: [IResourceItem](/docs/core/interfaces.md#resourceitemprops), `id`?: [BaseKey](/docs/core/interfaces.md#basekey), `[key: string]: any` }    |
 
 ## CanReturnType
 
@@ -248,7 +248,7 @@ ButtonProps
 | canEdit?    | `boolean`   |
 | canShow?    | `boolean`   |
 | canDelete?  | `boolean`   |
-| options?    | `string`    |
+| options?    | `object`    |
 | parentName? | `string`    |
 
 

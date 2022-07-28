@@ -54,7 +54,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
     const { data } = useCan({
         resource: resourceName,
         action: "edit",
-        params: { id },
+        params: { id, resource },
         queryOptions: {
             enabled: !ignoreAccessControlProvider,
         },

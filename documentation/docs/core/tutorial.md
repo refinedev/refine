@@ -172,6 +172,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 -   [Hasura](https://github.com/pankod/refine/tree/master/packages/hasura)
 -   [Nhost](https://github.com/pankod/refine/tree/master/packages/nhost)
 -   [Appwrite](https://github.com/pankod/refine/tree/master/packages/appwrite)
+-   [Medusa](https://github.com/pankod/refine/tree/master/packages/medusa)
 -   [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 
 ### Community ❤️
@@ -288,8 +289,6 @@ Let's add **/posts/** endpoint from our API as a resource. First take a look to 
 
 Now, add the highlighted code to your `App.tsx` to connect to the endpoint.
 
-
-
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -311,7 +310,6 @@ export const App: React.FC = () => {
 ```
 
 The `icon` property of every single resource is can be used to display the resource in whatever way you want. For example in the sidebar or header. We'll use it when we'll create layout component.
-
 
 <details><summary>Show PostIcon</summary>
 <p>
@@ -341,7 +339,6 @@ export const PostIcon = (
 
 :::info
 `resources` is a property of `<Refine/>` representing API Endpoints. The `name` property of every single resource should match one of the endpoints in your API!
-
 
 :::
 
@@ -400,16 +397,17 @@ Add the `@tailwind` directives for each of Tailwind’s layers to your `src/inde
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 ```
 
 Add css file import to `src/App.tsx`.
+
 ```ts title="App.tsx"
 ...
 
 //highlight-next-line
 import 'index.css';
 ```
+
 Now, you can use Tailwind to style your application.
 
 ## Creating a Layout
@@ -492,20 +490,14 @@ export const App: React.FC = () => {
 
 ## Creating a List Page
 
-First, we'll install [`@pankod/refine-react-table`](https://github.com/pankod/refine/tree/master/packages/react-table) package to use the `useTable` hook.
+First, we'll install [`@pankod/refine-react-table`](https://github.com/pankod/refine/tree/master/packages/react-table) package to use the `useTable` hook, which extended with [**TanStack Table v8**](https://tanstack.com/table/v8).
 
 ```bash
-npm i @pankod/refine-react-table@3
+npm i @pankod/refine-react-table
 ```
 
-:::caution
-
-This documentation **isn't** for the latest version of `@pankod/refine-react-table`. The package updated with accordingly to [TanStack Table v8](https://tanstack.com/table/v8) version. We will update this documentation with the latest version as soon as possible.
-
-:::
-
-:::note
-We'll use the `@pankod/refine-react-table` for benefit of the [**react-table**](https://react-table.tanstack.com) library. However, you can use `useTable` without the `@pankod/refine-react-table` package.
+:::tip
+We'll use the `@pankod/refine-react-table` for benefit of the **TanStack Table v8** library. However, you can use `useTable` without the `@pankod/refine-react-table` package.
 :::
 
 Next, we'll need an interface to work with the data from the API endpoint.
@@ -527,83 +519,79 @@ Now, create a new folder named _"pages/posts"_ under _"/src"_. Under that folder
 
 ```tsx title="pages/posts/list.tsx"
 import React from "react";
-import {
-    useTable,
-    Column,
-    HeaderGroup,
-    Cell,
-    UseTableColumnProps,
-    UseTableRowProps,
-} from '@pankod/refine-react-table';
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+
+import { IPost } from "interfaces";
 
 export const PostList: React.FC = () => {
-    const columns: Array<Column> = React.useMemo(
+    const columns = React.useMemo<ColumnDef<IPost>[]>(
         () => [
             {
                 id: "id",
-                Header: "ID",
-                accessor: "id",
+                header: "ID",
+                accessorKey: "id",
             },
             {
                 id: "title",
-                Header: "Title",
-                accessor: "title",
+                header: "Title",
+                accessorKey: "title",
             },
             {
                 id: "status",
-                Header: "Status",
-                accessor: "status",
+                header: "Status",
+                accessorKey: "status",
             },
             {
                 id: "createdAt",
-                Header: "CreatedAt",
-                accessor: "createdAt",
+                header: "CreatedAt",
+                accessorKey: "createdAt",
             },
         ],
         [],
     );
 
-    const { getTableProps, getTableBodyProps, headerGroups, prepareRow, rows } =
-        useTable({ columns });
+    const { getHeaderGroups, getRowModel } = useTable<IPost>({
+        columns,
+    });
 
     return (
         <div className="container mx-auto pb-4">
-            <table
-                className="min-w-full table-fixed divide-y divide-gray-200 border"
-                {...getTableProps()}
-            >
+            <table className="min-w-full table-fixed divide-y divide-gray-200 border">
                 <thead className="bg-gray-100">
-                    {headerGroups.map((headerGroup: HeaderGroup) => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column: UseTableColumnProps) => (
+                    {getHeaderGroups().map((headerGroup) => (
+                        <tr key={headerGroup.id}>
+                            {headerGroup.headers.map((header) => (
                                 <th
-                                    {...column.getHeaderProps()}
-                                    className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700"
+                                    key={header.id}
+                                    colSpan={header.colSpan}
+                                    className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
                                 >
-                                    {column.render("Header")}
+                                    {flexRender(
+                                        header.column.columnDef.header,
+                                        header.getContext(),
+                                    )}
                                 </th>
                             ))}
                         </tr>
                     ))}
                 </thead>
-                <tbody
-                    {...getTableBodyProps()}
-                    className="divide-y divide-gray-200 bg-white"
-                >
-                    {rows.map((row: UseTableRowProps) => {
-                        prepareRow(row);
+                <tbody className="divide-y divide-gray-200 bg-white">
+                    {getRowModel().rows.map((row) => {
                         return (
                             <tr
-                                {...row.getRowProps()}
+                                key={row.id}
                                 className="transition hover:bg-gray-100"
                             >
-                                {row.cells.map((cell: Cell) => {
+                                {row.getVisibleCells().map((cell) => {
                                     return (
                                         <td
-                                            {...cell.getCellProps()}
+                                            key={cell.id}
                                             className="whitespace-nowrap py-2 px-6 text-sm font-medium text-gray-900"
                                         >
-                                            {cell.render("Cell")}
+                                            {flexRender(
+                                                cell.column.columnDef.cell,
+                                                cell.getContext(),
+                                            )}
                                         </td>
                                     );
                                 })}
@@ -617,7 +605,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-`@pankod/refine-react-table` hook `useTable()` fetches data from API. Normally, **react-table**'s `useTable` expects a `data` prop but `@pankod/refine-react-table` doesn't expect a `data` prop.
+`@pankod/refine-react-table` hook uses `useTable()` fetches data from API. Normally, **TanStack-table**'s `useReactTable` expects a `data` prop but `@pankod/refine-react-table`'s `useTable` doesn't expect a `data` prop.
 
 [Refer to the **@pankod/refine-react-table** for more information. →](/packages/react-table.md)
 
@@ -645,9 +633,9 @@ export const App: React.FC = () => {
     );
 };
 
-<br />
-
+<br />;
 ```
+
 Note you will need a few more files which help `src/App.tsx` to find your pages and posts. In the `/pages` folder, put this `index.tsx` file in it which allows everything in the `posts` folder to be used elsewhere.
 
 ```tsx title="src/pages/index.tsx"
@@ -657,7 +645,6 @@ export * from "./posts";
 <br />
 
 Similarly, put a file in the `/src/pages/posts` folder which accomplishes the same function. We will use the commented out code later as we add more capabilities to our app. Remember as you add functions, uncomment each appropriate line.
-
 
 ```tsx title="src/pages/posts/index.tsx"
 export * from "./list";
@@ -698,7 +685,7 @@ The category title data can be obtained from the `/categories` endpoint for each
   }
 ```
 
-At this point, we need to join records from different resources. For this, we're going to use the **refine** hook `useOne`.
+At this point, we need to join records from different resources. For this, we're going to use the **refine** hook `useMany`.
 
 Before we start, just edit our interface for the new `ICategory` type:
 
@@ -724,58 +711,49 @@ So we can update our `list.tsx` with the highlighted lines:
 
 ```tsx title="src/pages/posts/list.tsx"
 import React from "react";
-import {
-    useTable,
-    Column,
-    HeaderGroup,
-    Cell,
-    UseTableColumnProps,
-    UseTableRowProps,
-} from '@pankod/refine-react-table';
-// highlight-start
-import { useOne } from "@pankod/refine-core";
-import { ICategory } from 'interfaces';
-// highlight-end
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+// highlight-next-line
+import { useMany, GetManyResponse } from "@pankod/refine-core";
+
+// highlight-next-line
+import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
-    const columns: Array<Column> = React.useMemo(
+    const columns = React.useMemo<ColumnDef<IPost>[]>(
         () => [
             {
                 id: "id",
-                Header: "ID",
-                accessor: "id",
+                header: "ID",
+                accessorKey: "id",
             },
             {
                 id: "title",
-                Header: "Title",
-                accessor: "title",
+                header: "Title",
+                accessorKey: "title",
             },
             {
                 id: "status",
-                Header: "Status",
-                accessor: "status",
+                header: "Status",
+                accessorKey: "status",
             },
             {
                 id: "createdAt",
-                Header: "CreatedAt",
-                accessor: "createdAt",
+                header: "CreatedAt",
+                accessorKey: "createdAt",
             },
             //highlight-start
             {
                 id: "category.id",
-                Header: "Category",
-                accessor: "category.id",
-                Cell: ({ cell }: { cell: Cell }) => {
-                    const { data, isLoading } = useOne<ICategory>({
-                        resource: "categories",
-                        id: cell.value,
-                    });
-
-                    if (isLoading) {
-                        return <p>loading..</p>;
-                    }
-
-                    return data?.data.title;
+                header: "Category",
+                accessorKey: "category.id",
+                cell: function render({ getValue, table }) {
+                    const meta = table.options.meta as {
+                        categoriesData: GetManyResponse<ICategory>;
+                    };
+                    const category = meta.categoriesData?.data.find(
+                        (item) => item.id === getValue(),
+                    );
+                    return category?.title ?? "Loading...";
                 },
             },
             //highlight-end
@@ -783,47 +761,74 @@ export const PostList: React.FC = () => {
         [],
     );
 
-    const { getTableProps, getTableBodyProps, headerGroups, prepareRow, rows } =
-        useTable({ columns });
+    const {
+        getHeaderGroups,
+        getRowModel,
+        // highlight-start
+        setOptions,
+        refineCore: {
+            tableQueryResult: { data: tableData },
+        },
+        // highlight-end
+    } = useTable<IPost>({ columns });
+
+    // highlight-start
+    const categoryIds = tableData?.data?.map((item) => item.category.id) ?? [];
+    const { data: categoriesData } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
+    setOptions((prev) => ({
+        ...prev,
+        meta: {
+            ...prev.meta,
+            categoriesData,
+        },
+    }));
+    // highlight-end
 
     return (
         <div className="container mx-auto pb-4">
-            <table
-                className="min-w-full table-fixed divide-y divide-gray-200 border"
-                {...getTableProps()}
-            >
+            <table className="min-w-full table-fixed divide-y divide-gray-200 border">
                 <thead className="bg-gray-100">
-                    {headerGroups.map((headerGroup: HeaderGroup) => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column: UseTableColumnProps) => (
+                    {getHeaderGroups().map((headerGroup) => (
+                        <tr key={headerGroup.id}>
+                            {headerGroup.headers.map((header) => (
                                 <th
-                                    {...column.getHeaderProps()}
-                                    className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700"
+                                    key={header.id}
+                                    colSpan={header.colSpan}
+                                    className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
                                 >
-                                    {column.render("Header")}
+                                    {flexRender(
+                                        header.column.columnDef.header,
+                                        header.getContext(),
+                                    )}
                                 </th>
                             ))}
                         </tr>
                     ))}
                 </thead>
-                <tbody
-                    {...getTableBodyProps()}
-                    className="divide-y divide-gray-200 bg-white"
-                >
-                    {rows.map((row: UseTableRowProps) => {
-                        prepareRow(row);
+                <tbody className="divide-y divide-gray-200 bg-white">
+                    {getRowModel().rows.map((row) => {
                         return (
                             <tr
-                                {...row.getRowProps()}
+                                key={row.id}
                                 className="transition hover:bg-gray-100"
                             >
-                                {row.cells.map((cell: Cell) => {
+                                {row.getVisibleCells().map((cell) => {
                                     return (
                                         <td
-                                            {...cell.getCellProps()}
+                                            key={cell.id}
                                             className="whitespace-nowrap py-2 px-6 text-sm font-medium text-gray-900"
                                         >
-                                            {cell.render("Cell")}
+                                            {flexRender(
+                                                cell.column.columnDef.cell,
+                                                cell.getContext(),
+                                            )}
                                         </td>
                                     );
                                 })}
@@ -839,7 +844,7 @@ export const PostList: React.FC = () => {
 
 Try the result on your browser and you'll notice that the category column is filled correctly with the matching category titles for the each record's category id's.
 
-[Refer to the `useOne` documentation for detailed usage information. &#8594](/core/hooks/data/useOne.md)
+[Refer to the `useMany` documentation for detailed usage information. &#8594](/core/hooks/data/useMany.md)
 
 <div class="img-container">
     <div class="window">
@@ -852,23 +857,13 @@ Try the result on your browser and you'll notice that the category column is fil
 
 ### Adding Pagination
 
-We can add pagination to our table by using the `usePagination` hook that **react-table** provides.
+The `@pankod/refine-react-table` package listens for changes in `pageIndex` and `pageSize` states of the **Tanstack Table** and updates the table accordingly. The change in these states triggers the fetch of the new data.
 
 ```tsx title="src/pages/posts/list.tsx"
 import React from "react";
-import { useOne } from "@pankod/refine-core";
-import {
-    useTable,
-    Column,
-    HeaderGroup,
-    Cell,
-    UseTableColumnProps,
-    UseTableRowProps,
-    //highlight-next-line
-    usePagination
-} from '@pankod/refine-react-table';
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useMany, GetManyResponse } from "@pankod/refine-core";
 
-import { ICategory } from "interfaces";
 //highlight-start
 import {
     ChevronLeftIcon,
@@ -878,107 +873,123 @@ import {
 } from "icons";
 //highlight-end
 
+import { IPost, ICategory } from "interfaces";
+
 export const PostList: React.FC = () => {
-    const columns: Array<Column> = React.useMemo(
+    const columns = React.useMemo<ColumnDef<IPost>[]>(
         () => [
             {
                 id: "id",
-                Header: "ID",
-                accessor: "id",
+                header: "ID",
+                accessorKey: "id",
             },
             {
                 id: "title",
-                Header: "Title",
-                accessor: "title",
+                header: "Title",
+                accessorKey: "title",
             },
             {
                 id: "status",
-                Header: "Status",
-                accessor: "status",
+                header: "Status",
+                accessorKey: "status",
             },
             {
                 id: "createdAt",
-                Header: "CreatedAt",
-                accessor: "createdAt",
+                header: "CreatedAt",
+                accessorKey: "createdAt",
             },
             {
                 id: "category.id",
-                Header: "Category",
-                accessor: "category.id",
-                Cell: ({ cell }: { cell: Cell}) => {
-                    const { data, isLoading } = useOne<ICategory>({
-                        resource: "categories",
-                        id: cell.value,
-                    });
-
-                    if (isLoading) {
-                        return <p>loading..</p>;
-                    }
-
-                    return data?.data.title;
+                header: "Category",
+                accessorKey: "category.id",
+                cell: function render({ getValue, table }) {
+                    const meta = table.options.meta as {
+                        categoriesData: GetManyResponse<ICategory>;
+                    };
+                    const category = meta.categoriesData?.data.find(
+                        (item) => item.id === getValue(),
+                    );
+                    return category?.title ?? "Loading...";
                 },
             },
         ],
         [],
     );
-    //highlight-start
+
     const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        prepareRow,
-        page,
-        canPreviousPage,
-        canNextPage,
-        pageOptions,
-        pageCount,
-        gotoPage,
+        //highlight-start
+        getState,
+        setPageIndex,
+        getCanPreviousPage,
+        getPageCount,
+        getCanNextPage,
         nextPage,
         previousPage,
         setPageSize,
-        state: { pageIndex, pageSize },
-    } = useTable({ columns }, usePagination);
-    //highlight-end
+        // highlight-end
+        getHeaderGroups,
+        getRowModel,
+        setOptions,
+        refineCore: {
+            tableQueryResult: { data: tableData },
+        },
+    } = useTable<IPost>({ columns });
+
+    const categoryIds = tableData?.data?.map((item) => item.category.id) ?? [];
+    const { data: categoriesData } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
+    setOptions((prev) => ({
+        ...prev,
+        meta: {
+            ...prev.meta,
+            categoriesData,
+        },
+    }));
 
     return (
         <div className="container mx-auto pb-4">
-            <table
-                className="min-w-full table-fixed divide-y divide-gray-200 border"
-                {...getTableProps()}
-            >
+            <table className="min-w-full table-fixed divide-y divide-gray-200 border">
                 <thead className="bg-gray-100">
-                    {headerGroups.map((headerGroup: HeaderGroup) => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column: UseTableColumnProps) => (
+                    {getHeaderGroups().map((headerGroup) => (
+                        <tr key={headerGroup.id}>
+                            {headerGroup.headers.map((header) => (
                                 <th
-                                    {...column.getHeaderProps()}
+                                    key={header.id}
+                                    colSpan={header.colSpan}
                                     className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
                                 >
-                                    {column.render("Header")}
+                                    {flexRender(
+                                        header.column.columnDef.header,
+                                        header.getContext(),
+                                    )}
                                 </th>
                             ))}
                         </tr>
                     ))}
                 </thead>
-                <tbody
-                    {...getTableBodyProps()}
-                    className="divide-y divide-gray-200 bg-white"
-                >
-                    //highlight-next-line
-                    {page.map((row: UseTableRowProps) => {
-                        prepareRow(row);
+                <tbody className="divide-y divide-gray-200 bg-white">
+                    {getRowModel().rows.map((row) => {
                         return (
                             <tr
-                                {...row.getRowProps()}
+                                key={row.id}
                                 className="transition hover:bg-gray-100"
                             >
-                                {row.cells.map((cell: Cell) => {
+                                {row.getVisibleCells().map((cell) => {
                                     return (
                                         <td
-                                            {...cell.getCellProps()}
+                                            key={cell.id}
                                             className="whitespace-nowrap py-2 px-6 text-sm font-medium text-gray-900"
                                         >
-                                            {cell.render("Cell")}
+                                            {flexRender(
+                                                cell.column.columnDef.cell,
+                                                cell.getContext(),
+                                            )}
                                         </td>
                                     );
                                 })}
@@ -991,56 +1002,57 @@ export const PostList: React.FC = () => {
             <div className="mt-2 flex items-center justify-end gap-4">
                 <div className="flex gap-1">
                     <button
-                        onClick={() => gotoPage(0)}
-                        disabled={!canPreviousPage}
+                        onClick={() => setPageIndex(0)}
+                        disabled={!getCanPreviousPage()}
                         className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white disabled:bg-gray-200 hover:disabled:text-black"
                     >
                         {ChevronsLeftIcon}
                     </button>
                     <button
                         onClick={() => previousPage()}
-                        disabled={!canPreviousPage}
+                        disabled={!getCanPreviousPage()}
                         className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white disabled:bg-gray-200 hover:disabled:text-black"
                     >
                         {ChevronLeftIcon}
                     </button>
                     <button
                         onClick={() => nextPage()}
-                        disabled={!canNextPage}
+                        disabled={!getCanNextPage()}
                         className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white disabled:bg-gray-200 hover:disabled:text-black"
                     >
                         {ChevronRightIcon}
                     </button>
                     <button
-                        onClick={() => gotoPage(pageCount - 1)}
-                        disabled={!canNextPage}
+                        onClick={() => setPageIndex(getPageCount() - 1)}
+                        disabled={!getCanNextPage()}
                         className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white disabled:bg-gray-200 hover:disabled:text-black"
                     >
                         {ChevronsRightIcon}
                     </button>
                 </div>
                 <span>
-                    Page{" "}
+                    Page
                     <strong>
-                        {pageIndex + 1} of {pageOptions.length}
+                        {getState().pagination.pageIndex + 1} of{" "}
+                        {getPageCount()}
                     </strong>
                 </span>
                 <span>
                     Go to page:
                     <input
                         type="number"
-                        defaultValue={pageIndex + 1}
+                        defaultValue={getState().pagination.pageIndex + 1}
                         onChange={(e) => {
                             const page = e.target.value
                                 ? Number(e.target.value) - 1
                                 : 0;
-                            gotoPage(page);
+                            setPageIndex(page);
                         }}
                         className="w-12 rounded border border-gray-200 p-1 text-gray-700"
                     />
                 </span>
                 <select
-                    value={pageSize}
+                    value={getState().pagination.pageSize}
                     onChange={(e) => {
                         setPageSize(Number(e.target.value));
                     }}
@@ -1144,38 +1156,15 @@ export const ChevronsRightIcon = (
 
 ### Adding Sorting and Filtering
 
-Before we start, just edit our interface for the new `IFilter` type:
+The `@pankod/refine-react-table` package also listens for changes in `columnFilters` and `sorting` states of the **Tanstack Table** and updates the table accordingly. The change in these states triggers the fetch of the new data.
 
-```ts title="interfaces/index.d.ts"
-...
-
-//highlight-start
-export interface IFilter {
-    id: string;
-    value: string;
-}
-//highlight-end
-```
-
-We can add sorting and filtering to our table by adding the following codes to the table:
+So, we can add filters and sorting features to our table as suggested by TanStack Table with the following code:
 
 ```tsx title="src/pages/posts/list.tsx"
 import React from "react";
-import {
-    useTable,
-    Column,
-    HeaderGroup,
-    Cell,
-    UseTableColumnProps,
-    UseTableRowProps,
-    usePagination,
-    //highlight-start
-    useSortBy,
-    useFilters,
-    //highlight-end
-} from "@pankod/refine-react-table";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useMany, GetManyResponse } from "@pankod/refine-core";
 
-import { IPost } from "interfaces";
 import {
     ChevronLeftIcon,
     ChevronRightIcon,
@@ -1183,59 +1172,97 @@ import {
     ChevronsRightIcon,
 } from "icons";
 
+import { IPost, ICategory } from "interfaces";
+
 export const PostList: React.FC = () => {
-    const columns: Array<Column> = React.useMemo(
+    const columns = React.useMemo<ColumnDef<IPost>[]>(
         () => [
             {
                 id: "id",
-                Header: "ID",
-                accessor: "id",
+                header: "ID",
+                accessorKey: "id",
             },
             {
                 id: "title",
-                Header: "Title",
-                accessor: "title",
-                //highlight-next-line
-                filter: "contains",
+                header: "Title",
+                accessorKey: "title",
+                //highlight-start
+                meta: {
+                    filterOperator: "contains",
+                },
+                //highlight-end
             },
             {
                 id: "status",
-                Header: "Status",
-                accessor: "status",
+                header: "Status",
+                accessorKey: "status",
             },
             {
                 id: "createdAt",
-                Header: "CreatedAt",
-                accessor: "createdAt",
+                header: "CreatedAt",
+                accessorKey: "createdAt",
+            },
+            {
+                id: "category.id",
+                header: "Category",
+                accessorKey: "category.id",
+                cell: function render({ getValue, table }) {
+                    const meta = table.options.meta as {
+                        categoriesData: GetManyResponse<ICategory>;
+                    };
+                    const category = meta.categoriesData?.data.find(
+                        (item) => item.id === getValue(),
+                    );
+                    return category?.title ?? "Loading...";
+                },
             },
         ],
         [],
     );
 
     const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        prepareRow,
-        page,
-        canPreviousPage,
-        canNextPage,
-        pageOptions,
-        pageCount,
-        gotoPage,
+        //highlight-next-line
+        getColumn,
+        getState,
+        setPageIndex,
+        getCanPreviousPage,
+        getPageCount,
+        getCanNextPage,
         nextPage,
         previousPage,
         setPageSize,
-        //highlight-start
-        setFilter,
-        state: { pageIndex, pageSize, filters },
-    } = useTable<IPost>({ columns }, useFilters, useSortBy, usePagination);
-    //highlight-end
+        getHeaderGroups,
+        getRowModel,
+        setOptions,
+        refineCore: {
+            tableQueryResult: { data: tableData },
+        },
+    } = useTable<IPost>({ columns });
+
+    const categoryIds = tableData?.data?.map((item) => item.category.id) ?? [];
+    const { data: categoriesData } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
+
+    setOptions((prev) => ({
+        ...prev,
+        meta: {
+            ...prev.meta,
+            categoriesData,
+        },
+    }));
+
+    //highlight-next-line
+    const titleColumn = getColumn("title");
 
     return (
         <div className="container mx-auto pb-4">
+            //highlight-start
             <div className="mb-3 mt-1 flex items-center justify-between">
-                //highlight-start
                 <div>
                     <label className="mr-1" htmlFor="title">
                         Title:
@@ -1245,65 +1272,62 @@ export const PostList: React.FC = () => {
                         type="text"
                         className="rounded border border-gray-200 p-1 text-gray-700"
                         placeholder="Filter by title"
-                        value={
-                            filters.find((filter: IFilter) => filter.id === "title")
-                                ?.value
-                        }
+                        value={(titleColumn.getFilterValue() as string) ?? ""}
                         onChange={(event) =>
-                            setFilter("title", event.target.value)
+                            titleColumn.setFilterValue(event.target.value)
                         }
                     />
                 </div>
-                //highlight-end
             </div>
-
-            <table
-                className="min-w-full table-fixed divide-y divide-gray-200 border"
-                {...getTableProps()}
-            >
+            //highlight-end
+            <table className="min-w-full table-fixed divide-y divide-gray-200 border">
                 <thead className="bg-gray-100">
-                    {headerGroups.map((headerGroup: HeaderGroup) => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map((column: UseTableColumnProps) => (
-                                //highlight-start
+                    {getHeaderGroups().map((headerGroup) => (
+                        <tr key={headerGroup.id}>
+                            {headerGroup.headers.map((header) => (
                                 <th
-                                    {...column.getHeaderProps(
-                                        column.getSortByToggleProps(),
-                                    )}
+                                    key={header.id}
+                                    colSpan={header.colSpan}
                                     className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
                                 >
-                                    {column.render("Header")}
-                                    <span>
-                                        {column.isSorted
-                                            ? column.isSortedDesc
-                                                ? " 🔽"
-                                                : " 🔼"
-                                            : ""}
-                                    </span>
+                                    //highlight-start
+                                    <div
+                                        onClick={header.column.getToggleSortingHandler()}
+                                    >
+                                        {flexRender(
+                                            header.column.columnDef.header,
+                                            header.getContext(),
+                                        )}
+                                        {{
+                                            asc: " 🔼",
+                                            desc: " 🔽",
+                                        }[
+                                            header.column.getIsSorted() as string
+                                        ] ?? null}
+                                    </div>
+                                    //highlight-end
                                 </th>
-                                //highlight-end
                             ))}
                         </tr>
                     ))}
                 </thead>
-                <tbody
-                    {...getTableBodyProps()}
-                    className="divide-y divide-gray-200 bg-white"
-                >
-                    {page.map((row: UseTableRowProps,) => {
-                        prepareRow(row);
+                <tbody className="divide-y divide-gray-200 bg-white">
+                    {getRowModel().rows.map((row) => {
                         return (
                             <tr
-                                {...row.getRowProps()}
+                                key={row.id}
                                 className="transition hover:bg-gray-100"
                             >
-                                {row.cells.map((cell: Cell) => {
+                                {row.getVisibleCells().map((cell) => {
                                     return (
                                         <td
-                                            {...cell.getCellProps()}
+                                            key={cell.id}
                                             className="whitespace-nowrap py-2 px-6 text-sm font-medium text-gray-900"
                                         >
-                                            {cell.render("Cell")}
+                                            {flexRender(
+                                                cell.column.columnDef.cell,
+                                                cell.getContext(),
+                                            )}
                                         </td>
                                     );
                                 })}
@@ -1312,60 +1336,60 @@ export const PostList: React.FC = () => {
                     })}
                 </tbody>
             </table>
-
             <div className="mt-2 flex items-center justify-end gap-4">
                 <div className="flex gap-1">
                     <button
-                        onClick={() => gotoPage(0)}
-                        disabled={!canPreviousPage}
+                        onClick={() => setPageIndex(0)}
+                        disabled={!getCanPreviousPage()}
                         className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white disabled:bg-gray-200 hover:disabled:text-black"
                     >
                         {ChevronsLeftIcon}
                     </button>
                     <button
                         onClick={() => previousPage()}
-                        disabled={!canPreviousPage}
+                        disabled={!getCanPreviousPage()}
                         className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white disabled:bg-gray-200 hover:disabled:text-black"
                     >
                         {ChevronLeftIcon}
                     </button>
                     <button
                         onClick={() => nextPage()}
-                        disabled={!canNextPage}
+                        disabled={!getCanNextPage()}
                         className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white disabled:bg-gray-200 hover:disabled:text-black"
                     >
                         {ChevronRightIcon}
                     </button>
                     <button
-                        onClick={() => gotoPage(pageCount - 1)}
-                        disabled={!canNextPage}
+                        onClick={() => setPageIndex(getPageCount() - 1)}
+                        disabled={!getCanNextPage()}
                         className="flex items-center justify-between gap-1 rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white disabled:bg-gray-200 hover:disabled:text-black"
                     >
                         {ChevronsRightIcon}
                     </button>
                 </div>
                 <span>
-                    Page{" "}
+                    Page
                     <strong>
-                        {pageIndex + 1} of {pageOptions.length}
+                        {getState().pagination.pageIndex + 1} of{" "}
+                        {getPageCount()}
                     </strong>
                 </span>
                 <span>
                     Go to page:
                     <input
                         type="number"
-                        defaultValue={pageIndex + 1}
+                        defaultValue={getState().pagination.pageIndex + 1}
                         onChange={(e) => {
                             const page = e.target.value
                                 ? Number(e.target.value) - 1
                                 : 0;
-                            gotoPage(page);
+                            setPageIndex(page);
                         }}
                         className="w-12 rounded border border-gray-200 p-1 text-gray-700"
                     />
                 </span>
                 <select
-                    value={pageSize}
+                    value={getState().pagination.pageSize}
                     onChange={(e) => {
                         setPageSize(Number(e.target.value));
                     }}
@@ -1399,7 +1423,7 @@ At this point we are able to list all _post_ records on the table component. Nex
 Before we start, just edit our interface for the new `IPost` type:
 
 ```ts title="interfaces/index.d.ts"
-... 
+...
 
 export interface IPost {
     id: number;
@@ -1480,6 +1504,7 @@ export const PostShow: React.FC = () => {
 //highlight-next-line
 export * from "./show";
 ```
+
 <br/>
 
 Now we can add the newly created component to our resource with `show` prop:
@@ -1519,7 +1544,7 @@ export const App: React.FC = () => {
 
 And then we can add a show button on the list page to make it possible for users to navigate to detail pages.
 
-Just add the following highlighted lines to the existed list page: 
+Just add the following highlighted lines to the existed list page:
 
 ```tsx title="src/pages/posts/list.tsx"
 ...
@@ -1527,39 +1552,43 @@ Just add the following highlighted lines to the existed list page:
 //highlight-next-line
 import { useNavigation } from "@pankod/refine-core";
 
-import { 
-    ..., 
+import {
+    ...,
 //highlight-next-line
-    ShowIcon 
+    ShowIcon
 } from "icons";
 
 export const PostList: React.FC = () => {
     //highlight-next-line
     const { show } = useNavigation();
 
-    const columns: Array<Column> = React.useMemo(
+    const columns = React.useMemo<ColumnDef<IPost>[]>(
         () => [
             ...
             //highlight-start
             {
                 id: "action",
-                Header: "Action",
-                accessor: "id",
-                Cell: ({ value }) => (
-                    <button
-                        className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-                        onClick={() => show("posts", value)}
-                    >
-                        {ShowIcon}
-                    </button>
-                ),
+                header: "Action",
+                accessorKey: "id",
+                cell: function render({ getValue }) {
+                    return (
+                        <button
+                            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                            onClick={() =>
+                                show("posts", getValue() as number)
+                            }
+                        >
+                            {ShowIcon}
+                        </button>
+                    )
+                },
             },
             //highlight-end
         ],
         [],
     );
 
-    const { ... } = useTable({ columns }, useFilters, useSortBy, usePagination);
+    const { ... } = useTable<IPost>({ columns });
 
     return (
         ...
@@ -1763,8 +1792,8 @@ export const PostEdit: React.FC = () => {
 //highlight-next-line
 export * from "./edit";
 ```
-<br/>
 
+<br/>
 
 <details><summary>Show LoadingIcon</summary>
 <p>
@@ -1818,7 +1847,7 @@ export const App: React.FC = () => {
                     icon: PostIcon,
                     list: PostList,
                     show: PostShow,
-                     // highlight-next-line
+                    // highlight-next-line
                     edit: PostEdit,
                 },
             ]}
@@ -1835,48 +1864,54 @@ We are going to need an _edit_ button on each row to display the `<PostEdit>` co
 
 import { useNavigation } from "@pankod/refine-core";
 
-import { 
+import {
     ...
     ShowIcon,
 //highlight-next-line
-    EditIcon 
+    EditIcon
 } from "icons";
 
 export const PostList: React.FC = () => {
     //highlight-next-line
     const { show, edit } = useNavigation();
 
-    const columns: Array<Column> = React.useMemo(
+    const columns = React.useMemo<ColumnDef<IPost>[]>(
         () => [
             ...
             {
                 id: "action",
-                Header: "Action",
-                accessor: "id",
-                //highlight-start
-                Cell: ({ value }: Cell) => (
-                    <div className="flex gap-2">
-                        <button
-                            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-                            onClick={() => edit("posts", value)}
-                        >
-                            {EditIcon}
-                        </button>
-                        <button
-                            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
-                            onClick={() => show("posts", value)}
-                        >
-                            {ShowIcon}
-                        </button>
-                    </div>
-                ),
-                //highlight-end
+                header: "Action",
+                accessorKey: "id",
+                cell: function render({ getValue }) {
+                    return (
+                        <div className="flex gap-2">
+                            //highlight-start
+                            <button
+                                className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                                onClick={() =>
+                                    edit("posts", getValue() as number)
+                                }
+                            >
+                                {EditIcon}
+                            </button>
+                            //highlight-end
+                            <button
+                                className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-indigo-500 hover:text-white"
+                                onClick={() =>
+                                    show("posts", getValue() as number)
+                                }
+                            >
+                                {ShowIcon}
+                            </button>
+                        </div>
+                    ),
+                }
             },
         ],
         [],
     );
 
-    const { ... } = useTable({ columns }, useFilters, useSortBy, usePagination);
+    const { ... } = useTable<IPost>({ columns });
 
     return (
         ...
@@ -2052,6 +2087,7 @@ export const PostCreate: React.FC = () => {
 //highlight-next-line
 export * from "./create";
 ```
+
 <br />
 
 After creating the `<PostCreate>` component, add it to resource with `create` prop:
@@ -2080,7 +2116,7 @@ export const App: React.FC = () => {
                     list: PostList,
                     show: PostShow,
                     edit: PostEdit,
-                // highlight-next-line
+                    // highlight-next-line
                     create: PostCreate,
                 },
             ]}
@@ -2092,8 +2128,6 @@ export const App: React.FC = () => {
 
 <br />
 
-
-
 Finally, We are going to need an _create_ button on top of the right side of the `PostList` page to create new posts. It redirects to create page.
 
 ```tsx title="src/pages/posts/list.tsx"
@@ -2102,24 +2136,22 @@ Finally, We are going to need an _create_ button on top of the right side of the
 // highlight-next-line
 import { useNavigation } from "@pankod/refine-core";
 
-import { 
+import {
     ...,
 // highlight-next-line
-    CreateIcon 
+    CreateIcon
 } from "icons";
 
 export const PostList: React.FC = () => {
     const {
         ...,
     // highlight-next-line
-        create 
+        create
         } = useNavigation();
 
-    const columns: Array<Column> = React.useMemo(...);
+    const columns = React.useMemo<ColumnDef<IPost>[]>(...)
 
-    const {
-       ...
-    } = useTable<IPost>({ columns }, useFilters, useSortBy, usePagination);
+    const {...} = useTable<IPost>({ columns });
 
     return (
         <div className="container mx-auto pb-4">
@@ -2217,36 +2249,40 @@ export const PostList: React.FC = () => {
     //highlight-next-line
     const { mutate } = useDelete();
 
-    const columns: Array<Column> = React.useMemo(
+    const columns = React.useMemo<ColumnDef<IPost>[]>(
         () => [
             ...
             {
                 id: "action",
-                Header: "Action",
-                accessor: "id",
-                Cell: ({ value }: Cell) => (
-                    <div className="flex gap-2">
-                       ...
+                header: "Action",
+                accessorKey: "id",
+                cell: function render({ getValue }) {
+                    return (
+                        <div className="flex gap-2">
+                        ...
 
-                        //highlight-start
-                         <button
-                            className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-red-500 hover:text-white"
-                            onClick={() =>
-                                mutate({ id: value, resource: "posts" })
-                            }
-                        >
-                            {DeleteIcon}
-                        </button>
-                        //highlight-end
-                    </div>
-                ),
-
+                            //highlight-start
+                            <button
+                                className="rounded border border-gray-200 p-2 text-xs font-medium leading-tight transition duration-150 ease-in-out hover:bg-red-500 hover:text-white"
+                                onClick={() =>
+                                    mutate({
+                                        id: getValue() as number,
+                                        resource: "posts",
+                                    })
+                                }
+                            >
+                                {DeleteIcon}
+                            </button>
+                            //highlight-end
+                        </div>
+                    ),
+                }
             },
         ],
         [],
     );
 
-    const { ... } = useTable({ columns }, useFilters, useSortBy, usePagination);
+    const { ... } = useTable({ columns });
 
     return (
         ...

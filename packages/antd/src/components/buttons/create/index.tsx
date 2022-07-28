@@ -56,6 +56,9 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
         queryOptions: {
             enabled: !ignoreAccessControlProvider,
         },
+        params: {
+            resource,
+        },
     });
 
     const createButtonDisabledTitle = () => {

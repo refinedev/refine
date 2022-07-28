@@ -12,5 +12,4 @@ export interface AuthProvider {
 
 export interface IAuthContext extends Partial<AuthProvider> {
     isProvided?: boolean;
-    isAuthenticated?: boolean;
 }

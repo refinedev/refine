@@ -1,5 +1,137 @@
 # @pankod/refine-core
 
+## 3.52.0
+
+### Minor Changes
+
+-   Added `useCustomMutation`hook for custom mutation requests.
+
+    ```tsx
+    import { useCustomMutation } from "@pankod/refine-core";
+    const { mutation } = useCustomMutation();
+
+    mutation({
+        url: "https://api.example.com/users",
+        method: "POST",
+        values: {
+            name: "John Doe",
+            email: "johndoe@mail.com",
+        },
+    });
+    ```
+
+## 3.51.0
+
+### Minor Changes
+
+-   [#2229](https://github.com/pankod/refine/pull/2229) [`878e9a105e`](https://github.com/pankod/refine/commit/878e9a105e582db0a2b0cbcddf4e6e196e94f632) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Added `useCustomMutation`hook for custom mutation requests.
+
+    ```tsx
+    import { useCustomMutation } from "@pankod/refine-core";
+    const { mutation } = useCustomMutation();
+
+    mutation({
+        url: "https://api.example.com/users",
+        method: "POST",
+        values: {
+            name: "John Doe",
+            email: "johndoe@mail.com",
+        },
+    });
+    ```
+
+## 3.50.0
+
+### Minor Changes
+
+-   Pass the full `resource` to the `accessControlProvider` can method. This will enable Attribute Based Access Control (ABAC), for example granting permissions based on the value of a field in the resource object.
+
+    ```ts
+    const App: React.FC = () => {
+        <Refine
+            // other providers and props
+            accessControlProvider={{
+                can: async ({ resource, action, params }) => {
+                    if (resource === "posts" && action === "edit") {
+                        return Promise.resolve({
+                            can: false,
+                            reason: "Unauthorized",
+                        });
+                    }
+
+                    // or you can access directly *resource object
+                    // const resourceName = params?.resource?.name;
+                    // const anyUsefulOption = params?.resource?.options?.yourUsefulOption;
+                    // if (resourceName === "posts" && anyUsefulOption === true && action === "edit") {
+                    //     return Promise.resolve({
+                    //         can: false,
+                    //         reason: "Unauthorized",
+                    //     });
+                    // }
+
+                    return Promise.resolve({ can: true });
+                },
+            }}
+        />;
+    };
+    ```
+
+## 3.49.0
+
+### Minor Changes
+
+-   [#2222](https://github.com/pankod/refine/pull/2222) [`43e92b9785`](https://github.com/pankod/refine/commit/43e92b97854a1aea703ba2c04f95dcd5c6f4044d) Thanks [@omeraplak](https://github.com/omeraplak)! - Pass the full `resource` to the `accessControlProvider` can method. This will enable Attribute Based Access Control (ABAC), for example granting permissions based on the value of a field in the resource object.
+
+    ```ts
+    const App: React.FC = () => {
+        <Refine
+            // other providers and props
+            accessControlProvider={{
+                can: async ({ resource, action, params }) => {
+                    if (resource === "posts" && action === "edit") {
+                        return Promise.resolve({
+                            can: false,
+                            reason: "Unauthorized",
+                        });
+                    }
+
+                    // or you can access directly *resource object
+                    // const resourceName = params?.resource?.name;
+                    // const anyUsefulOption = params?.resource?.options?.yourUsefulOption;
+                    // if (resourceName === "posts" && anyUsefulOption === true && action === "edit") {
+                    //     return Promise.resolve({
+                    //         can: false,
+                    //         reason: "Unauthorized",
+                    //     });
+                    // }
+
+                    return Promise.resolve({ can: true });
+                },
+            }}
+        />;
+    };
+    ```
+
+## 3.48.0
+
+### Minor Changes
+
+-   All of the refine packages have dependencies on the `@pankod/refine-core` package. So far we have managed these dependencies with `peerDependencies` + `dependencies` but this causes issues like #2183. (having more than one @pankod/refine-core version in node_modules and creating different instances)
+
+    Managing as `peerDependencies` + `devDependencies` seems like the best way for now to avoid such issues.
+
+### Patch Changes
+
+-   Fix adding the current path to the `to` parameter when redirecting to the login page after `logout` - #2211
+
+## 3.47.0
+
+### Minor Changes
+
+-   [#2217](https://github.com/pankod/refine/pull/2217) [`b4aae00f77`](https://github.com/pankod/refine/commit/b4aae00f77a2476d847994db21298ae25e4cf6e5) Thanks [@omeraplak](https://github.com/omeraplak)! - All of the refine packages have dependencies on the `@pankod/refine-core` package. So far we have managed these dependencies with `peerDependencies` + `dependencies` but this causes issues like #2183. (having more than one @pankod/refine-core version in node_modules and creating different instances)
+
+    Managing as `peerDependencies` + `devDependencies` seems like the best way for now to avoid such issues.
+
 ## 3.46.0
 
 ### Minor Changes

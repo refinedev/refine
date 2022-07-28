@@ -50,7 +50,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     const { data } = useCan({
         resource: resourceName,
         action: "show",
-        params: { id },
+        params: { id, resource },
         queryOptions: {
             enabled: !ignoreAccessControlProvider,
         },

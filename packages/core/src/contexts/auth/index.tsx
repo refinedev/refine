@@ -12,48 +12,47 @@ export const AuthContextProvider: React.FC<IAuthContext> = ({
     ...authOperations
 }) => {
     const { replace } = useNavigation();
-    const [isAuthenticated, setAuthenticated] = useState(false);
     const queryClient = useQueryClient();
 
-    useEffect(() => {
+    const invalidateAuthStore = () => {
         queryClient.invalidateQueries(["useAuthenticated"]);
         queryClient.invalidateQueries(["getUserIdentity"]);
         queryClient.invalidateQueries(["usePermissions"]);
-    }, [isAuthenticated]);
+    };
 
     const loginFunc = async (params: any) => {
         try {
             const result = await authOperations.login?.(params);
-            setAuthenticated(true);
             return Promise.resolve(result);
         } catch (error) {
-            setAuthenticated(false);
-            throw error;
+            return Promise.reject(error);
+        } finally {
+            invalidateAuthStore();
         }
     };
 
     const logoutFunc = async (params: any) => {
         try {
             const redirectPath = await authOperations.logout?.(params);
-            setAuthenticated(false);
-
             return Promise.resolve(redirectPath);
         } catch (error) {
-            setAuthenticated(true);
-            throw error;
+            return Promise.reject(error);
+        } finally {
+            invalidateAuthStore();
         }
     };
 
     const checkAuthFunc = async (params: any) => {
         try {
             await authOperations.checkAuth?.(params);
-            setAuthenticated(true);
+            return Promise.resolve();
         } catch (error) {
             if ((error as { redirectPath?: string })?.redirectPath) {
                 replace((error as { redirectPath: string }).redirectPath);
             }
-            setAuthenticated(false);
-            throw error;
+            return Promise.reject(error);
+        } finally {
+            invalidateAuthStore();
         }
     };
 
@@ -65,7 +64,6 @@ export const AuthContextProvider: React.FC<IAuthContext> = ({
                 logout: logoutFunc,
                 checkAuth: checkAuthFunc,
                 isProvided,
-                isAuthenticated,
             }}
         >
             {children}
