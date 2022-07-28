@@ -182,6 +182,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 -   [Hasura](https://github.com/pankod/refine/tree/master/packages/hasura)
 -   [Nhost](https://github.com/pankod/refine/tree/master/packages/nhost)
 -   [Appwrite](https://github.com/pankod/refine/tree/master/packages/appwrite)
+-   [Medusa](https://github.com/pankod/refine/tree/master/packages/medusa)
 -   [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 
 ### Community ❤️
