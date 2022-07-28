@@ -12,5 +12,6 @@ export { useDeleteMany } from "./useDeleteMany";
 
 export { useApiUrl } from "./useApiUrl";
 export { useCustom } from "./useCustom";
+export { useCustomMutation } from "./useCustomMutation";
 
 export { useDataProvider } from "./useDataProvider";

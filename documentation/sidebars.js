@@ -76,6 +76,7 @@ module.exports = {
                                 "core/hooks/data/useCreate",
                                 "core/hooks/data/useCreateMany",
                                 "core/hooks/data/useCustom",
+                                "core/hooks/data/useCustomMutation",
                                 "core/hooks/data/useDataProvider",
                                 "core/hooks/data/useDelete",
                                 "core/hooks/data/useDeleteMany",
