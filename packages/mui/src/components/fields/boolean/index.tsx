@@ -25,7 +25,7 @@ export const BooleanField: React.FC<BooleanFieldProps> = ({
     ...rest
 }) => {
     return (
-        <Tooltip {...rest} title={value ? valueLabelTrue : valueLabelFalse}>
+        <Tooltip title={value ? valueLabelTrue : valueLabelFalse} {...rest}>
             {value ? (
                 <span>{trueIcon ?? <CheckOutlined {...svgIconProps} />}</span>
             ) : (
