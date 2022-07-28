@@ -1,5 +1,10 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { useDeleteMany, useMany, useSelect } from "@pankod/refine-core";
+import {
+    GetManyResponse,
+    useDeleteMany,
+    useMany,
+    useSelect,
+} from "@pankod/refine-core";
 import { useForm, Controller } from "@pankod/refine-react-hook-form";
 import {
     useTable,
@@ -117,6 +122,15 @@ export const PostList: React.FC = () => {
                 id: "category.id",
                 header: "Category",
                 accessorKey: "category.id",
+                cell: function render({ getValue, table }) {
+                    const meta = table.options.meta as {
+                        categoriesData: GetManyResponse<ICategory>;
+                    };
+                    const category = meta.categoriesData?.data.find(
+                        (item) => item.id === getValue(),
+                    );
+                    return category?.title ?? "Loading...";
+                },
                 meta: {
                     filterOperator: "eq",
                 },
@@ -198,7 +212,7 @@ export const PostList: React.FC = () => {
     });
 
     const categoryIds = tableData?.data?.map((item) => item.category.id) ?? [];
-    const { data: categoriesData, isLoading } = useMany<ICategory>({
+    const { data: categoriesData } = useMany<ICategory>({
         resource: "categories",
         ids: categoryIds,
         queryOptions: {
@@ -208,24 +222,10 @@ export const PostList: React.FC = () => {
 
     setOptions((prev) => ({
         ...prev,
-        columns: getAllColumns().map((column) => {
-            if (column.id === "category.id") {
-                return {
-                    ...column,
-                    cell: function render({ getValue }) {
-                        if (isLoading) {
-                            return "Loading...";
-                        }
-
-                        const category = categoriesData?.data.find(
-                            (item) => item.id === getValue(),
-                        );
-                        return category?.title ?? "Loading...";
-                    },
-                };
-            }
-            return column;
-        }),
+        meta: {
+            ...prev.meta,
+            categoriesData,
+        },
     }));
 
     const { options } = useSelect<ICategory>({
@@ -254,7 +254,7 @@ export const PostList: React.FC = () => {
                         <td>
                             <div>
                                 <span onClick={() => row.toggleExpanded()}>
-                                    {row.isExpanded ? "👇" : "👉"}
+                                    {row.getIsExpanded() ? "👇" : "👉"}
                                 </span>
                             </div>
                         </td>

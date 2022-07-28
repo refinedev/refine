@@ -246,7 +246,7 @@ export const PostList: React.FC = () => {
                 <>
                     <TableRow key={`edit-${id}-inputs`}>
                         <TableCell>
-                            <span>{row.isExpanded ? "👇" : "👉"}</span>
+                            <span>{row.getIsExpanded() ? "👇" : "👉"}</span>
                         </TableCell>
                         <TableCell>
                             <span>{id}</span>
