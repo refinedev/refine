@@ -23,12 +23,16 @@ export const authProvider = (API_URL: string): AuthProvider => {
     return {
         login: async (user: { username: string; password: string }) => {
             try {
-                const response = await axiosInstance.post("/auth", user, {
-                    withCredentials: true,
-                });
+                const response = await axiosInstance.post(
+                    "/auth",
+                    { email: user.username, password: user.password },
+                    {
+                        withCredentials: true,
+                    },
+                );
 
                 if (response) {
-                    return Promise.resolve();
+                    return Promise.resolve(response.data.customer);
                 }
             } catch (error) {
                 return Promise.reject(error);
