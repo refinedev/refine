@@ -18,7 +18,7 @@ If you need to use `useCustom` for query operations, use the [useCustom](/core/h
 
 ### Features
 
--   You can send a request to any link, using any of the methods (`post, put, patch`).
+-   You can send a request to any link, using any of the methods (`post, put, patch, delete`).
 
 ### Usage
 
