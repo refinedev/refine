@@ -1,5 +1,11 @@
 # @pankod/refine-medusa
 
+## 0.3.0
+
+### Minor Changes
+
+-   Initialized [Medusa](https://medusajs.com/) data provider for Refine. Currently we're supporting Medusa's StoreFront API as a data provider and also auth provider.
+
 ## 0.2.0
 
 ### Minor Changes
