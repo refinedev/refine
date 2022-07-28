@@ -7,7 +7,10 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-import { RefineListButtonProps } from "@pankod/refine-ui-types";
+import {
+    RefineButtonTestIds,
+    RefineListButtonProps,
+} from "@pankod/refine-ui-types";
 import { Button, ButtonProps, SvgIconProps } from "@mui/material";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 
@@ -82,6 +85,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
                 startIcon={!hideText && <ListOutlinedIcon {...svgIconProps} />}
                 title={disabledTitle()}
                 sx={{ minWidth: 0, ...sx }}
+                data-testid={RefineButtonTestIds.ListButton}
                 {...restProps}
             >
                 {hideText ? (
