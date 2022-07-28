@@ -9,12 +9,17 @@ import {
     MetaDataQuery,
 } from "../../interfaces";
 
+interface UseCustomMutationConfig {
+    headers?: {};
+}
+
 type useCustomMutationParams<TVariables> = {
     url: string;
     method: "post" | "put" | "patch" | "delete";
     values: TVariables;
     metaData?: MetaDataQuery;
     dataProviderName?: string;
+    config?: UseCustomMutationConfig;
 } & SuccessErrorNotification;
 
 export type UseCustomMutationReturnType<
@@ -62,6 +67,7 @@ export const useCustomMutation = <
             values,
             metaData,
             dataProviderName,
+            config,
         }: useCustomMutationParams<TVariables>) => {
             const { custom } = dataProvider(dataProviderName);
 
@@ -71,6 +77,7 @@ export const useCustomMutation = <
                     method,
                     payload: values,
                     metaData,
+                    headers: { ...config?.headers },
                 });
             }
 
