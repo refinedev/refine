@@ -91,7 +91,7 @@ export const HomePage: React.FC = () => {
     return (
         <div className="home-page">
             {!isLoggedIn && !isFetching && <Banner />}
-            <div className="container page">
+            <div className="page container">
                 <div className="row">
                     <div className="col-md-9">
                         <div className="feed-toggle">

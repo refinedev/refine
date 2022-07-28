@@ -10,9 +10,9 @@ export const NumberInput: React.FC<NumberInputProps> = ({
     setValue,
 }) => {
     return (
-        <div className="relative overflow-hidden flex items-center">
+        <div className="relative flex items-center overflow-hidden">
             <button
-                className="h-full border p-2 transition-all hover:bg-gray-50 active:bg-gray-50 rounded-tl-md rounded-bl-md"
+                className="h-full rounded-tl-md rounded-bl-md border p-2 transition-all hover:bg-gray-50 active:bg-gray-50"
                 onClick={() =>
                     setValue((prev) => {
                         if (prev > 0) {
@@ -36,7 +36,7 @@ export const NumberInput: React.FC<NumberInputProps> = ({
                 }}
             />
             <button
-                className="h-full border p-2 transition-all hover:bg-gray-50 active:bg-gray-50 rounded-tr-md rounded-br-md"
+                className="h-full rounded-tr-md rounded-br-md border p-2 transition-all hover:bg-gray-50 active:bg-gray-50"
                 onClick={() =>
                     setValue((prev) => {
                         if (prev >= 0) {
