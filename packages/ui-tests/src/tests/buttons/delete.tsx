@@ -160,13 +160,9 @@ export const buttonDeleteTests = function (
         });
 
         it("should render Popconfirm successfuly", async () => {
-            const deleteFunc = jest.fn();
-            const { getByText, getAllByText } = render(
-                <DeleteButton onClick={() => deleteFunc()} />,
-                {
-                    wrapper: TestWrapper({}),
-                },
-            );
+            const { getByText, getAllByText } = render(<DeleteButton />, {
+                wrapper: TestWrapper({}),
+            });
 
             await act(async () => {
                 jest.advanceTimersToNextTimer(1);
@@ -294,7 +290,7 @@ export const buttonDeleteTests = function (
             const deleteOneMock = jest.fn();
             const onSuccessMock = jest.fn();
 
-            const { getByText, getAllByText, debug } = render(
+            const { getByText } = render(
                 <Routes>
                     <Route
                         path="/:resource/:action/:id"
