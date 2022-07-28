@@ -8,7 +8,10 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-import { RefineEditButtonProps } from "@pankod/refine-ui-types";
+import {
+    RefineEditButtonProps,
+    RefineButtonTestIds,
+} from "@pankod/refine-ui-types";
 
 export type EditButtonProps = RefineEditButtonProps<
     ButtonProps,
@@ -84,6 +87,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
                 icon={<EditOutlined />}
                 disabled={data?.can === false}
                 title={createButtonDisabledTitle()}
+                data-testid={RefineButtonTestIds.EditButton}
                 {...rest}
             >
                 {!hideText && (children ?? translate("buttons.edit", "Edit"))}
