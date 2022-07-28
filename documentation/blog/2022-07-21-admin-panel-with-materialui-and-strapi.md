@@ -20,7 +20,7 @@ We will build an **admin panel** that supports **CRUD** operations, has built-in
 Industry-standard tools and practices can be hard to reach and time-consuming to maintain on your own. Frameworks can save you time by doing these jobs for you. So, we'll use powerful frameworks including  [Material UI](https://mui.com), [Strapi](https://strapi.io/), and [refine](https://refine.dev/) to build a high-quality admin panel.
 
 
-UI design can be a complex and time-consuming process, but a tool like Material UI can help simplify the process and speed up the development cycle. In this tutorial, we'll use Material UI's benefits and handle data fetching and mutations. We'll also integrate the Strapi data provider that Refine has built-in support.
+UI design can be a complex and time-consuming process, but a tool like Material UI can help simplify the process and speed up the development cycle. In this tutorial, we'll use Material UI's benefits and refine's built-in hooks to handle data fetching and mutations. We'll also integrate the Strapi data provider that refine has built-in support.
 
 We'll walk through the process of listing, creating and deleting posts in a refine application and make use of refine's components and hooks to build out our functionality.
 
@@ -317,7 +317,7 @@ Check that the URL is routed to **/posts** and posts are displayed correctly in 
 
 
 ### Handling relational data
-Relations are not populated when fetching entiries. We'll use `metaData` option to use relational population for Strapi-v4 API.
+Relations are not populated when fetching entries. We'll use `metaData` option to use relational population for Strapi v4 API.
 
 The records from `/posts` endpoint that had a category id field. To get category titles automatically from `/categories` endpoint for each record  and show on our table, we need to use [`populate`](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/#relations-population) feature of Strapi v4. 
 
@@ -918,7 +918,7 @@ The `<DeleteButton>` should be appear in an edit form.
 
 ## Implementing mutation mode
 
-We'll like to show how mutation modes making your app feel more responsive to the user. Refine offers three modes for mutations called `pessimistic`, `optimistic`, and `undoable`. This modes determines when the side effects are executed.
+We'll like to show how mutation modes making your app feel more responsive to the user. refine offers three modes for mutations called `pessimistic`, `optimistic`, and `undoable`. This modes determines when the side effects are executed.
 
 If we briefly describe:
 
@@ -932,7 +932,7 @@ We'll implement `undoable` mutation mode. The mutation is applied locally, redir
 
 During the timeout, mutation can be cancelled from the notification with an undo button and UI will revert back accordingly.
 
-[Refer to Refine mutation mode docs for more detailed information &#8594](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/)
+[Refer to refine mutation mode docs for more detailed information &#8594](https://refine.dev/docs/guides-and-concepts/data-provider/strapi-v4/)
 
 
 
@@ -998,13 +998,13 @@ The default timeout period setted to 5000ms. You can change it by setting `undoa
 
 ## Sharing the current page with filters
 
-Imagine we need to share the current page with filtering and sorting parameters to our collegues. The proper way to do is, sharing the URL that has include all needed parameters like:
+Imagine we need to share the current page with filtering and sorting parameters to our colleagues. The proper way to do is, sharing the URL that has include all needed parameters like:
 
 ```
 /posts?current=1&pageSize=8&sort[]=createdAt&order[]=desc
 ```
 
-Refine offers `syncWithLocation` property that allow us to editing query parameters manually and share current page, items count per page, sort and filter parameters easily to others.
+refine offers `syncWithLocation` property that allow us to editing query parameters manually and share current page, items count per page, sort and filter parameters easily to others.
 
 ```tsx title="src/App.tsx"
 ...
