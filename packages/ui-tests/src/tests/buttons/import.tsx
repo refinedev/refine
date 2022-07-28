@@ -1,13 +1,10 @@
 import React from "react";
-import { Simulate } from "react-dom/test-utils";
-import { renderHook } from "@testing-library/react-hooks";
 import {
     RefineImportButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
 
-import { act, MockJSONServer, render, TestWrapper } from "@test";
-import { useImport } from "@pankod/refine-core";
+import { act, render, TestWrapper } from "@test";
 
 export const buttonImportTests = function (
     ImportButton: React.ComponentType<RefineImportButtonProps<any, any>>,
@@ -26,7 +23,7 @@ export const buttonImportTests = function (
         });
 
         it("should render button successfuly", async () => {
-            const { container } = render(<ImportButton />, {
+            const { container, getByText } = render(<ImportButton />, {
                 wrapper: TestWrapper({}),
             });
 
@@ -35,6 +32,7 @@ export const buttonImportTests = function (
             });
 
             expect(container).toBeTruthy();
+            getByText("Import");
         });
 
         it("should have the correct test-id", async () => {
@@ -69,16 +67,8 @@ export const buttonImportTests = function (
         });
 
         it("should render without text show only icon", async () => {
-            const {
-                result: { current: importProps },
-            } = renderHook(() => useImport(), {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "categories" }],
-                }),
-            });
             const { container, queryByText } = render(
-                <ImportButton {...importProps} hideText />,
+                <ImportButton hideText />,
             );
 
             await act(async () => {
@@ -87,42 +77,6 @@ export const buttonImportTests = function (
 
             expect(container).toBeTruthy();
             expect(queryByText("Import")).not.toBeInTheDocument();
-        });
-        it("should trigger parse when used with useImport hook", async () => {
-            const {
-                result: { current: importProps },
-            } = renderHook(() => useImport(), {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "categories" }],
-                }),
-            });
-            const { container } = render(
-                <ImportButton {...importProps}>Test</ImportButton>,
-            );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
-            const file = new File(
-                [
-                    `"id","title","createdAt","updatedAt"
-        "35ad97dd-9379-480a-b6ac-6fc9c13e9224","Viral Strategist Local","2021-04-09T12:03:23.933Z","2021-04-09T12:03:23.933Z"
-        "9a428977-1b03-4c3e-8cdd-1e4e2813528a","Concrete Soap Neural","2021-04-09T12:03:23.835Z","2021-04-09T12:03:23.835Z"`,
-                ],
-                "data.csv",
-                { type: "text/csv" },
-            );
-            const hiddenFileInput =
-                container.querySelector('input[type="file"]');
-            const files = { files: [file] } as unknown as EventTarget;
-            await act(async () => {
-                Simulate.change(hiddenFileInput as Element, {
-                    target: files,
-                });
-            });
-            expect(parseMock).toHaveBeenCalled();
         });
     });
 };
