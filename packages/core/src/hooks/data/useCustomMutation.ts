@@ -86,22 +86,37 @@ export const useCustomMutation = <
         {
             onSuccess: (
                 data,
-                { successNotification: successNotificationFromProp },
+                {
+                    successNotification: successNotificationFromProp,
+                    config,
+                    metaData,
+                },
             ) => {
                 const notificationConfig =
                     typeof successNotificationFromProp === "function"
-                        ? successNotificationFromProp(data)
+                        ? successNotificationFromProp(data, {
+                              ...config,
+                              ...metaData,
+                          })
                         : successNotificationFromProp;
 
                 handleNotification(notificationConfig);
             },
             onError: (
                 err: TError,
-                { errorNotification: errorNotificationFromProp, method },
+                {
+                    errorNotification: errorNotificationFromProp,
+                    method,
+                    config,
+                    metaData,
+                },
             ) => {
                 const notificationConfig =
                     typeof errorNotificationFromProp === "function"
-                        ? errorNotificationFromProp(err)
+                        ? errorNotificationFromProp(err, {
+                              ...config,
+                              ...metaData,
+                          })
                         : errorNotificationFromProp;
 
                 handleNotification(notificationConfig, {
