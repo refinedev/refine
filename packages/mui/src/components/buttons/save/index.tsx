@@ -1,6 +1,9 @@
 import React from "react";
 import { useTranslate } from "@pankod/refine-core";
-import { RefineSaveButtonProps } from "@pankod/refine-ui-types";
+import {
+    RefineSaveButtonProps,
+    RefineButtonTestIds,
+} from "@pankod/refine-ui-types";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import { LoadingButton, LoadingButtonProps } from "@mui/lab";
 import { SvgIconProps } from "@mui/material";
@@ -33,6 +36,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
             startIcon={!hideText && <SaveOutlinedIcon {...svgIconProps} />}
             sx={{ minWidth: 0, ...sx }}
             variant="contained"
+            data-testid={RefineButtonTestIds.SaveButton}
             {...restProps}
         >
             {hideText ? (
