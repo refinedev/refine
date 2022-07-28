@@ -122,6 +122,9 @@ Select the following options to complete the _CLI wizard_:
 ? Do you want a customized layout?:
 ❯ No
 
+? Do you want to add Kbar command pallete?:
+❯ No
+
 ? i18n - Internationalization:
 ❯ No
 ```
@@ -186,6 +189,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 -   [Hasura](https://github.com/pankod/refine/tree/master/packages/hasura)
 -   [Nhost](https://github.com/pankod/refine/tree/master/packages/nhost)
 -   [Appwrite](https://github.com/pankod/refine/tree/master/packages/appwrite)
+-   [Medusa](https://github.com/pankod/refine/tree/master/packages/medusa)
 -   [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 
 ### Community ❤️

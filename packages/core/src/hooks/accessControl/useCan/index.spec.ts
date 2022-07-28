@@ -20,7 +20,7 @@ describe("useCan Hook", () => {
                             if (
                                 action === "list" &&
                                 resource === "posts" &&
-                                params.id === 1
+                                params?.id === 1
                             ) {
                                 return Promise.resolve({
                                     can: true,
@@ -57,7 +57,7 @@ describe("useCan Hook", () => {
                             if (
                                 action === "list" &&
                                 resource === "posts" &&
-                                params.id === 1
+                                params?.id === 1
                             ) {
                                 return Promise.resolve({
                                     can: true,

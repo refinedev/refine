@@ -64,7 +64,15 @@ describe("useList Hook", () => {
             expect(onSubscribeMock).toHaveBeenCalledWith({
                 channel: "resources/posts",
                 callback: expect.any(Function),
-                params: undefined,
+                params: {
+                    filters: undefined,
+                    hasPagination: undefined,
+                    metaData: undefined,
+                    pagination: undefined,
+                    resource: "posts",
+                    sort: undefined,
+                    subscriptionType: "useList",
+                },
                 types: ["*"],
             });
         });

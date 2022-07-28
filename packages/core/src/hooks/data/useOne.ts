@@ -7,7 +7,7 @@ import {
     BaseKey,
     MetaDataQuery,
     LiveModeProps,
-    OpenNotificationParams,
+    SuccessErrorNotification,
 } from "../../interfaces";
 import {
     useCheckError,
@@ -22,11 +22,10 @@ export type UseOneProps<TData, TError> = {
     resource: string;
     id: BaseKey;
     queryOptions?: UseQueryOptions<GetOneResponse<TData>, TError>;
-    successNotification?: OpenNotificationParams | false;
-    errorNotification?: OpenNotificationParams | false;
     metaData?: MetaDataQuery;
     dataProviderName?: string;
-} & LiveModeProps;
+} & SuccessErrorNotification &
+    LiveModeProps;
 
 /**
  * `useOne` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving single items from a `resource`.
@@ -66,7 +65,13 @@ export const useOne = <
         resource,
         types: ["*"],
         channel: `resources/${resource}`,
-        params: { ids: id ? [id] : [], ...liveParams },
+        params: {
+            ids: id ? [id] : [],
+            id: id,
+            metaData,
+            subscriptionType: "useOne",
+            ...liveParams,
+        },
         enabled: queryOptions?.enabled,
         liveMode,
         onLiveEvent,
@@ -79,13 +84,24 @@ export const useOne = <
             ...queryOptions,
             onSuccess: (data) => {
                 queryOptions?.onSuccess?.(data);
-                handleNotification(successNotification);
+
+                const notificationConfig =
+                    typeof successNotification === "function"
+                        ? successNotification(data, { id, metaData }, resource)
+                        : successNotification;
+
+                handleNotification(notificationConfig);
             },
             onError: (err: TError) => {
                 checkError(err);
                 queryOptions?.onError?.(err);
 
-                handleNotification(errorNotification, {
+                const notificationConfig =
+                    typeof errorNotification === "function"
+                        ? errorNotification(err, { id, metaData }, resource)
+                        : errorNotification;
+
+                handleNotification(notificationConfig, {
                     key: `${id}-${resource}-getOne-notification`,
                     message: translate(
                         "notifications.error",

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { RefineKbarProvider } from "@pankod/refine-kbar";
 import routerProvider from "@pankod/refine-react-router-v6";
 import { Refine } from "@pankod/refine-core";
 import {
@@ -57,68 +58,71 @@ const App: React.FC = () => {
     }, [locale]);
 
     return (
-        <ConfigProvider locale={locale === "de" ? de_DE : undefined}>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider}
-                authProvider={authProvider}
-                i18nProvider={i18nProvider}
-                OffLayoutArea={OffLayoutArea}
-                DashboardPage={DashboardPage}
-                LoginPage={LoginPage}
-                Title={Title}
-                Header={Header}
-                Layout={Layout}
-                syncWithLocation
-                warnWhenUnsavedChanges
-                resources={[
-                    {
-                        name: "orders",
-                        list: OrderList,
-                        show: OrderShow,
-                        icon: <Icons.ShoppingOutlined />,
-                    },
-                    {
-                        name: "users",
-                        list: UserList,
-                        show: UserShow,
-                        icon: <Icons.UsergroupAddOutlined />,
-                    },
-                    {
-                        name: "products",
-                        list: ProductList,
-                        icon: <PizzaIcon />,
-                    },
+        <RefineKbarProvider>
+            <ConfigProvider locale={locale === "de" ? de_DE : undefined}>
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider}
+                    authProvider={authProvider}
+                    i18nProvider={i18nProvider}
+                    OffLayoutArea={OffLayoutArea}
+                    DashboardPage={DashboardPage}
+                    LoginPage={LoginPage}
+                    Title={Title}
+                    Header={Header}
+                    Layout={Layout}
+                    syncWithLocation
+                    warnWhenUnsavedChanges
+                    resources={[
+                        {
+                            name: "orders",
+                            list: OrderList,
+                            show: OrderShow,
+                            icon: <Icons.ShoppingOutlined />,
+                        },
+                        {
+                            name: "users",
+                            list: UserList,
+                            show: UserShow,
+                            icon: <Icons.UsergroupAddOutlined />,
+                        },
+                        {
+                            name: "products",
+                            list: ProductList,
+                            icon: <PizzaIcon />,
+                        },
 
-                    {
-                        name: "stores",
-                        list: StoreList,
-                        edit: StoreEdit,
-                        create: StoreCreate,
-                        icon: <Icons.ShopOutlined />,
-                    },
-                    {
-                        name: "categories",
-                        list: CategoryList,
-                    },
-                    {
-                        name: "couriers",
-                        list: CourierList,
-                        show: CourierShow,
-                        create: CouriersCreate,
-                        edit: CouriersEdit,
-                        icon: <BikeWhiteIcon />,
-                    },
-                    {
-                        name: "reviews",
-                        list: ReviewsList,
-                        icon: <Icons.StarOutlined />,
-                    },
-                ]}
-                notificationProvider={notificationProvider}
-                catchAll={<ErrorComponent />}
-            ></Refine>
-        </ConfigProvider>
+                        {
+                            name: "stores",
+                            list: StoreList,
+                            edit: StoreEdit,
+                            create: StoreCreate,
+                            icon: <Icons.ShopOutlined />,
+                        },
+                        {
+                            name: "categories",
+                            list: CategoryList,
+                        },
+                        {
+                            name: "couriers",
+                            list: CourierList,
+                            show: CourierShow,
+                            create: CouriersCreate,
+                            edit: CouriersEdit,
+                            icon: <BikeWhiteIcon />,
+                        },
+                        {
+                            name: "reviews",
+                            list: ReviewsList,
+                            icon: <Icons.StarOutlined />,
+                        },
+                    ]}
+                    notificationProvider={notificationProvider}
+                    catchAll={<ErrorComponent />}
+                    disableTelemetry={true}
+                ></Refine>
+            </ConfigProvider>
+        </RefineKbarProvider>
     );
 };
 

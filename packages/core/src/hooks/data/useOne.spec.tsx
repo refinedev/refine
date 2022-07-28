@@ -58,7 +58,13 @@ describe("useOne Hook", () => {
             expect(onSubscribeMock).toHaveBeenCalledWith({
                 channel: "resources/posts",
                 callback: expect.any(Function),
-                params: { ids: ["1"] },
+                params: {
+                    ids: ["1"],
+                    id: "1",
+                    metaData: undefined,
+                    resource: "posts",
+                    subscriptionType: "useOne",
+                },
                 types: ["*"],
             });
         });

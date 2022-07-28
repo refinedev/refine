@@ -10,6 +10,7 @@ const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
+            disableTelemetry={true}
         />
     );
 };

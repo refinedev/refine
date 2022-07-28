@@ -80,7 +80,9 @@ export const generateFilters: any = (filters?: CrudFilters) => {
         }
 
         if (filter.operator !== "or") {
-            resultFilter[filter.field] = {};
+            if (!resultFilter.hasOwnProperty(filter.field)) {
+                resultFilter[filter.field] = {};
+            }
             resultFilter[filter.field][operator] = filter.value;
         } else {
             const orFilter: any = [];
@@ -94,7 +96,9 @@ export const generateFilters: any = (filters?: CrudFilters) => {
                         `Operator ${val.operator} is not supported`,
                     );
                 }
-                filterObject[val.field] = {};
+                if (!filterObject.hasOwnProperty(val.field)) {
+                    filterObject[val.field] = {};
+                }
                 filterObject[val.field][mapedOperator] = val.value;
                 orFilter.push(filterObject);
             });

@@ -1,5 +1,261 @@
 # @pankod/refine-core
 
+## 3.51.0
+
+### Minor Changes
+
+-   [#2229](https://github.com/pankod/refine/pull/2229) [`878e9a105e`](https://github.com/pankod/refine/commit/878e9a105e582db0a2b0cbcddf4e6e196e94f632) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Added `useCustomMutation`hook for custom mutation requests.
+
+    ```tsx
+    import { useCustomMutation } from "@pankod/refine-core";
+    const { mutation } = useCustomMutation();
+
+    mutation({
+        url: "https://api.example.com/users",
+        method: "POST",
+        values: {
+            name: "John Doe",
+            email: "johndoe@mail.com",
+        },
+    });
+    ```
+
+## 3.50.0
+
+### Minor Changes
+
+-   Pass the full `resource` to the `accessControlProvider` can method. This will enable Attribute Based Access Control (ABAC), for example granting permissions based on the value of a field in the resource object.
+
+    ```ts
+    const App: React.FC = () => {
+        <Refine
+            // other providers and props
+            accessControlProvider={{
+                can: async ({ resource, action, params }) => {
+                    if (resource === "posts" && action === "edit") {
+                        return Promise.resolve({
+                            can: false,
+                            reason: "Unauthorized",
+                        });
+                    }
+
+                    // or you can access directly *resource object
+                    // const resourceName = params?.resource?.name;
+                    // const anyUsefulOption = params?.resource?.options?.yourUsefulOption;
+                    // if (resourceName === "posts" && anyUsefulOption === true && action === "edit") {
+                    //     return Promise.resolve({
+                    //         can: false,
+                    //         reason: "Unauthorized",
+                    //     });
+                    // }
+
+                    return Promise.resolve({ can: true });
+                },
+            }}
+        />;
+    };
+    ```
+
+## 3.49.0
+
+### Minor Changes
+
+-   [#2222](https://github.com/pankod/refine/pull/2222) [`43e92b9785`](https://github.com/pankod/refine/commit/43e92b97854a1aea703ba2c04f95dcd5c6f4044d) Thanks [@omeraplak](https://github.com/omeraplak)! - Pass the full `resource` to the `accessControlProvider` can method. This will enable Attribute Based Access Control (ABAC), for example granting permissions based on the value of a field in the resource object.
+
+    ```ts
+    const App: React.FC = () => {
+        <Refine
+            // other providers and props
+            accessControlProvider={{
+                can: async ({ resource, action, params }) => {
+                    if (resource === "posts" && action === "edit") {
+                        return Promise.resolve({
+                            can: false,
+                            reason: "Unauthorized",
+                        });
+                    }
+
+                    // or you can access directly *resource object
+                    // const resourceName = params?.resource?.name;
+                    // const anyUsefulOption = params?.resource?.options?.yourUsefulOption;
+                    // if (resourceName === "posts" && anyUsefulOption === true && action === "edit") {
+                    //     return Promise.resolve({
+                    //         can: false,
+                    //         reason: "Unauthorized",
+                    //     });
+                    // }
+
+                    return Promise.resolve({ can: true });
+                },
+            }}
+        />;
+    };
+    ```
+
+## 3.48.0
+
+### Minor Changes
+
+-   All of the refine packages have dependencies on the `@pankod/refine-core` package. So far we have managed these dependencies with `peerDependencies` + `dependencies` but this causes issues like #2183. (having more than one @pankod/refine-core version in node_modules and creating different instances)
+
+    Managing as `peerDependencies` + `devDependencies` seems like the best way for now to avoid such issues.
+
+### Patch Changes
+
+-   Fix adding the current path to the `to` parameter when redirecting to the login page after `logout` - #2211
+
+## 3.47.0
+
+### Minor Changes
+
+-   [#2217](https://github.com/pankod/refine/pull/2217) [`b4aae00f77`](https://github.com/pankod/refine/commit/b4aae00f77a2476d847994db21298ae25e4cf6e5) Thanks [@omeraplak](https://github.com/omeraplak)! - All of the refine packages have dependencies on the `@pankod/refine-core` package. So far we have managed these dependencies with `peerDependencies` + `dependencies` but this causes issues like #2183. (having more than one @pankod/refine-core version in node_modules and creating different instances)
+
+    Managing as `peerDependencies` + `devDependencies` seems like the best way for now to avoid such issues.
+
+## 3.46.0
+
+### Minor Changes
+
+-   Update notification props in data hooks of `@pankod/refine-core` to cover dynamic notifications.
+
+    Now users will be able to show notifications according to the API response by assigning a function which returns `OpenNotificationParams` instead of an `OpenNotificationParams` object.
+
+    **Example**
+
+    ```tsx
+    {
+        const { mutate } = useCreate({
+            /* ... */
+            successNotification: (data, values, resource) => ({
+                message: data?.message ?? "Success!",
+                type: "success",
+                description: data?.description;
+            }),
+            errorNotification: (error, values, resource) => ({
+                message: error?.message ?? error?.code ?? "Error!",
+                type: "error",
+                description: error?.reason;
+            })
+            /* ... */
+        });
+    }
+    ```
+
+## 3.45.0
+
+### Minor Changes
+
+-   [#2177](https://github.com/pankod/refine/pull/2177) [`5a805c789a`](https://github.com/pankod/refine/commit/5a805c789a167ca3bde34aebacad93bd92510611) Thanks [@aliemir](https://github.com/aliemir)! - Update notification props in data hooks of `@pankod/refine-core` to cover dynamic notifications.
+
+    Now users will be able to show notifications according to the API response by assigning a function which returns `OpenNotificationParams` instead of an `OpenNotificationParams` object.
+
+    **Example**
+
+    ```tsx
+    {
+        const { mutate } = useCreate({
+            /* ... */
+            successNotification: (data, values, resource) => ({
+                message: data?.message ?? "Success!",
+                type: "success",
+                description: data?.description;
+            }),
+            errorNotification: (error, values, resource) => ({
+                message: error?.message ?? error?.code ?? "Error!",
+                type: "error",
+                description: error?.reason;
+            })
+            /* ... */
+        });
+    }
+    ```
+
+## 3.44.0
+
+### Minor Changes
+
+-   Added ability to compare `or` filters. This was a missing feature on filters in `useTable` hook. With this feature, we will prevent `or` filter bugs (Resolves #2124) such as re-adding the same filters and being unable to modify `or` filter. To remove `or` filter with `merge` behavior, you should pass an empty object as `value`.
+
+### Patch Changes
+
+-   Fix redirection after submit in `useForm`. Both `edit` and `create` will redirect to `list` (it was `edit` previously)
+
+    Resolves #2123
+
+## 3.43.1
+
+### Patch Changes
+
+-   [#2172](https://github.com/pankod/refine/pull/2172) [`c33d13eb15`](https://github.com/pankod/refine/commit/c33d13eb15b986429d92e4e0e5f2bccd91fd1140) Thanks [@aliemir](https://github.com/aliemir)! - Fix redirection after submit in `useForm`. Both `edit` and `create` will redirect to `list` (it was `edit` previously)
+
+    Resolves #2123
+
+## 3.43.0
+
+### Minor Changes
+
+-   [#2164](https://github.com/pankod/refine/pull/2164) [`4d5f6b25e5`](https://github.com/pankod/refine/commit/4d5f6b25e51cf773e08a0ce0b93a3680e692564a) Thanks [@aliemir](https://github.com/aliemir)! - Added ability to compare `or` filters. This was a missing feature on filters in `useTable` hook. With this feature, we will prevent `or` filter bugs (Resolves #2124) such as re-adding the same filters and being unable to modify `or` filter. To remove `or` filter with `merge` behavior, you should pass an empty object as `value`.
+
+## 3.42.0
+
+### Minor Changes
+
+-   ### `@pankod/refine-core`
+
+    -   Added extra params to `useSubscription` and `useResourceSubscription`
+    -   `useOne`, `useMany` and `useList` passed extra params to own subscription hook.
+
+    ### `@pankod/refine-hasura`
+
+    -   Added `liveProvider`.
+
+    To see an example of how to use it, check out [`here`](https://github.com/pankod/refine/blob/master/examples/dataProvider/hasura/src/App.tsx).
+
+    ### `@pankod/refine-nhost`
+
+    -   Added `liveProvider`.
+
+    To see an example of how to use it, check out [`here`](https://github.com/pankod/refine/blob/master/examples/dataProvider/nhost/src/App.tsx).
+
+    ### `@pankod/refine-graphql`
+
+    -   Added `liveProvider`.
+
+### Patch Changes
+
+-   Fixed it to appear in menu items even if `List` is not given in resources #2147
+
+## 3.41.1
+
+### Patch Changes
+
+-   [#2151](https://github.com/pankod/refine/pull/2151) [`d4c7377361`](https://github.com/pankod/refine/commit/d4c7377361ba347ecfdf4d5a438eb495398c2fab) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed it to appear in menu items even if `List` is not given in resources #2147
+
+## 3.41.0
+
+### Minor Changes
+
+-   [#2120](https://github.com/pankod/refine/pull/2120) [`2aa7aace52`](https://github.com/pankod/refine/commit/2aa7aace52b3f232327db2b0f41f793a2885e788) Thanks [@salihozdemir](https://github.com/salihozdemir)! - ### `@pankod/refine-core`
+
+    -   Added extra params to `useSubscription` and `useResourceSubscription`
+    -   `useOne`, `useMany` and `useList` passed extra params to own subscription hook.
+
+    ### `@pankod/refine-hasura`
+
+    -   Added `liveProvider`.
+
+    To see an example of how to use it, check out [`here`](https://github.com/pankod/refine/blob/master/examples/dataProvider/hasura/src/App.tsx).
+
+    ### `@pankod/refine-nhost`
+
+    -   Added `liveProvider`.
+
+    To see an example of how to use it, check out [`here`](https://github.com/pankod/refine/blob/master/examples/dataProvider/nhost/src/App.tsx).
+
+    ### `@pankod/refine-graphql`
+
+    -   Added `liveProvider`.
+
 ## 3.40.0
 
 ### Minor Changes

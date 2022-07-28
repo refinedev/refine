@@ -7,7 +7,7 @@ import {
     BaseRecord,
     HttpError,
     MetaDataQuery,
-    OpenNotificationParams,
+    SuccessErrorNotification,
 } from "../../interfaces";
 import {
     useTranslate,
@@ -29,11 +29,9 @@ export type UseCustomProps<TData, TError, TQuery, TPayload> = {
     method: "get" | "delete" | "head" | "options" | "post" | "put" | "patch";
     config?: UseCustomConfig<TQuery, TPayload>;
     queryOptions?: UseQueryOptions<CustomResponse<TData>, TError>;
-    successNotification?: OpenNotificationParams | false;
-    errorNotification?: OpenNotificationParams | false;
     metaData?: MetaDataQuery;
     dataProviderName?: string;
-};
+} & SuccessErrorNotification;
 
 /**
  * `useCustom` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for custom requests.
@@ -87,13 +85,27 @@ export const useCustom = <
                 ...queryOptions,
                 onSuccess: (data) => {
                     queryOptions?.onSuccess?.(data);
-                    handleNotification(successNotification);
+
+                    const notificationConfig =
+                        typeof successNotification === "function"
+                            ? successNotification(data, {
+                                  ...config,
+                                  ...metaData,
+                              })
+                            : successNotification;
+
+                    handleNotification(notificationConfig);
                 },
                 onError: (err: TError) => {
                     checkError(err);
                     queryOptions?.onError?.(err);
 
-                    handleNotification(errorNotification, {
+                    const notificationConfig =
+                        typeof errorNotification === "function"
+                            ? errorNotification(err, { ...config, ...metaData })
+                            : errorNotification;
+
+                    handleNotification(notificationConfig, {
                         key: `${method}-notification`,
                         message: translate(
                             "common:notifications.error",

@@ -1,7 +1,7 @@
 {
     "name": "@pankod/refine-antd-audit-log",
     "description": "refine audit log component for antd package. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
-    "version": "3.25.0",
+    "version": "3.25.2",
     "license": "MIT",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
@@ -19,8 +19,8 @@
         "prepare": "npm run build"
     },
     "peerDependencies": {
-        "react": "^17.0.2",
-        "react-dom": "^17.0.4"
+        "react": "^17.0.0 || ^18.0.0",
+        "react-dom": "^17.0.0 || ^18.0.0"
     },
     "author": "Pankod",
     "module": "dist/esm/index.js",

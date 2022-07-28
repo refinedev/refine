@@ -9,7 +9,7 @@ This guide will help you learn and get information of basic **refine** concepts.
 
 **refine** has a very friendly community, we are always happy to help you get started:
 
--   [Join the Discord Community](https://discord.com/invite/UuU3XCc3J5) – it is the easiest way to get help, all questions are usually answered in about 30 minutes.
+-   [Join the Discord Community](https://discord.gg/refine) – it is the easiest way to get help, all questions are usually answered in about 30 minutes.
 -   [GitHub Discussions](https://github.com/pankod/refine/discussions) – ask anything about the project or give feedback.
 
 ## Refine Packages
@@ -27,15 +27,16 @@ This guide will help you learn and get information of basic **refine** concepts.
 -   `@pankod/refine-simple-rest` - a fully featured REST API Data Provider
 -   `@pankod/refine-graphql` - a fully featured GraphQL Data Provider
 -   `@pankod/refine-nestjsx-crud` - a fully featured [NestJs Crud](https://github.com/nestjsx/crud) Data Provider
--   `@pankod/refine-strapi` - a fully featured [Strapi](https://github.com/strapi/strapi) Data Provider
--   `@pankod/refine-strapi-v4` - a fully featured [Strapi-v4](https://docs.strapi.io/developer-docs/latest/getting-started/introduction.html) Data Provider
--   `@pankod/refine-strapi-graphql` - a fully featured [Strapi-GraphQL](https://github.com/strapi/strapi/tree/master/packages/plugins/graphql) Data Provider
--   `@pankod/refine-supabase` - a fully featured [Supabase](https://github.com/supabase/supabase) Data Provider. Also supported Supabase Realtime feature.
--   `@pankod/refine-hasura` - a fully featured [Hasura GraphQL](https://github.com/hasura/graphql-engine) Data Provider
--   `@pankod/refine-nhost` - a fully featured [Nhost](https://github.com/nhost/nhost) Data Provider
--   `@pankod/refine-appwrite` - a fully featured [Appwrite](https://github.com/appwrite/appwrite) Data Provider. Also supported Appwrite Realtime feature.
--   `@pankod/refine-airtable` - a fully featured [Airtable](https://github.com/Airtable/airtable.js) Data Provider
--   `@pankod/refine-altogic` - a fully featured [Altogic](https://github.com/altogic/altogic-js) Data Provider
+-   `@pankod/refine-strapi-v4` - a fully featured [Strapi-v4](https://strapi.io/) Data Provider
+-   `@pankod/refine-strapi-graphql` - a fully featured [Strapi-GraphQL](https://strapi.io/) Data Provider
+-   `@pankod/refine-strapi` - a fully featured [Strapi](https://strapi.io/) Data Provider
+-   `@pankod/refine-supabase` - a fully featured [Supabase](https://supabase.com/) Data Provider. Also supported Supabase Realtime feature.
+-   `@pankod/refine-hasura` - a fully featured [Hasura GraphQL](https://hasura.io/) Data Provider. Also supported GraphQL Subscriptions feature.
+-   `@pankod/refine-nhost` - a fully featured [Nhost](https://nhost.io/) Data Provider. Also supported GraphQL Subscriptions feature.
+-   `@pankod/refine-appwrite` - a fully featured [Appwrite](https://appwrite.io/) Data Provider. Also supported Appwrite Realtime feature.
+-   `@pankod/refine-medusa` - a fully featured [Medusa](https://medusajs.com/) Data Provider
+-   `@pankod/refine-airtable` - a fully featured [Airtable](https://airtable.com/) Data Provider
+-   `@pankod/refine-altogic` - a fully featured [Altogic](https://www.altogic.com/) Data Provider
 
 **[Router Provider](https://refine.dev/docs/core/providers/router-provider/) Packages**
 
@@ -47,6 +48,10 @@ This guide will help you learn and get information of basic **refine** concepts.
 **[Live Provider](https://refine.dev/docs/core/providers/live-provider/) Packages**
 
 -   `@pankod/refine-ably` - [Ably](https://ably.com/) Live/Realtime Provider
+
+**Other Packages**
+
+-   `@pankod/refine-kbar` - [kbar](https://kbar.vercel.app/) integration for `command`/`crtrl`+`k` interface for your Refine App.
 
 **❤️ Community Packages:**
 
@@ -82,6 +87,16 @@ This guide will help you learn and get information of basic **refine** concepts.
 -   Internal Issue Tracker With Refine and Supabase - [Blog Post](https://refine.dev/blog/customizable-issue-tracker-with-refine-and-supabase/) - [Live Example](https://stackblitz.com/github/pankod/refine/tree/master/examples/blog/issueTracker/?preset=node) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/issueTracker)
 -   Next.js E-commerce App with Strapi & Chakra UI & Refine - [Blog Post](https://refine.dev/blog/handcrafted-nextjs-e-commerce-app-tutorial-strapi-chakra-ui/) - [Live Example](https://stackblitz.com/github/pankod/refine/tree/master/examples/blog/ecommerce/?preset=node) - [Source Code](https://github.com/pankod/refine/tree/master/examples/blog/ecommerce)
 -   Multi-tenancy Example - [Appwrite Guide](https://refine.dev/docs/guides-and-concepts/multi-tenancy/appwrite/) - [Strapi Guide](https://refine.dev/docs/guides-and-concepts/multi-tenancy/strapi-v4/)
+
+## Become a Refine guest technical writer
+
+We are looking for guest technical writers to publish posts about React and front-end ecosystem technologies.
+
+ The focus of these posts should be on React and front-end ecosystem technologies. 
+
+ [If you are interested in writing for us, please check this post for detailed information &#8594](https://refine.dev/blog/refine-writer-program/)
+
+ Thanks for considering being a part of our blog!
 
 ## Roadmap
 

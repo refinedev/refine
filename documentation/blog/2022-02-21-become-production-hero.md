@@ -58,6 +58,7 @@ The word headless is underlined above. So Refine drop you into UI heaven, meanwh
 - Supabase
 - Hasura
 - Nhost
+- Medusa
 - Appwrite
 - Firebase
 - Directus
@@ -93,7 +94,7 @@ As you can see, you can find all the support you need to develop a data-intensiv
 
 If you want to take a closer look at [Refine](https://refine.dev/)
 
-If you say you don't want to be alone while developing a product, the community is ready to meet you. Click for the [Discord link](https://discord.com/invite/UuU3XCc3J5).
+If you say you don't want to be alone while developing a product, the community is ready to meet you. Click for the [Discord link](https://discord.gg/refine).
 
 
 

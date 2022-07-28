@@ -39,6 +39,8 @@ describe("useSimpleList Hook", () => {
         expect(pagination).toEqual({
             ...defaultPagination,
             onChange: (pagination as any).onChange,
+            itemRender: (pagination as any).itemRender,
+            simple: true,
         });
     });
 
@@ -67,7 +69,31 @@ describe("useSimpleList Hook", () => {
         expect(pagination).toEqual({
             ...customPagination,
             onChange: (pagination as any).onChange,
+            itemRender: (pagination as any).itemRender,
+            simple: true,
         });
+    });
+
+    it("with disabled pagination", async () => {
+        const { result, waitFor } = renderHook(
+            () =>
+                useSimpleList({
+                    hasPagination: false,
+                }),
+            {
+                wrapper: TestWrapper({}),
+            },
+        );
+
+        await waitFor(() => {
+            return !result.current.listProps.loading;
+        });
+
+        const {
+            listProps: { pagination },
+        } = result.current;
+
+        expect(pagination).toBe(false);
     });
 
     it("with custom resource", async () => {

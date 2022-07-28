@@ -57,6 +57,7 @@ const App: React.FC = () => {
             ]}
             notificationProvider={notificationProvider}
             catchAll={<ErrorComponent />}
+            disableTelemetry={true}
         />
     );
 };

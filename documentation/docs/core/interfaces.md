@@ -150,8 +150,8 @@ ButtonProps
 
 | Key                 | Type                                                                                 |
 | ------------------- | ------------------------------------------------------------------------------------ |
-| successNotification | [Notification Properties](https://ant.design/components/notification/#API) & `false` |
-| errorNotification   | [Notification Properties](https://ant.design/components/notification/#API) & `false` |
+| successNotification | `(data?: TData, values?: TVariables, resource?: string) => NotificationProperties` \| [Notification Properties](https://ant.design/components/notification/#API) \| `false` |
+| errorNotification   | `(error?: TError, values?: TVariables, resource?: string) => NotificationProperties` \| [Notification Properties](https://ant.design/components/notification/#API) \| `false` |
 
 ## MetaDataQuery
 
@@ -203,7 +203,7 @@ ButtonProps
 | -------- | -------- |
 | resource | `string` |
 | action   | `string` |
-| params?  | `any`    |
+| params?  | { `resource`?: [IResourceItem](/docs/core/interfaces.md#resourceitemprops), `id`?: [BaseKey](/docs/core/interfaces.md#basekey), `[key: string]: any` }    |
 
 ## CanReturnType
 
@@ -248,7 +248,7 @@ ButtonProps
 | canEdit?    | `boolean`   |
 | canShow?    | `boolean`   |
 | canDelete?  | `boolean`   |
-| options?    | `string`    |
+| options?    | `object`    |
 | parentName? | `string`    |
 
 
