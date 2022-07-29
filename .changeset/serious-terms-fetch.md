@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-core": major
+"@pankod/refine-core": minor
 ---
 Added config parameter to useCustomMutationHook to send headers.
 
