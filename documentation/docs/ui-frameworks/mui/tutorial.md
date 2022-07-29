@@ -1399,7 +1399,6 @@ export const PostCreate: React.FC = () => {
                     control={control}
                     name="status"
                     rules={{ required: "Status is required" }}
-                    defaultValue={null as any}
                     render={({ field }) => (
                         <Autocomplete
                             {...field}
