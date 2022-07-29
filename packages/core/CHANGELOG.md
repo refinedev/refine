@@ -1,5 +1,30 @@
 # @pankod/refine-core
 
+## 3.54.0
+
+### Minor Changes
+
+-   Added config parameter to useCustomMutationHook to send headers.
+
+    ```
+    const apiUrl = useApiUrl();
+
+    const { mutate } = useCustomMutation<ICategory>();
+
+    mutate({
+        url: `${API_URL}/categories`,
+        method: "post",
+        values: {
+          title: "New Category",
+        },
+        config: {
+          headers: {
+              Authorization: "Bearer ****",
+          },
+        },
+    });
+    ```
+
 ## 3.53.0
 
 ### Minor Changes
