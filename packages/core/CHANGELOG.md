@@ -1,5 +1,95 @@
 # @pankod/refine-core
 
+## 3.54.0
+
+### Minor Changes
+
+-   Added config parameter to useCustomMutationHook to send headers.
+
+    ```
+    const apiUrl = useApiUrl();
+
+    const { mutate } = useCustomMutation<ICategory>();
+
+    mutate({
+        url: `${API_URL}/categories`,
+        method: "post",
+        values: {
+          title: "New Category",
+        },
+        config: {
+          headers: {
+              Authorization: "Bearer ****",
+          },
+        },
+    });
+    ```
+
+## 3.53.0
+
+### Minor Changes
+
+-   [#2245](https://github.com/pankod/refine/pull/2245) [`e949df7f1c`](https://github.com/pankod/refine/commit/e949df7f1cd8476c647b6511e0334156097408a0) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Added config parameter to useCustomMutationHook to send headers.
+
+    ```
+    const apiUrl = useApiUrl();
+
+    const { mutate } = useCustomMutation<ICategory>();
+
+    mutate({
+        url: `${API_URL}/categories`,
+        method: "post",
+        values: {
+          title: "New Category",
+        },
+        config: {
+          headers: {
+              Authorization: "Bearer ****",
+          },
+        },
+    });
+    ```
+
+## 3.52.0
+
+### Minor Changes
+
+-   Added `useCustomMutation`hook for custom mutation requests.
+
+    ```tsx
+    import { useCustomMutation } from "@pankod/refine-core";
+    const { mutation } = useCustomMutation();
+
+    mutation({
+        url: "https://api.example.com/users",
+        method: "POST",
+        values: {
+            name: "John Doe",
+            email: "johndoe@mail.com",
+        },
+    });
+    ```
+
+## 3.51.0
+
+### Minor Changes
+
+-   [#2229](https://github.com/pankod/refine/pull/2229) [`878e9a105e`](https://github.com/pankod/refine/commit/878e9a105e582db0a2b0cbcddf4e6e196e94f632) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Added `useCustomMutation`hook for custom mutation requests.
+
+    ```tsx
+    import { useCustomMutation } from "@pankod/refine-core";
+    const { mutation } = useCustomMutation();
+
+    mutation({
+        url: "https://api.example.com/users",
+        method: "POST",
+        values: {
+            name: "John Doe",
+            email: "johndoe@mail.com",
+        },
+    });
+    ```
+
 ## 3.50.0
 
 ### Minor Changes
