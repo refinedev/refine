@@ -21,14 +21,18 @@ export const authProvider = (API_URL: string): AuthProvider => {
     axiosInstance.defaults.baseURL = `${API_URL}/store`;
 
     return {
-        login: async (user: { username: string; password: string }) => {
+        login: async ({ username, password }) => {
             try {
-                const response = await axiosInstance.post("/auth", user, {
-                    withCredentials: true,
-                });
+                const response = await axiosInstance.post(
+                    "/auth",
+                    { email: username, password: password },
+                    {
+                        withCredentials: true,
+                    },
+                );
 
                 if (response) {
-                    return Promise.resolve();
+                    return Promise.resolve(response.data.customer);
                 }
             } catch (error) {
                 return Promise.reject(error);
