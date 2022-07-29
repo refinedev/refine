@@ -1,8 +1,7 @@
 import React from "react";
 import axios from "axios";
-import { useTranslate, useApiUrl } from "@pankod/refine-core";
+import { useTranslate, useApiUrl, HttpError } from "@pankod/refine-core";
 import {
-    FieldValues,
     Controller,
     UseModalFormReturnType,
 } from "@pankod/refine-react-hook-form";
@@ -29,9 +28,11 @@ import {
 } from "@pankod/refine-mui";
 import { CloseOutlined } from "@mui/icons-material";
 
-import { ICategory } from "interfaces";
+import { ICategory, IProduct } from "interfaces";
 
-export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
+export const CreateProduct: React.FC<
+    UseModalFormReturnType<IProduct, HttpError, IProduct>
+> = ({
     watch,
     setValue,
     register,
@@ -75,7 +76,7 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
 
         const { name, size, type, lastModified } = file;
 
-        const imagePaylod = [
+        const imagePaylod: any = [
             {
                 name,
                 size,
@@ -306,7 +307,10 @@ export const CreateProduct: React.FC<UseModalFormReturnType<FieldValues>> = ({
                                                         {...params}
                                                         label="Category"
                                                         variant="outlined"
-                                                        error={!!errors.item}
+                                                        error={
+                                                            !!errors.category
+                                                                ?.message
+                                                        }
                                                         required
                                                     />
                                                 )}

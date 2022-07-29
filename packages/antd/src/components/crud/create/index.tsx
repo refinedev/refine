@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import {
     Card,
     Space,
@@ -25,6 +25,7 @@ export interface CreateProps {
     pageHeaderProps?: PageHeaderProps;
     resource?: string;
     isLoading?: boolean;
+    children?: ReactNode;
 }
 
 /**

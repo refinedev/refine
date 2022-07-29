@@ -1,4 +1,9 @@
+import { PropsWithChildren } from "react";
 import { BaseKey, MutationMode } from "@pankod/refine-core";
+
+export type ActionButtonRenderer =
+    | ((context: { defaultButtons: React.ReactNode }) => React.ReactNode)
+    | React.ReactNode;
 
 /**
  * This should be the base type for `List` crud component implementations in UI integrations.
@@ -10,7 +15,7 @@ export type RefineCrudListProps<
     THeaderProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
     TExtraProps extends {} = {},
-> = {
+> = PropsWithChildren<{
     // Common Props
     title?: React.ReactNode;
     resource?: string;
@@ -19,12 +24,13 @@ export type RefineCrudListProps<
     contentProps?: TContentProps;
     breadcrumb?: React.ReactNode;
     // Header Action Buttons Props
-    headerButtons?: React.ReactNode;
+    headerButtons?: ActionButtonRenderer;
     headerButtonProps?: THeaderButtonProps;
     // Crud List Props
     canCreate?: boolean;
     createButtonProps?: TCreateButtonProps;
-} & TExtraProps;
+}> &
+    TExtraProps;
 
 /**
  * This should be the base type for `Create` crud component implementations in UI integrations.
@@ -37,7 +43,7 @@ export type RefineCrudCreateProps<
     THeaderProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
     TExtraProps extends {} = {},
-> = {
+> = PropsWithChildren<{
     // Common Props
     title?: React.ReactNode;
     resource?: string;
@@ -48,15 +54,16 @@ export type RefineCrudCreateProps<
     // Back Props
     goBack?: React.ReactNode;
     // Header Action Buttons Props
-    headerButtons?: React.ReactNode;
+    headerButtons?: ActionButtonRenderer;
     headerButtonProps?: THeaderButtonProps;
     // Footer Action Buttons Props
-    footerButtons?: React.ReactNode;
+    footerButtons?: ActionButtonRenderer;
     footerButtonProps?: TFooterButtonProps;
     // Crud Create Props
     isLoading?: boolean;
     saveButtonProps?: TSaveButtonProps;
-} & TExtraProps;
+}> &
+    TExtraProps;
 
 /**
  * This should be the base type for `Edit` crud component implementations in UI integrations.
@@ -70,7 +77,7 @@ export type RefineCrudEditProps<
     THeaderProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
     TExtraProps extends {} = {},
-> = {
+> = PropsWithChildren<{
     // Common Props
     title?: React.ReactNode;
     resource?: string;
@@ -81,10 +88,10 @@ export type RefineCrudEditProps<
     // Back Props
     goBack?: React.ReactNode;
     // Header Action Buttons Props
-    headerButtons?: React.ReactNode;
+    headerButtons?: ActionButtonRenderer;
     headerButtonProps?: THeaderButtonProps;
     // Footer Action Buttons Props
-    footerButtons?: React.ReactNode;
+    footerButtons?: ActionButtonRenderer;
     footerButtonProps?: TFooterButtonProps;
     // Data Provider Props
     dataProviderName?: string;
@@ -95,7 +102,8 @@ export type RefineCrudEditProps<
     deleteButtonProps?: TDeleteButtonProps;
     mutationMode?: MutationMode;
     recordItemId?: BaseKey;
-} & TExtraProps;
+}> &
+    TExtraProps;
 
 /**
  * This should be the base type for `Show` crud component implementations in UI integrations.
@@ -107,7 +115,7 @@ export type RefineCrudShowProps<
     THeaderProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
     TExtraProps extends {} = {},
-> = {
+> = PropsWithChildren<{
     // Common Props
     title?: React.ReactNode;
     resource?: string;
@@ -118,10 +126,10 @@ export type RefineCrudShowProps<
     // Back Props
     goBack?: React.ReactNode;
     // Header Action Buttons Props
-    headerButtons?: React.ReactNode;
+    headerButtons?: ActionButtonRenderer;
     headerButtonProps?: THeaderButtonProps;
     // Footer Action Buttons Props
-    footerButtons?: React.ReactNode;
+    footerButtons?: ActionButtonRenderer;
     footerButtonProps?: TFooterButtonProps;
     // Data Provider Props
     dataProviderName?: string;
@@ -130,4 +138,5 @@ export type RefineCrudShowProps<
     canDelete?: boolean;
     canEdit?: boolean;
     recordItemId?: BaseKey;
-} & TExtraProps;
+}> &
+    TExtraProps;

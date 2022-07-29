@@ -56,7 +56,6 @@ export const CreatePostModal: React.FC<UseModalFormReturnType> = ({
                         control={control}
                         name="status"
                         rules={{ required: "This field is required" }}
-                        defaultValue=""
                         render={({ field }) => (
                             <Autocomplete
                                 options={["published", "draft", "rejected"]}
@@ -82,7 +81,6 @@ export const CreatePostModal: React.FC<UseModalFormReturnType> = ({
                         control={control}
                         name="category"
                         rules={{ required: "This field is required" }}
-                        defaultValue=""
                         render={({ field }) => (
                             <Autocomplete
                                 {...autocompleteProps}

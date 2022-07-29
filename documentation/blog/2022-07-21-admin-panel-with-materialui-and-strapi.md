@@ -390,6 +390,7 @@ The React Hook Form library has been integrated with **refine** ([`@pankod/refin
 First, we'll create PostCreate page to create new records.
 
 ```tsx title="src/pages/posts/create"
+import { HttpError } from "@pankod/refine-core";
 import {
     Box,
     TextField,
@@ -399,7 +400,7 @@ import {
 } from "@pankod/refine-mui";
 import { useForm, Controller } from "@pankod/refine-react-hook-form";
 
-import { ICategory } from "interfaces";
+import { IPost, ICategory } from "interfaces";
 
 export const PostCreate: React.FC = () => {
     const {
@@ -408,7 +409,7 @@ export const PostCreate: React.FC = () => {
         register,
         control,
         formState: { errors },
-    } = useForm();
+    } = useForm<IPost, HttpError, IPost & { category: ICategory }>();
 
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
@@ -550,6 +551,7 @@ Try it on the browser and see if you can create new posts from scratch.
 We'll start by creating a new `<PostEdit>` page responsible for editing a existed single record:
 
 ```tsx title="src/pages/posts/edit.tsx"
+import { HttpError } from "@pankod/refine-core";
 import { Controller, useForm } from "@pankod/refine-react-hook-form";
 import {
     Edit,
@@ -559,7 +561,7 @@ import {
     useAutocomplete,
 } from "@pankod/refine-mui";
 
-import { ICategory } from "interfaces";
+import { IPost, ICategory } from "interfaces";
 
 export const PostEdit: React.FC = () => {
     const {
@@ -568,7 +570,9 @@ export const PostEdit: React.FC = () => {
         register,
         control,
         formState: { errors },
-    } = useForm({ refineCoreProps: { metaData: { populate: ["category"] } } });
+    } = useForm<IPost, HttpError, IPost & { category: ICategory }>({
+        refineCoreProps: { metaData: { populate: ["category"] } },
+    });
 
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
@@ -600,7 +604,7 @@ export const PostEdit: React.FC = () => {
                     control={control}
                     name="category"
                     rules={{ required: "Category is required" }}
-                    defaultValue=""
+                    defaultValue={null as any}
                     render={({ field }) => (
                         <Autocomplete
                             {...autocompleteProps}

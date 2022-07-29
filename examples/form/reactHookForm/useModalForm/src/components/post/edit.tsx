@@ -1,8 +1,12 @@
+import { HttpError } from "@pankod/refine-core";
 import { UseModalFormReturnType } from "@pankod/refine-react-hook-form";
 
 import { Modal } from "components/modal";
+import { IPost } from "interfaces";
 
-export const EditPost: React.FC<UseModalFormReturnType> = ({
+export const EditPost: React.FC<
+    UseModalFormReturnType<IPost, HttpError, IPost>
+> = ({
     register,
     formState: { errors },
     refineCore: { onFinish, formLoading },

@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
@@ -15,7 +15,7 @@ const mockRefineProvider: IRefineContextProvider = {
 
 describe("useOne Hook", () => {
     it("with rest json server", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () => useOne({ resource: "posts", id: "1" }),
             {
                 wrapper: TestWrapper({
@@ -26,7 +26,7 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-            return result.current.isSuccess;
+            expect(!result.current.isLoading).toBeTruthy();
         });
 
         const { status, data } = result.current;
@@ -39,19 +39,26 @@ describe("useOne Hook", () => {
         it("useSubscription", async () => {
             const onSubscribeMock = jest.fn();
 
-            renderHook(() => useOne({ resource: "posts", id: "1" }), {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                    liveProvider: {
-                        unsubscribe: jest.fn(),
-                        subscribe: onSubscribeMock,
-                    },
-                    refineProvider: {
-                        ...mockRefineProvider,
-                        liveMode: "auto",
-                    },
-                }),
+            const { result } = renderHook(
+                () => useOne({ resource: "posts", id: "1" }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [{ name: "posts" }],
+                        liveProvider: {
+                            unsubscribe: jest.fn(),
+                            subscribe: onSubscribeMock,
+                        },
+                        refineProvider: {
+                            ...mockRefineProvider,
+                            liveMode: "auto",
+                        },
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                expect(!result.current.isLoading).toBeTruthy();
             });
 
             expect(onSubscribeMock).toBeCalled();
@@ -72,19 +79,26 @@ describe("useOne Hook", () => {
         it("liveMode = Off useSubscription", async () => {
             const onSubscribeMock = jest.fn();
 
-            renderHook(() => useOne({ resource: "posts", id: "1" }), {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                    liveProvider: {
-                        unsubscribe: jest.fn(),
-                        subscribe: onSubscribeMock,
-                    },
-                    refineProvider: {
-                        ...mockRefineProvider,
-                        liveMode: "off",
-                    },
-                }),
+            const { result } = renderHook(
+                () => useOne({ resource: "posts", id: "1" }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [{ name: "posts" }],
+                        liveProvider: {
+                            unsubscribe: jest.fn(),
+                            subscribe: onSubscribeMock,
+                        },
+                        refineProvider: {
+                            ...mockRefineProvider,
+                            liveMode: "off",
+                        },
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                expect(!result.current.isLoading).toBeTruthy();
             });
 
             expect(onSubscribeMock).not.toBeCalled();
@@ -93,7 +107,7 @@ describe("useOne Hook", () => {
         it("liveMode = Off and liveMode hook param auto", async () => {
             const onSubscribeMock = jest.fn();
 
-            renderHook(
+            const { result } = renderHook(
                 () => useOne({ resource: "posts", id: "1", liveMode: "auto" }),
                 {
                     wrapper: TestWrapper({
@@ -111,6 +125,10 @@ describe("useOne Hook", () => {
                 },
             );
 
+            await waitFor(() => {
+                expect(!result.current.isLoading).toBeTruthy();
+            });
+
             expect(onSubscribeMock).toBeCalled();
         });
 
@@ -118,7 +136,7 @@ describe("useOne Hook", () => {
             const onSubscribeMock = jest.fn(() => true);
             const onUnsubscribeMock = jest.fn();
 
-            const { unmount } = renderHook(
+            const { result, unmount } = renderHook(
                 () => useOne({ resource: "posts", id: "1" }),
                 {
                     wrapper: TestWrapper({
@@ -135,6 +153,10 @@ describe("useOne Hook", () => {
                     }),
                 },
             );
+
+            await waitFor(() => {
+                expect(!result.current.isLoading).toBeTruthy();
+            });
 
             expect(onSubscribeMock).toBeCalled();
 

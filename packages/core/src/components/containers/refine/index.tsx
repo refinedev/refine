@@ -74,6 +74,7 @@ export interface RefineProps {
     reactQueryDevtoolConfig?: any;
     liveMode?: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
+    children?: React.ReactNode;
     disableTelemetry?: boolean;
 }
 

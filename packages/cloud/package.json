@@ -25,7 +25,9 @@
         "@pankod/refine-core": "^3.23.2",
         "@pankod/refine-sdk": "^0.0.25",
         "react": "^17.0.0 || ^18.0.0",
-        "react-dom": "^17.0.0 || ^18.0.0"
+        "react-dom": "^17.0.0 || ^18.0.0",
+        "@types/react": "^17.0.0 || ^18.0.0",
+        "@types/react-dom": "^17.0.0 || ^18.0.0"
     },
     "devDependencies": {
         "@pankod/refine-core": "^3.48.0",
@@ -40,7 +42,8 @@
     },
     "dependencies": {
         "lodash": "^4.17.21",
-        "lodash-es": "^4.17.21"
+        "lodash-es": "^4.17.21",
+        "react-query": "^3.19.2"
     },
     "repository": {
         "type": "git",

@@ -518,7 +518,7 @@ export const ColorModeContext = createContext<ColorModeContextType>(
     {} as ColorModeContextType,
 );
 
-export const ColorModeContextProvider: React.FC = ({ children }) => {
+export const ColorModeContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const colorModeFromLocalStorage = localStorage.getItem("colorMode");
     const isSystemPreferenceDark = window?.matchMedia(
         "(prefers-color-scheme: dark)",

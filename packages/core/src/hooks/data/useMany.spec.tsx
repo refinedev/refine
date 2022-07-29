@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
@@ -15,7 +15,7 @@ const mockRefineProvider: IRefineContextProvider = {
 
 describe("useMany Hook", () => {
     it("with rest json server", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () => useMany({ resource: "posts", ids: ["1", "2"] }),
             {
                 wrapper: TestWrapper({
@@ -26,7 +26,7 @@ describe("useMany Hook", () => {
         );
 
         await waitFor(() => {
-            return result.current.isSuccess;
+            expect(!result.current.isLoading).toBeTruthy();
         });
 
         const { status, data } = result.current;
@@ -39,19 +39,26 @@ describe("useMany Hook", () => {
         it("useSubscription", async () => {
             const onSubscribeMock = jest.fn();
 
-            renderHook(() => useMany({ resource: "posts", ids: ["1", "2"] }), {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                    liveProvider: {
-                        unsubscribe: jest.fn(),
-                        subscribe: onSubscribeMock,
-                    },
-                    refineProvider: {
-                        ...mockRefineProvider,
-                        liveMode: "auto",
-                    },
-                }),
+            const { result } = renderHook(
+                () => useMany({ resource: "posts", ids: ["1", "2"] }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [{ name: "posts" }],
+                        liveProvider: {
+                            unsubscribe: jest.fn(),
+                            subscribe: onSubscribeMock,
+                        },
+                        refineProvider: {
+                            ...mockRefineProvider,
+                            liveMode: "auto",
+                        },
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                expect(!result.current.isLoading).toBeTruthy();
             });
 
             expect(onSubscribeMock).toBeCalled();
@@ -71,19 +78,26 @@ describe("useMany Hook", () => {
         it("liveMode = Off useSubscription", async () => {
             const onSubscribeMock = jest.fn();
 
-            renderHook(() => useMany({ resource: "posts", ids: ["1", "2"] }), {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                    liveProvider: {
-                        unsubscribe: jest.fn(),
-                        subscribe: onSubscribeMock,
-                    },
-                    refineProvider: {
-                        ...mockRefineProvider,
-                        liveMode: "off",
-                    },
-                }),
+            const { result } = renderHook(
+                () => useMany({ resource: "posts", ids: ["1", "2"] }),
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: MockJSONServer,
+                        resources: [{ name: "posts" }],
+                        liveProvider: {
+                            unsubscribe: jest.fn(),
+                            subscribe: onSubscribeMock,
+                        },
+                        refineProvider: {
+                            ...mockRefineProvider,
+                            liveMode: "off",
+                        },
+                    }),
+                },
+            );
+
+            await waitFor(() => {
+                expect(!result.current.isLoading).toBeTruthy();
             });
 
             expect(onSubscribeMock).not.toBeCalled();
@@ -92,7 +106,7 @@ describe("useMany Hook", () => {
         it("liveMode = Off and liveMode hook param auto", async () => {
             const onSubscribeMock = jest.fn();
 
-            renderHook(
+            const { result } = renderHook(
                 () =>
                     useMany({
                         resource: "posts",
@@ -114,6 +128,10 @@ describe("useMany Hook", () => {
                     }),
                 },
             );
+
+            await waitFor(() => {
+                expect(!result.current.isLoading).toBeTruthy();
+            });
 
             expect(onSubscribeMock).toBeCalled();
         });

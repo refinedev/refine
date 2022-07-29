@@ -1,3 +1,4 @@
+import { PropsWithChildren } from "react";
 import {
     BaseKey,
     DeleteOneResponse,
@@ -7,9 +8,9 @@ import {
     SuccessErrorNotification,
 } from "@pankod/refine-core";
 
-export type RefineButtonCommonProps = {
+export type RefineButtonCommonProps = PropsWithChildren<{
     hideText?: boolean;
-};
+}>;
 
 export type RefineButtonResourceProps = {
     resourceNameOrRouteName?: string;
