@@ -33,7 +33,7 @@ export const useLogin = <TVariables = {}>(): UseMutationResult<
     const { to } = qs.parse(search?.substring(1));
 
     const queryResponse = useMutation<TLoginData, Error, TVariables, unknown>(
-        "useLogin",
+        ["useLogin"],
         loginFromContext,
         {
             onSuccess: (redirectPathFromAuth) => {
