@@ -1,5 +1,9 @@
 import React from "react";
-import { useQuery, UseQueryResult, UseQueryOptions } from "react-query";
+import {
+    useQuery,
+    UseQueryResult,
+    UseQueryOptions,
+} from "@tanstack/react-query";
 
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../interfaces";

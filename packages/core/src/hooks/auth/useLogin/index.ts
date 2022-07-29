@@ -1,5 +1,5 @@
 import React from "react";
-import { useMutation, UseMutationResult } from "react-query";
+import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import qs from "qs";
 
 import { AuthContext } from "@contexts/auth";

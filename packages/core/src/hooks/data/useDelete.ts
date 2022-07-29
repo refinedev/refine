@@ -1,4 +1,8 @@
-import { useQueryClient, useMutation, UseMutationResult } from "react-query";
+import {
+    useQueryClient,
+    useMutation,
+    UseMutationResult,
+} from "@tanstack/react-query";
 import pluralize from "pluralize";
 
 import {

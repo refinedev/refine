@@ -1,4 +1,4 @@
-import { QueryKey } from "react-query";
+import { QueryKey } from "@tanstack/react-query";
 
 import { UseListConfig } from "@hooks/data/useList";
 import { BaseKey } from "src/interfaces";
