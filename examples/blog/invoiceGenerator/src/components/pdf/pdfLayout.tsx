@@ -121,9 +121,11 @@ export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
                         <div className="pdf-body">
                             <div id="grid"></div>
                             <p className="signature">
-                                Signature: ________________ <br />
-                                <br />
-                                Date: {record?.date}
+                                <>
+                                    Signature: ________________ <br />
+                                    <br />
+                                    Date: {record?.date}
+                                </>
                             </p>
                         </div>
                     </div>
