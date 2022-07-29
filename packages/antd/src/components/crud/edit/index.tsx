@@ -3,10 +3,11 @@ import React from "react";
 import {
     Card,
     Space,
-    ButtonProps,
     PageHeader,
     PageHeaderProps,
     Spin,
+    SpaceProps,
+    CardProps,
 } from "antd";
 import {
     useResourceWithRoute,
@@ -15,10 +16,9 @@ import {
     useTranslate,
     useRouterContext,
     userFriendlyResourceName,
-    MutationMode,
     ResourceRouterParams,
-    BaseKey,
 } from "@pankod/refine-core";
+import { RefineCrudEditProps } from "@pankod/refine-ui-types";
 
 import {
     DeleteButton,
@@ -28,20 +28,30 @@ import {
     Breadcrumb,
 } from "@components";
 import { DeleteButtonProps } from "../../../components";
+import { SaveButtonProps } from "@components/buttons/save";
 
-export interface EditProps {
-    title?: string;
-    actionButtons?: React.ReactNode;
-    saveButtonProps?: ButtonProps;
-    mutationMode?: MutationMode;
-    recordItemId?: BaseKey;
-    pageHeaderProps?: PageHeaderProps;
-    canDelete?: boolean;
-    deleteButtonProps?: DeleteButtonProps;
-    resource?: string;
-    isLoading?: boolean;
-    dataProviderName?: string;
-}
+export type EditProps = RefineCrudEditProps<
+    SaveButtonProps,
+    DeleteButtonProps,
+    SpaceProps,
+    SpaceProps,
+    React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLDivElement>,
+        HTMLDivElement
+    >,
+    PageHeaderProps,
+    CardProps,
+    {
+        /**
+         * @deprecated use `headerButtons` or `footerButtons` instead.
+         */
+        actionButtons?: React.ReactNode;
+        /**
+         * @deprecated use `headerProps`, `wrapperProps` and `contentProps` instead.
+         */
+        pageHeaderProps?: PageHeaderProps;
+    }
+>;
 
 /**
  * `<Edit>` provides us a layout for displaying the page.
@@ -62,6 +72,15 @@ export const Edit: React.FC<EditProps> = ({
     resource: resourceFromProps,
     isLoading = false,
     dataProviderName,
+    breadcrumb,
+    wrapperProps,
+    headerProps,
+    contentProps,
+    headerButtonProps,
+    headerButtons,
+    footerButtonProps,
+    footerButtons,
+    goBack: goBackFromProps,
 }) => {
     const translate = useTranslate();
     const { goBack, list } = useNavigation();
@@ -85,71 +104,109 @@ export const Edit: React.FC<EditProps> = ({
 
     const id = recordItemId ?? idFromRoute;
 
+    const defaultHeaderButtons = (
+        <>
+            {!recordItemId && (
+                <ListButton
+                    data-testid="edit-list-button"
+                    resourceNameOrRouteName={resource.route}
+                />
+            )}
+            <RefreshButton
+                resourceNameOrRouteName={resource.route}
+                recordItemId={id}
+                dataProviderName={dataProviderName}
+            />
+        </>
+    );
+
+    const defaultFooterButtons = (
+        <>
+            {isDeleteButtonVisible && (
+                <DeleteButton
+                    data-testid="edit-delete-button"
+                    mutationMode={mutationMode}
+                    onSuccess={() => {
+                        list(resource.route ?? resource.name);
+                    }}
+                    dataProviderName={dataProviderName}
+                    {...deleteButtonProps}
+                />
+            )}
+            <SaveButton {...saveButtonProps} />
+        </>
+    );
+
     return (
-        <PageHeader
-            ghost={false}
-            onBack={routeFromAction ? goBack : undefined}
-            title={
-                title ??
-                translate(
-                    `${resource.name}.titles.edit`,
-                    `Edit ${userFriendlyResourceName(
-                        resource.label ?? resource.name,
-                        "singular",
-                    )}`,
-                )
-            }
-            extra={
-                <Space wrap>
-                    {!recordItemId && (
-                        <ListButton
-                            data-testid="edit-list-button"
-                            resourceNameOrRouteName={resource.route}
-                        />
-                    )}
-                    <RefreshButton
-                        resourceNameOrRouteName={resource.route}
-                        recordItemId={id}
-                        dataProviderName={dataProviderName}
-                    />
-                </Space>
-            }
-            breadcrumb={<Breadcrumb />}
-            {...pageHeaderProps}
-        >
-            <Spin spinning={isLoading}>
-                <Card
-                    bordered={false}
-                    actions={[
-                        <Space
-                            key="action-buttons"
-                            style={{ float: "right", marginRight: 24 }}
-                        >
-                            {actionButtons ?? (
-                                <>
-                                    {isDeleteButtonVisible && (
-                                        <DeleteButton
-                                            data-testid="edit-delete-button"
-                                            mutationMode={mutationMode}
-                                            onSuccess={() => {
-                                                list(
-                                                    resource.route ??
-                                                        resource.name,
-                                                );
-                                            }}
-                                            dataProviderName={dataProviderName}
-                                            {...deleteButtonProps}
-                                        />
-                                    )}
-                                    <SaveButton {...saveButtonProps} />
-                                </>
-                            )}
-                        </Space>,
-                    ]}
-                >
-                    {children}
-                </Card>
-            </Spin>
-        </PageHeader>
+        <div {...(wrapperProps ?? {})}>
+            <PageHeader
+                ghost={false}
+                backIcon={goBackFromProps}
+                onBack={routeFromAction ? goBack : undefined}
+                title={
+                    title ??
+                    translate(
+                        `${resource.name}.titles.edit`,
+                        `Edit ${userFriendlyResourceName(
+                            resource.label ?? resource.name,
+                            "singular",
+                        )}`,
+                    )
+                }
+                extra={
+                    <Space wrap {...(headerButtonProps ?? {})}>
+                        {headerButtons
+                            ? typeof headerButtons === "function"
+                                ? headerButtons({
+                                      defaultButtons: defaultHeaderButtons,
+                                  })
+                                : headerButtons
+                            : defaultHeaderButtons}
+                    </Space>
+                }
+                breadcrumb={
+                    typeof breadcrumb !== "undefined" ? (
+                        breadcrumb ?? undefined
+                    ) : (
+                        <Breadcrumb />
+                    )
+                }
+                {...(pageHeaderProps ?? {})}
+                {...(headerProps ?? {})}
+            >
+                <Spin spinning={isLoading}>
+                    <Card
+                        bordered={false}
+                        actions={
+                            footerButtons
+                                ? [
+                                      <Space
+                                          key="footer-buttons"
+                                          wrap
+                                          style={{
+                                              float: "right",
+                                              marginRight: 24,
+                                          }}
+                                          {...footerButtonProps}
+                                      >
+                                          {typeof footerButtons === "function"
+                                              ? footerButtons({
+                                                    defaultButtons:
+                                                        defaultFooterButtons,
+                                                })
+                                              : footerButtons}
+                                      </Space>,
+                                  ]
+                                : actionButtons
+                                ? [actionButtons]
+                                : [defaultFooterButtons]
+                        }
+                        {...(contentProps ?? {})}
+                    >
+                        {children}
+                    </Card>
+                </Spin>
+            </PageHeader>
+        </div>
     );
 };
