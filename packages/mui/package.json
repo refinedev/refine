@@ -52,7 +52,7 @@
         "lodash-es": "^4.17.21",
         "notistack": "^2.0.4",
         "react-markdown": "^6.0.1",
-        "react-query": "^3.19.2",
+        "@tanstack/react-query": "^4.0.10",
         "remark-gfm": "^1.0.0",
         "warn-once": "^0.1.0",
         "tslib": "^2.3.1"
