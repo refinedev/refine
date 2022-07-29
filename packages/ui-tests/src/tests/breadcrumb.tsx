@@ -93,8 +93,7 @@ export const breadcrumbTests = function (
                     resources: [
                         {
                             name: "posts",
-                            // eslint-disable-next-line react/display-name
-                            icon: () => <div data-testid="resource-icon" />,
+                            icon: <div data-testid="resource-icon" />,
                         },
                     ],
                     routerInitialEntries: ["/posts/create"],
