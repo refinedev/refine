@@ -9,12 +9,17 @@ import {
     MetaDataQuery,
 } from "../../interfaces";
 
+interface UseCustomMutationConfig {
+    headers?: {};
+}
+
 type useCustomMutationParams<TVariables> = {
     url: string;
     method: "post" | "put" | "patch" | "delete";
     values: TVariables;
     metaData?: MetaDataQuery;
     dataProviderName?: string;
+    config?: UseCustomMutationConfig;
 } & SuccessErrorNotification;
 
 export type UseCustomMutationReturnType<
@@ -62,6 +67,7 @@ export const useCustomMutation = <
             values,
             metaData,
             dataProviderName,
+            config,
         }: useCustomMutationParams<TVariables>) => {
             const { custom } = dataProvider(dataProviderName);
 
@@ -71,6 +77,7 @@ export const useCustomMutation = <
                     method,
                     payload: values,
                     metaData,
+                    headers: { ...config?.headers },
                 });
             }
 
@@ -79,22 +86,37 @@ export const useCustomMutation = <
         {
             onSuccess: (
                 data,
-                { successNotification: successNotificationFromProp },
+                {
+                    successNotification: successNotificationFromProp,
+                    config,
+                    metaData,
+                },
             ) => {
                 const notificationConfig =
                     typeof successNotificationFromProp === "function"
-                        ? successNotificationFromProp(data)
+                        ? successNotificationFromProp(data, {
+                              ...config,
+                              ...metaData,
+                          })
                         : successNotificationFromProp;
 
                 handleNotification(notificationConfig);
             },
             onError: (
                 err: TError,
-                { errorNotification: errorNotificationFromProp, method },
+                {
+                    errorNotification: errorNotificationFromProp,
+                    method,
+                    config,
+                    metaData,
+                },
             ) => {
                 const notificationConfig =
                     typeof errorNotificationFromProp === "function"
-                        ? errorNotificationFromProp(err)
+                        ? errorNotificationFromProp(err, {
+                              ...config,
+                              ...metaData,
+                          })
                         : errorNotificationFromProp;
 
                 handleNotification(notificationConfig, {
