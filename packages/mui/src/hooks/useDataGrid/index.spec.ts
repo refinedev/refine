@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { TestWrapper } from "@test";
 
@@ -10,7 +10,7 @@ describe("useDataGrid Hook", () => {
     it("controlled filtering with 'onSubmit' and 'onSearch'", async () => {
         type SearchVariables = { title: string; status: string };
 
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useDataGrid<any, any, SearchVariables>({
                     resource: "posts",
@@ -39,7 +39,7 @@ describe("useDataGrid Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.tableQueryResult?.isLoading;
+            expect(!result.current.tableQueryResult?.isLoading).toBeTruthy();
         });
 
         await act(async () => {
@@ -62,7 +62,7 @@ describe("useDataGrid Hook", () => {
     });
 
     it("with no pagination", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useDataGrid<any, any>({
                     resource: "posts",
@@ -74,7 +74,7 @@ describe("useDataGrid Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.tableQueryResult?.isLoading;
+            expect(!result.current.tableQueryResult?.isLoading).toBeTruthy();
         });
 
         expect(result.current.current).toBeUndefined();

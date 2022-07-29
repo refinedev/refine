@@ -150,6 +150,9 @@ export const StoreCreate: React.FC<IResourceComponentsProps> = () => {
                                             mask="(999) 999 99 99"
                                             disabled={false}
                                         >
+                                            {/* 
+                                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                            // @ts-expect-error */}
                                             {(props: TextFieldProps) => (
                                                 <TextField
                                                     {...props}

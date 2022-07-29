@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 import { TestWrapper } from "@test";
 
 import { useLogList } from "./";
@@ -10,8 +10,8 @@ describe("useLogList Hook", () => {
         auditLogProviderGetMock.mockReset();
     });
 
-    it("useLogList should call the auditLogProvider's list method with same properties", () => {
-        renderHook(
+    it("useLogList should call the auditLogProvider's list method with same properties", async () => {
+        const { result } = renderHook(
             () =>
                 useLogList({
                     resource: "posts",
@@ -28,6 +28,10 @@ describe("useLogList Hook", () => {
             },
         );
 
+        await waitFor(() => {
+            expect(result.current.isFetched).toBeTruthy();
+        });
+
         expect(auditLogProviderGetMock).toBeCalledWith({
             resource: "posts",
             action: "list",
@@ -37,30 +41,27 @@ describe("useLogList Hook", () => {
     });
 
     it("useLogList should return data with 'posts' resource", async () => {
-        const { result, waitFor } = renderHook(
-            () => useLogList({ resource: "posts" }),
-            {
-                wrapper: TestWrapper({
-                    auditLogProvider: {
-                        get: ({ resource }) => {
-                            if (resource === "posts") {
-                                return Promise.resolve([
-                                    {
-                                        id: 1,
-                                        action: "create",
-                                        data: { id: 1, title: "title" },
-                                    },
-                                ]);
-                            }
-                            return Promise.resolve([]);
-                        },
+        const { result } = renderHook(() => useLogList({ resource: "posts" }), {
+            wrapper: TestWrapper({
+                auditLogProvider: {
+                    get: ({ resource }) => {
+                        if (resource === "posts") {
+                            return Promise.resolve([
+                                {
+                                    id: 1,
+                                    action: "create",
+                                    data: { id: 1, title: "title" },
+                                },
+                            ]);
+                        }
+                        return Promise.resolve([]);
                     },
-                }),
-            },
-        );
+                },
+            }),
+        });
 
         await waitFor(() => {
-            return result.current?.isFetched;
+            expect(result.current.isFetched).toBeTruthy();
         });
 
         expect(result.current?.data).toStrictEqual([

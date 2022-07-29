@@ -13,6 +13,7 @@ describe("CircularDeterminate", () => {
                 wrapper: TestWrapper({}),
             },
         );
+        expect(getByText?.("5")).toBeTruthy();
 
         await act(async () => {
             jest.advanceTimersToNextTimer(1);
@@ -20,13 +21,13 @@ describe("CircularDeterminate", () => {
 
         getByText?.("test");
 
-        expect(getByText?.("5")).toBeTruthy();
+        expect(getByText?.("4")).toBeTruthy();
 
         await act(async () => {
             jest.advanceTimersByTime(1000);
         });
 
-        expect(getByText?.("4")).toBeTruthy();
+        expect(getByText?.("3")).toBeTruthy();
     });
 
     it("should render CircularDeterminate with undoableTimeout is 0", async () => {

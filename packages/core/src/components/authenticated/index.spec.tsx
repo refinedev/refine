@@ -1,5 +1,5 @@
 import React from "react";
-import { waitFor } from "@testing-library/react";
+import { act, waitFor } from "@testing-library/react";
 import ReactRouterDom from "react-router-dom";
 
 import { MockJSONServer, render, TestWrapper } from "@test";
@@ -83,7 +83,7 @@ describe("Authenticated", () => {
             },
         );
 
-        await waitFor(() => {
+        await act(async () => {
             expect(queryByText("Error fallback"));
         });
     });
@@ -106,7 +106,7 @@ describe("Authenticated", () => {
             },
         );
 
-        await waitFor(() => {
+        await act(async () => {
             expect(queryByText("loading"));
         });
     });

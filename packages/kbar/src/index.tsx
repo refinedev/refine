@@ -11,14 +11,15 @@ export const RefineKbarPropsContext = createContext<
     IKBarProviderProps["commandBarProps"]
 >({});
 
-export const RefineKbarProvider: React.FunctionComponent<IKBarProviderProps> =
-    ({ children, commandBarProps }) => {
-        return (
-            <RefineKbarPropsContext.Provider value={commandBarProps ?? {}}>
-                <KBarProvider>{children}</KBarProvider>
-            </RefineKbarPropsContext.Provider>
-        );
-    };
+export const RefineKbarProvider: React.FunctionComponent<
+    IKBarProviderProps & { children: React.ReactNode }
+> = ({ children, commandBarProps }) => {
+    return (
+        <RefineKbarPropsContext.Provider value={commandBarProps ?? {}}>
+            <KBarProvider>{children}</KBarProvider>
+        </RefineKbarPropsContext.Provider>
+    );
+};
 
 export * from "kbar";
 

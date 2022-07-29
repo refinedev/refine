@@ -60,11 +60,12 @@ mutate({
 | Property                                        | Description                                                                                        | Type                                                                       |
 | ----------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | url <div className="required">Required</div>    | URL                                                                                                | string                                                                     |
-| method <div className="required">Required</div> | Method                                                                                             | `post`, `put`, `patch`, `delete`                                                     |
+| method <div className="required">Required</div> | Method                                                                                             | `post`, `put`, `patch`, `delete`                                           |
 | successNotification                             | Successful Mutation notification                                                                   | [`SuccessErrorNotification`](/core/interfaces.md#successerrornotification) |
 | errorNotification                               | Unsuccessful Mutation notification                                                                 | [`SuccessErrorNotification`](/core/interfaces.md#successerrornotification) |
 | metaData                                        | Metadata query for `dataProvider`                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                       |
 | dataProviderName                                | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                   |
+| config                                          | Config Params                                                                                      | { headers?: {};                                                            |
 
 ### Type Parameters
 

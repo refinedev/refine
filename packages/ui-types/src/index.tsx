@@ -23,6 +23,7 @@ export type {
     RefineCrudEditProps,
     RefineCrudListProps,
     RefineCrudShowProps,
+    ActionButtonRenderer,
 } from "./types";
 
 export type {

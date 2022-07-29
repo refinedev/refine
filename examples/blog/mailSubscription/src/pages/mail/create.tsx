@@ -15,7 +15,6 @@ export const MailCreate: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Create saveButtonProps={saveButtonProps}>
-            {console.log("create")}
             <Form {...formProps} layout="vertical">
                 <Form.Item
                     label="Subject"

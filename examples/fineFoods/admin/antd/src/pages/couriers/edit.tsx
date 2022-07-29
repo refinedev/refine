@@ -163,6 +163,9 @@ export const CouriersEdit: React.FC<IResourceComponentsProps> = () => {
                                 ]}
                             >
                                 <InputMask mask="(999) 999 99 99">
+                                    {/* 
+                                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                    // @ts-ignore */}
                                     {(props: InputProps) => (
                                         <Input {...props} />
                                     )}

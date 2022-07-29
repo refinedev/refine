@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import {
     Card,
@@ -41,6 +41,7 @@ export interface EditProps {
     resource?: string;
     isLoading?: boolean;
     dataProviderName?: string;
+    children?: React.ReactNode;
 }
 
 /**

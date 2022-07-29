@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Button, ButtonProps, Upload, UploadProps } from "antd";
 import { ImportOutlined } from "@ant-design/icons";
 import { useTranslate } from "@pankod/refine-core";

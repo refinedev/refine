@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 
@@ -30,6 +30,7 @@ import {
     MockAccessControlProvider,
     MockLiveProvider,
 } from "@test";
+import { waitFor } from "@testing-library/react";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -54,7 +55,9 @@ export interface ITestWrapperProps {
     auditLogProvider?: IAuditLogContext;
 }
 
-export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
+export const TestWrapper: (
+    props: ITestWrapperProps,
+) => React.FC<{ children: ReactNode }> = ({
     authProvider,
     dataProvider,
     resources,
