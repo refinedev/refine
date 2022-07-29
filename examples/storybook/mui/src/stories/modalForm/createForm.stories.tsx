@@ -1,4 +1,5 @@
 import React from "react";
+import { HttpError } from "@pankod/refine-core";
 import {
     TextField,
     MenuItem,
@@ -29,7 +30,7 @@ export const CreateForm: React.FC = () => {
         saveButtonProps,
         register,
         formState: { errors },
-    } = useModalForm<IPost>({
+    } = useModalForm<IPost, HttpError, IPost>({
         refineCoreProps: { action: "create" },
     });
 

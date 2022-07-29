@@ -3,6 +3,7 @@ import React from "react";
 type ModalPropsType = {
     isOpen: boolean;
     onClose: () => void;
+    children: React.ReactNode;
 };
 
 export const Modal: React.FC<ModalPropsType> = ({

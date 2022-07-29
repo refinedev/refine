@@ -39,7 +39,9 @@ export interface ITestWrapperProps {
     DashboardPage?: React.FC;
 }
 
-export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
+export const TestWrapper: (
+    props: ITestWrapperProps,
+) => React.FC<{ children?: React.ReactNode }> = ({
     dataProvider,
     authProvider,
     resources,

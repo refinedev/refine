@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { BrowserRouter } from "react-router-dom";
 
 import {
@@ -25,7 +25,9 @@ export interface ITestWrapperProps {
     DashboardPage?: React.FC;
 }
 
-export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
+export const TestWrapper: (
+    props: ITestWrapperProps,
+) => React.FC<{ children: ReactNode }> = ({
     dataProvider,
     authProvider,
     resources,

@@ -4,11 +4,14 @@ import Link, { LinkProps } from "next/link";
 type MakeOptional<Type, Key extends keyof Type> = Omit<Type, Key> &
     Partial<Pick<Type, Key>>;
 
-type RefineLinkProps =
+type RefineLinkProps = (
     | (MakeOptional<LinkProps, "href"> & {
           to: LinkProps["href"];
       })
-    | LinkProps;
+    | LinkProps
+) & {
+    children: React.ReactNode;
+};
 
 export const RefineLink: React.FC<RefineLinkProps> = ({
     children,

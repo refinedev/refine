@@ -62,19 +62,24 @@ describe("LayoutWrapper", () => {
             );
         };
 
-        const { getByText } = renderWithRefineContext(<LayoutWrapper />, {
-            warnWhenUnsavedChanges: false,
-            mutationMode: "pessimistic",
-            syncWithLocation: false,
-            undoableTimeout: 5000,
-            hasDashboard: false,
-            Layout: CustomLayout,
-            Sider: CustomSider,
-            Header: CustomHeader,
-            Footer: CustomFooter,
-            OffLayoutArea: CustomOffLayoutArea,
-            Title: CustomTitle,
-        });
+        const { getByText } = renderWithRefineContext(
+            <LayoutWrapper>
+                <div>test </div>
+            </LayoutWrapper>,
+            {
+                warnWhenUnsavedChanges: false,
+                mutationMode: "pessimistic",
+                syncWithLocation: false,
+                undoableTimeout: 5000,
+                hasDashboard: false,
+                Layout: CustomLayout,
+                Sider: CustomSider,
+                Header: CustomHeader,
+                Footer: CustomFooter,
+                OffLayoutArea: CustomOffLayoutArea,
+                Title: CustomTitle,
+            },
+        );
 
         getByText(customSiderContent);
         getByText(customHeaderContent);
@@ -99,18 +104,23 @@ describe("LayoutWrapper", () => {
         const customTitleContent = "customTitleContent";
         const CustomTitle = () => <p>{customTitleContent}</p>;
 
-        const { queryByText } = renderWithRefineContext(<LayoutWrapper />, {
-            warnWhenUnsavedChanges: false,
-            mutationMode: "pessimistic",
-            syncWithLocation: false,
-            undoableTimeout: 5000,
-            hasDashboard: false,
-            Sider: CustomSider,
-            Header: CustomHeader,
-            Footer: CustomFooter,
-            OffLayoutArea: CustomOffLayoutArea,
-            Title: CustomTitle,
-        });
+        const { queryByText } = renderWithRefineContext(
+            <LayoutWrapper>
+                <div>test </div>
+            </LayoutWrapper>,
+            {
+                warnWhenUnsavedChanges: false,
+                mutationMode: "pessimistic",
+                syncWithLocation: false,
+                undoableTimeout: 5000,
+                hasDashboard: false,
+                Sider: CustomSider,
+                Header: CustomHeader,
+                Footer: CustomFooter,
+                OffLayoutArea: CustomOffLayoutArea,
+                Title: CustomTitle,
+            },
+        );
 
         expect(queryByText(customSiderContent)).toBeNull();
         expect(queryByText(customHeaderContent)).toBeNull();
@@ -160,7 +170,9 @@ describe("LayoutWrapper", () => {
                 Header={CustomHeader}
                 Footer={CustomFooter}
                 OffLayoutArea={CustomOffLayoutArea}
-            />,
+            >
+                <div>test</div>
+            </LayoutWrapper>,
             {
                 warnWhenUnsavedChanges: false,
                 mutationMode: "pessimistic",

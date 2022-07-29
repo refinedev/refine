@@ -2,7 +2,7 @@ import React from "react";
 
 import { Route, Routes } from "react-router-dom";
 
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
@@ -57,7 +57,9 @@ describe("useResource Hook without prop", () => {
         routerInitialEntries: ["/posts/edit/1"],
     });
 
-    const WrapperWith: React.FC = ({ children }) => (
+    const WrapperWith: React.FC<{ children: React.ReactNode }> = ({
+        children,
+    }) => (
         <Wrapper>
             <Routes>
                 <Route path="/:resource/:action/:id" element={children} />
@@ -84,7 +86,9 @@ describe("useResource Hook without prop", () => {
             routerInitialEntries: ["/posts"],
         });
 
-        const WrapperWith: React.FC = ({ children }) => (
+        const WrapperWith: React.FC<{ children: React.ReactNode }> = ({
+            children,
+        }) => (
             <Wrapper>
                 <Routes>
                     <Route path="/:resource" element={children} />
@@ -107,7 +111,9 @@ describe("useResource Hook with resourceName:propResourceName prop", () => {
             routerInitialEntries: ["/posts"],
         });
 
-        const WrapperWith: React.FC = ({ children }) => (
+        const WrapperWith: React.FC<{ children: React.ReactNode }> = ({
+            children,
+        }) => (
             <Wrapper>
                 <Routes>
                     <Route path="/:resource" element={children} />
@@ -132,7 +138,9 @@ describe("useResource Hook with resourceNameOrRouteName prop", () => {
             routerInitialEntries: ["/posts"],
         });
 
-        const WrapperWith: React.FC = ({ children }) => (
+        const WrapperWith: React.FC<{ children: React.ReactNode }> = ({
+            children,
+        }) => (
             <Wrapper>
                 <Routes>
                     <Route path="/:resource" element={children} />
@@ -156,7 +164,9 @@ describe("useResource Hook with recordItemId prop", () => {
             routerInitialEntries: ["/posts"],
         });
 
-        const WrappeWith: React.FC = ({ children }) => (
+        const WrappeWith: React.FC<{ children: React.ReactNode }> = ({
+            children,
+        }) => (
             <Wrapper>
                 <Routes>
                     <Route path="/:resource" element={children} />

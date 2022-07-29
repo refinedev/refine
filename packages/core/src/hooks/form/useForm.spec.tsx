@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, act } from "@test";
 import { useForm } from "./useForm";
@@ -20,7 +20,9 @@ const CloneWrapper = TestWrapper({
     routerInitialEntries: ["/posts/clone/1"],
 });
 
-const EditWrapperWithRoute: React.FC = ({ children }) => (
+const EditWrapperWithRoute: React.FC<{
+    children?: React.ReactNode;
+}> = ({ children }) => (
     <EditWrapper>
         <Routes>
             <Route path="/:resource/:action/:id" element={children} />
@@ -28,7 +30,9 @@ const EditWrapperWithRoute: React.FC = ({ children }) => (
     </EditWrapper>
 );
 
-const CloneWrapperWithRoute: React.FC = ({ children }) => (
+const CloneWrapperWithRoute: React.FC<{
+    children?: React.ReactNode;
+}> = ({ children }) => (
     <CloneWrapper>
         <Routes>
             <Route path="/:resource/:action/:id" element={children} />
@@ -42,19 +46,18 @@ describe("useForm Hook", () => {
             wrapper: SimpleWrapper,
         });
 
-        expect(result.current.formLoading).toBeDefined();
+        await waitFor(() => {
+            expect(result.current.formLoading).toBeDefined();
+        });
     });
 
     it("fetches data and puts in the form", async () => {
-        const { result, waitFor } = renderHook(
-            () => useForm({ resource: "posts" }),
-            {
-                wrapper: EditWrapperWithRoute,
-            },
-        );
+        const { result } = renderHook(() => useForm({ resource: "posts" }), {
+            wrapper: EditWrapperWithRoute,
+        });
 
         await waitFor(() => {
-            return !result.current.formLoading;
+            expect(!result.current.formLoading).toBeTruthy();
         });
 
         expect(result.current.queryResult?.data?.data.title).toEqual(
@@ -65,6 +68,10 @@ describe("useForm Hook", () => {
     it("correctly render edit form from route", async () => {
         const { result } = renderHook(() => useForm(), {
             wrapper: EditWrapperWithRoute,
+        });
+
+        await waitFor(() => {
+            expect(!result.current.formLoading).toBeTruthy();
         });
 
         expect(result.current.id).toEqual("1");
@@ -81,11 +88,15 @@ describe("useForm Hook", () => {
             },
         );
 
+        await waitFor(() => {
+            expect(!result.current.formLoading).toBeTruthy();
+        });
+
         expect(result.current.id).toEqual("1");
     });
 
     it("correctly return id value from props", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useForm({
                     resource: "posts",
@@ -97,7 +108,7 @@ describe("useForm Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.formLoading;
+            expect(!result.current.formLoading).toBeTruthy();
         });
 
         expect(result.current.queryResult?.data?.data.title).toEqual(
@@ -107,7 +118,7 @@ describe("useForm Hook", () => {
     });
 
     it("correctly return id value from route with custom resource", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useForm({
                     resource: "categories",
@@ -120,7 +131,7 @@ describe("useForm Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.formLoading;
+            expect(!result.current.formLoading).toBeTruthy();
         });
 
         expect(result.current.queryResult?.data?.data.title).toEqual(
@@ -143,7 +154,7 @@ describe("useForm Hook", () => {
 
         expect(result.current.id).toEqual("1");
 
-        act(() => {
+        await act(async () => {
             result.current.setId?.("3");
         });
 
@@ -165,15 +176,12 @@ describe("useForm Hook", () => {
     });
 
     it("fetches data and puts in the form while cloning", async () => {
-        const { result, waitFor } = renderHook(
-            () => useForm({ resource: "posts" }),
-            {
-                wrapper: CloneWrapperWithRoute,
-            },
-        );
+        const { result } = renderHook(() => useForm({ resource: "posts" }), {
+            wrapper: CloneWrapperWithRoute,
+        });
 
         await waitFor(() => {
-            return !result.current.formLoading;
+            expect(!result.current.formLoading).toBeTruthy();
         });
 
         expect(result.current.queryResult?.data?.data.title).toEqual(

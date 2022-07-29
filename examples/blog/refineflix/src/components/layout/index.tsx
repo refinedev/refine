@@ -1,22 +1,20 @@
 import React from "react";
-import { Layout as AntLayout, Grid } from "antd";
+import { LayoutProps } from "@pankod/refine-core";
+import { AntdLayout, Grid } from "@pankod/refine-antd";
 import { Header } from "components";
 
-export const Layout: React.FC = ({
-    children,
-    // OffLayoutArea,
-}) => {
+export const Layout: React.FC<LayoutProps> = ({ children }) => {
     const breakpoint = Grid.useBreakpoint();
 
     return (
-        <AntLayout
+        <AntdLayout
             style={{
                 minHeight: "100vh",
                 backgroundColor: "#f0f2f5",
             }}
         >
             <Header />
-            <AntLayout.Content>
+            <AntdLayout.Content>
                 <div
                     style={{
                         padding: breakpoint.sm ? 24 : 12,
@@ -25,7 +23,7 @@ export const Layout: React.FC = ({
                 >
                     {children}
                 </div>
-            </AntLayout.Content>
-        </AntLayout>
+            </AntdLayout.Content>
+        </AntdLayout>
     );
 };
