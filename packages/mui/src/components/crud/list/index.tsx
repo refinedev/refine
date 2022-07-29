@@ -7,6 +7,7 @@ import {
     userFriendlyResourceName,
     ResourceRouterParams,
 } from "@pankod/refine-core";
+import { RefineCrudListProps } from "@pankod/refine-ui-types";
 
 import {
     Card,
@@ -17,19 +18,32 @@ import {
     CardContentProps,
     Typography,
     Box,
+    BoxProps,
 } from "@mui/material";
 
 import { CreateButton, CreateButtonProps, Breadcrumb } from "@components";
 
-export interface ListProps {
-    canCreate?: boolean;
-    createButtonProps?: CreateButtonProps;
-    resource?: string;
-    cardProps?: CardProps;
-    cardHeaderProps?: CardHeaderProps;
-    cardContentProps?: CardContentProps;
-    breadcrumb?: React.ReactNode;
-}
+export type ListProps = RefineCrudListProps<
+    CreateButtonProps,
+    BoxProps,
+    CardProps,
+    CardHeaderProps,
+    CardContentProps,
+    {
+        /**
+         * @deprecated use `wrapperProps` instead.
+         */
+        cardProps?: CardProps;
+        /**
+         * @deprecated use `headerProps` instead.
+         */
+        cardHeaderProps?: CardHeaderProps;
+        /**
+         * @deprecated use `contentProps` instead.
+         */
+        cardContentProps?: CardContentProps;
+    }
+>;
 
 /**
  * `<List>` provides us a layout for displaying the page.
@@ -38,6 +52,7 @@ export interface ListProps {
  * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/basic-views/list} for more details.
  */
 export const List: React.FC<ListProps> = ({
+    title,
     canCreate,
     children,
     createButtonProps,
@@ -46,6 +61,11 @@ export const List: React.FC<ListProps> = ({
     cardHeaderProps,
     cardContentProps,
     breadcrumb = <Breadcrumb />,
+    wrapperProps,
+    headerProps,
+    contentProps,
+    headerButtonProps,
+    headerButtons,
 }) => {
     const { useParams } = useRouterContext();
 
@@ -60,38 +80,52 @@ export const List: React.FC<ListProps> = ({
     const isCreateButtonVisible =
         canCreate ?? (resource.canCreate || createButtonProps);
 
-    const defaultExtra = isCreateButtonVisible && (
+    const defaultHeaderButtons = isCreateButtonVisible ? (
         <CreateButton
             resourceNameOrRouteName={resource.route}
             data-testid="list-create-button"
             {...createButtonProps}
         />
-    );
+    ) : null;
 
     return (
-        <Card {...cardProps}>
+        <Card {...(cardProps ?? {})} {...(wrapperProps ?? {})}>
             {breadcrumb}
             <CardHeader
                 sx={{ display: "flex", flexWrap: "wrap" }}
                 title={
-                    <Typography variant="h5">
-                        {translate(
-                            `${resource.name}.titles.list`,
-                            userFriendlyResourceName(
-                                resource.label ?? resource.name,
-                                "plural",
-                            ),
-                        )}
-                    </Typography>
+                    title ?? (
+                        <Typography variant="h5">
+                            {translate(
+                                `${resource.name}.titles.list`,
+                                userFriendlyResourceName(
+                                    resource.label ?? resource.name,
+                                    "plural",
+                                ),
+                            )}
+                        </Typography>
+                    )
                 }
                 action={
-                    <Box display="flex" gap="16px">
-                        {defaultExtra}
+                    <Box display="flex" gap="16px" {...headerButtonProps}>
+                        {headerButtons
+                            ? typeof headerButtons === "function"
+                                ? headerButtons({
+                                      defaultButtons: defaultHeaderButtons,
+                                  })
+                                : headerButtons
+                            : defaultHeaderButtons}
                     </Box>
                 }
-                {...cardHeaderProps}
+                {...(cardHeaderProps ?? {})}
+                {...(headerProps ?? {})}
             />
-            <CardContent {...cardContentProps}>{children}</CardContent>
+            <CardContent
+                {...(cardContentProps ?? {})}
+                {...(contentProps ?? {})}
+            >
+                {children}
+            </CardContent>
         </Card>
     );
 };
