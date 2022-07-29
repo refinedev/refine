@@ -1,7 +1,16 @@
 import React, { useCallback } from "react";
-import { useTranslate, IResourceComponentsProps } from "@pankod/refine-core";
+import {
+    useTranslate,
+    IResourceComponentsProps,
+    HttpError,
+} from "@pankod/refine-core";
 import { useForm, useModalForm } from "@pankod/refine-react-hook-form";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import {
+    useTable,
+    ColumnDef,
+    flexRender,
+    Row,
+} from "@pankod/refine-react-table";
 import {
     List,
     BooleanField,
@@ -136,7 +145,9 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
     });
 
     const renderRowSubComponent = useCallback(
-        ({ row }) => <CategoryProductsTable record={row.original} />,
+        ({ row }: { row: Row<ICategory> }) => (
+            <CategoryProductsTable record={row.original} />
+        ),
         [],
     );
 
@@ -144,7 +155,7 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
         setId(editId);
     };
 
-    const renderEditRow = useCallback((row) => {
+    const renderEditRow = useCallback((row: Row<ICategory>) => {
         const { id, title, isActive } = row.original;
 
         return (
@@ -407,7 +418,7 @@ const CategoryProductsTable: React.FC<{ record: ICategory }> = ({ record }) => {
         [t],
     );
 
-    const editDrawerFormProps = useModalForm<IProduct>({
+    const editDrawerFormProps = useModalForm<IProduct, HttpError, IProduct>({
         refineCoreProps: {
             action: "edit",
             resource: "products",

@@ -1,6 +1,6 @@
 import { CrudFilters } from "@pankod/refine-core";
 import isEqual from "lodash/isEqual";
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { act, TestWrapper } from "@test";
 
@@ -24,12 +24,12 @@ const customPagination = {
 
 describe("useTable Hook", () => {
     it("default", async () => {
-        const { result, waitFor } = renderHook(() => useTable(), {
+        const { result } = renderHook(() => useTable(), {
             wrapper: TestWrapper({}),
         });
 
         await waitFor(() => {
-            return !result.current.tableProps.loading;
+            expect(!result.current.tableProps.loading).toBeTruthy();
         });
 
         const {
@@ -41,7 +41,7 @@ describe("useTable Hook", () => {
     });
 
     it("with initial pagination parameters", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     initialCurrent: customPagination.current,
@@ -53,7 +53,7 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.tableProps.loading;
+            expect(!result.current.tableProps.loading).toBeTruthy();
         });
 
         const {
@@ -64,7 +64,7 @@ describe("useTable Hook", () => {
     });
 
     it("with disabled pagination", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     hasPagination: false,
@@ -75,7 +75,7 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.tableProps.loading;
+            expect(!result.current.tableProps.loading).toBeTruthy();
         });
 
         const {
@@ -86,7 +86,7 @@ describe("useTable Hook", () => {
     });
 
     it("with custom resource", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     resource: "categories",
@@ -97,7 +97,7 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.tableProps.loading;
+            expect(!result.current.tableProps.loading).toBeTruthy();
         });
 
         const {
@@ -108,7 +108,7 @@ describe("useTable Hook", () => {
     });
 
     it("with syncWithLocation", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     resource: "categories",
@@ -120,7 +120,7 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.tableProps.loading;
+            expect(!result.current.tableProps.loading).toBeTruthy();
         });
 
         const {
@@ -131,7 +131,7 @@ describe("useTable Hook", () => {
     });
 
     it("should success data with resource", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     resource: "categories",
@@ -142,7 +142,7 @@ describe("useTable Hook", () => {
         );
 
         await waitFor(() => {
-            return result.current.tableQueryResult.isSuccess;
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
         });
     });
 
@@ -157,7 +157,7 @@ describe("useTable Hook", () => {
             },
         ];
 
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     resource: "categories",
@@ -181,6 +181,10 @@ describe("useTable Hook", () => {
             },
         ];
 
+        await waitFor(() => {
+            expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
+        });
+
         await act(async () => {
             result.current.setFilters(nextFilters);
         });
@@ -198,7 +202,7 @@ describe("useTable Hook", () => {
     it('should change behavior to `replace` when `defaultSetFilterBehavior="replace"`', async () => {
         jest.useFakeTimers();
 
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useTable({
                     resource: "categories",

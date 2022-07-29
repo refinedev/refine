@@ -1,5 +1,6 @@
+import { useSelect, HttpError } from "@pankod/refine-core";
 import { useStepsForm } from "@pankod/refine-react-hook-form";
-import { useSelect } from "@pankod/refine-core";
+import { IPost } from "interfaces";
 
 const stepTitles = ["Title", "Status", "Category and content"];
 
@@ -10,7 +11,7 @@ export const PostCreate: React.FC = () => {
         handleSubmit,
         formState: { errors },
         steps: { currentStep, gotoStep },
-    } = useStepsForm();
+    } = useStepsForm<IPost, HttpError, IPost>();
 
     const { options } = useSelect({
         resource: "categories",

@@ -15,6 +15,7 @@ export interface LayoutWrapperProps {
     Title?: React.FC<TitleProps>;
     Footer?: React.FC;
     OffLayoutArea?: React.FC;
+    children: React.ReactNode;
 }
 
 /**

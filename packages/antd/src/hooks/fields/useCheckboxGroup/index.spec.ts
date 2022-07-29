@@ -1,12 +1,12 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper } from "@test";
+import { TestWrapper } from "@test";
 
 import { useCheckboxGroup } from "./";
 
 describe("render hook default options", () => {
     it("should success data with resource", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useCheckboxGroup({
                     resource: "posts",
@@ -17,7 +17,7 @@ describe("render hook default options", () => {
         );
 
         await waitFor(() => {
-            return result.current.queryResult.isSuccess;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         const { checkboxGroupProps } = result.current;
@@ -35,7 +35,7 @@ describe("render hook default options", () => {
     });
 
     it("should success data with resource with optionLabel and optionValue", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useCheckboxGroup<{ id: string; slug: string }>({
                     resource: "posts",
@@ -48,7 +48,7 @@ describe("render hook default options", () => {
         );
 
         await waitFor(() => {
-            return result.current.queryResult.isSuccess;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         const { checkboxGroupProps } = result.current;
@@ -64,7 +64,7 @@ describe("render hook default options", () => {
     it("should invoke queryOptions methods successfully", async () => {
         const mockFunc = jest.fn();
 
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useCheckboxGroup<{ id: string; slug: string }>({
                     resource: "posts",
@@ -82,7 +82,7 @@ describe("render hook default options", () => {
         );
 
         await waitFor(() => {
-            return result.current.queryResult.isSuccess;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         const { checkboxGroupProps } = result.current;

@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, act } from "@test";
 
@@ -11,7 +11,7 @@ import {
 
 describe("useSelect Hook", () => {
     it("default", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useSelect({
                     resource: "posts",
@@ -25,7 +25,7 @@ describe("useSelect Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.queryResult?.isLoading;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         const { options } = result.current;
@@ -41,7 +41,7 @@ describe("useSelect Hook", () => {
     });
 
     it("defaultValue", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useSelect({
                     resource: "posts",
@@ -56,7 +56,7 @@ describe("useSelect Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.queryResult.isLoading;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         const { options } = result.current;
@@ -72,7 +72,7 @@ describe("useSelect Hook", () => {
     });
 
     it("defaultValue is not an array", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useSelect({
                     resource: "posts",
@@ -87,7 +87,7 @@ describe("useSelect Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.queryResult.isLoading;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         const { options } = result.current;
@@ -103,7 +103,7 @@ describe("useSelect Hook", () => {
     });
 
     it("should success data with resource with optionLabel and optionValue", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useSelect<{ id: string; slug: string }>({
                     resource: "posts",
@@ -119,7 +119,7 @@ describe("useSelect Hook", () => {
         );
 
         await waitFor(() => {
-            return result.current.queryResult.isSuccess;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         const { options } = result.current;
@@ -132,7 +132,7 @@ describe("useSelect Hook", () => {
     });
 
     it("should success data with resource with filters", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useSelect<{ id: string; slug: string }>({
                     resource: "posts",
@@ -153,7 +153,7 @@ describe("useSelect Hook", () => {
         );
 
         await waitFor(() => {
-            return result.current.queryResult.isSuccess;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         const { options } = result.current;
@@ -169,10 +169,11 @@ describe("useSelect Hook", () => {
     });
 
     it("onSearch debounce with default value (300ms)", async () => {
+        jest.useFakeTimers();
         const getListMock = jest.fn(() =>
             Promise.resolve({ data: [], total: 0 }),
         );
-        const { result, waitFor, waitForNextUpdate } = renderHook(
+        const { result } = renderHook(
             () =>
                 useSelect({
                     resource: "posts",
@@ -192,32 +193,41 @@ describe("useSelect Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.queryResult?.isLoading;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         expect(getListMock).toBeCalledTimes(1);
 
         const { onSearch } = result.current;
 
-        act(() => {
-            for (let index = 0; index < 10; index++) {
-                onSearch(index.toString());
-            }
+        onSearch("1");
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
         });
-        await waitForNextUpdate();
+
+        onSearch("1");
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        onSearch("1");
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
         expect(getListMock).toBeCalledTimes(2);
 
         await waitFor(() => {
-            return !result.current.queryResult?.isLoading;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
     });
 
     it("onSearch disabled debounce (0ms)", async () => {
+        jest.useFakeTimers();
         const getListMock = jest.fn(() => {
             return Promise.resolve({ data: [], total: 0 });
         });
-        const { result, waitFor, waitForNextUpdate } = renderHook(
+        const { result } = renderHook(
             () =>
                 useSelect({
                     resource: "posts",
@@ -237,7 +247,7 @@ describe("useSelect Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.queryResult?.isLoading;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         expect(getListMock).toBeCalledTimes(1);
@@ -245,23 +255,32 @@ describe("useSelect Hook", () => {
         const { onSearch } = result.current;
 
         onSearch("1");
-        await waitForNextUpdate();
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         onSearch("2");
-        await waitForNextUpdate();
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
         onSearch("3");
-        await waitForNextUpdate();
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
         expect(getListMock).toBeCalledTimes(4);
 
         await waitFor(() => {
-            return !result.current.queryResult?.isLoading;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
     });
 
     it("should invoke queryOptions methods successfully", async () => {
         const mockFunc = jest.fn();
 
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useSelect({
                     resource: "posts",
@@ -280,7 +299,7 @@ describe("useSelect Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.queryResult?.isLoading;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         const { options } = result.current;
@@ -300,7 +319,7 @@ describe("useSelect Hook", () => {
     it("should invoke queryOptions methods for defaultValue and default query successfully", async () => {
         const mockFunc = jest.fn();
 
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useSelect({
                     resource: "posts",
@@ -320,7 +339,7 @@ describe("useSelect Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.queryResult?.isLoading;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         const { options } = result.current;
@@ -341,7 +360,7 @@ describe("useSelect Hook", () => {
     it("should invoke queryOptions methods for default value successfully", async () => {
         const mockFunc = jest.fn();
 
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useSelect({
                     resource: "posts",
@@ -361,7 +380,7 @@ describe("useSelect Hook", () => {
         );
 
         await waitFor(() => {
-            return !result.current.queryResult.isLoading;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         const { options } = result.current;
@@ -399,7 +418,7 @@ describe("useSelect Hook", () => {
             },
         } as IDataMultipleContextProvider;
 
-        const { waitForNextUpdate } = renderHook(
+        renderHook(
             () =>
                 useSelect({
                     resource: "posts",
@@ -414,7 +433,8 @@ describe("useSelect Hook", () => {
             },
         );
 
-        await waitForNextUpdate();
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        await act(() => {});
 
         expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
             filters: [],
@@ -424,6 +444,7 @@ describe("useSelect Hook", () => {
     });
 
     it("should use onSearch option to get filters", async () => {
+        jest.useFakeTimers();
         const posts = [
             {
                 id: "1",
@@ -453,7 +474,7 @@ describe("useSelect Hook", () => {
             },
         ];
 
-        const { result, waitForNextUpdate } = renderHook(
+        const { result } = renderHook(
             () =>
                 useSelect({
                     resource: "posts",
@@ -471,22 +492,24 @@ describe("useSelect Hook", () => {
 
         const { onSearch } = result.current;
 
-        await waitForNextUpdate();
-
         expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
             filters: [],
             resource: "posts",
         });
 
-        act(() => {
+        await act(async () => {
             onSearch("1");
         });
 
-        await waitForNextUpdate();
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
 
-        expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
-            filters,
-            resource: "posts",
+        await waitFor(() => {
+            expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
+                filters,
+                resource: "posts",
+            });
         });
     });
 });

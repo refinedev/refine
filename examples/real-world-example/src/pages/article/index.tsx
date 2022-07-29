@@ -254,7 +254,7 @@ export const ArticlePage: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="container page">
+                    <div className="page container">
                         <div className="row article-content">
                             <div className="col-md-12">
                                 <p>{article?.data.body}</p>

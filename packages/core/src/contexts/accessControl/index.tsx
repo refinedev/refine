@@ -9,10 +9,11 @@ export const AccessControlContext = React.createContext<IAccessControlContext>(
     {},
 );
 
-export const AccessControlContextProvider: React.FC<IAccessControlContext> = ({
-    can,
-    children,
-}) => {
+export const AccessControlContextProvider: React.FC<
+    IAccessControlContext & {
+        children?: React.ReactNode;
+    }
+> = ({ can, children }) => {
     return (
         <AccessControlContext.Provider value={{ can }}>
             {children}

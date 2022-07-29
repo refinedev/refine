@@ -161,9 +161,12 @@ export const CouriersCreate: React.FC<IResourceComponentsProps> = () => {
                                 ]}
                             >
                                 <InputMask mask="(999) 999 99 99">
-                                    {(props: InputProps) => (
-                                        <Input {...props} />
-                                    )}
+                                    {/* 
+                                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                    // @ts-ignore */}
+                                    {(props: InputProps) => {
+                                        return <Input {...props} />;
+                                    }}
                                 </InputMask>
                             </Form.Item>
                             <Form.Item
