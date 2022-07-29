@@ -1,4 +1,4 @@
-import { QueryObserverResult } from "react-query";
+import { QueryObserverResult } from "@tanstack/react-query";
 
 import { RadioGroupProps } from "antd/lib/radio";
 import {
