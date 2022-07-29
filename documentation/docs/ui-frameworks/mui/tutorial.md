@@ -1032,7 +1032,7 @@ The React Hook Form library has been integrated with **refine** ([`@pankod/refin
 Let's start by creating a new `<PostEdit>` page responsible for `editing` a single record:
 
 ```tsx title="src/pages/posts/edit.tsx"
-import { Controller, useForm } from "@pankod/refine-react-hook-form";
+import { HttpError } from "@pankod/refine-core";
 import {
     Edit,
     Box,
@@ -1040,8 +1040,9 @@ import {
     Autocomplete,
     useAutocomplete,
 } from "@pankod/refine-mui";
+import { Controller, useForm } from "@pankod/refine-react-hook-form";
 
-import { ICategory } from "interfaces";
+import { ICategory, IPost } from "interfaces";
 
 export const PostEdit: React.FC = () => {
     const {
@@ -1050,7 +1051,7 @@ export const PostEdit: React.FC = () => {
         register,
         control,
         formState: { errors },
-    } = useForm();
+    } = useForm<IPost, HttpError, IPost & { category: ICategory }>();
 
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
@@ -1082,7 +1083,7 @@ export const PostEdit: React.FC = () => {
                     control={control}
                     name="status"
                     rules={{ required: "Status is required" }}
-                    defaultValue=""
+                    defaultValue={null as any}
                     render={({ field }) => (
                         <Autocomplete
                             {...field}
@@ -1108,7 +1109,7 @@ export const PostEdit: React.FC = () => {
                     control={control}
                     name="category"
                     rules={{ required: "Category is required" }}
-                    defaultValue=""
+                    defaultValue={null as any}
                     render={({ field }) => (
                         <Autocomplete
                             {...autocompleteProps}
@@ -1351,6 +1352,7 @@ Creating a record in **refine** follows a similar flow as `editing` records.
 First, we'll create a `<PostCreate>` page:
 
 ```tsx title="src/pages/posts/create.tsx"
+import { HttpError } from "@pankod/refine-core";
 import {
     Box,
     TextField,
@@ -1360,7 +1362,7 @@ import {
 } from "@pankod/refine-mui";
 import { useForm, Controller } from "@pankod/refine-react-hook-form";
 
-import { ICategory } from "interfaces";
+import { IPost, ICategory } from "interfaces";
 
 export const PostCreate: React.FC = () => {
     const {
@@ -1369,7 +1371,7 @@ export const PostCreate: React.FC = () => {
         register,
         control,
         formState: { errors },
-    } = useForm();
+    } = useForm<IPost, HttpError, IPost & { category: ICategory }>();
 
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
@@ -1398,7 +1400,6 @@ export const PostCreate: React.FC = () => {
                     control={control}
                     name="status"
                     rules={{ required: "Status is required" }}
-                    defaultValue=""
                     render={({ field }) => (
                         <Autocomplete
                             {...field}

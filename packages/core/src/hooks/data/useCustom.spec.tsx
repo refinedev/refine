@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
@@ -6,7 +6,7 @@ import { useCustom } from "./useCustom";
 
 describe("useCustom Hook", () => {
     it("with rest json server", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () => useCustom({ url: "remoteUrl", method: "get" }),
             {
                 wrapper: TestWrapper({
@@ -17,7 +17,7 @@ describe("useCustom Hook", () => {
         );
 
         await waitFor(() => {
-            return result.current.isSuccess;
+            expect(result.current.isSuccess).toBeTruthy();
         });
 
         const { data } = result.current;

@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { TestWrapper } from "@test";
 
@@ -6,7 +6,7 @@ import { useGetIdentity } from "./";
 
 describe("useGetIdentity Hook", () => {
     it("returns object useGetIdentity", async () => {
-        const { result, waitFor } = renderHook(() => useGetIdentity(), {
+        const { result } = renderHook(() => useGetIdentity(), {
             wrapper: TestWrapper({
                 authProvider: {
                     login: () => Promise.resolve(),
@@ -20,7 +20,7 @@ describe("useGetIdentity Hook", () => {
         });
 
         await waitFor(() => {
-            return result.current?.isSuccess;
+            expect(result.current.isSuccess).toBeTruthy();
         });
 
         expect(result.current?.data).toEqual({ id: 1 });
@@ -32,7 +32,7 @@ describe("useGetIdentity Hook", () => {
             console.warn(message);
         });
 
-        const { result, waitFor } = renderHook(() => useGetIdentity(), {
+        const { result } = renderHook(() => useGetIdentity(), {
             wrapper: TestWrapper({
                 authProvider: {
                     login: () => Promise.resolve(),
@@ -47,14 +47,14 @@ describe("useGetIdentity Hook", () => {
         });
 
         await waitFor(() => {
-            return result.current.isError;
+            expect(result.current.isError).toBeTruthy();
         });
 
         expect(result.current?.error).toEqual(new Error("Not Authenticated"));
     });
 
     it("throw error useGetIdentity undefined", async () => {
-        const { result, waitFor } = renderHook(() => useGetIdentity(), {
+        const { result } = renderHook(() => useGetIdentity(), {
             wrapper: TestWrapper({
                 authProvider: {
                     login: () => Promise.resolve(),
@@ -67,7 +67,7 @@ describe("useGetIdentity Hook", () => {
         });
 
         await waitFor(() => {
-            return !result.current.isLoading;
+            expect(!result.current.isLoading).toBeTruthy();
         });
 
         expect(result.current.status).toEqual("idle");

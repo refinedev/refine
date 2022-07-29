@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { TestWrapper } from "@test";
 import { posts } from "@test/dataMocks";
@@ -11,12 +11,12 @@ describe("useEditableTable Hook", () => {
         jest.spyOn(console, "error").mockImplementation(jest.fn());
     });
     it("fetches table and form data", async () => {
-        const { result, waitFor } = renderHook(() => useEditableTable(), {
+        const { result } = renderHook(() => useEditableTable(), {
             wrapper: TestWrapper({}),
         });
 
         await waitFor(() => {
-            return !result.current.tableProps.loading;
+            expect(!result.current.tableProps.loading).toBeTruthy();
         });
 
         const {
@@ -32,7 +32,7 @@ describe("useEditableTable Hook", () => {
         });
 
         await waitFor(() => {
-            return !result.current.formLoading;
+            expect(!result.current.formLoading).toBeTruthy();
         });
 
         expect(result.current.formProps.initialValues?.title).toEqual(

@@ -40,9 +40,10 @@ We will show you how to use `useMenu` to create a simple menu for your refine ap
 Create a `<Layout />` component inside `src/components/layout.tsx` with the following code;
 
 ```tsx title="src/components/layout.tsx"
+import { LayoutProps } from "@pankod/refine-core";
 import { useMenu, useNavigation, useRouterContext, useRefineContext } from "@pankod/refine-core";
 
-export const Layout: React.FC = ({ children }) => {
+export const Layout: React.FC<LayoutProps> = ({ children }) => {
     const { menuItems, selectedKey } = useMenu();
     const { hasDashboard } = useRefineContext();
     const { Link } = useRouterContext();
@@ -200,9 +201,10 @@ export const App: React.FC = () => {
 Now you can update your `<Layout/>` to support multi level rendering with following code:
 
 ```tsx title="src/components/Layout.tsx"
+import { LayoutProps } from "@pankod/refine-core";
 import { useMenu, useNavigation, useRouterContext } from "@pankod/refine-core";
 
-export const Layout: React.FC = ({ children }) => {
+export const Layout: React.FC<LayoutProps> = ({ children }) => {
     const { menuItems, selectedKey } = useMenu();
     const { Link } = useRouterContext();
 

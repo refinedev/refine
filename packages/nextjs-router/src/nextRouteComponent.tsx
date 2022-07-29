@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import {
     useRefineContext,
     LayoutWrapper,
@@ -15,6 +15,7 @@ const { useHistory, useLocation, useParams } = RouterProvider;
 
 type NextRouteComponentProps = {
     initialData?: any;
+    children: ReactNode;
 };
 
 export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({

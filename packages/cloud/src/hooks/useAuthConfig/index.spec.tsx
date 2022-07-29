@@ -1,23 +1,22 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react";
+import { act } from "react-dom/test-utils";
 
 import { useAuthConfig } from "./index";
 import { TestWrapper } from "@test";
 
 describe("useAuthConfig Hook", () => {
     it("get successfull auth configs", async () => {
-        const { result, waitForNextUpdate } = renderHook(
-            () => useAuthConfig(),
-            {
-                wrapper: TestWrapper({
-                    cloudConfig: {
-                        baseUrl: "demo.domain.com",
-                        clientId: "test",
-                    },
-                }),
-            },
-        );
+        const { result } = renderHook(() => useAuthConfig(), {
+            wrapper: TestWrapper({
+                cloudConfig: {
+                    baseUrl: "demo.domain.com",
+                    clientId: "test",
+                },
+            }),
+        });
 
-        await waitForNextUpdate();
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        await act(() => {});
 
         const { data } = result.current;
 
