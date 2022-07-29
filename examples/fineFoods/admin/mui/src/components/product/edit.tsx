@@ -282,7 +282,7 @@ export const EditProduct: React.FC<
                                                 { field: "Category" },
                                             ),
                                         }}
-                                        defaultValue={undefined}
+                                        defaultValue={null as any}
                                         render={({ field }) => (
                                             <Autocomplete
                                                 disablePortal

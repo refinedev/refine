@@ -259,7 +259,7 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                                             { field: "Gender" },
                                                         ),
                                                     }}
-                                                    defaultValue={undefined}
+                                                    defaultValue={null as any}
                                                     render={({ field }) => (
                                                         <Autocomplete
                                                             size="small"
@@ -458,7 +458,7 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                             rules={{
                                                 required: "Store required",
                                             }}
-                                            defaultValue={undefined}
+                                            defaultValue={null as any}
                                             render={({ field }) => (
                                                 <Autocomplete
                                                     size="small"

@@ -1,3 +1,4 @@
+import { HttpError } from "@pankod/refine-core";
 import {
     Edit,
     Box,
@@ -7,7 +8,7 @@ import {
 } from "@pankod/refine-mui";
 import { Controller, useForm } from "@pankod/refine-react-hook-form";
 
-import { ICategory } from "interfaces";
+import { ICategory, IPost } from "interfaces";
 
 export const PostEdit: React.FC = () => {
     const {
@@ -16,7 +17,13 @@ export const PostEdit: React.FC = () => {
         register,
         control,
         formState: { errors },
-    } = useForm();
+    } = useForm<
+        IPost,
+        HttpError,
+        IPost & {
+            category: ICategory;
+        }
+    >();
 
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
@@ -46,11 +53,11 @@ export const PostEdit: React.FC = () => {
                     control={control}
                     name="status"
                     rules={{ required: "This field is required" }}
-                    defaultValue=""
+                    defaultValue={null as any}
                     render={({ field }) => (
                         <Autocomplete
-                            options={["published", "draft", "rejected"]}
                             {...field}
+                            options={["published", "draft", "rejected"]}
                             onChange={(_, value) => {
                                 field.onChange(value);
                             }}
@@ -72,7 +79,7 @@ export const PostEdit: React.FC = () => {
                     control={control}
                     name="category"
                     rules={{ required: "This field is required" }}
-                    defaultValue=""
+                    defaultValue={null as any}
                     render={({ field }) => (
                         <Autocomplete
                             {...autocompleteProps}
