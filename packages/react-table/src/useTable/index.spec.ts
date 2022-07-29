@@ -32,11 +32,14 @@ describe("useTable Hook", () => {
             wrapper: TestWrapper({}),
         });
 
-        await waitFor(() => {
-            expect(
-                !result.current.refineCore.tableQueryResult.isLoading,
-            ).toBeTruthy();
-        });
+        await waitFor(
+            () => {
+                expect(
+                    !result.current.refineCore.tableQueryResult.isLoading,
+                ).toBeTruthy();
+            },
+            { timeout: 10000 },
+        );
 
         const {
             options: { state, pageCount },
