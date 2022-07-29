@@ -23,16 +23,18 @@ Wrap your root component with an Auth0Provider that you can import from the SDK.
 
 ```tsx title="index.tsx"
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 
 // highlight-next-line
 import { Auth0Provider } from "@auth0/auth0-react";
 
 import App from "./App";
 
-ReactDOM.render(
+const container = document.getElementById("root");
+const root = createRoot(container!);
+root.render(
     <React.StrictMode>
-        // highlight-start
+// highlight-start
         <Auth0Provider
             domain="YOUR_DOMAIN"
             clientId="YOUR_CLIENT_ID"
@@ -40,10 +42,10 @@ ReactDOM.render(
         >
             <App />
         </Auth0Provider>
-        // highlight-end
+// highlight-end
     </React.StrictMode>,
-    document.getElementById("root"),
 );
+
 ```
 
 :::important
