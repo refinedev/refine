@@ -94,7 +94,7 @@ export const PostEdit: React.FC = () => {
                     control={control}
                     name="status"
                     rules={{ required: "This field is required" }}
-                    defaultValue=""
+                    defaultValue={null as any}
                     render={({ field }) => (
                         <Autocomplete
                             options={["published", "draft", "rejected"]}
@@ -120,7 +120,7 @@ export const PostEdit: React.FC = () => {
                     control={control}
                     name="category"
                     rules={{ required: "This field is required" }}
-                    defaultValue=""
+                    defaultValue={null as any}
                     render={({ field }) => (
                         <Autocomplete
                             {...autocompleteProps}

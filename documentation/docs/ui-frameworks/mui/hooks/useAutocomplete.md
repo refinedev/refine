@@ -32,6 +32,7 @@ We'll demonstrate how to get data at `/categories` endpoint from `https://api.fa
 ```
 
 ```tsx title="pages/posts/create.tsx"
+import { HttpError } from "@pankod/refine-core";
 import {
     Create,
     Box,
@@ -50,7 +51,7 @@ export const PostCreate = () => {
         register,
         control,
         formState: { errors },
-    } = useForm();
+    } = useForm<IPost, HttpError, IPost & { category: ICategory }>();
 
     // highlight-start
     const { autocompleteProps } = useAutocomplete<ICategory>({
@@ -109,6 +110,12 @@ interface ICategory {
     id: number;
     title: string;
 }
+
+export interface IPost {
+    id: number;
+    category: { id: number };
+}
+
 ```
 
 The use of `useAutocomplete` with [`useForm`](/packages/react-hook-form/useForm.md) is demonstrated in the code above. You can use the `useAutocomplete` hook independently of the `useForm`hook.

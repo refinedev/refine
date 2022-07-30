@@ -1,3 +1,4 @@
+import { PropsWithChildren } from "react";
 import { BaseKey, MutationMode } from "@pankod/refine-core";
 
 export type ActionButtonRenderer =
@@ -14,7 +15,7 @@ export type RefineCrudListProps<
     THeaderProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
     TExtraProps extends {} = {},
-> = {
+> = PropsWithChildren<{
     // Common Props
     title?: React.ReactNode;
     resource?: string;
@@ -28,7 +29,8 @@ export type RefineCrudListProps<
     // Crud List Props
     canCreate?: boolean;
     createButtonProps?: TCreateButtonProps;
-} & TExtraProps;
+}> &
+    TExtraProps;
 
 /**
  * This should be the base type for `Create` crud component implementations in UI integrations.
@@ -41,7 +43,7 @@ export type RefineCrudCreateProps<
     THeaderProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
     TExtraProps extends {} = {},
-> = {
+> = PropsWithChildren<{
     // Common Props
     title?: React.ReactNode;
     resource?: string;
@@ -60,7 +62,8 @@ export type RefineCrudCreateProps<
     // Crud Create Props
     isLoading?: boolean;
     saveButtonProps?: TSaveButtonProps;
-} & TExtraProps;
+}> &
+    TExtraProps;
 
 /**
  * This should be the base type for `Edit` crud component implementations in UI integrations.
@@ -74,7 +77,7 @@ export type RefineCrudEditProps<
     THeaderProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
     TExtraProps extends {} = {},
-> = {
+> = PropsWithChildren<{
     // Common Props
     title?: React.ReactNode;
     resource?: string;
@@ -99,7 +102,8 @@ export type RefineCrudEditProps<
     deleteButtonProps?: TDeleteButtonProps;
     mutationMode?: MutationMode;
     recordItemId?: BaseKey;
-} & TExtraProps;
+}> &
+    TExtraProps;
 
 /**
  * This should be the base type for `Show` crud component implementations in UI integrations.
@@ -111,7 +115,7 @@ export type RefineCrudShowProps<
     THeaderProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
     TExtraProps extends {} = {},
-> = {
+> = PropsWithChildren<{
     // Common Props
     title?: React.ReactNode;
     resource?: string;
@@ -134,4 +138,5 @@ export type RefineCrudShowProps<
     canDelete?: boolean;
     canEdit?: boolean;
     recordItemId?: BaseKey;
-} & TExtraProps;
+}> &
+    TExtraProps;

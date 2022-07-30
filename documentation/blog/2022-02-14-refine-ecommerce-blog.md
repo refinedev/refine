@@ -137,9 +137,10 @@ We created our collections in the previous Strapi Multitenancy guide. Now we wil
 The Layout we've created now will only show the **refine** logo. In the following steps, we will edit our Layout.
 
 ```tsx title="components/Layout.tsx"
+import { LayoutProps } from "@pankod/refine-core";
 import { Box, Container, Flex, Image } from "@chakra-ui/react";
 
-export const Layout: React.FC = ({ children }) => {
+export const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <Box
             display={"flex"}

@@ -1,5 +1,10 @@
 import React from "react";
-import { useTranslate, useTable, useUpdate } from "@pankod/refine-core";
+import {
+    useTranslate,
+    useTable,
+    useUpdate,
+    HttpError,
+} from "@pankod/refine-core";
 import { useModalForm } from "@pankod/refine-react-hook-form";
 import {
     Grid,
@@ -44,7 +49,7 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
             syncWithLocation: false,
         });
 
-    const createDrawerFormProps = useModalForm<IProduct>({
+    const createDrawerFormProps = useModalForm<IProduct, HttpError, IProduct>({
         refineCoreProps: {
             action: "create",
             resource: "products",
@@ -56,7 +61,7 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
         modal: { show: showCreateDrawer },
     } = createDrawerFormProps;
 
-    const editDrawerFormProps = useModalForm<IProduct>({
+    const editDrawerFormProps = useModalForm<IProduct, HttpError, IProduct>({
         refineCoreProps: {
             action: "edit",
             resource: "products",

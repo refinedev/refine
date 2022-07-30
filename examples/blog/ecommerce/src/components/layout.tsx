@@ -1,6 +1,7 @@
+import { LayoutProps } from "@pankod/refine-core";
 import { Box, Container, Flex, Image, Button } from "@chakra-ui/react";
 
-export const Layout: React.FC = ({ children }) => {
+export const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <Box
             display={"flex"}

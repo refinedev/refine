@@ -1,7 +1,7 @@
 import { RcFile, UploadFile } from "antd/lib/upload/interface";
 import { act } from "react-dom/test-utils";
 import { notification } from "antd";
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react";
 import { TestWrapper, MockJSONServer } from "@test";
 
 import { useImport } from ".";
@@ -17,7 +17,7 @@ const file = new File(
     { type: "text/csv" },
 );
 
-afterEach(() => {
+beforeEach(() => {
     jest.clearAllMocks();
     jest.useRealTimers();
 });
@@ -57,6 +57,8 @@ describe("useImport hook", () => {
     });
 
     it("should open notification", async () => {
+        jest.useFakeTimers();
+
         const { result } = renderHook(
             () =>
                 useImport({
@@ -83,8 +85,11 @@ describe("useImport hook", () => {
 
             jest.advanceTimersToNextTimer(1);
         });
+        jest.runAllTimers();
 
-        expect(notificationOpenSpy).toBeCalled();
-        expect(notificationCloseSpy).toBeCalled();
+        await act(async () => {
+            expect(notificationOpenSpy).toBeCalled();
+            expect(notificationCloseSpy).toBeCalled();
+        });
     });
 });

@@ -1,4 +1,5 @@
 import React from "react";
+import { ReactNode } from "react";
 
 import {
     IDataContextProvider,
@@ -28,7 +29,10 @@ export const DataContext = React.createContext<IDataMultipleContextProvider>(
 );
 
 export const DataContextProvider: React.FC<
-    IDataMultipleContextProvider | IDataContextProvider
+    | IDataMultipleContextProvider
+    | (IDataContextProvider & {
+          children: ReactNode;
+      })
 > = ({ children, ...rest }) => {
     let dataProviders;
     if (

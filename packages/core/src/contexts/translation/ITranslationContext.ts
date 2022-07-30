@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type Translate = (
     key: string,
     options?: any,

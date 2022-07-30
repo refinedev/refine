@@ -1,3 +1,4 @@
+import React from "react";
 import { Box, Avatar, Typography } from "@pankod/refine-mui";
 
 type CourierInfoBoxProps = {

@@ -5,7 +5,7 @@ title: Live Provider
 
 ## Overview
 
-**refine** lets you add Realtime support to your app via `liveProvider` prop for [`<Refine>`](/core/components/refine-config.md). It can be used to update and show data in Realtime throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [Socket.IO](https://socket.io/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com), etc.) to be integrated.
+**refine** lets you add Realtime support to your app via `liveProvider` prop for [`<Refine>`](/core/components/refine-config.md). It can be used to update and show data in Realtime throughout your app. **refine** remains agnostic in its API to allow different solutions([Ably](https://ably.com), [Socket.IO](https://socket.io/), [Mercure](https://mercure.rocks/), [supabase](https://supabase.com), [Hasura](https://hasura.io/), GraphQL Subscriptions, etc.) to be integrated.
 
 A live provider must include following methods:
 
@@ -27,8 +27,8 @@ const liveProvider = {
 -   **Ably** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://stackblitz.com/github/pankod/refine/tree/master/examples/ably/?preset=node)
 -   **Supabase** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/supabase/src/index.ts#L187)
 -   **Appwrite** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/appwrite/src/index.ts#L252)
--   **Hasura** &#8594 [Source Code](https://github.com/pankod/refine/blob/feat/graphql-live-provider/packages/hasura/src/liveProvider/index.ts#L16)
--   **Nhost** &#8594 [Source Code](https://github.com/pankod/refine/blob/feat/graphql-live-provider/packages/nhost/src/liveProvider/index.ts#L16)
+-   **Hasura** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/hasura/src/liveProvider/index.ts#L16)
+-   **Nhost** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/nhost/src/liveProvider/index.ts#L16)
 
 :::
 

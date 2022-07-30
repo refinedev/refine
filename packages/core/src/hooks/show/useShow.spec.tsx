@@ -1,5 +1,5 @@
 import React from "react";
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 import { Route, Routes } from "react-router-dom";
 
 import { MockJSONServer, TestWrapper, act } from "@test";
@@ -13,7 +13,9 @@ const Wrapper = TestWrapper({
     routerInitialEntries: ["/posts/show/1"],
 });
 
-const WrapperWithRoute: React.FC = ({ children }) => (
+const WrapperWithRoute: React.FC<{ children: React.ReactNode }> = ({
+    children,
+}) => (
     <Wrapper>
         <Routes>
             <Route path="/:resource/:action/:id" element={children} />
@@ -22,19 +24,19 @@ const WrapperWithRoute: React.FC = ({ children }) => (
 );
 describe("useShow Hook", () => {
     it("should fetch data with use-query params succesfully", async () => {
-        const { result, waitFor } = renderHook(() => useShow(), {
+        const { result } = renderHook(() => useShow(), {
             wrapper: WrapperWithRoute,
         });
 
         await waitFor(() => {
-            return result.current.queryResult.isSuccess;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         expect(result.current.queryResult.data?.data.id).toEqual(posts[0].id);
     });
 
     it("should fetch data with hook params succesfully", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () => useShow({ resource: "posts", id: "1" }),
             {
                 wrapper: WrapperWithRoute,
@@ -42,7 +44,7 @@ describe("useShow Hook", () => {
         );
 
         await waitFor(() => {
-            return result.current.queryResult.isSuccess;
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         expect(result.current.queryResult.data?.data.id).toEqual(posts[0].id);
@@ -61,12 +63,20 @@ describe("useShow Hook", () => {
             },
         );
 
+        await waitFor(() => {
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
+        });
+
         expect(result.current.showId).toEqual("2");
     });
 
     it("correctly return id value from route", async () => {
         const { result } = renderHook(() => useShow(), {
             wrapper: WrapperWithRoute,
+        });
+
+        await waitFor(() => {
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
         expect(result.current.showId).toEqual("1");
@@ -112,6 +122,10 @@ describe("useShow Hook", () => {
             },
         );
 
+        await waitFor(() => {
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
+        });
+
         expect(result.current.showId).toEqual("2");
     });
 
@@ -122,7 +136,7 @@ describe("useShow Hook", () => {
 
         expect(result.current.showId).toEqual("1");
 
-        act(() => {
+        await act(async () => {
             result.current.setShowId("3");
         });
 
