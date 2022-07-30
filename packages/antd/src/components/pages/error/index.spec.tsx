@@ -2,7 +2,7 @@ import React from "react";
 import ReactRouterDom, { Route, Routes } from "react-router-dom";
 
 import { ErrorComponent } from ".";
-import { render, fireEvent, TestWrapper, waitFor } from "@test";
+import { render, fireEvent, TestWrapper } from "@test";
 import { act } from "react-dom/test-utils";
 
 const mHistory = {
