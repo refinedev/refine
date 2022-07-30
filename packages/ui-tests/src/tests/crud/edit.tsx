@@ -37,7 +37,12 @@ export const crudEditTests = function (
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / CRUD Edit", () => {
         beforeAll(() => {
+            jest.spyOn(console, "warn").mockImplementation(jest.fn());
             jest.useFakeTimers();
+        });
+
+        afterAll(() => {
+            jest.useRealTimers();
         });
 
         it("should render children", async () => {
@@ -83,7 +88,7 @@ export const crudEditTests = function (
 
             const { getByText } = renderEdit(
                 <Edit
-                    footerButtonProps={
+                    footerButtons={
                         <>
                             <button>New Save Button</button>
                             <button>New Delete Button</button>

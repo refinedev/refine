@@ -35,7 +35,12 @@ export const crudShowTests = function (
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / CRUD Show", () => {
         beforeAll(() => {
+            jest.spyOn(console, "warn").mockImplementation(jest.fn());
             jest.useFakeTimers();
+        });
+
+        afterAll(() => {
+            jest.useRealTimers();
         });
 
         it("should render children", async () => {
@@ -112,18 +117,17 @@ export const crudShowTests = function (
         });
 
         it("should render optional resource with resource prop", async () => {
-            jest.useFakeTimers();
-
-            const { getByText } = renderShow(
+            const { getByText } = render(
                 <Routes>
                     <Route
                         path="/:resource"
                         element={<Show resource="posts" />}
                     ></Route>
                 </Routes>,
-                undefined,
                 {
-                    routerInitialEntries: ["/custom"],
+                    wrapper: TestWrapper({
+                        routerInitialEntries: ["/custom"],
+                    }),
                 },
             );
 

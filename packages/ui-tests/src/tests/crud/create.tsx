@@ -34,7 +34,12 @@ export const crudCreateTests = function (
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / CRUD Create", () => {
         beforeAll(() => {
+            jest.spyOn(console, "warn").mockImplementation(jest.fn());
             jest.useFakeTimers();
+        });
+
+        afterAll(() => {
+            jest.useRealTimers();
         });
 
         it("should render children", async () => {
@@ -62,7 +67,7 @@ export const crudCreateTests = function (
         });
 
         it("should render optional button with actionButtons prop", async () => {
-            const { container, getByText } = renderCreate(
+            const { container, getByText, debug } = renderCreate(
                 <Create footerButtons={<button>Optional Button</button>} />,
             );
 

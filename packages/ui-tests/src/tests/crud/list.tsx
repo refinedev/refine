@@ -35,7 +35,12 @@ export const crudListTests = function (
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / CRUD List", () => {
         beforeAll(() => {
+            jest.spyOn(console, "warn").mockImplementation(jest.fn());
             jest.useFakeTimers();
+        });
+
+        afterAll(() => {
+            jest.useRealTimers();
         });
 
         it("should render children", async () => {
