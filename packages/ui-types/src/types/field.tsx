@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { ConfigType } from "dayjs";
 
 export type RefineFieldCommonProps<T extends any = unknown> = {
@@ -19,8 +20,8 @@ export type RefineFieldBooleanProps<
     TExtraProps & {
         valueLabelTrue?: string;
         valueLabelFalse?: string;
-        trueIcon?: React.FC | object;
-        falseIcon?: React.FC | object;
+        trueIcon?: ReactNode;
+        falseIcon?: ReactNode;
     };
 
 export type RefineFieldDateProps<

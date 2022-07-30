@@ -4,7 +4,9 @@ import { RefineFieldUrlProps } from "@pankod/refine-ui-types";
 import { render } from "@test";
 
 export const fieldUrlTests = function (
-    UrlField: React.ComponentType<RefineFieldUrlProps<any, any, any>>,
+    UrlField: React.ComponentType<
+        RefineFieldUrlProps<string | undefined, any, any>
+    >,
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / Url Field", () => {
         beforeAll(() => {

@@ -1,10 +1,12 @@
 import React from "react";
+import { ConfigType } from "dayjs";
+
 import { RefineFieldDateProps } from "@pankod/refine-ui-types";
 
 import { render } from "@test";
 
 export const fieldDateTests = function (
-    DateField: React.ComponentType<RefineFieldDateProps<any, any, any>>,
+    DateField: React.ComponentType<RefineFieldDateProps<ConfigType, any, any>>,
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / Date Field", () => {
         beforeAll(() => {
