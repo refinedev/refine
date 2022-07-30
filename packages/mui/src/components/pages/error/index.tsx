@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { ResourceErrorRouterParams } from "@pankod/refine-core";
+import { RefineErrorPageProps } from "@pankod/refine-ui-types";
 import {
     useNavigation,
     useTranslate,
@@ -7,9 +9,8 @@ import {
 } from "@pankod/refine-core";
 import { Stack, Button, Tooltip, Typography, Grid } from "@mui/material";
 import { Info } from "@mui/icons-material";
-import { ResourceErrorRouterParams } from "@pankod/refine-core";
 
-export const ErrorComponent: React.FC = () => {
+export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
     const [errorMessage, setErrorMessage] = useState<string>();
     const { push } = useNavigation();
     const translate = useTranslate();

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { ResourceErrorRouterParams } from "@pankod/refine-core";
+import { RefineErrorPageProps } from "@pankod/refine-ui-types";
 import { Button, Result, Typography, Space, Tooltip } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import {
@@ -7,7 +9,6 @@ import {
     useResourceWithRoute,
     useRouterContext,
 } from "@pankod/refine-core";
-import { ResourceErrorRouterParams } from "@pankod/refine-core";
 
 const { Text } = Typography;
 
@@ -17,7 +18,7 @@ const { Text } = Typography;
  *
  * @see {@link https://refine.dev/docs/api-references/components/refine-config#catchall} for more details.
  */
-export const ErrorComponent: React.FC = () => {
+export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
     const [errorMessage, setErrorMessage] = useState<string>();
     const { push } = useNavigation();
     const translate = useTranslate();
