@@ -251,7 +251,7 @@ export const buttonShowTests = function (
                         path="/:resource"
                         element={
                             <ShowButton
-                                resourceName="categories"
+                                resourceNameOrRouteName="categories"
                                 recordItemId="1"
                             />
                         }

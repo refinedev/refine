@@ -7,16 +7,19 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-
+import {
+    RefineButtonTestIds,
+    RefineListButtonProps,
+} from "@pankod/refine-ui-types";
 import { Button, ButtonProps, SvgIconProps } from "@mui/material";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 
-export type ListButtonProps = ButtonProps & {
-    resourceNameOrRouteName?: string;
-    hideText?: boolean;
-    ignoreAccessControlProvider?: boolean;
-    svgIconProps?: SvgIconProps;
-};
+export type ListButtonProps = RefineListButtonProps<
+    ButtonProps,
+    {
+        svgIconProps?: SvgIconProps;
+    }
+>;
 
 /**
  * `<ListButton>` is using uses Material UI {@link https://mui.com/components/buttons/ `<Button>`} component.
@@ -85,6 +88,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
                 startIcon={!hideText && <ListOutlinedIcon {...svgIconProps} />}
                 title={disabledTitle()}
                 sx={{ minWidth: 0, ...sx }}
+                data-testid={RefineButtonTestIds.ListButton}
                 {...restProps}
             >
                 {hideText ? (

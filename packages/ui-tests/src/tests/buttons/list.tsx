@@ -195,7 +195,10 @@ export const buttonListTests = function (
 
         it("should render called function successfully if click the button", async () => {
             const { getByText } = render(
-                <ListButton onClick={() => list()} resourceName="posts" />,
+                <ListButton
+                    onClick={() => list()}
+                    resourceNameOrRouteName="posts"
+                />,
                 {
                     wrapper: TestWrapper({
                         resources: [{ name: "posts" }],

@@ -2,12 +2,14 @@ import React, { ReactNode } from "react";
 import { Button, ButtonProps, Upload, UploadProps } from "antd";
 import { ImportOutlined } from "@ant-design/icons";
 import { useTranslate } from "@pankod/refine-core";
+import {
+    RefineImportButtonProps,
+    RefineButtonTestIds,
+} from "@pankod/refine-ui-types";
 
-export type ImportButtonProps = {
+export type ImportButtonProps = RefineImportButtonProps & {
     uploadProps: UploadProps;
     buttonProps: ButtonProps;
-    hideText?: boolean;
-    children?: ReactNode;
 };
 
 /**
@@ -27,7 +29,11 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
 
     return (
         <Upload {...uploadProps}>
-            <Button icon={<ImportOutlined />} {...buttonProps}>
+            <Button
+                icon={<ImportOutlined />}
+                data-testid={RefineButtonTestIds.ImportButton}
+                {...buttonProps}
+            >
                 {!hideText &&
                     (children ?? translate("buttons.import", "Import"))}
             </Button>

@@ -201,7 +201,7 @@ export const buttonEditTests = function (
                         path="/:resource"
                         element={
                             <EditButton
-                                resourceName="categories"
+                                resourceNameOrRouteName="categories"
                                 recordItemId="1"
                             />
                         }

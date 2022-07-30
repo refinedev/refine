@@ -1,17 +1,20 @@
 import React from "react";
-
+import { useTranslate, UseImportInputPropsType } from "@pankod/refine-core";
+import {
+    RefineImportButtonProps,
+    RefineButtonTestIds,
+} from "@pankod/refine-ui-types";
+import { ButtonProps, SvgIconProps } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import ImportExportOutlinedIcon from "@mui/icons-material/ImportExportOutlined";
 
-import { useTranslate, UseImportInputPropsType } from "@pankod/refine-core";
-import { ButtonProps, SvgIconProps } from "@mui/material";
-
-export type ImportButtonProps = ButtonProps & {
-    inputProps: UseImportInputPropsType;
-    hideText?: boolean;
-    loading?: boolean;
-    svgIconProps?: SvgIconProps;
-};
+export type ImportButtonProps = RefineImportButtonProps<
+    ButtonProps,
+    {
+        inputProps: UseImportInputPropsType;
+        svgIconProps?: SvgIconProps;
+    }
+>;
 
 /**
  * `<ImportButton>` is compatible with the {@link https://refine.dev/docs/core/hooks/import-export/useImport/ `useImport`} core hook.
@@ -42,6 +45,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
                 loadingPosition={hideText ? "center" : "start"}
                 loading={loading}
                 sx={{ minWidth: 0, ...sx }}
+                data-testid={RefineButtonTestIds.ImportButton}
                 {...restProps}
             >
                 {hideText ? (

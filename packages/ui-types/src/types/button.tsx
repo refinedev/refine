@@ -92,7 +92,6 @@ export type RefineImportButtonProps<
     TComponentProps extends {} = Record<string, unknown>,
     TExtraProps extends {} = {},
 > = RefineButtonCommonProps &
-    RefineButtonLinkingProps &
     TComponentProps &
     TExtraProps & {
         loading?: boolean;

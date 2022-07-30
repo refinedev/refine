@@ -6,33 +6,22 @@ import {
     useTranslate,
     useMutationMode,
     useCan,
-    MutationMode,
-    SuccessErrorNotification,
-    MetaDataQuery,
-    BaseKey,
-    DeleteOneResponse,
-    IQueryKeys,
     useResource,
 } from "@pankod/refine-core";
+import {
+    RefineDeleteButtonProps,
+    RefineButtonTestIds,
+} from "@pankod/refine-ui-types";
 
-export type DeleteButtonProps = ButtonProps & {
-    /**
-     * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/pankod/refine/issues/1618
-     */
-    resourceName?: string;
-    resourceNameOrRouteName?: string;
-    recordItemId?: BaseKey;
-    onSuccess?: (value: DeleteOneResponse) => void;
-    mutationMode?: MutationMode;
-    hideText?: boolean;
-    metaData?: MetaDataQuery;
-    dataProviderName?: string;
-    ignoreAccessControlProvider?: boolean;
-    confirmTitle?: string;
-    confirmOkText?: string;
-    confirmCancelText?: string;
-    invalidates?: Array<keyof IQueryKeys>;
-} & SuccessErrorNotification;
+export type DeleteButtonProps = RefineDeleteButtonProps<
+    ButtonProps,
+    {
+        /**
+         * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/pankod/refine/issues/1618
+         */
+        resourceName?: string;
+    }
+>;
 
 /**
  * `<DeleteButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} and {@link https://ant.design/components/button/ `<Popconfirm>`} components.
@@ -120,6 +109,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                 loading={id === variables?.id && isLoading}
                 icon={<DeleteOutlined />}
                 disabled={data?.can === false}
+                data-testid={RefineButtonTestIds.DeleteButton}
                 {...rest}
             >
                 {!hideText &&

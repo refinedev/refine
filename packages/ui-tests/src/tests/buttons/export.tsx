@@ -16,7 +16,7 @@ export const buttonExportTests = function (
         });
 
         it("should render button successfuly", async () => {
-            const { container } = render(<ExportButton />, {
+            const { container, getByText } = render(<ExportButton />, {
                 wrapper: TestWrapper({}),
             });
 
@@ -25,6 +25,7 @@ export const buttonExportTests = function (
             });
 
             expect(container).toBeTruthy();
+            getByText("Export");
         });
 
         it("should have the correct test-id", async () => {
