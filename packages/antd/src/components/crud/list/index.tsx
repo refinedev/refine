@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
-import { PageHeader, PageHeaderProps } from "antd";
+import React from "react";
+import { PageHeader, PageHeaderProps, Space, SpaceProps } from "antd";
 import {
     useResourceWithRoute,
     useRouterContext,
@@ -9,15 +9,27 @@ import {
 } from "@pankod/refine-core";
 
 import { Breadcrumb, CreateButton, CreateButtonProps } from "@components";
+import { RefineCrudListProps } from "@pankod/refine-ui-types";
 
-export interface ListProps {
-    canCreate?: boolean;
-    title?: ReactNode;
-    createButtonProps?: CreateButtonProps;
-    pageHeaderProps?: PageHeaderProps;
-    resource?: string;
-    children?: ReactNode;
-}
+export type ListProps = RefineCrudListProps<
+    CreateButtonProps,
+    SpaceProps,
+    React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLDivElement>,
+        HTMLDivElement
+    >,
+    PageHeaderProps,
+    React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLDivElement>,
+        HTMLDivElement
+    >,
+    {
+        /**
+         * @deprecated use `headerProps`, `wrapperProps` and `contentProps` instead.
+         */
+        pageHeaderProps?: PageHeaderProps;
+    }
+>;
 
 /**
  * `<List>` provides us a layout for displaying the page.
@@ -32,6 +44,12 @@ export const List: React.FC<ListProps> = ({
     createButtonProps,
     pageHeaderProps,
     resource: resourceFromProps,
+    wrapperProps,
+    contentProps,
+    headerProps,
+    breadcrumb,
+    headerButtonProps,
+    headerButtons,
 }) => {
     const { useParams } = useRouterContext();
 
@@ -45,32 +63,54 @@ export const List: React.FC<ListProps> = ({
     const isCreateButtonVisible =
         canCreate ?? (resource.canCreate || createButtonProps);
 
-    const defaultExtra = isCreateButtonVisible && (
+    const defaultExtra = isCreateButtonVisible ? (
         <CreateButton
             size="middle"
             resourceNameOrRouteName={resource.route}
             data-testid="list-create-button"
             {...createButtonProps}
         />
-    );
+    ) : null;
+
     return (
-        <PageHeader
-            ghost={false}
-            title={
-                title ??
-                translate(
-                    `${resource.name}.titles.list`,
-                    userFriendlyResourceName(
-                        resource.label ?? resource.name,
-                        "plural",
-                    ),
-                )
-            }
-            extra={defaultExtra}
-            breadcrumb={<Breadcrumb />}
-            {...pageHeaderProps}
-        >
-            {children}
-        </PageHeader>
+        <div {...(wrapperProps ?? {})}>
+            <PageHeader
+                ghost={false}
+                title={
+                    title ??
+                    translate(
+                        `${resource.name}.titles.list`,
+                        userFriendlyResourceName(
+                            resource.label ?? resource.name,
+                            "plural",
+                        ),
+                    )
+                }
+                extra={
+                    headerButtons ? (
+                        <Space wrap {...headerButtonProps}>
+                            {typeof headerButtons === "function"
+                                ? headerButtons({
+                                      defaultButtons: defaultExtra,
+                                  })
+                                : headerButtons}
+                        </Space>
+                    ) : (
+                        defaultExtra
+                    )
+                }
+                breadcrumb={
+                    typeof breadcrumb !== "undefined" ? (
+                        <>{breadcrumb}</> ?? undefined
+                    ) : (
+                        <Breadcrumb />
+                    )
+                }
+                {...(pageHeaderProps ?? {})}
+                {...(headerProps ?? {})}
+            >
+                <div {...(contentProps ?? {})}>{children}</div>
+            </PageHeader>
+        </div>
     );
 };
