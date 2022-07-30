@@ -161,7 +161,7 @@ export const Show: React.FC<ShowProps> = ({
                 }
                 breadcrumb={
                     typeof breadcrumb !== "undefined" ? (
-                        breadcrumb ?? undefined
+                        <>{breadcrumb}</> ?? undefined
                     ) : (
                         <Breadcrumb />
                     )

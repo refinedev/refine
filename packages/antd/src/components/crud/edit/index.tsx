@@ -166,7 +166,7 @@ export const Edit: React.FC<EditProps> = ({
                 }
                 breadcrumb={
                     typeof breadcrumb !== "undefined" ? (
-                        breadcrumb ?? undefined
+                        <>{breadcrumb}</> ?? undefined
                     ) : (
                         <Breadcrumb />
                     )

@@ -101,7 +101,7 @@ export const List: React.FC<ListProps> = ({
                 }
                 breadcrumb={
                     typeof breadcrumb !== "undefined" ? (
-                        breadcrumb ?? undefined
+                        <>{breadcrumb}</> ?? undefined
                     ) : (
                         <Breadcrumb />
                     )

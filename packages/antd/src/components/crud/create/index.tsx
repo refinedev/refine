@@ -104,7 +104,7 @@ export const Create: React.FC<CreateProps> = ({
                 }
                 breadcrumb={
                     typeof breadcrumb !== "undefined" ? (
-                        breadcrumb ?? undefined
+                        <>{breadcrumb}</> ?? undefined
                     ) : (
                         <Breadcrumb />
                     )
