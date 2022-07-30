@@ -17,6 +17,7 @@ export const Layout: React.FC<LayoutProps> = ({
     const SiderToRender = Sider ?? DefaultSider;
     const HeaderToRender = Header ?? DefaultHeader;
 
+    const isSmall = typeof breakpoint.sm === "undefined" ? true : breakpoint.sm;
     return (
         <AntLayout style={{ minHeight: "100vh", flexDirection: "row" }}>
             <SiderToRender />
@@ -25,7 +26,7 @@ export const Layout: React.FC<LayoutProps> = ({
                 <AntLayout.Content>
                     <div
                         style={{
-                            padding: breakpoint.sm ? 24 : 12,
+                            padding: isSmall ? 24 : 12,
                             minHeight: 360,
                         }}
                     >

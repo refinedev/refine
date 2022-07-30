@@ -1,7 +1,8 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 
 import App from "./App";
+
 import dayjs from "dayjs";
 import "i18n";
 
@@ -13,11 +14,12 @@ dayjs.extend(WeekDay);
 dayjs.extend(LocaleData);
 dayjs.extend(LocalizedFormat);
 
-ReactDOM.render(
+const container = document.getElementById("root");
+const root = createRoot(container!);
+root.render(
     <React.StrictMode>
         <React.Suspense fallback="loading">
             <App />
         </React.Suspense>
     </React.StrictMode>,
-    document.getElementById("root"),
 );

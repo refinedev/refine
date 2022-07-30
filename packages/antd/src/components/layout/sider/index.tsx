@@ -33,7 +33,8 @@ export const Sider: React.FC = () => {
     const breakpoint = Grid.useBreakpoint();
     const { hasDashboard } = useRefineContext();
 
-    const isMobile = !breakpoint.lg;
+    const isMobile =
+        typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
 
     const RenderToTitle = Title ?? DefaultTitle;
 

@@ -102,13 +102,15 @@ Then we will import the i18n instance we created and wrap the application with `
 
 ```tsx title="src/index.tsx"
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import App from "./App";
 
 // highlight-next-line
 import "./i18n";
 
-ReactDOM.render(
+const container = document.getElementById("root");
+const root = createRoot(container!);
+root.render(
     <React.StrictMode>
         // highlight-start
         <React.Suspense fallback="loading">
@@ -116,7 +118,6 @@ ReactDOM.render(
         </React.Suspense>
         // highlight-end
     </React.StrictMode>,
-    document.getElementById("root"),
 );
 ```
 

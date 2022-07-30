@@ -126,18 +126,19 @@ Let's import the `i18n` instance we created in index.tsx. Then let's wrap the Ap
 
 ```tsx title="src/index.tsx"
 import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
+import { createRoot } from "react-dom/client";
 
+import App from "./App";
 import "./i18n";
 
-ReactDOM.render(
+const container = document.getElementById("root");
+const root = createRoot(container!);
+root.render(
     <React.StrictMode>
         <React.Suspense fallback="loading">
             <App />
         </React.Suspense>
     </React.StrictMode>,
-    document.getElementById("root"),
 );
 ```
 
