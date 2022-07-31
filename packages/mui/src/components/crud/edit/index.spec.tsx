@@ -5,6 +5,7 @@ import { AccessControlProvider } from "@pankod/refine-core";
 import { act, render, TestWrapper } from "@test";
 import { Edit } from "./";
 import { crudEditTests } from "@pankod/refine-ui-tests";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 
 const renderEdit = (
     edit: ReactNode,
@@ -82,7 +83,9 @@ describe("Edit", () => {
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("edit-delete-button")).not.toBeNull();
+            expect(
+                queryByTestId(RefineButtonTestIds.DeleteButton),
+            ).not.toBeNull();
 
             getByText("Edit Post");
         });
@@ -109,7 +112,7 @@ describe("Edit", () => {
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("edit-delete-button")).toBeNull();
+            expect(queryByTestId(RefineButtonTestIds.DeleteButton)).toBeNull();
 
             getByText("Edit Post");
         });
@@ -137,7 +140,7 @@ describe("Edit", () => {
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("edit-delete-button")).toBeNull();
+            expect(queryByTestId(RefineButtonTestIds.DeleteButton)).toBeNull();
         });
 
         it("should render delete button on resource canDelete false & canDelete props true on component", async () => {
@@ -162,7 +165,9 @@ describe("Edit", () => {
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("edit-delete-button")).not.toBeNull();
+            expect(
+                queryByTestId(RefineButtonTestIds.DeleteButton),
+            ).not.toBeNull();
         });
 
         it("should render delete button on resource canDelete false & deleteButtonProps props not null on component", async () => {
@@ -187,7 +192,9 @@ describe("Edit", () => {
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("edit-delete-button")).not.toBeNull();
+            expect(
+                queryByTestId(RefineButtonTestIds.DeleteButton),
+            ).not.toBeNull();
         });
     });
 
@@ -211,8 +218,12 @@ describe("Edit", () => {
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("edit-list-button")).not.toBeDisabled();
-            expect(queryByTestId("edit-delete-button")).toBeDisabled();
+            expect(
+                queryByTestId(RefineButtonTestIds.ListButton),
+            ).not.toBeDisabled();
+            expect(
+                queryByTestId(RefineButtonTestIds.DeleteButton),
+            ).toBeDisabled();
         });
 
         it("should render disabled list button and delete button", async () => {
@@ -234,8 +245,12 @@ describe("Edit", () => {
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("edit-list-button")).toBeDisabled();
-            expect(queryByTestId("edit-delete-button")).toBeDisabled();
+            expect(
+                queryByTestId(RefineButtonTestIds.ListButton),
+            ).toBeDisabled();
+            expect(
+                queryByTestId(RefineButtonTestIds.DeleteButton),
+            ).toBeDisabled();
         });
     });
 

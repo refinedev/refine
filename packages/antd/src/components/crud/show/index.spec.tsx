@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Button } from "antd";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 import { AccessControlProvider } from "@pankod/refine-core";
 
 import { act, render, TestWrapper, waitFor } from "@test";
@@ -42,7 +42,7 @@ describe("Show", () => {
 
         getByText("Show Post");
 
-        expect(queryByTestId("show-list-button")).toBeNull();
+        expect(queryByTestId(RefineButtonTestIds.ListButton)).toBeNull();
     });
 
     describe("render edit button", () => {
@@ -66,7 +66,9 @@ describe("Show", () => {
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("show-edit-button")).not.toBeNull();
+            expect(
+                queryByTestId(RefineButtonTestIds.EditButton),
+            ).not.toBeNull();
 
             getByText("Show Post");
         });
@@ -88,7 +90,7 @@ describe("Show", () => {
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("show-edit-button")).toBeNull();
+            expect(queryByTestId(RefineButtonTestIds.EditButton)).toBeNull();
 
             getByText("Show Post");
         });
@@ -113,7 +115,7 @@ describe("Show", () => {
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("show-edit-button")).toBeNull();
+            expect(queryByTestId(RefineButtonTestIds.EditButton)).toBeNull();
         });
 
         it("should render edit button on resource canEdit false & canEdit props true on component", async () => {
@@ -136,7 +138,9 @@ describe("Show", () => {
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("show-edit-button")).not.toBeNull();
+            expect(
+                queryByTestId(RefineButtonTestIds.EditButton),
+            ).not.toBeNull();
         });
 
         it("should render edit button with recordItemId prop", async () => {
@@ -159,7 +163,9 @@ describe("Show", () => {
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("show-edit-button")).not.toBeNull();
+            expect(
+                queryByTestId(RefineButtonTestIds.EditButton),
+            ).not.toBeNull();
 
             getByText("Show Post");
         });
@@ -183,7 +189,9 @@ describe("Show", () => {
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("show-delete-button")).not.toBeNull();
+            expect(
+                queryByTestId(RefineButtonTestIds.DeleteButton),
+            ).not.toBeNull();
         });
 
         it("should not render delete button on resource canDelete false", async () => {
@@ -204,7 +212,7 @@ describe("Show", () => {
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("show-delete-button")).toBeNull();
+            expect(queryByTestId(RefineButtonTestIds.DeleteButton)).toBeNull();
         });
 
         it("should not render delete button on resource canDelete true & canDelete props false on component", async () => {
@@ -227,7 +235,7 @@ describe("Show", () => {
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("show-delete-button")).toBeNull();
+            expect(queryByTestId(RefineButtonTestIds.DeleteButton)).toBeNull();
         });
 
         it("should render delete button on resource canDelete false & canDelete props true on component", async () => {
@@ -250,7 +258,9 @@ describe("Show", () => {
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("show-delete-button")).not.toBeNull();
+            expect(
+                queryByTestId(RefineButtonTestIds.DeleteButton),
+            ).not.toBeNull();
         });
 
         it("should render delete button with recordItemId prop", async () => {
@@ -273,7 +283,9 @@ describe("Show", () => {
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("show-delete-button")).not.toBeNull();
+            expect(
+                queryByTestId(RefineButtonTestIds.DeleteButton),
+            ).not.toBeNull();
         });
     });
 });
