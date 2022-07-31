@@ -125,8 +125,6 @@ export const crudCreateTests = function (
                 },
             );
 
-            debug();
-
             await act(async () => {
                 jest.advanceTimersToNextTimer(2);
             });
