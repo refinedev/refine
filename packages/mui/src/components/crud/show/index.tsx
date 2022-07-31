@@ -118,15 +118,11 @@ export const Show: React.FC<ShowProps> = ({
     const defaultHeaderButtons = (
         <>
             {!recordItemId && (
-                <ListButton
-                    data-testid="show-list-button"
-                    resourceNameOrRouteName={resource.route}
-                />
+                <ListButton resourceNameOrRouteName={resource.route} />
             )}
             {isEditButtonVisible && (
                 <EditButton
                     disabled={isLoading}
-                    data-testid="show-edit-button"
                     resourceNameOrRouteName={resource.route}
                     recordItemId={id}
                 />
@@ -134,7 +130,6 @@ export const Show: React.FC<ShowProps> = ({
             {isDeleteButtonVisible && (
                 <DeleteButton
                     resourceNameOrRouteName={resource.route}
-                    data-testid="show-delete-button"
                     recordItemId={id}
                     onSuccess={() => list(resource.route ?? resource.name)}
                     dataProviderName={dataProviderName}

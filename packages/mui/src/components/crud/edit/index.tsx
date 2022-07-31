@@ -129,10 +129,7 @@ export const Edit: React.FC<EditProps> = ({
     const defaultHeaderButtons = (
         <>
             {!recordItemId && (
-                <ListButton
-                    data-testid="edit-list-button"
-                    resourceNameOrRouteName={resource.route}
-                />
+                <ListButton resourceNameOrRouteName={resource.route} />
             )}
             <RefreshButton
                 resourceNameOrRouteName={resource.route}
@@ -146,7 +143,6 @@ export const Edit: React.FC<EditProps> = ({
         <>
             {isDeleteButtonVisible && (
                 <DeleteButton
-                    data-testid="edit-delete-button"
                     mutationMode={mutationMode}
                     variant="outlined"
                     onSuccess={() => {

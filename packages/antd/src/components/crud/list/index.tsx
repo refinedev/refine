@@ -67,7 +67,6 @@ export const List: React.FC<ListProps> = ({
         <CreateButton
             size="middle"
             resourceNameOrRouteName={resource.route}
-            data-testid="list-create-button"
             {...createButtonProps}
         />
     ) : null;

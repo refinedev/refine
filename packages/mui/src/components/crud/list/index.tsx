@@ -83,7 +83,6 @@ export const List: React.FC<ListProps> = ({
     const defaultHeaderButtons = isCreateButtonVisible ? (
         <CreateButton
             resourceNameOrRouteName={resource.route}
-            data-testid="list-create-button"
             {...createButtonProps}
         />
     ) : null;
