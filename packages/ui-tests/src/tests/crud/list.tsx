@@ -152,7 +152,9 @@ export const crudListTests = function (
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("list-create-button")).not.toBeNull();
+            expect(
+                queryByTestId(RefineButtonTestIds.CreateButton),
+            ).not.toBeNull();
 
             getByText("Posts");
         });
@@ -178,7 +180,7 @@ export const crudListTests = function (
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("list-create-button")).toBeNull();
+            expect(queryByTestId(RefineButtonTestIds.CreateButton)).toBeNull();
         });
 
         it("should render create button on resource#canCreate=false & props#canCreate=true", async () => {
@@ -201,7 +203,9 @@ export const crudListTests = function (
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("list-create-button")).not.toBeNull();
+            expect(
+                queryByTestId(RefineButtonTestIds.CreateButton),
+            ).not.toBeNull();
         });
 
         it("should render disabled create button if user doesn't have permission", async () => {
@@ -222,7 +226,9 @@ export const crudListTests = function (
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("list-create-button")).toBeDisabled();
+            expect(
+                queryByTestId(RefineButtonTestIds.CreateButton),
+            ).toBeDisabled();
         });
     });
 };
