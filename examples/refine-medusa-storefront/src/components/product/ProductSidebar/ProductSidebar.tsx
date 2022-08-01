@@ -26,22 +26,19 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
     }, [product]);
 
     const variant = getProductVariant(product, selectedOptions);
-    // const addToCart = async () => {
-    //     setLoading(true);
-    //     try {
-    //         await addItem({
-    //             productId: String(product.id),
-    //             variantId: String(
-    //                 variant ? variant.id : product.variants[0]?.id,
-    //             ),
-    //         });
-    //         setSidebarView("CART_VIEW");
-    //         openSidebar();
-    //         setLoading(false);
-    //     } catch (err) {
-    //         setLoading(false);
-    //     }
-    // };
+
+    const addToCart = async () => {
+        setLoading(true);
+        try {
+            // adding line item after if an cart exist
+
+            setSidebarView("CART_VIEW");
+            openSidebar();
+            setLoading(false);
+        } catch (err) {
+            setLoading(false);
+        }
+    };
 
     return (
         <div className={className}>
@@ -61,20 +58,16 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
                 </div>
             </div>
             <div>
-                {process.env.COMMERCE_CART_ENABLED && (
-                    <Button
-                        aria-label="Add to Cart"
-                        type="button"
-                        className={s.button}
-                        onClick={() => undefined} //addToCart function
-                        loading={loading}
-                        disabled={variant?.availableForSale === false}
-                    >
-                        {variant?.availableForSale === false
-                            ? "Not Available"
-                            : "Add To Cart"}
-                    </Button>
-                )}
+                <Button
+                    aria-label="Add to Cart"
+                    type="button"
+                    className={s.button}
+                    onClick={() => addToCart()}
+                    loading={loading}
+                    disabled={variant?.availableForSale === false}
+                >
+                    Add To Cart
+                </Button>
             </div>
             <div className="mt-6">
                 <Collapse title="Care">
