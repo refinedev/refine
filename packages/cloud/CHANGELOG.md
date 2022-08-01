@@ -1,5 +1,16 @@
 # @pankod/refine-cloud
 
+## 1.0.0
+
+### Minor Changes
+
+-   [#1718](https://github.com/pankod/refine/pull/1718) [`b38620d842`](https://github.com/pankod/refine/commit/b38620d84237e13212811daada7b49ee654c70eb) Thanks [@omeraplak](https://github.com/omeraplak)! - Add React@18 support 🚀
+
+### Patch Changes
+
+-   Updated dependencies [[`b38620d842`](https://github.com/pankod/refine/commit/b38620d84237e13212811daada7b49ee654c70eb)]:
+    -   @pankod/refine-sdk@0.1.0
+
 ## 0.4.0
 
 ### Minor Changes

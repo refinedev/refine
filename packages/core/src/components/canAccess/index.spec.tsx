@@ -2,6 +2,7 @@ import React from "react";
 import { render, TestWrapper } from "@test";
 
 import { CanAccess } from ".";
+import { act } from "react-dom/test-utils";
 
 describe("CanAccess Component", () => {
     it("should render children", async () => {
@@ -41,8 +42,10 @@ describe("CanAccess Component", () => {
             },
         );
 
-        expect(container).toBeTruthy();
-        expect(queryByText("Accessible")).not.toBeInTheDocument();
+        await act(async () => {
+            expect(container).toBeTruthy();
+            expect(queryByText("Accessible")).not.toBeInTheDocument();
+        });
     });
 
     it("should successfully pass the own attirbute to its children", async () => {

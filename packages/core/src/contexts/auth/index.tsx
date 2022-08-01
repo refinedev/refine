@@ -6,11 +6,11 @@ import { IAuthContext } from "../../interfaces";
 
 export const AuthContext = React.createContext<IAuthContext>({});
 
-export const AuthContextProvider: React.FC<IAuthContext> = ({
-    children,
-    isProvided,
-    ...authOperations
-}) => {
+export const AuthContextProvider: React.FC<
+    IAuthContext & {
+        children?: React.ReactNode;
+    }
+> = ({ children, isProvided, ...authOperations }) => {
     const { replace } = useNavigation();
     const queryClient = useQueryClient();
 

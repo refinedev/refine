@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { AbstractTooltipProps } from "antd/lib/tooltip";
 import { Tooltip } from "antd";
 
@@ -10,8 +10,8 @@ export type BooleanFieldProps = FieldProps<unknown> &
     AbstractTooltipProps & {
         valueLabelTrue?: string;
         valueLabelFalse?: string;
-        trueIcon?: React.FC | object;
-        falseIcon?: React.FC | object;
+        trueIcon?: ReactNode;
+        falseIcon?: ReactNode;
     };
 
 /**

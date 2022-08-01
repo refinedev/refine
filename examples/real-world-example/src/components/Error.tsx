@@ -11,8 +11,9 @@ export const ErrorList: React.FC<ErrorProps> = ({ errors }) => {
                 if (key === "ref") return null;
                 return (
                     <li key={key}>
-                        {console.log("here is key!")}
-                        {key} {errors[key as any]}
+                        <>
+                            {key} {errors[key as any]}
+                        </>
                     </li>
                 );
             })}

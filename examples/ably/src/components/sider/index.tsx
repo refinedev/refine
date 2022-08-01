@@ -26,7 +26,8 @@ export const CustomSider: React.FC = () => {
     const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
 
-    const isMobile = !breakpoint.lg;
+    const isMobile =
+        typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
 
     useSubscription({
         channel: "resources/posts",

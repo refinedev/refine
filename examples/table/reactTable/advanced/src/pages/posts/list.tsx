@@ -6,7 +6,12 @@ import {
     useSelect,
 } from "@pankod/refine-core";
 import { useForm, Controller } from "@pankod/refine-react-hook-form";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import {
+    useTable,
+    ColumnDef,
+    flexRender,
+    Row,
+} from "@pankod/refine-react-table";
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
 
@@ -229,7 +234,9 @@ export const PostList: React.FC = () => {
     });
 
     const renderRowSubComponent = useCallback(
-        ({ row }) => <ReactMarkdown>{row.original.content}</ReactMarkdown>,
+        ({ row }: { row: Row<IPost> }) => (
+            <ReactMarkdown>{row.original.content}</ReactMarkdown>
+        ),
         [],
     );
 
@@ -238,7 +245,7 @@ export const PostList: React.FC = () => {
     };
 
     const renderEditRow = useCallback(
-        (row) => {
+        (row: Row<IPost>) => {
             const { id, title, content } = row.original;
 
             return (
@@ -247,7 +254,7 @@ export const PostList: React.FC = () => {
                         <td>
                             <div>
                                 <span onClick={() => row.toggleExpanded()}>
-                                    {row.isExpanded ? "👇" : "👉"}
+                                    {row.getIsExpanded() ? "👇" : "👉"}
                                 </span>
                             </div>
                         </td>

@@ -1,4 +1,5 @@
 import React from "react";
+import { HttpError } from "@pankod/refine-core";
 import {
     TextField,
     MenuItem,
@@ -13,6 +14,8 @@ import {
 import { useStepsForm } from "@pankod/refine-react-hook-form";
 
 import { RefineWithoutLayout } from "../../../.storybook/preview";
+
+import { IPost } from "interfaces";
 
 export default {
     title: "Hooks / Steps Form",
@@ -32,7 +35,7 @@ export const CreateForm: React.FC = () => {
         handleSubmit,
         formState: { errors },
         steps: { currentStep, gotoStep },
-    } = useStepsForm({
+    } = useStepsForm<IPost, HttpError, IPost>({
         stepsProps: {
             isBackValidate: false,
         },

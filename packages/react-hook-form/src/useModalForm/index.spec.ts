@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { act, TestWrapper } from "../../test";
 
@@ -188,7 +188,7 @@ describe("useModalForm Hook", () => {
     });
 
     it("autoResetForm is true, 'reset' should be called when 'submit' is called", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () =>
                 useModalForm({
                     refineCoreProps: {
