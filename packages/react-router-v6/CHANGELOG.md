@@ -1,5 +1,11 @@
 # @pankod/refine-react-router-v6
 
+## 3.31.0
+
+### Minor Changes
+
+-   Add React@18 support 🚀
+
 ## 3.30.0
 
 ### Minor Changes
