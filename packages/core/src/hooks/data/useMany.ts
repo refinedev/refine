@@ -88,7 +88,19 @@ export const useMany = <
 
     const queryResponse = useQuery<GetManyResponse<TData>, TError>(
         queryKey.many(ids),
-        () => getMany<TData>({ resource, ids, metaData }),
+        ({ queryKey, pageParam, signal }) =>
+            getMany<TData>({
+                resource,
+                ids,
+                metaData: {
+                    ...metaData,
+                    queryContext: {
+                        queryKey,
+                        pageParam,
+                        signal,
+                    },
+                },
+            }),
         {
             ...queryOptions,
             onSuccess: (data) => {
