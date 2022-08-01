@@ -1,5 +1,11 @@
 # @pankod/refine-sdk
 
+## 0.2.0
+
+### Minor Changes
+
+-   Add React@18 support 🚀
+
 ## 0.1.0
 
 ### Minor Changes

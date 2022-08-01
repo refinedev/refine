@@ -1,5 +1,15 @@
 # @pankod/refine-antd
 
+## 3.35.0
+
+### Minor Changes
+
+-   Add React@18 support 🚀
+
+### Patch Changes
+
+-   Fixed `isMobile` control in `Sider` component detecting `desktop` dimensions as `mobile` on route changes
+
 ## 3.34.0
 
 ### Minor Changes

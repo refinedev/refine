@@ -1,5 +1,11 @@
 # @pankod/refine-hasura
 
+## 4.7.0
+
+### Minor Changes
+
+-   Add React@18 support 🚀
+
 ## 4.6.0
 
 ### Minor Changes
