@@ -4,11 +4,11 @@ import { ICloudContext } from "./ICloudContext";
 
 export const CloudContext = React.createContext<ICloudContext>({});
 
-export const CloudContextProvider: React.FC<ICloudContext> = ({
-    baseUrl,
-    clientId,
-    children,
-}) => {
+export const CloudContextProvider: React.FC<
+    ICloudContext & {
+        children: React.ReactNode;
+    }
+> = ({ baseUrl, clientId, children }) => {
     return (
         <CloudContext.Provider
             value={{

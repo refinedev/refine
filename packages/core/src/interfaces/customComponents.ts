@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 export type TitleProps = {
     collapsed: boolean;
@@ -11,4 +11,5 @@ export type LayoutProps = {
     Footer?: React.FC;
     OffLayoutArea?: React.FC;
     dashboard?: boolean;
+    children?: ReactNode;
 };

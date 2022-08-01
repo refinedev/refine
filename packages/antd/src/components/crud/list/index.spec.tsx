@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { AccessControlProvider } from "@pankod/refine-core";
 import { Table } from "antd";
 
-import { act, render, TestWrapper, waitFor } from "@test";
+import { act, render, TestWrapper } from "@test";
 import { List } from "./index";
 
 const renderList = (

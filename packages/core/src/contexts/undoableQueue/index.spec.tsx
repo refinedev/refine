@@ -1,6 +1,6 @@
 import * as React from "react";
 import { act, waitFor } from "@test";
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react";
 
 import { undoableQueueReducer } from "./undoableQueueContext";
 

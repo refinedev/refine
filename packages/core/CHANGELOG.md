@@ -1,5 +1,67 @@
 # @pankod/refine-core
 
+## 3.56.0
+
+### Minor Changes
+
+-   Add React@18 support 🚀
+
+## 3.55.0
+
+### Minor Changes
+
+-   [#1718](https://github.com/pankod/refine/pull/1718) [`b38620d842`](https://github.com/pankod/refine/commit/b38620d84237e13212811daada7b49ee654c70eb) Thanks [@omeraplak](https://github.com/omeraplak)! - Add React@18 support 🚀
+
+## 3.54.0
+
+### Minor Changes
+
+-   Added config parameter to useCustomMutationHook to send headers.
+
+    ```
+    const apiUrl = useApiUrl();
+
+    const { mutate } = useCustomMutation<ICategory>();
+
+    mutate({
+        url: `${API_URL}/categories`,
+        method: "post",
+        values: {
+          title: "New Category",
+        },
+        config: {
+          headers: {
+              Authorization: "Bearer ****",
+          },
+        },
+    });
+    ```
+
+## 3.53.0
+
+### Minor Changes
+
+-   [#2245](https://github.com/pankod/refine/pull/2245) [`e949df7f1c`](https://github.com/pankod/refine/commit/e949df7f1cd8476c647b6511e0334156097408a0) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Added config parameter to useCustomMutationHook to send headers.
+
+    ```
+    const apiUrl = useApiUrl();
+
+    const { mutate } = useCustomMutation<ICategory>();
+
+    mutate({
+        url: `${API_URL}/categories`,
+        method: "post",
+        values: {
+          title: "New Category",
+        },
+        config: {
+          headers: {
+              Authorization: "Bearer ****",
+          },
+        },
+    });
+    ```
+
 ## 3.52.0
 
 ### Minor Changes

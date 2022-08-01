@@ -14,8 +14,8 @@ export type BooleanFieldProps = FieldProps<unknown> &
     AbstractTooltipProps & {
         valueLabelTrue?: string;
         valueLabelFalse?: string;
-        trueIcon?: React.FC | object;
-        falseIcon?: React.FC | object;
+        trueIcon?: React.ReactNode;
+        falseIcon?: React.ReactNode;
         svgIconProps?: SvgIconProps;
     };
 

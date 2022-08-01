@@ -6,7 +6,12 @@ import {
     useSelect,
 } from "@pankod/refine-core";
 import { alpha } from "@mui/material/styles";
-import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import {
+    useTable,
+    ColumnDef,
+    flexRender,
+    Row,
+} from "@pankod/refine-react-table";
 import {
     DeleteButton,
     EditButton,
@@ -223,7 +228,9 @@ export const PostList: React.FC = () => {
     });
 
     const renderRowSubComponent = useCallback(
-        ({ row }) => <ReactMarkdown>{row.original.content}</ReactMarkdown>,
+        ({ row }: { row: Row<IPost> }) => (
+            <ReactMarkdown>{row.original.content}</ReactMarkdown>
+        ),
         [],
     );
 
@@ -232,14 +239,14 @@ export const PostList: React.FC = () => {
     };
 
     const renderEditRow = useCallback(
-        (row) => {
+        (row: Row<IPost>) => {
             const { id, title, content } = row.original;
 
             return (
                 <>
                     <TableRow key={`edit-${id}-inputs`}>
                         <TableCell>
-                            <span>{row.isExpanded ? "👇" : "👉"}</span>
+                            <span>{row.getIsExpanded() ? "👇" : "👉"}</span>
                         </TableCell>
                         <TableCell>
                             <span>{id}</span>

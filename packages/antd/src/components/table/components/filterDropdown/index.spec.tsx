@@ -22,6 +22,7 @@ describe("FilterDropdown", () => {
         prefixCls: "",
         filters: [],
         clearFilters,
+        children: null,
     };
 
     it("should render successfully", () => {

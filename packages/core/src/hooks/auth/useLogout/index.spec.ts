@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 import ReactRouterDom from "react-router-dom";
 
 import { act, TestWrapper } from "@test";
@@ -27,7 +27,7 @@ describe("useLogout Hook", () => {
     });
 
     it("logout and redirect to login", async () => {
-        const { result, waitFor } = renderHook(() => useLogout(), {
+        const { result } = renderHook(() => useLogout(), {
             wrapper: TestWrapper({
                 authProvider: {
                     isProvided: true,
@@ -45,7 +45,9 @@ describe("useLogout Hook", () => {
 
         const { mutateAsync: logout } = result.current!;
 
-        await logout();
+        await act(async () => {
+            await logout();
+        });
 
         await waitFor(() => {
             return !result.current?.isLoading;
@@ -57,7 +59,7 @@ describe("useLogout Hook", () => {
     });
 
     it("logout and not redirect", async () => {
-        const { result, waitFor } = renderHook(() => useLogout(), {
+        const { result } = renderHook(() => useLogout(), {
             wrapper: TestWrapper({
                 authProvider: {
                     isProvided: true,
@@ -75,7 +77,9 @@ describe("useLogout Hook", () => {
 
         const { mutateAsync: logout } = result.current!;
 
-        await logout();
+        await act(async () => {
+            await logout();
+        });
 
         await waitFor(() => {
             return !result.current?.isLoading;
@@ -87,7 +91,7 @@ describe("useLogout Hook", () => {
     });
 
     it("logout and redirect to custom path", async () => {
-        const { result, waitFor } = renderHook(
+        const { result } = renderHook(
             () => useLogout<{ redirectPath: string }>(),
             {
                 wrapper: TestWrapper({
@@ -108,10 +112,12 @@ describe("useLogout Hook", () => {
 
         const { mutate: logout } = result.current!;
 
-        await logout({ redirectPath: "/custom-path" });
+        await act(async () => {
+            await logout({ redirectPath: "/custom-path" });
+        });
 
         await waitFor(() => {
-            return !result.current?.isLoading;
+            return result.current?.status === "success";
         });
 
         await act(async () => {
@@ -120,7 +126,7 @@ describe("useLogout Hook", () => {
     });
 
     it("logout rejected", async () => {
-        const { result, waitFor } = renderHook(() => useLogout(), {
+        const { result } = renderHook(() => useLogout(), {
             wrapper: TestWrapper({
                 authProvider: {
                     isProvided: true,
@@ -136,7 +142,9 @@ describe("useLogout Hook", () => {
 
         const { mutate: logout } = result.current!;
 
-        await logout();
+        await act(async () => {
+            await logout();
+        });
 
         await waitFor(() => {
             return !result.current?.isLoading;
@@ -148,7 +156,7 @@ describe("useLogout Hook", () => {
     });
 
     it("logout rejected with undefined error", async () => {
-        const { result, waitFor } = renderHook(() => useLogout(), {
+        const { result } = renderHook(() => useLogout(), {
             wrapper: TestWrapper({
                 authProvider: {
                     isProvided: true,
@@ -164,7 +172,9 @@ describe("useLogout Hook", () => {
 
         const { mutate: logout } = result.current!;
 
-        await logout();
+        await act(async () => {
+            await logout();
+        });
 
         await waitFor(() => {
             return !result.current?.isLoading;

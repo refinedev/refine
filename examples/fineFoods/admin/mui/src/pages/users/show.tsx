@@ -34,7 +34,9 @@ import { CustomTooltip, OrderStatus } from "components";
 
 import { IOrder, IOrderFilterVariables, IUser } from "interfaces";
 
-const UserInfoText: React.FC = ({ children }) => (
+const UserInfoText: React.FC<{ children: React.ReactNode }> = ({
+    children,
+}) => (
     <Stack
         direction="row"
         alignItems="center"

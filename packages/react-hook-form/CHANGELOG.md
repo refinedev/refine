@@ -1,5 +1,17 @@
 # @pankod/refine-react-hook-form
 
+## 3.31.0
+
+### Minor Changes
+
+-   Add React@18 support 🚀
+
+## 3.30.0
+
+### Minor Changes
+
+-   [#1718](https://github.com/pankod/refine/pull/1718) [`b38620d842`](https://github.com/pankod/refine/commit/b38620d84237e13212811daada7b49ee654c70eb) Thanks [@omeraplak](https://github.com/omeraplak)! - Add React@18 support 🚀
+
 ## 3.29.0
 
 ### Minor Changes

@@ -59,7 +59,7 @@ export const EditArticlePage: React.FC = () => {
 
     return (
         <div className="editor-page">
-            <div className="container page">
+            <div className="page container">
                 <div className="row">
                     <div className="col-md-10 offset-md-1 col-xs-12">
                         {errors.api && <ErrorList errors={errors.api} />}

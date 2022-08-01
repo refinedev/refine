@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { act, renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
@@ -6,15 +6,12 @@ import { useUpdate } from "./useUpdate";
 
 describe("useUpdate Hook", () => {
     it("should works with pessimistic update", async () => {
-        const { result, waitForNextUpdate, waitFor } = renderHook(
-            () => useUpdate(),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
-            },
-        );
+        const { result } = renderHook(() => useUpdate(), {
+            wrapper: TestWrapper({
+                dataProvider: MockJSONServer,
+                resources: [{ name: "posts" }],
+            }),
+        });
 
         result.current.mutate({
             resource: "posts",
@@ -22,10 +19,9 @@ describe("useUpdate Hook", () => {
             id: "1",
             values: { id: "1", title: "test" },
         });
-        await waitForNextUpdate();
 
         await waitFor(() => {
-            return result.current.isSuccess;
+            expect(result.current.isSuccess).toBeTruthy();
         });
 
         const { isSuccess } = result.current;
@@ -34,15 +30,12 @@ describe("useUpdate Hook", () => {
     });
 
     it("should works with optimistic update", async () => {
-        const { result, waitForNextUpdate, waitFor } = renderHook(
-            () => useUpdate(),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
-            },
-        );
+        const { result } = renderHook(() => useUpdate(), {
+            wrapper: TestWrapper({
+                dataProvider: MockJSONServer,
+                resources: [{ name: "posts" }],
+            }),
+        });
 
         result.current.mutate({
             resource: "posts",
@@ -50,27 +43,22 @@ describe("useUpdate Hook", () => {
             id: "1",
             values: { id: "1", title: "optimistic test" },
         });
-        await waitForNextUpdate();
 
         await waitFor(() => {
-            return result.current.isSuccess;
+            expect(result.current.isSuccess).toBeTruthy();
         });
-
         const { isSuccess } = result.current;
 
         expect(isSuccess).toBeTruthy();
     });
 
     it("should works with undoable update", async () => {
-        const { result, waitForNextUpdate, waitFor } = renderHook(
-            () => useUpdate(),
-            {
-                wrapper: TestWrapper({
-                    dataProvider: MockJSONServer,
-                    resources: [{ name: "posts" }],
-                }),
-            },
-        );
+        const { result } = renderHook(() => useUpdate(), {
+            wrapper: TestWrapper({
+                dataProvider: MockJSONServer,
+                resources: [{ name: "posts" }],
+            }),
+        });
 
         result.current.mutate({
             resource: "posts",
@@ -79,10 +67,9 @@ describe("useUpdate Hook", () => {
             id: "1",
             values: { id: "1", title: "undoable test" },
         });
-        await waitForNextUpdate();
 
         await waitFor(() => {
-            return result.current.isSuccess;
+            expect(result.current.isSuccess).toBeTruthy();
         });
 
         const { isSuccess } = result.current;
@@ -94,20 +81,17 @@ describe("useUpdate Hook", () => {
         it("publish live event on success", async () => {
             const onPublishMock = jest.fn();
 
-            const { result, waitForNextUpdate, waitFor } = renderHook(
-                () => useUpdate(),
-                {
-                    wrapper: TestWrapper({
-                        dataProvider: MockJSONServer,
-                        resources: [{ name: "posts" }],
-                        liveProvider: {
-                            unsubscribe: jest.fn(),
-                            subscribe: jest.fn(),
-                            publish: onPublishMock,
-                        },
-                    }),
-                },
-            );
+            const { result } = renderHook(() => useUpdate(), {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                    liveProvider: {
+                        unsubscribe: jest.fn(),
+                        subscribe: jest.fn(),
+                        publish: onPublishMock,
+                    },
+                }),
+            });
 
             result.current.mutate({
                 resource: "posts",
@@ -116,10 +100,9 @@ describe("useUpdate Hook", () => {
                 id: "1",
                 values: { id: "1", title: "undoable test" },
             });
-            await waitForNextUpdate();
 
             await waitFor(() => {
-                return result.current.isSuccess;
+                expect(result.current.isSuccess).toBeTruthy();
             });
 
             expect(onPublishMock).toBeCalled();

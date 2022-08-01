@@ -1,5 +1,29 @@
 # @pankod/refine-antd-audit-log
 
+## 3.27.0
+
+### Minor Changes
+
+-   Add React@18 support 🚀
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-antd@3.35.0
+    -   @pankod/refine-core@3.56.0
+
+## 3.26.0
+
+### Minor Changes
+
+-   [#1718](https://github.com/pankod/refine/pull/1718) [`b38620d842`](https://github.com/pankod/refine/commit/b38620d84237e13212811daada7b49ee654c70eb) Thanks [@omeraplak](https://github.com/omeraplak)! - Add React@18 support 🚀
+
+### Patch Changes
+
+-   Updated dependencies [[`b56f43529f`](https://github.com/pankod/refine/commit/b56f43529f387ad1801e7bc0d94dfa5679bad77e), [`b38620d842`](https://github.com/pankod/refine/commit/b38620d84237e13212811daada7b49ee654c70eb)]:
+    -   @pankod/refine-antd@3.34.0
+    -   @pankod/refine-core@3.55.0
+
 ## 3.25.2
 
 ### Patch Changes

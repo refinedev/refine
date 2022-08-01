@@ -3,6 +3,7 @@ import { Button } from "@chakra-ui/react";
 
 type FilterButtonProps = {
     setFilters: () => void;
+    children: React.ReactNode;
 };
 
 export const FilterButton: React.FC<FilterButtonProps> = ({

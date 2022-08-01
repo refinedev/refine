@@ -14,7 +14,8 @@ export const Sider: React.FC = () => {
     const { push } = useNavigation();
     const breakpoint = Grid.useBreakpoint();
 
-    const isMobile = !breakpoint.lg;
+    const isMobile =
+        typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
 
     return (
         <Layout.Sider
