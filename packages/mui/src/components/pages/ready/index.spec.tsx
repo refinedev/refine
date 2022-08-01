@@ -1,4 +1,6 @@
 import React from "react";
+import { pageReadyTests } from "@pankod/refine-ui-tests";
+
 import Button from "@mui/material/Button";
 
 import { act, render } from "@test";
@@ -6,6 +8,8 @@ import { act, render } from "@test";
 import { ReadyPage } from "./index";
 
 describe("ReadyPage", () => {
+    pageReadyTests.bind(this)(ReadyPage);
+
     it("should render 3 texts", async () => {
         jest.useFakeTimers();
 

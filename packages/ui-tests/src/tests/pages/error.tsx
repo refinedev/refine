@@ -11,6 +11,10 @@ export const pageErrorTests = function (
             jest.useFakeTimers();
         });
 
+        afterAll(() => {
+            jest.useRealTimers();
+        });
+
         it("should render successfully", async () => {
             const { container } = render(<ErrorPage />, {
                 wrapper: TestWrapper({}),
