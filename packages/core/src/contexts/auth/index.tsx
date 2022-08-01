@@ -51,8 +51,6 @@ export const AuthContextProvider: React.FC<IAuthContext> = ({
                 replace((error as { redirectPath: string }).redirectPath);
             }
             return Promise.reject(error);
-        } finally {
-            invalidateAuthStore();
         }
     };
 
