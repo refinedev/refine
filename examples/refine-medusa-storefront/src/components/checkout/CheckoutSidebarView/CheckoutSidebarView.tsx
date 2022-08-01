@@ -58,9 +58,7 @@ const CheckoutSidebarView: FC = () => {
         >
             <div className="px-4 sm:px-6 flex-1">
                 <Link href="/cart">
-                    <a>
-                        <Text variant="sectionHeading">Checkout</Text>
-                    </a>
+                    <Text variant="sectionHeading">Checkout</Text>
                 </Link>
 
                 {/* <PaymentWidget

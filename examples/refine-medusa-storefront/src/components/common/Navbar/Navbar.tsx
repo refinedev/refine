@@ -27,12 +27,16 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
                             <Logo />
                         </Link>
                         <nav className={s.navMenu}>
-                            <Link href="/search">
-                                <a className={s.link}>All</a>
+                            <Link href="/search" className={s.link}>
+                                All
                             </Link>
                             {links?.map((col: any) => (
-                                <Link href={`/search/${col.id}`} key={col.id}>
-                                    <a className={s.link}>{col.title}</a>
+                                <Link
+                                    href={`/search/${col.id}`}
+                                    className={s.link}
+                                    key={col.id}
+                                >
+                                    {col.title}
                                 </Link>
                             ))}
                         </nav>

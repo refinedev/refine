@@ -10,8 +10,7 @@ import dataProvider, { authProvider } from "@pankod/refine-medusa";
 
 import { API_URL } from "../src/constants";
 
-import { CollectionsList, ProductList, ProductShow } from "@components";
-import { CollectionsShow } from "@components/collections/show";
+import { ProductList } from "@components";
 import { ManagedUIContext } from "@components/ui/context";
 import Layout from "@components/common/Layout";
 import { CardProvider } from "@lib/context";

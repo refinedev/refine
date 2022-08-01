@@ -48,13 +48,12 @@ const UserNav: React.FC<{
 
                 {process.env.COMMERCE_WISHLIST_ENABLED && (
                     <li className={s.item}>
-                        <Link href="/wishlist">
-                            <a
-                                onClick={closeSidebarIfPresent}
-                                aria-label="Wishlist"
-                            >
-                                <Heart />
-                            </a>
+                        <Link
+                            href="/wishlist"
+                            onClick={closeSidebarIfPresent}
+                            aria-label="Wishlist"
+                        >
+                            <Heart />
                         </Link>
                     </li>
                 )}
