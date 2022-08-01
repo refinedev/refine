@@ -119,7 +119,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     });
     const collections = collectionsData?.data.map((col) => ({
         title: col.title,
-        id: col.id,
+        id: col.handle,
     }));
 
     return (

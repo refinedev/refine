@@ -23,7 +23,7 @@ const Searchbar: FC<Props> = ({ className, id = "search" }) => {
 
             router.push(
                 {
-                    pathname: `/products`,
+                    pathname: `/search`,
                     query: q ? { q } : {},
                 },
                 undefined,

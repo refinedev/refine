@@ -23,19 +23,13 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                 <Refine
                     Layout={Layout}
                     LoginPage={LoginPage}
+                    DashboardPage={ProductList}
                     authProvider={authProvider(API_URL)}
                     routerProvider={routerProvider}
                     dataProvider={dataProvider(API_URL)}
                     resources={[
                         {
-                            name: "products",
-                            list: ProductList,
-                            show: ProductShow,
-                        },
-                        {
-                            name: "collections",
-                            list: CollectionsList,
-                            show: CollectionsShow,
+                            name: "dummy",
                         },
                     ]}
                     warnWhenUnsavedChanges={true}

@@ -46,7 +46,7 @@ const ProductCard: FC<Props> = ({
     );
 
     return (
-        <Link href={showUrl("products", product.id)}>
+        <Link href={`/product/${product.handle}`}>
             <a className={rootClassName} aria-label={product.name}>
                 {variant === "slim" && (
                     <>
@@ -87,8 +87,8 @@ const ProductCard: FC<Props> = ({
                                 </h3>
                                 <div className={s.price}>
                                     {`${price} ${currencySymbolFromCode(
-                                        product?.variants[0].prices[1]
-                                            .currency_code,
+                                        product?.variants?.[0].prices?.[1]
+                                            .currency_code ?? "USD",
                                     )}`}
                                 </div>
                             </div>

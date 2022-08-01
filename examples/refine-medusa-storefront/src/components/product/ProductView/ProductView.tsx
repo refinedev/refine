@@ -23,7 +23,9 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
     //     currencyCode: product.price.currencyCode!,
     // });
 
-    const price = product?.variants[0].prices[1].amount; // temporary solution
+    console.log("product", { product });
+
+    const price = product?.variants?.[0].prices?.[1]?.amount; // temporary solution
 
     return (
         <>
