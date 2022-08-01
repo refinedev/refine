@@ -1,5 +1,16 @@
 # @pankod/refine-mui
 
+## 3.41.0
+
+### Minor Changes
+
+-   Add React@18 support 🚀
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-react-hook-form@3.31.0
+
 ## 3.40.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.56.0
+
+### Minor Changes
+
+-   Add React@18 support 🚀
+
 ## 3.55.0
 
 ### Minor Changes
