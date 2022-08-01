@@ -1,46 +1,38 @@
+import { useEffect } from "react";
 import {
     IResourceComponentsProps,
     GetListResponse,
-    useList,
     useTable,
 } from "@pankod/refine-core";
 
 import { ProductCard } from "@components/product";
 import { Grid, Marquee, Hero } from "@components/ui";
+import { useRouter } from "next/router";
 
 export const ProductList: React.FC<IResourceComponentsProps<GetListResponse>> =
     () => {
-        const { data } = useList<any, any, { melih: number }>({
+        const router = useRouter();
+        const { q } = router.query;
+
+        const {
+            tableQueryResult: { data },
+            setFilters,
+        } = useTable({
             resource: "products",
         });
 
-        const dataProducts = useList({
-            resource: "products",
-            metaData: {
-                tags: ["ptag_01G7CDNGXSDSDNNEMCRDEXBDXG"],
-            },
-        });
-
-        useTable({
-            resource: "products",
-            initialFilter: [
+        useEffect(() => {
+            setFilters([
                 {
-                    field: "tags",
-                    value: ["ptag_01G7CDNGXSDSDNNEMCRDEXBDXG"],
+                    field: "q",
                     operator: "eq",
+                    value: q,
                 },
-            ],
-        });
+            ]);
+        }, [q]);
 
         return (
             <>
-                <button
-                    onClick={() => {
-                        undefined;
-                    }}
-                >
-                    create melih customer
-                </button>
                 <Grid variant="filled">
                     {data?.data.slice(0, 3).map((product: any, i: number) => (
                         <ProductCard
