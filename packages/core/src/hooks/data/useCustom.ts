@@ -84,7 +84,20 @@ export const useCustom = <
                 url,
                 { ...config, ...metaData },
             ],
-            () => custom<TData>({ url, method, ...config, metaData }),
+            ({ queryKey, pageParam, signal }) =>
+                custom<TData>({
+                    url,
+                    method,
+                    ...config,
+                    metaData: {
+                        ...metaData,
+                        queryContext: {
+                            queryKey,
+                            pageParam,
+                            signal,
+                        },
+                    },
+                }),
             {
                 ...queryOptions,
                 onSuccess: (data) => {
