@@ -12,6 +12,64 @@ This guide will help you learn and get information of basic **refine** concepts.
 -   [Join the Discord Community](https://discord.gg/refine) – it is the easiest way to get help, all questions are usually answered in about 30 minutes.
 -   [GitHub Discussions](https://github.com/pankod/refine/discussions) – ask anything about the project or give feedback.
 
+## General Hook Concepts
+
+All the **data** related hooks of **refine** can be given some common properties like `resource`, `metaData`, `queryOptions` etc.
+
+### `resource`
+
+`resource` is the endpoint of the API that you want to fetch data from. So, if you want to fetch data from `https://api.example.com/users`, you should set `resource` to `"users"`.
+
+On the other hand, it all depends on how to handle the `resource` in your `dataProvider`. See the [`creating a data provider`](/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
+
+By default, the `resource` value corresponds to the `name` of the resources passed to `<Refine>`.
+
+[Refer to the `<Refine>` documentation to learn more about it. &#8594](/core/components/refine-config.md#name)
+
+### `metaData`
+
+`metaData` is used following two purposes:
+
+-   Generate GraphQL queries using plain JavaScript Objects (JSON).
+-   To pass additional information to data provider methods.
+
+[Refer to the `GraphQL` guide to learn how to use `metaData` to create GraphQL queries. &#8594](/guides-and-concepts/data-provider/graphql.md)
+
+How to use `metaData` to pass additional information to data provider methods?
+
+```tsx
+useOne({
+    resource: "posts",
+    id: 1,
+    // highlight-start
+    metaData: {
+        headers: { "x-meta-data": "true" },
+    },
+    // highlight-end
+});
+
+const myDataProvider = {
+    ...
+    getOne: async ({ resource, id, metaData }) => {
+        // highlight-next-line
+        const headers = metaData?.headers ?? {};
+        const url = `${apiUrl}/${resource}/${id}`;
+
+        //highlight-next-line
+        const { data } = await httpClient.get(url, { headers });
+
+        return {
+            data,
+        };
+    },
+    ...
+};
+```
+
+In the above example, we are passing the `headers` property in the `metaData` object to the `getOne` method. With similar logic, you can pass any properties to specificly handle the data provider methods.
+
+[Refer to the how to pass `metaData` to your existing `dataProvider` methods. &#8594](/faq.md#how-i-can-override-specific-function-of-data-providers)
+
 ## Refine Packages
 
 -   `@pankod/refine-core` - collection of 20+ React hooks for State, Networking, Authentication, Authorization, i18n and Live/Realtime Management.
@@ -92,11 +150,11 @@ This guide will help you learn and get information of basic **refine** concepts.
 
 We are looking for guest technical writers to publish posts about React and front-end ecosystem technologies.
 
- The focus of these posts should be on React and front-end ecosystem technologies. 
+The focus of these posts should be on React and front-end ecosystem technologies.
 
- [If you are interested in writing for us, please check this post for detailed information &#8594](https://refine.dev/blog/refine-writer-program/)
+[If you are interested in writing for us, please check this post for detailed information &#8594](https://refine.dev/blog/refine-writer-program/)
 
- Thanks for considering being a part of our blog!
+Thanks for considering being a part of our blog!
 
 ## Roadmap
 
