@@ -1,5 +1,5 @@
+import { FC, ReactNode, Component, PropsWithChildren } from "react";
 import cn from "clsx";
-import { FC, ReactNode, Component } from "react";
 import s from "./Grid.module.css";
 
 interface GridProps {
@@ -9,7 +9,7 @@ interface GridProps {
     variant?: "default" | "filled";
 }
 
-const Grid: FC<GridProps> = ({
+const Grid: FC<PropsWithChildren<GridProps>> = ({
     className,
     layout = "A",
     children,

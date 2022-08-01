@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo } from "react";
+import React, { FC, PropsWithChildren, useCallback, useMemo } from "react";
 import { ThemeProvider } from "next-themes";
 
 export interface State {
@@ -124,7 +124,7 @@ function uiReducer(state: State, action: Action) {
     }
 }
 
-export const UIProvider: FC = (props) => {
+export const UIProvider: FC<PropsWithChildren> = (props) => {
     const [state, dispatch] = React.useReducer(uiReducer, initialState);
 
     const openSidebar = useCallback(
@@ -209,7 +209,7 @@ export const useUI = () => {
     return context;
 };
 
-export const ManagedUIContext: FC = ({ children }) => (
+export const ManagedUIContext: FC<PropsWithChildren> = ({ children }) => (
     <UIProvider>
         <ThemeProvider>{children}</ThemeProvider>
     </UIProvider>

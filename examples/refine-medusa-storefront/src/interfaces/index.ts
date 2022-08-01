@@ -1,12 +1,25 @@
-export interface IPost {
-    id: string;
-    title: string;
-    status: "published" | "draft" | "rejected";
-    createdAt: string;
-    category: ICategory;
+export interface CardFields {
+    cardHolder: string;
+    cardNumber: string;
+    cardExpireDate: string;
+    cardCvc: string;
+    firstName: string;
+    lastName: string;
+    company: string;
+    streetNumber: string;
+    zipCode: string;
+    city: string;
+    country: string;
 }
 
-export interface ICategory {
-    id: string;
-    title: string;
+export interface AddressFields {
+    type: string;
+    firstName: string;
+    lastName: string;
+    company: string;
+    streetNumber: string;
+    apartments: string;
+    zipCode: string;
+    city: string;
+    country: string;
 }

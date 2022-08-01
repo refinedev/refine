@@ -1,14 +1,7 @@
 import Search from "@components/search";
-import {
-    IResourceComponentsProps,
-    GetListResponse,
-    useList,
-} from "@pankod/refine-core";
-import { IPost } from "src/interfaces";
+import { IResourceComponentsProps, useList } from "@pankod/refine-core";
 
-export const CollectionsList: React.FC<
-    IResourceComponentsProps<GetListResponse<IPost>>
-> = () => {
+export const CollectionsList: React.FC<IResourceComponentsProps> = () => {
     const result = useList({
         resource: "products",
     });

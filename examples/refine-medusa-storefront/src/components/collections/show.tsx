@@ -1,16 +1,8 @@
 import Search from "@components/search";
-import {
-    IResourceComponentsProps,
-    GetListResponse,
-    useList,
-} from "@pankod/refine-core";
+import { IResourceComponentsProps, useTable } from "@pankod/refine-core";
 import { useRouter } from "next/router";
 
-import { IPost } from "src/interfaces";
-
-export const CollectionsShow: React.FC<
-    IResourceComponentsProps<GetListResponse<IPost>>
-> = () => {
+export const CollectionsShow: React.FC<IResourceComponentsProps> = () => {
     const router = useRouter();
 
     let collectionIds = router.query.id;
@@ -19,12 +11,16 @@ export const CollectionsShow: React.FC<
         collectionIds = [collectionIds];
     }
 
-    const result = useList({
+    const { tableQueryResult } = useTable({
         resource: "products",
-        metaData: {
-            collectionIds,
-        },
+        permanentFilter: [
+            {
+                field: "collection_id",
+                operator: "eq",
+                value: collectionIds,
+            },
+        ],
     });
 
-    return <Search products={result.data?.data} />;
+    return <Search products={tableQueryResult.data?.data} />;
 };

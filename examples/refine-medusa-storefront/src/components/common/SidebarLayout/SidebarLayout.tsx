@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, PropsWithChildren } from "react";
 import { Cross, ChevronLeft } from "@components/icons";
 import UserNav from "@components/common/UserNav";
 import cn from "clsx";
@@ -9,7 +9,7 @@ type ComponentProps = { className?: string } & (
     | { handleBack: () => any; handleClose?: never }
 );
 
-const SidebarLayout: FC<ComponentProps> = ({
+const SidebarLayout: FC<PropsWithChildren<ComponentProps>> = ({
     children,
     className,
     handleBack,

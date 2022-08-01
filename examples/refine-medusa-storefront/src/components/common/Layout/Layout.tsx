@@ -1,5 +1,5 @@
 import cn from "clsx";
-import { useList } from "@pankod/refine-core";
+import { LayoutProps, useList } from "@pankod/refine-core";
 
 import s from "./Layout.module.css";
 import dynamic from "next/dynamic";
@@ -106,7 +106,7 @@ const SidebarUI: React.FC<{ links: any[] }> = ({ links }) => {
     ) : null;
 };
 
-const Layout: React.FC = ({ children }) => {
+const Layout: React.FC<LayoutProps> = ({ children }) => {
     const { acceptedCookies, onAcceptCookies } = useAcceptCookies();
     const { locale = "en-US" } = useRouter();
     // const navBarlinks = categories.slice(0, 2).map((c) => ({

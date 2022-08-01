@@ -1,12 +1,14 @@
-import React, { useEffect, RefObject } from "react";
+import React, { useEffect, RefObject, PropsWithChildren } from "react";
 import { tabbable } from "tabbable";
 
 interface Props {
-    children: React.ReactNode | any;
-    // focusFirst?: boolean
+    focusFirst?: boolean;
 }
 
-export default function FocusTrap({ children, focusFirst = false }: Props) {
+export default function FocusTrap({
+    children,
+    focusFirst = false,
+}: PropsWithChildren<Props>) {
     const root: RefObject<any> = React.useRef();
     const anchor: RefObject<any> = React.useRef(document.activeElement);
 

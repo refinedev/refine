@@ -6,6 +6,7 @@ import React, {
     ReactElement,
     forwardRef,
     Ref,
+    PropsWithChildren,
 } from "react";
 import mergeRefs from "react-merge-refs";
 import hasParent from "./has-parent";
@@ -20,7 +21,7 @@ interface ClickOutsideProps {
  * Use forward ref to allow this component to be used with other components like
  * focus-trap-react, that rely on the same type of ref forwarding to direct children
  */
-const ClickOutside: FC<ClickOutsideProps> = forwardRef(
+const ClickOutside: FC<PropsWithChildren<ClickOutsideProps>> = forwardRef(
     ({ active = true, onClick, children }, forwardedRef) => {
         const innerRef = useRef();
 
