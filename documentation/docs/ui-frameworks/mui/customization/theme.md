@@ -505,7 +505,7 @@ Control the Dark Mode with just one click! We prepared an example that shows how
            <p>
 
 ```tsx title="src/contexts/index.tsx"
-import React, { createContext, useEffect, useState } from "react";
+import React, { PropsWithChildren, createContext, useEffect, useState } from "react";
 import { ThemeProvider } from "@pankod/refine-mui";
 import { DarkTheme, LightTheme } from "@pankod/refine-mui";
 
@@ -518,7 +518,7 @@ export const ColorModeContext = createContext<ColorModeContextType>(
     {} as ColorModeContextType,
 );
 
-export const ColorModeContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
     const colorModeFromLocalStorage = localStorage.getItem("colorMode");
     const isSystemPreferenceDark = window?.matchMedia(
         "(prefers-color-scheme: dark)",

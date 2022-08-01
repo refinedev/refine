@@ -37,7 +37,8 @@ export const CustomMenu: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
 
     const breakpoint = Grid.useBreakpoint();
-    const isMobile = !breakpoint.lg;
+    const isMobile =
+        typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
 
     const RenderToTitle = Title ?? DefaultTitle;
 
@@ -207,7 +208,8 @@ export const CustomMenu: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
 
     const breakpoint = Grid.useBreakpoint();
-    const isMobile = !breakpoint.lg;
+    const isMobile =
+        typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
 
     const RenderToTitle = Title ?? DefaultTitle;
 

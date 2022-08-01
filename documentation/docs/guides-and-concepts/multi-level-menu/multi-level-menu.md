@@ -71,7 +71,7 @@ Since your Next.js applications are routing file-based, you need to manage the n
                     name: "posts",
                     parentName: "CMS",
                     // highlight-next-line
-                    options: { route: "/posts" },
+                    options: { route: "posts" },
                     list: PostList,
                     create: PostCreate,
                     edit: PostEdit,
@@ -81,7 +81,7 @@ Since your Next.js applications are routing file-based, you need to manage the n
                     name: "category",
                     parentName: "CMS",
                     // highlight-next-line
-                    options: { route: "/category" },
+                    options: { route: "category" },
                     list: CategoryList,
                     create: CategoryCreate,
                     edit: CategoryEdit,
