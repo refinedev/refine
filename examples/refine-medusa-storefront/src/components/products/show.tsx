@@ -1,5 +1,12 @@
-import { useList, useNavigation, useShow } from "@pankod/refine-core";
+import { useContext, useEffect } from "react";
+import {
+    useList,
+    useNavigation,
+    useShow,
+    useCreate,
+} from "@pankod/refine-core";
 import { ProductView } from "..";
+import { CardContext } from "@lib/context";
 
 export const ProductShow: React.FC = () => {
     const { queryResult } = useShow();
@@ -10,9 +17,25 @@ export const ProductShow: React.FC = () => {
         resource: "products",
     });
 
-    const { createUrl } = useNavigation();
+    const { setCartId } = useContext(CardContext);
+    const { mutate, data: cartData } = useCreate();
 
-    console.log("createUrl", createUrl);
+    const cardIdFromLocalStorage = localStorage.getItem("cardId");
+
+    const createCart = async () => {
+        await mutate({
+            resource: "carts",
+            values: {},
+        });
+
+        setCartId(cartData?.data.cart?.id);
+
+        localStorage.setItem("cardId", cartData?.data.cart?.id);
+    };
+
+    useEffect(() => {
+        cardIdFromLocalStorage ? null : createCart();
+    }, []);
 
     return (
         <>
