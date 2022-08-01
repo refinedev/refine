@@ -21,6 +21,10 @@ export const layoutSiderTests = function (
             jest.useFakeTimers();
         });
 
+        afterAll(() => {
+            jest.useRealTimers();
+        });
+
         it("should render successful", async () => {
             const { container } = render(<SiderElement />, {
                 wrapper: TestWrapper({}),
@@ -30,25 +34,29 @@ export const layoutSiderTests = function (
         });
 
         it("should render logout menu item successful", async () => {
-            const { getByText } = render(<SiderElement />, {
+            const { getAllByText } = render(<SiderElement />, {
                 wrapper: TestWrapper({
                     authProvider: mockAuthProvider,
                 }),
             });
 
-            await waitFor(() => getByText("Posts"));
-            getByText("Logout");
+            await waitFor(() =>
+                expect(getAllByText("Posts").length).toBeGreaterThanOrEqual(1),
+            );
+            expect(getAllByText("Logout").length).toBeGreaterThanOrEqual(1);
         });
 
         it("should work menu item click", async () => {
-            const { getByText } = render(<SiderElement />, {
+            const { getAllByText } = render(<SiderElement />, {
                 wrapper: TestWrapper({
                     authProvider: mockAuthProvider,
                 }),
             });
 
-            await waitFor(() => fireEvent.click(getByText("Posts")));
-            expect(window.location.pathname).toBe("/posts");
+            await waitFor(() => getAllByText("Posts")[0].click());
+            await waitFor(() =>
+                expect(window.location.pathname).toBe("/posts"),
+            );
         });
 
         it("should work logout menu item click", async () => {
@@ -56,23 +64,36 @@ export const layoutSiderTests = function (
                 ...mockAuthProvider,
                 logout: jest.fn().mockImplementation(() => Promise.resolve()),
             };
-            const { getByText } = render(<SiderElement />, {
+            const { getAllByText } = render(<SiderElement />, {
                 wrapper: TestWrapper({
                     authProvider: logoutMockedAuthProvider,
                 }),
             });
 
             await act(async () => {
-                fireEvent.click(getByText("Logout"));
+                getAllByText("Logout")[0].click();
             });
 
             expect(logoutMockedAuthProvider.logout).toBeCalledTimes(1);
         });
 
         it("should render only allowed menu items", async () => {
-            const { getByText, queryByText } = render(<SiderElement />, {
+            const { getAllByText, queryByText } = render(<SiderElement />, {
                 wrapper: TestWrapper({
-                    resources: [{ name: "posts" }, { name: "users" }],
+                    resources: [
+                        {
+                            name: "posts",
+                            list: function render() {
+                                return <div>posts</div>;
+                            },
+                        },
+                        {
+                            name: "users",
+                            list: function render() {
+                                return <div>users</div>;
+                            },
+                        },
+                    ],
                     accessControlProvider: {
                         can: ({ action, resource }) => {
                             if (action === "list" && resource === "posts") {
@@ -91,7 +112,7 @@ export const layoutSiderTests = function (
                 jest.advanceTimersToNextTimer(1);
             });
 
-            await waitFor(() => getByText("Posts"));
+            await waitFor(() => getAllByText("Posts")[0]);
             await waitFor(() => expect(queryByText("Users")).toBeNull());
         });
     });

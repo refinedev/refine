@@ -1,16 +1,13 @@
 import React from "react";
 import { Row, Button } from "antd";
+import { pageReadyTests } from "@pankod/refine-ui-tests";
 
 import { render } from "@test";
 
 import { ReadyPage } from "./index";
 
 describe("ReadyPage", () => {
-    it("should render page successfuly", async () => {
-        render(<ReadyPage />);
-
-        expect(Row).toBeDefined();
-    });
+    pageReadyTests.bind(this)(ReadyPage);
 
     it("should render 3 texts", async () => {
         const { getByText } = render(<ReadyPage />);
