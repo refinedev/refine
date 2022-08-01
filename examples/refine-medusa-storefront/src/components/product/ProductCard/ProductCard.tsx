@@ -37,7 +37,7 @@ const ProductCard: FC<Props> = ({
     //     currencyCode: product.price.currencyCode!,
     // });
 
-    const price = product?.variants[0].prices[1].amount; // temporary solution
+    const price = product?.variants?.[0].prices?.[1].amount ?? ""; // temporary solution
 
     const rootClassName = cn(
         s.root,
@@ -127,7 +127,8 @@ const ProductCard: FC<Props> = ({
                         <ProductTag
                             name={product.title}
                             price={`${price} ${currencySymbolFromCode(
-                                product?.variants[0].prices[1].currency_code,
+                                product?.variants?.[0].prices?.[1]
+                                    .currency_code ?? "USD",
                             )}`}
                         />
                         <div className={s.imageContainer}>
