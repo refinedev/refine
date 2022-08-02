@@ -1,93 +1,108 @@
-import { useEffect, useState, useCallback } from "react";
 import { Logo, Button, Input } from "@components/ui";
+import { Controller, useForm } from "@pankod/refine-react-hook-form";
+import { HttpError, useLogin } from "@pankod/refine-core";
+
 import { useUI } from "@components/ui/context";
-import { validate } from "email-validator";
-import { useLogin } from "@pankod/refine-core";
+
+type Login = {
+    email: string;
+    password: string;
+};
 
 const LoginView: React.FC = () => {
+    const {
+        control,
+        setError,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<Login, HttpError, Login>({
+        refineCoreProps: {
+            redirect: false,
+        },
+    });
+
     // Form State
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState("");
-    const [dirty, setDirty] = useState(false);
-    const [disabled, setDisabled] = useState(false);
     const { setModalView, closeModal } = useUI();
-    const { mutate: login } = useLogin();
+    const { mutate: login, isLoading } = useLogin();
 
-    const handleLogin = async (e: React.SyntheticEvent<EventTarget>) => {
-        e.preventDefault();
-
-        if (!dirty && !disabled) {
-            setDirty(true);
-            handleValidation();
-        }
-
-        try {
-            setLoading(true);
-            setMessage("");
-            await login({
-                email,
+    const handleLogin = async ({ email, password }: Login) => {
+        console.log({ email, password });
+        await login(
+            {
+                username: email,
                 password,
-            });
-            setLoading(false);
-            closeModal();
-        } catch (e: any) {
-            setMessage(e.errors[0].message);
-            setLoading(false);
-            setDisabled(false);
-        }
+            },
+            {
+                onSuccess: () => {
+                    closeModal();
+                },
+                onError: () => {
+                    setError("email", {
+                        message: "The email or password is invalid",
+                    });
+                },
+            },
+        );
     };
-
-    const handleValidation = useCallback(() => {
-        // Test for Alphanumeric password
-        const validPassword = /^(?=.*[a-zA-Z])(?=.*[0-9])/.test(password);
-
-        // Unable to send form unless fields are valid.
-        if (dirty) {
-            setDisabled(
-                !validate(email) || password.length < 7 || !validPassword,
-            );
-        }
-    }, [email, password, dirty]);
-
-    useEffect(() => {
-        handleValidation();
-    }, [handleValidation]);
 
     return (
         <form
-            onSubmit={handleLogin}
+            onSubmit={handleSubmit(handleLogin)}
             className="w-80 flex flex-col justify-between p-3"
         >
             <div className="flex justify-center pb-12 ">
                 <Logo width="64px" height="64px" />
             </div>
             <div className="flex flex-col space-y-3">
-                {message && (
+                {Object.keys(errors).length > 0 && (
                     <div className="text-red border border-red p-3">
-                        {message}. Did you {` `}
-                        <a
-                            className="text-accent-9 inline font-bold hover:underline cursor-pointer"
-                            onClick={() => setModalView("FORGOT_VIEW")}
-                        >
-                            forgot your password?
-                        </a>
+                        <ul>
+                            {Object.keys(errors).map((key: any) => (
+                                <li key={key}>
+                                    {(errors as any)[key as any].message}
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 )}
-                <Input type="email" placeholder="Email" onChange={setEmail} />
-                <Input
-                    type="password"
-                    placeholder="Password"
-                    onChange={setPassword}
+                <Controller
+                    control={control}
+                    name="email"
+                    rules={{
+                        /* pattern: /^(?=.*[a-zA-Z])(?=.*[0-9])/, */
+                        required: {
+                            message: "email is required",
+                            value: true,
+                        },
+                    }}
+                    render={({ field }) => (
+                        <Input type="email" placeholder="Email" {...field} />
+                    )}
+                />
+                <Controller
+                    control={control}
+                    name="password"
+                    rules={{
+                        required: {
+                            message: "password is required",
+                            value: true,
+                        },
+                        minLength: {
+                            message:
+                                "Password is too short (minimum is 7 characters)",
+                            value: 7,
+                        },
+                    }}
+                    render={({ field }) => (
+                        <Input
+                            type="password"
+                            placeholder="Password"
+                            {...field}
+                        />
+                    )}
                 />
 
-                <Button
-                    variant="slim"
-                    type="submit"
-                    loading={loading}
-                    disabled={disabled}
-                >
+                <Button variant="slim" type="submit" loading={isLoading}>
                     Log In
                 </Button>
                 <div className="pt-1 text-center text-sm">

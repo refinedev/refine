@@ -29,7 +29,7 @@ export default function CustomerMenuContent() {
     const { pathname } = useRouter();
     const { theme, setTheme } = useTheme();
 
-    const { mutate: logout } = useLogout();
+    const { mutate: logout } = useLogout<{ redirectPath: string }>();
 
     function handleClick(_: React.MouseEvent<HTMLAnchorElement>, href: string) {
         router.push(href);
@@ -77,7 +77,11 @@ export default function CustomerMenuContent() {
             <DropdownMenuItem>
                 <a
                     className={cn(s.link, "border-t border-accent-2 mt-4")}
-                    onClick={() => logout()}
+                    onClick={() =>
+                        logout({
+                            redirectPath: "/",
+                        })
+                    }
                 >
                     Logout
                 </a>

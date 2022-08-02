@@ -12,6 +12,7 @@
         "@medusajs/medusa-js": "^1.2.3",
         "@pankod/refine-core": "^3.56.0",
         "@pankod/refine-nextjs-router": "^3.31.0",
+        "@pankod/refine-react-hook-form": "^3.31.0",
         "@pankod/refine-medusa": "^0.3.2",
         "@radix-ui/react-dropdown-menu": "^0.1.6",
         "@react-spring/web": "^9.4.1",
