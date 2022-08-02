@@ -121,7 +121,7 @@ const myDataProvider = {
 };
 ```
 
-In the above example, we are passing the `headers` property in the `metaData` object to the `getOne` method. With similar logic, you can pass any properties to specificly handle the data provider methods.
+In the above example, we pass the `headers` property in the `metaData` object to the `getOne` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 [Refer to the how to pass `metaData` to your existing `dataProvider` methods. &#8594](/faq.md#how-i-can-override-specific-function-of-data-providers)
 
