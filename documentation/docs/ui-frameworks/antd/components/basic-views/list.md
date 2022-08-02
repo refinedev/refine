@@ -163,9 +163,7 @@ export const ListPage: React.FC = () => {
 
 ### `contentProps`
 
-If you want to customize the content of the `<List/>` component, you can use the `contentProps` property.
-
-[Refer to the `Card` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/card/)
+If you want to customize the content of the `<List/>` component, you can use the `contentProps` property. `<List/>` components content is wrapped with a `<div/>` and `contentProps` can get every attribute that `<div/>` can get.
 
 ```tsx
 import { List } from "@pankod/refine-antd";
