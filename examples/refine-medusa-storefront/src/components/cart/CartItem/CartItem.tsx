@@ -1,4 +1,11 @@
-import { ChangeEvent, FocusEventHandler, useEffect, useState } from "react";
+import {
+    ChangeEvent,
+    FocusEventHandler,
+    useContext,
+    useEffect,
+    useState,
+} from "react";
+import { useDelete, useInvalidate, useUpdate } from "@pankod/refine-core";
 import cn from "clsx";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,6 +13,7 @@ import s from "./CartItem.module.css";
 import { useUI } from "@components/ui/context";
 // import type { LineItem } from "@commerce/types/cart";
 import Quantity from "@components/ui/Quantity";
+import { CartContext } from "@lib/context";
 
 type ItemOption = {
     name: string;
@@ -25,40 +33,62 @@ const CartItem = ({
     variant?: "default" | "display";
     item: any; // LineItem
     currencyCode: string;
-}) => {
+}): JSX.Element => {
     const { closeSidebarIfPresent } = useUI();
     const [removing, setRemoving] = useState(false);
     const [quantity, setQuantity] = useState<number>(item.quantity);
-    // const removeItem = useRemoveItem();
-    // const updateItem = useUpdateItem({ item });
 
-    // const { price } = usePrice({
-    //     amount: item.variant.price * item.quantity,
-    //     baseAmount: item.variant.listPrice * item.quantity,
-    //     currencyCode,
-    // });
+    const { mutateAsync: deleteMutate } = useDelete();
+    const { mutate: updateMutate } = useUpdate();
+    const invalidate = useInvalidate();
 
-    // const handleChange = async ({
-    //     target: { value },
-    // }: ChangeEvent<HTMLInputElement>) => {
-    //     setQuantity(Number(value));
-    //     await updateItem({ quantity: Number(value) });
-    // };
+    const { cartId } = useContext(CartContext);
 
-    // const increaseQuantity = async (n = 1) => {
-    //     const val = Number(quantity) + n;
-    //     setQuantity(val);
-    //     await updateItem({ quantity: val });
-    // };
+    const updateItem = (quantity: number) => {
+        return updateMutate({
+            resource: `carts/${cartId}/line-items`,
+            id: item.id,
+            values: { quantity },
+        });
+    };
 
-    // const handleRemove = async () => {
-    //     setRemoving(true);
-    //     try {
-    //         await removeItem(item);
-    //     } catch (error) {
-    //         setRemoving(false);
-    //     }
-    // };
+    const handleChange = async ({
+        target: { value },
+    }: ChangeEvent<HTMLInputElement>) => {
+        setQuantity(Number(value));
+        await updateItem(Number(value));
+    };
+
+    const increaseQuantity = async (n = 1) => {
+        const val = Number(quantity) + n;
+        setQuantity(val);
+        await updateItem(val);
+    };
+
+    const removeItem = async () => {
+        try {
+            await deleteMutate({
+                resource: `carts/${cartId}/line-items`,
+                id: item.id,
+            });
+            invalidate({
+                resource: "carts",
+                invalidates: ["detail"],
+                id: cartId,
+            });
+        } catch (error) {
+            console.log("Error", error);
+        }
+    };
+
+    const handleRemove = async () => {
+        setRemoving(true);
+        try {
+            await removeItem();
+        } catch (error) {
+            setRemoving(false);
+        }
+    };
 
     // TODO: Add a type for this
     const options = (item as any).options;
@@ -87,8 +117,10 @@ const CartItem = ({
                             className={s.productImage}
                             width={150}
                             height={150}
-                            src={item.variant.image?.url || placeholderImg}
-                            alt={item.variant.image?.altText || "Product Image"}
+                            src={
+                                item.variant.product.thumbnail || placeholderImg
+                            }
+                            alt={item.variant.product.title || "Product Image"}
                             unoptimized
                         />
                     </Link>
@@ -99,7 +131,7 @@ const CartItem = ({
                             className={s.productName}
                             onClick={() => closeSidebarIfPresent()}
                         >
-                            {item.name}
+                            {item.title}
                         </span>
                     </Link>
                     {options && options.length > 0 && (
@@ -138,18 +170,18 @@ const CartItem = ({
                     )}
                 </div>
                 <div className="flex flex-col justify-between space-y-2 text-sm">
-                    {/* <span>{price}</span> */}
+                    <span>{`${item["unit_price"]}${currencyCode}`}</span>
                 </div>
             </div>
-            {/* {variant === "default" && (
+            {variant === "default" && (
                 <Quantity
                     value={quantity}
                     handleRemove={handleRemove}
                     handleChange={handleChange}
-                    // increase={() => increaseQuantity(1)}
-                    // decrease={() => increaseQuantity(-1)}
+                    increase={() => increaseQuantity(1)}
+                    decrease={() => increaseQuantity(-1)}
                 />
-            )} */}
+            )}
         </li>
     );
 };

@@ -1,6 +1,6 @@
 import cn from "clsx";
 import Link from "next/link";
-import { FC } from "react";
+import { FC, useContext } from "react";
 import s from "./CartSidebarView.module.css";
 import CartItem from "../CartItem";
 import { Button, Text } from "@components/ui";
@@ -9,29 +9,26 @@ import { Bag, Cross, Check } from "@components/icons";
 // import useCart from "@framework/cart/use-cart";
 // import usePrice from "@framework/product/use-price";
 import SidebarLayout from "@components/common/SidebarLayout";
+import { useOne } from "@pankod/refine-core";
+import { CartContext } from "@lib/context";
+import { currencySymbolFromCode } from "@components/product/helpers";
 
 const CartSidebarView: FC = () => {
     const { closeSidebar, setSidebarView } = useUI();
     // const { data, isLoading, isEmpty } = useCart();
 
-    const isLoading = false;
-    const isEmpty = true;
-    const total = 0;
-    const subTotal = 0;
-    const data: any[] = [];
+    const { cartId } = useContext(CartContext);
 
-    // const { price: subTotal } = usePrice(
-    //     data && {
-    //         amount: Number(data.subtotalPrice),
-    //         currencyCode: data.currency.code,
-    //     },
-    // );
-    // const { price: total } = usePrice(
-    //     data && {
-    //         amount: Number(data.totalPrice),
-    //         currencyCode: data.currency.code,
-    //     },
-    // );
+    const { data, isLoading } = useOne({
+        resource: `carts`,
+        id: cartId,
+    });
+
+    const cart = data?.data.cart;
+
+    const isEmpty = cart?.items === 0;
+    const total = cart?.total;
+    const subTotal = cart?.subtotal;
 
     const handleClose = () => closeSidebar();
     const goToCheckout = () => setSidebarView("CHECKOUT_VIEW");
@@ -46,7 +43,7 @@ const CartSidebarView: FC = () => {
             })}
             handleClose={handleClose}
         >
-            {isLoading || isEmpty ? (
+            {isEmpty ? (
                 <div className="flex-1 px-4 flex flex-col justify-center items-center">
                     <span className="border border-dashed border-primary rounded-full flex items-center justify-center w-16 h-16 p-12 bg-secondary text-secondary">
                         <Bag className="absolute" />
@@ -89,15 +86,15 @@ const CartSidebarView: FC = () => {
                                 My Cart
                             </Text>
                         </Link>
-                        {/* <ul className={s.lineItemsList}>
-                            {data!.lineItems.map((item: any) => (
+                        <ul className={s.lineItemsList}>
+                            {cart?.items.map((item: any) => (
                                 <CartItem
                                     key={item.id}
                                     item={item}
-                                    currencyCode={data!.currency.code}
+                                    currencyCode={"$"}
                                 />
                             ))}
-                        </ul> */}
+                        </ul>
                     </div>
 
                     <div className="flex-shrink-0 px-6 py-6 sm:px-6 sticky z-20 bottom-0 w-full right-0 left-0 bg-accent-0 border-t text-sm">
