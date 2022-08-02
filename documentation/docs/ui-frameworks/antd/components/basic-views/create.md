@@ -38,77 +38,6 @@ export const CreatePage: React.FC = () => {
 };
 ```
 
-### `actionButtons`
-
-`<Create>` uses the Ant Design [`<Card>`](https://ant.design/components/card) component. The `action` property of the `<Card>` component shows `<SaveButton>` and `<DeleteButton>` based on your resource definition in the `resources` property you pass to `<Refine>`. If you want to use other things instead of these buttons, you can use the `actionButton` property like the code below.
-
-```tsx
-import { Create, Button } from "@pankod/refine-antd";
-
-export const CreatePage: React.FC = () => {
-    return (
-        <Create
-            actionButtons={
-                <>
-                    <Button type="primary">Custom Button 1</Button>
-                    <Button size="small">Custom Button 2</Button>
-                </>
-            }
-        >
-            ...
-        </Create>
-    );
-};
-```
-
-<br/>
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src={actionButtonsUsage} alt="actionButton Usage" />
-</div>
-<br/>
-
-### `pageHeaderProps`
-
-`<Create>` uses the Ant Design `<PageHeader>` components so you can customize with the props of `pageHeaderProps`.
-
-By default, the `breadcrumb` property of the `<PageHeader>` component shows [`<Breadcrumb>`][breadcrumb-component] component.
-
-[Refer to the `<PageHeader>` documentation for detailed usage. &#8594](https://ant.design/components/page-header/#API)
-
-```tsx
-import { Create, Breadcrumb } from "@pankod/refine-antd";
-
-export const CreatePage: React.FC = () => {
-    return (
-        <Create
-            pageHeaderProps={{
-                onBack: () => console.log("Hello, refine"),
-                subTitle: "Subtitle",
-                breadcrumb: <Breadcrumb breadcrumbProps={{ separator: "-" }} />,
-            }}
-        >
-            ...
-        </Create>
-    );
-};
-```
-
-<br/>
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src={pageHeaderPropsUsage} alt="pageHeaderProps Usage"/>
-</div>
-<br/>
-
 ### `resource`
 
 The `<Create>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Create>` component in a custom page, you can use the `resource` prop.
@@ -148,16 +77,348 @@ export const App: React.FC = () => {
 };
 ```
 
+### `goBack`
+
+To customize the back button or to disable it, you can use the `goBack` property.
+
+```tsx
+import { Create } from "@pankod/refine-antd";
+import { MyBackIcon } from "@components/icons";
+
+export const CreatePage: React.FC = () => {
+    return (
+        <Create
+            /* ... */
+            goBack={<MyBackIcon />}
+            /* ... */
+        >
+            ...
+        </Create>
+    );
+};
+```
+
+### `isLoading`
+
+To toggle the loading state of the `<Create/>` component, you can use the `isLoading` property.
+
+```tsx
+import { Create } from "@pankod/refine-antd";
+
+export const CreatePage: React.FC = () => {
+    const [loading, setLoading] = React.useState(true);
+
+    return (
+        <Create
+            /* ... */
+            isLoading={loading}
+            /* ... */
+        >
+            ...
+        </Create>
+    );
+};
+```
+
+### `breadcrumb`
+
+To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-antd` package.
+
+[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/ui-frameworks/antd/components/breadcrumb.md)
+
+```tsx
+import { Create } from "@pankod/refine-antd";
+
+export const CreatePage: React.FC = () => {
+    return (
+        <Create
+            /* ... */
+            breadcrumb={null}
+            /* ... */
+        >
+            ...
+        </Create>
+    );
+};
+```
+
+### `wrapperProps`
+
+If you want to customize the wrapper of the `<Create/>` component, you can use the `wrapperProps` property. For `@pankod/refine-antd` wrapper elements are simple `<div/>`s and `wrapperProps` can get every attribute that `<div/>` can get.
+
+```tsx
+import { Create } from "@pankod/refine-antd";
+
+export const CreatePage: React.FC = () => {
+    return (
+        <Create
+            /* ... */
+            wrapperProps={{
+                style: {
+                    backgroundColor: "snow",
+                },
+            }}
+            /* ... */
+        >
+            ...
+        </Create>
+    );
+};
+```
+
+### `headerProps`
+
+If you want to customize the header of the `<Create/>` component, you can use the `headerProps` property.
+
+[Refer to the `PageHeader` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/page-header/)
+
+```tsx
+import { Create } from "@pankod/refine-antd";
+
+export const CreatePage: React.FC = () => {
+    return (
+        <Create
+            /* ... */
+            headerProps={{
+                style: {
+                    backgroundColor: "snow",
+                },
+            }}
+            /* ... */
+        >
+            ...
+        </Create>
+    );
+};
+```
+
+### `contentProps`
+
+If you want to customize the content of the `<Create/>` component, you can use the `contentProps` property.
+
+[Refer to the `Card` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/card/)
+
+```tsx
+import { Create } from "@pankod/refine-antd";
+
+export const CreatePage: React.FC = () => {
+    return (
+        <Create
+            /* ... */
+            contentProps={{
+                style: {
+                    backgroundColor: "snow",
+                },
+            }}
+            /* ... */
+        >
+            ...
+        </Create>
+    );
+};
+```
+
+### `headerButtons`
+
+You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+
+```tsx
+import { Create, Button } from "@pankod/refine-antd";
+
+export const CreatePage: React.FC = () => {
+    return (
+        <Create
+            /* ... */
+            headerButtons={({ defaultButtons }) => (
+                <>
+                    {defaultButtons}
+                    <Button type="primary">Custom Button</Button>
+                </>
+            )}
+            /* ... */
+        >
+            ...
+        </Create>
+    );
+};
+```
+
+### `headerButtonProps`
+
+You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
+
+[Refer to the `Space` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/space/)
+
+```tsx
+import { Create } from "@pankod/refine-antd";
+
+export const CreatePage: React.FC = () => {
+    return (
+        <Create
+            /* ... */
+            headerButtonProps={{
+                style: {
+                    backgroundColor: "snow",
+                },
+            }}
+            /* ... */
+        >
+            ...
+        </Create>
+    );
+};
+```
+
+### `footerButtons`
+
+You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+
+```tsx
+import { Create, Button } from "@pankod/refine-antd";
+
+export const CreatePage: React.FC = () => {
+    return (
+        <Create
+            /* ... */
+            footerButtons={({ defaultButtons }) => (
+                <>
+                    {defaultButtons}
+                    <Button type="primary">Custom Button</Button>
+                </>
+            )}
+            /* ... */
+        >
+            ...
+        </Create>
+    );
+};
+```
+
+### `footerButtonProps`
+
+You can customize the wrapper element of the buttons at the footer by using the `footerButtonProps` property.
+
+[Refer to the `Space` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/space/)
+
+```tsx
+import { Create } from "@pankod/refine-antd";
+
+export const CreatePage: React.FC = () => {
+    return (
+        <Create
+            /* ... */
+            footerButtonProps={{
+                style: {
+                    backgroundColor: "snow",
+                },
+            }}
+            /* ... */
+        >
+            ...
+        </Create>
+    );
+};
+```
+
+### ~~`actionButtons`~~
+
+:::caution Deprecated
+Use `headerButtons` or `footerButtons` instead.
+:::
+
+`<Create>` uses the Ant Design [`<Card>`](https://ant.design/components/card) component. The `action` property of the `<Card>` component shows `<SaveButton>` and `<DeleteButton>` based on your resource definition in the `resources` property you pass to `<Refine>`. If you want to use other things instead of these buttons, you can use the `actionButton` property like the code below.
+
+```tsx
+import { Create, Button } from "@pankod/refine-antd";
+
+export const CreatePage: React.FC = () => {
+    return (
+        <Create
+            actionButtons={
+                <>
+                    <Button type="primary">Custom Button 1</Button>
+                    <Button size="small">Custom Button 2</Button>
+                </>
+            }
+        >
+            ...
+        </Create>
+    );
+};
+```
+
+<br/>
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={actionButtonsUsage} alt="actionButton Usage" />
+</div>
+<br/>
+
+### ~~`pageHeaderProps`~~
+
+:::caution Deprecated
+Use `headerProps`, `wrapperProps` or `contentProps` instead.
+:::
+
+`<Create>` uses the Ant Design `<PageHeader>` components so you can customize with the props of `pageHeaderProps`.
+
+By default, the `breadcrumb` property of the `<PageHeader>` component shows [`<Breadcrumb>`][breadcrumb-component] component.
+
+[Refer to the `<PageHeader>` documentation for detailed usage. &#8594](https://ant.design/components/page-header/#API)
+
+```tsx
+import { Create, Breadcrumb } from "@pankod/refine-antd";
+
+export const CreatePage: React.FC = () => {
+    return (
+        <Create
+            pageHeaderProps={{
+                onBack: () => console.log("Hello, refine"),
+                subTitle: "Subtitle",
+                breadcrumb: <Breadcrumb breadcrumbProps={{ separator: "-" }} />,
+            }}
+        >
+            ...
+        </Create>
+    );
+};
+```
+
+<br/>
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={pageHeaderPropsUsage} alt="pageHeaderProps Usage"/>
+</div>
+<br/>
+
 ## API Reference
 
 ### Properties
 
-| Property        | Description                             | Type                                                              | Default                                                                                                                        |
-| --------------- | --------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| saveButtonProps | Adds props for create button            | `{ disabled: boolean; onClick: () => void; loading: boolean; }`   | `<SaveButton>`                                                                                                                 |
-| title           | Adds title                              | `string`                                                          | `"Edit"` prefix and singular of `resource.name`                                                                                |
-| actionButtons   | Passes the props for `<PageHeader>`     | `React.ReactNode`                                                 | `<SaveButton>` and depending on your resource configuration (`canDelete` prop)                                                 |
-| pageHeaderProps | Passes the props for `<PageHeader>`     | [PageHeaderProps](https://ant.design/components/page-header/#API) | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>`, breadcrumb: [Breadcrumb][breadcrumb-component] } |
-| resource        | Resource name for API data interactions | `string`                                                          | Resource name that it reads from the URL.                                                                                      |
+| Property                                                                                                     | Description                               | Type                                                                            | Default                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------ | ----------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| title                                                                                                        | Adds title                                | `string`                                                                        | `"Edit"` prefix and singular of `resource.name`                                                                                |
+| saveButtonProps                                                                                              | Adds props for create button              | `{ disabled: boolean; onClick: () => void; loading: boolean; }`                 | `<SaveButton>`                                                                                                                 |
+| resource                                                                                                     | Resource name for API data interactions   | `string`                                                                        | Resource name that it reads from the URL.                                                                                      |
+| goBack                                                                                                       | Custom back icon element                  | `React.ReactNode`                                                               | `<ArrowLeft />`                                                                                                                |
+| isLoading                                                                                                    | Loading state of the component            | `boolean`                                                                       | `false`                                                                                                                        |
+| breadcrumb                                                                                                   | Custom breadcrumb element                 | `React.ReactNode`                                                               | `<Breadcrumb/>`                                                                                                                |
+| wrapperProps                                                                                                 | Wrapper element props                     | `React.DetailedHTMLProps<HTMLDivElement>`                                       |                                                                                                                                |
+| headerProps                                                                                                  | Header element props                      | `PageHeaderProps`                                                               |                                                                                                                                |
+| contentProps                                                                                                 | Content wrapper element props             | `CardProps`                                                                     |                                                                                                                                |
+| headerButtons                                                                                                | Header buttons element or render function | `({ defaultButtons: React.ReactNode }) => React.ReactNode` \| `React.ReactNode` |                                                                                                                                |
+| headerButtonProps                                                                                            | Header buttons wrapper element props      | `SpaceProps`                                                                    |                                                                                                                                |
+| footerButtons                                                                                                | Footer buttons element or render function | `({ defaultButtons: React.ReactNode }) => React.ReactNode` \| `React.ReactNode` |                                                                                                                                |
+| footerButtonProps                                                                                            | Footer buttons wrapper element props      | `SpaceProps`                                                                    |                                                                                                                                |
+| <div className="required-block"><div>actionButtons</div> <div className=" required">deprecated</div></div>   | Passes the props for `<PageHeader>`       | `React.ReactNode`                                                               | `<SaveButton>` and depending on your resource configuration (`canDelete` prop)                                                 |
+| <div className="required-block"><div>pageHeaderProps</div> <div className=" required">deprecated</div></div> | Passes the props for `<PageHeader>`       | [PageHeaderProps](https://ant.design/components/page-header/#API)               | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>`, breadcrumb: [Breadcrumb][breadcrumb-component] } |
 
 [breadcrumb-component]: /ui-frameworks/antd/components/breadcrumb.md
