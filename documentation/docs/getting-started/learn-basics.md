@@ -19,14 +19,6 @@ This guide will help you learn and get information of basic **refine** concepts.
 
 ### `resource`
 
-<!-- `resource` is the endpoint of the API that you want to fetch data from. So, if you want to fetch data from `https://api.example.com/users`, you should set `resource` to `"users"`. -->
-
-<!-- On the other hand, it all depends on how to handle the `resource` in your `dataProvider`. See the [`creating a data provider`](/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled. -->
-
-<!-- By default, the `resource` value corresponds to the `name` of the resources passed to `<Refine>`.
-
-[Refer to the `<Refine>` documentation to learn more about it. &#8594](/core/components/refine-config.md#name) -->
-
 **refine** passes the `resource` to the `dataProvider` as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your `dataProvider`. See the [`creating a data provider`](/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
 
 How does refine know what the resource value is?
