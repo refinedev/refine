@@ -17,7 +17,6 @@ interface NavbarProps {
 }
 
 const Navbar: FC<NavbarProps> = ({ links }) => {
-    console.log("Navbar links", links);
     return (
         <NavbarRoot>
             <Container clean className="mx-auto max-w-8xl px-6">

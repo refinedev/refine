@@ -11,8 +11,6 @@ export default function MenuSidebarView({
 }) {
     const { closeSidebar } = useUI();
 
-    console.log("MenuSidebarView links", links);
-
     return (
         <SidebarLayout handleClose={() => closeSidebar()}>
             <div className={s.root}>

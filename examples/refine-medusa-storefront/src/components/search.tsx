@@ -28,7 +28,6 @@ export default function Search({ products }: any) {
     // in the same way of products, it's better to ignore the search input if one
     // of those is selected
 
-    console.log("handle", { handle });
     const activeCategory = categories?.data?.find(
         (cat: any) => cat.handle === handle,
     );

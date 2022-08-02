@@ -44,7 +44,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
         const searchStaticProps = await getSearchStaticProps();
 
         const { q } = query;
-        console.log("q", { q });
+
         const medusaDataProvider = dataProvider(API_URL);
 
         const data = await medusaDataProvider.getList({
@@ -65,7 +65,6 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
             },
         };
     } catch (error) {
-        console.log(error);
         return { props: {} };
     }
 };

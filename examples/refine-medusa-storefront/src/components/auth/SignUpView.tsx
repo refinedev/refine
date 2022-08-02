@@ -34,8 +34,7 @@ const SignUpView: FC = () => {
 
                 closeModal();
             },
-            onMutationError(error, variables, context) {
-                console.log(error);
+            onMutationError(error) {
                 if (error?.response?.data.type === "duplicate_error") {
                     setError("email", {
                         message:
@@ -45,8 +44,6 @@ const SignUpView: FC = () => {
             },
         },
     });
-
-    console.log(errors);
 
     return (
         <form
