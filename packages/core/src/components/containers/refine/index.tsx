@@ -39,6 +39,7 @@ import {
     NotificationProvider,
     AccessControlProvider,
     AuditLogProvider,
+    DashboardPageProps,
 } from "../../../interfaces";
 
 interface QueryClientConfig {
@@ -58,7 +59,7 @@ export interface RefineProps {
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
     LoginPage?: React.FC;
-    DashboardPage?: React.FC;
+    DashboardPage?: React.FC<DashboardPageProps>;
     ReadyPage?: React.FC;
     mutationMode?: MutationMode;
     syncWithLocation?: boolean;

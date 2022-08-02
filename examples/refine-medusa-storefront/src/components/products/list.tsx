@@ -10,7 +10,7 @@ import { Grid, Marquee, Hero } from "@components/ui";
 import { useRouter } from "next/router";
 
 export const ProductList: React.FC<IResourceComponentsProps<GetListResponse>> =
-    () => {
+    ({ initialData }) => {
         const router = useRouter();
         const { q } = router.query;
 
@@ -19,6 +19,9 @@ export const ProductList: React.FC<IResourceComponentsProps<GetListResponse>> =
             setFilters,
         } = useTable({
             resource: "products",
+            queryOptions: {
+                initialData,
+            },
         });
 
         useEffect(() => {
