@@ -1,18 +1,19 @@
-import { LayoutWrapper, useTable } from "@pankod/refine-core";
+import { GetListResponse, LayoutWrapper, useTable } from "@pankod/refine-core";
 import { GetServerSideProps } from "next";
 import { dataProvider } from "@pankod/refine-medusa";
 
 import Search from "@components/search";
 import { getSearchStaticProps } from "@lib/search-props";
+import { MedusaProduct, MedusaCollection } from "@interfaces";
 
 // TODO: fix me
 const API_URL = "https://refine-example-storefront.herokuapp.com/store";
 const SearchPage: React.FC<{
     handle: string;
-    initialData: any;
+    initialData: GetListResponse<MedusaProduct>;
     collection: any;
 }> = ({ initialData, collection }) => {
-    const { tableQueryResult } = useTable({
+    const { tableQueryResult } = useTable<MedusaProduct>({
         resource: "products",
         permanentFilter: [
             {
@@ -42,14 +43,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         const searchStaticProps = await getSearchStaticProps();
 
         const medusaDataProvider = dataProvider(API_URL);
-        const collections = await medusaDataProvider.getList({
+        const collections = await medusaDataProvider.getList<MedusaCollection>({
             resource: "collections",
         });
 
         const collection = collections.data.find(
             (collection) => collection.handle === handle,
         );
-        const data = await medusaDataProvider.getList({
+        const data = await medusaDataProvider.getList<MedusaProduct[]>({
             resource: "products",
             filters: [
                 {

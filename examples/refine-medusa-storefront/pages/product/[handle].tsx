@@ -9,12 +9,15 @@ import { dataProvider } from "@pankod/refine-medusa";
 
 import { ProductView } from "@components/product";
 import { getSearchStaticProps } from "@lib/search-props";
+import { MedusaProduct } from "@components/product/helpers";
 
 const API_URL = "https://refine-example-storefront.herokuapp.com/store";
 const ProductShow: React.FC<
-    IResourceComponentsProps<GetListResponse> & { handle: string }
+    IResourceComponentsProps<GetListResponse<MedusaProduct[]>> & {
+        handle: string;
+    }
 > = ({ initialData, handle }) => {
-    const { data } = useList({
+    const { data } = useList<MedusaProduct[]>({
         resource: "products",
         queryOptions: {
             initialData,
@@ -58,7 +61,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
         const medusaDataProvider = dataProvider(API_URL);
 
-        const data = await medusaDataProvider.getList({
+        const data = await medusaDataProvider.getList<MedusaProduct[]>({
             resource: "products",
             filters: [
                 {

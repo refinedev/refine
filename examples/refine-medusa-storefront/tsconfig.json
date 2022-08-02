@@ -24,10 +24,7 @@
             "@config/*": ["src/config/*"],
             "@assets/*": ["src/assets/*"],
             "@interfaces/*": ["src/interfaces/*"],
-            "@commerce": ["../packages/commerce/src"],
-            "@commerce/*": ["../packages/commerce/src/*"],
-            "@framework": ["../packages/local/src"],
-            "@framework/*": ["../packages/local/src/*"]
+            "@interfaces": ["src/interfaces"],
         },
         "incremental": true
     },

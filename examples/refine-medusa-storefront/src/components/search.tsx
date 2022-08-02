@@ -1,10 +1,12 @@
 import cn from "clsx";
 import Link from "next/link";
-import { useState } from "react";
+import { useList } from "@pankod/refine-core";
 import { useRouter } from "next/router";
 
 import { ProductCard } from "@components/product";
 import { Container, Skeleton } from "@components/ui";
+import { MedusaProduct } from "@interfaces";
+
 import rangeMap from "@lib/range-map";
 
 const SORT = {
@@ -14,10 +16,7 @@ const SORT = {
     "price-desc": "Price: High to low",
 };
 
-import { filterQuery, useSearchMeta } from "@lib/search";
-import { useList } from "@pankod/refine-core";
-
-export default function Search({ products }: any) {
+export default function Search({ products }: { products?: MedusaProduct[] }) {
     const { data: categories } = useList({
         resource: "collections",
     });
@@ -172,7 +171,7 @@ export default function Search({ products }: any) {
                     )}
                     {products ? (
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                            {products.map((product: any) => (
+                            {products.map((product) => (
                                 <ProductCard
                                     variant="simple"
                                     key={product.id}

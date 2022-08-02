@@ -1,5 +1,13 @@
-import { FC } from "react";
+import { FC, useContext, useLayoutEffect, useState } from "react";
 import cn from "clsx";
+import {
+    CardElement,
+    Elements,
+    useElements,
+    useStripe,
+} from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import { StoreCartsRes, StoreCompleteCartRes } from "@medusajs/medusa";
 
 // import useAddCard from "@framework/customer/card/use-add-item";
 import { Button, Text } from "@components/ui";
@@ -7,6 +15,8 @@ import { useUI } from "@components/ui/context";
 import SidebarLayout from "@components/common/SidebarLayout";
 
 import s from "./PaymentMethodView.module.css";
+import { CartContext } from "@lib/context";
+import { useCreate } from "@pankod/refine-core";
 
 interface Form extends HTMLFormElement {
     cardHolder: HTMLInputElement;
@@ -22,8 +32,122 @@ interface Form extends HTMLFormElement {
     country: HTMLSelectElement;
 }
 
+const stripePromise = loadStripe(
+    "pk_test_51LSJnfKC5j4fayVQkNNv4SlexKRAK82cUi3lZ4z2mRAvBqtzB0PnBXOL6Z6HKleButtVFXa7kBO0R7IHnx76Pbab007XELtn6c",
+);
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+export function Form({ clientSecret, cartId }) {
+    const stripe = useStripe();
+    const elements = useElements();
+    const { mutate } = useCreate<StoreCompleteCartRes>();
+
+    async function handlePayment(e: { preventDefault: () => void }) {
+        e.preventDefault();
+
+        stripe!
+            .confirmCardPayment(clientSecret, {
+                payment_method: {
+                    card: elements!.getElement(CardElement) as any,
+                    billing_details: {
+                        name: "Jenny Rosen",
+                        email: "omer@refine.dev",
+                        phone: "4158675309",
+                        address: {
+                            city: "San Francisco",
+                            country: "US",
+                            line1: "123 Fake St",
+                            line2: "Apt B",
+                            postal_code: "94102",
+                        },
+                    },
+                },
+            })
+            .then(({ error, paymentIntent }) => {
+                //TODO handle errors
+                mutate(
+                    {
+                        resource: `carts/${cartId}/complete`,
+                        values: {},
+                    },
+                    {
+                        onSuccess(data, variables, context) {
+                            console.log({ data });
+                        },
+                    },
+                );
+            });
+    }
+
+    return (
+        <form>
+            <CardElement />
+            <button onClick={handlePayment}>Submit</button>
+        </form>
+    );
+}
+
 const PaymentMethodView: FC = () => {
     const { setSidebarView } = useUI();
+    const [clientSecret, setClientSecret] = useState<string | undefined>();
+
+    const { cartId } = useContext(CartContext);
+    const { mutate } = useCreate<StoreCartsRes>();
+
+    useLayoutEffect(() => {
+        mutate(
+            {
+                resource: `carts/${cartId}/payment-sessions`,
+                values: {},
+            },
+            {
+                onSuccess: ({ data: { cart } }) => {
+                    const isStripeAvailable = cart.payment_sessions?.some(
+                        (session) => session.provider_id === "stripe",
+                    );
+                    if (!isStripeAvailable) {
+                        return;
+                    }
+
+                    mutate(
+                        {
+                            resource: `carts/${cartId}/payment-session`,
+                            values: { provider_id: "stripe" },
+                        },
+                        {
+                            onSuccess({ data: { cart } }) {
+                                setClientSecret(
+                                    cart.payment_session?.data
+                                        ?.client_secret as string,
+                                );
+                            },
+                        },
+                    );
+                },
+            },
+        );
+    }, []);
+
+    /*  client.carts.createPaymentSessions(cart.id).then(({ cart }) => {
+        //check if stripe is selected
+        const isStripeAvailable = cart.payment_sessions?.some(
+            (session) => session.provider_id === "stripe",
+        );
+        if (!isStripeAvailable) {
+            return;
+        }
+
+        //select stripe payment session
+        client.carts
+            .setPaymentSession(cart.id, {
+                provider_id: "stripe",
+            })
+            .then(({ cart }) => {
+                setClientSecret(cart.payment_session.data.client_secret);
+            });
+    }); */
+
     // const addCard = useAddCard();
 
     // async function handleSubmit(event: React.ChangeEvent<Form>) {
@@ -46,11 +170,23 @@ const PaymentMethodView: FC = () => {
     //     setSidebarView("CHECKOUT_VIEW");
     // }
 
+    console.log({ clientSecret });
+
     return (
         <form className="h-full" onSubmit={() => undefined}>
             <SidebarLayout handleBack={() => setSidebarView("CHECKOUT_VIEW")}>
                 <div className="px-4 sm:px-6 flex-1">
                     <Text variant="sectionHeading"> Payment Method</Text>
+                    {clientSecret && (
+                        <Elements
+                            stripe={stripePromise}
+                            options={{
+                                clientSecret,
+                            }}
+                        >
+                            <Form clientSecret={clientSecret} cartId={cartId} />
+                        </Elements>
+                    )}
                     <div>
                         <div className={s.fieldset}>
                             <label className={s.label}>Cardholder Name</label>

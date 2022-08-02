@@ -16,7 +16,7 @@ interface ProductViewProps {
 }
 
 const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
-    const price = product?.variants?.[0].prices?.[1]?.amount; // temporary solution
+    const price = product?.variants?.[0].prices?.[0]?.amount; // temporary solution
 
     return (
         <>
@@ -26,7 +26,7 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
                         <ProductTag
                             name={product.title}
                             price={`${price} ${currencySymbolFromCode(
-                                product?.variants[0].prices[1].currency_code,
+                                product?.variants[0].prices[0].currency_code,
                             )}`}
                             fontSize={32}
                         />

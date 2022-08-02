@@ -10,14 +10,15 @@ import { GetServerSideProps } from "next";
 
 import Search from "@components/search";
 import { getSearchStaticProps } from "@lib/search-props";
+import { MedusaProduct } from "@interfaces";
 
-const SearchPage: React.FC<IResourceComponentsProps<GetListResponse>> = ({
-    initialData,
-}) => {
+const SearchPage: React.FC<
+    IResourceComponentsProps<GetListResponse<MedusaProduct>>
+> = ({ initialData }) => {
     const router = useRouter();
     const { q } = router.query;
 
-    const { tableQueryResult } = useTable({
+    const { tableQueryResult } = useTable<MedusaProduct>({
         resource: "products",
         queryOptions: {
             initialData,
@@ -47,7 +48,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
         const medusaDataProvider = dataProvider(API_URL);
 
-        const data = await medusaDataProvider.getList({
+        const data = await medusaDataProvider.getList<MedusaProduct>({
             resource: "products",
             filters: [
                 {
