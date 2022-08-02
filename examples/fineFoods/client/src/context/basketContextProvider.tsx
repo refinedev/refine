@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, PropsWithChildren, useReducer } from "react";
 import { useMany } from "@pankod/refine-core";
 
 import { IBasketOrder, IProduct } from "../interfaces";
@@ -29,7 +29,9 @@ const basketReducer = (
             return [];
     }
 };
-export const BasketContextProvider: React.FC = ({ children }) => {
+export const BasketContextProvider: React.FC<PropsWithChildren> = ({
+    children,
+}) => {
     const [orders, dispatch] = useReducer(basketReducer, initialBasket);
     const isBasketHaveOrders = orders.length > 0;
 

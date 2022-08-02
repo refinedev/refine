@@ -1,5 +1,11 @@
 # @pankod/refine-react-table
 
+## 4.5.0
+
+### Minor Changes
+
+-   Add React@18 support 🚀
+
 ## 4.4.0
 
 ### Minor Changes
