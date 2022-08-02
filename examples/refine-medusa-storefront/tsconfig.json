@@ -23,6 +23,7 @@
             "@utils/*": ["utils/*"],
             "@config/*": ["src/config/*"],
             "@assets/*": ["src/assets/*"],
+            "@interfaces/*": ["src/interfaces/*"],
             "@commerce": ["../packages/commerce/src"],
             "@commerce/*": ["../packages/commerce/src/*"],
             "@framework": ["../packages/local/src"],

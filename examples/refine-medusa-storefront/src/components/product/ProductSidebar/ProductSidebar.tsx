@@ -1,8 +1,7 @@
 import s from "./ProductSidebar.module.css";
-// import { useAddItem } from "@framework/cart";
 import { FC, useContext, useEffect, useState } from "react";
+
 import { ProductOptions } from "@components/product";
-// import type { Product } from "@commerce/types/product";
 import { Button, Text, Rating, Collapse, useUI } from "@components/ui";
 import {
     getProductVariant,
@@ -11,9 +10,10 @@ import {
 } from "../helpers";
 import { useCreate } from "@pankod/refine-core";
 import { CartContext } from "@lib/context";
+import { MedusaProduct } from "@interfaces/index";
 
 interface ProductSidebarProps {
-    product: any; // Product
+    product: MedusaProduct;
     className?: string;
 }
 
@@ -65,7 +65,7 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
             />
             <Text
                 className="pb-4 break-words w-full max-w-xl"
-                html={product.descriptionHtml || product.description}
+                html={product.description || ""}
             />
             <div className="flex flex-row justify-between items-center">
                 <Rating value={4} />

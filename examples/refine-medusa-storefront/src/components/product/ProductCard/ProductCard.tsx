@@ -7,10 +7,11 @@ import Image, { ImageProps } from "next/image";
 // import usePrice from "@framework/product/use-price";
 import ProductTag from "../ProductTag";
 import { currencySymbolFromCode } from "@components/product/helpers";
+import { MedusaProduct } from "@interfaces/index";
 
 interface Props {
     className?: string;
-    product: any; // Product
+    product: MedusaProduct;
     noNameTag?: boolean;
     imgProps?: Omit<
         ImageProps,
@@ -40,7 +41,7 @@ const ProductCard: FC<Props> = ({
         <Link
             href={`/product/${product.handle}`}
             className={rootClassName}
-            aria-label={product.name}
+            aria-label={product.title}
         >
             {variant === "slim" && (
                 <>
@@ -52,7 +53,7 @@ const ProductCard: FC<Props> = ({
                             <Image
                                 quality="85"
                                 src={product.images[0]?.url || placeholderImg}
-                                alt={product.name || "Product Image"}
+                                alt={product.title || "Product Image"}
                                 height={320}
                                 width={320}
                                 layout="fixed"
@@ -82,7 +83,7 @@ const ProductCard: FC<Props> = ({
                         {product?.images && (
                             <div>
                                 <Image
-                                    alt={product.name || "Product Image"}
+                                    alt={product.title || "Product Image"}
                                     className={s.productImage}
                                     src={
                                         product.images[0]?.url || placeholderImg
@@ -112,7 +113,7 @@ const ProductCard: FC<Props> = ({
                         {product?.images && (
                             <div>
                                 <Image
-                                    alt={product.name || "Product Image"}
+                                    alt={product.title || "Product Image"}
                                     className={s.productImage}
                                     src={
                                         product.images[0]?.url || placeholderImg

@@ -1,3 +1,4 @@
+import Product from "@medusajs/medusa-js";
 export interface CardFields {
     cardHolder: string;
     cardNumber: string;
@@ -23,3 +24,9 @@ export interface AddressFields {
     city: string;
     country: string;
 }
+
+export type MedusaStoreProductRes = Awaited<
+    ReturnType<Product["products"]["retrieve"]>
+>;
+
+export type MedusaProduct = MedusaStoreProductRes["product"];

@@ -32,7 +32,7 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
                         />
                         <div className={s.sliderContainer}>
                             <ProductSlider key={product.id}>
-                                {product.images.map((image: any, i: any) => (
+                                {product.images.map((image, i: number) => (
                                     <div
                                         key={image.url}
                                         className={s.imageContainer}
@@ -40,7 +40,7 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
                                         <Image
                                             className={s.img}
                                             src={image.url!}
-                                            alt={image.alt || "Product Image"}
+                                            alt={"Product Image"}
                                             width={600}
                                             height={600}
                                             priority={i === 0}
@@ -64,7 +64,7 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
                     <div className={s.relatedProductsGrid}>
                         {relatedProducts
                             .filter((relProd) => relProd.id !== product.id)
-                            .map((p: any) => (
+                            .map((p) => (
                                 <div
                                     key={p.id}
                                     className="animated fadeIn bg-accent-0 border border-accent-2"
@@ -72,7 +72,7 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
                                     <ProductCard
                                         noNameTag
                                         product={p}
-                                        key={p.path}
+                                        key={p.id}
                                         variant="simple"
                                         className="animated fadeIn"
                                         imgProps={{
