@@ -23,6 +23,9 @@ const CartSidebarView: FC = () => {
     });
 
     const cart = data?.data.cart;
+    const currencyCode = currencySymbolFromCode(cart?.region["currency_code"]);
+
+    console.log(`currency`, currencyCode);
 
     const isEmpty = cart?.items === 0;
     const total = cart?.total;
@@ -89,7 +92,7 @@ const CartSidebarView: FC = () => {
                                 <CartItem
                                     key={item.id}
                                     item={item}
-                                    currencyCode={"$"}
+                                    currencyCode={currencyCode}
                                 />
                             ))}
                         </ul>
@@ -99,7 +102,10 @@ const CartSidebarView: FC = () => {
                         <ul className="pb-2">
                             <li className="flex justify-between py-1">
                                 <span>Subtotal</span>
-                                <span>{subTotal}</span>
+                                <span>
+                                    {currencyCode}
+                                    {subTotal}
+                                </span>
                             </li>
                             <li className="flex justify-between py-1">
                                 <span>Taxes</span>
@@ -114,7 +120,10 @@ const CartSidebarView: FC = () => {
                         </ul>
                         <div className="flex justify-between border-t border-accent-2 py-3 font-bold mb-2">
                             <span>Total</span>
-                            <span>{total}</span>
+                            <span>
+                                {currencyCode}
+                                {total}
+                            </span>
                         </div>
                         <div>
                             {process.env.COMMERCE_CUSTOMCHECKOUT_ENABLED ? (
