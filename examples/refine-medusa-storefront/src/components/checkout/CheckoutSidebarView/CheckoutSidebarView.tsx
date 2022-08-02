@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FC, useState } from "react";
+import { FC, useContext, useState } from "react";
 import CartItem from "@components/cart/CartItem";
 import { Button, Text } from "@components/ui";
 import { useUI } from "@components/ui/context";
@@ -11,8 +11,23 @@ import ShippingWidget from "../ShippingWidget";
 import PaymentWidget from "../PaymentWidget";
 import s from "./CheckoutSidebarView.module.css";
 import { useCheckoutContext } from "../context";
+import { CartContext } from "@lib/context";
+import { useOne } from "@pankod/refine-core";
+import { currencySymbolFromCode } from "@components/product/helpers";
 
 const CheckoutSidebarView: FC = () => {
+    const { cartId } = useContext(CartContext);
+
+    const { data, isLoading } = useOne({
+        resource: `carts`,
+        id: cartId ?? "",
+    });
+
+    const cart = data?.data.cart;
+    const currencyCode = currencySymbolFromCode(
+        cart?.region["currency_code"] ?? "",
+    );
+
     const [loadingSubmit, setLoadingSubmit] = useState(false);
     const { setSidebarView, closeSidebar } = useUI();
     // const { data: cartData, mutate: refreshCart } = useCart();
@@ -61,25 +76,25 @@ const CheckoutSidebarView: FC = () => {
                     <Text variant="sectionHeading">Checkout</Text>
                 </Link>
 
-                {/* <PaymentWidget
-                    isValid={checkoutData?.hasPayment}
+                <PaymentWidget
+                    isValid={false}
                     onClick={() => setSidebarView("PAYMENT_VIEW")}
                 />
                 <ShippingWidget
-                    isValid={checkoutData?.hasShipping}
+                    isValid={false}
                     onClick={() => setSidebarView("SHIPPING_VIEW")}
                 />
 
                 <ul className={s.lineItemsList}>
-                    {cartData!.lineItems.map((item: any) => (
+                    {cart?.items.map((item: any) => (
                         <CartItem
                             key={item.id}
                             item={item}
-                            currencyCode={cartData!.currency.code}
+                            currencyCode={currencyCode}
                             variant="display"
                         />
                     ))}
-                </ul> */}
+                </ul>
             </div>
 
             <form

@@ -11,6 +11,7 @@ import { Bag, Cross, Check } from "@components/icons";
 import SidebarLayout from "@components/common/SidebarLayout";
 import { useOne } from "@pankod/refine-core";
 import { CartContext } from "@lib/context";
+import { currencySymbolFromCode } from "@components/product/helpers";
 
 const CartSidebarView: FC = () => {
     const { closeSidebar, setSidebarView } = useUI();
@@ -23,7 +24,9 @@ const CartSidebarView: FC = () => {
     });
 
     const cart = data?.data.cart;
-    const currencyCode = currencySymbolFromCode(cart?.region["currency_code"]);
+    const currencyCode = currencySymbolFromCode(
+        cart?.region["currency_code"] ?? "",
+    );
 
     console.log(`currency`, currencyCode);
 
@@ -126,23 +129,13 @@ const CartSidebarView: FC = () => {
                             </span>
                         </div>
                         <div>
-                            {process.env.COMMERCE_CUSTOMCHECKOUT_ENABLED ? (
-                                <Button
-                                    Component="a"
-                                    width="100%"
-                                    onClick={goToCheckout}
-                                >
-                                    Proceed to Checkout ({total})
-                                </Button>
-                            ) : (
-                                <Button
-                                    href="/checkout"
-                                    Component="a"
-                                    width="100%"
-                                >
-                                    Proceed to Checkout
-                                </Button>
-                            )}
+                            <Button
+                                Component="a"
+                                width="100%"
+                                onClick={goToCheckout}
+                            >
+                                Proceed to Checkout ({total})
+                            </Button>
                         </div>
                     </div>
                 </>
