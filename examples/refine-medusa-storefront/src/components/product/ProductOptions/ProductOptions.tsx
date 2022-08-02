@@ -1,10 +1,13 @@
-import { memo } from "react";
+import { ElementType, memo } from "react";
 import { Swatch } from "@components/product";
 // import type { ProductOption } from "@commerce/types/product";
 import { SelectedOptions } from "../helpers";
+import { MedusaProduct } from "@interfaces/index";
+
+type MedusaProductOptions = MedusaProduct["options"];
 
 interface ProductOptionsProps {
-    options: any; //ProductOption[];
+    options: MedusaProductOptions;
     selectedOptions: SelectedOptions;
     setSelectedOptions: React.Dispatch<React.SetStateAction<SelectedOptions>>;
 }
@@ -16,20 +19,20 @@ const ProductOptions: React.FC<ProductOptionsProps> = ({
 }) => {
     return (
         <div>
-            {options.map((opt: any) => (
-                <div className="pb-4" key={opt.title}>
+            {options.map((opt) => (
+                <div className="pb-4" key={opt.id}>
                     <h2 className="uppercase font-medium text-sm tracking-wide">
                         {opt.title}
                     </h2>
                     <div role="listbox" className="flex flex-row py-4">
                         {opt.values
                             .filter(
-                                (val: any, index: number, arr: any[]) =>
+                                (val, index: number, arr: any[]) =>
                                     arr.findIndex(
                                         (val2) => val2.value === val.value,
                                     ) === index,
                             )
-                            .map((v: any, i: number) => {
+                            .map((v, i: number) => {
                                 const active =
                                     selectedOptions[opt.title.toLowerCase()];
                                 return (
@@ -39,9 +42,7 @@ const ProductOptions: React.FC<ProductOptionsProps> = ({
                                             v.value.toLowerCase() === active
                                         }
                                         variant={opt.title}
-                                        color={
-                                            v.hexColors ? v.hexColors[0] : ""
-                                        }
+                                        color={""}
                                         label={v.value}
                                         onClick={() => {
                                             setSelectedOptions(

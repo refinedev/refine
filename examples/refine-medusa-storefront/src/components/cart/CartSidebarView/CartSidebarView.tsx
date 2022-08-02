@@ -6,8 +6,6 @@ import CartItem from "../CartItem";
 import { Button, Text } from "@components/ui";
 import { useUI } from "@components/ui/context";
 import { Bag, Cross, Check } from "@components/icons";
-// import useCart from "@framework/cart/use-cart";
-// import usePrice from "@framework/product/use-price";
 import SidebarLayout from "@components/common/SidebarLayout";
 import { useOne } from "@pankod/refine-core";
 import { CartContext } from "@lib/context";
@@ -27,8 +25,6 @@ const CartSidebarView: FC = () => {
     const currencyCode = currencySymbolFromCode(
         cart?.region["currency_code"] ?? "",
     );
-
-    console.log(`currency`, currencyCode);
 
     const isEmpty = cart?.items === 0;
     const total = cart?.total;
