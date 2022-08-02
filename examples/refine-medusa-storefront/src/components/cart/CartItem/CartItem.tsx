@@ -170,7 +170,7 @@ const CartItem = ({
                     )}
                 </div>
                 <div className="flex flex-col justify-between space-y-2 text-sm">
-                    <span>{`${item["unit_price"]}${currencyCode}`}</span>
+                    <span>{`${currencyCode}${item["unit_price"]}`}</span>
                 </div>
             </div>
             {variant === "default" && (
