@@ -74,7 +74,7 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
                             .filter((relProd) => relProd.id !== product.id)
                             .map((p: any) => (
                                 <div
-                                    key={p.path}
+                                    key={p.id}
                                     className="animated fadeIn bg-accent-0 border border-accent-2"
                                 >
                                     <ProductCard

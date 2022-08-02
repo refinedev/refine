@@ -1,6 +1,6 @@
 import s from "./ProductSidebar.module.css";
 // import { useAddItem } from "@framework/cart";
-import { FC, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { ProductOptions } from "@components/product";
 // import type { Product } from "@commerce/types/product";
 import { Button, Text, Rating, Collapse, useUI } from "@components/ui";
@@ -9,6 +9,8 @@ import {
     selectDefaultOptionFromProduct,
     SelectedOptions,
 } from "../helpers";
+import { useCreate } from "@pankod/refine-core";
+import { CartContext } from "@lib/context";
 
 interface ProductSidebarProps {
     product: any; // Product
@@ -27,14 +29,28 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
 
     const variant = getProductVariant(product, selectedOptions);
 
-    const addToCart = async () => {
-        setLoading(true);
-        try {
-            // adding line item after if an cart exist
+    const { cartId } = useContext(CartContext);
 
+    const { mutate, data } = useCreate();
+
+    useEffect(() => {
+        if (data) {
             setSidebarView("CART_VIEW");
             openSidebar();
             setLoading(false);
+        }
+    }, [data]);
+
+    const addToCart = async () => {
+        setLoading(true);
+        try {
+            mutate({
+                resource: `carts/${cartId}/line-items`,
+                values: {
+                    variant_id: variant.id as string,
+                    quantity: 1,
+                },
+            });
         } catch (err) {
             setLoading(false);
         }
