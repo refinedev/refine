@@ -13,13 +13,13 @@ import { API_URL } from "../src/constants";
 import { ProductList } from "@components";
 import { ManagedUIContext } from "@components/ui/context";
 import Layout from "@components/common/Layout";
-import { CardProvider } from "@lib/context";
+import { CartProvider } from "@lib/context";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     const { categories } = pageProps;
     return (
-        <ManagedUIContext>
-            <CardProvider>
+        <CartProvider>
+            <ManagedUIContext>
                 <Refine
                     Layout={({ ...rest }) => (
                         <Layout {...rest} categories={categories} />
@@ -38,8 +38,8 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                 >
                     <Component {...pageProps} />
                 </Refine>
-            </CardProvider>
-        </ManagedUIContext>
+            </ManagedUIContext>
+        </CartProvider>
     );
 }
 

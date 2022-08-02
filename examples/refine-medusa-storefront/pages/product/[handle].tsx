@@ -9,7 +9,7 @@ import {
 import { GetServerSideProps } from "next";
 import { dataProvider } from "@pankod/refine-medusa";
 
-import { CardContext } from "@lib/context";
+import { CartContext } from "@lib/context";
 import { ProductView } from "@components/product";
 import { getSearchStaticProps } from "@lib/search-props";
 
@@ -39,25 +39,25 @@ const ProductShow: React.FC<
         resource: "products",
     });
 
-    const { setCartId } = useContext(CardContext);
+    const { cartId, setCartId, isCartIdLoading } = useContext(CartContext);
     const { mutate, data: cartData } = useCreate();
 
-    const cardIdFromLocalStorage =
-        typeof window !== "undefined" ? localStorage.getItem("cardId") : "";
-
-    const createCart = async () => {
-        await mutate({
-            resource: "carts",
-            values: {},
-        });
-
-        setCartId(cartData?.data.cart?.id);
-
-        localStorage.setItem("cardId", cartData?.data.cart?.id);
-    };
-
     useEffect(() => {
-        cardIdFromLocalStorage ? null : createCart();
+        if (!isCartIdLoading && cartId === "") {
+            mutate(
+                {
+                    resource: "carts",
+                    values: {},
+                },
+                {
+                    onSuccess: () => {
+                        if (cartData) {
+                            setCartId(cartData?.data.cart?.id);
+                        }
+                    },
+                },
+            );
+        }
     }, []);
 
     return (
