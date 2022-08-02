@@ -3,6 +3,7 @@ import { GetServerSideProps } from "next";
 import { dataProvider } from "@pankod/refine-medusa";
 
 import Search from "@components/search";
+import { getSearchStaticProps } from "@lib/search-props";
 
 // TODO: fix me
 const API_URL = "https://refine-example-storefront.herokuapp.com/store";
@@ -38,6 +39,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const handle = query?.["handle"] as string;
 
     try {
+        const searchStaticProps = await getSearchStaticProps();
+
         const medusaDataProvider = dataProvider(API_URL);
         const collections = await medusaDataProvider.getList({
             resource: "collections",
@@ -62,6 +65,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
                 initialData: data,
                 collection: collection,
                 handle: handle,
+                ...searchStaticProps.props,
             },
         };
     } catch (error) {

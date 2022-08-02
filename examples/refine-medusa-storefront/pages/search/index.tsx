@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 
 import Search from "@components/search";
+import { getSearchStaticProps } from "@lib/search-props";
 
 const SearchPage: React.FC<IResourceComponentsProps<GetListResponse>> = ({
     initialData,
@@ -40,6 +41,8 @@ const SearchPage: React.FC<IResourceComponentsProps<GetListResponse>> = ({
 const API_URL = "https://refine-example-storefront.herokuapp.com/store";
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     try {
+        const searchStaticProps = await getSearchStaticProps();
+
         const { q } = query;
         console.log("q", { q });
         const medusaDataProvider = dataProvider(API_URL);
@@ -58,6 +61,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
         return {
             props: {
                 initialData: data,
+                ...searchStaticProps.props,
             },
         };
     } catch (error) {
