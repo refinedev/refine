@@ -56,13 +56,13 @@ const CartItem = ({
         target: { value },
     }: ChangeEvent<HTMLInputElement>) => {
         setQuantity(Number(value));
-        await updateItem(Number(value));
+        updateItem(Number(value));
     };
 
     const increaseQuantity = async (n = 1) => {
         const val = Number(quantity) + n;
         setQuantity(val);
-        await updateItem(val);
+        updateItem(val);
     };
 
     const removeItem = async () => {

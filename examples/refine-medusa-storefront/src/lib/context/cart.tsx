@@ -1,3 +1,4 @@
+import { BaseRecord, CreateResponse, useCreate } from "@pankod/refine-core";
 import React, {
     createContext,
     SetStateAction,
@@ -10,41 +11,51 @@ type CartProviderProps = {
 };
 
 type CartContextType = {
-    setCartId: React.Dispatch<SetStateAction<string>>;
-    cartId: string;
-    isCartIdLoading: boolean;
+    addToCart?: (payload: AddToCartType) => Promise<CreateResponse<BaseRecord>>;
+    isLoading?: boolean;
+    cartId?: string;
 };
 
-export const CartContext = createContext<CartContextType>({
-    setCartId: () => {
-        throw new Error("cart id is not implemented");
-    },
-    cartId: "",
-    isCartIdLoading: true,
-});
+type AddToCartType = {
+    variantId: string;
+    quantity?: number;
+};
+export const CartContext = createContext<CartContextType>({});
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
-    const [cartId, setCartId] = useState("");
-    const [isLoading, setIsLoading] = useState(true);
+    let cartId: string | undefined =
+        typeof window !== "undefined"
+            ? localStorage.getItem("cartId") ?? undefined
+            : undefined;
 
-    useEffect(() => {
-        if (cartId.length > 0) {
-            localStorage?.setItem("cartId", cartId);
-        }
-    }, [cartId]);
+    const { mutateAsync, isLoading } = useCreate();
 
-    useEffect(() => {
-        if (typeof window !== "undefined" && localStorage) {
-            const parsed = localStorage.getItem("cartId") ?? "";
-            setCartId(parsed);
-            setIsLoading(false);
+    const addToCart = async ({ variantId, quantity = 1 }: AddToCartType) => {
+        if (cartId === undefined) {
+            // create cart
+
+            const data = await mutateAsync({
+                resource: "carts",
+                values: {},
+            });
+
+            if (data?.data.cart?.id !== undefined) {
+                cartId = data?.data.cart?.id;
+                localStorage?.setItem("cartId", cartId!);
+            }
         }
-    }, [typeof window]);
+
+        return await mutateAsync({
+            resource: `carts/${cartId}/line-items`,
+            values: {
+                variant_id: variantId,
+                quantity: quantity,
+            },
+        });
+    };
 
     return (
-        <CartContext.Provider
-            value={{ cartId, setCartId, isCartIdLoading: isLoading }}
-        >
+        <CartContext.Provider value={{ addToCart, isLoading, cartId }}>
             {children}
         </CartContext.Provider>
     );

@@ -18,28 +18,28 @@ import { CartProvider } from "@lib/context";
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     const { categories } = pageProps;
     return (
-        <CartProvider>
-            <ManagedUIContext>
-                <Refine
-                    Layout={({ ...rest }) => (
-                        <Layout {...rest} categories={categories} />
-                    )}
-                    LoginPage={LoginPage}
-                    DashboardPage={ProductList}
-                    authProvider={authProvider(API_URL)}
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(API_URL)}
-                    resources={[
-                        {
-                            name: "dummy",
-                        },
-                    ]}
-                    warnWhenUnsavedChanges={true}
-                >
+        <ManagedUIContext>
+            <Refine
+                Layout={({ ...rest }) => (
+                    <Layout {...rest} categories={categories} />
+                )}
+                LoginPage={LoginPage}
+                DashboardPage={ProductList}
+                authProvider={authProvider(API_URL)}
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+                resources={[
+                    {
+                        name: "dummy",
+                    },
+                ]}
+                warnWhenUnsavedChanges={true}
+            >
+                <CartProvider>
                     <Component {...pageProps} />
-                </Refine>
-            </ManagedUIContext>
-        </CartProvider>
+                </CartProvider>
+            </Refine>
+        </ManagedUIContext>
     );
 }
 

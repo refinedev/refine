@@ -1,7 +1,5 @@
-import { useContext, useEffect } from "react";
 import {
     useList,
-    useCreate,
     LayoutWrapper,
     IResourceComponentsProps,
     GetListResponse,
@@ -9,7 +7,6 @@ import {
 import { GetServerSideProps } from "next";
 import { dataProvider } from "@pankod/refine-medusa";
 
-import { CartContext } from "@lib/context";
 import { ProductView } from "@components/product";
 import { getSearchStaticProps } from "@lib/search-props";
 
@@ -38,27 +35,6 @@ const ProductShow: React.FC<
     const { data: relatedProducts } = useList({
         resource: "products",
     });
-
-    const { cartId, setCartId, isCartIdLoading } = useContext(CartContext);
-    const { mutate, data: cartData } = useCreate();
-
-    useEffect(() => {
-        if (!isCartIdLoading && cartId === "") {
-            mutate(
-                {
-                    resource: "carts",
-                    values: {},
-                },
-                {
-                    onSuccess: () => {
-                        if (cartData) {
-                            setCartId(cartData?.data.cart?.id);
-                        }
-                    },
-                },
-            );
-        }
-    }, []);
 
     return (
         <LayoutWrapper>

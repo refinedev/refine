@@ -9,7 +9,6 @@ import {
     selectDefaultOptionFromProduct,
     SelectedOptions,
 } from "../helpers";
-import { useCreate } from "@pankod/refine-core";
 import { CartContext } from "@lib/context";
 
 interface ProductSidebarProps {
@@ -20,7 +19,6 @@ interface ProductSidebarProps {
 const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
     // const addItem = useAddItem();
     const { openSidebar, setSidebarView } = useUI();
-    const [loading, setLoading] = useState(false);
     const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>({});
 
     useEffect(() => {
@@ -29,32 +27,7 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
 
     const variant = getProductVariant(product, selectedOptions);
 
-    const { cartId } = useContext(CartContext);
-
-    const { mutate, data } = useCreate();
-
-    useEffect(() => {
-        if (data) {
-            setSidebarView("CART_VIEW");
-            openSidebar();
-            setLoading(false);
-        }
-    }, [data]);
-
-    const addToCart = async () => {
-        setLoading(true);
-        try {
-            mutate({
-                resource: `carts/${cartId}/line-items`,
-                values: {
-                    variant_id: variant.id as string,
-                    quantity: 1,
-                },
-            });
-        } catch (err) {
-            setLoading(false);
-        }
-    };
+    const { addToCart, isLoading } = useContext(CartContext);
 
     return (
         <div className={className}>
@@ -78,8 +51,15 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
                     aria-label="Add to Cart"
                     type="button"
                     className={s.button}
-                    onClick={() => addToCart()}
-                    loading={loading}
+                    onClick={async () => {
+                        await addToCart?.({
+                            variantId: variant.id,
+                        });
+
+                        setSidebarView("CART_VIEW");
+                        openSidebar();
+                    }}
+                    loading={isLoading}
                     disabled={variant?.availableForSale === false}
                 >
                     Add To Cart

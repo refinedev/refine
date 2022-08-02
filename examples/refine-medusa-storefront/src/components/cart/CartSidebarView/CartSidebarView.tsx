@@ -11,17 +11,15 @@ import { Bag, Cross, Check } from "@components/icons";
 import SidebarLayout from "@components/common/SidebarLayout";
 import { useOne } from "@pankod/refine-core";
 import { CartContext } from "@lib/context";
-import { currencySymbolFromCode } from "@components/product/helpers";
 
 const CartSidebarView: FC = () => {
     const { closeSidebar, setSidebarView } = useUI();
-    // const { data, isLoading, isEmpty } = useCart();
 
     const { cartId } = useContext(CartContext);
 
     const { data, isLoading } = useOne({
         resource: `carts`,
-        id: cartId,
+        id: cartId ?? "",
     });
 
     const cart = data?.data.cart;
