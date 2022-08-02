@@ -16,11 +16,14 @@ import Layout from "@components/common/Layout";
 import { CardProvider } from "@lib/context";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+    const { categories } = pageProps;
     return (
         <ManagedUIContext>
             <CardProvider>
                 <Refine
-                    Layout={Layout}
+                    Layout={({ ...rest }) => (
+                        <Layout {...rest} categories={categories} />
+                    )}
                     LoginPage={LoginPage}
                     DashboardPage={ProductList}
                     authProvider={authProvider(API_URL)}

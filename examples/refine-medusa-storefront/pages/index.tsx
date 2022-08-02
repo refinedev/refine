@@ -7,13 +7,18 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     try {
         const medusaDataProvider = dataProvider(API_URL);
 
-        const data = await medusaDataProvider.getList({
+        const products = await medusaDataProvider.getList({
             resource: "products",
+        });
+
+        const categories = await medusaDataProvider.getList({
+            resource: "collections",
         });
 
         return {
             props: {
-                initialData: data,
+                initialData: products,
+                categories,
             },
         };
     } catch (error) {

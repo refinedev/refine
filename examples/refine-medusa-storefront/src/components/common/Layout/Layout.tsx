@@ -106,18 +106,20 @@ const SidebarUI: React.FC<{ links: any[] }> = ({ links }) => {
     ) : null;
 };
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<LayoutProps & { categories: any }> = ({
+    children,
+    categories,
+    ...rest
+}) => {
     const { acceptedCookies, onAcceptCookies } = useAcceptCookies();
-    const { locale = "en-US" } = useRouter();
-    // const navBarlinks = categories.slice(0, 2).map((c) => ({
-    //     label: c.name,
-    //     href: `/search/${c.slug}`,
-    // }));
 
     const { data: collectionsData } = useList({
         resource: "collections",
+        queryOptions: {
+            initialData: categories,
+        },
     });
-    const collections = collectionsData?.data.map((col) => ({
+    const collections = collectionsData?.data.slice(0, 2).map((col) => ({
         title: col.title,
         id: col.handle,
     }));
