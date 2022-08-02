@@ -1,8 +1,11 @@
+import { GetServerSideProps } from "next";
 import { LayoutWrapper, useGetIdentity } from "@pankod/refine-core";
+
 import { Container, Text } from "@components/ui";
 import { Bag } from "@components/icons";
+import { getSearchStaticProps } from "@lib/search-props";
 
-const SearchPage: React.FC = () => {
+const OrdersPage: React.FC = () => {
     const { data } = useGetIdentity();
 
     return (
@@ -26,4 +29,19 @@ const SearchPage: React.FC = () => {
     );
 };
 
-export default SearchPage;
+export const getServerSideProps: GetServerSideProps = async () => {
+    try {
+        const searchProps = await getSearchStaticProps();
+
+        return {
+            props: {
+                ...searchProps.props,
+            },
+        };
+    } catch (error) {
+        console.log(error);
+        return { props: {} };
+    }
+};
+
+export default OrdersPage;
