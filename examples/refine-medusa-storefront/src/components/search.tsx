@@ -97,7 +97,7 @@ export default function Search({ products }: any) {
                                         </li>
                                         {categories?.data.map((cat: any) => (
                                             <li
-                                                key={cat.path}
+                                                key={cat.handle}
                                                 className={cn(
                                                     "block text-sm leading-5 text-accent-4 hover:bg-accent-1 lg:hover:bg-transparent hover:text-accent-8 focus:outline-none focus:bg-accent-1 focus:text-accent-8",
                                                     {

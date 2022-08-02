@@ -70,6 +70,7 @@ export const ProductList: React.FC<IResourceComponentsProps<GetListResponse>> =
                             imgProps={{
                                 width: i === 0 ? 1080 : 540,
                                 height: i === 0 ? 1080 : 540,
+                                priority: true,
                             }}
                         />
                     ))}
