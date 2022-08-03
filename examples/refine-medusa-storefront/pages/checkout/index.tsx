@@ -10,10 +10,12 @@ import PaymentMethodView from "@components/checkout/PaymentMethodView";
 import ShippingView from "@components/checkout/ShippingView";
 import { CartContext } from "@lib/context";
 import ShippingOptionWidget from "@components/checkout/ShippingOptionWidget";
+import Checkbox from "@components/common/Checkbox";
 
 const stepTitles = ["Address", "Payment"];
 
 const ProfilePage: React.FC = () => {
+    const [checked, setChecked] = useState(true);
     const { cartId } = useContext(CartContext);
     const [clientSecret, setClientSecret] = useState<string | undefined>();
 
@@ -31,7 +33,7 @@ const ProfilePage: React.FC = () => {
         id: "",
     });
 
-    const { mutate, mutateAsync } = useCreate();
+    const { mutateAsync } = useCreate();
 
     const { mutateAsync: createPaymentSession } = useCreate<StoreCartsRes>();
 
@@ -56,9 +58,9 @@ const ProfilePage: React.FC = () => {
         switch (step) {
             case 0:
                 return (
-                    <Container className="pt-4">
+                    <div className="flex flex-col gap-2">
                         {Object.keys(errors).length > 0 && (
-                            <div className="text-red border border-red p-3">
+                            <div className="text-red border-red border p-3">
                                 <ul>
                                     {Object.keys(errors).map((key: any) => (
                                         <li key={key}>
@@ -71,7 +73,29 @@ const ProfilePage: React.FC = () => {
                                 </ul>
                             </div>
                         )}
-                        <ShippingView register={register} />
+
+                        <ShippingView
+                            title="Shipping Address"
+                            registerNamePrefix="shipping_address"
+                            register={register}
+                        />
+
+                        <Checkbox
+                            label="Same as billing address"
+                            checked={checked}
+                            onChange={() => setChecked(!checked)}
+                        />
+                        <br />
+
+                        {!checked && (
+                            <ShippingView
+                                title="Billing Address"
+                                registerNamePrefix="billing_address"
+                                register={register}
+                            />
+                        )}
+
+                        <Text variant="pageHeading">Delivery</Text>
                         <Controller
                             control={control}
                             name="shippingMethod"
@@ -83,53 +107,25 @@ const ProfilePage: React.FC = () => {
                             }}
                             render={({}) => <ShippingOptions />}
                         />
-                    </Container>
+                    </div>
                 );
             case 1:
-                return (
-                    <>
-                        <PaymentMethodView clientSecret={clientSecret} />
-                    </>
-                );
+                return <PaymentMethodView clientSecret={clientSecret} />;
         }
     };
 
     useEffect(() => {
         (async () => {
             if (currentStep === 1) {
-                const {
-                    country_code,
-                    company,
-                    first_name,
-                    last_name,
-                    address_1,
-                    address_2,
-                    city,
-                } = getValues();
+                const { shipping_address, billing_address } = getValues();
 
                 await mutateAsync({
                     resource: `carts/${cartId}`,
                     values: {
-                        country_code,
+                        country_code: shipping_address.country_code,
                         email: "omer@refine.dev",
-                        billing_address: {
-                            company,
-                            first_name,
-                            last_name,
-                            address_1,
-                            address_2,
-                            city,
-                            country_code,
-                        },
-                        shipping_address: {
-                            company,
-                            first_name,
-                            last_name,
-                            address_1,
-                            address_2,
-                            city,
-                            country_code,
-                        },
+                        billing_address,
+                        shipping_address,
                     },
                 });
 
@@ -174,35 +170,30 @@ const ProfilePage: React.FC = () => {
 
     return (
         <LayoutWrapper>
-            <Container className="pt-4">
-                <Text variant="pageHeading">Checkout</Text>
-                <div className="grid grid-cols-1">
-                    <form autoComplete="off">
-                        {renderFormByStep(currentStep)}
-                    </form>
+            <Container>
+                <form autoComplete="off">{renderFormByStep(currentStep)}</form>
 
-                    <div style={{ display: "flex", gap: 8 }}>
-                        {currentStep > 0 && (
-                            <Button
-                                variant="slim"
-                                onClick={() => {
-                                    gotoStep(currentStep - 1);
-                                }}
-                            >
-                                Previous
-                            </Button>
-                        )}
-                        {currentStep < stepTitles.length - 1 && (
-                            <Button
-                                variant="slim"
-                                onClick={() => {
-                                    gotoStep(currentStep + 1);
-                                }}
-                            >
-                                Next
-                            </Button>
-                        )}
-                    </div>
+                <div className="mt-8 flex gap-2">
+                    {currentStep > 0 && (
+                        <Button
+                            variant="slim"
+                            onClick={() => {
+                                gotoStep(currentStep - 1);
+                            }}
+                        >
+                            Previous
+                        </Button>
+                    )}
+                    {currentStep < stepTitles.length - 1 && (
+                        <Button
+                            variant="slim"
+                            onClick={() => {
+                                gotoStep(currentStep + 1);
+                            }}
+                        >
+                            Next
+                        </Button>
+                    )}
                 </div>
             </Container>
         </LayoutWrapper>
