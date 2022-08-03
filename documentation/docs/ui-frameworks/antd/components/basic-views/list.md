@@ -14,7 +14,7 @@ We will show what `<List>` does using properties with examples.
 
 ### `title`
 
-It allows adding a title for the `<List>` component. if you don't pass title props, it uses plural from of resource name by default.
+It allows adding a title for the `<List>` component. if you don't pass title props, it uses plural form of resource name by default.
 
 ```tsx
 import { List } from "@pankod/refine-antd";
