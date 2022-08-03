@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
 import { LayoutWrapper, useCreate, useOne } from "@pankod/refine-core";
 import { Controller, useStepsForm } from "@pankod/refine-react-hook-form";
-import { StoreShippingOptionsListRes } from "@medusajs/medusa";
+import { StoreShippingOptionsListRes, StoreCartsRes } from "@medusajs/medusa";
 
 import { Button, Container, Text } from "@components/ui";
 import { getSearchStaticProps } from "@lib/search-props";
@@ -31,7 +31,9 @@ const ProfilePage: React.FC = () => {
         id: "",
     });
 
-    const { mutate } = useCreate();
+    const { mutate, mutateAsync } = useCreate();
+
+    const { mutateAsync: createPaymentSession } = useCreate<StoreCartsRes>();
 
     const ShippingOptions = () => (
         <>
@@ -93,81 +95,81 @@ const ProfilePage: React.FC = () => {
     };
 
     useEffect(() => {
-        if (currentStep === 1) {
-            const {
-                country_code,
-                company,
-                first_name,
-                last_name,
-                address_1,
-                address_2,
-                city,
-            } = getValues();
-            mutate({
-                resource: `carts/${cartId}`,
-                values: {
+        (async () => {
+            if (currentStep === 1) {
+                const {
                     country_code,
-                    email: "omer@refine.dev",
-                    billing_address: {
-                        company,
-                        first_name,
-                        last_name,
-                        address_1,
-                        address_2,
-                        city,
-                        country_code,
-                    },
-                    shipping_address: {
-                        company,
-                        first_name,
-                        last_name,
-                        address_1,
-                        address_2,
-                        city,
-                        country_code,
-                    },
-                },
-            });
+                    company,
+                    first_name,
+                    last_name,
+                    address_1,
+                    address_2,
+                    city,
+                } = getValues();
 
-            mutate({
-                resource: `carts/${cartId}/shipping-methods`,
-                values: {
-                    option_id: getValues()?.shippingMethod,
-                },
-            });
+                await mutateAsync({
+                    resource: `carts/${cartId}`,
+                    values: {
+                        country_code,
+                        email: "omer@refine.dev",
+                        billing_address: {
+                            company,
+                            first_name,
+                            last_name,
+                            address_1,
+                            address_2,
+                            city,
+                            country_code,
+                        },
+                        shipping_address: {
+                            company,
+                            first_name,
+                            last_name,
+                            address_1,
+                            address_2,
+                            city,
+                            country_code,
+                        },
+                    },
+                });
 
-            mutate(
-                {
+                await mutateAsync({
+                    resource: `carts/${cartId}/shipping-methods`,
+                    values: {
+                        option_id: getValues()?.shippingMethod,
+                    },
+                });
+
+                const paymentSession = await createPaymentSession({
                     resource: `carts/${cartId}/payment-sessions`,
                     values: {},
-                },
-                {
-                    onSuccess: ({ data: { cart } }) => {
-                        const isStripeAvailable = cart.payment_sessions?.some(
-                            (session: any) => session.provider_id === "stripe",
-                        );
-                        if (!isStripeAvailable) {
-                            return;
-                        }
+                });
 
-                        mutate(
-                            {
-                                resource: `carts/${cartId}/payment-session`,
-                                values: { provider_id: "stripe" },
-                            },
-                            {
-                                onSuccess({ data: { cart } }) {
-                                    setClientSecret(
-                                        cart.payment_session?.data
-                                            ?.client_secret as string,
-                                    );
-                                },
-                            },
-                        );
+                console.log({ paymentSession });
+
+                const isStripeAvailable =
+                    paymentSession.data.cart.payment_sessions?.some(
+                        (session) => session.provider_id === "stripe",
+                    );
+                console.log({ isStripeAvailable });
+
+                if (!isStripeAvailable) {
+                    return;
+                }
+
+                const stripePaymentSession = await createPaymentSession({
+                    resource: `carts/${cartId}/payment-session`,
+                    values: {
+                        provider_id: "stripe",
                     },
-                },
-            );
-        }
+                });
+
+                setClientSecret(
+                    stripePaymentSession?.data?.cart?.payment_session?.data
+                        .client_secret as string,
+                );
+            }
+        })();
     }, [currentStep]);
 
     return (
