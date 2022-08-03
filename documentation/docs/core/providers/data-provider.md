@@ -600,7 +600,7 @@ const SimpleRestDataProvider = (
 ```
 
 :::tip
-We are using the [`query-string`](https://www.npmjs.com/package/query-string) package for `stringify`
+We are using the [`query-string`](https://www.npmjs.com/package/query-string) package for `stringify`.
 :::
 
 #### Parameter Types
