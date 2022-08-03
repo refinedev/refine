@@ -25,6 +25,8 @@
             "@assets/*": ["src/assets/*"],
             "@interfaces/*": ["src/interfaces/*"],
             "@interfaces": ["src/interfaces"],
+            "@icons/*": ["src/components/icons/*"],
+            "@icons": ["src/components/icons"]
         },
         "incremental": true
     },
