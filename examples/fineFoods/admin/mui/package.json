@@ -4,7 +4,7 @@
     "private": true,
     "dependencies": {
         "@pankod/refine-core": "^3.56.0",
-        "@pankod/refine-mui": "^3.41.0",
+        "@pankod/refine-mui": "^3.41.1",
         "@pankod/refine-react-hook-form": "^3.31.0",
         "@pankod/refine-react-router-v6": "^3.31.0",
         "@pankod/refine-react-table": "^4.5.0",
