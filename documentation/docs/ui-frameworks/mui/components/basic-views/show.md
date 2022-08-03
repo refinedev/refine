@@ -12,6 +12,61 @@ We will show what `<Show>` does using properties with examples.
 
 ## Properties
 
+### `title`
+
+It allows adding title inside the `<Show>` component. if you don't pass title props it uses the "Show" prefix and the singular resource name by default. For example, for the "posts" resource, it will be "Show post".
+
+```tsx
+import { Show } from "@pankod/refine-mui";
+
+export const ShowPage: React.FC = () => {
+    return <Show title="Custom Title">...</Show>;
+};
+```
+
+### `resource`
+
+The `<Show>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Show>` component in a custom page, you can use the `resource` property.
+
+[Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
+
+```tsx title="src/app.tsx"
+import { Refine } from "@pankod/refine-core";
+import { Show } from "@pankod/refine-mui";
+import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+// highlight-start
+const CustomPage = () => {
+    return (
+        <Show resource="posts" recordItemId="postId">
+            ...
+        </Show>
+    );
+};
+// highlight-end
+
+export const App: React.FC = () => {
+    return (
+        <Refine
+            routerProvider={{
+                ...routerProvider,
+                // highlight-start
+                routes: [
+                    {
+                        element: <CustomPage />,
+                        path: "/custom",
+                    },
+                ],
+                // highlight-end
+            }}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev/")}
+            resources={[{ name: "posts" }]}
+        />
+    );
+};
+```
+
 ### `canDelete` and `canEdit`
 
 `canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component. If the resource has `canDelete` or `canEdit` property refine adds the buttons by default.
@@ -43,7 +98,336 @@ export const ShowPage: React.FC = () => {
 
 [Refer to the `usePermission` documentation for detailed usage. &#8594](/core/hooks/auth/usePermissions.md)
 
-### `actionButtons`
+### `recordItemId`
+
+`<Show>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL (when used on a custom page, modal or drawer).
+
+```tsx title="src/pages/posts/show.tsx"
+import { useState } from "react";
+import { useShow } from "@pankod/refine-core";
+// highlight-next-line
+import { Show, Dialog, ShowButton } from "@pankod/refine-mui";
+
+export const ShowPage: React.FC = () => {
+    const [visibleShowDialog, setVisibleShowDialog] = useState<boolean>(false);
+
+    const { queryResult, showId, setShowId } = useShow();
+    const { data, isLoading } = queryResult;
+
+    return (
+        <>
+            <ShowButton
+                size="small"
+                onClick={() => {
+                    setShowId(data?.data.id);
+                    setVisibleShowDialog(true);
+                }}
+            />
+            <Dialog
+                open={visibleShowDialog}
+                onClose={() => setVisibleShowDialog(false)}
+            >
+                // highlight-next-line
+                <Show recordItemId={showId} isLoading={isLoading}></Show>
+            </Dialog>
+        </>
+    );
+};
+```
+
+:::note
+`<Show>` component needs the `id` information for [`<RefreshButton>`](/ui-frameworks/mui/components/buttons/refresh.md) to work properly.
+:::
+
+:::caution
+The `<Show>` component needs the `id` information for work properly, so if you use the `<Show>` component in custom pages, you should pass the `recordItemId` property.
+:::
+
+### `dataProviderName`
+
+If not specified, Refine will use the default data provider. If you have multiple data providers and want to use a different one, you can use the `dataProviderName` property.
+
+```tsx
+import { Refine } from "@pankod/refine-core";
+import { Show } from "@pankod/refine-mui";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
+
+// highlight-start
+const PostShow = () => {
+    return <Show dataProviderName="other">...</Show>;
+};
+// highlight-end
+
+export const App: React.FC = () => {
+    return (
+        <Refine
+            routerProvider={routerProvider}
+            // highlight-start
+            dataProvider={{
+                default: dataProvider("https://api.fake-rest.refine.dev/"),
+                other: dataProvider("https://other-api.fake-rest.refine.dev/"),
+            }}
+            // highlight-end
+            resources={[{ name: "posts", show: PostShow }]}
+        />
+    );
+};
+```
+
+### `goBack`
+
+To customize the back button or to disable it, you can use the `goBack` property.
+
+```tsx
+import { Show } from "@pankod/refine-mui";
+import { useNavigation } from "@pankod/refine-core";
+import { MyBackButton } from "@components";
+
+export const ShowPage: React.FC = () => {
+    const { goBack } = useNavigation();
+
+    return (
+        <Show
+            /* ... */
+            goBack={<MyBackButton onClick={() => goBack()} />}
+            /* ... */
+        >
+            ...
+        </Show>
+    );
+};
+```
+
+### `isLoading`
+
+To toggle the loading state of the `<Show/>` component, you can use the `isLoading` property.
+
+```tsx
+import { Show } from "@pankod/refine-mui";
+
+export const ShowPage: React.FC = () => {
+    const [loading, setLoading] = React.useState(true);
+
+    return (
+        <Show
+            /* ... */
+            isLoading={loading}
+            /* ... */
+        >
+            ...
+        </Show>
+    );
+};
+```
+
+### `breadcrumb`
+
+To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-mui` package.
+
+[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/ui-frameworks/mui/components/breadcrumb.md)
+
+```tsx
+import { Show } from "@pankod/refine-mui";
+
+export const ShowPage: React.FC = () => {
+    return (
+        <Show
+            /* ... */
+            breadcrumb={null}
+            /* ... */
+        >
+            ...
+        </Show>
+    );
+};
+```
+
+### `wrapperProps`
+
+If you want to customize the wrapper of the `<Show/>` component, you can use the `wrapperProps` property.
+
+[Refer to the `Card` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/card/)
+
+```tsx
+import { Show } from "@pankod/refine-mui";
+
+export const ShowPage: React.FC = () => {
+    return (
+        <Show
+            /* ... */
+            wrapperProps={{
+                sx: {
+                    backgroundColor: "snow",
+                },
+            }}
+            /* ... */
+        >
+            ...
+        </Show>
+    );
+};
+```
+
+### `headerProps`
+
+If you want to customize the header of the `<Show/>` component, you can use the `headerProps` property.
+
+[Refer to the `CardHeader` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/card-header/)
+
+```tsx
+import { Show } from "@pankod/refine-mui";
+
+export const ShowPage: React.FC = () => {
+    return (
+        <Show
+            /* ... */
+            headerProps={{
+                sx: {
+                    backgroundColor: "snow",
+                },
+            }}
+            /* ... */
+        >
+            ...
+        </Show>
+    );
+};
+```
+
+### `contentProps`
+
+If you want to customize the content of the `<Show/>` component, you can use the `contentProps` property.
+
+[Refer to the `CardContent` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/card-content/)
+
+```tsx
+import { Show } from "@pankod/refine-mui";
+
+export const ShowPage: React.FC = () => {
+    return (
+        <Show
+            /* ... */
+            contentProps={{
+                sx: {
+                    backgroundColor: "snow",
+                },
+            }}
+            /* ... */
+        >
+            ...
+        </Show>
+    );
+};
+```
+
+### `headerButtons`
+
+You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+
+```tsx
+import { Show, Button } from "@pankod/refine-mui";
+
+export const ShowPage: React.FC = () => {
+    return (
+        <Show
+            /* ... */
+            headerButtons={({ defaultButtons }) => (
+                <>
+                    {defaultButtons}
+                    <Button type="primary">Custom Button</Button>
+                </>
+            )}
+            /* ... */
+        >
+            ...
+        </Show>
+    );
+};
+```
+
+### `headerButtonProps`
+
+You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
+
+[Refer to the `Box` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/box/)
+
+```tsx
+import { Show } from "@pankod/refine-mui";
+
+export const ShowPage: React.FC = () => {
+    return (
+        <Show
+            /* ... */
+            headerButtonProps={{
+                sx: {
+                    backgroundColor: "snow",
+                },
+            }}
+            /* ... */
+        >
+            ...
+        </Show>
+    );
+};
+```
+
+### `footerButtons`
+
+You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
+
+```tsx
+import { Show, Button } from "@pankod/refine-mui";
+
+export const ShowPage: React.FC = () => {
+    return (
+        <Show
+            /* ... */
+            footerButtons={({ defaultButtons }) => (
+                <>
+                    {defaultButtons}
+                    <Button type="primary">Custom Button</Button>
+                </>
+            )}
+            /* ... */
+        >
+            ...
+        </Show>
+    );
+};
+```
+
+### `footerButtonProps`
+
+You can customize the wrapper element of the buttons at the footer by using the `footerButtonProps` property.
+
+[Refer to the `CardActions` documentation from Material UI for detailed usage. &#8594](https://mui.com/material-ui/api/card-actions/)
+
+```tsx
+import { Show } from "@pankod/refine-mui";
+
+export const ShowPage: React.FC = () => {
+    return (
+        <Show
+            /* ... */
+            footerButtonProps={{
+                sx: {
+                    backgroundColor: "snow",
+                },
+            }}
+            /* ... */
+        >
+            ...
+        </Show>
+    );
+};
+```
+
+### ~~`actionButtons`~~
+
+:::caution Deprecated
+Use `headerButtons` or `footerButtons` instead.
+:::
 
 `<Show>` uses the Material UI [`<CardActions>`](https://mui.com/material-ui/api/card-actions/#main-content) component. By default,The children of the [`<CardActions>`](https://mui.com/material-ui/api/card-actions/#main-content) component shows nothing in the `<Show>` component.
 
@@ -79,11 +463,19 @@ export const ShowPage: React.FC = () => {
 </div>
 <br/>
 
-### `cardProps`
+### ~~`cardProps`~~
+
+:::caution Deprecated
+Use `wrapperProps` instead.
+:::
 
 `<Show>` uses the Material UI [`<Card>`](https://mui.com/material-ui/react-card/#main-content) components so you can customize with the props of `cardProps`.
 
-### `cardHeaderProps`
+### ~~`cardHeaderProps`~~
+
+:::caution Deprecated
+Use `headerProps` instead.
+:::
 
 `<Show>` uses the Material UI [`<CardHeader>`](https://mui.com/material-ui/api/card-header/) components so you can customize with the props of `cardHeaderProps`.
 
@@ -132,115 +524,46 @@ interface IPost {
 </div>
 <br/>
 
-### `cardContentProps`
+### ~~`cardContentProps`~~
+
+:::caution Deprecated
+Use `contentProps` instead.
+:::
 
 `<Show>` uses the Material UI [`<CardContent>`](https://mui.com/material-ui/api/card-content/) components so you can customize with the props of `cardContentProps`.
 
-### `cardActionsProps`
+### ~~`cardActionsProps`~~
+
+:::caution Deprecated
+Use `headerButtonProps` and `footerButtonProps` instead.
+:::
 
 `<Show>` uses the Material UI [`<CardActions>`](https://mui.com/material-ui/api/card-actions/) components so you can customize with the props of `cardActionsProps`.
-
-### `recordItemId`
-
-`<Show>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL (when used on a custom page, modal or drawer).
-
-```tsx title="src/pages/posts/show.tsx"
-import { useState } from "react";
-import { useShow } from "@pankod/refine-core";
-// highlight-next-line
-import { Show, Dialog, ShowButton } from "@pankod/refine-mui";
-
-export const ShowPage: React.FC = () => {
-    const [visibleShowDialog, setVisibleShowDialog] = useState<boolean>(false);
-
-    const { queryResult, showId, setShowId } = useShow();
-    const { data, isLoading } = queryResult;
-
-    return (
-        <>
-            <ShowButton
-                size="small"
-                onClick={() => {
-                    setShowId(data?.data.id);
-                    setVisibleShowDialog(true);
-                }}
-            />
-            <Dialog
-                open={visibleShowDialog}
-                onClose={() => setVisibleShowDialog(false)}
-            >
-                // highlight-next-line
-                <Show recordItemId={showId} isLoading={isLoading}></Show>
-            </Dialog>
-        </>
-    );
-};
-```
-
-:::note
-`<Show>` component needs the `id` information for [`<RefreshButton>`](/ui-frameworks/mui/components/buttons/refresh.md) to work properly.
-:::
-
-### `resource`
-
-The `<Show>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Show>` component in a custom page, you can use the `resource` property.
-
-[Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
-
-```tsx title="src/app.tsx"
-import { Refine } from "@pankod/refine-core";
-import { Show } from "@pankod/refine-mui";
-import dataProvider from "@pankod/refine-simple-rest";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-// highlight-start
-const CustomPage = () => {
-    return (
-        <Show resource="posts" recordItemId="postId">
-            ...
-        </Show>
-    );
-};
-// highlight-end
-
-export const App: React.FC = () => {
-    return (
-        <Refine
-            routerProvider={{
-                ...routerProvider,
-                // highlight-start
-                routes: [
-                    {
-                        element: <CustomPage />,
-                        path: "/custom",
-                    },
-                ],
-                // highlight-end
-            }}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev/")}
-            resources={[{ name: "posts" }]}
-        />
-    );
-};
-```
-
-:::caution
-The `<Show>` component needs the `id` information for work properly, so if you use the `<Show>` component in custom pages, you should pass the `recordItemId` property.
-:::
 
 ## API Reference
 
 ### Properties
 
-| Property         | Description                             | Type                                                                      | Default                                                                        |
-| ---------------- | --------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| canDelete        | Adds a `<DeleteButton>`                 | `boolean`                                                                 | If the resource has `canDelete` prop it is `true` else `false`                 |
-| canEdit          | Adds an `<EditButton>`                  | `boolean`                                                                 | If the resource has `canEdit` prop it is `true` else `false`                   |
-| actionButtons    | Passes the props for `<CardActions>`    | `React.ReactNode`                                                         | `<SaveButton>` and depending on your resource configuration (`canDelete` prop) |
-| cardProps        | Passes the props for `<Card>`           | [`CardProps`](https://mui.com/material-ui/api/card/#props)                | `<SaveButton>` and depending on your resource configuration (`canDelete` prop) |
-| cardHeaderProps  | Passes the props for `<CardHeader>`     | [`CardHeaderProps`](https://mui.com/material-ui/api/card-header/#props)   |                                                                                |
-| cardContentProps | Passes the props for `<CardContent>`    | [`CardContentProps`](https://mui.com/material-ui/api/card-content/#props) |                                                                                |
-| cardActionsProps | Passes the props for `<CardActions>`    | [`CardActionsProps`](https://mui.com/material-ui/api/card-actions/#props) |                                                                                |
-| recordItemId     | The record id for `<RefreshButton>`     | [`BaseKey`](/core/interfaces.md#basekey)                                  |                                                                                |
-| resource         | Resource name for API data interactions | `string`                                                                  | Resource name that it reads from the URL.                                      |
-| isLoading        | Passes the props for `<RefreshButton>`  | `boolean`                                                                 | false                                                                          |
+| Property                                                                                                      | Description                                                       | Type                                                                            | Default                                                                        |
+| ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| title                                                                                                         | Adds title                                                        | `React.ReactNode`                                                               | `"Show"` prefix and singular of `resource.name`                                |
+| resource                                                                                                      | Resource name for API data interactions                           | `string`                                                                        | Resource name that it reads from the URL.                                      |
+| canDelete                                                                                                     | Adds a `<DeleteButton>`                                           | `boolean`                                                                       | If the resource has `canDelete` prop it is `true` else `false`                 |
+| canEdit                                                                                                       | Adds an `<EditButton>`                                            | `boolean`                                                                       | If the resource has `canEdit` prop it is `true` else `false`                   |
+| recordItemId                                                                                                  | The record id for `<RefreshButton>`                               | [`BaseKey`](/core/interfaces.md#basekey)                                        |                                                                                |
+| dataProviderName                                                                                              | To specify a data provider other than `default` use this property | `string`                                                                        |                                                                                |
+| goBack                                                                                                        | Custom back button element                                        | `React.ReactNode`                                                               | `<ArrowBackIcon />`                                                            |
+| isLoading                                                                                                     | Passes the props for `<RefreshButton>`                            | `boolean`                                                                       | false                                                                          |
+| breadcrumb                                                                                                    | Custom breadcrumb element                                         | `React.ReactNode`                                                               | `<Breadcrumb/>`                                                                |
+| wrapperProps                                                                                                  | Wrapper element props                                             | [`CardProps`](https://mui.com/material-ui/api/card/#props)                      |                                                                                |
+| headerProps                                                                                                   | Header element props                                              | [`CardHeaderProps`](https://mui.com/material-ui/api/card-header/#props)         |                                                                                |
+| contentProps                                                                                                  | Content wrapper element props                                     | [`CardContentProps`](https://mui.com/material-ui/api/card-content/#props)       |                                                                                |
+| headerButtons                                                                                                 | Header buttons element or render function                         | `({ defaultButtons: React.ReactNode }) => React.ReactNode` \| `React.ReactNode` |                                                                                |
+| headerButtonProps                                                                                             | Header buttons wrapper element props                              | [`BoxProps`](https://mui.com/material-ui/api/box/#props)                        |                                                                                |
+| footerButtons                                                                                                 | Footer buttons element or render function                         | `({ defaultButtons: React.ReactNode }) => React.ReactNode` \| `React.ReactNode` |                                                                                |
+| footerButtonProps                                                                                             | Footer buttons wrapper element props                              | [`CardActionsProps`](https://mui.com/material-ui/api/card-actions/#props)       |                                                                                |
+| <div className="required-block"><div>actionButtons</div> <div className=" required">deprecated</div></div>    | Passes the props for `<CardActions>`                              | `React.ReactNode`                                                               | `<SaveButton>` and depending on your resource configuration (`canDelete` prop) |
+| <div className="required-block"><div>cardProps</div> <div className=" required">deprecated</div></div>        | Passes the props for `<Card>`                                     | [`CardProps`](https://mui.com/material-ui/api/card/#props)                      | `<SaveButton>` and depending on your resource configuration (`canDelete` prop) |
+| <div className="required-block"><div>cardHeaderProps</div> <div className=" required">deprecated</div></div>  | Passes the props for `<CardHeader>`                               | [`CardHeaderProps`](https://mui.com/material-ui/api/card-header/#props)         |                                                                                |
+| <div className="required-block"><div>cardContentProps</div> <div className=" required">deprecated</div></div> | Passes the props for `<CardContent>`                              | [`CardContentProps`](https://mui.com/material-ui/api/card-content/#props)       |                                                                                |
+| <div className="required-block"><div>cardActionsProps</div> <div className=" required">deprecated</div></div> | Passes the props for `<CardActions>`                              | [`CardActionsProps`](https://mui.com/material-ui/api/card-actions/#props)       |                                                                                |
