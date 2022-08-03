@@ -8,11 +8,11 @@ export interface RatingProps {
 }
 
 const Quantity: FC<RatingProps> = ({ value = 5 }) => (
-    <div className="flex flex-row py-6 text-accent-9">
+    <div className="text-accent-9 flex flex-row py-6">
         {rangeMap(5, (i) => (
             <span
                 key={`star_${i}`}
-                className={cn("inline-block ml-1 ", {
+                className={cn("ml-1 inline-block ", {
                     "text-accent-5": i >= Math.floor(value),
                 })}
             >

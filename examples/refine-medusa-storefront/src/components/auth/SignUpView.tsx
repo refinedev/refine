@@ -47,7 +47,7 @@ const SignUpView: FC = () => {
 
     return (
         <form
-            className="w-80 flex flex-col justify-between p-3"
+            className="flex w-80 flex-col justify-between p-3"
             onSubmit={handleSubmit(onFinish)}
         >
             <div className="flex justify-center pb-12 ">
@@ -55,7 +55,7 @@ const SignUpView: FC = () => {
             </div>
             <div className="flex flex-col space-y-4">
                 {Object.keys(errors).length > 0 && (
-                    <div className="text-red border border-red p-3">
+                    <div className="text-red border-red border p-3">
                         <ul>
                             {Object.keys(errors).map((key: any) => (
                                 <li key={key}>
@@ -131,12 +131,12 @@ const SignUpView: FC = () => {
                     <span className="inline-block align-middle ">
                         <Info width="15" height="15" />
                     </span>{" "}
-                    <span className="leading-6 text-sm">
+                    <span className="text-sm leading-6">
                         <strong>Info</strong>: Passwords must be longer than 7
                         chars and include numbers.{" "}
                     </span>
                 </span>
-                <div className="pt-2 w-full flex flex-col">
+                <div className="flex w-full flex-col pt-2">
                     <Button variant="slim" type="submit" loading={formLoading}>
                         Sign Up
                     </Button>
@@ -148,7 +148,7 @@ const SignUpView: FC = () => {
                     </span>
                     {` `}
                     <a
-                        className="text-accent-9 font-bold hover:underline cursor-pointer"
+                        className="text-accent-9 cursor-pointer font-bold hover:underline"
                         onClick={() => setModalView("LOGIN_VIEW")}
                     >
                         Log In

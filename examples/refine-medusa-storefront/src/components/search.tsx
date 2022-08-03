@@ -36,14 +36,14 @@ export default function Search({ products }: { products?: MedusaProduct[] }) {
 
     return (
         <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mt-3 mb-20">
-                <div className="col-span-8 lg:col-span-2 order-1 lg:order-none">
+            <div className="mt-3 mb-20 grid grid-cols-1 gap-4 lg:grid-cols-12">
+                <div className="order-1 col-span-8 lg:order-none lg:col-span-2">
                     <div className="relative inline-block w-full">
                         <div className="lg:hidden">
                             <span className="rounded-md shadow-sm">
                                 <button
                                     type="button"
-                                    className="flex justify-between w-full rounded-sm border border-accent-3 px-4 py-3 bg-accent-0 text-sm leading-5 font-medium text-accent-4 hover:text-accent-5 focus:outline-none focus:border-blue-300 focus:shadow-outline-normal active:bg-accent-1 active:text-accent-8 transition ease-in-out duration-150"
+                                    className="border-accent-3 bg-accent-0 text-accent-4 hover:text-accent-5 focus:shadow-outline-normal active:bg-accent-1 active:text-accent-8 flex w-full justify-between rounded-sm border px-4 py-3 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:border-blue-300 focus:outline-none"
                                     id="options-menu"
                                     aria-haspopup="true"
                                     aria-expanded="true"
@@ -67,9 +67,9 @@ export default function Search({ products }: { products?: MedusaProduct[] }) {
                             </span>
                         </div>
                         <div
-                            className={`origin-top-left absolute lg:relative left-0 mt-2 w-full rounded-md shadow-lg lg:shadow-none z-10 mb-10 lg:block`}
+                            className={`absolute left-0 z-10 mt-2 mb-10 w-full origin-top-left rounded-md shadow-lg lg:relative lg:block lg:shadow-none`}
                         >
-                            <div className="rounded-sm bg-accent-0 shadow-xs lg:bg-none lg:shadow-none">
+                            <div className="bg-accent-0 shadow-xs rounded-sm lg:bg-none lg:shadow-none">
                                 <div
                                     role="menu"
                                     aria-orientation="vertical"
@@ -78,7 +78,7 @@ export default function Search({ products }: { products?: MedusaProduct[] }) {
                                     <ul>
                                         <li
                                             className={cn(
-                                                "block text-sm leading-5 text-accent-4 lg:text-base lg:no-underline lg:font-bold lg:tracking-wide hover:bg-accent-1 lg:hover:bg-transparent hover:text-accent-8 focus:outline-none focus:bg-accent-1 focus:text-accent-8",
+                                                "text-accent-4 hover:bg-accent-1 hover:text-accent-8 focus:bg-accent-1 focus:text-accent-8 block text-sm leading-5 focus:outline-none lg:text-base lg:font-bold lg:tracking-wide lg:no-underline lg:hover:bg-transparent",
                                                 // {
                                                 //     underline:
                                                 //         !activeCategory?.name,
@@ -88,7 +88,7 @@ export default function Search({ products }: { products?: MedusaProduct[] }) {
                                             <Link
                                                 href="/search"
                                                 className={
-                                                    "block lg:inline-block px-4 py-2 lg:p-0 lg:my-2 lg:mx-4"
+                                                    "block px-4 py-2 lg:my-2 lg:mx-4 lg:inline-block lg:p-0"
                                                 }
                                             >
                                                 All Categories
@@ -98,7 +98,7 @@ export default function Search({ products }: { products?: MedusaProduct[] }) {
                                             <li
                                                 key={cat.handle}
                                                 className={cn(
-                                                    "block text-sm leading-5 text-accent-4 hover:bg-accent-1 lg:hover:bg-transparent hover:text-accent-8 focus:outline-none focus:bg-accent-1 focus:text-accent-8",
+                                                    "text-accent-4 hover:bg-accent-1 hover:text-accent-8 focus:bg-accent-1 focus:text-accent-8 block text-sm leading-5 focus:outline-none lg:hover:bg-transparent",
                                                     {
                                                         underline:
                                                             activeCategory?.id ===
@@ -109,7 +109,7 @@ export default function Search({ products }: { products?: MedusaProduct[] }) {
                                                 <Link
                                                     href={`/search/${cat.handle}`}
                                                     className={
-                                                        "block lg:inline-block px-4 py-2 lg:p-0 lg:my-2 lg:mx-4"
+                                                        "block px-4 py-2 lg:my-2 lg:mx-4 lg:inline-block lg:p-0"
                                                     }
                                                 >
                                                     {cat.title}
@@ -123,9 +123,9 @@ export default function Search({ products }: { products?: MedusaProduct[] }) {
                     </div>
                 </div>
                 {/* Products */}
-                <div className="col-span-8 order-3 lg:order-none">
+                <div className="order-3 col-span-8 lg:order-none">
                     {q && ( //|| activeCategory || activeBrand
-                        <div className="mb-12 transition ease-in duration-75">
+                        <div className="mb-12 transition duration-75 ease-in">
                             {products ? (
                                 <>
                                     <span
@@ -188,7 +188,7 @@ export default function Search({ products }: { products?: MedusaProduct[] }) {
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                             {rangeMap(12, (i) => (
                                 <Skeleton key={i}>
-                                    <div className="w-60 h-60" />
+                                    <div className="h-60 w-60" />
                                 </Skeleton>
                             ))}
                         </div>

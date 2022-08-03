@@ -44,40 +44,40 @@ const CartSidebarView: FC = () => {
             handleClose={handleClose}
         >
             {isEmpty ? (
-                <div className="flex-1 px-4 flex flex-col justify-center items-center">
-                    <span className="border border-dashed border-primary rounded-full flex items-center justify-center w-16 h-16 p-12 bg-secondary text-secondary">
+                <div className="flex flex-1 flex-col items-center justify-center px-4">
+                    <span className="border-primary bg-secondary text-secondary flex h-16 w-16 items-center justify-center rounded-full border border-dashed p-12">
                         <Bag className="absolute" />
                     </span>
-                    <h2 className="pt-6 text-2xl font-bold tracking-wide text-center">
+                    <h2 className="pt-6 text-center text-2xl font-bold tracking-wide">
                         Your cart is empty
                     </h2>
-                    <p className="text-accent-3 px-10 text-center pt-2">
+                    <p className="text-accent-3 px-10 pt-2 text-center">
                         Biscuit oat cake wafer icing ice cream tiramisu pudding
                         cupcake.
                     </p>
                 </div>
             ) : error ? (
-                <div className="flex-1 px-4 flex flex-col justify-center items-center">
-                    <span className="border border-white rounded-full flex items-center justify-center w-16 h-16">
+                <div className="flex flex-1 flex-col items-center justify-center px-4">
+                    <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white">
                         <Cross width={24} height={24} />
                     </span>
-                    <h2 className="pt-6 text-xl font-light text-center">
+                    <h2 className="pt-6 text-center text-xl font-light">
                         We couldn’t process the purchase. Please check your card
                         information and try again.
                     </h2>
                 </div>
             ) : success ? (
-                <div className="flex-1 px-4 flex flex-col justify-center items-center">
-                    <span className="border border-white rounded-full flex items-center justify-center w-16 h-16">
+                <div className="flex flex-1 flex-col items-center justify-center px-4">
+                    <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white">
                         <Check />
                     </span>
-                    <h2 className="pt-6 text-xl font-light text-center">
+                    <h2 className="pt-6 text-center text-xl font-light">
                         Thank you for your order.
                     </h2>
                 </div>
             ) : (
                 <>
-                    <div className="px-4 sm:px-6 flex-1">
+                    <div className="flex-1 px-4 sm:px-6">
                         <Link href="/cart">
                             <Text
                                 variant="sectionHeading"
@@ -97,7 +97,7 @@ const CartSidebarView: FC = () => {
                         </ul>
                     </div>
 
-                    <div className="flex-shrink-0 px-6 py-6 sm:px-6 sticky z-20 bottom-0 w-full right-0 left-0 bg-accent-0 border-t text-sm">
+                    <div className="bg-accent-0 sticky bottom-0 right-0 left-0 z-20 w-full flex-shrink-0 border-t px-6 py-6 text-sm sm:px-6">
                         <ul className="pb-2">
                             <li className="flex justify-between py-1">
                                 <span>Subtotal</span>
@@ -117,7 +117,7 @@ const CartSidebarView: FC = () => {
                                 </span>
                             </li>
                         </ul>
-                        <div className="flex justify-between border-t border-accent-2 py-3 font-bold mb-2">
+                        <div className="border-accent-2 mb-2 flex justify-between border-t py-3 font-bold">
                             <span>Total</span>
                             <span>
                                 {currencyCode}

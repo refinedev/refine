@@ -18,8 +18,8 @@ const ShippingOptionWidget: FC<PropsWithChildren<ComponentProps>> = ({
     return (
         <div onClick={onClick} className={s.root}>
             <div className="flex flex-1 items-center">
-                <CreditCard className="w-5 flex" />
-                <span className="ml-5 text-sm text-center font-medium">
+                <CreditCard className="flex w-5" />
+                <span className="ml-5 text-center text-sm font-medium">
                     {children}
                 </span>
                 {/* <span>VISA #### #### #### 2345</span> */}

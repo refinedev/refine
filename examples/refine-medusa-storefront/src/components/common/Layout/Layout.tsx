@@ -21,7 +21,7 @@ import { MenuSidebarView } from "@components/common/UserNav";
 // import type { Category } from "@commerce/types/site";
 
 const Loading = () => (
-    <div className="w-80 h-80 flex items-center text-center justify-center p-3">
+    <div className="flex h-80 w-80 items-center justify-center p-3 text-center">
         <LoadingDots />
     </div>
 );

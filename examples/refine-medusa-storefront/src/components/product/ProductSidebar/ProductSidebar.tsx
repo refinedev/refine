@@ -37,12 +37,12 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
                 setSelectedOptions={setSelectedOptions}
             />
             <Text
-                className="pb-4 break-words w-full max-w-xl"
+                className="w-full max-w-xl break-words pb-4"
                 html={product.description || ""}
             />
-            <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row items-center justify-between">
                 <Rating value={4} />
-                <div className="text-accent-6 pr-1 font-medium text-sm">
+                <div className="text-accent-6 pr-1 text-sm font-medium">
                     36 reviews
                 </div>
             </div>

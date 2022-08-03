@@ -76,7 +76,7 @@ export default function CustomerMenuContent() {
             </DropdownMenuItem>
             <DropdownMenuItem>
                 <a
-                    className={cn(s.link, "border-t border-accent-2 mt-4")}
+                    className={cn(s.link, "border-accent-2 mt-4 border-t")}
                     onClick={() =>
                         logout({
                             redirectPath: "/",

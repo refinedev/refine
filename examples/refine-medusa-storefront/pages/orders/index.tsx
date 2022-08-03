@@ -12,14 +12,14 @@ const OrdersPage: React.FC = () => {
         <LayoutWrapper>
             <Container className="pt-4">
                 <Text variant="pageHeading">My Orders</Text>
-                <div className="flex-1 p-24 flex flex-col justify-center items-center ">
-                    <span className="border border-dashed border-secondary rounded-full flex items-center justify-center w-16 h-16 p-12 bg-primary text-primary">
+                <div className="flex flex-1 flex-col items-center justify-center p-24 ">
+                    <span className="border-secondary bg-primary text-primary flex h-16 w-16 items-center justify-center rounded-full border border-dashed p-12">
                         <Bag className="absolute" />
                     </span>
-                    <h2 className="pt-6 text-2xl font-bold tracking-wide text-center">
+                    <h2 className="pt-6 text-center text-2xl font-bold tracking-wide">
                         No orders found
                     </h2>
-                    <p className="text-accent-6 px-10 text-center pt-2">
+                    <p className="text-accent-6 px-10 pt-2 text-center">
                         Biscuit oat cake wafer icing ice cream tiramisu pudding
                         cupcake.
                     </p>

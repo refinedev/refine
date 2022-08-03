@@ -38,20 +38,20 @@ const ForgotPassword: FC = () => {
     return (
         <form
             onSubmit={handleResetPassword}
-            className="w-80 flex flex-col justify-between p-3"
+            className="flex w-80 flex-col justify-between p-3"
         >
             <div className="flex justify-center pb-12 ">
                 <Logo width="64px" height="64px" />
             </div>
             <div className="flex flex-col space-y-4">
                 {message && (
-                    <div className="text-red border border-red p-3">
+                    <div className="text-red border-red border p-3">
                         {message}
                     </div>
                 )}
 
                 <Input placeholder="Email" onChange={setEmail} type="email" />
-                <div className="pt-2 w-full flex flex-col">
+                <div className="flex w-full flex-col pt-2">
                     <Button
                         variant="slim"
                         type="submit"
@@ -68,7 +68,7 @@ const ForgotPassword: FC = () => {
                     </span>
                     {` `}
                     <a
-                        className="text-accent-9 font-bold hover:underline cursor-pointer"
+                        className="text-accent-9 cursor-pointer font-bold hover:underline"
                         onClick={() => setModalView("LOGIN_VIEW")}
                     >
                         Log In

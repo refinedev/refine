@@ -48,14 +48,14 @@ const LoginView: React.FC = () => {
     return (
         <form
             onSubmit={handleSubmit(handleLogin)}
-            className="w-80 flex flex-col justify-between p-3"
+            className="flex w-80 flex-col justify-between p-3"
         >
             <div className="flex justify-center pb-12 ">
                 <Logo width="64px" height="64px" />
             </div>
             <div className="flex flex-col space-y-3">
                 {Object.keys(errors).length > 0 && (
-                    <div className="text-red border border-red p-3">
+                    <div className="text-red border-red border p-3">
                         <ul>
                             {Object.keys(errors).map((key: any) => (
                                 <li key={key}>
@@ -110,7 +110,7 @@ const LoginView: React.FC = () => {
                         Don't have an account?
                     </span> */}
                     <a
-                        className="text-accent-9 font-bold hover:underline cursor-pointer"
+                        className="text-accent-9 cursor-pointer font-bold hover:underline"
                         onClick={() => setModalView("SIGNUP_VIEW")}
                     >
                         Sign Up

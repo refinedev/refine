@@ -13,9 +13,9 @@ const ProfilePage: React.FC = () => {
                 <Text variant="pageHeading">My Profile</Text>
                 <div className="grid grid-cols-4">
                     {data && (
-                        <div className="flex flex-col divide-accent-2 divide-y">
+                        <div className="divide-accent-2 flex flex-col divide-y">
                             <div className="flex flex-row items-center space-x-4 py-4">
-                                <span className="text-lg font-medium text-accent-600 flex-1">
+                                <span className="text-accent-600 flex-1 text-lg font-medium">
                                     Full Name
                                 </span>
                                 <span>
@@ -23,7 +23,7 @@ const ProfilePage: React.FC = () => {
                                 </span>
                             </div>
                             <div className="flex flex-row items-center space-x-4 py-4">
-                                <span className="text-lg font-medium text-accent-600 flex-1">
+                                <span className="text-accent-600 flex-1 text-lg font-medium">
                                     Email
                                 </span>
                                 <span>{data.email}</span>

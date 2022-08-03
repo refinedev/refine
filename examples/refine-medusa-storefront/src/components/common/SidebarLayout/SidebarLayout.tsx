@@ -22,10 +22,10 @@ const SidebarLayout: FC<PropsWithChildren<ComponentProps>> = ({
                     <button
                         onClick={handleClose}
                         aria-label="Close"
-                        className="hover:text-accent-5 transition ease-in-out duration-150 flex items-center focus:outline-none mr-6"
+                        className="hover:text-accent-5 mr-6 flex items-center transition duration-150 ease-in-out focus:outline-none"
                     >
-                        <Cross className="h-6 w-6 hover:text-accent-3" />
-                        <span className="ml-2 text-accent-7 text-sm ">
+                        <Cross className="hover:text-accent-3 h-6 w-6" />
+                        <span className="text-accent-7 ml-2 text-sm ">
                             Close
                         </span>
                     </button>
@@ -34,10 +34,10 @@ const SidebarLayout: FC<PropsWithChildren<ComponentProps>> = ({
                     <button
                         onClick={handleBack}
                         aria-label="Go back"
-                        className="hover:text-accent-5 transition ease-in-out duration-150 flex items-center focus:outline-none"
+                        className="hover:text-accent-5 flex items-center transition duration-150 ease-in-out focus:outline-none"
                     >
-                        <ChevronLeft className="h-6 w-6 hover:text-accent-3" />
-                        <span className="ml-2 text-accent-7 text-xs">Back</span>
+                        <ChevronLeft className="hover:text-accent-3 h-6 w-6" />
+                        <span className="text-accent-7 ml-2 text-xs">Back</span>
                     </button>
                 )}
 

@@ -14,8 +14,8 @@ const ShippingWidget: FC<ComponentProps> = ({ onClick, isValid }) => {
     return (
         <div onClick={onClick} className={s.root}>
             <div className="flex flex-1 items-center">
-                <MapPin className="w-5 flex" />
-                <span className="ml-5 text-sm text-center font-medium">
+                <MapPin className="flex w-5" />
+                <span className="ml-5 text-center text-sm font-medium">
                     Add Shipping Address
                 </span>
                 {/* <span>

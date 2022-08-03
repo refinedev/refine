@@ -105,12 +105,12 @@ const CartItem = ({
     return (
         <li
             className={cn(s.root, {
-                "opacity-50 pointer-events-none": removing,
+                "pointer-events-none opacity-50": removing,
             })}
             {...rest}
         >
             <div className="flex flex-row space-x-4 py-4">
-                <div className="w-16 h-16 bg-violet relative overflow-hidden cursor-pointer z-0">
+                <div className="bg-violet relative z-0 h-16 w-16 cursor-pointer overflow-hidden">
                     <Link href={`/product/${item.path}`}>
                         <Image
                             onClick={() => closeSidebarIfPresent()}
@@ -125,7 +125,7 @@ const CartItem = ({
                         />
                     </Link>
                 </div>
-                <div className="flex-1 flex flex-col text-base">
+                <div className="flex flex-1 flex-col text-base">
                     <Link href={`/product/${item.path}`}>
                         <span
                             className={s.productName}
@@ -139,18 +139,18 @@ const CartItem = ({
                             {options.map((option: ItemOption, i: number) => (
                                 <div
                                     key={`${item.id}-${option.name}`}
-                                    className="text-sm font-semibold text-accent-7 inline-flex items-center justify-center"
+                                    className="text-accent-7 inline-flex items-center justify-center text-sm font-semibold"
                                 >
                                     {option.name}
                                     {option.name === "Color" ? (
                                         <span
-                                            className="mx-2 rounded-full bg-transparent border w-5 h-5 p-1 text-accent-9 inline-flex items-center justify-center overflow-hidden"
+                                            className="text-accent-9 mx-2 inline-flex h-5 w-5 items-center justify-center overflow-hidden rounded-full border bg-transparent p-1"
                                             style={{
                                                 backgroundColor: `${option.value}`,
                                             }}
                                         ></span>
                                     ) : (
-                                        <span className="mx-2 rounded-full bg-transparent border h-5 p-1 text-accent-9 inline-flex items-center justify-center overflow-hidden">
+                                        <span className="text-accent-9 mx-2 inline-flex h-5 items-center justify-center overflow-hidden rounded-full border bg-transparent p-1">
                                             {option.value}
                                         </span>
                                     )}

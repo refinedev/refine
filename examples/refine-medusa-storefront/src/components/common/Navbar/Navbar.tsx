@@ -19,9 +19,9 @@ interface NavbarProps {
 const Navbar: FC<NavbarProps> = ({ links }) => {
     return (
         <NavbarRoot>
-            <Container clean className="mx-auto max-w-8xl px-6">
+            <Container clean className="max-w-8xl mx-auto px-6">
                 <div className={s.nav}>
-                    <div className="flex items-center flex-1">
+                    <div className="flex flex-1 items-center">
                         <Link href="/" className={s.logo}>
                             <Logo />
                         </Link>
@@ -40,14 +40,14 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
                             ))}
                         </nav>
                     </div>
-                    <div className="justify-center flex-1 hidden lg:flex">
+                    <div className="hidden flex-1 justify-center lg:flex">
                         <Searchbar />
                     </div>
-                    <div className="flex items-center justify-end flex-1 space-x-8">
+                    <div className="flex flex-1 items-center justify-end space-x-8">
                         <UserNav />
                     </div>
                 </div>
-                <div className="flex pb-4 lg:px-6 lg:hidden">
+                <div className="flex pb-4 lg:hidden lg:px-6">
                     <Searchbar id="mobile-search" />
                 </div>
             </Container>

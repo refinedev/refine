@@ -20,7 +20,7 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
 
     return (
         <>
-            <Container className="max-w-none w-full" clean>
+            <Container className="w-full max-w-none" clean>
                 <div className={cn(s.root, "fit")}>
                     <div className={cn(s.main, "fit")}>
                         <ProductTag
@@ -58,8 +58,8 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
                         className={s.sidebar}
                     />
                 </div>
-                <hr className="mt-7 border-accent-2" />
-                <section className="py-12 px-6 mb-10">
+                <hr className="border-accent-2 mt-7" />
+                <section className="mb-10 py-12 px-6">
                     <Text variant="sectionHeading">Related Products</Text>
                     <div className={s.relatedProductsGrid}>
                         {relatedProducts
@@ -67,7 +67,7 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
                             .map((p) => (
                                 <div
                                     key={p.id}
-                                    className="animated fadeIn bg-accent-0 border border-accent-2"
+                                    className="animated fadeIn bg-accent-0 border-accent-2 border"
                                 >
                                     <ProductCard
                                         noNameTag

@@ -81,7 +81,7 @@ const PaymentMethodView: FC<{ clientSecret?: string }> = ({ clientSecret }) => {
 
     return (
         <form className="h-full" onSubmit={() => undefined}>
-            <div className="px-4 sm:px-6 flex-1">
+            <div className="flex-1 px-4 sm:px-6">
                 <Text variant="sectionHeading"> Payment Method</Text>
 
                 <div>

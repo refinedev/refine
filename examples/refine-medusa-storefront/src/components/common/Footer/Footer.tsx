@@ -28,14 +28,14 @@ const Footer: FC<Props> = ({ className, pages }) => {
     return (
         <footer className={rootClassName}>
             <Container>
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 border-b border-accent-2 py-12 text-primary bg-primary transition-colors duration-150">
+                <div className="border-accent-2 text-primary bg-primary grid grid-cols-1 gap-8 border-b py-12 transition-colors duration-150 lg:grid-cols-12">
                     <div className="col-span-1 lg:col-span-2">
                         <Link
                             href="/"
                             className="flex flex-initial items-center font-bold md:mr-24"
                         >
                             <>
-                                <span className="rounded-full border border-accent-6 mr-2">
+                                <span className="border-accent-6 mr-2 rounded-full border">
                                     <Logo />
                                 </span>
                                 <span>ACME</span>
@@ -43,7 +43,7 @@ const Footer: FC<Props> = ({ className, pages }) => {
                         </Link>
                     </div>
                     <div className="col-span-1 lg:col-span-8">
-                        <div className="grid md:grid-rows-4 md:grid-cols-3 md:grid-flow-col">
+                        <div className="grid md:grid-flow-col md:grid-cols-3 md:grid-rows-4">
                             {[...links].map((page) => (
                                 <span
                                     key={page.url}
@@ -51,7 +51,7 @@ const Footer: FC<Props> = ({ className, pages }) => {
                                 >
                                     <Link
                                         href={page.url ?? ""}
-                                        className="text-accent-9 hover:text-accent-6 transition ease-in-out duration-150"
+                                        className="text-accent-9 hover:text-accent-6 transition duration-150 ease-in-out"
                                     >
                                         {page.name}
                                     </Link>
@@ -59,8 +59,8 @@ const Footer: FC<Props> = ({ className, pages }) => {
                             ))}
                         </div>
                     </div>
-                    <div className="col-span-1 lg:col-span-2 flex items-start lg:justify-end text-primary">
-                        <div className="flex space-x-6 items-center h-10">
+                    <div className="text-primary col-span-1 flex items-start lg:col-span-2 lg:justify-end">
+                        <div className="flex h-10 items-center space-x-6">
                             <a
                                 // className={s.link}
                                 aria-label="Github Repository"
@@ -72,11 +72,11 @@ const Footer: FC<Props> = ({ className, pages }) => {
                         </div>
                     </div>
                 </div>
-                <div className="pt-6 pb-10 flex flex-col md:flex-row justify-between items-center space-y-4 text-accent-6 text-sm">
+                <div className="text-accent-6 flex flex-col items-center justify-between space-y-4 pt-6 pb-10 text-sm md:flex-row">
                     <div>
                         <span>&copy; 2020 ACME, Inc. All rights reserved.</span>
                     </div>
-                    <div className="flex items-center text-primary text-sm">
+                    <div className="text-primary flex items-center text-sm">
                         <span className="text-primary">Created by</span>
                         <a
                             rel="noopener noreferrer"
@@ -86,7 +86,7 @@ const Footer: FC<Props> = ({ className, pages }) => {
                             className="text-primary"
                         >
                             <Vercel
-                                className="inline-block h-6 ml-3 text-primary"
+                                className="text-primary ml-3 inline-block h-6"
                                 alt="Vercel.com Logo"
                             />
                         </a>
