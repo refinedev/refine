@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
 import { LayoutWrapper, useCreate, useOne } from "@pankod/refine-core";
-import { useStepsForm } from "@pankod/refine-react-hook-form";
+import { Controller, useStepsForm } from "@pankod/refine-react-hook-form";
 import { StoreShippingOptionsListRes } from "@medusajs/medusa";
 
 import { Button, Container, Text } from "@components/ui";
@@ -19,6 +19,7 @@ const ProfilePage: React.FC = () => {
 
     const {
         register,
+        control,
         formState: { errors },
         getValues,
         setValue,
@@ -31,6 +32,23 @@ const ProfilePage: React.FC = () => {
     });
 
     const { mutate } = useCreate();
+
+    const ShippingOptions = () => (
+        <>
+            {shippingOptions?.data?.shipping_options.map((option) => (
+                <ShippingOptionWidget
+                    key={option.id}
+                    isValid={getValues()?.shippingMethod === option.id}
+                    onClick={() => {
+                        setValue("shippingMethod", option.id);
+                    }}
+                    {...register("shippingMethod")}
+                >
+                    {option.name}
+                </ShippingOptionWidget>
+            ))}
+        </>
+    );
 
     const renderFormByStep = (step: number) => {
         switch (step) {
@@ -52,30 +70,25 @@ const ProfilePage: React.FC = () => {
                             </div>
                         )}
                         <ShippingView register={register} />
-                        {shippingOptions?.data &&
-                            shippingOptions?.data?.shipping_options.map(
-                                (option) => (
-                                    <ShippingOptionWidget
-                                        key={option.id}
-                                        isValid={
-                                            getValues()?.shippingMethod ===
-                                            option.id
-                                        }
-                                        onClick={() => {
-                                            setValue(
-                                                "shippingMethod",
-                                                option.id,
-                                            );
-                                        }}
-                                    >
-                                        {option.name}
-                                    </ShippingOptionWidget>
-                                ),
-                            )}
+                        <Controller
+                            control={control}
+                            name="shippingMethod"
+                            rules={{
+                                required: {
+                                    message: "shipping is required",
+                                    value: true,
+                                },
+                            }}
+                            render={({}) => <ShippingOptions />}
+                        />
                     </Container>
                 );
             case 1:
-                return <PaymentMethodView clientSecret={clientSecret} />;
+                return (
+                    <>
+                        <PaymentMethodView clientSecret={clientSecret} />
+                    </>
+                );
         }
     };
 
@@ -156,10 +169,6 @@ const ProfilePage: React.FC = () => {
             );
         }
     }, [currentStep]);
-
-    const handlePayment = async (values: any) => {
-        console.log(values);
-    };
 
     return (
         <LayoutWrapper>
