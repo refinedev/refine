@@ -110,7 +110,7 @@ describe("useLogout Hook", () => {
             },
         );
 
-        const { mutate: logout } = result.current!;
+        const { mutateAsync: logout } = result.current!;
 
         await act(async () => {
             await logout({ redirectPath: "/custom-path" });
@@ -140,19 +140,15 @@ describe("useLogout Hook", () => {
             }),
         });
 
-        const { mutate: logout } = result.current!;
+        const { mutateAsync: logout } = result.current!;
 
         await act(async () => {
-            await logout();
+            try {
+                await logout();
+            } catch (error) {
+                expect(error).toEqual(new Error("Logout rejected"));
+            }
         });
-
-        await waitFor(() => {
-            return !result.current?.isLoading;
-        });
-
-        const { error } = result.current!;
-
-        expect(error).toEqual(new Error("Logout rejected"));
     });
 
     it("logout rejected with undefined error", async () => {
@@ -170,18 +166,14 @@ describe("useLogout Hook", () => {
             }),
         });
 
-        const { mutate: logout } = result.current!;
+        const { mutateAsync: logout } = result.current!;
 
         await act(async () => {
-            await logout();
+            try {
+                await logout();
+            } catch (error) {
+                expect(error).not.toBeDefined();
+            }
         });
-
-        await waitFor(() => {
-            return !result.current?.isLoading;
-        });
-
-        const { error } = result.current!;
-
-        expect(error).not.toBeDefined();
     });
 });

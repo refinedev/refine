@@ -28,7 +28,13 @@ export const useGetIdentity = <TData = any>({
     const queryResponse = useQuery<TData>(
         ["getUserIdentity"],
         // Enabled check for `getUserIdentity` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
-        getUserIdentity ?? (() => Promise.resolve(undefined)),
+        () => {
+            if (!getUserIdentity) {
+                return Promise.resolve(undefined);
+            }
+
+            return getUserIdentity();
+        },
         {
             enabled: !!getUserIdentity,
             retry: false,

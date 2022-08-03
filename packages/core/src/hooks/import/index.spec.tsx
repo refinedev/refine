@@ -78,13 +78,9 @@ describe("useImport hook", () => {
         );
 
         await act(async () => {
-            jest.useFakeTimers();
-
             await result.current.handleChange?.({
                 file: file,
             });
-
-            jest.runAllTimers();
         });
 
         expect(onProgressMock).toBeCalledWith({
@@ -431,13 +427,9 @@ describe("useImport hook", () => {
             );
 
             await act(async () => {
-                jest.useFakeTimers();
-
                 await result.current.handleChange({
                     file: file,
                 });
-
-                jest.runAllTimers();
             });
         });
 
@@ -497,13 +489,9 @@ describe("useImport hook", () => {
             );
 
             await act(async () => {
-                jest.useFakeTimers();
-
                 await result.current.handleChange({
                     file: file,
                 });
-
-                jest.runAllTimers();
             });
         });
     });
