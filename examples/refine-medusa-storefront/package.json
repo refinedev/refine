@@ -47,6 +47,8 @@
         "@typescript-eslint/parser": "^4.25.0",
         "postcss-flexbugs-fixes": "^5.0.2",
         "postcss-preset-env": "^7.2.3",
+        "prettier": "2.3.0",
+        "prettier-plugin-tailwindcss": "^0.1.13",
         "typescript": "^4.7.4",
         "@types/lodash": "^4.14.171",
         "@types/js-cookie": "^3.0.2"
