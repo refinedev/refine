@@ -1,10 +1,13 @@
 import React from "react";
+import { fieldBooleanTests } from "@pankod/refine-ui-tests";
 
 import { render, fireEvent } from "@test";
 
 import { BooleanField } from "./";
 
 describe("BooleanField", () => {
+    fieldBooleanTests.bind(this)(BooleanField);
+
     describe("BooleanField with default props values", () => {
         const initialValues = [true, false, "true", "false", "", undefined];
 
@@ -31,22 +34,6 @@ describe("BooleanField", () => {
                     await baseDom.findByText(results[index]),
                 ).toBeInTheDocument();
             });
-        });
-    });
-
-    describe("BooleanField with custom props values", () => {
-        it("should use prop for custom text", async () => {
-            const baseDom = render(
-                <div data-testid="custom-field">
-                    <BooleanField value={true} valueLabelTrue="test" />
-                </div>,
-            );
-
-            const booleanField =
-                baseDom.getByTestId("custom-field").children[0];
-            fireEvent.mouseOver(booleanField);
-
-            expect(await baseDom.findByText("test")).toBeInTheDocument();
         });
     });
 });

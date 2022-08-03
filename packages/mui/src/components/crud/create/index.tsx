@@ -8,12 +8,12 @@ import {
     userFriendlyResourceName,
     ResourceRouterParams,
 } from "@pankod/refine-core";
+import { RefineCrudCreateProps } from "@pankod/refine-ui-types";
 
 import {
     Card,
     CardHeader,
     CardActions,
-    ButtonProps,
     CardContent,
     IconButton,
     CardProps,
@@ -21,23 +21,43 @@ import {
     CardContentProps,
     CardActionsProps,
     Typography,
+    BoxProps,
+    Box,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-import { Breadcrumb, SaveButton } from "@components";
+import { Breadcrumb, SaveButton, SaveButtonProps } from "@components";
 
-export interface CreateProps {
-    actionButtons?: React.ReactNode;
-    saveButtonProps?: ButtonProps;
-    resource?: string;
-    isLoading?: boolean;
-    cardProps?: CardProps;
-    cardHeaderProps?: CardHeaderProps;
-    cardContentProps?: CardContentProps;
-    cardActionsProps?: CardActionsProps;
-    breadcrumb?: React.ReactNode;
-    children?: React.ReactNode;
-}
+export type CreateProps = RefineCrudCreateProps<
+    SaveButtonProps,
+    BoxProps,
+    CardActionsProps,
+    CardProps,
+    CardHeaderProps,
+    CardContentProps,
+    {
+        /**
+         * @deprecated use `headerButtons` or `footerButtons` instead.
+         */
+        actionButtons?: React.ReactNode;
+        /**
+         * @deprecated use `wrapperProps` instead.
+         */
+        cardProps?: CardProps;
+        /**
+         * @deprecated use `headerProps` instead.
+         */
+        cardHeaderProps?: CardHeaderProps;
+        /**
+         * @deprecated use `contentProps` instead.
+         */
+        cardContentProps?: CardContentProps;
+        /**
+         * @deprecated use `footerButtonProps` instead.
+         */
+        cardActionsProps?: CardActionsProps;
+    }
+>;
 
 /**
  * `<Create>` provides us a layout to display the page.
@@ -46,6 +66,7 @@ export interface CreateProps {
  * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/basic-views/create} for more details.
  */
 export const Create: React.FC<CreateProps> = ({
+    title,
     actionButtons,
     children,
     saveButtonProps,
@@ -56,6 +77,14 @@ export const Create: React.FC<CreateProps> = ({
     cardContentProps,
     cardActionsProps,
     breadcrumb = <Breadcrumb />,
+    wrapperProps,
+    headerProps,
+    contentProps,
+    headerButtonProps,
+    headerButtons,
+    footerButtonProps,
+    footerButtons,
+    goBack: goBackFromProps,
 }) => {
     const { goBack } = useNavigation();
 
@@ -70,30 +99,65 @@ export const Create: React.FC<CreateProps> = ({
 
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
 
+    const defaultFooterButtons = (
+        <SaveButton loading={isLoading} {...saveButtonProps} />
+    );
+
     return (
-        <Card {...cardProps}>
+        <Card {...(cardProps ?? {})} {...(wrapperProps ?? {})}>
             {breadcrumb}
             <CardHeader
                 sx={{ display: "flex", flexWrap: "wrap" }}
                 title={
-                    <Typography variant="h5">
-                        {translate(
-                            `${resource.name}.titles.create`,
-                            `Create ${userFriendlyResourceName(
-                                resource.label ?? resource.name,
-                                "singular",
-                            )}`,
-                        )}
-                    </Typography>
+                    title ?? (
+                        <Typography variant="h5">
+                            {translate(
+                                `${resource.name}.titles.create`,
+                                `Create ${userFriendlyResourceName(
+                                    resource.label ?? resource.name,
+                                    "singular",
+                                )}`,
+                            )}
+                        </Typography>
+                    )
                 }
                 avatar={
-                    <IconButton onClick={routeFromAction ? goBack : undefined}>
-                        <ArrowBackIcon />
-                    </IconButton>
+                    typeof goBackFromProps !== "undefined" ? (
+                        goBackFromProps
+                    ) : (
+                        <IconButton
+                            onClick={routeFromAction ? goBack : undefined}
+                        >
+                            <ArrowBackIcon />
+                        </IconButton>
+                    )
                 }
-                {...cardHeaderProps}
+                action={
+                    headerButtons ? (
+                        <Box
+                            display="flex"
+                            gap="16px"
+                            {...(headerButtonProps ?? {})}
+                        >
+                            {headerButtons
+                                ? typeof headerButtons === "function"
+                                    ? headerButtons({
+                                          defaultButtons: null,
+                                      })
+                                    : headerButtons
+                                : null}
+                        </Box>
+                    ) : undefined
+                }
+                {...(cardHeaderProps ?? {})}
+                {...(headerProps ?? {})}
             />
-            <CardContent {...cardContentProps}>{children}</CardContent>
+            <CardContent
+                {...(cardContentProps ?? {})}
+                {...(contentProps ?? {})}
+            >
+                {children}
+            </CardContent>
             <CardActions
                 sx={{
                     display: "flex",
@@ -101,11 +165,18 @@ export const Create: React.FC<CreateProps> = ({
                     gap: "16px",
                     padding: "16px",
                 }}
-                {...cardActionsProps}
+                {...(cardActionsProps ?? {})}
+                {...(footerButtonProps ?? {})}
             >
-                {actionButtons ?? (
-                    <SaveButton loading={isLoading} {...saveButtonProps} />
-                )}
+                {footerButtons
+                    ? typeof footerButtons === "function"
+                        ? footerButtons({
+                              defaultButtons: defaultFooterButtons,
+                          })
+                        : footerButtons
+                    : actionButtons
+                    ? actionButtons
+                    : defaultFooterButtons}
             </CardActions>
         </Card>
     );

@@ -1,12 +1,12 @@
 import React from "react";
-import { LayoutProps } from "@pankod/refine-core";
+import { RefineLayoutLayoutProps } from "@pankod/refine-ui-types";
 
 import { Box } from "@mui/material";
 
 import { Sider as DefaultSider } from "./sider";
 import { Header as DefaultHeader } from "./header";
 
-export const Layout: React.FC<LayoutProps> = ({
+export const Layout: React.FC<RefineLayoutLayoutProps> = ({
     Sider,
     Header,
     Footer,

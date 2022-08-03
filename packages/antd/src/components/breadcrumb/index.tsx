@@ -4,17 +4,15 @@ import {
     useRefineContext,
     useRouterContext,
 } from "@pankod/refine-core";
+import { RefineBreadcrumbProps } from "@pankod/refine-ui-types";
+
 import {
     Breadcrumb as AntdBreadcrumb,
     BreadcrumbProps as AntdBreadcrumbProps,
 } from "antd";
 import { HomeOutlined } from "@ant-design/icons";
 
-export type BreadcrumbProps = {
-    breadcrumbProps?: AntdBreadcrumbProps;
-    showHome?: boolean;
-    hideIcons?: boolean;
-};
+export type BreadcrumbProps = RefineBreadcrumbProps<AntdBreadcrumbProps>;
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     breadcrumbProps,
