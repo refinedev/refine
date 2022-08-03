@@ -23,17 +23,7 @@ export interface AddressFields {
     city: string;
     country: string;
 }
-
-export type MedusaStoreProductRes = Awaited<
-    ReturnType<Medusa["products"]["retrieve"]>
->;
-
-export type MedusaProduct = MedusaStoreProductRes["product"];
-
-export type MedusaStoreCollectionRes = Awaited<
-    ReturnType<Medusa["collections"]["retrieve"]>
->;
-
-export type MedusaStorePaymentSessionRes = Awaited<ReturnType<Medusa>>;
-
-export type MedusaCollection = MedusaStoreCollectionRes["collection"];
+export type IconProps = {
+    color?: string;
+    size?: string | number;
+} & React.SVGAttributes<SVGElement>;
