@@ -122,7 +122,7 @@ describe("useNavigation Hook", () => {
     it("navigation push", async () => {
         result.current.push("/posts");
 
-        expect(mHistory).toBeCalledWith("/posts", undefined);
+        expect(mHistory).toBeCalledWith("/posts");
     });
 
     it("navigation replace", async () => {

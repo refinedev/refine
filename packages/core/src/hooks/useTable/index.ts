@@ -161,7 +161,7 @@ export function useTable<
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
-    const { push } = useNavigation();
+    const { replace } = useNavigation();
     const resourceWithRoute = useResourceWithRoute();
 
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
@@ -216,7 +216,9 @@ export function useTable<
             });
 
             // Careful! This triggers render
-            return push(`${pathname}?${stringifyParams}`);
+            return replace(`${pathname}?${stringifyParams}`, undefined, {
+                shallow: true,
+            });
         }
     }, [syncWithLocation, current, pageSize, sorter, filters]);
 
