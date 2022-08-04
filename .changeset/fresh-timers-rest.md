@@ -3,7 +3,7 @@
 ---
 
 - Added `databaseId` support. The Default value is `default` for backward compability
-- Upgraded Appwrite SDK to 9
+- Upgraded Appwrite SDK to version 9
 
 ## Usage
 
