@@ -1,10 +1,11 @@
 import React, { ReactNode } from "react";
 import { Route, Routes } from "react-router-dom";
 import { AccessControlProvider } from "@pankod/refine-core";
-import { Button } from "antd";
 
-import { act, render, TestWrapper, waitFor } from "@test";
+import { act, render, TestWrapper } from "@test";
 import { Edit } from "./";
+import { crudEditTests } from "@pankod/refine-ui-tests";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 
 const renderEdit = (
     edit: ReactNode,
@@ -28,106 +29,7 @@ describe("Edit", () => {
         jest.useFakeTimers();
     });
 
-    it("should render page successfuly", async () => {
-        const { container, queryByTestId } = renderEdit(<Edit />);
-
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
-
-        expect(queryByTestId("edit-list-button")).not.toBeNull();
-
-        expect(container).toBeTruthy();
-    });
-
-    it("should render default save button successfuly", async () => {
-        const { container, getByText } = renderEdit(<Edit />);
-
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
-
-        expect(container.querySelector("button")).toBeTruthy();
-        getByText("Save");
-    });
-
-    it("should render default save and delete buttons successfuly", async () => {
-        const { container, getByText } = renderEdit(<Edit canDelete />);
-
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
-
-        expect(container.querySelector("button")).toBeTruthy();
-        getByText("Save");
-        getByText("Delete");
-    });
-
-    it("should render optional buttons with actionButtons prop", async () => {
-        const { getByText, queryByTestId } = renderEdit(
-            <Edit
-                actionButtons={
-                    <>
-                        <Button>New Save Button</Button>
-                        <Button>New Delete Button</Button>
-                    </>
-                }
-            />,
-        );
-
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
-
-        getByText("New Save Button");
-        getByText("New Delete Button");
-        expect(queryByTestId("edit-delete-button")).toBeNull();
-    });
-
-    it("should render default title successfuly", async () => {
-        const { getByText } = renderEdit(<Edit />);
-
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
-
-        getByText("Edit Post");
-    });
-
-    it("should render with label instead of resource name successfully", async () => {
-        const { getByText } = render(
-            <Routes>
-                <Route path="/:resource/edit/:id" element={<Edit />} />
-            </Routes>,
-            {
-                wrapper: TestWrapper({
-                    resources: [
-                        {
-                            name: "posts",
-                            options: { route: "posts", label: "test" },
-                        },
-                    ],
-                    routerInitialEntries: ["/posts/edit/1"],
-                }),
-            },
-        );
-
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
-
-        getByText("Edit Test");
-    });
-
-    it("should render optional title with title prop", async () => {
-        const { getByText } = renderEdit(<Edit title="New Title" />);
-
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
-
-        getByText("New Title");
-    });
+    crudEditTests.bind(this)(Edit);
 
     it("should render optional mutationMode with mutationModeProp prop", async () => {
         const container = renderEdit(<Edit mutationMode="undoable" />);
@@ -137,42 +39,6 @@ describe("Edit", () => {
         });
 
         expect(container).toBeTruthy();
-    });
-
-    it("should render optional resource with resource prop", async () => {
-        const { getByText } = render(
-            <Routes>
-                <Route
-                    path="/:resource"
-                    element={<Edit resource="posts" />}
-                ></Route>
-            </Routes>,
-            {
-                wrapper: TestWrapper({
-                    routerInitialEntries: ["/custom"],
-                }),
-            },
-        );
-
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
-
-        getByText("Edit Post");
-    });
-
-    it("should render optional recordItemId with resource prop", async () => {
-        const { getByText, queryByTestId } = renderEdit(
-            <Edit recordItemId="1" />,
-        );
-
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
-
-        getByText("Edit Post");
-
-        expect(queryByTestId("edit-list-button")).toBeNull();
     });
 
     describe("render delete button", () => {
@@ -193,7 +59,9 @@ describe("Edit", () => {
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("edit-delete-button")).not.toBeNull();
+            expect(
+                queryByTestId(RefineButtonTestIds.DeleteButton),
+            ).not.toBeNull();
 
             getByText("Edit Post");
         });
@@ -218,7 +86,7 @@ describe("Edit", () => {
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("edit-delete-button")).toBeNull();
+            expect(queryByTestId(RefineButtonTestIds.DeleteButton)).toBeNull();
 
             getByText("Edit Post");
         });
@@ -244,7 +112,7 @@ describe("Edit", () => {
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("edit-delete-button")).toBeNull();
+            expect(queryByTestId(RefineButtonTestIds.DeleteButton)).toBeNull();
         });
 
         it("should render delete button on resource canDelete false & canDelete props true on component", async () => {
@@ -267,7 +135,9 @@ describe("Edit", () => {
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("edit-delete-button")).not.toBeNull();
+            expect(
+                queryByTestId(RefineButtonTestIds.DeleteButton),
+            ).not.toBeNull();
         });
 
         it("should render delete button on resource canDelete false & deleteButtonProps props not null on component", async () => {
@@ -290,7 +160,9 @@ describe("Edit", () => {
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("edit-delete-button")).not.toBeNull();
+            expect(
+                queryByTestId(RefineButtonTestIds.DeleteButton),
+            ).not.toBeNull();
         });
     });
 
@@ -312,8 +184,12 @@ describe("Edit", () => {
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("edit-list-button")).not.toBeDisabled();
-            expect(queryByTestId("edit-delete-button")).toBeDisabled();
+            expect(
+                queryByTestId(RefineButtonTestIds.ListButton),
+            ).not.toBeDisabled();
+            expect(
+                queryByTestId(RefineButtonTestIds.DeleteButton),
+            ).toBeDisabled();
         });
 
         it("should render disabled list button and delete button", async () => {
@@ -333,8 +209,12 @@ describe("Edit", () => {
                 jest.advanceTimersToNextTimer(1);
             });
 
-            expect(queryByTestId("edit-list-button")).toBeDisabled();
-            expect(queryByTestId("edit-delete-button")).toBeDisabled();
+            expect(
+                queryByTestId(RefineButtonTestIds.ListButton),
+            ).toBeDisabled();
+            expect(
+                queryByTestId(RefineButtonTestIds.DeleteButton),
+            ).toBeDisabled();
         });
     });
 });

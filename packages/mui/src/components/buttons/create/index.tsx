@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
     useNavigation,
     useTranslate,
@@ -7,15 +6,19 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
+import {
+    RefineCreateButtonProps,
+    RefineButtonTestIds,
+} from "@pankod/refine-ui-types";
 import { Button, ButtonProps, SvgIconProps } from "@mui/material";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 
-export type CreateButtonProps = ButtonProps & {
-    resourceNameOrRouteName?: string;
-    hideText?: boolean;
-    ignoreAccessControlProvider?: boolean;
-    svgIconProps?: SvgIconProps;
-};
+export type CreateButtonProps = RefineCreateButtonProps<
+    ButtonProps,
+    {
+        svgIconProps?: SvgIconProps;
+    }
+>;
 
 /**
  * <CreateButton> uses Material UI {@link https://mui.com/components/buttons/ `<Button> component`}.
@@ -87,6 +90,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                 title={disabledTitle()}
                 variant="contained"
                 sx={{ minWidth: 0, ...sx }}
+                data-testid={RefineButtonTestIds.CreateButton}
                 {...restProps}
             >
                 {hideText ? (

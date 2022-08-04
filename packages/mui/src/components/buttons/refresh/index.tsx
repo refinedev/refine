@@ -1,25 +1,19 @@
 import React from "react";
-
+import { useOne, useTranslate, useResource } from "@pankod/refine-core";
 import {
-    useOne,
-    useTranslate,
-    MetaDataQuery,
-    BaseKey,
-    useResource,
-} from "@pankod/refine-core";
-
+    RefineButtonTestIds,
+    RefineRefreshButtonProps,
+} from "@pankod/refine-ui-types";
 import { ButtonProps, SvgIconProps } from "@mui/material";
 import RefreshOutlinedIcon from "@mui/icons-material/RefreshOutlined";
 import { LoadingButton } from "@mui/lab";
 
-export type RefreshButtonProps = ButtonProps & {
-    resourceNameOrRouteName?: string;
-    recordItemId?: BaseKey;
-    hideText?: boolean;
-    metaData?: MetaDataQuery;
-    dataProviderName?: string;
-    svgIconProps?: SvgIconProps;
-};
+export type RefreshButtonProps = RefineRefreshButtonProps<
+    ButtonProps,
+    {
+        svgIconProps?: SvgIconProps;
+    }
+>;
 
 /**
  * `<RefreshButton>` uses uses Material UI {@link https://mui.com/material-ui/api/loading-button/#main-content `<LoadingButton>`} component
@@ -65,6 +59,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
             loadingPosition={hideText ? "center" : "start"}
             onClick={(e) => (onClick ? onClick(e) : refetch())}
             sx={{ minWidth: 0, ...sx }}
+            data-testid={RefineButtonTestIds.RefreshButton}
             {...restProps}
         >
             {hideText ? (

@@ -1,5 +1,17 @@
 # @pankod/refine-antd-audit-log
 
+## 3.27.0
+
+### Minor Changes
+
+-   Add React@18 support 🚀
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-antd@3.35.0
+    -   @pankod/refine-core@3.56.0
+
 ## 3.26.0
 
 ### Minor Changes

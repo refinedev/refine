@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
 import {
     Box,
     Drawer,
@@ -35,7 +36,7 @@ import {
 
 import { Title as DefaultTitle } from "../title";
 
-export const Sider: React.FC = () => {
+export const Sider: React.FC<RefineLayoutSiderProps> = () => {
     const [collapsed, setCollapsed] = useState(false);
     const [opened, setOpened] = useState(false);
 

@@ -1,4 +1,4 @@
-import { Appwrite } from "appwrite";
+import { Client as Appwrite } from "appwrite";
 import { liveProvider } from "../../src";
 
 const mockClient: Appwrite = {
@@ -23,7 +23,7 @@ describe("liveProvider", () => {
         });
 
         expect(mockClient.subscribe).toHaveBeenCalledWith(
-            "collections.testChannel.documents",
+            "databases.default.collections.testChannel.documents",
             expect.any(Function),
         );
     });
@@ -42,7 +42,10 @@ describe("liveProvider", () => {
         });
 
         expect(mockClient.subscribe).toHaveBeenCalledWith(
-            ["documents.a", "documents.b"],
+            [
+                "databases.default.collections.testChannel.documents.a",
+                "databases.default.collections.testChannel.documents.b",
+            ],
             expect.any(Function),
         );
     });
@@ -54,7 +57,7 @@ describe("liveProvider", () => {
             subscribe: jest.fn((channel, cb) => {
                 setImmediate(() => {
                     cb({
-                        event: "database.documents.create",
+                        events: ["database.documents.create"],
                         timestamp: testDate / 1000,
                         payload: "test",
                     });

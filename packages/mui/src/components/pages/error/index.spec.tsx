@@ -1,4 +1,5 @@
 import React from "react";
+import { pageErrorTests } from "@pankod/refine-ui-tests";
 import ReactRouterDom, { Route, Routes } from "react-router-dom";
 
 import { ErrorComponent } from ".";
@@ -12,6 +13,7 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("ErrorComponent", () => {
+    pageErrorTests.bind(this)(ErrorComponent);
     it("renders subtitle successfully", async () => {
         jest.useFakeTimers();
 

@@ -1,5 +1,5 @@
 import { dataProvider } from "../../src/index";
-import client from "../appwriteClient";
+import { client } from "../appwriteClient";
 
 describe("custom", () => {
     it("throws error when called", async () => {

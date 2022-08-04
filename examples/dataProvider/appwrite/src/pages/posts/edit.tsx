@@ -18,7 +18,7 @@ import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost, IPostVariables, ICategory } from "interfaces";
-import { appwriteClient, normalizeFile } from "utility";
+import { normalizeFile, storage } from "utility";
 
 export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<
@@ -123,18 +123,16 @@ export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
                                 try {
                                     const rcFile = file as RcFile;
 
-                                    const { $id } =
-                                        await appwriteClient.storage.createFile(
-                                            "default",
-                                            rcFile.name,
-                                            rcFile,
-                                        );
+                                    const { $id } = await storage.createFile(
+                                        "default",
+                                        rcFile.name,
+                                        rcFile,
+                                    );
 
-                                    const url =
-                                        appwriteClient.storage.getFileView(
-                                            "default",
-                                            $id,
-                                        );
+                                    const url = storage.getFileView(
+                                        "default",
+                                        $id,
+                                    );
 
                                     onSuccess?.({ url }, new XMLHttpRequest());
                                 } catch (error) {

@@ -20,9 +20,10 @@ import {
 import { Title as DefaultTitle } from "@components";
 
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
+import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
 const { SubMenu } = Menu;
 
-export const Sider: React.FC = () => {
+export const Sider: React.FC<RefineLayoutSiderProps> = () => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const isExistAuthentication = useIsExistAuthentication();
     const { Link } = useRouterContext();

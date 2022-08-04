@@ -1,5 +1,11 @@
 # @pankod/refine-kbar
 
+## 0.8.0
+
+### Minor Changes
+
+-   Add React@18 support 🚀
+
 ## 0.7.0
 
 ### Minor Changes

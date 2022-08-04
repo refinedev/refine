@@ -1,8 +1,9 @@
 import React from "react";
+import { pageErrorTests } from "@pankod/refine-ui-tests";
 import ReactRouterDom, { Route, Routes } from "react-router-dom";
 
 import { ErrorComponent } from ".";
-import { render, fireEvent, TestWrapper, waitFor } from "@test";
+import { render, fireEvent, TestWrapper } from "@test";
 import { act } from "react-dom/test-utils";
 
 const mHistory = {
@@ -15,6 +16,8 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("ErrorComponent", () => {
+    pageErrorTests.bind(this)(ErrorComponent);
+
     it("renders subtitle successfully", () => {
         const { getByText } = render(<ErrorComponent />, {
             wrapper: TestWrapper({}),
@@ -32,12 +35,12 @@ describe("ErrorComponent", () => {
         getByText("Back Home");
     });
 
-    xit("renders called function successfully if click the button", async () => {
-        const { container, getByText } = render(<ErrorComponent />, {
+    xit("renders called function successfully if click the button", () => {
+        const { getByText } = render(<ErrorComponent />, {
             wrapper: TestWrapper({}),
         });
 
-        await act(async () => {
+        act(async () => {
             fireEvent.click(getByText("Back Home"));
         });
 

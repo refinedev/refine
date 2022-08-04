@@ -1,5 +1,11 @@
 # @pankod/refine-strapi
 
+## 3.29.0
+
+### Minor Changes
+
+-   Add React@18 support 🚀
+
 ## 3.28.0
 
 ### Minor Changes

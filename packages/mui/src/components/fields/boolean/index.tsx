@@ -1,23 +1,14 @@
 import React from "react";
 
+import { RefineFieldBooleanProps } from "@pankod/refine-ui-types";
 import { Tooltip, TooltipProps, SvgIconProps } from "@mui/material";
 import { CheckOutlined, CloseOutlined } from "@mui/icons-material";
 
-import { FieldProps } from "src/interfaces/field";
-
-type AbstractTooltipProps = Omit<TooltipProps, "title" | "children"> & {
-    children?: React.ReactElement;
-    title?: NonNullable<React.ReactNode>;
-};
-
-export type BooleanFieldProps = FieldProps<unknown> &
-    AbstractTooltipProps & {
-        valueLabelTrue?: string;
-        valueLabelFalse?: string;
-        trueIcon?: React.ReactNode;
-        falseIcon?: React.ReactNode;
-        svgIconProps?: SvgIconProps;
-    };
+export type BooleanFieldProps = RefineFieldBooleanProps<
+    unknown,
+    Omit<TooltipProps, "title" | "children">,
+    { svgIconProps?: SvgIconProps }
+>;
 
 /**
  * This field is used to display boolean values. It uses the {@link https://mui.com/material-ui/react-tooltip/#main-content `<Tooltip>`} values from Materila UI.
@@ -34,7 +25,7 @@ export const BooleanField: React.FC<BooleanFieldProps> = ({
     ...rest
 }) => {
     return (
-        <Tooltip {...rest} title={value ? valueLabelTrue : valueLabelFalse}>
+        <Tooltip title={value ? valueLabelTrue : valueLabelFalse} {...rest}>
             {value ? (
                 <span>{trueIcon ?? <CheckOutlined {...svgIconProps} />}</span>
             ) : (

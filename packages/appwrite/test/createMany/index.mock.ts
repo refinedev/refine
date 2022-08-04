@@ -1,7 +1,7 @@
 import nock from "nock";
 
 nock("http://localhost:80", { encodedQueryParams: true })
-    .post("/v1/database/collections/6180e6efb14df/documents", {
+    .post("/v1/databases/default/collections/6180e6efb14df/documents", {
         data: { title: "Test 2" },
         read: ["role:all"],
         write: ["role:all"],
@@ -44,7 +44,7 @@ nock("http://localhost:80", { encodedQueryParams: true })
     );
 
 nock("http://localhost:80", { encodedQueryParams: true })
-    .post("/v1/database/collections/6180e6efb14df/documents", {
+    .post("/v1/databases/default/collections/6180e6efb14df/documents", {
         data: { title: "Test 1" },
         read: ["role:all"],
         write: ["role:all"],

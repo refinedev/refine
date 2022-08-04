@@ -4,32 +4,41 @@ import {
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
-import { dataProvider, liveProvider } from "@pankod/refine-appwrite";
+import {
+    AppwriteException,
+    dataProvider,
+    liveProvider,
+} from "@pankod/refine-appwrite";
 import routerProvider from "@pankod/refine-react-router-v6";
 import "@pankod/refine-antd/dist/styles.min.css";
 
 import { Login } from "pages/login";
-import { appwriteClient } from "utility";
+import { appwriteClient, account } from "utility";
 
 import { PostsCreate, PostsList, PostsEdit, PostsShow } from "pages/posts";
 
 const authProvider: AuthProvider = {
     login: async ({ email, password }) => {
         try {
-            await appwriteClient.account.createSession(email, password);
+            await account.createEmailSession(email, password);
             return Promise.resolve();
         } catch (e) {
-            return Promise.reject();
+            const { type, message, code } = e as AppwriteException;
+            return Promise.reject({
+                message,
+                name: `${code} - ${type}`,
+            });
         }
     },
     logout: async () => {
-        await appwriteClient.account.deleteSession("current");
+        await account.deleteSession("current");
 
         return "/";
     },
     checkError: () => Promise.resolve(),
     checkAuth: async () => {
-        const session = await appwriteClient.account.getSession("current");
+        console.log("checkAuth");
+        const session = await account.get();
 
         if (session) {
             return Promise.resolve();
@@ -39,7 +48,7 @@ const authProvider: AuthProvider = {
     },
     getPermissions: () => Promise.resolve(),
     getUserIdentity: async () => {
-        const user = await appwriteClient.account.get();
+        const user = await account.get();
 
         if (user) {
             return user;
@@ -48,10 +57,16 @@ const authProvider: AuthProvider = {
 };
 
 const App: React.FC = () => {
+    console.log("render");
     return (
         <Refine
-            dataProvider={dataProvider(appwriteClient)}
-            liveProvider={liveProvider(appwriteClient)}
+            dataProvider={dataProvider(appwriteClient, {
+                databaseId: "default",
+            })}
+            liveProvider={liveProvider(appwriteClient, {
+                databaseId: "default",
+            })}
+            liveMode="auto"
             authProvider={authProvider}
             routerProvider={routerProvider}
             LoginPage={Login}
@@ -67,7 +82,6 @@ const App: React.FC = () => {
                     },
                 },
             ]}
-            liveMode="auto"
             notificationProvider={notificationProvider}
             Layout={Layout}
             catchAll={<ErrorComponent />}

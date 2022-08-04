@@ -1,4 +1,5 @@
 import * as React from "react";
+import { RefineLoginPageProps } from "@pankod/refine-ui-types";
 import { useForm } from "@pankod/refine-react-hook-form";
 import {
     Button,
@@ -28,7 +29,7 @@ type ILoginForm = {
     remember?: boolean;
 };
 
-export const LoginPage: React.FC = () => {
+export const LoginPage: React.FC<RefineLoginPageProps> = () => {
     const {
         register,
         handleSubmit,
