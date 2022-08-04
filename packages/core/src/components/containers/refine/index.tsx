@@ -137,29 +137,33 @@ export const Refine: React.FC<RefineProps> = ({
             : notificationProvider ?? {};
     }, [notificationProvider]);
 
-    const resources: IResourceItem[] = [];
+    const resources: IResourceItem[] = useDeepMemo(() => {
+        const _resources: IResourceItem[] = [];
 
-    resourcesFromProps?.map((resource) => {
-        resources.push({
-            key: resource.key,
-            name: resource.name,
-            label: resource.options?.label,
-            icon: resource.icon,
-            route:
-                resource.options?.route ??
-                routeGenerator(resource, resourcesFromProps),
-            canCreate: !!resource.create,
-            canEdit: !!resource.edit,
-            canShow: !!resource.show,
-            canDelete: resource.canDelete,
-            create: resource.create,
-            show: resource.show,
-            list: resource.list,
-            edit: resource.edit,
-            options: resource.options,
-            parentName: resource.parentName,
+        resourcesFromProps?.forEach((resource) => {
+            _resources.push({
+                key: resource.key,
+                name: resource.name,
+                label: resource.options?.label,
+                icon: resource.icon,
+                route:
+                    resource.options?.route ??
+                    routeGenerator(resource, resourcesFromProps),
+                canCreate: !!resource.create,
+                canEdit: !!resource.edit,
+                canShow: !!resource.show,
+                canDelete: resource.canDelete,
+                create: resource.create,
+                show: resource.show,
+                list: resource.list,
+                edit: resource.edit,
+                options: resource.options,
+                parentName: resource.parentName,
+            });
         });
-    });
+
+        return _resources;
+    }, [resourcesFromProps]);
 
     if (resources.length === 0) {
         return ReadyPage ? <ReadyPage /> : <DefaultReadyPage />;
