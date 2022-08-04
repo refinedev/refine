@@ -114,7 +114,7 @@ export const buttonDeleteTests = function (
         });
 
         it("should skip access control", async () => {
-            const { container, getByText } = render(
+            const { container, getAllByText } = render(
                 <DeleteButton ignoreAccessControlProvider>Delete</DeleteButton>,
                 {
                     wrapper: TestWrapper({
@@ -129,7 +129,7 @@ export const buttonDeleteTests = function (
 
             await waitFor(() =>
                 expect(
-                    getByText("Delete").closest("button"),
+                    getAllByText("Delete")?.[0].closest("button"),
                 ).not.toBeDisabled(),
             );
         });
