@@ -1,5 +1,16 @@
 # @pankod/refine-ui-types
 
+## 0.3.0
+
+### Minor Changes
+
+-   Added unified types for common UI components and their props to simplify the process of adding a new UI framework and also to keep existing ui frameworks easy to maintain.
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.56.2
+
 ## 0.2.0
 
 ### Minor Changes
