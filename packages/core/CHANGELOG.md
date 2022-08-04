@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.56.2
+
+### Patch Changes
+
+-   Fixed invalidation of authentication caches every time `checkAuth` is run
+
 ## 3.56.1
 
 ### Patch Changes
