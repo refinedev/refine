@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.56.1
+
+### Patch Changes
+
+-   [#2271](https://github.com/pankod/refine/pull/2271) [`40b84d35a3`](https://github.com/pankod/refine/commit/40b84d35a37fa2bf7fcb0f59de9745985b21fa6a) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed invalidation of authentication caches every time `checkAuth` is run
+
 ## 3.56.0
 
 ### Minor Changes
