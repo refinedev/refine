@@ -23,6 +23,7 @@ import { AuditLogContextProvider } from "@contexts/auditLog";
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
 import { routeGenerator } from "@definitions";
 import { Telemetry } from "@components/telemetry";
+import { useDeepMemo } from "@hooks/deepMemo";
 
 import {
     MutationMode,
@@ -116,46 +117,53 @@ export const Refine: React.FC<RefineProps> = ({
     onLiveEvent,
     disableTelemetry = false,
 }) => {
-    const queryClient = new QueryClient({
-        ...reactQueryClientConfig,
-        defaultOptions: {
-            ...reactQueryClientConfig?.defaultOptions,
-            queries: {
-                refetchOnWindowFocus: false,
-                keepPreviousData: true,
-                ...reactQueryClientConfig?.defaultOptions?.queries,
+    const queryClient = useDeepMemo(() => {
+        return new QueryClient({
+            ...reactQueryClientConfig,
+            defaultOptions: {
+                ...reactQueryClientConfig?.defaultOptions,
+                queries: {
+                    refetchOnWindowFocus: false,
+                    keepPreviousData: true,
+                    ...reactQueryClientConfig?.defaultOptions?.queries,
+                },
             },
-        },
-    });
+        });
+    }, [reactQueryClientConfig]);
 
-    const notificationProviderContextValues =
-        typeof notificationProvider === "function"
+    const notificationProviderContextValues = React.useMemo(() => {
+        return typeof notificationProvider === "function"
             ? notificationProvider()
             : notificationProvider ?? {};
+    }, [notificationProvider]);
 
-    const resources: IResourceItem[] = [];
+    const resources: IResourceItem[] = useDeepMemo(() => {
+        const _resources: IResourceItem[] = [];
 
-    resourcesFromProps?.map((resource) => {
-        resources.push({
-            key: resource.key,
-            name: resource.name,
-            label: resource.options?.label,
-            icon: resource.icon,
-            route:
-                resource.options?.route ??
-                routeGenerator(resource, resourcesFromProps),
-            canCreate: !!resource.create,
-            canEdit: !!resource.edit,
-            canShow: !!resource.show,
-            canDelete: resource.canDelete,
-            create: resource.create,
-            show: resource.show,
-            list: resource.list,
-            edit: resource.edit,
-            options: resource.options,
-            parentName: resource.parentName,
+        resourcesFromProps?.forEach((resource) => {
+            _resources.push({
+                key: resource.key,
+                name: resource.name,
+                label: resource.options?.label,
+                icon: resource.icon,
+                route:
+                    resource.options?.route ??
+                    routeGenerator(resource, resourcesFromProps),
+                canCreate: !!resource.create,
+                canEdit: !!resource.edit,
+                canShow: !!resource.show,
+                canDelete: resource.canDelete,
+                create: resource.create,
+                show: resource.show,
+                list: resource.list,
+                edit: resource.edit,
+                options: resource.options,
+                parentName: resource.parentName,
+            });
         });
-    });
+
+        return _resources;
+    }, [resourcesFromProps]);
 
     if (resources.length === 0) {
         return ReadyPage ? <ReadyPage /> : <DefaultReadyPage />;
