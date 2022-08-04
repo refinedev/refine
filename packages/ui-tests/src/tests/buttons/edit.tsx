@@ -15,16 +15,11 @@ export const buttonEditTests = function (
 
         beforeAll(() => {
             jest.spyOn(console, "warn").mockImplementation(jest.fn());
-            jest.useFakeTimers();
         });
 
         it("should render button successfuly", async () => {
             const { container } = render(<EditButton />, {
                 wrapper: TestWrapper({}),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             expect(container).toBeTruthy();
@@ -33,10 +28,6 @@ export const buttonEditTests = function (
         it("should have the correct test-id", async () => {
             const { queryByTestId } = render(<EditButton />, {
                 wrapper: TestWrapper({}),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             expect(queryByTestId(RefineButtonTestIds.EditButton)).toBeTruthy();
@@ -50,10 +41,6 @@ export const buttonEditTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
             getByText("refine");
@@ -62,10 +49,6 @@ export const buttonEditTests = function (
         it("should render without text show only icon", async () => {
             const { container, queryByText } = render(<EditButton hideText />, {
                 wrapper: TestWrapper({}),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             expect(container).toBeTruthy();
@@ -84,10 +67,6 @@ export const buttonEditTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(container).toBeTruthy();
 
@@ -113,10 +92,6 @@ export const buttonEditTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
             await waitFor(() =>
@@ -135,10 +110,6 @@ export const buttonEditTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(container).toBeTruthy();
 
@@ -163,16 +134,16 @@ export const buttonEditTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
-            expect(getByText("Edit").closest("button")).toBeDisabled();
-            expect(
-                getByText("Edit").closest("button")?.getAttribute("title"),
-            ).toBe("Access Denied");
+            waitFor(() =>
+                expect(getByText("Edit").closest("button")).toBeDisabled(),
+            );
+            waitFor(() =>
+                expect(
+                    getByText("Edit").closest("button")?.getAttribute("title"),
+                ).toBe("Access Denied"),
+            );
         });
 
         it("should render called function successfully if click the button", async () => {
@@ -182,10 +153,6 @@ export const buttonEditTests = function (
                     wrapper: TestWrapper({}),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             await act(async () => {
                 fireEvent.click(getByText("Edit"));
@@ -214,10 +181,6 @@ export const buttonEditTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             await act(async () => {
                 fireEvent.click(getByText("Edit"));
@@ -252,10 +215,6 @@ export const buttonEditTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             await act(async () => {
                 fireEvent.click(getByText("Edit"));

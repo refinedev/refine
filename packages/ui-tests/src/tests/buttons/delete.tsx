@@ -4,7 +4,14 @@ import {
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
 
-import { act, fireEvent, MockJSONServer, render, TestWrapper } from "@test";
+import {
+    act,
+    fireEvent,
+    MockJSONServer,
+    render,
+    TestWrapper,
+    waitFor,
+} from "@test";
 import { Route, Routes } from "react-router-dom";
 
 export const buttonDeleteTests = function (
@@ -12,16 +19,15 @@ export const buttonDeleteTests = function (
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / Delete Button", () => {
         beforeAll(() => {
-            jest.useFakeTimers();
+            jest.spyOn(console, "error").mockImplementation(jest.fn());
         });
-
         it("should render button successfuly", async () => {
             const { container } = render(<DeleteButton />, {
                 wrapper: TestWrapper({}),
             });
 
             await act(async () => {
-                jest.advanceTimersToNextTimer(1);
+                // jest.advanceTimersToNextTimer(1);
             });
 
             expect(container).toBeTruthy();
@@ -30,10 +36,6 @@ export const buttonDeleteTests = function (
         it("should have the correct test-id", async () => {
             const { queryByTestId } = render(<DeleteButton />, {
                 wrapper: TestWrapper({}),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             expect(
@@ -49,10 +51,6 @@ export const buttonDeleteTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
             getByText("refine");
@@ -65,10 +63,6 @@ export const buttonDeleteTests = function (
                     wrapper: TestWrapper({}),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(container).toBeTruthy();
 
@@ -87,13 +81,11 @@ export const buttonDeleteTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
-            expect(getByText("Delete").closest("button")).toBeDisabled();
+            waitFor(() =>
+                expect(getByText("Delete").closest("button")).toBeDisabled(),
+            );
         });
 
         it("should be disabled when recordId not allowed", async () => {
@@ -106,6 +98,7 @@ export const buttonDeleteTests = function (
                                 if (params?.id === "1") {
                                     return Promise.resolve({ can: false });
                                 }
+                                console.log("ff");
                                 return Promise.resolve({ can: true });
                             },
                         },
@@ -113,13 +106,11 @@ export const buttonDeleteTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
-            expect(getByText("Delete").closest("button")).toBeDisabled();
+            waitFor(() =>
+                expect(getByText("Delete").closest("button")).toBeDisabled(),
+            );
         });
 
         it("should skip access control", async () => {
@@ -133,10 +124,6 @@ export const buttonDeleteTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(container).toBeTruthy();
 
@@ -153,10 +140,6 @@ export const buttonDeleteTests = function (
             );
 
             await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
-            await act(async () => {
                 fireEvent.click(getByText("Delete"));
             });
 
@@ -165,11 +148,12 @@ export const buttonDeleteTests = function (
 
         it("should render Popconfirm successfuly", async () => {
             const { getByText, getAllByText } = render(<DeleteButton />, {
-                wrapper: TestWrapper({}),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
+                wrapper: (props) => {
+                    const W = TestWrapper({});
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore testing purposes
+                    return <W {...props} />;
+                },
             });
 
             await act(async () => {
@@ -190,10 +174,6 @@ export const buttonDeleteTests = function (
                         deleteOne: deleteOneMock,
                     },
                 }),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             await act(async () => {
@@ -226,10 +206,6 @@ export const buttonDeleteTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             await act(async () => {
                 fireEvent.click(getByText("Delete"));
@@ -268,10 +244,6 @@ export const buttonDeleteTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             await act(async () => {
                 fireEvent.click(getByText("Delete"));
@@ -320,10 +292,6 @@ export const buttonDeleteTests = function (
             );
 
             await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
-            await act(async () => {
                 fireEvent.click(getByText("Delete"));
             });
 
@@ -356,10 +324,6 @@ export const buttonDeleteTests = function (
             );
 
             await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
-            await act(async () => {
                 fireEvent.click(getByText("Delete"));
             });
         });
@@ -381,10 +345,6 @@ export const buttonDeleteTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             await act(async () => {
                 fireEvent.click(getByText("Delete"));
@@ -409,10 +369,6 @@ export const buttonDeleteTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             await act(async () => {
                 fireEvent.click(getByText("Delete"));

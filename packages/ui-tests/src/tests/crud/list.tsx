@@ -6,7 +6,7 @@ import {
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
 
-import { act, ITestWrapperProps, render, TestWrapper } from "@test";
+import { act, ITestWrapperProps, render, TestWrapper, waitFor } from "@test";
 
 const renderList = (
     list: React.ReactNode,
@@ -209,7 +209,7 @@ export const crudListTests = function (
         });
 
         it("should render disabled create button if user doesn't have permission", async () => {
-            jest.useFakeTimers();
+            jest.useRealTimers();
 
             const { queryByTestId } = renderList(<List canCreate={true} />, {
                 can: ({ action }) => {
@@ -222,13 +222,11 @@ export const crudListTests = function (
                 },
             });
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
-            expect(
-                queryByTestId(RefineButtonTestIds.CreateButton),
-            ).toBeDisabled();
+            await waitFor(() =>
+                expect(
+                    queryByTestId(RefineButtonTestIds.CreateButton),
+                ).toBeDisabled(),
+            );
         });
     });
 };

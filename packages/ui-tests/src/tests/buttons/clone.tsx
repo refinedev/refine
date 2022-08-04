@@ -5,7 +5,7 @@ import {
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
 
-import { act, fireEvent, render, TestWrapper } from "@test";
+import { act, fireEvent, render, TestWrapper, waitFor } from "@test";
 
 export const buttonCloneTests = function (
     CloneButton: React.ComponentType<RefineCloneButtonProps<any, any>>,
@@ -13,16 +13,11 @@ export const buttonCloneTests = function (
     describe("[@pankod/refine-ui-tests] Common Tests / Clone Button", () => {
         beforeAll(() => {
             jest.spyOn(console, "warn").mockImplementation(jest.fn());
-            jest.useFakeTimers();
         });
 
         it("should render button successfuly", async () => {
             const { container } = render(<CloneButton />, {
                 wrapper: TestWrapper({}),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             expect(container).toBeTruthy();
@@ -31,10 +26,6 @@ export const buttonCloneTests = function (
         it("should have the correct test-id", async () => {
             const { queryByTestId } = render(<CloneButton />, {
                 wrapper: TestWrapper({}),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             expect(queryByTestId(RefineButtonTestIds.CloneButton)).toBeTruthy();
@@ -47,10 +38,6 @@ export const buttonCloneTests = function (
                     wrapper: TestWrapper({}),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(container).toBeTruthy();
 
@@ -65,17 +52,13 @@ export const buttonCloneTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
             expect(queryByText("Clone")).not.toBeInTheDocument();
         });
 
         it("should be disabled when user not have access", async () => {
-            const { container, findByText } = render(
+            const { container, getByText } = render(
                 <CloneButton>Clone</CloneButton>,
                 {
                     wrapper: TestWrapper({
@@ -86,19 +69,15 @@ export const buttonCloneTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
-            const btn = (await findByText("Clone")).closest("button");
-
-            expect(btn).toBeDisabled();
+            waitFor(() =>
+                expect(getByText("Clone")?.closest("button")).toBeDisabled(),
+            );
         });
 
         it("should be disabled when recordId not allowed", async () => {
-            const { container, findByText } = render(
+            const { container, getByText } = render(
                 <CloneButton recordItemId="1">Clone</CloneButton>,
                 {
                     wrapper: TestWrapper({
@@ -114,15 +93,11 @@ export const buttonCloneTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
-            const btn = (await findByText("Clone")).closest("button");
-
-            expect(btn).toBeDisabled();
+            waitFor(() =>
+                expect(getByText("Clone").closest("button")).toBeDisabled(),
+            );
         });
 
         it("should skip access control", async () => {
@@ -136,10 +111,6 @@ export const buttonCloneTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(container).toBeTruthy();
 
@@ -162,16 +133,16 @@ export const buttonCloneTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
-            expect(getByText("Clone").closest("button")).toBeDisabled();
-            expect(
-                getByText("Clone").closest("button")?.getAttribute("title"),
-            ).toBe("Access Denied");
+            waitFor(() =>
+                expect(getByText("Clone").closest("button")).toBeDisabled(),
+            );
+            waitFor(() =>
+                expect(
+                    getByText("Clone").closest("button")?.getAttribute("title"),
+                ).toBe("Access Denied"),
+            );
         });
 
         it("should render called function successfully if click the button", async () => {
@@ -185,10 +156,6 @@ export const buttonCloneTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             await act(async () => {
                 fireEvent.click(getByText("Clone"));
@@ -213,10 +180,6 @@ export const buttonCloneTests = function (
             );
 
             await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
-            await act(async () => {
                 fireEvent.click(getByText("Clone"));
             });
 
@@ -237,10 +200,6 @@ export const buttonCloneTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             await act(async () => {
                 fireEvent.click(getByText("Clone"));
@@ -269,10 +228,6 @@ export const buttonCloneTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             await act(async () => {
                 fireEvent.click(getByText("Clone"));
@@ -307,10 +262,6 @@ export const buttonCloneTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             await act(async () => {
                 fireEvent.click(getByText("Clone"));
