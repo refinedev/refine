@@ -1,8 +1,11 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import cn from "clsx";
+import { useOne } from "@pankod/refine-core";
 import { UseFormRegister } from "@pankod/refine-react-hook-form";
+import { Cart } from "@medusajs/medusa";
 
 import { Text } from "@components/ui";
+import { CartContext } from "@lib/context";
 
 import s from "./ShippingView.module.css";
 
@@ -17,6 +20,17 @@ const ShippingView: FC<ShippingViewProps> = ({
     register,
     registerNamePrefix,
 }) => {
+    const { cartId } = useContext(CartContext);
+
+    const { data: cartData } = useOne<{ cart: Cart }>({
+        id: cartId!,
+        resource: "carts",
+        queryOptions: {
+            enabled: !!cartId,
+        },
+    });
+    const countries = cartData?.data.cart.region.countries;
+
     return (
         <div>
             <Text variant="pageHeading">{title}</Text>
@@ -107,8 +121,11 @@ const ShippingView: FC<ShippingViewProps> = ({
                         {...register(`${registerNamePrefix}.country_code`)}
                         className={s.select}
                     >
-                        <option value="US">United States</option>
-                        <option value="DE">Germany</option>
+                        {countries?.map((country, index) => (
+                            <option key={index} value={country.iso_2}>
+                                {country.display_name}
+                            </option>
+                        ))}
                     </select>
                 </div>
             </div>
