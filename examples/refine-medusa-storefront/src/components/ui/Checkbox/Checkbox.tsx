@@ -1,17 +1,21 @@
+import cn from "clsx";
+
 type CheckboxProps = {
     checked?: boolean;
     onChange?: () => void;
     label: string;
+    className?: string;
 };
 
 const Checkbox: React.FC<CheckboxProps> = ({
     checked = false,
     onChange,
     label,
+    className,
 }) => {
     return (
         <button
-            className="text-accent-7 flex items-center gap-x-2"
+            className={cn("text-accent-7 flex items-center gap-x-2", className)}
             role="checkbox"
             type="button"
             aria-checked={checked}
