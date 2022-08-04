@@ -55,7 +55,7 @@ const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
                     onFocus={() => innerRef.current?.focus()}
                     onBlur={() => innerRef.current?.blur()}
                     className={clsx(
-                        "relative flex items-center text-base-regular border border-gray-200",
+                        "text-base-regular relative flex items-center border border-gray-200",
                         className,
                         {
                             "text-gray-500": isPlaceholder,
@@ -65,12 +65,12 @@ const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
                     <select
                         ref={innerRef}
                         {...props}
-                        className="appearance-none flex-1 bg-transparent border-none px-4 py-2.5 transition-colors duration-150 focus:border-gray-700 outline-none"
+                        className="flex-1 appearance-none border-none bg-transparent px-4 py-2.5 outline-none transition-colors duration-150 focus:border-gray-700"
                     >
                         <option value="">{placeholder}</option>
                         {children}
                     </select>
-                    <span className="absolute right-4 inset-y-0 flex items-center pointer-events-none">
+                    <span className="pointer-events-none absolute inset-y-0 right-4 flex items-center">
                         <ChevronDown />
                     </span>
                 </div>

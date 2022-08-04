@@ -70,7 +70,7 @@ const AddAddress: React.FC = () => {
     return (
         <>
             <button
-                className="border border-gray-200 p-5 min-h-[220px] h-full w-full flex flex-col justify-between"
+                className="flex h-full min-h-[220px] w-full flex-col justify-between border border-gray-200 p-5"
                 onClick={() => show()}
             >
                 <span className="text-base-semi">New address</span>
@@ -146,13 +146,13 @@ const AddAddress: React.FC = () => {
                         <Input {...register("phone")} autoComplete="phone" />
                     </div>
                     {error && (
-                        <div className="text-rose-500 text-small-regular py-2">
+                        <div className="text-small-regular py-2 text-rose-500">
                             {error}
                         </div>
                     )}
                 </div>
                 <Button
-                    className="!bg-gray-200 !text-gray-900 !border-gray-200 min-h-0"
+                    className="min-h-0 !border-gray-200 !bg-gray-200 !text-gray-900"
                     onClick={handleClose}
                 >
                     Cancel
