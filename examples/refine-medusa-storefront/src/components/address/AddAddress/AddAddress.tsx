@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import { useModalForm } from "@pankod/refine-react-hook-form";
+import React, { useMemo, useState } from "react";
+import { useForm, useModalForm } from "@pankod/refine-react-hook-form";
 import CountrySelect from "@components/checkout/CountrySelect/CountrySelect";
-import { Modal, Input, Button, Text } from "@components";
+import { Modal, Input } from "@components";
 import { Plus } from "@icons";
 import { LoadingDots } from "@components";
+import { useCreate } from "@pankod/refine-core";
 
 type FormValues = {
     first_name: string;
@@ -20,15 +21,19 @@ type FormValues = {
 
 const AddAddress: React.FC = () => {
     const [submitting, setSubmitting] = useState(false);
-    const [error, setError] = useState<string | undefined>(undefined);
 
     const {
-        modal: { show, close },
+        modal: { show, visible, close },
         register,
         handleSubmit,
         formState: { errors },
         reset,
-    } = useModalForm<FormValues>();
+    } = useModalForm<FormValues>({
+        refineCoreProps: { action: "create" },
+        warnWhenUnsavedChanges: false,
+    });
+
+    const { mutate } = useCreate();
 
     const handleClose = () => {
         reset({
@@ -48,7 +53,6 @@ const AddAddress: React.FC = () => {
 
     const submit = handleSubmit(async (data: any) => {
         setSubmitting(true);
-        setError(undefined);
 
         const payload = {
             first_name: data.first_name,
@@ -64,8 +68,12 @@ const AddAddress: React.FC = () => {
             metadata: {},
         };
 
-        // TODO: mutate submit address to backend API
+        mutate({
+            resource: "customers/me/shipping_addresses",
+            values: payload,
+        });
     });
+    console.log("rerendering");
 
     return (
         <>
@@ -76,96 +84,156 @@ const AddAddress: React.FC = () => {
                 <span className="text-base-semi">New address</span>
                 <Plus size={24} />
             </button>
-
-            <Modal onClose={handleClose}>
-                <Text>Add address</Text>
-
-                <div>
-                    <div className="grid grid-cols-1 gap-y-2">
+            {visible && (
+                <Modal onClose={handleClose}>
+                    <form
+                        onSubmit={submit}
+                        className="grid grid-cols-1 gap-y-2"
+                    >
+                        <div className="text-xl-semi mb-2">Add address</div>
                         <div className="grid grid-cols-2 gap-x-2">
-                            <Text>First name</Text>
-                            <Input
-                                {...register("first_name", {
-                                    required: "First name is required",
-                                })}
-                                required
-                                autoComplete="given-name"
-                            />
-                            <Text>Last name</Text>
-                            <Input
-                                {...register("last_name", {
-                                    required: "Last name is required",
-                                })}
-                                required
-                                autoComplete="family-name"
-                            />
+                            <div className="flex flex-col">
+                                <div className="text-base-semi">First name</div>
+                                <Input
+                                    {...register("first_name", {
+                                        required: "First name is required",
+                                    })}
+                                />
+                                {errors && (
+                                    <div className="text-small-regular text-rose-500">
+                                        {
+                                            errors.first_name
+                                                ?.message as React.ReactNode
+                                        }
+                                    </div>
+                                )}
+                            </div>
+                            <div className="flex flex-col">
+                                <div className="text-base-semi">Last name</div>
+                                <Input
+                                    {...register("last_name", {
+                                        required: "Last name is required",
+                                    })}
+                                />
+                                {errors && (
+                                    <div className="text-small-regular text-rose-500">
+                                        {
+                                            errors.last_name
+                                                ?.message as React.ReactNode
+                                        }
+                                    </div>
+                                )}
+                            </div>
                         </div>
-                        <Text>Company</Text>
-                        <Input {...register("company")} />
-                        <Text>Address</Text>
-                        <Input
-                            {...register("address_1", {
-                                required: "Address is required",
-                            })}
-                            required
-                            autoComplete="address-line1"
-                        />
-                        <Text>Apartment, suite, etc</Text>
-                        <Input
-                            {...register("address_2")}
-                            autoComplete="address-line2"
-                        />
+                        <div className="flex flex-col">
+                            <div className="text-base-semi">Company</div>
+                            <Input {...register("company")} />
+                            {errors && (
+                                <div className="text-small-regular text-rose-500">
+                                    {errors.company?.message as React.ReactNode}
+                                </div>
+                            )}
+                        </div>
+                        <div className="flex flex-col">
+                            <div className="text-base-semi">Address</div>
+                            <Input
+                                {...register("address_1", {
+                                    required: "Address is required",
+                                })}
+                            />
+                            {errors && (
+                                <div className="text-small-regular text-rose-500">
+                                    {
+                                        errors.address_1
+                                            ?.message as React.ReactNode
+                                    }
+                                </div>
+                            )}
+                        </div>
+                        <div className="flex flex-col justify-center">
+                            <div className="text-base-semi">
+                                Apartment, suite, etc
+                            </div>
+                            <Input {...register("address_2")} />
+                        </div>
                         <div className="grid grid-cols-[144px_1fr] gap-x-2">
-                            <Text>Postal code</Text>
+                            <div className="flex flex-col">
+                                <div className="text-base-semi">
+                                    Postal code
+                                </div>
+                                <Input
+                                    {...register("postal_code", {
+                                        required: "Postal code is required",
+                                    })}
+                                />
+                                {errors && (
+                                    <div className="text-small-regular text-rose-500">
+                                        {
+                                            errors.postal_code
+                                                ?.message as React.ReactNode
+                                        }
+                                    </div>
+                                )}
+                            </div>
+                            <div className="flex flex-col">
+                                <div className="text-base-semi">City</div>
+                                <Input
+                                    {...register("city", {
+                                        required: "City is required",
+                                    })}
+                                />
+                                {errors && (
+                                    <div className="text-small-regular text-rose-500">
+                                        {
+                                            errors.city
+                                                ?.message as React.ReactNode
+                                        }
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                        <div className="flex flex-col">
+                            <div className="text-base-semi">
+                                Province / State
+                            </div>
                             <Input
-                                {...register("postal_code", {
-                                    required: "Postal code is required",
-                                })}
-                                required
-                                autoComplete="postal-code"
+                                className=" mb-2"
+                                {...register("province")}
                             />
-                            <Text>City</Text>
-                            <Input
-                                {...register("city", {
-                                    required: "City is required",
+                            <CountrySelect
+                                {...register("country_code", {
+                                    required: true,
                                 })}
-                                required
-                                autoComplete="locality"
                             />
                         </div>
-                        <Text>Province / State</Text>
-                        <Input
-                            {...register("province")}
-                            autoComplete="address-level1"
-                        />
-                        <CountrySelect
-                            {...register("country_code", { required: true })}
-                            autoComplete="country"
-                        />
-                        <Text>Phone</Text>
-                        <Input {...register("phone")} autoComplete="phone" />
-                    </div>
-                    {error && (
-                        <div className="text-small-regular py-2 text-rose-500">
-                            {error}
+                        <div className="flex flex-col">
+                            <div className="text-base-semi">Phone</div>
+                            <Input {...register("phone")} />
+                            {errors && (
+                                <div className="text-small-regular text-rose-500">
+                                    {errors.phone?.message as React.ReactNode}
+                                </div>
+                            )}
                         </div>
-                    )}
-                </div>
-                <Button
-                    className="min-h-0 !border-gray-200 !bg-gray-200 !text-gray-900"
-                    onClick={handleClose}
-                >
-                    Cancel
-                </Button>
-                <Button
-                    className="min-h-0"
-                    onClick={submit}
-                    disabled={submitting}
-                >
-                    Save
-                    {submitting && <LoadingDots />}
-                </Button>
-            </Modal>
+                        <div className="mt-4">
+                            <button
+                                className="min-h-0 !border-gray-200 !bg-gray-200 !text-gray-900"
+                                onClick={handleClose}
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                type="submit"
+                                className="min-h-0"
+                                disabled={submitting}
+                            >
+                                Save
+                                {submitting && <LoadingDots />}
+                            </button>
+                        </div>
+                    </form>
+                </Modal>
+            )}
         </>
     );
 };
