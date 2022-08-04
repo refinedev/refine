@@ -94,14 +94,14 @@ const EditAddress: React.FC<EditAddressProps> = ({
         <>
             <div
                 className={clsx(
-                    "border border-gray-200 p-5 min-h-[220px] h-full w-full flex flex-col justify-between transition-colors",
+                    "flex h-full min-h-[220px] w-full flex-col justify-between border border-gray-200 p-5 transition-colors",
                     {
                         "border-gray-900": isActive,
                     },
                 )}
             >
                 <div className="flex flex-col">
-                    <span className="text-left text-base-semi">
+                    <span className="text-base-semi text-left">
                         {address.first_name} {address.last_name}
                     </span>
                     {address.company && (
@@ -109,7 +109,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                             {address.company}
                         </span>
                     )}
-                    <div className="flex flex-col text-left text-base-regular mt-2">
+                    <div className="text-base-regular mt-2 flex flex-col text-left">
                         <span>
                             {address.address_1}
                             {address.address_2 && (
@@ -127,14 +127,14 @@ const EditAddress: React.FC<EditAddressProps> = ({
                 </div>
                 <div className="flex items-center gap-x-4">
                     <button
-                        className="text-small-regular text-gray-700 flex items-center gap-x-2"
+                        className="text-small-regular flex items-center gap-x-2 text-gray-700"
                         onClick={() => show()}
                     >
                         <Edit size={16} />
                         Edit
                     </button>
                     <button
-                        className="text-small-regular text-gray-700 flex items-center gap-x-2"
+                        className="text-small-regular flex items-center gap-x-2 text-gray-700"
                         onClick={() => undefined} // TODO: removed function here
                     >
                         <Trash />
@@ -213,7 +213,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                         <Input {...register("phone")} autoComplete="phone" />
                     </div>
                     {error && (
-                        <div className="text-rose-500 text-small-regular py-2">
+                        <div className="text-small-regular py-2 text-rose-500">
                             {error}
                         </div>
                     )}
