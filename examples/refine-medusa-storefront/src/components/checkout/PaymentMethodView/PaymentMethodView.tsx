@@ -1,47 +1,34 @@
-import { FC, useContext, useLayoutEffect, useState } from "react";
-import cn from "clsx";
+import { useContext } from "react";
 import {
-    CardElement,
     Elements,
     PaymentElement,
     useElements,
     useStripe,
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { StoreCartsRes, StoreCompleteCartRes } from "@medusajs/medusa";
-
-// import useAddCard from "@framework/customer/card/use-add-item";
-import { Button, Text } from "@components/ui";
-import { useUI } from "@components/ui/context";
-import SidebarLayout from "@components/common/SidebarLayout";
-
-import s from "./PaymentMethodView.module.css";
-import { CartContext } from "@lib/context";
+import { StoreCompleteCartRes } from "@medusajs/medusa";
 import { useCreate } from "@pankod/refine-core";
 
-interface Form extends HTMLFormElement {
-    cardHolder: HTMLInputElement;
-    cardNumber: HTMLInputElement;
-    cardExpireDate: HTMLInputElement;
-    cardCvc: HTMLInputElement;
-    firstName: HTMLInputElement;
-    lastName: HTMLInputElement;
-    company: HTMLInputElement;
-    streetNumber: HTMLInputElement;
-    zipCode: HTMLInputElement;
-    city: HTMLInputElement;
-    country: HTMLSelectElement;
-}
+import { Button, Text } from "@components/ui";
+import { ArrowLeft } from "@components/icons";
+import { CartContext } from "@lib/context";
+
+import s from "./PaymentMethodView.module.css";
 
 const stripePromise = loadStripe(
     "pk_test_51LSJnfKC5j4fayVQkNNv4SlexKRAK82cUi3lZ4z2mRAvBqtzB0PnBXOL6Z6HKleButtVFXa7kBO0R7IHnx76Pbab007XELtn6c",
 );
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-export function Form({ clientSecret, cartId }) {
+interface PaymentMethodViewProps {
+    clientSecret?: string;
+    goBack: () => void;
+}
+
+const StripeForm: React.FC = () => {
     const stripe = useStripe();
     const elements = useElements();
+
+    const { cartId } = useContext(CartContext);
     const { mutate } = useCreate<StoreCompleteCartRes>();
 
     async function handlePayment(e: { preventDefault: () => void }) {
@@ -60,7 +47,7 @@ export function Form({ clientSecret, cartId }) {
                         values: {},
                     },
                     {
-                        onSuccess(data, variables, context) {
+                        onSuccess(data) {
                             console.log({ data });
                         },
                     },
@@ -69,35 +56,47 @@ export function Form({ clientSecret, cartId }) {
     }
 
     return (
-        <form>
+        <div className="flex flex-col gap-4">
             <PaymentElement />
-            <button onClick={handlePayment}>Payment</button>
-        </form>
-    );
-}
-
-const PaymentMethodView: FC<{ clientSecret?: string }> = ({ clientSecret }) => {
-    const { cartId } = useContext(CartContext);
-
-    return (
-        <form className="h-full" onSubmit={() => undefined}>
-            <div className="flex-1 px-4 sm:px-6">
-                <Text variant="sectionHeading"> Payment Method</Text>
-
-                <div>
-                    {clientSecret && (
-                        <Elements
-                            stripe={stripePromise}
-                            options={{
-                                clientSecret,
-                            }}
-                        >
-                            <Form clientSecret={clientSecret} cartId={cartId} />
-                        </Elements>
-                    )}
-                </div>
+            <div className="flex justify-end">
+                <Button variant="slim" onClick={handlePayment}>
+                    Payment
+                </Button>
             </div>
-        </form>
+        </div>
+    );
+};
+
+const PaymentMethodView: React.FC<PaymentMethodViewProps> = ({
+    clientSecret,
+    goBack,
+}) => {
+    return (
+        <>
+            <Text variant="pageHeading" className="flex items-center gap-2">
+                <button
+                    aria-label="Previous Section"
+                    className={s.leftArrow}
+                    onClick={goBack}
+                >
+                    <ArrowLeft />
+                </button>
+                Payment Method
+            </Text>
+
+            <div>
+                {clientSecret && (
+                    <Elements
+                        stripe={stripePromise}
+                        options={{
+                            clientSecret,
+                        }}
+                    >
+                        <StripeForm />
+                    </Elements>
+                )}
+            </div>
+        </>
     );
 };
 
