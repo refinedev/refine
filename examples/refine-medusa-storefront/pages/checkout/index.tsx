@@ -124,8 +124,10 @@ const ProfilePage: React.FC = () => {
                     values: {
                         country_code: shipping_address.country_code,
                         email: "omer@refine.dev",
-                        billing_address,
                         shipping_address,
+                        billing_address: checked
+                            ? shipping_address
+                            : billing_address,
                     },
                 });
 
