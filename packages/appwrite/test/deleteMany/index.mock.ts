@@ -2,7 +2,7 @@ import nock from "nock";
 
 nock("http://localhost:80", { encodedQueryParams: true })
     .delete(
-        "/v1/database/collections/6180e6efb14df/documents/61c0832765134",
+        "/v1/databases/default/collections/6180e6efb14df/documents/61c0832765134",
         {},
     )
     .reply(204, "", [
@@ -34,7 +34,7 @@ nock("http://localhost:80", { encodedQueryParams: true })
 
 nock("http://localhost:80", { encodedQueryParams: true })
     .delete(
-        "/v1/database/collections/6180e6efb14df/documents/61bb4c710fbbf",
+        "/v1/databases/default/collections/6180e6efb14df/documents/61bb4c710fbbf",
         {},
     )
     .reply(204, "", [

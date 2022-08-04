@@ -1,5 +1,5 @@
 import nock from "nock";
-import appwriteClient from "./appwriteClient";
+import { account } from "./appwriteClient";
 
 nock("http://localhost:80", { encodedQueryParams: true })
     .post("/v1/account/sessions/anonymous", {})
@@ -53,7 +53,7 @@ nock("http://localhost:80", { encodedQueryParams: true })
     );
 
 beforeAll(async () => {
-    return await appwriteClient.account.createAnonymousSession();
+    return await account.createAnonymousSession();
 });
 
 afterAll(() => {
