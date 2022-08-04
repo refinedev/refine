@@ -1,5 +1,23 @@
 # @pankod/refine-core
 
+## 3.56.4
+
+### Patch Changes
+
+-   Fix **useCan** hook params keys.
+
+    Since `react-query` stringifies the query keys, it will throw an error for a circular dependency if we include `React.ReactNode` elements inside the keys.
+    The feature in #2220(https://github.com/pankod/refine/issues/2220) includes such change and to fix this, we need to remove `icon` property in the `resource`
+
+*   Updated `<Refine/>` component with memoization to prevent unwanted effects.
+
+    -   Fixed the issue: `react-query`'s `queryClient` was re-initializing on every render which was causing it to reset the query cache.
+    -   Memoized the `notificationProvider` prop to prevent unnecessary re-renders.
+    -   Memoized the `resources` prop to prevent unnecessary transform calls on every render.
+
+-   -   Fixed Browser back navigation is broken with `syncWithLocation` and paginated `useTable` - #2276
+    -   Updated `push` and `replace` args of `useNavigation`
+
 ## 3.56.3
 
 ### Patch Changes
