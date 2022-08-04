@@ -35,10 +35,18 @@ Writing unit tests that make real HTTP requests can cause a variety of problems:
   - You may get a big size of data that you don't need to use in tests.
   - You may have issues like rate limiting and connectivity.
 
-We'll use the Nock to solution for these problems.
+We'll use the Nock to find a solution for these problems.
 
 
 ## What is Nock?
+
+[Nock](https://github.com/nock/nock) is an HTTP server mocking and expectations library. Nock works by overriding Node's http.request function.
+
+Nock helps us mock calls to API. It lets us specify what URLs we want to listen for and responds with predefined responses, just like how real APIs would do it.
+
+We can use nock to test react components that making HTTP requests.
+
+## Bootstrapping the example app
 
 
 
