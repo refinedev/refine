@@ -54,6 +54,25 @@ mutate({
 
 :::tip
 `mutate` can also accept lifecycle methods like `onSuccess` and `onError`.
+
+```tsx 
+mutate(
+    {
+        resource: "categories",
+        ids: [1, 2],
+        values: { status: "draft" },
+    },
+    {
+        onError: (error, variables, context) => {
+            // An error happened!
+        },
+        onSuccess: (data, variables, context) => {
+            // Let's celebrate!
+        },
+    },
+);
+```
+
 [Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
 :::
 
