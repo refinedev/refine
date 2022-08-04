@@ -1,26 +1,21 @@
-import { FC, useContext } from "react";
-import cn from "clsx";
+import { useContext } from "react";
 import { useOne } from "@pankod/refine-core";
-import { UseFormRegister } from "@pankod/refine-react-hook-form";
+import { useFormContext } from "@pankod/refine-react-hook-form";
 import { Cart } from "@medusajs/medusa";
 
 import { Text } from "@components/ui";
+import Input from "@components/common/Input";
 import { CartContext } from "@lib/context";
 
 import s from "./ShippingView.module.css";
+import NativeSelect from "@components/common/NativeSelect";
 
-interface ShippingViewProps {
-    title: string;
-    register: UseFormRegister<any>;
-    registerNamePrefix: string;
-}
-
-const ShippingView: FC<ShippingViewProps> = ({
-    title,
-    register,
-    registerNamePrefix,
-}) => {
+const ShippingView: React.FC = () => {
     const { cartId } = useContext(CartContext);
+    const {
+        register,
+        formState: { errors, touchedFields },
+    } = useFormContext();
 
     const { data: cartData } = useOne<{ cart: Cart }>({
         id: cartId!,
@@ -33,101 +28,111 @@ const ShippingView: FC<ShippingViewProps> = ({
 
     return (
         <div>
-            <Text variant="pageHeading">{title}</Text>
+            <Text variant="pageHeading">Shipping Address</Text>
             <div>
+                <Input
+                    label="Email"
+                    {...register("email", {
+                        required: {
+                            value: true,
+                            message: "email is required",
+                        },
+                    })}
+                    errors={errors}
+                    touched={touchedFields}
+                />
                 <div className="grid grid-flow-row grid-cols-12 gap-3">
-                    <div className={cn(s.fieldset, "col-span-6")}>
-                        <label className={s.label}>First Name</label>
-                        <input
-                            className={s.input}
-                            {...register(`${registerNamePrefix}.first_name`, {
-                                required: {
-                                    value: true,
-                                    message: "first name is required",
-                                },
-                            })}
-                        />
-                    </div>
-                    <div className={cn(s.fieldset, "col-span-6")}>
-                        <label className={s.label}>Last Name</label>
-                        <input
-                            className={s.input}
-                            {...register(`${registerNamePrefix}.last_name`, {
-                                required: {
-                                    value: true,
-                                    message: "last name is required",
-                                },
-                            })}
-                        />
-                    </div>
-                </div>
-                <div className={s.fieldset}>
-                    <label className={s.label}>Company (Optional)</label>
-                    <input
-                        className={s.input}
-                        {...register(`${registerNamePrefix}.company`)}
-                    />
-                </div>
-                <div className={s.fieldset}>
-                    <label className={s.label}>Street and House Number</label>
-                    <input
-                        {...register(`${registerNamePrefix}.address_1`, {
+                    <Input
+                        containerClassName="col-span-6"
+                        label="First name"
+                        {...register("shipping_address.first_name", {
                             required: {
                                 value: true,
-                                message: "street and house number is required",
+                                message: "first name is required",
                             },
                         })}
-                        className={s.input}
+                        errors={errors}
+                        touched={touchedFields}
+                    />
+                    <Input
+                        containerClassName="col-span-6"
+                        label="Last name"
+                        {...register("shipping_address.last_name", {
+                            required: {
+                                value: true,
+                                message: "last name is required",
+                            },
+                        })}
+                        errors={errors}
+                        touched={touchedFields}
                     />
                 </div>
-                <div className={s.fieldset}>
-                    <label className={s.label}>
-                        Apartment, Suite, Etc. (Optional)
-                    </label>
-                    <input
-                        {...register(`${registerNamePrefix}.address_2`)}
-                        className={s.input}
-                    />
-                </div>
+                <Input
+                    label="Company (Optional)"
+                    {...register("shipping_address.company")}
+                    errors={errors}
+                    touched={touchedFields}
+                />
+                <Input
+                    label="Street and House Number"
+                    {...register("shipping_address.address_1", {
+                        required: {
+                            value: true,
+                            message: "street and house number is required",
+                        },
+                    })}
+                    errors={errors}
+                    touched={touchedFields}
+                />
+                <Input
+                    label="Apartment, Suite, Etc. (Optional)"
+                    {...register("shipping_address.address_2")}
+                    errors={errors}
+                    touched={touchedFields}
+                />
                 <div className="grid grid-flow-row grid-cols-12 gap-3">
-                    <div className={cn(s.fieldset, "col-span-6")}>
-                        <label className={s.label}>Postal Code</label>
-                        <input
-                            {...register(`${registerNamePrefix}.postal_code`, {
-                                required: {
-                                    value: true,
-                                    message: "postal code is required",
-                                },
-                            })}
-                            className={s.input}
-                        />
-                    </div>
-                    <div className={cn(s.fieldset, "col-span-6")}>
-                        <label className={s.label}>City</label>
-                        <input
-                            {...register(`${registerNamePrefix}.city`, {
-                                required: {
-                                    value: true,
-                                    message: "city is required",
-                                },
-                            })}
-                            className={s.input}
-                        />
-                    </div>
+                    <Input
+                        containerClassName="col-span-6"
+                        label="Postal Code"
+                        {...register("shipping_address.postal_code", {
+                            required: {
+                                value: true,
+                                message: "postal code is required",
+                            },
+                        })}
+                        errors={errors}
+                        touched={touchedFields}
+                    />
+                    <Input
+                        containerClassName="col-span-6"
+                        label="City"
+                        {...register("shipping_address.city", {
+                            required: {
+                                value: true,
+                                message: "city is required",
+                            },
+                        })}
+                        errors={errors}
+                        touched={touchedFields}
+                    />
                 </div>
-                <div className={s.fieldset}>
-                    <label className={s.label}>Country/Region</label>
-                    <select
-                        {...register(`${registerNamePrefix}.country_code`)}
-                        className={s.select}
-                    >
-                        {countries?.map((country, index) => (
-                            <option key={index} value={country.iso_2}>
-                                {country.display_name}
-                            </option>
-                        ))}
-                    </select>
-                </div>
+                <NativeSelect
+                    label="Country/Region"
+                    {...register("shipping_address.country_code", {
+                        required: {
+                            value: true,
+                            message: "country is required",
+                        },
+                    })}
+                    errors={errors}
+                    touched={touchedFields}
+                >
+                    {countries?.map((country, index) => (
+                        <option key={index} value={country.iso_2}>
+                            {country.display_name}
+                        </option>
+                    ))}
+                </NativeSelect>
             </div>
         </div>
     );
