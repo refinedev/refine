@@ -13,5 +13,6 @@ export { default as Input } from "./Input";
 export { default as Collapse } from "./Collapse";
 export { default as Quantity } from "./Quantity";
 export { default as Rating } from "./Rating";
+export { default as Checkbox } from "./Checkbox";
 export * from "./Dropdown/Dropdown";
 export { useUI } from "./context";
