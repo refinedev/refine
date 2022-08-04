@@ -240,8 +240,8 @@ export const MyHistoryButtons = () => {
 | edit     | Navigate to `edit page` of your resource        | `(resource: string, type:` [HistoryType](#interface) `, id: string) => void` |
 | clone    | Navigate to `clone page` of your resource       | `(resource: string, type:` [HistoryType](#interface) `, id: string) => void` |
 | show     | Navigate to `show page` of your resource        | `(resource: string, type:` [HistoryType](#interface) `, id: string) => void` |
-| push     | Pushes a new entry onto the history stack       | `(path: string, state?: unknown ) => void`                                   |
-| replace  | Replaces the current entry on the history stack | `(path: string, state?: unknown ) => void`                                   |
+| push     | Pushes a new entry onto the history stack       | `(path: string, ...rest: unknown[]) => void`                                   |
+| replace  | Replaces the current entry on the history stack | `(path: string, ...rest: unknown[]) => void`                                   |
 | goBack   | Equivalent to go previous stack                 | `() => void`                                                                 |
 
 #### Interface

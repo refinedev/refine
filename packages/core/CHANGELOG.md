@@ -1,5 +1,35 @@
 # @pankod/refine-core
 
+## 3.56.3
+
+### Patch Changes
+
+-   [#2278](https://github.com/pankod/refine/pull/2278) [`8b11f8a267`](https://github.com/pankod/refine/commit/8b11f8a2679b403bfea75c448d31de7b6a90f3a9) Thanks [@biskuvit](https://github.com/biskuvit)! - Fix **useCan** hook params keys.
+
+    Since `react-query` stringifies the query keys, it will throw an error for a circular dependency if we include `React.ReactNode` elements inside the keys.
+    The feature in #2220(https://github.com/pankod/refine/issues/2220) includes such change and to fix this, we need to remove `icon` property in the `resource`
+
+*   [#2280](https://github.com/pankod/refine/pull/2280) [`e22cac6d8b`](https://github.com/pankod/refine/commit/e22cac6d8b3da3188545d9c0a614bb0f01f11f70) Thanks [@aliemir](https://github.com/aliemir)! - Updated `<Refine/>` component with memoization to prevent unwanted effects.
+
+    -   Fixed the issue: `react-query`'s `queryClient` was re-initializing on every render which was causing it to reset the query cache.
+    -   Memoized the `notificationProvider` prop to prevent unnecessary re-renders.
+    -   Memoized the `resources` prop to prevent unnecessary transform calls on every render.
+
+-   [#2279](https://github.com/pankod/refine/pull/2279) [`786fb08b8b`](https://github.com/pankod/refine/commit/786fb08b8be18153043f62e5f2cc1fd8ef76e728) Thanks [@omeraplak](https://github.com/omeraplak)! - - Fixed Browser back navigation is broken with `syncWithLocation` and paginated `useTable` - #2276
+    -   Updated `push` and `replace` args of `useNavigation`
+
+## 3.56.2
+
+### Patch Changes
+
+-   Fixed invalidation of authentication caches every time `checkAuth` is run
+
+## 3.56.1
+
+### Patch Changes
+
+-   [#2271](https://github.com/pankod/refine/pull/2271) [`40b84d35a3`](https://github.com/pankod/refine/commit/40b84d35a37fa2bf7fcb0f59de9745985b21fa6a) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed invalidation of authentication caches every time `checkAuth` is run
+
 ## 3.56.0
 
 ### Minor Changes

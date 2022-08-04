@@ -54,7 +54,7 @@ describe("useLogout Hook", () => {
         });
 
         await act(async () => {
-            expect(mHistory).toBeCalledWith("/login", undefined);
+            expect(mHistory).toBeCalledWith("/login");
         });
     });
 
@@ -121,7 +121,7 @@ describe("useLogout Hook", () => {
         });
 
         await act(async () => {
-            expect(mHistory).toBeCalledWith("/custom-path", undefined);
+            expect(mHistory).toBeCalledWith("/custom-path");
         });
     });
 
