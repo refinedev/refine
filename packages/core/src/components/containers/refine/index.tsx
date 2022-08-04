@@ -23,6 +23,7 @@ import { AuditLogContextProvider } from "@contexts/auditLog";
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
 import { routeGenerator } from "@definitions";
 import { Telemetry } from "@components/telemetry";
+import { useDeepMemo } from "@hooks/deepMemo";
 
 import {
     MutationMode,
@@ -116,17 +117,19 @@ export const Refine: React.FC<RefineProps> = ({
     onLiveEvent,
     disableTelemetry = false,
 }) => {
-    const queryClient = new QueryClient({
-        ...reactQueryClientConfig,
-        defaultOptions: {
-            ...reactQueryClientConfig?.defaultOptions,
-            queries: {
-                refetchOnWindowFocus: false,
-                keepPreviousData: true,
-                ...reactQueryClientConfig?.defaultOptions?.queries,
+    const queryClient = useDeepMemo(() => {
+        return new QueryClient({
+            ...reactQueryClientConfig,
+            defaultOptions: {
+                ...reactQueryClientConfig?.defaultOptions,
+                queries: {
+                    refetchOnWindowFocus: false,
+                    keepPreviousData: true,
+                    ...reactQueryClientConfig?.defaultOptions?.queries,
+                },
             },
-        },
-    });
+        });
+    }, [reactQueryClientConfig]);
 
     const notificationProviderContextValues =
         typeof notificationProvider === "function"
