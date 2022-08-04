@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-appwrite": major
+"@pankod/refine-appwrite": minor
 ---
 
 - Added `databaseId` support. The Default value is `default` for backward compability
