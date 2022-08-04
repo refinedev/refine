@@ -216,7 +216,9 @@ export function useTable<
             });
 
             // Careful! This triggers render
-            return replace(`${pathname}?${stringifyParams}`);
+            return replace(`${pathname}?${stringifyParams}`, undefined, {
+                shallow: true,
+            });
         }
     }, [syncWithLocation, current, pageSize, sorter, filters]);
 
