@@ -127,7 +127,11 @@ export const buttonDeleteTests = function (
 
             expect(container).toBeTruthy();
 
-            expect(getByText("Delete").closest("button")).not.toBeDisabled();
+            await waitFor(() =>
+                expect(
+                    getByText("Delete").closest("button"),
+                ).not.toBeDisabled(),
+            );
         });
 
         it("should render called function successfully if click the button", async () => {
