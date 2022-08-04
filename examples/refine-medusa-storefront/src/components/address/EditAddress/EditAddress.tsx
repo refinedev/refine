@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { useModalForm } from "@pankod/refine-react-hook-form";
 import { Address } from "@medusajs/medusa";
 
-import CountrySelect from "@components/checkout/CountrySelect/CountrySelect";
 import { Trash, Edit } from "@icons";
 import { LoadingDots, Modal, Input, Button, Text } from "@components";
 
@@ -202,12 +201,6 @@ const EditAddress: React.FC<EditAddressProps> = ({
                         <Input
                             {...register("province")}
                             autoComplete="address-level1"
-                        />
-                        <CountrySelect
-                            {...register("country_code", {
-                                required: true,
-                            })}
-                            autoComplete="country"
                         />
                         <Text>Phone</Text>
                         <Input {...register("phone")} autoComplete="phone" />

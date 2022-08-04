@@ -1,10 +1,14 @@
-import React, { useMemo, useState } from "react";
-import { useForm, useModalForm } from "@pankod/refine-react-hook-form";
-import CountrySelect from "@components/checkout/CountrySelect/CountrySelect";
-import { Modal, Input } from "@components";
+import React, { useContext, useState } from "react";
+import { useCreate, useList } from "@pankod/refine-core";
+import { useModalForm } from "@pankod/refine-react-hook-form";
+import { Country, Region } from "@medusajs/medusa";
+
+import { Modal, Button } from "@components";
 import { Plus } from "@icons";
 import { LoadingDots } from "@components";
-import { useCreate } from "@pankod/refine-core";
+import Input from "@components/common/Input";
+import NativeSelect from "@components/common/NativeSelect";
+import { CartContext } from "@lib/context";
 
 type FormValues = {
     first_name: string;
@@ -26,9 +30,11 @@ const AddAddress: React.FC = () => {
         modal: { show, visible, close },
         register,
         handleSubmit,
-        formState: { errors },
+        formState: { errors, touchedFields },
         reset,
     } = useModalForm<FormValues>({
+        reValidateMode: "onChange",
+        mode: "onTouched",
         refineCoreProps: { action: "create" },
         warnWhenUnsavedChanges: false,
     });
@@ -55,25 +61,45 @@ const AddAddress: React.FC = () => {
         setSubmitting(true);
 
         const payload = {
-            first_name: data.first_name,
-            last_name: data.last_name,
-            company: data.company || "",
-            address_1: data.address_1,
-            address_2: data.address_2 || "",
-            city: data.city,
-            country_code: data.country_code,
-            province: data.province || "",
-            postal_code: data.postal_code,
-            phone: data.phone || "",
-            metadata: {},
+            address: {
+                first_name: data.first_name,
+                last_name: data.last_name,
+                company: data.company || "",
+                address_1: data.address_1,
+                address_2: data.address_2 || "",
+                city: data.city,
+                country_code: data.country_code,
+                province: data.province || "",
+                postal_code: data.postal_code,
+                phone: data.phone || "",
+                metadata: {},
+            },
         };
 
-        mutate({
-            resource: "customers/me/shipping_addresses",
-            values: payload,
-        });
+        mutate(
+            {
+                resource: "customers/me/addresses",
+                values: payload,
+            },
+            {
+                onSuccess: () => {
+                    setSubmitting(false);
+                    handleClose();
+                },
+            },
+        );
     });
-    console.log("rerendering");
+    const { cartId } = useContext(CartContext);
+
+    const { data: regions } = useList<Region>({
+        resource: "regions",
+    });
+
+    const countriesByRegion = regions?.data.map((region) => region.countries);
+
+    const countries =
+        countriesByRegion &&
+        ([] as Country[]).concat(...(countriesByRegion ?? []));
 
     return (
         <>
@@ -91,145 +117,134 @@ const AddAddress: React.FC = () => {
                         className="grid grid-cols-1 gap-y-2"
                     >
                         <div className="text-xl-semi mb-2">Add address</div>
-                        <div className="grid grid-cols-2 gap-x-2">
-                            <div className="flex flex-col">
-                                <div className="text-base-semi">First name</div>
-                                <Input
-                                    {...register("first_name", {
-                                        required: "First name is required",
-                                    })}
-                                />
-                                {errors && (
-                                    <div className="text-small-regular text-rose-500">
-                                        {
-                                            errors.first_name
-                                                ?.message as React.ReactNode
-                                        }
-                                    </div>
-                                )}
-                            </div>
-                            <div className="flex flex-col">
-                                <div className="text-base-semi">Last name</div>
-                                <Input
-                                    {...register("last_name", {
-                                        required: "Last name is required",
-                                    })}
-                                />
-                                {errors && (
-                                    <div className="text-small-regular text-rose-500">
-                                        {
-                                            errors.last_name
-                                                ?.message as React.ReactNode
-                                        }
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                        <div className="flex flex-col">
-                            <div className="text-base-semi">Company</div>
-                            <Input {...register("company")} />
-                            {errors && (
-                                <div className="text-small-regular text-rose-500">
-                                    {errors.company?.message as React.ReactNode}
-                                </div>
-                            )}
-                        </div>
-                        <div className="flex flex-col">
-                            <div className="text-base-semi">Address</div>
+                        <div className="grid grid-flow-row grid-cols-12 gap-3">
                             <Input
-                                {...register("address_1", {
-                                    required: "Address is required",
+                                containerClassName="col-span-6"
+                                label="First name"
+                                {...register("first_name", {
+                                    required: {
+                                        value: true,
+                                        message: "first name is required",
+                                    },
                                 })}
+                                errors={errors}
+                                touched={touchedFields}
                             />
-                            {errors && (
-                                <div className="text-small-regular text-rose-500">
-                                    {
-                                        errors.address_1
-                                            ?.message as React.ReactNode
-                                    }
-                                </div>
-                            )}
-                        </div>
-                        <div className="flex flex-col justify-center">
-                            <div className="text-base-semi">
-                                Apartment, suite, etc
-                            </div>
-                            <Input {...register("address_2")} />
-                        </div>
-                        <div className="grid grid-cols-[144px_1fr] gap-x-2">
-                            <div className="flex flex-col">
-                                <div className="text-base-semi">
-                                    Postal code
-                                </div>
-                                <Input
-                                    {...register("postal_code", {
-                                        required: "Postal code is required",
-                                    })}
-                                />
-                                {errors && (
-                                    <div className="text-small-regular text-rose-500">
-                                        {
-                                            errors.postal_code
-                                                ?.message as React.ReactNode
-                                        }
-                                    </div>
-                                )}
-                            </div>
-                            <div className="flex flex-col">
-                                <div className="text-base-semi">City</div>
-                                <Input
-                                    {...register("city", {
-                                        required: "City is required",
-                                    })}
-                                />
-                                {errors && (
-                                    <div className="text-small-regular text-rose-500">
-                                        {
-                                            errors.city
-                                                ?.message as React.ReactNode
-                                        }
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                        <div className="flex flex-col">
-                            <div className="text-base-semi">
-                                Province / State
-                            </div>
                             <Input
-                                className=" mb-2"
-                                {...register("province")}
-                            />
-                            <CountrySelect
-                                {...register("country_code", {
-                                    required: true,
+                                containerClassName="col-span-6"
+                                label="Last name"
+                                {...register("last_name", {
+                                    required: {
+                                        value: true,
+                                        message: "last name is required",
+                                    },
                                 })}
+                                errors={errors}
+                                touched={touchedFields}
                             />
                         </div>
-                        <div className="flex flex-col">
-                            <div className="text-base-semi">Phone</div>
-                            <Input {...register("phone")} />
-                            {errors && (
-                                <div className="text-small-regular text-rose-500">
-                                    {errors.phone?.message as React.ReactNode}
-                                </div>
-                            )}
+                        <Input
+                            label="Company (Optional)"
+                            {...register("company")}
+                            errors={errors}
+                            touched={touchedFields}
+                        />
+                        <Input
+                            label="Address"
+                            {...register("address_1", {
+                                required: {
+                                    value: true,
+                                    message: "Address is required",
+                                },
+                            })}
+                            errors={errors}
+                            touched={touchedFields}
+                        />
+                        <Input
+                            label="Apartment, Suite, Etc. (Optional)"
+                            {...register("address_2")}
+                            errors={errors}
+                            touched={touchedFields}
+                        />
+                        <div className="grid grid-flow-row grid-cols-12 gap-3">
+                            <Input
+                                containerClassName="col-span-6"
+                                label="Postal Code"
+                                {...register("postal_code", {
+                                    required: {
+                                        value: true,
+                                        message: "postal code is required",
+                                    },
+                                })}
+                                errors={errors}
+                                touched={touchedFields}
+                            />
+                            <Input
+                                containerClassName="col-span-6"
+                                label="City"
+                                {...register("city", {
+                                    required: {
+                                        value: true,
+                                        message: "city is required",
+                                    },
+                                })}
+                                errors={errors}
+                                touched={touchedFields}
+                            />
+                        </div>
+                        <NativeSelect
+                            label="Country/Region"
+                            {...register("country_code", {
+                                required: {
+                                    value: true,
+                                    message: "country is required",
+                                },
+                            })}
+                            errors={errors}
+                            touched={touchedFields}
+                        >
+                            {countries?.map((country, index) => (
+                                <option key={index} value={country.iso_2}>
+                                    {country.display_name}
+                                </option>
+                            ))}
+                        </NativeSelect>
+                        <div className="grid grid-flow-row grid-cols-12 gap-3">
+                            <Input
+                                containerClassName="col-span-6"
+                                label="Province"
+                                {...register("province", {
+                                    required: {
+                                        value: true,
+                                        message: "province is required",
+                                    },
+                                })}
+                                errors={errors}
+                                touched={touchedFields}
+                            />
+                            <Input
+                                containerClassName="col-span-6"
+                                label="Phone"
+                                {...register("phone")}
+                                errors={errors}
+                                touched={touchedFields}
+                            />
                         </div>
                         <div className="mt-4">
-                            <button
+                            <Button
                                 className="min-h-0 !border-gray-200 !bg-gray-200 !text-gray-900"
                                 onClick={handleClose}
                             >
                                 Cancel
-                            </button>
-                            <button
+                            </Button>
+                            <Button
                                 type="submit"
                                 className="min-h-0"
                                 disabled={submitting}
                             >
                                 Save
                                 {submitting && <LoadingDots />}
-                            </button>
+                            </Button>
                         </div>
                     </form>
                 </Modal>
