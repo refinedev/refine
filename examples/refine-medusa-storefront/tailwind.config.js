@@ -3,6 +3,19 @@ module.exports = {
     safelist: ["outline-none"],
     theme: {
         extend: {
+            screens: {
+                "2xsmall": "320px",
+                xsmall: "512px",
+                small: "1024px",
+                medium: "1280px",
+                large: "1440px",
+                xlarge: "1680px",
+                "2xlarge": "1920px",
+            },
+            transitionProperty: {
+                width: "width",
+                spacing: "margin, padding",
+            },
             maxWidth: {
                 "8xl": "1920px",
             },
