@@ -16,4 +16,3 @@ export { default as Rating } from "./Rating";
 export { default as Checkbox } from "./Checkbox";
 export * from "./Dropdown/Dropdown";
 export { useUI } from "./context";
-export * from "./NativeSelect";
