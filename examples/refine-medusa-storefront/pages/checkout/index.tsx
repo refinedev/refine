@@ -141,13 +141,10 @@ const ProfilePage: React.FC = () => {
                     values: {},
                 });
 
-                console.log({ paymentSession });
-
                 const isStripeAvailable =
                     paymentSession.data.cart.payment_sessions?.some(
                         (session) => session.provider_id === "stripe",
                     );
-                console.log({ isStripeAvailable });
 
                 if (!isStripeAvailable) {
                     return;
