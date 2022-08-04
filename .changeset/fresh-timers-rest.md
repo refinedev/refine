@@ -8,7 +8,7 @@
 ## Usage
 
 ```tsx
-import { Refine, AuthProvider } from "@pankod/refine-core";
+import { Refine } from "@pankod/refine-core";
 import { Account, Appwrite, Storage } from "@pankod/refine-appwrite";
 
 const APPWRITE_URL = "https://YOUR_COOL_APPWRITE_URL";
