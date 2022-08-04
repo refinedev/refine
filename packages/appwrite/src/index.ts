@@ -282,10 +282,8 @@ export const liveProvider = (
             } else {
                 appwriteChannel = `databases.${databaseId}.collections.${resource}.documents`;
             }
-            console.log({ appwriteChannel, types });
 
             return appwriteClient.subscribe(appwriteChannel, (event) => {
-                console.log({ event });
                 const refineEvent = getRefineEvent(event.events[0]);
                 if (
                     types.includes("*") ||

@@ -1,10 +1,11 @@
-import { Appwrite } from "appwrite";
+import { Client as Appwrite, Account } from "appwrite";
 
 const APPWRITE_URL = "http://localhost/v1";
 const APPWRITE_PROJECT = "6180e3c470b7f";
 
-const appwriteClient = new Appwrite();
+const client = new Appwrite();
 
-appwriteClient.setEndpoint(APPWRITE_URL).setProject(APPWRITE_PROJECT);
+client.setEndpoint(APPWRITE_URL).setProject(APPWRITE_PROJECT);
+const account = new Account(client);
 
-export default appwriteClient;
+export { client, account };

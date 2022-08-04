@@ -1,7 +1,7 @@
 import nock from "nock";
 
 nock("http://localhost:80", { encodedQueryParams: true })
-    .get("/v1/database/collections/6180e4315f3e7/documents")
+    .get("/v1/databases/default/collections/6180e4315f3e7/documents")
     .query({ limit: "10", offset: "0" })
     .reply(
         200,
@@ -41,7 +41,7 @@ nock("http://localhost:80", { encodedQueryParams: true })
     );
 
 nock("http://localhost:80", { encodedQueryParams: true })
-    .get("/v1/database/collections/6180e4315f3e7/documents")
+    .get("/v1/databases/default/collections/6180e4315f3e7/documents")
     .query({ limit: "10", offset: "0", orderField: "%24id", orderType: "DESC" })
     .reply(
         200,
@@ -81,7 +81,7 @@ nock("http://localhost:80", { encodedQueryParams: true })
     );
 
 nock("http://localhost:80", { encodedQueryParams: true })
-    .get("/v1/database/collections/6180e4315f3e7/documents")
+    .get("/v1/databases/default/collections/6180e4315f3e7/documents")
     .query({
         "filters%5B0%5D": "%24id%3D61c300118b05b",
         limit: "10",
