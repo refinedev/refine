@@ -23,3 +23,4 @@ export { default as ChevronRight } from "./ChevronRight";
 export { default as DoubleChevron } from "./DoubleChevron";
 export { default as User } from "./User";
 export { default as Package } from "./Package";
+export { default as Edit } from "./Edit";

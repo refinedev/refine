@@ -1,37 +1,44 @@
-const Trash = ({ ...props }) => {
+import React from "react";
+import { IconProps } from "@interfaces";
+
+const Trash: React.FC<IconProps> = ({
+    size = "16",
+    color = "currentColor",
+    ...attributes
+}) => {
     return (
         <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
+            width={size}
+            height={size}
+            viewBox="0 0 20 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            {...props}
+            {...attributes}
         >
             <path
-                d="M3 6H21"
-                stroke="currentColor"
+                d="M3.33301 5.49054H4.81449H16.6663"
+                stroke={color}
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
             />
             <path
-                d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z"
-                stroke="currentColor"
+                d="M7.14286 5.5V4C7.14286 3.60218 7.29337 3.22064 7.56128 2.93934C7.82919 2.65804 8.19255 2.5 8.57143 2.5H11.4286C11.8075 2.5 12.1708 2.65804 12.4387 2.93934C12.7066 3.22064 12.8571 3.60218 12.8571 4V5.5M15 5.5V16C15 16.3978 14.8495 16.7794 14.5816 17.0607C14.3137 17.342 13.9503 17.5 13.5714 17.5H6.42857C6.04969 17.5 5.68633 17.342 5.41842 17.0607C5.15051 16.7794 5 16.3978 5 16V5.5H15Z"
+                stroke={color}
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
             />
             <path
-                d="M10 11V17"
-                stroke="currentColor"
+                d="M8.33203 9.23724V13.4039"
+                stroke={color}
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
             />
             <path
-                d="M14 11V17"
-                stroke="currentColor"
+                d="M11.666 9.23724V13.4039"
+                stroke={color}
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
