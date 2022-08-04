@@ -1,10 +1,5 @@
 import { BaseRecord, CreateResponse, useCreate } from "@pankod/refine-core";
-import React, {
-    createContext,
-    SetStateAction,
-    useEffect,
-    useState,
-} from "react";
+import React, { createContext } from "react";
 
 type CartProviderProps = {
     children: React.ReactNode;
