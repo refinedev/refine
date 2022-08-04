@@ -1,5 +1,24 @@
 # @pankod/refine-antd
 
+## 3.35.2
+
+### Patch Changes
+
+-   Remove `data-testid` props from buttons in crud components to make use of button test ids presented by `@pankod/refine-ui-types` package.
+
+*   Updated `@pankod/refine-antd` and `@pankod/refine-mui` `fields` properties by using `@pankod/refine-ui-types` common `fields` types.
+
+    Updated `@pankod/refine-antd` and `@pankod/refine-mui` `fields` tests by using `@pankod/refine-ui-tests` common `fields` tests.
+
+    Updated `@pankod/refine-ui-tests` `fields` properties.
+
+-   Added `@pankod/refine-ui-tests` and `@pankod/refine-ui-types` packages. Now, all of button prop types comes from `@pankod/refine-ui-types` package and all of button tests comes from `@pankod/refine-ui-tests` package.
+
+    Thus, button types and tests are managed by `@pankod/refine-ui-types` package and `@pankod/refine-ui-tests` package.
+
+-   Updated dependencies []:
+    -   @pankod/refine-ui-types@0.3.0
+
 ## 3.35.1
 
 ### Patch Changes
