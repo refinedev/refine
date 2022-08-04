@@ -5,6 +5,7 @@
 - Added `databaseId` support. The Default value is `default` for backward compability
 - Upgraded Appwrite SDK to 9
 
+## Usage
 
 ```tsx
 import { Refine, AuthProvider } from "@pankod/refine-core";
