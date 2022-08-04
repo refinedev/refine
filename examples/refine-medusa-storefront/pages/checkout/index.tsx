@@ -1,16 +1,20 @@
 import { useContext, useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
 import { LayoutWrapper, useCreate, useOne } from "@pankod/refine-core";
-import { Controller, useStepsForm } from "@pankod/refine-react-hook-form";
+import {
+    FormProvider,
+    Controller,
+    useStepsForm,
+} from "@pankod/refine-react-hook-form";
 import { StoreShippingOptionsListRes, StoreCartsRes } from "@medusajs/medusa";
 
-import { Button, Container, Text } from "@components/ui";
+import { Button, Container, Text, Checkbox } from "@components/ui";
 import { getSearchStaticProps } from "@lib/search-props";
 import PaymentMethodView from "@components/checkout/PaymentMethodView";
 import ShippingView from "@components/checkout/ShippingView";
+import BillingView from "@components/checkout/BillingView";
 import { CartContext } from "@lib/context";
 import ShippingOptionWidget from "@components/checkout/ShippingOptionWidget";
-import Checkbox from "@components/common/Checkbox";
 
 const stepTitles = ["Address", "Payment"];
 
@@ -19,14 +23,17 @@ const ProfilePage: React.FC = () => {
     const { cartId } = useContext(CartContext);
     const [clientSecret, setClientSecret] = useState<string | undefined>();
 
+    const methods = useStepsForm({
+        mode: "onTouched",
+        reValidateMode: "onChange",
+    });
     const {
         register,
         control,
-        formState: { errors },
         getValues,
         setValue,
         steps: { currentStep, gotoStep },
-    } = useStepsForm();
+    } = methods;
 
     const { data: shippingOptions } = useOne<StoreShippingOptionsListRes>({
         resource: `shipping-options/${cartId}`,
@@ -59,7 +66,8 @@ const ProfilePage: React.FC = () => {
             case 0:
                 return (
                     <div className="flex flex-col gap-2">
-                        {Object.keys(errors).length > 0 && (
+                        {/* TODO: Fix me */}
+                        {/* {Object.keys(errors).length > 0 && (
                             <div className="text-red border-red border p-3">
                                 <ul>
                                     {Object.keys(errors).map((key: any) => (
@@ -72,28 +80,18 @@ const ProfilePage: React.FC = () => {
                                     ))}
                                 </ul>
                             </div>
-                        )}
+                        )} */}
 
-                        <ShippingView
-                            title="Shipping Address"
-                            registerNamePrefix="shipping_address"
-                            register={register}
-                        />
+                        <ShippingView />
 
                         <Checkbox
+                            className="my-4"
                             label="Same as billing address"
                             checked={checked}
                             onChange={() => setChecked(!checked)}
                         />
-                        <br />
 
-                        {!checked && (
-                            <ShippingView
-                                title="Billing Address"
-                                registerNamePrefix="billing_address"
-                                register={register}
-                            />
-                        )}
+                        {!checked && <BillingView />}
 
                         <Text variant="pageHeading">Delivery</Text>
                         <Controller
@@ -110,26 +108,40 @@ const ProfilePage: React.FC = () => {
                     </div>
                 );
             case 1:
-                return <PaymentMethodView clientSecret={clientSecret} />;
+                return (
+                    <PaymentMethodView
+                        clientSecret={clientSecret}
+                        goBack={() => gotoStep(currentStep - 1)}
+                    />
+                );
         }
     };
 
     useEffect(() => {
         (async () => {
             if (currentStep === 1) {
-                const { shipping_address, billing_address } = getValues();
+                // TODO: Fix error handling try catch
+                const { shipping_address, billing_address, email } =
+                    getValues();
 
-                await mutateAsync({
-                    resource: `carts/${cartId}`,
-                    values: {
-                        country_code: shipping_address.country_code,
-                        email: "omer@refine.dev",
-                        shipping_address,
-                        billing_address: checked
-                            ? shipping_address
-                            : billing_address,
+                await mutateAsync(
+                    {
+                        resource: `carts/${cartId}`,
+                        values: {
+                            country_code: shipping_address.country_code,
+                            email,
+                            shipping_address,
+                            billing_address: checked
+                                ? shipping_address
+                                : billing_address,
+                        },
                     },
-                });
+                    {
+                        onError: (error) => {
+                            console.log(error);
+                        },
+                    },
+                );
 
                 await mutateAsync({
                     resource: `carts/${cartId}/shipping-methods`,
@@ -170,19 +182,13 @@ const ProfilePage: React.FC = () => {
     return (
         <LayoutWrapper>
             <Container>
-                <form autoComplete="off">{renderFormByStep(currentStep)}</form>
+                <FormProvider {...methods}>
+                    <form autoComplete="off">
+                        {renderFormByStep(currentStep)}
+                    </form>
+                </FormProvider>
 
-                <div className="mt-8 flex gap-2">
-                    {currentStep > 0 && (
-                        <Button
-                            variant="slim"
-                            onClick={() => {
-                                gotoStep(currentStep - 1);
-                            }}
-                        >
-                            Previous
-                        </Button>
-                    )}
+                <div className="mt-8 flex justify-end">
                     {currentStep < stepTitles.length - 1 && (
                         <Button
                             variant="slim"
