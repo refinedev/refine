@@ -1,20 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
-import { LayoutWrapper, useCreate, useOne } from "@pankod/refine-core";
-import {
-    FormProvider,
-    Controller,
-    useStepsForm,
-} from "@pankod/refine-react-hook-form";
-import { StoreShippingOptionsListRes, StoreCartsRes } from "@medusajs/medusa";
+import { LayoutWrapper, useCreate } from "@pankod/refine-core";
+import { FormProvider, useStepsForm } from "@pankod/refine-react-hook-form";
+import { StoreCartsRes } from "@medusajs/medusa";
 
-import { Button, Container, Text, Checkbox } from "@components/ui";
+import { Button, Container, Checkbox } from "@components/ui";
 import { getSearchStaticProps } from "@lib/search-props";
 import PaymentMethodView from "@components/checkout/PaymentMethodView";
 import ShippingView from "@components/checkout/ShippingView";
 import BillingView from "@components/checkout/BillingView";
+import ShippingOptionView from "@components/checkout/ShippingOptionView";
 import { CartContext } from "@lib/context";
-import ShippingOptionWidget from "@components/checkout/ShippingOptionWidget";
 
 const stepTitles = ["Address", "Payment"];
 
@@ -28,38 +24,13 @@ const ProfilePage: React.FC = () => {
         reValidateMode: "onChange",
     });
     const {
-        register,
-        control,
         getValues,
-        setValue,
         steps: { currentStep, gotoStep },
     } = methods;
-
-    const { data: shippingOptions } = useOne<StoreShippingOptionsListRes>({
-        resource: `shipping-options/${cartId}`,
-        id: "",
-    });
 
     const { mutateAsync } = useCreate();
 
     const { mutateAsync: createPaymentSession } = useCreate<StoreCartsRes>();
-
-    const ShippingOptions = () => (
-        <>
-            {shippingOptions?.data?.shipping_options.map((option) => (
-                <ShippingOptionWidget
-                    key={option.id}
-                    isValid={getValues()?.shippingMethod === option.id}
-                    onClick={() => {
-                        setValue("shippingMethod", option.id);
-                    }}
-                    {...register("shippingMethod")}
-                >
-                    {option.name}
-                </ShippingOptionWidget>
-            ))}
-        </>
-    );
 
     const renderFormByStep = (step: number) => {
         switch (step) {
@@ -93,18 +64,7 @@ const ProfilePage: React.FC = () => {
 
                         {!checked && <BillingView />}
 
-                        <Text variant="pageHeading">Delivery</Text>
-                        <Controller
-                            control={control}
-                            name="shippingMethod"
-                            rules={{
-                                required: {
-                                    message: "shipping is required",
-                                    value: true,
-                                },
-                            }}
-                            render={({}) => <ShippingOptions />}
-                        />
+                        <ShippingOptionView />
                     </div>
                 );
             case 1:
