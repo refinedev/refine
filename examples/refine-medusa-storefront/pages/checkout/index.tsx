@@ -32,9 +32,12 @@ const CheckoutPage: React.FC = () => {
         trigger,
     } = methods;
 
-    const { mutateAsync } = useCreate();
+    const { mutateAsync, isLoading } = useCreate();
 
-    const { mutateAsync: createPaymentSession } = useCreate<StoreCartsRes>();
+    const {
+        mutateAsync: createPaymentSession,
+        isLoading: isCreatePaymentSessionLoading,
+    } = useCreate<StoreCartsRes>();
 
     const renderFormByStep = (step: number) => {
         switch (step) {
@@ -145,6 +148,7 @@ const CheckoutPage: React.FC = () => {
                 <div className="mt-4 flex justify-end">
                     {currentStep < stepTitles.length - 1 && (
                         <Button
+                            loading={isLoading || isCreatePaymentSessionLoading}
                             variant="slim"
                             onClick={() => {
                                 nextPage();

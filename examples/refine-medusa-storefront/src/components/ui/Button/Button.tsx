@@ -63,11 +63,11 @@ const Button: React.FC<ButtonProps> = forwardRef((props, buttonRef) => {
             {...rest}
         >
             {children}
-            {/* {loading && (
-                <i className="pl-2 m-0 flex">
+            {loading && (
+                <i className="m-0 flex pl-2">
                     <LoadingDots />
                 </i>
-            )} */}
+            )}
         </Component>
     );
 });
