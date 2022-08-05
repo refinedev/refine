@@ -5,7 +5,7 @@ title: Basic
 
 [**Handsontable**](https://handsontable.com/) is a full featured spreadsheet editor. You can develop applications with spreadsheet-like UX using [**Handsontable**](https://handsontable.com/) and Refine.
 
-In this example, we show you how to manage relational data, sort and update data.
+This example shows you how to manage relational data, sort, and update.
 
 [View Handsontable Example Source](https://github.com/pankod/refine/tree/master/examples/table/handson)
 
