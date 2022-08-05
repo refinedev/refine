@@ -5,10 +5,9 @@ import { Cart } from "@medusajs/medusa";
 
 import { Text } from "@components/ui";
 import Input from "@components/common/Input";
-import { CartContext } from "@lib/context";
-
-import s from "./ShippingView.module.css";
 import NativeSelect from "@components/common/NativeSelect";
+import { CartContext } from "@lib/context";
+import { emailRegex } from "@lib/regex";
 
 const ShippingView: React.FC = () => {
     const { cartId } = useContext(CartContext);
@@ -33,9 +32,10 @@ const ShippingView: React.FC = () => {
                 <Input
                     label="Email"
                     {...register("email", {
-                        required: {
-                            value: true,
-                            message: "email is required",
+                        required: "email is required",
+                        pattern: {
+                            value: emailRegex,
+                            message: "invalid email address",
                         },
                     })}
                     errors={errors}
@@ -46,10 +46,7 @@ const ShippingView: React.FC = () => {
                         containerClassName="col-span-6"
                         label="First name"
                         {...register("shipping_address.first_name", {
-                            required: {
-                                value: true,
-                                message: "first name is required",
-                            },
+                            required: "first name is required",
                         })}
                         errors={errors}
                         touched={touchedFields}
@@ -58,10 +55,7 @@ const ShippingView: React.FC = () => {
                         containerClassName="col-span-6"
                         label="Last name"
                         {...register("shipping_address.last_name", {
-                            required: {
-                                value: true,
-                                message: "last name is required",
-                            },
+                            required: "last name is required",
                         })}
                         errors={errors}
                         touched={touchedFields}
@@ -76,10 +70,7 @@ const ShippingView: React.FC = () => {
                 <Input
                     label="Street and House Number"
                     {...register("shipping_address.address_1", {
-                        required: {
-                            value: true,
-                            message: "street and house number is required",
-                        },
+                        required: "street and house number is required",
                     })}
                     errors={errors}
                     touched={touchedFields}
@@ -95,10 +86,7 @@ const ShippingView: React.FC = () => {
                         containerClassName="col-span-6"
                         label="Postal Code"
                         {...register("shipping_address.postal_code", {
-                            required: {
-                                value: true,
-                                message: "postal code is required",
-                            },
+                            required: "postal code is required",
                         })}
                         errors={errors}
                         touched={touchedFields}
@@ -107,10 +95,7 @@ const ShippingView: React.FC = () => {
                         containerClassName="col-span-6"
                         label="City"
                         {...register("shipping_address.city", {
-                            required: {
-                                value: true,
-                                message: "city is required",
-                            },
+                            required: "city is required",
                         })}
                         errors={errors}
                         touched={touchedFields}
@@ -119,10 +104,7 @@ const ShippingView: React.FC = () => {
                 <NativeSelect
                     label="Country/Region"
                     {...register("shipping_address.country_code", {
-                        required: {
-                            value: true,
-                            message: "country is required",
-                        },
+                        required: "country is required",
                     })}
                     errors={errors}
                     touched={touchedFields}
