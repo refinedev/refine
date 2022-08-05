@@ -12,7 +12,7 @@ const AddressBook: React.FC<AddressBookProps> = ({ customer }) => {
         <div className="w-full">
             <div className="mt-4 grid flex-1 grid-cols-1 gap-4 lg:grid-cols-2">
                 <AddAddress />
-                {customer.shipping_addresses.map((address) => {
+                {customer?.shipping_addresses?.map((address) => {
                     return <EditAddress address={address} key={address.id} />;
                 })}
             </div>

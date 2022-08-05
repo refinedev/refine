@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { useCreate, useList } from "@pankod/refine-core";
+import React from "react";
+import { useList } from "@pankod/refine-core";
 import { useModalForm } from "@pankod/refine-react-hook-form";
 import { Country, Region } from "@medusajs/medusa";
 
@@ -8,7 +8,6 @@ import { Plus } from "@icons";
 import { LoadingDots } from "@components";
 import Input from "@components/common/Input";
 import NativeSelect from "@components/common/NativeSelect";
-import { CartContext } from "@lib/context";
 
 type FormValues = {
     first_name: string;
@@ -24,23 +23,6 @@ type FormValues = {
 };
 
 const AddAddress: React.FC = () => {
-    const [submitting, setSubmitting] = useState(false);
-
-    const {
-        modal: { show, visible, close },
-        register,
-        handleSubmit,
-        formState: { errors, touchedFields },
-        reset,
-    } = useModalForm<FormValues>({
-        reValidateMode: "onChange",
-        mode: "onTouched",
-        refineCoreProps: { action: "create" },
-        warnWhenUnsavedChanges: false,
-    });
-
-    const { mutate } = useCreate();
-
     const handleClose = () => {
         reset({
             first_name: "",
@@ -57,39 +39,26 @@ const AddAddress: React.FC = () => {
         close();
     };
 
-    const submit = handleSubmit(async (data: any) => {
-        setSubmitting(true);
-
-        const payload = {
-            address: {
-                first_name: data.first_name,
-                last_name: data.last_name,
-                company: data.company || "",
-                address_1: data.address_1,
-                address_2: data.address_2 || "",
-                city: data.city,
-                country_code: data.country_code,
-                province: data.province || "",
-                postal_code: data.postal_code,
-                phone: data.phone || "",
-                metadata: {},
+    const {
+        modal: { show, visible, close },
+        register,
+        handleSubmit,
+        formState: { errors, touchedFields },
+        refineCore: { onFinish, formLoading },
+        reset,
+    } = useModalForm<FormValues>({
+        mode: "onTouched",
+        refineCoreProps: {
+            action: "create",
+            resource: "customers/me/addresses",
+            redirect: false,
+            onMutationSuccess: () => {
+                handleClose();
             },
-        };
-
-        mutate(
-            {
-                resource: "customers/me/addresses",
-                values: payload,
-            },
-            {
-                onSuccess: () => {
-                    setSubmitting(false);
-                    handleClose();
-                },
-            },
-        );
+            invalidates: ["all"],
+        },
+        warnWhenUnsavedChanges: false,
     });
-    const { cartId } = useContext(CartContext);
 
     const { data: regions } = useList<Region>({
         resource: "regions",
@@ -113,7 +82,13 @@ const AddAddress: React.FC = () => {
             {visible && (
                 <Modal onClose={handleClose}>
                     <form
-                        onSubmit={submit}
+                        onSubmit={handleSubmit((data) => {
+                            onFinish({
+                                address: {
+                                    ...data,
+                                },
+                            });
+                        })}
                         className="grid grid-cols-1 gap-y-2"
                     >
                         <div className="text-xl-semi mb-2">Add address</div>
@@ -240,10 +215,10 @@ const AddAddress: React.FC = () => {
                             <Button
                                 type="submit"
                                 className="min-h-0"
-                                disabled={submitting}
+                                disabled={formLoading}
                             >
                                 Save
-                                {submitting && <LoadingDots />}
+                                {formLoading && <LoadingDots />}
                             </Button>
                         </div>
                     </form>

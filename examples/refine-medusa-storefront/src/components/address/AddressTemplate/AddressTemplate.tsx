@@ -1,8 +1,12 @@
-import { useGetIdentity } from "@pankod/refine-core";
+import { useGetIdentity, useOne } from "@pankod/refine-core";
 import AddressBook from "@components/address/AddressBook/AddressBook";
+import { Customer } from "@medusajs/medusa";
 
 const AddressesTemplate: React.FC = () => {
-    const customer = useGetIdentity();
+    const { data: customer } = useOne({
+        resource: "customers",
+        id: "me",
+    });
 
     return (
         <div className="w-full">
@@ -14,7 +18,7 @@ const AddressesTemplate: React.FC = () => {
                     during checkout.
                 </p>
             </div>
-            <AddressBook customer={customer.data} />
+            <AddressBook customer={customer?.data?.customer} />
         </div>
     );
 };
