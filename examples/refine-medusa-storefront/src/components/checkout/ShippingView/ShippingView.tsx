@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useOne } from "@pankod/refine-core";
 import { useFormContext } from "@pankod/refine-react-hook-form";
-import { Cart } from "@medusajs/medusa";
+import { Cart, Customer } from "@medusajs/medusa";
 
 import { Text } from "@components/ui";
 import Input from "@components/common/Input";
@@ -15,6 +15,11 @@ const ShippingView: React.FC = () => {
         register,
         formState: { errors, touchedFields },
     } = useFormContext();
+
+    const { data: currentUser } = useOne<{ customer: Customer }>({
+        resource: "auth",
+        id: "",
+    });
 
     const { data: cartData } = useOne<{ cart: Cart }>({
         id: cartId!,
@@ -31,6 +36,7 @@ const ShippingView: React.FC = () => {
             <div>
                 <Input
                     label="Email"
+                    defaultValue={currentUser?.data.customer.email}
                     {...register("email", {
                         required: "email is required",
                         pattern: {
