@@ -4,7 +4,7 @@ import {
     GetOneResponse,
     IQueryKeys,
 } from "../interfaces";
-import { QueryKey } from "react-query";
+import { QueryKey } from "@tanstack/react-query";
 
 export type MutationMode = "pessimistic" | "optimistic" | "undoable";
 

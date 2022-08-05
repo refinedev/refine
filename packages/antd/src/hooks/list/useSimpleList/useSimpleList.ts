@@ -1,6 +1,6 @@
 import { Children, createElement, Fragment } from "react";
-import { QueryObserverResult } from "react-query";
-import { ListProps, FormProps, Form, TablePaginationConfig, Grid } from "antd";
+import { QueryObserverResult } from "@tanstack/react-query";
+import { ListProps, FormProps, Form, Grid } from "antd";
 
 import {
     BaseRecord,

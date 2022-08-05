@@ -1,5 +1,49 @@
 # @pankod/refine-antd
 
+## 3.35.3
+
+### Patch Changes
+
+-   [#2260](https://github.com/pankod/refine/pull/2260) [`a97ec592df`](https://github.com/pankod/refine/commit/a97ec592dfb6dcf5b5bd063d2d76f50ca195c20e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Upgraded `react-query` version to 4.
+
+## 3.35.2
+
+### Patch Changes
+
+-   Remove `data-testid` props from buttons in crud components to make use of button test ids presented by `@pankod/refine-ui-types` package.
+
+*   Updated `@pankod/refine-antd` and `@pankod/refine-mui` `fields` properties by using `@pankod/refine-ui-types` common `fields` types.
+
+    Updated `@pankod/refine-antd` and `@pankod/refine-mui` `fields` tests by using `@pankod/refine-ui-tests` common `fields` tests.
+
+    Updated `@pankod/refine-ui-tests` `fields` properties.
+
+-   Added `@pankod/refine-ui-tests` and `@pankod/refine-ui-types` packages. Now, all of button prop types comes from `@pankod/refine-ui-types` package and all of button tests comes from `@pankod/refine-ui-tests` package.
+
+    Thus, button types and tests are managed by `@pankod/refine-ui-types` package and `@pankod/refine-ui-tests` package.
+
+-   Updated dependencies []:
+    -   @pankod/refine-ui-types@0.3.0
+
+## 3.35.1
+
+### Patch Changes
+
+-   [#2216](https://github.com/pankod/refine/pull/2216) [`201846c77d`](https://github.com/pankod/refine/commit/201846c77dba07a61f0c0335716b60641430c22a) Thanks [@aliemir](https://github.com/aliemir)! - Remove `data-testid` props from buttons in crud components to make use of button test ids presented by `@pankod/refine-ui-types` package.
+
+*   [#2216](https://github.com/pankod/refine/pull/2216) [`201846c77d`](https://github.com/pankod/refine/commit/201846c77dba07a61f0c0335716b60641430c22a) Thanks [@aliemir](https://github.com/aliemir)! - Updated `@pankod/refine-antd` and `@pankod/refine-mui` `fields` properties by using `@pankod/refine-ui-types` common `fields` types.
+
+    Updated `@pankod/refine-antd` and `@pankod/refine-mui` `fields` tests by using `@pankod/refine-ui-tests` common `fields` tests.
+
+    Updated `@pankod/refine-ui-tests` `fields` properties.
+
+-   [#2216](https://github.com/pankod/refine/pull/2216) [`201846c77d`](https://github.com/pankod/refine/commit/201846c77dba07a61f0c0335716b60641430c22a) Thanks [@aliemir](https://github.com/aliemir)! - Added `@pankod/refine-ui-tests` and `@pankod/refine-ui-types` packages. Now, all of button prop types comes from `@pankod/refine-ui-types` package and all of button tests comes from `@pankod/refine-ui-tests` package.
+
+    Thus, button types and tests are managed by `@pankod/refine-ui-types` package and `@pankod/refine-ui-tests` package.
+
+-   Updated dependencies [[`201846c77d`](https://github.com/pankod/refine/commit/201846c77dba07a61f0c0335716b60641430c22a)]:
+    -   @pankod/refine-ui-types@0.2.0
+
 ## 3.35.0
 
 ### Minor Changes

@@ -7,14 +7,12 @@ import {
     useTranslate,
     useRouterContext,
     userFriendlyResourceName,
-    MutationMode,
     ResourceRouterParams,
-    BaseKey,
 } from "@pankod/refine-core";
+import { RefineCrudEditProps } from "@pankod/refine-ui-types";
 
 import {
     Card,
-    ButtonProps,
     CardHeader,
     IconButton,
     CardContent,
@@ -25,6 +23,7 @@ import {
     CardActionsProps,
     Typography,
     Box,
+    BoxProps,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
@@ -34,26 +33,41 @@ import {
     ListButton,
     SaveButton,
     Breadcrumb,
+    SaveButtonProps,
 } from "@components";
 import { DeleteButtonProps } from "@components";
 
-export interface EditProps {
-    actionButtons?: React.ReactNode;
-    saveButtonProps?: ButtonProps;
-    mutationMode?: MutationMode;
-    recordItemId?: BaseKey;
-    canDelete?: boolean;
-    deleteButtonProps?: DeleteButtonProps;
-    resource?: string;
-    isLoading?: boolean;
-    cardProps?: CardProps;
-    cardHeaderProps?: CardHeaderProps;
-    cardContentProps?: CardContentProps;
-    cardActionsProps?: CardActionsProps;
-    breadcrumb?: React.ReactNode;
-    dataProviderName?: string;
-    children?: React.ReactNode;
-}
+export type EditProps = RefineCrudEditProps<
+    SaveButtonProps,
+    DeleteButtonProps,
+    BoxProps,
+    CardActionsProps,
+    CardProps,
+    CardHeaderProps,
+    CardContentProps,
+    {
+        /**
+         * @deprecated use `headerButtons` or `footerButtons` instead.
+         */
+        actionButtons?: React.ReactNode;
+        /**
+         * @deprecated use `wrapperProps` instead.
+         */
+        cardProps?: CardProps;
+        /**
+         * @deprecated use `headerProps` instead.
+         */
+        cardHeaderProps?: CardHeaderProps;
+        /**
+         * @deprecated use `contentProps` instead.
+         */
+        cardContentProps?: CardContentProps;
+        /**
+         * @deprecated use `footerButtonProps` instead.
+         */
+        cardActionsProps?: CardActionsProps;
+    }
+>;
 
 /**
  * `<Edit>` provides us a layout for displaying the page.
@@ -62,6 +76,7 @@ export interface EditProps {
  * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/basic-views/edit} for more details.
  */
 export const Edit: React.FC<EditProps> = ({
+    title,
     actionButtons,
     saveButtonProps,
     mutationMode: mutationModeProp,
@@ -77,6 +92,14 @@ export const Edit: React.FC<EditProps> = ({
     cardActionsProps,
     breadcrumb = <Breadcrumb />,
     dataProviderName,
+    wrapperProps,
+    headerProps,
+    contentProps,
+    headerButtonProps,
+    headerButtons,
+    footerButtonProps,
+    footerButtons,
+    goBack: goBackFromProps,
 }) => {
     const translate = useTranslate();
 
@@ -103,45 +126,89 @@ export const Edit: React.FC<EditProps> = ({
 
     const id = recordItemId ?? idFromRoute;
 
+    const defaultHeaderButtons = (
+        <>
+            {!recordItemId && (
+                <ListButton resourceNameOrRouteName={resource.route} />
+            )}
+            <RefreshButton
+                resourceNameOrRouteName={resource.route}
+                recordItemId={id}
+                dataProviderName={dataProviderName}
+            />
+        </>
+    );
+
+    const defaultFooterButtons = (
+        <>
+            {isDeleteButtonVisible && (
+                <DeleteButton
+                    mutationMode={mutationMode}
+                    variant="outlined"
+                    onSuccess={() => {
+                        list(resource.route ?? resource.name);
+                    }}
+                    dataProviderName={dataProviderName}
+                    {...deleteButtonProps}
+                />
+            )}
+            <SaveButton loading={isLoading} {...saveButtonProps} />
+        </>
+    );
+
     return (
-        <Card {...cardProps}>
+        <Card {...(cardProps ?? {})} {...(wrapperProps ?? {})}>
             {breadcrumb}
             <CardHeader
                 sx={{ display: "flex", flexWrap: "wrap" }}
                 title={
-                    <Typography variant="h5">
-                        {translate(
-                            `${resource.name}.titles.edit`,
-                            `Edit ${userFriendlyResourceName(
-                                resource.label ?? resource.name,
-                                "singular",
-                            )}`,
-                        )}
-                    </Typography>
+                    title ?? (
+                        <Typography variant="h5">
+                            {translate(
+                                `${resource.name}.titles.edit`,
+                                `Edit ${userFriendlyResourceName(
+                                    resource.label ?? resource.name,
+                                    "singular",
+                                )}`,
+                            )}
+                        </Typography>
+                    )
                 }
                 avatar={
-                    <IconButton onClick={routeFromAction ? goBack : undefined}>
-                        <ArrowBackIcon />
-                    </IconButton>
+                    typeof goBackFromProps !== "undefined" ? (
+                        goBackFromProps
+                    ) : (
+                        <IconButton
+                            onClick={routeFromAction ? goBack : undefined}
+                        >
+                            <ArrowBackIcon />
+                        </IconButton>
+                    )
                 }
                 action={
-                    <Box display="flex" gap="16px">
-                        {!recordItemId && (
-                            <ListButton
-                                data-testid="edit-list-button"
-                                resourceNameOrRouteName={resource.route}
-                            />
-                        )}
-                        <RefreshButton
-                            resourceNameOrRouteName={resource.route}
-                            recordItemId={id}
-                            dataProviderName={dataProviderName}
-                        />
+                    <Box
+                        display="flex"
+                        gap="16px"
+                        {...(headerButtonProps ?? {})}
+                    >
+                        {headerButtons
+                            ? typeof headerButtons === "function"
+                                ? headerButtons({
+                                      defaultButtons: defaultHeaderButtons,
+                                  })
+                                : headerButtons
+                            : defaultHeaderButtons}
                     </Box>
                 }
-                {...cardHeaderProps}
+                {...(cardHeaderProps ?? {})}
+                {...(headerProps ?? {})}
             />
-            <CardContent {...cardContentProps}>{children}</CardContent>
+            <CardContent
+                {...(cardContentProps ?? {})}
+                {...(contentProps ?? {})}
+            >
+                {children}
+            </CardContent>
             <CardActions
                 sx={{
                     display: "flex",
@@ -149,25 +216,18 @@ export const Edit: React.FC<EditProps> = ({
                     gap: "16px",
                     padding: "16px",
                 }}
-                {...cardActionsProps}
+                {...(cardActionsProps ?? {})}
+                {...(footerButtonProps ?? {})}
             >
-                {actionButtons ?? (
-                    <>
-                        {isDeleteButtonVisible && (
-                            <DeleteButton
-                                data-testid="edit-delete-button"
-                                mutationMode={mutationMode}
-                                variant="outlined"
-                                onSuccess={() => {
-                                    list(resource.route ?? resource.name);
-                                }}
-                                dataProviderName={dataProviderName}
-                                {...deleteButtonProps}
-                            />
-                        )}
-                        <SaveButton loading={isLoading} {...saveButtonProps} />
-                    </>
-                )}
+                {footerButtons
+                    ? typeof footerButtons === "function"
+                        ? footerButtons({
+                              defaultButtons: defaultFooterButtons,
+                          })
+                        : footerButtons
+                    : actionButtons
+                    ? actionButtons
+                    : defaultFooterButtons}
             </CardActions>
         </Card>
     );

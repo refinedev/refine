@@ -577,6 +577,8 @@ const { data } = useOne<ICategory>({ resource: "categories", id: "1" });
 This method allows us to retrieve multiple items in a resource.
 
 ```ts title="dataProvider.ts"
+import { stringify } from "query-string";
+
 const SimpleRestDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
@@ -596,6 +598,10 @@ const SimpleRestDataProvider = (
     ...
 })
 ```
+
+:::tip
+We are using the [`query-string`](https://www.npmjs.com/package/query-string) package for `stringify`.
+:::
 
 #### Parameter Types
 

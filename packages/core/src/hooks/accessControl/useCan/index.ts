@@ -1,5 +1,9 @@
 import { useContext } from "react";
-import { useQuery, UseQueryResult, UseQueryOptions } from "react-query";
+import {
+    useQuery,
+    UseQueryResult,
+    UseQueryOptions,
+} from "@tanstack/react-query";
 
 import { AccessControlContext } from "@contexts/accessControl";
 import { CanParams, CanReturnType } from "../../../interfaces";
@@ -24,8 +28,24 @@ export const useCan = ({
 }: UseCanProps): UseQueryResult<CanReturnType> => {
     const { can } = useContext(AccessControlContext);
 
+    /**
+     * Since `react-query` stringifies the query keys, it will throw an error for a circular dependency if we include `React.ReactNode` elements inside the keys.
+     * The feature in #2220(https://github.com/pankod/refine/issues/2220) includes such change and to fix this, we need to remove `icon` property in the `resource`
+     */
+    const { resource: _resource, ...paramsRest } = params ?? {};
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { icon: _icon, ...restResource } = _resource ?? {};
+
     const queryResponse = useQuery<CanReturnType>(
-        ["useCan", { action, resource, params }],
+        [
+            "useCan",
+            {
+                action,
+                resource,
+                params: { ...paramsRest, resource: restResource },
+            },
+        ],
         // Enabled check for `can` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
         () => can?.({ action, resource, params }) ?? { can: true },
         {

@@ -1,10 +1,9 @@
 import React, { ReactNode } from "react";
 
+import { RefineFieldEmailProps } from "@pankod/refine-ui-types";
 import { Typography, Link, LinkProps } from "@mui/material";
 
-import { FieldProps } from "src/interfaces/field";
-
-export type EmailFieldProps = FieldProps<ReactNode> & LinkProps;
+export type EmailFieldProps = RefineFieldEmailProps<ReactNode, LinkProps>;
 
 /**
  * This field is used to display email values. It uses the {@link https://mui.com/material-ui/react-typography/#main-content `<Typography>` }

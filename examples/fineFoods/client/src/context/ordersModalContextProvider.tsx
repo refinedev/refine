@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { PropsWithChildren, useState } from "react";
 
 export const OrdersModalContext = React.createContext<{
     ordersModalVisible: boolean;
@@ -8,7 +8,9 @@ export const OrdersModalContext = React.createContext<{
     setOrdersModalVisible: () => null,
 });
 
-export const OrdersModalContextProvider: React.FC = ({ children }) => {
+export const OrdersModalContextProvider: React.FC<PropsWithChildren> = ({
+    children,
+}) => {
     const [ordersModalVisible, setOrdersModalVisible] = useState(false);
 
     return (

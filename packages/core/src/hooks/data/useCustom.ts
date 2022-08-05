@@ -1,4 +1,8 @@
-import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
+import {
+    QueryObserverResult,
+    useQuery,
+    UseQueryOptions,
+} from "@tanstack/react-query";
 
 import {
     CustomResponse,

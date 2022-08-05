@@ -5,21 +5,23 @@ import {
     useCan,
     useNavigation,
     useTranslate,
-    BaseKey,
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
+import {
+    RefineCloneButtonProps,
+    RefineButtonTestIds,
+} from "@pankod/refine-ui-types";
 
-export type CloneButtonProps = ButtonProps & {
-    /**
-     * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/pankod/refine/issues/1618
-     */
-    resourceName?: string;
-    resourceNameOrRouteName?: string;
-    recordItemId?: BaseKey;
-    hideText?: boolean;
-    ignoreAccessControlProvider?: boolean;
-};
+export type CloneButtonProps = RefineCloneButtonProps<
+    ButtonProps,
+    {
+        /**
+         * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/pankod/refine/issues/1618
+         */
+        resourceName?: string;
+    }
+>;
 
 /**
  * `<CloneButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button> component`}.
@@ -85,6 +87,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
                 icon={<PlusSquareOutlined />}
                 disabled={data?.can === false}
                 title={createButtonDisabledTitle()}
+                data-testid={RefineButtonTestIds.CloneButton}
                 {...rest}
             >
                 {!hideText && (children ?? translate("buttons.clone", "Clone"))}

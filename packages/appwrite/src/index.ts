@@ -6,23 +6,15 @@ import {
     CrudSorting,
     CrudFilter,
 } from "@pankod/refine-core";
-import { Appwrite, Query } from "appwrite";
-
-export * from "appwrite";
-
-const appwriteEventToRefineEvent = {
-    "database.documents.create": "created",
-    "database.documents.update": "updated",
-    "database.documents.delete": "deleted",
-} as const;
+import { Client as Appwrite, Query, Databases } from "appwrite";
 
 const getRefineEvent = (event: string): LiveEvent["type"] | undefined => {
-    if (
-        event === "database.documents.create" ||
-        event === "database.documents.update" ||
-        event === "database.documents.delete"
-    ) {
-        return appwriteEventToRefineEvent[event];
+    if (event.includes(".create")) {
+        return "created";
+    } else if (event.includes(".update")) {
+        return "updated";
+    } else if (event.includes(".delete")) {
+        return "deleted";
     }
 
     return undefined;
@@ -97,7 +89,14 @@ export const getAppwriteSorting: GetAppwriteSortingType = (sort) => {
     return _sort;
 };
 
-export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
+export const dataProvider = (
+    appwriteClient: Appwrite,
+    options: { databaseId: string } = { databaseId: "default" },
+): DataProvider => {
+    const { databaseId } = options;
+
+    const database = new Databases(appwriteClient, databaseId);
+
     return {
         //TODO: Fix typing
         getList: async ({
@@ -113,7 +112,7 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
             const { orderField, orderType } = getAppwriteSorting(sort);
 
             const { total: total, documents: data } =
-                await appwriteClient.database.listDocuments<any>(
+                await database.listDocuments<any>(
                     resource,
                     appwriteFilters,
                     pageSize,
@@ -133,11 +132,10 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
             };
         },
         getOne: async ({ resource, id }) => {
-            const { $id, ...restData } =
-                await appwriteClient.database.getDocument(
-                    resource,
-                    id.toString(),
-                );
+            const { $id, ...restData } = await database.getDocument(
+                resource,
+                id.toString(),
+            );
 
             return {
                 data: {
@@ -147,14 +145,13 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
             } as any;
         },
         update: async ({ resource, id, variables, metaData }) => {
-            const { $id, ...restData } =
-                await appwriteClient.database.updateDocument(
-                    resource,
-                    id.toString(),
-                    variables as any,
-                    metaData?.readPermissions ?? ["role:all"],
-                    metaData?.writePermissions ?? ["role:all"],
-                );
+            const { $id, ...restData } = await database.updateDocument(
+                resource,
+                id.toString(),
+                variables as any,
+                metaData?.readPermissions ?? ["role:all"],
+                metaData?.writePermissions ?? ["role:all"],
+            );
 
             return {
                 data: {
@@ -164,14 +161,13 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
             } as any;
         },
         create: async ({ resource, variables, metaData }) => {
-            const { $id, ...restData } =
-                await appwriteClient.database.createDocument(
-                    resource,
-                    metaData?.documentId ?? "unique()",
-                    variables as unknown as object,
-                    metaData?.readPermissions ?? ["role:all"],
-                    metaData?.writePermissions ?? ["role:all"],
-                );
+            const { $id, ...restData } = await database.createDocument(
+                resource,
+                metaData?.documentId ?? "unique()",
+                variables as unknown as object,
+                metaData?.readPermissions ?? ["role:all"],
+                metaData?.writePermissions ?? ["role:all"],
+            );
 
             return {
                 data: {
@@ -183,10 +179,10 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
         createMany: async ({ resource, variables, metaData }) => {
             const data = await Promise.all(
                 variables.map((document) =>
-                    appwriteClient.database.createDocument<any>(
+                    database.createDocument<any>(
                         resource,
                         metaData?.documentId ?? "unique()",
-                        document as unknown as object,
+                        document as unknown as any,
                         metaData?.readPermissions ?? ["role:all"],
                         metaData?.writePermissions ?? ["role:all"],
                     ),
@@ -201,10 +197,7 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
             } as any;
         },
         deleteOne: async ({ resource, id }) => {
-            await appwriteClient.database.deleteDocument(
-                resource,
-                id.toString(),
-            );
+            await database.deleteDocument(resource, id.toString());
 
             return {
                 data: { id },
@@ -213,10 +206,7 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
         deleteMany: async ({ resource, ids }) => {
             await Promise.all(
                 ids.map((id) =>
-                    appwriteClient.database.deleteDocument(
-                        resource,
-                        id.toString(),
-                    ),
+                    database.deleteDocument(resource, id.toString()),
                 ),
             );
 
@@ -229,10 +219,7 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
         getMany: async ({ resource, ids }) => {
             const data = await Promise.all(
                 ids.map((id) =>
-                    appwriteClient.database.getDocument<any>(
-                        resource,
-                        id.toString(),
-                    ),
+                    database.getDocument<any>(resource, id.toString()),
                 ),
             );
 
@@ -246,7 +233,7 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
         updateMany: async ({ resource, ids, variables, metaData }) => {
             const data = await Promise.all(
                 ids.map((id) =>
-                    appwriteClient.database.updateDocument<any>(
+                    database.updateDocument<any>(
                         resource,
                         id.toString(),
                         variables as unknown as object,
@@ -276,7 +263,11 @@ export const dataProvider = (appwriteClient: Appwrite): DataProvider => {
     };
 };
 
-export const liveProvider = (appwriteClient: Appwrite): LiveProvider => {
+export const liveProvider = (
+    appwriteClient: Appwrite,
+    options: { databaseId: string } = { databaseId: "default" },
+): LiveProvider => {
+    const { databaseId } = options;
     return {
         subscribe: ({ channel, types, params, callback }): any => {
             const resource = channel.replace("resources/", "");
@@ -284,20 +275,24 @@ export const liveProvider = (appwriteClient: Appwrite): LiveProvider => {
             let appwriteChannel;
 
             if (params?.ids) {
-                appwriteChannel = params.ids.map((id) => `documents.${id}`);
+                appwriteChannel = params.ids.map(
+                    (id) =>
+                        `databases.${databaseId}.collections.${resource}.documents.${id}`,
+                );
             } else {
-                appwriteChannel = `collections.${resource}.documents`;
+                appwriteChannel = `databases.${databaseId}.collections.${resource}.documents`;
             }
 
             return appwriteClient.subscribe(appwriteChannel, (event) => {
-                const refineEvent = getRefineEvent(event.event);
+                const refineEvent = getRefineEvent(event.events[0]);
                 if (
                     types.includes("*") ||
                     (refineEvent && types.includes(refineEvent))
                 ) {
                     callback({
                         channel,
-                        type: getRefineEvent(event.event) ?? event.event,
+                        type:
+                            getRefineEvent(event.events[0]) ?? event.events[0],
                         payload: event.payload as any,
                         date: new Date(event.timestamp * 1000),
                     });
@@ -310,3 +305,25 @@ export const liveProvider = (appwriteClient: Appwrite): LiveProvider => {
         },
     };
 };
+
+export {
+    Account,
+    AppwriteException,
+    Avatars,
+    Client as Appwrite,
+    Databases,
+    Functions,
+    Locale,
+    Query,
+    Storage,
+    Teams,
+} from "appwrite";
+
+export type {
+    Models,
+    Payload,
+    UploadProgress,
+    QueryTypes,
+    QueryTypesList,
+    RealtimeResponseEvent,
+} from "appwrite";

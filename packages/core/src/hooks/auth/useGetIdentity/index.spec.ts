@@ -67,10 +67,10 @@ describe("useGetIdentity Hook", () => {
         });
 
         await waitFor(() => {
-            expect(!result.current.isLoading).toBeTruthy();
+            expect(!result.current.isFetching).toBeTruthy();
         });
 
-        expect(result.current.status).toEqual("idle");
+        expect(result.current.status).toEqual("loading");
         expect(result.current.data).not.toBeDefined();
     });
 });

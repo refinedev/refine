@@ -1,5 +1,4 @@
-import { renderHook } from "@testing-library/react";
-import { act } from "react-dom/test-utils";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { useResourcesConfig } from "./index";
 import { TestWrapper } from "@test";
@@ -21,12 +20,11 @@ describe("useResourceConfig Hook", () => {
             },
         );
 
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        await act(() => {});
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBeTruthy();
+        });
 
-        const { data } = result.current;
-
-        expect(data).toEqual([
+        expect(result.current.data).toEqual([
             {
                 name: "posts",
                 options: {

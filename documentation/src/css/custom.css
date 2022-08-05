@@ -103,6 +103,41 @@
     margin-left: 5px;
 }
 
+.deprecated {
+    font-size: 13px;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: orange;
+    color: orange;
+    border-width: 1px;
+    letter-spacing: 0.02rem;
+    margin-right: 0;
+    padding: 2px 6px;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.deprecated--block {
+    font-size: 13px;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: orange;
+    color: orange;
+    border-width: 1px;
+    letter-spacing: 0.02rem;
+    margin-right: 0;
+    padding: 2px 6px;
+    display: inline-block;
+    margin: 0 0 10px 0;
+    word-break: keep-all;
+}
+
+.deprecated::before, .deprecated--block::before {
+    content: "⚠️ deprecated";
+    color: orange;
+    margin-right: 4px;
+}
+
 .required-block {
     display: flex;
     align-items: center;

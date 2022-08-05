@@ -1,6 +1,6 @@
 import React, { Children, createElement, Fragment } from "react";
 import { Grid, FormProps, Form, TablePaginationConfig, TableProps } from "antd";
-import { QueryObserverResult } from "react-query";
+import { QueryObserverResult } from "@tanstack/react-query";
 import { useForm as useFormSF } from "sunflower-antd";
 
 import { SorterResult } from "antd/lib/table/interface";

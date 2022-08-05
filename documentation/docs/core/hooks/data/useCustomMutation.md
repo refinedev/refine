@@ -52,6 +52,31 @@ mutate({
 // highlight-end
 ```
 
+:::tip
+`mutate` can also accept lifecycle methods like `onSuccess` and `onError`.  
+
+```tsx 
+mutate(
+    {
+        url: `${API_URL}/categories`,
+        method: "post",
+        values: {
+            title: "New Category",
+        },
+    },
+    {
+        onError: (error, variables, context) => {
+            // An error happened!
+        },
+        onSuccess: (data, variables, context) => {
+            // Let's celebrate!
+        },
+    },
+);
+```
+
+[Refer to react-query docs for further information. &#8594](https://react-query.tanstack.com/guides/mutations#mutation-side-effects)
+:::
 
 ## API
 

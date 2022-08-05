@@ -1,10 +1,9 @@
 import React, { ReactNode } from "react";
 
+import { RefineFieldTagProps } from "@pankod/refine-ui-types";
 import { Chip, ChipProps } from "@mui/material";
 
-import { FieldProps } from "src/interfaces/field";
-
-export type TagFieldProps = FieldProps<ReactNode> & ChipProps;
+export type TagFieldProps = RefineFieldTagProps<ReactNode, ChipProps>;
 
 /**
  * This field lets you display a value in a tag. It uses Material UI {@link https://mui.com/material-ui/react-chip/#main-content `<Chip>`} component.

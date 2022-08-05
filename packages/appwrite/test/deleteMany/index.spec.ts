@@ -1,5 +1,5 @@
 import { dataProvider } from "../../src";
-import client from "../appwriteClient";
+import { client } from "../appwriteClient";
 import "./index.mock";
 
 describe("deleteMany", () => {

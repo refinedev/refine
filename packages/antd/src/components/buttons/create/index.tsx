@@ -8,16 +8,20 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
+import {
+    RefineCreateButtonProps,
+    RefineButtonTestIds,
+} from "@pankod/refine-ui-types";
 
-export type CreateButtonProps = ButtonProps & {
-    /**
-     * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/pankod/refine/issues/1618
-     */
-    resourceName?: string;
-    resourceNameOrRouteName?: string;
-    hideText?: boolean;
-    ignoreAccessControlProvider?: boolean;
-};
+export type CreateButtonProps = RefineCreateButtonProps<
+    ButtonProps,
+    {
+        /**
+         * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/pankod/refine/issues/1618
+         */
+        resourceName?: string;
+    }
+>;
 
 /**
  * <CreateButton> uses Ant Design's {@link https://ant.design/components/button/ `<Button> component`}.
@@ -84,6 +88,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                 icon={<PlusSquareOutlined />}
                 disabled={data?.can === false}
                 title={createButtonDisabledTitle()}
+                data-testid={RefineButtonTestIds.CreateButton}
                 {...rest}
             >
                 {!hideText &&

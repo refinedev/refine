@@ -36,11 +36,11 @@ To make this example more visual, we used the [`@pankod/refine-antd`](https://gi
 ## Usage
 It is very simple to use and consists of two steps. First, define your Appwrite project id and then give it to the dataprovider.
 
-### Appwrite Client
+### Creating Appwrite Client
 ```tsx title="appwriteClient.ts"
-import { Appwrite } from "@pankod/refine-appwrite";
+import { Appwrite, Account, Storage} from "@pankod/refine-appwrite";
 
-const APPWRITE_URL = "http://localhost/v1";
+const APPWRITE_URL = "http://YOUR_COOL_APPWRITE_API/v1";
 //highlight-start
 const APPWRITE_PROJECT = "YOUR_APPWRITE_PROJECT_ID";
 //highlight-end
@@ -49,32 +49,37 @@ const appwriteClient = new Appwrite();
 
 appwriteClient.setEndpoint(APPWRITE_URL).setProject(APPWRITE_PROJECT);
 
-export appwriteClient;
+// for authentication
+const account = new Account(appwriteClient);
+// for file upload
+const storage = new Storage(appwriteClient);
+
+export { appwriteClient, account, storage };
 ```
 
-### Authprovider
+### Creating Auth Provider
 ```tsx title="authProvider.ts"
 import { AuthProvider } from "@pankod/refine-core";
 
-import appwriteClient from "./appwriteClient";
+import { account } from "./appwriteClient";
 
 export const authProvider: AuthProvider = {
     login: async ({ email, password }) => {
         try {
-            await appwriteClient.account.createSession(email, password);
+            await account.createEmailSession(email, password);
             return Promise.resolve();
         } catch (e) {
             return Promise.reject();
         }
     },
     logout: async () => {
-        await appwriteClient.account.deleteSession("current");
+        await account.deleteSession("current");
 
         return "/";
     },
     checkError: () => Promise.resolve(),
     checkAuth: async () => {
-        const session = await appwriteClient.account.getSession("current");
+        const session = await account.get();
 
         if (session) {
             return Promise.resolve();
@@ -84,7 +89,7 @@ export const authProvider: AuthProvider = {
     },
     getPermissions: () => Promise.resolve(),
     getUserIdentity: async () => {
-        const user = await appwriteClient.account.get();
+        const user = await account.get();
 
         if (user) {
             return user;
@@ -93,16 +98,19 @@ export const authProvider: AuthProvider = {
 };
 ```
 
+### Configure Refine Component
+
 ```tsx title="App.tsx"
 import { Refine, AuthProvider } from "@pankod/refine-core";
 import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
-//highlight-start
-import { dataProvider } from "@pankod/refine-appwrite";
-//highlight-end
 import routerProvider from "@pankod/refine-react-router-v6";
 
 //highlight-start
-import appwriteClient from "./appwriteClient";
+import { dataProvider, liveProvider } from "@pankod/refine-appwrite";
+//highlight-end
+
+//highlight-start
+import { appwriteClient, account } from "./appwriteClient";
 import authProvider from "./authProvider";
 //highlight-end
 
@@ -110,7 +118,13 @@ const App: React.FC = () => {
     return (
         <Refine
         //highlight-start
-            dataProvider={dataProvider(appwriteClient)}
+            dataProvider={dataProvider(appwriteClient, {
+                databaseId: "default",
+            })}
+            liveProvider={liveProvider(appwriteClient, {
+                databaseId: "default",
+            })}
+            liveMode="auto"
             authProvider={authProvider}
         //highlight-end    
             routerProvider={routerProvider}
@@ -122,6 +136,12 @@ const App: React.FC = () => {
     );
 };
 ```
+
+:::tip Live/Realtime 🚀
+`@pankod/refine-appwrite` package supports Live/Realtime Provider natively 🚀
+
+[Refer to the Live/Realtime Provider docs for detailed usage. →](/docs/core/providers/live-provider.md)
+:::
 
 ## Create Collections
 We created two collections on Appwrite Database as `posts` and `categories` and added a relation between them.
@@ -351,7 +371,13 @@ Now we can login with the user we created by Appwrite. We can then list, create 
 const App: React.FC = () => {
     return (
         <Refine
-            dataProvider={dataProvider(appwriteClient)}
+            dataProvider={dataProvider(appwriteClient, {
+                databaseId: "default",
+            })}
+            liveProvider={liveProvider(appwriteClient, {
+                databaseId: "default",
+            })}
+            liveMode="auto"
             authProvider={authProvider}
             routerProvider={routerProvider}
             Layout={Layout}
@@ -514,7 +540,7 @@ import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost, ICategory } from "interfaces";
-import { appwriteClient, normalizeFile } from "utility";
+import { storage, normalizeFile } from "utility";
 
 export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
@@ -591,18 +617,16 @@ export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
                                 try {
                                     const rcFile = file as RcFile;
 
-                                    const { $id } =
-                                        await appwriteClient.storage.createFile(
-                                            "default",
-                                            rcFile.name,
-                                            rcFile,
-                                        );
+                                    const { $id } = await storage.createFile(
+                                        "default",
+                                        rcFile.name,
+                                        rcFile,
+                                    );
 
-                                    const url =
-                                        appwriteClient.storage.getFileView(
-                                            "default",
-                                            $id,
-                                        );
+                                    const url = storage.getFileView(
+                                        "default",
+                                        $id,
+                                    );
 
                                     onSuccess?.({ url }, new XMLHttpRequest());
                                 } catch (error) {
@@ -679,7 +703,7 @@ import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
 
 import { IPost, ICategory } from "interfaces";
-import { appwriteClient, normalizeFile } from "utility";
+import { storage, normalizeFile } from "utility";
 
 export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
@@ -758,18 +782,16 @@ export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
                                 try {
                                     const rcFile = file as RcFile;
 
-                                    const { $id } =
-                                        await appwriteClient.storage.createFile(
-                                            "default",
-                                            rcFile.name,
-                                            rcFile,
-                                        );
+                                    const { $id } = await storage.createFile(
+                                        "default",
+                                        rcFile.name,
+                                        rcFile,
+                                    );
 
-                                    const url =
-                                        appwriteClient.storage.getFileView(
-                                            "default",
-                                            $id,
-                                        );
+                                    const url = storage.getFileView(
+                                        "default",
+                                        $id,
+                                    );
 
                                     onSuccess?.({ url }, new XMLHttpRequest());
                                 } catch (error) {
