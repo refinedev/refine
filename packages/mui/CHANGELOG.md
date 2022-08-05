@@ -1,5 +1,14 @@
 # @pankod/refine-mui
 
+## 3.41.3
+
+### Patch Changes
+
+-   [#2260](https://github.com/pankod/refine/pull/2260) [`a97ec592df`](https://github.com/pankod/refine/commit/a97ec592dfb6dcf5b5bd063d2d76f50ca195c20e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Upgraded `react-query` version to 4.
+
+-   Updated dependencies [[`6847672849`](https://github.com/pankod/refine/commit/68476728494dc0fd412883de30e2c99c75a1d559)]:
+    -   @pankod/refine-react-hook-form@3.31.1
+
 ## 3.41.2
 
 ### Patch Changes
