@@ -1,87 +1,49 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { GetServerSideProps } from "next";
-import { LayoutWrapper, useCreate, useOne } from "@pankod/refine-core";
-import {
-    FormProvider,
-    Controller,
-    useStepsForm,
-} from "@pankod/refine-react-hook-form";
-import { StoreShippingOptionsListRes, StoreCartsRes } from "@medusajs/medusa";
+import { HttpError, LayoutWrapper, useCreate } from "@pankod/refine-core";
+import { FormProvider, useStepsForm } from "@pankod/refine-react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
+import { StoreCartsRes } from "@medusajs/medusa";
 
-import { Button, Container, Text, Checkbox } from "@components/ui";
+import { Button, Container, Checkbox } from "@components/ui";
 import { getSearchStaticProps } from "@lib/search-props";
 import PaymentMethodView from "@components/checkout/PaymentMethodView";
 import ShippingView from "@components/checkout/ShippingView";
 import BillingView from "@components/checkout/BillingView";
+import ShippingOptionView from "@components/checkout/ShippingOptionView";
 import { CartContext } from "@lib/context";
-import ShippingOptionWidget from "@components/checkout/ShippingOptionWidget";
 
 const stepTitles = ["Address", "Payment"];
 
-const ProfilePage: React.FC = () => {
+const CheckoutPage: React.FC = () => {
     const [checked, setChecked] = useState(true);
     const { cartId } = useContext(CartContext);
     const [clientSecret, setClientSecret] = useState<string | undefined>();
 
     const methods = useStepsForm({
-        mode: "onTouched",
+        mode: "onChange",
         reValidateMode: "onChange",
     });
     const {
-        register,
-        control,
         getValues,
-        setValue,
         steps: { currentStep, gotoStep },
+        formState: { errors },
+        setError,
+        trigger,
     } = methods;
 
-    const { data: shippingOptions } = useOne<StoreShippingOptionsListRes>({
-        resource: `shipping-options/${cartId}`,
-        id: "",
-    });
+    const { mutateAsync, isLoading } = useCreate();
 
-    const { mutateAsync } = useCreate();
-
-    const { mutateAsync: createPaymentSession } = useCreate<StoreCartsRes>();
-
-    const ShippingOptions = () => (
-        <>
-            {shippingOptions?.data?.shipping_options.map((option) => (
-                <ShippingOptionWidget
-                    key={option.id}
-                    isValid={getValues()?.shippingMethod === option.id}
-                    onClick={() => {
-                        setValue("shippingMethod", option.id);
-                    }}
-                    {...register("shippingMethod")}
-                >
-                    {option.name}
-                </ShippingOptionWidget>
-            ))}
-        </>
-    );
+    const {
+        mutateAsync: createPaymentSession,
+        isLoading: isCreatePaymentSessionLoading,
+    } = useCreate<StoreCartsRes>();
 
     const renderFormByStep = (step: number) => {
         switch (step) {
             case 0:
                 return (
                     <div className="flex flex-col gap-2">
-                        {/* TODO: Fix me */}
-                        {/* {Object.keys(errors).length > 0 && (
-                            <div className="text-red border-red border p-3">
-                                <ul>
-                                    {Object.keys(errors).map((key: any) => (
-                                        <li key={key}>
-                                            {
-                                                (errors as any)[key as any]
-                                                    .message
-                                            }
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        )} */}
-
                         <ShippingView />
 
                         <Checkbox
@@ -93,18 +55,7 @@ const ProfilePage: React.FC = () => {
 
                         {!checked && <BillingView />}
 
-                        <Text variant="pageHeading">Delivery</Text>
-                        <Controller
-                            control={control}
-                            name="shippingMethod"
-                            rules={{
-                                required: {
-                                    message: "shipping is required",
-                                    value: true,
-                                },
-                            }}
-                            render={({}) => <ShippingOptions />}
-                        />
+                        <ShippingOptionView />
                     </div>
                 );
             case 1:
@@ -117,67 +68,61 @@ const ProfilePage: React.FC = () => {
         }
     };
 
-    useEffect(() => {
-        (async () => {
-            if (currentStep === 1) {
-                // TODO: Fix error handling try catch
-                const { shipping_address, billing_address, email } =
-                    getValues();
+    const nextPage = async () => {
+        const { shipping_address, billing_address, email } = getValues();
 
-                await mutateAsync(
-                    {
-                        resource: `carts/${cartId}`,
-                        values: {
-                            country_code: shipping_address.country_code,
-                            email,
-                            shipping_address,
-                            billing_address: checked
-                                ? shipping_address
-                                : billing_address,
-                        },
-                    },
-                    {
-                        onError: (error) => {
-                            console.log(error);
-                        },
-                    },
+        try {
+            await mutateAsync({
+                resource: `carts/${cartId}`,
+                values: {
+                    country_code: shipping_address.country_code,
+                    email,
+                    shipping_address,
+                    billing_address: checked
+                        ? shipping_address
+                        : billing_address,
+                },
+            });
+
+            await mutateAsync({
+                resource: `carts/${cartId}/shipping-methods`,
+                values: {
+                    option_id: getValues()?.shippingMethod,
+                },
+            });
+
+            const paymentSession = await createPaymentSession({
+                resource: `carts/${cartId}/payment-sessions`,
+                values: {},
+            });
+
+            const isStripeAvailable =
+                paymentSession.data.cart.payment_sessions?.some(
+                    (session) => session.provider_id === "stripe",
                 );
 
-                await mutateAsync({
-                    resource: `carts/${cartId}/shipping-methods`,
-                    values: {
-                        option_id: getValues()?.shippingMethod,
-                    },
-                });
-
-                const paymentSession = await createPaymentSession({
-                    resource: `carts/${cartId}/payment-sessions`,
-                    values: {},
-                });
-
-                const isStripeAvailable =
-                    paymentSession.data.cart.payment_sessions?.some(
-                        (session) => session.provider_id === "stripe",
-                    );
-
-                if (!isStripeAvailable) {
-                    return;
-                }
-
-                const stripePaymentSession = await createPaymentSession({
-                    resource: `carts/${cartId}/payment-session`,
-                    values: {
-                        provider_id: "stripe",
-                    },
-                });
-
-                setClientSecret(
-                    stripePaymentSession?.data?.cart?.payment_session?.data
-                        .client_secret as string,
-                );
+            if (!isStripeAvailable) {
+                return;
             }
-        })();
-    }, [currentStep]);
+
+            const stripePaymentSession = await createPaymentSession({
+                resource: `carts/${cartId}/payment-session`,
+                values: {
+                    provider_id: "stripe",
+                },
+            });
+
+            setClientSecret(
+                stripePaymentSession?.data?.cart?.payment_session?.data
+                    .client_secret as string,
+            );
+
+            gotoStep(currentStep + 1);
+        } catch (error) {
+            setError("server", { message: (error as HttpError).message });
+            trigger(undefined, { shouldFocus: true });
+        }
+    };
 
     return (
         <LayoutWrapper>
@@ -188,12 +133,25 @@ const ProfilePage: React.FC = () => {
                     </form>
                 </FormProvider>
 
-                <div className="mt-8 flex justify-end">
+                <ErrorMessage
+                    errors={errors}
+                    name="server"
+                    render={({ message }) => {
+                        return (
+                            <div className="text-right text-xs text-rose-500">
+                                <span>{message}</span>
+                            </div>
+                        );
+                    }}
+                />
+
+                <div className="mt-4 flex justify-end">
                     {currentStep < stepTitles.length - 1 && (
                         <Button
+                            loading={isLoading || isCreatePaymentSessionLoading}
                             variant="slim"
                             onClick={() => {
-                                gotoStep(currentStep + 1);
+                                nextPage();
                             }}
                         >
                             Next
@@ -219,4 +177,4 @@ export const getServerSideProps: GetServerSideProps = async () => {
     }
 };
 
-export default ProfilePage;
+export default CheckoutPage;

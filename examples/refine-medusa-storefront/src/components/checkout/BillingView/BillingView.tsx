@@ -33,10 +33,7 @@ const BillingView: React.FC = () => {
                         containerClassName="col-span-6"
                         label="First name"
                         {...register("billing_address.first_name", {
-                            required: {
-                                value: true,
-                                message: "first name is required",
-                            },
+                            required: "first name is required",
                         })}
                         errors={errors}
                         touched={touchedFields}
@@ -45,10 +42,7 @@ const BillingView: React.FC = () => {
                         containerClassName="col-span-6"
                         label="Last name"
                         {...register("billing_address.last_name", {
-                            required: {
-                                value: true,
-                                message: "last name is required",
-                            },
+                            required: "last name is required",
                         })}
                         errors={errors}
                         touched={touchedFields}
@@ -63,10 +57,7 @@ const BillingView: React.FC = () => {
                 <Input
                     label="Street and House Number"
                     {...register("billing_address.address_1", {
-                        required: {
-                            value: true,
-                            message: "street and house number is required",
-                        },
+                        required: "street and house number is required",
                     })}
                     errors={errors}
                     touched={touchedFields}
@@ -82,10 +73,7 @@ const BillingView: React.FC = () => {
                         containerClassName="col-span-6"
                         label="Postal Code"
                         {...register("billing_address.postal_code", {
-                            required: {
-                                value: true,
-                                message: "postal code is required",
-                            },
+                            required: "postal code is required",
                         })}
                         errors={errors}
                         touched={touchedFields}
@@ -94,10 +82,7 @@ const BillingView: React.FC = () => {
                         containerClassName="col-span-6"
                         label="City"
                         {...register("billing_address.city", {
-                            required: {
-                                value: true,
-                                message: "city is required",
-                            },
+                            required: "city is required",
                         })}
                         errors={errors}
                         touched={touchedFields}
@@ -106,10 +91,7 @@ const BillingView: React.FC = () => {
                 <NativeSelect
                     label="Country/Region"
                     {...register("billing_address.country_code", {
-                        required: {
-                            value: true,
-                            message: "country is required",
-                        },
+                        required: "country is required",
                     })}
                     errors={errors}
                     touched={touchedFields}

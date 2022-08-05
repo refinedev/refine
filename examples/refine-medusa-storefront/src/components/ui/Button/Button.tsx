@@ -1,13 +1,14 @@
-import cn from "clsx";
 import React, {
     forwardRef,
     ButtonHTMLAttributes,
     JSXElementConstructor,
     useRef,
 } from "react";
+import cn from "clsx";
 import mergeRefs from "react-merge-refs";
+
+import { LoadingDots } from "../../index";
 import s from "./Button.module.css";
-import { LoadingDots } from "@components/ui";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     href?: string;
@@ -21,7 +22,6 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     disabled?: boolean;
 }
 
-// eslint-disable-next-line react/display-name
 const Button: React.FC<ButtonProps> = forwardRef((props, buttonRef) => {
     const {
         className,
@@ -63,13 +63,15 @@ const Button: React.FC<ButtonProps> = forwardRef((props, buttonRef) => {
             {...rest}
         >
             {children}
-            {/* {loading && (
-                <i className="pl-2 m-0 flex">
+            {loading && (
+                <i className="m-0 flex pl-2">
                     <LoadingDots />
                 </i>
-            )} */}
+            )}
         </Component>
     );
 });
+
+Button.displayName = "Button";
 
 export default Button;
