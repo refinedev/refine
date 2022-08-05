@@ -1,0 +1,127 @@
+import clsx from "clsx";
+import { useState, useEffect } from "react";
+import { Disclosure } from "@headlessui/react";
+import { Button } from "@components";
+
+type AccountInfoProps = {
+    label: string;
+    currentInfo: string | React.ReactNode;
+    isLoading?: boolean;
+    isSuccess?: boolean;
+    isError?: boolean;
+    errorMessage?: string;
+    clearState: () => void;
+    children?: React.ReactNode;
+};
+
+const AccountInfo = ({
+    label,
+    currentInfo,
+    isSuccess,
+    isError,
+    clearState,
+    errorMessage = "An error occurred, please try again",
+    children,
+}: AccountInfoProps) => {
+    const handleToggle = () => {
+        clearState();
+        setIsOpen(!isOpen);
+    };
+
+    useEffect(() => {
+        if (isSuccess) {
+            setIsOpen(false);
+        }
+    }, [isSuccess, close]);
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+        <div className="text-small-regular">
+            <div className="flex items-end justify-between">
+                <div className="flex flex-col">
+                    <span className="uppercase text-gray-700">{label}</span>
+                    <div className="flex flex-1 basis-0 items-center justify-end gap-x-4">
+                        {typeof currentInfo === "string" ? (
+                            <span className="font-semibold">{currentInfo}</span>
+                        ) : (
+                            currentInfo
+                        )}
+                    </div>
+                </div>
+                <div>
+                    <Button
+                        className="min-h-[25px] w-[100px] py-1"
+                        onClick={handleToggle}
+                        type={isOpen ? "reset" : "button"}
+                    >
+                        {isOpen ? "Cancel" : "Edit"}
+                    </Button>
+                </div>
+            </div>
+
+            {/* Success state */}
+            <Disclosure>
+                <Disclosure.Panel
+                    static
+                    className={clsx(
+                        "overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out",
+                        {
+                            "max-h-[1000px] opacity-100": isSuccess,
+                            "max-h-0 opacity-0": !isSuccess,
+                        },
+                    )}
+                >
+                    <div className="my-4 bg-green-100 p-4 text-green-500">
+                        <span>{label} updated succesfully</span>
+                    </div>
+                </Disclosure.Panel>
+            </Disclosure>
+
+            {/* Error state  */}
+            <Disclosure>
+                <Disclosure.Panel
+                    static
+                    className={clsx(
+                        "overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out",
+                        {
+                            "max-h-[1000px] opacity-100": isError,
+                            "max-h-0 opacity-0": !isError,
+                        },
+                    )}
+                >
+                    <div className="mt-4 bg-rose-100 p-4 text-rose-500">
+                        <span>{errorMessage}</span>
+                    </div>
+                </Disclosure.Panel>
+            </Disclosure>
+
+            <Disclosure>
+                <Disclosure.Panel
+                    static
+                    className={clsx(
+                        "overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out",
+                        {
+                            "max-h-[1000px] opacity-100": isOpen,
+                            "max-h-0 opacity-0": !isOpen,
+                        },
+                    )}
+                >
+                    <div className="flex flex-col gap-y-2 py-4">
+                        <div>{children}</div>
+                        <div className="mt-2 flex items-center justify-end">
+                            <Button
+                                className="small:max-w-[140px] w-full"
+                                type="submit"
+                            >
+                                Save changes
+                            </Button>
+                        </div>
+                    </div>
+                </Disclosure.Panel>
+            </Disclosure>
+        </div>
+    );
+};
+
+export default AccountInfo;
