@@ -14,7 +14,7 @@ import { CartContext } from "@lib/context";
 
 const stepTitles = ["Address", "Payment"];
 
-const ProfilePage: React.FC = () => {
+const CheckoutPage: React.FC = () => {
     const [checked, setChecked] = useState(true);
     const { cartId } = useContext(CartContext);
     const [clientSecret, setClientSecret] = useState<string | undefined>();
@@ -179,4 +179,4 @@ export const getServerSideProps: GetServerSideProps = async () => {
     }
 };
 
-export default ProfilePage;
+export default CheckoutPage;
