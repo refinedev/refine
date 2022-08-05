@@ -1,7 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { GetServerSideProps } from "next";
-import { LayoutWrapper, useCreate } from "@pankod/refine-core";
+import { HttpError, LayoutWrapper, useCreate } from "@pankod/refine-core";
 import { FormProvider, useStepsForm } from "@pankod/refine-react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 import { StoreCartsRes } from "@medusajs/medusa";
 
 import { Button, Container, Checkbox } from "@components/ui";
@@ -20,12 +21,15 @@ const CheckoutPage: React.FC = () => {
     const [clientSecret, setClientSecret] = useState<string | undefined>();
 
     const methods = useStepsForm({
-        mode: "onTouched",
+        mode: "onChange",
         reValidateMode: "onChange",
     });
     const {
         getValues,
         steps: { currentStep, gotoStep },
+        formState: { errors },
+        setError,
+        trigger,
     } = methods;
 
     const { mutateAsync } = useCreate();
@@ -37,22 +41,6 @@ const CheckoutPage: React.FC = () => {
             case 0:
                 return (
                     <div className="flex flex-col gap-2">
-                        {/* TODO: Fix me */}
-                        {/* {Object.keys(errors).length > 0 && (
-                            <div className="text-red border-red border p-3">
-                                <ul>
-                                    {Object.keys(errors).map((key: any) => (
-                                        <li key={key}>
-                                            {
-                                                (errors as any)[key as any]
-                                                    .message
-                                            }
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        )} */}
-
                         <ShippingView />
 
                         <Checkbox
@@ -77,67 +65,61 @@ const CheckoutPage: React.FC = () => {
         }
     };
 
-    useEffect(() => {
-        (async () => {
-            if (currentStep === 1) {
-                // TODO: Fix error handling try catch
-                const { shipping_address, billing_address, email } =
-                    getValues();
+    const nextPage = async () => {
+        const { shipping_address, billing_address, email } = getValues();
 
-                await mutateAsync(
-                    {
-                        resource: `carts/${cartId}`,
-                        values: {
-                            country_code: shipping_address.country_code,
-                            email,
-                            shipping_address,
-                            billing_address: checked
-                                ? shipping_address
-                                : billing_address,
-                        },
-                    },
-                    {
-                        onError: (error) => {
-                            console.log(error);
-                        },
-                    },
+        try {
+            await mutateAsync({
+                resource: `carts/${cartId}`,
+                values: {
+                    country_code: shipping_address.country_code,
+                    email,
+                    shipping_address,
+                    billing_address: checked
+                        ? shipping_address
+                        : billing_address,
+                },
+            });
+
+            await mutateAsync({
+                resource: `carts/${cartId}/shipping-methods`,
+                values: {
+                    option_id: getValues()?.shippingMethod,
+                },
+            });
+
+            const paymentSession = await createPaymentSession({
+                resource: `carts/${cartId}/payment-sessions`,
+                values: {},
+            });
+
+            const isStripeAvailable =
+                paymentSession.data.cart.payment_sessions?.some(
+                    (session) => session.provider_id === "stripe",
                 );
 
-                await mutateAsync({
-                    resource: `carts/${cartId}/shipping-methods`,
-                    values: {
-                        option_id: getValues()?.shippingMethod,
-                    },
-                });
-
-                const paymentSession = await createPaymentSession({
-                    resource: `carts/${cartId}/payment-sessions`,
-                    values: {},
-                });
-
-                const isStripeAvailable =
-                    paymentSession.data.cart.payment_sessions?.some(
-                        (session) => session.provider_id === "stripe",
-                    );
-
-                if (!isStripeAvailable) {
-                    return;
-                }
-
-                const stripePaymentSession = await createPaymentSession({
-                    resource: `carts/${cartId}/payment-session`,
-                    values: {
-                        provider_id: "stripe",
-                    },
-                });
-
-                setClientSecret(
-                    stripePaymentSession?.data?.cart?.payment_session?.data
-                        .client_secret as string,
-                );
+            if (!isStripeAvailable) {
+                return;
             }
-        })();
-    }, [currentStep]);
+
+            const stripePaymentSession = await createPaymentSession({
+                resource: `carts/${cartId}/payment-session`,
+                values: {
+                    provider_id: "stripe",
+                },
+            });
+
+            setClientSecret(
+                stripePaymentSession?.data?.cart?.payment_session?.data
+                    .client_secret as string,
+            );
+
+            gotoStep(currentStep + 1);
+        } catch (error) {
+            setError("server", { message: (error as HttpError).message });
+            trigger(undefined, { shouldFocus: true });
+        }
+    };
 
     return (
         <LayoutWrapper>
@@ -148,12 +130,24 @@ const CheckoutPage: React.FC = () => {
                     </form>
                 </FormProvider>
 
-                <div className="mt-8 flex justify-end">
+                <ErrorMessage
+                    errors={errors}
+                    name="server"
+                    render={({ message }) => {
+                        return (
+                            <div className="text-right text-xs text-rose-500">
+                                <span>{message}</span>
+                            </div>
+                        );
+                    }}
+                />
+
+                <div className="mt-4 flex justify-end">
                     {currentStep < stepTitles.length - 1 && (
                         <Button
                             variant="slim"
                             onClick={() => {
-                                gotoStep(currentStep + 1);
+                                nextPage();
                             }}
                         >
                             Next
