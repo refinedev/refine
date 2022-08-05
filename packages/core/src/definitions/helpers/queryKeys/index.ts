@@ -1,5 +1,5 @@
 import { IQueryKeys } from "src/interfaces";
-import { QueryKey } from "react-query";
+import { QueryKey } from "@tanstack/react-query";
 
 import { MetaDataQuery } from "src/interfaces";
 

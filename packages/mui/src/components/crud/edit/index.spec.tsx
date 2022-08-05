@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import { Route, Routes } from "react-router-dom";
 import { AccessControlProvider } from "@pankod/refine-core";
 
-import { act, render, TestWrapper } from "@test";
+import { act, render, TestWrapper, waitFor } from "@test";
 import { Edit } from "./";
 import { crudEditTests } from "@pankod/refine-ui-tests";
 import { RefineButtonTestIds } from "@pankod/refine-ui-types";
@@ -200,7 +200,7 @@ describe("Edit", () => {
 
     describe("accessibility of buttons by accessControlProvider", () => {
         it("should render disabled list button and not disabled delete button", async () => {
-            jest.useFakeTimers();
+            jest.useRealTimers();
 
             const { queryByTestId } = renderEdit(<Edit canDelete />, {
                 can: ({ action }) => {
@@ -214,20 +214,20 @@ describe("Edit", () => {
                 },
             });
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
-            expect(
-                queryByTestId(RefineButtonTestIds.ListButton),
-            ).not.toBeDisabled();
-            expect(
-                queryByTestId(RefineButtonTestIds.DeleteButton),
-            ).toBeDisabled();
+            await waitFor(() =>
+                expect(
+                    queryByTestId(RefineButtonTestIds.ListButton),
+                ).not.toBeDisabled(),
+            );
+            await waitFor(() =>
+                expect(
+                    queryByTestId(RefineButtonTestIds.DeleteButton),
+                ).toBeDisabled(),
+            );
         });
 
         it("should render disabled list button and delete button", async () => {
-            jest.useFakeTimers();
+            jest.useRealTimers();
 
             const { queryByTestId } = renderEdit(<Edit canDelete />, {
                 can: ({ action }) => {
@@ -241,16 +241,16 @@ describe("Edit", () => {
                 },
             });
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
-            expect(
-                queryByTestId(RefineButtonTestIds.ListButton),
-            ).toBeDisabled();
-            expect(
-                queryByTestId(RefineButtonTestIds.DeleteButton),
-            ).toBeDisabled();
+            await waitFor(() =>
+                expect(
+                    queryByTestId(RefineButtonTestIds.ListButton),
+                ).toBeDisabled(),
+            );
+            await waitFor(() =>
+                expect(
+                    queryByTestId(RefineButtonTestIds.DeleteButton),
+                ).toBeDisabled(),
+            );
         });
     });
 

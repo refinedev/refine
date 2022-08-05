@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { QueryObserverResult, UseQueryOptions } from "react-query";
+import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
 
 import {
     useResourceWithRoute,

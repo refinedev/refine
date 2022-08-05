@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect } from "react";
-import { QueryObserverResult, UseQueryOptions } from "react-query";
+import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
 import differenceWith from "lodash/differenceWith";
 import isEqual from "lodash/isEqual";
 

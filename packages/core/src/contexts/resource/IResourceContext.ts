@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { UseQueryResult } from "react-query";
+import { UseQueryResult } from "@tanstack/react-query";
 import { ILogData } from "src/interfaces";
 
 const auditLogPermissions = ["create", "update", "delete"] as const;

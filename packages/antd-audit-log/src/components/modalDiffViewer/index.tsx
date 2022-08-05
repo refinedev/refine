@@ -17,7 +17,7 @@ import ReactDiffViewer, {
     DiffMethod,
     ReactDiffViewerProps,
 } from "react-diff-viewer";
-import { UseQueryResult } from "react-query";
+import { UseQueryResult } from "@tanstack/react-query";
 import stableStringify from "json-stable-stringify";
 
 const { Paragraph } = Typography;
