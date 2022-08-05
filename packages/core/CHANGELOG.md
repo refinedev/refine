@@ -1,5 +1,13 @@
 # @pankod/refine-core
 
+## 3.56.6
+
+### Patch Changes
+
+-   Upgraded `react-query` version to 4.
+
+*   Updated the return value of `useGetIdentity`. When the `getUserIdentity` function is not defined, it returns `{}` instead of `undefined`.
+
 ## 3.56.5
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @pankod/refine-cloud
 
+## 2.0.2
+
+### Patch Changes
+
+-   Upgraded `react-query` version to 4.
+
 ## 2.0.1
 
 ### Patch Changes

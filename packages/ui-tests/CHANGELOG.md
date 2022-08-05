@@ -1,5 +1,14 @@
 # @pankod/refine-ui-tests
 
+## 0.3.2
+
+### Patch Changes
+
+-   Fix failing tests after the upgrade of `react-query` to v4.
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.56.6
+
 ## 0.3.1
 
 ### Patch Changes

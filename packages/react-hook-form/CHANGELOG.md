@@ -1,5 +1,11 @@
 # @pankod/refine-react-hook-form
 
+## 3.31.2
+
+### Patch Changes
+
+-   Fixed immediate triggering of `handleSubmit`
+
 ## 3.31.1
 
 ### Patch Changes
