@@ -1,12 +1,11 @@
 import React, { ReactNode } from "react";
+import { RefineFieldTextProps } from "@pankod/refine-ui-types";
 import { Typography } from "antd";
 import { TextProps } from "antd/lib/typography/Text";
 
-import { FieldProps } from "../../../interfaces/field";
-
 const { Text } = Typography;
 
-export type TextFieldProps = FieldProps<ReactNode> & TextProps;
+export type TextFieldProps = RefineFieldTextProps<ReactNode, TextProps>;
 
 /**
  * This field lets you show basic text. It uses Ant Design's {@link https://ant.design/components/typography/#Typography.Text `<Typography.Text>`} component.

@@ -1,11 +1,11 @@
 import React from "react";
 import { Layout as AntLayout, Grid } from "antd";
-import { LayoutProps } from "@pankod/refine-core";
+import { RefineLayoutLayoutProps } from "@pankod/refine-ui-types";
 
 import { Sider as DefaultSider } from "./sider";
 import { Header as DefaultHeader } from "./header";
 
-export const Layout: React.FC<LayoutProps> = ({
+export const Layout: React.FC<RefineLayoutLayoutProps> = ({
     children,
     Header,
     Sider,

@@ -1,15 +1,19 @@
 import React from "react";
 import { useTranslate } from "@pankod/refine-core";
-
+import {
+    RefineExportButtonProps,
+    RefineButtonTestIds,
+} from "@pankod/refine-ui-types";
 import ImportExportOutlinedIcon from "@mui/icons-material/ImportExportOutlined";
 import { LoadingButton, LoadingButtonProps } from "@mui/lab";
 import { SvgIconProps } from "@mui/material";
 
-export type ExportButtonProps = LoadingButtonProps & {
-    hideText?: boolean;
-    loading?: boolean;
-    svgIconProps?: SvgIconProps;
-};
+export type ExportButtonProps = RefineExportButtonProps<
+    LoadingButtonProps,
+    {
+        svgIconProps?: SvgIconProps;
+    }
+>;
 
 /**
  * `<ExportButton>` uses Material UI {@link https://mui.com/material-ui/api/loading-button/#main-content `<LoadingButton>`} with a default export icon and a default text with "Export".
@@ -37,6 +41,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
             }
             loadingPosition={hideText ? "center" : "start"}
             sx={{ minWidth: 0, ...sx }}
+            data-testid={RefineButtonTestIds.ExportButton}
             {...restProps}
         >
             {hideText ? (

@@ -2,7 +2,7 @@ import nock from "nock";
 
 nock("http://localhost:80", { encodedQueryParams: true })
     .delete(
-        "/v1/database/collections/6180e6efb14df/documents/61c1a17614a97",
+        "/v1/databases/default/collections/6180e6efb14df/documents/61c1a17614a97",
         {},
     )
     .reply(204, "", [

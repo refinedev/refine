@@ -1,4 +1,5 @@
 import * as React from "react";
+import { RefineReadyPageProps } from "@pankod/refine-ui-types";
 import { Row, Col, Typography, Space, Button } from "antd";
 import { ReadOutlined, FolderOutlined, TeamOutlined } from "@ant-design/icons";
 
@@ -41,7 +42,7 @@ const { Title } = Typography;
  *
  * @see {@link https://refine.dev/docs/api-references/components/refine-config#readypage} for more details.
  */
-export const ReadyPage: React.FC = () => {
+export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
     return (
         <Row align="middle" justify="center" style={styles.root}>
             <Col style={{ textAlign: "center" }}>

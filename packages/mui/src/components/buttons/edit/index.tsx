@@ -3,20 +3,22 @@ import {
     useCan,
     useNavigation,
     useTranslate,
-    BaseKey,
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
+import {
+    RefineEditButtonProps,
+    RefineButtonTestIds,
+} from "@pankod/refine-ui-types";
 import { Button, ButtonProps, SvgIconProps } from "@mui/material";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
-export type EditButtonProps = ButtonProps & {
-    resourceNameOrRouteName?: string;
-    recordItemId?: BaseKey;
-    hideText?: boolean;
-    ignoreAccessControlProvider?: boolean;
-    svgIconProps?: SvgIconProps;
-};
+export type EditButtonProps = RefineEditButtonProps<
+    ButtonProps,
+    {
+        svgIconProps?: SvgIconProps;
+    }
+>;
 
 /**
  * `<EditButton>` uses uses Material UI {@link https://mui.com/components/buttons/ `<Button>`} component.
@@ -92,6 +94,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
                 }
                 title={disabledTitle()}
                 sx={{ minWidth: 0, ...sx }}
+                data-testid={RefineButtonTestIds.EditButton}
                 {...restProps}
             >
                 {hideText ? (

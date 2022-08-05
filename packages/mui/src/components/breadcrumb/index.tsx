@@ -4,6 +4,7 @@ import {
     useRefineContext,
     useRouterContext,
 } from "@pankod/refine-core";
+import { RefineBreadcrumbProps } from "@pankod/refine-ui-types";
 
 import {
     Breadcrumbs as MuiBreadcrumbs,
@@ -16,11 +17,7 @@ import {
 
 import { HomeOutlined } from "@mui/icons-material";
 
-export type BreadcrumbProps = {
-    breadcrumbProps?: MuiBreadcrumbProps;
-    showHome?: boolean;
-    hideIcons?: boolean;
-};
+export type BreadcrumbProps = RefineBreadcrumbProps<MuiBreadcrumbProps>;
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     breadcrumbProps,

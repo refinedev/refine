@@ -27,7 +27,7 @@ export interface ITestWrapperProps {
 
 export const TestWrapper: (
     props: ITestWrapperProps,
-) => React.FC<{ children: ReactNode }> = ({
+) => React.FC<{ children?: ReactNode }> = ({
     dataProvider,
     authProvider,
     resources,

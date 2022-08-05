@@ -1,7 +1,9 @@
 import nock from "nock";
 
 nock("http://localhost:80", { encodedQueryParams: true })
-    .get("/v1/database/collections/6180e4315f3e7/documents/61b9dd4a6261d")
+    .get(
+        "/v1/databases/default/collections/6180e4315f3e7/documents/61b9dd4a6261d",
+    )
     .reply(
         200,
         [

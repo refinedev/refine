@@ -1,13 +1,7 @@
-import React from "react";
-
-import { render } from "@test";
+import { fieldTextTests } from "@pankod/refine-ui-tests";
 
 import { TextFieldComponent } from "./";
 
 describe("TextField", () => {
-    it("renders text correctly", () => {
-        const { getByText } = render(<TextFieldComponent value="test" />);
-
-        getByText("test");
-    });
+    fieldTextTests.bind(this)(TextFieldComponent);
 });

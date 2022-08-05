@@ -694,6 +694,11 @@ module.exports = {
                                 "examples/table/react-table/react-table",
                             ],
                         },
+                        {
+                            type: "category",
+                            label: "Handson Table",
+                            items: ["examples/table/handsontable/handsontable"],
+                        },
                     ],
                 },
                 "examples/customTheme",
