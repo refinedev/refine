@@ -1,5 +1,11 @@
 # @pankod/refine-cloud
 
+## 2.0.1
+
+### Patch Changes
+
+-   [#2260](https://github.com/pankod/refine/pull/2260) [`a97ec592df`](https://github.com/pankod/refine/commit/a97ec592dfb6dcf5b5bd063d2d76f50ca195c20e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Upgraded `react-query` version to 4.
+
 ## 2.0.0
 
 ### Minor Changes

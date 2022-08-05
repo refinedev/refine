@@ -1,5 +1,14 @@
 # @pankod/refine-ui-tests
 
+## 0.3.1
+
+### Patch Changes
+
+-   [#2260](https://github.com/pankod/refine/pull/2260) [`a97ec592df`](https://github.com/pankod/refine/commit/a97ec592dfb6dcf5b5bd063d2d76f50ca195c20e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fix failing tests after the upgrade of `react-query` to v4.
+
+-   Updated dependencies [[`a97ec592df`](https://github.com/pankod/refine/commit/a97ec592dfb6dcf5b5bd063d2d76f50ca195c20e), [`a97ec592df`](https://github.com/pankod/refine/commit/a97ec592dfb6dcf5b5bd063d2d76f50ca195c20e)]:
+    -   @pankod/refine-core@3.56.4
+
 ## 0.3.0
 
 ### Minor Changes
