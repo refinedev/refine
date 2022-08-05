@@ -455,7 +455,7 @@ const {
 
 | Property        | Description               | Type                                          |
 | --------------- | ------------------------- | --------------------------------------------- |
-| saveButtonProps | Props for a submit button | `{ disabled: boolean; onClick: () => void; }` |
+| saveButtonProps | Props for a submit button | `{ disabled: boolean; onClick: (e: React.BaseSyntheticEvent) => void; }` |
 
 
 ### Type Parameters
