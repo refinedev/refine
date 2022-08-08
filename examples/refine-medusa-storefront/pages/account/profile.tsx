@@ -6,8 +6,6 @@ import AccountLayout from "@components/account/AccountLayout/AccountLayout";
 import ProfileTemplate from "@components/profile/ProfileTemplate/ProfileTemplate";
 
 const ProfilePage: React.FC = () => {
-    const { data } = useGetIdentity();
-
     return (
         <LayoutWrapper>
             <AccountLayout>

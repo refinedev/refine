@@ -1,22 +1,22 @@
-// import { ReactElement, ReactNode } from "react";
-// import { NextPage } from "next";
-// import OrdersTemplate from "@modules/account/templates/orders-template";
-// import Head from "@modules/common/components/head";
+import { ReactElement, ReactNode } from "react";
+import { NextPage } from "next";
+import { LayoutWrapper } from "@pankod/refine-core";
 
-// export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-//     getLayout: (page: ReactElement) => ReactNode;
-// };
+import AccountLayout from "@components/account/AccountLayout/AccountLayout";
+import OrdersTemplate from "@components/orders/OrdersTemplate/OrdersTemplate";
 
-// const Orders: NextPage = () => {
-//     return (
-//         <>
-//             <Head
-//                 title="Orders"
-//                 description="Overview of your previous orders."
-//             />
-//             <OrdersTemplate />
-//         </>
-//     );
-// };
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+    getLayout: (page: ReactElement) => ReactNode;
+};
 
-// export default Orders;
+const Orders: NextPage = () => {
+    return (
+        <LayoutWrapper>
+            <AccountLayout>
+                <OrdersTemplate />
+            </AccountLayout>
+        </LayoutWrapper>
+    );
+};
+
+export default Orders;
