@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.56.9
+
+### Patch Changes
+
+-   [#2294](https://github.com/pankod/refine/pull/2294) [`c67a232861`](https://github.com/pankod/refine/commit/c67a232861f5946920be18c0e57eee799bc77e23) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added [QueryFunctionContext](https://tanstack.com/query/v4/docs/guides/query-functions#queryfunctioncontext)'s values to `queryContext` in `metaData`.
+
 ## 3.56.8
 
 ### Patch Changes
