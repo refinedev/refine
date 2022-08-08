@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { useState, useEffect } from "react";
 import { Disclosure } from "@headlessui/react";
+
 import { Button } from "@components";
 
 type AccountInfoProps = {
@@ -14,7 +15,7 @@ type AccountInfoProps = {
     children?: React.ReactNode;
 };
 
-const AccountInfo = ({
+const AccountInfo: React.FC<AccountInfoProps> = ({
     label,
     currentInfo,
     isSuccess,
@@ -40,7 +41,7 @@ const AccountInfo = ({
         <div className="text-small-regular">
             <div className="flex items-end justify-between">
                 <div className="flex flex-col">
-                    <span className="uppercase text-gray-700">{label}</span>
+                    <span className="text-gray uppercase">{label}</span>
                     <div className="flex flex-1 basis-0 items-center justify-end gap-x-4">
                         {typeof currentInfo === "string" ? (
                             <span className="font-semibold">{currentInfo}</span>
@@ -72,7 +73,7 @@ const AccountInfo = ({
                         },
                     )}
                 >
-                    <div className="my-4 bg-green-100 p-4 text-green-500">
+                    <div className="bg-green text-accent-1 my-4 p-4">
                         <span>{label} updated succesfully</span>
                     </div>
                 </Disclosure.Panel>
@@ -90,7 +91,7 @@ const AccountInfo = ({
                         },
                     )}
                 >
-                    <div className="mt-4 bg-rose-100 p-4 text-rose-500">
+                    <div className="bg-violet-light text-violet-dark mt-4 p-4">
                         <span>{errorMessage}</span>
                     </div>
                 </Disclosure.Panel>
