@@ -8,7 +8,7 @@
   "scripts": {
     "lerna": "lerna",
     "start": "lerna run start --stream --parallel --scope @pankod/refine-core",
-    "test": "lerna run test --stream --parallel --scope @pankod/refine*",
+    "test": "lerna run test --stream --scope @pankod/refine*",
     "test:coverage": "npm run test --stream -- -- -- --coverage",
     "bootstrap": "cd packages/codemod && npm ci && cd ../.. && lerna bootstrap --hoist --strict  --ignore @pankod/refine-codemod --ignore @pankod/refine-react-router --scope @pankod/refine*",
     "lint": "eslint -c ./.eslintrc packages examples",

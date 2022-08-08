@@ -1,5 +1,45 @@
 # @pankod/refine-core
 
+## 3.56.7
+
+### Patch Changes
+
+-   [`754da29b34`](https://github.com/pankod/refine/commit/754da29b34558dd51c266c1d9b7e68bf3a954697) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed `@tanstack/react-query-devtools` dependency
+
+## 3.56.6
+
+### Patch Changes
+
+-   Upgraded `react-query` version to 4.
+
+*   Updated the return value of `useGetIdentity`. When the `getUserIdentity` function is not defined, it returns `{}` instead of `undefined`.
+
+## 3.56.5
+
+### Patch Changes
+
+-   [#2260](https://github.com/pankod/refine/pull/2260) [`a97ec592df`](https://github.com/pankod/refine/commit/a97ec592dfb6dcf5b5bd063d2d76f50ca195c20e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Upgraded `react-query` version to 4.
+
+*   [#2260](https://github.com/pankod/refine/pull/2260) [`a97ec592df`](https://github.com/pankod/refine/commit/a97ec592dfb6dcf5b5bd063d2d76f50ca195c20e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Updated the return value of `useGetIdentity`. When the `getUserIdentity` function is not defined, it returns `{}` instead of `undefined`.
+
+## 3.56.4
+
+### Patch Changes
+
+-   Fix **useCan** hook params keys.
+
+    Since `react-query` stringifies the query keys, it will throw an error for a circular dependency if we include `React.ReactNode` elements inside the keys.
+    The feature in #2220(https://github.com/pankod/refine/issues/2220) includes such change and to fix this, we need to remove `icon` property in the `resource`
+
+*   Updated `<Refine/>` component with memoization to prevent unwanted effects.
+
+    -   Fixed the issue: `react-query`'s `queryClient` was re-initializing on every render which was causing it to reset the query cache.
+    -   Memoized the `notificationProvider` prop to prevent unnecessary re-renders.
+    -   Memoized the `resources` prop to prevent unnecessary transform calls on every render.
+
+-   -   Fixed Browser back navigation is broken with `syncWithLocation` and paginated `useTable` - #2276
+    -   Updated `push` and `replace` args of `useNavigation`
+
 ## 3.56.3
 
 ### Patch Changes

@@ -39,7 +39,7 @@ describe("useLog Hook", () => {
                 meta: {
                     id: 1,
                 },
-                author: undefined,
+                author: {},
             };
 
             log.mutate(logEventPayload);

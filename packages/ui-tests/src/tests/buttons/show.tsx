@@ -15,16 +15,11 @@ export const buttonShowTests = function (
 
         beforeAll(() => {
             jest.spyOn(console, "warn").mockImplementation(jest.fn());
-            jest.useFakeTimers();
         });
 
         it("should render button successfuly", async () => {
             const { container } = render(<ShowButton />, {
                 wrapper: TestWrapper({}),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             expect(container).toBeTruthy();
@@ -33,10 +28,6 @@ export const buttonShowTests = function (
         it("should have the correct test-id", async () => {
             const { queryByTestId } = render(<ShowButton />, {
                 wrapper: TestWrapper({}),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             expect(queryByTestId(RefineButtonTestIds.ShowButton)).toBeTruthy();
@@ -50,10 +41,6 @@ export const buttonShowTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
             getByText("refine");
@@ -62,10 +49,6 @@ export const buttonShowTests = function (
         it("should render without text show only icon", async () => {
             const { container, queryByText } = render(<ShowButton hideText />, {
                 wrapper: TestWrapper({}),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             expect(container).toBeTruthy();
@@ -85,13 +68,11 @@ export const buttonShowTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
-            expect(getByText("Show").closest("button")).toBeDisabled();
+            waitFor(() =>
+                expect(getByText("Show").closest("button")).toBeDisabled(),
+            );
         });
 
         it("should be disabled when recordId not allowed", async () => {
@@ -111,13 +92,11 @@ export const buttonShowTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
-            expect(getByText("Show").closest("button")).toBeDisabled();
+            waitFor(() =>
+                expect(getByText("Show").closest("button")).toBeDisabled(),
+            );
         });
 
         it("should skip access control", async () => {
@@ -131,10 +110,6 @@ export const buttonShowTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(container).toBeTruthy();
 
@@ -157,13 +132,11 @@ export const buttonShowTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
-            expect(getByText("Show").closest("button")).toBeDisabled();
+            await waitFor(() =>
+                expect(getByText("Show").closest("button")).toBeDisabled(),
+            );
             await waitFor(() =>
                 expect(
                     getByText("Show").closest("button")?.getAttribute("title"),
@@ -178,10 +151,6 @@ export const buttonShowTests = function (
                     wrapper: TestWrapper({}),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             await act(async () => {
                 fireEvent.click(getByText("Show"));
@@ -207,10 +176,6 @@ export const buttonShowTests = function (
             );
 
             await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
-            await act(async () => {
                 fireEvent.click(getByText("Show"));
             });
 
@@ -232,10 +197,6 @@ export const buttonShowTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             await act(async () => {
                 fireEvent.click(getByText("Show"));
@@ -264,10 +225,6 @@ export const buttonShowTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             await act(async () => {
                 fireEvent.click(getByText("Show"));
@@ -302,10 +259,6 @@ export const buttonShowTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             await act(async () => {
                 fireEvent.click(getByText("Show"));

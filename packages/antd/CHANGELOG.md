@@ -1,5 +1,17 @@
 # @pankod/refine-antd
 
+## 3.35.4
+
+### Patch Changes
+
+-   Upgraded `react-query` version to 4.
+
+## 3.35.3
+
+### Patch Changes
+
+-   [#2260](https://github.com/pankod/refine/pull/2260) [`a97ec592df`](https://github.com/pankod/refine/commit/a97ec592dfb6dcf5b5bd063d2d76f50ca195c20e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Upgraded `react-query` version to 4.
+
 ## 3.35.2
 
 ### Patch Changes

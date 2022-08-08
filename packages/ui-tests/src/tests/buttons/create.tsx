@@ -5,17 +5,14 @@ import {
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
 
-import { act, render, TestWrapper, fireEvent } from "@test";
+import { act, render, TestWrapper, fireEvent, waitFor } from "@test";
 
 export const buttonCreateTests = function (
     CreateButton: React.ComponentType<RefineCreateButtonProps<any, any>>,
 ): void {
-    const create = jest.fn();
-
     describe("[@pankod/refine-ui-tests] Common Tests / Create Button", () => {
         beforeAll(() => {
             jest.spyOn(console, "warn").mockImplementation(jest.fn());
-            jest.useFakeTimers();
         });
 
         const create = jest.fn();
@@ -25,20 +22,12 @@ export const buttonCreateTests = function (
                 wrapper: TestWrapper({}),
             });
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
         });
 
         it("should have the correct test-id", async () => {
             const { queryByTestId } = render(<CreateButton />, {
                 wrapper: TestWrapper({}),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             expect(
@@ -53,10 +42,6 @@ export const buttonCreateTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
             getByText("refine");
@@ -69,10 +54,6 @@ export const buttonCreateTests = function (
                     wrapper: TestWrapper({}),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(container).toBeTruthy();
             expect(queryByText("Create")).not.toBeInTheDocument();
@@ -90,13 +71,11 @@ export const buttonCreateTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
-            expect(getByText("Create").closest("button")).toBeDisabled();
+            waitFor(() =>
+                expect(getByText("Create").closest("button")).toBeDisabled(),
+            );
         });
 
         it("should skip access control", async () => {
@@ -110,10 +89,6 @@ export const buttonCreateTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(container).toBeTruthy();
 
@@ -136,17 +111,18 @@ export const buttonCreateTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
-            expect(getByText("Create").closest("button")).toBeDisabled();
-
-            expect(
-                getByText("Create").closest("button")?.getAttribute("title"),
-            ).toBe("Access Denied");
+            waitFor(() =>
+                expect(getByText("Create").closest("button")).toBeDisabled(),
+            );
+            waitFor(() =>
+                expect(
+                    getByText("Create")
+                        .closest("button")
+                        ?.getAttribute("title"),
+                ).toBe("Access Denied"),
+            );
         });
 
         it("should render called function successfully if click the button", async () => {
@@ -156,10 +132,6 @@ export const buttonCreateTests = function (
                     wrapper: TestWrapper({}),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             await act(async () => {
                 fireEvent.click(getByText("Create"));
@@ -187,10 +159,6 @@ export const buttonCreateTests = function (
             );
 
             await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
-            await act(async () => {
                 fireEvent.click(getByText("Create"));
             });
 
@@ -209,10 +177,6 @@ export const buttonCreateTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             await act(async () => {
                 fireEvent.click(getByText("Create"));
@@ -244,10 +208,6 @@ export const buttonCreateTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             await act(async () => {
                 fireEvent.click(getByText("Create"));
