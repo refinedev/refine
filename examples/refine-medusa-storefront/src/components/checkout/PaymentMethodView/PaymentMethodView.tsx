@@ -8,6 +8,7 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 import { StoreCompleteCartRes } from "@medusajs/medusa";
 import { useCreate } from "@pankod/refine-core";
+import { useFormContext } from "@pankod/refine-react-hook-form";
 
 import { Button, Text } from "@components/ui";
 import { ArrowLeft } from "@components/icons";
@@ -27,11 +28,12 @@ interface PaymentMethodViewProps {
 const StripeForm: React.FC = () => {
     const stripe = useStripe();
     const elements = useElements();
+    const { setError } = useFormContext();
 
     const { cartId } = useContext(CartContext);
     const { mutate } = useCreate<StoreCompleteCartRes>();
 
-    async function handlePayment(e: { preventDefault: () => void }) {
+    const handlePayment = async (e: { preventDefault: () => void }) => {
         e.preventDefault();
 
         stripe!
@@ -39,21 +41,20 @@ const StripeForm: React.FC = () => {
                 elements: elements!,
                 redirect: "if_required",
             })
-            .then(({ error, paymentIntent }) => {
-                //TODO handle errors
-                mutate(
-                    {
-                        resource: `carts/${cartId}/complete`,
-                        values: {},
-                    },
-                    {
-                        onSuccess(data) {
-                            console.log({ data });
-                        },
-                    },
-                );
+            .then(({ error }) => {
+                if (error) {
+                    setError("server", {
+                        message: error.message,
+                    });
+                    return;
+                }
+
+                mutate({
+                    resource: `carts/${cartId}/complete`,
+                    values: {},
+                });
             });
-    }
+    };
 
     return (
         <div className="flex flex-col gap-4">
