@@ -3,20 +3,17 @@ import { useForm, useWatch } from "@pankod/refine-react-hook-form";
 import { Customer } from "@medusajs/medusa";
 
 import Input from "@components/common/Input";
-import AccountInfo from "@components/account/AccountInfo/AccountInfo";
+import AccountInfo from "../../account/AccountInfo/AccountInfo";
 
 type MyInformationProps = {
     customer: Omit<Customer, "password_hash">;
 };
 
-type UpdateCustomerEmailFormData = {
-    email: string;
+type UpdateCustomerPhoneFormData = {
+    phone: string;
 };
 
-const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
-    const [errorMessage, setErrorMessage] =
-        React.useState<string | undefined>(undefined);
-
+const ProfilePhone: React.FC<MyInformationProps> = ({ customer }) => {
     const {
         register,
         handleSubmit,
@@ -24,15 +21,16 @@ const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
         control,
         formState: { errors },
         refineCore: { onFinish, mutationResult },
-    } = useForm<UpdateCustomerEmailFormData>({
-        defaultValues: {
-            email: customer.email,
-        },
+    } = useForm<UpdateCustomerPhoneFormData>({
         refineCoreProps: {
-            resource: "customers/me",
             action: "edit",
+            resource: "customers",
+            id: "me",
             redirect: false,
             invalidates: ["all"],
+        },
+        defaultValues: {
+            phone: customer.phone || "",
         },
     });
 
@@ -40,37 +38,31 @@ const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
 
     useEffect(() => {
         reset({
-            email: customer.email,
+            phone: customer.phone,
         });
     }, [customer, reset]);
 
-    const email = useWatch({
+    const phone = useWatch({
         control,
-        name: "email",
+        name: "phone",
     });
 
     return (
-        <form
-            onSubmit={handleSubmit((data) => {
-                onFinish(data);
-            })}
-            className="w-full"
-        >
+        <form onSubmit={handleSubmit(onFinish)} className="w-full">
             <AccountInfo
-                label="Email"
-                currentInfo={`${customer.email}`}
+                label="Phone"
+                currentInfo={`${customer.phone}`}
                 isLoading={isLoading}
                 isSuccess={isSuccess}
-                errorMessage={errorMessage}
-                clearState={() => undefined}
+                clearState={reset}
             >
                 <div className="grid grid-cols-1 gap-y-2">
                     <Input
-                        label="Email"
-                        {...register("email", {
+                        label="Phone"
+                        {...register("phone", {
                             required: true,
                         })}
-                        defaultValue={email}
+                        defaultValue={phone}
                         errors={errors}
                     />
                 </div>
@@ -79,4 +71,4 @@ const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
     );
 };
 
-export default ProfileEmail;
+export default ProfilePhone;
