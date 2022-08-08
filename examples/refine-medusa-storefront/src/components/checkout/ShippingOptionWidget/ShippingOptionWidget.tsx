@@ -1,9 +1,10 @@
 import { FC, PropsWithChildren } from "react";
-import s from "./ShippingOptionWidget.module.css";
+
 import { ChevronRight, CreditCard, Check } from "@components/icons";
+import s from "./ShippingOptionWidget.module.css";
 
 interface ComponentProps {
-    onClick?: () => any;
+    onClick?: () => void;
     isValid: boolean;
 }
 
@@ -12,9 +13,6 @@ const ShippingOptionWidget: FC<PropsWithChildren<ComponentProps>> = ({
     isValid,
     children,
 }) => {
-    /* Shipping Address
-  Only available with checkout set to true -
-  This means that the provider does offer checkout functionality. */
     return (
         <div onClick={onClick} className={s.root}>
             <div className="flex flex-1 items-center">
@@ -22,7 +20,6 @@ const ShippingOptionWidget: FC<PropsWithChildren<ComponentProps>> = ({
                 <span className="ml-5 text-center text-sm font-medium">
                     {children}
                 </span>
-                {/* <span>VISA #### #### #### 2345</span> */}
             </div>
             <div>{isValid ? <Check /> : <ChevronRight />}</div>
         </div>

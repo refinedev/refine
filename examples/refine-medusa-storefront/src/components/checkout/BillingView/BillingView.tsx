@@ -1,28 +1,14 @@
-import { useContext } from "react";
-import { useOne } from "@pankod/refine-core";
 import { useFormContext } from "@pankod/refine-react-hook-form";
-import { Cart } from "@medusajs/medusa";
 
 import { Text } from "@components/ui";
 import Input from "@components/common/Input";
-import { CartContext } from "@lib/context";
-import NativeSelect from "@components/common/NativeSelect";
+import CountrySelect from "@components/common/CountrySelect";
 
 const BillingView: React.FC = () => {
-    const { cartId } = useContext(CartContext);
     const {
         register,
         formState: { errors, touchedFields },
     } = useFormContext();
-
-    const { data: cartData } = useOne<{ cart: Cart }>({
-        id: cartId!,
-        resource: "carts",
-        queryOptions: {
-            enabled: !!cartId,
-        },
-    });
-    const countries = cartData?.data.cart.region.countries;
 
     return (
         <div>
@@ -88,20 +74,7 @@ const BillingView: React.FC = () => {
                         touched={touchedFields}
                     />
                 </div>
-                <NativeSelect
-                    label="Country/Region"
-                    {...register("billing_address.country_code", {
-                        required: "country is required",
-                    })}
-                    errors={errors}
-                    touched={touchedFields}
-                >
-                    {countries?.map((country, index) => (
-                        <option key={index} value={country.iso_2}>
-                            {country.display_name}
-                        </option>
-                    ))}
-                </NativeSelect>
+                <CountrySelect />
             </div>
         </div>
     );
