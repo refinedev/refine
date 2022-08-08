@@ -7,3 +7,4 @@ export * from "./SEO/index";
 export * from "./Input";
 export * from "./UnderlineLink";
 export * from "./CountrySelect";
+export * from "./Thumbnail";
