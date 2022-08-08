@@ -177,7 +177,7 @@ In the above example, we pass the `headers` property in the `metaData` object to
 
 -   [Casbin](https://casbin.org/) - [Example](https://refine.dev/docs/examples/access-control/casbin/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/accessControl/casbin/src/App.tsx#L27)
 -   [Cerbos](https://cerbos.dev/) - [Example](https://refine.dev/docs/examples/access-control/cerbos/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/accessControl/cerbos/src/App.tsx#L37)
--   [Permify](https://www.permify.co/) - [Example](https://refine.dev/docs/examples/access-control/permify/) - [Source Code](https://github.com/Permify/permify-refine/blob/master/src/App.tsx#L43)
+
 
 **[Auth Provider](https://refine.dev/docs/api-references/providers/auth-provider/)**
 
