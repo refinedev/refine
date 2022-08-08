@@ -34,7 +34,6 @@ title: Interface References
     "nbetween" |
     "null" |
     "nnull";
-
 ```
 
 | Type           | Description                     |
@@ -73,11 +72,9 @@ title: Interface References
 | `"desc"`     | Descending order |
 
 ## SortOrder
-```ts
-"desc" |
-    "asc" |
-    "null";
 
+```ts
+"desc" | "asc" | "null";
 ```
 
 ## Pagination
@@ -92,7 +89,6 @@ title: Interface References
 | Type                 |
 | -------------------- |
 | `string` \| `number` |
-
 
 ## BaseRecord
 
@@ -148,19 +144,20 @@ ButtonProps
 
 ## SuccessErrorNotification
 
-| Key                 | Type                                                                                 |
-| ------------------- | ------------------------------------------------------------------------------------ |
-| successNotification | `(data?: TData, values?: TVariables, resource?: string) => NotificationProperties` \| [Notification Properties](https://ant.design/components/notification/#API) \| `false` |
+| Key                 | Type                                                                                                                                                                          |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| successNotification | `(data?: TData, values?: TVariables, resource?: string) => NotificationProperties` \| [Notification Properties](https://ant.design/components/notification/#API) \| `false`   |
 | errorNotification   | `(error?: TError, values?: TVariables, resource?: string) => NotificationProperties` \| [Notification Properties](https://ant.design/components/notification/#API) \| `false` |
 
 ## MetaDataQuery
 
-| Key         | Type                                                       |
-| ----------- | ---------------------------------------------------------- |
-| [k: string] | `any`                                                      |
-| operation?  | `string`                                                   |
-| fields?     | `Array<string` \| `object` \| [NestedField](#nestedfield)> |
-| variables?  | [VariableOptions](#variableoptions)                        |
+| Key           | Type                                                                                                                 |
+| ------------- | -------------------------------------------------------------------------------------------------------------------- |
+| [k: string]   | `any`                                                                                                                |
+| operation?    | `string`                                                                                                             |
+| fields?       | `Array<string` \| `object` \| [NestedField](#nestedfield)>                                                           |
+| variables?    | [VariableOptions](#variableoptions)                                                                                  |
+| queryContext? | [Omit<QueryFunctionContext, "meta">](https://tanstack.com/query/v4/docs/guides/query-functions#queryfunctioncontext) |
 
 ### NestedField
 
@@ -199,11 +196,11 @@ ButtonProps
 
 ## CanParams
 
-| Key      | Type     |
-| -------- | -------- |
-| resource | `string` |
-| action   | `string` |
-| params?  | { `resource`?: [IResourceItem](/docs/core/interfaces.md#resourceitemprops), `id`?: [BaseKey](/docs/core/interfaces.md#basekey), `[key: string]: any` }    |
+| Key      | Type                                                                                                                                                   |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| resource | `string`                                                                                                                                               |
+| action   | `string`                                                                                                                                               |
+| params?  | { `resource`?: [IResourceItem](/docs/core/interfaces.md#resourceitemprops), `id`?: [BaseKey](/docs/core/interfaces.md#basekey), `[key: string]: any` } |
 
 ## CanReturnType
 
@@ -228,6 +225,7 @@ ButtonProps
 | liveMode?    | `"auto"` \| `"manual"` \| `"off"`       |
 | liveParams?  | `{ids?: BaseKey[]; [x: string]: any; }` |
 | onLiveEvent? | `(event: LiveEvent) => void`            |
+
 ## OptionsProps
 
 | Key           | Type     |
@@ -250,7 +248,6 @@ ButtonProps
 | canDelete?  | `boolean`   |
 | options?    | `object`    |
 | parentName? | `string`    |
-
 
 ## SyncWithLocationParams
 
