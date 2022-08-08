@@ -1,5 +1,5 @@
+import React from "react";
 import clsx from "clsx";
-import React, { useState } from "react";
 import { useModalForm } from "@pankod/refine-react-hook-form";
 import { Address, Country, Region } from "@medusajs/medusa";
 
@@ -57,7 +57,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
         refineCore: { onFinish, formLoading },
     } = useModalForm<FormValues>({
         defaultValues: {
-            first_name: "Melih",
+            first_name: address.first_name || undefined,
             last_name: address.last_name || undefined,
             city: address.city || undefined,
             address_1: address.address_1 || undefined,
@@ -69,8 +69,8 @@ const EditAddress: React.FC<EditAddressProps> = ({
             province: address.province || undefined,
         },
         refineCoreProps: {
-            action: "edit",
-            resource: "customers/me/addresses",
+            action: "create",
+            resource: `customers/me/addresses/${address.id}`,
             redirect: false,
             onMutationSuccess: () => {
                 handleClose();
@@ -158,9 +158,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                     <form
                         onSubmit={handleSubmit((data) => {
                             onFinish({
-                                address: {
-                                    ...data,
-                                },
+                                ...data,
                             });
                         })}
                         className="grid grid-cols-1 gap-y-2"
