@@ -67,7 +67,7 @@ const App: React.FC = () => {
                     i18nProvider={i18nProvider}
                     OffLayoutArea={OffLayoutArea}
                     DashboardPage={DashboardPage}
-                    LoginPage={LoginPage}
+                    AuthPage={LoginPage}
                     Title={Title}
                     Header={Header}
                     Layout={Layout}
