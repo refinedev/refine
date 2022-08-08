@@ -1,10 +1,9 @@
 import { GetServerSideProps } from "next";
 import { LayoutWrapper, useGetIdentity } from "@pankod/refine-core";
 
-import { Container, Text } from "@components/ui";
 import { getSearchStaticProps } from "@lib/search-props";
 import AccountLayout from "@components/account/AccountLayout/AccountLayout";
-import Profile from "@components/account/Profile/Profile";
+import ProfileTemplate from "@components/profile/ProfileTemplate/ProfileTemplate";
 
 const ProfilePage: React.FC = () => {
     const { data } = useGetIdentity();
@@ -12,7 +11,7 @@ const ProfilePage: React.FC = () => {
     return (
         <LayoutWrapper>
             <AccountLayout>
-                <Profile />
+                <ProfileTemplate />
             </AccountLayout>
         </LayoutWrapper>
     );

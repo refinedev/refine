@@ -3,7 +3,7 @@ import { LayoutWrapper, useGetIdentity, useOne } from "@pankod/refine-core";
 import { StoreCustomersListOrdersRes } from "@medusajs/medusa";
 
 import AccountLayout from "@components/account/AccountLayout/AccountLayout";
-import Overview from "@components/account/Overview/Overview";
+import Overview from "@components/account/OverviewTemplate/OverviewTemplate";
 import { getSearchStaticProps } from "@lib/search-props";
 
 const ProfilePage: React.FC = () => {
