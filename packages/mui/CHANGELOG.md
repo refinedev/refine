@@ -1,5 +1,14 @@
 # @pankod/refine-mui
 
+## 3.41.4
+
+### Patch Changes
+
+-   Upgraded `react-query` version to 4.
+
+-   Updated dependencies []:
+    -   @pankod/refine-react-hook-form@3.31.2
+
 ## 3.41.3
 
 ### Patch Changes
