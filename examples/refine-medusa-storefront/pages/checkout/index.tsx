@@ -13,7 +13,7 @@ import BillingView from "@components/checkout/BillingView";
 import ShippingOptionView from "@components/checkout/ShippingOptionView";
 import { CartContext } from "@lib/context";
 
-const stepTitles = ["Address", "Payment"];
+const totalStep = 2;
 
 const CheckoutPage: React.FC = () => {
     const [checked, setChecked] = useState(true);
@@ -151,7 +151,7 @@ const CheckoutPage: React.FC = () => {
                 />
 
                 <div className="mt-4 flex justify-end">
-                    {currentStep < stepTitles.length - 1 && (
+                    {currentStep < totalStep - 1 && (
                         <Button
                             loading={isLoading || isCreatePaymentSessionLoading}
                             variant="slim"

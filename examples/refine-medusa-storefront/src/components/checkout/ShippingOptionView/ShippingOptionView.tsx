@@ -2,11 +2,11 @@ import { useCallback, useContext } from "react";
 import { useOne } from "@pankod/refine-core";
 import { useFormContext, Controller } from "@pankod/refine-react-hook-form";
 import { StoreShippingOptionsListRes } from "@medusajs/medusa";
+import { ErrorMessage } from "@hookform/error-message";
 
 import { Text } from "@components/ui";
 import ShippingOptionWidget from "@components/checkout/ShippingOptionWidget";
 import { CartContext } from "@lib/context";
-import { ErrorMessage } from "@hookform/error-message";
 
 const ShippingOptionView: React.FC = () => {
     const { cartId } = useContext(CartContext);
