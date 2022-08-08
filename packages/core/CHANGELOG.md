@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.56.7
+
+### Patch Changes
+
+-   [`754da29b34`](https://github.com/pankod/refine/commit/754da29b34558dd51c266c1d9b7e68bf3a954697) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed `@tanstack/react-query-devtools` dependency
+
 ## 3.56.6
 
 ### Patch Changes
