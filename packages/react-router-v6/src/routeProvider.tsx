@@ -2,7 +2,8 @@
 import React from "react";
 import { Route, Routes, Navigate, Outlet } from "react-router-dom";
 import {
-    LoginPage as DefaultLoginPage,
+    AuthPage as DefaultAuthPage,
+    LoginPage,
     ErrorComponent,
     LayoutWrapper,
     useAuthenticated,
@@ -159,7 +160,7 @@ const ResourceComponent: React.FC<{ route: string }> = ({ route }) => {
 
 export const RouteProvider = () => {
     const { resources } = useResource();
-    const { catchAll, DashboardPage, LoginPage } = useRefineContext();
+    const { catchAll, DashboardPage, AuthPage } = useRefineContext();
 
     const { routes: customRoutes } = useRouterContext();
 
@@ -267,11 +268,27 @@ export const RouteProvider = () => {
             ))}
             <Route
                 path="/"
-                element={LoginPage ? <LoginPage /> : <DefaultLoginPage />}
+                element={
+                    AuthPage ? (
+                        <AuthPage />
+                    ) : LoginPage ? (
+                        <LoginPage />
+                    ) : (
+                        <DefaultAuthPage />
+                    )
+                }
             />
             <Route
                 path="/login"
-                element={LoginPage ? <LoginPage /> : <DefaultLoginPage />}
+                element={
+                    AuthPage ? (
+                        <AuthPage />
+                    ) : LoginPage ? (
+                        <LoginPage />
+                    ) : (
+                        <DefaultAuthPage />
+                    )
+                }
             />
             <Route path="*" element={<CustomPathAfterLogin />} />
         </Routes>
