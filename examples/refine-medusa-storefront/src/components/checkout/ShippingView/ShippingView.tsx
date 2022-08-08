@@ -13,12 +13,18 @@ const ShippingView: React.FC = () => {
     const { cartId } = useContext(CartContext);
     const {
         register,
+        setValue,
         formState: { errors, touchedFields },
     } = useFormContext();
 
-    const { data: currentUser } = useOne<{ customer: Customer }>({
+    useOne<{ customer: Customer }>({
         resource: "auth",
         id: "",
+        queryOptions: {
+            onSuccess: (data) => {
+                setValue("email", data.data.customer.email);
+            },
+        },
     });
 
     const { data: cartData } = useOne<{ cart: Cart }>({
@@ -36,7 +42,6 @@ const ShippingView: React.FC = () => {
             <div>
                 <Input
                     label="Email"
-                    defaultValue={currentUser?.data.customer.email}
                     {...register("email", {
                         required: "email is required",
                         pattern: {

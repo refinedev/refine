@@ -29,6 +29,7 @@ const CheckoutPage: React.FC = () => {
         steps: { currentStep, gotoStep },
         formState: { errors },
         setError,
+        clearErrors,
         trigger,
     } = methods;
 
@@ -69,58 +70,62 @@ const CheckoutPage: React.FC = () => {
     };
 
     const nextPage = async () => {
-        const { shipping_address, billing_address, email } = getValues();
+        const isValid = await trigger(undefined, { shouldFocus: true });
 
-        try {
-            await mutateAsync({
-                resource: `carts/${cartId}`,
-                values: {
-                    country_code: shipping_address.country_code,
-                    email,
-                    shipping_address,
-                    billing_address: checked
-                        ? shipping_address
-                        : billing_address,
-                },
-            });
+        if (isValid) {
+            const { shipping_address, billing_address, email } = getValues();
 
-            await mutateAsync({
-                resource: `carts/${cartId}/shipping-methods`,
-                values: {
-                    option_id: getValues()?.shippingMethod,
-                },
-            });
+            try {
+                await mutateAsync({
+                    resource: `carts/${cartId}`,
+                    values: {
+                        country_code: shipping_address.country_code,
+                        email,
+                        shipping_address,
+                        billing_address: checked
+                            ? shipping_address
+                            : billing_address,
+                    },
+                });
 
-            const paymentSession = await createPaymentSession({
-                resource: `carts/${cartId}/payment-sessions`,
-                values: {},
-            });
+                await mutateAsync({
+                    resource: `carts/${cartId}/shipping-methods`,
+                    values: {
+                        option_id: getValues()?.shippingMethod,
+                    },
+                });
 
-            const isStripeAvailable =
-                paymentSession.data.cart.payment_sessions?.some(
-                    (session) => session.provider_id === "stripe",
+                const paymentSession = await createPaymentSession({
+                    resource: `carts/${cartId}/payment-sessions`,
+                    values: {},
+                });
+
+                const isStripeAvailable =
+                    paymentSession.data.cart.payment_sessions?.some(
+                        (session) => session.provider_id === "stripe",
+                    );
+
+                if (!isStripeAvailable) {
+                    return;
+                }
+
+                const stripePaymentSession = await createPaymentSession({
+                    resource: `carts/${cartId}/payment-session`,
+                    values: {
+                        provider_id: "stripe",
+                    },
+                });
+
+                setClientSecret(
+                    stripePaymentSession?.data?.cart?.payment_session?.data
+                        .client_secret as string,
                 );
 
-            if (!isStripeAvailable) {
-                return;
+                clearErrors();
+                gotoStep(currentStep + 1);
+            } catch (error) {
+                setError("server", { message: (error as HttpError).message });
             }
-
-            const stripePaymentSession = await createPaymentSession({
-                resource: `carts/${cartId}/payment-session`,
-                values: {
-                    provider_id: "stripe",
-                },
-            });
-
-            setClientSecret(
-                stripePaymentSession?.data?.cart?.payment_session?.data
-                    .client_secret as string,
-            );
-
-            gotoStep(currentStep + 1);
-        } catch (error) {
-            setError("server", { message: (error as HttpError).message });
-            trigger(undefined, { shouldFocus: true });
         }
     };
 
