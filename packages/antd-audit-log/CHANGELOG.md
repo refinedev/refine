@@ -1,5 +1,15 @@
 # @pankod/refine-antd-audit-log
 
+## 3.27.2
+
+### Patch Changes
+
+-   Upgraded `react-query` version to 4.
+
+-   Updated dependencies []:
+    -   @pankod/refine-antd@3.35.4
+    -   @pankod/refine-core@3.56.6
+
 ## 3.27.1
 
 ### Patch Changes
