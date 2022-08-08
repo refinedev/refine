@@ -3,7 +3,7 @@ import React from "react";
 import { IRefineContext, IRefineContextProvider } from "./IRefineContext";
 import { DefaultLayout } from "@components/layoutWrapper/defaultLayout";
 
-import { LoginPage as DefaultLoginPage } from "@components/pages";
+import { AuthPage as DefaultAuthPage } from "@components/pages";
 
 export const RefineContext = React.createContext<IRefineContext>({
     hasDashboard: false,
@@ -35,7 +35,7 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
     Sider,
     Footer,
     OffLayoutArea,
-    LoginPage = DefaultLoginPage,
+    AuthPage = DefaultAuthPage,
     catchAll,
     liveMode = "off",
     onLiveEvent,
@@ -55,7 +55,7 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
                 Footer,
                 OffLayoutArea,
                 DashboardPage,
-                LoginPage,
+                AuthPage,
                 catchAll,
                 liveMode,
                 onLiveEvent,

@@ -15,7 +15,11 @@ export interface IRefineContext {
     undoableTimeout: number;
     catchAll?: React.ReactNode;
     DashboardPage?: React.FC;
+    /**
+     * @deprecated LoginPage deprecated. Use AuthPage instead.
+     */
     LoginPage?: React.FC | false;
+    AuthPage?: React.FC | false;
     Title?: React.FC<TitleProps>;
     Layout: React.FC<LayoutProps>;
     Sider?: React.FC;
@@ -34,7 +38,11 @@ export interface IRefineContextProvider {
     undoableTimeout: number;
     catchAll?: React.ReactNode;
     DashboardPage?: React.FC;
+    /**
+     * @deprecated LoginPage deprecated. Use AuthPage instead.
+     */
     LoginPage?: React.FC | false;
+    AuthPage?: React.FC | false;
     Title?: React.FC<TitleProps>;
     Layout?: React.FC<LayoutProps>;
     Sider?: React.FC;

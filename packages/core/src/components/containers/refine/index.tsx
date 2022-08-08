@@ -59,6 +59,7 @@ export interface RefineProps {
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
     LoginPage?: React.FC;
+    AuthPage?: React.FC;
     DashboardPage?: React.FC;
     ReadyPage?: React.FC;
     mutationMode?: MutationMode;
@@ -97,6 +98,7 @@ export const Refine: React.FC<RefineProps> = ({
     DashboardPage,
     ReadyPage,
     LoginPage,
+    AuthPage,
     catchAll,
     children,
     liveProvider,
@@ -210,7 +212,7 @@ export const Refine: React.FC<RefineProps> = ({
                                                         DashboardPage={
                                                             DashboardPage
                                                         }
-                                                        LoginPage={LoginPage}
+                                                        AuthPage={AuthPage}
                                                         Layout={Layout}
                                                         Sider={Sider}
                                                         Footer={Footer}
