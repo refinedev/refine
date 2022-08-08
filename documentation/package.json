@@ -15,6 +15,7 @@
     "@docusaurus/core": "^2.0.0-beta.21",
     "@docusaurus/plugin-client-redirects": "^2.0.0-beta.21",
     "@docusaurus/preset-classic": "^2.0.0-beta.21",
+    "@docusaurus/theme-live-codeblock": "^2.0.1",
     "@mdx-js/react": "^1.6.21",
     "@types/react-dom": "^17.0.11",
     "axios": "^0.24.0",
@@ -25,7 +26,8 @@
     "react-icons": "^4.2.0",
     "react-lazyload": "^3.2.0",
     "react-player": "^2.10.1",
-    "react-split-pane": "git+https://github.com/quarkw/react-split-pane.git"
+    "react-split-pane": "git+https://github.com/quarkw/react-split-pane.git",
+    "sucrase": "^3.25.0"
   },
   "browserslist": {
     "production": [

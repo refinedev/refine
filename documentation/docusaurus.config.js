@@ -73,6 +73,7 @@ const siteConfig = {
             },
         ],
     ],
+    themes: ["@docusaurus/theme-live-codeblock"],
     themeConfig: {
         image: "img/refine_social.png",
         algolia: {
