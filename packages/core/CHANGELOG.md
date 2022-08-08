@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.56.8
+
+### Patch Changes
+
+-   Fixed `@tanstack/react-query-devtools` dependency
+
 ## 3.56.7
 
 ### Patch Changes
