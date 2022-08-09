@@ -411,7 +411,7 @@ export { default as SpeedDialIcon } from "@mui/material/SpeedDialIcon";
 export * from "@mui/material/SpeedDialIcon";
 
 export { default as Stack } from "@mui/material/Stack";
-export * from "@mui/material/Stack";
+export type { StackProps, StackTypeMap } from "@mui/material/Stack";
 
 export { default as Step } from "@mui/material/Step";
 export * from "@mui/material/Step";

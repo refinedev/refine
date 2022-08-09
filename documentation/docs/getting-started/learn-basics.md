@@ -139,7 +139,6 @@ In the above example, we pass the `headers` property in the `metaData` object to
 -   `@pankod/refine-strapi` - a fully featured [Strapi](https://strapi.io/) Data Provider
 -   `@pankod/refine-supabase` - a fully featured [Supabase](https://supabase.com/) Data Provider. Also supported Supabase Realtime feature.
 -   `@pankod/refine-hasura` - a fully featured [Hasura GraphQL](https://hasura.io/) Data Provider. Also supported GraphQL Subscriptions feature.
--   `@pankod/refine-nhost` - a fully featured [Nhost](https://nhost.io/) Data Provider. Also supported GraphQL Subscriptions feature.
 -   `@pankod/refine-appwrite` - a fully featured [Appwrite](https://appwrite.io/) Data Provider. Also supported Appwrite Realtime feature.
 -   `@pankod/refine-medusa` - a fully featured [Medusa](https://medusajs.com/) Data Provider
 -   `@pankod/refine-airtable` - a fully featured [Airtable](https://airtable.com/) Data Provider
