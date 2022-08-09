@@ -5,13 +5,13 @@ import { Customer } from "@medusajs/medusa";
 import { Button, LoadingDots } from "@components";
 import OrderCard from "../OrderCard/OrderCard";
 
-const OrderOverview = () => {
-    const { data: ordersData, isLoading } = useOne<Customer>({
+const OrderOverview: React.FC = () => {
+    const { data: customerData, isLoading } = useOne<Customer>({
         resource: "customers",
-        id: "me",
+        id: "me/orders",
     });
 
-    const orders = ordersData?.data.orders || [];
+    const orders = customerData?.data.orders || [];
 
     if (isLoading) {
         return (
