@@ -3,6 +3,10 @@ import { Order } from "@medusajs/medusa";
 
 import OrderDetails from "../OrderDetails";
 import Items from "../Items";
+import PaymentDetails from "../PaymentDetails";
+import ShippingDetails from "../ShippingDetails";
+import Help from "../Help";
+import OrderSummary from "../OrderSummary";
 
 interface OrderCompletedTemplateProps {
     order: Order;
@@ -22,18 +26,18 @@ const OrderCompletedTemplate: React.FC<OrderCompletedTemplateProps> = ({
                         cartId={order.cart_id}
                     />
                     <div className="grid grid-cols-1 gap-4 border-b border-gray-200 p-10 lg:grid-cols-2">
-                        {/* <PaymentDetails
-            payments={order.payments}
-            paymentStatus={order.payment_status}
-          />
-          <ShippingDetails
-            shippingMethods={order.shipping_methods}
-            address={order.shipping_address}
-          /> */}
+                        <PaymentDetails
+                            payments={order.payments}
+                            paymentStatus={order.payment_status}
+                        />
+                        <ShippingDetails
+                            shippingMethods={order.shipping_methods}
+                            address={order.shipping_address}
+                        />
                     </div>
                     <div className="grid grid-cols-1 gap-4 p-10 lg:grid-cols-2">
-                        {/* <Help />
-          <OrderSummary order={order} /> */}
+                        <Help />
+                        <OrderSummary order={order} />
                     </div>
                 </div>
             </div>
