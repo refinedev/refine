@@ -1,5 +1,11 @@
 # @pankod/refine-react-hook-form
 
+## 3.31.4
+
+### Patch Changes
+
+-   Added type checking to fix fields reset bug
+
 ## 3.31.3
 
 ### Patch Changes
