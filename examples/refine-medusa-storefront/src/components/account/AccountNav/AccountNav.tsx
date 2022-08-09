@@ -11,11 +11,14 @@ export const AccountNav: React.FC = () => {
         <div>
             <div className="small:hidden">
                 {route !== "/account" && (
-                    <Link href="/account">
-                        <a className="text-small-regular flex items-center gap-x-2 py-2">
+                    <Link
+                        href="/account"
+                        className="text-small-regular flex items-center gap-x-2 py-2"
+                    >
+                        <>
                             <ChevronDown className="rotate-90 transform" />
                             <span>Account</span>
-                        </a>
+                        </>
                     </Link>
                 )}
             </div>
@@ -72,14 +75,13 @@ type AccountNavLinkProps = {
 const AccountNavLink = ({ href, route, children }: AccountNavLinkProps) => {
     const active = route === href;
     return (
-        <Link href={href}>
-            <a
-                className={clsx("text-gray-700", {
-                    "font-semibold text-gray-900": active,
-                })}
-            >
-                {children}
-            </a>
+        <Link
+            href={href}
+            className={clsx("text-gray-700", {
+                "font-semibold text-gray-900": active,
+            })}
+        >
+            {children}
         </Link>
     );
 };
