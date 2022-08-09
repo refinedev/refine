@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 3.41.5
+
+### Patch Changes
+
+-   [#2300](https://github.com/pankod/refine/pull/2300) [`59f9e5eebf`](https://github.com/pankod/refine/commit/59f9e5eebf372da36fc953d1affb04f393aac88d) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed `StackProps` and `StackTypeMap` type exports
+
 ## 3.41.4
 
 ### Patch Changes

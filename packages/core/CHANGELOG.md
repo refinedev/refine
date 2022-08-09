@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.56.10
+
+### Patch Changes
+
+-   Added [QueryFunctionContext](https://tanstack.com/query/v4/docs/guides/query-functions#queryfunctioncontext)'s values to `queryContext` in `metaData`.
+
 ## 3.56.9
 
 ### Patch Changes
