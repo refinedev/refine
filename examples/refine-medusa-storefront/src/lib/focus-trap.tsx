@@ -51,7 +51,6 @@ export default function FocusTrap({
     };
 
     useEffect(() => {
-        console.log("changed", { root, children });
         setTimeout(trapFocus, 20);
         return () => {
             returnFocus();
