@@ -3,6 +3,9 @@ import { LineItem, Region } from "@medusajs/medusa";
 
 import useEnrichedLineItems from "@lib/hooks/useEnrichedLineItems";
 import Thumbnail from "@components/common/Thumbnail/Thumbnail";
+import LineItemOptions from "@components/common/LineItemOptions";
+import LineItemPrice from "@components/common/LineItemPrice";
+import { CalculatedVariant } from "src/types/medusa";
 
 interface ItemsProps {
     items: LineItem[];
@@ -39,21 +42,21 @@ const Items: React.FC<ItemsProps> = ({ cartId, items, region }) => {
                                                       <a>{item.title}</a>
                                                   </Link>
                                               </h3>
-                                              {/* <LineItemOptions
+                                              <LineItemOptions
                                                   variant={item.variant}
-                                              /> */}
+                                              />
                                               <span>
                                                   Quantity: {item.quantity}
                                               </span>
                                           </div>
                                           <div className="flex justify-end">
-                                              {/* <LineItemPrice
+                                              <LineItemPrice
                                                   quantity={item.quantity}
                                                   region={region}
                                                   variant={
                                                       item.variant as CalculatedVariant
                                                   }
-                                              /> */}
+                                              />
                                           </div>
                                       </div>
                                   </div>
