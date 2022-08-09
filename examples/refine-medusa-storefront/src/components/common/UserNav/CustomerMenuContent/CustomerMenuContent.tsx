@@ -11,27 +11,33 @@ import { useLogout } from "@pankod/refine-core";
 
 const LINKS = [
     {
+        name: "My Account",
+        href: "/account",
+    },
+    {
         name: "My Orders",
-        href: "/orders",
+        href: "/account/orders",
     },
     {
         name: "My Profile",
-        href: "/profile",
+        href: "/account/profile",
     },
     {
-        name: "My Cart",
-        href: "/cart",
+        name: "My Addresses",
+        href: "/account/addresses",
     },
 ];
 
 export default function CustomerMenuContent() {
     const router = useRouter();
+    router.beforePopState;
     const { pathname } = useRouter();
     const { theme, setTheme } = useTheme();
 
     const { mutate: logout } = useLogout<{ redirectPath: string }>();
 
     function handleClick(_: React.MouseEvent<HTMLAnchorElement>, href: string) {
+        _.preventDefault();
         router.push(href);
     }
 
