@@ -53,7 +53,7 @@ const AccountInfo: React.FC<AccountInfoProps> = ({
                 <div>
                     <Button
                         variant="ghost"
-                        className="min-h-[25px] small:h-[50px] h-[25px] w-[50px] small:w-[100px] py-1"
+                        className="small:h-[50px] small:w-[100px] h-[25px] min-h-[25px] w-[50px] py-1"
                         onClick={handleToggle}
                         type={isOpen ? "reset" : "button"}
                     >

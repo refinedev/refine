@@ -16,7 +16,7 @@ const AccountLayout: React.FC<PropsWithChildren> = ({ children }) => {
 
     return (
         <div className="mt-16 flex-1">
-            <div className="w-full px-4 small:px-40 large:px-52">
+            <div className="small:px-40 large:px-52 w-full px-4">
                 <div className="small:grid-cols-[240px_1fr] small:px-8 small:py-12 grid grid-cols-1 py-6 shadow-md ">
                     <div>
                         <AccountNav />
