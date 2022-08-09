@@ -21,11 +21,11 @@ const OrderCard = ({ order }: OrderCardProps) => {
     }, [order]);
 
     return (
-        <div className="bg-white flex flex-col">
-            <div className="uppercase text-large-semi mb-1">
+        <div className="flex flex-col bg-white">
+            <div className="text-large-semi mb-1 uppercase">
                 #{order.display_id}
             </div>
-            <div className="flex items-center divide-x divide-gray-200 text-small-regular text-gray-700">
+            <div className="text-small-regular flex items-center divide-x divide-gray-200 text-gray-700">
                 <span className="pr-2">
                     {new Date(order.created_at).toDateString()}
                 </span>
@@ -40,7 +40,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
                     numberOfLines > 1 ? "items" : "item"
                 }`}</span>
             </div>
-            <div className="grid grid-cols-2 small:grid-cols-4 gap-4 my-4">
+            <div className="small:grid-cols-4 my-4 grid grid-cols-2 gap-4">
                 {order.items.slice(0, 3).map((i) => {
                     return (
                         <div key={i.id} className="flex flex-col gap-y-2">
@@ -49,8 +49,8 @@ const OrderCard = ({ order }: OrderCardProps) => {
                                 images={[]}
                                 size="full"
                             />
-                            <div className="flex items-center text-small-regular text-gray-700">
-                                <span className="text-gray-900 font-semibold">
+                            <div className="text-small-regular flex items-center text-gray-700">
+                                <span className="font-semibold text-gray-900">
                                     {i.title}
                                 </span>
                                 <span className="ml-2">x</span>
@@ -60,7 +60,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
                     );
                 })}
                 {numberOfProducts > 4 && (
-                    <div className="w-full h-full flex flex-col items-center justify-center">
+                    <div className="flex h-full w-full flex-col items-center justify-center">
                         <span className="text-small-regular text-gray-700">
                             + {numberOfLines - 4}
                         </span>

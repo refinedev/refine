@@ -55,7 +55,7 @@ export default function FocusTrap({
         return () => {
             returnFocus();
         };
-    }, [root, children]);
+    }, [root]);
 
     return React.createElement(
         "div",
