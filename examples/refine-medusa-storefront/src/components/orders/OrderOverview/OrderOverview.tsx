@@ -15,7 +15,7 @@ const OrderOverview = () => {
 
     if (isLoading) {
         return (
-            <div className="text-gray-900 w-full flex justify-center pt-12">
+            <div className="flex w-full justify-center pt-12 text-gray-900">
                 <LoadingDots />
             </div>
         );
@@ -23,11 +23,11 @@ const OrderOverview = () => {
 
     if (orders?.length > 0) {
         return (
-            <div className="flex flex-col gap-y-8 w-full">
+            <div className="flex w-full flex-col gap-y-8">
                 {orders.map((o) => (
                     <div
                         key={o.id}
-                        className="border-b border-gray-200 pb-6 last:pb-0 last:border-none"
+                        className="border-b border-gray-200 pb-6 last:border-none last:pb-0"
                     >
                         <OrderCard order={o} />
                     </div>
@@ -37,7 +37,7 @@ const OrderOverview = () => {
     }
 
     return (
-        <div className="w-full flex flex-col items-center gap-y-4">
+        <div className="flex w-full flex-col items-center gap-y-4">
             <h2 className="text-large-semi">Nothing to see here</h2>
             <p className="text-base-regular">
                 You don&apos;t have any orders yet, let us change that {":)"}
