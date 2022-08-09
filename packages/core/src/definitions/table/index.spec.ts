@@ -86,7 +86,16 @@ describe("definitions/table", () => {
             },
         ];
 
-        const url = stringifyTableParams({ pagination, sorter, filters });
+        const userDefinedQueryParam = {
+            foo: "bar",
+        };
+
+        const url = stringifyTableParams({
+            pagination,
+            sorter,
+            filters,
+            ...userDefinedQueryParam,
+        });
         expect(url).toMatchSnapshot();
     });
 

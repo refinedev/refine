@@ -1,5 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`definitions/table stringify table params correctly 1`] = `"current=1&pageSize=10&sorter[0][field]=id&sorter[0][order]=desc&sorter[1][field]=title&sorter[1][order]=desc&filters[0][field]=categoryId&filters[0][operator]=in&filters[0][value][0]=1&filters[0][value][1]=2"`;
+exports[`definitions/table stringify table params correctly 1`] = `"foo=bar&current=1&pageSize=10&sorter[0][field]=id&sorter[0][order]=desc&sorter[1][field]=title&sorter[1][order]=desc&filters[0][field]=categoryId&filters[0][operator]=in&filters[0][value][0]=1&filters[0][value][1]=2"`;
 
 exports[`definitions/table stringify table single sort params correctly 1`] = `"current=1&pageSize=10&sorter[0][field]=id&sorter[0][order]=desc&filters[0][field]=categoryId&filters[0][operator]=in&filters[0][value][0]=1&filters[0][value][1]=2"`;
