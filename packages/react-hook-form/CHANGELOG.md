@@ -1,5 +1,11 @@
 # @pankod/refine-react-hook-form
 
+## 3.31.3
+
+### Patch Changes
+
+-   [#2296](https://github.com/pankod/refine/pull/2296) [`cca5a3d0c1`](https://github.com/pankod/refine/commit/cca5a3d0c14a20e0454c6e15cc44abdcfe6420c5) Thanks [@ozkalai](https://github.com/ozkalai)! - Added type checking to fix fields reset bug
+
 ## 3.31.2
 
 ### Patch Changes
