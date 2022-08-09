@@ -80,17 +80,19 @@ export const useForm = <
     } = useHookFormResult;
 
     useEffect(() => {
-        const fields: any = {};
-        const registeredFields = Object.keys(getValues());
-        Object.entries(queryResult?.data?.data || {}).forEach(
-            ([key, value]) => {
-                if (registeredFields.includes(key)) {
-                    fields[key] = value;
-                }
-            },
-        );
+        if (typeof queryResult?.data !== "undefined") {
+            const fields: any = {};
+            const registeredFields = Object.keys(getValues());
+            Object.entries(queryResult?.data?.data || {}).forEach(
+                ([key, value]) => {
+                    if (registeredFields.includes(key)) {
+                        fields[key] = value;
+                    }
+                },
+            );
 
-        reset(fields as any);
+            reset(fields as any);
+        }
     }, [queryResult?.data]);
 
     useEffect(() => {
