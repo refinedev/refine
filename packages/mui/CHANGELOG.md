@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 3.41.6
+
+### Patch Changes
+
+-   Fixed `StackProps` and `StackTypeMap` type exports
+
 ## 3.41.5
 
 ### Patch Changes
