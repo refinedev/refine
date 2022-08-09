@@ -8,8 +8,7 @@ import { Refine, LoginPage } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-nextjs-router";
 import dataProvider, { authProvider } from "@pankod/refine-medusa";
 
-import { API_URL } from "../src/constants";
-
+import { API_URL } from "@lib/constants";
 import { ProductList } from "@components";
 import { ManagedUIContext } from "@components/ui/context";
 import Layout from "@components/common/Layout";
