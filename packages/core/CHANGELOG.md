@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.56.11
+
+### Patch Changes
+
+-   Fixed user-defined URL query parameters being deleted when using `syncWithLocation`
+
 ## 3.56.10
 
 ### Patch Changes
