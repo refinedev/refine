@@ -1,6 +1,5 @@
 import React, { PropsWithChildren, useEffect } from "react";
 import { useLoaderData } from "@remix-run/react";
-import { Navigate, Route, Routes } from "react-router-dom";
 
 import {
     useRefineContext,
@@ -45,16 +44,12 @@ export const RemixRouteComponent: React.FC<
 
     const { pathname } = useLocation();
 
-    const navigate = useNavigate();
-
     const { DashboardPage, catchAll, LoginPage } = useRefineContext();
 
-    let resource = resources.find(
+    const resource = resources.find(
         (res) =>
             res.name === routeResourceName || res.route === routeResourceName,
     );
-
-    const isServer = typeof window !== "undefined";
 
     if (routeResourceName === "login") {
         return LoginPage ? <LoginPage /> : <DefaultLoginPage />;
@@ -74,7 +69,7 @@ export const RemixRouteComponent: React.FC<
                 </LayoutWrapper>
             );
         } else {
-            resource = resources.find((p) => p.list !== undefined);
+            //TODO: redirect to first resource
         }
     }
 
