@@ -1,11 +1,11 @@
 import React from "react";
 import clsx from "clsx";
 import { transform } from "sucrase";
-import useIsBrowser from "@docusaurus/useIsBrowser";
+import CodeBlock from "@theme/CodeBlock";
 import {
     LiveProvider,
+    LiveContext,
     LiveProviderProps,
-    LiveEditor,
     LiveError,
     LivePreview,
 } from "react-live";
@@ -23,7 +23,7 @@ const splitCode = (code?: string) => {
     const endingComment = "// visible-block-end";
 
     let beginning = code.indexOf(beginningComment);
-    beginning = beginning > 0 ? beginning + beginningComment.length : beginning;
+    beginning = beginning > 0 ? beginning + beginningComment.length : 0;
 
     let ending = code.indexOf(endingComment);
     ending = ending > 0 ? ending : code.length;
@@ -74,26 +74,10 @@ function Preview({ url, maxHeight }: { url?: string; maxHeight?: string }) {
 }
 
 /**
- * Editor with current prism theme
- */
-function ThemedLiveEditor() {
-    const isBrowser = useIsBrowser();
-
-    return (
-        // @ts-expect-error Type inconsistency between the plugin and the current setup
-        <LiveEditor
-            // We force remount the editor on hydration,
-            // otherwise dark prism theme is not applied
-            key={String(isBrowser)}
-            className={styles.playgroundEditor}
-        />
-    );
-}
-
-/**
  * Editor with header
  */
 function Editor({ hide }: { hide?: boolean }) {
+    const { code } = React.useContext(LiveContext);
     const [visible, setVisible] = React.useState(!hide);
 
     return (
@@ -107,12 +91,17 @@ function Editor({ hide }: { hide?: boolean }) {
                 </button>
             </div>
             <div
+                className={clsx(styles.playgroundEditorWrapper)}
                 style={{
                     maxHeight: visible ? "3000px" : "0px",
+                    padding: visible ? undefined : "0px",
                     transition: "0.3s max-height ease-in-out",
+                    overflow: "hidden",
                 }}
             >
-                <ThemedLiveEditor />
+                <CodeBlock language="tsx" style={{ borderRadius: 0 }}>
+                    {code}
+                </CodeBlock>
             </div>
         </>
     );
