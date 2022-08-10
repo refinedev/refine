@@ -46,3 +46,13 @@
   overflow-y: scroll;
   background-color: var(--ifm-pre-background);
 }
+
+.playgroundEditorWrapper {
+  border: 3px solid var(--ifm-color-emphasis-200);
+}
+
+.playgroundEditorWrapper > div {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  margin-bottom: 0 !important;
+}
