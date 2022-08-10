@@ -8,6 +8,15 @@ import "@pankod/refine-antd/dist/antd.min.css";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
+const RefineDemoReactRouterV6 = (
+    initialRoutes?: string[],
+): RefineCore.IRouterProvider => ({
+    ...RefineReactRouterV6.default,
+    RouterComponent: RefineReactRouterV6.MemoryRouterComponent.bind(null, {
+        initialEntries: initialRoutes,
+    }),
+});
+
 const RefineAntdDemo: React.FC<
     Partial<RefineCore.RefineProps> & {
         initialRoutes?: string[];
@@ -15,15 +24,7 @@ const RefineAntdDemo: React.FC<
 > = ({ initialRoutes, ...rest }) => {
     return (
         <RefineCore.Refine
-            routerProvider={{
-                ...RefineReactRouterV6.default,
-                RouterComponent: RefineReactRouterV6.MemoryRouterComponent.bind(
-                    null,
-                    {
-                        initialEntries: initialRoutes,
-                    },
-                ),
-            }}
+            routerProvider={RefineDemoReactRouterV6(initialRoutes)}
             dataProvider={RefineSimpleRest.default(SIMPLE_REST_API_URL)}
             notificationProvider={RefineAntd.notificationProvider}
             Layout={RefineAntd.Layout}
@@ -42,15 +43,7 @@ const RefineHeadlessDemo: React.FC<
 > = ({ initialRoutes, ...rest }) => {
     return (
         <RefineCore.Refine
-            routerProvider={{
-                ...RefineReactRouterV6.default,
-                RouterComponent: RefineReactRouterV6.MemoryRouterComponent.bind(
-                    null,
-                    {
-                        initialEntries: initialRoutes,
-                    },
-                ),
-            }}
+            routerProvider={RefineDemoReactRouterV6(initialRoutes)}
             dataProvider={RefineSimpleRest.default(SIMPLE_REST_API_URL)}
             disableTelemetry={true}
             reactQueryDevtoolConfig={false}
@@ -72,16 +65,7 @@ const RefineMuiDemo: React.FC<
             />
             <RefineMui.RefineSnackbarProvider>
                 <RefineCore.Refine
-                    routerProvider={{
-                        ...RefineReactRouterV6.default,
-                        RouterComponent:
-                            RefineReactRouterV6.MemoryRouterComponent.bind(
-                                null,
-                                {
-                                    initialEntries: initialRoutes,
-                                },
-                            ),
-                    }}
+                    routerProvider={RefineDemoReactRouterV6(initialRoutes)}
                     dataProvider={RefineSimpleRest.default(SIMPLE_REST_API_URL)}
                     notificationProvider={RefineMui.notificationProvider}
                     Layout={RefineMui.Layout}
@@ -107,5 +91,6 @@ const ReactLiveScope = {
     RefineHeadlessDemo,
     RefineAntdDemo,
     RefineMuiDemo,
+    RefineDemoReactRouterV6,
 };
 export default ReactLiveScope;
