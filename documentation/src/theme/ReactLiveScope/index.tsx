@@ -4,10 +4,15 @@ import * as RefineReactRouterV6 from "@pankod/refine-react-router-v6";
 import * as RefineAntd from "@pankod/refine-antd";
 import * as RefineMui from "@pankod/refine-mui";
 import * as RefineSimpleRest from "@pankod/refine-simple-rest";
+import "@pankod/refine-antd/dist/antd.min.css";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
-const RefineAntdDemo: React.FC<any> = ({ initialRoutes, ...rest }) => {
+const RefineAntdDemo: React.FC<
+    Partial<RefineCore.RefineProps> & {
+        initialRoutes?: string[];
+    }
+> = ({ initialRoutes, ...rest }) => {
     return (
         <RefineCore.Refine
             routerProvider={{
@@ -24,12 +29,17 @@ const RefineAntdDemo: React.FC<any> = ({ initialRoutes, ...rest }) => {
             Layout={RefineAntd.Layout}
             catchAll={<RefineAntd.ErrorComponent />}
             disableTelemetry={true}
+            reactQueryDevtoolConfig={false}
             {...rest}
         />
     );
 };
 
-const RefineHeadlessDemo: React.FC<any> = ({ initialRoutes, ...rest }) => {
+const RefineHeadlessDemo: React.FC<
+    Partial<RefineCore.RefineProps> & {
+        initialRoutes?: string[];
+    }
+> = ({ initialRoutes, ...rest }) => {
     return (
         <RefineCore.Refine
             routerProvider={{
@@ -43,12 +53,17 @@ const RefineHeadlessDemo: React.FC<any> = ({ initialRoutes, ...rest }) => {
             }}
             dataProvider={RefineSimpleRest.default(SIMPLE_REST_API_URL)}
             disableTelemetry={true}
+            reactQueryDevtoolConfig={false}
             {...rest}
         />
     );
 };
 
-const RefineMuiDemo: React.FC<any> = ({ initialRoutes, ...rest }) => {
+const RefineMuiDemo: React.FC<
+    Partial<RefineCore.RefineProps> & {
+        initialRoutes?: string[];
+    }
+> = ({ initialRoutes, ...rest }) => {
     return (
         <RefineMui.ThemeProvider theme={RefineMui.LightTheme}>
             <RefineMui.CssBaseline />
@@ -72,6 +87,7 @@ const RefineMuiDemo: React.FC<any> = ({ initialRoutes, ...rest }) => {
                     Layout={RefineMui.Layout}
                     catchAll={<RefineMui.ErrorComponent />}
                     disableTelemetry={true}
+                    reactQueryDevtoolConfig={false}
                     {...rest}
                 />
             </RefineMui.RefineSnackbarProvider>
