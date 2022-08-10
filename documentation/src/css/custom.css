@@ -335,3 +335,15 @@
 .ant-layout-sider-trigger {
     position: sticky !important;
 }
+
+.markdown .live-editor-wrapper li + li {
+    margin-top: 0;
+}
+
+.live-editor-wrapper table th, .live-editor-wrapper table td {
+    border: none;
+}
+
+.live-editor-wrapper table tr:nth-child(2n) {
+    background: none;
+}
