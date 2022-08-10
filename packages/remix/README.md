@@ -18,3 +18,9 @@
 ## Documentation
 
 For more detailed information and usage, refer to the [refine router provider documentation](https://refine.dev/docs/core/providers/router-provider/).
+
+## Install
+
+```
+npm install @pankod/refine-remix-router
+```
