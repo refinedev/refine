@@ -54,15 +54,16 @@ function Preview({ url, maxHeight }: { url?: string; maxHeight?: string }) {
         <>
             <BrowserWindow url={url}>
                 <div
-                    className={styles.playgroundPreview}
+                    className={clsx(
+                        styles.playgroundPreview,
+                        "live-editor-wrapper",
+                    )}
                     style={maxHeight ? { maxHeight } : {}}
                 >
                     <BrowserOnly fallback={null}>
                         {() => (
                             <>
-                                {/* @ts-expect-error Type inconsistency between the plugin and the current setup */}
                                 <LivePreview />
-                                {/* @ts-expect-error Type inconsistency between the plugin and the current setup */}
                                 <LiveError />
                             </>
                         )}
