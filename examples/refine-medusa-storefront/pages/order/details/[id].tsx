@@ -4,7 +4,7 @@ import { Order } from "@medusajs/medusa";
 
 import { IS_BROWSER } from "@lib/constants";
 import SEO from "@components/common/SEO";
-import OrderCompletedTemplate from "@components/orders/OrderCompletedTemplate";
+import OrderDetailsTemplate from "@components/orders/OrderDetailsTemplate";
 import SkeletonOrderConfirmed from "@components/skeletons/SkeletonOrderConfirmed";
 
 const Details: React.FC = () => {
@@ -42,7 +42,7 @@ const Details: React.FC = () => {
                 />
 
                 <LayoutWrapper>
-                    <OrderCompletedTemplate order={data.data.order} />
+                    <OrderDetailsTemplate order={data.data.order} />
                 </LayoutWrapper>
             </>
         );

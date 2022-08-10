@@ -11,6 +11,7 @@ import PaymentMethodView from "@components/checkout/PaymentMethodView";
 import ShippingView from "@components/checkout/ShippingView";
 import BillingView from "@components/checkout/BillingView";
 import ShippingOptionView from "@components/checkout/ShippingOptionView";
+import CheckoutSummary from "@components/checkout/CheckoutSummary";
 import { CartContext } from "@lib/context";
 
 const totalStep = 2;
@@ -132,23 +133,30 @@ const CheckoutPage: React.FC = () => {
     return (
         <LayoutWrapper>
             <Container>
-                <FormProvider {...methods}>
-                    <form autoComplete="off">
-                        {renderFormByStep(currentStep)}
-                    </form>
-                </FormProvider>
+                <div className="relative">
+                    <div className="small:grid-cols-[1fr_416px] content-container grid grid-cols-1 gap-y-8 gap-x-8 py-12">
+                        <>
+                            <FormProvider {...methods}>
+                                <form autoComplete="off">
+                                    {renderFormByStep(currentStep)}
+                                </form>
+                            </FormProvider>
 
-                <ErrorMessage
-                    errors={errors}
-                    name="server"
-                    render={({ message }) => {
-                        return (
-                            <div className="text-right text-xs text-rose-500">
-                                <span>{message}</span>
-                            </div>
-                        );
-                    }}
-                />
+                            <ErrorMessage
+                                errors={errors}
+                                name="server"
+                                render={({ message }) => {
+                                    return (
+                                        <div className="text-right text-xs text-rose-500">
+                                            <span>{message}</span>
+                                        </div>
+                                    );
+                                }}
+                            />
+                        </>
+                        <CheckoutSummary />
+                    </div>
+                </div>
 
                 <div className="mt-4 flex justify-end">
                     {currentStep < totalStep - 1 && (
