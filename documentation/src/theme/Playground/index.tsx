@@ -13,6 +13,7 @@ import BrowserOnly from "@docusaurus/BrowserOnly";
 import { usePrismTheme } from "@docusaurus/theme-common";
 import styles from "./styles.module.css";
 import BrowserWindow from "../../components/browser-window";
+import { FiCode } from "react-icons/fi";
 
 /**
  * This function will split code by the visible-block-start and visible-block-end comments and returns the visible block and join function.
@@ -49,10 +50,39 @@ const getLanguageFromClassName = (className?: string) => {
 /**
  * Preview with header
  */
-function Preview({ url, maxHeight }: { url?: string; maxHeight?: string }) {
+function Preview({
+    url,
+    maxHeight,
+    editorVisible,
+    setEditorVisible,
+}: {
+    url?: string;
+    maxHeight?: string;
+    editorVisible: boolean;
+    setEditorVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
     return (
         <>
-            <BrowserWindow url={url}>
+            <BrowserWindow
+                url={url}
+                right={
+                    <>
+                        <button
+                            title={editorVisible ? "Hide Code" : "Show Code"}
+                            className={clsx(
+                                styles.previewCodeButton,
+                                editorVisible
+                                    ? styles.previewCodeButtonActive
+                                    : "",
+                            )}
+                            style={{ appearance: "none" }}
+                            onClick={() => setEditorVisible((p) => !p)}
+                        >
+                            <FiCode />
+                        </button>
+                    </>
+                }
+            >
                 <div
                     className={clsx(
                         styles.playgroundPreview,
@@ -77,9 +107,14 @@ function Preview({ url, maxHeight }: { url?: string; maxHeight?: string }) {
 /**
  * Editor with header
  */
-function Editor({ hide }: { hide?: boolean }) {
+function Editor({
+    visible,
+    setVisible,
+}: {
+    visible: boolean;
+    setVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
     const { code } = React.useContext(LiveContext);
-    const [visible, setVisible] = React.useState(!hide);
 
     return (
         <>
@@ -132,6 +167,7 @@ export default function Playground({
     const prismTheme = usePrismTheme();
     const code = String(children).replace(/\n$/, "");
     const { visible } = splitCode(code);
+    const [editorVisible, setEditorVisible] = React.useState(!hideCode);
 
     return (
         <div className={styles.playgroundContainer}>
@@ -156,8 +192,16 @@ export default function Playground({
                 {...props}
             >
                 <>
-                    <Preview url={url} maxHeight={previewMaxHeight} />
-                    <Editor hide={hideCode} />
+                    <Preview
+                        url={url}
+                        maxHeight={previewMaxHeight}
+                        editorVisible={editorVisible}
+                        setEditorVisible={setEditorVisible}
+                    />
+                    <Editor
+                        visible={editorVisible}
+                        setVisible={setEditorVisible}
+                    />
                 </>
             </LiveProvider>
         </div>

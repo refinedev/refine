@@ -6,7 +6,7 @@
 }
 
 .playgroundHeader {
-  padding: 0.20rem 1rem;
+  padding: 0 1rem;
   background: var(--ifm-color-emphasis-200);
   text-align: center;
 }
@@ -55,4 +55,28 @@
   border-top-left-radius: 0 !important;
   border-top-right-radius: 0 !important;
   margin-bottom: 0 !important;
+}
+
+.previewCodeButton {
+  appearance: none;
+  border: none;
+  background: none;
+  font-size: 1rem;
+  padding: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.previewCodeButton:hover {
+  background-color: var(--ifm-color-emphasis-300);
+}
+
+.previewCodeButtonActive {
+  background-color: var(--ifm-color-emphasis-300);
+  border: 1px solid var(--ifm-color-emphasis-400);
 }
