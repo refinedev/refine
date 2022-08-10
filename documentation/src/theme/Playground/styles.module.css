@@ -1,0 +1,48 @@
+.playgroundContainer {
+  margin-bottom: var(--ifm-leading);
+  border-radius: var(--ifm-global-radius);
+  box-shadow: var(--ifm-global-shadow-lw);
+  overflow: hidden;
+}
+
+.playgroundHeader {
+  padding: 0.20rem 1rem;
+  background: var(--ifm-color-emphasis-200);
+  text-align: center;
+}
+
+.headerButton {
+  width: 100%;
+  appearance: none;
+  border: none;
+  background: none;
+  color: var(--ifm-color-content);
+  font-size: 0.75rem;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.08rem;
+  cursor: pointer;
+}
+
+.playgroundHeader:first-of-type {
+  background: var(--ifm-color-emphasis-600);
+  color: var(--ifm-color-content-inverse);
+}
+
+.playgroundEditor {
+  font: var(--ifm-code-font-size) / var(--ifm-pre-line-height)
+    var(--ifm-font-family-monospace) !important;
+  /* rtl:ignore */
+  direction: ltr;
+  border-bottom-left-radius: var(--ifm-global-radius);
+  border-bottom-right-radius: var(--ifm-global-radius);
+  border: 3px solid var(--ifm-color-emphasis-200);
+}
+
+.playgroundPreview {
+  padding: 0;
+  max-height: 400px;
+  overflow-y: scroll;
+  background-color: var(--ifm-pre-background);
+}
