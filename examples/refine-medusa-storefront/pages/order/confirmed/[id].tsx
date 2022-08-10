@@ -5,6 +5,7 @@ import { Order } from "@medusajs/medusa";
 import { IS_BROWSER } from "@lib/constants";
 import SEO from "@components/common/SEO";
 import OrderCompletedTemplate from "@components/orders/OrderCompletedTemplate";
+import SkeletonOrderConfirmed from "@components/skeletons/SkeletonOrderConfirmed";
 
 const Confirmed: React.FC = () => {
     const router = useRouter();
@@ -21,16 +22,14 @@ const Confirmed: React.FC = () => {
     });
 
     if (isLoading) {
-        // return <SkeletonOrderConfirmed />;
-        return <div>Loading</div>;
+        return <SkeletonOrderConfirmed />;
     }
 
     if (isError) {
         if (IS_BROWSER) {
             router.replace("/404");
         }
-        // return <SkeletonOrderConfirmed />;
-        return <div>Loading</div>;
+        return <SkeletonOrderConfirmed />;
     }
 
     if (isSuccess) {

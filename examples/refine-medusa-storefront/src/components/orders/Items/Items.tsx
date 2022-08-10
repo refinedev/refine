@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { LineItem, Region } from "@medusajs/medusa";
 
+import { CalculatedVariant } from "src/types/medusa";
 import useEnrichedLineItems from "@lib/hooks/useEnrichedLineItems";
 import Thumbnail from "@components/common/Thumbnail/Thumbnail";
 import LineItemOptions from "@components/common/LineItemOptions";
 import LineItemPrice from "@components/common/LineItemPrice";
-import { CalculatedVariant } from "src/types/medusa";
+import SkeletonLineItem from "@components/skeletons/SkeletonLineItem";
 
 interface ItemsProps {
     items: LineItem[];
@@ -65,8 +66,7 @@ const Items: React.FC<ItemsProps> = ({ cartId, items, region }) => {
                       );
                   })
                 : Array.from(Array(items.length).keys()).map((i) => {
-                      //   return <SkeletonLineItem key={i} />;
-                      return <div key={i}>Skeleton</div>;
+                      return <SkeletonLineItem key={i} />;
                   })}
         </div>
     );
