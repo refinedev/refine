@@ -330,3 +330,12 @@
         width: 100%;
     }
 } 
+
+/* Antd Sider Issue Fix */
+.ant-layout-sider-trigger {
+    position: sticky !important;
+}
+
+.code-hidden-block {
+    display: none;
+}
