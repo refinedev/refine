@@ -75,20 +75,6 @@ const siteConfig = {
     ],
     themes: ["@docusaurus/theme-live-codeblock"],
     themeConfig: {
-        prism: {
-            magicComments: [
-                {
-                    className: "theme-code-block-highlighted-line",
-                    line: "highlight-next-line",
-                    block: { start: "highlight-start", end: "highlight-end" },
-                },
-                {
-                    className: "code-hidden-block",
-                    line: "hide-next-line",
-                    block: { start: "hide-start", end: "hide-end" },
-                },
-            ],
-        },
         image: "img/refine_social.png",
         algolia: {
             appId: "KRR9VEUPCT",
