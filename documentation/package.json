@@ -31,7 +31,7 @@
     "react-icons": "^4.2.0",
     "react-lazyload": "^3.2.0",
     "react-player": "^2.10.1",
-    "react-split-pane": "git+https://github.com/quarkw/react-split-pane.git",
+    "react-split-pane": "git+https://github.com/aliemir/react-split-pane.git",
     "sucrase": "^3.25.0"
   },
   "browserslist": {
