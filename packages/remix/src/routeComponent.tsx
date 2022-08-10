@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, useEffect } from "react";
 import { useLoaderData } from "@remix-run/react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
@@ -11,6 +11,7 @@ import {
     CanAccess,
 } from "@pankod/refine-core";
 import type { ResourceRouterParams } from "@pankod/refine-core";
+import { useNavigate } from "react-router";
 
 import { RouterProvider } from "./routerProvider";
 const { useHistory, useLocation, useParams } = RouterProvider;
@@ -19,6 +20,17 @@ type RemixRouteComponentProps = {
     initialData?: any;
 };
 
+const RedirectComponent: React.FC = () => {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        navigate(`/posts`, {
+            replace: true,
+        });
+    });
+
+    return null;
+};
 export const RemixRouteComponent: React.FC<
     PropsWithChildren<RemixRouteComponentProps>
 > = ({ children, ...rest }) => {
@@ -32,9 +44,12 @@ export const RemixRouteComponent: React.FC<
     } = useParams<ResourceRouterParams>();
 
     const { pathname } = useLocation();
+
+    const navigate = useNavigate();
+
     const { DashboardPage, catchAll, LoginPage } = useRefineContext();
 
-    const resource = resources.find(
+    let resource = resources.find(
         (res) =>
             res.name === routeResourceName || res.route === routeResourceName,
     );
@@ -44,6 +59,7 @@ export const RemixRouteComponent: React.FC<
     if (routeResourceName === "login") {
         return LoginPage ? <LoginPage /> : <DefaultLoginPage />;
     }
+
     if (pathname === "/") {
         if (DashboardPage) {
             return (
@@ -58,13 +74,7 @@ export const RemixRouteComponent: React.FC<
                 </LayoutWrapper>
             );
         } else {
-            return (
-                <Navigate
-                    to={`/${
-                        resources.find((p) => p.list !== undefined)?.route
-                    }`}
-                />
-            );
+            resource = resources.find((p) => p.list !== undefined);
         }
     }
 
