@@ -18,12 +18,14 @@ interface Props {
     children?: React.ReactNode;
     minHeight?: number;
     url?: string;
+    right?: React.ReactNode;
 }
 
 export default function BrowserWindow({
     children,
     minHeight,
     url = "http://localhost:3000",
+    right,
 }: Props): JSX.Element {
     return (
         <div className={styles.browserWindow} style={{ minHeight }}>
@@ -50,13 +52,17 @@ export default function BrowserWindow({
                 >
                     {url}
                 </div>
-                <div className={styles.browserWindowMenuIcon}>
-                    <div>
-                        <span className={styles.bar} />
-                        <span className={styles.bar} />
-                        <span className={styles.bar} />
+                {right ? (
+                    right
+                ) : (
+                    <div className={styles.browserWindowMenuIcon}>
+                        <div>
+                            <span className={styles.bar} />
+                            <span className={styles.bar} />
+                            <span className={styles.bar} />
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
 
             <div
