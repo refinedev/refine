@@ -59,7 +59,12 @@ export default function BrowserWindow({
                 </div>
             </div>
 
-            <div className={styles.browserWindowBody}>{children}</div>
+            <div
+                className={styles.browserWindowBody}
+                style={{ overflow: "hidden" }}
+            >
+                {children}
+            </div>
         </div>
     );
 }
