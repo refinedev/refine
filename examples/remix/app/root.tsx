@@ -11,7 +11,7 @@ import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-remix-router";
 
-import { PostCreate, PostList } from "./pages/posts";
+import { PostCreate, PostEdit, PostList } from "./pages/posts";
 
 export const meta: MetaFunction = () => ({
     charset: "utf-8",
@@ -37,8 +37,10 @@ export default function App() {
                             name: "posts",
                             list: PostList,
                             create: PostCreate,
+                            edit: PostEdit,
                         },
                     ]}
+                    syncWithLocation
                 >
                     <Outlet />
                 </Refine>

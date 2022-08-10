@@ -19,13 +19,11 @@ export const RouterProvider: IRouterProvider = {
     },
     useLocation: () => {
         const location = useLocation();
-        console.log({ location });
 
         return location;
     },
     useParams: () => {
         const params = useParams();
-        console.log({ params });
         return handleUseParams(params);
     },
     Prompt,
