@@ -154,6 +154,7 @@ export default function Playground({
                     try {
                         return transform(code, {
                             transforms: ["typescript", "jsx"],
+                            production: true,
                         }).code;
                     } catch (err) {
                         return undefined;
