@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useContext } from "react";
 import {
     Elements,
@@ -29,6 +30,7 @@ const StripeForm: React.FC = () => {
     const stripe = useStripe();
     const elements = useElements();
     const { setError } = useFormContext();
+    const router = useRouter();
 
     const { cartId } = useContext(CartContext);
     const { mutate } = useCreate<StoreCompleteCartRes>();
@@ -49,10 +51,17 @@ const StripeForm: React.FC = () => {
                     return;
                 }
 
-                mutate({
-                    resource: `carts/${cartId}/complete`,
-                    values: {},
-                });
+                mutate(
+                    {
+                        resource: `carts/${cartId}/complete`,
+                        values: {},
+                    },
+                    {
+                        onSuccess: (res) => {
+                            router.push(`/order/confirmed/${res.data.data.id}`);
+                        },
+                    },
+                );
             });
     };
 
