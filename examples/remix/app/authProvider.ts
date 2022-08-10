@@ -19,6 +19,7 @@ export const authProvider: AuthProvider = {
         const user = mockUsers[0]; // mockUsers.find((item) => item.username === username);
 
         if (user) {
+            //TODO: fix return type
             return Promise.resolve(user as any);
         }
 
@@ -37,10 +38,9 @@ export const authProvider: AuthProvider = {
     checkAuth: async ({ request, storage }) => {
         const session = await storage.getSession(request.headers.get("Cookie"));
 
-        const userId = session.get("userId");
-        console.log("userId", { userId });
+        const user = session.get("user");
 
-        if (!userId || typeof userId !== "string") {
+        if (!user) {
             return Promise.reject();
         }
         return Promise.resolve();

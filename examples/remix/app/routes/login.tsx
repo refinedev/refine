@@ -86,12 +86,11 @@ export const action: ActionFunction = async ({ request }) => {
     const username = form.get("username") as string;
     const password = form.get("password") as string;
     const user = await login({ username, password });
-    console.log({ user });
     if (!user) {
         return null;
     }
     // if there is a user, create their session and redirect to /jokes
-    return createUserSession("1", "/");
+    return createUserSession(user as any, "/");
 };
 
 export default LoginPage;

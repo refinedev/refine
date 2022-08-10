@@ -37,17 +37,6 @@ export async function login({ username, password }: LoginForm) {
     }
 }
 
-function getUserSession(request: Request) {
-    return storage.getSession(request.headers.get("Cookie"));
-}
-
-export async function getUserId(request: Request) {
-    const session = await getUserSession(request);
-    const userId = session.get("userId");
-    if (!userId || typeof userId !== "string") return null;
-    return userId;
-}
-
 export async function requireUserId(
     request: Request,
     redirectTo: string = new URL(request.url).pathname,
@@ -61,9 +50,9 @@ export async function requireUserId(
     }
 }
 
-export async function createUserSession(userId: string, redirectTo: string) {
+export async function createUserSession(user: object, redirectTo: string) {
     const session = await storage.getSession();
-    session.set("userId", userId);
+    session.set("user", { ...user });
     return redirect(redirectTo, {
         headers: {
             "Set-Cookie": await storage.commitSession(session),
