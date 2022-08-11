@@ -1,6 +1,7 @@
 import React from "react";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 import { useNavigation } from "@pankod/refine-core";
+import { useLoaderData } from "@remix-run/react";
 
 export interface IPost {
     id: number;
@@ -10,7 +11,8 @@ export interface IPost {
     category: { id: number };
 }
 
-export const PostList: React.FC = () => {
+export const PostList: React.FC = ({}) => {
+    const { initialData } = useLoaderData();
     const { edit, create } = useNavigation();
 
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -68,7 +70,14 @@ export const PostList: React.FC = () => {
         previousPage,
         setPageSize,
         getColumn,
-    } = useTable<IPost>({ columns });
+    } = useTable<IPost>({
+        columns,
+        refineCoreProps: {
+            queryOptions: {
+                initialData,
+            },
+        },
+    });
 
     const titleColumn = getColumn("title");
 

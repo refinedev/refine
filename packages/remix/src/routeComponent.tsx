@@ -10,10 +10,8 @@ import {
     CanAccess,
 } from "@pankod/refine-core";
 import type { ResourceRouterParams } from "@pankod/refine-core";
-import { useNavigate } from "react-router";
 
 import { RouterProvider } from "./routerProvider";
-import { LoaderFunction } from "@remix-run/node";
 const { useHistory, useLocation, useParams } = RouterProvider;
 
 type RemixRouteComponentProps = {
@@ -45,6 +43,12 @@ export const RemixRouteComponent: React.FC<
         return LoginPage ? <LoginPage /> : <DefaultLoginPage />;
     }
 
+    useEffect(() => {
+        if (pathname === "/" && !DashboardPage) {
+            push(`/${resources.find((p) => p.list !== undefined)?.route}`);
+        }
+    }, []);
+
     if (pathname === "/") {
         if (DashboardPage) {
             return (
@@ -59,7 +63,7 @@ export const RemixRouteComponent: React.FC<
                 </LayoutWrapper>
             );
         } else {
-            //TODO: redirect to first resource
+            return null;
         }
     }
 
@@ -182,8 +186,4 @@ export const RemixRouteComponent: React.FC<
             <ErrorComponent />
         </LayoutWrapper>
     );
-};
-
-export const loader: LoaderFunction = async ({ params, request, context }) => {
-    console.log("____", { params, request, context });
 };

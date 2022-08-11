@@ -1,4 +1,4 @@
 import { RouterProvider } from "./routerProvider";
 
-export { RemixRouteComponent, loader } from "./routeComponent";
+export { RemixRouteComponent } from "./routeComponent";
 export default RouterProvider;
