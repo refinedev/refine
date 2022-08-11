@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.58.0
+
+### Minor Changes
+
+-   Updated `reactQueryDevtoolConfig` prop type and added `false` option to disable the React Query Devtools.
+
 ## 3.57.0
 
 ### Minor Changes
