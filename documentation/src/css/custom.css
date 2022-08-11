@@ -347,3 +347,7 @@
 .live-editor-wrapper table tr:nth-child(2n) {
     background: none;
 }
+
+.code-block-hidden {
+    display: none;
+}
