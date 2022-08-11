@@ -43,6 +43,7 @@
 .playgroundPreview {
   padding: 0;
   max-height: 400px;
+  min-height: 400px;
   overflow-y: scroll;
   background-color: var(--ifm-pre-background);
 }

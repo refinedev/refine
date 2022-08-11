@@ -132,7 +132,7 @@ type PlaygroundProps = LiveProviderProps & {
     disableScroll?: boolean;
     noInline?: boolean;
     hideCode?: boolean;
-    previewMaxHeight?: string;
+    previewHeight?: string;
     url?: string;
 };
 
@@ -143,7 +143,7 @@ export default function Playground({
     children,
     className,
     disableScroll,
-    previewMaxHeight,
+    previewHeight,
     noInline = true,
     hideCode = false,
     ref: _ref,
@@ -183,7 +183,8 @@ export default function Playground({
                                 "live-editor-wrapper",
                             )}
                             style={{
-                                maxHeight: previewMaxHeight,
+                                maxHeight: previewHeight,
+                                minHeight: previewHeight,
                                 overflow: disableScroll ? "hidden" : undefined,
                             }}
                         >
