@@ -16,7 +16,7 @@ const mockUsers = [
 export const authProvider: AuthProvider = {
     login: ({ username, password, remember }) => {
         // Suppose we actually send a request to the back end here.
-        const user = mockUsers[0]; // mockUsers.find((item) => item.username === username);
+        const user = mockUsers.find((item) => item.username === username);
 
         if (user) {
             //TODO: fix return type

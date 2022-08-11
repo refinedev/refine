@@ -45,7 +45,7 @@ export async function requireUserId(
         const user = await authProvider.checkAuth?.({ request, storage });
         return user;
     } catch (error) {
-        const searchParams = new URLSearchParams([["redirectTo", redirectTo]]);
+        const searchParams = new URLSearchParams([["to", redirectTo]]);
         throw redirect(`/login?${searchParams}`);
     }
 }
