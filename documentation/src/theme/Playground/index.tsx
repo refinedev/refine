@@ -13,7 +13,7 @@ import BrowserOnly from "@docusaurus/BrowserOnly";
 import { usePrismTheme } from "@docusaurus/theme-common";
 import styles from "./styles.module.css";
 import BrowserWindow from "../../components/browser-window";
-import { FiCode } from "react-icons/fi";
+import { useInView } from "../../hooks/use-in-view";
 
 /**
  * This function will split code by the visible-block-start and visible-block-end comments and returns the visible block and join function.
@@ -50,39 +50,11 @@ const getLanguageFromClassName = (className?: string) => {
 /**
  * Preview with header
  */
-function Preview({
-    url,
-    maxHeight,
-    editorVisible,
-    setEditorVisible,
-}: {
-    url?: string;
-    maxHeight?: string;
-    editorVisible: boolean;
-    setEditorVisible: React.Dispatch<React.SetStateAction<boolean>>;
-}) {
+function PreviewBase({ url, maxHeight }: { url?: string; maxHeight?: string }) {
+    console.log("Props", url, maxHeight);
     return (
         <>
-            <BrowserWindow
-                url={url}
-                right={
-                    <>
-                        <button
-                            title={editorVisible ? "Hide Code" : "Show Code"}
-                            className={clsx(
-                                styles.previewCodeButton,
-                                editorVisible
-                                    ? styles.previewCodeButtonActive
-                                    : "",
-                            )}
-                            style={{ appearance: "none" }}
-                            onClick={() => setEditorVisible((p) => !p)}
-                        >
-                            <FiCode />
-                        </button>
-                    </>
-                }
-            >
+            <BrowserWindow url={url}>
                 <div
                     className={clsx(
                         styles.playgroundPreview,
@@ -104,17 +76,17 @@ function Preview({
     );
 }
 
+const Preview = React.memo(
+    PreviewBase,
+    (prev, next) => prev.maxHeight === next.maxHeight && prev.url === next.url,
+);
+
 /**
  * Editor with header
  */
-function Editor({
-    visible,
-    setVisible,
-}: {
-    visible: boolean;
-    setVisible: React.Dispatch<React.SetStateAction<boolean>>;
-}) {
+function Editor({ hidden }: { hidden: boolean }) {
     const { code } = React.useContext(LiveContext);
+    const [visible, setVisible] = React.useState(!hidden);
 
     return (
         <>
@@ -162,48 +134,68 @@ export default function Playground({
     noInline = true,
     hideCode = false,
     url = "http://localhost:3000",
+    ref: _ref,
     ...props
 }: PlaygroundProps): JSX.Element {
     const prismTheme = usePrismTheme();
     const code = String(children).replace(/\n$/, "");
     const { visible } = splitCode(code);
-    const [editorVisible, setEditorVisible] = React.useState(!hideCode);
+
+    const containerRef = React.useRef<HTMLDivElement>(null);
+    const inView = useInView(containerRef, "50px");
+
+    const [running, setRunning] = React.useState(false);
+
+    React.useEffect(() => {
+        // if (inView) {
+        //     setRunning(true);
+        // } else {
+        //     setRunning(false);
+        // }
+    }, [inView]);
 
     return (
-        <div className={styles.playgroundContainer}>
-            {/* @ts-expect-error: type incompatibility with refs */}
-            <LiveProvider
-                code={visible}
-                disabled
-                noInline={noInline}
-                transformCode={() => {
-                    try {
-                        return transform(code, {
-                            transforms: ["typescript", "jsx"],
-                            production: true,
-                        }).code;
-                    } catch (err) {
-                        return undefined;
-                    }
-                }}
-                theme={prismTheme}
-                className={className}
-                language={getLanguageFromClassName(className) as never}
-                {...props}
-            >
-                <>
-                    <Preview
-                        url={url}
-                        maxHeight={previewMaxHeight}
-                        editorVisible={editorVisible}
-                        setEditorVisible={setEditorVisible}
-                    />
-                    <Editor
-                        visible={editorVisible}
-                        setVisible={setEditorVisible}
-                    />
-                </>
-            </LiveProvider>
+        <div className={styles.playgroundContainer} ref={containerRef}>
+            {running ? (
+                <LiveProvider
+                    code={visible}
+                    disabled
+                    noInline={noInline}
+                    transformCode={() => {
+                        try {
+                            return transform(code, {
+                                transforms: ["typescript", "jsx"],
+                                production: true,
+                            }).code;
+                        } catch (err) {
+                            return undefined;
+                        }
+                    }}
+                    theme={prismTheme}
+                    className={className}
+                    language={getLanguageFromClassName(className) as never}
+                    {...props}
+                >
+                    <>
+                        <Preview url={url} maxHeight={previewMaxHeight} />
+                        <Editor hidden={hideCode} />
+                    </>
+                </LiveProvider>
+            ) : (
+                <BrowserWindow url="http://localhost:3000">
+                    <div className={clsx(styles.placeholderWrapper)}>
+                        <p className={clsx(styles.placeholderTitle)}>
+                            Live Preview
+                        </p>
+                        <button
+                            className={clsx(styles.placeholderButton)}
+                            onClick={() => setRunning(true)}
+                        >
+                            Activate
+                        </button>
+                    </div>
+                </BrowserWindow>
+            )}
         </div>
     );
 }

@@ -80,3 +80,41 @@
   background-color: var(--ifm-color-emphasis-300);
   border: 1px solid var(--ifm-color-emphasis-400);
 }
+
+.placeholderWrapper {
+  height: 432px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 3rem;
+  background-color: var(--ifm-pre-background);
+}
+
+.placeholderTitle {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: var(--ifm-color-content);
+  margin-bottom: 1rem;
+}
+
+.placeholderButton {
+  appearance: none;
+  border: none;
+  background: none;
+  font-size: 1rem;
+  background-color: var(--ifm-color-primary-light);
+  color: var(--ifm-color-content-inverse);
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-radius: 2rem;
+  cursor:pointer;
+}
+
+.placeholderButton:hover {
+  background-color: var(--ifm-color-primary-dark);
+}
+
+.placeholderButton:active {
+  background-color: var(--ifm-color-primary-darker);
+}
