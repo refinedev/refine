@@ -26,7 +26,7 @@ const PostList: React.FC = () => {
         <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
+                <Table.Column dataIndex="title" title="Title" width="100%" />
                 <Table.Column<IPost>
                     title="Actions"
                     dataIndex="actions"
