@@ -8,8 +8,13 @@ import cloneButton from '@site/static/img/guides-and-concepts/components/buttons
 `<CloneButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `clone` method from [useNavigation](/core/hooks/navigation/useNavigation.md) under the hood.
 It can be useful when redirecting the app to the create page with the record id route of resource.
 
-```tsx live title=asdlasd hideCode
+```tsx live hideCode
 const { Table, List, useTable, CloneButton } = RefineAntd;
+
+interface IPost {
+    id: number;
+    title: string;
+}
 
 // visible-block-start
 // import { Table, List, useTable, CloneButton } from "@pankod/refine-antd";
@@ -35,11 +40,6 @@ const PostList: React.FC = () => {
         </List>
     );
 };
-
-interface IPost {
-    id: number;
-    title: string;
-}
 // visible-block-end
 
 render(
