@@ -42,7 +42,7 @@ export const useLogin = <TVariables = {}>(): UseMutationResult<
                 }
 
                 if (redirectPathFromAuth !== false) {
-                    if (redirectPathFromAuth) {
+                    if (typeof redirectPathFromAuth === "string") {
                         replace(redirectPathFromAuth);
                     } else {
                         replace("/");
