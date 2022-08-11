@@ -1,5 +1,5 @@
 export type TLogoutData = void | false | string;
-export type TLoginData = void | false | string;
+export type TLoginData = void | false | string | object;
 
 export interface AuthProvider {
     login: (params: any) => Promise<TLoginData>;
@@ -7,7 +7,7 @@ export interface AuthProvider {
     checkAuth: (params?: any) => Promise<any>;
     checkError: (error: any) => Promise<void>;
     getPermissions: (params?: any) => Promise<any>;
-    getUserIdentity?: () => Promise<any>;
+    getUserIdentity?: (params?: any) => Promise<any>;
 }
 
 export interface IAuthContext extends Partial<AuthProvider> {

@@ -1,6 +1,4 @@
 import { AuthProvider } from "@pankod/refine-core";
-import { createCookieSessionStorage } from "@remix-run/node";
-import { login } from "~/session.server";
 
 const mockUsers = [
     {
@@ -19,13 +17,13 @@ export const authProvider: AuthProvider = {
         const user = mockUsers.find((item) => item.username === username);
 
         if (user) {
-            //TODO: fix return type
-            return Promise.resolve(user as any);
+            return Promise.resolve(user);
         }
 
         return Promise.reject();
     },
-    logout: () => {
+    logout: async ({ request, storage }) => {
+        await storage.logout({ request });
         return Promise.resolve();
     },
     checkError: (error) => {
@@ -45,22 +43,10 @@ export const authProvider: AuthProvider = {
         }
         return Promise.resolve();
     },
-    getPermissions: () => {
-        return Promise.resolve(["admin"]);
-        /* const auth = nookies.get()["auth"];
-        if (auth) {
-            const parsedUser = JSON.parse(auth);
-            return Promise.resolve(parsedUser.roles);
-        }
-        return Promise.reject(); */
+    getPermissions: async () => {
+        return Promise.resolve();
     },
-    getUserIdentity: () => {
-        return Promise.resolve("admin");
-        /*  const auth = nookies.get()["auth"];
-        if (auth) {
-            const parsedUser = JSON.parse(auth);
-            return Promise.resolve(parsedUser.username);
-        }
-        return Promise.reject(); */
+    getUserIdentity: async () => {
+        return Promise.resolve();
     },
 };
