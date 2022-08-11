@@ -9,7 +9,9 @@ export const PostEdit: React.FC = () => {
         handleSubmit,
         resetField,
         formState: { errors },
-    } = useForm();
+    } = useForm({
+        warnWhenUnsavedChanges: true,
+    });
 
     const { options } = useSelect({
         resource: "categories",

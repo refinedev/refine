@@ -13,23 +13,13 @@ import type { ResourceRouterParams } from "@pankod/refine-core";
 import { useNavigate } from "react-router";
 
 import { RouterProvider } from "./routerProvider";
+import { LoaderFunction } from "@remix-run/node";
 const { useHistory, useLocation, useParams } = RouterProvider;
 
 type RemixRouteComponentProps = {
     initialData?: any;
 };
 
-const RedirectComponent: React.FC = () => {
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        navigate(`/posts`, {
-            replace: true,
-        });
-    });
-
-    return null;
-};
 export const RemixRouteComponent: React.FC<
     PropsWithChildren<RemixRouteComponentProps>
 > = ({ children, ...rest }) => {
@@ -192,4 +182,8 @@ export const RemixRouteComponent: React.FC<
             <ErrorComponent />
         </LayoutWrapper>
     );
+};
+
+export const loader: LoaderFunction = async ({ params, request, context }) => {
+    console.log("____", { params, request, context });
 };

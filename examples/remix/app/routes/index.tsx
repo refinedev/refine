@@ -4,7 +4,10 @@ import { requireUserId } from "~/session.server";
 
 export { RemixRouteComponent as default } from "@pankod/refine-remix-router";
 
-export const loader: LoaderFunction = async ({ params, request }) => {
+import { loader as defaultLoader } from "@pankod/refine-remix-router";
+
+export const loader: LoaderFunction = async ({ params, request, context }) => {
+    await defaultLoader({ params, request, context });
     await requireUserId(request);
     const API_URL = "https://api.fake-rest.refine.dev";
 
