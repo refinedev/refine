@@ -8,6 +8,10 @@ import "@pankod/refine-antd/dist/antd.min.css";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
+const Refine = (props) => (
+    <RefineCore.Refine {...props} reactQueryDevtoolConfig={false} />
+);
+
 const RefineDemoReactRouterV6 = (
     initialRoutes?: string[],
 ): RefineCore.IRouterProvider => ({
@@ -83,6 +87,7 @@ const RefineMuiDemo: React.FC<
 const ReactLiveScope = {
     React,
     ...React,
+    Refine,
     RefineCore,
     RefineSimpleRest,
     RefineReactRouterV6,
