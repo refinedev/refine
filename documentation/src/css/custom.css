@@ -348,6 +348,7 @@
     background: none;
 }
 
-.code-block-hidden {
+.code-block-hidden,
+.code-block-hidden.theme-code-block-highlighted-line {
     display: none;
 }
