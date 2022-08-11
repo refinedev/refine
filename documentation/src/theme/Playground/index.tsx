@@ -51,7 +51,6 @@ const getLanguageFromClassName = (className?: string) => {
  * Preview with header
  */
 function PreviewBase({ url, maxHeight }: { url?: string; maxHeight?: string }) {
-    console.log("Props", url, maxHeight);
     return (
         <>
             <BrowserWindow url={url}>
@@ -147,11 +146,11 @@ export default function Playground({
     const [running, setRunning] = React.useState(false);
 
     React.useEffect(() => {
-        // if (inView) {
-        //     setRunning(true);
-        // } else {
-        //     setRunning(false);
-        // }
+        if (inView && !running) {
+            setRunning(true);
+        } else if (!inView && running) {
+            setRunning(false);
+        }
     }, [inView]);
 
     return (
