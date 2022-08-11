@@ -18,12 +18,6 @@ interface GiftCardProps {
 const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
     const invalidate = useInvalidate();
     const { mutate, isLoading } = useUpdate();
-    const { mutate: removeDiscount } = useDelete();
-
-    // const {
-    //     updateCart: { mutate, isLoading },
-    //     setCart,
-    // } = useCart();
 
     const {
         register,
@@ -43,9 +37,9 @@ const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
     const onSubmit = (data: GiftCardFormValues) => {
         mutate(
             {
-                values: { gift_cards: [{ code: data.gift_card_code }] },
-                id: cart.id,
                 resource: "carts",
+                id: cart.id,
+                values: { gift_cards: [{ code: data.gift_card_code }] },
             },
             {
                 onSuccess: () => {
@@ -71,7 +65,7 @@ const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
     };
 
     const onRemove = () => {
-        removeDiscount(
+        mutate(
             {
                 resource: "carts",
                 id: cart.id,

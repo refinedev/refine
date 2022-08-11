@@ -85,9 +85,8 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
     const onRemove = () => {
         removeDiscount(
             {
-                resource: "carts",
-                id,
-                values: { cartId: id, code: discounts[0].code },
+                resource: `carts/${id}/discounts/${discounts[0].code}`,
+                id: "",
             },
             {
                 onSuccess: () => {
