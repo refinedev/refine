@@ -13,7 +13,6 @@ import BrowserOnly from "@docusaurus/BrowserOnly";
 import { usePrismTheme } from "@docusaurus/theme-common";
 import styles from "./styles.module.css";
 import BrowserWindow from "../../components/browser-window";
-import { useInView } from "../../hooks/use-in-view";
 
 /**
  * This function will split code by the visible-block-start and visible-block-end comments and returns the visible block and join function.
@@ -50,35 +49,22 @@ const getLanguageFromClassName = (className?: string) => {
 /**
  * Preview with header
  */
-function PreviewBase({ url, maxHeight }: { url?: string; maxHeight?: string }) {
+function PreviewBase() {
     return (
         <>
-            <BrowserWindow url={url}>
-                <div
-                    className={clsx(
-                        styles.playgroundPreview,
-                        "live-editor-wrapper",
-                    )}
-                    style={maxHeight ? { maxHeight } : {}}
-                >
-                    <BrowserOnly fallback={null}>
-                        {() => (
-                            <>
-                                <LivePreview />
-                                <LiveError />
-                            </>
-                        )}
-                    </BrowserOnly>
-                </div>
-            </BrowserWindow>
+            <BrowserOnly fallback={null}>
+                {() => (
+                    <>
+                        <LivePreview />
+                        <LiveError />
+                    </>
+                )}
+            </BrowserOnly>
         </>
     );
 }
 
-const Preview = React.memo(
-    PreviewBase,
-    (prev, next) => prev.maxHeight === next.maxHeight && prev.url === next.url,
-);
+const Preview = React.memo(PreviewBase, () => true);
 
 /**
  * Editor with header
@@ -114,9 +100,36 @@ function Editor({ hidden }: { hidden: boolean }) {
     );
 }
 
+/**
+ * Placeholder
+ */
+const Placeholder = ({
+    height,
+    onClick,
+}: {
+    height?: string | number;
+    onClick: () => void;
+}) => {
+    return (
+        <div
+            className={clsx(styles.placeholderWrapper)}
+            style={height ? { height } : {}}
+        >
+            <p className={clsx(styles.placeholderTitle)}>Live Preview</p>
+            <button
+                className={clsx(styles.placeholderButton)}
+                onClick={onClick}
+            >
+                Activate
+            </button>
+        </div>
+    );
+};
+
 type PlaygroundProps = LiveProviderProps & {
     children?: string;
     className?: string;
+    disableScroll?: boolean;
     noInline?: boolean;
     hideCode?: boolean;
     previewMaxHeight?: string;
@@ -129,72 +142,57 @@ type PlaygroundProps = LiveProviderProps & {
 export default function Playground({
     children,
     className,
+    disableScroll,
     previewMaxHeight,
     noInline = true,
     hideCode = false,
-    url = "http://localhost:3000",
     ref: _ref,
+    url = "http://localhost:3000",
     ...props
 }: PlaygroundProps): JSX.Element {
     const prismTheme = usePrismTheme();
     const code = String(children).replace(/\n$/, "");
     const { visible } = splitCode(code);
 
-    const containerRef = React.useRef<HTMLDivElement>(null);
-    const inView = useInView(containerRef, "50px");
-
-    const [running, setRunning] = React.useState(false);
-
-    React.useEffect(() => {
-        if (inView && !running) {
-            setRunning(true);
-        } else if (!inView && running) {
-            setRunning(false);
-        }
-    }, [inView]);
-
     return (
-        <div className={styles.playgroundContainer} ref={containerRef}>
-            {running ? (
-                <LiveProvider
-                    code={visible}
-                    disabled
-                    noInline={noInline}
-                    transformCode={() => {
-                        try {
-                            return transform(code, {
-                                transforms: ["typescript", "jsx"],
-                                production: true,
-                            }).code;
-                        } catch (err) {
-                            return undefined;
-                        }
-                    }}
-                    theme={prismTheme}
-                    className={className}
-                    language={getLanguageFromClassName(className) as never}
-                    {...props}
-                >
-                    <>
-                        <Preview url={url} maxHeight={previewMaxHeight} />
-                        <Editor hidden={hideCode} />
-                    </>
-                </LiveProvider>
-            ) : (
-                <BrowserWindow url="http://localhost:3000">
-                    <div className={clsx(styles.placeholderWrapper)}>
-                        <p className={clsx(styles.placeholderTitle)}>
-                            Live Preview
-                        </p>
-                        <button
-                            className={clsx(styles.placeholderButton)}
-                            onClick={() => setRunning(true)}
+        <div className={styles.playgroundContainer}>
+            <LiveProvider
+                code={visible}
+                disabled
+                noInline={noInline}
+                transformCode={() => {
+                    try {
+                        return transform(code, {
+                            transforms: ["typescript", "jsx"],
+                            production: true,
+                        }).code;
+                    } catch (err) {
+                        return undefined;
+                    }
+                }}
+                theme={prismTheme}
+                className={className}
+                language={getLanguageFromClassName(className) as never}
+                {...props}
+            >
+                <>
+                    <BrowserWindow url={url}>
+                        <div
+                            className={clsx(
+                                styles.playgroundPreview,
+                                "live-editor-wrapper",
+                            )}
+                            style={{
+                                maxHeight: previewMaxHeight,
+                                overflow: disableScroll ? "hidden" : undefined,
+                            }}
                         >
-                            Activate
-                        </button>
-                    </div>
-                </BrowserWindow>
-            )}
+                            <Preview />
+                        </div>
+                    </BrowserWindow>
+                    <Editor hidden={hideCode} />
+                </>
+            </LiveProvider>
         </div>
     );
 }
