@@ -14,9 +14,9 @@ import nockrecord from '@site/static/img/blog/2022-08-04-testing-http-requests/n
 ## Introduction
 Writing unit tests is very important for the development process. Testing components that use HTTP requests sometimes may be a real pain.
 
-In testing, we often want to make mock requests in order to test our code without actually making a real HTTP request. This can be especially important when we are testing code that makes external API calls, since we don't want to rely on the availability of the external API.
+In testing, we often want to make mock requests to test our code without actually making an HTTP request. This can be especially important when we are testing code that makes external API calls since we don't want to rely on the availability of the external API.
 
-We’ll use a third-party package called [nock](https://github.com/nock/nock) that helps us to mock HTTP requests. With nock, we can specify the desired behavior of our mock HTTP requests, including the URL, headers, and body. This allows us to test our code against a known set of data, which can make debugging and testing much easier.
+We'll use a third-party package called [nock](https://github.com/nock/nock) that helps us to mock HTTP requests. With nock, we can specify the desired behavior of our mock HTTP requests, including the URL, headers, and body. This allows us to test our code against a known data set, making debugging and testing much more straightforward.
 <!--truncate-->
 
 I'll show how to write unit tests for API calls by mocking method in the simple React app.
