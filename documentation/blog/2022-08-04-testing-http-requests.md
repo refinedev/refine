@@ -41,7 +41,7 @@ Steps we'll cover:
 
 ## Why mocking HTTP requests during testing is important?
 
-Mock testing is a great way to speed up the process of running tests because you can eliminate external systems and servers.
+Mock testing is a great way to speed up running tests because you can eliminate external systems and servers.
 
 
 These are all possible errors that you might encounter when running tests with the API:
@@ -52,7 +52,7 @@ These are all possible errors that you might encounter when running tests with t
   - You may have issues like rate limiting and connectivity.
 
 
-We'll use the Nock to find a solution for these problems. We'll create a simple react app and make a request to an external API. We are going to implement how to mock API calls and write a unit test for API calls using Nock in a React application.
+We'll use the Nock to find a solution for these problems. We'll create a simple react app and request an external API. We will implement how to mock API calls and write a unit test for API calls using Nock in a React application.
 
 
 ## What is Nock?
