@@ -38,6 +38,7 @@ const routerProvider = {
 -   [React Router V5][react-router-v5]
 -   [React Location][react-location]
 -   [Next.js Router][nextjs-router]
+-   [Remix Router][remix-router]
 
 :::
 
@@ -960,3 +961,4 @@ Now you can access our application at `www.domain.com/admin`.
 [react-router-v6]: https://github.com/pankod/refine/tree/master/packages/react-router-v6
 [nextjs-router]: https://github.com/pankod/refine/tree/master/packages/nextjs-router
 [react-location]: https://github.com/pankod/refine/tree/master/packages/react-location
+[remix-router]: https://github.com/pankod/refine/tree/master/packages/remix

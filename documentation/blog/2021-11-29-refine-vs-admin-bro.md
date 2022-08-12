@@ -54,7 +54,7 @@ npx superplate-cli demo-refine-project
 
 * Out-of-the-box: Routing, networking, authentication, state managment, i18n and UI.
 
-* Next.js / SSR integration: **refine** can be used with Next.js to SSR your pages.
+* SSR: **refine** can be used with Next.js and Remix to SSR your pages.
 
 * React Location: React Location router provider support 
 
