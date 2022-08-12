@@ -1,9 +1,10 @@
+import React from "react";
 import { Cart } from "@medusajs/medusa";
 import { formatAmount } from "medusa-react";
 
-interface CartTotalsProps {
+type CartTotalsProps = {
     cart: Omit<Cart, "refundable_amount" | "refunded_total">;
-}
+};
 
 const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
     const {

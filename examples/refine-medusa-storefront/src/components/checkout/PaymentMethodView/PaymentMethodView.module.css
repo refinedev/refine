@@ -1,4 +1,0 @@
-.leftArrow {
-    @apply cursor-pointer hover:bg-accent-1 p-1;
-    transition: background-color 0.2s ease;
-}
