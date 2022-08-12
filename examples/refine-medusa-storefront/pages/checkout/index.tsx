@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { GetServerSideProps } from "next";
 import { HttpError, LayoutWrapper, useCreate } from "@pankod/refine-core";
 import { FormProvider, useStepsForm } from "@pankod/refine-react-hook-form";
@@ -12,14 +12,16 @@ import ShippingView from "@components/checkout/ShippingView";
 import BillingView from "@components/checkout/BillingView";
 import ShippingOptionView from "@components/checkout/ShippingOptionView";
 import CheckoutSummary from "@components/checkout/CheckoutSummary";
-import { CartContext } from "@lib/context";
+import { useCartContext } from "@lib/context";
 
 const totalStep = 2;
 
 const CheckoutPage: React.FC = () => {
     const [checked, setChecked] = useState(true);
-    const { cartId } = useContext(CartContext);
+    const { cart } = useCartContext();
     const [clientSecret, setClientSecret] = useState<string | undefined>();
+
+    const cartId = cart?.id;
 
     const methods = useStepsForm({
         mode: "onChange",
