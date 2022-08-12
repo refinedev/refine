@@ -1,7 +1,7 @@
 {
   "private": true,
   "sideEffects": false,
-  "name": "refine-remix",
+  "name": "refine-headless-remix",
   "scripts": {
     "build": "remix build",
     "start": "remix dev",
