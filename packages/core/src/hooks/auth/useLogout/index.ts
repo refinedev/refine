@@ -36,6 +36,7 @@ export const useLogout = <TVariables = void>(): UseMutationResult<
                 }
             },
             onError: (error: Error) => {
+                console.log("error", error);
                 open?.({
                     key: "useLogout-error",
                     type: "error",

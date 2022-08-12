@@ -79,18 +79,4 @@ const LoginPage: React.FC = () => {
     );
 };
 
-export const action: ActionFunction = async ({ request }) => {
-    const form = await request.formData();
-    const username = form.get("username") as string;
-    const password = form.get("password") as string;
-    const redirectTo = form.get("redirectTo") || "/";
-    const user = await login({ username, password });
-    if (!user) {
-        return null;
-    }
-
-    // if there is a user, create their session and redirect to /jokes
-    return createUserSession(user as any, redirectTo as string);
-};
-
 export default LoginPage;

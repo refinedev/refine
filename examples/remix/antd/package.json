@@ -1,7 +1,7 @@
 {
+  "name": "refine-antd-remix",
   "private": true,
   "sideEffects": false,
-  "name": "refine-headless-remix",
   "scripts": {
     "build": "remix build",
     "start": "remix dev",
@@ -14,8 +14,7 @@
     "@pankod/refine-core": "^3.56.11",
     "@pankod/refine-simple-rest": "^3.27.0",
     "@pankod/refine-remix-router": "^1.0.0",
-    "@pankod/refine-react-hook-form": "^3.31.4",
-    "@pankod/refine-react-table": "^4.5.0",
+    "@pankod/refine-antd": "^3.35.4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
