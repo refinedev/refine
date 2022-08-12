@@ -33,9 +33,6 @@
     "tslib": "^2.3.1",
     "tsup": "^5.11.13"
   },
-  "dependencies": {
-    "qs": "^6.10.1"
-  },
   "peerDependencies": {
     "@pankod/refine-core": "^3.23.2",
     "remix": "*",
@@ -49,7 +46,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/pankod/refine.git",
-    "directory": "packages/nextjs-router"
+    "directory": "packages/remix"
   },
   "gitHead": "17dd5af3e4c9f7f09e1e707362c6f5a9d1cab8a8",
   "publishConfig": {
