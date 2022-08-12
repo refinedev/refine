@@ -8,16 +8,11 @@ import cloneButton from '@site/static/img/guides-and-concepts/components/buttons
 `<CloneButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `clone` method from [useNavigation](/core/hooks/navigation/useNavigation.md) under the hood.
 It can be useful when redirecting the app to the create page with the record id route of resource.
 
+## Usage
+
 ```tsx live hideCode
-const { Table, List, useTable, CloneButton } = RefineAntd;
-
-interface IPost {
-    id: number;
-    title: string;
-}
-
 // visible-block-start
-// import { Table, List, useTable, CloneButton } from "@pankod/refine-antd";
+import { Table, List, useTable, CloneButton } from "@pankod/refine-antd";
 
 const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
@@ -40,6 +35,11 @@ const PostList: React.FC = () => {
         </List>
     );
 };
+
+interface IPost {
+    id: number;
+    title: string;
+}
 // visible-block-end
 
 render(
@@ -54,68 +54,40 @@ render(
 );
 ```
 
-## Usage
-
-```tsx
-import {
-    List,
-    Table,
-    useTable,
-    // highlight-next-line
-    CloneButton,
-} from "@pankod/refine-antd";
-
-export const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
-
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    key="actions"
-                    render={(_, record) => (
-                        // highlight-next-line
-                        <CloneButton size="small" recordItemId={record.id} />
-                    )}
-                />
-            </Table>
-        </List>
-    );
-};
-
-interface IPost {
-    id: number;
-    title: string;
-}
-```
-
-Will look like this:
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src={cloneButton} alt="Default clone button" />
-</div>
-
 ## Properties
 
 ### `recordItemId`
 
 `recordItemId` is used to append the record id to the end of the route path.
 
-```tsx
+```tsx live disableScroll previewHeight=200px
+import { useRouterContext } from "@pankod/refine-core";
+// visible-block-start
 import { CloneButton } from "@pankod/refine-antd";
 
-export const MyCloneComponent = () => {
-    return <CloneButton resourceName="posts" recordItemId="1" />;
+const MyCloneComponent = () => {
+    return <CloneButton resourceNameOrRouteName="posts" recordItemId="1" />;
 };
+
+// visible-block-end
+
+const ClonedPage = () => {
+    const params = useRouterContext().useParams();
+    return <div>{JSON.stringify(params)}</div>;
+};
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+                create: ClonedPage,
+            },
+        ]}
+        DashboardPage={MyCloneComponent}
+    />,
+);
 ```
 
 Clicking the button will trigger the `clone` method of [`useNavigation`](/core/hooks/navigation/useNavigation.md) and then redirect the app to `/posts/clone/1`.
@@ -128,14 +100,39 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/core/h
 
 It is used to redirect the app to the `/clone` endpoint of the given resource name. By default, the app redirects to a URL with `/clone` defined by the name property of the resource object.
 
-```tsx
+```tsx live disableScroll previewHeight=200px
+import { useRouterContext } from "@pankod/refine-core";
+// visible-block-start
 import { CloneButton } from "@pankod/refine-antd";
 
-export const MyCloneComponent = () => {
+const MyCloneComponent = () => {
     return (
-        <CloneButton resourceNameOrRouteName="categories" recordItemId="2" />
+        <CloneButton resourceNameOrRouteName="categories" recordItemId="1" />
     );
 };
+
+// visible-block-end
+
+const ClonedPage = () => {
+    const params = useRouterContext().useParams();
+    return <div>{JSON.stringify(params)}</div>;
+};
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+            },
+            {
+                name: "categories",
+                create: ClonedPage,
+            },
+        ]}
+        DashboardPage={MyCloneComponent}
+    />,
+);
 ```
 
 Clicking the button will trigger the `clone` method of [`useNavigation`](/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/clone/2`.
@@ -144,12 +141,39 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/core/h
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx
+```tsx live disableScroll previewHeight=200px
+import { useRouterContext } from "@pankod/refine-core";
+// visible-block-start
 import { CloneButton } from "@pankod/refine-antd";
 
-export const MyCloneComponent = () => {
-    return <CloneButton hideText />;
+const MyCloneComponent = () => {
+    return (
+        <CloneButton
+            // highlight-next-line
+            hideText={true}
+        />
+    );
 };
+
+// visible-block-end
+
+const ClonedPage = () => {
+    const params = useRouterContext().useParams();
+    return <div>{JSON.stringify(params)}</div>;
+};
+
+render(
+    <RefineAntdDemo
+        initialRoutes={["/"]}
+        resources={[
+            {
+                name: "posts",
+                create: ClonedPage,
+            },
+        ]}
+        DashboardPage={MyCloneComponent}
+    />,
+);
 ```
 
 ### `ignoreAccessControlProvider`
