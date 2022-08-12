@@ -8,11 +8,15 @@ import {
     ScrollRestoration,
 } from "@remix-run/react";
 import { Refine } from "@pankod/refine-core";
+import { Layout, ReadyPage } from "@pankod/refine-antd";
+
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-remix-router";
 
-import { PostCreate, PostEdit, PostList } from "./pages/posts";
+import styles from "@pankod/refine-antd/dist/styles.min.css";
+
 import { authProvider } from "./authProvider";
+import { PostCreate, PostEdit, PostList, PostShow } from "./pages/posts";
 
 export const meta: MetaFunction = () => ({
     charset: "utf-8",
@@ -21,7 +25,6 @@ export const meta: MetaFunction = () => ({
 });
 
 const API_URL = "https://api.fake-rest.refine.dev";
-
 export default function App() {
     return (
         <html lang="en">
@@ -34,12 +37,15 @@ export default function App() {
                     dataProvider={dataProvider(API_URL)}
                     routerProvider={routerProvider}
                     authProvider={authProvider}
+                    Layout={Layout}
+                    ReadyPage={ReadyPage}
                     resources={[
                         {
                             name: "posts",
                             list: PostList,
                             create: PostCreate,
                             edit: PostEdit,
+                            show: PostShow,
                         },
                     ]}
                     syncWithLocation
@@ -52,4 +58,8 @@ export default function App() {
             </body>
         </html>
     );
+}
+
+export function links() {
+    return [{ rel: "stylesheet", href: styles }];
 }
