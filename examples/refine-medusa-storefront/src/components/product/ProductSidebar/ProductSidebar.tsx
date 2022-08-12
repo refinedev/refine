@@ -1,33 +1,34 @@
-import s from "./ProductSidebar.module.css";
-import { FC, useContext, useEffect, useState } from "react";
+import { Dispatch, FC, SetStateAction, useEffect } from "react";
+import { Product, ProductVariant } from "@medusajs/medusa";
 
 import { ProductOptions } from "@components/product";
 import { Button, Text, Rating, Collapse, useUI } from "@components/ui";
-import {
-    getProductVariant,
-    selectDefaultOptionFromProduct,
-    SelectedOptions,
-} from "../helpers";
-import { CartContext } from "@lib/context";
-import { MedusaProduct } from "@interfaces/index";
+import { selectDefaultOptionFromProduct, SelectedOptions } from "../helpers";
+import { useCartContext } from "@lib/context";
+import s from "./ProductSidebar.module.css";
 
 interface ProductSidebarProps {
-    product: MedusaProduct;
+    product: Product;
     className?: string;
+    selectedOptions?: SelectedOptions;
+    setSelectedOptions?: Dispatch<SetStateAction<SelectedOptions>>;
+    variant: ProductVariant;
 }
 
-const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
-    // const addItem = useAddItem();
+const ProductSidebar: FC<ProductSidebarProps> = ({
+    product,
+    className,
+    setSelectedOptions = () => undefined,
+    selectedOptions = {},
+    variant,
+}) => {
     const { openSidebar, setSidebarView } = useUI();
-    const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>({});
 
     useEffect(() => {
         selectDefaultOptionFromProduct(product, setSelectedOptions);
     }, [product]);
 
-    const variant = getProductVariant(product, selectedOptions);
-
-    const { addToCart, isLoading } = useContext(CartContext);
+    const { addItem } = useCartContext();
 
     return (
         <div className={className}>
@@ -52,17 +53,19 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
                     type="button"
                     className={s.button}
                     onClick={async () => {
-                        await addToCart?.({
+                        await addItem?.({
                             variantId: variant.id,
+                            quantity: 1,
                         });
 
                         setSidebarView("CART_VIEW");
                         openSidebar();
                     }}
-                    loading={isLoading}
-                    disabled={variant?.availableForSale === false}
+                    disabled={variant?.inventory_quantity === 0}
                 >
-                    Add To Cart
+                    {variant?.inventory_quantity > 0
+                        ? "Add to Cart"
+                        : "Out of Stock"}
                 </Button>
             </div>
             <div className="mt-6">

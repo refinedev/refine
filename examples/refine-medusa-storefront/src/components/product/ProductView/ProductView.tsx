@@ -1,22 +1,32 @@
 import cn from "clsx";
 import Image from "next/image";
 import s from "./ProductView.module.css";
-import { FC } from "react";
-// import type { Product } from "@commerce/types/product";
-// import usePrice from "@framework/product/use-price";
+import { FC, useMemo, useState } from "react";
+import { Product, ProductVariant } from "@medusajs/medusa";
+
 import { ProductSlider, ProductCard } from "@components/product";
 import { Container, Text } from "@components/ui";
 import SEO from "@components/common/SEO";
 import ProductSidebar from "../ProductSidebar";
 import ProductTag from "../ProductTag";
-import { currencySymbolFromCode, MedusaProduct } from "../helpers";
+import { getProductVariant, SelectedOptions } from "../helpers";
+import useProductPrice from "@lib/hooks/useProductPrice";
 interface ProductViewProps {
-    product: MedusaProduct; //Product
-    relatedProducts: MedusaProduct[]; // Product[]
+    product: Product;
+    relatedProducts: Product[];
 }
 
 const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
-    const price = product?.variants?.[0].prices?.[0]?.amount; // temporary solution
+    const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>({});
+
+    const variant: ProductVariant = getProductVariant(product, selectedOptions);
+    const price = useProductPrice({ id: product.id, variantId: variant?.id });
+
+    const selectedPrice = useMemo(() => {
+        const { variantPrice, cheapestPrice } = price;
+
+        return variantPrice || cheapestPrice || null;
+    }, [price]);
 
     return (
         <>
@@ -25,9 +35,7 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
                     <div className={cn(s.main, "fit")}>
                         <ProductTag
                             name={product.title}
-                            price={`${price} ${currencySymbolFromCode(
-                                product?.variants[0].prices[0].currency_code,
-                            )}`}
+                            price={`${selectedPrice?.calculated_price} `}
                             fontSize={32}
                         />
                         <div className={s.sliderContainer}>
@@ -56,6 +64,9 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
                         key={product.id}
                         product={product}
                         className={s.sidebar}
+                        selectedOptions={selectedOptions}
+                        setSelectedOptions={setSelectedOptions}
+                        variant={variant}
                     />
                 </div>
                 <hr className="border-accent-2 mt-7" />

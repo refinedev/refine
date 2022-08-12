@@ -1,17 +1,16 @@
 import { FC } from "react";
 import cn from "clsx";
 import Link from "next/link";
-// import type { Product } from "@commerce/types/product";
-import s from "./ProductCard.module.css";
 import Image, { ImageProps } from "next/image";
-// import usePrice from "@framework/product/use-price";
-import ProductTag from "../ProductTag";
+import { Product } from "@medusajs/medusa";
+
 import { currencySymbolFromCode } from "@components/product/helpers";
-import { MedusaProduct } from "@interfaces/index";
+import ProductTag from "../ProductTag";
+import s from "./ProductCard.module.css";
 
 interface Props {
     className?: string;
-    product: MedusaProduct;
+    product: Product;
     noNameTag?: boolean;
     imgProps?: Omit<
         ImageProps,
@@ -29,7 +28,7 @@ const ProductCard: FC<Props> = ({
     noNameTag = false,
     variant = "default",
 }) => {
-    const price = product?.variants?.[0].prices?.[0].amount ?? ""; // temporary solution
+    const { amount, currency_code } = product?.variants?.[0].prices?.[0];
 
     const rootClassName = cn(
         s.root,
@@ -72,9 +71,8 @@ const ProductCard: FC<Props> = ({
                                 <span>{product.title}</span>
                             </h3>
                             <div className={s.price}>
-                                {`${price} ${currencySymbolFromCode(
-                                    product?.variants?.[0].prices?.[0]
-                                        .currency_code ?? "USD",
+                                {`${amount / 100} ${currencySymbolFromCode(
+                                    currency_code ?? "USD",
                                 )}`}
                             </div>
                         </div>
@@ -104,9 +102,8 @@ const ProductCard: FC<Props> = ({
                 <>
                     <ProductTag
                         name={product.title}
-                        price={`${price} ${currencySymbolFromCode(
-                            product?.variants?.[0].prices?.[0].currency_code ??
-                                "USD",
+                        price={`${amount / 100} ${currencySymbolFromCode(
+                            currency_code ?? "USD",
                         )}`}
                     />
                     <div className={s.imageContainer}>
