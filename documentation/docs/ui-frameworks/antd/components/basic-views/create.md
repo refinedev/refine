@@ -28,8 +28,14 @@ interface IPost {
 }
 
 // visible-block-start
-// import { Create, Form, Input, Select } from "@pankod/refine-antd";
-// import { useForm, useSelect } from "@pankod/refine-antd";
+import {
+    Create,
+    Form,
+    Input,
+    Select,
+    useForm,
+    useSelect,
+} from "@pankod/refine-antd";
 
 const PostCreate: React.FC = () => {
     const { formProps, saveButtonProps } = useForm<IPost>();
@@ -128,7 +134,7 @@ const { Create, Form, Input, Select, useForm, useSelect, CreateButton } =
     RefineAntd;
 
 // visible-block-start
-// import { Create } from "@pankod/refine-antd";
+import { Create } from "@pankod/refine-antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -170,7 +176,7 @@ const { Create, Form, Input, Select, useForm, useSelect, CreateButton } =
     RefineAntd;
 
 // visible-block-start
-// import { Create } from "@pankod/refine-antd";
+import { Create } from "@pankod/refine-antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -213,10 +219,10 @@ const routerProvider = RefineDemoReactRouterV6(["/custom"]);
 const dataProvider = RefineSimpleRest.default;
 
 // visible-block-start
-// import { Refine } from "@pankod/refine-core";
-// import { Create } from "@pankod/refine-antd";
-// import routerProvider from "@pankod/refine-react-router-v6";
-// import dataProvider from "@pankod/refine-simple-rest";
+import { Refine } from "@pankod/refine-core";
+import { Create } from "@pankod/refine-antd";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
 
 const CustomPage: React.FC = () => {
     return (
@@ -241,7 +247,7 @@ const App: React.FC = () => {
                 ],
                 // highlight-end
             }}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev/")}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[{ name: "posts" }]}
         />
     );
@@ -259,7 +265,7 @@ To customize the back button or to disable it, you can use the `goBack` property
 const { Create, Icons, CreateButton } = RefineAntd;
 
 // visible-block-start
-// import { Create, Icons } from "@pankod/refine-antd";
+import { Create, Icons } from "@pankod/refine-antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -298,7 +304,7 @@ To toggle the loading state of the `<Create/>` component, you can use the `isLoa
 const { Create, CreateButton } = RefineAntd;
 
 // visible-block-start
-// import { Create } from "@pankod/refine-antd";
+import { Create } from "@pankod/refine-antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -339,7 +345,7 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 const { Create, CreateButton, Breadcrumb } = RefineAntd;
 
 // visible-block-start
-// import { Create, Breadcrumb } from "@pankod/refine-antd";
+import { Create, Breadcrumb } from "@pankod/refine-antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -390,7 +396,7 @@ If you want to customize the wrapper of the `<Create/>` component, you can use t
 const { Create, CreateButton } = RefineAntd;
 
 // visible-block-start
-// import { Create } from "@pankod/refine-antd";
+import { Create } from "@pankod/refine-antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -439,7 +445,7 @@ If you want to customize the header of the `<Create/>` component, you can use th
 const { Create, CreateButton } = RefineAntd;
 
 // visible-block-start
-// import { Create } from "@pankod/refine-antd";
+import { Create } from "@pankod/refine-antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -488,7 +494,7 @@ If you want to customize the content of the `<Create/>` component, you can use t
 const { Create, CreateButton } = RefineAntd;
 
 // visible-block-start
-// import { Create } from "@pankod/refine-antd";
+import { Create } from "@pankod/refine-antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -535,7 +541,7 @@ You can customize the buttons at the header by using the `headerButtons` propert
 const { Create, CreateButton, Button } = RefineAntd;
 
 // visible-block-start
-// import { Create, Button } from "@pankod/refine-antd";
+import { Create, Button } from "@pankod/refine-antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -584,7 +590,7 @@ You can customize the wrapper element of the buttons at the header by using the 
 const { Create, CreateButton, Button } = RefineAntd;
 
 // visible-block-start
-// import { Create, Button } from "@pankod/refine-antd";
+import { Create, Button } from "@pankod/refine-antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -632,7 +638,7 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 const { Create, CreateButton, Button } = RefineAntd;
 
 // visible-block-start
-// import { Create, Button } from "@pankod/refine-antd";
+import { Create, Button } from "@pankod/refine-antd";
 
 const PostCreate: React.FC = () => {
     return (
@@ -681,7 +687,7 @@ You can customize the wrapper element of the buttons at the footer by using the 
 const { Create, CreateButton, Button } = RefineAntd;
 
 // visible-block-start
-// import { Create, Button } from "@pankod/refine-antd";
+import { Create, Button } from "@pankod/refine-antd";
 
 const PostCreate: React.FC = () => {
     return (
