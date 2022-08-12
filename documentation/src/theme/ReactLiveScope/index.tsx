@@ -6,6 +6,68 @@ import * as RefineMui from "@pankod/refine-mui";
 import * as RefineSimpleRest from "@pankod/refine-simple-rest";
 import "@pankod/refine-antd/dist/antd.min.css";
 
+export const packageMap = {
+    "@pankod/refine-core": "RefineCore",
+    "@pankod/refine-react-router-v6": "RefineReactRouterV6",
+    "@pankod/refine-antd": "RefineAntd",
+    "@pankod/refine-mui": "RefineMui",
+    "@pankod/refine-simple-rest": "RefineSimpleRest",
+};
+
+const packageRegex =
+    /import(?:(?:(?:[ \n\t]+([^ *\n\t\{\},]+)[ \n\t]*(?:,|[ \n\t]+))?([ \n\t]*\{(?:[ \n\t]*[^ \n\t"'\{\}]+[ \n\t]*,?)+\})?[ \n\t]*)|[ \n\t]*\*[ \n\t]*as[ \n\t]+([^ \n\t\{\}]+)[ \n\t]+)from[ \n\t]*(?:['"])([^'"\n]+)(['"])/g;
+
+const sideEffectRegex = /import[ \n\t](?:['"])([^'"\n]+)(['"])/g;
+
+const nameChangeRegex = /((?:\w|\s|_)*)( as )((?:\w|\s|_)*)( |,)?/g;
+
+const getPackageByName = (packageName: string) => {
+    return packageMap[packageName.replace('"', "")];
+};
+
+export const importReplacer = (code: string): string => {
+    let modified = `${code}`;
+    let match: (string | undefined)[];
+
+    while ((match = packageRegex.exec(code))) {
+        const [line, defaultImport, moduleImport, asteriskImport, packageName] =
+            match;
+
+        if (defaultImport) {
+            const newLine = `const { ${
+                defaultImport ? `default: ${defaultImport}` : ""
+            } } = ${getPackageByName(packageName)}`;
+
+            modified = modified.replace(line, newLine);
+        }
+
+        if (moduleImport) {
+            const newLine = `const ${moduleImport.replace(
+                nameChangeRegex,
+                `$1: $3$4`,
+            )} = ${getPackageByName(packageName)}`;
+
+            modified = modified.replace(line, newLine);
+        }
+
+        if (asteriskImport) {
+            const newLine = `const ${asteriskImport} = ${getPackageByName(
+                packageName,
+            )}`;
+
+            modified = modified.replace(line, newLine);
+        }
+    }
+
+    while ((match = sideEffectRegex.exec(code))) {
+        const [line] = match;
+
+        modified = modified.replace(line, "");
+    }
+
+    return modified;
+};
+
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
 const Refine = (props) => (

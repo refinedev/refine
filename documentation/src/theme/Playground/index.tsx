@@ -13,6 +13,7 @@ import BrowserOnly from "@docusaurus/BrowserOnly";
 import { usePrismTheme } from "@docusaurus/theme-common";
 import styles from "./styles.module.css";
 import BrowserWindow from "../../components/browser-window";
+import { importReplacer } from "../ReactLiveScope";
 
 /**
  * This function will split code by the visible-block-start and visible-block-end comments and returns the visible block and join function.
@@ -162,7 +163,7 @@ export default function Playground({
                 noInline={noInline}
                 transformCode={() => {
                     try {
-                        return transform(code, {
+                        return transform(importReplacer(code), {
                             transforms: ["typescript", "jsx"],
                             production: true,
                         }).code;
