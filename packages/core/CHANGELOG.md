@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.58.1
+
+### Patch Changes
+
+-   `AuthProvider`'s `login` method can now return a value for `Remix`'s authentication flow
+
 ## 3.58.0
 
 ### Minor Changes
