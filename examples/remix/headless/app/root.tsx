@@ -16,7 +16,7 @@ import { authProvider } from "./authProvider";
 
 export const meta: MetaFunction = () => ({
     charset: "utf-8",
-    title: "New Remix App",
+    title: "New Remix + Refine App",
     viewport: "width=device-width,initial-scale=1",
 });
 
