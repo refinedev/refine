@@ -13,7 +13,7 @@ import s from "./CartItem.module.css";
 import { useUI } from "@components/ui/context";
 // import type { LineItem } from "@commerce/types/cart";
 import Quantity from "@components/ui/Quantity";
-import { CartContext } from "@lib/context";
+import { useCart } from "@lib/context";
 
 type ItemOption = {
     name: string;
@@ -42,11 +42,11 @@ const CartItem = ({
     const { mutate: updateMutate } = useUpdate();
     const invalidate = useInvalidate();
 
-    const { cartId } = useContext(CartContext);
+    const { cart } = useCart();
 
     const updateItem = (quantity: number) => {
         return updateMutate({
-            resource: `carts/${cartId}/line-items`,
+            resource: `carts/${cart?.id}/line-items`,
             id: item.id,
             values: { quantity },
         });
@@ -68,13 +68,13 @@ const CartItem = ({
     const removeItem = async () => {
         try {
             await deleteMutate({
-                resource: `carts/${cartId}/line-items`,
+                resource: `carts/${cart?.id}/line-items`,
                 id: item.id,
             });
             invalidate({
                 resource: "carts",
                 invalidates: ["detail"],
-                id: cartId,
+                id: cart?.id,
             });
         } catch (error) {
             console.log("Error", error);

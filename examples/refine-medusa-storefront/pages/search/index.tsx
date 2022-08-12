@@ -8,36 +8,36 @@ import { dataProvider } from "@pankod/refine-medusa";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 
+import { Product } from "@medusajs/medusa";
+
 import Search from "@components/search";
 import { getSearchStaticProps } from "@lib/search-props";
-import { MedusaProduct } from "@interfaces";
 
-const SearchPage: React.FC<
-    IResourceComponentsProps<GetListResponse<MedusaProduct>>
-> = ({ initialData }) => {
-    const router = useRouter();
-    const { q } = router.query;
+const SearchPage: React.FC<IResourceComponentsProps<GetListResponse<Product>>> =
+    ({ initialData }) => {
+        const router = useRouter();
+        const { q } = router.query;
 
-    const { tableQueryResult } = useTable<MedusaProduct>({
-        resource: "products",
-        queryOptions: {
-            initialData,
-        },
-        permanentFilter: [
-            {
-                field: "q",
-                operator: "eq",
-                value: q,
+        const { tableQueryResult } = useTable<Product>({
+            resource: "products",
+            queryOptions: {
+                initialData,
             },
-        ],
-    });
+            permanentFilter: [
+                {
+                    field: "q",
+                    operator: "eq",
+                    value: q,
+                },
+            ],
+        });
 
-    return (
-        <LayoutWrapper>
-            <Search products={tableQueryResult?.data?.data} />
-        </LayoutWrapper>
-    );
-};
+        return (
+            <LayoutWrapper>
+                <Search products={tableQueryResult?.data?.data} />
+            </LayoutWrapper>
+        );
+    };
 
 const API_URL = "https://refine-example-storefront.herokuapp.com/store";
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
@@ -48,7 +48,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
         const medusaDataProvider = dataProvider(API_URL);
 
-        const data = await medusaDataProvider.getList<MedusaProduct>({
+        const data = await medusaDataProvider.getList<Product>({
             resource: "products",
             filters: [
                 {
