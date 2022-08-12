@@ -10,7 +10,7 @@ It can be useful when redirecting the app to the create page with the record id 
 
 ## Usage
 
-```tsx live hideCode
+```tsx live
 // visible-block-start
 import { Table, List, useTable, CloneButton } from "@pankod/refine-antd";
 
