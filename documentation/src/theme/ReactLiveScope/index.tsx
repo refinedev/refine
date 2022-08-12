@@ -292,8 +292,10 @@ const RefineMuiDemo: React.FC<
 const ReactLiveScope = {
     React,
     ...React,
-    Refine,
-    RefineCore,
+    RefineCore: {
+        ...RefineCore,
+        Refine,
+    },
     RefineSimpleRest,
     RefineReactRouterV6,
     RefineAntd,
