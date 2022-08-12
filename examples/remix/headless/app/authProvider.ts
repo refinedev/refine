@@ -22,9 +22,8 @@ export const authProvider: AuthProvider = {
 
         return Promise.reject();
     },
-    logout: async ({ request, storage }) => {
-        await storage.logout({ request });
-        return Promise.resolve();
+    logout: () => {
+        return Promise.resolve("/logout");
     },
     checkError: (error) => {
         if (error && error.statusCode === 401) {
