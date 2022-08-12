@@ -19,44 +19,47 @@ const packageRegex =
 
 const sideEffectRegex = /import[ \n\t](?:['"])([^'"\n]+)(['"])/g;
 
-const nameChangeRegex = /((?:\w|\s|_)*)( as )((?:\w|\s|_)*)( |,)?/g;
+// const nameChangeRegex = /((?:\w|\s|_)*)( as )((?:\w|\s|_)*)( |,)?/g;
 
-const getPackageByName = (packageName: string) => {
-    return packageMap[packageName.replace('"', "")];
-};
+// const getPackageByName = (packageName: string) => {
+//     return packageMap[packageName.replace('"', "")];
+// };
 
 export const importReplacer = (code: string): string => {
     let modified = `${code}`;
     let match: (string | undefined)[];
 
     while ((match = packageRegex.exec(code))) {
-        const [line, defaultImport, moduleImport, asteriskImport, packageName] =
-            match;
+        const [
+            line /* _defaultImport, _moduleImport, _asteriskImport, _packageName */,
+        ] = match;
 
-        if (defaultImport) {
-            const newLine = `const { ${
-                defaultImport ? `default: ${defaultImport}` : ""
-            } } = ${getPackageByName(packageName)}`;
+        modified.replace(line, "");
 
-            modified = modified.replace(line, newLine);
-        }
+        // if (defaultImport) {
+        // const newLine = `const { ${
+        //     defaultImport ? `default: ${defaultImport}` : ""
+        // } } = ${getPackageByName(packageName)}`;
 
-        if (moduleImport) {
-            const newLine = `const ${moduleImport.replace(
-                nameChangeRegex,
-                `$1: $3$4`,
-            )} = ${getPackageByName(packageName)}`;
+        // modified = modified.replace(line, newLine);
+        // }
 
-            modified = modified.replace(line, newLine);
-        }
+        // if (moduleImport) {
+        // const newLine = `const ${moduleImport.replace(
+        //     nameChangeRegex,
+        //     `$1: $3$4`,
+        // )} = ${getPackageByName(packageName)}`;
 
-        if (asteriskImport) {
-            const newLine = `const ${asteriskImport} = ${getPackageByName(
-                packageName,
-            )}`;
+        //     modified = modified.replace(line, newLine);
+        // }
 
-            modified = modified.replace(line, newLine);
-        }
+        // if (asteriskImport) {
+        // const newLine = `const ${asteriskImport} = ${getPackageByName(
+        //     packageName,
+        // )}`;
+
+        //     modified = modified.replace(line, newLine);
+        // }
     }
 
     while ((match = sideEffectRegex.exec(code))) {
