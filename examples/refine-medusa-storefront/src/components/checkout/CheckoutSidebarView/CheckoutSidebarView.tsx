@@ -11,19 +11,18 @@ import ShippingWidget from "../ShippingWidget";
 import PaymentWidget from "../PaymentWidget";
 import s from "./CheckoutSidebarView.module.css";
 import { useCheckoutContext } from "../context";
-import { CartContext } from "@lib/context";
+import { useCartContext } from "@lib/context";
 import { useOne } from "@pankod/refine-core";
 import { currencySymbolFromCode } from "@components/product/helpers";
 
 const CheckoutSidebarView: FC = () => {
-    const { cartId } = useContext(CartContext);
+    const { cart } = useCartContext();
 
     const { data, isLoading } = useOne({
         resource: `carts`,
-        id: cartId ?? "",
+        id: cart?.id ?? "",
     });
 
-    const cart = data?.data.cart;
     const currencyCode = currencySymbolFromCode(
         cart?.region["currency_code"] ?? "",
     );

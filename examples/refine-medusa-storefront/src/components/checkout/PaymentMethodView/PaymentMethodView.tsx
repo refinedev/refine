@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import { useContext } from "react";
 import {
     Elements,
     PaymentElement,
@@ -13,7 +12,7 @@ import { useFormContext } from "@pankod/refine-react-hook-form";
 
 import { Button, Text } from "@components/ui";
 import { ArrowLeft } from "@components/icons";
-import { CartContext } from "@lib/context";
+import { useCartContext } from "@lib/context";
 
 import s from "./PaymentMethodView.module.css";
 
@@ -32,7 +31,7 @@ const StripeForm: React.FC = () => {
     const { setError } = useFormContext();
     const router = useRouter();
 
-    const { cartId } = useContext(CartContext);
+    const { cart } = useCartContext();
     const { mutate } = useCreate<StoreCompleteCartRes>();
 
     const handlePayment = async (e: { preventDefault: () => void }) => {
@@ -53,7 +52,7 @@ const StripeForm: React.FC = () => {
 
                 mutate(
                     {
-                        resource: `carts/${cartId}/complete`,
+                        resource: `carts/${cart?.id}/complete`,
                         values: {},
                     },
                     {

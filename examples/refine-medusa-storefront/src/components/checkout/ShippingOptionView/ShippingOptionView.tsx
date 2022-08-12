@@ -6,10 +6,10 @@ import { ErrorMessage } from "@hookform/error-message";
 
 import { Text } from "@components/ui";
 import ShippingOptionWidget from "@components/checkout/ShippingOptionWidget";
-import { CartContext } from "@lib/context";
+import { useCartContext } from "@lib/context";
 
 const ShippingOptionView: React.FC = () => {
-    const { cartId } = useContext(CartContext);
+    const { cart } = useCartContext();
     const {
         getValues,
         setValue,
@@ -18,10 +18,10 @@ const ShippingOptionView: React.FC = () => {
     } = useFormContext();
 
     const { data: shippingOptions } = useOne<StoreShippingOptionsListRes>({
-        resource: `shipping-options/${cartId}`,
+        resource: `shipping-options/${cart?.id}`,
         id: "",
         queryOptions: {
-            enabled: !!cartId,
+            enabled: !!cart?.id,
         },
     });
 
