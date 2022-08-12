@@ -126,10 +126,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = () => {
                 {isExistAuthentication && (
                     <Menu.Item
                         key="logout"
-                        onClick={() => {
-                            console.log("logout");
-                            logout();
-                        }}
+                        onClick={() => logout()}
                         icon={<LogoutOutlined />}
                     >
                         {translate("buttons.logout", "Logout")}
