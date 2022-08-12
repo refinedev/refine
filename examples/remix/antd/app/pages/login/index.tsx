@@ -151,6 +151,5 @@ export const action: ActionFunction = async ({ request }) => {
         return null;
     }
 
-    // if there is a user, create their session and redirect to /jokes
     return createUserSession(user as any, redirectTo as string);
 };
