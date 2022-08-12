@@ -1,10 +1,4 @@
-import {
-    ChangeEvent,
-    FocusEventHandler,
-    useContext,
-    useEffect,
-    useState,
-} from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useDelete, useInvalidate, useUpdate } from "@pankod/refine-core";
 import cn from "clsx";
 import Image from "next/image";
@@ -13,7 +7,7 @@ import s from "./CartItem.module.css";
 import { useUI } from "@components/ui/context";
 // import type { LineItem } from "@commerce/types/cart";
 import Quantity from "@components/ui/Quantity";
-import { useCart } from "@lib/context";
+import useCart from "@lib/hooks/useCart";
 
 type ItemOption = {
     name: string;

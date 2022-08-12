@@ -1,45 +1,39 @@
 import cn from "clsx";
 import Link from "next/link";
-import { FC, useContext } from "react";
+import { FC } from "react";
 import s from "./CartSidebarView.module.css";
 import CartItem from "../CartItem";
 import { Button, Text } from "@components/ui";
 import { useUI } from "@components/ui/context";
 import { Bag, Cross, Check } from "@components/icons";
 import SidebarLayout from "@components/common/SidebarLayout";
-import { useOne } from "@pankod/refine-core";
-import { CartContext } from "@lib/context";
+import { useCartContext } from "@lib/context/";
 import { currencySymbolFromCode } from "@components/product/helpers";
 
 const CartSidebarView: FC = () => {
     const { closeSidebar, setSidebarView } = useUI();
 
-    const { cartId } = useContext(CartContext);
+    const { cart } = useCartContext();
 
-    const { data, isLoading } = useOne({
-        resource: `carts`,
-        id: cartId ?? "",
-    });
-
-    const cart = data?.data.cart;
     const currencyCode = currencySymbolFromCode(
         cart?.region["currency_code"] ?? "",
     );
 
-    const isEmpty = cart?.items === 0;
+    const isEmpty = cart?.items.length === 0;
     const total = cart?.total;
     const subTotal = cart?.subtotal;
 
     const handleClose = () => closeSidebar();
     const goToCheckout = () => setSidebarView("CHECKOUT_VIEW");
 
+    // TODO: manage error and success states for purchase
     const error = null;
     const success = null;
 
     return (
         <SidebarLayout
             className={cn({
-                [s.empty]: error || success || isLoading || isEmpty,
+                [s.empty]: error || success || !cart || isEmpty,
             })}
             handleClose={handleClose}
         >
