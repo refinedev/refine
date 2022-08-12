@@ -1,6 +1,11 @@
 import React, { useEffect, useState, PropsWithChildren } from "react";
 import { Region, StoreCartsRes, Cart } from "@medusajs/medusa";
-import { useCreate, useDelete, useUpdate } from "@pankod/refine-core";
+import {
+    useCreate,
+    useDelete,
+    useUpdate,
+    useInvalidate,
+} from "@pankod/refine-core";
 import useCart from "@lib/hooks/useCart";
 
 interface VariantInfoProps {
@@ -16,7 +21,7 @@ interface LineInfoProps {
 interface CartContext {
     countryCode: string | undefined;
     setRegion: (regionId: string, countryCode: string) => void;
-    addItem: (item: VariantInfoProps) => void;
+    addItem: (item: VariantInfoProps) => Promise<void>;
     updateItem: (item: LineInfoProps) => void;
     deleteItem: (lineId: string) => void;
     resetCart: () => void;
@@ -49,6 +54,7 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
     const [cartId, setCartId] = useState<string | undefined>(undefined);
 
     const { cart } = useCart({ id: cartId });
+    const invalidate = useInvalidate();
 
     const storeRegion = (regionId: string, countryCode: string) => {
         if (!IS_SERVER) {
@@ -195,10 +201,10 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
     useEffect(() => {
         const ensureCart = async () => {
-            const cartId = getCart();
+            const retrievedCartId = getCart();
             const region = getRegion();
 
-            if (cartId) {
+            if (retrievedCartId) {
                 if (!cart || cart.completed_at) {
                     deleteCart();
                     await createNewCart(region?.regionId);
@@ -216,24 +222,28 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
         }
     }, []);
 
-    const addItem = ({
+    const addItem = async ({
         variantId,
         quantity,
     }: {
         variantId: string;
         quantity: number;
     }) => {
-        createMutate(
+        await createMutateAsync(
             {
                 resource: `carts/${cartId}/line-items`,
                 values: {
                     variant_id: variantId,
                     quantity: quantity,
                 },
-                invalidates: ["detail"],
             },
             {
                 onSuccess: ({ data: { cart } }) => {
+                    invalidate({
+                        resource: "carts",
+                        id: cartId,
+                        invalidates: ["all"],
+                    });
                     // TODO: make sure to update the cart in the store with the new line item
                     storeCart(cart.id);
                 },
