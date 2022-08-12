@@ -43,8 +43,7 @@ const IS_SERVER = typeof window === "undefined";
 const CART_KEY = "medusa_cart_id";
 
 export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
-    const { mutateAsync: createMutateAsync, mutate: createMutate } =
-        useCreate<StoreCartsRes>();
+    const { mutateAsync: createMutateAsync } = useCreate<StoreCartsRes>();
     const { mutateAsync: updateMutateAsync, mutate: updateMutate } =
         useUpdate<StoreCartsRes>();
     const { mutate: deleteMutate } = useDelete<StoreCartsRes>();

@@ -12,7 +12,12 @@ import React, { createContext, useContext, useEffect, useMemo } from "react";
 import { FormProvider, useForm, useFormContext } from "react-hook-form";
 import useToggleState, { StateType } from "@lib/hooks/useToggleState";
 import { useCartContext } from "@lib/context";
-import { useCreate, useList, useOne, useUpdate } from "@pankod/refine-core";
+import {
+    useCreate,
+    useInvalidate,
+    useOne,
+    useUpdate,
+} from "@pankod/refine-core";
 import Wrapper from "@components/checkout/PaymentWrapper";
 
 type AddressValues = {
@@ -59,6 +64,7 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
     children,
 }) => {
     const { push } = useRouter();
+    const invalidate = useInvalidate();
 
     const {
         mutate: createMutate,
@@ -70,25 +76,27 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
     const { cart, countryCode, cartId, resetCart } = useCartContext();
 
     //TODO: Is customer data ok?
-    const { data: customerData } = useOne<Customer>({
+    const { data: customerData } = useOne<{ customer: Customer }>({
         resource: "customers/me",
         id: "",
     });
-    const customer = customerData?.data;
+    const customer = customerData?.data.customer;
 
     const methods = useForm<CheckoutFormValues>({
         defaultValues: mapFormValues(customer, cart, countryCode),
         reValidateMode: "onChange",
     });
 
-    //TODO: Is shipping_options data ok?
-    const { data: shippingOptionsData } = useList<ShippingOption>({
-        resource: `shipping_methods/${cartId}`,
+    const { data: shippingOptionsData } = useOne<{
+        shipping_options: ShippingOption[];
+    }>({
+        resource: "shipping-options",
+        id: cartId!,
         queryOptions: {
             enabled: !!cartId,
         },
     });
-    const shipping_options = shippingOptionsData?.data;
+    const shipping_options = shippingOptionsData?.data.shipping_options;
 
     const editAddresses = useToggleState();
     const sameAsBilling = useToggleState(
@@ -169,8 +177,11 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
                 },
                 {
                     onSuccess: () => {
-                        //TODO: Do invalide cart?
-                        return;
+                        invalidate({
+                            resource: "carts",
+                            id: cartId,
+                            invalidates: ["all"],
+                        });
                     },
                 },
             );
@@ -188,8 +199,11 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
             },
             {
                 onSuccess: () => {
-                    //TODO: Do invalide cart?
-                    return;
+                    invalidate({
+                        resource: "carts",
+                        id: cartId,
+                        invalidates: ["all"],
+                    });
                 },
             },
         );
@@ -205,8 +219,11 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
             if (!paymentSession) {
                 setTimeout(initPayment, 500);
             } else {
-                //TODO: Do invalide cart?
-                return;
+                invalidate({
+                    resource: "carts",
+                    id: cartId,
+                    invalidates: ["all"],
+                });
             }
         }
     };
@@ -223,8 +240,11 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
                 },
                 {
                     onSuccess: () => {
-                        //TODO: Do invalide cart?
-                        return;
+                        invalidate({
+                            resource: "carts",
+                            id: cartId,
+                            invalidates: ["all"],
+                        });
                     },
                 },
             );
@@ -284,8 +304,12 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
                 id: cartId || "",
             },
             {
-                onSuccess: ({ cart }: any) => {
-                    //TODO: Do invalide cart?
+                onSuccess: () => {
+                    invalidate({
+                        resource: "carts",
+                        id: cartId,
+                        invalidates: ["all"],
+                    });
                     prepareFinalSteps();
                 },
             },

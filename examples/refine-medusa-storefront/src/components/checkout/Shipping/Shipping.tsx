@@ -5,7 +5,7 @@ import { ErrorMessage } from "@hookform/error-message";
 import { useCartContext } from "@lib/context";
 import { useCheckout } from "@lib/context/checkout";
 import { Cart } from "@medusajs/medusa";
-import { useCreate, useList } from "@pankod/refine-core";
+import { useCreate, useOne } from "@pankod/refine-core";
 import clsx from "clsx";
 import { ShippingOption as MedusaShippingOption } from "@medusajs/medusa";
 import { formatAmount } from "medusa-react";
@@ -42,15 +42,16 @@ const Shipping: React.FC<ShippingProps> = ({ cart }) => {
     });
 
     // Fetch shipping options
-    //TODO: Is shipping_options data ok?
-    const { data: shippingOptionsData, refetch } =
-        useList<MedusaShippingOption>({
-            resource: `shipping_methods/${cartId}`,
-            queryOptions: {
-                enabled: !!cartId,
-            },
-        });
-    const shipping_options = shippingOptionsData?.data;
+    const { data: shippingOptionsData, refetch } = useOne<{
+        shipping_options: MedusaShippingOption[];
+    }>({
+        resource: "shipping-options",
+        id: cartId!,
+        queryOptions: {
+            enabled: !!cartId,
+        },
+    });
+    const shipping_options = shippingOptionsData?.data.shipping_options;
 
     // Any time the cart changes we need to ensure that we are displaying valid shipping options
     useEffect(() => {

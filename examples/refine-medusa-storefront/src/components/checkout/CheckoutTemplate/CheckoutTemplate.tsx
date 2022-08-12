@@ -12,19 +12,20 @@ const CheckoutTemplate: React.FC = () => {
             <div className="small:min-h-screen relative bg-gray-100">
                 <div className="h-16 bg-white">
                     <nav className="content-container flex h-full items-center justify-between">
-                        <Link href="/cart">
-                            <a className="text-small-semi flex flex-1 basis-0 items-center gap-x-2 uppercase text-gray-700">
-                                <ChevronDown className="rotate-90" size={16} />
-                                <span className="small:block mt-px hidden">
-                                    Back to shopping cart
-                                </span>
-                                <span className="small:hidden mt-px block">
-                                    Back
-                                </span>
-                            </a>
+                        <Link
+                            href="/cart"
+                            className="text-small-semi flex flex-1 basis-0 items-center gap-x-2 uppercase text-gray-700"
+                        >
+                            <ChevronDown className="rotate-90" size={16} />
+                            <span className="small:block mt-px hidden">
+                                Back to shopping cart
+                            </span>
+                            <span className="small:hidden mt-px block">
+                                Back
+                            </span>
                         </Link>
-                        <Link href="/">
-                            <a className="text-xl-semi">ACME</a>
+                        <Link className="text-xl-semi" href="/">
+                            ACME
                         </Link>
                         <div className="flex-1 basis-0" />
                     </nav>

@@ -14,12 +14,11 @@ const ShippingAddress: React.FC = () => {
         formState: { errors, touchedFields },
     } = useFormContext<CheckoutFormValues>();
 
-    //TODO: Is customer data ok?
-    const { data: customerData } = useOne<Customer>({
+    const { data: customerData } = useOne<{ customer: Customer }>({
         resource: "customers/me",
         id: "",
     });
-    const customer = customerData?.data;
+    const customer = customerData?.data.customer;
 
     return (
         <div>
@@ -105,14 +104,7 @@ const ShippingAddress: React.FC = () => {
                         touched={touchedFields}
                     />
                 </div>
-                <CountrySelect
-                    {...register("shipping_address.country_code", {
-                        required: "Country is required",
-                    })}
-                    autoComplete="country"
-                    errors={errors}
-                    touched={touchedFields}
-                />
+                <CountrySelect />
                 <Input
                     label="State / Province"
                     {...register("shipping_address.province")}
