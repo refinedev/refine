@@ -1,24 +1,11 @@
-import { useContext } from "react";
-import { useOne } from "@pankod/refine-core";
-import { Cart } from "@medusajs/medusa";
-
-import { CartContext } from "@lib/context";
+import { useCartContext } from "@lib/context";
 import CartTotals from "../CardTotals";
 import DiscountCode from "../DiscountCode";
 import GiftCard from "../GiftCard";
 
 const CheckoutSummary: React.FC = () => {
-    const { cartId } = useContext(CartContext);
+    const { cart } = useCartContext();
 
-    const { data } = useOne<{ cart: Cart }>({
-        id: cartId!,
-        resource: "carts",
-        queryOptions: {
-            enabled: !!cartId,
-        },
-    });
-
-    const cart = data?.data.cart;
     if (!cart) {
         return null;
     }

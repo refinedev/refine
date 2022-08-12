@@ -1,44 +1,46 @@
-import React, { useContext } from "react";
-import { useOne } from "@pankod/refine-core";
-import { useFormContext } from "@pankod/refine-react-hook-form";
-import { Cart } from "@medusajs/medusa";
+import { useCart, useRegions } from "medusa-react";
+import { forwardRef, useImperativeHandle, useMemo, useRef } from "react";
+import NativeSelect, { NativeSelectProps } from "../NativeSelect";
 
-import { useCartContext } from "@lib/context";
-import NativeSelect from "../NativeSelect";
+const CountrySelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
+    ({ placeholder = "Country", ...props }, ref) => {
+        const innerRef = useRef<HTMLSelectElement>(null);
 
-const CountrySelect: React.FC = () => {
-    const { cart } = useCartContext();
+        useImperativeHandle<HTMLSelectElement | null, HTMLSelectElement | null>(
+            ref,
+            () => innerRef.current,
+        );
 
-    const {
-        register,
-        formState: { errors, touchedFields },
-    } = useFormContext();
+        const { regions } = useRegions();
+        const { cart } = useCart();
 
-    const { data: cartData } = useOne<{ cart: Cart }>({
-        id: cart?.id || "",
-        resource: "carts",
-        queryOptions: {
-            enabled: !!cart?.id,
-        },
-    });
-    const countries = cartData?.data.cart.region.countries;
+        const countryOptions = useMemo(() => {
+            const currentRegion = regions?.find(
+                (r) => r.id === cart?.region_id,
+            );
 
-    return (
-        <NativeSelect
-            label="Country/Region"
-            {...register("shipping_address.country_code", {
-                required: "country is required",
-            })}
-            errors={errors}
-            touched={touchedFields}
-        >
-            {countries?.map((country, index) => (
-                <option key={index} value={country.iso_2}>
-                    {country.display_name}
-                </option>
-            ))}
-        </NativeSelect>
-    );
-};
+            if (!currentRegion) {
+                return [];
+            }
+
+            return currentRegion.countries.map((country) => ({
+                value: country.iso_2,
+                label: country.display_name,
+            }));
+        }, [regions, cart]);
+
+        return (
+            <NativeSelect ref={innerRef} placeholder={placeholder} {...props}>
+                {countryOptions.map(({ value, label }, index) => (
+                    <option key={index} value={value}>
+                        {label}
+                    </option>
+                ))}
+            </NativeSelect>
+        );
+    },
+);
+
+CountrySelect.displayName = "CountrySelect";
 
 export default CountrySelect;
