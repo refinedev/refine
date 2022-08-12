@@ -34,7 +34,7 @@ export const importReplacer = (code: string): string => {
             line /* _defaultImport, _moduleImport, _asteriskImport, _packageName */,
         ] = match;
 
-        modified.replace(line, "");
+        modified = modified.replace(line, "");
 
         // if (defaultImport) {
         // const newLine = `const { ${
