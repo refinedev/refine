@@ -3,11 +3,11 @@ import { useOne } from "@pankod/refine-core";
 import { useFormContext } from "@pankod/refine-react-hook-form";
 import { Cart } from "@medusajs/medusa";
 
-import { CartContext } from "@lib/context";
+import { useCartContext } from "@lib/context";
 import NativeSelect from "../NativeSelect";
 
 const CountrySelect: React.FC = () => {
-    const { cartId } = useContext(CartContext);
+    const { cart } = useCartContext();
 
     const {
         register,
@@ -15,10 +15,10 @@ const CountrySelect: React.FC = () => {
     } = useFormContext();
 
     const { data: cartData } = useOne<{ cart: Cart }>({
-        id: cartId!,
+        id: cart?.id || "",
         resource: "carts",
         queryOptions: {
-            enabled: !!cartId,
+            enabled: !!cart?.id,
         },
     });
     const countries = cartData?.data.cart.region.countries;
