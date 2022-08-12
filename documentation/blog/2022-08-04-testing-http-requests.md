@@ -60,7 +60,7 @@ We'll use the Nock to find a solution for these problems. We'll create a simple 
 Nock is an HTTP server mocking and expectations library. Nock works by overriding Node's `http.request` function.
 
 
-It helps us mock calls to API and specifies what URLs we want to listen for and responds with predefined responses, just like how real APIs would do it.
+It helps us mock calls to API and specifies what URLs we want to listen for, and responds with predefined responses, just like real APIs would.
 
 We can use nock to test React components that make HTTP requests.
 
