@@ -1,5 +1,11 @@
 # @pankod/refine-remix-router
 
+## 1.0.2
+
+### Patch Changes
+
+-   Our Story with Remix begins 👊
+
 ## 1.0.1
 
 ### Patch Changes
