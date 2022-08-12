@@ -1,6 +1,5 @@
-import { ChevronDown } from "@components/icons";
 import { ErrorMessage } from "@hookform/error-message";
-import clsx from "clsx";
+import cn from "clsx";
 import {
     forwardRef,
     SelectHTMLAttributes,
@@ -9,12 +8,15 @@ import {
     useRef,
     useState,
 } from "react";
-import { get } from "react-hook-form";
+import { get } from "@pankod/refine-react-hook-form";
+
+import s from "./NativeSelect.module.css";
 
 export type NativeSelectProps = {
     placeholder?: string;
     errors?: Record<string, unknown>;
     touched?: Record<string, unknown>;
+    label: string;
 } & SelectHTMLAttributes<HTMLSelectElement>;
 
 const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
@@ -22,9 +24,11 @@ const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
         {
             placeholder = "Select...",
             errors,
+            label,
             touched,
             className,
             children,
+            required,
             ...props
         },
         ref,
@@ -50,37 +54,40 @@ const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
         }, [innerRef.current?.value]);
 
         return (
-            <div>
-                <div
-                    onFocus={() => innerRef.current?.focus()}
-                    onBlur={() => innerRef.current?.blur()}
-                    className={clsx(
-                        "text-base-regular relative flex items-center border border-gray-200",
-                        className,
-                        {
-                            "text-gray-500": isPlaceholder,
-                        },
-                    )}
+            <div
+                onFocus={() => innerRef.current?.focus()}
+                onBlur={() => innerRef.current?.blur()}
+                className={cn(s.fieldset, className, {
+                    "text-gray-500": isPlaceholder,
+                })}
+            >
+                <label
+                    htmlFor={props.name}
+                    onClick={() => innerRef.current?.focus()}
+                    className={cn(s.label, {
+                        "!text-rose-500": hasError,
+                    })}
                 >
-                    <select
-                        ref={innerRef}
-                        {...props}
-                        className="flex-1 appearance-none border-none bg-transparent px-4 py-2.5 outline-none transition-colors duration-150 focus:border-gray-700"
-                    >
-                        <option value="">{placeholder}</option>
-                        {children}
-                    </select>
-                    <span className="pointer-events-none absolute inset-y-0 right-4 flex items-center">
-                        <ChevronDown />
-                    </span>
-                </div>
+                    {label}
+                    {required && <span className="text-rose-500">*</span>}
+                </label>
+                <select
+                    ref={innerRef}
+                    className={cn(s.select, {
+                        "!border-rose-500 focus:!border-rose-500": hasError,
+                    })}
+                    {...props}
+                >
+                    <option value="">{placeholder}</option>
+                    {children}
+                </select>
                 {hasError && props.name && (
                     <ErrorMessage
                         errors={errors}
                         name={props.name}
                         render={({ message }) => {
                             return (
-                                <div className="text-xsmall-regular pt-1 pl-2 text-rose-500">
+                                <div className="pt-1 text-xs text-rose-500">
                                     <span>{message}</span>
                                 </div>
                             );

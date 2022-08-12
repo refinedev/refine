@@ -1,9 +1,9 @@
 import Spinner from "@components/icons/Spinner";
 import Button from "@components/ui/Button";
+import { useCartContext } from "@lib/context";
 import { useCheckout } from "@lib/context/checkout";
 import { PaymentSession } from "@medusajs/medusa";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
-import { useCart } from "medusa-react";
 import React, { useEffect, useState } from "react";
 
 type PaymentButtonProps = {
@@ -12,7 +12,7 @@ type PaymentButtonProps = {
 
 const PaymentButton: React.FC<PaymentButtonProps> = ({ paymentSession }) => {
     const [notReady, setNotReady] = useState(true);
-    const { cart } = useCart();
+    const { cart } = useCartContext();
 
     useEffect(() => {
         setNotReady(true);
@@ -67,7 +67,7 @@ const StripePaymentButton = ({
     const [errorMessage, setErrorMessage] =
         useState<string | undefined>(undefined);
 
-    const { cart } = useCart();
+    const { cart } = useCartContext();
     const { onPaymentCompleted } = useCheckout();
 
     const stripe = useStripe();

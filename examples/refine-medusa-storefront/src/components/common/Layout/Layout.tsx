@@ -13,7 +13,6 @@ import ShippingView from "@components/checkout/ShippingView";
 import CartSidebarView from "@components/cart/CartSidebarView";
 import { useAcceptCookies } from "@lib/hooks/useAcceptCookies";
 import { Sidebar, Button, LoadingDots } from "@components/ui";
-import PaymentMethodView from "@components/checkout/PaymentMethodView";
 import CheckoutSidebarView from "@components/checkout/CheckoutSidebarView";
 import { CheckoutProvider } from "@components/checkout/context";
 import { MenuSidebarView } from "@components/common/UserNav";
@@ -86,7 +85,6 @@ const SidebarView: React.FC<{
         <Sidebar onClose={closeSidebar}>
             {sidebarView === "CART_VIEW" && <CartSidebarView />}
             {sidebarView === "SHIPPING_VIEW" && <ShippingView />}
-            {sidebarView === "PAYMENT_VIEW" && <PaymentMethodView />}
             {sidebarView === "CHECKOUT_VIEW" && <CheckoutSidebarView />}
             {sidebarView === "MOBILE_MENU_VIEW" && (
                 <MenuSidebarView links={links} />

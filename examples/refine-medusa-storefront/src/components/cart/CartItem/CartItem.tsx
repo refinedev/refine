@@ -7,7 +7,7 @@ import s from "./CartItem.module.css";
 import { useUI } from "@components/ui/context";
 // import type { LineItem } from "@commerce/types/cart";
 import Quantity from "@components/ui/Quantity";
-import useCart from "@lib/hooks/useCart";
+import { useCartContext } from "@lib/context";
 
 type ItemOption = {
     name: string;
@@ -36,7 +36,7 @@ const CartItem = ({
     const { mutate: updateMutate } = useUpdate();
     const invalidate = useInvalidate();
 
-    const { cart } = useCart();
+    const { cart } = useCartContext();
 
     const updateItem = (quantity: number) => {
         return updateMutate({

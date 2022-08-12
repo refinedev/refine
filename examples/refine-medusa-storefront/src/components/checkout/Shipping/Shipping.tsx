@@ -2,10 +2,13 @@ import Radio from "@components/common/Radio";
 import Spinner from "@components/icons/Spinner";
 import { RadioGroup } from "@headlessui/react";
 import { ErrorMessage } from "@hookform/error-message";
+import { useCartContext } from "@lib/context";
 import { useCheckout } from "@lib/context/checkout";
 import { Cart } from "@medusajs/medusa";
+import { useCreate, useList } from "@pankod/refine-core";
 import clsx from "clsx";
-import { formatAmount, useCart, useCartShippingOptions } from "medusa-react";
+import { ShippingOption as MedusaShippingOption } from "@medusajs/medusa";
+import { formatAmount } from "medusa-react";
 import React, { useEffect, useMemo } from "react";
 import { Controller, useForm } from "react-hook-form";
 import StepContainer from "../StepContainer";
@@ -25,7 +28,9 @@ type ShippingFormProps = {
 };
 
 const Shipping: React.FC<ShippingProps> = ({ cart }) => {
-    const { addShippingMethod, setCart } = useCart();
+    const { mutate } = useCreate();
+    const { cartId } = useCartContext();
+
     const {
         control,
         setError,
@@ -37,9 +42,15 @@ const Shipping: React.FC<ShippingProps> = ({ cart }) => {
     });
 
     // Fetch shipping options
-    const { shipping_options, refetch } = useCartShippingOptions(cart.id, {
-        enabled: !!cart.id,
-    });
+    //TODO: Is shipping_options data ok?
+    const { data: shippingOptionsData, refetch } =
+        useList<MedusaShippingOption>({
+            resource: `shipping_methods/${cartId}`,
+            queryOptions: {
+                enabled: !!cartId,
+            },
+        });
+    const shipping_options = shippingOptionsData?.data;
 
     // Any time the cart changes we need to ensure that we are displaying valid shipping options
     useEffect(() => {
@@ -51,10 +62,12 @@ const Shipping: React.FC<ShippingProps> = ({ cart }) => {
     }, [cart, refetch]);
 
     const submitShippingOption = (soId: string) => {
-        addShippingMethod.mutate(
-            { option_id: soId },
+        mutate(
             {
-                onSuccess: ({ cart }) => setCart(cart),
+                resource: `carts/${cartId}`,
+                values: { option_id: soId },
+            },
+            {
                 onError: () =>
                     setError(
                         "soId",
