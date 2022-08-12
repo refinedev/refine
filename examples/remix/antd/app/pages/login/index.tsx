@@ -50,7 +50,7 @@ export const Login: React.FC = () => {
                             <Form<ILoginForm>
                                 component="form"
                                 layout="vertical"
-                                id="myForm"
+                                id="loginForm"
                                 form={form}
                                 method="post"
                                 requiredMark={false}
@@ -115,7 +115,7 @@ export const Login: React.FC = () => {
                                         form.validateFields().then(() => {
                                             (
                                                 document.getElementById(
-                                                    "myForm",
+                                                    "loginForm",
                                                 ) as HTMLFormElement
                                             ).submit();
                                         });
