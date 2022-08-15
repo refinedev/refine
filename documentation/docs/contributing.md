@@ -402,6 +402,8 @@ render(
 | `RefineAntd`              | `@pankod/refine-antd`                                                                                                   |
 | `RefineMui`               | `@pankod/refine-mui`                                                                                                    |
 | `RefineReactRouterV6`     | `@pankod/refine-react-router-v6`                                                                                        |
+| `RefineReactHookForm`     | `@pankod/refine-react-hook-form`                                                                                        |
+| `RefineReactTable`        | `@pankod/refine-react-table`                                                                                            |
 | `RefineHeadlessDemo`      | Predefined `<Refine/>` component with simple-rest and react-router-v6 props for easier use                              |
 | `RefineMuiDemo`           | Predefined `<Refine/>` component with Material UI, simple-rest and react-router-v6 props for easier use                 |
 | `RefineAntdDemo`          | Predefined `<Refine/>` component with Ant Design, simple-rest and react-router-v6 props for easier use                  |

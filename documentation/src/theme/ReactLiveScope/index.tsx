@@ -4,6 +4,9 @@ import * as RefineReactRouterV6 from "@pankod/refine-react-router-v6";
 import * as RefineAntd from "@pankod/refine-antd";
 import * as RefineMui from "@pankod/refine-mui";
 import * as RefineSimpleRest from "@pankod/refine-simple-rest";
+import * as RefineReactHookForm from "@pankod/refine-react-hook-form";
+import * as RefineReactTable from "@pankod/refine-react-table";
+
 import "@pankod/refine-antd/dist/antd.min.css";
 
 export const packageMap = {
@@ -12,6 +15,8 @@ export const packageMap = {
     "@pankod/refine-antd": "RefineAntd",
     "@pankod/refine-mui": "RefineMui",
     "@pankod/refine-simple-rest": "RefineSimpleRest",
+    "@pankod/refine-react-hook-form": "RefineReactHookForm",
+    "@pankod/refine-react-table": "RefineReactTable",
 };
 
 const packageRegex =
@@ -307,5 +312,7 @@ const ReactLiveScope = {
     RefineAntdDemo,
     RefineMuiDemo,
     RefineDemoReactRouterV6,
+    RefineReactHookForm,
+    RefineReactTable,
 };
 export default ReactLiveScope;
