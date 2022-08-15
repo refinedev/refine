@@ -1,23 +1,14 @@
+import React from "react";
+import clsx from "clsx";
+import { RadioGroup } from "@headlessui/react";
+import { Controller, useForm } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
+import { Cart } from "@medusajs/medusa";
+
 import Radio from "@components/common/Radio";
 import Spinner from "@components/icons/Spinner";
-import { RadioGroup } from "@headlessui/react";
-import { ErrorMessage } from "@hookform/error-message";
-import { useCartContext } from "@lib/context";
 import { useCheckout } from "@lib/context/checkout";
-import { Cart } from "@medusajs/medusa";
-import { useCreate, useOne } from "@pankod/refine-core";
-import clsx from "clsx";
-import { ShippingOption as MedusaShippingOption } from "@medusajs/medusa";
-import { formatAmount } from "medusa-react";
-import React, { useEffect, useMemo } from "react";
-import { Controller, useForm } from "react-hook-form";
 import StepContainer from "../StepContainer";
-
-type ShippingOption = {
-    value: string;
-    label: string;
-    price: string;
-};
 
 type ShippingProps = {
     cart: Omit<Cart, "refundable_amount" | "refunded_total">;
@@ -28,8 +19,7 @@ type ShippingFormProps = {
 };
 
 const Shipping: React.FC<ShippingProps> = ({ cart }) => {
-    const { mutate } = useCreate();
-    const { cartId } = useCartContext();
+    const { shippingMethods, setShippingOption } = useCheckout();
 
     const {
         control,
@@ -41,68 +31,26 @@ const Shipping: React.FC<ShippingProps> = ({ cart }) => {
         },
     });
 
-    // Fetch shipping options
-    const { data: shippingOptionsData, refetch } = useOne<{
-        shipping_options: MedusaShippingOption[];
-    }>({
-        resource: "shipping-options",
-        id: cartId!,
-        queryOptions: {
-            enabled: !!cartId,
-        },
-    });
-    const shipping_options = shippingOptionsData?.data.shipping_options;
-
-    // Any time the cart changes we need to ensure that we are displaying valid shipping options
-    useEffect(() => {
-        const refetchShipping = async () => {
-            await refetch();
-        };
-
-        refetchShipping();
-    }, [cart, refetch]);
-
     const submitShippingOption = (soId: string) => {
-        mutate(
-            {
-                resource: `carts/${cartId}`,
-                values: { option_id: soId },
-            },
-            {
-                onError: () =>
-                    setError(
-                        "soId",
-                        {
-                            type: "validate",
-                            message:
-                                "An error occurred while adding shipping. Please try again.",
-                        },
-                        { shouldFocus: true },
-                    ),
-            },
-        );
+        try {
+            setShippingOption(soId);
+        } catch (error) {
+            setError(
+                "soId",
+                {
+                    type: "validate",
+                    message:
+                        "An error occurred while adding shipping. Please try again.",
+                },
+                { shouldFocus: true },
+            );
+        }
     };
 
     const handleChange = (value: string, fn: (value: string) => void) => {
         submitShippingOption(value);
         fn(value);
     };
-
-    // Memoized shipping method options
-    const shippingMethods: ShippingOption[] = useMemo(() => {
-        if (shipping_options && cart?.region) {
-            return shipping_options?.map((option) => ({
-                value: option.id,
-                label: option.name,
-                price: formatAmount({
-                    amount: option.amount || 0,
-                    region: cart.region,
-                }),
-            }));
-        }
-
-        return [];
-    }, [shipping_options, cart]);
 
     const {
         sameAsBilling: { state: sameBilling },
