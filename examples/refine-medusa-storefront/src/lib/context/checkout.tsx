@@ -332,7 +332,7 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
             {
                 onSuccess: ({ data }) => {
                     resetCart();
-                    push(`/order/confirmed/${data.id}`);
+                    push(`/order/confirmed/${data.data.id}`);
                 },
             },
         );
