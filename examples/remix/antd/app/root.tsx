@@ -13,7 +13,8 @@ import { Layout, ReadyPage } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-remix-router";
 
-import styles from "@pankod/refine-antd/dist/styles.min.css";
+import resetStyle from "@pankod/refine-antd/dist/reset.min.css";
+import antdStyle from "@pankod/refine-antd/dist/antd.min.css";
 
 import { authProvider } from "./authProvider";
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages/posts";
@@ -61,5 +62,8 @@ export default function App() {
 }
 
 export function links() {
-    return [{ rel: "stylesheet", href: styles }];
+    return [
+        { rel: "stylesheet", href: antdStyle },
+        { rel: "stylesheet", href: resetStyle },
+    ];
 }
