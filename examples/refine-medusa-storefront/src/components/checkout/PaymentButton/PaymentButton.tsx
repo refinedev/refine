@@ -48,8 +48,6 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({ paymentSession }) => {
                     notReady={notReady}
                 />
             );
-        case "manual":
-            return <ManualTestPaymentButton notReady={notReady} />;
         default:
             return <Button disabled>Select a payment method</Button>;
     }
@@ -158,26 +156,6 @@ const StripePaymentButton = ({
                 </div>
             )}
         </>
-    );
-};
-
-const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
-    const [submitting, setSubmitting] = useState(false);
-
-    const { onPaymentCompleted } = useCheckout();
-
-    const handlePayment = () => {
-        setSubmitting(true);
-
-        onPaymentCompleted();
-
-        setSubmitting(false);
-    };
-
-    return (
-        <Button disabled={submitting || notReady} onClick={handlePayment}>
-            {submitting ? <Spinner /> : "Checkout"}
-        </Button>
     );
 };
 
