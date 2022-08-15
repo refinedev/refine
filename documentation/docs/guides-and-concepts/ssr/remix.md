@@ -191,6 +191,12 @@ export const loader: LoaderFunction = async ({ params, request, context }) => {
 };
 // highlight-end
 
+interface IPost {
+    id: number;
+    title: string;
+    status: string;
+}
+
 export default PostList;
 ```
 
@@ -202,7 +208,7 @@ We used `getList` from `dataProvider` but data can be fetched in any way you des
 
 ## Standard CRUD Page
 
-**refine-router** package provides `RemixRouteComponent` for pages with the dynamic route `/[resource]/[action]/[id]` and root `/`. Simply export the component from the page and add a [loader function][loader]
+**@pankod/refine-remix-router** package provides `RemixRouteComponent` for pages with the dynamic route `/[resource]/[action]/[id]` and root `/`. Simply export the component from the page and add a [loader function][loader]
 
 ```tsx title="routes/index.tsx"
 export { RemixRouteComponent as default } from "@pankod/refine-remix-router";
@@ -246,7 +252,6 @@ export { RemixRouteComponent as default } from "@pankod/refine-remix-router";
 const API_URL = "https://api.fake-rest.refine.dev";
 export const loader: LoaderFunction = async ({ params, request }) => {
     const { resource } = params;
-    const url = new URL(request.url);
 
     try {
         const data = await dataProvider(API_URL).getList({
@@ -262,7 +267,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 
 And in the `list` component for a `resource` e.g. "posts":
 
-```tsx title="src/components/posts/list.tsx"
+```tsx title="app/pages/posts/list.tsx"
 // highlight-next-line
 import { useLoaderData } from "@remix-run/react";
 import { useTable, GetListResponse, IResourceComponentsProps } from "@pankod/refine-core";
@@ -273,7 +278,7 @@ export const PostList: React.FC<
     // highlight-next-line
     const { initialData } = useLoaderData();
 
-    const { tableProps } = useTable<IPost>({
+    const { tableQueryResult } = useTable<IPost>({
         // highlight-start
         queryOptions: {
             initialData,
@@ -291,7 +296,7 @@ export const PostList: React.FC<
                 </tr>
             </thead>
             <tbody>
-                {tableQueryResult.data?.data.map((post) => (
+                {tableQueryResult?.data?.data.map((post) => (
                     <tr key={post.id}>
                         <td>{post.id}</td>
                         <td>{post.title}</td>
@@ -307,6 +312,59 @@ interface IPost {
     id: number;
     title: string;
     status: string;
+}
+```
+
+Finally, let's give our `PostList` page as a `resource` to `<Refine>`
+
+```tsx title="app/root.tsx"
+import type { MetaFunction } from "@remix-run/node";
+import {
+    Links,
+    LiveReload,
+    Meta,
+    Outlet,
+    Scripts,
+    ScrollRestoration,
+} from "@remix-run/react";
+import { Refine } from "@pankod/refine-core";
+import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-remix-router";
+
+import { PostList } from "./pages/posts/list";
+
+export const meta: MetaFunction = () => ({
+    charset: "utf-8",
+    title: "New Remix + Refine App",
+    viewport: "width=device-width,initial-scale=1",
+});
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+export default function App() {
+    return (
+        <html lang="en">
+            <head>
+                <Meta />
+                <Links />
+            </head>
+            <body>
+                <Refine
+                    dataProvider={dataProvider(API_URL)}
+                    routerProvider={routerProvider}
+                    resources={[{
+                      name: "posts",
+                      list: PostList
+                    }]}
+                >
+                    <Outlet />
+                </Refine>
+                <ScrollRestoration />
+                <Scripts />
+                <LiveReload />
+            </body>
+        </html>
+    );
 }
 ```
 
