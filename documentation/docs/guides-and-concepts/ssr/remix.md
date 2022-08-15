@@ -620,12 +620,12 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 
 `parseTableParams` parses the query string and returns query parameters([refer here for their interfaces][interfaces]). They can be directly used for `dataProvider` methods that accepts them.
 
-## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/refine-next/?embed=1&view=preview&theme=dark&preset=node"
-    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-next"
-></iframe>
+## Examples
+
+- [Ant Design](https://ant.design/) CRUD app example ([source code](https://github.com/pankod/refine/tree/next/examples/remix/antd))
+- Headless CRUD app example ([source code](https://github.com/pankod/refine/tree/next/examples/remix/headless))
+
 
 [Remix]: https://remix.run/
 [RemixRouter]: https://www.npmjs.com/package/@pankod/remix-router
