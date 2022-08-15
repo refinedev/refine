@@ -143,6 +143,7 @@ import { LayoutWrapper, useTable } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 
 export const PostList: React.FC = () => {
+    // highlight-next-line
     const { initialData } = useLoaderData();
 
     const { tableQueryResult } = useTable<IPost>({
