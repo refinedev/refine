@@ -1039,6 +1039,10 @@
         {
             "from": "/docs/examples/command-palette/kbar/",
             "to": "/docs/examples/command-palette/"
+        },
+        {
+            "from": "/docs/guides-and-concepts/ssr-nextjs/",
+            "to": "/docs/guides-and-concepts/ssr/nextjs/"
         }
     ]
 }
