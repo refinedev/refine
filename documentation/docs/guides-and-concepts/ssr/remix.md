@@ -23,11 +23,9 @@ To make this example more visual, we used the [`@pankod/refine-antd`](https://gi
 
 ## Usage
 
-Let's configure the [`<Refine>`][refine] component to wrap `<Outlet>` component in your `root.tsx` file. This way your [routes][RemixRoutes] are integrated to **refine**.
+`<Refine>` should be wrapped in your `<Outlet>` component located in `app/root.tsx`. This way your [routes][RemixRoutes] are integrated to **refine**.
 
-[**@pankod/refine-remix-router**][RemixRouter] package provided by **refine** must be used for the [`routerProvider`][routerProvider]
-
-```tsx title="root.tsx"
+```tsx title="app/root.tsx"
 import type { MetaFunction } from "@remix-run/node";
 import {
     Links,
@@ -39,6 +37,7 @@ import {
 } from "@remix-run/react";
 import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
+// highlight-next-line
 import routerProvider from "@pankod/refine-remix-router";
 
 export const meta: MetaFunction = () => ({
@@ -132,14 +131,14 @@ We also used `<LayoutWrapper>` to show the page in the layout provided to [`<Ref
 **refine** uses [react-query][ReactQuery] in its hooks for data management. [Following react-query's guide][ReactQuerySSR], SSR can be achieved like this:
 
 ```tsx title="routes/posts.tsx"
-// higlight-start
+// highlight-start
 import { json, LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-// higlight-end
+// highlight-end
 
 import { LayoutWrapper, useTable } from "@pankod/refine-core";
 
-// higlight-next-line
+// highlight-next-line
 import dataProvider from "@pankod/refine-simple-rest";
 
 export const PostList: React.FC = () => {
@@ -532,14 +531,14 @@ export const action: ActionFunction = async ({ request }) => {
     const username = form.get("username") as string;
     const password = form.get("password") as string;
     const redirectTo = form.get("redirectTo") || "/";
-    // higlight-start
+    // highlight-start
     const user = await login({ username, password });
     if (!user) {
         return null;
     }
 
     return createUserSession(user as any, redirectTo as string);
-    // higlight-end
+    // highlight-end
 };
 
 export default LoginPage;
@@ -555,11 +554,11 @@ We can call the `requireUserId` function on our routes where we want the authent
 
 ```tsx
 import { json, LoaderFunction } from "@remix-run/node";
-//higlight-next-line
+//highlight-next-line
 import { requireUserId } from "~/session.server";
 
 export const loader: LoaderFunction = async ({ params, request, context }) => {
-    //higlight-next-line
+    //highlight-next-line
     await requireUserId(request);
 
     return json({});
