@@ -50,7 +50,17 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
     const [countryCode, setCountryCode] =
         useState<string | undefined>(undefined);
-    const [cartId, setCartId] = useState<string | undefined>(undefined);
+
+    const getCart = () => {
+        if (!IS_SERVER) {
+            return localStorage.getItem(CART_KEY);
+        }
+        return null;
+    };
+
+    const [cartId, setCartId] = useState<string | undefined>(
+        getCart() || undefined,
+    );
 
     const { cart } = useCart({ id: cartId });
     const invalidate = useInvalidate();
@@ -135,13 +145,6 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
         }
     };
 
-    const getCart = () => {
-        if (!IS_SERVER) {
-            return localStorage.getItem(CART_KEY);
-        }
-        return null;
-    };
-
     const deleteCart = () => {
         if (!IS_SERVER) {
             localStorage.removeItem(CART_KEY);
@@ -201,9 +204,11 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
     useEffect(() => {
         const ensureCart = async () => {
             const retrievedCartId = getCart();
+            console.log("retrievedCartId", retrievedCartId);
             const region = getRegion();
 
             if (retrievedCartId) {
+                console.log("cart", cart);
                 if (!cart || cart.completed_at) {
                     deleteCart();
                     await createNewCart(region?.regionId);
