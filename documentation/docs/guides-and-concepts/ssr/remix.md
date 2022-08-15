@@ -47,6 +47,7 @@ export const meta: MetaFunction = () => ({
     viewport: "width=device-width,initial-scale=1",
 });
 
+// highlight-next-line
 const API_URL = "https://api.fake-rest.refine.dev";
 
 export default function App() {
