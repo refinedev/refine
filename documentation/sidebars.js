@@ -466,7 +466,14 @@ module.exports = {
                         "guides-and-concepts/search/table-search",
                     ],
                 },
-                "guides-and-concepts/ssr-nextjs",
+                {
+                    type: "category",
+                    label: "SSR",
+                    items: [
+                        "guides-and-concepts/ssr/remix",
+                        "guides-and-concepts/ssr/nextjs",
+                    ],
+                },
                 {
                     type: "category",
                     label: "Upload",
