@@ -35,10 +35,11 @@ import {
     Scripts,
     ScrollRestoration,
 } from "@remix-run/react";
+// highlight-start
 import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
-// highlight-next-line
 import routerProvider from "@pankod/refine-remix-router";
+// highlight-end
 
 export const meta: MetaFunction = () => ({
     charset: "utf-8",
