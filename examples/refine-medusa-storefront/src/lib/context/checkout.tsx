@@ -95,6 +95,9 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
         queryOptions: {
             enabled: !!cartId,
         },
+        metaData: {
+            cart,
+        },
     });
     const shipping_options = shippingOptionsData?.data.shipping_options;
 
@@ -172,7 +175,7 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
         if (cart) {
             createMutate(
                 {
-                    resource: `carts/${cart.id}/shipping_methods`,
+                    resource: `carts/${cartId}/shipping-methods`,
                     values: { option_id: soId },
                 },
                 {
@@ -180,7 +183,7 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
                         invalidate({
                             resource: "carts",
                             id: cartId,
-                            invalidates: ["all"],
+                            invalidates: ["detail"],
                         });
                     },
                 },
@@ -194,7 +197,7 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
     const createPaymentSession = async (cartId: string) => {
         return createMutateAsync(
             {
-                resource: `carts/${cartId}/payment_sessions`,
+                resource: `carts/${cartId}/payment-sessions`,
                 values: {},
             },
             {
@@ -202,7 +205,7 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
                     invalidate({
                         resource: "carts",
                         id: cartId,
-                        invalidates: ["all"],
+                        invalidates: ["detail"],
                     });
                 },
             },
@@ -222,7 +225,7 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
                 invalidate({
                     resource: "carts",
                     id: cartId,
-                    invalidates: ["all"],
+                    invalidates: ["detail"],
                 });
             }
         }
@@ -235,7 +238,7 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
         if (cart) {
             createMutate(
                 {
-                    resource: `carts/${cart.id}/payment_sessions`,
+                    resource: `carts/${cart.id}/payment-session`,
                     values: { provider_id: providerId },
                 },
                 {
@@ -243,7 +246,7 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
                         invalidate({
                             resource: "carts",
                             id: cartId,
-                            invalidates: ["all"],
+                            invalidates: ["detail"],
                         });
                     },
                 },
@@ -285,6 +288,7 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
         const payload: StorePostCartsCartReq = {
             shipping_address,
             email,
+            country_code: shipping_address.country_code,
         };
 
         if (isEqual(shipping_address, billing_address)) {
@@ -308,7 +312,7 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
                     invalidate({
                         resource: "carts",
                         id: cartId,
-                        invalidates: ["all"],
+                        invalidates: ["detail"],
                     });
                     prepareFinalSteps();
                 },
