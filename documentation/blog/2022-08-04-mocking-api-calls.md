@@ -1,5 +1,5 @@
 ---
-title: Mocking API calls in React Using Nock
+title: Mocking API calls in React Tests with Nock
 description: How to test API calls in React?
 slug: mocking-api-calls-in-react
 authors: necati
@@ -37,7 +37,7 @@ Steps we'll cover:
 - [Recording in Nock](#recording-in-nock)
 - [Alternative API mocking libraries](#alternative-api-mocking-libraries)
 - [Conclusion](#conclusion)
-- [Build your React based CRUD applications without constraints](#build-your-react-based-crud-applications-without-constraints)
+- [Build your React-based CRUD applications without constraints](#build-your-react-based-crud-applications-without-constraints)
 
 
 ## Why mocking HTTP requests during testing is important?
