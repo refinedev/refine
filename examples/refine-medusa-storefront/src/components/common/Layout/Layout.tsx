@@ -3,12 +3,13 @@ import { LayoutProps, useList } from "@pankod/refine-core";
 import dynamic from "next/dynamic";
 
 import { Sidebar, Button, LoadingDots } from "@components/ui";
-import { MenuSidebarView, Footer, Navbar } from "@components/common";
-import { ShippingView, CheckoutSidebarView } from "@components/checkout";
 import { CheckoutProvider } from "@components/checkout/context";
+import { MenuSidebarView, Footer, Navbar } from "@components/common";
 import { useUI } from "@components/ui/context";
-import { LoginView } from "@components/auth";
+import LoginView from "@components/auth/LoginView";
+import { CartSidebarView } from "@components/cart";
 import { useAcceptCookies } from "@lib/hooks/useAcceptCookies";
+
 import s from "./Layout.module.css";
 
 const Loading = () => (
@@ -41,13 +42,6 @@ const Modal = dynamic(() => import("@components/ui/Modal"), {
     ssr: false,
 });
 
-// interface Props {
-//     pageProps: {
-//         pages?: Page[];
-//         categories: Category[];
-//     };
-// }
-
 const ModalView: React.FC<{ modalView: string; closeModal(): any }> = ({
     modalView,
     closeModal,
@@ -70,15 +64,12 @@ const ModalUI: React.FC = () => {
 
 const SidebarView: React.FC<{
     sidebarView: string;
-    closeSidebar(): any;
+    closeSidebar: () => void;
     links: any[];
 }> = ({ sidebarView, closeSidebar, links }) => {
     return (
         <Sidebar onClose={closeSidebar}>
-            {/* {sidebarView === "CART_VIEW" && <CartSidebarView />} */}{" "}
-            {/* TODO: check the usage of CartSidebarView */}
-            {sidebarView === "SHIPPING_VIEW" && <ShippingView />}
-            {sidebarView === "CHECKOUT_VIEW" && <CheckoutSidebarView />}
+            {sidebarView === "CART_VIEW" && <CartSidebarView />}
             {sidebarView === "MOBILE_MENU_VIEW" && (
                 <MenuSidebarView links={links} />
             )}

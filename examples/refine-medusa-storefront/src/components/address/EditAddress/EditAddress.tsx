@@ -5,8 +5,8 @@ import { Address, Country, Region } from "@medusajs/medusa";
 
 import { Trash, Edit } from "@icons";
 import { LoadingDots, Modal, Button } from "@components";
-import Input from "@components/common/Input";
-import NativeSelect from "@components/common/NativeSelect";
+import { Input } from "@components/common/Input";
+import { NativeSelect } from "@components/common/NativeSelect";
 import { useDelete, useList } from "@pankod/refine-core";
 
 type FormValues = {

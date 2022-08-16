@@ -1,63 +1,39 @@
-import { FC, useEffect, useState, useCallback } from "react";
-import { validate } from "email-validator";
+import { useForm } from "react-hook-form";
+
 import { useUI } from "@components/ui/context";
-import { Logo, Button, Input } from "@components/ui";
+import { Logo, Button } from "@components/ui";
+import { Input } from "@components/common";
+import { emailRegex } from "@lib/regex";
 
-const ForgotPassword: FC = () => {
-    // Form State
-    const [email, setEmail] = useState("");
-    const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState("");
-    const [dirty, setDirty] = useState(false);
-    const [disabled, setDisabled] = useState(false);
+const ForgotPassword: React.FC = () => {
+    const { setModalView } = useUI();
 
-    const { setModalView, closeModal } = useUI();
-
-    const handleResetPassword = async (
-        e: React.SyntheticEvent<EventTarget>,
-    ) => {
-        e.preventDefault();
-
-        if (!dirty && !disabled) {
-            setDirty(true);
-            handleValidation();
-        }
-    };
-
-    const handleValidation = useCallback(() => {
-        // Unable to send form unless fields are valid.
-        if (dirty) {
-            setDisabled(!validate(email));
-        }
-    }, [email, dirty]);
-
-    useEffect(() => {
-        handleValidation();
-    }, [handleValidation]);
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, touchedFields },
+    } = useForm();
 
     return (
         <form
-            onSubmit={handleResetPassword}
+            onSubmit={handleSubmit((values) => console.log(values))}
             className="flex w-80 flex-col justify-between p-3"
         >
             <div className="flex justify-center pb-12 ">
                 <Logo width="64px" height="64px" />
             </div>
             <div className="flex flex-col space-y-4">
-                {message && (
-                    <div className="text-red border-red border p-3">
-                        {message}
-                    </div>
-                )}
-
-                <Input placeholder="Email" onChange={setEmail} type="email" />
+                <Input
+                    label="Email"
+                    {...register("email", {
+                        required: "email is required",
+                        pattern: emailRegex,
+                    })}
+                    errors={errors}
+                    touched={touchedFields}
+                />
                 <div className="flex w-full flex-col pt-2">
-                    <Button
-                        variant="slim"
-                        type="submit"
-                        loading={loading}
-                        disabled={disabled}
-                    >
+                    <Button variant="slim" type="submit">
                         Recover Password
                     </Button>
                 </div>
