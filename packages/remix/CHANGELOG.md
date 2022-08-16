@@ -1,5 +1,11 @@
 # @pankod/refine-remix-router
 
+## 1.2.0
+
+### Minor Changes
+
+-   Add `checkAuthentication` to handle authentication processes more easily
+
 ## 1.1.0
 
 ### Minor Changes
