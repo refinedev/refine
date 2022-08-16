@@ -1,4 +1,8 @@
-import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
+import {
+    QueryObserverResult,
+    useQuery,
+    UseQueryOptions,
+} from "@tanstack/react-query";
 
 import {
     CustomResponse,
@@ -80,7 +84,20 @@ export const useCustom = <
                 url,
                 { ...config, ...metaData },
             ],
-            () => custom<TData>({ url, method, ...config, metaData }),
+            ({ queryKey, pageParam, signal }) =>
+                custom<TData>({
+                    url,
+                    method,
+                    ...config,
+                    metaData: {
+                        ...metaData,
+                        queryContext: {
+                            queryKey,
+                            pageParam,
+                            signal,
+                        },
+                    },
+                }),
             {
                 ...queryOptions,
                 onSuccess: (data) => {

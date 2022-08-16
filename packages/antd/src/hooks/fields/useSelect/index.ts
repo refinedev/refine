@@ -1,5 +1,5 @@
 import { SelectProps } from "antd/lib/select";
-import { QueryObserverResult } from "react-query";
+import { QueryObserverResult } from "@tanstack/react-query";
 
 import {
     useSelect as useSelectCore,

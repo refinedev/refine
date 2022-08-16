@@ -1,5 +1,29 @@
 # @pankod/refine-react-hook-form
 
+## 3.31.4
+
+### Patch Changes
+
+-   Added type checking to fix fields reset bug
+
+## 3.31.3
+
+### Patch Changes
+
+-   [#2296](https://github.com/pankod/refine/pull/2296) [`cca5a3d0c1`](https://github.com/pankod/refine/commit/cca5a3d0c14a20e0454c6e15cc44abdcfe6420c5) Thanks [@ozkalai](https://github.com/ozkalai)! - Added type checking to fix fields reset bug
+
+## 3.31.2
+
+### Patch Changes
+
+-   Fixed immediate triggering of `handleSubmit`
+
+## 3.31.1
+
+### Patch Changes
+
+-   [#2288](https://github.com/pankod/refine/pull/2288) [`6847672849`](https://github.com/pankod/refine/commit/68476728494dc0fd412883de30e2c99c75a1d559) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed immediate triggering of `handleSubmit`
+
 ## 3.31.0
 
 ### Minor Changes

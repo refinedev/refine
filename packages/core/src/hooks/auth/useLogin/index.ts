@@ -1,5 +1,5 @@
 import React from "react";
-import { useMutation, UseMutationResult } from "react-query";
+import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import qs from "qs";
 
 import { AuthContext } from "@contexts/auth";
@@ -33,7 +33,7 @@ export const useLogin = <TVariables = {}>(): UseMutationResult<
     const { to } = qs.parse(search?.substring(1));
 
     const queryResponse = useMutation<TLoginData, Error, TVariables, unknown>(
-        "useLogin",
+        ["useLogin"],
         loginFromContext,
         {
             onSuccess: (redirectPathFromAuth) => {
@@ -42,7 +42,7 @@ export const useLogin = <TVariables = {}>(): UseMutationResult<
                 }
 
                 if (redirectPathFromAuth !== false) {
-                    if (redirectPathFromAuth) {
+                    if (typeof redirectPathFromAuth === "string") {
                         replace(redirectPathFromAuth);
                     } else {
                         replace("/");

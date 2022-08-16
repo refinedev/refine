@@ -1,4 +1,4 @@
-import { useMutation, UseMutationResult } from "react-query";
+import { useMutation, UseMutationResult } from "@tanstack/react-query";
 
 import {
     BaseRecord,

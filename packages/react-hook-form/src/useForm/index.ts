@@ -1,9 +1,12 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import {
     useForm as useHookForm,
     UseFormProps as UseHookFormProps,
     UseFormReturn,
     FieldValues,
+    UseFormHandleSubmit,
+    SubmitHandler,
+    SubmitErrorHandler,
 } from "react-hook-form";
 import {
     BaseRecord,
@@ -23,7 +26,7 @@ export type UseFormReturnType<
     refineCore: UseFormReturnTypeCore<TData, TError, TVariables>;
     saveButtonProps: {
         disabled: boolean;
-        onClick: () => void;
+        onClick: (e: React.BaseSyntheticEvent) => void;
     };
 };
 
@@ -77,17 +80,19 @@ export const useForm = <
     } = useHookFormResult;
 
     useEffect(() => {
-        const fields: any = {};
-        const registeredFields = Object.keys(getValues());
-        Object.entries(queryResult?.data?.data || {}).forEach(
-            ([key, value]) => {
-                if (registeredFields.includes(key)) {
-                    fields[key] = value;
-                }
-            },
-        );
+        if (typeof queryResult?.data !== "undefined") {
+            const fields: any = {};
+            const registeredFields = Object.keys(getValues());
+            Object.entries(queryResult?.data?.data || {}).forEach(
+                ([key, value]) => {
+                    if (registeredFields.includes(key)) {
+                        fields[key] = value;
+                    }
+                },
+            );
 
-        reset(fields as any);
+            reset(fields as any);
+        }
     }, [queryResult?.data]);
 
     useEffect(() => {
@@ -106,15 +111,16 @@ export const useForm = <
         return changeValues;
     };
 
-    const handleSubmit = (e: any) => {
-        setWarnWhen(false);
-        return handleSubmitReactHookForm(e);
-    };
+    const handleSubmit: UseFormHandleSubmit<TVariables> =
+        (onValid, onInvalid) => async (e) => {
+            setWarnWhen(false);
+            return await handleSubmitReactHookForm(onValid, onInvalid)(e);
+        };
 
     const saveButtonProps = {
         disabled: formLoading,
-        onClick: () => {
-            handleSubmit(onFinish)();
+        onClick: (e: React.BaseSyntheticEvent) => {
+            handleSubmit(onFinish, () => false)(e);
         },
     };
 

@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { QueryObserverResult, UseQueryOptions } from "react-query";
+import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
 import uniqBy from "lodash/uniqBy";
 import debounce from "lodash/debounce";
 

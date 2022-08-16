@@ -139,7 +139,6 @@ In the above example, we pass the `headers` property in the `metaData` object to
 -   `@pankod/refine-strapi` - a fully featured [Strapi](https://strapi.io/) Data Provider
 -   `@pankod/refine-supabase` - a fully featured [Supabase](https://supabase.com/) Data Provider. Also supported Supabase Realtime feature.
 -   `@pankod/refine-hasura` - a fully featured [Hasura GraphQL](https://hasura.io/) Data Provider. Also supported GraphQL Subscriptions feature.
--   `@pankod/refine-nhost` - a fully featured [Nhost](https://nhost.io/) Data Provider. Also supported GraphQL Subscriptions feature.
 -   `@pankod/refine-appwrite` - a fully featured [Appwrite](https://appwrite.io/) Data Provider. Also supported Appwrite Realtime feature.
 -   `@pankod/refine-medusa` - a fully featured [Medusa](https://medusajs.com/) Data Provider
 -   `@pankod/refine-airtable` - a fully featured [Airtable](https://airtable.com/) Data Provider
@@ -151,6 +150,7 @@ In the above example, we pass the `headers` property in the `metaData` object to
 -   `@pankod/refine-react-router` - Router Provider for [React Router (v5)](https://v5.reactrouter.com/)
 -   `@pankod/refine-nextjs-router` - Router Provider for [Next.js](https://nextjs.org/docs/api-reference/next/router#userouter)
 -   `@pankod/refine-react-location` - Router Provider for [React Location](https://github.com/tannerlinsley/react-location)
+-   `@pankod/refine-remix-router` - Router Provider for [Remix](https://remix.run/)
 
 **[Live Provider](https://refine.dev/docs/core/providers/live-provider/) Packages**
 
@@ -177,7 +177,7 @@ In the above example, we pass the `headers` property in the `metaData` object to
 
 -   [Casbin](https://casbin.org/) - [Example](https://refine.dev/docs/examples/access-control/casbin/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/accessControl/casbin/src/App.tsx#L27)
 -   [Cerbos](https://cerbos.dev/) - [Example](https://refine.dev/docs/examples/access-control/cerbos/) - [Source Code](https://github.com/pankod/refine/blob/master/examples/accessControl/cerbos/src/App.tsx#L37)
--   [Permify](https://www.permify.co/) - [Example](https://refine.dev/docs/examples/access-control/permify/) - [Source Code](https://github.com/Permify/permify-refine/blob/master/src/App.tsx#L43)
+
 
 **[Auth Provider](https://refine.dev/docs/api-references/providers/auth-provider/)**
 

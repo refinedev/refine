@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useQueryClient } from "react-query";
+import { useQueryClient } from "@tanstack/react-query";
 
 import { queryKeys } from "@definitions";
 import { BaseKey, IQueryKeys } from "../../interfaces";

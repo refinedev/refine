@@ -13,17 +13,9 @@ export const buttonListTests = function (
     describe("[@pankod/refine-ui-tests] Common Tests / List Button", () => {
         const list = jest.fn();
 
-        beforeAll(() => {
-            jest.useFakeTimers();
-        });
-
         it("should render button successfuly", async () => {
             const { container } = render(<ListButton />, {
                 wrapper: TestWrapper({}),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             expect(container).toBeTruthy();
@@ -32,10 +24,6 @@ export const buttonListTests = function (
         it("should have the correct test-id", async () => {
             const { queryByTestId } = render(<ListButton />, {
                 wrapper: TestWrapper({}),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             expect(queryByTestId(RefineButtonTestIds.ListButton)).toBeTruthy();
@@ -48,10 +36,6 @@ export const buttonListTests = function (
                     wrapper: TestWrapper({}),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(container).toBeTruthy();
 
@@ -73,10 +57,6 @@ export const buttonListTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
             getByText("Tests");
         });
@@ -91,10 +71,6 @@ export const buttonListTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
             getByText("refine");
@@ -105,10 +81,6 @@ export const buttonListTests = function (
                 wrapper: TestWrapper({
                     resources: [{ name: "posts" }],
                 }),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             expect(container).toBeTruthy();
@@ -129,10 +101,6 @@ export const buttonListTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
             await waitFor(() =>
@@ -152,10 +120,6 @@ export const buttonListTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(container).toBeTruthy();
 
@@ -181,16 +145,16 @@ export const buttonListTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
-            expect(getByText("List").closest("button")).toBeDisabled();
-            expect(
-                getByText("List").closest("button")?.getAttribute("title"),
-            ).toBe("Access Denied");
+            await waitFor(() =>
+                expect(getByText("List").closest("button")).toBeDisabled(),
+            );
+            await waitFor(() =>
+                expect(
+                    getByText("List").closest("button")?.getAttribute("title"),
+                ).toBe("Access Denied"),
+            );
         });
 
         it("should render called function successfully if click the button", async () => {
@@ -205,10 +169,6 @@ export const buttonListTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             await act(async () => {
                 fireEvent.click(getByText("Posts"));
@@ -240,10 +200,6 @@ export const buttonListTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             await act(async () => {
                 fireEvent.click(getByText("Posts"));

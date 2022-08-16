@@ -1,5 +1,6 @@
-import { useMemo, useState, useEffect } from "react";
-import { QueryObserverResult, UseQueryOptions } from "react-query";
+import React, { useMemo, useState, useEffect } from "react";
+import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
+import qs from "qs";
 import differenceWith from "lodash/differenceWith";
 import isEqual from "lodash/isEqual";
 
@@ -161,7 +162,7 @@ export function useTable<
 
     const { resource: routeResourceName } = useParams<ResourceRouterParams>();
 
-    const { push } = useNavigation();
+    const { replace } = useNavigation();
     const resourceWithRoute = useResourceWithRoute();
 
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);
@@ -180,6 +181,8 @@ export function useTable<
         sorter,
         filters,
     }: SyncWithLocationParams) => {
+        const currentQueryParams = qs.parse(search?.substring(1)); // remove first ? character
+
         const stringifyParams = stringifyTableParams({
             pagination: {
                 pageSize,
@@ -187,6 +190,7 @@ export function useTable<
             },
             sorter,
             filters,
+            ...currentQueryParams,
         });
         return `${pathname}?${stringifyParams}`;
     };
@@ -202,6 +206,7 @@ export function useTable<
 
     useEffect(() => {
         if (syncWithLocation) {
+            const currentQueryParams = qs.parse(search?.slice(1)); // remove first ? character
             const stringifyParams = stringifyTableParams({
                 ...(hasPagination
                     ? {
@@ -213,10 +218,13 @@ export function useTable<
                     : {}),
                 sorter: differenceWith(sorter, permanentSorter, isEqual),
                 filters: differenceWith(filters, permanentFilter, isEqual),
+                ...currentQueryParams,
             });
 
             // Careful! This triggers render
-            return push(`${pathname}?${stringifyParams}`);
+            return replace(`${pathname}?${stringifyParams}`, undefined, {
+                shallow: true,
+            });
         }
     }, [syncWithLocation, current, pageSize, sorter, filters]);
 

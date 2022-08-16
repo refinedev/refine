@@ -440,6 +440,22 @@ describe("useSelect Hook", () => {
             filters: [],
             pagination: { pageSize: 20 },
             resource: "posts",
+            metaData: {
+                queryContext: {
+                    queryKey: [
+                        "default",
+                        "posts",
+                        "list",
+                        {
+                            filters: [],
+                            pagination: {
+                                pageSize: 20,
+                            },
+                        },
+                    ],
+                    signal: new AbortController().signal,
+                },
+            },
         });
     });
 
@@ -495,6 +511,19 @@ describe("useSelect Hook", () => {
         expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
             filters: [],
             resource: "posts",
+            metaData: {
+                queryContext: {
+                    queryKey: [
+                        "default",
+                        "posts",
+                        "list",
+                        {
+                            filters: [],
+                        },
+                    ],
+                    signal: new AbortController().signal,
+                },
+            },
         });
 
         await act(async () => {
@@ -509,6 +538,19 @@ describe("useSelect Hook", () => {
             expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
                 filters,
                 resource: "posts",
+                metaData: {
+                    queryContext: {
+                        queryKey: [
+                            "default",
+                            "posts",
+                            "list",
+                            {
+                                filters,
+                            },
+                        ],
+                        signal: new AbortController().signal,
+                    },
+                },
             });
         });
     });

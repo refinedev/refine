@@ -2,7 +2,11 @@ import { useContext } from "react";
 
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../interfaces";
-import { useQuery, UseQueryResult, UseQueryOptions } from "react-query";
+import {
+    useQuery,
+    UseQueryResult,
+    UseQueryOptions,
+} from "@tanstack/react-query";
 
 /**
  * `usePermissions` calls the `getPermissions` method from the {@link https://refine.dev/docs/core/providers/auth-provider `authProvider`} under the hood.

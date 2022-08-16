@@ -1,5 +1,9 @@
 import { useContext } from "react";
-import { useMutation, UseMutationResult, useQueryClient } from "react-query";
+import {
+    useMutation,
+    UseMutationResult,
+    useQueryClient,
+} from "@tanstack/react-query";
 
 import { AuditLogContext } from "@contexts/auditLog";
 import { ResourceContext } from "@contexts/resource";
