@@ -5,16 +5,18 @@ import Link from "next/link";
 import { CartItem } from "@components";
 import { Button, Text } from "@components/ui";
 import { useUI } from "@components/ui/context";
-import { Bag, Cross, Check } from "@components/icons";
+import { Bag, Cross } from "@components/icons";
 import { SidebarLayout } from "@components/common";
 import { currencySymbolFromCode } from "@components/product/helpers";
 import { useCartContext } from "@lib/context/";
+
 import s from "./CartSidebarView.module.css";
+import SkeletonCartSidebar from "@components/skeletons/SkeletonCartSidebar";
 
 export const CartSidebarView: FC = () => {
     const { closeSidebar, setSidebarView } = useUI();
 
-    const { cart } = useCartContext();
+    const { cart, cartIsFetching } = useCartContext();
 
     const currencyCode = currencySymbolFromCode(
         cart?.region["currency_code"] ?? "",
@@ -27,20 +29,16 @@ export const CartSidebarView: FC = () => {
     const handleClose = () => closeSidebar();
     const goToCheckout = () => setSidebarView("CHECKOUT_VIEW");
 
-    console.log(cart);
-
-    // TODO: manage error and success states for purchase
-    const error = null;
-    const success = null;
-
     return (
         <SidebarLayout
             className={cn({
-                [s.empty]: error || success || !cart || isEmpty,
+                [s.empty]: isEmpty,
             })}
             handleClose={handleClose}
         >
-            {isEmpty ? (
+            {isEmpty && cartIsFetching ? (
+                <SkeletonCartSidebar />
+            ) : isEmpty ? (
                 <div className="flex flex-1 flex-col items-center justify-center px-4">
                     <span className="border-primary bg-secondary text-secondary flex h-16 w-16 items-center justify-center rounded-full border border-dashed p-12">
                         <Bag className="absolute" />
@@ -52,25 +50,6 @@ export const CartSidebarView: FC = () => {
                         Biscuit oat cake wafer icing ice cream tiramisu pudding
                         cupcake.
                     </p>
-                </div>
-            ) : error ? (
-                <div className="flex flex-1 flex-col items-center justify-center px-4">
-                    <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white">
-                        <Cross width={24} height={24} />
-                    </span>
-                    <h2 className="pt-6 text-center text-xl font-light">
-                        We couldn’t process the purchase. Please check your card
-                        information and try again.
-                    </h2>
-                </div>
-            ) : success ? (
-                <div className="flex flex-1 flex-col items-center justify-center px-4">
-                    <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white">
-                        <Check />
-                    </span>
-                    <h2 className="pt-6 text-center text-xl font-light">
-                        Thank you for your order.
-                    </h2>
                 </div>
             ) : (
                 <>
