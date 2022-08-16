@@ -1,7 +1,8 @@
-import { Logo, Button, Input } from "@components/ui";
 import { Controller, useForm } from "@pankod/refine-react-hook-form";
 import { HttpError, useLogin } from "@pankod/refine-core";
 
+import { Logo, Button } from "@components/ui";
+import { Input } from "@components";
 import { useUI } from "@components/ui/context";
 
 type Login = {
@@ -14,7 +15,7 @@ const LoginView: React.FC = () => {
         control,
         setError,
         handleSubmit,
-        formState: { errors },
+        formState: { errors, touchedFields },
     } = useForm<Login, HttpError, Login>({
         refineCoreProps: {
             redirect: false,
@@ -76,7 +77,13 @@ const LoginView: React.FC = () => {
                         },
                     }}
                     render={({ field }) => (
-                        <Input type="email" placeholder="Email" {...field} />
+                        <Input
+                            errors={errors}
+                            label="Email"
+                            type="email"
+                            placeholder="Email"
+                            {...field}
+                        />
                     )}
                 />
                 <Controller
@@ -95,8 +102,10 @@ const LoginView: React.FC = () => {
                     }}
                     render={({ field }) => (
                         <Input
-                            type="password"
+                            label="Password"
+                            errors={errors}
                             placeholder="Password"
+                            type="password"
                             {...field}
                         />
                     )}

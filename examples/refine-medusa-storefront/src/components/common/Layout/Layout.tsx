@@ -7,7 +7,7 @@ import { MenuSidebarView, Footer, Navbar } from "@components/common";
 import { ShippingView, CheckoutSidebarView } from "@components/checkout";
 import { CheckoutProvider } from "@components/checkout/context";
 import { useUI } from "@components/ui/context";
-import LoginView from "@components/auth/LoginView";
+import { LoginView } from "@components/auth";
 import { useAcceptCookies } from "@lib/hooks/useAcceptCookies";
 import s from "./Layout.module.css";
 

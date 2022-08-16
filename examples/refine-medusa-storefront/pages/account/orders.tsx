@@ -2,7 +2,7 @@ import { ReactElement, ReactNode } from "react";
 import { NextPage } from "next";
 import { LayoutWrapper } from "@pankod/refine-core";
 
-import AccountLayout from "@components/account/AccountLayout/AccountLayout";
+import { AccountLayout } from "@components/account";
 import OrdersTemplate from "@components/orders/OrdersTemplate/OrdersTemplate";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {

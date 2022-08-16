@@ -3,10 +3,7 @@ import { useTheme } from "next-themes";
 import { useRouter } from "next/router";
 import { Moon, Sun } from "@components/icons";
 import s from "./CustomerMenuContent.module.css";
-import {
-    DropdownContent,
-    DropdownMenuItem,
-} from "@components/ui/Dropdown/Dropdown";
+import { DropdownContent, DropdownMenuItem } from "@components/ui";
 import { useLogout } from "@pankod/refine-core";
 
 const LINKS = [

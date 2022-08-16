@@ -1,7 +1,7 @@
 import { useGetIdentity } from "@pankod/refine-core";
 import React, { PropsWithChildren } from "react";
 import { AccountNav, LoadingDots } from "@components";
-import UnderlineLink from "@components/common/UnderlineLink/UnderlineLink"; // refactor path alli
+import { UnderlineLink } from "@components/common"; // refactor path alli
 
 export const AccountLayout: React.FC<PropsWithChildren> = ({ children }) => {
     const { data } = useGetIdentity();

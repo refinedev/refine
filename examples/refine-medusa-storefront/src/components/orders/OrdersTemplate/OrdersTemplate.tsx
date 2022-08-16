@@ -10,9 +10,7 @@ const OrdersTemplate = () => {
                     create returns or exchanges for your orders if needed.
                 </p>
             </div>
-            <div>
-                <OrderOverview />
-            </div>
+            <div>{/* <OrderOverview /> */}</div>
         </div>
     );
 };
