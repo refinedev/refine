@@ -40,7 +40,6 @@ export const RemixRouteComponent: React.FC<
     );
 
     useEffect(() => {
-        console.log({ pathname });
         if (pathname === "/" && !DashboardPage) {
             push(`/${resources.find((p) => p.list !== undefined)?.route}`);
         }
