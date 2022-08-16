@@ -1,27 +1,31 @@
 import { FC } from "react";
-import { Controller, useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@pankod/refine-react-hook-form";
+import { HttpError, useLogin } from "@pankod/refine-core";
 
 import { Info } from "@components/icons";
+import { Logo, Button } from "@components/ui";
 import { useUI } from "@components/ui/context";
-import { Logo, Button, Input } from "@components/ui";
-import { HttpError, useLogin } from "@pankod/refine-core";
+import { Input } from "@components/common";
+import { emailRegex } from "@lib/regex";
 
 type Customer = {
     email: string;
     first_name: string;
     last_name: string;
     password: string;
+    serverError: string;
 };
+
 const SignUpView: FC = () => {
     const { setModalView, closeModal } = useUI();
 
     const { mutate: login } = useLogin();
     const {
         refineCore: { onFinish, formLoading },
-        control,
+        register,
         handleSubmit,
         setError,
-        formState: { errors },
+        formState: { errors, touchedFields },
     } = useForm<Customer, HttpError, Customer>({
         refineCoreProps: {
             redirect: false,
@@ -36,7 +40,7 @@ const SignUpView: FC = () => {
             },
             onMutationError(error) {
                 if (error?.response?.data.type === "duplicate_error") {
-                    setError("email", {
+                    setError("serverError", {
                         message:
                             "A customer with the given email already has an account. Log in instead.",
                     });
@@ -65,68 +69,49 @@ const SignUpView: FC = () => {
                         </ul>
                     </div>
                 )}
-                <Controller
-                    control={control}
-                    name="first_name"
-                    rules={{
-                        required: {
-                            message: "first name is required",
-                            value: true,
-                        },
-                    }}
-                    render={({ field }) => (
-                        <Input placeholder="First Name" {...field} />
-                    )}
+                <Input
+                    label="First Name"
+                    {...register("first_name", {
+                        required: "first name is required",
+                    })}
+                    errors={errors}
+                    touched={touchedFields}
                 />
-                <Controller
-                    control={control}
-                    name="last_name"
-                    rules={{
-                        required: {
-                            message: "last name is required",
-                            value: true,
-                        },
-                    }}
-                    render={({ field }) => (
-                        <Input placeholder="Last Name" {...field} />
-                    )}
+                <Input
+                    label="Last Name"
+                    {...register("last_name", {
+                        required: "last name is required",
+                    })}
+                    errors={errors}
+                    touched={touchedFields}
                 />
-                <Controller
-                    control={control}
-                    name="email"
-                    rules={{
-                        /* pattern: /^(?=.*[a-zA-Z])(?=.*[0-9])/, */
-                        required: {
-                            message: "email is required",
-                            value: true,
-                        },
-                    }}
-                    render={({ field }) => (
-                        <Input type="email" placeholder="Email" {...field} />
-                    )}
+                <Input
+                    label="Email"
+                    {...register("email", {
+                        required: "email is required",
+                        pattern: emailRegex,
+                    })}
+                    errors={errors}
+                    touched={touchedFields}
                 />
-                <Controller
-                    control={control}
-                    name="password"
-                    rules={{
+                <Input
+                    type="password"
+                    label="Password"
+                    {...register("password", {
                         required: {
                             message: "password is required",
                             value: true,
                         },
                         minLength: {
                             message:
-                                "Password is too short (minimum is 7 characters)",
+                                "password is too short (minimum is 7 characters)",
                             value: 7,
                         },
-                    }}
-                    render={({ field }) => (
-                        <Input
-                            type="password"
-                            placeholder="Password"
-                            {...field}
-                        />
-                    )}
+                    })}
+                    errors={errors}
+                    touched={touchedFields}
                 />
+
                 <span className="text-accent-8">
                     <span className="inline-block align-middle ">
                         <Info width="15" height="15" />
