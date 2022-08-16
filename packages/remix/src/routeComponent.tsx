@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect } from "react";
+import React, { PropsWithChildren, useEffect, useLayoutEffect } from "react";
 import { useLoaderData } from "@remix-run/react";
 
 import {
@@ -39,15 +39,16 @@ export const RemixRouteComponent: React.FC<
             res.name === routeResourceName || res.route === routeResourceName,
     );
 
-    if (routeResourceName === "login") {
-        return LoginPage ? <LoginPage /> : <DefaultLoginPage />;
-    }
-
     useEffect(() => {
+        console.log({ pathname });
         if (pathname === "/" && !DashboardPage) {
             push(`/${resources.find((p) => p.list !== undefined)?.route}`);
         }
-    }, []);
+    }, [pathname]);
+
+    if (routeResourceName === "login") {
+        return LoginPage ? <LoginPage /> : <DefaultLoginPage />;
+    }
 
     if (pathname === "/") {
         if (DashboardPage) {
