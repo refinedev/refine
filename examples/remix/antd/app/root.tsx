@@ -8,7 +8,7 @@ import {
     ScrollRestoration,
 } from "@remix-run/react";
 import { Refine } from "@pankod/refine-core";
-import { Layout, ReadyPage } from "@pankod/refine-antd";
+import { Layout, LoginPage, ReadyPage } from "@pankod/refine-antd";
 
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-remix-router";
@@ -39,6 +39,7 @@ export default function App() {
                     routerProvider={routerProvider}
                     authProvider={authProvider}
                     Layout={Layout}
+                    LoginPage={LoginPage}
                     ReadyPage={ReadyPage}
                     resources={[
                         {

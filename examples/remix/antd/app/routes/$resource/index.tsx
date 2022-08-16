@@ -1,13 +1,15 @@
 import { json, LoaderFunction } from "@remix-run/node";
 import dataProvider from "@pankod/refine-simple-rest";
 import { parseTableParams } from "@pankod/refine-core";
-import { requireUserId } from "~/session.server";
+import { checkAuthentication } from "@pankod/refine-remix-router";
 
 export { RemixRouteComponent as default } from "@pankod/refine-remix-router";
 
+import { authProvider } from "~/authProvider";
+
 const API_URL = "https://api.fake-rest.refine.dev";
 export const loader: LoaderFunction = async ({ params, request }) => {
-    await requireUserId(request);
+    await checkAuthentication(authProvider, request);
 
     const { resource } = params;
     const url = new URL(request.url);

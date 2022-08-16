@@ -1,4 +1,6 @@
 import { AuthProvider } from "@pankod/refine-core";
+import Cookies from "js-cookie";
+import * as cookie from "cookie";
 
 const mockUsers = [
     {
@@ -11,19 +13,24 @@ const mockUsers = [
     },
 ];
 
+const COOKIE_NAME = "user";
+
 export const authProvider: AuthProvider = {
     login: ({ username, password, remember }) => {
         // Suppose we actually send a request to the back end here.
         const user = mockUsers.find((item) => item.username === username);
 
         if (user) {
-            return Promise.resolve(user);
+            Cookies.set(COOKIE_NAME, JSON.stringify(user));
+            return Promise.resolve();
         }
 
         return Promise.reject();
     },
     logout: () => {
-        return Promise.resolve("/logout");
+        Cookies.remove(COOKIE_NAME);
+
+        return Promise.resolve();
     },
     checkError: (error) => {
         if (error && error.statusCode === 401) {
@@ -32,10 +39,16 @@ export const authProvider: AuthProvider = {
 
         return Promise.resolve();
     },
-    checkAuth: async ({ request, storage }) => {
-        const session = await storage.getSession(request.headers.get("Cookie"));
-
-        const user = session.get("user");
+    checkAuth: async (context) => {
+        let user = undefined;
+        if (context) {
+            const { request } = context;
+            const parsedCookie = cookie.parse(request.headers.get("Cookie"));
+            user = parsedCookie[COOKIE_NAME];
+        } else {
+            const parsedCookie = Cookies.get(COOKIE_NAME);
+            user = parsedCookie ? JSON.parse(parsedCookie) : undefined;
+        }
 
         if (!user) {
             return Promise.reject();
