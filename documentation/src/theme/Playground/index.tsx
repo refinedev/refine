@@ -13,7 +13,7 @@ import BrowserOnly from "@docusaurus/BrowserOnly";
 import { usePrismTheme } from "@docusaurus/theme-common";
 import styles from "./styles.module.css";
 import BrowserWindow from "../../components/browser-window";
-import { importReplacer } from "../ReactLiveScope";
+import { importReplacer, packageResolve } from "../ReactLiveScope";
 
 /**
  * This function will split code by the visible-block-start and visible-block-end comments and returns the visible block and join function.
@@ -148,12 +148,21 @@ export default function Playground({
     noInline = true,
     hideCode = false,
     ref: _ref,
+    scope,
     url = "http://localhost:3000",
     ...props
 }: PlaygroundProps): JSX.Element {
     const prismTheme = usePrismTheme();
     const code = String(children).replace(/\n$/, "");
     const { visible } = splitCode(code);
+    const [modules, setModules] = React.useState<Record<string, unknown>>({});
+
+    React.useEffect(() => {
+        (async () => {
+            const _modules = await packageResolve(code);
+            setModules(_modules);
+        })();
+    }, [code]);
 
     return (
         <div className={styles.playgroundContainer}>
@@ -175,6 +184,7 @@ export default function Playground({
                 className={className}
                 language={getLanguageFromClassName(className) as never}
                 {...props}
+                scope={{ ...scope, ...modules }}
             >
                 <>
                     <BrowserWindow url={url}>
@@ -189,7 +199,9 @@ export default function Playground({
                                 overflow: disableScroll ? "hidden" : undefined,
                             }}
                         >
-                            <Preview />
+                            {Object.keys(modules).length > 0 ? (
+                                <Preview />
+                            ) : null}
                         </div>
                     </BrowserWindow>
                     <Editor hidden={hideCode} />
