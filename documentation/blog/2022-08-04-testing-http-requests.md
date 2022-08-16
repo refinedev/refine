@@ -1,5 +1,5 @@
 ---
-title: Testing HTTP Requests in React Using Nock
+title: Mocking API calls in React Using Nock
 description: How to test API calls in React?
 slug: test-http-requests-in-react
 authors: necati
@@ -37,6 +37,7 @@ Steps we'll cover:
 - [Recording in Nock](#recording-in-nock)
 - [Alternative API mocking libraries](#alternative-api-mocking-libraries)
 - [Conclusion](#conclusion)
+- [Build your React based CRUD applications without constraints](#build-your-react-based-crud-applications-without-constraints)
 
 
 ## Why mocking HTTP requests during testing is important?
@@ -309,3 +310,28 @@ In this article, we've implemented API mocking and explained how useful it can b
 
 We have seen how to test only the behavior of an application in isolation. Avoid any external dependencies that may affect our tests and ensure they are running on stable versions at all times.
 
+
+
+
+
+
+## Build your React based CRUD applications without constraints
+
+Low-code React frameworks are great for gaining development speed but they often fall short of flexibility if you need extensive styling and customization for your project.
+
+Check out [refine](https://github.com/pankod/refine), if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
+
+<div>
+<a href="https://refine.dev/">
+    <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
+</a>
+</div>
+
+<br/>
+
+**refine** is a React-based framework for building CRUD applications **without constraints.**
+It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
+
+**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
+
+Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials and example projects.
