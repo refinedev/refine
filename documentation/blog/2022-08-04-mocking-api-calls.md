@@ -315,7 +315,7 @@ We have seen how to test only the behavior of an application in isolation. Avoid
 
 
 
-## Build your React based CRUD applications without constraints
+## Build your React-based CRUD applications without constraints
 
 Low-code React frameworks are great for gaining development speed but they often fall short of flexibility if you need extensive styling and customization for your project.
 
