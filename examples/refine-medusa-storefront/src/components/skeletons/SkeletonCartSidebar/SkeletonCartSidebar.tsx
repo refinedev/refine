@@ -1,4 +1,4 @@
-const SkeletonCartSidebar: React.FC = () => {
+export const SkeletonCartSidebar: React.FC = () => {
     return (
         <div className="flex h-full flex-col justify-between p-4">
             <div className="flex flex-col justify-between gap-4">
@@ -18,24 +18,7 @@ const SkeletonCartSidebar: React.FC = () => {
                 ))}
             </div>
             <div>
-                <div className="my-4 w-full border-b border-dashed border-gray-200"></div>
-
                 <div className="flex flex-col">
-                    <div className="flex items-center justify-between">
-                        <div className="h-3 w-32 bg-gray-100"></div>
-                        <div className="h-3 w-32 bg-gray-100"></div>
-                    </div>
-
-                    <div className="my-4 flex items-center justify-between">
-                        <div className="h-3 w-24 bg-gray-100"></div>
-                        <div className="h-3 w-24 bg-gray-100"></div>
-                    </div>
-
-                    <div className="flex items-center justify-between">
-                        <div className="h-3 w-28 bg-gray-100 "></div>
-                        <div className="h-3 w-20 bg-gray-100"></div>
-                    </div>
-
                     <div className="my-4 w-full border-b border-dashed border-gray-200"></div>
 
                     <div className="flex  justify-center">
@@ -46,5 +29,3 @@ const SkeletonCartSidebar: React.FC = () => {
         </div>
     );
 };
-
-export default SkeletonCartSidebar;

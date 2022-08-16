@@ -1,1 +1,1 @@
-export { default } from "./SkeletonCartSidebar";
+export * from "./SkeletonCartSidebar";
