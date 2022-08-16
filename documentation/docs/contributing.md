@@ -3,17 +3,17 @@ id: contributing
 title: Contributing
 ---
 
-We follow a [code of conduct][CODE_OF_CONDUCT] when participating in the community. Please read it before you make any contributions.
+We follow a [code of conduct][code_of_conduct] when participating in the community. Please read it before you make any contributions.
 
-* If you plan to work on an issue, mention so in the issue page before you start working on it.
-* If you plan to work on a new feature, create an issue and discuss it with other community members/maintainers.
-* Ask for help in our [community room][Discord Channel].
+-   If you plan to work on an issue, mention so in the issue page before you start working on it.
+-   If you plan to work on a new feature, create an issue and discuss it with other community members/maintainers.
+-   Ask for help in our [community room][discord channel].
 
 ## Running in development mode
 
 `node` version 16 is required.
 
-This project has multiple packages and uses [Lerna][Lerna] to manage packages under `packages/`.
+This project has multiple packages and uses [Lerna][lerna] to manage packages under `packages/`.
 
 First, install dependencies:
 
@@ -23,9 +23,9 @@ npm install
 
 From now on, depending on the packages you plan to work on, (they are located under `packages/` and `examples/` directories - see [lerna.json][lerna.json]) you will need to bootstrap them and start them in watch mode. Instead of running `lerna bootstrap` directly, read on to see how **refine** team handles it.
 
-[Refer to **lerna** docs to learn more about it. &#8594][Lerna]
+[Refer to **lerna** docs to learn more about it. &#8594][lerna]
 
-[Refer to **lerna** docs to learn more about `lerna bootstrap`. &#8594][Lerna Bootstrap]
+[Refer to **lerna** docs to learn more about `lerna bootstrap`. &#8594][lerna bootstrap]
 
 ### Starting the packages you work in watch mode
 
@@ -43,7 +43,7 @@ To bootstrap the specific packages/examples only (all packages under `/packages`
 npm run bootstrap -- --scope refine-use-select-example
 ```
 
-[Refer to **lerna** docs to learn more about `scope` flag. &#8594][Lerna Filter]
+[Refer to **lerna** docs to learn more about `scope` flag. &#8594][lerna filter]
 
 `npm run bootstrap` command bootstraps all packages whose name start with `@pankod/refine*` and all packages under `/examples`. If you add filters with `--scope` flag, you can avoid bootstrapping all packages under `/examples`.
 
@@ -60,7 +60,7 @@ Now all filtered packages are running in watch mode. They should re-compile when
 
 ### Starting documentation in watch mode
 
-Our documentation is built with [Docusaurus][Docusaurus]. To start it in development mode, run:
+Our documentation is built with [Docusaurus][docusaurus]. To start it in development mode, run:
 
 ```bash
 cd documentation
@@ -99,12 +99,334 @@ When you run the command that produces coverage report, go to `/coverage/lcov-re
 
 Please make sure you contribute well tested code.
 
-[Lerna]: https://github.com/lerna/lerna
-[Lerna Bootstrap]: https://lerna.js.org/#command-bootstrap
-[Lerna Filter]: https://github.com/lerna/lerna/blob/main/core/filter-options/README.md#--scope-glob
+## Creating Live Previews in Documentation
+
+We're using live previews powered with [`react-live`](https://github.com/FormidableLabs/react-live) to demonstrate our components and logic with `refine` running at full functionality. To do this, we're defining `refine` packages as global variables since `react-live` doesn't support using `import` statements. To create a live preview, you should add `live` property to your code blocks in markdown files.
+
+:::tip
+You can use `import` statements to show them in the code block but they will be ignored when running the code. Check out [Defined Scope](#defined-scope) section to learn more about the available packages and variables.
+:::
+
+### Properties
+
+You can use the following properties to adjust your live blocks:
+
+| Property        | Description                                  | Default                 |
+| --------------- | -------------------------------------------- | ----------------------- |
+| `hideCode`      | Adds title                                   | false                   |
+| `disableScroll` | Disables the scroll in the preview           | false                   |
+| `previewHeight` | Height of the preview                        | `400px`                 |
+| `url`           | URL to be shown in the header of the preview | `http://localhost:3000` |
+
+### Hiding Boilerplate Code
+
+There are two ways to hide/show code sections in your live code blocks; either you can wrap your visible code to `// visible-block-start` and `// visible-block-end` comments, or you can use `// hide-next-line`, `// hide-start` and `// hide-end` comments. You can use both of them in the same code block.
+
+**`// visible-block-start` and `// visible-block-end`**
+
+This wrapper can be used to show only the desired part of the code in the code block and will not affect the live preview. Copy code button will only copy the code inside this block. This is the recommended way to hide boilerplate/unwanted code.
+
+** `// hide-next-line` and `// hide-start` and `// hide-end`**
+
+These magic comments will hide the next line or the wrapped code block. You can use these to hide the code that you want to show in the code blocks. These will also not affect the live preview but those lines will be copied with the copy button. Use these to hide the required code pieces for the live preview but are out of scope for the example. Such as while showing how a property of a component works in live preview, you can hide the required but not relevant props.
+
+### Rendering the Preview
+
+To render the live preview you should call the `render` function with your component. `render` function is specific to `react-live` and it will render the preview in the browser; therefore not needed to be visible in the codeblock, it's recommended to leave the `render` part outside of the `// visible-block` wrapper.
+
+**Example Usage**
+
+````ts
+```tsx live hideCode url=http://localhost:3000/posts/create
+// This is the part we're using the packages from the scope instead of import statements.
+// highlight-start
+const {
+    Create,
+    Form,
+    Input,
+    Select,
+    useForm,
+    useSelect,
+    CreateButton
+} = RefineAntd;
+// highlight-end
+
+interface ICategory {
+id: number;
+title: string;
+}
+
+interface IPost {
+id: number;
+title: string;
+content: string;
+status: "published" | "draft" | "rejected";
+category: { id: number };
+}
+
+// visible-block-start
+// Import statements will be ignored in the runtime.
+// highlight-start
+import {
+    Create,
+    Form,
+    Input,
+    Select,
+    useForm,
+    useSelect,
+} from "@pankod/refine-antd";
+// highlight-end
+
+const PostCreate: React.FC = () => {
+const { formProps, saveButtonProps } = useForm<IPost>();
+
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+    });
+
+    const [selectedTab, setSelectedTab] =
+        useState<"write" | "preview">("write");
+
+    return (
+        <Create saveButtonProps={saveButtonProps}>
+            <Form {...formProps} layout="vertical">
+                <Form.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Category"
+                    name={["category", "id"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select {...categorySelectProps} />
+                </Form.Item>
+                <Form.Item
+                    label="Status"
+                    name="status"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select
+                        options={[
+                            {
+                                label: "Published",
+                                value: "published",
+                            },
+                            {
+                                label: "Draft",
+                                value: "draft",
+                            },
+                            {
+                                label: "Rejected",
+                                value: "rejected",
+                            },
+                        ]}
+                    />
+                </Form.Item>
+            </Form>
+        </Create>
+    );
+
+};
+// visible-block-end
+
+// This part is required to render the preview.
+// highlight-start
+render(
+    <RefineAntdDemo
+        initialRoutes={["/posts/create"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <CreateButton />
+                    </div>
+                ),
+                create: PostCreate,
+            },
+        ]}
+    />,
+);
+// highlight-end
+```;
+````
+
+** Result **
+
+```tsx live hideCode disableScroll url=http://localhost:3000/posts/create
+// This is the part we're using the packages from the scope instead of import statements.
+// highlight-start
+const { Create, Form, Input, Select, useForm, useSelect, CreateButton } =
+    RefineAntd;
+// highlight-end
+
+interface ICategory {
+    id: number;
+    title: string;
+}
+
+interface IPost {
+    id: number;
+    title: string;
+    content: string;
+    status: "published" | "draft" | "rejected";
+    category: { id: number };
+}
+
+// visible-block-start
+// Import statements will be ignored in the runtime.
+// highlight-start
+import {
+    Create,
+    Form,
+    Input,
+    Select,
+    useForm,
+    useSelect,
+} from "@pankod/refine-antd";
+// highlight-end
+
+const PostCreate: React.FC = () => {
+    const { formProps, saveButtonProps } = useForm<IPost>();
+
+    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+        resource: "categories",
+    });
+
+    const [selectedTab, setSelectedTab] =
+        useState<"write" | "preview">("write");
+
+    return (
+        <Create saveButtonProps={saveButtonProps}>
+            <Form {...formProps} layout="vertical">
+                <Form.Item
+                    label="Title"
+                    name="title"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label="Category"
+                    name={["category", "id"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select {...categorySelectProps} />
+                </Form.Item>
+                <Form.Item
+                    label="Status"
+                    name="status"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select
+                        options={[
+                            {
+                                label: "Published",
+                                value: "published",
+                            },
+                            {
+                                label: "Draft",
+                                value: "draft",
+                            },
+                            {
+                                label: "Rejected",
+                                value: "rejected",
+                            },
+                        ]}
+                    />
+                </Form.Item>
+            </Form>
+        </Create>
+    );
+};
+// visible-block-end
+
+// This part is required to render the preview.
+// highlight-start
+render(
+    <RefineAntdDemo
+        initialRoutes={["/posts/create"]}
+        resources={[
+            {
+                name: "posts",
+                list: () => (
+                    <div>
+                        <p>This page is empty.</p>
+                        <CreateButton />
+                    </div>
+                ),
+                create: PostCreate,
+            },
+        ]}
+    />,
+);
+// highlight-end
+```
+
+### Defined Scope
+
+| Variable                  | Description                                                                                                             |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `React`                   | React 17                                                                                                                |
+| `RefineCore`              | `@pankod/refine-core`                                                                                                   |
+| `RefineSimpleRest`        | `@pankod/refine-simple-rest`                                                                                            |
+| `RefineAntd`              | `@pankod/refine-antd`                                                                                                   |
+| `RefineMui`               | `@pankod/refine-mui`                                                                                                    |
+| `RefineReactRouterV6`     | `@pankod/refine-react-router-v6`                                                                                        |
+| `RefineReactHookForm`     | `@pankod/refine-react-hook-form`                                                                                        |
+| `RefineReactTable`        | `@pankod/refine-react-table`                                                                                            |
+| `RefineHeadlessDemo`      | Predefined `<Refine/>` component with simple-rest and react-router-v6 props for easier use                              |
+| `RefineMuiDemo`           | Predefined `<Refine/>` component with Material UI, simple-rest and react-router-v6 props for easier use                 |
+| `RefineAntdDemo`          | Predefined `<Refine/>` component with Ant Design, simple-rest and react-router-v6 props for easier use                  |
+| `RefineDemoReactRouterV6` | Predefined `routerProvider` generator function with `react-router-v6` with `MemoryRouter` and `initialRoutes` parameter |
+
+:::tip
+Demo components are recommended to be used whenever possible to avoid unnecessary configuration at every code block. They are equipped with the `refine-react-router-v6` setup with `MemoryRouter`, `refine-simple-rest` data provider and the preferred UI Integration.
+:::
+
+:::info
+`Refine` component from `RefineCore` has the default prop `reactQueryDevtoolConfig` set to `false` to disable the React Query Dev Tools since it doesn't work with the production version of the React.
+:::
+
+:::info
+`RefineDemoReactRouterV6` is a function to create a `routerProvider` with `@pankod/refine-react-router-v6` using `MemoryRouter`. This function takes one argument `initialRoutes` which is an array of routes to be rendered initially. For example, if your component is rendered at `/posts/create`, you can pass `["/posts/create"]` as the argument.
+:::
+
+[lerna]: https://github.com/lerna/lerna
+[lerna bootstrap]: https://lerna.js.org/#command-bootstrap
+[lerna filter]: https://github.com/lerna/lerna/blob/main/core/filter-options/README.md#--scope-glob
 [package.json]: https://github.com/pankod/refine/blob/master/package.json
-[Docusaurus]: https://docusaurus.io/
-[Issues]: https://github.com/pankod/refine/issues
-[CODE_OF_CONDUCT]: https://github.com/pankod/refine/blob/master/CODE_OF_CONDUCT.md
-[Discord Channel]: https://discord.gg/refine
+[docusaurus]: https://docusaurus.io/
+[issues]: https://github.com/pankod/refine/issues
+[code_of_conduct]: https://github.com/pankod/refine/blob/master/CODE_OF_CONDUCT.md
+[discord channel]: https://discord.gg/refine
 [lerna.json]: https://github.com/pankod/refine/blob/master/lerna.json
