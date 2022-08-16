@@ -19,7 +19,7 @@ export type NativeSelectProps = {
     label: string;
 } & SelectHTMLAttributes<HTMLSelectElement>;
 
-const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
+export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
     (
         {
             placeholder = "Select...",
@@ -100,5 +100,3 @@ const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
 );
 
 NativeSelect.displayName = "NativeSelect";
-
-export default NativeSelect;

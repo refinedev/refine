@@ -1,1 +1,1 @@
-export { default } from "./ShippingOptionWidget";
+export * from "./ShippingOptionWidget";

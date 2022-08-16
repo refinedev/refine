@@ -1,9 +1,9 @@
 import React, { useMemo } from "react";
 import { Cart } from "@medusajs/medusa";
 import { useForm } from "react-hook-form";
-import { useDelete, useInvalidate, useUpdate } from "@pankod/refine-core";
+import { useInvalidate, useUpdate } from "@pankod/refine-core";
 
-import Input from "@components/common/Input";
+import { Input } from "@components/common";
 import { Trash } from "@components/icons";
 import { Button } from "@components/ui";
 
@@ -15,7 +15,7 @@ interface GiftCardProps {
     cart: Omit<Cart, "refundable_amount" | "refunded_total">;
 }
 
-const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
+export const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
     const invalidate = useInvalidate();
     const { mutate, isLoading } = useUpdate();
 
@@ -137,5 +137,3 @@ const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
         </div>
     );
 };
-
-export default GiftCard;

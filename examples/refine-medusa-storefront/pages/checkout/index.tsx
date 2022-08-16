@@ -1,4 +1,4 @@
-import CheckoutTemplate from "@components/checkout/CheckoutTemplate";
+import { CheckoutTemplate } from "@components/checkout";
 import SEO from "@components/common/SEO";
 
 const CheckoutPage: React.FC = () => {

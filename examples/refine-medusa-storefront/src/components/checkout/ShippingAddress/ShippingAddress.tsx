@@ -4,11 +4,10 @@ import { Customer } from "@medusajs/medusa";
 
 import { emailRegex } from "@lib/regex";
 import { CheckoutFormValues } from "@lib/context/checkout";
-import CountrySelect from "@components/common/CountrySelect";
-import AddressSelect from "../AddressSelect";
-import Input from "@components/common/Input";
+import { AddressSelect } from "@components";
+import { Input, CountrySelect } from "@components/common";
 
-const ShippingAddress: React.FC = () => {
+export const ShippingAddress: React.FC = () => {
     const {
         register,
         formState: { errors, touchedFields },
@@ -123,5 +122,3 @@ const ShippingAddress: React.FC = () => {
         </div>
     );
 };
-
-export default ShippingAddress;

@@ -4,7 +4,7 @@ interface RadioProps {
     checked: boolean;
 }
 
-const Radio: React.FC<RadioProps> = ({ checked }) => {
+export const Radio: React.FC<RadioProps> = ({ checked }) => {
     return (
         <div
             className={clsx(
@@ -18,5 +18,3 @@ const Radio: React.FC<RadioProps> = ({ checked }) => {
         </div>
     );
 };
-
-export default Radio;

@@ -6,7 +6,7 @@ interface Props {
     children?: any;
 }
 
-const Avatar: FC<Props> = ({}) => {
+export const Avatar: FC<Props> = ({}) => {
     const ref = useRef() as React.MutableRefObject<HTMLInputElement>;
     const { data } = useGetIdentity();
 
@@ -23,5 +23,3 @@ const Avatar: FC<Props> = ({}) => {
         </div>
     );
 };
-
-export default Avatar;

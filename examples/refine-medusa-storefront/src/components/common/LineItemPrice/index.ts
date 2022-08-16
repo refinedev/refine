@@ -1,1 +1,1 @@
-export { default } from "./LineItemPrice";
+export * from "./LineItemPrice";

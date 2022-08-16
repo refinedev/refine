@@ -1,1 +1,1 @@
-export { default } from "./CountrySelect";
+export * from "./CountrySelect";

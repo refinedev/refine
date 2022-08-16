@@ -1,18 +1,15 @@
-import React, { useContext, useEffect, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useList } from "@pankod/refine-core";
 import { useForm, useWatch } from "@pankod/refine-react-hook-form";
 import {
-    Cart,
     Country,
     Customer,
     Region,
     StorePostCustomersCustomerReq,
 } from "@medusajs/medusa";
 
-import Input from "@components/common/Input";
-import NativeSelect from "@components/common/NativeSelect";
-import { CartContext } from "@lib/context";
-import AccountInfo from "../../account/AccountInfo/AccountInfo";
+import { Input, NativeSelect } from "@components/common";
+import { AccountInfo } from "@components/account";
 
 type MyInformationProps = {
     customer: Omit<Customer, "password_hash">;
@@ -23,7 +20,9 @@ type UpdateCustomerNameFormData = Pick<
     "billing_address"
 >;
 
-const ProfileBillingAddress: React.FC<MyInformationProps> = ({ customer }) => {
+export const ProfileBillingAddress: React.FC<MyInformationProps> = ({
+    customer,
+}) => {
     const {
         register,
         handleSubmit,
@@ -226,5 +225,3 @@ const mapBillingAddressToFormData = ({ customer }: MyInformationProps) => {
         },
     };
 };
-
-export default ProfileBillingAddress;

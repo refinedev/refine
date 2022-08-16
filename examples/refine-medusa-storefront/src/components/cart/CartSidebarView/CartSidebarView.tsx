@@ -1,16 +1,17 @@
+import { FC } from "react";
 import cn from "clsx";
 import Link from "next/link";
-import { FC } from "react";
-import s from "./CartSidebarView.module.css";
-import CartItem from "../CartItem";
+
+import { CartItem } from "@components";
 import { Button, Text } from "@components/ui";
 import { useUI } from "@components/ui/context";
 import { Bag, Cross, Check } from "@components/icons";
-import SidebarLayout from "@components/common/SidebarLayout";
-import { useCartContext } from "@lib/context/";
+import { SidebarLayout } from "@components/common";
 import { currencySymbolFromCode } from "@components/product/helpers";
+import { useCartContext } from "@lib/context/";
+import s from "./CartSidebarView.module.css";
 
-const CartSidebarView: FC = () => {
+export const CartSidebarView: FC = () => {
     const { closeSidebar, setSidebarView } = useUI();
 
     const { cart } = useCartContext();
@@ -133,5 +134,3 @@ const CartSidebarView: FC = () => {
         </SidebarLayout>
     );
 };
-
-export default CartSidebarView;

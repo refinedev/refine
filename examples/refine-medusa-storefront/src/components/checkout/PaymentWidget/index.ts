@@ -1,1 +1,1 @@
-export { default } from "./PaymentWidget";
+export * from "./PaymentWidget";

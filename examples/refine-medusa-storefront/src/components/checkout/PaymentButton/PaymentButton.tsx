@@ -1,16 +1,18 @@
-import Spinner from "@components/icons/Spinner";
-import Button from "@components/ui/Button";
-import { useCartContext } from "@lib/context";
-import { useCheckout } from "@lib/context/checkout";
+import React, { useEffect, useState } from "react";
 import { PaymentSession } from "@medusajs/medusa";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
-import React, { useEffect, useState } from "react";
+
+import Spinner from "@components/icons/Spinner";
+import { Button } from "@components/ui";
+import { useCartContext, useCheckout } from "@lib/context";
 
 type PaymentButtonProps = {
     paymentSession?: PaymentSession | null;
 };
 
-const PaymentButton: React.FC<PaymentButtonProps> = ({ paymentSession }) => {
+export const PaymentButton: React.FC<PaymentButtonProps> = ({
+    paymentSession,
+}) => {
     const [notReady, setNotReady] = useState(true);
     const { cart } = useCartContext();
 
@@ -158,5 +160,3 @@ const StripePaymentButton = ({
         </>
     );
 };
-
-export default PaymentButton;

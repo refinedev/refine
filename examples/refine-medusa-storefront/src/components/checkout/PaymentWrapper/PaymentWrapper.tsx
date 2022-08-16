@@ -7,7 +7,7 @@ type WrapperProps = {
     paymentSession?: PaymentSession | null;
 };
 
-const Wrapper: React.FC<PropsWithChildren<WrapperProps>> = ({
+export const Wrapper: React.FC<PropsWithChildren<WrapperProps>> = ({
     paymentSession,
     children,
 }) => {
@@ -44,5 +44,3 @@ const StripeWrapper: React.FC<PropsWithChildren<WrapperProps>> = ({
         </Elements>
     );
 };
-
-export default Wrapper;

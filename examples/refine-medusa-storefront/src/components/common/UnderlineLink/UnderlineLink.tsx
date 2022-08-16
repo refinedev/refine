@@ -6,7 +6,7 @@ type UnderlineLinkProps = {
     children?: React.ReactNode;
 };
 
-const UnderlineLink: React.FC<UnderlineLinkProps> = ({
+export const UnderlineLink: React.FC<UnderlineLinkProps> = ({
     href,
     children,
 }: UnderlineLinkProps) => {
@@ -25,5 +25,3 @@ const UnderlineLink: React.FC<UnderlineLinkProps> = ({
         </div>
     );
 };
-
-export default UnderlineLink;

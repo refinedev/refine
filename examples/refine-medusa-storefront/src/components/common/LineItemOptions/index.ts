@@ -1,1 +1,1 @@
-export { default } from "./LineItemOptions";
+export * from "./LineItemOptions";

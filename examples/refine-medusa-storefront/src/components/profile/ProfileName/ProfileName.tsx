@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { Customer } from "@medusajs/medusa";
 import { useForm, useWatch } from "@pankod/refine-react-hook-form";
 
-import AccountInfo from "../../account/AccountInfo/AccountInfo";
-import Input from "@components/common/Input";
+import { AccountInfo } from "@components/account";
+import { Input } from "@components/common";
 
 type MyInformationProps = {
     customer: Omit<Customer, "password_hash">;
@@ -14,7 +14,7 @@ type UpdateCustomerNameFormData = {
     last_name: string;
 };
 
-const ProfileName: React.FC<MyInformationProps> = ({ customer }) => {
+export const ProfileName: React.FC<MyInformationProps> = ({ customer }) => {
     const {
         register,
         handleSubmit,
@@ -84,5 +84,3 @@ const ProfileName: React.FC<MyInformationProps> = ({ customer }) => {
         </form>
     );
 };
-
-export default ProfileName;

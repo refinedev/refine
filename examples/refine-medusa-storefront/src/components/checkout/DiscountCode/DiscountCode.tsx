@@ -4,9 +4,9 @@ import { Cart } from "@medusajs/medusa";
 import { useForm } from "react-hook-form";
 import { useDelete, useInvalidate, useUpdate } from "@pankod/refine-core";
 
-import Input from "@components/common/Input";
 import { Trash } from "@components/icons";
-import Button from "@components/ui/Button";
+import { Input } from "@components/common";
+import { Button } from "@components";
 
 interface DiscountFormValues {
     discount_code: string;
@@ -16,7 +16,7 @@ interface DiscountCodeProps {
     cart: Omit<Cart, "refundable_amount" | "refunded_total">;
 }
 
-const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
+export const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
     const { id, discounts, region } = cart;
     const { mutate, isLoading } = useUpdate();
     const { mutate: removeDiscount } = useDelete();
@@ -153,5 +153,3 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
         </div>
     );
 };
-
-export default DiscountCode;

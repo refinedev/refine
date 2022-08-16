@@ -1,7 +1,7 @@
 import { Disclosure } from "@headlessui/react";
 import clsx from "clsx";
 
-import { useCheckout } from "@lib/context/checkout";
+import { useCheckout } from "@lib/context";
 
 type StepContainerProps = {
     index: number;
@@ -10,7 +10,7 @@ type StepContainerProps = {
     children?: React.ReactNode;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-const StepContainer: React.FC<StepContainerProps> = ({
+export const StepContainer: React.FC<StepContainerProps> = ({
     index,
     title,
     className,
@@ -65,5 +65,3 @@ const StepContainer: React.FC<StepContainerProps> = ({
         </div>
     );
 };
-
-export default StepContainer;

@@ -1,14 +1,13 @@
-import { useCallback, useContext } from "react";
+import { useCallback } from "react";
 import { useOne } from "@pankod/refine-core";
 import { useFormContext, Controller } from "@pankod/refine-react-hook-form";
 import { StoreShippingOptionsListRes } from "@medusajs/medusa";
 import { ErrorMessage } from "@hookform/error-message";
 
-import { Text } from "@components/ui";
-import ShippingOptionWidget from "@components/checkout/ShippingOptionWidget";
+import { ShippingOptionWidget, Text } from "@components";
 import { useCartContext } from "@lib/context";
 
-const ShippingOptionView: React.FC = () => {
+export const ShippingOptionView: React.FC = () => {
     const { cart } = useCartContext();
     const {
         getValues,
@@ -72,5 +71,3 @@ const ShippingOptionView: React.FC = () => {
         </div>
     );
 };
-
-export default ShippingOptionView;

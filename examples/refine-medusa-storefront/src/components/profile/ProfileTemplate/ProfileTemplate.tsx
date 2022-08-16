@@ -1,17 +1,14 @@
-// import { useAccount } from "@lib/context/account-context";
-// import ProfileEmail from "@modules/account/components/profile-email";
-import { useGetIdentity, useOne } from "@pankod/refine-core";
+import { useOne } from "@pankod/refine-core";
 
-import ProfileEmail from "@components/profile/ProfileEmail/ProfileEmail";
-import ProfileName from "@components/profile/ProfileName/ProfileName";
-import ProfilePassword from "@components/profile/ProfilePassword/ProfilePassword";
-import ProfilePhone from "@components/profile/ProfilePhone/ProfilePhone";
-import ProfileBillingAddress from "@components/profile/ProfileBillingAddress/ProfileBillingAddress";
+import {
+    ProfileEmail,
+    ProfileName,
+    ProfilePassword,
+    ProfilePhone,
+    ProfileBillingAddress,
+} from "@components/profile";
 
-// import ProfileBillingAddress from "../components/profile-billing-address";
-// import ProfilePhone from "../components/profile-phone";
-
-const ProfileTemplate: React.FC = () => {
+export const ProfileTemplate: React.FC = () => {
     const { data } = useOne({
         resource: "customers",
         id: "me",
@@ -49,5 +46,3 @@ const ProfileTemplate: React.FC = () => {
 const Divider = () => {
     return <div className="h-px w-full bg-gray-200" />;
 };
-
-export default ProfileTemplate;

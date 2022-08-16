@@ -1,10 +1,10 @@
+import { useEffect } from "react";
+
 import Spinner from "@components/icons/Spinner";
 import { useCheckout } from "@lib/context/checkout";
-import { useEffect } from "react";
-import PaymentContainer from "../PaymentContainer";
-import StepContainer from "../StepContainer";
+import { PaymentContainer, StepContainer } from "@components";
 
-const Payment: React.FC = () => {
+export const Payment: React.FC = () => {
     const {
         cart,
         setPaymentSession,
@@ -74,5 +74,3 @@ const Payment: React.FC = () => {
         </StepContainer>
     );
 };
-
-export default Payment;

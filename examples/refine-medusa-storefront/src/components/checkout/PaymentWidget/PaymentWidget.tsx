@@ -1,4 +1,5 @@
 import { FC } from "react";
+
 import s from "./PaymentWidget.module.css";
 import { ChevronRight, CreditCard, Check } from "@components/icons";
 
@@ -7,7 +8,7 @@ interface ComponentProps {
     isValid?: boolean;
 }
 
-const PaymentWidget: FC<ComponentProps> = ({ onClick, isValid }) => {
+export const PaymentWidget: FC<ComponentProps> = ({ onClick, isValid }) => {
     /* Shipping Address
   Only available with checkout set to true -
   This means that the provider does offer checkout functionality. */
@@ -24,5 +25,3 @@ const PaymentWidget: FC<ComponentProps> = ({ onClick, isValid }) => {
         </div>
     );
 };
-
-export default PaymentWidget;

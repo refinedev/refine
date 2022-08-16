@@ -1,1 +1,1 @@
-export { default } from "./PaymentWrapper";
+export * from "./PaymentWrapper";

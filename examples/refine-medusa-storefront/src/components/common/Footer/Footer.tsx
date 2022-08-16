@@ -1,13 +1,10 @@
 import { FC } from "react";
-import cn from "clsx";
 import Link from "next/link";
-// import type { Page } from "@commerce/types/page";
-// import getSlug from "@lib/get-slug";
+import cn from "clsx";
+
 import { Github, Vercel } from "@components/icons";
 import { Logo, Container } from "@components/ui";
-// import { I18nWidget } from "@components/common";
 import s from "./Footer.module.css";
-// import { useResource } from "@pankod/refine-core";
 
 interface Props {
     className?: string;
@@ -22,7 +19,7 @@ const links = [
     },
 ];
 
-const Footer: FC<Props> = ({ className, pages }) => {
+export const Footer: FC<Props> = ({ className, pages }) => {
     const rootClassName = cn(s.root, className);
 
     return (
@@ -96,5 +93,3 @@ const Footer: FC<Props> = ({ className, pages }) => {
         </footer>
     );
 };
-
-export default Footer;

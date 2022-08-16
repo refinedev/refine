@@ -1,1 +1,1 @@
-export { default } from "./ShippingOptionView";
+export * from "./ShippingOptionView";

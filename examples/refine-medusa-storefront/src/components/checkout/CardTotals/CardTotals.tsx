@@ -6,7 +6,7 @@ type CartTotalsProps = {
     cart: Omit<Cart, "refundable_amount" | "refunded_total">;
 };
 
-const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
+export const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
     const {
         subtotal,
         discount_total,
@@ -62,5 +62,3 @@ const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
         </div>
     );
 };
-
-export default CartTotals;

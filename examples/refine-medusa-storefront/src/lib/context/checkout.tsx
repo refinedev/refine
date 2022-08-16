@@ -18,7 +18,7 @@ import {
     useOne,
     useUpdate,
 } from "@pankod/refine-core";
-import Wrapper from "@components/checkout/PaymentWrapper";
+import { Wrapper } from "@components/checkout";
 
 type AddressValues = {
     first_name: string;

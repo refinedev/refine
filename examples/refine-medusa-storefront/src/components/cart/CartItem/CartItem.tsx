@@ -18,7 +18,7 @@ type ItemOption = {
 
 const placeholderImg = "/product-img-placeholder.svg";
 
-const CartItem = ({
+export const CartItem = ({
     item,
     variant = "default",
     currencyCode,
@@ -179,5 +179,3 @@ const CartItem = ({
         </li>
     );
 };
-
-export default CartItem;

@@ -4,7 +4,9 @@ interface LineItemOptionsProps {
     variant: ProductVariant;
 }
 
-const LineItemOptions: React.FC<LineItemOptionsProps> = ({ variant }) => {
+export const LineItemOptions: React.FC<LineItemOptionsProps> = ({
+    variant,
+}) => {
     return (
         <div className="text-small-regular text-gray-700">
             {variant.options.map((option) => {
@@ -23,5 +25,3 @@ const LineItemOptions: React.FC<LineItemOptionsProps> = ({ variant }) => {
         </div>
     );
 };
-
-export default LineItemOptions;

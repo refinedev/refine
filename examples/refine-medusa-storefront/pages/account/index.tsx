@@ -2,8 +2,7 @@ import { GetServerSideProps } from "next";
 import { LayoutWrapper, useGetIdentity, useOne } from "@pankod/refine-core";
 import { StoreCustomersListOrdersRes } from "@medusajs/medusa";
 
-import AccountLayout from "@components/account/AccountLayout/AccountLayout";
-import Overview from "@components/account/OverviewTemplate/OverviewTemplate";
+import { AccountLayout, Overview } from "@components/account";
 import { getSearchStaticProps } from "@lib/search-props";
 
 const ProfilePage: React.FC = () => {

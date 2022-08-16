@@ -1,8 +1,6 @@
 /**
  * A funtion that does nothing.
  */
-const noop = () => {
+export const noop = () => {
     return null;
 };
-
-export default noop;

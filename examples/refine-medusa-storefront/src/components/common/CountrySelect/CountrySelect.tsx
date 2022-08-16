@@ -4,9 +4,9 @@ import { useFormContext } from "@pankod/refine-react-hook-form";
 import { Cart } from "@medusajs/medusa";
 
 import { useCartContext } from "@lib/context";
-import NativeSelect from "../NativeSelect";
+import { NativeSelect } from "@components";
 
-const CountrySelect: React.FC = () => {
+export const CountrySelect: React.FC = () => {
     const { cart } = useCartContext();
 
     const {
@@ -40,5 +40,3 @@ const CountrySelect: React.FC = () => {
         </NativeSelect>
     );
 };
-
-export default CountrySelect;

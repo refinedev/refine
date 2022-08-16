@@ -8,7 +8,7 @@ type OverviewProps = {
     customer?: Omit<Customer, "password_hash">;
 };
 
-const Overview: React.FC<OverviewProps> = ({ orders, customer }) => {
+export const Overview: React.FC<OverviewProps> = ({ orders, customer }) => {
     return (
         <div>
             <div className="small:hidden">
@@ -195,5 +195,3 @@ const getProfileCompletion = (customer?: Omit<Customer, "password_hash">) => {
 
     return (count / 4) * 100;
 };
-
-export default Overview;

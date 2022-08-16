@@ -15,7 +15,7 @@ type AccountInfoProps = {
     children?: React.ReactNode;
 };
 
-const AccountInfo: React.FC<AccountInfoProps> = ({
+export const AccountInfo: React.FC<AccountInfoProps> = ({
     label,
     currentInfo,
     isSuccess,
@@ -125,5 +125,3 @@ const AccountInfo: React.FC<AccountInfoProps> = ({
         </div>
     );
 };
-
-export default AccountInfo;

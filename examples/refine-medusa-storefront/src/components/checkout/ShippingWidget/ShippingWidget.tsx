@@ -7,7 +7,7 @@ interface ComponentProps {
     isValid?: boolean;
 }
 
-const ShippingWidget: FC<ComponentProps> = ({ onClick, isValid }) => {
+export const ShippingWidget: FC<ComponentProps> = ({ onClick, isValid }) => {
     /* Shipping Address
   Only available with checkout set to true -
   This means that the provider does offer checkout functionality. */
@@ -27,5 +27,3 @@ const ShippingWidget: FC<ComponentProps> = ({ onClick, isValid }) => {
         </div>
     );
 };
-
-export default ShippingWidget;

@@ -1,8 +1,9 @@
-import Radio from "@components/common/Radio";
+import React from "react";
 import { PaymentSession } from "@medusajs/medusa";
 import clsx from "clsx";
-import React from "react";
-import PaymentStripe from "../PaymentStripe";
+
+import { PaymentStripe } from "@components";
+import { Radio } from "@components/common";
 
 type PaymentContainerProps = {
     paymentSession: PaymentSession;
@@ -18,7 +19,7 @@ const PaymentInfoMap: Record<string, { title: string; description: string }> = {
     },
 };
 
-const PaymentContainer: React.FC<PaymentContainerProps> = ({
+export const PaymentContainer: React.FC<PaymentContainerProps> = ({
     paymentSession,
     selected,
     setSelected,
@@ -78,5 +79,3 @@ const PaymentElement = ({
             return null;
     }
 };
-
-export default PaymentContainer;

@@ -13,7 +13,7 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
     containerClassName?: string;
 };
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     (
         {
             name,
@@ -71,5 +71,3 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 );
 
 Input.displayName = "Input";
-
-export default Input;

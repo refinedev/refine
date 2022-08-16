@@ -1,1 +1,1 @@
-export { default } from "./CheckoutForm";
+export * from "./CheckoutForm";

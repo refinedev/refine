@@ -3,11 +3,10 @@ import { useFormContext } from "@pankod/refine-react-hook-form";
 import { Customer } from "@medusajs/medusa";
 
 import { Text } from "@components/ui";
-import Input from "@components/common/Input";
-import CountrySelect from "@components/common/CountrySelect";
+import { Input, CountrySelect } from "@components/common";
 import { emailRegex } from "@lib/regex";
 
-const ShippingView: React.FC = () => {
+export const ShippingView: React.FC = () => {
     const {
         register,
         setValue,
@@ -105,5 +104,3 @@ const ShippingView: React.FC = () => {
         </div>
     );
 };
-
-export default ShippingView;

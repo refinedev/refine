@@ -1,11 +1,7 @@
 import { useCartContext } from "@lib/context";
+import { CartTotals, DiscountCode, GiftCard, PaymentButton } from "@components";
 
-import CartTotals from "../CardTotals";
-import DiscountCode from "../DiscountCode";
-import GiftCard from "../GiftCard";
-import PaymentButton from "../PaymentButton";
-
-const CheckoutSummary: React.FC = () => {
+export const CheckoutSummary: React.FC = () => {
     const { cart } = useCartContext();
     console.log("cart", cart);
 
@@ -26,5 +22,3 @@ const CheckoutSummary: React.FC = () => {
         </div>
     );
 };
-
-export default CheckoutSummary;

@@ -9,7 +9,7 @@ type ComponentProps = { className?: string } & (
     | { handleBack: () => any; handleClose?: never }
 );
 
-const SidebarLayout: FC<PropsWithChildren<ComponentProps>> = ({
+export const SidebarLayout: FC<PropsWithChildren<ComponentProps>> = ({
     children,
     className,
     handleBack,
@@ -47,5 +47,3 @@ const SidebarLayout: FC<PropsWithChildren<ComponentProps>> = ({
         </div>
     );
 };
-
-export default SidebarLayout;

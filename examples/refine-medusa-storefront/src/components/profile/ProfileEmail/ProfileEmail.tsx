@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useForm, useWatch } from "@pankod/refine-react-hook-form";
 import { Customer } from "@medusajs/medusa";
 
-import Input from "@components/common/Input";
-import AccountInfo from "@components/account/AccountInfo/AccountInfo";
+import { Input } from "@components/common";
+import { AccountInfo } from "@components/account";
 
 type MyInformationProps = {
     customer: Omit<Customer, "password_hash">;
@@ -13,7 +13,7 @@ type UpdateCustomerEmailFormData = {
     email: string;
 };
 
-const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
+export const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
     const [errorMessage, setErrorMessage] =
         React.useState<string | undefined>(undefined);
 
@@ -78,5 +78,3 @@ const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
         </form>
     );
 };
-
-export default ProfileEmail;

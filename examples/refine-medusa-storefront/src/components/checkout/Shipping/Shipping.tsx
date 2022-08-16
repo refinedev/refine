@@ -5,10 +5,10 @@ import { Controller, useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { Cart } from "@medusajs/medusa";
 
-import Radio from "@components/common/Radio";
+import { StepContainer } from "@components";
+import { Radio } from "@components/common";
 import Spinner from "@components/icons/Spinner";
 import { useCheckout } from "@lib/context/checkout";
-import StepContainer from "../StepContainer";
 
 type ShippingProps = {
     cart: Omit<Cart, "refundable_amount" | "refunded_total">;
@@ -18,7 +18,7 @@ type ShippingFormProps = {
     soId: string;
 };
 
-const Shipping: React.FC<ShippingProps> = ({ cart }) => {
+export const Shipping: React.FC<ShippingProps> = ({ cart }) => {
     const { shippingMethods, setShippingOption } = useCheckout();
 
     const {
@@ -134,5 +134,3 @@ const Shipping: React.FC<ShippingProps> = ({ cart }) => {
         </StepContainer>
     );
 };
-
-export default Shipping;

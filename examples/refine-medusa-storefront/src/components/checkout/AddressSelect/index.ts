@@ -1,1 +1,1 @@
-export { default } from "./AddressSelect";
+export * from "./AddressSelect";

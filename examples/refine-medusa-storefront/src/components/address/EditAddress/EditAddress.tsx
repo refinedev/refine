@@ -27,7 +27,7 @@ type EditAddressProps = {
     isActive?: boolean;
 };
 
-const EditAddress: React.FC<EditAddressProps> = ({
+export const EditAddress: React.FC<EditAddressProps> = ({
     address,
     isActive = false,
 }) => {
@@ -296,5 +296,3 @@ const EditAddress: React.FC<EditAddressProps> = ({
         </>
     );
 };
-
-export default EditAddress;

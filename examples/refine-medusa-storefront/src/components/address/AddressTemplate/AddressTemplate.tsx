@@ -1,9 +1,9 @@
-import { useGetIdentity, useOne } from "@pankod/refine-core";
-import AddressBook from "@components/address/AddressBook/AddressBook";
-import { Customer } from "@medusajs/medusa";
+import { useOne } from "@pankod/refine-core";
+import { AddressBook } from "@components";
+import { StoreCustomersRes } from "@medusajs/medusa";
 
-const AddressesTemplate: React.FC = () => {
-    const { data: customer } = useOne({
+export const AddressesTemplate: React.FC = () => {
+    const { data: customer } = useOne<StoreCustomersRes>({
         resource: "customers",
         id: "me",
     });
@@ -18,9 +18,7 @@ const AddressesTemplate: React.FC = () => {
                     during checkout.
                 </p>
             </div>
-            <AddressBook customer={customer?.data?.customer} />
+            <AddressBook customer={customer?.data.customer} />
         </div>
     );
 };
-
-export default AddressesTemplate;

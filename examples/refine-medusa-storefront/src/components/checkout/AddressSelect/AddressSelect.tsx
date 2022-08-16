@@ -1,18 +1,19 @@
-import Radio from "@components/common/Radio";
-import { ChevronDown } from "@components/icons";
-import { Listbox, Transition } from "@headlessui/react";
-import { useCheckout } from "@lib/context/checkout";
-import { Address } from "@medusajs/medusa";
-import clsx from "clsx";
-import { isEqual, omit } from "lodash";
 import { Fragment, useMemo, useState } from "react";
+import { Listbox, Transition } from "@headlessui/react";
+import { Address } from "@medusajs/medusa";
+import { isEqual, omit } from "lodash";
 import { useWatch } from "react-hook-form";
+import clsx from "clsx";
+
+import { Radio } from "@components/common";
+import { ChevronDown } from "@components/icons";
+import { useCheckout } from "@lib/context/checkout";
 
 type AddressSelectProps = {
     addresses: Address[];
 };
 
-const AddressSelect: React.FC<AddressSelectProps> = ({ addresses }) => {
+export const AddressSelect: React.FC<AddressSelectProps> = ({ addresses }) => {
     const [selected, setSelected] = useState<string | undefined>(undefined);
 
     const { control, setSavedAddress } = useCheckout();
@@ -132,5 +133,3 @@ const AddressSelect: React.FC<AddressSelectProps> = ({ addresses }) => {
         </Listbox>
     );
 };
-
-export default AddressSelect;

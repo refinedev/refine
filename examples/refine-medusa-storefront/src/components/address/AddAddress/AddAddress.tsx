@@ -22,7 +22,7 @@ type FormValues = {
     company?: string;
 };
 
-const AddAddress: React.FC = () => {
+export const AddAddress: React.FC = () => {
     const handleClose = () => {
         reset({
             first_name: "",
@@ -227,5 +227,3 @@ const AddAddress: React.FC = () => {
         </>
     );
 };
-
-export default AddAddress;

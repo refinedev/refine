@@ -1,9 +1,7 @@
-import Shipping from "../Shipping";
-import Addresses from "../Addresses";
-import Payment from "../Payment";
+import { Shipping, Addresses, Payment } from "@components";
 import { useCartContext } from "@lib/context";
 
-const CheckoutForm: React.FC = () => {
+export const CheckoutForm: React.FC = () => {
     const { cart } = useCartContext();
 
     if (!cart?.id) {
@@ -28,5 +26,3 @@ const CheckoutForm: React.FC = () => {
         </div>
     );
 };
-
-export default CheckoutForm;

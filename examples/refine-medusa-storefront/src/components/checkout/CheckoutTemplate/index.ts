@@ -1,1 +1,1 @@
-export { default } from "./CheckoutTemplate";
+export * from "./CheckoutTemplate";

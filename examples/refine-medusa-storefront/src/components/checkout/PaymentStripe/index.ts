@@ -1,1 +1,1 @@
-export { default } from "./PaymentStripe";
+export * from "./PaymentStripe";

@@ -1,1 +1,1 @@
-export { default } from "./FeatureBar";
+export { default as default } from "./FeatureBar";

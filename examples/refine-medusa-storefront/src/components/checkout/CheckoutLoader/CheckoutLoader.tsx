@@ -2,9 +2,9 @@ import { Dialog, Transition } from "@headlessui/react";
 
 import Spinner from "@components/icons/Spinner";
 import { useCheckout } from "@lib/context/checkout";
-import noop from "@lib/noop";
+import { noop } from "@lib/noop";
 
-const CheckoutLoader: React.FC = () => {
+export const CheckoutLoader: React.FC = () => {
     const { isLoading } = useCheckout();
 
     return (
@@ -26,5 +26,3 @@ const CheckoutLoader: React.FC = () => {
         </Transition>
     );
 };
-
-export default CheckoutLoader;

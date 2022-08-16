@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { Customer } from "@medusajs/medusa";
 import { useForm } from "@pankod/refine-react-hook-form";
 
-import Input from "@components/common/Input";
-import AccountInfo from "../../account/AccountInfo/AccountInfo";
+import { Input } from "@components/common";
+import { AccountInfo } from "@components/account";
 import { useCreate } from "@pankod/refine-core";
 
 type MyInformationProps = {
@@ -16,7 +16,7 @@ type UpdateCustomerPasswordFormData = {
     confirm_password: string;
 };
 
-const ProfileName: React.FC<MyInformationProps> = ({ customer }) => {
+export const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
     const [errorMessage, setErrorMessage] =
         React.useState<string | undefined>(undefined);
 
@@ -129,5 +129,3 @@ const ProfileName: React.FC<MyInformationProps> = ({ customer }) => {
         </form>
     );
 };
-
-export default ProfileName;

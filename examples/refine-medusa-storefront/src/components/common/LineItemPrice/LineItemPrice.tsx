@@ -12,7 +12,7 @@ type LineItemPriceProps = {
     style?: "default" | "tight";
 };
 
-const LineItemPrice: React.FC<LineItemPriceProps> = ({
+export const LineItemPrice: React.FC<LineItemPriceProps> = ({
     variant,
     region,
     quantity,
@@ -62,5 +62,3 @@ const LineItemPrice: React.FC<LineItemPriceProps> = ({
         </div>
     );
 };
-
-export default LineItemPrice;

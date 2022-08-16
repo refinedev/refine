@@ -3,7 +3,7 @@ import React, { PropsWithChildren } from "react";
 import { AccountNav, LoadingDots } from "@components";
 import UnderlineLink from "@components/common/UnderlineLink/UnderlineLink"; // refactor path alli
 
-const AccountLayout: React.FC<PropsWithChildren> = ({ children }) => {
+export const AccountLayout: React.FC<PropsWithChildren> = ({ children }) => {
     const { data } = useGetIdentity();
 
     if (!data) {
@@ -41,5 +41,3 @@ const AccountLayout: React.FC<PropsWithChildren> = ({ children }) => {
         </div>
     );
 };
-
-export default AccountLayout;

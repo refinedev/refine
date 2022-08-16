@@ -1,1 +1,1 @@
-export { default } from "./DiscountCode";
+export * from "./DiscountCode";

@@ -1,3 +1,4 @@
+import React, { useMemo } from "react";
 import {
     CardCvcElement,
     CardExpiryElement,
@@ -8,9 +9,8 @@ import {
     StripeCardExpiryElementOptions,
     StripeCardNumberElementOptions,
 } from "@stripe/stripe-js";
-import React, { useMemo } from "react";
 
-const PaymentStripe: React.FC = () => {
+export const PaymentStripe: React.FC = () => {
     const useOptions:
         | StripeCardNumberElementOptions
         | StripeCardExpiryElementOptions
@@ -88,5 +88,3 @@ const CardCVC = ({ options }: { options: StripeCardCvcElementOptions }) => {
         </div>
     );
 };
-
-export default PaymentStripe;

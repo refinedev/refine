@@ -1,10 +1,9 @@
 import { useFormContext } from "react-hook-form";
 
-import CountrySelect from "@components/common/CountrySelect";
-import Input from "@components/common/Input";
+import { Input, CountrySelect } from "@components/common";
 import { CheckoutFormValues } from "@lib/context/checkout";
 
-const BillingAddress: React.FC = () => {
+export const BillingAddress: React.FC = () => {
     const {
         register,
         formState: { errors, touchedFields },
@@ -75,14 +74,7 @@ const BillingAddress: React.FC = () => {
                     touched={touchedFields}
                 />
             </div>
-            <CountrySelect
-                {...register("billing_address.country_code", {
-                    required: "Country is required",
-                })}
-                autoComplete="country"
-                errors={errors}
-                touched={touchedFields}
-            />
+            <CountrySelect />
             <Input
                 label="State / Province"
                 {...register("billing_address.province")}
@@ -100,5 +92,3 @@ const BillingAddress: React.FC = () => {
         </div>
     );
 };
-
-export default BillingAddress;

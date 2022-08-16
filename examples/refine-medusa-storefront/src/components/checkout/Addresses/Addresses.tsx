@@ -1,10 +1,9 @@
 import Spinner from "@components/icons/Spinner";
 import { Button, Checkbox } from "@components/ui";
-import { useCheckout } from "@lib/context/checkout";
-import BillingAddress from "../BillingAddress";
-import ShippingAddress from "../ShippingAddress";
+import { BillingAddress, ShippingAddress } from "@components/checkout";
+import { useCheckout } from "@lib/context";
 
-const Addresses: React.FC = () => {
+export const Addresses: React.FC = () => {
     const {
         sameAsBilling: { state: checked, toggle: onChange },
         editAddresses: { state: isEdit, toggle: setEdit },
@@ -178,5 +177,3 @@ const Addresses: React.FC = () => {
         </div>
     );
 };
-
-export default Addresses;

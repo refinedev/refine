@@ -9,7 +9,6 @@ export { default as LoadingDots } from "./LoadingDots";
 export { default as Skeleton } from "./Skeleton";
 export { default as Modal } from "./Modal";
 export { default as Text } from "./Text";
-export { default as Input } from "./Input";
 export { default as Collapse } from "./Collapse";
 export { default as Quantity } from "./Quantity";
 export { default as Rating } from "./Rating";

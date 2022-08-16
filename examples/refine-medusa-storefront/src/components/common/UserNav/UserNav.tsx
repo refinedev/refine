@@ -3,7 +3,7 @@ import { useAuthenticated } from "@pankod/refine-core";
 import cn from "clsx";
 import Link from "next/link";
 import s from "./UserNav.module.css";
-import Avatar from "@components/common/Avatar";
+import { Avatar } from "@components/common";
 import { useUI } from "@components/ui/context";
 import { Heart, Bag, Menu } from "@components/icons";
 import CustomerMenuContent from "./CustomerMenuContent";

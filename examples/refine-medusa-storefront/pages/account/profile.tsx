@@ -1,9 +1,9 @@
 import { GetServerSideProps } from "next";
-import { LayoutWrapper, useGetIdentity } from "@pankod/refine-core";
+import { LayoutWrapper } from "@pankod/refine-core";
 
 import { getSearchStaticProps } from "@lib/search-props";
-import AccountLayout from "@components/account/AccountLayout/AccountLayout";
-import ProfileTemplate from "@components/profile/ProfileTemplate/ProfileTemplate";
+import { AccountLayout } from "@components/account";
+import { ProfileTemplate } from "@components/profile";
 
 const ProfilePage: React.FC = () => {
     return (

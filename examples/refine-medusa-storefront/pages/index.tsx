@@ -1,9 +1,9 @@
 import { GetServerSideProps } from "next";
 export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
 import { dataProvider } from "@pankod/refine-medusa";
+import { Product } from "@medusajs/medusa";
 
 import { getSearchStaticProps } from "@lib/search-props";
-import { MedusaProduct } from "@interfaces";
 
 const API_URL = "https://refine-example-storefront.herokuapp.com/store";
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -11,7 +11,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         const searchProps = await getSearchStaticProps();
         const medusaDataProvider = dataProvider(API_URL);
 
-        const products = await medusaDataProvider.getList<MedusaProduct>({
+        const products = await medusaDataProvider.getList<Product>({
             resource: "products",
         });
 

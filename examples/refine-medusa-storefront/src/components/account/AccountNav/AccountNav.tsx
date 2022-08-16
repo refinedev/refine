@@ -85,5 +85,3 @@ const AccountNavLink = ({ href, route, children }: AccountNavLinkProps) => {
         </Link>
     );
 };
-
-export default AccountNav;

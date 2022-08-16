@@ -8,7 +8,7 @@ interface ComponentProps {
     isValid: boolean;
 }
 
-const ShippingOptionWidget: FC<PropsWithChildren<ComponentProps>> = ({
+export const ShippingOptionWidget: FC<PropsWithChildren<ComponentProps>> = ({
     onClick,
     isValid,
     children,
@@ -25,5 +25,3 @@ const ShippingOptionWidget: FC<PropsWithChildren<ComponentProps>> = ({
         </div>
     );
 };
-
-export default ShippingOptionWidget;

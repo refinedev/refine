@@ -16,7 +16,7 @@ interface NavbarProps {
     links?: BaseRecord[];
 }
 
-const Navbar: FC<NavbarProps> = ({ links }) => {
+export const Navbar: FC<NavbarProps> = ({ links }) => {
     return (
         <NavbarRoot>
             <Container clean className="max-w-8xl mx-auto px-6">
@@ -54,5 +54,3 @@ const Navbar: FC<NavbarProps> = ({ links }) => {
         </NavbarRoot>
     );
 };
-
-export default Navbar;
