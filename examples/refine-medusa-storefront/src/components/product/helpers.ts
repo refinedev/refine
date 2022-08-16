@@ -2,6 +2,7 @@
 export type SelectedOptions = Record<string, string | null>;
 import { Dispatch, SetStateAction } from "react";
 import Medusa from "@medusajs/medusa-js";
+import { Product } from "@medusajs/medusa";
 
 export type MedusaProduct = Awaited<
     ReturnType<Medusa["products"]["list"]>
@@ -22,9 +23,9 @@ export function getProductVariant(product: any, opts: SelectedOptions) {
 }
 
 export function selectDefaultOptionFromProduct(
-    product: MedusaProduct, // Product
-    updater: Dispatch<SetStateAction<SelectedOptions>>,
-) {
+    product: Product,
+    updater?: Dispatch<SetStateAction<SelectedOptions>>,
+): SelectedOptions {
     const selectedOptions: Record<string, string> = {};
     // Selects the default option
     product.variants[0]?.options?.forEach((v) => {
@@ -36,7 +37,8 @@ export function selectDefaultOptionFromProduct(
             selectedOptions[option.title.toLowerCase()] = v.value.toLowerCase();
         }
     });
-    updater(selectedOptions);
+    updater?.(selectedOptions);
+    return selectedOptions;
 }
 
 export function currencySymbolFromCode(code: string) {

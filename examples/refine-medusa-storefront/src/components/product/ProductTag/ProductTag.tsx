@@ -1,11 +1,10 @@
 import cn from "clsx";
-import { inherits } from "util";
 import s from "./ProductTag.module.css";
 
 interface ProductTagProps {
     className?: string;
     name: string;
-    price: string;
+    price?: string;
     fontSize?: number;
 }
 
@@ -28,7 +27,7 @@ const ProductTag: React.FC<ProductTagProps> = ({
                     {name}
                 </span>
             </h3>
-            <div className={s.price}>{price}</div>
+            {price && <div className={s.price}>{price}</div>}
         </div>
     );
 };

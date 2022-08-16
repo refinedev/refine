@@ -35,7 +35,7 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
                     <div className={cn(s.main, "fit")}>
                         <ProductTag
                             name={product.title}
-                            price={`${selectedPrice?.calculated_price} `}
+                            price={selectedPrice?.calculated_price}
                             fontSize={32}
                         />
                         <div className={s.sliderContainer}>
