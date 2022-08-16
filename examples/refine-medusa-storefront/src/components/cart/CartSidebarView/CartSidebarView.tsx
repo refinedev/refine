@@ -1,33 +1,38 @@
 import { FC } from "react";
 import cn from "clsx";
 import Link from "next/link";
+import { formatAmount } from "medusa-react";
 
 import { CartItem } from "@components";
 import { Button, Text } from "@components/ui";
 import { useUI } from "@components/ui/context";
-import { Bag, Cross } from "@components/icons";
+import { Bag } from "@components/icons";
 import { SidebarLayout } from "@components/common";
-import { currencySymbolFromCode } from "@components/product/helpers";
+import SkeletonCartSidebar from "@components/skeletons/SkeletonCartSidebar";
 import { useCartContext } from "@lib/context/";
 
 import s from "./CartSidebarView.module.css";
-import SkeletonCartSidebar from "@components/skeletons/SkeletonCartSidebar";
 
 export const CartSidebarView: FC = () => {
     const { closeSidebar, setSidebarView } = useUI();
 
     const { cart, cartIsFetching } = useCartContext();
 
-    const currencyCode = currencySymbolFromCode(
-        cart?.region["currency_code"] ?? "",
-    );
-
     const isEmpty = cart?.items.length === 0;
-    const total = cart?.total;
-    const subTotal = cart?.subtotal;
 
     const handleClose = () => closeSidebar();
     const goToCheckout = () => setSidebarView("CHECKOUT_VIEW");
+
+    if (!cart) {
+        return null;
+    }
+
+    const getAmount = (amount: number | undefined) => {
+        return formatAmount({
+            amount: amount || 0,
+            region: cart.region,
+        });
+    };
 
     return (
         <SidebarLayout
@@ -63,12 +68,8 @@ export const CartSidebarView: FC = () => {
                             </Text>
                         </Link>
                         <ul className={s.lineItemsList}>
-                            {cart?.items.map((item: any) => (
-                                <CartItem
-                                    key={item.id}
-                                    item={item}
-                                    currencyCode={currencyCode}
-                                />
+                            {cart.items.map((item) => (
+                                <CartItem key={item.id} item={item} />
                             ))}
                         </ul>
                     </div>
@@ -77,10 +78,7 @@ export const CartSidebarView: FC = () => {
                         <ul className="pb-2">
                             <li className="flex justify-between py-1">
                                 <span>Subtotal</span>
-                                <span>
-                                    {currencyCode}
-                                    {subTotal}
-                                </span>
+                                <span>{getAmount(cart.subtotal)}</span>
                             </li>
                             <li className="flex justify-between py-1">
                                 <span>Taxes</span>
@@ -95,10 +93,7 @@ export const CartSidebarView: FC = () => {
                         </ul>
                         <div className="border-accent-2 mb-2 flex justify-between border-t py-3 font-bold">
                             <span>Total</span>
-                            <span>
-                                {currencyCode}
-                                {total}
-                            </span>
+                            <span>{getAmount(cart.total)}</span>
                         </div>
                         <div>
                             <Button
@@ -106,7 +101,7 @@ export const CartSidebarView: FC = () => {
                                 width="100%"
                                 onClick={goToCheckout}
                             >
-                                Proceed to Checkout ({total})
+                                Proceed to Checkout ({getAmount(cart.total)})
                             </Button>
                         </div>
                     </div>
