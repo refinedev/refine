@@ -1,13 +1,18 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { useDelete, useInvalidate, useUpdate } from "@pankod/refine-core";
-import cn from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import s from "./CartItem.module.css";
+import cn from "clsx";
+import { useDelete, useInvalidate, useUpdate } from "@pankod/refine-core";
+import { LineItem } from "@medusajs/medusa";
+
 import { useUI } from "@components/ui/context";
-// import type { LineItem } from "@commerce/types/cart";
 import Quantity from "@components/ui/Quantity";
 import { useCartContext } from "@lib/context";
+
+import s from "./CartItem.module.css";
+import { formatAmount } from "medusa-react";
+
+const placeholderImg = "/product-img-placeholder.svg";
 
 type ItemOption = {
     name: string;
@@ -16,18 +21,15 @@ type ItemOption = {
     valueId: number;
 };
 
-const placeholderImg = "/product-img-placeholder.svg";
+interface CartItemProps {
+    variant?: "default" | "display";
+    item: LineItem;
+}
 
-export const CartItem = ({
+export const CartItem: React.FC<CartItemProps> = ({
     item,
     variant = "default",
-    currencyCode,
-    ...rest
-}: {
-    variant?: "default" | "display";
-    item: any; // LineItem
-    currencyCode: string;
-}): JSX.Element => {
+}) => {
     const { closeSidebarIfPresent } = useUI();
     const [removing, setRemoving] = useState(false);
     const [quantity, setQuantity] = useState<number>(item.quantity);
@@ -96,16 +98,26 @@ export const CartItem = ({
         // do this differently as it could break easily
     }, [item.quantity]);
 
+    if (!cart) {
+        return null;
+    }
+
+    const getAmount = (amount: number | undefined) => {
+        return formatAmount({
+            amount: amount || 0,
+            region: cart.region,
+        });
+    };
+
     return (
         <li
             className={cn(s.root, {
                 "pointer-events-none opacity-50": removing,
             })}
-            {...rest}
         >
             <div className="flex flex-row space-x-4 py-4">
                 <div className="bg-violet relative z-0 h-16 w-16 cursor-pointer overflow-hidden">
-                    <Link href={`/product/${item.path}`}>
+                    <Link href={`/product/${item.title}`}>
                         <Image
                             onClick={() => closeSidebarIfPresent()}
                             className={s.productImage}
@@ -120,7 +132,7 @@ export const CartItem = ({
                     </Link>
                 </div>
                 <div className="flex flex-1 flex-col text-base">
-                    <Link href={`/product/${item.path}`}>
+                    <Link href={`/product/${item.title}`}>
                         <span
                             className={s.productName}
                             onClick={() => closeSidebarIfPresent()}
@@ -164,7 +176,7 @@ export const CartItem = ({
                     )}
                 </div>
                 <div className="flex flex-col justify-between space-y-2 text-sm">
-                    <span>{`${currencyCode}${item["unit_price"]}`}</span>
+                    <span>{getAmount(item.unit_price)}</span>
                 </div>
             </div>
             {variant === "default" && (

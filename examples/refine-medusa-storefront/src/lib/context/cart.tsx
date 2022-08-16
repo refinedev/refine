@@ -27,6 +27,7 @@ interface CartContext {
     resetCart: () => void;
     cartId: string | undefined;
     cart: Omit<Cart, "refundable_amount" | "refunded_total"> | undefined;
+    cartIsFetching: boolean;
 }
 
 const CartContext = React.createContext<CartContext | null>(null);
@@ -62,7 +63,7 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
         getCart() || undefined,
     );
 
-    const { cart } = useCart({ id: cartId });
+    const { cart, isFetching: cartIsFetching } = useCart({ id: cartId });
     const invalidate = useInvalidate();
 
     const storeRegion = (regionId: string, countryCode: string) => {
@@ -315,6 +316,7 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
                 resetCart,
                 cartId,
                 cart,
+                cartIsFetching,
             }}
         >
             {children}

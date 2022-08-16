@@ -9,8 +9,9 @@ const useCart = ({
     id,
 }: useCartProps): {
     cart: Omit<Cart, "refundable_amount" | "refunded_total"> | undefined;
+    isFetching: boolean;
 } => {
-    const { data } = useOne<StoreCartsRes>({
+    const { data, isFetching } = useOne<StoreCartsRes>({
         resource: "carts",
         id: id!,
         queryOptions: {
@@ -19,7 +20,7 @@ const useCart = ({
     });
 
     const cart = data?.data.cart;
-    return { cart };
+    return { cart, isFetching };
 };
 
 export default useCart;
