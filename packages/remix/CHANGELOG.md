@@ -1,5 +1,11 @@
 # @pankod/refine-remix-router
 
+## 1.1.0
+
+### Minor Changes
+
+-   [#2323](https://github.com/pankod/refine/pull/2323) [`c4157066bd`](https://github.com/pankod/refine/commit/c4157066bd18c93af13d12b45c0e2619766361d1) Thanks [@omeraplak](https://github.com/omeraplak)! - Add `checkAuthentication` to handle authentication processes more easily
+
 ## 1.0.2
 
 ### Patch Changes
