@@ -27,6 +27,8 @@ export const CartSidebarView: FC = () => {
     const handleClose = () => closeSidebar();
     const goToCheckout = () => setSidebarView("CHECKOUT_VIEW");
 
+    console.log(cart);
+
     // TODO: manage error and success states for purchase
     const error = null;
     const success = null;
