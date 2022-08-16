@@ -6,8 +6,8 @@ import { Country, Region } from "@medusajs/medusa";
 import { Modal, Button } from "@components";
 import { Plus } from "@icons";
 import { LoadingDots } from "@components";
-import Input from "@components/common/Input";
-import NativeSelect from "@components/common/NativeSelect";
+import { Input } from "@components/common/Input";
+import { NativeSelect } from "@components/common/NativeSelect";
 
 type FormValues = {
     first_name: string;
