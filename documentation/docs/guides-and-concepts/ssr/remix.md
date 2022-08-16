@@ -14,12 +14,13 @@ npm i @pankod/refine-core @pankod/refine-remix-router @pankod/refine-simple-rest
 ```
 
 :::tip
-We recommend `npx create-remix@latest` to initialize your Remix projects. 
+We recommend [**superplate**][superplate] to initialize your refine projects. It configures the project according to your needs including SSR with Remix!
+
+```sh
+npx superplate-cli my-remix-app -p refine-remix
+```
 :::
 
-<!-- :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package.
-::: -->
 
 ## Usage
 
@@ -373,8 +374,12 @@ export default function App() {
 
 ## Server Side Authentication
 
-For Server Side Authentication, the `createCookieSessionStorage` module in Remix's `@remix-run/node` package can be used. For detailed information, you can check Remix's [`Jokes App`][JokesApp] tutorial.
+There are two ways to do Server Side Authentication with Remix. You can choose one of the two methods according to your use case.
 
+1. You can store the user session as encrypted using `createCookieSessionStorage`. When you choose this method, all authentication information will remain on the server side.
+2. Self service cookies! You manage authentication cookies yourself. The plus of this method is that the Authentication information can also be used on the Client Side. (recommended)
+
+### createCookieSessionStorage
 First, let's create our `AuthProvider`. For more information on `AuthProvider`, visit our [AuthProvider documentation][AuthProvider].
 
 ```tsx title="app/authProvider.ts"
@@ -638,6 +643,120 @@ export const loader: LoaderFunction = async ({ request }) => {
     return await logout(request);
 };
 ```
+
+### Self service Cookie
+
+First, let's install the `js-cookie` and `cookie` packages in our project.
+
+```sh
+npm i js-cookie cookie
+
+# typescript types
+npm i -D @types/js-cookie
+```
+
+We will set/destroy cookies in the `login`, `logout` and `checkAuth` functions of our `AuthProvider`.
+
+```tsx title="app/authProvider.ts"
+import { AuthProvider } from "@pankod/refine-core";
+// highlight-start
+import Cookies from "js-cookie";
+import * as cookie from "cookie";
+// highlight-end
+
+const mockUsers = [
+    {
+        username: "admin",
+        roles: ["admin"],
+    },
+    {
+        username: "editor",
+        roles: ["editor"],
+    },
+];
+
+// highlight-next-line
+const COOKIE_NAME = "user";
+
+export const authProvider: AuthProvider = {
+    login: ({ username, password, remember }) => {
+        // Suppose we actually send a request to the back end here.
+        const user = mockUsers.find((item) => item.username === username);
+
+        if (user) {
+            // highlight-next-line
+            Cookies.set(COOKIE_NAME, JSON.stringify(user));
+            return Promise.resolve();
+        }
+
+        return Promise.reject();
+    },
+    logout: () => {
+        // highlight-next-line
+        Cookies.remove(COOKIE_NAME);
+
+        return Promise.resolve();
+    },
+    checkError: (error) => {
+        if (error && error.statusCode === 401) {
+            return Promise.reject();
+        }
+
+        return Promise.resolve();
+    },
+    checkAuth: async (context) => {
+        // highlight-start
+        let user = undefined;
+        if (context) {
+            // for SSR
+            const { request } = context;
+            const parsedCookie = cookie.parse(request.headers.get("Cookie"));
+            user = parsedCookie[COOKIE_NAME];
+        } else {
+            // for CSR
+            const parsedCookie = Cookies.get(COOKIE_NAME);
+            user = parsedCookie ? JSON.parse(parsedCookie) : undefined;
+        }
+        // highlight-end
+
+        if (!user) {
+            return Promise.reject();
+        }
+        return Promise.resolve();
+    },
+    getPermissions: async () => {
+        return Promise.resolve();
+    },
+    getUserIdentity: async () => {
+        return Promise.resolve();
+    },
+};
+
+```
+
+Tadaa! that's all!
+
+`checkAuthentication` expects your authProvider and `request`'s context. It uses the `checkAuth` from the `authProvider` to check for authentication. In unauthenticated cases, it redirects to `/login` while keeping the original route to be navigated to after successful login.
+
+```tsx title="app/routes/index.tsx"
+import { json, LoaderFunction } from "@remix-run/node";
+import { authProvider } from "~/authProvider";
+
+//highlight-next-line
+import { checkAuthentication } from "@pankod/refine-remix-router";
+export { RemixRouteComponent as default } from "@pankod/refine-remix-router";
+
+export const loader: LoaderFunction = async ({ params, request, context }) => {
+    //highlight-next-line
+    await checkAuthentication(authProvider, request);
+    return null;
+};
+```
+You can also add the authentication check to the routes below
+
+- `app/routes/$resource/index.tsx`
+- `app/routes/$resource/$action/index.tsx`
+- `app/routes/$resource/$action/$id/index.tsx`
 
 ## `syncWithLocation` and Query Parameters in SSR
 
