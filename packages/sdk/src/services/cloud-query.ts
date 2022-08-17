@@ -7,7 +7,7 @@ class CloudQuery {
         this.client = client;
     }
 
-    async run(data: { key: string; config: any }): Promise<any> {
+    async run(data: { key: string; config?: any }): Promise<any> {
         return await this.client.call({
             method: "post",
             url: "/data-sources/connections/run",
