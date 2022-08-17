@@ -1,7 +1,8 @@
 import { Customer, Order } from "@medusajs/medusa";
-import { ChevronDown, User, Package, MapPin } from "@icons";
-// import { formatAmount } from "medusa-react";
 import Link from "next/link";
+
+import { ChevronDown, User, Package, MapPin } from "@icons";
+import s from "./OverviewTemplate.module.css";
 
 type OverviewProps = {
     orders?: Order[];
@@ -11,42 +12,40 @@ type OverviewProps = {
 export const Overview: React.FC<OverviewProps> = ({ orders, customer }) => {
     return (
         <div>
-            <div className="small:hidden">
-                <div className="text-xl-semi mb-4 px-8">
-                    Hello {customer?.first_name}
-                </div>
-                <div className="text-base-regular">
+            <div className={s.mobileHidden}>
+                <div className={s.head}>Hello {customer?.first_name}</div>
+                <div className={s.regularText}>
                     <ul>
                         <li>
                             <Link href="/account/profile">
-                                <a className="flex items-center justify-between border-b border-gray-200 py-4 px-8">
-                                    <div className="flex items-center gap-x-2">
+                                <a className={s.link}>
+                                    <div className={s.linkContent}>
                                         <User size={16} />
                                         <span>Profile</span>
                                     </div>
-                                    <ChevronDown className="-rotate-90 transform" />
+                                    <ChevronDown className={s.icon} />
                                 </a>
                             </Link>
                         </li>
                         <li>
                             <Link href="/account/addresses">
-                                <a className="flex items-center justify-between border-b border-gray-200 py-4 px-8">
-                                    <div className="flex items-center gap-x-2">
+                                <a className={s.link}>
+                                    <div className={s.linkContent}>
                                         <MapPin size={16} />
                                         <span>Addresses</span>
                                     </div>
-                                    <ChevronDown className="-rotate-90 transform" />
+                                    <ChevronDown className={s.icon} />
                                 </a>
                             </Link>
                         </li>
                         <li>
                             <Link href="/account/orders">
-                                <a className="flex items-center justify-between border-b border-gray-200 py-4 px-8">
-                                    <div className="flex items-center gap-x-2">
+                                <a className={s.link}>
+                                    <div className={s.linkContents}>
                                         <Package size={16} />
                                         <span>Orders</span>
                                     </div>
-                                    <ChevronDown className="-rotate-90 transform" />
+                                    <ChevronDown className={s.icon} />
                                 </a>
                             </Link>
                         </li>
@@ -54,50 +53,46 @@ export const Overview: React.FC<OverviewProps> = ({ orders, customer }) => {
                 </div>
             </div>
 
-            <div className="small:block hidden">
-                <div className="text-xl-semi mb-4 flex items-start justify-between">
+            <div className={s.mobileBlock}>
+                <div className={s.mobileHead}>
                     <span>Hello {customer?.first_name}</span>
-                    <span className="text-small-regular text-gray-700">
+                    <span className={s.signIn}>
                         Signed in as:{" "}
-                        <span className="font-semibold">{customer?.email}</span>
+                        <span className={s.semibold}>{customer?.email}</span>
                     </span>
                 </div>
-                <div className="flex flex-col border-t border-gray-200 py-8">
-                    <div className="col-span-1 row-span-2 flex h-full flex-1 flex-col gap-y-4">
-                        <div className="mb-6 flex items-start gap-x-16">
-                            <div className="flex flex-col gap-y-4">
-                                <h3 className="text-large-semi">Profile</h3>
-                                <div className="flex items-end gap-x-2">
-                                    <span className="text-3xl-semi leading-none">
+                <div className={s.overviewContainer}>
+                    <div className={s.overviewWrapper}>
+                        <div className={s.overviewInfo}>
+                            <div className={s.flexCol}>
+                                <h3 className={s.semibold}>Profile</h3>
+                                <div className={s.flexEnd}>
+                                    <span className={s.remarkableText}>
                                         {getProfileCompletion(customer)}%
                                     </span>
-                                    <span className="text-base-regular uppercase text-gray-500">
+                                    <span className={s.ragularText}>
                                         Completed
                                     </span>
                                 </div>
                             </div>
 
-                            <div className="flex flex-col gap-y-4">
-                                <h3 className="text-large-semi">Addresses</h3>
-                                <div className="flex items-end gap-x-2">
-                                    <span className="text-3xl-semi leading-none">
+                            <div className={s.flexCol}>
+                                <h3 className={s.semibold}>Addresses</h3>
+                                <div className={s.flexEnd}>
+                                    <span className={s.remarkableText}>
                                         {customer?.shipping_addresses?.length ||
                                             0}
                                     </span>
-                                    <span className="text-base-regular uppercase text-gray-500">
-                                        Saved
-                                    </span>
+                                    <span className={s.ragularText}>Saved</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="flex flex-col gap-y-4">
-                            <div className="flex items-center gap-x-2">
-                                <h3 className="text-large-semi">
-                                    Recent orders
-                                </h3>
+                        <div className={s.flexCol}>
+                            <div className={s.linkContent}>
+                                <h3 className={s.semibold}>Recent orders</h3>
                             </div>
-                            <ul className="flex flex-col gap-y-4">
+                            <ul className={s.flexCol}>
                                 {orders ? (
                                     orders.slice(0, 5).map((order) => {
                                         return (
@@ -106,15 +101,35 @@ export const Overview: React.FC<OverviewProps> = ({ orders, customer }) => {
                                                     href={`/order/details/${order.id}`}
                                                 >
                                                     <a>
-                                                        <div className="flex items-center justify-between bg-gray-50 p-4">
-                                                            <div className="text-small-regular grid flex-1 grid-cols-3 grid-rows-2 gap-x-4">
-                                                                <span className="font-semibold">
+                                                        <div
+                                                            className={
+                                                                s.ordersWrapper
+                                                            }
+                                                        >
+                                                            <div
+                                                                className={
+                                                                    s.orders
+                                                                }
+                                                            >
+                                                                <span
+                                                                    className={
+                                                                        s.semibold
+                                                                    }
+                                                                >
                                                                     Date placed
                                                                 </span>
-                                                                <span className="font-semibold">
+                                                                <span
+                                                                    className={
+                                                                        s.semibold
+                                                                    }
+                                                                >
                                                                     Order number
                                                                 </span>
-                                                                <span className="font-semibold">
+                                                                <span
+                                                                    className={
+                                                                        s.semibold
+                                                                    }
+                                                                >
                                                                     Total amount
                                                                 </span>
                                                                 <span>
@@ -140,7 +155,9 @@ export const Overview: React.FC<OverviewProps> = ({ orders, customer }) => {
                                                                 </span> */}
                                                             </div>
                                                             <button
-                                                                className="flex items-center justify-between"
+                                                                className={
+                                                                    s.center
+                                                                }
                                                                 onClick={close}
                                                             >
                                                                 <span className="sr-only">
@@ -150,7 +167,11 @@ export const Overview: React.FC<OverviewProps> = ({ orders, customer }) => {
                                                                         order.display_id
                                                                     }
                                                                 </span>
-                                                                <ChevronDown className="-rotate-90" />
+                                                                <ChevronDown
+                                                                    className={
+                                                                        s.icon
+                                                                    }
+                                                                />
                                                             </button>
                                                         </div>
                                                     </a>

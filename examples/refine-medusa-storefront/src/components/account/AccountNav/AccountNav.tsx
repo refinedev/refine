@@ -3,32 +3,28 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 import { ChevronDown } from "@icons";
+import s from "./AccountNav.module.css";
 
 export const AccountNav: React.FC = () => {
     const { route } = useRouter();
 
     return (
         <div>
-            <div className="small:hidden">
+            <div className={s.account}>
                 {route !== "/account" && (
-                    <Link
-                        href="/account"
-                        className="text-small-regular flex items-center gap-x-2 py-2"
-                    >
+                    <Link href="/account" className={s.accountLink}>
                         <>
-                            <ChevronDown className="rotate-90 transform" />
+                            <ChevronDown className={s.icon} />
                             <span>Account</span>
                         </>
                     </Link>
                 )}
             </div>
-            <div className="small:block hidden">
+            <div className={s.links}>
                 <div>
-                    <div className="py-4">
-                        <h3 className="text-base-semi">Account</h3>
-                    </div>
-                    <div className="text-base-regular">
-                        <ul className="mb-0 flex flex-col items-start justify-start gap-y-4">
+                    <h3 className="">Account</h3>
+                    <div>
+                        <ul className={s.list}>
                             <li>
                                 <AccountNavLink href="/account" route={route}>
                                     Overview

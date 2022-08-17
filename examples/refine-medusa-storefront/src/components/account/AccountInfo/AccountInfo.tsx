@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Disclosure } from "@headlessui/react";
 
 import { Button } from "@components";
+import s from "./AccountInfo.module.css";
 
 type AccountInfoProps = {
     label: string;
@@ -38,13 +39,13 @@ export const AccountInfo: React.FC<AccountInfoProps> = ({
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="text-small-regular">
-            <div className="flex items-end justify-between">
-                <div className="flex flex-col">
-                    <span className="text-gray uppercase">{label}</span>
-                    <div className="flex flex-1 basis-0 items-center justify-end gap-x-4">
+        <div className={s.root}>
+            <div className={s.currentInfoWrapper}>
+                <div className={s.currentInfoTop}>
+                    <span className={s.label}>{label}</span>
+                    <div className={s.currentInfo}>
                         {typeof currentInfo === "string" ? (
-                            <span className="font-semibold">{currentInfo}</span>
+                            <span className={s.text}>{currentInfo}</span>
                         ) : (
                             currentInfo
                         )}
@@ -53,7 +54,7 @@ export const AccountInfo: React.FC<AccountInfoProps> = ({
                 <div>
                     <Button
                         variant="ghost"
-                        className="small:h-[50px] small:w-[100px] h-[25px] min-h-[25px] w-[50px] py-1"
+                        className={s.button}
                         onClick={handleToggle}
                         type={isOpen ? "reset" : "button"}
                     >
@@ -67,14 +68,12 @@ export const AccountInfo: React.FC<AccountInfoProps> = ({
                 <Disclosure.Panel
                     static
                     className={clsx(
-                        "overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out",
-                        {
-                            "max-h-[1000px] opacity-100": isSuccess,
-                            "max-h-0 opacity-0": !isSuccess,
-                        },
+                        s.disclosure,
+                        isSuccess && s.appearDisclosure,
+                        !isSuccess && s.disappearDisclosure,
                     )}
                 >
-                    <div className="bg-green text-accent-1 my-4 p-4">
+                    <div className={s.successMessage}>
                         <span>{label} updated succesfully</span>
                     </div>
                 </Disclosure.Panel>
@@ -85,14 +84,12 @@ export const AccountInfo: React.FC<AccountInfoProps> = ({
                 <Disclosure.Panel
                     static
                     className={clsx(
-                        "overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out",
-                        {
-                            "max-h-[1000px] opacity-100": isError,
-                            "max-h-0 opacity-0": !isError,
-                        },
+                        s.disclosure,
+                        isError && s.appearDisclosure,
+                        !isError && s.disappearDisclosure,
                     )}
                 >
-                    <div className="bg-violet-light text-violet-dark mt-4 p-4">
+                    <div className={s.errorMessage}>
                         <span>{errorMessage}</span>
                     </div>
                 </Disclosure.Panel>
@@ -102,20 +99,15 @@ export const AccountInfo: React.FC<AccountInfoProps> = ({
                 <Disclosure.Panel
                     static
                     className={clsx(
-                        "overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out",
-                        {
-                            "max-h-[1000px] opacity-100": isOpen,
-                            "max-h-0 opacity-0": !isOpen,
-                        },
+                        s.disclosure,
+                        isOpen && s.appearDisclosure,
+                        !isOpen && s.disappearDisclosure,
                     )}
                 >
-                    <div className="flex flex-col gap-y-2 py-4">
+                    <div className={s.openDisclosure}>
                         <div>{children}</div>
-                        <div className="mt-2 flex items-center justify-end">
-                            <Button
-                                className="small:max-w-[140px] w-full"
-                                type="submit"
-                            >
+                        <div className={s.buttonWrapper}>
+                            <Button className={s.button} type="submit">
                                 Save changes
                             </Button>
                         </div>
