@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
@@ -7,7 +7,7 @@ import {
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
-import { useSdk, withCloud } from "@pankod/refine-cloud";
+import { useCloudQuery, withCloud } from "@pankod/refine-cloud";
 import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
@@ -28,25 +28,21 @@ const RefineWithCloud = withCloud(Refine, {
 });
 
 const Dashboard = () => {
-    const { sdk } = useSdk();
-    const [users, setUsers] = useState();
+    const { mutate, data, isLoading } = useCloudQuery();
 
     useEffect(() => {
-        console.log("--req");
-        sdk.cloudQuery
-            .run({
-                key: "postgresql-users",
-            })
-            .then((users) => {
-                setUsers(users);
-            })
-            .catch((err) => console.log("err", err));
+        mutate({
+            key: "postgresql-users",
+        });
     }, []);
 
     return (
-        <pre>
-            <code>{JSON.stringify(users, null, 2)}</code>
-        </pre>
+        <>
+            {isLoading && <span>loading...</span>}
+            <pre>
+                <code>{JSON.stringify(data, null, 2)}</code>
+            </pre>
+        </>
     );
 };
 
