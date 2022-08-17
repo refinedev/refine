@@ -28,9 +28,9 @@ export const PaymentContainer: React.FC<PaymentContainerProps> = ({
     return (
         <div
             className={clsx(
-                "flex flex-col gap-y-4 border-b border-gray-200 last:border-b-0",
+                "border-accent-3 flex flex-col gap-y-4 border-b last:border-b-0 ",
                 {
-                    "bg-gray-50": selected,
+                    "bg-primary": selected,
                 },
             )}
         >
@@ -42,10 +42,10 @@ export const PaymentContainer: React.FC<PaymentContainerProps> = ({
                 >
                     <Radio checked={selected} />
                     <div className="flex flex-col text-left">
-                        <h3 className="text-base-semi leading-none text-gray-900">
+                        <h3 className="text-base-semi text-primary leading-none">
                             {PaymentInfoMap[paymentSession.provider_id].title}
                         </h3>
-                        <span className="text-small-regular mt-2 text-gray-700">
+                        <span className="text-small-regular text-accent-8 mt-2">
                             {
                                 PaymentInfoMap[paymentSession.provider_id]
                                     .description
@@ -71,7 +71,7 @@ const PaymentElement = ({
     switch (paymentSession.provider_id) {
         case "stripe":
             return (
-                <div className="pt-8 pr-7">
+                <div className="text-primary pt-8 pr-7">
                     <PaymentStripe />
                 </div>
             );

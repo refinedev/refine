@@ -73,7 +73,7 @@ export const AddAddress: React.FC = () => {
     return (
         <>
             <button
-                className="flex h-full min-h-[220px] w-full flex-col justify-between border border-gray-200 p-5"
+                className="text-primary border-accent-2 flex h-full min-h-[220px] w-full flex-col justify-between border p-5"
                 onClick={() => show()}
             >
                 <span className="text-base-semi">New address</span>

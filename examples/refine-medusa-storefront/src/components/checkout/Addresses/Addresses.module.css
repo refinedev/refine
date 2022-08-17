@@ -1,9 +1,9 @@
 .step {
-    @apply text-xl-semi flex items-center gap-x-4 pb-6 pt-8;
+    @apply bg-accent-2 text-xl-semi flex items-center gap-x-4 pb-6 pt-8;
 }
 
 .stepCount {
-    @apply flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 text-sm text-white;
+    @apply bg-secondary text-secondary flex h-8 w-8 items-center justify-center rounded-full text-sm;
 }
 
 .mark {

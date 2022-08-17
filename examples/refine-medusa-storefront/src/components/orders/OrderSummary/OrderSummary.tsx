@@ -17,8 +17,8 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ order }) => {
     return (
         <div>
             <h2 className="text-base-semi">Order Summary</h2>
-            <div className="text-small-regular my-2 text-gray-700">
-                <div className="text-base-regular mb-2 flex items-center justify-between text-gray-900">
+            <div className="text-small-regular text-primary my-2">
+                <div className="text-base-regular text-primary mb-2 flex items-center justify-between">
                     <span>Subtotal</span>
                     <span>{getAmount(order.subtotal)}</span>
                 </div>
@@ -45,7 +45,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ order }) => {
                     </div>
                 </div>
                 <div className="my-4 h-px w-full border-b border-dashed border-gray-200" />
-                <div className="text-base-regular mb-2 flex items-center justify-between text-gray-900">
+                <div className="text-base-regular text-accent-9 mb-2 flex items-center justify-between">
                     <span>Total</span>
                     <span>{getAmount(order.total)}</span>
                 </div>

@@ -17,13 +17,13 @@ export const Addresses: React.FC = () => {
     } = useCheckout();
 
     return (
-        <div className="bg-white">
+        <div>
             <div className={cn(s.step, "px-8")}>
                 <div className={s.stepCount}>1</div>
                 <h2>Shipping address</h2>
             </div>
             {isEdit ? (
-                <div className="px-8 pb-8">
+                <div className=" px-8 pb-8">
                     <ShippingAddress />
                     <div className="mt-6">
                         <Checkbox
@@ -50,7 +50,7 @@ export const Addresses: React.FC = () => {
                 </div>
             ) : (
                 <div>
-                    <div className="text-small-regular bg-gray-50 px-8 py-6">
+                    <div className="text-small-regular bg-primary px-8 py-6">
                         {cart && cart.shipping_address ? (
                             <div className="flex items-start gap-x-8">
                                 <div className={s.mark}>✓</div>
@@ -105,7 +105,7 @@ export const Addresses: React.FC = () => {
                                 <div className={s.stepCount}>2</div>
                                 <h2>Billing address</h2>
                             </div>
-                            <div className="text-small-regular bg-gray-50 px-8 py-6">
+                            <div className="text-small-regular px-8 py-6">
                                 {cart && cart.billing_address ? (
                                     <div className="flex items-start gap-x-8">
                                         <div className={s.mark}>✓</div>

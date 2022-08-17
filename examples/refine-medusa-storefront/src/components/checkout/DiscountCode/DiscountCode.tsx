@@ -101,7 +101,7 @@ export const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
     };
 
     return (
-        <div className="flex w-full flex-col bg-white">
+        <div className="flex w-full flex-col">
             <div className="mb-4">
                 <h3 className="text-base-semi">Discount</h3>
             </div>
@@ -129,7 +129,7 @@ export const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
                     </div>
                 ) : (
                     <form onSubmit={handleSubmit(onApply)} className="w-full">
-                        <div className="grid grid-cols-[1fr_80px] gap-x-2">
+                        <div className="grid grid-cols-[1fr_80px] items-end gap-x-2">
                             <Input
                                 label="Code"
                                 {...register("discount_code", {

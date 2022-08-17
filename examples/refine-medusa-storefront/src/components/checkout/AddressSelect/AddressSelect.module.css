@@ -1,5 +1,5 @@
 .button {
-    @apply text-base-regular relative flex w-full cursor-default items-center justify-between border border-gray-200 bg-white px-4 py-[10px] text-left;
+    @apply text-base-regular bg-primary relative flex w-full cursor-default items-center justify-between border border-gray-200 px-4 py-[10px] text-left;
 }
 
 .button:focus {
@@ -7,11 +7,11 @@
 }
 
 .button:focus-visible {
-    @apply border-gray-300 ring-2 ring-white ring-opacity-75 ring-offset-2 ring-offset-gray-300;
+    @apply border-primary ring-offset-primary ring-2 ring-white ring-opacity-75 ring-offset-2;
 }
 
 .options {
-    @apply text-small-regular border-t-0 absolute z-20 max-h-60 w-full overflow-auto border border-gray-200 bg-white;
+    @apply text-small-regular border-primary bg-primary absolute z-20 max-h-60 w-full overflow-auto border border-t-0;
 }
 
 .options:focus {
@@ -29,5 +29,5 @@
 }
 
 .option:hover {
-    @apply bg-gray-50;
+    @apply bg-accent-2;
 }

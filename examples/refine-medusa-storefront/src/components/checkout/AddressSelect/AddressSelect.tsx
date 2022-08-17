@@ -100,7 +100,7 @@ export const AddressSelect: React.FC<AddressSelectProps> = ({ addresses }) => {
                                                 {address.last_name}
                                             </span>
                                             {address.company && (
-                                                <span className="text-small-regular text-gray-700">
+                                                <span className="text-small-regular text-accent-7">
                                                     {address.company}
                                                 </span>
                                             )}

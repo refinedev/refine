@@ -10,11 +10,11 @@ export const CheckoutSummary: React.FC = () => {
 
     return (
         <div className="small:flex-col sticky top-0 flex flex-col-reverse gap-y-8">
-            <div className="flex w-full flex-col gap-y-6 bg-white p-6">
+            <div className="bg-accent-2 flex w-full flex-col gap-y-6 p-6">
                 <CartTotals cart={cart} />
                 <PaymentButton paymentSession={cart?.payment_session} />
             </div>
-            <div className="bg-white p-6">
+            <div className="bg-accent-2 p-6">
                 <DiscountCode cart={cart} />
             </div>
             <GiftCard cart={cart} />

@@ -18,7 +18,7 @@ const Items: React.FC<ItemsProps> = ({ cartId, items, region }) => {
     const enrichedItems = useEnrichedLineItems(items, cartId);
 
     return (
-        <div className="flex flex-col gap-y-4 border-b border-gray-200 p-10">
+        <div className="border-accent-3 flex flex-col gap-y-4 border-b p-10">
             {enrichedItems?.length
                 ? enrichedItems.map((item) => {
                       return (

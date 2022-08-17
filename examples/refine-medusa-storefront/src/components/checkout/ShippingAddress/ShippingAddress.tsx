@@ -22,7 +22,7 @@ export const ShippingAddress: React.FC = () => {
     return (
         <div>
             {customer && (customer.shipping_addresses?.length || 0) > 0 && (
-                <div className="mb-6 flex flex-col gap-y-4 bg-amber-100 p-4">
+                <div className="mb-6 flex flex-col gap-y-4 p-4">
                     <p className="text-small-regular">
                         {`Hi ${customer.first_name}, do you want to use one of your saved addresses?`}
                     </p>

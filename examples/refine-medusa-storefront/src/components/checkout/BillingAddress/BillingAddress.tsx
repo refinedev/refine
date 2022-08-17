@@ -10,7 +10,7 @@ export const BillingAddress: React.FC = () => {
     } = useFormContext<CheckoutFormValues>();
 
     return (
-        <div className="grid grid-cols-1 gap-y-2">
+        <div className="bg-primary grid grid-cols-1 gap-y-2">
             <div className="grid grid-cols-2 gap-x-2">
                 <Input
                     label="First name"

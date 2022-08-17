@@ -4,6 +4,7 @@ import { Order } from "@medusajs/medusa";
 
 import { Button } from "@components";
 import Thumbnail from "@components/common/Thumbnail/Thumbnail";
+import { formatAmount } from "medusa-react";
 
 type OrderCardProps = {
     order: Omit<Order, "beforeInsert">;
@@ -21,22 +22,22 @@ const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
     }, [order]);
 
     return (
-        <div className="flex flex-col bg-white">
+        <div className="bg-primary flex flex-col">
             <div className="text-large-semi mb-1 uppercase">
                 #{order.display_id}
             </div>
-            <div className="text-small-regular flex items-center divide-x divide-gray-200 text-gray-700">
+            <div className="text-small-regular divide-accent-2 text-primary flex items-center divide-x">
                 <span className="pr-2">
                     {new Date(order.created_at).toDateString()}
                 </span>
-                {/* <span className="px-2">
+                <span className="px-2">
                     {formatAmount({
                         amount: order.total,
                         region: order.region,
                         includeTaxes: false,
                     })}
-                </span> */}
-                <span className="pl-2">{`${numberOfLines} ${
+                </span>
+                <span className="text-primary pl-2">{`${numberOfLines} ${
                     numberOfLines > 1 ? "items" : "item"
                 }`}</span>
             </div>
@@ -61,12 +62,10 @@ const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
                 })}
                 {numberOfProducts > 4 && (
                     <div className="flex h-full w-full flex-col items-center justify-center">
-                        <span className="text-small-regular text-gray-700">
+                        <span className="text-small-regular">
                             + {numberOfLines - 4}
                         </span>
-                        <span className="text-small-regular text-gray-700">
-                            more
-                        </span>
+                        <span className="text-small-regular">more</span>
                     </div>
                 )}
             </div>

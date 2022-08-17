@@ -104,9 +104,9 @@ export const EditAddress: React.FC<EditAddressProps> = ({
         <>
             <div
                 className={clsx(
-                    "flex h-full min-h-[220px] w-full flex-col justify-between border border-gray-200 p-5 transition-colors",
+                    "border-accent-2 flex h-full min-h-[220px] w-full flex-col justify-between border p-5 transition-colors",
                     {
-                        "border-gray-900": isActive,
+                        "border-primary": isActive,
                     },
                 )}
             >
@@ -115,7 +115,7 @@ export const EditAddress: React.FC<EditAddressProps> = ({
                         {address.first_name} {address.last_name}
                     </span>
                     {address.company && (
-                        <span className="text-small-regular text-gray-700">
+                        <span className="text-small-regular text-primary">
                             {address.company}
                         </span>
                     )}
@@ -137,14 +137,14 @@ export const EditAddress: React.FC<EditAddressProps> = ({
                 </div>
                 <div className="flex items-center gap-x-4">
                     <button
-                        className="text-small-regular flex items-center gap-x-2 text-gray-700"
+                        className="text-small-regular text-primary flex items-center gap-x-2"
                         onClick={() => show()}
                     >
                         <Edit size={16} />
                         Edit
                     </button>
                     <button
-                        className="text-small-regular flex items-center gap-x-2 text-gray-700"
+                        className="text-small-regular text-primary flex items-center gap-x-2"
                         onClick={() => removeAddress()} // TODO: removed function here
                     >
                         <Trash />

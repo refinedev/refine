@@ -15,16 +15,16 @@ const OrderDetailsTemplate: React.FC<OrderDetailsTemplateProps> = ({
     order,
 }) => {
     return (
-        <div className="min-h-[calc(100vh-64px)] bg-gray-50 py-6">
+        <div className="bg-primary min-h-[calc(100vh-64px)] py-6">
             <div className="content-container flex justify-center">
-                <div className="h-full w-full max-w-4xl bg-white">
+                <div className="bg-accent-2 h-full w-full max-w-4xl">
                     <OrderDetails order={order} showStatus />
                     <Items
                         items={order.items}
                         region={order.region}
                         cartId={order.cart_id}
                     />
-                    <div className="grid grid-cols-1 gap-4 border-b border-gray-200 p-10 lg:grid-cols-2">
+                    <div className="border-accent-2 grid grid-cols-1 gap-4 border-b p-10 lg:grid-cols-2">
                         <PaymentDetails
                             payments={order.payments}
                             paymentStatus={order.payment_status}

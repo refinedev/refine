@@ -71,7 +71,7 @@
 }
 
 .ordersWrapper {
-    @apply flex items-center justify-between bg-gray-50 p-4;
+    @apply bg-accent-2 flex items-center justify-between p-4;
 }
 
 .orders {

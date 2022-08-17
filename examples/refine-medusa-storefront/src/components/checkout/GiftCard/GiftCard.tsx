@@ -84,7 +84,7 @@ export const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
     };
 
     return (
-        <div className="flex w-full flex-col bg-white p-6">
+        <div className="bg-accent-2 flex w-full flex-col p-6">
             <div className="mb-4">
                 <h3 className="text-base-semi">Gift Card</h3>
             </div>
@@ -92,7 +92,7 @@ export const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
                 {appliedGiftCard ? (
                     <div className="flex items-center justify-between">
                         <div>
-                            <span className="text-gray-700">Code: </span>
+                            <span className="text-primary">Code: </span>
                             <span className="font-semibold">
                                 {appliedGiftCard}
                             </span>
@@ -112,7 +112,7 @@ export const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
                     </div>
                 ) : (
                     <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-                        <div className="grid grid-cols-[1fr_80px] gap-x-2">
+                        <div className="grid grid-cols-[1fr_80px] items-end gap-x-2">
                             <Input
                                 label="Code"
                                 {...register("gift_card_code", {

@@ -27,7 +27,7 @@ const OrderOverview: React.FC = () => {
                 {orders.map((o) => (
                     <div
                         key={o.id}
-                        className="border-b border-gray-200 pb-6 last:border-none last:pb-0"
+                        className="border-accent-2 border-b pb-6 last:border-none last:pb-0"
                     >
                         <OrderCard order={o} />
                     </div>

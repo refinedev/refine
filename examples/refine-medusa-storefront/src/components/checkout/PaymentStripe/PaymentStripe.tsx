@@ -33,7 +33,7 @@ export const PaymentStripe: React.FC = () => {
 
     return (
         <div>
-            <div className="relative flex w-full flex-col pb-6">
+            <div className="relative flex w-full flex-col text-white">
                 <CardNumber
                     options={useOptions as StripeCardNumberElementOptions}
                 />

@@ -60,10 +60,11 @@ export const Shipping: React.FC<ShippingProps> = ({ cart }) => {
 
     return (
         <StepContainer
+            className="bg-accent-2"
             index={sameBilling ? 2 : 3}
             title="Delivery"
             closedState={
-                <div className="text-small-regular px-8 pb-8">
+                <div className="text-small-regular text-primary px-8 pb-8">
                     <p>Enter your address to see available delivery options.</p>
                 </div>
             }
@@ -73,7 +74,7 @@ export const Shipping: React.FC<ShippingProps> = ({ cart }) => {
                 control={control}
                 render={({ field: { value, onChange } }) => {
                     return (
-                        <div>
+                        <div className="bg-primary">
                             <RadioGroup
                                 value={value}
                                 onChange={(value: string) =>
@@ -87,11 +88,11 @@ export const Shipping: React.FC<ShippingProps> = ({ cart }) => {
                                                 key={option.value}
                                                 value={option.value}
                                                 className={clsx(s.radio, {
-                                                    "bg-gray-50":
+                                                    "bg-accent-1":
                                                         option.value === value,
                                                 })}
                                             >
-                                                <div className="flex items-center gap-x-4">
+                                                <div className="flex items-center gap-x-4 ">
                                                     <Radio
                                                         checked={
                                                             value ===
@@ -102,7 +103,7 @@ export const Shipping: React.FC<ShippingProps> = ({ cart }) => {
                                                         {option.label}
                                                     </span>
                                                 </div>
-                                                <span className="justify-self-end text-gray-700">
+                                                <span className="text-primary justify-self-end">
                                                     {option.price}
                                                 </span>
                                             </RadioGroup.Option>
@@ -119,7 +120,7 @@ export const Shipping: React.FC<ShippingProps> = ({ cart }) => {
                                 name="soId"
                                 render={({ message }) => {
                                     return (
-                                        <div className="text-small-regular pt-2 text-rose-500">
+                                        <div className="text-small-regular text-magenta pt-2">
                                             <span>{message}</span>
                                         </div>
                                     );

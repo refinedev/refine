@@ -8,7 +8,7 @@ export const CheckoutLoader: React.FC = () => {
     const { isLoading } = useCheckout();
 
     return (
-        <Transition show={isLoading}>
+        <Transition show={isLoading} className="border-red border-2">
             <Dialog onClose={noop} className="relative z-[100]">
                 <Transition.Child
                     enter="ease-out duration-500"

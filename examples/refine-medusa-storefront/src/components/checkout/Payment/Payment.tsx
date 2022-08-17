@@ -34,15 +34,16 @@ export const Payment: React.FC = () => {
 
     return (
         <StepContainer
+            className="bg-accent-2"
             title="Payment"
             index={isSame ? 3 : 4}
             closedState={
-                <div className="text-small-regular px-8 pb-8">
+                <div className="text-small-regular text-primary px-8 pb-8">
                     <p>Enter your address to see available payment options.</p>
                 </div>
             }
         >
-            <div>
+            <div className="text-secondary">
                 {cart?.payment_sessions?.length ? (
                     cart.payment_sessions
                         .sort((a, b) => {

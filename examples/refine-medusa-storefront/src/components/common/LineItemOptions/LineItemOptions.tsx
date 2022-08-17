@@ -8,7 +8,7 @@ export const LineItemOptions: React.FC<LineItemOptionsProps> = ({
     variant,
 }) => {
     return (
-        <div className="text-small-regular text-gray-700">
+        <div className="text-small-regular text-primary">
             {variant.options.map((option) => {
                 const optionName =
                     variant.product.options.find(
