@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useQueryClient } from "react-query";
 
 import { useNavigation } from "@hooks";
@@ -23,6 +23,16 @@ export const AuthContextProvider: React.FC<
     const loginFunc = async (params: any) => {
         try {
             const result = await authOperations.login?.(params);
+
+            invalidateAuthStore();
+            return Promise.resolve(result);
+        } catch (error) {
+            return Promise.reject(error);
+        }
+    };
+    const registerFunc = async (params: any) => {
+        try {
+            const result = await authOperations.register?.(params);
 
             invalidateAuthStore();
             return Promise.resolve(result);
@@ -61,6 +71,7 @@ export const AuthContextProvider: React.FC<
             value={{
                 ...authOperations,
                 login: loginFunc,
+                register: registerFunc,
                 logout: logoutFunc,
                 checkAuth: checkAuthFunc,
                 isProvided,
