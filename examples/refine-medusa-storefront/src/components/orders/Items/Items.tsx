@@ -4,8 +4,8 @@ import { LineItem, Region } from "@medusajs/medusa";
 import { CalculatedVariant } from "src/types/medusa";
 import useEnrichedLineItems from "@lib/hooks/useEnrichedLineItems";
 import Thumbnail from "@components/common/Thumbnail/Thumbnail";
-import LineItemOptions from "@components/common/LineItemOptions";
-import LineItemPrice from "@components/common/LineItemPrice";
+import { LineItemOptions } from "@components/common/LineItemOptions";
+import { LineItemPrice } from "@components/common/LineItemPrice";
 import SkeletonLineItem from "@components/skeletons/SkeletonLineItem";
 
 interface ItemsProps {

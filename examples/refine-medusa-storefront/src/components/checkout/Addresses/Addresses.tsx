@@ -1,7 +1,11 @@
+import cn from "clsx";
+
 import Spinner from "@components/icons/Spinner";
 import { Button, Checkbox } from "@components/ui";
 import { BillingAddress, ShippingAddress } from "@components/checkout";
 import { useCheckout } from "@lib/context";
+
+import s from "./Addresses.module.css";
 
 export const Addresses: React.FC = () => {
     const {
@@ -11,12 +15,11 @@ export const Addresses: React.FC = () => {
         handleSubmit,
         cart,
     } = useCheckout();
+
     return (
         <div className="bg-white">
-            <div className="text-xl-semi flex items-center gap-x-4 px-8 pb-6 pt-8">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 text-sm text-white">
-                    1
-                </div>
+            <div className={cn(s.step, "px-8")}>
+                <div className={s.stepCount}>1</div>
                 <h2>Shipping address</h2>
             </div>
             {isEdit ? (
@@ -31,10 +34,8 @@ export const Addresses: React.FC = () => {
                     </div>
                     {!checked && (
                         <div>
-                            <div className="text-xl-semi flex items-center gap-x-4 pb-6 pt-8">
-                                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 font-mono text-sm text-white">
-                                    2
-                                </div>
+                            <div className={s.step}>
+                                <div className={s.stepCount}>2</div>
                                 <h2>Billing address</h2>
                             </div>
                             <BillingAddress />
@@ -52,10 +53,8 @@ export const Addresses: React.FC = () => {
                     <div className="text-small-regular bg-gray-50 px-8 py-6">
                         {cart && cart.shipping_address ? (
                             <div className="flex items-start gap-x-8">
-                                <div className="text-small-regular flex h-6 min-w-[24px] items-center justify-center rounded-full bg-green-400 text-white">
-                                    ✓
-                                </div>
-                                <div className="flex w-full items-start justify-between">
+                                <div className={s.mark}>✓</div>
+                                <div className={s.checkedAddress}>
                                     <div className="flex flex-col">
                                         <span>
                                             {cart.shipping_address.first_name}{" "}
@@ -102,19 +101,15 @@ export const Addresses: React.FC = () => {
                     </div>
                     {!checked && (
                         <div>
-                            <div className="text-xl-semi flex items-center gap-x-4 px-8 pb-6 pt-8">
-                                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 font-mono text-sm text-white">
-                                    2
-                                </div>
+                            <div className={cn(s.step, "px-8")}>
+                                <div className={s.stepCount}>2</div>
                                 <h2>Billing address</h2>
                             </div>
                             <div className="text-small-regular bg-gray-50 px-8 py-6">
                                 {cart && cart.billing_address ? (
                                     <div className="flex items-start gap-x-8">
-                                        <div className="text-small-regular flex h-6 min-w-[24px] items-center justify-center rounded-full bg-green-400 text-white">
-                                            ✓
-                                        </div>
-                                        <div className="flex w-full items-start justify-between">
+                                        <div className={s.mark}>✓</div>
+                                        <div className={s.checkedAddress}>
                                             <div className="flex flex-col">
                                                 <span>
                                                     {
@@ -165,9 +160,7 @@ export const Addresses: React.FC = () => {
                                         </div>
                                     </div>
                                 ) : (
-                                    <div className="">
-                                        <Spinner />
-                                    </div>
+                                    <Spinner />
                                 )}
                             </div>
                         </div>

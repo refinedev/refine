@@ -10,6 +10,8 @@ import { Radio } from "@components/common";
 import Spinner from "@components/icons/Spinner";
 import { useCheckout } from "@lib/context/checkout";
 
+import s from "./Shipping.module.css";
+
 type ShippingProps = {
     cart: Omit<Cart, "refundable_amount" | "refunded_total">;
 };
@@ -84,14 +86,10 @@ export const Shipping: React.FC<ShippingProps> = ({ cart }) => {
                                             <RadioGroup.Option
                                                 key={option.value}
                                                 value={option.value}
-                                                className={clsx(
-                                                    "text-small-regular flex cursor-pointer items-center justify-between border-b border-gray-200 py-4 px-8 last:border-b-0",
-                                                    {
-                                                        "bg-gray-50":
-                                                            option.value ===
-                                                            value,
-                                                    },
-                                                )}
+                                                className={clsx(s.radio, {
+                                                    "bg-gray-50":
+                                                        option.value === value,
+                                                })}
                                             >
                                                 <div className="flex items-center gap-x-4">
                                                     <Radio
@@ -111,7 +109,7 @@ export const Shipping: React.FC<ShippingProps> = ({ cart }) => {
                                         );
                                     })
                                 ) : (
-                                    <div className="flex flex-col items-center justify-center px-4 py-8 text-gray-900">
+                                    <div className={s.spinner}>
                                         <Spinner />
                                     </div>
                                 )}
