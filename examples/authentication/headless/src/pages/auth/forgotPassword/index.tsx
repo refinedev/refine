@@ -1,10 +1,12 @@
 import { AuthPage } from "@pankod/refine-core";
-export const LoginPage: React.FC = () => {
+export const ForgotPasswordPage: React.FC = () => {
+    console.log("RegisterPage");
+
     return (
         <AuthPage
-            type="login"
-            registerLink="/auth/register"
+            type="forgot"
             forgotLink="/auth/forgot-password"
+            backLink="/auth/login"
         />
     );
 };
