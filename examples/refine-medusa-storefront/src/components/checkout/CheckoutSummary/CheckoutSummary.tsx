@@ -3,7 +3,6 @@ import { CartTotals, DiscountCode, GiftCard, PaymentButton } from "@components";
 
 export const CheckoutSummary: React.FC = () => {
     const { cart } = useCartContext();
-    console.log("cart", cart);
 
     if (!cart?.id) {
         return null;

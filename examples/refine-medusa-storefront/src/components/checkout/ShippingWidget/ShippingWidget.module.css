@@ -1,4 +1,0 @@
-.root {
-  @apply border border-accent-2 px-6 py-5 mb-4 text-center
-  flex items-center cursor-pointer hover:border-accent-4;
-}

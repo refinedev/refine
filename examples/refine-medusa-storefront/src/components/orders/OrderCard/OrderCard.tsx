@@ -9,7 +9,7 @@ type OrderCardProps = {
     order: Omit<Order, "beforeInsert">;
 };
 
-const OrderCard = ({ order }: OrderCardProps) => {
+const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
     const numberOfLines = useMemo(() => {
         return order.items.reduce((acc, item) => {
             return acc + item.quantity;

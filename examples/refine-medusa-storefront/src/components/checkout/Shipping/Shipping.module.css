@@ -1,0 +1,11 @@
+.radio {
+    @apply text-small-regular flex cursor-pointer items-center justify-between border-b border-gray-200 py-4 px-8;
+}
+
+.radio:last {
+    @apply border-b-0;
+}
+
+.spinner {
+    @apply flex flex-col items-center justify-center px-4 py-8 text-gray-900;
+}

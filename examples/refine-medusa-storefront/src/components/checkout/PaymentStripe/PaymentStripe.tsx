@@ -10,6 +10,8 @@ import {
     StripeCardNumberElementOptions,
 } from "@stripe/stripe-js";
 
+import s from "./PaymentStripe.module.css";
+
 export const PaymentStripe: React.FC = () => {
     const useOptions:
         | StripeCardNumberElementOptions
@@ -54,10 +56,8 @@ const CardNumber = ({
     options: StripeCardNumberElementOptions;
 }) => {
     return (
-        <div className="relative border-b border-gray-200 py-2">
-            <span className="text-base-regular absolute -top-6 text-gray-700">
-                Card number
-            </span>
+        <div className={s.paymentInput}>
+            <span className={s.paymentLabel}>Card number</span>
             <CardNumberElement options={options} />
         </div>
     );
@@ -69,10 +69,8 @@ const CardExpiry = ({
     options: StripeCardExpiryElementOptions;
 }) => {
     return (
-        <div className="relative w-full border-b border-gray-200 py-2">
-            <span className="text-base-regular absolute -top-6 text-gray-700">
-                Expiration date
-            </span>
+        <div className={s.paymentInput}>
+            <span className={s.paymentLabel}>Expiration date</span>
             <CardExpiryElement options={options} />
         </div>
     );
@@ -80,10 +78,8 @@ const CardExpiry = ({
 
 const CardCVC = ({ options }: { options: StripeCardCvcElementOptions }) => {
     return (
-        <div className="relative w-full border-b border-gray-200 py-2">
-            <span className="text-base-regular absolute -top-6 text-gray-700">
-                CVC
-            </span>
+        <div className={s.paymentInput}>
+            <span className={s.paymentLabel}>CVC</span>
             <CardCvcElement options={{ ...options, placeholder: "123" }} />
         </div>
     );
