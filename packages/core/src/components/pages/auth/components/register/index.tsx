@@ -1,16 +1,30 @@
-import { useTranslate } from "@hooks/translate";
+import { useTranslate, useRouterContext, useRegister } from "@hooks";
 import React, { useState } from "react";
-import { IAuthCommonProps } from "../..";
+import { IAuthCommonProps, IRegisterForm } from "../..";
 
 export const Register: React.FC<IAuthCommonProps> = ({
     registerLink,
     loginLink,
     forgotLink,
 }) => {
-    const [username, setUsername] = useState("");
+    const { Link } = useRouterContext();
+
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
 
     const translate = useTranslate();
+
+    const { mutate: register } = useRegister<IRegisterForm>();
+
+    const renderLink = (link: React.ReactNode, text?: string) => {
+        if (link) {
+            if (typeof link === "string") {
+                return <Link to={link}>{text}</Link>;
+            } else return link;
+        }
+        return null;
+    };
 
     return (
         <>
@@ -18,6 +32,9 @@ export const Register: React.FC<IAuthCommonProps> = ({
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
+                    if (password === confirmPassword) {
+                        register({ email, password });
+                    }
                 }}
             >
                 <table>
@@ -25,25 +42,23 @@ export const Register: React.FC<IAuthCommonProps> = ({
                         <tr>
                             <td>
                                 {translate(
-                                    "pages.register.username",
+                                    "pages.register.email",
                                     undefined,
-                                    "username",
+                                    "email",
                                 )}
                                 :
                             </td>
                             <td>
                                 <input
-                                    type="text"
+                                    type="email"
                                     size={20}
                                     autoCorrect="off"
                                     spellCheck={false}
                                     autoCapitalize="off"
                                     autoFocus
                                     required
-                                    value={username}
-                                    onChange={(e) =>
-                                        setUsername(e.target.value)
-                                    }
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                 />
                             </td>
                         </tr>
@@ -68,33 +83,52 @@ export const Register: React.FC<IAuthCommonProps> = ({
                                 />
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                {translate(
+                                    "pages.register.confirmPassword",
+                                    undefined,
+                                    "confirm password",
+                                )}
+                                :
+                            </td>
+                            <td>
+                                <input
+                                    type="password"
+                                    required
+                                    size={20}
+                                    value={confirmPassword}
+                                    onChange={(e) =>
+                                        setConfirmPassword(e.target.value)
+                                    }
+                                />
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <br />
-                {forgotLink && (
-                    <a href={forgotLink}>
-                        {translate(
-                            "pages.register.forgot",
+                {forgotLink &&
+                    renderLink(
+                        forgotLink,
+                        translate(
+                            "pages.login.forgot",
                             "Forgot your password?",
-                        )}
-                    </a>
-                )}
+                        ),
+                    )}
                 {registerLink ? (
-                    <a href={registerLink}>
-                        {translate(
-                            "pages.register.signup",
-
-                            "Register",
-                        )}
-                    </a>
+                    renderLink(
+                        registerLink,
+                        translate("pages.register.signup", "Sign up"),
+                    )
                 ) : (
                     <input type="submit" value="register" />
                 )}
-                {loginLink && (
-                    <a href={loginLink}>
-                        {translate("pages.register.login", "Login")}
-                    </a>
-                )}
+                <br />
+                {loginLink &&
+                    renderLink(
+                        loginLink,
+                        translate("pages.register.login", "go to login"),
+                    )}
             </form>
         </>
     );

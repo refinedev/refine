@@ -1,4 +1,4 @@
-import { useLogin } from "@hooks/auth";
+import { useRouterContext, useLogin } from "@hooks";
 import { useTranslate } from "@hooks/translate";
 import React, { useState } from "react";
 import { ILoginForm, IAuthCommonProps } from "../..";
@@ -7,23 +7,58 @@ export const Login: React.FC<IAuthCommonProps> = ({
     registerLink,
     loginLink,
     forgotLink,
+    providers,
 }) => {
-    const [username, setUsername] = useState("");
+    const { Link } = useRouterContext();
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const translate = useTranslate();
 
     const { mutate: login } = useLogin<ILoginForm>();
 
-    console.log("registerLink", registerLink);
+    const renderLink = (link: React.ReactNode, text?: string) => {
+        if (link) {
+            if (typeof link === "string") {
+                return <Link to={link}>{text}</Link>;
+            } else return link;
+        }
+        return null;
+    };
+
+    const renderProviders = () => {
+        if (providers) {
+            return providers.map((provider) => (
+                <div key={provider.name}>
+                    <button
+                        onClick={() =>
+                            login({
+                                email,
+                                password,
+                                providerName: provider.name,
+                            })
+                        }
+                    >
+                        {provider?.icon}
+                        {provider.label ??
+                            translate("pages.login.button", "login")}
+                    </button>
+                    <br />
+                    <hr />
+                </div>
+            ));
+        }
+        return null;
+    };
 
     return (
         <>
             <h1>{translate("pages.login.title", "Login")}</h1>
+            {renderProviders()}
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
-                    login({ username, password });
+                    login({ email, password });
                 }}
             >
                 <table>
@@ -31,9 +66,9 @@ export const Login: React.FC<IAuthCommonProps> = ({
                         <tr>
                             <td>
                                 {translate(
-                                    "pages.login.username",
+                                    "pages.login.email",
                                     undefined,
-                                    "username",
+                                    "email",
                                 )}
                                 :
                             </td>
@@ -46,10 +81,8 @@ export const Login: React.FC<IAuthCommonProps> = ({
                                     autoCapitalize="off"
                                     autoFocus
                                     required
-                                    value={username}
-                                    onChange={(e) =>
-                                        setUsername(e.target.value)
-                                    }
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                 />
                             </td>
                         </tr>
@@ -77,30 +110,28 @@ export const Login: React.FC<IAuthCommonProps> = ({
                     </tbody>
                 </table>
                 <br />
-                {forgotLink && (
-                    <a href={forgotLink}>
-                        {translate(
+                {forgotLink &&
+                    renderLink(
+                        forgotLink,
+                        translate(
                             "pages.login.forgot",
                             "Forgot your password?",
-                        )}
-                    </a>
-                )}
+                        ),
+                    )}
+                <br />
                 {loginLink ? (
-                    <a href={loginLink}>
-                        {translate(
-                            "pages.login.signup",
-
-                            "Sign up",
-                        )}
-                    </a>
+                    renderLink(
+                        loginLink,
+                        translate("pages.login.signup", "Login"),
+                    )
                 ) : (
                     <input type="submit" value="login" />
                 )}
-                {registerLink && (
-                    <a href={registerLink}>
-                        {translate("pages.login.register", "Register")}
-                    </a>
-                )}
+                {registerLink &&
+                    renderLink(
+                        registerLink,
+                        translate("pages.login.register", "go to register"),
+                    )}
             </form>
         </>
     );
