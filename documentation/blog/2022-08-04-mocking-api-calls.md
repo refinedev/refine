@@ -24,7 +24,6 @@ I'll show how to write unit tests for API calls by mocking method in the simple 
 
 Steps we'll cover: 
 
-- [Introduction](#introduction)
 - [Why mocking HTTP requests during testing is important?](#why-mocking-http-requests-during-testing-is-important)
 - [What is Nock?](#what-is-nock)
 - [Bootstrapping the example app](#bootstrapping-the-example-app)
@@ -36,8 +35,6 @@ Steps we'll cover:
     - [Mocking server Errors](#mocking-server-errors)
 - [Recording in Nock](#recording-in-nock)
 - [Alternative API mocking libraries](#alternative-api-mocking-libraries)
-- [Conclusion](#conclusion)
-- [Build your React-based CRUD applications without constraints](#build-your-react-based-crud-applications-without-constraints)
 
 
 ## Why mocking HTTP requests during testing is important?
