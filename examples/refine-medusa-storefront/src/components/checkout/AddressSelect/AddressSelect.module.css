@@ -1,0 +1,33 @@
+.button {
+    @apply text-base-regular relative flex w-full cursor-default items-center justify-between border border-gray-200 bg-white px-4 py-[10px] text-left;
+}
+
+.button:focus {
+    @apply outline-none;
+}
+
+.button:focus-visible {
+    @apply border-gray-300 ring-2 ring-white ring-opacity-75 ring-offset-2 ring-offset-gray-300;
+}
+
+.options {
+    @apply text-small-regular border-t-0 absolute z-20 max-h-60 w-full overflow-auto border border-gray-200 bg-white;
+}
+
+.options:focus {
+    @apply outline-none;
+}
+
+@screen sm {
+    .options {
+        @apply text-sm;
+    }
+}
+
+.option {
+    @apply relative cursor-default select-none py-4 pl-6 pr-10;
+}
+
+.option:hover {
+    @apply bg-gray-50;
+}
