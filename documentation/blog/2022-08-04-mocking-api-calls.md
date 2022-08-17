@@ -12,11 +12,10 @@ import testrun from '@site/static/img/blog/2022-08-04-mocking-api-calls/test-run
 import nockrecord from '@site/static/img/blog/2022-08-04-mocking-api-calls/nock-recorder-log.png';
 
 ## Introduction
-Writing unit tests is very important for the development process. Testing components that use HTTP requests sometimes may be a real pain.
+Images are a significant part of modern-day web application development. Depending on how you use them, they can either make or mar your applications' developer and user experiences. Images impact user experience and are equally crucial in Search Engine Optimization (SEO) ranking when used right.
+Traditionally, images are added to web pages with the HTML `img` tag. This might prove to be efficient for simple use-cases, but things quickly get untidy when dealing with a sizable amount of images. 
 
-In testing, we often want to make mock requests to test our code without actually making an HTTP request. This can be especially important when we are testing code that makes external API calls since we don't want to rely on the availability of the external API.
-
-We'll use a third-party package called [nock](https://github.com/nock/nock) that helps us to mock HTTP requests. With nock, we can specify the desired behavior of our mock HTTP requests, including the URL, headers, and body. This allows us to test our code against a known data set, making debugging and testing much more straightforward.
+NextJS introduced a solution for delivering performant images on the web in v.10. It features a new Image component and built-in automatic image optimization. In the coming sections, you'll learn how to leverage this solution for optimizing and developing performant applications, thereby improving developer and end-user experiences.  
 <!--truncate-->
 
 I'll show how to write unit tests for API calls by mocking method in the simple React app.
@@ -24,314 +23,89 @@ I'll show how to write unit tests for API calls by mocking method in the simple 
 
 Steps we'll cover: 
 
-- [Introduction](#introduction)
-- [Why mocking HTTP requests during testing is important?](#why-mocking-http-requests-during-testing-is-important)
-- [What is Nock?](#what-is-nock)
-- [Bootstrapping the example app](#bootstrapping-the-example-app)
-- [Adding a unit test](#adding-a-unit-test)
-- [Nock installation and configuration](#nock-installation-and-configuration)
-- [Custom requests in Nock](#custom-requests-in-nock)
-    - [All HTTP methods like `GET`, `POST`, `PUT`, `DELETE` can be mock.](#all-http-methods-like-get-post-put-delete-can-be-mock)
-    - [To handle query parameters, the `query` option can be used.](#to-handle-query-parameters-the-query-option-can-be-used)
-    - [Mocking server Errors](#mocking-server-errors)
-- [Recording in Nock](#recording-in-nock)
-- [Alternative API mocking libraries](#alternative-api-mocking-libraries)
-- [Conclusion](#conclusion)
-- [Build your React-based CRUD applications without constraints](#build-your-react-based-crud-applications-without-constraints)
+## Prerequisites
+
+This article contains code samples, so a good background in coding in JavaScript and React is essential to proceed with the article. 
 
 
-## Why mocking HTTP requests during testing is important?
+## Preparing Your Images for Optimization 
 
-Mock testing is a great way to speed up running tests because you can eliminate external systems and servers.
+Before you dive into using the Image component, it's important to prepare your images in order to achieve optimum performance results. If you are dealing with a dynamic and large amount of images, you may want to consider a Content Delivery Network (CDN) such as Cloudinary to host your images. CDNs provide many images and application performance benefits such as automatic caching, file compression, and image resizing on the fly.
 
+Here is a non-exhaustive list of things you should consider before serving your images to end-users:
 
-These are all possible errors that you might encounter when running tests with the API:
+1. **Choose the right format** 
 
-  - The data returned from API can be different on each request.
-  - It takes a longer time to finish running the test.
-  - You may get a big size of data that you don't need to use in tests.
-  - You may have issues like rate limiting and connectivity.
+    The three most popular image formats on the web are JPEG, PNG, and WebP. Of all three, WebP is highly recommended due to its many advantages and performance benefits.
+    
+    WebP is a modern image format that provides superior lossy and lossless image compression for web images without compromising quality. It provides faster load times and is widely supported by browsers. [WebP-Converter](https://webp-converter.com/) is a good tool for converting your images to WebP.
+    
+2. **Resize images**
 
+    Serving the right images for the right device sizes is a vital part of image optimization on the web. Serving a huge 1080x800 image for users with 100x100 device sizes will lead to your users downloading unnecessary bandwidth, which can slow down page loads and hurt performance metrics. The [Responsive Breakpoints Generator](https://responsivebreakpoints.com) tool by Cloudinary is a good tool for generating multiple image file sizes for different screen sizes.
+    
+3. **Compress images**
+    
+    A good rule of thumb for image optimization is to keep your images below 1 Mb. Large file sizes should be reduced to a reasonable threshold without sacrificing image quality. Tools such as [TinyPNG](https://tinypng.com), [Compressor.io](https://compressor.io) are great for image compression.
+    
 
-We'll use the Nock to find a solution for these problems. We'll create a simple react app and request an external API. We will implement how to mock API calls and write a unit test for API calls using Nock in a React application.
+Once you're done optimizing your images manually, you can now proceed to use the NextJS Image component for maximum image optimization benefits. 
 
+## The NextJS Image Component
 
-## What is Nock?
+The `<Image />` component is a batteries-included modern solution for serving images in NextJS applications. It's similar to the native HTML `<img/>` element but has a few differences.
 
-Nock is an HTTP server mocking and expectations library. Nock works by overriding Node's `http.request` function.
+The major difference between the two is the out-of-the-box image optimization, performance benefits that come with the NextJS `<Image/>` component, and a number of other useful features, which we'll explore in the coming sections. The Image component usage is the same as using any other component in NextJS and can be used and re-used depending on your needs.
 
+## Using the `<Image/>` component
 
-It helps us mock calls to API and specifies what URLs we want to listen for, and responds with predefined responses, just like real APIs would.
+To get started, you'll need to import the `<Image />` component from `next/image` like so: 
 
-We can use nock to test React components that make HTTP requests.
-
-
-## Bootstrapping the example app
-
-We'll use [superplate](https://github.com/pankod/superplate) CLI wizard to create and customize the React application fastly.
-
-Run the following command:
+```js
+import Image from 'next/image'
 ```
-npx superplate-cli example-app
-```
+And then use the component as shown below:
 
-Select the following options when taking the CLI steps:
+```js
+import Image from 'next/image'
+import profilePic from '../public/profile.webp'
 
-```
-? Select your project type
-❯ react
-
-? Testing Framework
-❯ React Testing Library
-```
-
-CLI should create a project and install the selected dependencies.
-
-
-Create a component with the following code:
-
-```tsx title="index.tsx"
-export const Main = () => {
-     const [state, setState] = React.useState<{ firstName: string }>({
-        firstName: '',
-    });
-
-    const fetchData = async () => {
-        const response = await fetch(
-            'https://api.fake-rest.refine.dev/users/1'
-        );
-        const result = await response.json();
-        return result;
-    };
-
-    React.useEffect(() => {
-        (async () => {
-            const data = await fetchData();
-            setState(data);
-        })();
-    }, []);
-
-     return <div>{state.firstName}</div>;
-};
-```
-Above we can see that we do fetch call to [refine](https://github.com/pankod/refine)'s fake REST API URL and thereafter returned data shows on the screen.
-
-## Adding a unit test
-
-Now, we are going to create a test file.
-
-We want to add a test case for the function that makes an HTTP request to a URL and returns the data provided. Waiting for the data returned by API to be rendered on screen is a typical way of testing it.
-
-Using [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) the expected unit test vase will be the following:
-
-
-```tsx title="index.spec.tsx"
-import { Main } from './index';
-import { render, screen, waitFor } from '@testing-library/react';
-
-describe('expectedData', () => {
-    it('checks if returned data from API rendered into component', async () => {
-        render(<Main />);
-
-        await waitFor(() => {
-            expect(screen.getByText("/value from the api")).toBeInTheDocument();
-        });
-    });
-});
+const Profile = () => {
+    return (
+        <>
+            <h1> User Profile </h1>
+            <Image
+                src={profilePic}
+                alt='user profile picture'
+            />
+        </>
+    )
+}
 ```
 
-At this point, if run the test it will fail. It'll attempt to perform a network request. Since we are calling a real database it will return all the data rather than only the specific data that we need.
-Also, the API will respond with different values for each request.
+What's interesting to note is that `next/image` automatically generates `width`, `height`, and `blurDataURL` values for statically imported images. These values are used to prevent [Cummulative Layout Shift](https://web.dev/cls/) (CLS) before the image is finally loaded. It's also possible to pass these values explicitly.
 
-Testing this HTTP request-related architecture in that way can be a headache.
+Alternatively, you can pass a remote image string value to the `src` prop by using either relative or absolute URLs: 
 
-With the nock mock service, we can intercept requests to the API and return custom responses.
+```js
 
-## Nock installation and configuration
-Install the nock with the following command if you don't have it.
+import Image from 'next/image'
 
-```
-npm install --save-dev nock
-```
-
-We'll add the highlighted codes to initialize the nock.
-
-
-```tsx title="index.spec.tsx"
-import { Main } from './index';
-import { render, screen, waitFor } from '@testing-library/react';
-//highlight-next-line
-import nock from 'nock';
-
-describe('expectedData', () => {
-    it('checks if returned data from API rendered into component', async () => {
-        //highlight-start
-        nock('https://api.fake-rest.refine.dev')
-            .defaultReplyHeaders({
-                'access-control-allow-origin': '*',
-            })
-            .get('/users/1')
-            .reply(200, {
-                id: 1,
-                firstName: "/value from the api",
-            });
-        //highlight-end
-
-        render(<Main />);
-
-        await waitFor(() => {
-            expect(
-                screen.getByText("/value from the api")
-            ).toBeInTheDocument();
-        });
-    });
-});
-```
-At this point, our test works.
-
-
-
-<div >
-    <img src={testrun} alt="Test run" />
-</div>
-
-<br/>
-
-The test runner creates a mock server with nock and the `fetchData()` method will trigger.
-Rather than calling the API to test our app, we provide a set of known responses that mock it. 
-
-
-Nock intercepts `GET` requests to `'https://api.fake-rest.refine.dev'` followed by the path `'/users/1'` with the HTTP method `get`. 
-
-The response should be like defined in the `reply()` method. 
-We also set the `CORS` policy to the header with `defaultReplyHeaders`.
-
-## Custom requests in Nock
-
-We can specify the mock requests.
-
-#### All HTTP methods like `GET`, `POST`, `PUT`, `DELETE` can be mock.
-
-Simple `POST` request:
-
-```tsx
-nock('https://api.fake-rest.refine.dev')
-    .post('/users', {
-         username: 'test',
-         status: true,
-    })
-    .reply(201);
+const Profile = () => {
+    return (
+        <>
+            <h1> User Profile </h1>
+            <Image
+                // Absolute URL
+                src='https://unsplash.com/photos/XV1qykwu82c'
+                alt='User profile picture'
+                width={300}
+                height={300}
+            />
+        </>
+    )
+}
 ```
 
-
-
-#### To handle query parameters, the `query` option can be used.
-
-```tsx
-nock('https://api.fake-rest.refine.dev')
-    .get('/users')
-    .query({
-         username: 'test',
-         status: true,
-    })
-    .reply(200);
-```
-When an HTTP request is made with specified query, nock will intercept and return with a `200` status code.
-
-
-
-#### Mocking server Errors 
-
-Error replies can be returned from the mocking server with  `replyWithError` prop.
-
-```tsx
-nock('https://api.fake-rest.refine.dev')
-    .get('/users')
-    .replyWithError({
-            message: 'Server ERROR',
-    });
-```
-
-You may want to handle errors by only replying with a status code.
-
-
-```tsx
-nock('https://api.fake-rest.refine.dev')
-    .post('/users', {
-         username: 'test',
-         status: true,
-    })
-    .reply(500);
-```
-
-:::note
-It’s important to note we are using `afterAll(nock.restore)` and `afterEach(nock.cleanAll)` to make sure interceptors do not interfere with each other.
-
-```tsx
-afterAll(() => {
-    nock.cleanAll();
-    nock.restore();
-});
-```
+:::note You **should** always add the `width` and `height` props in the image component when using remote images because NextJS cannot determine the images dimension during the build process for proper page rendering to prevent layout shifts.
 :::
-## Recording in Nock 
-
-
-Recording relies on intercepting real requests and responses and then persisting them for later use.
-
-Nock prints the code to the console which we can use as a response in tests with `nock.recorder.rec()` method.
-
-Comment out the nock function and let's add `nock.recorder.rec()` in to the test file.
-
-When the test runs, the console logs all the service calls that nock has recorded.
-
-
-<div >
-    <img src={nockrecord} alt="nock record log" />
-</div>
-
-<br/>
-
-Instead of defining `nock` method and reply values manually, we can use recorded values.
-
-## Alternative API mocking libraries
-
-
-[MSW Mock Service Worker](https://mswjs.io/): Mock Service Worker is an API mocking library that uses Service Worker API to intercept actual requests.
-
-[Mirage JS](https://miragejs.com/): Mirage JS is an API mocking library that lets you build, test, and share a complete working JavaScript application without having to rely on any backend services.
-
-[fetch-mock](https://github.com/wheresrhys/fetch-mock): fetch-mock allows mocking HTTP requests made using fetch or a library imitating its API.
-
-
-## Conclusion
-
-In this article, we've implemented API mocking and explained how useful it can be. We used nock to mock HTTP requests in our test and some useful properties are shown.
-
-We have seen how to test only the behavior of an application in isolation. Avoid any external dependencies that may affect our tests and ensure they are running on stable versions at all times.
-
-
-
-
-
-
-## Build your React-based CRUD applications without constraints
-
-Low-code React frameworks are great for gaining development speed but they often fall short of flexibility if you need extensive styling and customization for your project.
-
-Check out [refine](https://github.com/pankod/refine), if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
-
-<div>
-<a href="https://github.com/pankod/refine">
-    <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
-</a>
-</div>
-
-<br/>
-
-**refine** is a React-based framework for building CRUD applications **without constraints.**
-It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
-
-**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
-
-Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials and example projects.
