@@ -261,35 +261,19 @@ export const RouteProvider = () => {
         </Routes>
     );
 
+    const renderRouteElement = (): JSX.Element => {
+        if (AuthPage) return <AuthPage />;
+        if (LoginPage) return <LoginPage />;
+        return <DefaultAuthPage />;
+    };
+
     const renderUnauthorized = () => (
         <Routes>
             {[...(customRoutes || [])].map((route, i) => (
                 <Route key={`custom-route-${i}`} {...route} />
             ))}
-            <Route
-                path="/"
-                element={
-                    AuthPage ? (
-                        <AuthPage />
-                    ) : LoginPage ? (
-                        <LoginPage />
-                    ) : (
-                        <DefaultAuthPage />
-                    )
-                }
-            />
-            <Route
-                path="/login"
-                element={
-                    AuthPage ? (
-                        <AuthPage />
-                    ) : LoginPage ? (
-                        <LoginPage />
-                    ) : (
-                        <DefaultAuthPage />
-                    )
-                }
-            />
+            <Route path="/" element={renderRouteElement()} />
+            <Route path="/login" element={renderRouteElement()} />
             <Route path="*" element={<CustomPathAfterLogin />} />
         </Routes>
     );
