@@ -44,7 +44,8 @@ const IS_SERVER = typeof window === "undefined";
 const CART_KEY = "medusa_cart_id";
 
 export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
-    const { mutateAsync: createMutateAsync } = useCreate<StoreCartsRes>();
+    const { mutateAsync: createMutateAsync, mutate: createMutate } =
+        useCreate<StoreCartsRes>();
     const { mutateAsync: updateMutateAsync, mutate: updateMutate } =
         useUpdate<StoreCartsRes>();
     const { mutate: deleteMutate } = useDelete<StoreCartsRes>();
@@ -180,7 +181,7 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
         const savedRegion = getRegion();
 
-        createMutateAsync(
+        createMutate(
             {
                 resource: "carts",
                 values: {
@@ -189,7 +190,7 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
             },
             {
                 onSuccess: ({ data: { cart } }) => {
-                    //TODO: make sure to create a new cart if the old one is deleted
+                    setCartId(cart.id);
                     storeCart(cart.id);
                     ensureRegion(cart.region);
                 },
