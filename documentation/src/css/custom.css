@@ -9,6 +9,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 /* You can override the default Infima variables here. */
 :root {
     --ifm-color-primary: #25c2a0;
@@ -203,7 +205,6 @@
 }
 
 .navbar__link {
-    color: var(--color-text-white);
     font-weight: 600;
 }
 
@@ -228,16 +229,6 @@
     color: var(--color-text-white);
 }
 
-.header-first-nav-item {
-    margin-left: 60px;
-}
-
-@media screen and (max-width: 996px) {
-    .header-first-nav-item {
-        margin-left: 0px;
-    }
-}
-
 .header-last-nav-item {
     margin-right: 30px;
 }
@@ -247,7 +238,7 @@
 }
 
 .header-icon-link:hover {
-    filter: brightness(2);
+    /* filter: brightness(2); */
 }
 
 .header-icon-link::before {
@@ -355,4 +346,41 @@
 .code-block-hidden,
 .code-block-hidden.theme-code-block-highlighted-line {
     display: none;
+}
+
+.with-hoverline .hoverline-link {
+    @apply relative;
+}
+
+.with-hoverline .hoverline-link:hover::after, .with-hoverline .navbar__link--active::after {
+    content: "";
+    @apply absolute bottom-[-5px] left-[calc(50%-12px)] w-6 h-1 bg-[#1890ff] rounded-sm transition-opacity duration-200 ease-in-out;
+}
+
+.refine-docsearch-button {
+    @apply border-none appearance-none h-7 bg-[#f6f6f9] px-3 rounded-2xl flex items-center py-0 w-[196px] justify-between cursor-pointer;
+}
+
+.refine-docsearch-button .DocSearch-Button-Placeholder {
+    @apply font-montserrat font-semibold text-xs text-[#2A2A42];
+}
+
+.refine-docsearch-button .DocSearch-Search-Icon {
+    @apply w-3 h-3 stroke-[2px] -mt-px;
+}
+
+.refine-docsearch-button .DocSearch-Button-Keys {
+    @apply w-auto min-w-0;
+}
+
+.refine-docsearch-button .DocSearch-Button-Keys kbd {
+    background: none;
+    @apply font-montserrat font-semibold text-xs text-[#2A2A42];
+    @apply appearance-none bg-transparent border-none shadow-none border-0 mr-0 w-auto h-auto pb-0 pt-0.5;
+}
+
+.refine-docsearch-button .DocSearch-Button-Keys kbd:last-child::before {
+    position: relative;
+    display: block;
+    content: "+";
 }

@@ -131,9 +131,13 @@ const siteConfig = {
                     to: "docs/getting-started/overview",
                     label: "Quickstart",
                     position: "left",
-                    className: "header-first-nav-item",
                 },
-                { to: "docs", label: "Tutorial", position: "left" },
+                {
+                    to: "docs",
+                    label: "Tutorial",
+                    position: "left",
+                    activeBaseRegex: "/^/docs$/",
+                },
                 {
                     to: "/demo",
                     label: "Demo",
@@ -173,8 +177,7 @@ const siteConfig = {
                 {
                     href: "https://twitter.com/refine_dev",
                     position: "right",
-                    className:
-                        "header-icon-link header-twitter-link header-last-nav-item",
+                    className: "header-icon-link header-twitter-link",
                 },
             ],
         },
