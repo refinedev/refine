@@ -42,10 +42,9 @@ Steps we’ll cover:
 
 ## Prerequisites
 We will be building a simple landing page to demonstrate how you can simply add Google and GitHub authentication to your Next.js app, and to follow along, you need to have the following in place:
-Node.js 12.22.0 or later
-macOS, Windows (including WSL), and Linux are supported
-Google console account.
-Github account.
+- Node.js 12.22.0 or later
+- Google console account.
+- GitHub account.
 
 
 ## What is NextAuth?
