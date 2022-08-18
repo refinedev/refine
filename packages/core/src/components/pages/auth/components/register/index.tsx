@@ -28,7 +28,10 @@ export const Register: React.FC<IAuthCommonProps> = ({
 
     return (
         <>
-            <h1>{translate("pages.register.title", "Register")}</h1>
+            <h1 style={{ textAlign: "center" }}>
+                {translate("pages.register.title", "Register")}
+            </h1>
+            <hr />
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
@@ -37,98 +40,77 @@ export const Register: React.FC<IAuthCommonProps> = ({
                     }
                 }}
             >
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                {translate(
-                                    "pages.register.email",
-                                    undefined,
-                                    "email",
-                                )}
-                                :
-                            </td>
-                            <td>
-                                <input
-                                    type="email"
-                                    size={20}
-                                    autoCorrect="off"
-                                    spellCheck={false}
-                                    autoCapitalize="off"
-                                    autoFocus
-                                    required
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                {translate(
-                                    "pages.register.password",
-                                    undefined,
-                                    "password",
-                                )}
-                                :
-                            </td>
-                            <td>
-                                <input
-                                    type="password"
-                                    required
-                                    size={20}
-                                    value={password}
-                                    onChange={(e) =>
-                                        setPassword(e.target.value)
-                                    }
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                {translate(
-                                    "pages.register.confirmPassword",
-                                    undefined,
-                                    "confirm password",
-                                )}
-                                :
-                            </td>
-                            <td>
-                                <input
-                                    type="password"
-                                    required
-                                    size={20}
-                                    value={confirmPassword}
-                                    onChange={(e) =>
-                                        setConfirmPassword(e.target.value)
-                                    }
-                                />
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br />
-                {forgotLink &&
-                    renderLink(
-                        forgotLink,
-                        translate(
-                            "pages.login.forgot",
-                            "Forgot your password?",
-                        ),
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        padding: 25,
+                    }}
+                >
+                    <label>
+                        {translate("pages.register.email", undefined, "Email")}
+                    </label>
+                    <input
+                        type="email"
+                        size={20}
+                        autoCorrect="off"
+                        spellCheck={false}
+                        autoCapitalize="off"
+                        autoFocus
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <label>
+                        {translate(
+                            "pages.register.password",
+                            undefined,
+                            "Password",
+                        )}
+                    </label>
+                    <input
+                        type="password"
+                        required
+                        size={20}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    {translate(
+                        "pages.register.confirmPassword",
+                        undefined,
+                        "Confirm Password",
                     )}
-                {registerLink ? (
-                    renderLink(
-                        registerLink,
-                        translate("pages.register.signup", "Sign up"),
-                    )
-                ) : (
-                    <input type="submit" value="register" />
-                )}
-                <br />
-                {loginLink &&
-                    renderLink(
-                        loginLink,
-                        translate("pages.register.login", "go to login"),
+                    <input
+                        type="password"
+                        required
+                        size={20}
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                    />
+                    <br />
+                    {forgotLink &&
+                        renderLink(
+                            forgotLink,
+                            translate(
+                                "pages.login.forgot",
+                                "Forgot your password?",
+                            ),
+                        )}
+                    {registerLink ? (
+                        renderLink(
+                            registerLink,
+                            translate("pages.register.button", "Register"),
+                        )
+                    ) : (
+                        <input type="submit" value="Register" />
                     )}
+                    <br />
+                    {loginLink &&
+                        renderLink(
+                            loginLink,
+                            translate("pages.register.login", "Go to Login"),
+                        )}
+                </div>
             </form>
         </>
     );

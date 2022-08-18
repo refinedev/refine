@@ -21,87 +21,71 @@ export const UpdatePassword: React.FC<IAuthCommonProps> = ({ backLink }) => {
     };
     return (
         <div>
-            <h1>{translate("pages.update.title", "Update Password")}</h1>
+            <h1 style={{ textAlign: "center" }}>
+                {translate("pages.update.title", "Update Password")}
+            </h1>
+            <hr />
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
                     if (password && newpPassword === confirmPassword) {
+                        //TO DO: add update password logic
                         console.log(password, newpPassword, confirmPassword);
                     }
                 }}
             >
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                {translate("pages.update.password", "Password")}
-                                :
-                            </td>
-                            <td>
-                                <input
-                                    type="password"
-                                    required
-                                    size={20}
-                                    value={password}
-                                    onChange={(e) =>
-                                        setPassword(e.target.value)
-                                    }
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                {translate(
-                                    "pages.update.newPassword",
-                                    "New Password",
-                                )}
-                                :
-                            </td>
-                            <td>
-                                <input
-                                    type="password"
-                                    required
-                                    size={20}
-                                    value={newpPassword}
-                                    onChange={(e) =>
-                                        setNewPassword(e.target.value)
-                                    }
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                {translate(
-                                    "pages.update.confirmNewPassword",
-                                    "Confirm New Password",
-                                )}
-                                :
-                            </td>
-                            <td>
-                                <input
-                                    type="password"
-                                    required
-                                    size={20}
-                                    value={password}
-                                    onChange={(e) =>
-                                        setConfirmPassword(e.target.value)
-                                    }
-                                />
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br />
-                {backLink &&
-                    renderLink(
-                        backLink,
-                        translate("pages.forgot.back", "Back"),
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        padding: 25,
+                    }}
+                >
+                    <label>
+                        {translate("pages.update.password", "Password")}:
+                    </label>
+                    <input
+                        type="password"
+                        required
+                        size={20}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    {translate("pages.update.newPassword", "New Password")}
+                    :
+                    <input
+                        type="password"
+                        required
+                        size={20}
+                        value={newpPassword}
+                        onChange={(e) => setNewPassword(e.target.value)}
+                    />
+                    {translate(
+                        "pages.update.confirmNewPassword",
+                        "Confirm New Password",
                     )}
-
-                <input
-                    type="submit"
-                    value={translate("pages.update.button", "Update Password")}
-                />
+                    :
+                    <input
+                        type="password"
+                        required
+                        size={20}
+                        value={password}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                    />
+                    <br />
+                    <input
+                        type="submit"
+                        value={translate(
+                            "pages.update.button",
+                            "Update Password",
+                        )}
+                    />
+                    {backLink &&
+                        renderLink(
+                            backLink,
+                            translate("pages.forgot.back", "Back"),
+                        )}
+                </div>
             </form>
         </div>
     );

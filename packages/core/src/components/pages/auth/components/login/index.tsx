@@ -29,7 +29,15 @@ export const Login: React.FC<IAuthCommonProps> = ({
     const renderProviders = () => {
         if (providers) {
             return providers.map((provider) => (
-                <div key={provider.name}>
+                <div
+                    key={provider.name}
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        marginBottom: "1rem",
+                    }}
+                >
                     <button
                         onClick={() =>
                             login({
@@ -43,8 +51,6 @@ export const Login: React.FC<IAuthCommonProps> = ({
                         {provider.label ??
                             translate("pages.login.button", "login")}
                     </button>
-                    <br />
-                    <hr />
                 </div>
             ));
         }
@@ -53,85 +59,76 @@ export const Login: React.FC<IAuthCommonProps> = ({
 
     return (
         <>
-            <h1>{translate("pages.login.title", "Login")}</h1>
+            <h1 style={{ textAlign: "center" }}>
+                {translate("pages.login.title", "Login")}
+            </h1>
             {renderProviders()}
+            <hr />
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
                     login({ email, password });
                 }}
             >
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                {translate(
-                                    "pages.login.email",
-                                    undefined,
-                                    "email",
-                                )}
-                                :
-                            </td>
-                            <td>
-                                <input
-                                    type="text"
-                                    size={20}
-                                    autoCorrect="off"
-                                    spellCheck={false}
-                                    autoCapitalize="off"
-                                    autoFocus
-                                    required
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                {translate(
-                                    "pages.login.password",
-                                    undefined,
-                                    "password",
-                                )}
-                                :
-                            </td>
-                            <td>
-                                <input
-                                    type="password"
-                                    required
-                                    size={20}
-                                    value={password}
-                                    onChange={(e) =>
-                                        setPassword(e.target.value)
-                                    }
-                                />
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br />
-                {forgotLink &&
-                    renderLink(
-                        forgotLink,
-                        translate(
-                            "pages.login.forgot",
-                            "Forgot your password?",
-                        ),
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        padding: 25,
+                    }}
+                >
+                    <label>
+                        {translate("pages.login.email", undefined, "Email")}:
+                    </label>
+                    <input
+                        type="text"
+                        size={20}
+                        autoCorrect="off"
+                        spellCheck={false}
+                        autoCapitalize="off"
+                        autoFocus
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <label>
+                        {translate(
+                            "pages.login.password",
+                            undefined,
+                            "Password",
+                        )}
+                        :
+                    </label>
+                    <input
+                        type="password"
+                        required
+                        size={20}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <br />
+                    {loginLink ? (
+                        renderLink(
+                            loginLink,
+                            translate("pages.login.signup", "Login"),
+                        )
+                    ) : (
+                        <input type="submit" value="Login" />
                     )}
-                <br />
-                {loginLink ? (
-                    renderLink(
-                        loginLink,
-                        translate("pages.login.signup", "Login"),
-                    )
-                ) : (
-                    <input type="submit" value="login" />
-                )}
-                {registerLink &&
-                    renderLink(
-                        registerLink,
-                        translate("pages.login.register", "go to register"),
-                    )}
+                    {forgotLink &&
+                        renderLink(
+                            forgotLink,
+                            translate(
+                                "pages.login.forgot",
+                                "Forgot your password?",
+                            ),
+                        )}
+                    {registerLink &&
+                        renderLink(
+                            registerLink,
+                            translate("pages.login.register", "go to register"),
+                        )}
+                </div>
             </form>
         </>
     );
