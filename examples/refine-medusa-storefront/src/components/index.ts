@@ -1,4 +1,4 @@
-export * from "./products";
+export * from "./dashboard";
 export * from "./common";
 export * from "./product";
 export * from "./collections/list";

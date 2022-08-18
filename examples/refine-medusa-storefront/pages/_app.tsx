@@ -9,7 +9,7 @@ import routerProvider from "@pankod/refine-nextjs-router";
 import dataProvider, { authProvider } from "@pankod/refine-medusa";
 
 import { API_URL } from "@lib/constants";
-import { ProductList } from "@components";
+import { Dashboard } from "@components";
 import Layout from "@components/common/Layout";
 import { CartProvider, ManagedUIContext } from "@lib/context";
 
@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                     <Layout {...rest} categories={categories} />
                 )}
                 LoginPage={LoginPage}
-                DashboardPage={ProductList}
+                DashboardPage={Dashboard}
                 authProvider={authProvider(API_URL)}
                 routerProvider={routerProvider}
                 dataProvider={dataProvider(API_URL)}

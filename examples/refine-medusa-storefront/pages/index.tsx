@@ -4,9 +4,9 @@ import { dataProvider } from "@pankod/refine-medusa";
 import { Product } from "@medusajs/medusa";
 
 import { getSearchStaticProps } from "@lib/search-props";
+import { API_URL } from "@lib/constants";
 
-const API_URL = "https://refine-example-storefront.herokuapp.com/store";
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
     try {
         const searchProps = await getSearchStaticProps();
         const medusaDataProvider = dataProvider(API_URL);
