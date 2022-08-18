@@ -39,7 +39,9 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
 
     const { queryResult } = useShow<IPost>({
         metaData: {
-            rawQuery: query,
+            rawQuery: {
+                query,
+            },
         },
     });
 
