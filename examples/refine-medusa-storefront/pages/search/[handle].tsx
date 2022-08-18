@@ -1,20 +1,30 @@
 import { GetListResponse, LayoutWrapper, useTable } from "@pankod/refine-core";
 import { GetServerSideProps } from "next";
 import { dataProvider } from "@pankod/refine-medusa";
+import { Product, ProductCollection } from "@medusajs/medusa";
+import nookies from "nookies";
 
 import Search from "@components/search";
 import { getSearchStaticProps } from "@lib/search-props";
-import { Product, ProductCollection } from "@medusajs/medusa";
+import { CART_KEY, useCartContext } from "@lib/context";
+import { API_URL } from "@lib/constants";
 
-// TODO: fix me
-const API_URL = "https://refine-example-storefront.herokuapp.com/store";
 const SearchPage: React.FC<{
     handle: string;
     initialData: GetListResponse<Product>;
     collection: any;
 }> = ({ initialData, collection }) => {
+    const { cartId } = useCartContext();
+
     const { tableQueryResult } = useTable<Product>({
         resource: "products",
+        initialFilter: [
+            {
+                field: "cart_id",
+                value: cartId,
+                operator: "eq",
+            },
+        ],
         permanentFilter: [
             {
                 field: "collection_id",
@@ -35,6 +45,7 @@ const SearchPage: React.FC<{
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+    const cookies = nookies.get(context);
     const { query } = context;
 
     const handle = query?.["handle"] as string;
@@ -59,6 +70,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
                     field: "collection_id",
                     operator: "eq",
                     value: [collection?.id],
+                },
+                {
+                    field: "cart_id",
+                    value: cookies[CART_KEY],
+                    operator: "eq",
                 },
             ],
         });

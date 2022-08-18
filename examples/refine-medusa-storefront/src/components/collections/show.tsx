@@ -1,9 +1,12 @@
-import Search from "@components/search";
-import { IResourceComponentsProps, useTable } from "@pankod/refine-core";
 import { useRouter } from "next/router";
+import { IResourceComponentsProps, useTable } from "@pankod/refine-core";
+
+import Search from "@components/search";
+import { useCartContext } from "@lib/context";
 
 export const CollectionsShow: React.FC<IResourceComponentsProps> = () => {
     const router = useRouter();
+    const { cartId } = useCartContext();
 
     let collectionIds = router.query.id;
 
@@ -13,6 +16,13 @@ export const CollectionsShow: React.FC<IResourceComponentsProps> = () => {
 
     const { tableQueryResult } = useTable({
         resource: "products",
+        initialFilter: [
+            {
+                field: "cart_id",
+                value: cartId,
+                operator: "eq",
+            },
+        ],
         permanentFilter: [
             {
                 field: "collection_id",
