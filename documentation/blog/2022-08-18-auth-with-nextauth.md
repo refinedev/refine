@@ -595,8 +595,7 @@ Now, if you refresh the application, it will look like the screenshot below for 
 
 <br/>
 
-Now when they click on any of the buttons, they will be redirected to the  Google or Github page depending on which button they click. Once they are authenticated, the application will look like the screenshot below.
-
+When the user clicks the sign-in button, they will be redirected to the sign-in button page as shown in the screenshot below.
 
 
 <div class="img-container">
