@@ -1,11 +1,10 @@
 import React from "react";
 import { useMutation, UseMutationResult } from "react-query";
-import qs from "qs";
 
 import { AuthContext } from "@contexts/auth";
 
 import { IAuthContext, TRegisterData } from "../../../interfaces";
-import { useNavigation, useRouterContext, useNotification } from "@hooks";
+import { useNavigation, useNotification } from "@hooks";
 
 /**
  * `useRegister` calls `register` method from {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
@@ -26,11 +25,7 @@ export const useRegister = <TVariables = {}>(): UseMutationResult<
     const { register: registerFromContext } =
         React.useContext<IAuthContext>(AuthContext);
 
-    const { useLocation } = useRouterContext();
-    const { search } = useLocation();
     const { close, open } = useNotification();
-
-    const { to } = qs.parse(search?.substring(1));
 
     const queryResponse = useMutation<
         TRegisterData,
@@ -39,10 +34,6 @@ export const useRegister = <TVariables = {}>(): UseMutationResult<
         unknown
     >("useRegister", registerFromContext, {
         onSuccess: (redirectPathFromAuth) => {
-            if (to) {
-                return replace(to as string);
-            }
-
             if (redirectPathFromAuth !== false) {
                 if (redirectPathFromAuth) {
                     replace(redirectPathFromAuth);
@@ -55,7 +46,7 @@ export const useRegister = <TVariables = {}>(): UseMutationResult<
         onError: (error: any) => {
             open?.({
                 message: error?.name || "Register Error",
-                description: error?.message || "Invalid credentials",
+                description: error?.message || "Error while registering",
                 key: "register-error",
                 type: "error",
             });

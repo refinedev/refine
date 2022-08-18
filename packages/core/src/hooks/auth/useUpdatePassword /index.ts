@@ -1,11 +1,10 @@
 import React from "react";
 import { useMutation, UseMutationResult } from "react-query";
-import qs from "qs";
 
 import { AuthContext } from "@contexts/auth";
 
 import { IAuthContext, TUpdatePasswordData } from "../../../interfaces";
-import { useNavigation, useRouterContext, useNotification } from "@hooks";
+import { useNavigation, useNotification } from "@hooks";
 
 /**
  * `useUpdatePassword` calls `updatePassword` method from {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
@@ -26,11 +25,7 @@ export const useUpdatePassword = <TVariables = {}>(): UseMutationResult<
     const { updatePassword: updatePasswordFromContext } =
         React.useContext<IAuthContext>(AuthContext);
 
-    const { useLocation } = useRouterContext();
-    const { search } = useLocation();
     const { close, open } = useNotification();
-
-    const { to } = qs.parse(search?.substring(1));
 
     const queryResponse = useMutation<
         TUpdatePasswordData,
@@ -39,10 +34,6 @@ export const useUpdatePassword = <TVariables = {}>(): UseMutationResult<
         unknown
     >("useUpdatePassword", updatePasswordFromContext, {
         onSuccess: (redirectPathFromAuth) => {
-            if (to) {
-                return replace(to as string);
-            }
-
             if (redirectPathFromAuth !== false) {
                 if (redirectPathFromAuth) {
                     replace(redirectPathFromAuth);
@@ -55,7 +46,7 @@ export const useUpdatePassword = <TVariables = {}>(): UseMutationResult<
         onError: (error: any) => {
             open?.({
                 message: error?.name || "Update Password Error",
-                description: error?.message || "Invalid credentials",
+                description: error?.message || "Error while updating password",
                 key: "update-password-error",
                 type: "error",
             });

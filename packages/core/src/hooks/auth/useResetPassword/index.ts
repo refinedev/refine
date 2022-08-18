@@ -26,11 +26,7 @@ export const useResetPassword = <TVariables = {}>(): UseMutationResult<
     const { resetPassword: resetPasswordFromContext } =
         React.useContext<IAuthContext>(AuthContext);
 
-    const { useLocation } = useRouterContext();
-    const { search } = useLocation();
     const { close, open } = useNotification();
-
-    const { to } = qs.parse(search?.substring(1));
 
     const queryResponse = useMutation<
         TResetPasswordData,
@@ -39,23 +35,20 @@ export const useResetPassword = <TVariables = {}>(): UseMutationResult<
         unknown
     >("useResetPassword", resetPasswordFromContext, {
         onSuccess: (redirectPathFromAuth) => {
-            if (to) {
-                return replace(to as string);
-            }
-
             if (redirectPathFromAuth !== false) {
                 if (redirectPathFromAuth) {
                     replace(redirectPathFromAuth);
                 } else {
                     replace("/");
                 }
+                // default olduğu sayfa yönlendirme yapılır.
             }
             close?.("reset-password-error");
         },
         onError: (error: any) => {
             open?.({
                 message: error?.name || "Reset Password Error",
-                description: error?.message || "Invalid credentials",
+                description: error?.message || "Error while resetting password",
                 key: "reset-password-error",
                 type: "error",
             });
