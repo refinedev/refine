@@ -1,5 +1,5 @@
 ---
-title: NextAuth usage for Google and GitHub authentications in Nextjs apps
+title: NextAuth usage for Google and GitHub authentications in Nextjs
 description: How to implement Google and GitHub authentications in Nextjs apps using NextAuthjs 
 slug: nextauth-google-github-authentication-nextjs
 authors: ekekenta_clinton
@@ -30,19 +30,14 @@ The goal of this article is for you to learn about an alternative and simple too
 
 
 Steps we’ll cover:
-- [Introduction](#introduction)
-- [Prerequisites](#prerequisites)
 - [What is NextAuth?](#what-is-nextauth)
 - [Why use NextAuth.js?](#why-use-nextauthjs)
 - [Project setup](#project-setup)
 - [Create API Routes](#create-api-routes)
-  - [For GoogleProvider (Make sure you have a Google account):](#for-googleprovider-make-sure-you-have-a-google-account)
-  - [For GithubProvider (you will need a GitHub account):](#for-githubprovider-you-will-need-a-github-account)
 - [Configure Shared Session State](#configure-shared-session-state)
 - [Update Page Components](#update-page-components)
 - [Add React Hook](#add-react-hook)
 - [Protect API Routes](#protect-api-routes)
-- [Conclusion](#conclusion)
 
 
 ## Prerequisites
