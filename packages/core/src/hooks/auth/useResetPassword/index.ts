@@ -1,11 +1,10 @@
 import React from "react";
 import { useMutation, UseMutationResult } from "react-query";
-import qs from "qs";
 
 import { AuthContext } from "@contexts/auth";
 
 import { IAuthContext, TResetPasswordData } from "../../../interfaces";
-import { useNavigation, useRouterContext, useNotification } from "@hooks";
+import { useNavigation, useNotification } from "@hooks";
 
 /**
  * `useResetPassword` calls `resetPassword` method from {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
@@ -38,10 +37,7 @@ export const useResetPassword = <TVariables = {}>(): UseMutationResult<
             if (redirectPathFromAuth !== false) {
                 if (redirectPathFromAuth) {
                     replace(redirectPathFromAuth);
-                } else {
-                    replace("/");
                 }
-                // default olduğu sayfa yönlendirme yapılır.
             }
             close?.("reset-password-error");
         },

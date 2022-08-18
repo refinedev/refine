@@ -3,7 +3,7 @@ import ReactRouterDom from "react-router-dom";
 
 import { TestWrapper } from "@test";
 
-import { useLogin } from "./";
+import { useRegister } from ".";
 import { act } from "react-dom/test-utils";
 
 const mHistory = jest.fn();
@@ -13,26 +13,26 @@ jest.mock("react-router-dom", () => ({
     useNavigate: () => mHistory,
 }));
 
-describe("useLogin Hook", () => {
+describe("useRegister Hook", () => {
     beforeEach(() => {
         mHistory.mockReset();
         jest.spyOn(console, "error").mockImplementation((message) => {
-            if (message?.message === "Wrong email") return;
+            if (message?.message === "Missing fields") return;
             if (typeof message === "undefined") return;
             console.warn(message);
         });
     });
 
-    it("succeed login", async () => {
-        const { result } = renderHook(() => useLogin(), {
+    it("succeed register", async () => {
+        const { result } = renderHook(() => useRegister(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: ({ email }) => {
-                        if (email === "test") {
+                    login: () => Promise.resolve(),
+                    register: ({ email, password }) => {
+                        if (email && password) {
                             return Promise.resolve();
                         }
-
-                        return Promise.reject(new Error("Wrong email"));
+                        return Promise.reject(new Error("Missing fields"));
                     },
                     checkAuth: () => Promise.resolve(),
                     checkError: () => Promise.resolve(),
@@ -43,10 +43,10 @@ describe("useLogin Hook", () => {
             }),
         });
 
-        const { mutate: login } = result.current ?? { mutate: () => 0 };
+        const { mutate: register } = result.current ?? { mutate: () => 0 };
 
         await act(async () => {
-            login({ email: "test" });
+            register({ email: "test", password: "test" });
         });
 
         await waitFor(() => {
@@ -56,16 +56,16 @@ describe("useLogin Hook", () => {
         expect(mHistory).toBeCalledWith("/", { replace: true });
     });
 
-    it("should successfully login with no redirect", async () => {
-        const { result } = renderHook(() => useLogin(), {
+    it("should successfully register with no redirect", async () => {
+        const { result } = renderHook(() => useRegister(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: ({ email }) => {
-                        if (email === "test") {
+                    login: () => Promise.resolve(),
+                    register: ({ email, password }) => {
+                        if (email && password) {
                             return Promise.resolve(false);
                         }
-
-                        return Promise.reject(new Error("Wrong email"));
+                        return Promise.reject(new Error("Missing fields"));
                     },
                     checkAuth: () => Promise.resolve(),
                     checkError: () => Promise.resolve(),
@@ -76,10 +76,10 @@ describe("useLogin Hook", () => {
             }),
         });
 
-        const { mutate: login } = result.current ?? { mutate: () => 0 };
+        const { mutate: register } = result.current ?? { mutate: () => 0 };
 
         await act(async () => {
-            login({ email: "test" });
+            register({ email: "test", password: "test" });
         });
 
         await waitFor(() => {
@@ -89,16 +89,23 @@ describe("useLogin Hook", () => {
         expect(mHistory).not.toBeCalled();
     });
 
-    it("login and redirect to custom path", async () => {
-        const { result } = renderHook(() => useLogin(), {
+    it("register and redirect to custom path", async () => {
+        //TO DO login ekle
+        const { result } = renderHook(() => useRegister(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: ({ email, redirectPath }) => {
-                        if (email === "test") {
+                    login: ({ username, redirectPath }) => {
+                        if (username === "test") {
                             return Promise.resolve(redirectPath);
                         }
 
-                        return Promise.reject(new Error("Wrong email"));
+                        return Promise.reject(new Error("Wrong username"));
+                    },
+                    register: ({ email, password }) => {
+                        if (email && password) {
+                            return Promise.resolve();
+                        }
+                        return Promise.reject(new Error("Missing fields"));
                     },
                     checkAuth: () => Promise.resolve(),
                     checkError: () => Promise.resolve(),
@@ -109,10 +116,14 @@ describe("useLogin Hook", () => {
             }),
         });
 
-        const { mutate: login } = result.current ?? { mutate: () => 0 };
+        const { mutate: register } = result.current ?? { mutate: () => 0 };
 
         await act(async () => {
-            login({ email: "test", redirectPath: "/custom-path" });
+            register({
+                email: "test",
+                password: "test",
+                redirectPath: "/custom-path",
+            });
         });
 
         await waitFor(() => {
@@ -122,45 +133,12 @@ describe("useLogin Hook", () => {
         expect(mHistory).toBeCalledWith("/custom-path", { replace: true });
     });
 
-    it("If URL has 'to' params the app will redirect to 'to' values", async () => {
-        const { result } = renderHook(() => useLogin(), {
+    it("fail register", async () => {
+        const { result } = renderHook(() => useRegister(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: ({ email, redirectPath }) => {
-                        if (email === "test") {
-                            return Promise.resolve(redirectPath);
-                        }
-
-                        return Promise.reject(new Error("Wrong email"));
-                    },
-                    checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.resolve(),
-                    getPermissions: () => Promise.resolve(),
-                    logout: () => Promise.resolve(),
-                    getUserIdentity: () => Promise.resolve({ id: 1 }),
-                },
-                routerInitialEntries: ["?to=/show/posts/5"],
-            }),
-        });
-
-        const { mutate: login } = result.current ?? { mutate: () => 0 };
-
-        await act(async () => {
-            login({ email: "test", redirectPath: "/custom-path" });
-        });
-
-        await waitFor(() => {
-            expect(result.current.isSuccess).toBeTruthy();
-        });
-
-        expect(mHistory).toBeCalledWith("/show/posts/5", { replace: true });
-    });
-
-    it("fail login", async () => {
-        const { result } = renderHook(() => useLogin(), {
-            wrapper: TestWrapper({
-                authProvider: {
-                    login: () => Promise.reject(new Error("Wrong email")),
+                    login: () => Promise.resolve(),
+                    register: () => Promise.reject(new Error("Missing fields")),
                     checkAuth: () => Promise.resolve(),
                     checkError: () => Promise.resolve(),
                     getPermissions: () => Promise.resolve(),
@@ -170,10 +148,10 @@ describe("useLogin Hook", () => {
             }),
         });
 
-        const { mutate: login } = result.current ?? { mutate: () => 0 };
+        const { mutate: register } = result.current ?? { mutate: () => 0 };
 
         await act(async () => {
-            login({ email: "demo" });
+            register({ email: "demo" });
         });
 
         await waitFor(() => {
@@ -182,14 +160,15 @@ describe("useLogin Hook", () => {
 
         const { error } = result.current ?? { error: undefined };
 
-        expect(error).toEqual(new Error("Wrong email"));
+        expect(error).toEqual(new Error("Missing fields"));
     });
 
-    it("login rejected with undefined error", async () => {
-        const { result } = renderHook(() => useLogin(), {
+    it("register rejected with undefined error", async () => {
+        const { result } = renderHook(() => useRegister(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: () => Promise.reject(),
+                    login: () => Promise.resolve(),
+                    register: () => Promise.reject(),
                     checkAuth: () => Promise.resolve(),
                     checkError: () => Promise.resolve(),
                     getPermissions: () => Promise.resolve(),
@@ -199,10 +178,10 @@ describe("useLogin Hook", () => {
             }),
         });
 
-        const { mutate: login } = result.current ?? { mutate: () => 0 };
+        const { mutate: register } = result.current ?? { mutate: () => 0 };
 
         await act(async () => {
-            login({ email: "demo" });
+            register({ email: "demo" });
         });
 
         await waitFor(() => {
