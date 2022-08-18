@@ -301,7 +301,7 @@ Remember to go back and change the URIs to your production URI once you push to 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={githubSecrets} alt="Github register enable" />
+    <img src={githubSecrets} alt="Github secrets" />
 </div>
 
 <br/>
@@ -661,3 +661,24 @@ In the above code snippet, we imported the `unstable_getServerSession` method an
 
 ## Conclusion
 Throughout this tutorial, we've implemented how to add Google and GitHub authentication to a Nextjs application using NextAuth. We started by knowing what NextAuth is and why you should use it. Then we built a blog application for the demonstration. Now that you have the knowledge you seek, how would you add authentication to your next Nextjs project? Perhaps you can learn more about NextAuth from the [documentation](https://next-auth.js.org/).
+
+## Build your React-based CRUD applications without constraints
+
+Low-code React frameworks are great for gaining development speed but they often fall short of flexibility if you need extensive styling and customization for your project.
+
+Check out [refine](https://github.com/pankod/refine), if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
+
+<div>
+<a href="https://github.com/pankod/refine">
+    <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
+</a>
+</div>
+
+<br/>
+
+**refine** is a React-based framework for building CRUD applications **without constraints.**
+It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
+
+**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
+
+Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials and example projects.
