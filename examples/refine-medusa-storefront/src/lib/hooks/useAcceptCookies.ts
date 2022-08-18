@@ -21,7 +21,7 @@ export const useAcceptCookies = (): ReturnUseAcceptCookies => {
     const acceptCookies = () => {
         setAcceptedCookies(true);
         setCookie(null, COOKIE_NAME, "accepted", {
-            expires: 365,
+            expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 365),
         });
     };
 

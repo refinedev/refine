@@ -9,12 +9,14 @@ import {
 
 import { ProductCard } from "@components/product";
 import { Grid, Marquee, Hero } from "@components/ui";
+import { useCartContext } from "@lib/context";
 
 export const Dashboard: React.FC<
     IResourceComponentsProps<GetListResponse<Product>>
 > = ({ initialData }) => {
     const router = useRouter();
     const { q } = router.query;
+    const { cartId } = useCartContext();
 
     const {
         tableQueryResult: { data },
@@ -24,6 +26,13 @@ export const Dashboard: React.FC<
         queryOptions: {
             initialData,
         },
+        initialFilter: [
+            {
+                field: "cart_id",
+                value: cartId,
+                operator: "eq",
+            },
+        ],
     });
 
     useEffect(() => {
