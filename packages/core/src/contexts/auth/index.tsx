@@ -30,16 +30,6 @@ export const AuthContextProvider: React.FC<
             return Promise.reject(error);
         }
     };
-    const registerFunc = async (params: any) => {
-        try {
-            const result = await authOperations.register?.(params);
-
-            invalidateAuthStore();
-            return Promise.resolve(result);
-        } catch (error) {
-            return Promise.reject(error);
-        }
-    };
 
     const logoutFunc = async (params: any) => {
         try {
@@ -71,7 +61,6 @@ export const AuthContextProvider: React.FC<
             value={{
                 ...authOperations,
                 login: loginFunc,
-                register: registerFunc,
                 logout: logoutFunc,
                 checkAuth: checkAuthFunc,
                 isProvided,
