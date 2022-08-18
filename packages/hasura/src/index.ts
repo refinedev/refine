@@ -29,3 +29,4 @@ export type {
 
 export * as qqlQueryBuilder from "gql-query-builder";
 export * as graphqlWS from "graphql-ws";
+export * from "graphql-tag";

@@ -113,16 +113,28 @@ export const generateFilters: any = (filters?: CrudFilters) => {
 const dataProvider = (client: GraphQLClient): DataProvider => {
     return {
         getOne: async ({ resource, id, metaData }) => {
+            let query = metaData?.rawQuery;
+            let variables = {
+                id,
+                ...metaData?.variables,
+            };
             const operation = `${metaData?.operation ?? resource}_by_pk`;
 
-            const { query, variables } = gql.query({
-                operation,
-                variables: {
-                    id: { value: id, type: "uuid", required: true },
-                    ...metaData?.variables,
-                },
-                fields: metaData?.fields,
-            });
+            if (!query) {
+                const {
+                    query: queryFromBuilder,
+                    variables: variablesFromBuilder,
+                } = gql.query({
+                    operation,
+                    variables: {
+                        id: { value: id, type: "uuid", required: true },
+                        ...metaData?.variables,
+                    },
+                    fields: metaData?.fields,
+                });
+                query = queryFromBuilder;
+                variables = variablesFromBuilder;
+            }
 
             const response = await client.request(query, variables);
 

@@ -1,4 +1,5 @@
 import { useShow, IResourceComponentsProps } from "@pankod/refine-core";
+import { gql } from "@pankod/refine-hasura";
 
 import {
     Show,
@@ -12,7 +13,7 @@ import { IPost } from "interfaces";
 const { Title, Text } = Typography;
 
 export const PostShow: React.FC<IResourceComponentsProps> = () => {
-    const metaData = {
+    /*   const metaData = {
         fields: [
             "id",
             "title",
@@ -21,10 +22,25 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
             },
             "content",
         ],
-    };
+    }; */
+
+    const query = gql`
+        query ($id: uuid!) {
+            posts_by_pk(id: $id) {
+                id
+                title
+                category {
+                    title
+                }
+                content
+            }
+        }
+    `;
 
     const { queryResult } = useShow<IPost>({
-        metaData,
+        metaData: {
+            rawQuery: query,
+        },
     });
 
     const { data, isLoading } = queryResult;

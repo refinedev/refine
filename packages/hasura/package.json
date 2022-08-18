@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "gql-query-builder": "^3.5.5",
+    "graphql-tag": "2.12.6",
     "graphql": "^15.6.1",
     "graphql-request": "^4.3.0",
     "graphql-ws": "^5.9.1"

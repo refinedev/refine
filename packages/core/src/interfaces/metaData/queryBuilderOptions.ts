@@ -5,4 +5,5 @@ export interface QueryBuilderOptions {
     operation?: string;
     fields?: Fields;
     variables?: VariableOptions;
+    rawQuery?: string;
 }
