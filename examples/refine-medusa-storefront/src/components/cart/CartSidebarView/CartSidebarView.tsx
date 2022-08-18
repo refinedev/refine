@@ -78,7 +78,7 @@ export const CartSidebarView: React.FC = () => {
                             width="100%"
                             onClick={goToCheckout}
                         >
-                            Proceed to Checkout ({getAmount(cart.total)})
+                            Proceed to Checkout ({getAmount(cart.subtotal)})
                         </Button>
                     </div>
                 </>
