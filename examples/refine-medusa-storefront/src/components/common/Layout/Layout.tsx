@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 
 import { Sidebar, Button, LoadingDots } from "@components/ui";
 import { MenuSidebarView, Footer, Navbar } from "@components/common";
-import { useUI } from "@components/ui/context";
+import { useUI } from "@lib/context";
 import LoginView from "@components/auth/LoginView";
 import { CartSidebarView } from "@components/cart";
 import { useAcceptCookies } from "@lib/hooks/useAcceptCookies";

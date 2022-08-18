@@ -4,7 +4,7 @@ import { HttpError, useLogin } from "@pankod/refine-core";
 
 import { Info } from "@components/icons";
 import { Logo, Button } from "@components/ui";
-import { useUI } from "@components/ui/context";
+import { useUI } from "@lib/context";
 import { Input } from "@components/common";
 import { emailRegex } from "@lib/regex";
 

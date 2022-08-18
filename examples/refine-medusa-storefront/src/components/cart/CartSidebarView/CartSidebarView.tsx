@@ -4,7 +4,7 @@ import { formatAmount } from "medusa-react";
 
 import { CartItem } from "@components";
 import { Button, Text } from "@components/ui";
-import { useUI } from "@components/ui/context";
+import { useUI } from "@lib/context";
 import { Bag } from "@components/icons";
 import { SidebarLayout } from "@components/common";
 import { SkeletonCartSidebar } from "@components/skeletons/SkeletonCartSidebar";

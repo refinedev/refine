@@ -10,9 +10,8 @@ import dataProvider, { authProvider } from "@pankod/refine-medusa";
 
 import { API_URL } from "@lib/constants";
 import { ProductList } from "@components";
-import { ManagedUIContext } from "@components/ui/context";
 import Layout from "@components/common/Layout";
-import { CartProvider } from "@lib/context";
+import { CartProvider, ManagedUIContext } from "@lib/context";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     const { categories } = pageProps;

@@ -3,20 +3,26 @@ import { ThemeProvider } from "next-themes";
 
 export interface State {
     displaySidebar: boolean;
-    displayDropdown: boolean;
     displayModal: boolean;
     sidebarView: string;
     modalView: string;
-    userAvatar: string;
+}
+
+export interface ContextType extends State {
+    openSidebar: () => void;
+    closeSidebar: () => void;
+    closeSidebarIfPresent: () => void | false;
+    openModal: () => void;
+    closeModal: () => void;
+    setModalView: (view: MODAL_VIEWS) => void;
+    setSidebarView: (view: SIDEBAR_VIEWS) => void;
 }
 
 const initialState = {
     displaySidebar: false,
-    displayDropdown: false,
     displayModal: false,
     modalView: "LOGIN_VIEW",
     sidebarView: "CART_VIEW",
-    userAvatar: "",
 };
 
 type Action =
@@ -25,12 +31,6 @@ type Action =
       }
     | {
           type: "CLOSE_SIDEBAR";
-      }
-    | {
-          type: "OPEN_DROPDOWN";
-      }
-    | {
-          type: "CLOSE_DROPDOWN";
       }
     | {
           type: "OPEN_MODAL";
@@ -45,22 +45,13 @@ type Action =
     | {
           type: "SET_SIDEBAR_VIEW";
           view: SIDEBAR_VIEWS;
-      }
-    | {
-          type: "SET_USER_AVATAR";
-          value: string;
       };
 
-type MODAL_VIEWS =
-    | "SIGNUP_VIEW"
-    | "LOGIN_VIEW"
-    | "FORGOT_VIEW"
-    | "NEW_SHIPPING_ADDRESS"
-    | "NEW_PAYMENT_METHOD";
+type MODAL_VIEWS = "SIGNUP_VIEW" | "LOGIN_VIEW" | "FORGOT_VIEW";
 
-type SIDEBAR_VIEWS = "CART_VIEW" | "CHECKOUT_VIEW" | "PAYMENT_METHOD_VIEW";
+type SIDEBAR_VIEWS = "CART_VIEW" | "MOBILE_MENU_VIEW";
 
-export const UIContext = React.createContext<State | any>(initialState);
+export const UIContext = React.createContext<State>(initialState);
 
 UIContext.displayName = "UIContext";
 
@@ -76,18 +67,6 @@ function uiReducer(state: State, action: Action) {
             return {
                 ...state,
                 displaySidebar: false,
-            };
-        }
-        case "OPEN_DROPDOWN": {
-            return {
-                ...state,
-                displayDropdown: true,
-            };
-        }
-        case "CLOSE_DROPDOWN": {
-            return {
-                ...state,
-                displayDropdown: false,
             };
         }
         case "OPEN_MODAL": {
@@ -115,12 +94,6 @@ function uiReducer(state: State, action: Action) {
                 sidebarView: action.view,
             };
         }
-        case "SET_USER_AVATAR": {
-            return {
-                ...state,
-                userAvatar: action.value,
-            };
-        }
     }
 }
 
@@ -135,27 +108,10 @@ export const UIProvider: FC<PropsWithChildren> = (props) => {
         () => dispatch({ type: "CLOSE_SIDEBAR" }),
         [dispatch],
     );
-    const toggleSidebar = useCallback(
-        () =>
-            state.displaySidebar
-                ? dispatch({ type: "CLOSE_SIDEBAR" })
-                : dispatch({ type: "OPEN_SIDEBAR" }),
-        [dispatch, state.displaySidebar],
-    );
     const closeSidebarIfPresent = useCallback(
         () => state.displaySidebar && dispatch({ type: "CLOSE_SIDEBAR" }),
         [dispatch, state.displaySidebar],
     );
-
-    const openDropdown = useCallback(
-        () => dispatch({ type: "OPEN_DROPDOWN" }),
-        [dispatch],
-    );
-    const closeDropdown = useCallback(
-        () => dispatch({ type: "CLOSE_DROPDOWN" }),
-        [dispatch],
-    );
-
     const openModal = useCallback(
         () => dispatch({ type: "OPEN_MODAL" }),
         [dispatch],
@@ -164,17 +120,10 @@ export const UIProvider: FC<PropsWithChildren> = (props) => {
         () => dispatch({ type: "CLOSE_MODAL" }),
         [dispatch],
     );
-
-    const setUserAvatar = useCallback(
-        (value: string) => dispatch({ type: "SET_USER_AVATAR", value }),
-        [dispatch],
-    );
-
     const setModalView = useCallback(
         (view: MODAL_VIEWS) => dispatch({ type: "SET_MODAL_VIEW", view }),
         [dispatch],
     );
-
     const setSidebarView = useCallback(
         (view: SIDEBAR_VIEWS) => dispatch({ type: "SET_SIDEBAR_VIEW", view }),
         [dispatch],
@@ -185,15 +134,11 @@ export const UIProvider: FC<PropsWithChildren> = (props) => {
             ...state,
             openSidebar,
             closeSidebar,
-            toggleSidebar,
             closeSidebarIfPresent,
-            openDropdown,
-            closeDropdown,
             openModal,
             closeModal,
             setModalView,
             setSidebarView,
-            setUserAvatar,
         }),
         [state],
     );
@@ -201,12 +146,12 @@ export const UIProvider: FC<PropsWithChildren> = (props) => {
     return <UIContext.Provider value={value} {...props} />;
 };
 
-export const useUI = () => {
+export const useUI = (): ContextType => {
     const context = React.useContext(UIContext);
     if (context === undefined) {
         throw new Error(`useUI must be used within a UIProvider`);
     }
-    return context;
+    return context as ContextType;
 };
 
 export const ManagedUIContext: FC<PropsWithChildren> = ({ children }) => (
