@@ -2,7 +2,10 @@ import { useTranslate, useRouterContext, useResetPassword } from "@hooks";
 import React, { useState } from "react";
 import { IAuthCommonProps, IResetPasswordForm } from "../..";
 
-export const ResetPassword: React.FC<IAuthCommonProps> = ({ backLink }) => {
+export const ResetPassword: React.FC<IAuthCommonProps> = ({
+    backLink,
+    resetPasswordLink,
+}) => {
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
@@ -21,7 +24,7 @@ export const ResetPassword: React.FC<IAuthCommonProps> = ({ backLink }) => {
     return (
         <div>
             <h1 style={{ textAlign: "center" }}>
-                {translate("pages.forgot.title", "Forgot Password")}
+                {translate("pages.resetPassword.title", "Forgot Password")}
             </h1>
             <hr />
             <form
@@ -37,7 +40,9 @@ export const ResetPassword: React.FC<IAuthCommonProps> = ({ backLink }) => {
                         padding: 25,
                     }}
                 >
-                    <label>{translate("pages.forgot.email", "Email")}</label>
+                    <label>
+                        {translate("pages.resetPassword.email", "Email")}
+                    </label>
                     <input
                         type="mail"
                         autoCorrect="off"
@@ -49,11 +54,21 @@ export const ResetPassword: React.FC<IAuthCommonProps> = ({ backLink }) => {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     <br />
-                    <input type="submit" value="Reset Password" />
+                    {resetPasswordLink ? (
+                        renderLink(
+                            resetPasswordLink,
+                            translate(
+                                "pages.resetPassword.button",
+                                "Reset Password",
+                            ),
+                        )
+                    ) : (
+                        <input type="submit" value="Reset Password" />
+                    )}
                     {backLink &&
                         renderLink(
                             backLink,
-                            translate("pages.forgot.back", "Back"),
+                            translate("pages.resetPassword.backLink", "Back"),
                         )}
                 </div>
             </form>

@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 
-import { useTranslate, useRouterContext } from "@hooks";
-import { IAuthCommonProps } from "../..";
+import { useTranslate, useRouterContext, useUpdatePassword } from "@hooks";
+import { IAuthCommonProps, IUpdatePasswordForm } from "../..";
 
-export const UpdatePassword: React.FC<IAuthCommonProps> = ({ backLink }) => {
+export const UpdatePassword: React.FC<IAuthCommonProps> = ({
+    backLink,
+    updatePasswordLink,
+}) => {
     const translate = useTranslate();
     const { Link } = useRouterContext();
+
+    const { mutate: updatePassword } = useUpdatePassword<IUpdatePasswordForm>();
 
     const [password, setPassword] = useState("");
     const [newpPassword, setNewPassword] = useState("");
@@ -22,15 +27,18 @@ export const UpdatePassword: React.FC<IAuthCommonProps> = ({ backLink }) => {
     return (
         <div>
             <h1 style={{ textAlign: "center" }}>
-                {translate("pages.update.title", "Update Password")}
+                {translate("pages.updatePassword.title", "Update Password")}
             </h1>
             <hr />
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
                     if (password && newpPassword === confirmPassword) {
-                        //TO DO: add update password logic
-                        console.log(password, newpPassword, confirmPassword);
+                        //TODO: should updatePassword need email?
+                        updatePassword({
+                            password,
+                            newPassword: newpPassword,
+                        });
                     }
                 }}
             >
@@ -42,7 +50,7 @@ export const UpdatePassword: React.FC<IAuthCommonProps> = ({ backLink }) => {
                     }}
                 >
                     <label>
-                        {translate("pages.update.password", "Password")}:
+                        {translate("pages.updatePassword.password", "Password")}
                     </label>
                     <input
                         type="password"
@@ -51,8 +59,10 @@ export const UpdatePassword: React.FC<IAuthCommonProps> = ({ backLink }) => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    {translate("pages.update.newPassword", "New Password")}
-                    :
+                    {translate(
+                        "pages.updatePassword.newPassword",
+                        "New Password",
+                    )}
                     <input
                         type="password"
                         required
@@ -61,10 +71,10 @@ export const UpdatePassword: React.FC<IAuthCommonProps> = ({ backLink }) => {
                         onChange={(e) => setNewPassword(e.target.value)}
                     />
                     {translate(
-                        "pages.update.confirmNewPassword",
+                        "pages.updatePassword.confirmNewPassword",
                         "Confirm New Password",
                     )}
-                    :
+
                     <input
                         type="password"
                         required
@@ -73,17 +83,28 @@ export const UpdatePassword: React.FC<IAuthCommonProps> = ({ backLink }) => {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                     <br />
-                    <input
-                        type="submit"
-                        value={translate(
-                            "pages.update.button",
-                            "Update Password",
-                        )}
-                    />
+                    {updatePasswordLink ? (
+                        renderLink(
+                            updatePasswordLink,
+                            translate(
+                                "pages.updatePassword.button",
+                                "Reset Password",
+                            ),
+                        )
+                    ) : (
+                        <input
+                            type="submit"
+                            value={translate(
+                                "pages.updatePassword.button",
+                                "Update Password",
+                            )}
+                        />
+                    )}
+
                     {backLink &&
                         renderLink(
                             backLink,
-                            translate("pages.forgot.back", "Back"),
+                            translate("pages.updatePassword.backLink", "Back"),
                         )}
                 </div>
             </form>

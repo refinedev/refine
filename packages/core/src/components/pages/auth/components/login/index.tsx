@@ -6,7 +6,7 @@ import { ILoginForm, IAuthCommonProps } from "../..";
 export const Login: React.FC<IAuthCommonProps> = ({
     registerLink,
     loginLink,
-    forgotLink,
+    resetPasswordLink,
     providers,
 }) => {
     const { Link } = useRouterContext();
@@ -115,11 +115,11 @@ export const Login: React.FC<IAuthCommonProps> = ({
                     ) : (
                         <input type="submit" value="Login" />
                     )}
-                    {forgotLink &&
+                    {resetPasswordLink &&
                         renderLink(
-                            forgotLink,
+                            resetPasswordLink,
                             translate(
-                                "pages.login.forgot",
+                                "pages.login.resetPassword",
                                 "Forgot your password?",
                             ),
                         )}
