@@ -1,6 +1,6 @@
 ---
-title: Temporal API - Manage Date and Time in JavaScript
-description: Use the Temporal API to manipulate date and time objects in JavaScript.
+title: Temporal API - A new approach to managing Date and Time in JS
+description: Are we saying goodbye to the JavaScript Date object? Use the Temporal API to manipulate date and time objects in JavaScript.
 slug: temporal-date-api
 authors: muhammed_arslan
 tags: [javascript, date, temporal-api, time]
