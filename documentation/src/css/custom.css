@@ -31,6 +31,7 @@
     --color-text-white: white;
     --color-text-black: #1c1e21;
     --color-bg-white: white;
+    --ifm-navbar-sidebar-width: 100%;
 }
 
 .img-container {
@@ -214,6 +215,7 @@
 
 .navbar-sidebar__brand {
     justify-content: space-between;
+    box-shadow: none;
 }
 
 .navbar-sidebar__items .menu__list .menu__link {
@@ -357,8 +359,9 @@
     @apply absolute bottom-[-5px] left-[calc(50%-12px)] w-6 h-1 bg-[#1890ff] rounded-sm transition-opacity duration-200 ease-in-out;
 }
 
+
 .refine-docsearch-button {
-    @apply border-none appearance-none h-7 bg-[#f6f6f9] px-3 rounded-2xl flex items-center py-0 w-[196px] justify-between cursor-pointer;
+    @apply border-none appearance-none h-7 bg-[#f6f6f9] px-2 md:px-3 rounded-2xl flex items-center py-0 w-7 md:w-[196px] justify-between cursor-pointer;
 }
 
 .refine-docsearch-button .DocSearch-Button-Placeholder {
@@ -383,4 +386,89 @@
     position: relative;
     display: block;
     content: "+";
+}
+
+.navbar-sidebar__item.menu .menu__list {
+    padding-left: 0;
+}
+
+.navbar-sidebar__item.menu .menu__list .menu__list-item .menu__link {
+    @apply block text-[#2a2a42] text-center font-montserrat font-semibold;
+}
+
+.theme-doc-sidebar-item-category.menu__list-item {
+    @apply opacity-90;
+}
+
+#__docusaurus .navbar-sidebar__items--show-secondary {
+    transform: translate3d(
+        calc(100% * -1),
+          0,
+          0
+        );
+}
+
+#__docusaurus .navbar-sidebar__items .menu__list .menu__link.menu__link--sublist::after {
+    display: block;
+    position: relative;
+    margin-top: -20px;
+    filter: none;
+}
+
+#__docusaurus .navbar-sidebar__items .menu__list .menu__link.menu__link--sublist[role="button"]::after {
+    bottom: unset;
+    margin-top: 0;
+    top: -26px;
+    left: unset;
+    height: 24px;
+    width: 24px;
+    background-color: transparent;
+}
+
+#__docusaurus .menu__link.menu__link--sublist[role="button"] {
+    height: 40px;
+}
+
+#__docusaurus .clean-btn.navbar-sidebar__back {
+    @apply text-[#2a2a42] text-center font-montserrat font-semibold mb-4;
+}
+
+#__docusaurus .navbar-sidebar__item.menu a[href="https://github.com/pankod/refine"]::after {
+    display: none;
+}
+
+#__docusaurus .social-icons .header-icon-link::before {
+    width: 32px;
+    height: 32px;
+}
+
+#__docusaurus .navbar-sidebar__items .with-hoverline .menu__link--active {
+    position: relative;
+}
+
+#__docusaurus .with-hoverline .navbar-sidebar__items .menu__link--active::before {
+    content: "";
+    @apply absolute bottom-[-5px] left-[calc(50%-12px)] w-6 h-1 bg-[#1890ff] rounded-sm transition-opacity duration-200 ease-in-out;
+}
+
+#__docusaurus .with-hoverline .active-item::before {
+    content: "";
+    @apply absolute bottom-[-5px] left-[calc(50%-12px)] w-6 h-1 bg-[#1890ff] rounded-sm transition-opacity duration-200 ease-in-out;
+}
+
+
+#__docusaurus .with-hoverline .navbar-sidebar__items .menu__link--active {
+    position: relative;
+}
+
+.with-hoverline .active-item.hoveline-link {
+    @apply relative;
+}
+
+#__docusaurus .menu__link--active:not(.menu__link--sublist) {
+    background-color: transparent;
+}
+
+.navbar .navbar__items .navbar__item {
+    @apply hidden xl:inline-block;
 }

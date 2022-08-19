@@ -136,7 +136,7 @@ const siteConfig = {
                     to: "docs",
                     label: "Tutorial",
                     position: "left",
-                    activeBaseRegex: "/^/docs$/",
+                    activeBaseRegex: "/^/docs(/)?$/",
                 },
                 {
                     to: "/demo",
