@@ -2,10 +2,10 @@ import { useRouter } from "next/router";
 import { useOne, LayoutWrapper } from "@pankod/refine-core";
 import { Order } from "@medusajs/medusa";
 
-import { IS_BROWSER } from "@lib/constants";
-import SEO from "@components/common/SEO";
-import OrderDetailsTemplate from "@components/orders/OrderDetailsTemplate";
-import SkeletonOrderConfirmed from "@components/skeletons/SkeletonOrderConfirmed";
+import { IS_BROWSER } from "@lib/isBrowser";
+import { SEO } from "@components/common";
+import { SkeletonOrderConfirmed } from "@components/skeletons";
+import { OrderDetailsTemplate } from "@components/orders/OrderDetailsTemplate";
 
 const Details: React.FC = () => {
     const router = useRouter();

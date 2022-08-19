@@ -3,9 +3,8 @@ import { useForm } from "@pankod/refine-react-hook-form";
 import { HttpError, useLogin } from "@pankod/refine-core";
 
 import { Info } from "@components/icons";
-import { Logo, Button } from "@components/ui";
+import { Logo, Button, Input } from "@components/ui";
 import { useUI } from "@lib/context";
-import { Input } from "@components/common";
 import { emailRegex } from "@lib/regex";
 
 interface Customer {

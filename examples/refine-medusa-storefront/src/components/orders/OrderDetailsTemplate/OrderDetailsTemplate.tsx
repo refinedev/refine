@@ -11,7 +11,7 @@ interface OrderDetailsTemplateProps {
     order: Order;
 }
 
-const OrderDetailsTemplate: React.FC<OrderDetailsTemplateProps> = ({
+export const OrderDetailsTemplate: React.FC<OrderDetailsTemplateProps> = ({
     order,
 }) => {
     return (
@@ -43,5 +43,3 @@ const OrderDetailsTemplate: React.FC<OrderDetailsTemplateProps> = ({
         </div>
     );
 };
-
-export default OrderDetailsTemplate;

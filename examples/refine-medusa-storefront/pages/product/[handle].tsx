@@ -6,12 +6,13 @@ import {
 } from "@pankod/refine-core";
 import { GetServerSideProps } from "next";
 import { dataProvider } from "@pankod/refine-medusa";
+import { Product } from "@medusajs/medusa";
 
 import { ProductView } from "@components/product";
+import { API_URL } from "@lib/constants";
 import { getSearchStaticProps } from "@lib/search-props";
 import { MedusaProduct } from "@components/product/helpers";
 
-const API_URL = "https://refine-example-storefront.herokuapp.com/store";
 const ProductShow: React.FC<
     IResourceComponentsProps<GetListResponse<MedusaProduct[]>> & {
         handle: string;
@@ -35,7 +36,7 @@ const ProductShow: React.FC<
 
     const record = data?.data?.[0];
 
-    const { data: relatedProducts } = useList({
+    const { data: relatedProducts } = useList<Product>({
         resource: "products",
     });
 
@@ -43,8 +44,8 @@ const ProductShow: React.FC<
         <LayoutWrapper>
             {record ? (
                 <ProductView
-                    product={record as any}
-                    relatedProducts={relatedProducts?.data ?? ([] as any)}
+                    product={record}
+                    relatedProducts={relatedProducts?.data}
                 />
             ) : null}
         </LayoutWrapper>

@@ -1,5 +1,5 @@
 import { CheckoutTemplate } from "@components/checkout";
-import SEO from "@components/common/SEO";
+import { SEO } from "@components/common";
 
 const CheckoutPage: React.FC = () => {
     return (

@@ -82,10 +82,7 @@ export const Footer: FC<Props> = ({ className, pages }) => {
                             target="_blank"
                             className="text-primary"
                         >
-                            <Vercel
-                                className="text-primary ml-3 inline-block h-6"
-                                alt="Vercel.com Logo"
-                            />
+                            <Vercel className="text-primary ml-3 inline-block h-6" />
                         </a>
                     </div>
                 </div>
