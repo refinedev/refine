@@ -1,10 +1,9 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import ReactRouterDom from "react-router-dom";
 
-import { TestWrapper } from "@test";
+import { TestWrapper, act } from "@test";
 
 import { useUpdatePassword } from "./";
-import { act } from "react-dom/test-utils";
 
 const mHistory = jest.fn();
 
