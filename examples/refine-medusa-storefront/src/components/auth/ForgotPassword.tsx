@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 
-import { useUI } from "@components/ui/context";
+import { useUI } from "@lib/context";
 import { Logo, Button } from "@components/ui";
 import { Input } from "@components/common";
 import { emailRegex } from "@lib/regex";

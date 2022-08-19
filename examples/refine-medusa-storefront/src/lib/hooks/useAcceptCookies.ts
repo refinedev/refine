@@ -1,20 +1,28 @@
-import Cookies from "js-cookie";
+import { parseCookies, setCookie } from "nookies";
 import { useEffect, useState } from "react";
 
 const COOKIE_NAME = "accept_cookies";
 
-export const useAcceptCookies = () => {
+interface ReturnUseAcceptCookies {
+    acceptedCookies: boolean;
+    onAcceptCookies: () => void;
+}
+
+export const useAcceptCookies = (): ReturnUseAcceptCookies => {
     const [acceptedCookies, setAcceptedCookies] = useState(true);
 
     useEffect(() => {
-        if (!Cookies.get(COOKIE_NAME)) {
+        const cookies = parseCookies();
+        if (!cookies.hasOwnProperty(COOKIE_NAME)) {
             setAcceptedCookies(false);
         }
     }, []);
 
     const acceptCookies = () => {
         setAcceptedCookies(true);
-        Cookies.set(COOKIE_NAME, "accepted", { expires: 365 });
+        setCookie(null, COOKIE_NAME, "accepted", {
+            expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 365),
+        });
     };
 
     return {

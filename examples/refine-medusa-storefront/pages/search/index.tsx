@@ -7,22 +7,32 @@ import {
 import { dataProvider } from "@pankod/refine-medusa";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
-
 import { Product } from "@medusajs/medusa";
+import nookies from "nookies";
 
 import Search from "@components/search";
 import { getSearchStaticProps } from "@lib/search-props";
+import { CART_KEY, useCartContext } from "@lib/context";
+import { API_URL } from "@lib/constants";
 
 const SearchPage: React.FC<IResourceComponentsProps<GetListResponse<Product>>> =
     ({ initialData }) => {
         const router = useRouter();
         const { q } = router.query;
+        const { cartId } = useCartContext();
 
         const { tableQueryResult } = useTable<Product>({
             resource: "products",
             queryOptions: {
                 initialData,
             },
+            initialFilter: [
+                {
+                    field: "cart_id",
+                    value: cartId,
+                    operator: "eq",
+                },
+            ],
             permanentFilter: [
                 {
                     field: "q",
@@ -39,8 +49,10 @@ const SearchPage: React.FC<IResourceComponentsProps<GetListResponse<Product>>> =
         );
     };
 
-const API_URL = "https://refine-example-storefront.herokuapp.com/store";
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    const cookies = nookies.get(context);
+    const { query } = context;
+
     try {
         const searchStaticProps = await getSearchStaticProps();
 
@@ -55,6 +67,11 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
                     field: "q",
                     operator: "eq",
                     value: q,
+                },
+                {
+                    field: "cart_id",
+                    value: cookies[CART_KEY],
+                    operator: "eq",
                 },
             ],
         });

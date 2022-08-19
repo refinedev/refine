@@ -2,9 +2,9 @@ import { Dispatch, FC, SetStateAction, useEffect } from "react";
 import { Product, ProductVariant } from "@medusajs/medusa";
 
 import { ProductOptions } from "@components/product";
-import { Button, Text, Rating, Collapse, useUI } from "@components/ui";
+import { Button, Text, Rating, Collapse } from "@components/ui";
 import { selectDefaultOptionFromProduct, SelectedOptions } from "../helpers";
-import { useCartContext } from "@lib/context";
+import { useCartContext, useUI } from "@lib/context";
 import s from "./ProductSidebar.module.css";
 
 interface ProductSidebarProps {

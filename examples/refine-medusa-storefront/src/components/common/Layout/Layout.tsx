@@ -3,9 +3,8 @@ import { LayoutProps, useList } from "@pankod/refine-core";
 import dynamic from "next/dynamic";
 
 import { Sidebar, Button, LoadingDots } from "@components/ui";
-import { CheckoutProvider } from "@components/checkout/context";
 import { MenuSidebarView, Footer, Navbar } from "@components/common";
-import { useUI } from "@components/ui/context";
+import { useUI } from "@lib/context";
 import LoginView from "@components/auth/LoginView";
 import { CartSidebarView } from "@components/cart";
 import { useAcceptCookies } from "@lib/hooks/useAcceptCookies";
@@ -112,9 +111,7 @@ const Layout: React.FC<LayoutProps & { categories: any }> = ({
             <main className="fit">{children}</main>
             <Footer />
             <ModalUI />
-            <CheckoutProvider>
-                <SidebarUI links={collections as any[]} />
-            </CheckoutProvider>
+            <SidebarUI links={collections as any[]} />
             <FeatureBar
                 title="This site uses cookies to improve your experience. By clicking, you agree to our Privacy Policy."
                 hide={acceptedCookies}

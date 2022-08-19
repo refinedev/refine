@@ -4,7 +4,7 @@ import cn from "clsx";
 import Link from "next/link";
 import s from "./UserNav.module.css";
 import { Avatar } from "@components/common";
-import { useUI } from "@components/ui/context";
+import { useUI } from "@lib/context";
 import { Heart, Bag, Menu } from "@components/icons";
 import CustomerMenuContent from "./CustomerMenuContent";
 import {

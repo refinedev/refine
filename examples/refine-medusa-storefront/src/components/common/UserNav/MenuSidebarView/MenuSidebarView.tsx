@@ -1,7 +1,7 @@
 import Link from "next/link";
 import s from "./MenuSidebarView.module.css";
-import { useUI } from "@components/ui/context";
-import SidebarLayout from "@components/common/SidebarLayout";
+import { useUI } from "@lib/context";
+import { SidebarLayout } from "@components/common/SidebarLayout";
 import type { Link as LinkProps } from "./index";
 
 export default function MenuSidebarView({

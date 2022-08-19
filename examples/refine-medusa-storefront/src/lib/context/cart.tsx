@@ -6,6 +6,8 @@ import {
     useUpdate,
     useInvalidate,
 } from "@pankod/refine-core";
+import { parseCookies, setCookie, destroyCookie } from "nookies";
+
 import useCart from "@lib/hooks/useCart";
 
 interface VariantInfoProps {
@@ -41,10 +43,11 @@ export const useCartContext = (): CartContext => {
 };
 
 const IS_SERVER = typeof window === "undefined";
-const CART_KEY = "medusa_cart_id";
+export const CART_KEY = "medusa_cart_id";
 
 export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
-    const { mutateAsync: createMutateAsync } = useCreate<StoreCartsRes>();
+    const { mutateAsync: createMutateAsync, mutate: createMutate } =
+        useCreate<StoreCartsRes>();
     const { mutateAsync: updateMutateAsync, mutate: updateMutate } =
         useUpdate<StoreCartsRes>();
     const { mutate: deleteMutate } = useDelete<StoreCartsRes>();
@@ -54,7 +57,8 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
     const getCart = () => {
         if (!IS_SERVER) {
-            return localStorage.getItem(CART_KEY);
+            const cookies = parseCookies();
+            return cookies[CART_KEY];
         }
         return null;
     };
@@ -68,7 +72,8 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
     const storeRegion = (regionId: string, countryCode: string) => {
         if (!IS_SERVER) {
-            localStorage.setItem(
+            setCookie(
+                null,
                 "medusa_region",
                 JSON.stringify({ regionId, countryCode }),
             );
@@ -79,7 +84,9 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
     useEffect(() => {
         if (!IS_SERVER) {
-            const storedRegion = localStorage.getItem("medusa_region");
+            const cookies = parseCookies();
+            const storedRegion = cookies["medusa_region"];
+
             if (storedRegion) {
                 const { countryCode } = JSON.parse(storedRegion);
                 setCountryCode(countryCode);
@@ -89,7 +96,9 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
     const getRegion = () => {
         if (!IS_SERVER) {
-            const region = localStorage.getItem("medusa_region");
+            const cookies = parseCookies();
+            const region = cookies["medusa_region"];
+
             if (region) {
                 return JSON.parse(region) as {
                     regionId: string;
@@ -142,13 +151,13 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
     const storeCart = (id: string) => {
         if (!IS_SERVER) {
-            localStorage.setItem(CART_KEY, id);
+            setCookie(null, CART_KEY, id);
         }
     };
 
     const deleteCart = () => {
         if (!IS_SERVER) {
-            localStorage.removeItem(CART_KEY);
+            destroyCookie(null, CART_KEY);
         }
     };
 
@@ -180,7 +189,7 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
         const savedRegion = getRegion();
 
-        createMutateAsync(
+        createMutate(
             {
                 resource: "carts",
                 values: {
@@ -189,7 +198,7 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
             },
             {
                 onSuccess: ({ data: { cart } }) => {
-                    //TODO: make sure to create a new cart if the old one is deleted
+                    setCartId(cart.id);
                     storeCart(cart.id);
                     ensureRegion(cart.region);
                 },
