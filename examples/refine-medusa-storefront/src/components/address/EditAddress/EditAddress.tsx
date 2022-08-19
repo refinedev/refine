@@ -5,9 +5,8 @@ import { Address, Country, Region } from "@medusajs/medusa";
 import { useDelete, useList } from "@pankod/refine-core";
 
 import { Trash, Edit } from "@icons";
-import { LoadingDots, Modal, Button } from "@components";
-import { Input } from "@components/common/Input";
-import { NativeSelect } from "@components/common/NativeSelect";
+import { LoadingDots, Modal, Button, Input } from "@components";
+import { NativeSelect } from "@components/common";
 
 interface FormValues {
     first_name: string;

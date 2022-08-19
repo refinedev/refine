@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { Customer } from "@medusajs/medusa";
 import { useForm } from "@pankod/refine-react-hook-form";
-
-import { Input } from "@components/common";
-import { AccountInfo } from "@components/account";
 import { useCreate } from "@pankod/refine-core";
+
+import { Input } from "@components";
+import { AccountInfo } from "@components/account";
 
 type MyInformationProps = {
     customer: Omit<Customer, "password_hash">;

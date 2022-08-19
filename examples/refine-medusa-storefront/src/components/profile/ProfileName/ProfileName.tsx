@@ -3,7 +3,7 @@ import { Customer } from "@medusajs/medusa";
 import { useForm, useWatch } from "@pankod/refine-react-hook-form";
 
 import { AccountInfo } from "@components/account";
-import { Input } from "@components/common";
+import { Input } from "@components";
 
 type MyInformationProps = {
     customer: Omit<Customer, "password_hash">;

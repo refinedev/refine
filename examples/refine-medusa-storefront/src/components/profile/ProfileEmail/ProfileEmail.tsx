@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useForm, useWatch } from "@pankod/refine-react-hook-form";
 import { Customer } from "@medusajs/medusa";
 
-import { Input } from "@components/common";
+import { Input } from "@components";
 import { AccountInfo } from "@components/account";
 
 type MyInformationProps = {
