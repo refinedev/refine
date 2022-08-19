@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Avatar } from "@components/common";
 import { useUI } from "@lib/context";
 import { Heart, Bag, Menu } from "@components/icons";
-import CustomerMenuContent from "./CustomerMenuContent";
+import { CustomerMenuContent } from "./CustomerMenuContent";
 import {
     Dropdown,
     DropdownTrigger as DropdownTriggerInst,
@@ -17,7 +17,7 @@ import { useCartContext } from "@lib/context";
 
 import s from "./UserNav.module.css";
 
-const UserNav: React.FC<{
+export const UserNav: React.FC<{
     className?: string;
 }> = ({ className }) => {
     const { cartId } = useCartContext();
@@ -95,5 +95,3 @@ const UserNav: React.FC<{
         </nav>
     );
 };
-
-export default UserNav;

@@ -1,15 +1,10 @@
-import { FC } from "react";
 import Link from "next/link";
-import cn from "clsx";
 
 import { Github, Twitter, Discord } from "@components/icons";
 import { Logo, Container } from "@components/ui";
-import s from "./Footer.module.css";
 
-interface Props {
+interface FooterProps {
     className?: string;
-    children?: any;
-    pages?: any[];
 }
 
 const links = [
@@ -35,11 +30,9 @@ const links = [
     },
 ];
 
-export const Footer: FC<Props> = ({ className, pages }) => {
-    const rootClassName = cn(s.root, className);
-
+export const Footer: React.FC<FooterProps> = ({ className }) => {
     return (
-        <footer className={rootClassName}>
+        <footer className={className}>
             <Container>
                 <div className="border-accent-2 text-primary bg-primary grid grid-cols-1 gap-8 border-b py-12 transition-colors duration-150 lg:grid-cols-12">
                     <div className="col-span-1 lg:col-span-2">

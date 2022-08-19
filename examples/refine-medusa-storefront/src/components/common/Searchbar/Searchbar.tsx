@@ -1,14 +1,18 @@
-import { FC, memo, useEffect } from "react";
+import { useEffect } from "react";
 import cn from "clsx";
-import s from "./Searchbar.module.css";
 import { useRouter } from "next/router";
 
-interface Props {
+import s from "./Searchbar.module.css";
+
+interface SearchbarProps {
     className?: string;
     id?: string;
 }
 
-const Searchbar: FC<Props> = ({ className, id = "search" }) => {
+export const Searchbar: React.FC<SearchbarProps> = ({
+    className,
+    id = "search",
+}) => {
     const router = useRouter();
 
     useEffect(() => {
@@ -56,5 +60,3 @@ const Searchbar: FC<Props> = ({ className, id = "search" }) => {
         </div>
     );
 };
-
-export default memo(Searchbar);

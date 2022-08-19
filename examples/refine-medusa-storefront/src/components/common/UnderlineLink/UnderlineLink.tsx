@@ -1,5 +1,6 @@
-import { ArrowRight } from "@icons";
 import Link from "next/link";
+
+import { ArrowRight } from "@icons";
 
 type UnderlineLinkProps = {
     href: string;

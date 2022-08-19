@@ -1,10 +1,11 @@
 import { useRef } from "react";
 import { useGetIdentity } from "@pankod/refine-core";
+import { Customer } from "@medusajs/medusa";
 
 export const Avatar: React.FC = () => {
     const ref = useRef() as React.MutableRefObject<HTMLInputElement>;
 
-    const { data } = useGetIdentity();
+    const { data } = useGetIdentity<Customer>();
 
     return (
         <div

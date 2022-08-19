@@ -14,11 +14,11 @@ import { getSearchStaticProps } from "@lib/search-props";
 import { MedusaProduct } from "@components/product/helpers";
 
 const ProductShow: React.FC<
-    IResourceComponentsProps<GetListResponse<MedusaProduct[]>> & {
+    IResourceComponentsProps<GetListResponse<MedusaProduct>> & {
         handle: string;
     }
 > = ({ initialData, handle }) => {
-    const { data } = useList<MedusaProduct[]>({
+    const { data } = useList<MedusaProduct>({
         resource: "products",
         queryOptions: {
             initialData,
@@ -45,7 +45,7 @@ const ProductShow: React.FC<
             {record ? (
                 <ProductView
                     product={record}
-                    relatedProducts={relatedProducts?.data}
+                    relatedProducts={relatedProducts?.data ?? []}
                 />
             ) : null}
         </LayoutWrapper>

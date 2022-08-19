@@ -1,14 +1,15 @@
 import Link from "next/link";
-import s from "./MenuSidebarView.module.css";
 import { useUI } from "@lib/context";
-import { SidebarLayout } from "@components/common/SidebarLayout";
-import type { Link as LinkProps } from "./index";
 
-export default function MenuSidebarView({
-    links = [],
-}: {
-    links?: LinkProps[];
-}) {
+import { SidebarLayout } from "@components/common/SidebarLayout";
+
+import s from "./MenuSidebarView.module.css";
+
+interface MenuSidebarViewProps {
+    links: { title: string; id: string }[];
+}
+
+export const MenuSidebarView: React.FC<MenuSidebarViewProps> = ({ links }) => {
     const { closeSidebar } = useUI();
 
     return (
@@ -19,13 +20,13 @@ export default function MenuSidebarView({
                         <li className={s.item} onClick={() => closeSidebar()}>
                             <Link href="/search">All</Link>
                         </li>
-                        {links.map((l: any) => (
+                        {links.map((l) => (
                             <li
-                                key={l.href}
+                                key={l.id}
                                 className={s.item}
                                 onClick={() => closeSidebar()}
                             >
-                                <Link href={l.href}>{l.label}</Link>
+                                <Link href={`/search/${l.id}`}>{l.title}</Link>
                             </li>
                         ))}
                     </ul>
@@ -33,6 +34,4 @@ export default function MenuSidebarView({
             </div>
         </SidebarLayout>
     );
-}
-
-MenuSidebarView;
+};

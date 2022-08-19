@@ -1,6 +1,7 @@
 import cn from "clsx";
 import { LayoutProps, useList } from "@pankod/refine-core";
 import dynamic from "next/dynamic";
+import { ProductCollection } from "@medusajs/medusa";
 
 import { Sidebar, Button, LoadingDots } from "@components/ui";
 import { MenuSidebarView, Footer, Navbar } from "@components/common";
@@ -41,7 +42,7 @@ const Modal = dynamic(() => import("@components/ui/Modal"), {
     ssr: false,
 });
 
-const ModalView: React.FC<{ modalView: string; closeModal(): any }> = ({
+const ModalView: React.FC<{ modalView: string; closeModal: () => void }> = ({
     modalView,
     closeModal,
 }) => {
@@ -64,7 +65,7 @@ const ModalUI: React.FC = () => {
 const SidebarView: React.FC<{
     sidebarView: string;
     closeSidebar: () => void;
-    links: any[];
+    links: { title: string; id: string }[];
 }> = ({ sidebarView, closeSidebar, links }) => {
     return (
         <Sidebar onClose={closeSidebar}>
@@ -76,7 +77,9 @@ const SidebarView: React.FC<{
     );
 };
 
-const SidebarUI: React.FC<{ links: any[] }> = ({ links }) => {
+const SidebarUI: React.FC<{ links: { title: string; id: string }[] }> = ({
+    links,
+}) => {
     const { displaySidebar, closeSidebar, sidebarView } = useUI();
     return displaySidebar ? (
         <SidebarView
@@ -93,7 +96,7 @@ const Layout: React.FC<LayoutProps & { categories: any }> = ({
 }) => {
     const { acceptedCookies, onAcceptCookies } = useAcceptCookies();
 
-    const { data: collectionsData } = useList({
+    const { data: collectionsData } = useList<ProductCollection>({
         resource: "collections",
         queryOptions: {
             initialData: categories,
@@ -110,7 +113,7 @@ const Layout: React.FC<LayoutProps & { categories: any }> = ({
             <main className="fit">{children}</main>
             <Footer />
             <ModalUI />
-            <SidebarUI links={collections as any[]} />
+            {collections && <SidebarUI links={collections} />}
             <FeatureBar
                 title="This site uses cookies to improve your experience. By clicking, you agree to our Privacy Policy."
                 hide={acceptedCookies}

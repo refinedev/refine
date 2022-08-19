@@ -1,9 +1,10 @@
 import { FC, useState, useEffect, PropsWithChildren } from "react";
 import throttle from "lodash/throttle";
 import cn from "clsx";
+
 import s from "./Navbar.module.css";
 
-const NavbarRoot: FC<PropsWithChildren> = ({ children }) => {
+export const NavbarRoot: FC<PropsWithChildren> = ({ children }) => {
     const [hasScrolled, setHasScrolled] = useState(false);
 
     useEffect(() => {
@@ -29,5 +30,3 @@ const NavbarRoot: FC<PropsWithChildren> = ({ children }) => {
         </div>
     );
 };
-
-export default NavbarRoot;

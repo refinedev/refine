@@ -1,22 +1,20 @@
-import React, { FC, PropsWithChildren } from "react";
-import { Cross, ChevronLeft } from "@components/icons";
-import UserNav from "@components/common/UserNav";
-import cn from "clsx";
+import React, { PropsWithChildren } from "react";
+
+import { Cross } from "@components/icons";
+import { UserNav } from "@components/common/UserNav";
+
 import s from "./SidebarLayout.module.css";
 
-type ComponentProps = { className?: string } & (
-    | { handleClose: () => any; handleBack?: never }
-    | { handleBack: () => any; handleClose?: never }
-);
+interface SidebarLayoutProps {
+    handleClose: () => void;
+}
 
-export const SidebarLayout: FC<PropsWithChildren<ComponentProps>> = ({
+export const SidebarLayout: React.FC<PropsWithChildren<SidebarLayoutProps>> = ({
     children,
-    className,
-    handleBack,
     handleClose,
 }) => {
     return (
-        <div className={cn(s.root, className)}>
+        <div className={s.root}>
             <header className={s.header}>
                 {handleClose && (
                     <button
@@ -28,16 +26,6 @@ export const SidebarLayout: FC<PropsWithChildren<ComponentProps>> = ({
                         <span className="text-accent-7 ml-2 text-sm ">
                             Close
                         </span>
-                    </button>
-                )}
-                {handleBack && (
-                    <button
-                        onClick={handleBack}
-                        aria-label="Go back"
-                        className="hover:text-accent-5 flex items-center transition duration-150 ease-in-out focus:outline-none"
-                    >
-                        <ChevronLeft className="hover:text-accent-3 h-6 w-6" />
-                        <span className="text-accent-7 ml-2 text-xs">Back</span>
                     </button>
                 )}
 

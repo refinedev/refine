@@ -1,11 +1,10 @@
-import { FC } from "react";
-import { BaseRecord } from "@pankod/refine-core";
 import Link from "next/link";
-import s from "./Navbar.module.css";
-import NavbarRoot from "./NavbarRoot";
 import { Logo, Container } from "@components/ui";
-import UserNav from "@components/common/UserNav";
-import Searchbar from "@components/common/Searchbar";
+
+import { NavbarRoot } from "./NavbarRoot";
+import { UserNav, Searchbar } from "@components/common";
+
+import s from "./Navbar.module.css";
 
 interface Link {
     href: string;
@@ -13,10 +12,10 @@ interface Link {
 }
 
 interface NavbarProps {
-    links?: BaseRecord[];
+    links?: { title: string; id: string }[];
 }
 
-export const Navbar: FC<NavbarProps> = ({ links }) => {
+export const Navbar: React.FC<NavbarProps> = ({ links }) => {
     return (
         <NavbarRoot>
             <Container clean className="max-w-8xl mx-auto px-6">
@@ -31,7 +30,7 @@ export const Navbar: FC<NavbarProps> = ({ links }) => {
                             <Link href="/search" className={s.link}>
                                 All
                             </Link>
-                            {links?.map((col: any) => (
+                            {links?.map((col) => (
                                 <Link
                                     href={`/search/${col.id}`}
                                     className={s.link}

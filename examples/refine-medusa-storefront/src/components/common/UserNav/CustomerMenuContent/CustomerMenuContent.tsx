@@ -1,10 +1,12 @@
 import cn from "clsx";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/router";
-import { Moon, Sun } from "@components/icons";
-import s from "./CustomerMenuContent.module.css";
-import { DropdownContent, DropdownMenuItem } from "@components/ui";
 import { useLogout } from "@pankod/refine-core";
+
+import { Moon, Sun } from "@components/icons";
+import { DropdownContent, DropdownMenuItem } from "@components/ui";
+
+import s from "./CustomerMenuContent.module.css";
 
 const LINKS = [
     {
@@ -25,7 +27,7 @@ const LINKS = [
     },
 ];
 
-export default function CustomerMenuContent() {
+export const CustomerMenuContent: React.FC = () => {
     const router = useRouter();
     router.beforePopState;
     const { pathname } = useRouter();
@@ -91,4 +93,4 @@ export default function CustomerMenuContent() {
             </DropdownMenuItem>
         </DropdownContent>
     );
-}
+};
