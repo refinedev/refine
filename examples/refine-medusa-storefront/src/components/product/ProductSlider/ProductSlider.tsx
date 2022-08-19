@@ -8,15 +8,16 @@ import React, {
 } from "react";
 import cn from "clsx";
 import { a } from "@react-spring/web";
+import { ProductSliderControl } from "../ProductSliderControl";
+
 import s from "./ProductSlider.module.css";
-import ProductSliderControl from "../ProductSliderControl";
 
 interface ProductSliderProps {
     children: React.ReactNode[];
     className?: string;
 }
 
-const ProductSlider: React.FC<ProductSliderProps> = ({
+export const ProductSlider: React.FC<ProductSliderProps> = ({
     children,
     className = "",
 }) => {
@@ -133,5 +134,3 @@ const ProductSlider: React.FC<ProductSliderProps> = ({
         </div>
     );
 };
-
-export default ProductSlider;

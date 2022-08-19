@@ -22,7 +22,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     disabled?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = forwardRef((props, buttonRef) => {
+export const Button: React.FC<ButtonProps> = forwardRef((props, buttonRef) => {
     const {
         className,
         variant = "flat",
@@ -73,5 +73,3 @@ const Button: React.FC<ButtonProps> = forwardRef((props, buttonRef) => {
 });
 
 Button.displayName = "Button";
-
-export default Button;

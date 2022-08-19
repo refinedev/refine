@@ -1,22 +1,27 @@
 import cn from "clsx";
 import Image from "next/image";
-import s from "./ProductView.module.css";
 import { FC, useMemo, useState } from "react";
 import { Product, ProductVariant } from "@medusajs/medusa";
 
 import { ProductSlider, ProductCard } from "@components/product";
 import { Container, Text } from "@components/ui";
-import SEO from "@components/common/SEO";
-import ProductSidebar from "../ProductSidebar";
-import ProductTag from "../ProductTag";
+import { SEO } from "@components/common";
+import { ProductSidebar } from "../ProductSidebar";
+import { ProductTag } from "../ProductTag";
 import { getProductVariant, SelectedOptions } from "../helpers";
 import { useProductPrice } from "@lib/hooks/useProductPrice";
+
+import s from "./ProductView.module.css";
+
 interface ProductViewProps {
     product: Product;
     relatedProducts: Product[];
 }
 
-const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
+export const ProductView: FC<ProductViewProps> = ({
+    product,
+    relatedProducts,
+}) => {
     const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>({});
 
     const variant: ProductVariant = getProductVariant(product, selectedOptions);
@@ -116,5 +121,3 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
         </>
     );
 };
-
-export default ProductView;
