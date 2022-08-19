@@ -45,7 +45,7 @@ export const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
         register,
         handleSubmit,
         setError,
-        formState: { errors },
+        formState: { errors, touchedFields },
     } = useForm<DiscountFormValues>({
         mode: "onSubmit",
     });
@@ -133,9 +133,10 @@ export const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
                             <Input
                                 label="Code"
                                 {...register("discount_code", {
-                                    required: "Code is required",
+                                    required: true,
                                 })}
                                 errors={errors}
+                                touched={touchedFields}
                             />
                             <div>
                                 <Button
