@@ -2,6 +2,7 @@ import React from "react";
 import { useAuthenticated } from "@pankod/refine-core";
 import cn from "clsx";
 import Link from "next/link";
+import { LineItem } from "@medusajs/medusa";
 
 import { Avatar } from "@components/common";
 import { useUI } from "@lib/context";
@@ -24,7 +25,7 @@ export const UserNav: React.FC<{
 
     const { cart } = useCart({ id: cartId });
 
-    const countItem = (count: number, item: any) => count + item.quantity;
+    const countItem = (count: number, item: LineItem) => count + item.quantity;
 
     const itemsCount = cart?.items.reduce(countItem, 0) ?? 0;
     const { isSuccess } = useAuthenticated();
