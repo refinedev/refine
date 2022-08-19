@@ -37,8 +37,6 @@ export const useUpdatePassword = <TVariables = {}>(): UseMutationResult<
             if (redirectPathFromAuth !== false) {
                 if (redirectPathFromAuth) {
                     replace(redirectPathFromAuth);
-                } else {
-                    replace("/");
                 }
             }
             close?.("update-password-error");
