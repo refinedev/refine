@@ -3,7 +3,6 @@ import React from "react";
 import { Route, Routes, Navigate, Outlet } from "react-router-dom";
 import {
     AuthPage as DefaultAuthPage,
-    LoginPage,
     ErrorComponent,
     LayoutWrapper,
     useAuthenticated,
@@ -160,7 +159,7 @@ const ResourceComponent: React.FC<{ route: string }> = ({ route }) => {
 
 export const RouteProvider = () => {
     const { resources } = useResource();
-    const { catchAll, DashboardPage, AuthPage } = useRefineContext();
+    const { catchAll, DashboardPage, AuthPage, LoginPage } = useRefineContext();
 
     const { routes: customRoutes } = useRouterContext();
 
