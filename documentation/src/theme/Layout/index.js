@@ -32,7 +32,6 @@ export default function Layout(props) {
 
             <div
                 className={clsx(
-                    "pt-16",
                     ThemeClassNames.wrapper.main,
                     styles.mainWrapper,
                     wrapperClassName,
