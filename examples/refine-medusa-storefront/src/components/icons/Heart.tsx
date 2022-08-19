@@ -1,4 +1,6 @@
-const Heart = ({ ...props }) => {
+import { IconProps } from "src/types/icon";
+
+export const Heart: React.FC<IconProps> = ({ ...props }) => {
     return (
         <svg
             width="24"
@@ -18,5 +20,3 @@ const Heart = ({ ...props }) => {
         </svg>
     );
 };
-
-export default Heart;

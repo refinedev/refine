@@ -1,4 +1,4 @@
-const Plus = ({ ...props }) => {
+export const Plus: React.FC = ({ ...props }) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
             <path
@@ -18,5 +18,3 @@ const Plus = ({ ...props }) => {
         </svg>
     );
 };
-
-export default Plus;

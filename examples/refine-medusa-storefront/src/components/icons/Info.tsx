@@ -1,4 +1,6 @@
-const Info = ({ ...props }) => {
+import { IconProps } from "src/types/icon";
+
+export const Info: React.FC<IconProps> = ({ ...props }) => {
     return (
         <svg
             viewBox="0 0 24 24"
@@ -18,5 +20,3 @@ const Info = ({ ...props }) => {
         </svg>
     );
 };
-
-export default Info;

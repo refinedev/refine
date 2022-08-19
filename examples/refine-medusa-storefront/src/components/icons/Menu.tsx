@@ -1,4 +1,6 @@
-const Menu = ({ ...props }) => {
+import { IconProps } from "src/types/icon";
+
+export const Menu: React.FC<IconProps> = ({ ...props }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -17,5 +19,3 @@ const Menu = ({ ...props }) => {
         </svg>
     );
 };
-
-export default Menu;

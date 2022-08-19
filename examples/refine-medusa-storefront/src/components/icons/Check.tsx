@@ -1,4 +1,6 @@
-const Check = ({ ...props }) => {
+import { IconProps } from "src/types/icon";
+
+export const Check: React.FC<IconProps> = ({ ...props }) => {
     return (
         <svg
             width="24"
@@ -17,5 +19,3 @@ const Check = ({ ...props }) => {
         </svg>
     );
 };
-
-export default Check;

@@ -1,4 +1,6 @@
-const Vercel = ({ ...props }) => {
+import { IconProps } from "src/types/icon";
+
+export const Vercel: React.FC<IconProps> = ({ ...props }) => {
     return (
         <svg
             width="89"
@@ -36,5 +38,3 @@ const Vercel = ({ ...props }) => {
         </svg>
     );
 };
-
-export default Vercel;

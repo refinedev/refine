@@ -1,10 +1,9 @@
-import React from "react";
-import { IconProps } from "@interfaces";
+import { IconProps } from "src/types/icon";
 
-const Trash: React.FC<IconProps> = ({
+export const Trash: React.FC<IconProps> = ({
     size = "16",
     color = "currentColor",
-    ...attributes
+    ...props
 }) => {
     return (
         <svg
@@ -13,7 +12,7 @@ const Trash: React.FC<IconProps> = ({
             viewBox="0 0 20 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            {...attributes}
+            {...props}
         >
             <path
                 d="M3.33301 5.49054H4.81449H16.6663"
@@ -46,5 +45,3 @@ const Trash: React.FC<IconProps> = ({
         </svg>
     );
 };
-
-export default Trash;

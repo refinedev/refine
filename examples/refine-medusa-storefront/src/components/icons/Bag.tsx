@@ -1,4 +1,6 @@
-const Bag = ({ ...props }) => {
+import { IconProps } from "src/types/icon";
+
+export const Bag: React.FC<IconProps> = ({ ...props }) => {
     return (
         <svg
             width="20"
@@ -29,5 +31,3 @@ const Bag = ({ ...props }) => {
         </svg>
     );
 };
-
-export default Bag;
