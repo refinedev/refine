@@ -1,4 +1,8 @@
-import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
+import {
+    QueryObserverResult,
+    useQuery,
+    UseQueryOptions,
+} from "@tanstack/react-query";
 import {
     GetListResponse,
     CrudFilters,
@@ -95,13 +99,20 @@ export const useList = <
 
     const queryResponse = useQuery<GetListResponse<TData>, TError>(
         queryKey.list(config),
-        () => {
+        ({ queryKey, pageParam, signal }) => {
             const { hasPagination, ...restConfig } = config || {};
             return getList<TData>({
                 resource,
                 ...restConfig,
                 hasPagination,
-                metaData,
+                metaData: {
+                    ...metaData,
+                    queryContext: {
+                        queryKey,
+                        pageParam,
+                        signal,
+                    },
+                },
             });
         },
         {

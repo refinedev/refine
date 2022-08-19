@@ -1,5 +1,47 @@
 # @pankod/refine-mui
 
+## 3.41.8
+
+### Patch Changes
+
+-   Added React 17 support to `peerDependencies`.
+
+## 3.41.7
+
+### Patch Changes
+
+-   [#2306](https://github.com/pankod/refine/pull/2306) [`bb3183d3eb`](https://github.com/pankod/refine/commit/bb3183d3eb4b257cafd98f0ef8949e4c0ddb9e90) Thanks [@aliemir](https://github.com/aliemir)! - Added React 17 support to `peerDependencies`.
+
+## 3.41.6
+
+### Patch Changes
+
+-   Fixed `StackProps` and `StackTypeMap` type exports
+
+## 3.41.5
+
+### Patch Changes
+
+-   [#2300](https://github.com/pankod/refine/pull/2300) [`59f9e5eebf`](https://github.com/pankod/refine/commit/59f9e5eebf372da36fc953d1affb04f393aac88d) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed `StackProps` and `StackTypeMap` type exports
+
+## 3.41.4
+
+### Patch Changes
+
+-   Upgraded `react-query` version to 4.
+
+-   Updated dependencies []:
+    -   @pankod/refine-react-hook-form@3.31.2
+
+## 3.41.3
+
+### Patch Changes
+
+-   [#2260](https://github.com/pankod/refine/pull/2260) [`a97ec592df`](https://github.com/pankod/refine/commit/a97ec592dfb6dcf5b5bd063d2d76f50ca195c20e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Upgraded `react-query` version to 4.
+
+-   Updated dependencies [[`6847672849`](https://github.com/pankod/refine/commit/68476728494dc0fd412883de30e2c99c75a1d559)]:
+    -   @pankod/refine-react-hook-form@3.31.1
+
 ## 3.41.2
 
 ### Patch Changes

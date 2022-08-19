@@ -80,12 +80,12 @@ export const useNavigation = () => {
         handleUrl(listUrl(resource), type);
     };
 
-    const push = (path: string, state?: unknown) => {
-        history.push(path, state);
+    const push = (path: string, ...rest: unknown[]) => {
+        history.push(path, ...rest);
     };
 
-    const replace = (path: string, state?: unknown) => {
-        history.replace(path, state);
+    const replace = (path: string, ...rest: unknown[]) => {
+        history.replace(path, ...rest);
     };
 
     const goBack = () => {

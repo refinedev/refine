@@ -26,6 +26,13 @@ export const TestWrapper: (
                     routerProvider={MockRouterProvider}
                     resources={resources ?? [{ name: "posts" }]}
                     disableTelemetry={true}
+                    reactQueryClientConfig={{
+                        defaultOptions: {
+                            queries: {
+                                retry: false,
+                            },
+                        },
+                    }}
                 >
                     {children}
                 </Refine>

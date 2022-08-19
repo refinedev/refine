@@ -5,8 +5,8 @@ import {
     QueryCache,
     MutationCache,
     DefaultOptions,
-} from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+} from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import { AuthContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
@@ -73,7 +73,9 @@ export interface RefineProps {
     OffLayoutArea?: React.FC;
     Title?: React.FC<TitleProps>;
     reactQueryClientConfig?: QueryClientConfig;
-    reactQueryDevtoolConfig?: any;
+    reactQueryDevtoolConfig?:
+        | React.ComponentProps<typeof ReactQueryDevtools>
+        | false;
     liveMode?: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
     children?: React.ReactNode;
@@ -248,11 +250,13 @@ export const Refine: React.FC<RefineProps> = ({
                     </DataContextProvider>
                 </AuthContextProvider>
             </NotificationContextProvider>
-            <ReactQueryDevtools
-                initialIsOpen={false}
-                position="bottom-right"
-                {...reactQueryDevtoolConfig}
-            />
+            {reactQueryDevtoolConfig === false ? null : (
+                <ReactQueryDevtools
+                    initialIsOpen={false}
+                    position="bottom-right"
+                    {...(reactQueryDevtoolConfig ?? {})}
+                />
+            )}
         </QueryClientProvider>
     );
 };

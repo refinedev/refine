@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { AccessControlProvider } from "@pankod/refine-core";
 import { crudShowTests } from "@pankod/refine-ui-tests";
 
-import { act, render, TestWrapper } from "@test";
+import { act, render, TestWrapper, waitFor } from "@test";
 
 import { Show } from "./index";
 import { RefineButtonTestIds } from "@pankod/refine-ui-types";
@@ -29,7 +29,7 @@ describe("Show", () => {
     crudShowTests.bind(this)(Show);
 
     it("depending on the accessControlProvider it should get the buttons successfully", async () => {
-        jest.useFakeTimers();
+        jest.useRealTimers();
 
         const { getByText, getAllByText, queryByTestId } = renderShow(
             <Show canEdit canDelete />,
@@ -47,14 +47,20 @@ describe("Show", () => {
             },
         );
 
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
+        await waitFor(() =>
+            expect(getByText("Edit").closest("button")).not.toBeDisabled(),
+        );
+        await waitFor(() =>
+            expect(
+                getAllByText("Posts")[1].closest("button"),
+            ).not.toBeDisabled(),
+        );
 
-        expect(getByText("Edit").closest("button")).not.toBeDisabled();
-        expect(getAllByText("Posts")[1].closest("button")).not.toBeDisabled();
-
-        expect(queryByTestId(RefineButtonTestIds.DeleteButton)).toBeDisabled();
+        await waitFor(() =>
+            expect(
+                queryByTestId(RefineButtonTestIds.DeleteButton),
+            ).toBeDisabled(),
+        );
     });
 
     it("should render optional recordItemId with resource prop, not render list button", async () => {

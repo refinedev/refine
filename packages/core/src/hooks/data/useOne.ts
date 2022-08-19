@@ -1,4 +1,8 @@
-import { QueryObserverResult, useQuery, UseQueryOptions } from "react-query";
+import {
+    QueryObserverResult,
+    useQuery,
+    UseQueryOptions,
+} from "@tanstack/react-query";
 
 import {
     GetOneResponse,
@@ -79,7 +83,19 @@ export const useOne = <
 
     const queryResponse = useQuery<GetOneResponse<TData>, TError>(
         queryKey.detail(id),
-        () => getOne<TData>({ resource, id, metaData }),
+        ({ queryKey, pageParam, signal }) =>
+            getOne<TData>({
+                resource,
+                id,
+                metaData: {
+                    ...metaData,
+                    queryContext: {
+                        queryKey,
+                        pageParam,
+                        signal,
+                    },
+                },
+            }),
         {
             ...queryOptions,
             onSuccess: (data) => {

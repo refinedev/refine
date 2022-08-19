@@ -1,4 +1,4 @@
-import { useQuery, QueryObserverResult } from "react-query";
+import { useQuery, QueryObserverResult } from "@tanstack/react-query";
 import { IResourcesConfig } from "@pankod/refine-sdk";
 
 import { useSdk } from "../useSdk";
@@ -10,7 +10,7 @@ export const useResourcesConfig = ({
     resourceName: string;
 }): QueryObserverResult<IResourcesConfig> => {
     const { sdk } = useSdk();
-    return useQuery<IResourcesConfig>("resourcesConfig", () =>
+    return useQuery<IResourcesConfig>(["resourcesConfig"], () =>
         sdk.config.resources(resourceName),
     );
 };

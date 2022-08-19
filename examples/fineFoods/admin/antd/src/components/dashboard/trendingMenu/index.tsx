@@ -16,6 +16,7 @@ export const TrendingMenu: React.FC = () => {
     const { listProps } = useSimpleList<IOrder>({
         resource: "orders",
         pagination: { pageSize: 5 },
+        syncWithLocation: false,
     });
 
     return (

@@ -33,16 +33,17 @@ export const stringifyTableParams = (params: {
     pagination?: { current?: number; pageSize?: number };
     sorter: CrudSorting;
     filters: CrudFilters;
+    [key: string]: any;
 }): string => {
     const options: IStringifyOptions = {
         skipNulls: true,
         arrayFormat: "indices",
         encode: false,
     };
-    const { pagination, sorter, filters } = params;
+    const { pagination, sorter, filters, ...rest } = params;
 
     const queryString = qs.stringify(
-        { ...(pagination ? pagination : {}), sorter, filters },
+        { ...rest, ...(pagination ? pagination : {}), sorter, filters },
         options,
     );
 

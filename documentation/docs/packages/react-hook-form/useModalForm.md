@@ -423,7 +423,7 @@ export const EditPost: React.FC<UseModalFormReturnType> = ({
 > | close           | Sets the visible state to false                | `() => void`                                 |
 > | submit          | Submits the form                               | `(values: TVariables) => void`               |
 > | title           | Modal title based on resource and action value | `string`                                     |
-> | saveButtonProps | Props for a submit button                      | `{ disabled: boolean, onClick: () => void }` |
+> | saveButtonProps | Props for a submit button                      | `{ disabled: boolean, onClick: (e: React.BaseSyntheticEvent) => void;  }` |
 
 ## Live StackBlitz Example
 

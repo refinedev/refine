@@ -1,5 +1,5 @@
 import React from "react";
-import { useMutation, UseMutationResult } from "react-query";
+import { useMutation, UseMutationResult } from "@tanstack/react-query";
 
 import { AuthContext } from "@contexts/auth";
 import { IAuthContext } from "../../../interfaces";
@@ -22,11 +22,15 @@ export const useCheckError = (): UseMutationResult<
 
     const { mutate: logout } = useLogout<{ redirectPath?: string }>();
 
-    const queryResponse = useMutation("useCheckError", checkErrorFromContext, {
-        onError: (redirectPath?: string) => {
-            logout({ redirectPath });
+    const queryResponse = useMutation(
+        ["useCheckError"],
+        checkErrorFromContext,
+        {
+            onError: (redirectPath?: string) => {
+                logout({ redirectPath });
+            },
         },
-    });
+    );
 
     return queryResponse;
 };

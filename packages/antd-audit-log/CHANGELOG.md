@@ -1,5 +1,25 @@
 # @pankod/refine-antd-audit-log
 
+## 3.27.2
+
+### Patch Changes
+
+-   Upgraded `react-query` version to 4.
+
+-   Updated dependencies []:
+    -   @pankod/refine-antd@3.35.4
+    -   @pankod/refine-core@3.56.6
+
+## 3.27.1
+
+### Patch Changes
+
+-   [#2260](https://github.com/pankod/refine/pull/2260) [`a97ec592df`](https://github.com/pankod/refine/commit/a97ec592dfb6dcf5b5bd063d2d76f50ca195c20e) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Upgraded `react-query` version to 4.
+
+-   Updated dependencies [[`a97ec592df`](https://github.com/pankod/refine/commit/a97ec592dfb6dcf5b5bd063d2d76f50ca195c20e), [`a97ec592df`](https://github.com/pankod/refine/commit/a97ec592dfb6dcf5b5bd063d2d76f50ca195c20e)]:
+    -   @pankod/refine-antd@3.35.3
+    -   @pankod/refine-core@3.56.5
+
 ## 3.27.0
 
 ### Minor Changes

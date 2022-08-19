@@ -1,0 +1,55 @@
+{
+  "name": "@pankod/refine-remix-router",
+  "description": "refine Remix router provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
+  "version": "1.2.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "private": false,
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsup --watch --dts --format esm,cjs,iife --legacy-output",
+    "build": "tsup --dts --format esm,cjs,iife  --legacy-output",
+    "test": "jest --passWithNoTests --runInBand",
+    "prepare": "npm run build"
+  },
+  "author": "Pankod",
+  "module": "dist/esm/index.js",
+  "devDependencies": {
+    "@pankod/refine-core": "^3.58.1",
+    "remix": "^1.6.7",
+    "@remix-run/react": "^1.6.7",
+    "@remix-run/node": "^1.6.7",
+    "@esbuild-plugins/node-resolve": "^0.1.4",
+    "@types/qs": "^6.9.7",
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.3",
+    "tslib": "^2.3.1",
+    "tsup": "^5.11.13"
+  },
+  "peerDependencies": {
+    "@pankod/refine-core": "^3.23.2",
+    "remix": "*",
+    "@remix-run/react": "*",
+    "@remix-run/node": "*",
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0",
+    "@types/react": "^17.0.0 || ^18.0.0",
+    "@types/react-dom": "^17.0.0 || ^18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pankod/refine.git",
+    "directory": "packages/remix"
+  },
+  "gitHead": "17dd5af3e4c9f7f09e1e707362c6f5a9d1cab8a8",
+  "publishConfig": {
+    "access": "public"
+  }
+}

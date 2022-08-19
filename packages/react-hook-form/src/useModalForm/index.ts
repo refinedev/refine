@@ -145,7 +145,7 @@ export const useModalForm = <
         ...useHookFormResult,
         saveButtonProps: {
             ...saveButtonProps,
-            onClick: () => handleSubmit(submit as any)(),
+            onClick: (e) => handleSubmit(submit)(e),
         },
     };
 };

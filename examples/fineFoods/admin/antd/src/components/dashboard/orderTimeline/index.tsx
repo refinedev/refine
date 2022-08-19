@@ -30,6 +30,7 @@ export const OrderTimeline: React.FC = () => {
             pageSize: 6,
             simple: true,
         },
+        syncWithLocation: false,
     });
 
     const { dataSource } = listProps;

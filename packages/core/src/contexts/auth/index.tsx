@@ -1,5 +1,5 @@
 import React from "react";
-import { useQueryClient } from "react-query";
+import { useQueryClient } from "@tanstack/react-query";
 
 import { useNavigation } from "@hooks";
 import { IAuthContext } from "../../interfaces";

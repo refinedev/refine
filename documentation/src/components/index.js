@@ -4,3 +4,4 @@ export * from "./comments";
 export * from "./key-features";
 export * from "./perfect-implementation";
 export * from "./get-started";
+export * from "./browser-window";
