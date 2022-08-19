@@ -17,24 +17,11 @@ export const PaymentDetails: React.FC<PaymentDetailsProps> = ({
                     switch (p.provider_id) {
                         case "stripe":
                             return <StripeDetails key={p.id} payment={p} />;
-                        case "paypal":
-                            return <PayPalDetails key={p.id} />;
-                        case "manual":
-                            return <TestDetails key={p.id} />;
                         default:
                             return null;
                     }
                 })}
             </div>
-        </div>
-    );
-};
-
-const PayPalDetails = () => {
-    return (
-        <div className="text-base-regular flex flex-col">
-            <span className="text-small-regular text-primary">PayPal</span>
-            <span>PayPal payment</span>
         </div>
     );
 };
@@ -58,15 +45,6 @@ const StripeDetails = ({ payment }: { payment: Payment }) => {
                 {card.exp_month > 9 ? card.exp_month : `0${card.exp_month}`} /{" "}
                 {card.exp_year.toString().slice(2)}
             </span>
-        </div>
-    );
-};
-
-const TestDetails = () => {
-    return (
-        <div className="text-base-regular flex flex-col">
-            <span className="text-small-regular text-primary">Test</span>
-            <span>Test payment using medusa-payment-manual</span>
         </div>
     );
 };
