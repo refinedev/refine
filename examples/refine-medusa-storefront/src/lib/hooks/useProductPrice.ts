@@ -1,17 +1,17 @@
 import { useMemo } from "react";
-import { useList, useOne } from "@pankod/refine-core";
+import { useList } from "@pankod/refine-core";
 import { Product } from "@medusajs/medusa";
 import { formatAmount } from "medusa-react";
 
 import { CalculatedVariant } from "../../types/medusa";
 import { useCartContext } from "@lib/context";
 
-interface useProductPriceProps {
+interface UseProductPriceProps {
     id: string;
     variantId?: string;
 }
 
-export const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
+export const useProductPrice = ({ id, variantId }: UseProductPriceProps) => {
     const { cart } = useCartContext();
 
     const {
@@ -40,11 +40,6 @@ export const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
     });
 
     const product = productData?.data[0];
-
-    const { data: cartData } = useOne({
-        resource: "carts",
-        id: cart?.id || "",
-    });
 
     const getPercentageDiff = (original: number, calculated: number) => {
         const diff = original - calculated;

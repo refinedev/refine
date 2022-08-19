@@ -22,8 +22,6 @@
         "autoprefixer": "^10.4.2",
         "body-scroll-lock": "^4.0.0-beta.0",
         "clsx": "^1.1.1",
-        "email-validator": "^2.0.4",
-        "js-cookie": "^3.0.1",
         "keen-slider": "^6.6.3",
         "lodash.random": "^3.2.0",
         "lodash.throttle": "^4.1.1",
@@ -55,7 +53,6 @@
         "prettier": "2.3.0",
         "prettier-plugin-tailwindcss": "^0.1.13",
         "typescript": "^4.7.4",
-        "@types/lodash": "^4.14.171",
-        "@types/js-cookie": "^3.0.2"
+        "@types/lodash": "^4.14.171"
     }
 }
