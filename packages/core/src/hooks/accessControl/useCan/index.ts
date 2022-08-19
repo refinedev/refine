@@ -47,7 +47,9 @@ export const useCan = ({
             },
         ],
         // Enabled check for `can` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
-        () => can?.({ action, resource, params }) ?? { can: true },
+        () =>
+            can?.({ action, resource, params }) ??
+            Promise.resolve({ can: true }),
         {
             enabled: typeof can !== "undefined",
             ...queryOptions,
