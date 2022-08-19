@@ -1,8 +1,13 @@
 import React, { useMemo } from "react";
 import { formatAmount } from "medusa-react";
 import { Cart } from "@medusajs/medusa";
-import { useForm } from "react-hook-form";
-import { useDelete, useInvalidate, useUpdate } from "@pankod/refine-core";
+import { useForm } from "@pankod/refine-react-hook-form";
+import {
+    HttpError,
+    useDelete,
+    useInvalidate,
+    useUpdate,
+} from "@pankod/refine-core";
 
 import { Trash } from "@components/icons";
 import { Input, Button } from "@components";
@@ -45,7 +50,7 @@ export const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
         handleSubmit,
         setError,
         formState: { errors },
-    } = useForm<DiscountFormValues>({
+    } = useForm<DiscountFormValues, HttpError, DiscountFormValues>({
         mode: "onSubmit",
     });
 

@@ -2,7 +2,7 @@ import { Fragment, useMemo, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { Address } from "@medusajs/medusa";
 import { isEqual, omit } from "lodash";
-import { useWatch } from "react-hook-form";
+import { useWatch } from "@pankod/refine-react-hook-form";
 import cn from "clsx";
 
 import { Radio } from "@components";

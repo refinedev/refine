@@ -1,5 +1,5 @@
-import { useForm } from "react-hook-form";
-import { useLogin } from "@pankod/refine-core";
+import { useForm } from "@pankod/refine-react-hook-form";
+import { HttpError, useLogin } from "@pankod/refine-core";
 import { ErrorMessage } from "@hookform/error-message";
 
 import { useUI } from "@lib/context";
@@ -18,7 +18,7 @@ const LoginView: React.FC = () => {
         handleSubmit,
         register,
         formState: { errors, touchedFields },
-    } = useForm<Login>({
+    } = useForm<Login, HttpError, Login>({
         reValidateMode: "onChange",
     });
 

@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { Cart } from "@medusajs/medusa";
-import { useForm } from "react-hook-form";
-import { useInvalidate, useUpdate } from "@pankod/refine-core";
+import { useForm } from "@pankod/refine-react-hook-form";
+import { HttpError, useInvalidate, useUpdate } from "@pankod/refine-core";
 
 import { Input, Button } from "@components";
 import { Trash } from "@components/icons";
@@ -23,7 +23,7 @@ export const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
         handleSubmit,
         formState: { touchedFields, errors },
         setError,
-    } = useForm<GiftCardFormValues>();
+    } = useForm<GiftCardFormValues, HttpError, GiftCardFormValues>();
 
     const appliedGiftCard = useMemo(() => {
         if (!cart || !cart.gift_cards?.length) {
