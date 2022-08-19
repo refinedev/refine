@@ -6,7 +6,7 @@ import { useDelete, useInvalidate, useUpdate } from "@pankod/refine-core";
 import { LineItem } from "@medusajs/medusa";
 import { formatAmount } from "medusa-react";
 
-import Quantity from "@components/ui/Quantity";
+import { Quantity } from "@components";
 import { useCartContext, useUI } from "@lib/context";
 
 import s from "./CartItem.module.css";

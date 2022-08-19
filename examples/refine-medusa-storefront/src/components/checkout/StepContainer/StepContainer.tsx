@@ -5,12 +5,12 @@ import { useCheckout } from "@lib/context";
 
 import s from "./StepContainer.module.css";
 
-type StepContainerProps = {
+interface StepContainerProps extends React.HTMLAttributes<HTMLDivElement> {
     index: number;
     title: string;
     closedState?: React.ReactNode;
     children?: React.ReactNode;
-} & React.HTMLAttributes<HTMLDivElement>;
+}
 
 export const StepContainer: React.FC<StepContainerProps> = ({
     index,

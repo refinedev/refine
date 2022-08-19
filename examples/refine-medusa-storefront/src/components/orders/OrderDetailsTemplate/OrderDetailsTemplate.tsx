@@ -1,11 +1,11 @@
 import { Order } from "@medusajs/medusa";
 
-import Help from "../Help";
-import Items from "../Items";
-import OrderDetails from "../OrderDetails/OrderDetails";
-import OrderSummary from "../OrderSummary";
-import PaymentDetails from "../PaymentDetails";
-import ShippingDetails from "../ShippingDetails";
+import { Help } from "../Help";
+import { Items } from "../Items";
+import { OrderDetails } from "../OrderDetails";
+import { OrderSummary } from "../OrderSummary";
+import { PaymentDetails } from "../PaymentDetails";
+import { ShippingDetails } from "../ShippingDetails";
 
 interface OrderDetailsTemplateProps {
     order: Order;

@@ -8,7 +8,7 @@ import {
 } from "@pankod/refine-core";
 import { parseCookies, setCookie, destroyCookie } from "nookies";
 
-import useCart from "@lib/hooks/useCart";
+import { useCart } from "@lib/hooks";
 
 interface VariantInfoProps {
     variantId: string;

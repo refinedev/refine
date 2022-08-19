@@ -1,19 +1,20 @@
+import React, { PropsWithChildren } from "react";
 import cn from "clsx";
-import React from "react";
-import s from "./Swatch.module.css";
+
 import { Check } from "@components/icons";
-import Button, { ButtonProps } from "@components/ui/Button";
+import { Button, ButtonProps } from "@components/ui/Button";
 import { isDark } from "@lib/colors";
-interface SwatchProps {
+
+import s from "./Swatch.module.css";
+interface SwatchProps extends PropsWithChildren {
     active?: boolean;
-    children?: any;
     className?: string;
     variant?: "size" | "color" | string;
     color?: string;
     label?: string | null;
 }
 
-const Swatch: React.FC<Omit<ButtonProps, "variant"> & SwatchProps> = ({
+export const Swatch: React.FC<Omit<ButtonProps, "variant"> & SwatchProps> = ({
     active,
     className,
     color = "",
@@ -60,5 +61,3 @@ const Swatch: React.FC<Omit<ButtonProps, "variant"> & SwatchProps> = ({
         </Button>
     );
 };
-
-export default React.memo(Swatch);

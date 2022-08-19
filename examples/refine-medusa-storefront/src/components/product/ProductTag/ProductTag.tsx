@@ -1,4 +1,5 @@
 import cn from "clsx";
+
 import s from "./ProductTag.module.css";
 
 interface ProductTagProps {
@@ -8,7 +9,7 @@ interface ProductTagProps {
     fontSize?: number;
 }
 
-const ProductTag: React.FC<ProductTagProps> = ({
+export const ProductTag: React.FC<ProductTagProps> = ({
     name,
     price,
     className = "",
@@ -31,5 +32,3 @@ const ProductTag: React.FC<ProductTagProps> = ({
         </div>
     );
 };
-
-export default ProductTag;

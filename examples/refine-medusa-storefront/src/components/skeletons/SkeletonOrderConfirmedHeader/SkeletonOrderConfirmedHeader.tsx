@@ -1,4 +1,4 @@
-const SkeletonOrderConfirmedHeader: React.FC = () => {
+export const SkeletonOrderConfirmedHeader: React.FC = () => {
     return (
         <div className="flex animate-pulse flex-col gap-y-2 pb-10">
             <div className="h-4 w-2/5 bg-gray-100"></div>
@@ -10,5 +10,3 @@ const SkeletonOrderConfirmedHeader: React.FC = () => {
         </div>
     );
 };
-
-export default SkeletonOrderConfirmedHeader;

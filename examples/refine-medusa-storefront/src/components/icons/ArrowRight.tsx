@@ -1,4 +1,6 @@
-const ArrowRight = ({ ...props }) => {
+import { IconProps } from "src/types/icon";
+
+export const ArrowRight: React.FC<IconProps> = ({ ...props }) => {
     return (
         <svg
             width="24"
@@ -24,5 +26,3 @@ const ArrowRight = ({ ...props }) => {
         </svg>
     );
 };
-
-export default ArrowRight;

@@ -13,7 +13,7 @@ interface OgImage {
     alt?: string;
 }
 
-interface Props {
+interface SeoProps {
     title?: string;
     description?: string;
     robots?: string;
@@ -58,7 +58,7 @@ const ogImage = ({ url, width, height, alt }: OgImage, index: number) => {
     );
 };
 
-const SEO: FC<Props> = ({
+export const SEO: React.FC<SeoProps> = ({
     title,
     description,
     openGraph,
@@ -166,5 +166,3 @@ const SEO: FC<Props> = ({
         </Head>
     );
 };
-
-export default SEO;

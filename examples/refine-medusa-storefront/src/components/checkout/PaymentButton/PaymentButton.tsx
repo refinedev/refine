@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { PaymentSession } from "@medusajs/medusa";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
 
-import Spinner from "@components/icons/Spinner";
-import { Button } from "@components/ui";
+import { Spinner } from "@components/icons";
+import { Button } from "@components";
 import { useCartContext, useCheckout } from "@lib/context";
 
-type PaymentButtonProps = {
+interface PaymentButtonProps {
     paymentSession?: PaymentSession | null;
-};
+}
 
 export const PaymentButton: React.FC<PaymentButtonProps> = ({
     paymentSession,

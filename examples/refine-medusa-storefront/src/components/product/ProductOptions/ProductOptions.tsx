@@ -1,18 +1,15 @@
-import { ElementType, memo } from "react";
-import { Swatch } from "@components/product";
-// import type { ProductOption } from "@commerce/types/product";
-import { SelectedOptions } from "../helpers";
-import { MedusaProduct } from "@interfaces/index";
+import { ProductOption } from "@medusajs/medusa";
 
-type MedusaProductOptions = MedusaProduct["options"];
+import { Swatch } from "@components/product";
+import { SelectedOptions } from "../helpers";
 
 interface ProductOptionsProps {
-    options: MedusaProductOptions;
+    options: ProductOption[];
     selectedOptions: SelectedOptions;
     setSelectedOptions: React.Dispatch<React.SetStateAction<SelectedOptions>>;
 }
 
-const ProductOptions: React.FC<ProductOptionsProps> = ({
+export const ProductOptions: React.FC<ProductOptionsProps> = ({
     options,
     selectedOptions,
     setSelectedOptions,
@@ -64,5 +61,3 @@ const ProductOptions: React.FC<ProductOptionsProps> = ({
         </div>
     );
 };
-
-export default memo(ProductOptions);

@@ -1,11 +1,9 @@
-import React from "react";
+import { IconProps } from "src/types/icon";
 
-import { IconProps } from "@interfaces";
-
-const Spinner: React.FC<IconProps> = ({
+export const Spinner: React.FC<IconProps> = ({
     size = "16",
     color = "currentColor",
-    ...attributes
+    ...props
 }) => {
     return (
         <svg
@@ -15,7 +13,7 @@ const Spinner: React.FC<IconProps> = ({
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            {...attributes}
+            {...props}
         >
             <circle
                 className="opacity-25"
@@ -33,5 +31,3 @@ const Spinner: React.FC<IconProps> = ({
         </svg>
     );
 };
-
-export default Spinner;

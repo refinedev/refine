@@ -1,13 +1,9 @@
+import { useRef } from "react";
 import { useGetIdentity } from "@pankod/refine-core";
-import { FC, useRef } from "react";
 
-interface Props {
-    className?: string;
-    children?: any;
-}
-
-export const Avatar: FC<Props> = ({}) => {
+export const Avatar: React.FC = () => {
     const ref = useRef() as React.MutableRefObject<HTMLInputElement>;
+
     const { data } = useGetIdentity();
 
     return (

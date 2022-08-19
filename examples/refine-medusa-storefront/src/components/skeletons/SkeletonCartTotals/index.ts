@@ -1,1 +1,1 @@
-export { default } from "./SkeletonCartTotals";
+export * from "./SkeletonCartTotals";

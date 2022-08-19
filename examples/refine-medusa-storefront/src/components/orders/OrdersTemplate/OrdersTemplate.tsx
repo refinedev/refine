@@ -1,6 +1,6 @@
-import OrderOverview from "../OrderOverview/OrderOverview";
+import { OrderOverview } from "../OrderOverview";
 
-const OrdersTemplate = () => {
+export const OrdersTemplate: React.FC = () => {
     return (
         <div className="w-full">
             <div className="mb-8 flex flex-col gap-y-4">
@@ -16,5 +16,3 @@ const OrdersTemplate = () => {
         </div>
     );
 };
-
-export default OrdersTemplate;

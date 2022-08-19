@@ -1,14 +1,14 @@
-import { FC } from "react";
 import cn from "clsx";
 import Link from "next/link";
 import Image, { ImageProps } from "next/image";
 import { Product } from "@medusajs/medusa";
 
 import { currencySymbolFromCode } from "@components/product/helpers";
-import ProductTag from "../ProductTag";
+import { ProductTag } from "../ProductTag";
+
 import s from "./ProductCard.module.css";
 
-interface Props {
+interface ProductCardProps {
     className?: string;
     product: Product;
     noNameTag?: boolean;
@@ -21,7 +21,7 @@ interface Props {
 
 const placeholderImg = "/product-img-placeholder.svg";
 
-const ProductCard: FC<Props> = ({
+export const ProductCard: React.FC<ProductCardProps> = ({
     product,
     imgProps,
     className,
@@ -129,5 +129,3 @@ const ProductCard: FC<Props> = ({
         </Link>
     );
 };
-
-export default ProductCard;

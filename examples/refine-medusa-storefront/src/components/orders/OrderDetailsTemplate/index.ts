@@ -1,1 +1,1 @@
-export { default } from "./OrderDetailsTemplate";
+export * from "./OrderDetailsTemplate";

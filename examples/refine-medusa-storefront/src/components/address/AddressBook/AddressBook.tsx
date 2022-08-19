@@ -1,10 +1,11 @@
 import React from "react";
 import { Customer } from "@medusajs/medusa";
+
 import { AddAddress, EditAddress } from "@components";
 
-type AddressBookProps = {
+interface AddressBookProps {
     customer: Omit<Customer, "password_hash"> | undefined;
-};
+}
 
 export const AddressBook: React.FC<AddressBookProps> = ({ customer }) => {
     return (

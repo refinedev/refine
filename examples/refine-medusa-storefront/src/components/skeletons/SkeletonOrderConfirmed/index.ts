@@ -1,1 +1,1 @@
-export { default } from "./SkeletonOrderConfirmed";
+export * from "./SkeletonOrderConfirmed";

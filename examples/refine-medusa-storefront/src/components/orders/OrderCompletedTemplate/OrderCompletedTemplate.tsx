@@ -1,18 +1,18 @@
 import React from "react";
 import { Order } from "@medusajs/medusa";
 
-import OrderDetails from "../OrderDetails";
-import Items from "../Items";
-import PaymentDetails from "../PaymentDetails";
-import ShippingDetails from "../ShippingDetails";
-import Help from "../Help";
-import OrderSummary from "../OrderSummary";
+import { OrderDetails } from "../OrderDetails";
+import { Items } from "../Items";
+import { PaymentDetails } from "../PaymentDetails";
+import { ShippingDetails } from "../ShippingDetails";
+import { Help } from "../Help";
+import { OrderSummary } from "../OrderSummary";
 
 interface OrderCompletedTemplateProps {
     order: Order;
 }
 
-const OrderCompletedTemplate: React.FC<OrderCompletedTemplateProps> = ({
+export const OrderCompletedTemplate: React.FC<OrderCompletedTemplateProps> = ({
     order,
 }) => {
     return (
@@ -44,5 +44,3 @@ const OrderCompletedTemplate: React.FC<OrderCompletedTemplateProps> = ({
         </div>
     );
 };
-
-export default OrderCompletedTemplate;

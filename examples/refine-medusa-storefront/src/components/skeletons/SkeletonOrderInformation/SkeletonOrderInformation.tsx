@@ -1,6 +1,6 @@
 import SkeletonCartTotals from "../SkeletonCartTotals";
 
-const SkeletonOrderInformation: React.FC = () => {
+export const SkeletonOrderInformation: React.FC = () => {
     return (
         <div>
             <div className="grid grid-cols-1 gap-4 border-b border-gray-200 py-10 lg:grid-cols-2">
@@ -32,5 +32,3 @@ const SkeletonOrderInformation: React.FC = () => {
         </div>
     );
 };
-
-export default SkeletonOrderInformation;

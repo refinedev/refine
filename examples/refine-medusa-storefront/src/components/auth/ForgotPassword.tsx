@@ -1,9 +1,8 @@
-import { useForm } from "react-hook-form";
+import { useForm } from "@pankod/refine-react-hook-form";
 
 import { useUI } from "@lib/context";
-import { Logo, Button } from "@components/ui";
-import { Input } from "@components/common";
 import { emailRegex } from "@lib/regex";
+import { Logo, Button, Input } from "@components";
 
 const ForgotPassword: React.FC = () => {
     const { setModalView } = useUI();

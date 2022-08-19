@@ -1,4 +1,4 @@
-const Star = ({ ...props }) => {
+export const Star: React.FC = ({ ...props }) => {
     return (
         <svg
             width="20"
@@ -12,5 +12,3 @@ const Star = ({ ...props }) => {
         </svg>
     );
 };
-
-export default Star;

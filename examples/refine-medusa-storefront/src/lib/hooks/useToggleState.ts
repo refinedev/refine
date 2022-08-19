@@ -20,7 +20,7 @@ export type StateType = [boolean, () => void, () => void, () => void] & {
  * ```
  */
 
-const useToggleState = (initialState = false) => {
+export const useToggleState = (initialState = false) => {
     const [state, setState] = useState<boolean>(initialState);
 
     const close = () => {
@@ -42,5 +42,3 @@ const useToggleState = (initialState = false) => {
     hookData.toggle = toggle;
     return hookData;
 };
-
-export default useToggleState;

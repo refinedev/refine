@@ -8,7 +8,8 @@ import {
     StorePostCustomersCustomerReq,
 } from "@medusajs/medusa";
 
-import { Input, NativeSelect } from "@components/common";
+import { Input } from "@components/ui";
+import { NativeSelect } from "@components/common";
 import { AccountInfo } from "@components/account";
 
 type MyInformationProps = {

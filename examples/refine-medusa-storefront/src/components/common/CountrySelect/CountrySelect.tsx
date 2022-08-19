@@ -1,4 +1,3 @@
-import React from "react";
 import { useOne } from "@pankod/refine-core";
 import { useFormContext } from "@pankod/refine-react-hook-form";
 import { Cart } from "@medusajs/medusa";

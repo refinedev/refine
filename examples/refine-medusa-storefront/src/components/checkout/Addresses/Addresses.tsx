@@ -1,8 +1,7 @@
 import cn from "clsx";
 
-import Spinner from "@components/icons/Spinner";
-import { Button, Checkbox } from "@components/ui";
-import { BillingAddress, ShippingAddress } from "@components/checkout";
+import { Button, Checkbox, BillingAddress, ShippingAddress } from "@components";
+import { Spinner } from "@components/icons";
 import { useCheckout } from "@lib/context";
 
 import s from "./Addresses.module.css";

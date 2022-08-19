@@ -1,4 +1,4 @@
-const SkeletonLineItem: React.FC = () => {
+export const SkeletonLineItem: React.FC = () => {
     return (
         <div className="grid animate-pulse grid-cols-[122px_1fr] gap-x-4">
             <div className="h-[143px] w-[122px] bg-gray-200" />
@@ -14,5 +14,3 @@ const SkeletonLineItem: React.FC = () => {
         </div>
     );
 };
-
-export default SkeletonLineItem;

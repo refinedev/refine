@@ -1,10 +1,9 @@
-import React from "react";
-import { IconProps } from "types/icon";
+import { IconProps } from "src/types/icon";
 
-const Edit: React.FC<IconProps> = ({
+export const Edit: React.FC<IconProps> = ({
     size = "20",
     color = "currentColor",
-    ...attributes
+    ...props
 }) => {
     return (
         <svg
@@ -13,7 +12,7 @@ const Edit: React.FC<IconProps> = ({
             viewBox="0 0 20 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            {...attributes}
+            {...props}
         >
             <path
                 d="M9 3H4.55556C4.143 3 3.74733 3.16389 3.45561 3.45561C3.16389 3.74733 3 4.143 3 4.55556V15.4444C3 15.857 3.16389 16.2527 3.45561 16.5444C3.74733 16.8361 4.143 17 4.55556 17H15.4444C15.857 17 16.2527 16.8361 16.5444 16.5444C16.8361 16.2527 17 15.857 17 15.4444V11"
@@ -32,5 +31,3 @@ const Edit: React.FC<IconProps> = ({
         </svg>
     );
 };
-
-export default Edit;

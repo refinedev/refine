@@ -1,10 +1,11 @@
-import { Dispatch, FC, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import { Product, ProductVariant } from "@medusajs/medusa";
 
 import { ProductOptions } from "@components/product";
 import { Button, Text, Rating, Collapse } from "@components/ui";
 import { selectDefaultOptionFromProduct, SelectedOptions } from "../helpers";
 import { useCartContext, useUI } from "@lib/context";
+
 import s from "./ProductSidebar.module.css";
 
 interface ProductSidebarProps {
@@ -15,7 +16,7 @@ interface ProductSidebarProps {
     variant: ProductVariant;
 }
 
-const ProductSidebar: FC<ProductSidebarProps> = ({
+export const ProductSidebar: React.FC<ProductSidebarProps> = ({
     product,
     className,
     setSelectedOptions = () => undefined,
@@ -82,5 +83,3 @@ const ProductSidebar: FC<ProductSidebarProps> = ({
         </div>
     );
 };
-
-export default ProductSidebar;

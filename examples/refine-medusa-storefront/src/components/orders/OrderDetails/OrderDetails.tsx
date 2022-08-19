@@ -5,7 +5,10 @@ interface OrderDetailsProps {
     showStatus?: boolean;
 }
 
-const OrderDetails: React.FC<OrderDetailsProps> = ({ order, showStatus }) => {
+export const OrderDetails: React.FC<OrderDetailsProps> = ({
+    order,
+    showStatus,
+}) => {
     const items = order.items.reduce((acc, i) => acc + i.quantity, 0);
 
     const formatStatus = (str: string) => {
@@ -36,5 +39,3 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ order, showStatus }) => {
         </div>
     );
 };
-
-export default OrderDetails;

@@ -2,7 +2,7 @@ interface SkeletonCartTotalsProps {
     header?: boolean;
 }
 
-const SkeletonCartTotals: React.FC<SkeletonCartTotalsProps> = ({
+export const SkeletonCartTotals: React.FC<SkeletonCartTotalsProps> = ({
     header = true,
 }) => {
     return (
@@ -32,5 +32,3 @@ const SkeletonCartTotals: React.FC<SkeletonCartTotalsProps> = ({
         </div>
     );
 };
-
-export default SkeletonCartTotals;

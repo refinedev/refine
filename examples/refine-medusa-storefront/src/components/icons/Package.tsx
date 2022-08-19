@@ -1,10 +1,9 @@
-import React from "react";
-import { IconProps } from "@interfaces";
+import { IconProps } from "src/types/icon";
 
-const Package: React.FC<IconProps> = ({
+export const Package: React.FC<IconProps> = ({
     size = "20",
     color = "currentColor",
-    ...attributes
+    ...props
 }) => {
     return (
         <svg
@@ -13,7 +12,7 @@ const Package: React.FC<IconProps> = ({
             viewBox="0 0 20 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            {...attributes}
+            {...props}
         >
             <path
                 d="M13.3634 8.02695L6.73047 4.21271"
@@ -39,5 +38,3 @@ const Package: React.FC<IconProps> = ({
         </svg>
     );
 };
-
-export default Package;

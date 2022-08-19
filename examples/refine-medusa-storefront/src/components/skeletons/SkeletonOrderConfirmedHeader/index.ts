@@ -1,1 +1,1 @@
-export { default } from "./SkeletonOrderConfirmedHeader";
+export * from "./SkeletonOrderConfirmedHeader";

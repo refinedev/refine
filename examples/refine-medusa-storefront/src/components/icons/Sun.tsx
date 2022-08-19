@@ -1,4 +1,6 @@
-const Sun = ({ ...props }) => {
+import { IconProps } from "src/types/icon";
+
+export const Sun: React.FC<IconProps> = ({ ...props }) => {
     return (
         <svg
             viewBox="0 0 24 24"
@@ -24,5 +26,3 @@ const Sun = ({ ...props }) => {
         </svg>
     );
 };
-
-export default Sun;

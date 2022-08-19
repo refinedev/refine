@@ -1,10 +1,9 @@
-import React from "react";
-import { IconProps } from "@interfaces";
+import { IconProps } from "src/types/icon";
 
-const PlaceholderImage: React.FC<IconProps> = ({
+export const PlaceholderImage: React.FC<IconProps> = ({
     size = "20",
     color = "currentColor",
-    ...attributes
+    ...props
 }) => {
     return (
         <svg
@@ -13,7 +12,7 @@ const PlaceholderImage: React.FC<IconProps> = ({
             viewBox="0 0 20 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            {...attributes}
+            {...props}
         >
             <path
                 d="M15.3141 3.16699H4.68453C3.84588 3.16699 3.16602 3.84685 3.16602 4.6855V15.3151C3.16602 16.1537 3.84588 16.8336 4.68453 16.8336H15.3141C16.1527 16.8336 16.8326 16.1537 16.8326 15.3151V4.6855C16.8326 3.84685 16.1527 3.16699 15.3141 3.16699Z"
@@ -39,5 +38,3 @@ const PlaceholderImage: React.FC<IconProps> = ({
         </svg>
     );
 };
-
-export default PlaceholderImage;

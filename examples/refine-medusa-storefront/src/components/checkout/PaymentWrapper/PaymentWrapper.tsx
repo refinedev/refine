@@ -3,9 +3,9 @@ import { PaymentSession } from "@medusajs/medusa";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe, StripeElementsOptions } from "@stripe/stripe-js";
 
-type WrapperProps = {
+interface WrapperProps {
     paymentSession?: PaymentSession | null;
-};
+}
 
 export const Wrapper: React.FC<PropsWithChildren<WrapperProps>> = ({
     paymentSession,

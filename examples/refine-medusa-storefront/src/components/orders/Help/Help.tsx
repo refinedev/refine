@@ -1,7 +1,6 @@
 import Link from "next/link";
-import React from "react";
 
-const Help: React.FC = () => {
+export const Help: React.FC = () => {
     return (
         <div>
             <h2 className="text-base-semi">Need help?</h2>
@@ -22,5 +21,3 @@ const Help: React.FC = () => {
         </div>
     );
 };
-
-export default Help;

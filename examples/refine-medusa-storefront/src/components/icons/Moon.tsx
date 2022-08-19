@@ -1,4 +1,6 @@
-const Moon = ({ ...props }) => {
+import { IconProps } from "src/types/icon";
+
+export const Moon: React.FC<IconProps> = ({ ...props }) => {
     return (
         <svg
             viewBox="0 0 24 24"
@@ -16,5 +18,3 @@ const Moon = ({ ...props }) => {
         </svg>
     );
 };
-
-export default Moon;

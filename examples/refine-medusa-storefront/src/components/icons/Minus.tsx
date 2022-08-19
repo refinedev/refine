@@ -1,4 +1,6 @@
-const Minus = ({ ...props }) => {
+import { IconProps } from "src/types/icon";
+
+export const Minus: React.FC<IconProps> = ({ ...props }) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
             <path
@@ -11,5 +13,3 @@ const Minus = ({ ...props }) => {
         </svg>
     );
 };
-
-export default Minus;

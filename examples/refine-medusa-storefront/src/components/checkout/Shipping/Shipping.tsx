@@ -1,24 +1,24 @@
 import React from "react";
-import clsx from "clsx";
+import cn from "clsx";
 import { RadioGroup } from "@headlessui/react";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm } from "@pankod/refine-react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { Cart } from "@medusajs/medusa";
 
-import { StepContainer } from "@components";
-import { Radio } from "@components/common";
-import Spinner from "@components/icons/Spinner";
-import { useCheckout } from "@lib/context/checkout";
+import { StepContainer, Radio } from "@components";
+import { Spinner } from "@components/icons";
+import { useCheckout } from "@lib/context";
 
 import s from "./Shipping.module.css";
+import { HttpError } from "@pankod/refine-core";
 
-type ShippingProps = {
+interface ShippingProps {
     cart: Omit<Cart, "refundable_amount" | "refunded_total">;
-};
+}
 
-type ShippingFormProps = {
+interface ShippingFormProps {
     soId: string;
-};
+}
 
 export const Shipping: React.FC<ShippingProps> = ({ cart }) => {
     const { shippingMethods, setShippingOption } = useCheckout();
@@ -27,7 +27,7 @@ export const Shipping: React.FC<ShippingProps> = ({ cart }) => {
         control,
         setError,
         formState: { errors },
-    } = useForm<ShippingFormProps>({
+    } = useForm<ShippingFormProps, HttpError, ShippingFormProps>({
         defaultValues: {
             soId: cart.shipping_methods?.[0]?.shipping_option_id,
         },
@@ -87,7 +87,7 @@ export const Shipping: React.FC<ShippingProps> = ({ cart }) => {
                                             <RadioGroup.Option
                                                 key={option.value}
                                                 value={option.value}
-                                                className={clsx(s.radio, {
+                                                className={cn(s.radio, {
                                                     "bg-accent-1":
                                                         option.value === value,
                                                 })}

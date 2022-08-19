@@ -1,3 +1,4 @@
+import React, { createContext, useContext, useEffect, useMemo } from "react";
 import {
     Address,
     Cart,
@@ -8,16 +9,21 @@ import {
 import { isEqual } from "lodash";
 import { formatAmount } from "medusa-react";
 import { useRouter } from "next/router";
-import React, { createContext, useContext, useEffect, useMemo } from "react";
-import { FormProvider, useForm, useFormContext } from "react-hook-form";
-import useToggleState, { StateType } from "@lib/hooks/useToggleState";
-import { useCartContext } from "@lib/context";
 import {
+    FormProvider,
+    useForm,
+    useFormContext,
+} from "@pankod/refine-react-hook-form";
+import {
+    HttpError,
     useCreate,
     useInvalidate,
     useOne,
     useUpdate,
 } from "@pankod/refine-core";
+
+import { useToggleState, StateType } from "@lib/hooks";
+import { useCartContext } from "@lib/context";
 import { Wrapper } from "@components/checkout";
 
 type AddressValues = {
@@ -82,7 +88,7 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
     });
     const customer = customerData?.data.customer;
 
-    const methods = useForm<CheckoutFormValues>({
+    const methods = useForm<CheckoutFormValues, HttpError, CheckoutFormValues>({
         defaultValues: mapFormValues(customer, cart, countryCode),
         reValidateMode: "onChange",
     });

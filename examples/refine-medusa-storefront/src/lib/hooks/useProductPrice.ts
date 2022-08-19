@@ -6,12 +6,12 @@ import { formatAmount } from "medusa-react";
 import { CalculatedVariant } from "../../types/medusa";
 import { useCartContext } from "@lib/context";
 
-type useProductPriceProps = {
+interface useProductPriceProps {
     id: string;
     variantId?: string;
-};
+}
 
-const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
+export const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
     const { cart } = useCartContext();
 
     const {
@@ -123,5 +123,3 @@ const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
         isError,
     };
 };
-
-export default useProductPrice;
