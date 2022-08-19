@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { useForm } from "@pankod/refine-react-hook-form";
 import { HttpError, useLogin } from "@pankod/refine-core";
 
@@ -15,7 +14,7 @@ interface Customer {
     serverError: string;
 }
 
-const SignUpView: FC = () => {
+const SignUpView: React.FC = () => {
     const { setModalView, closeModal } = useUI();
 
     const { mutate: login } = useLogin();

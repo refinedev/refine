@@ -7,16 +7,25 @@ import s from "./Hero.module.css";
 
 interface HeroProps {
     className?: string;
-    headline: string;
     description: string;
 }
 
-export const Hero: React.FC<HeroProps> = ({ headline, description }) => {
+export const Hero: React.FC<HeroProps> = ({ description }) => {
     return (
-        <div className="bg-accent-9 border-accent-2 border-b border-t">
+        <div className="bg-violet border-accent-2 border-b border-t">
             <Container>
                 <div className={s.root}>
-                    <h2 className={s.title}>{headline}</h2>
+                    <div className={s.headline}>
+                        <div className={s.bold}>
+                            <div className={s.regularTop}>
+                                SHOW YOUR SUPPORT
+                            </div>
+                            proudly
+                            <div className={s.regularBottom}>
+                                IN A FANCY & STYLISH WAY
+                            </div>
+                        </div>
+                    </div>
                     <div className={s.description}>
                         <p>{description}</p>
                         <Link

@@ -2,7 +2,7 @@ import React from "react";
 import { useAuthenticated } from "@pankod/refine-core";
 import cn from "clsx";
 import Link from "next/link";
-import s from "./UserNav.module.css";
+
 import { Avatar } from "@components/common";
 import { useUI } from "@lib/context";
 import { Heart, Bag, Menu } from "@components/icons";
@@ -12,12 +12,21 @@ import {
     DropdownTrigger as DropdownTriggerInst,
     Button,
 } from "@components/ui";
+import { useCart } from "@lib/hooks";
+import { useCartContext } from "@lib/context";
 
-const countItem = (count: number, item: any) => count + item.quantity;
+import s from "./UserNav.module.css";
 
 const UserNav: React.FC<{
     className?: string;
 }> = ({ className }) => {
+    const { cartId } = useCartContext();
+
+    const { cart } = useCart({ id: cartId });
+
+    const countItem = (count: number, item: any) => count + item.quantity;
+
+    const itemsCount = cart?.items.reduce(countItem, 0) ?? 0;
     const { isSuccess } = useAuthenticated();
 
     const { closeSidebarIfPresent, openModal, setSidebarView, openSidebar } =
@@ -38,9 +47,9 @@ const UserNav: React.FC<{
                         }}
                     >
                         <Bag />
-                        {/* {itemsCount > 0 && (
-                                <span className={s.bagCount}>{itemsCount}</span>
-                            )} */}
+                        {itemsCount > 0 && (
+                            <span className={s.bagCount}>{itemsCount}</span>
+                        )}
                     </Button>
                 </li>
 

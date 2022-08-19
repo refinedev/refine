@@ -69,10 +69,7 @@ export const Dashboard: React.FC<
                     />
                 ))}
             </Marquee>
-            <Hero
-                headline=" Dessert dragée halvah croissant."
-                description="Cupcake ipsum dolor sit amet lemon drops pastry cotton candy. Sweet carrot cake macaroon bonbon croissant fruitcake jujubes macaroon oat cake. Soufflé bonbon caramels jelly beans. Tiramisu sweet roll cheesecake pie carrot cake. "
-            />
+            <Hero description="Official swag store to buy refine branded t-shirt's, mugs and other merchandise." />
             <Grid layout="B" variant="filled">
                 {data?.data.slice(0, 3).map((product, i: number) => (
                     <ProductCard
