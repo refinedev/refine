@@ -90,7 +90,6 @@ const SidebarUI: React.FC<{ links: any[] }> = ({ links }) => {
 const Layout: React.FC<LayoutProps & { categories: any }> = ({
     children,
     categories,
-    ...rest
 }) => {
     const { acceptedCookies, onAcceptCookies } = useAcceptCookies();
 

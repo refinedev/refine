@@ -54,3 +54,5 @@ export const Modal: React.FC<PropsWithChildren<ModalProps>> = ({
         </div>
     );
 };
+
+export default Modal;
