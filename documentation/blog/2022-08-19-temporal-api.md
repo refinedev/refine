@@ -13,6 +13,8 @@ hide_table_of_contents: false
 
 Date object is the least-fun thing and a long-standing pain point in JavaScript. That's why there're other libraries like moment.js and date-fns. Developers use these to make sense of Date object. Implementation of Date object was directly copied from Java. Java scrapped it, but it remained in JavaScript for backward compatibility. It was written a long-time ago and not updated. There're some basic issues with the current Date implementation.
 
+<!--truncate-->
+
 - Supports only UTC and user's local time zone
 - The Date object is mutable: a date will change as methods are applied
 - Parsing dates from strings is unreliable
