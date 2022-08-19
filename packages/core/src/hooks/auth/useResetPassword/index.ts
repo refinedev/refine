@@ -1,5 +1,5 @@
 import React from "react";
-import { useMutation, UseMutationResult } from "react-query";
+import { useMutation, UseMutationResult } from "@tanstack/react-query";
 
 import { AuthContext } from "@contexts/auth";
 
@@ -32,7 +32,7 @@ export const useResetPassword = <TVariables = {}>(): UseMutationResult<
         Error,
         TVariables,
         unknown
-    >("useResetPassword", resetPasswordFromContext, {
+    >(["useResetPassword"], resetPasswordFromContext, {
         onSuccess: (redirectPathFromAuth) => {
             if (redirectPathFromAuth !== false) {
                 if (redirectPathFromAuth) {
