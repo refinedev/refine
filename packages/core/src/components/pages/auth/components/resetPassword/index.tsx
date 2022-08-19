@@ -17,7 +17,8 @@ export const ResetPassword: React.FC<IAuthCommonProps> = ({
         if (link) {
             if (typeof link === "string") {
                 return <Link to={link}>{text}</Link>;
-            } else return link;
+            }
+            return link;
         }
         return null;
     };

@@ -21,7 +21,8 @@ export const Register: React.FC<IAuthCommonProps> = ({
         if (link) {
             if (typeof link === "string") {
                 return <Link to={link}>{text}</Link>;
-            } else return link;
+            }
+            return link;
         }
         return null;
     };
@@ -75,11 +76,13 @@ export const Register: React.FC<IAuthCommonProps> = ({
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    {translate(
-                        "pages.register.confirmPassword",
-                        undefined,
-                        "Confirm Password",
-                    )}
+                    <label>
+                        {translate(
+                            "pages.register.confirmPassword",
+                            undefined,
+                            "Confirm Password",
+                        )}
+                    </label>
                     <input
                         type="password"
                         required

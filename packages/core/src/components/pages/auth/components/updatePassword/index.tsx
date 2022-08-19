@@ -20,7 +20,8 @@ export const UpdatePassword: React.FC<IAuthCommonProps> = ({
         if (link) {
             if (typeof link === "string") {
                 return <Link to={link}>{text}</Link>;
-            } else return link;
+            }
+            return link;
         }
         return null;
     };
@@ -59,10 +60,12 @@ export const UpdatePassword: React.FC<IAuthCommonProps> = ({
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    {translate(
-                        "pages.updatePassword.newPassword",
-                        "New Password",
-                    )}
+                    <label>
+                        {translate(
+                            "pages.updatePassword.newPassword",
+                            "New Password",
+                        )}
+                    </label>
                     <input
                         type="password"
                         required

@@ -21,7 +21,8 @@ export const Login: React.FC<IAuthCommonProps> = ({
         if (link) {
             if (typeof link === "string") {
                 return <Link to={link}>{text}</Link>;
-            } else return link;
+            }
+            return link;
         }
         return null;
     };
@@ -48,8 +49,11 @@ export const Login: React.FC<IAuthCommonProps> = ({
                         }
                     >
                         {provider?.icon}
-                        {provider.label ??
-                            translate("pages.login.button", "login")}
+                        {provider.label ?? (
+                            <label>
+                                {translate("pages.login.button", "login")}
+                            </label>
+                        )}
                     </button>
                 </div>
             ));
