@@ -1,15 +1,15 @@
 import React from "react";
-import clsx from "clsx";
+import cn from "clsx";
 import { useModalForm } from "@pankod/refine-react-hook-form";
 import { Address, Country, Region } from "@medusajs/medusa";
+import { useDelete, useList } from "@pankod/refine-core";
 
 import { Trash, Edit } from "@icons";
 import { LoadingDots, Modal, Button } from "@components";
 import { Input } from "@components/common/Input";
 import { NativeSelect } from "@components/common/NativeSelect";
-import { useDelete, useList } from "@pankod/refine-core";
 
-type FormValues = {
+interface FormValues {
     first_name: string;
     last_name: string;
     city: string;
@@ -20,18 +20,17 @@ type FormValues = {
     address_2?: string;
     phone?: string;
     company?: string;
-};
+}
 
-type EditAddressProps = {
+interface EditAddressProps {
     address: Address;
     isActive?: boolean;
-};
+}
 
 export const EditAddress: React.FC<EditAddressProps> = ({
     address,
     isActive = false,
 }) => {
-    console.log("EditAddress", address);
     const handleClose = () => {
         reset({
             first_name: "",
@@ -103,7 +102,7 @@ export const EditAddress: React.FC<EditAddressProps> = ({
     return (
         <>
             <div
-                className={clsx(
+                className={cn(
                     "border-accent-2 flex h-full min-h-[220px] w-full flex-col justify-between border p-5 transition-colors",
                     {
                         "border-primary": isActive,

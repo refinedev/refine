@@ -3,9 +3,8 @@ import { useFormContext } from "react-hook-form";
 import { Customer } from "@medusajs/medusa";
 
 import { emailRegex } from "@lib/regex";
-import { CheckoutFormValues } from "@lib/context/checkout";
-import { AddressSelect } from "@components";
-import { Input, CountrySelect } from "@components/common";
+import { CheckoutFormValues } from "@lib/context";
+import { Input, CountrySelect, AddressSelect } from "@components";
 
 export const ShippingAddress: React.FC = () => {
     const {

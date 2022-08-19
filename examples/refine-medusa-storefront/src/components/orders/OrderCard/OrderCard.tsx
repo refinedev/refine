@@ -1,16 +1,15 @@
 import Link from "next/link";
 import { useMemo } from "react";
 import { Order } from "@medusajs/medusa";
-
-import { Button } from "@components";
-import Thumbnail from "@components/common/Thumbnail/Thumbnail";
 import { formatAmount } from "medusa-react";
+
+import { Button, Thumbnail } from "@components";
 
 type OrderCardProps = {
     order: Omit<Order, "beforeInsert">;
 };
 
-const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
+export const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
     const numberOfLines = useMemo(() => {
         return order.items.reduce((acc, item) => {
             return acc + item.quantity;
@@ -79,5 +78,3 @@ const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
         </div>
     );
 };
-
-export default OrderCard;

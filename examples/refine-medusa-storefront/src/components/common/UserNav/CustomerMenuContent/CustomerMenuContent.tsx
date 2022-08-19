@@ -38,8 +38,6 @@ export default function CustomerMenuContent() {
         router.push(href);
     }
 
-    console.log(`theme`, theme);
-
     return (
         <DropdownContent
             asChild

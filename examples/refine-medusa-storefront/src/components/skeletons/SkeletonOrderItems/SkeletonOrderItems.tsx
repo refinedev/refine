@@ -1,4 +1,4 @@
-const SkeletonOrderItems: React.FC = () => {
+export const SkeletonOrderItems: React.FC = () => {
     return (
         <div className="flex flex-col gap-y-4 border-y border-gray-200 py-10">
             <div className="grid grid-cols-[122px_1fr] gap-x-4">
@@ -39,5 +39,3 @@ const SkeletonOrderItems: React.FC = () => {
         </div>
     );
 };
-
-export default SkeletonOrderItems;

@@ -5,15 +5,15 @@ import { isEqual, omit } from "lodash";
 import { useWatch } from "react-hook-form";
 import cn from "clsx";
 
-import { Radio } from "@components/common";
+import { Radio } from "@components";
 import { ChevronDown } from "@components/icons";
 import { useCheckout } from "@lib/context/checkout";
 
 import s from "./AddressSelect.module.css";
 
-type AddressSelectProps = {
+interface AddressSelectProps {
     addresses: Address[];
-};
+}
 
 export const AddressSelect: React.FC<AddressSelectProps> = ({ addresses }) => {
     const [selected, setSelected] = useState<string | undefined>(undefined);

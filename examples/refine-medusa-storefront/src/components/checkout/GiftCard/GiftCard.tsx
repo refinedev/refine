@@ -3,9 +3,8 @@ import { Cart } from "@medusajs/medusa";
 import { useForm } from "react-hook-form";
 import { useInvalidate, useUpdate } from "@pankod/refine-core";
 
-import { Input } from "@components/common";
+import { Input, Button } from "@components";
 import { Trash } from "@components/icons";
-import { Button } from "@components/ui";
 
 interface GiftCardFormValues {
     gift_card_code: string;

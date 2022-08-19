@@ -7,7 +7,7 @@ import { MenuSidebarView, Footer, Navbar } from "@components/common";
 import { useUI } from "@lib/context";
 import LoginView from "@components/auth/LoginView";
 import { CartSidebarView } from "@components/cart";
-import { useAcceptCookies } from "@lib/hooks/useAcceptCookies";
+import { useAcceptCookies } from "@lib/hooks";
 
 import s from "./Layout.module.css";
 

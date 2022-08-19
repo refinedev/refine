@@ -10,7 +10,7 @@ import SEO from "@components/common/SEO";
 import ProductSidebar from "../ProductSidebar";
 import ProductTag from "../ProductTag";
 import { getProductVariant, SelectedOptions } from "../helpers";
-import useProductPrice from "@lib/hooks/useProductPrice";
+import { useProductPrice } from "@lib/hooks/useProductPrice";
 interface ProductViewProps {
     product: Product;
     relatedProducts: Product[];

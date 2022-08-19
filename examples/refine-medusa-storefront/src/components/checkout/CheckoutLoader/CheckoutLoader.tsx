@@ -1,7 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 
-import Spinner from "@components/icons/Spinner";
-import { useCheckout } from "@lib/context/checkout";
+import { Spinner } from "@components/icons";
+import { useCheckout } from "@lib/context";
 import { noop } from "@lib/noop";
 
 export const CheckoutLoader: React.FC = () => {

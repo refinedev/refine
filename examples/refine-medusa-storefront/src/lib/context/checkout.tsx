@@ -10,7 +10,7 @@ import { formatAmount } from "medusa-react";
 import { useRouter } from "next/router";
 import React, { createContext, useContext, useEffect, useMemo } from "react";
 import { FormProvider, useForm, useFormContext } from "react-hook-form";
-import useToggleState, { StateType } from "@lib/hooks/useToggleState";
+import { useToggleState, StateType } from "@lib/hooks";
 import { useCartContext } from "@lib/context";
 import {
     useCreate,

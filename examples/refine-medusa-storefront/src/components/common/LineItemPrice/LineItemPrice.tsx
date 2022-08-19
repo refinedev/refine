@@ -1,5 +1,5 @@
 import { Region } from "@medusajs/medusa";
-import clsx from "clsx";
+import cn from "clsx";
 import { formatAmount } from "medusa-react";
 
 import { getPercentageDiff } from "@lib/getPercentageDiff";
@@ -23,7 +23,7 @@ export const LineItemPrice: React.FC<LineItemPriceProps> = ({
     return (
         <div className="flex flex-col text-right text-gray-700">
             <span
-                className={clsx("text-base-regular", {
+                className={cn("text-base-regular", {
                     "text-rose-600": hasReducedPrice,
                 })}
             >

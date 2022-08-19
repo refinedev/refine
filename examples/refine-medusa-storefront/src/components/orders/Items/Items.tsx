@@ -2,11 +2,9 @@ import Link from "next/link";
 import { LineItem, Region } from "@medusajs/medusa";
 
 import { CalculatedVariant } from "src/types/medusa";
-import useEnrichedLineItems from "@lib/hooks/useEnrichedLineItems";
-import Thumbnail from "@components/common/Thumbnail/Thumbnail";
-import { LineItemOptions } from "@components/common/LineItemOptions";
-import { LineItemPrice } from "@components/common/LineItemPrice";
-import SkeletonLineItem from "@components/skeletons/SkeletonLineItem";
+import { useEnrichedLineItems } from "@lib/hooks";
+import { LineItemOptions, LineItemPrice, Thumbnail } from "@components/common";
+import { SkeletonLineItem } from "@components/skeletons";
 
 interface ItemsProps {
     items: LineItem[];
@@ -14,7 +12,7 @@ interface ItemsProps {
     cartId: string;
 }
 
-const Items: React.FC<ItemsProps> = ({ cartId, items, region }) => {
+export const Items: React.FC<ItemsProps> = ({ cartId, items, region }) => {
     const enrichedItems = useEnrichedLineItems(items, cartId);
 
     return (
@@ -71,5 +69,3 @@ const Items: React.FC<ItemsProps> = ({ cartId, items, region }) => {
         </div>
     );
 };
-
-export default Items;

@@ -1,1 +1,1 @@
-export { default } from "./SkeletonOrderInformation";
+export * from "./SkeletonOrderInformation";

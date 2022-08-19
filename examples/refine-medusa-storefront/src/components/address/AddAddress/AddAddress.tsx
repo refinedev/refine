@@ -3,13 +3,10 @@ import { useList } from "@pankod/refine-core";
 import { useModalForm } from "@pankod/refine-react-hook-form";
 import { Country, Region } from "@medusajs/medusa";
 
-import { Modal, Button } from "@components";
+import { Modal, Button, LoadingDots, Input, NativeSelect } from "@components";
 import { Plus } from "@icons";
-import { LoadingDots } from "@components";
-import { Input } from "@components/common/Input";
-import { NativeSelect } from "@components/common/NativeSelect";
 
-type FormValues = {
+interface FormValues {
     first_name: string;
     last_name: string;
     city: string;
@@ -20,7 +17,7 @@ type FormValues = {
     address_2?: string;
     phone?: string;
     company?: string;
-};
+}
 
 export const AddAddress: React.FC = () => {
     const handleClose = () => {

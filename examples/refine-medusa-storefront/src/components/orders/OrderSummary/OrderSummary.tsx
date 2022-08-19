@@ -5,7 +5,7 @@ interface OrderSummaryProps {
     order: Order;
 }
 
-const OrderSummary: React.FC<OrderSummaryProps> = ({ order }) => {
+export const OrderSummary: React.FC<OrderSummaryProps> = ({ order }) => {
     const getAmount = (amount: number) => {
         return formatAmount({
             amount,
@@ -53,5 +53,3 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ order }) => {
         </div>
     );
 };
-
-export default OrderSummary;

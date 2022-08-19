@@ -8,13 +8,13 @@ import { useUI } from "@lib/context";
 import { Input } from "@components/common";
 import { emailRegex } from "@lib/regex";
 
-type Customer = {
+interface Customer {
     email: string;
     first_name: string;
     last_name: string;
     password: string;
     serverError: string;
-};
+}
 
 const SignUpView: FC = () => {
     const { setModalView, closeModal } = useUI();

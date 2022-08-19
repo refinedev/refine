@@ -3,9 +3,9 @@ import { useOne } from "@pankod/refine-core";
 import { Customer } from "@medusajs/medusa";
 
 import { Button, LoadingDots } from "@components";
-import OrderCard from "../OrderCard/OrderCard";
+import { OrderCard } from "../OrderCard";
 
-const OrderOverview: React.FC = () => {
+export const OrderOverview: React.FC = () => {
     const { data: customerData, isLoading } = useOne<Customer>({
         resource: "customers",
         id: "me/orders",
@@ -50,5 +50,3 @@ const OrderOverview: React.FC = () => {
         </div>
     );
 };
-
-export default OrderOverview;

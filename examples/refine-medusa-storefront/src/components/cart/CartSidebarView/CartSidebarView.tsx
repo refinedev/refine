@@ -2,12 +2,15 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { formatAmount } from "medusa-react";
 
-import { CartItem } from "@components";
-import { Button, Text } from "@components/ui";
 import { useUI } from "@lib/context";
+import {
+    CartItem,
+    Button,
+    Text,
+    SidebarLayout,
+    SkeletonCartSidebar,
+} from "@components";
 import { Bag } from "@components/icons";
-import { SidebarLayout } from "@components/common";
-import { SkeletonCartSidebar } from "@components/skeletons/SkeletonCartSidebar";
 import { useCartContext } from "@lib/context/";
 
 import s from "./CartSidebarView.module.css";

@@ -5,7 +5,7 @@ interface ShippingDetailsProps {
     shippingMethods: ShippingMethod[];
 }
 
-const ShippingDetails: React.FC<ShippingDetailsProps> = ({
+export const ShippingDetails: React.FC<ShippingDetailsProps> = ({
     address,
     shippingMethods,
 }) => {
@@ -36,5 +36,3 @@ const ShippingDetails: React.FC<ShippingDetailsProps> = ({
         </div>
     );
 };
-
-export default ShippingDetails;

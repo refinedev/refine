@@ -1,7 +1,7 @@
 import { LayoutWrapper } from "@pankod/refine-core";
 
 import { CheckoutForm, CheckoutLoader, CheckoutSummary } from "@components";
-import { CheckoutProvider } from "@lib/context/checkout";
+import { CheckoutProvider } from "@lib/context";
 
 export const CheckoutTemplate: React.FC = () => {
     return (

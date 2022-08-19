@@ -8,7 +8,10 @@ import omit from "lodash/omit";
  * If you pass an array of line items, it will return those line items with enriched data.
  * Otherwise it will return the line items from the current cart.
  */
-const useEnrichedLineItems = (lineItems?: LineItem[], cartId?: string) => {
+export const useEnrichedLineItems = (
+    lineItems?: LineItem[],
+    cartId?: string,
+) => {
     const { data: cartData } = useOne<{ cart: Cart }>({
         id: cartId!,
         resource: "carts",
@@ -108,5 +111,3 @@ const useEnrichedLineItems = (lineItems?: LineItem[], cartId?: string) => {
 
     return items;
 };
-
-export default useEnrichedLineItems;

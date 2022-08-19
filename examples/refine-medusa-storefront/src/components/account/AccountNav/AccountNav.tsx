@@ -1,8 +1,9 @@
-import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import cn from "clsx";
 
 import { ChevronDown } from "@icons";
+
 import s from "./AccountNav.module.css";
 
 export const AccountNav: React.FC = () => {
@@ -73,7 +74,7 @@ const AccountNavLink = ({ href, route, children }: AccountNavLinkProps) => {
     return (
         <Link
             href={href}
-            className={clsx("text-accent-6", {
+            className={cn("text-accent-6", {
                 "text-accent-9 font-semibold": active,
             })}
         >

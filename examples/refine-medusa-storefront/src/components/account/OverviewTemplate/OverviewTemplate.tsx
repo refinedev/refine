@@ -2,12 +2,13 @@ import { Customer, Order } from "@medusajs/medusa";
 import Link from "next/link";
 
 import { ChevronDown, User, Package, MapPin } from "@icons";
+
 import s from "./OverviewTemplate.module.css";
 
-type OverviewProps = {
+interface OverviewProps {
     orders?: Order[];
     customer?: Omit<Customer, "password_hash">;
-};
+}
 
 export const Overview: React.FC<OverviewProps> = ({ orders, customer }) => {
     return (

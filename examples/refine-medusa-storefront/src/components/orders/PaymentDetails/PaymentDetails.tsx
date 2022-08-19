@@ -5,7 +5,7 @@ interface PaymentDetailsProps {
     paymentStatus: PaymentStatus;
 }
 
-const PaymentDetails: React.FC<PaymentDetailsProps> = ({
+export const PaymentDetails: React.FC<PaymentDetailsProps> = ({
     payments,
     paymentStatus,
 }) => {
@@ -70,5 +70,3 @@ const TestDetails = () => {
         </div>
     );
 };
-
-export default PaymentDetails;

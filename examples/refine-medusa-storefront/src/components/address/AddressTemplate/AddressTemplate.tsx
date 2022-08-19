@@ -1,6 +1,7 @@
 import { useOne } from "@pankod/refine-core";
-import { AddressBook } from "@components";
 import { StoreCustomersRes } from "@medusajs/medusa";
+
+import { AddressBook } from "@components";
 
 export const AddressesTemplate: React.FC = () => {
     const { data: customer } = useOne<StoreCustomersRes>({

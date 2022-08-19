@@ -1,16 +1,15 @@
 import React from "react";
 import { PaymentSession } from "@medusajs/medusa";
-import clsx from "clsx";
+import cn from "clsx";
 
-import { PaymentStripe } from "@components";
-import { Radio } from "@components/common";
+import { PaymentStripe, Radio } from "@components";
 
-type PaymentContainerProps = {
+interface PaymentContainerProps {
     paymentSession: PaymentSession;
     selected: boolean;
     setSelected: () => void;
     disabled?: boolean;
-};
+}
 
 const PaymentInfoMap: Record<string, { title: string; description: string }> = {
     stripe: {
@@ -27,7 +26,7 @@ export const PaymentContainer: React.FC<PaymentContainerProps> = ({
 }) => {
     return (
         <div
-            className={clsx(
+            className={cn(
                 "border-accent-3 flex flex-col gap-y-4 border-b last:border-b-0 ",
                 {
                     "bg-primary": selected,

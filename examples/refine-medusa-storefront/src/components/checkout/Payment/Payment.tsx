@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
-import Spinner from "@components/icons/Spinner";
-import { useCheckout } from "@lib/context/checkout";
+import { Spinner } from "@components/icons";
+import { useCheckout } from "@lib/context";
 import { PaymentContainer, StepContainer } from "@components";
 
 export const Payment: React.FC = () => {

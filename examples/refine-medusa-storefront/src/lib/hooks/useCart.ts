@@ -5,7 +5,7 @@ interface useCartProps {
     id?: string;
 }
 
-const useCart = ({
+export const useCart = ({
     id,
 }: useCartProps): {
     cart: Omit<Cart, "refundable_amount" | "refunded_total"> | undefined;
@@ -22,5 +22,3 @@ const useCart = ({
     const cart = data?.data.cart;
     return { cart, isFetching };
 };
-
-export default useCart;

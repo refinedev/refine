@@ -5,8 +5,7 @@ import { useForm } from "react-hook-form";
 import { useDelete, useInvalidate, useUpdate } from "@pankod/refine-core";
 
 import { Trash } from "@components/icons";
-import { Input } from "@components/common";
-import { Button } from "@components";
+import { Input, Button } from "@components";
 
 interface DiscountFormValues {
     discount_code: string;

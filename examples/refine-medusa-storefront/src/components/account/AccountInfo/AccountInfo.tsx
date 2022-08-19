@@ -1,11 +1,12 @@
-import clsx from "clsx";
-import { useState, useEffect } from "react";
+import { useState, useEffect, PropsWithChildren } from "react";
+import cn from "clsx";
 import { Disclosure } from "@headlessui/react";
 
 import { Button } from "@components";
+
 import s from "./AccountInfo.module.css";
 
-type AccountInfoProps = {
+interface AccountInfoProps extends PropsWithChildren {
     label: string;
     currentInfo: string | React.ReactNode;
     isLoading?: boolean;
@@ -13,8 +14,7 @@ type AccountInfoProps = {
     isError?: boolean;
     errorMessage?: string;
     clearState: () => void;
-    children?: React.ReactNode;
-};
+}
 
 export const AccountInfo: React.FC<AccountInfoProps> = ({
     label,
@@ -67,7 +67,7 @@ export const AccountInfo: React.FC<AccountInfoProps> = ({
             <Disclosure>
                 <Disclosure.Panel
                     static
-                    className={clsx(
+                    className={cn(
                         s.disclosure,
                         isSuccess && s.appearDisclosure,
                         !isSuccess && s.disappearDisclosure,
@@ -83,7 +83,7 @@ export const AccountInfo: React.FC<AccountInfoProps> = ({
             <Disclosure>
                 <Disclosure.Panel
                     static
-                    className={clsx(
+                    className={cn(
                         s.disclosure,
                         isError && s.appearDisclosure,
                         !isError && s.disappearDisclosure,
@@ -98,7 +98,7 @@ export const AccountInfo: React.FC<AccountInfoProps> = ({
             <Disclosure>
                 <Disclosure.Panel
                     static
-                    className={clsx(
+                    className={cn(
                         s.disclosure,
                         isOpen && s.appearDisclosure,
                         !isOpen && s.disappearDisclosure,

@@ -2,7 +2,7 @@ import SkeletonOrderConfirmedHeader from "../SkeletonOrderConfirmedHeader";
 import SkeletonOrderInformation from "../SkeletonOrderInformation";
 import SkeletonOrderItems from "../SkeletonOrderItems";
 
-const SkeletonOrderConfirmed: React.FC = () => {
+export const SkeletonOrderConfirmed: React.FC = () => {
     return (
         <div className="min-h-[calc(100vh-64px)] animate-pulse bg-gray-50 py-6">
             <div className="content-container flex justify-center">
@@ -17,5 +17,3 @@ const SkeletonOrderConfirmed: React.FC = () => {
         </div>
     );
 };
-
-export default SkeletonOrderConfirmed;
