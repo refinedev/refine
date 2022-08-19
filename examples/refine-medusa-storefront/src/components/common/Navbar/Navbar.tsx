@@ -22,8 +22,10 @@ export const Navbar: FC<NavbarProps> = ({ links }) => {
             <Container clean className="max-w-8xl mx-auto px-6">
                 <div className={s.nav}>
                     <div className="flex flex-1 items-center">
-                        <Link href="/" className={s.logo}>
-                            <Logo />
+                        <Link href="/">
+                            <>
+                                <Logo short />
+                            </>
                         </Link>
                         <nav className={s.navMenu}>
                             <Link href="/search" className={s.link}>

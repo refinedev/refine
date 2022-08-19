@@ -1,30 +1,46 @@
 .root {
-  @apply flex flex-col py-16 mx-auto;
+    @apply mx-auto flex flex-col items-center gap-8 py-16 md:gap-12;
 }
 
 .title {
-  @apply text-accent-0 font-extrabold text-4xl leading-none tracking-tight;
+    @apply text-accent-0 text-4xl font-extrabold leading-none tracking-tight;
 }
 
 .description {
-  @apply mt-4 text-xl leading-8 text-accent-2 mb-1 lg:max-w-4xl;
+    @apply text-accent-2 mt-4 mb-1 text-xl leading-8 lg:max-w-4xl;
+}
+
+.headline {
+    @apply flex scale-[0.4] transform flex-col sm:scale-[0.6] md:scale-[0.85] lg:mx-0 lg:scale-100;
+}
+
+.regularTop {
+    @apply text-2xl-regular text-secondary absolute top-[-10px] left-2;
+}
+
+.regularBottom {
+    @apply text-2xl-regular  text-secondary absolute bottom-[-50px] left-16;
+}
+
+.bold {
+    @apply text-secondary relative text-[160px] font-black leading-[120px];
 }
 
 @screen lg {
-  .root {
-    @apply flex-row items-start justify-center py-32;
-  }
-  .title {
-    @apply text-5xl max-w-xl text-right leading-10 -mt-3;
-    line-height: 3.5rem;
-  }
-  .description {
-    @apply mt-0 ml-6;
-  }
+    .root {
+        @apply flex-row items-start justify-center py-32;
+    }
+    .title {
+        @apply -mt-3 max-w-xl text-right text-5xl leading-10;
+        line-height: 3.5rem;
+    }
+    .description {
+        @apply mt-0 ml-6;
+    }
 }
 
 @screen xl {
-  .title {
-    @apply text-6xl;
-  }
+    .title {
+        @apply text-6xl;
+    }
 }

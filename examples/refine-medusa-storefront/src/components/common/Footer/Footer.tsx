@@ -2,7 +2,7 @@ import { FC } from "react";
 import Link from "next/link";
 import cn from "clsx";
 
-import { Github, Vercel } from "@components/icons";
+import { Github, Twitter, Discord } from "@components/icons";
 import { Logo, Container } from "@components/ui";
 import s from "./Footer.module.css";
 
@@ -17,6 +17,22 @@ const links = [
         name: "Home",
         url: "/",
     },
+    {
+        name: "Quikstart",
+        url: "https://refine.dev/docs/getting-started/overview/",
+    },
+    {
+        name: "Tutorial",
+        url: "https://refine.dev/docs/",
+    },
+    {
+        name: "Examples",
+        url: "https://refine.dev/docs/examples/tutorial/headless-tutorial/",
+    },
+    {
+        name: "Blog",
+        url: "https://refine.dev/blog/",
+    },
 ];
 
 export const Footer: FC<Props> = ({ className, pages }) => {
@@ -27,16 +43,8 @@ export const Footer: FC<Props> = ({ className, pages }) => {
             <Container>
                 <div className="border-accent-2 text-primary bg-primary grid grid-cols-1 gap-8 border-b py-12 transition-colors duration-150 lg:grid-cols-12">
                     <div className="col-span-1 lg:col-span-2">
-                        <Link
-                            href="/"
-                            className="flex flex-initial items-center font-bold md:mr-24"
-                        >
-                            <>
-                                <span className="border-accent-6 mr-2 rounded-full border">
-                                    <Logo />
-                                </span>
-                                <span>ACME</span>
-                            </>
+                        <Link href="/">
+                            <Logo />
                         </Link>
                     </div>
                     <div className="col-span-1 lg:col-span-8">
@@ -59,33 +67,44 @@ export const Footer: FC<Props> = ({ className, pages }) => {
                     <div className="text-primary col-span-1 flex items-start lg:col-span-2 lg:justify-end">
                         <div className="flex h-10 items-center space-x-6">
                             <a
-                                // className={s.link}
                                 aria-label="Github Repository"
-                                href="https://github.com/vercel/commerce"
+                                href="https://github.com/pankod/refine"
                             >
                                 <Github />
+                            </a>
+                            <a
+                                aria-label="Twitter"
+                                href="https://twitter.com/refine_dev"
+                            >
+                                <Twitter />
+                            </a>{" "}
+                            <a
+                                aria-label="Discord"
+                                href="https://discord.gg/refine"
+                            >
+                                <Discord />
                             </a>
                             {/* // i18n */}
                         </div>
                     </div>
                 </div>
-                <div className="text-accent-6 flex flex-col items-center justify-between space-y-4 pt-6 pb-10 text-sm md:flex-row">
+                <div className="text-accent-6 flex flex-col items-center justify-between  pt-6 pb-10 text-sm md:flex-row">
                     <div>
-                        <span>&copy; 2020 ACME, Inc. All rights reserved.</span>
+                        <span>
+                            &copy; 2022 refine, Inc. All rights reserved.
+                        </span>
                     </div>
-                    <div className="text-primary flex items-center text-sm">
-                        <span className="text-primary">Created by</span>
+                    <div className="text-primary flex items-center ">
+                        <span className="text-primary mr-2  pt-2.5">
+                            Created by
+                        </span>
                         <a
                             rel="noopener noreferrer"
-                            href="https://vercel.com"
-                            aria-label="Vercel.com Link"
+                            href="https://refine.dev"
+                            aria-label="refine Link"
                             target="_blank"
-                            className="text-primary"
                         >
-                            <Vercel
-                                className="text-primary ml-3 inline-block h-6"
-                                alt="Vercel.com Logo"
-                            />
+                            <Logo height={28} />
                         </a>
                     </div>
                 </div>

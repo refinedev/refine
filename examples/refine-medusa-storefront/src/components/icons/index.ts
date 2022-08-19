@@ -21,6 +21,9 @@ export { default as ChevronLeft } from "./ChevronLeft";
 export { default as ChevronDown } from "./ChevronDown";
 export { default as ChevronRight } from "./ChevronRight";
 export { default as DoubleChevron } from "./DoubleChevron";
+export { default as Twitter } from "./Twitter";
+export { default as Discord } from "./Discord";
+
 export { default as User } from "./User";
 export { default as Package } from "./Package";
 export { default as Edit } from "./Edit";
