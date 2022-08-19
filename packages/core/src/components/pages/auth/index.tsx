@@ -16,6 +16,11 @@ export interface IRegisterForm {
 export interface IResetPasswordForm {
     email: string;
 }
+export interface IUpdatePasswordForm {
+    password: string;
+    newPassword: string;
+    confirmPassword?: string;
+}
 
 export interface IProvider {
     name: string;
@@ -26,7 +31,8 @@ export interface IProvider {
 export interface IAuthCommonProps {
     registerLink?: React.ReactNode;
     loginLink?: React.ReactNode;
-    forgotLink?: React.ReactNode;
+    resetPasswordLink?: React.ReactNode;
+    updatePasswordLink?: React.ReactNode;
     backLink?: React.ReactNode;
     providers?: IProvider[];
 }
@@ -41,11 +47,12 @@ export interface IAuthPageProps extends IAuthCommonProps {
  * @see {@link https://refine.dev/docs/api-references/components/refine-config#authpage} for more details.
  */
 export const AuthPage: React.FC<IAuthPageProps> = ({
-    type = "login",
-    providers = [],
+    type,
+    providers,
     loginLink,
     registerLink,
-    forgotLink,
+    resetPasswordLink,
+    updatePasswordLink,
     backLink,
 }) => {
     const renderView = () => {
@@ -56,7 +63,7 @@ export const AuthPage: React.FC<IAuthPageProps> = ({
                         providers={providers}
                         loginLink={loginLink}
                         registerLink={registerLink}
-                        forgotLink={forgotLink}
+                        resetPasswordLink={resetPasswordLink}
                         backLink={backLink}
                     />
                 );
@@ -65,19 +72,24 @@ export const AuthPage: React.FC<IAuthPageProps> = ({
                     <Register
                         registerLink={registerLink}
                         loginLink={loginLink}
-                        forgotLink={registerLink}
+                        resetPasswordLink={resetPasswordLink}
                         backLink={backLink}
                     />
                 );
             case "resetPassword":
                 return (
                     <ResetPassword
-                        forgotLink={registerLink}
+                        resetPasswordLink={registerLink}
                         backLink={backLink}
                     />
                 );
             case "updatePassword":
-                return <UpdatePassword backLink={backLink} />;
+                return (
+                    <UpdatePassword
+                        backLink={backLink}
+                        updatePasswordLink={updatePasswordLink}
+                    />
+                );
 
             default:
                 return (
@@ -85,7 +97,7 @@ export const AuthPage: React.FC<IAuthPageProps> = ({
                         providers={providers}
                         loginLink={loginLink}
                         registerLink={registerLink}
-                        forgotLink={forgotLink}
+                        resetPasswordLink={resetPasswordLink}
                         backLink={backLink}
                     />
                 );
