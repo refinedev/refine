@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.58.2
+
+### Patch Changes
+
+-   [#2333](https://github.com/pankod/refine/pull/2333) [`2f0255ec95`](https://github.com/pankod/refine/commit/2f0255ec95b1a1fafedaa05143e02f17d86ddc81) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed react-query devtools was consuming high CPU
+
 ## 3.58.1
 
 ### Patch Changes
