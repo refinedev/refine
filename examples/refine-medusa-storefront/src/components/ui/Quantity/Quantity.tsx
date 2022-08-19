@@ -1,17 +1,19 @@
-import React, { FC } from "react";
-import s from "./Quantity.module.css";
-import { Cross, Plus, Minus } from "@components/icons";
 import cn from "clsx";
+
+import { Cross, Plus, Minus } from "@components/icons";
+
+import s from "./Quantity.module.css";
+
 export interface QuantityProps {
     value: number;
-    increase: () => any;
-    decrease: () => any;
+    increase: () => void;
+    decrease: () => void;
     handleRemove: React.MouseEventHandler<HTMLButtonElement>;
     handleChange: React.ChangeEventHandler<HTMLInputElement>;
     max?: number;
 }
 
-const Quantity: FC<QuantityProps> = ({
+export const Quantity: React.FC<QuantityProps> = ({
     value,
     increase,
     decrease,
@@ -61,5 +63,3 @@ const Quantity: FC<QuantityProps> = ({
         </div>
     );
 };
-
-export default Quantity;

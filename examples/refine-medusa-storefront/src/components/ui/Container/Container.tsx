@@ -1,14 +1,14 @@
-import cn from "clsx";
-import React, { FC } from "react";
+import { PropsWithChildren } from "react";
 
-interface ContainerProps {
+import cn from "clsx";
+
+interface ContainerProps extends PropsWithChildren {
     className?: string;
-    children?: any;
     el?: HTMLElement;
     clean?: boolean;
 }
 
-const Container: FC<ContainerProps> = ({
+export const Container: React.FC<ContainerProps> = ({
     children,
     className,
     el = "div",
@@ -23,5 +23,3 @@ const Container: FC<ContainerProps> = ({
 
     return <Component className={rootClassName}>{children}</Component>;
 };
-
-export default Container;

@@ -1,16 +1,20 @@
-import { FC, useRef, useEffect, useCallback } from "react";
-import s from "./Modal.module.css";
-import { Cross } from "@components/icons";
+import { useRef, useEffect, useCallback, PropsWithChildren } from "react";
 import { disableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
+
+import { Cross } from "@components/icons";
+
+import s from "./Modal.module.css";
 
 interface ModalProps {
     className?: string;
-    children?: any;
     onClose: () => void;
     onEnter?: () => void | null;
 }
 
-const Modal: FC<ModalProps> = ({ children, onClose }) => {
+export const Modal: React.FC<PropsWithChildren<ModalProps>> = ({
+    children,
+    onClose,
+}) => {
     const ref = useRef() as React.MutableRefObject<HTMLDivElement>;
 
     const handleKey = useCallback(
@@ -50,5 +54,3 @@ const Modal: FC<ModalProps> = ({ children, onClose }) => {
         </div>
     );
 };
-
-export default Modal;

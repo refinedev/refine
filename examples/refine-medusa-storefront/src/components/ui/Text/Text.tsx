@@ -2,22 +2,23 @@ import React, {
     FunctionComponent,
     JSXElementConstructor,
     CSSProperties,
+    PropsWithChildren,
 } from "react";
 import cn from "clsx";
+
 import s from "./Text.module.css";
 
 interface TextProps {
     variant?: Variant;
     className?: string;
     style?: CSSProperties;
-    children?: React.ReactNode | any;
     html?: string;
     onClick?: () => any;
 }
 
 type Variant = "heading" | "body" | "pageHeading" | "sectionHeading";
 
-const Text: FunctionComponent<TextProps> = ({
+export const Text: FunctionComponent<PropsWithChildren<TextProps>> = ({
     style,
     className = "",
     variant = "body",
@@ -66,5 +67,3 @@ const Text: FunctionComponent<TextProps> = ({
         </Component>
     );
 };
-
-export default Text;

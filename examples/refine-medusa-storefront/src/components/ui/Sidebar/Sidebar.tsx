@@ -1,13 +1,17 @@
+import { useEffect, useRef, PropsWithChildren } from "react";
 import cn from "clsx";
-import s from "./Sidebar.module.css";
-import { useEffect, useRef } from "react";
+
 import { disableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
+
+import s from "./Sidebar.module.css";
 interface SidebarProps {
-    children: any;
     onClose: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ children, onClose }) => {
+export const Sidebar: React.FC<PropsWithChildren<SidebarProps>> = ({
+    children,
+    onClose,
+}) => {
     const sidebarRef = useRef() as React.MutableRefObject<HTMLDivElement>;
     const contentRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
@@ -53,5 +57,3 @@ const Sidebar: React.FC<SidebarProps> = ({ children, onClose }) => {
         </div>
     );
 };
-
-export default Sidebar;

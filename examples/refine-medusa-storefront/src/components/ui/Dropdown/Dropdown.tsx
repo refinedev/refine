@@ -1,7 +1,8 @@
 import cn from "clsx";
 import React from "react";
-import s from "./Dropdown.module.css";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+
+import s from "./Dropdown.module.css";
 
 export const Dropdown = DropdownMenu.Root;
 export const DropdownMenuItem = DropdownMenu.Item;

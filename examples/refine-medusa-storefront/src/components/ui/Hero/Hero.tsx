@@ -1,15 +1,17 @@
-import React, { FC } from "react";
+import Link from "next/link";
+
 import { Container } from "@components/ui";
 import { ArrowRight } from "@components/icons";
+
 import s from "./Hero.module.css";
-import Link from "next/link";
+
 interface HeroProps {
     className?: string;
     headline: string;
     description: string;
 }
 
-const Hero: FC<HeroProps> = ({ headline, description }) => {
+export const Hero: React.FC<HeroProps> = ({ headline, description }) => {
     return (
         <div className="bg-accent-9 border-accent-2 border-b border-t">
             <Container>
@@ -25,7 +27,7 @@ const Hero: FC<HeroProps> = ({ headline, description }) => {
                                 Read it here
                                 <ArrowRight
                                     width="20"
-                                    heigh="20"
+                                    height="20"
                                     className="ml-1"
                                 />
                             </>
@@ -36,5 +38,3 @@ const Hero: FC<HeroProps> = ({ headline, description }) => {
         </div>
     );
 };
-
-export default Hero;

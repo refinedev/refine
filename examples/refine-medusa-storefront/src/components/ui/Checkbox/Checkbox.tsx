@@ -7,7 +7,7 @@ type CheckboxProps = {
     className?: string;
 };
 
-const Checkbox: React.FC<CheckboxProps> = ({
+export const Checkbox: React.FC<CheckboxProps> = ({
     checked = false,
     onChange,
     label,
@@ -32,5 +32,3 @@ const Checkbox: React.FC<CheckboxProps> = ({
         </button>
     );
 };
-
-export default Checkbox;

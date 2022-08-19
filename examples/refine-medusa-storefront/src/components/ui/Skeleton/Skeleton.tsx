@@ -1,6 +1,8 @@
 import React, { CSSProperties, PropsWithChildren } from "react";
 import cn from "clsx";
+
 import px from "@lib/to-pixels";
+
 import s from "./Skeleton.module.css";
 
 interface SkeletonProps {
@@ -13,7 +15,7 @@ interface SkeletonProps {
     boxHeight?: string | number;
 }
 
-const Skeleton: React.FC<PropsWithChildren<SkeletonProps>> = ({
+export const Skeleton: React.FC<PropsWithChildren<SkeletonProps>> = ({
     style,
     width,
     height,
@@ -55,5 +57,3 @@ const Skeleton: React.FC<PropsWithChildren<SkeletonProps>> = ({
         </span>
     );
 };
-
-export default Skeleton;

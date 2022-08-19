@@ -1,6 +1,6 @@
 import cn from "clsx";
 import s from "./Marquee.module.css";
-import { FC, ReactNode, Component, Children } from "react";
+import { ReactNode, Component, Children } from "react";
 import { default as FastMarquee } from "react-fast-marquee";
 
 interface MarqueeProps {
@@ -9,7 +9,7 @@ interface MarqueeProps {
     variant?: "primary" | "secondary";
 }
 
-const Marquee: FC<MarqueeProps> = ({
+export const Marquee: React.FC<MarqueeProps> = ({
     className = "",
     children,
     variant = "primary",
@@ -35,5 +35,3 @@ const Marquee: FC<MarqueeProps> = ({
         </FastMarquee>
     );
 };
-
-export default Marquee;
