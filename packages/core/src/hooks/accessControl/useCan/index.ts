@@ -35,7 +35,14 @@ export const useCan = ({
     const { resource: _resource, ...paramsRest } = params ?? {};
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { icon: _icon, ...restResource } = _resource ?? {};
+    const {
+        icon: _icon,
+        list: _list,
+        edit: _edit,
+        create: _create,
+        show: _show,
+        ...restResource
+    } = _resource ?? {};
 
     const queryResponse = useQuery<CanReturnType>(
         [
