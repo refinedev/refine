@@ -20,11 +20,6 @@
     "changeset": "changeset",
     "postinstall": "patch-package"
   },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "npm run lint:fix"
-    ]
-  },
   "name": "refinejs-repo",
   "author": "Pankod",
   "devDependencies": {
@@ -38,7 +33,6 @@
     "eslint": "7.27.0",
     "eslint-plugin-prettier": "3.4.0",
     "eslint-plugin-react": "7.23.2",
-    "husky": "^8.0.1",
     "jest": "^27.5.1",
     "lerna": "^4.0.0",
     "lint-staged": "^10.5.4",
