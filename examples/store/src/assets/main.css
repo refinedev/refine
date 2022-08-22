@@ -11,14 +11,6 @@
         @apply mx-auto w-full max-w-[1440px] px-8;
     }
 
-    .contrast-btn {
-        @apply rounded-full border border-black px-4 py-2 transition-colors duration-200 ease-in hover:bg-black hover:text-white;
-    }
-
-    .text-xsmall-regular {
-        @apply text-[10px] font-normal leading-4;
-    }
-
     .text-small-regular {
         @apply text-xs font-normal leading-5;
     }
