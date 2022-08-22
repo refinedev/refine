@@ -33,7 +33,10 @@ export const ShippingAddress: React.FC = () => {
                     label="Email"
                     {...register("email", {
                         required: "Email is required",
-                        pattern: emailRegex,
+                        pattern: {
+                            value: emailRegex,
+                            message: "Email is invalid",
+                        },
                     })}
                     autoComplete="email"
                     errors={errors}
