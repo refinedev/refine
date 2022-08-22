@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
@@ -7,10 +6,16 @@ import {
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
-import { useCloudQuery, withCloud } from "@pankod/refine-cloud";
+import { withCloud } from "@pankod/refine-cloud";
 import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+import {
+    ProductList,
+    ProductCreate,
+    ProductEdit,
+    ProductShow,
+} from "pages/products";
 import { Login } from "pages/login";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -27,29 +32,9 @@ const RefineWithCloud = withCloud(Refine, {
     resourcesName: "development",
 });
 
-const Dashboard = () => {
-    const { mutate, data, isLoading } = useCloudQuery();
-
-    useEffect(() => {
-        mutate({
-            key: "postgresql-users",
-        });
-    }, []);
-
-    return (
-        <>
-            {isLoading && <span>loading...</span>}
-            <pre>
-                <code>{JSON.stringify(data, null, 2)}</code>
-            </pre>
-        </>
-    );
-};
-
 const App: React.FC = () => {
     return (
         <RefineWithCloud
-            DashboardPage={Dashboard}
             LoginPage={Login}
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
@@ -61,6 +46,13 @@ const App: React.FC = () => {
                     edit: PostEdit,
                     show: PostShow,
                     canDelete: true,
+                },
+                {
+                    name: "products",
+                    list: ProductList,
+                    create: ProductCreate,
+                    edit: ProductEdit,
+                    show: ProductShow,
                 },
             ]}
             notificationProvider={notificationProvider}
