@@ -6,6 +6,7 @@ on:
       - medusa-storefront
     paths:
       - "examples/store"
+      - ".github/store-deploy.yml"
 
 jobs:
   store-deploy:
