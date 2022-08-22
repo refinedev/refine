@@ -42,8 +42,6 @@ export const Login: React.FC<IAuthCommonProps> = ({
                     <button
                         onClick={() =>
                             login({
-                                email,
-                                password,
                                 providerName: provider.name,
                             })
                         }

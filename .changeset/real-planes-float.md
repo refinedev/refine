@@ -10,11 +10,11 @@
 
 # New Auth Hooks
 
-📌 Added `useRegister` hook. This hook is used to register new user. `userRegister` falls into register function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
+📌 Added `useRegister` hook. This hook is used to register new user. `useRegister` falls into register function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
 
-📌 Added `useResetPassword` hook. This hook is used to reset password. `userResetPassword` falls into `resetPassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
+📌 Added `useResetPassword` hook. This hook is used to reset password. `useResetPassword` falls into `resetPassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
 
-📌 Added `useUpdatePassword` hook. This hook is used to update password. `userUpdatePassword` falls into `updatePassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
+📌 Added `useUpdatePassword` hook. This hook is used to update password. `useUpdatePassword` falls into `updatePassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
 
 ```diff
 - <LoginPage>
