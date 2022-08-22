@@ -1,4 +1,4 @@
-import { useMenu, useNavigation, LayoutProps } from '@pankod/refine-core';
+import { useMenu, useNavigation, LayoutProps } from "@pankod/refine-core";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
     const { menuItems } = useMenu();
@@ -21,14 +21,14 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                                             <a
                                                 className="flex cursor-pointer items-center gap-1 rounded-sm px-2 py-1 capitalize decoration-indigo-500 decoration-2 underline-offset-1 transition duration-300 ease-in-out hover:underline"
                                                 onClick={() =>
-                                                    push(route || '')
+                                                    push(route || "")
                                                 }
                                             >
                                                 {icon}
                                                 <span>{label ?? name}</span>
                                             </a>
                                         </li>
-                                    )
+                                    ),
                                 )}
                             </ul>
                         </div>

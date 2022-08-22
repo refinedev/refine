@@ -1,14 +1,14 @@
-import React, { ElementType, RefObject, PropsWithChildren } from 'react';
-import { OverlayTriggerState } from '@react-stately/overlays';
+import React, { ElementType, RefObject, PropsWithChildren } from "react";
+import { OverlayTriggerState } from "@react-stately/overlays";
 import {
     useOverlay,
     usePreventScroll,
     useModal,
     OverlayContainer,
-} from '@react-aria/overlays';
-import { useDialog } from '@react-aria/dialog';
-import { FocusScope } from '@react-aria/focus';
-import { AriaButtonProps, OverlayProvider } from 'react-aria';
+} from "@react-aria/overlays";
+import { useDialog } from "@react-aria/dialog";
+import { FocusScope } from "@react-aria/focus";
+import { AriaButtonProps, OverlayProvider } from "react-aria";
 
 function ModalDialog(props: AriaButtonProps<ElementType> | any) {
     const { title, children } = props;
@@ -22,16 +22,16 @@ function ModalDialog(props: AriaButtonProps<ElementType> | any) {
     return (
         <div
             style={{
-                position: 'fixed',
+                position: "fixed",
                 zIndex: 100,
                 top: 0,
                 left: 0,
                 bottom: 0,
                 right: 0,
-                background: 'rgba(0, 0, 0, 0.5)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                background: "rgba(0, 0, 0, 0.5)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
             }}
             {...underlayProps}
         >
@@ -78,10 +78,10 @@ export default function Modal(props: PropsWithChildren<ModalProps>) {
                     >
                         <div
                             style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                flexDirection: 'column',
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                flexDirection: "column",
                             }}
                         >
                             {children}

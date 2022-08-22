@@ -1,23 +1,23 @@
-import React from 'react';
-import { useTable, ColumnDef, flexRender } from '@pankod/refine-react-table';
-import { CategoryCreate } from './create';
+import React from "react";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { CategoryCreate } from "./create";
 
 export const CategoryList: React.FC = () => {
     const columns = React.useMemo<ColumnDef<any>[]>(
         () => [
             {
-                id: 'id',
-                header: 'ID',
-                accessorKey: 'id',
+                id: "id",
+                header: "ID",
+                accessorKey: "id",
                 width: 50,
             },
             {
-                id: 'title',
-                header: 'Title',
-                accessorKey: 'title',
+                id: "title",
+                header: "Title",
+                accessorKey: "title",
             },
         ],
-        []
+        [],
     );
 
     const { getHeaderGroups, getRowModel } = useTable<any>({
@@ -39,7 +39,7 @@ export const CategoryList: React.FC = () => {
                                 >
                                     {flexRender(
                                         header.column.columnDef.header,
-                                        header.getContext()
+                                        header.getContext(),
                                     )}
                                 </th>
                             ))}
@@ -61,7 +61,7 @@ export const CategoryList: React.FC = () => {
                                         >
                                             {flexRender(
                                                 cell.column.columnDef.cell,
-                                                cell.getContext()
+                                                cell.getContext(),
                                             )}
                                         </td>
                                     );

@@ -1,6 +1,6 @@
-import React, { RefObject } from 'react';
-import { useTextField } from '@react-aria/textfield';
-import { AriaTextFieldProps } from 'react-aria';
+import React, { RefObject } from "react";
+import { useTextField } from "@react-aria/textfield";
+import { AriaTextFieldProps } from "react-aria";
 
 export default function Input(props: AriaTextFieldProps) {
     const ref: RefObject<any> = React.useRef();
