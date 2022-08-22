@@ -1,18 +1,25 @@
 import { BaseRecord, HttpError } from "@pankod/refine-core";
-import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import { useQuery, QueryObserverResult } from "@tanstack/react-query";
 
 import { useSdk } from "../useSdk";
 
-type RunVariables = { key: string; config?: any };
+type UseCloudQueryParams = { key: string; config?: any; customParams?: any };
 
-// TODO: Add hook docs
 export const useCloudQuery = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
->(): UseMutationResult<TData, TError, RunVariables, unknown> => {
+>({
+    key,
+    config,
+    customParams,
+}: UseCloudQueryParams): QueryObserverResult<TData> => {
     const { sdk } = useSdk();
 
-    return useMutation<TData, TError, RunVariables, unknown>((params) =>
-        sdk.cloudQuery.run(params),
+    return useQuery<TData, TError>([key], () =>
+        sdk.cloudQuery.runQuery({
+            key,
+            config,
+            customParams,
+        }),
     );
 };
