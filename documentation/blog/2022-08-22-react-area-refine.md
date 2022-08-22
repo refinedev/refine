@@ -1,7 +1,7 @@
 ---
 title: React Aria - Improve accessibility of React components in refine apps
 description: We will be looking into ways to improve the accessibility and performance of refine app.
-slug: react-area-refine
+slug: react-aria-refine
 authors: ekekenta_clinton
 tags: [react-aria, react, wai-aria]
 image: https://refine.dev/img/refine_social.png
@@ -669,7 +669,14 @@ import {SSRProvider} from 'react-aria';
   <App />
 </SSRProvider>
 ```
+## Live StackBlitz Example
 
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/blog/react-aria/?embed=1&view=preview&theme=dark&preset=node"
+     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+     title="refine-aria-example"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
 
 ## Conclusion
 Throughout this tutorial, we’ve implemented how to create a component library in React using React Aria. We started by understanding what React Aria is and why you should consider using it for creating component libraries. Then we created some component libraries using React Aria and used it to build a signup form. You can learn more about React Aria from the official [docs](https://react-spectrum.adobe.com/react-aria/index.html).
