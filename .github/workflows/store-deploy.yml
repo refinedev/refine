@@ -11,8 +11,6 @@ on:
 jobs:
   store-deploy:
     runs-on: ubuntu-latest
-    needs: publish
-    if: ${{ needs.publish.outputs.published == 'true' }}
 
     strategy:
       matrix:
