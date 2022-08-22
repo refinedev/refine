@@ -1,5 +1,5 @@
 .button {
-    @apply text-base-regular bg-primary relative flex w-full cursor-default items-center justify-between border border-gray-200 px-4 py-[10px] text-left;
+    @apply bg-primary relative flex w-full cursor-default items-center justify-between border border-gray-200 px-4 py-[10px] text-left text-sm font-normal leading-6;
 }
 
 .button:focus {
@@ -11,7 +11,7 @@
 }
 
 .options {
-    @apply text-small-regular border-primary bg-primary absolute z-20 max-h-60 w-full overflow-auto border border-t-0;
+    @apply border-primary bg-primary absolute z-20 max-h-60 w-full overflow-auto border border-t-0 text-xs font-normal leading-5;
 }
 
 .options:focus {

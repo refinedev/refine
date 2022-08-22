@@ -1,5 +1,5 @@
 .root {
-    @apply text-small-regular;
+    @apply text-xs font-normal leading-5;
 }
 
 .currentInfoWrapper {

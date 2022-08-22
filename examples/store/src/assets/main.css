@@ -1,10 +1,8 @@
-@tailwind base;
-@import "./base.css";
+@import "tailwindcss/base";
 
-@tailwind components;
-@import "./components.css";
+@import "tailwindcss/components";
 
-@tailwind utilities;
+@import "tailwindcss/utilities";
 
 @layer components {
     .content-container {

@@ -18,11 +18,11 @@
 }
 
 .infoHeader {
-    @apply text-xl-semi mb-4;
+    @apply mb-4 text-2xl font-semibold leading-[36px];
 }
 
 .infoText {
-    @apply text-small-regular;
+    @apply text-xs font-normal leading-5;
 }
 
 .loading {

@@ -22,7 +22,7 @@ export const Addresses: React.FC = () => {
                 <h2>Shipping address</h2>
             </div>
             {isEdit ? (
-                <div className=" px-8 pb-8">
+                <div className="px-8 pb-8">
                     <ShippingAddress />
                     <div className="mt-6">
                         <Checkbox
