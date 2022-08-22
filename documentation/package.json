@@ -12,20 +12,29 @@
     "clear": "docusaurus clear"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-beta.21",
-    "@docusaurus/plugin-client-redirects": "^2.0.0-beta.21",
-    "@docusaurus/preset-classic": "^2.0.0-beta.21",
+    "@docusaurus/core": "^2.0.1",
+    "@docusaurus/plugin-client-redirects": "^2.0.1",
+    "@docusaurus/preset-classic": "^2.0.1",
+    "@docusaurus/theme-live-codeblock": "^2.0.1",
     "@mdx-js/react": "^1.6.21",
+    "@pankod/refine-antd": "^3.36.0",
+    "@pankod/refine-core": "^3.57.0",
+    "@pankod/refine-mui": "^3.41.7",
+    "@pankod/refine-react-hook-form": "^3.31.4",
+    "@pankod/refine-react-router-v6": "^3.30.0",
+    "@pankod/refine-react-table": "^4.5.0",
+    "@pankod/refine-simple-rest": "^3.27.0",
     "@types/react-dom": "^17.0.11",
     "axios": "^0.24.0",
     "clsx": "^1.1.1",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-hook-form": "^7.33.0",
     "react-icons": "^4.2.0",
     "react-lazyload": "^3.2.0",
     "react-player": "^2.10.1",
-    "react-split-pane": "git+https://github.com/quarkw/react-split-pane.git"
+    "react-split-pane": "git+https://github.com/aliemir/react-split-pane.git",
+    "sucrase": "^3.25.0"
   },
   "browserslist": {
     "production": [

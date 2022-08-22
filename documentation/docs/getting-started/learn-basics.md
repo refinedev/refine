@@ -150,6 +150,7 @@ In the above example, we pass the `headers` property in the `metaData` object to
 -   `@pankod/refine-react-router` - Router Provider for [React Router (v5)](https://v5.reactrouter.com/)
 -   `@pankod/refine-nextjs-router` - Router Provider for [Next.js](https://nextjs.org/docs/api-reference/next/router#userouter)
 -   `@pankod/refine-react-location` - Router Provider for [React Location](https://github.com/tannerlinsley/react-location)
+-   `@pankod/refine-remix-router` - Router Provider for [Remix](https://remix.run/)
 
 **[Live Provider](https://refine.dev/docs/core/providers/live-provider/) Packages**
 

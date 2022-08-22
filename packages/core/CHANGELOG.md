@@ -1,5 +1,35 @@
 # @pankod/refine-core
 
+## 3.58.3
+
+### Patch Changes
+
+-   Fixed react-query devtools was consuming high CPU
+
+## 3.58.2
+
+### Patch Changes
+
+-   [#2333](https://github.com/pankod/refine/pull/2333) [`2f0255ec95`](https://github.com/pankod/refine/commit/2f0255ec95b1a1fafedaa05143e02f17d86ddc81) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed react-query devtools was consuming high CPU
+
+## 3.58.1
+
+### Patch Changes
+
+-   `AuthProvider`'s `login` method can now return a value for `Remix`'s authentication flow
+
+## 3.58.0
+
+### Minor Changes
+
+-   Updated `reactQueryDevtoolConfig` prop type and added `false` option to disable the React Query Devtools.
+
+## 3.57.0
+
+### Minor Changes
+
+-   [#2311](https://github.com/pankod/refine/pull/2311) [`645391a3d9`](https://github.com/pankod/refine/commit/645391a3d985ab02c5a3d91813f1b4ec48e3a09b) Thanks [@aliemir](https://github.com/aliemir)! - Updated `reactQueryDevtoolConfig` prop type and added `false` option to disable the React Query Devtools.
+
 ## 3.56.11
 
 ### Patch Changes

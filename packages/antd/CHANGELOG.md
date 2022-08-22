@@ -1,5 +1,17 @@
 # @pankod/refine-antd
 
+## 3.37.0
+
+### Minor Changes
+
+-   Separated `styles.min.css` file as `antd.min.css` and `reset.min.css` to make users able to turn off `reset` styles when needed.
+
+## 3.36.0
+
+### Minor Changes
+
+-   [#2312](https://github.com/pankod/refine/pull/2312) [`ba5646c65c`](https://github.com/pankod/refine/commit/ba5646c65cc09dee688fef1cf3a6556707754c3c) Thanks [@aliemir](https://github.com/aliemir)! - Separated `styles.min.css` file as `antd.min.css` and `reset.min.css` to make users able to turn off `reset` styles when needed.
+
 ## 3.35.4
 
 ### Patch Changes

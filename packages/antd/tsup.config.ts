@@ -13,6 +13,14 @@ export default defineConfig({
             src: "./src/assets/styles/styles.min.css",
             dest: "./dist/styles.min.css",
         }),
+        copyStaticFiles({
+            src: "./src/assets/styles/antd.min.css",
+            dest: "./dist/antd.min.css",
+        }),
+        copyStaticFiles({
+            src: "./src/assets/styles/reset.min.css",
+            dest: "./dist/reset.min.css",
+        }),
         NodeResolvePlugin({
             extensions: [".js", "ts", "tsx", "jsx"],
             onResolved: (resolved) => {
