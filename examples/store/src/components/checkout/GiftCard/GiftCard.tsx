@@ -111,22 +111,23 @@ export const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
                     </div>
                 ) : (
                     <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-                        <div className="grid grid-cols-[1fr_80px] items-end gap-x-2">
+                        <div className="grid grid-cols-[1fr_80px] gap-x-2">
                             <Input
                                 label="Code"
                                 {...register("gift_card_code", {
-                                    required: true,
+                                    required: "code is required",
                                 })}
                                 errors={errors}
                                 touched={touchedFields}
                             />
-                            <div>
+                            <div className="mt-8">
                                 <Button
-                                    className="h-[46px] !min-h-[0] w-[80px]"
+                                    variant="slim"
+                                    className="w-[80px]"
                                     disabled={isLoading}
                                     loading={isLoading}
                                 >
-                                    Apply
+                                    {!isLoading && "Apply"}
                                 </Button>
                             </div>
                         </div>

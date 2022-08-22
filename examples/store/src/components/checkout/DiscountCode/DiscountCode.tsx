@@ -45,9 +45,7 @@ export const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
         handleSubmit,
         setError,
         formState: { errors, touchedFields },
-    } = useForm<DiscountFormValues>({
-        mode: "onSubmit",
-    });
+    } = useForm<DiscountFormValues>();
 
     const onApply = (data: DiscountFormValues) => {
         mutate(
@@ -66,11 +64,11 @@ export const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
                         id,
                     });
                 },
-                onError: () => {
+                onError: (err) => {
                     setError(
                         "discount_code",
                         {
-                            message: "Code is invalid",
+                            message: err.message,
                         },
                         {
                             shouldFocus: true,
@@ -128,22 +126,23 @@ export const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
                     </div>
                 ) : (
                     <form onSubmit={handleSubmit(onApply)} className="w-full">
-                        <div className="grid grid-cols-[1fr_80px] items-end gap-x-2">
+                        <div className="grid grid-cols-[1fr_80px] gap-x-2">
                             <Input
                                 label="Code"
                                 {...register("discount_code", {
-                                    required: true,
+                                    required: "code is required",
                                 })}
                                 errors={errors}
                                 touched={touchedFields}
                             />
-                            <div>
+                            <div className="mt-8">
                                 <Button
-                                    className="h-[46px] !min-h-[0] w-[80px]"
+                                    variant="slim"
+                                    className="w-[80px]"
                                     disabled={isLoading}
                                     loading={isLoading}
                                 >
-                                    Apply
+                                    {!isLoading && "Apply"}
                                 </Button>
                             </div>
                         </div>
