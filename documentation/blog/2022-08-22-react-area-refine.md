@@ -487,7 +487,7 @@ export const CategoryList: React.FC = () => {
 };
 ```
 
-[Refer to offical refine documentation for details about creating a list page](https://refine.dev/docs/core/tutorial/#creating-a-list-page)
+[Refer to official refine documentation for details about creating a list page](https://refine.dev/docs/core/tutorial/#creating-a-list-page)
 
 
 We need to import and initialize the  `CategoryList` pages to `<Refine />` component.
