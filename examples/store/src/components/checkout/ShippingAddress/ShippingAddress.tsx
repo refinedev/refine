@@ -1,5 +1,5 @@
 import { useOne } from "@pankod/refine-core";
-import { useFormContext } from "@pankod/refine-react-hook-form";
+import { useFormContext } from "react-hook-form";
 import { Customer } from "@medusajs/medusa";
 
 import { emailRegex } from "@lib/regex";

@@ -86,6 +86,7 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
     const methods = useForm<CheckoutFormValues>({
         defaultValues: mapFormValues(customer, cart, countryCode),
         reValidateMode: "onChange",
+        mode: "onChange",
     });
 
     const { data: shippingOptionsData } = useOne<{

@@ -1,7 +1,7 @@
 import React from "react";
 import cn from "clsx";
 import { RadioGroup } from "@headlessui/react";
-import { Controller, useForm } from "@pankod/refine-react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { Cart } from "@medusajs/medusa";
 
@@ -10,7 +10,6 @@ import { Spinner } from "@components/icons";
 import { useCheckout } from "@lib/context";
 
 import s from "./Shipping.module.css";
-import { HttpError } from "@pankod/refine-core";
 
 interface ShippingProps {
     cart: Omit<Cart, "refundable_amount" | "refunded_total">;
@@ -27,7 +26,7 @@ export const Shipping: React.FC<ShippingProps> = ({ cart }) => {
         control,
         setError,
         formState: { errors },
-    } = useForm<ShippingFormProps, HttpError, ShippingFormProps>({
+    } = useForm<ShippingFormProps>({
         defaultValues: {
             soId: cart.shipping_methods?.[0]?.shipping_option_id,
         },
