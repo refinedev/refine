@@ -7,12 +7,12 @@ export const Help: React.FC = () => {
             <div className="text-base-regular my-2">
                 <ul className="flex flex-col gap-y-2">
                     <li>
-                        <Link href="/contact">
+                        <Link href="mailto:info@refine.dev">
                             <a>Contact</a>
                         </Link>
                     </li>
                     <li>
-                        <Link href="/contact">
+                        <Link href="mailto:info@refine.dev">
                             <a>Returns & Exchanges</a>
                         </Link>
                     </li>
