@@ -5,7 +5,7 @@ on:
     branches:
       - medusa-storefront
     paths:
-      - "examples/store"
+      - "examples/store/**"
       - ".github/workflows/store-deploy.yml"
 
 jobs:
