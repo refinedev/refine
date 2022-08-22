@@ -1,10 +1,10 @@
 import React from "react";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import qs from "qs";
 
 import { AuthContext } from "@contexts/auth";
-
+import { useNavigation, useNotification, useRouterContext } from "@hooks";
 import { IAuthContext, TUpdatePasswordData } from "../../../interfaces";
-import { useNavigation, useNotification } from "@hooks";
 
 /**
  * `useUpdatePassword` calls `updatePassword` method from {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
@@ -26,30 +26,47 @@ export const useUpdatePassword = <TVariables = {}>(): UseMutationResult<
         React.useContext<IAuthContext>(AuthContext);
 
     const { close, open } = useNotification();
+    const { useLocation } = useRouterContext();
+
+    const { search } = useLocation();
+
+    const queryStrings = qs.parse(search, {
+        ignoreQueryPrefix: true,
+    });
 
     const queryResponse = useMutation<
         TUpdatePasswordData,
         Error,
         TVariables,
         unknown
-    >(["useUpdatePassword"], updatePasswordFromContext, {
-        onSuccess: (redirectPathFromAuth) => {
-            if (redirectPathFromAuth !== false) {
-                if (redirectPathFromAuth) {
-                    replace(redirectPathFromAuth);
-                }
-            }
-            close?.("update-password-error");
-        },
-        onError: (error: any) => {
-            open?.({
-                message: error?.name || "Update Password Error",
-                description: error?.message || "Error while updating password",
-                key: "update-password-error",
-                type: "error",
+    >(
+        ["useUpdatePassword"],
+        async (variables) => {
+            return updatePasswordFromContext?.({
+                ...queryStrings,
+                ...variables,
             });
         },
-    });
+        {
+            onSuccess: (redirectPathFromAuth) => {
+                if (redirectPathFromAuth !== false) {
+                    if (redirectPathFromAuth) {
+                        replace(redirectPathFromAuth);
+                    }
+                }
+                close?.("update-password-error");
+            },
+            onError: (error: any) => {
+                open?.({
+                    message: error?.name || "Update Password Error",
+                    description:
+                        error?.message || "Error while updating password",
+                    key: "update-password-error",
+                    type: "error",
+                });
+            },
+        },
+    );
 
     return queryResponse;
 };
