@@ -9,6 +9,9 @@ module.exports = {
             fontFamily: {
                 montserrat: ["Montserrat", ...defaultTheme.fontFamily.serif],
             },
+            boxShadow: {
+                tile: "6px 8px 16px 0 rgba(42, 42, 66, 0.4)",
+            },
         },
     },
     plugins: [],
