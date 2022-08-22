@@ -9,10 +9,6 @@ interface FooterProps {
 
 const links = [
     {
-        name: "Home",
-        url: "/",
-    },
-    {
         name: "Quikstart",
         url: "https://refine.dev/docs/getting-started/overview/",
     },
@@ -42,12 +38,21 @@ export const Footer: React.FC<FooterProps> = ({ className }) => {
                     </div>
                     <div className="col-span-1 lg:col-span-8">
                         <div className="grid md:grid-flow-col md:grid-cols-3 md:grid-rows-4">
+                            <span className="py-3 md:py-0 md:pb-4">
+                                <Link
+                                    href="/"
+                                    className="text-accent-9 hover:text-accent-6 transition duration-150 ease-in-out"
+                                >
+                                    Home
+                                </Link>
+                            </span>
                             {[...links].map((page) => (
                                 <span
                                     key={page.url}
                                     className="py-3 md:py-0 md:pb-4"
                                 >
                                     <Link
+                                        target="_blank"
                                         href={page.url ?? ""}
                                         className="text-accent-9 hover:text-accent-6 transition duration-150 ease-in-out"
                                     >
