@@ -133,24 +133,22 @@ export const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
                     </div>
                 ) : (
                     <form onSubmit={handleSubmit(onApply)} className="w-full">
-                        <div className="grid grid-cols-[1fr_80px] items-end gap-x-2">
+                        <div className="flex flex-col">
                             <Input
                                 label="Code"
                                 {...register("discount_code", {
-                                    required: true,
+                                    required: "Code is required",
                                 })}
                                 errors={errors}
                                 touched={touchedFields}
                             />
-                            <div>
-                                <Button
-                                    className="h-[46px] !min-h-[0] w-[80px]"
-                                    disabled={isLoading}
-                                    loading={isLoading}
-                                >
-                                    Apply
-                                </Button>
-                            </div>
+                            <Button
+                                className="mt-2 h-[46px] !min-h-[0] w-[80px]"
+                                disabled={isLoading}
+                                loading={isLoading}
+                            >
+                                Apply
+                            </Button>
                         </div>
                     </form>
                 )}
