@@ -1,5 +1,5 @@
 .step {
-    @apply bg-accent-2 text-xl-semi flex items-center gap-x-4 pb-6 pt-8;
+    @apply bg-accent-2 flex items-center gap-x-4 pb-6 pt-8 text-2xl font-semibold leading-[36px];
 }
 
 .stepCount {
@@ -7,7 +7,7 @@
 }
 
 .mark {
-    @apply text-small-regular bg-green flex h-6 min-w-[24px] items-center justify-center rounded-full text-white;
+    @apply bg-green flex h-6 min-w-[24px] items-center justify-center rounded-full text-xs font-normal leading-5 text-white;
 }
 
 .checkedAddress {

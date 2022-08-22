@@ -15,11 +15,11 @@
 }
 
 .regularTop {
-    @apply text-2xl-regular text-secondary absolute top-[-10px] left-2;
+    @apply text-secondary absolute top-[-10px] left-2 text-[30px] font-normal leading-[48px];
 }
 
 .regularBottom {
-    @apply text-2xl-regular  text-secondary absolute bottom-[-50px] left-16;
+    @apply text-secondary absolute bottom-[-50px]  left-16 text-[30px] font-normal leading-[48px];
 }
 
 .bold {

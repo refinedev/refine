@@ -1,6 +1,6 @@
 ---
-id: ssr-nextjs
-title: SSR-Next.js
+id: nextjs
+title: Next.js
 ---
 
 **refine** can be used with [**Next.js**][Nextjs] to SSR your pages. It doesn't get in the way and follows Next.js conventions and also provides helper modules when necessary.

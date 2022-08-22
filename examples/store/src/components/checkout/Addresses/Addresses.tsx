@@ -22,7 +22,7 @@ export const Addresses: React.FC = () => {
                 <h2>Shipping address</h2>
             </div>
             {isEdit ? (
-                <div className=" px-8 pb-8">
+                <div className="px-8 pb-8">
                     <ShippingAddress />
                     <div className="mt-6">
                         <Checkbox
@@ -41,7 +41,8 @@ export const Addresses: React.FC = () => {
                         </div>
                     )}
                     <Button
-                        className="mt-6 max-w-[200px]"
+                        // variant="slim"
+                        className="mt-6 h-[48px] max-w-[300px] "
                         onClick={handleSubmit(setAddresses)}
                     >
                         Continue to delivery

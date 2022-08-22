@@ -11,11 +11,11 @@
 }
 
 .head {
-    @apply text-xl-semi mb-4 px-8;
+    @apply mb-4 px-8 text-2xl font-semibold leading-[36px];
 }
 
 .mobileHead {
-    @apply text-xl-semi mb-4 flex items-start justify-between;
+    @apply mb-4 flex items-start justify-between text-2xl font-semibold leading-[36px];
 }
 
 .icon {
@@ -31,11 +31,11 @@
 }
 
 .semibold {
-    @apply text-large-semi;
+    @apply text-base font-semibold leading-6;
 }
 
 .regularText {
-    @apply text-base-regular text-accent-9 uppercase;
+    @apply text-accent-9 text-sm font-normal uppercase leading-6;
 }
 
 .flexCol {
@@ -47,7 +47,7 @@
 }
 
 .signIn {
-    @apply text-small-regular text-accent-7;
+    @apply text-accent-7 text-xs font-normal leading-5;
 }
 
 .overviewContainer {
@@ -63,11 +63,11 @@
 }
 
 .overviewInfoProfile {
-    @apply text-large-semi;
+    @apply text-base font-semibold leading-6;
 }
 
 .remarkableText {
-    @apply text-3xl-semi leading-none;
+    @apply text-[36px] font-semibold leading-[48px] leading-none;
 }
 
 .ordersWrapper {
@@ -75,5 +75,5 @@
 }
 
 .orders {
-    @apply text-small-regular grid flex-1 grid-cols-3 grid-rows-2 gap-x-4;
+    @apply grid flex-1 grid-cols-3 grid-rows-2 gap-x-4 text-xs font-normal leading-5;
 }

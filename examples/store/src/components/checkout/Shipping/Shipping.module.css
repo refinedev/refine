@@ -1,5 +1,5 @@
 .radio {
-    @apply text-small-regular text-primary flex cursor-pointer items-center justify-between py-4 px-8;
+    @apply text-primary flex cursor-pointer items-center justify-between py-4 px-8 text-xs font-normal leading-5;
 }
 
 .spinner {

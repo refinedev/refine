@@ -777,10 +777,6 @@
             "to": "/docs/guides-and-concepts/search/table-search/"
         },
         {
-            "from": "/docs/next/guides-and-concepts/ssr-nextjs/",
-            "to": "/docs/guides-and-concepts/ssr-nextjs/"
-        },
-        {
             "from": "/docs/next/guides-and-concepts/upload/base64-upload/",
             "to": "/docs/guides-and-concepts/upload/base64-upload/"
         },
@@ -1039,6 +1035,10 @@
         {
             "from": "/docs/examples/command-palette/kbar/",
             "to": "/docs/examples/command-palette/"
+        },
+        {
+            "from": "/docs/guides-and-concepts/ssr-nextjs/",
+            "to": "/docs/guides-and-concepts/ssr/nextjs/"
         }
     ]
 }

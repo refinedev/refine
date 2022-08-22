@@ -291,7 +291,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 
 export default MyApp;
 ```
-[For more information on how to add SSR-Next.js to your Refine project ->](https://refine.dev/docs/guides-and-concepts/ssr-nextjs/) 
+[For more information on how to add SSR-Next.js to your Refine project ->](https://refine.dev/docs/guides-and-concepts/ssr/nextjs/) 
 
 ### Routing
 **refine** uses a customized Router Provider to save routes and navigate between pages. **refine** offers a much more flexible structure thanks to its routerProvider support.

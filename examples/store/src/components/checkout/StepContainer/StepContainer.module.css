@@ -1,5 +1,5 @@
 .step {
-    @apply text-xl-semi flex items-center gap-x-4 pb-6 pt-8;
+    @apply flex items-center gap-x-4 pb-6 pt-8 text-2xl font-semibold leading-[36px];
 }
 
 .stepCount {

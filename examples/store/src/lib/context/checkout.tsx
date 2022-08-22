@@ -9,13 +9,8 @@ import {
 import { isEqual } from "lodash";
 import { formatAmount } from "medusa-react";
 import { useRouter } from "next/router";
+import { FormProvider, useForm, useFormContext } from "react-hook-form";
 import {
-    FormProvider,
-    useForm,
-    useFormContext,
-} from "@pankod/refine-react-hook-form";
-import {
-    HttpError,
     useCreate,
     useInvalidate,
     useOne,
@@ -88,9 +83,10 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
     });
     const customer = customerData?.data.customer;
 
-    const methods = useForm<CheckoutFormValues, HttpError, CheckoutFormValues>({
+    const methods = useForm<CheckoutFormValues>({
         defaultValues: mapFormValues(customer, cart, countryCode),
         reValidateMode: "onChange",
+        mode: "onChange",
     });
 
     const { data: shippingOptionsData } = useOne<{

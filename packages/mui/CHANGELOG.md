@@ -1,5 +1,17 @@
 # @pankod/refine-mui
 
+## 3.41.8
+
+### Patch Changes
+
+-   Added React 17 support to `peerDependencies`.
+
+## 3.41.7
+
+### Patch Changes
+
+-   [#2306](https://github.com/pankod/refine/pull/2306) [`bb3183d3eb`](https://github.com/pankod/refine/commit/bb3183d3eb4b257cafd98f0ef8949e4c0ddb9e90) Thanks [@aliemir](https://github.com/aliemir)! - Added React 17 support to `peerDependencies`.
+
 ## 3.41.6
 
 ### Patch Changes

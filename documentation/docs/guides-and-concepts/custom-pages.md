@@ -11,9 +11,11 @@ import gif from '@site/static/img/guides-and-concepts/custom-pages/gif.gif'
 
 :::caution
 
-This document is related to how to create custom pages for **react** applications. Since **Nextjs** has a file system based router built on the page concept, you can create your custom pages under the `pages` folder.
+This document is related to how to create custom pages for **react** applications. Since **Nextjs** and **Remix** has a file system based router built on the page concept, you can create your custom pages under the `pages` or `routes` folder.
 
 [Refer to the `Nextjs Guide` documentation for detailed information. &#8594][ssrNextjs]
+
+[Refer to the `Remix Guide` documentation for detailed information. &#8594][ssrRemix]
 :::
 
 <br />
@@ -832,4 +834,5 @@ export const PostReview = () => {
     title="custom-pages-example"
 ></iframe>
 
-[ssrNextjs]: /guides-and-concepts/ssr-nextjs.md
+[ssrNextjs]: /docs/guides-and-concepts/ssr/nextjs
+[ssrRemix]: /docs/guides-and-concepts/ssr/remix

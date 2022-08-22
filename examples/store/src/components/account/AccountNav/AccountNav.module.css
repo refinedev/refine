@@ -3,11 +3,11 @@
 }
 
 .accountLink {
-    @apply text-small-regular flex items-center gap-x-2 py-2;
+    @apply flex items-center gap-x-2 py-2 text-xs font-normal leading-5;
 }
 
 .head {
-    @apply text-base-semi py-4;
+    @apply py-4 text-sm font-semibold leading-6;
 }
 
 .icon {
@@ -23,5 +23,5 @@
 }
 
 .list {
-    @apply text-base-regular mb-0 flex flex-col items-start justify-start gap-y-4;
+    @apply mb-0 flex flex-col items-start justify-start gap-y-4 text-sm font-normal leading-6;
 }

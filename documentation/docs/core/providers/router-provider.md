@@ -38,6 +38,7 @@ const routerProvider = {
 -   [React Router V5][react-router-v5]
 -   [React Location][react-location]
 -   [Next.js Router][nextjs-router]
+-   [Remix Router][remix-router]
 
 :::
 
@@ -57,7 +58,8 @@ values={[
 {label: 'React Router V6', value: 'react-router-v6'},
 {label: 'React Router V5', value: 'react-router'},
 {label: 'React Location', value: 'react-location'},
-{label: 'Next.js Router', value: 'nextjs'}
+{label: 'Next.js Router', value: 'nextjs'},
+{label: 'Remix Router', value: 'remix'}
 ]}>
 <TabItem value="react-router-v6">
 
@@ -112,6 +114,50 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 ```
 
   </TabItem>
+<TabItem value="remix">
+
+```tsx title="app/root.tsx"
+import type { MetaFunction } from "@remix-run/node";
+import {
+    Links,
+    LiveReload,
+    Meta,
+    Outlet,
+    Scripts,
+    ScrollRestoration,
+} from "@remix-run/react";
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-remix-router";
+
+export const meta: MetaFunction = () => ({
+    charset: "utf-8",
+    title: "New Remix + Refine App",
+    viewport: "width=device-width,initial-scale=1",
+});
+
+export default function App() {
+    return (
+        <html lang="en">
+            <head>
+                <Meta />
+                <Links />
+            </head>
+            <body>
+                <Refine
+                    routerProvider={routerProvider}
+                >
+                    <Outlet />
+                </Refine>
+                <ScrollRestoration />
+                <Scripts />
+                <LiveReload />
+            </body>
+        </html>
+    );
+}
+```
+
+</TabItem>
 </Tabs>
 
 ## Creating a router provider
@@ -130,7 +176,8 @@ values={[
 {label: 'React Router V6', value: 'react-useHistory-v6'},
 {label: 'React Router V5', value: 'react-useHistory'},
 {label: 'React Location', value: 'react-location-useHistory'},
-{label: 'Next.js Router', value: 'nextjs-useHistory'}
+{label: 'Next.js Router', value: 'nextjs-useHistory'},
+{label: 'Remix Router', value: 'remix-useHistory'},
 ]}>
 <TabItem value="react-useHistory-v6">
 
@@ -238,6 +285,35 @@ const routerProvider: IRouterProvider = {
 ```
 
   </TabItem>
+<TabItem value="remix-useHistory">
+
+```ts title="routerProvider.ts"
+import { IRouterProvider } from "@pankod/refine-core";
+// highlight-next-line
+import { useNavigate } from "@remix-run/react";
+
+const routerProvider: IRouterProvider = {
+    ...
+// highlight-start
+    useHistory: () => {
+        const navigate = useNavigate();
+
+        return {
+            push: navigate,
+            replace: (path: string) => {
+                navigate(path, { replace: true });
+            },
+            goBack: () => {
+                navigate(-1);
+            },
+        };
+    },
+// highlight-end
+    ...
+};
+```
+
+  </TabItem>
 </Tabs>
 
 ### `useLocation`
@@ -250,7 +326,8 @@ values={[
 {label: 'React Router V6', value: 'react-useLocation-v6'},
 {label: 'React Router V5', value: 'react-useLocation'},
 {label: 'React Location', value: 'react-location-useLocation'},
-{label: 'Next.js Router', value: 'nextjs-useLocation'}
+{label: 'Next.js Router', value: 'nextjs-useLocation'},
+{label: 'Remix Router', value: 'remix-useLocation'}
 ]}>
 <TabItem value="react-useLocation-v6">
 
@@ -335,7 +412,29 @@ const routerProvider: IRouterProvider = {
 };
 ```
 
-  </TabItem>
+</TabItem>
+<TabItem value="remix-useLocation">
+
+```ts title="routerProvider.ts"
+import { IRouterProvider } from "@pankod/refine-core";
+// highlight-start
+import { useLocation } from "@remix-run/react";
+// highlight-end
+
+const routerProvider: IRouterProvider = {
+    ...
+// highlight-start
+    useLocation: () => {
+        const location = useLocation();
+
+        return location;
+    },
+// highlight-end
+    ...
+};
+```
+
+</TabItem>
 </Tabs>
 
 ### `useParams`
@@ -348,7 +447,8 @@ values={[
 {label: 'React Router V6', value: 'react-router-v6-useParams'},
 {label: 'React Router V5', value: 'react-router-v5-useParams'},
 {label: 'React Location', value: 'react-location-useParams'},
-{label: 'Next.js Router', value: 'nextjs-useParams'}
+{label: 'Next.js Router', value: 'nextjs-useParams'},
+{label: 'Remix Router', value: 'remix-useParams'}
 ]}>
 <TabItem value="react-router-v6-useParams">
 
@@ -427,6 +527,26 @@ const routerProvider: IRouterProvider = {
 ```
 
 </TabItem>
+<TabItem value="remix-useParams">
+
+```ts title="routerProvider.ts"
+import { handleUseParams, IRouterProvider } from "@pankod/refine-core";
+// highlight-next-line
+import { useParams } from "@remix-run/react";
+
+const routerProvider: IRouterProvider = {
+    ...
+// highlight-start
+    useParams: () => {
+        const params = useParams();
+        return handleUseParams(params);
+    },
+// highlight-end
+    ...
+};
+```
+
+</TabItem>
 </Tabs>
 
 ### `Prompt`
@@ -439,7 +559,8 @@ values={[
 {label: 'React Router V6', value: 'react--router-v6-prompt'},
 {label: 'React Router V5', value: 'react--router-v5-prompt'},
 {label: 'React Location', value: 'react-location-prompt'},
-{label: 'Next.js Router', value: 'nextjs-prompt'}
+{label: 'Next.js Router', value: 'nextjs-prompt'},
+{label: 'Remix Router', value: 'remix-prompt'}
 ]}>
 <TabItem value="react--router-v6-prompt">
 
@@ -561,7 +682,7 @@ const routerProvider: IRouterProvider = {
 </TabItem>
 <TabItem value="nextjs-prompt">
 
-```tsx title="Prompt.tsx"
+```tsx title="prompt.tsx"
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
@@ -609,6 +730,56 @@ const routerProvider: IRouterProvider = {
 ```
 
 </TabItem>
+<TabItem value="remix-prompt">
+
+```tsx title="prompt.tsx"
+import { useEffect, useContext } from "react";
+import { UNSAFE_NavigationContext as NavigationContext } from "react-router-dom";
+import type { History } from "history";
+
+import type { PromptProps } from "@pankod/refine-core";
+
+export const Prompt: React.FC<PromptProps> = ({
+    message,
+    when,
+    setWarnWhen,
+}) => {
+    const navigator = useContext(NavigationContext).navigator as History;
+
+    useEffect(() => {
+        if (!when) return;
+
+        const unblock = navigator.block((transition: any) => {
+            if (window.confirm(message)) {
+                setWarnWhen?.(false);
+                unblock();
+                transition.retry();
+            } else {
+                navigator.location.pathname = window.location.pathname;
+            }
+        });
+        return unblock;
+    }, [when, message]);
+
+    return null;
+};
+```
+
+```ts title="routerProvider.ts"
+import { IRouterProvider } from "@pankod/refine-core";
+
+// highlight-next-line
+import { Prompt } from "./prompt";
+
+const routerProvider: IRouterProvider = {
+    ...
+// highlight-next-line
+    Prompt,
+    ...
+};
+```
+
+</TabItem>
 </Tabs>
 
 ### `Link`
@@ -621,7 +792,8 @@ values={[
 {label: 'React Router V6', value: 'react-router-v6-link'},
 {label: 'React Router V5', value: 'react-router-v5-link'},
 {label: 'React Location', value: 'react-location-link'},
-{label: 'Next.js Router', value: 'nextjs-link'}
+{label: 'Next.js Router', value: 'nextjs-link'},
+{label: 'Remix Router', value: 'remix-link'}
 ]}>
 <TabItem value="react-router-v6-link">
 
@@ -725,6 +897,23 @@ We use `<WrapperLink>` instead of using `<Link>` directly because **refine** use
 :::
 
   </TabItem>
+
+<TabItem value="remix-link">
+
+```ts title="routerProvider.ts"
+import { IRouterProvider } from "@pankod/refine-core";
+// highlight-next-line
+import { Link } from "@remix-run/react";
+
+const routerProvider: IRouterProvider = {
+    ...
+// highlight-next-line
+    Link,
+    ...
+};
+```
+
+</TabItem>
 </Tabs>
 
 ### `routes`
@@ -735,7 +924,7 @@ We use `<WrapperLink>` instead of using `<Link>` directly because **refine** use
 
 :::info
 
-Since **Nextjs** has a file system based router built on the page concept, you can create your custom pages under the pages folder you don't need `routes` property.
+Since **Nextjs** and **Remix** has a file system based router built on the page concept, you can create your custom pages under the pages folder you don't need `routes` property.
 
 :::
 
@@ -750,9 +939,9 @@ In general, we can list what it does as follows:
 -   Different routes render when the user is authenticated and not.
 
 :::info
-`RouterComponent` is required for **refine** React apps but not required for Nextjs apps.
+`RouterComponent` is required for **refine** React apps but not required for Next.js and Remix apps.
 
-Since Nextjs has a folder base route structure, it is used by exporting the `<NextRouteComponent>` from the created page.
+Since Next.js and Remix has a folder base route structure, it is used by exporting the `<NextRouteComponent>` or `<RemixRouteComponent>` from the created page.
 :::
 
 <br />
@@ -761,6 +950,7 @@ Since Nextjs has a folder base route structure, it is used by exporting the `<Ne
 &#8594 [Refer to the React Router V5's `<RouterComponent>` for detailed usage information.][routercomponent]  
 &#8594 [Refer to the React Location's `<RouterComponent>` for detailed usage information.][react-location-routercomponent]  
 &#8594 [Refer to the Next.js Router's `<NextRouteComponent>` for detailed usage information.](https://github.com/pankod/refine/blob/master/packages/nextjs-router/src/nextRouteComponent.tsx)
+&#8594 [Refer to the Next.js Router's `<RemixRouteComponent>` for detailed usage information.](https://github.com/pankod/refine/blob/master/packages/remix/src/routeComponent.tsx)
 
 ## Serving the application from a subdirectory
 
@@ -960,3 +1150,4 @@ Now you can access our application at `www.domain.com/admin`.
 [react-router-v6]: https://github.com/pankod/refine/tree/master/packages/react-router-v6
 [nextjs-router]: https://github.com/pankod/refine/tree/master/packages/nextjs-router
 [react-location]: https://github.com/pankod/refine/tree/master/packages/react-location
+[remix-router]: https://github.com/pankod/refine/tree/master/packages/remix

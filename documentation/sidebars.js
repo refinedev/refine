@@ -466,7 +466,14 @@ module.exports = {
                         "guides-and-concepts/search/table-search",
                     ],
                 },
-                "guides-and-concepts/ssr-nextjs",
+                {
+                    type: "category",
+                    label: "SSR",
+                    items: [
+                        "guides-and-concepts/ssr/remix",
+                        "guides-and-concepts/ssr/nextjs",
+                    ],
+                },
                 {
                     type: "category",
                     label: "Upload",
@@ -646,9 +653,25 @@ module.exports = {
                 },
                 {
                     type: "category",
+                    label: "Next.js",
+                    items: [
+                        "examples/next-js/nextjs",
+                        "examples/next-js/i18n-nextjs",
+                    ],
+                },
+                {
+                    type: "category",
                     label: "Notification Provider",
                     items: ["examples/notification-provider/react-toastify"],
                 },
+                /*                 {
+                    type: "category",
+                    label: "Remix",
+                    items: [
+                        "examples/remix/remix-antd",
+                        "examples/remix/remix-headless",
+                    ],
+                }, */
                 {
                     type: "category",
                     label: "Router Provider",

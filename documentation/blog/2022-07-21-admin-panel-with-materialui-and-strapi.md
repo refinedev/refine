@@ -26,9 +26,6 @@ We'll walk through the process of listing, creating and deleting posts in a refi
 
 Steps we'll cover includes:
  
-
-- [Introduction](#introduction)
-- [Prerequisities](#prerequisities)
 - [What are the benefits of using refine?](#what-are-the-benefits-of-using-refine)
 - [Bootstrapping the refine app](#bootstrapping-the-refine-app)
   - [Implementing Strapi v4 data provider](#implementing-strapi-v4-data-provider)
@@ -41,8 +38,7 @@ Steps we'll cover includes:
   - [Deleting a record](#deleting-a-record)
 - [Implementing mutation mode](#implementing-mutation-mode)
 - [Sharing the current page with filters](#sharing-the-current-page-with-filters)
-- [Conclusion](#conclusion)
-- [Live StackBlitz Example](#live-stackblitz-example)
+
 <!--truncate-->
 
 ## Prerequisities
@@ -1048,6 +1044,26 @@ refine is an open source tool that rapidly and flexibly develops for CRUD admin 
 
 [Refer to official refine page for more information &#8594](https://refine.dev/)
   
+  ## Build your React-based CRUD applications without constraints
+
+Low-code React frameworks are great for gaining development speed but they often fall short of flexibility if you need extensive styling and customization for your project.
+
+Check out [refine](https://github.com/pankod/refine), if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
+
+<div>
+<a href="https://github.com/pankod/refine">
+    <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
+</a>
+</div>
+
+<br/>
+
+**refine** is a React-based framework for building CRUD applications **without constraints.**
+It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
+
+**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
+
+Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials and example projects.
 
 ## Live StackBlitz Example
 

@@ -277,6 +277,7 @@ export const ShowPage: React.FC = () => {
         <Show
             /* ... */
             headerProps={{
+                subTitle: "This is a subtitle",
                 style: {
                     backgroundColor: "snow",
                 },

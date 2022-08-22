@@ -1,5 +1,5 @@
 import { useOne } from "@pankod/refine-core";
-import { useFormContext } from "@pankod/refine-react-hook-form";
+import { useFormContext } from "react-hook-form";
 import { Customer } from "@medusajs/medusa";
 
 import { emailRegex } from "@lib/regex";
@@ -33,7 +33,10 @@ export const ShippingAddress: React.FC = () => {
                     label="Email"
                     {...register("email", {
                         required: "Email is required",
-                        pattern: emailRegex,
+                        pattern: {
+                            value: emailRegex,
+                            message: "Email is invalid",
+                        },
                     })}
                     autoComplete="email"
                     errors={errors}

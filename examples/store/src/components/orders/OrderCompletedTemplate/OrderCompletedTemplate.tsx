@@ -17,7 +17,7 @@ export const OrderCompletedTemplate: React.FC<OrderCompletedTemplateProps> = ({
 }) => {
     return (
         <div className="min-h-[calc(100vh-64px)] bg-gray-50 py-6">
-            <div className="content-container flex justify-center">
+            <div className="mx-auto flex w-full max-w-[1440px] justify-center px-8">
                 <div className="h-full w-full max-w-4xl bg-white">
                     <OrderDetails order={order} />
                     <Items

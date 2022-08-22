@@ -214,11 +214,9 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
     useEffect(() => {
         const ensureCart = async () => {
             const retrievedCartId = getCart();
-            console.log("retrievedCartId", retrievedCartId);
             const region = getRegion();
 
             if (retrievedCartId) {
-                console.log("cart", cart);
                 if (!cart || cart.completed_at) {
                     deleteCart();
                     await createNewCart(region?.regionId);

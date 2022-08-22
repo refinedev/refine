@@ -16,7 +16,7 @@ export const OrderDetailsTemplate: React.FC<OrderDetailsTemplateProps> = ({
 }) => {
     return (
         <div className="bg-primary min-h-[calc(100vh-64px)] py-6">
-            <div className="content-container flex justify-center">
+            <div className="mx-auto flex w-full max-w-[1440px] justify-center px-8">
                 <div className="bg-accent-2 h-full w-full max-w-4xl">
                     <OrderDetails order={order} showStatus />
                     <Items

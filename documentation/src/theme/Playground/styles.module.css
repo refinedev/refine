@@ -1,0 +1,122 @@
+.playgroundContainer {
+  margin-bottom: var(--ifm-leading);
+  border-radius: var(--ifm-global-radius);
+  box-shadow: var(--ifm-global-shadow-lw);
+  overflow: hidden;
+}
+
+.playgroundHeader {
+  padding: 0 1rem;
+  background: #dee2e9;
+  text-align: center;
+}
+
+.headerButton {
+  width: 100%;
+  appearance: none;
+  border: none;
+  background: none;
+  color: var(--ifm-color-content);
+  font-size: 0.75rem;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.08rem;
+  cursor: pointer;
+}
+
+.playgroundHeader:first-of-type {
+  background: var(--ifm-color-emphasis-600);
+  color: var(--ifm-color-content-inverse);
+}
+
+.playgroundEditor {
+  font: var(--ifm-code-font-size) / var(--ifm-pre-line-height)
+    var(--ifm-font-family-monospace) !important;
+  /* rtl:ignore */
+  direction: ltr;
+  border-bottom-left-radius: var(--ifm-global-radius);
+  border-bottom-right-radius: var(--ifm-global-radius);
+  border: 3px solid var(--ifm-color-emphasis-200);
+}
+
+.playgroundPreview {
+  padding: 0;
+  max-height: 400px;
+  min-height: 400px;
+  overflow-y: scroll;
+  background-color: var(--ifm-pre-background);
+}
+
+.playgroundEditorWrapper {
+  border: 3px solid #dee2e9;
+  background-color: #dee2e9;
+}
+
+.playgroundEditorWrapper > div {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.previewCodeButton {
+  appearance: none;
+  border: none;
+  background: none;
+  font-size: 1rem;
+  padding: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.previewCodeButton:hover {
+  background-color: var(--ifm-color-emphasis-300);
+}
+
+.previewCodeButtonActive {
+  background-color: var(--ifm-color-emphasis-300);
+  border: 1px solid var(--ifm-color-emphasis-400);
+}
+
+.placeholderWrapper {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 3rem;
+  background-color: var(--ifm-pre-background);
+}
+
+.placeholderTitle {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: var(--ifm-color-content);
+  margin-bottom: 1rem;
+}
+
+.placeholderButton {
+  appearance: none;
+  border: none;
+  background: none;
+  font-size: 1rem;
+  background-color: var(--ifm-color-primary-light);
+  color: var(--ifm-color-content-inverse);
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-radius: 2rem;
+  cursor:pointer;
+}
+
+.placeholderButton:hover {
+  background-color: var(--ifm-color-primary-dark);
+}
+
+.placeholderButton:active {
+  background-color: var(--ifm-color-primary-darker);
+}
