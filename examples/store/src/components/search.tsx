@@ -5,9 +5,9 @@ import { useRouter } from "next/router";
 
 import { ProductCard } from "@components/product";
 import { Container, Skeleton } from "@components/ui";
-import { MedusaProduct } from "@interfaces";
 
 import rangeMap from "@lib/range-map";
+import { MedusaProduct } from "./product/helpers";
 
 const SORT = {
     "trending-desc": "Trending",

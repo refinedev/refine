@@ -1,6 +1,8 @@
-import SkeletonOrderConfirmedHeader from "../SkeletonOrderConfirmedHeader";
-import SkeletonOrderInformation from "../SkeletonOrderInformation";
-import SkeletonOrderItems from "../SkeletonOrderItems";
+import {
+    SkeletonOrderItems,
+    SkeletonOrderConfirmedHeader,
+    SkeletonOrderInformation,
+} from "@components";
 
 export const SkeletonOrderConfirmed: React.FC = () => {
     return (

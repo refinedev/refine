@@ -50,7 +50,7 @@ export const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
         handleSubmit,
         setError,
         formState: { errors, touchedFields },
-    } = useForm<DiscountFormValues>({
+    } = useForm<DiscountFormValues, HttpError, DiscountFormValues>({
         mode: "onSubmit",
     });
 
