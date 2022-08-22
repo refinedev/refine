@@ -1,4 +1,9 @@
-import { BaseRecord, BaseKey, MetaDataQuery } from "../../interfaces";
+import {
+    BaseRecord,
+    BaseKey,
+    MetaDataQuery,
+    GraphQLDataProvider,
+} from "../../interfaces";
 
 export interface Pagination {
     current?: number;
@@ -104,168 +109,194 @@ export interface DeleteManyResponse<TData = BaseRecord> {
     data: TData[];
 }
 
+export type GraphQLType = {
+    graphql?: GraphQLDataProvider;
+};
+
 export interface IDataContext {
-    getList: <TData extends BaseRecord = BaseRecord>(params: {
-        resource: string;
-        pagination?: Pagination;
-        hasPagination?: boolean;
-        sort?: CrudSorting;
-        filters?: CrudFilters;
-        metaData?: MetaDataQuery;
-    }) => Promise<GetListResponse<TData>>;
-    getMany: <TData extends BaseRecord = BaseRecord>(params: {
-        resource: string;
-        ids: BaseKey[];
-        metaData?: MetaDataQuery;
-    }) => Promise<GetManyResponse<TData>>;
-    getOne: <TData extends BaseRecord = BaseRecord>(params: {
-        resource: string;
-        id: BaseKey;
-        metaData?: MetaDataQuery;
-    }) => Promise<GetOneResponse<TData>>;
-    create: <TData extends BaseRecord = BaseRecord, TVariables = {}>(params: {
-        resource: string;
-        variables: TVariables;
-        metaData?: MetaDataQuery;
-    }) => Promise<CreateResponse<TData>>;
-    createMany: <
-        TData extends BaseRecord = BaseRecord,
-        TVariables = {},
-    >(params: {
-        resource: string;
-        variables: TVariables[];
-        metaData?: MetaDataQuery;
-    }) => Promise<CreateManyResponse<TData>>;
-    update: <TData extends BaseRecord = BaseRecord, TVariables = {}>(params: {
-        resource: string;
-        id: BaseKey;
-        variables: TVariables;
-        metaData?: MetaDataQuery;
-    }) => Promise<UpdateResponse<TData>>;
-    updateMany: <
-        TData extends BaseRecord = BaseRecord,
-        TVariables = {},
-    >(params: {
-        resource: string;
-        ids: BaseKey[];
-        variables: TVariables;
-        metaData?: MetaDataQuery;
-    }) => Promise<UpdateManyResponse<TData>>;
-    deleteOne: <TData extends BaseRecord = BaseRecord>(params: {
-        resource: string;
-        id: BaseKey;
-        metaData?: MetaDataQuery;
-    }) => Promise<DeleteOneResponse<TData>>;
-    deleteMany: <TData extends BaseRecord = BaseRecord>(params: {
-        resource: string;
-        ids: BaseKey[];
-        metaData?: MetaDataQuery;
-    }) => Promise<DeleteManyResponse<TData>>;
+    getList: <TData extends BaseRecord = BaseRecord>(
+        params: {
+            resource: string;
+            pagination?: Pagination;
+            hasPagination?: boolean;
+            sort?: CrudSorting;
+            filters?: CrudFilters;
+            metaData?: MetaDataQuery;
+        } & GraphQLType,
+    ) => Promise<GetListResponse<TData>>;
+    getMany: <TData extends BaseRecord = BaseRecord>(
+        params: {
+            resource: string;
+            ids: BaseKey[];
+            metaData?: MetaDataQuery;
+        } & GraphQLType,
+    ) => Promise<GetManyResponse<TData>>;
+    getOne: <TData extends BaseRecord = BaseRecord>(
+        params: {
+            resource: string;
+            id: BaseKey;
+            metaData?: MetaDataQuery;
+        } & GraphQLType,
+    ) => Promise<GetOneResponse<TData>>;
+    create: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        params: {
+            resource: string;
+            variables: TVariables;
+            metaData?: MetaDataQuery;
+        } & GraphQLType,
+    ) => Promise<CreateResponse<TData>>;
+    createMany: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        params: {
+            resource: string;
+            variables: TVariables[];
+            metaData?: MetaDataQuery;
+        } & GraphQLType,
+    ) => Promise<CreateManyResponse<TData>>;
+    update: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        params: {
+            resource: string;
+            id: BaseKey;
+            variables: TVariables;
+            metaData?: MetaDataQuery;
+        } & GraphQLType,
+    ) => Promise<UpdateResponse<TData>>;
+    updateMany: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        params: {
+            resource: string;
+            ids: BaseKey[];
+            variables: TVariables;
+            metaData?: MetaDataQuery;
+        } & GraphQLType,
+    ) => Promise<UpdateManyResponse<TData>>;
+    deleteOne: <TData extends BaseRecord = BaseRecord>(
+        params: {
+            resource: string;
+            id: BaseKey;
+            metaData?: MetaDataQuery;
+        } & GraphQLType,
+    ) => Promise<DeleteOneResponse<TData>>;
+    deleteMany: <TData extends BaseRecord = BaseRecord>(
+        params: {
+            resource: string;
+            ids: BaseKey[];
+            metaData?: MetaDataQuery;
+        } & GraphQLType,
+    ) => Promise<DeleteManyResponse<TData>>;
     getApiUrl: () => string;
-    custom: <TData extends BaseRecord = BaseRecord>(params: {
-        url: string;
-        method:
-            | "get"
-            | "delete"
-            | "head"
-            | "options"
-            | "post"
-            | "put"
-            | "patch";
-        sort?: CrudSorting;
-        filters?: CrudFilter[];
-        payload?: {};
-        query?: {};
-        headers?: {};
-        metaData?: MetaDataQuery;
-    }) => Promise<CustomResponse<TData>>;
+    custom: <TData extends BaseRecord = BaseRecord>(
+        params: {
+            url: string;
+            method:
+                | "get"
+                | "delete"
+                | "head"
+                | "options"
+                | "post"
+                | "put"
+                | "patch";
+            sort?: CrudSorting;
+            filters?: CrudFilter[];
+            payload?: {};
+            query?: {};
+            headers?: {};
+            metaData?: MetaDataQuery;
+        } & GraphQLType,
+    ) => Promise<CustomResponse<TData>>;
 }
 
 export interface IDataContextProvider {
-    getList: <TData extends BaseRecord = BaseRecord>(params: {
-        resource: string;
-        pagination?: Pagination;
-        hasPagination?: boolean;
-        sort?: CrudSorting;
-        filters?: CrudFilters;
-        metaData?: MetaDataQuery;
-        dataProviderName?: string;
-    }) => Promise<GetListResponse<TData>>;
-    getMany: <TData extends BaseRecord = BaseRecord>(params: {
-        resource: string;
-        ids: BaseKey[];
-        metaData?: MetaDataQuery;
-        dataProviderName?: string;
-    }) => Promise<GetManyResponse<TData>>;
-    getOne: <TData extends BaseRecord = BaseRecord>(params: {
-        resource: string;
-        id: BaseKey;
-        metaData?: MetaDataQuery;
-    }) => Promise<GetOneResponse<TData>>;
-    create: <TData extends BaseRecord = BaseRecord, TVariables = {}>(params: {
-        resource: string;
-        variables: TVariables;
-        metaData?: MetaDataQuery;
-    }) => Promise<CreateResponse<TData>>;
-    createMany: <
-        TData extends BaseRecord = BaseRecord,
-        TVariables = {},
-    >(params: {
-        resource: string;
-        variables: TVariables[];
-        metaData?: MetaDataQuery;
-    }) => Promise<CreateManyResponse<TData>>;
-    update: <TData extends BaseRecord = BaseRecord, TVariables = {}>(params: {
-        resource: string;
-        id: BaseKey;
-        variables: TVariables;
-        metaData?: MetaDataQuery;
-    }) => Promise<UpdateResponse<TData>>;
-    updateMany: <
-        TData extends BaseRecord = BaseRecord,
-        TVariables = {},
-    >(params: {
-        resource: string;
-        ids: BaseKey[];
-        variables: TVariables;
-        metaData?: MetaDataQuery;
-    }) => Promise<UpdateManyResponse<TData>>;
-    deleteOne: <
-        TData extends BaseRecord = BaseRecord,
-        TVariables = {},
-    >(params: {
-        resource: string;
-        id: BaseKey;
-        variables?: TVariables;
-        metaData?: MetaDataQuery;
-    }) => Promise<DeleteOneResponse<TData>>;
-    deleteMany: <
-        TData extends BaseRecord = BaseRecord,
-        TVariables = {},
-    >(params: {
-        resource: string;
-        ids: BaseKey[];
-        variables?: TVariables;
-        metaData?: MetaDataQuery;
-    }) => Promise<DeleteManyResponse<TData>>;
+    getList: <TData extends BaseRecord = BaseRecord>(
+        params: {
+            resource: string;
+            pagination?: Pagination;
+            hasPagination?: boolean;
+            sort?: CrudSorting;
+            filters?: CrudFilters;
+            metaData?: MetaDataQuery;
+            dataProviderName?: string;
+        } & GraphQLType,
+    ) => Promise<GetListResponse<TData>>;
+    getMany: <TData extends BaseRecord = BaseRecord>(
+        params: {
+            resource: string;
+            ids: BaseKey[];
+            metaData?: MetaDataQuery;
+            dataProviderName?: string;
+        } & GraphQLType,
+    ) => Promise<GetManyResponse<TData>>;
+    getOne: <TData extends BaseRecord = BaseRecord>(
+        params: {
+            resource: string;
+            id: BaseKey;
+            metaData?: MetaDataQuery;
+        } & GraphQLType,
+    ) => Promise<GetOneResponse<TData>>;
+    create: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        params: {
+            resource: string;
+            variables: TVariables;
+            metaData?: MetaDataQuery;
+        } & GraphQLType,
+    ) => Promise<CreateResponse<TData>>;
+    createMany: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        params: {
+            resource: string;
+            variables: TVariables[];
+            metaData?: MetaDataQuery;
+        } & GraphQLType,
+    ) => Promise<CreateManyResponse<TData>>;
+    update: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        params: {
+            resource: string;
+            id: BaseKey;
+            variables: TVariables;
+            metaData?: MetaDataQuery;
+        } & GraphQLType,
+    ) => Promise<UpdateResponse<TData>>;
+    updateMany: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        params: {
+            resource: string;
+            ids: BaseKey[];
+            variables: TVariables;
+            metaData?: MetaDataQuery;
+        } & GraphQLType,
+    ) => Promise<UpdateManyResponse<TData>>;
+    deleteOne: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        params: {
+            resource: string;
+            id: BaseKey;
+            variables?: TVariables;
+            metaData?: MetaDataQuery;
+        } & GraphQLType,
+    ) => Promise<DeleteOneResponse<TData>>;
+    deleteMany: <TData extends BaseRecord = BaseRecord, TVariables = {}>(
+        params: {
+            resource: string;
+            ids: BaseKey[];
+            variables?: TVariables;
+            metaData?: MetaDataQuery;
+        } & GraphQLType,
+    ) => Promise<DeleteManyResponse<TData>>;
     getApiUrl: () => string;
-    custom?: <TData extends BaseRecord = BaseRecord>(params: {
-        url: string;
-        method:
-            | "get"
-            | "delete"
-            | "head"
-            | "options"
-            | "post"
-            | "put"
-            | "patch";
-        sort?: CrudSorting;
-        filters?: CrudFilter[];
-        payload?: {};
-        query?: {};
-        headers?: {};
-        metaData?: MetaDataQuery;
-    }) => Promise<CustomResponse<TData>>;
+    custom?: <TData extends BaseRecord = BaseRecord>(
+        params: {
+            url: string;
+            method:
+                | "get"
+                | "delete"
+                | "head"
+                | "options"
+                | "post"
+                | "put"
+                | "patch";
+            sort?: CrudSorting;
+            filters?: CrudFilter[];
+            payload?: {};
+            query?: {};
+            headers?: {};
+            metaData?: MetaDataQuery;
+        } & GraphQLType,
+    ) => Promise<CustomResponse<TData>>;
 }
 
 export interface IDataMultipleContextProvider {

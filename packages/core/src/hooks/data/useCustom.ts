@@ -12,6 +12,7 @@ import {
     HttpError,
     MetaDataQuery,
     SuccessErrorNotification,
+    RefineDataCommonProps,
 } from "../../interfaces";
 import {
     useTranslate,
@@ -35,7 +36,8 @@ export type UseCustomProps<TData, TError, TQuery, TPayload> = {
     queryOptions?: UseQueryOptions<CustomResponse<TData>, TError>;
     metaData?: MetaDataQuery;
     dataProviderName?: string;
-} & SuccessErrorNotification;
+} & SuccessErrorNotification &
+    RefineDataCommonProps;
 
 /**
  * `useCustom` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for custom requests.
@@ -64,6 +66,7 @@ export const useCustom = <
     errorNotification,
     metaData,
     dataProviderName,
+    graphql,
 }: UseCustomProps<TData, TError, TQuery, TPayload>): QueryObserverResult<
     CustomResponse<TData>,
     TError
@@ -96,6 +99,12 @@ export const useCustom = <
                             pageParam,
                             signal,
                         },
+                    },
+                    graphql: {
+                        rawQuery: graphql?.rawQuery?.({}),
+                        fields: graphql?.fields,
+                        operation: graphql?.operation,
+                        variables: graphql?.variables,
                     },
                 }),
             {

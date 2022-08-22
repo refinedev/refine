@@ -56,6 +56,12 @@ export * from "./live";
 //auditLog
 export * from "./auditLog";
 
+//graphql
+export * from "./graphql";
+
+//data common
+export * from "./data";
+
 export type BaseKey = string | number;
 export type BaseRecord = {
     id?: BaseKey;

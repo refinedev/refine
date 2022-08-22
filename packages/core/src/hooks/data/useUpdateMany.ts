@@ -28,6 +28,7 @@ import {
     MetaDataQuery,
     GetListResponse,
     IQueryKeys,
+    RefineDataCommonProps,
 } from "../../interfaces";
 import { queryKeys } from "@definitions/helpers";
 
@@ -41,7 +42,8 @@ type UpdateManyParams<TVariables> = {
     metaData?: MetaDataQuery;
     dataProviderName?: string;
     invalidates?: Array<keyof IQueryKeys>;
-} & SuccessErrorNotification;
+} & SuccessErrorNotification &
+    RefineDataCommonProps;
 
 type UseUpdateManyReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -100,6 +102,7 @@ export const useUpdateMany = <
             undoableTimeout,
             metaData,
             dataProviderName,
+            graphql,
         }: UpdateManyParams<TVariables>) => {
             const mutationModePropOrContext =
                 mutationMode ?? mutationModeContext;
@@ -116,6 +119,15 @@ export const useUpdateMany = <
                     ids,
                     variables: values,
                     metaData,
+                    graphql: {
+                        rawQuery: graphql?.rawQuery?.({
+                            resource,
+                            ids,
+                        }),
+                        fields: graphql?.fields,
+                        operation: graphql?.operation,
+                        variables: graphql?.variables,
+                    },
                 });
             }
 
@@ -128,6 +140,15 @@ export const useUpdateMany = <
                                 ids,
                                 variables: values,
                                 metaData,
+                                graphql: {
+                                    rawQuery: graphql?.rawQuery?.({
+                                        resource,
+                                        ids,
+                                    }),
+                                    fields: graphql?.fields,
+                                    operation: graphql?.operation,
+                                    variables: graphql?.variables,
+                                },
                             })
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));

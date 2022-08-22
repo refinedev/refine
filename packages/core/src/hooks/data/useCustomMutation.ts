@@ -7,6 +7,7 @@ import {
     HttpError,
     SuccessErrorNotification,
     MetaDataQuery,
+    RefineDataCommonProps,
 } from "../../interfaces";
 
 interface UseCustomMutationConfig {
@@ -20,7 +21,8 @@ type useCustomMutationParams<TVariables> = {
     metaData?: MetaDataQuery;
     dataProviderName?: string;
     config?: UseCustomMutationConfig;
-} & SuccessErrorNotification;
+} & SuccessErrorNotification &
+    RefineDataCommonProps;
 
 export type UseCustomMutationReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -68,6 +70,7 @@ export const useCustomMutation = <
             metaData,
             dataProviderName,
             config,
+            graphql,
         }: useCustomMutationParams<TVariables>) => {
             const { custom } = dataProvider(dataProviderName);
 
@@ -78,6 +81,12 @@ export const useCustomMutation = <
                     payload: values,
                     metaData,
                     headers: { ...config?.headers },
+                    graphql: {
+                        rawQuery: graphql?.rawQuery?.({}),
+                        fields: graphql?.fields,
+                        operation: graphql?.operation,
+                        variables: graphql?.variables,
+                    },
                 });
             }
 

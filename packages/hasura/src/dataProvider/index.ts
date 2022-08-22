@@ -112,11 +112,11 @@ export const generateFilters: any = (filters?: CrudFilters) => {
 
 const dataProvider = (client: GraphQLClient): DataProvider => {
     return {
-        getOne: async ({ resource, id, metaData }) => {
-            let query = metaData?.rawQuery?.query;
+        getOne: async ({ resource, id, metaData, graphql }) => {
+            let query = graphql?.rawQuery?.query;
             let variables = {
                 id,
-                ...metaData?.rawQuery?.variables,
+                ...graphql?.rawQuery?.variables,
             };
             const operation = `${metaData?.operation ?? resource}_by_pk`;
 

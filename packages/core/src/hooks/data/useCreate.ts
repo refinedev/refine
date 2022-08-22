@@ -8,7 +8,9 @@ import {
     SuccessErrorNotification,
     MetaDataQuery,
     IQueryKeys,
+    RefineDataCommonProps,
 } from "../../interfaces";
+
 import {
     useTranslate,
     useCheckError,
@@ -25,7 +27,8 @@ type useCreateParams<TVariables> = {
     metaData?: MetaDataQuery;
     dataProviderName?: string;
     invalidates?: Array<keyof IQueryKeys>;
-} & SuccessErrorNotification;
+} & SuccessErrorNotification &
+    RefineDataCommonProps;
 
 export type UseCreateReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -76,11 +79,18 @@ export const useCreate = <
             values,
             metaData,
             dataProviderName,
+            graphql,
         }: useCreateParams<TVariables>) => {
             return dataProvider(dataProviderName).create<TData, TVariables>({
                 resource,
                 variables: values,
                 metaData,
+                graphql: {
+                    rawQuery: graphql?.rawQuery?.({ resource }),
+                    fields: graphql?.fields,
+                    operation: graphql?.operation,
+                    variables: graphql?.variables,
+                },
             });
         },
         {

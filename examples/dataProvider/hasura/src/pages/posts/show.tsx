@@ -38,9 +38,15 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
     `;
 
     const { queryResult } = useShow<IPost>({
-        metaData: {
+        /*  metaData: {
             rawQuery: {
                 query,
+            },
+        }, */
+        graphql: {
+            rawQuery: ({ id, resource }) => {
+                console.log("graphql", { id, resource });
+                return { query };
             },
         },
     });

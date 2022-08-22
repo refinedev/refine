@@ -12,6 +12,7 @@ import {
     MetaDataQuery,
     LiveModeProps,
     SuccessErrorNotification,
+    RefineDataCommonProps,
 } from "../../interfaces";
 import {
     useCheckError,
@@ -29,7 +30,8 @@ export type UseOneProps<TData, TError> = {
     metaData?: MetaDataQuery;
     dataProviderName?: string;
 } & SuccessErrorNotification &
-    LiveModeProps;
+    LiveModeProps &
+    RefineDataCommonProps;
 
 /**
  * `useOne` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving single items from a `resource`.
@@ -56,6 +58,7 @@ export const useOne = <
     onLiveEvent,
     liveParams,
     dataProviderName,
+    graphql,
 }: UseOneProps<TData, TError>): QueryObserverResult<GetOneResponse<TData>> => {
     const dataProvider = useDataProvider();
     const queryKey = queryKeys(resource, dataProviderName, metaData);
@@ -94,6 +97,12 @@ export const useOne = <
                         pageParam,
                         signal,
                     },
+                },
+                graphql: {
+                    rawQuery: graphql?.rawQuery?.({ resource, id }),
+                    fields: graphql?.fields,
+                    operation: graphql?.operation,
+                    variables: graphql?.variables,
                 },
             }),
         {

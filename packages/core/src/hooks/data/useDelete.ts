@@ -29,6 +29,7 @@ import {
     MetaDataQuery,
     PreviousQuery,
     IQueryKeys,
+    RefineDataCommonProps,
 } from "../../interfaces";
 import { queryKeys } from "@definitions/helpers";
 
@@ -42,7 +43,8 @@ export type DeleteParams<TVariables> = {
     dataProviderName?: string;
     invalidates?: Array<keyof IQueryKeys>;
     values?: TVariables;
-} & SuccessErrorNotification;
+} & SuccessErrorNotification &
+    RefineDataCommonProps;
 
 export type UseDeleteReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -104,6 +106,7 @@ export const useDelete = <
             metaData,
             dataProviderName,
             values,
+            graphql,
         }) => {
             const mutationModePropOrContext =
                 mutationMode ?? mutationModeContext;
@@ -129,6 +132,15 @@ export const useDelete = <
                                 id,
                                 metaData,
                                 variables: values,
+                                graphql: {
+                                    rawQuery: graphql?.rawQuery?.({
+                                        resource,
+                                        id,
+                                    }),
+                                    fields: graphql?.fields,
+                                    operation: graphql?.operation,
+                                    variables: graphql?.variables,
+                                },
                             })
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));

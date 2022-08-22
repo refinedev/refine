@@ -11,6 +11,7 @@ import {
     MetaDataQuery,
     LiveModeProps,
     BaseKey,
+    RefineDataCommonProps,
 } from "../../interfaces";
 
 export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
@@ -25,7 +26,8 @@ export type useShowProps = {
     metaData?: MetaDataQuery;
     dataProviderName?: string;
 } & LiveModeProps &
-    SuccessErrorNotification;
+    SuccessErrorNotification &
+    RefineDataCommonProps;
 
 /**
  * `useShow` hook allows you to fetch the desired record.
@@ -43,6 +45,7 @@ export const useShow = <TData extends BaseRecord = BaseRecord>({
     liveMode,
     onLiveEvent,
     dataProviderName,
+    graphql,
 }: useShowProps = {}): useShowReturnType<TData> => {
     const { useParams } = useRouterContext();
 
@@ -72,6 +75,7 @@ export const useShow = <TData extends BaseRecord = BaseRecord>({
         liveMode,
         onLiveEvent,
         dataProviderName,
+        graphql,
     });
 
     return {

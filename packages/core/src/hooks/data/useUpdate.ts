@@ -17,6 +17,7 @@ import {
     PreviousQuery,
     GetListResponse,
     IQueryKeys,
+    RefineDataCommonProps,
 } from "../../interfaces";
 import pluralize from "pluralize";
 import {
@@ -42,7 +43,8 @@ export type UpdateParams<TVariables> = {
     metaData?: MetaDataQuery;
     dataProviderName?: string;
     invalidates?: Array<keyof IQueryKeys>;
-} & SuccessErrorNotification;
+} & SuccessErrorNotification &
+    RefineDataCommonProps;
 
 export type UseUpdateReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -102,6 +104,7 @@ export const useUpdate = <
             onCancel,
             metaData,
             dataProviderName,
+            graphql,
         }) => {
             const mutationModePropOrContext =
                 mutationMode ?? mutationModeContext;
@@ -116,6 +119,15 @@ export const useUpdate = <
                         id,
                         variables: values,
                         metaData,
+                        graphql: {
+                            rawQuery: graphql?.rawQuery?.({
+                                resource,
+                                id,
+                            }),
+                            fields: graphql?.fields,
+                            operation: graphql?.operation,
+                            variables: graphql?.variables,
+                        },
                     },
                 );
             }
@@ -128,6 +140,15 @@ export const useUpdate = <
                                 id,
                                 variables: values,
                                 metaData,
+                                graphql: {
+                                    rawQuery: graphql?.rawQuery?.({
+                                        resource,
+                                        id,
+                                    }),
+                                    fields: graphql?.fields,
+                                    operation: graphql?.operation,
+                                    variables: graphql?.variables,
+                                },
                             })
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));

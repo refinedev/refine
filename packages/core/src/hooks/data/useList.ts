@@ -13,6 +13,7 @@ import {
     MetaDataQuery,
     SuccessErrorNotification,
     LiveModeProps,
+    RefineDataCommonProps,
 } from "../../interfaces";
 import {
     useCheckError,
@@ -37,7 +38,8 @@ export type UseListProps<TData, TError> = {
     metaData?: MetaDataQuery;
     dataProviderName?: string;
 } & SuccessErrorNotification &
-    LiveModeProps;
+    LiveModeProps &
+    RefineDataCommonProps;
 
 /**
  * `useList` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving items from a `resource` with pagination, sort, and filter configurations.
@@ -64,6 +66,7 @@ export const useList = <
     onLiveEvent,
     liveParams,
     dataProviderName,
+    graphql,
 }: UseListProps<TData, TError>): QueryObserverResult<
     GetListResponse<TData>,
     TError
@@ -112,6 +115,14 @@ export const useList = <
                         pageParam,
                         signal,
                     },
+                },
+                graphql: {
+                    rawQuery: graphql?.rawQuery?.({
+                        resource,
+                    }),
+                    fields: graphql?.fields,
+                    operation: graphql?.operation,
+                    variables: graphql?.variables,
                 },
             });
         },

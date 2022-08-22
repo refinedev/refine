@@ -12,6 +12,7 @@ import {
     MetaDataQuery,
     LiveModeProps,
     SuccessErrorNotification,
+    RefineDataCommonProps,
 } from "../../interfaces";
 import {
     useTranslate,
@@ -29,7 +30,8 @@ export type UseManyProps<TData, TError> = {
     metaData?: MetaDataQuery;
     dataProviderName?: string;
 } & SuccessErrorNotification &
-    LiveModeProps;
+    LiveModeProps &
+    RefineDataCommonProps;
 
 /**
  * `useMany` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving multiple items from a `resource`.
@@ -56,6 +58,7 @@ export const useMany = <
     onLiveEvent,
     liveParams,
     dataProviderName,
+    graphql,
 }: UseManyProps<TData, TError>): QueryObserverResult<
     GetManyResponse<TData>
 > => {
@@ -99,6 +102,15 @@ export const useMany = <
                         pageParam,
                         signal,
                     },
+                },
+                graphql: {
+                    rawQuery: graphql?.rawQuery?.({
+                        resource,
+                        ids,
+                    }),
+                    fields: graphql?.fields,
+                    operation: graphql?.operation,
+                    variables: graphql?.variables,
                 },
             }),
         {
