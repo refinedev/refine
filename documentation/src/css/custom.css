@@ -472,3 +472,8 @@
 .navbar .navbar__items .navbar__item {
     @apply hidden xl:inline-block;
 }
+
+html {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
