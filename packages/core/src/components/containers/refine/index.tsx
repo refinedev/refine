@@ -73,7 +73,9 @@ export interface RefineProps {
     OffLayoutArea?: React.FC;
     Title?: React.FC<TitleProps>;
     reactQueryClientConfig?: QueryClientConfig;
-    reactQueryDevtoolConfig?: any;
+    reactQueryDevtoolConfig?:
+        | React.ComponentProps<typeof ReactQueryDevtools>
+        | false;
     liveMode?: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
     children?: React.ReactNode;
@@ -247,11 +249,13 @@ export const Refine: React.FC<RefineProps> = ({
                     </DataContextProvider>
                 </AuthContextProvider>
             </NotificationContextProvider>
-            <ReactQueryDevtools
-                initialIsOpen={false}
-                position="bottom-right"
-                {...reactQueryDevtoolConfig}
-            />
+            {reactQueryDevtoolConfig === false ? null : (
+                <ReactQueryDevtools
+                    initialIsOpen={false}
+                    position="bottom-right"
+                    {...(reactQueryDevtoolConfig ?? {})}
+                />
+            )}
         </QueryClientProvider>
     );
 };

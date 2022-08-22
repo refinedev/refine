@@ -115,10 +115,7 @@ export const SettingsPage: React.FC = () => {
                         <hr />
                         <button
                             className="btn btn-outline-danger"
-                            onClick={() => {
-                                console.log("logout");
-                                logout();
-                            }}
+                            onClick={() => logout()}
                         >
                             Or click here to logout.
                         </button>

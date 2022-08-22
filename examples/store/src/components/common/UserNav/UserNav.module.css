@@ -33,7 +33,7 @@
 }
 
 .avatarButton {
-  @apply inline-flex justify-center rounded-full;
+  @apply flex justify-center rounded-full;
 }
 
 .mobileMenu {

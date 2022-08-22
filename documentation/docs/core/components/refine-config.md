@@ -672,7 +672,7 @@ const App: React.FC = () => (
 
 ### `reactQueryDevtoolConfig`
 
-Config for customize React Query Devtools.
+Config for customize React Query Devtools. If you want to disable the Devtools, set `reactQueryDevtoolConfig` to `false`.
 
 **refine** uses some defaults that applies to react-query devtool:
 

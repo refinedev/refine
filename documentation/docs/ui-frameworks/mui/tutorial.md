@@ -464,29 +464,26 @@ import {
 
 import { IPost } from "interfaces";
 
-const columns = React.useMemo<GridColumns<IPost>>(
-    () => [
-        { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
-        {
-            field: "status",
-            headerName: "Status",
-            minWidth: 150,
-            flex: 1,
-            renderCell: function render(params) {
-                return <TagField value={params.row.status} />;
-            },
+const columns: GridColumns<IPost> = [
+    { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
+    {
+        field: "status",
+        headerName: "Status",
+        minWidth: 150,
+        flex: 1,
+        renderCell: function render(params) {
+            return <TagField value={params.row.status} />;
         },
-        {
-            field: "createdAt",
-            headerName: "CreatedAt",
-            minWidth: 220,
-            renderCell: function render(params) {
-                return <DateField format="LLL" value={params.row.createdAt} />;
-            },
+    },
+    {
+        field: "createdAt",
+        headerName: "CreatedAt",
+        minWidth: 220,
+        renderCell: function render(params) {
+            return <DateField format="LLL" value={params.row.createdAt} />;
         },
-    ],
-    [],
-);
+    },
+];
 
 export const PostList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>();

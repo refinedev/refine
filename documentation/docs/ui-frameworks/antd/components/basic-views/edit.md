@@ -283,6 +283,7 @@ export const EditPage: React.FC = () => {
         <Edit
             /* ... */
             headerProps={{
+                subTitle: "This is a subtitle",
                 style: {
                     backgroundColor: "snow",
                 },
