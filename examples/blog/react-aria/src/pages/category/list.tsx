@@ -22,6 +22,14 @@ export const CategoryList: React.FC = () => {
 
     const { getHeaderGroups, getRowModel } = useTable<any>({
         columns,
+        refineCoreProps: {
+            permanentSorter: [
+                {
+                    field: "id",
+                    order: "desc",
+                },
+            ],
+        },
     });
     return (
         <div className="container mx-auto pb-4 max-w-3xl w-full">
