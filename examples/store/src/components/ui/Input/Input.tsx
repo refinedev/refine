@@ -1,7 +1,7 @@
 import React, { useImperativeHandle } from "react";
 import cn from "clsx";
 import { ErrorMessage } from "@hookform/error-message";
-import { get } from "@pankod/refine-react-hook-form";
+import { get } from "react-hook-form";
 
 import s from "./Input.module.css";
 

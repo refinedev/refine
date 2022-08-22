@@ -17,13 +17,7 @@
 }
 
 .productImage {
-  position: absolute;
-  transform: scale(1.9);
-  width: 100%;
-  height: 100%;
-  left: 30% !important;
-  top: 30% !important;
-  z-index: 1;
+  transform: scale(1.5);
 }
 
 .productName {

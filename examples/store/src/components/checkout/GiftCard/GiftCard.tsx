@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { Cart } from "@medusajs/medusa";
-import { useForm } from "@pankod/refine-react-hook-form";
-import { HttpError, useInvalidate, useUpdate } from "@pankod/refine-core";
+import { useForm } from "react-hook-form";
+import { useInvalidate, useUpdate } from "@pankod/refine-core";
 
 import { Input, Button } from "@components";
 import { Trash } from "@components/icons";
@@ -23,7 +23,7 @@ export const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
         handleSubmit,
         formState: { touchedFields, errors },
         setError,
-    } = useForm<GiftCardFormValues, HttpError, GiftCardFormValues>();
+    } = useForm<GiftCardFormValues>();
 
     const appliedGiftCard = useMemo(() => {
         if (!cart || !cart.gift_cards?.length) {
@@ -111,22 +111,25 @@ export const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
                     </div>
                 ) : (
                     <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-                        <div className="flex flex-col">
+                        <div className="grid grid-cols-[1fr_80px] gap-x-2">
                             <Input
                                 label="Code"
                                 {...register("gift_card_code", {
-                                    required: "Code is required",
+                                    required: "code is required",
                                 })}
                                 errors={errors}
                                 touched={touchedFields}
                             />
-                            <Button
-                                className="mt-2 h-[46px] !min-h-[0] w-[80px]"
-                                disabled={isLoading}
-                                loading={isLoading}
-                            >
-                                Apply
-                            </Button>
+                            <div className="mt-8">
+                                <Button
+                                    variant="slim"
+                                    className="w-[80px]"
+                                    disabled={isLoading}
+                                    loading={isLoading}
+                                >
+                                    {!isLoading && "Apply"}
+                                </Button>
+                            </div>
                         </div>
                     </form>
                 )}
