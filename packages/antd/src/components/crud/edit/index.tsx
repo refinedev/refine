@@ -173,30 +173,28 @@ export const Edit: React.FC<EditProps> = ({
                 <Spin spinning={isLoading}>
                     <Card
                         bordered={false}
-                        actions={
-                            footerButtons
-                                ? [
-                                      <Space
-                                          key="footer-buttons"
-                                          wrap
-                                          style={{
-                                              float: "right",
-                                              marginRight: 24,
-                                          }}
-                                          {...footerButtonProps}
-                                      >
-                                          {typeof footerButtons === "function"
-                                              ? footerButtons({
-                                                    defaultButtons:
-                                                        defaultFooterButtons,
-                                                })
-                                              : footerButtons}
-                                      </Space>,
-                                  ]
-                                : actionButtons
-                                ? [actionButtons]
-                                : [defaultFooterButtons]
-                        }
+                        actions={[
+                            <Space
+                                key="footer-buttons"
+                                wrap
+                                style={{
+                                    float: "right",
+                                    marginRight: 24,
+                                }}
+                                {...(footerButtonProps ?? {})}
+                            >
+                                {footerButtons
+                                    ? typeof footerButtons === "function"
+                                        ? footerButtons({
+                                              defaultButtons:
+                                                  defaultFooterButtons,
+                                          })
+                                        : footerButtons
+                                    : actionButtons
+                                    ? actionButtons
+                                    : defaultFooterButtons}
+                            </Space>,
+                        ]}
                         {...(contentProps ?? {})}
                     >
                         {children}
