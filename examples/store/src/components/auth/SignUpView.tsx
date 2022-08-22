@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "@pankod/refine-react-hook-form";
 import { HttpError, useLogin } from "@pankod/refine-core";
 
@@ -11,37 +12,41 @@ interface Customer {
     first_name: string;
     last_name: string;
     password: string;
-    serverError: string;
 }
 
 const SignUpView: React.FC = () => {
     const { setModalView, closeModal } = useUI();
+    const [errorMsg, setErrorMsg] = useState("");
 
     const { mutate: login } = useLogin();
     const {
         refineCore: { onFinish, formLoading },
         register,
         handleSubmit,
-        setError,
         formState: { errors, touchedFields },
     } = useForm<Customer, HttpError, Customer>({
         refineCoreProps: {
             redirect: false,
             resource: "customers",
-            onMutationSuccess: async (_, { email, password }) => {
-                await login({
-                    email,
-                    password,
-                });
-
-                closeModal();
+            onMutationSuccess: (_, { email, password }) => {
+                login(
+                    {
+                        email,
+                        password,
+                    },
+                    {
+                        onSuccess: () => {
+                            closeModal();
+                            setErrorMsg("");
+                        },
+                    },
+                );
             },
             onMutationError(error) {
                 if (error?.response?.data.type === "duplicate_error") {
-                    setError("serverError", {
-                        message:
-                            "A customer with the given email already has an account. Log in instead.",
-                    });
+                    setErrorMsg(
+                        "A customer with the given email already has an account. Log in instead.",
+                    );
                 }
             },
         },
@@ -56,17 +61,9 @@ const SignUpView: React.FC = () => {
                 <Logo width="64px" height="64px" />
             </div>
             <div className="flex flex-col space-y-4">
-                {Object.keys(errors).length > 0 && (
-                    <div className="text-red border-red border p-3">
-                        <ul>
-                            {Object.keys(errors).map((key: any) => (
-                                <li key={key}>
-                                    {(errors as any)[key as any].message}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                )}
+                <div className="pt-1 text-xs text-rose-500">
+                    <span>{errorMsg}</span>
+                </div>
                 <Input
                     label="First Name"
                     {...register("first_name", {

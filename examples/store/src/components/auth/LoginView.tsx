@@ -1,6 +1,6 @@
+import { useState } from "react";
 import { useForm } from "@pankod/refine-react-hook-form";
 import { HttpError, useLogin } from "@pankod/refine-core";
-import { ErrorMessage } from "@hookform/error-message";
 
 import { useUI } from "@lib/context";
 import { emailRegex } from "@lib/regex";
@@ -13,21 +13,19 @@ interface Login {
 }
 
 const LoginView: React.FC = () => {
+    const [errorMsg, setErrorMsg] = useState("");
     const {
-        setError,
         handleSubmit,
         register,
         formState: { errors, touchedFields },
-    } = useForm<Login, HttpError, Login>({
-        reValidateMode: "onChange",
-    });
+    } = useForm<Login, HttpError, Login>();
 
     // Form State
     const { setModalView, closeModal } = useUI();
     const { mutate: login, isLoading } = useLogin();
 
-    const handleLogin = async ({ email, password }: Login) => {
-        await login(
+    const handleLogin = ({ email, password }: Login) => {
+        login(
             {
                 username: email,
                 password,
@@ -35,11 +33,10 @@ const LoginView: React.FC = () => {
             {
                 onSuccess: () => {
                     closeModal();
+                    setErrorMsg("");
                 },
                 onError: () => {
-                    setError("serverError", {
-                        message: "The email or password is invalid",
-                    });
+                    setErrorMsg("The email or password is invalid");
                 },
             },
         );
@@ -54,17 +51,9 @@ const LoginView: React.FC = () => {
                 <Logo width="64px" height="64px" />
             </div>
             <div className="flex flex-col space-y-3">
-                <ErrorMessage
-                    errors={errors}
-                    name="serverError"
-                    render={({ message }) => {
-                        return (
-                            <div className="pt-1 text-xs text-rose-500">
-                                <span>{message}</span>
-                            </div>
-                        );
-                    }}
-                />
+                <div className="pt-1 text-xs text-rose-500">
+                    <span>{errorMsg}</span>
+                </div>
                 <Input
                     type="email"
                     label="Email"
