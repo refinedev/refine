@@ -4,7 +4,7 @@ export const LoginPage: React.FC = () => {
         <AuthPage
             type="login"
             registerLink="/auth/register"
-            forgotLink="/auth/forgot-password"
+            resetPasswordLink="/auth/forgot-password"
         />
     );
 };

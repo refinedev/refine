@@ -1,4 +1,4 @@
-import { AuthProvider, Refine } from "@pankod/refine-core";
+import { AuthPage, AuthProvider, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
@@ -9,10 +9,10 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
-import { LoginPage } from "./pages/auth/login";
 import { RegisterPage } from "./pages/auth";
 import { ForgotPasswordPage } from "./pages/auth/forgotPassword";
 import { ExamplePage } from "./pages/example";
+import { UpdatePasswordPage } from "./pages/auth/updatePassword";
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
@@ -43,16 +43,14 @@ const App: React.FC = () => {
         },
         updatePassword: (params: any) => {
             if (params.password && params.newPassword) {
-                //update password
-                console.log("update password", params);
+                //we can update password here
                 return Promise.resolve();
             }
             return Promise.reject();
         },
         resetPassword: (params: any) => {
             if (params.email) {
-                //send email with new password
-                console.log("reset password", params);
+                //we can send email with reset password link here
                 return Promise.resolve();
             }
             return Promise.reject();
@@ -87,6 +85,10 @@ const App: React.FC = () => {
                         path: "/auth/forgot-password",
                         element: <ForgotPasswordPage />,
                     },
+                    {
+                        path: "/auth/update-password",
+                        element: <UpdatePasswordPage />,
+                    },
                 ],
             }}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
@@ -94,7 +96,7 @@ const App: React.FC = () => {
             authProvider={authProvider}
             Layout={Layout}
             catchAll={<ErrorComponent />}
-            AuthPage={LoginPage}
+            AuthPage={AuthPage}
             resources={[
                 {
                     name: "posts",

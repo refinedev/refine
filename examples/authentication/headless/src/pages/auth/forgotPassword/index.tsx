@@ -3,7 +3,7 @@ export const ForgotPasswordPage: React.FC = () => {
     return (
         <AuthPage
             type="resetPassword"
-            forgotLink="/auth/forgot-password"
+            resetPasswordLink="/auth/forgot-password"
             backLink="/auth/login"
         />
     );
