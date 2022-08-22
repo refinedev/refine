@@ -5,12 +5,11 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: ghcr.io/pankod/refine/refine-store
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
 
-imagePullSecrets: []
+imagePullSecrets:
+    - name: github
 nameOverride: ""
 fullnameOverride: ""
 
@@ -41,20 +40,20 @@ service:
   port: 80
 
 ingress:
-  enabled: false
+  enabled: true
   className: ""
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+  annotations: 
+    cert-manager.io/issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: nginx
   hosts:
-    - host: chart-example.local
+    - host: store.refine.dev
       paths:
         - path: /
           pathType: ImplementationSpecific
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+  tls:
+    - hosts:
+        - store.refine.dev
+      secretName: store.refine.dev-tls
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

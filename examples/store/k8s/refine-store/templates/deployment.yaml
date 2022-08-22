@@ -33,6 +33,12 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: "NEXT_PUBLIC_STRIPE_KEY"
+              valueFrom:
+                secretKeyRef:
+                  key:  NEXT_PUBLIC_STRIPE_KEY
+                  name: {{ .Release.Name }}-auth
           ports:
             - name: http
               containerPort: 80
