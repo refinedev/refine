@@ -35,7 +35,6 @@ export const UpdatePassword: React.FC<IAuthCommonProps> = ({
                 onSubmit={(e) => {
                     e.preventDefault();
                     if (password && newpPassword === confirmPassword) {
-                        //TODO: should updatePassword need email?
                         updatePassword({
                             password,
                             newPassword: newpPassword,
@@ -82,7 +81,7 @@ export const UpdatePassword: React.FC<IAuthCommonProps> = ({
                         type="password"
                         required
                         size={20}
-                        value={password}
+                        value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                     <br />
