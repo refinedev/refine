@@ -43,12 +43,12 @@ jobs:
           expirationTime: 1200
       - name: Get nodes
         run: kubectl get nodes
-      - name: Deploy refine-example to k8s
+      - name: Deploy refine-store to k8s
         run: |
           cd examples/store
           mv ./k8s/refine-store/Chart.yaml ./k8s/refine-store/Chart.old.yaml &&
           cat ./k8s/refine-store/Chart.old.yaml | grep -v appVersion > ./k8s/refine-store/Chart.yaml &&
           echo -e "\r\nappVersion: sha-${GITHUB_SHA::7}\r\n" >> ./k8s/refine-store/Chart.yaml &&
           cat ./k8s/refine-store/Chart.yaml
-          helm upgrade refine-store ./k8s/refine-example --install --atomic --values=./k8s/refine-store/values.yaml \
+          helm upgrade refine-store ./k8s/refine-store --install --atomic --values=./k8s/refine-store/values.yaml \
             --set NEXT_PUBLIC_STRIPE_KEY=${{ secrets.NEXT_PUBLIC_STRIPE_KEY }} \
