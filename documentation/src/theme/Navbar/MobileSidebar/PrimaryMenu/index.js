@@ -2,7 +2,6 @@ import React from "react";
 import { useThemeConfig } from "@docusaurus/theme-common";
 import { useNavbarMobileSidebar } from "@docusaurus/theme-common/internal";
 import NavbarItem from "@theme/NavbarItem";
-import { isRegexpStringMatch } from "@docusaurus/theme-common";
 
 function useNavbarItems() {
     // TODO temporary casting until ThemeConfig type is improved
@@ -28,7 +27,7 @@ export default function NavbarMobilePrimaryMenu() {
                 <NavbarItem
                     mobile
                     {...item}
-                    className={`${console.log(item.activeBaseRegex)} ${
+                    className={`${
                         (
                             item.activeBaseRegex
                                 ? !!window.location.pathname.match(
