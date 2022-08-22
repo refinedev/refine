@@ -120,8 +120,8 @@ export const CartItem: React.FC<CartItemProps> = ({ item }) => {
                         <Image
                             onClick={() => closeSidebarIfPresent()}
                             className={s.productImage}
-                            width={150}
-                            height={150}
+                            width={64}
+                            height={64}
                             src={
                                 item.variant.product.thumbnail || placeholderImg
                             }
