@@ -489,6 +489,7 @@ export const CategoryList: React.FC = () => {
 
 [Refer to official refine documentation for details about creating a list page](https://refine.dev/docs/core/tutorial/#creating-a-list-page)
 
+We also import `CategoryCreate` page to show create button and modal page when clicked.
 
 We need to import and initialize the  `CategoryList` pages to `<Refine />` component.
 
@@ -623,8 +624,6 @@ function App() {
                 {
                     name: 'categories',
                     list: CategoryList,
-                    //highlight-next-line
-                    create: CategoryCreate,
                 },
             ]}
             Layout={({ children }) => <Layout> {children}</Layout>}
