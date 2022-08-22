@@ -8,7 +8,7 @@ import { Refine, LoginPage } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-nextjs-router";
 import dataProvider, { authProvider } from "@pankod/refine-medusa";
 
-import { API_URL } from "@lib/constants";
+import { API_URL, PROXY_URL } from "@lib/constants";
 import { Dashboard } from "@components";
 import Layout from "@components/common/Layout";
 import { CartProvider, ManagedUIContext } from "@lib/context";
@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                 )}
                 LoginPage={LoginPage}
                 DashboardPage={Dashboard}
-                authProvider={authProvider(API_URL)}
+                authProvider={authProvider(PROXY_URL)}
                 routerProvider={routerProvider}
                 dataProvider={dataProvider(API_URL)}
                 resources={[
