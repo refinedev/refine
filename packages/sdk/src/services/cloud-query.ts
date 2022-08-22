@@ -7,7 +7,23 @@ class CloudQuery {
         this.client = client;
     }
 
-    async run(data: { key: string; config?: any }): Promise<any> {
+    async runQuery(params: {
+        key: string;
+        config?: any;
+        customParams?: any;
+    }): Promise<any> {
+        return await this.client.call({
+            method: "get",
+            url: "/data-sources/connections/run",
+            params,
+        });
+    }
+
+    async runMutation(data: {
+        key: string;
+        config?: any;
+        customParams?: any;
+    }): Promise<any> {
         return await this.client.call({
             method: "post",
             url: "/data-sources/connections/run",
