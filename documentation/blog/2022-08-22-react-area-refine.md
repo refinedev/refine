@@ -1,5 +1,5 @@
 ---
-title: React Aria - Improve accessiblilty of React components in refine apps
+title: React Aria - Improve accessibility of React components in refine apps
 description: We will be looking into ways to improve the accessibility and performance of refine app.
 slug: react-area-refine
 authors: ekekenta_clinton
