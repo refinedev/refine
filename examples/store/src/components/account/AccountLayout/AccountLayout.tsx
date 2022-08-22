@@ -34,7 +34,7 @@ export const AccountLayout: React.FC<PropsWithChildren> = ({ children }) => {
                         </span>
                     </div>
                     <div>
-                        <UnderlineLink href="/customer-service">
+                        <UnderlineLink href="mailto:info@refine.dev">
                             Customer Service
                         </UnderlineLink>
                     </div>

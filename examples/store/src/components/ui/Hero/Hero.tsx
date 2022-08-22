@@ -12,7 +12,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ description }) => {
     return (
-        <div className="bg-violet border-accent-2 border-b border-t">
+        <div className="bg-violet">
             <Container>
                 <div className={s.root}>
                     <div className={s.headline}>
@@ -29,7 +29,7 @@ export const Hero: React.FC<HeroProps> = ({ description }) => {
                     <div className={s.description}>
                         <p>{description}</p>
                         <Link
-                            href="/"
+                            href="/search"
                             className="text-accent-0 w-max-content flex cursor-pointer items-center pt-3 font-bold hover:underline"
                         >
                             <>
