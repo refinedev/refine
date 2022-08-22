@@ -25,10 +25,23 @@ Steps we'll cover includes:
 - [What is React Aria?](#what-is-react-aria)
 - [What is refine?](#what-is-refine)
 - [Why use React Aria?](#why-use-react-aria)
+  - [It is easily accessible](#it-is-easily-accessible)
+  - [It is adaptive](#it-is-adaptive)
+  - [International](#international)
+  - [It is fully customizable](#it-is-fully-customizable)
 - [Bootstrapping a refine app](#bootstrapping-a-refine-app)
+  - [Adding Tailwind CSS](#adding-tailwind-css)
 - [Creating React components](#creating-react-components)
+  - [Create Button component](#create-button-component)
+  - [Create Input component](#create-input-component)
+  - [Create Header Component](#create-header-component)
+  - [Create Modal Component](#create-modal-component)
+  - [Using React Aria components](#using-react-aria-components)
+  - [Creating a List page](#creating-a-list-page)
+  - [Creating a record](#creating-a-record)
 - [Adding Server side rendering](#adding-server-side-rendering)
 - [Conclusion](#conclusion)
+- [Live StackBlitz Example](#live-stackblitz-example)
 - [Build your React-based CRUD applications without constraints](#build-your-react-based-crud-applications-without-constraints)
 
 
@@ -669,6 +682,9 @@ import {SSRProvider} from 'react-aria';
   <App />
 </SSRProvider>
 ```
+
+## Conclusion
+Throughout this tutorial, we’ve implemented how to create a component library in React using React Aria. We started by understanding what React Aria is and why you should consider using it for creating component libraries. Then we created some component libraries using React Aria and used it to build a signup form. You can learn more about React Aria from the official [docs](https://react-spectrum.adobe.com/react-aria/index.html).
 ## Live StackBlitz Example
 
 <iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/blog/react-aria/?embed=1&view=preview&theme=dark&preset=node"
@@ -678,8 +694,7 @@ import {SSRProvider} from 'react-aria';
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
-## Conclusion
-Throughout this tutorial, we’ve implemented how to create a component library in React using React Aria. We started by understanding what React Aria is and why you should consider using it for creating component libraries. Then we created some component libraries using React Aria and used it to build a signup form. You can learn more about React Aria from the official [docs](https://react-spectrum.adobe.com/react-aria/index.html).
+
 
 
 ## Build your React-based CRUD applications without constraints
