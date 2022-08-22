@@ -21,6 +21,7 @@ This tutorial will go through process of building a simple _admin panel_ for a _
 Step by step, you're going to learn how to consume a _REST API_ and add basic CRUD functionality to your panel leveraging the unique capabilities of **refine**.
 
 Let's begin by setting up a new **refine** project.
+src
 
 ## Setting up
 
@@ -464,29 +465,26 @@ import {
 
 import { IPost } from "interfaces";
 
-const columns = React.useMemo<GridColumns<IPost>>(
-    () => [
-        { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
-        {
-            field: "status",
-            headerName: "Status",
-            minWidth: 150,
-            flex: 1,
-            renderCell: function render(params) {
-                return <TagField value={params.row.status} />;
-            },
+const columns: GridColumns<IPost> = [
+    { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
+    {
+        field: "status",
+        headerName: "Status",
+        minWidth: 150,
+        flex: 1,
+        renderCell: function render(params) {
+            return <TagField value={params.row.status} />;
         },
-        {
-            field: "createdAt",
-            headerName: "CreatedAt",
-            minWidth: 220,
-            renderCell: function render(params) {
-                return <DateField format="LLL" value={params.row.createdAt} />;
-            },
+    },
+    {
+        field: "createdAt",
+        headerName: "CreatedAt",
+        minWidth: 220,
+        renderCell: function render(params) {
+            return <DateField format="LLL" value={params.row.createdAt} />;
         },
-    ],
-    [],
-);
+    },
+];
 
 export const PostList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>();
