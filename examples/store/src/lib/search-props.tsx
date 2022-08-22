@@ -1,9 +1,9 @@
 import type { InferGetStaticPropsType } from "next";
 import { dataProvider } from "@pankod/refine-medusa";
 
-const API_URL = "https://refine-example-storefront.herokuapp.com/store";
+import { API_URL } from "./constants";
 
-export async function getSearchStaticProps() {
+export const getSearchStaticProps = async () => {
     const medusaDataProvider = dataProvider(API_URL);
 
     const categories = await medusaDataProvider.getList({
@@ -16,7 +16,7 @@ export async function getSearchStaticProps() {
         },
         revalidate: 200,
     };
-}
+};
 
 export type SearchPropsType = InferGetStaticPropsType<
     typeof getSearchStaticProps
