@@ -436,8 +436,6 @@ export const CategoryList: React.FC = () => {
     });
     return (
         <div className="container mx-auto pb-4 max-w-3xl w-full">
-            <CategoryCreate />
-
             <table className="min-w-full table-fixed divide-y divide-gray-200 border">
                 <thead className="bg-gray-100">
                     {getHeaderGroups().map((headerGroup) => (
@@ -489,7 +487,6 @@ export const CategoryList: React.FC = () => {
 
 [Refer to official refine documentation for details about creating a list page](https://refine.dev/docs/core/tutorial/#creating-a-list-page)
 
-We also import `CategoryCreate` page to show create button and modal page when clicked.
 
 We need to import and initialize the  `CategoryList` pages to `<Refine />` component.
 
@@ -603,35 +600,25 @@ export const CategoryCreate: React.FC = () => {
 };
 ```
 
-Let's import  `CategoryCreate` pages in the `<Refine />` component.
+We also need to import `CategoryCreate` page to the `CategoryList` in order to show create button and modal page when clicked.
 
-```tsx title="App.tsx"
-import { Refine } from '@pankod/refine-core';
-import routerProvider from '@pankod/refine-react-router-v6';
-import dataProvider from '@pankod/refine-simple-rest';
-import { Layout } from 'components/Layout';
-import 'index.css';
-import { CategoryList} from 'pages/category/list';
-//highlight-next-line
-import { CategoryCreate} from 'pages/category/create';
+```tsx title="pages/category/list"
 
-function App() {
+import React from 'react';
+import { useTable, ColumnDef, flexRender } from '@pankod/refine-react-table';
+// highlight-next-line
+import { CategoryCreate } from './create';
+
+export const CategoryList: React.FC = () => {
+   
+   ...
+
     return (
-        <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider('https://api.fake-rest.refine.dev')}
-            resources={[
-                {
-                    name: 'categories',
-                    list: CategoryList,
-                },
-            ]}
-            Layout={({ children }) => <Layout> {children}</Layout>}
-        />
-    );
-}
+      // highlight-next-line
+        <CategoryCreate /> 
 
-export default App;
+       ...
+};
 ```
 
 
