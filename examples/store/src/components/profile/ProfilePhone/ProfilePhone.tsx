@@ -51,7 +51,7 @@ export const ProfilePhone: React.FC<MyInformationProps> = ({ customer }) => {
         <form onSubmit={handleSubmit(onFinish)} className="w-full">
             <AccountInfo
                 label="Phone"
-                currentInfo={`${customer.phone}`}
+                currentInfo={customer.phone ? `${customer.phone}` : ""}
                 isLoading={isLoading}
                 isSuccess={isSuccess}
                 clearState={reset}
