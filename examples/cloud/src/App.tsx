@@ -16,6 +16,12 @@ import {
     ProductEdit,
     ProductShow,
 } from "pages/products";
+import {
+    CategoryList,
+    CategoryShow,
+    CategoryCreate,
+    CategoryEdit,
+} from "pages/categories";
 import { Login } from "pages/login";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -53,6 +59,13 @@ const App: React.FC = () => {
                     create: ProductCreate,
                     edit: ProductEdit,
                     show: ProductShow,
+                },
+                {
+                    name: "categories",
+                    list: CategoryList,
+                    create: CategoryCreate,
+                    edit: CategoryEdit,
+                    show: CategoryShow,
                 },
             ]}
             notificationProvider={notificationProvider}
