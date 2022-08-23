@@ -11,6 +11,7 @@ module.exports = {
             },
             boxShadow: {
                 tile: "6px 8px 16px 0 rgba(42, 42, 66, 0.4)",
+                startTiles: "4px 8px 12px 0 rgba(0, 0, 0, 0.2)",
             },
         },
     },
