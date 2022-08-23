@@ -1,11 +1,11 @@
 import { useContext } from "react";
 
 import { RefineContext } from "@contexts/refine";
-import { IRefineContext } from "../../interfaces";
+import { IRefineConfig } from "../../interfaces";
 
 type UseMutationModeType = () => {
-    mutationMode: IRefineContext["mutationMode"];
-    undoableTimeout: IRefineContext["undoableTimeout"];
+    mutationMode: IRefineConfig["mutationMode"];
+    undoableTimeout: IRefineConfig["undoableTimeout"];
 };
 
 /**
@@ -16,7 +16,10 @@ type UseMutationModeType = () => {
  * @see {@link https://refine.dev/docs/guides-and-concepts/mutation-mode} for more details.
  */
 export const useMutationMode: UseMutationModeType = () => {
-    const { mutationMode, undoableTimeout } = useContext(RefineContext);
+    const { mutationMode, undoableTimeout, config } = useContext(RefineContext);
 
-    return { mutationMode, undoableTimeout };
+    const mode = mutationMode ?? config.mutationMode;
+    const timeout = undoableTimeout ?? config.undoableTimeout;
+
+    return { mutationMode: mode, undoableTimeout: timeout };
 };

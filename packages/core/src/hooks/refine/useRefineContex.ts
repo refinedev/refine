@@ -29,7 +29,7 @@ export const useRefineContext = () => {
         Sider,
         Title,
         hasDashboard,
-        mutationMode,
+        mutationMode: mutationMode ?? config.mutationMode,
         syncWithLocation,
         undoableTimeout,
         warnWhenUnsavedChanges,
