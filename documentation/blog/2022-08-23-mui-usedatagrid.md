@@ -1,6 +1,6 @@
 ---
 title: Using Material UI DataGrid component with refine app
-description: How to use Material UI DataGrid component with refine apps.
+description: How to use Material UI DataGrid component with refine apps?
 slug: mui-datagrid-refine
 authors: michael
 tags: [material-ui, react, datagrid, mui]
