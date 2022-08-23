@@ -17,6 +17,9 @@ An auth provider must include following methods:
 ```tsx
 const authProvider = {
     login: () => Promise.resolve(),
+    register: () => Promise.resolve(),
+    resetPassword: () => Promise.resolve(),
+    updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
     checkError: () => Promise.resolve(),
@@ -188,6 +191,152 @@ If an `authProvider` is given, `resources` passed to `<Refine>` as propery are o
 :::
 
 <br />
+
+### `register`
+
+**refine** expects this method to return a resolved Promise if the register is successful, and a rejected Promise if it is not.
+
+-   If the register is successfull new user is created.
+
+-   If the register fails, **refine** displays an error notification to the user.
+
+<br />
+
+Here we show an example `register` method.
+
+```tsx title="auth-provider.ts"
+const authProvider = {
+    // highlight-start
+    register: ({ email, password }) => {
+        // We suppose we actually send a request to the back end here.
+        if (email && password) {
+            // We can create a new user here.
+            return Promise.resolve();
+        }
+        return Promise.reject();
+    },
+    // highlight-end
+};
+```
+
+<br />
+
+`register` method will be accessible via `useRegister` auth hook.
+
+```tsx
+import { useRegister } from "@pankod/refine-core";
+
+const { mutate: register } = useRegister();
+
+register(values);
+```
+
+:::tip
+`mutate` acquired from `useRegister` can accept any kind of object for values since `register` method from `authProvider` does not have a restriction on its parameters.  
+A type parameter for the values can be provided to `useRegister`.
+
+```tsx
+const { mutate: register } =
+    useRegister<{ username: string; password: string; remember: boolean }>();
+```
+
+:::
+
+:::tip
+**refine** automatically displays an error notification if the register fails. You can customize the default error message.
+
+```tsx
+register: ({ username, password, remember }) => {
+     if (email && password) {
+            return Promise.resolve();
+        }
+        //highlight-start
+        return Promise.reject({
+            name: "Register Failed!",
+            message: "The username or password missing.",
+        });
+        //highlight-end
+    },
+
+```
+
+:::
+
+> [Refer to useRegister documentation for more information. &#8594](/core/hooks/auth/useRegister.md)
+
+### `updatePassword`
+
+**refine** expects this method to return a resolved Promise if the updatePassword is successful, and a rejected Promise if it is not.
+
+-   If the update password is successfull new user is created.
+
+-   If the update password fails, **refine** displays an error notification to the user.
+
+<br />
+
+Here we show an example `updatePassword` method.
+
+```tsx title="auth-provider.ts"
+const authProvider = {
+    // highlight-start
+    updatePassword: ({ password, newPassword }) => {
+        // We suppose we actually send a request to the back end here.
+        if (password && newPassword) {
+            //we can update password here
+            return Promise.resolve();
+        }
+        return Promise.reject();
+    },
+    // highlight-end
+};
+```
+
+<br />
+
+`resetPassword` method will be accessible via `useResetPassword` auth hook.
+
+```tsx
+import { useResetPassword } from "@pankod/refine-core";
+
+const { mutate: resetPassword } = useResetPassword();
+
+resetPassword(values);
+```
+
+:::tip
+`mutate` acquired from `useResetPassword` can accept any kind of object for values since `resetPassword` method from `authProvider` does not have a restriction on its parameters.  
+A type parameter for the values can be provided to `useResetPassword`.
+
+```tsx
+const { mutate: resetPassword } =
+    useResetPassword<{
+        email: string;
+    }>();
+```
+
+:::
+
+:::tip
+**refine** automatically displays an error notification if the update password fails. You can customize the default error message.
+
+```tsx
+resetPassword: ({ email }) => {
+     if (email) {
+            return Promise.resolve();
+        }
+        //highlight-start
+        return Promise.reject({
+            name: "Reset Password Failed!",
+            message: "The email is missing.",
+        });
+        //highlight-end
+    },
+
+```
+
+:::
+
+> [Refer to useResetPassword documentation for more information. &#8594](/core/hooks/auth/useResetPassword.md)
 
 ### `logout`
 
@@ -581,10 +730,9 @@ We recommend using **axios** as the **HTTP** client with the **@pankod/refine-si
 
 Since default headers are per Axios instance it is important that you create a single Axios instance that will be re-used throughout your Refine project. There are a few methods to accomplish this, as shown one could create a variable that you import in other parts of your project and use as necessary. Another option would be to use a `Singleton` model which may work better depending on your code structure.
 
-Another option for setting the authorization for Axios is to use `axios.interceptors.request.use()`. This *intercepts* any request made and performs some function on that request. In theory, this function could do anything, for instance checking browser local storage for a key/token and inserting it somewhere in the request before sending the request. See the [interceptor](https://axios-http.com/docs/interceptors) docs for more information. 
+Another option for setting the authorization for Axios is to use `axios.interceptors.request.use()`. This _intercepts_ any request made and performs some function on that request. In theory, this function could do anything, for instance checking browser local storage for a key/token and inserting it somewhere in the request before sending the request. See the [interceptor](https://axios-http.com/docs/interceptors) docs for more information.
 
 Here is an example of how one could use the interceptors to include authorization information in requests. This example uses Bearer tokens and assumes they've been saved in browser local storage:
-
 
 ```tsx title="App.tsx"
 ...
@@ -651,10 +799,8 @@ const App = () => {
 ```
 
 :::note
-Interceptors are also a great way for refreshing tokens when they expire. 
+Interceptors are also a great way for refreshing tokens when they expire.
 :::
-
-
 
 ## Hooks and Components
 
