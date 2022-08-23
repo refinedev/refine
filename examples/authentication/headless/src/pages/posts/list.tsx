@@ -1,124 +1,189 @@
-import {
-    IResourceComponentsProps,
-    useMany,
-    getDefaultFilter,
-} from "@pankod/refine-core";
+import React from "react";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useNavigation } from "@pankod/refine-core";
 
-import {
-    List,
-    Table,
-    TextField,
-    Space,
-    EditButton,
-    ShowButton,
-    FilterDropdown,
-    Select,
-    Radio,
-    TagField,
-} from "@pankod/refine-antd";
+import { IPost } from "interfaces";
 
-import { useTable, useSelect } from "@pankod/refine-antd";
+export const PostList: React.FC = () => {
+    const { edit, create } = useNavigation();
 
-import { IPost, ICategory } from "../../interfaces";
+    const columns = React.useMemo<ColumnDef<IPost>[]>(
+        () => [
+            {
+                id: "id",
+                header: "ID",
+                accessorKey: "id",
+            },
+            {
+                id: "title",
+                header: "Title",
+                accessorKey: "title",
+                meta: {
+                    filterOperator: "contains",
+                },
+            },
+            {
+                id: "status",
+                header: "Status",
+                accessorKey: "status",
+            },
+            {
+                id: "createdAt",
+                header: "CreatedAt",
+                accessorKey: "createdAt",
+            },
+            {
+                id: "action",
+                Header: "Action",
+                accessorKey: "id",
+                cell: function render({ getValue }) {
+                    return (
+                        <button
+                            onClick={() => edit("posts", getValue() as number)}
+                        >
+                            Edit
+                        </button>
+                    );
+                },
+            },
+        ],
+        [],
+    );
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, filters } = useTable<IPost>({
-        syncWithLocation: true,
-    });
+    const {
+        getHeaderGroups,
+        getRowModel,
+        getState,
+        setPageIndex,
+        getCanPreviousPage,
+        getPageCount,
+        getCanNextPage,
+        nextPage,
+        previousPage,
+        setPageSize,
+        getColumn,
+    } = useTable<IPost>({ columns });
 
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data, isLoading } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
-
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: "categories",
-        optionLabel: "title",
-        optionValue: "id",
-        defaultValue: getDefaultFilter("category.id", filters, "in"),
-    });
+    const titleColumn = getColumn("title");
 
     return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-                <Table.Column
-                    dataIndex={["category", "id"]}
-                    title="Category"
-                    render={(value) => {
-                        if (isLoading) {
-                            return <TextField value="Loading..." />;
-                        }
-
+        <>
+            <div>
+                <button onClick={() => create("posts")}>Create Post</button>
+                <br />
+                <br />
+                <label htmlFor="title">Title: </label>
+                <input
+                    id="title"
+                    type="text"
+                    value={(titleColumn.getFilterValue() as string) ?? ""}
+                    onChange={(event) =>
+                        titleColumn.setFilterValue(event.target.value)
+                    }
+                />
+            </div>
+            <table>
+                <thead>
+                    {getHeaderGroups().map((headerGroup) => (
+                        <tr key={headerGroup.id}>
+                            {headerGroup.headers.map((header) => (
+                                <th key={header.id} colSpan={header.colSpan}>
+                                    {header.isPlaceholder ? null : (
+                                        <div
+                                            onClick={header.column.getToggleSortingHandler()}
+                                        >
+                                            {flexRender(
+                                                header.column.columnDef.header,
+                                                header.getContext(),
+                                            )}
+                                            {{
+                                                asc: " 🔼",
+                                                desc: " 🔽",
+                                            }[
+                                                header.column.getIsSorted() as string
+                                            ] ?? null}
+                                        </div>
+                                    )}
+                                </th>
+                            ))}
+                        </tr>
+                    ))}
+                </thead>
+                <tbody>
+                    {getRowModel().rows.map((row) => {
                         return (
-                            <TextField
-                                value={
-                                    data?.data.find((item) => item.id === value)
-                                        ?.title
-                                }
-                            />
+                            <tr key={row.id}>
+                                {row.getVisibleCells().map((cell) => {
+                                    return (
+                                        <td key={cell.id}>
+                                            {flexRender(
+                                                cell.column.columnDef.cell,
+                                                cell.getContext(),
+                                            )}
+                                        </td>
+                                    );
+                                })}
+                            </tr>
                         );
+                    })}
+                </tbody>
+            </table>
+
+            <div>
+                <button
+                    onClick={() => setPageIndex(0)}
+                    disabled={!getCanPreviousPage()}
+                >
+                    {"<<"}
+                </button>
+                <button
+                    onClick={() => previousPage()}
+                    disabled={!getCanPreviousPage()}
+                >
+                    {"<"}
+                </button>
+                <button onClick={() => nextPage()} disabled={!getCanNextPage()}>
+                    {">"}
+                </button>
+                <button
+                    onClick={() => setPageIndex(getPageCount() - 1)}
+                    disabled={!getCanNextPage()}
+                >
+                    {">>"}
+                </button>
+                <span>
+                    Page
+                    <strong>
+                        {getState().pagination.pageIndex + 1} of{" "}
+                        {getPageCount()}
+                    </strong>
+                </span>
+                <span>
+                    | Go to page:
+                    <input
+                        type="number"
+                        defaultValue={getState().pagination.pageIndex + 1}
+                        onChange={(e) => {
+                            const page = e.target.value
+                                ? Number(e.target.value) - 1
+                                : 0;
+                            setPageIndex(page);
+                        }}
+                    />
+                </span>{" "}
+                <select
+                    value={getState().pagination.pageSize}
+                    onChange={(e) => {
+                        setPageSize(Number(e.target.value));
                     }}
-                    filterDropdown={(props) => (
-                        <FilterDropdown
-                            {...props}
-                            mapValue={(selectedKeys) =>
-                                selectedKeys.map(Number)
-                            }
-                        >
-                            <Select
-                                style={{ minWidth: 200 }}
-                                mode="multiple"
-                                placeholder="Select Category"
-                                {...categorySelectProps}
-                            />
-                        </FilterDropdown>
-                    )}
-                    defaultFilteredValue={getDefaultFilter(
-                        "category.id",
-                        filters,
-                        "in",
-                    )}
-                />
-                <Table.Column
-                    dataIndex="status"
-                    title="Status"
-                    render={(value: string) => <TagField value={value} />}
-                    filterDropdown={(props: any) => (
-                        <FilterDropdown {...props}>
-                            <Radio.Group>
-                                <Radio value="published">Published</Radio>
-                                <Radio value="draft">Draft</Radio>
-                                <Radio value="rejected">Rejected</Radio>
-                            </Radio.Group>
-                        </FilterDropdown>
-                    )}
-                />
-                <Table.Column<IPost>
-                    title="Actions"
-                    dataIndex="actions"
-                    render={(_, record) => (
-                        <Space>
-                            <EditButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                            <ShowButton
-                                hideText
-                                size="small"
-                                recordItemId={record.id}
-                            />
-                        </Space>
-                    )}
-                />
-            </Table>
-        </List>
+                >
+                    {[10, 20, 30, 40, 50].map((pageSize) => (
+                        <option key={pageSize} value={pageSize}>
+                            Show {pageSize}
+                        </option>
+                    ))}
+                </select>
+            </div>
+        </>
     );
 };

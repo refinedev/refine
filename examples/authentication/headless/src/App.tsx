@@ -1,14 +1,9 @@
 import { AuthPage, AuthProvider, Refine } from "@pankod/refine-core";
-import {
-    notificationProvider,
-    Layout,
-    ErrorComponent,
-} from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 import "@pankod/refine-antd/dist/styles.min.css";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
+import { PostList, PostCreate, PostEdit } from "./pages/posts";
 import { RegisterPage } from "./pages/auth";
 import { ForgotPasswordPage } from "./pages/auth/forgotPassword";
 import { ExamplePage } from "./pages/example";
@@ -92,10 +87,7 @@ const App: React.FC = () => {
                 ],
             }}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={notificationProvider}
             authProvider={authProvider}
-            Layout={Layout}
-            catchAll={<ErrorComponent />}
             AuthPage={AuthPage}
             resources={[
                 {
@@ -103,7 +95,6 @@ const App: React.FC = () => {
                     list: PostList,
                     create: PostCreate,
                     edit: PostEdit,
-                    show: PostShow,
                     canDelete: true,
                 },
             ]}

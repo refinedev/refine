@@ -58,7 +58,7 @@ export interface RefineProps {
     resources?: ResourceProps[];
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
-    /** @deprecated Login page to AuthPage */
+    /** @deprecated LoginPage deprecated. Use AuthPage instead. */
     LoginPage?: React.FC;
     AuthPage?: React.FC;
     DashboardPage?: React.FC;
