@@ -41,7 +41,7 @@ spec:
                   name: {{ .Release.Name }}-auth
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8000
               protocol: TCP
           livenessProbe:
             httpGet:
