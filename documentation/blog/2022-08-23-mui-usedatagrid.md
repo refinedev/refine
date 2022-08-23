@@ -1,5 +1,5 @@
 ---
-title: Using Material UI DataGrid Component refine useDataGrid hook
+title: Using Material UI DataGrid component with refine app
 description: How to use Material UI DataGrid component with refine apps.
 slug: mui-datagrid-refine
 authors: michael
