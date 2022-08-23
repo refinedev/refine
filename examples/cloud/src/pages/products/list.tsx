@@ -6,6 +6,8 @@ import {
     Space,
     EditButton,
     ShowButton,
+    FilterDropdown,
+    Input,
 } from "@pankod/refine-antd";
 import { useTable } from "@pankod/refine-antd";
 
@@ -33,13 +35,37 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
     // override tableProps
     tableProps.dataSource = data;
     tableProps.loading = isLoading;
+    tableProps.onChange = (_pagination, filters) => {
+        if (Object.keys(filters).length > 0) {
+            mutate({
+                key: "postgresql-find-products",
+                customParams: { ...filters },
+            });
+        }
+    };
 
     return (
         <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="name" title="Title" />
-                <Table.Column dataIndex="price" title="Price" />
+                <Table.Column
+                    dataIndex="name"
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Input placeholder="Product Name" />
+                        </FilterDropdown>
+                    )}
+                    title="Title"
+                />
+                <Table.Column
+                    dataIndex="price"
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                            <Input placeholder="Price" />
+                        </FilterDropdown>
+                    )}
+                    title="Price"
+                />
                 <Table.Column<IProduct>
                     title="Actions"
                     dataIndex="actions"
