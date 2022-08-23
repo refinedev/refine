@@ -24,6 +24,13 @@ export interface IRefineContext {
     OffLayoutArea?: React.FC;
     liveMode?: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
+    config: {
+        mutationMode?: MutationMode;
+        syncWithLocation?: boolean;
+        warnWhenUnsavedChanges?: boolean;
+        undoableTimeout?: number;
+        liveMode?: LiveModeProps["liveMode"];
+    };
 }
 
 export interface IRefineContextProvider {
@@ -43,5 +50,12 @@ export interface IRefineContextProvider {
     OffLayoutArea?: React.FC;
     liveMode?: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
+    config: {
+        mutationMode?: MutationMode;
+        syncWithLocation?: boolean;
+        warnWhenUnsavedChanges?: boolean;
+        undoableTimeout?: number;
+        liveMode?: LiveModeProps["liveMode"];
+    };
     children?: ReactNode;
 }

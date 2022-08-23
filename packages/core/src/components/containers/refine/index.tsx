@@ -61,9 +61,13 @@ export interface RefineProps {
     LoginPage?: React.FC;
     DashboardPage?: React.FC;
     ReadyPage?: React.FC;
+    /** @deprecated mutationMode is deprecated. Use config instead. */
     mutationMode?: MutationMode;
+    /** @deprecated mutationMode is deprecated. Use config instead. */
     syncWithLocation?: boolean;
+    /** @deprecated mutationMode is deprecated. Use config instead. */
     warnWhenUnsavedChanges?: boolean;
+    /** @deprecated mutationMode is deprecated. Use config instead. */
     undoableTimeout?: number;
     Layout?: React.FC<LayoutProps>;
     Sider?: React.FC;
@@ -71,14 +75,30 @@ export interface RefineProps {
     Footer?: React.FC;
     OffLayoutArea?: React.FC;
     Title?: React.FC<TitleProps>;
+    /** @deprecated mutationMode is deprecated. Use config instead. */
     reactQueryClientConfig?: QueryClientConfig;
+    /** @deprecated mutationMode is deprecated. Use config instead. */
     reactQueryDevtoolConfig?:
         | React.ComponentProps<typeof ReactQueryDevtools>
         | false;
+    /** @deprecated mutationMode is deprecated. Use config instead. */
     liveMode?: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
     children?: React.ReactNode;
     disableTelemetry?: boolean;
+    config: {
+        mutationMode?: MutationMode;
+        syncWithLocation?: boolean;
+        warnWhenUnsavedChanges?: boolean;
+        undoableTimeout?: number;
+        liveMode?: LiveModeProps["liveMode"];
+        reactQuery: {
+            clientConfig?: QueryClientConfig;
+            devtoolConfig?:
+                | React.ComponentProps<typeof ReactQueryDevtools>
+                | false;
+        };
+    };
 }
 
 /**
@@ -118,6 +138,7 @@ export const Refine: React.FC<RefineProps> = ({
     liveMode,
     onLiveEvent,
     disableTelemetry = false,
+    config,
 }) => {
     const queryClient = useDeepMemo(() => {
         return new QueryClient({
@@ -227,6 +248,7 @@ export const Refine: React.FC<RefineProps> = ({
                                                         onLiveEvent={
                                                             onLiveEvent
                                                         }
+                                                        config={config}
                                                     >
                                                         <UnsavedWarnContextProvider>
                                                             <RouterComponent>

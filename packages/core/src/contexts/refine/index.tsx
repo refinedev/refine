@@ -19,6 +19,13 @@ export const RefineContext = React.createContext<IRefineContext>({
     OffLayoutArea: undefined,
     liveMode: "off",
     onLiveEvent: undefined,
+    config: {
+        mutationMode: "pessimistic",
+        syncWithLocation: false,
+        undoableTimeout: 5000,
+        warnWhenUnsavedChanges: false,
+        liveMode: "off",
+    },
 });
 
 export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
@@ -39,6 +46,7 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
     catchAll,
     liveMode = "off",
     onLiveEvent,
+    config,
 }) => {
     return (
         <RefineContext.Provider
@@ -59,6 +67,7 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
                 catchAll,
                 liveMode,
                 onLiveEvent,
+                config,
             }}
         >
             {children}
