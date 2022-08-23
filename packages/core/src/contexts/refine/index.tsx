@@ -1,9 +1,21 @@
 import React from "react";
 
-import { IRefineContext, IRefineContextProvider } from "./IRefineContext";
+import {
+    IRefineConfig,
+    IRefineContext,
+    IRefineContextProvider,
+} from "./IRefineContext";
 import { DefaultLayout } from "@components/layoutWrapper/defaultLayout";
 
 import { LoginPage as DefaultLoginPage } from "@components/pages";
+
+export const defaultRefineConfig: IRefineConfig = {
+    mutationMode: "pessimistic",
+    syncWithLocation: false,
+    undoableTimeout: 5000,
+    warnWhenUnsavedChanges: false,
+    liveMode: "off",
+};
 
 export const RefineContext = React.createContext<IRefineContext>({
     hasDashboard: false,
@@ -19,13 +31,7 @@ export const RefineContext = React.createContext<IRefineContext>({
     OffLayoutArea: undefined,
     liveMode: "off",
     onLiveEvent: undefined,
-    config: {
-        mutationMode: "pessimistic",
-        syncWithLocation: false,
-        undoableTimeout: 5000,
-        warnWhenUnsavedChanges: false,
-        liveMode: "off",
-    },
+    config: defaultRefineConfig,
 });
 
 export const RefineContextProvider: React.FC<IRefineContextProvider> = ({

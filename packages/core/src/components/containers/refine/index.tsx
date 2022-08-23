@@ -13,7 +13,7 @@ import { DataContextProvider } from "@contexts/data";
 import { LiveContextProvider } from "@contexts/live";
 import { TranslationContextProvider } from "@contexts/translation";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
-import { RefineContextProvider } from "@contexts/refine";
+import { defaultRefineConfig, RefineContextProvider } from "@contexts/refine";
 import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 import { UnsavedWarnContextProvider } from "@contexts/unsavedWarn";
 import { RouterContextProvider } from "@contexts/router";
@@ -86,13 +86,13 @@ export interface RefineProps {
     onLiveEvent?: LiveModeProps["onLiveEvent"];
     children?: React.ReactNode;
     disableTelemetry?: boolean;
-    config: {
+    config?: {
         mutationMode?: MutationMode;
         syncWithLocation?: boolean;
         warnWhenUnsavedChanges?: boolean;
         undoableTimeout?: number;
         liveMode?: LiveModeProps["liveMode"];
-        reactQuery: {
+        reactQuery?: {
             clientConfig?: QueryClientConfig;
             devtoolConfig?:
                 | React.ComponentProps<typeof ReactQueryDevtools>
@@ -123,10 +123,10 @@ export const Refine: React.FC<RefineProps> = ({
     children,
     liveProvider,
     i18nProvider,
-    mutationMode = "pessimistic",
-    syncWithLocation = false,
-    warnWhenUnsavedChanges = false,
-    undoableTimeout = 5000,
+    mutationMode,
+    syncWithLocation,
+    warnWhenUnsavedChanges,
+    undoableTimeout,
     Title,
     Layout,
     Sider,
@@ -248,7 +248,10 @@ export const Refine: React.FC<RefineProps> = ({
                                                         onLiveEvent={
                                                             onLiveEvent
                                                         }
-                                                        config={config}
+                                                        config={{
+                                                            ...defaultRefineConfig,
+                                                            ...config,
+                                                        }}
                                                     >
                                                         <UnsavedWarnContextProvider>
                                                             <RouterComponent>
