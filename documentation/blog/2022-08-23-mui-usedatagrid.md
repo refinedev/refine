@@ -1,9 +1,9 @@
 ---
-title: Using MUI  Component With Refine useDataGrid Hook
-description: Overview and examples for Neumorphic CSS implementations.
-slug: mui-usedatagrid
-authors: joel_adewole
-tags: [neumorphism, css, UI, neumorphic, design]
+title: Using Material UI DataGrid Component refine useDataGrid hook
+description: How to use Material UI DataGrid component with refine apps.
+slug: mui-datagrid-refine
+authors: michael
+tags: [material-ui, react, datagrid, mui]
 image: https://refine.dev/img/refine_social.png
 hide_table_of_contents: false
 ---
@@ -23,7 +23,7 @@ import employeesFilter from '@site/static/img/blog/2022-08-23-mui-usedatagrid/em
 
 
 ## Introduction
-In this article, we'll show how to use Material UI X `<DataGrid/>` component and refine's `useDataGrid` hook to render data from a mock API server in tabular form using a `refine` application.  
+In this article, we'll show how to use Material UI `<DataGrid/>` component and refine's `useDataGrid` hook to render data from a mock API server in tabular form using a `refine` application.  
 
 <!--truncate-->
 
