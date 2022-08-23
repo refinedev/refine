@@ -10,9 +10,9 @@
     "site_name": "refine Store",
     "images": [
       {
-        "url": "/card.png",
-        "width": "800",
-        "height": "600",
+        "url": "/social.png",
+        "width": "1240",
+        "height": "640",
         "alt": "refine Store"
       }
     ]
