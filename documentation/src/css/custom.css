@@ -477,3 +477,7 @@ html {
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
 }
+
+.blog-wrapper aside + main, .docs-wrapper aside + main {
+    padding-top: 64px;
+}
