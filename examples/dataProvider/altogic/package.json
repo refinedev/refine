@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@pankod/refine-altogic": "^3.27.0",
-    "@pankod/refine-antd": "^3.37.2",
+    "@pankod/refine-antd": "^3.37.3",
     "@pankod/refine-core": "^3.58.3",
     "@pankod/refine-react-router-v6": "^3.31.0",
     "@types/node": "^12.20.11",
