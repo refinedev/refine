@@ -46,37 +46,35 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             }),
         );
 
-        return data.cart;
+        return data.cart.id;
     };
 
     try {
         const searchProps = await getSearchStaticProps();
 
-        const cartId = cookies[CART_KEY];
+        let cartId = cookies[CART_KEY];
 
         if (!cartId) {
-            const cart = await createNewCart();
-
-            const products = await medusaDataProvider.getList<Product>({
-                resource: "products",
-                filters: [
-                    {
-                        field: "cart_id",
-                        value: cart.id,
-                        operator: "eq",
-                    },
-                ],
-            });
-
-            return {
-                props: {
-                    initialData: products,
-                    ...searchProps.props,
-                },
-            };
+            cartId = await createNewCart();
         }
 
-        return { props: {} };
+        const products = await medusaDataProvider.getList<Product>({
+            resource: "products",
+            filters: [
+                {
+                    field: "cart_id",
+                    value: cartId,
+                    operator: "eq",
+                },
+            ],
+        });
+
+        return {
+            props: {
+                initialData: products,
+                ...searchProps.props,
+            },
+        };
     } catch (error) {
         return { props: {} };
     }

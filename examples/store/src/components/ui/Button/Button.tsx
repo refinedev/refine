@@ -62,8 +62,12 @@ export const Button: React.FC<ButtonProps> = forwardRef((props, buttonRef) => {
             }}
             {...rest}
         >
-            {!loading && children}
-            {loading && <LoadingDots />}
+            {children}
+            {loading && (
+                <i className="m-0 flex pl-2">
+                    <LoadingDots />
+                </i>
+            )}
         </Component>
     );
 });

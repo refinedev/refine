@@ -1,19 +1,19 @@
 {
-  "title": "ACME Storefront | Powered by Next.js Commerce",
-  "titleTemplate": "%s - ACME Storefront",
-  "description": "Next.js Commerce - https://www.nextjs.org/commerce",
+  "title": "refine Store | Show Your Support Proudly",
+  "titleTemplate": "%s - refine Store",
+  "description": "Official swag store to buy refine branded t-shirt's, mugs and other merchandise",
   "openGraph": {
-    "title": "ACME Storefront | Powered by Next.js Commerce",
-    "description": "Next.js Commerce - https://www.nextjs.org/commerce",
+    "title": "refine Store | Show Your Support Proudly",
+    "description": "Official swag store to buy refine branded t-shirt's, mugs and other merchandise",
     "type": "website",
-    "url": "https://nextjs.org/commerce",
-    "site_name": "Next.js Commerce",
+    "url": "https://store.refine.dev/",
+    "site_name": "refine Store",
     "images": [
       {
         "url": "/card.png",
         "width": "800",
         "height": "600",
-        "alt": "Next.js Commerce"
+        "alt": "refine Store"
       }
     ]
   },

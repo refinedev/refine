@@ -9,7 +9,7 @@ import routerProvider from "@pankod/refine-nextjs-router";
 import dataProvider, { authProvider } from "@pankod/refine-medusa";
 
 import { API_URL, PROXY_URL } from "@lib/constants";
-import { Dashboard } from "@components";
+import { Dashboard, SEO } from "@components";
 import Layout from "@components/common/Layout";
 import { CartProvider, ManagedUIContext } from "@lib/context";
 
@@ -35,6 +35,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                 warnWhenUnsavedChanges={true}
             >
                 <CartProvider>
+                    <SEO />
                     <Component {...pageProps} />
                 </CartProvider>
             </Refine>

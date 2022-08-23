@@ -88,43 +88,40 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             }),
         );
 
-        return data.cart;
+        return data.cart.id;
     };
 
     try {
         const searchStaticProps = await getSearchStaticProps();
 
         const { q } = query;
-        const cartId = cookies[CART_KEY];
+        let cartId = cookies[CART_KEY];
 
         if (!cartId) {
-            const cart = await createNewCart();
-
-            const data = await medusaDataProvider.getList<Product>({
-                resource: "products",
-                filters: [
-                    {
-                        field: "q",
-                        operator: "eq",
-                        value: q,
-                    },
-                    {
-                        field: "cart_id",
-                        value: cart.id,
-                        operator: "eq",
-                    },
-                ],
-            });
-
-            return {
-                props: {
-                    initialData: data,
-                    ...searchStaticProps.props,
-                },
-            };
+            cartId = await createNewCart();
         }
+        const data = await medusaDataProvider.getList<Product>({
+            resource: "products",
+            filters: [
+                {
+                    field: "q",
+                    operator: "eq",
+                    value: q,
+                },
+                {
+                    field: "cart_id",
+                    value: cartId,
+                    operator: "eq",
+                },
+            ],
+        });
 
-        return { props: {} };
+        return {
+            props: {
+                initialData: data,
+                ...searchStaticProps.props,
+            },
+        };
     } catch (error) {
         return { props: {} };
     }
