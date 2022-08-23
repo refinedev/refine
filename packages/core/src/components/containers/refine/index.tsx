@@ -13,7 +13,7 @@ import { DataContextProvider } from "@contexts/data";
 import { LiveContextProvider } from "@contexts/live";
 import { TranslationContextProvider } from "@contexts/translation";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
-import { defaultRefineConfig, RefineContextProvider } from "@contexts/refine";
+import { defaultRefineOptions, RefineContextProvider } from "@contexts/refine";
 import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 import { UnsavedWarnContextProvider } from "@contexts/unsavedWarn";
 import { RouterContextProvider } from "@contexts/router";
@@ -86,7 +86,7 @@ export interface RefineProps {
     onLiveEvent?: LiveModeProps["onLiveEvent"];
     children?: React.ReactNode;
     disableTelemetry?: boolean;
-    config?: {
+    options?: {
         mutationMode?: MutationMode;
         syncWithLocation?: boolean;
         warnWhenUnsavedChanges?: boolean;
@@ -138,7 +138,7 @@ export const Refine: React.FC<RefineProps> = ({
     liveMode,
     onLiveEvent,
     disableTelemetry = false,
-    config,
+    options,
 }) => {
     const queryClient = useDeepMemo(() => {
         return new QueryClient({
@@ -248,9 +248,9 @@ export const Refine: React.FC<RefineProps> = ({
                                                         onLiveEvent={
                                                             onLiveEvent
                                                         }
-                                                        config={{
-                                                            ...defaultRefineConfig,
-                                                            ...config,
+                                                        options={{
+                                                            ...defaultRefineOptions,
+                                                            ...options,
                                                         }}
                                                     >
                                                         <UnsavedWarnContextProvider>

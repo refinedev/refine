@@ -1,10 +1,10 @@
 import { useContext } from "react";
 
 import { RefineContext } from "@contexts/refine";
-import { IRefineConfig } from "../../interfaces";
+import { IRefineOptions } from "../../interfaces";
 
 type UseSyncWithLocationType = () => {
-    syncWithLocation: IRefineConfig["syncWithLocation"];
+    syncWithLocation: IRefineOptions["syncWithLocation"];
 };
 
 /**
@@ -14,7 +14,7 @@ type UseSyncWithLocationType = () => {
  * @see {@link https://refine.dev/docs/api-references/components/refine-config#syncwithlocation} for more details.
  */
 export const useSyncWithLocation: UseSyncWithLocationType = () => {
-    const { syncWithLocation, config } = useContext(RefineContext);
+    const { syncWithLocation, options } = useContext(RefineContext);
 
-    return { syncWithLocation: syncWithLocation ?? config.syncWithLocation };
+    return { syncWithLocation: syncWithLocation ?? options.syncWithLocation };
 };

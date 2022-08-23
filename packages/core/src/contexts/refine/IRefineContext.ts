@@ -7,7 +7,7 @@ import {
     LiveModeProps,
 } from "../../interfaces";
 
-export interface IRefineConfig {
+export interface IRefineOptions {
     mutationMode: MutationMode;
     syncWithLocation: boolean;
     warnWhenUnsavedChanges: boolean;
@@ -32,7 +32,7 @@ export interface IRefineContext {
     OffLayoutArea?: React.FC;
     liveMode?: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
-    config: IRefineConfig;
+    options: IRefineOptions;
 }
 
 export interface IRefineContextProvider {
@@ -52,6 +52,6 @@ export interface IRefineContextProvider {
     OffLayoutArea?: React.FC;
     liveMode?: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
-    config: IRefineConfig;
+    options: IRefineOptions;
     children?: ReactNode;
 }
