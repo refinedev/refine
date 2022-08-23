@@ -17,6 +17,7 @@ coverage
 
 !examples/fineFoods/admin/antd/.env
 !examples/fineFoods/admin/mui/.env
+!examples/store/.env
 
 
 npm-debug.log*
