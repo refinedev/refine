@@ -4,8 +4,7 @@ const rewrites = () => {
     return [
         {
             source: "/store/:id*",
-            destination:
-                "https://refine-example-storefront.herokuapp.com/store/:id*",
+            destination: "https://api.store.refine.dev/store/:id*",
         },
     ];
 };
