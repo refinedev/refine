@@ -1,102 +1,64 @@
-import React, { useState } from "react";
-import { IResourceComponentsProps } from "@pankod/refine-core";
+import { useEffect } from "react";
+import { useForm } from "@pankod/refine-react-hook-form";
+import { useSelect } from "@pankod/refine-core";
 
-import { Edit, Form, Input, Select } from "@pankod/refine-antd";
+export const PostEdit: React.FC = () => {
+    const {
+        refineCore: { onFinish, formLoading, queryResult },
+        register,
+        handleSubmit,
+        resetField,
+        formState: { errors },
+    } = useForm();
 
-import { useForm, useSelect } from "@pankod/refine-antd";
-
-import ReactMarkdown from "react-markdown";
-import ReactMde from "react-mde";
-
-import "react-mde/lib/styles/css/react-mde-all.css";
-
-import { IPost, ICategory } from "../../interfaces";
-
-export const PostEdit: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
-        warnWhenUnsavedChanges: true,
-    });
-
-    const postData = queryResult?.data?.data;
-    const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    const { options } = useSelect({
         resource: "categories",
-        defaultValue: postData?.category.id,
+        defaultValue: queryResult?.data?.data.category.id,
     });
 
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
+    useEffect(() => {
+        resetField("category.id");
+    }, [options]);
 
     return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label="Title"
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Category"
-                    name={["category", "id"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...categorySelectProps} />
-                </Form.Item>
-                <Form.Item
-                    label="Status"
-                    name="status"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select
-                        options={[
-                            {
-                                label: "Published",
-                                value: "published",
-                            },
-                            {
-                                label: "Draft",
-                                value: "draft",
-                            },
-                            {
-                                label: "Rejected",
-                                value: "rejected",
-                            },
-                        ]}
-                    />
-                </Form.Item>
-                <Form.Item
-                    label="Content"
-                    name="content"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <ReactMde
-                        selectedTab={selectedTab}
-                        onTabChange={setSelectedTab}
-                        generateMarkdownPreview={(markdown) =>
-                            Promise.resolve(
-                                <ReactMarkdown>{markdown}</ReactMarkdown>,
-                            )
-                        }
-                    />
-                </Form.Item>
-            </Form>
-        </Edit>
+        <form onSubmit={handleSubmit(onFinish)}>
+            <label>Title: </label>
+            <input {...register("title", { required: true })} />
+            {errors.title && <span>This field is required</span>}
+            <br />
+            <label>Status: </label>
+            <select {...register("status")}>
+                <option value="published">published</option>
+                <option value="draft">draft</option>
+                <option value="rejected">rejected</option>
+            </select>
+            <br />
+            <label>Category: </label>
+            <select
+                {...register("category.id", {
+                    required: true,
+                })}
+                defaultValue={queryResult?.data?.data.category.id}
+            >
+                {options?.map((category) => (
+                    <option key={category.value} value={category.value}>
+                        {category.label}
+                    </option>
+                ))}
+            </select>
+            {errors.category && <span>This field is required</span>}
+            <br />
+            <label>Content: </label>
+            <br />
+            <textarea
+                {...register("content", { required: true })}
+                rows={10}
+                cols={50}
+            />
+            {errors.content && <span>This field is required</span>}
+            <br />
+            <input type="submit" value="Submit" />
+            {formLoading && <p>Loading</p>}
+        </form>
     );
 };
