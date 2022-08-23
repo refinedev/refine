@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
     useDataGrid,
     DataGrid,
@@ -7,46 +7,46 @@ import {
     GridToolbar,
     FormControlLabel,
     Checkbox,
-} from '@pankod/refine-mui';
+} from "@pankod/refine-mui";
 
 const EmployeeList: React.FC = () => {
     const { dataGridProps, setFilters } = useDataGrid();
 
     const columns = React.useMemo<GridColumns>(
         () => [
-            { field: 'id', headerName: 'ID', Width: 30 },
+            { field: "id", headerName: "ID", Width: 30 },
             {
-                field: 'full_name',
-                headerName: 'Full Name',
+                field: "full_name",
+                headerName: "Full Name",
                 minWidth: 150,
                 flex: 1,
                 valueGetter: (params) =>
-                    `${params.row.first_name || ''} ${
-                        params.row.last_name || ''
+                    `${params.row.first_name || ""} ${
+                        params.row.last_name || ""
                     }`,
             },
             {
-                field: 'email',
-                headerName: 'Email',
+                field: "email",
+                headerName: "Email",
                 minWidth: 250,
             },
             {
-                field: 'department',
-                headerName: 'Department',
+                field: "department",
+                headerName: "Department",
                 minWidth: 150,
             },
             {
-                field: 'role',
-                headerName: 'Role',
+                field: "role",
+                headerName: "Role",
                 minWidth: 150,
             },
             {
-                field: 'level',
-                headerName: 'Level',
+                field: "level",
+                headerName: "Level",
                 Width: 30,
             },
         ],
-        []
+        [],
     );
     const {
         filterMode,
@@ -57,13 +57,13 @@ const EmployeeList: React.FC = () => {
 
     const handleFilter = (
         e: React.ChangeEvent<HTMLInputElement>,
-        checked: boolean
+        checked: boolean,
     ) => {
         setFilters([
             {
-                field: 'role',
-                value: checked ? 'Recruiter' : undefined,
-                operator: 'eq',
+                field: "role",
+                value: checked ? "Recruiter" : undefined,
+                operator: "eq",
             },
         ]);
     };

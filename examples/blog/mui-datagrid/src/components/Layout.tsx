@@ -1,6 +1,6 @@
-import React from 'react';
-import { LayoutProps } from '@pankod/refine-core';
-import styled from 'styled-components';
+import React from "react";
+import { LayoutProps } from "@pankod/refine-core";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
     width: 80%;
