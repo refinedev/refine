@@ -5,8 +5,8 @@ import { Login, Register, ResetPassword, UpdatePassword } from "./components";
 export interface ILoginForm {
     username?: string;
     email?: string;
+    password?: string;
     providerName?: string;
-    password: string;
 }
 export interface IRegisterForm {
     username?: string;
