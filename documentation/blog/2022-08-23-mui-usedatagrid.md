@@ -23,7 +23,7 @@ import employeesFilter from '@site/static/img/blog/2022-08-23-mui-usedatagrid/em
 
 
 ## Introduction
-In this article, we'll show how to use Material UI `<DataGrid/>` component and refine's `useDataGrid` hook to render data from a mock API server in tabular form using a `refine` application.  
+In this article, we'll show how to use Material UI [`<DataGrid/>`](https://mui.com/x/react-data-grid/) component and refine's [`useDataGrid`](https://refine.dev/docs/ui-frameworks/mui/hooks/useDataGrid/) hook to render data from a mock API server in tabular form using a `refine` application.  
 
 <!--truncate-->
 
