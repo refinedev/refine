@@ -965,7 +965,7 @@ function App() {
                         },
                     ]}
                     //highlight-next-line
-                    mutationMode="undoable"
+                    options={{ mutationMode: "undoable" }}
                 />
             </RefineSnackbarProvider>
         </ThemeProvider>
