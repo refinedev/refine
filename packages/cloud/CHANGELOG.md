@@ -1,5 +1,11 @@
 # @pankod/refine-cloud
 
+## 2.0.4
+
+### Patch Changes
+
+-   `lodash` moved to dependencies.
+
 ## 2.0.3
 
 ### Patch Changes
