@@ -160,7 +160,7 @@ export const Refine: React.FC<RefineProps> = ({
                 },
             },
         });
-    }, [reactQueryClientConfig]);
+    }, [reactQueryClientConfig, options?.reactQuery?.clientConfig]);
 
     const notificationProviderContextValues = React.useMemo(() => {
         return typeof notificationProvider === "function"
