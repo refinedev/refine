@@ -13,12 +13,14 @@ Previously, the options were passed as a property to the `<Refine>` component. N
 -       warnWhenUnsavedChanges
 -       syncWithLocation
 -       liveMode="off"
+-       disableTelemetry={false}
 +       options={{
 +           mutationMode: "undoable",
 +           undoableTimeout: 5000,
 +           warnWhenUnsavedChanges: true,
 +           syncWithLocation: true,
 +           liveMode: "off",
++           disableTelemetry: false,
 +       }}
     />
 ```
