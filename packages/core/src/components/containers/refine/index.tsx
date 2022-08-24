@@ -85,6 +85,7 @@ export interface RefineProps {
     liveMode?: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
     children?: React.ReactNode;
+    /** @deprecated disableTelemetry is deprecated. Use config instead. */
     disableTelemetry?: boolean;
     options?: {
         mutationMode?: MutationMode;
@@ -92,6 +93,7 @@ export interface RefineProps {
         warnWhenUnsavedChanges?: boolean;
         undoableTimeout?: number;
         liveMode?: LiveModeProps["liveMode"];
+        disableTelemetry?: boolean;
         reactQuery?: {
             clientConfig?: QueryClientConfig;
             devtoolConfig?:
@@ -137,9 +139,11 @@ export const Refine: React.FC<RefineProps> = ({
     reactQueryDevtoolConfig,
     liveMode,
     onLiveEvent,
-    disableTelemetry = false,
+    disableTelemetry,
     options,
 }) => {
+    const optionsDisableTelemetry = options?.disableTelemetry ?? false;
+
     const queryClient = useDeepMemo(() => {
         return new QueryClient({
             ...reactQueryClientConfig,
@@ -260,9 +264,10 @@ export const Refine: React.FC<RefineProps> = ({
                                                         <UnsavedWarnContextProvider>
                                                             <RouterComponent>
                                                                 {children}
-                                                                {!disableTelemetry && (
-                                                                    <Telemetry />
-                                                                )}
+                                                                {!disableTelemetry &&
+                                                                    !optionsDisableTelemetry && (
+                                                                        <Telemetry />
+                                                                    )}
                                                                 <RouteChangeHandler />
                                                             </RouterComponent>
                                                         </UnsavedWarnContextProvider>

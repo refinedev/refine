@@ -10,7 +10,7 @@ const App: React.FC = () => {
         <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             routerProvider={routerProvider}
-            options={{ mutationMode: "pessimistic" }}
+            options={{ mutationMode: "pessimistic", disableTelemetry: true }}
             resources={[
                 {
                     name: "posts",
@@ -19,7 +19,6 @@ const App: React.FC = () => {
                     edit: PostEdit,
                 },
             ]}
-            disableTelemetry={true}
         />
     );
 };

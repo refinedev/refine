@@ -40,12 +40,11 @@ const App: React.FC = () => {
                     show: CategoryShow,
                 },
             ]}
-            options={{ liveMode: "auto" }}
+            options={{ liveMode: "auto", disableTelemetry: true }}
             Sider={CustomSider}
             Title={Title}
             notificationProvider={notificationProvider}
             Layout={Layout}
-            disableTelemetry={true}
         />
     );
 };

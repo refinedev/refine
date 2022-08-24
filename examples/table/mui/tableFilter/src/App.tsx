@@ -30,14 +30,13 @@ const App: React.FC = () => {
                     ReadyPage={ReadyPage}
                     Layout={Layout}
                     catchAll={<ErrorComponent />}
-                    options={{ syncWithLocation: true }}
+                    options={{ syncWithLocation: true, disableTelemetry: true }}
                     resources={[
                         {
                             name: "posts",
                             list: PostsList,
                         },
                     ]}
-                    disableTelemetry={true}
                 />
             </RefineSnackbarProvider>
         </ThemeProvider>

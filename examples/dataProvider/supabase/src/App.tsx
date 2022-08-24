@@ -84,11 +84,10 @@ const App: React.FC = () => {
                     show: PostShow,
                 },
             ]}
-            options={{ liveMode: "auto" }}
+            options={{ liveMode: "auto", disableTelemetry: true }}
             notificationProvider={notificationProvider}
             Layout={Layout}
             catchAll={<ErrorComponent />}
-            disableTelemetry={true}
         />
     );
 };

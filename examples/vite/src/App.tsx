@@ -28,7 +28,7 @@ const App: React.FC = () => {
                     canDelete: true,
                 },
             ]}
-            disableTelemetry={true}
+            options={{ disableTelemetry: true }}
         />
     );
 };

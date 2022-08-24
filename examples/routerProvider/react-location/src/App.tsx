@@ -20,6 +20,7 @@ const App: React.FC = () => {
             options={{
                 syncWithLocation: true,
                 warnWhenUnsavedChanges: true,
+                disableTelemetry: true,
             }}
             resources={[
                 {
@@ -34,7 +35,6 @@ const App: React.FC = () => {
             notificationProvider={notificationProvider}
             Layout={Layout}
             catchAll={<ErrorComponent />}
-            disableTelemetry={true}
         />
     );
 };

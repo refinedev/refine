@@ -7,7 +7,14 @@ import * as RefineMui from "@pankod/refine-mui";
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
 const Refine = (props) => (
-    <RefineCore.Refine {...props} reactQueryDevtoolConfig={false} />
+    <RefineCore.Refine
+        {...props}
+        options={{
+            reactQuery: {
+                devtoolConfig: false,
+            },
+        }}
+    />
 );
 
 const RefineDemoReactRouterV6 = (
@@ -38,8 +45,12 @@ const RefineMuiDemo: React.FC<
                     Layout={RefineMui.Layout}
                     Sider={() => null}
                     catchAll={<RefineMui.ErrorComponent />}
-                    disableTelemetry={true}
-                    reactQueryDevtoolConfig={false}
+                    options={{
+                        disableTelemetry: true,
+                        reactQuery: {
+                            devtoolConfig: false,
+                        },
+                    }}
                     {...rest}
                 />
             </RefineMui.RefineSnackbarProvider>

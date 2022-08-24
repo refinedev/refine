@@ -36,12 +36,11 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                     canDelete: true,
                 },
             ]}
-            options={{ syncWithLocation: true }}
+            options={{ syncWithLocation: true, disableTelemetry: true }}
             notificationProvider={notificationProvider}
             LoginPage={LoginPage}
             Layout={Layout}
             catchAll={<ErrorComponent />}
-            disableTelemetry={true}
         >
             <Component {...pageProps} />
         </Refine>
