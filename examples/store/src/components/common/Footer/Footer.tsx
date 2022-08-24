@@ -9,7 +9,7 @@ interface FooterProps {
 
 const links = [
     {
-        name: "Quikstart",
+        name: "Quickstart",
         url: "https://refine.dev/docs/getting-started/overview/",
     },
     {
