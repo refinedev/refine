@@ -44,7 +44,7 @@ const App: React.FC = () => {
             dataProvider={gqlDataProvider}
             // ## Refine supports GraphQL subscriptions as out-of-the-box. For more detailed information, please visit here, https://refine.dev/docs/core/providers/live-provider/
             //liveProvider={liveProvider(gqlWebSocketClient)}
-            //liveMode="auto"
+            //options={{ liveMode: "auto" }}
             resources={[
                 {
                     name: "posts",

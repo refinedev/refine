@@ -84,7 +84,7 @@ const App: React.FC = () => {
                     show: PostShow,
                 },
             ]}
-            liveMode="auto"
+            options={{ liveMode: "auto" }}
             notificationProvider={notificationProvider}
             Layout={Layout}
             catchAll={<ErrorComponent />}

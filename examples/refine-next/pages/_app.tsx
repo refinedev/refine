@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                     canDelete: true,
                 },
             ]}
-            warnWhenUnsavedChanges={true}
+            options={{ syncWithLocation: true }}
             notificationProvider={notificationProvider}
             LoginPage={LoginPage}
             Layout={Layout}

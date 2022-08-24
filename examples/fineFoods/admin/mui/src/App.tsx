@@ -70,8 +70,10 @@ const App: React.FC = () => {
                         Header={Header}
                         LoginPage={LoginPage}
                         catchAll={<ErrorComponent />}
-                        syncWithLocation
-                        warnWhenUnsavedChanges
+                        options={{
+                            syncWithLocation: true,
+                            warnWhenUnsavedChanges: true,
+                        }}
                         notificationProvider={notificationProvider}
                         OffLayoutArea={OffLayoutArea}
                         resources={[

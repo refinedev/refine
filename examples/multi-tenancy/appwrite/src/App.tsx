@@ -28,7 +28,7 @@ function App() {
                 dataProvider={dataProvider(appwriteClient)}
                 authProvider={authProvider}
                 LoginPage={Login}
-                liveMode="auto"
+                options={{ liveMode: "auto" }}
                 Sider={CustomSider}
                 resources={[
                     {
