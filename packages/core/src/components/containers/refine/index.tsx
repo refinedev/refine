@@ -143,12 +143,16 @@ export const Refine: React.FC<RefineProps> = ({
     const queryClient = useDeepMemo(() => {
         return new QueryClient({
             ...reactQueryClientConfig,
+            ...options?.reactQuery?.clientConfig,
             defaultOptions: {
                 ...reactQueryClientConfig?.defaultOptions,
+                ...options?.reactQuery?.clientConfig?.defaultOptions,
                 queries: {
                     refetchOnWindowFocus: false,
                     keepPreviousData: true,
                     ...reactQueryClientConfig?.defaultOptions?.queries,
+                    ...options?.reactQuery?.clientConfig?.defaultOptions
+                        ?.queries,
                 },
             },
         });
@@ -273,11 +277,13 @@ export const Refine: React.FC<RefineProps> = ({
                     </DataContextProvider>
                 </AuthContextProvider>
             </NotificationContextProvider>
-            {reactQueryDevtoolConfig === false ? null : (
+            {reactQueryDevtoolConfig === false ||
+            options?.reactQuery?.devtoolConfig === false ? null : (
                 <ReactQueryDevtools
                     initialIsOpen={false}
                     position="bottom-right"
                     {...(reactQueryDevtoolConfig ?? {})}
+                    {...(options?.reactQuery?.devtoolConfig ?? {})}
                 />
             )}
         </QueryClientProvider>
