@@ -12,7 +12,6 @@ export const UpdatePassword: React.FC<IAuthCommonProps> = ({
 
     const { mutate: updatePassword } = useUpdatePassword<IUpdatePasswordForm>();
 
-    const [password, setPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -34,9 +33,8 @@ export const UpdatePassword: React.FC<IAuthCommonProps> = ({
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
-                    if (password && newPassword === confirmPassword) {
+                    if (newPassword === confirmPassword) {
                         updatePassword({
-                            password,
                             newPassword,
                         });
                     }
@@ -49,16 +47,6 @@ export const UpdatePassword: React.FC<IAuthCommonProps> = ({
                         padding: 25,
                     }}
                 >
-                    <label>
-                        {translate("pages.updatePassword.password", "Password")}
-                    </label>
-                    <input
-                        type="password"
-                        required
-                        size={20}
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
                     <label>
                         {translate(
                             "pages.updatePassword.newPassword",

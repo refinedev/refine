@@ -17,7 +17,6 @@ export interface IResetPasswordForm {
     email: string;
 }
 export interface IUpdatePasswordForm {
-    password: string;
     newPassword: string;
     confirmPassword?: string;
 }

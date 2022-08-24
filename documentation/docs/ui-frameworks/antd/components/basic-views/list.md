@@ -149,6 +149,7 @@ export const ListPage: React.FC = () => {
         <List
             /* ... */
             headerProps={{
+                subTitle: "This is a subtitle",
                 style: {
                     backgroundColor: "snow",
                 },
