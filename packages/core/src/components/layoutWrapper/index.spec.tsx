@@ -1,9 +1,11 @@
 import React from "react";
-import { LayoutWrapper } from "@components/layoutWrapper";
-import { IRefineContextProvider } from "../../contexts/refine/IRefineContext";
-import { render, TestWrapper, MockJSONServer } from "@test";
 import { Route, Routes } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
+
+import { LayoutWrapper } from "@components/layoutWrapper";
+import { render, TestWrapper, MockJSONServer } from "@test";
+import { defaultRefineOptions } from "@contexts/refine";
+import { IRefineContextProvider } from "../../contexts/refine/IRefineContext";
 import { LayoutProps } from "../../interfaces";
 
 const renderWithRefineContext = (
@@ -67,10 +69,6 @@ describe("LayoutWrapper", () => {
                 <div>test </div>
             </LayoutWrapper>,
             {
-                warnWhenUnsavedChanges: false,
-                mutationMode: "pessimistic",
-                syncWithLocation: false,
-                undoableTimeout: 5000,
                 hasDashboard: false,
                 Layout: CustomLayout,
                 Sider: CustomSider,
@@ -78,6 +76,7 @@ describe("LayoutWrapper", () => {
                 Footer: CustomFooter,
                 OffLayoutArea: CustomOffLayoutArea,
                 Title: CustomTitle,
+                options: defaultRefineOptions,
             },
         );
 
@@ -109,16 +108,13 @@ describe("LayoutWrapper", () => {
                 <div>test </div>
             </LayoutWrapper>,
             {
-                warnWhenUnsavedChanges: false,
-                mutationMode: "pessimistic",
-                syncWithLocation: false,
-                undoableTimeout: 5000,
                 hasDashboard: false,
                 Sider: CustomSider,
                 Header: CustomHeader,
                 Footer: CustomFooter,
                 OffLayoutArea: CustomOffLayoutArea,
                 Title: CustomTitle,
+                options: defaultRefineOptions,
             },
         );
 
@@ -174,10 +170,7 @@ describe("LayoutWrapper", () => {
                 <div>test</div>
             </LayoutWrapper>,
             {
-                warnWhenUnsavedChanges: false,
-                mutationMode: "pessimistic",
-                syncWithLocation: false,
-                undoableTimeout: 5000,
+                options: defaultRefineOptions,
                 hasDashboard: false,
             },
         );
