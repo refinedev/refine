@@ -508,7 +508,7 @@ function App() {
             Header={Header}
             //highlight-start
             liveProvider={liveProvider(ablyClient)}
-            liveMode="auto"
+            options={{ liveMode: "auto" }}
             //highlight-end
             resources={[
                 {
@@ -666,7 +666,7 @@ const cerbos = new Cerbos({
     dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
     Header={() => <Header role={role} />}
     liveProvider={liveProvider(ablyClient)}
-    liveMode="auto"
+    options={{ liveMode: "auto" }}
     //highlight-start
     accessControlProvider={{
         can: async ({ action, params, resource }) => {

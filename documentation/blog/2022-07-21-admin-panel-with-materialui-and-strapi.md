@@ -937,7 +937,7 @@ During the timeout, mutation can be cancelled from the notification with an undo
 
 
 
-To activate mutation mode, we'll set `mutationMode` property to the `<Refine/>` component.
+To activate mutation mode, we'll set `mutationMode` property in `options` to the `<Refine/>` component.
 
 ```tsx title="src/App.tsx"
 ...
@@ -1016,9 +1016,11 @@ function App() {
             <RefineSnackbarProvider>
                 <Refine
                     ...
-                    mutationMode="undoable"
-                    //highlight-next-line
-                    syncWithLocation
+                    options={{ 
+                        mutationMode="undoable", 
+                        //highlight-next-line
+                        syncWithLocation: true 
+                    }}
                 />
             </RefineSnackbarProvider>
         </ThemeProvider>
