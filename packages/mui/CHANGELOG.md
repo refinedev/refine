@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 3.41.10
+
+### Patch Changes
+
+-   `lodash` moved to dependencies.
+
 ## 3.41.9
 
 ### Patch Changes

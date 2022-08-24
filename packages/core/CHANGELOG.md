@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.58.5
+
+### Patch Changes
+
+-   `lodash` moved to dependencies.
+
 ## 3.58.4
 
 ### Patch Changes
