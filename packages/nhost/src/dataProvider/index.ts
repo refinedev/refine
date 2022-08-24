@@ -7,6 +7,7 @@ import {
     DataProvider,
     HttpError,
 } from "@pankod/refine-core";
+import setWith from "lodash/setWith";
 
 export type HasuraSortingType = Record<string, "asc" | "desc">;
 
@@ -81,10 +82,9 @@ export const generateFilters: any = (filters?: CrudFilters) => {
         }
 
         if (filter.operator !== "or") {
-            if (!resultFilter.hasOwnProperty(filter.field)) {
-                resultFilter[filter.field] = {};
-            }
-            resultFilter[filter.field][operator] = filter.value;
+            const fieldsArray = filter.field.split(".");
+            const fieldsWithOperator = [...fieldsArray, operator];
+            setWith(resultFilter, fieldsWithOperator, filter.value, Object);
         } else {
             const orFilter: any = [];
 
