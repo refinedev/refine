@@ -31,7 +31,7 @@ const SignUpView: React.FC = () => {
             onMutationSuccess: (_, { email, password }) => {
                 login(
                     {
-                        email,
+                        username: email,
                         password,
                     },
                     {
