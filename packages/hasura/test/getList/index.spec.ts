@@ -55,8 +55,25 @@ describe("getList", () => {
         expect(total).toBe(5);
     });
 
+    it("correct nested filter response", async () => {
+        const { data } = await dataProvider(client).getList({
+            resource: "posts",
+            filters: [
+                {
+                    field: "category.id",
+                    operator: "eq",
+                    value: "8332c138-3231-406d-9655-1328ded9d5f2",
+                },
+            ],
+            metaData: {
+                fields: ["id", "title"],
+            },
+        });
+
+        expect(data[0]["id"]).toBe("bac2ef0a-899f-4694-84ef-b9c6fe4dc2b7");
+    });
+
     it("correct filter and sort response", async () => {
-        //nock.recorder.rec();
         const { data, total } = await dataProvider(client).getList({
             resource: "posts",
             filters: [
