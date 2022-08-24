@@ -354,7 +354,7 @@ const App: React.FC = () => {
         <Refine
             ...
             // highlight-next-line
-            options={{ mutationMode="undoable", undoableTimeout: 3500 }}
+            options={{ mutationMode: "undoable", undoableTimeout: 3500 }}
         />
     );
 };

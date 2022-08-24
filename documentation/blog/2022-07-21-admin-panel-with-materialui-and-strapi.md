@@ -1017,7 +1017,7 @@ function App() {
                 <Refine
                     ...
                     options={{ 
-                        mutationMode="undoable", 
+                        mutationMode: "undoable", 
                         //highlight-next-line
                         syncWithLocation: true 
                     }}
