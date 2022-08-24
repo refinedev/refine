@@ -61,13 +61,13 @@ export interface RefineProps {
     LoginPage?: React.FC;
     DashboardPage?: React.FC;
     ReadyPage?: React.FC;
-    /** @deprecated mutationMode is deprecated. Use config instead. */
+    /** @deprecated mutationMode is deprecated. Use options instead. https://refine.dev/docs/core/components/refine-config/#mutationmode */
     mutationMode?: MutationMode;
-    /** @deprecated mutationMode is deprecated. Use config instead. */
+    /** @deprecated syncWithLocation is deprecated. Use options instead. https://refine.dev/docs/core/components/refine-config/#syncwithlocation */
     syncWithLocation?: boolean;
-    /** @deprecated mutationMode is deprecated. Use config instead. */
+    /** @deprecated warnWhenUnsavedChanges is deprecated. Use options instead. https://refine.dev/docs/core/components/refine-config/#warnwhenunsavedchanges */
     warnWhenUnsavedChanges?: boolean;
-    /** @deprecated mutationMode is deprecated. Use config instead. */
+    /** @deprecated undoableTimeout is deprecated. Use options instead. https://refine.dev/docs/core/components/refine-config/#undoabletimeout */
     undoableTimeout?: number;
     Layout?: React.FC<LayoutProps>;
     Sider?: React.FC;
@@ -75,13 +75,13 @@ export interface RefineProps {
     Footer?: React.FC;
     OffLayoutArea?: React.FC;
     Title?: React.FC<TitleProps>;
-    /** @deprecated mutationMode is deprecated. Use config instead. */
+    /** @deprecated reactQueryClientConfig is deprecated. Use config instead. https://refine.dev/docs/core/components/refine-config/#clientconfig */
     reactQueryClientConfig?: QueryClientConfig;
-    /** @deprecated mutationMode is deprecated. Use config instead. */
+    /** @deprecated reactQueryDevtoolConfig is deprecated. Use config instead. https://refine.dev/docs/core/components/refine-config/#devtoolconfig */
     reactQueryDevtoolConfig?:
         | React.ComponentProps<typeof ReactQueryDevtools>
         | false;
-    /** @deprecated mutationMode is deprecated. Use config instead. */
+    /** @deprecated liveMode is deprecated. Use config instead. https://refine.dev/docs/core/components/refine-config/#livemode */
     liveMode?: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
     children?: React.ReactNode;
