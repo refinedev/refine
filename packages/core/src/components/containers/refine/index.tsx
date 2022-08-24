@@ -61,13 +61,29 @@ export interface RefineProps {
     LoginPage?: React.FC;
     DashboardPage?: React.FC;
     ReadyPage?: React.FC;
-    /** @deprecated mutationMode is deprecated. Use options instead. https://refine.dev/docs/core/components/refine-config/#mutationmode */
+    /** 
+        @deprecated `mutationMode` property is deprecated at this level. Use it from within `options` instead.
+        @example  `options={{ mutationMode: "optimistic" }}`
+        @see https://refine.dev/docs/core/components/refine-config/#mutationmode
+     */
     mutationMode?: MutationMode;
-    /** @deprecated syncWithLocation is deprecated. Use options instead. https://refine.dev/docs/core/components/refine-config/#syncwithlocation */
+    /** 
+        @deprecated `syncWithLocation` property is deprecated at this level. Use it from within `options` instead.
+        @example  `options={{ syncWithLocation: true }}`
+        @see https://refine.dev/docs/core/components/refine-config/#syncwithlocation
+     */
     syncWithLocation?: boolean;
-    /** @deprecated warnWhenUnsavedChanges is deprecated. Use options instead. https://refine.dev/docs/core/components/refine-config/#warnwhenunsavedchanges */
+    /** 
+        @deprecated `warnwhenunsavedchanges` property is deprecated at this level. Use it from within `options` instead.
+        @example  `options={{ warnwhenunsavedchanges: true }}`
+        @see https://refine.dev/docs/core/components/refine-config/#warnwhenunsavedchanges
+     */
     warnWhenUnsavedChanges?: boolean;
-    /** @deprecated undoableTimeout is deprecated. Use options instead. https://refine.dev/docs/core/components/refine-config/#undoabletimeout */
+    /** 
+        @deprecated `undoableTimeout` property is deprecated at this level. Use it from within `options` instead.
+        @example  `options={{ undoableTimeout: 5000 }}`
+        @see https://refine.dev/docs/core/components/refine-config/#undoabletimeout
+     */
     undoableTimeout?: number;
     Layout?: React.FC<LayoutProps>;
     Sider?: React.FC;
@@ -75,17 +91,33 @@ export interface RefineProps {
     Footer?: React.FC;
     OffLayoutArea?: React.FC;
     Title?: React.FC<TitleProps>;
-    /** @deprecated reactQueryClientConfig is deprecated. Use config instead. https://refine.dev/docs/core/components/refine-config/#clientconfig */
+    /** 
+        @deprecated `reactQueryClientConfig` property is deprecated. Use `clientConfig` in `reactQuery` in `options` instead.
+        @example  `options={{ reactQuery: { clientConfig: { queryCache: new QueryCache() } } }}`
+        @see https://refine.dev/docs/core/components/refine-config/#clientconfig
+     */
     reactQueryClientConfig?: QueryClientConfig;
-    /** @deprecated reactQueryDevtoolConfig is deprecated. Use config instead. https://refine.dev/docs/core/components/refine-config/#devtoolconfig */
+    /** 
+        @deprecated `reactQueryDevtoolConfig` property is deprecated. Use `devtoolConfig` in `reactQuery` in `options` instead.
+        @example  `options={{ reactQuery: { devtoolConfig: false } }}`
+        @see https://refine.dev/docs/core/components/refine-config/#devtoolConfig
+     */
     reactQueryDevtoolConfig?:
         | React.ComponentProps<typeof ReactQueryDevtools>
         | false;
-    /** @deprecated liveMode is deprecated. Use config instead. https://refine.dev/docs/core/components/refine-config/#livemode */
+
+    /** 
+        @deprecated `liveMode` property is deprecated. Use it from within `options` instead.
+        @example  `options={{ liveMode: "auto" }}`
+        @see https://refine.dev/docs/core/components/refine-config/#livemode
+     */
     liveMode?: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
     children?: React.ReactNode;
-    /** @deprecated disableTelemetry is deprecated. Use config instead. */
+    /** 
+        @deprecated `disableTelemetry` property is deprecated. Use it from within `options` instead.
+        @example  `options={{ disableTelemetry: true }}`
+     */
     disableTelemetry?: boolean;
     options?: {
         mutationMode?: MutationMode;
@@ -94,6 +126,7 @@ export interface RefineProps {
         undoableTimeout?: number;
         liveMode?: LiveModeProps["liveMode"];
         disableTelemetry?: boolean;
+        redirect?: {};
         reactQuery?: {
             clientConfig?: QueryClientConfig;
             devtoolConfig?:
