@@ -3,7 +3,7 @@ import { IconProps } from "src/types/icon";
 export const Twitter: React.FC<IconProps> = ({ ...props }) => {
     return (
         <svg
-            fill="#000000"
+            fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 30 30"
             width="24px"
