@@ -215,3 +215,60 @@ export const HeartCodeIcon = (props: React.SVGProps<SVGSVGElement>) => (
         />
     </svg>
 );
+
+export const RefineBgIcon = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg
+        width={264}
+        height={874}
+        viewBox="0 0 264 874"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        {...props}
+    >
+        <path
+            d="M62.5 37.459c37.26 0 72.993 14.648 99.34 40.721 26.346 26.074 41.148 61.437 41.148 98.31v576.305c0 36.874-14.802 72.237-41.148 98.31-26.347 26.074-62.08 40.721-99.34 40.721-37.26 0-72.992-14.647-99.339-40.721-26.346-26.073-41.148-61.436-41.148-98.31V176.49c0-18.258 3.634-36.337 10.694-53.205A138.944 138.944 0 0 1-36.839 78.18 140.596 140.596 0 0 1 8.74 48.042 141.765 141.765 0 0 1 62.5 37.459ZM62.5-22C9.335-21.928-41.63-.99-79.219 36.22c-37.587 37.21-58.727 87.656-58.781 140.27v576.305c0 52.625 21.124 103.094 58.725 140.306 37.602 37.211 88.6 58.117 141.775 58.117 53.176 0 104.175-20.906 141.776-58.117 37.601-37.212 58.725-87.681 58.725-140.306V176.49c-.054-52.614-21.194-103.06-58.781-140.27C166.633-.99 115.666-21.928 62.5-22Z"
+            fill="url(#a)"
+        />
+        <path
+            d="M62.472 855.56c59.033 0 106.889-47.359 106.889-105.78S121.505 644 62.472 644C3.44 644-44.416 691.359-44.416 749.78S3.44 855.56 62.472 855.56Z"
+            fill="url(#b)"
+        />
+        <defs>
+            <radialGradient
+                id="a"
+                cx={0}
+                cy={0}
+                r={1}
+                gradientUnits="userSpaceOnUse"
+                gradientTransform="matrix(-331.99817 -941.50095 593.59746 -209.31819 238 888.5)"
+            >
+                <stop stopColor="#47EBF5" />
+                <stop offset={0.893} stopColor="#1890FF" />
+            </radialGradient>
+            <radialGradient
+                id="b"
+                cx={0}
+                cy={0}
+                r={1}
+                gradientUnits="userSpaceOnUse"
+                gradientTransform="rotate(60.123 -591.796 381.962) scale(144.485 177.183)"
+            >
+                <stop stopColor="#47EBF5" />
+                <stop offset={0.893} stopColor="#1890FF" />
+            </radialGradient>
+        </defs>
+    </svg>
+);
+
+export const ChevronDown = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg
+        width={12}
+        height={10}
+        viewBox="0 0 12 10"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        {...props}
+    >
+        <path d="M6 10 0 0h12L6 10Z" fill="#1890FF" />
+    </svg>
+);
