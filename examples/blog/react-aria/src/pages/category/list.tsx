@@ -32,7 +32,7 @@ export const CategoryList: React.FC = () => {
         },
     });
     return (
-        <div className="container mx-auto pb-4 max-w-3xl w-full">
+        <div className="container mx-auto w-full max-w-3xl pb-4">
             <CategoryCreate />
 
             <table className="min-w-full table-fixed divide-y divide-gray-200 border">
