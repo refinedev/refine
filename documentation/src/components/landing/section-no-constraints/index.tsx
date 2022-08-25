@@ -58,7 +58,7 @@ export const SectionNoConstraints: React.FC = () => {
                     </div>
                 </div>
                 <motion.div
-                    className="overflow-x-hidden snap-x snap-mandatory relative flex-1"
+                    className="overflow-x-hidden overflow-y-hidden snap-x snap-mandatory relative flex-1"
                     style={{ opacity: slideOpacity }}
                 >
                     <motion.div
@@ -66,8 +66,77 @@ export const SectionNoConstraints: React.FC = () => {
                         style={{ x: slideX }}
                     >
                         {/* slide 01 */}
-                        <div className="w-full flex-shrink-0 bg-red-300 snap-center">
-                            <div></div>
+                        <div className="w-full flex-shrink-0 snap-center">
+                            <div className="flex">
+                                <motion.div
+                                    className="flex-[3] flex justify-center items-center relative"
+                                    style={{
+                                        perspective: "500px",
+                                        perspectiveOrigin: "center",
+                                        padding: "50px",
+                                    }}
+                                >
+                                    <motion.img
+                                        style={{
+                                            width: "100%",
+                                            maxWidth: "500px",
+                                            boxShadow:
+                                                "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
+                                        }}
+                                        animate={{
+                                            rotateY: ["20deg", "27deg"],
+                                            rotateX: ["2.5deg", "-2.5deg"],
+                                        }}
+                                        transition={{
+                                            yoyo: Infinity,
+                                            ease: "easeInOut",
+                                            duration: 3,
+                                        }}
+                                        src="/landing/no-constraints/custom-ui.png"
+                                    />
+                                    <motion.div
+                                        className="bg-white text-[34px] leading-[34px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#2A2A42] absolute right-[100px] bottom-[50px]"
+                                        animate={{
+                                            rotateY: ["20deg", "27deg"],
+                                            rotateX: ["2.5deg", "-2.5deg"],
+                                        }}
+                                        transition={{
+                                            yoyo: Infinity,
+                                            ease: "easeInOut",
+                                            duration: 3,
+                                        }}
+                                        style={{
+                                            boxShadow:
+                                                "6px 8px 16px rgba(42, 42, 66, 0.2)",
+                                        }}
+                                    >
+                                        HEADLESS UI
+                                    </motion.div>
+                                </motion.div>
+                                <div className="flex-[2] place-self-center">
+                                    <p className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] mb-0">
+                                        <strong className="font-bold">
+                                            refine
+                                        </strong>{" "}
+                                        is{" "}
+                                        <strong className="font-bold">
+                                            headless by design.
+                                        </strong>{" "}
+                                    </p>
+                                    <p className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px]">
+                                        It doesn’t ship with any pre-styled
+                                        components or UI by default.
+                                    </p>
+                                    {/* <p>
+                                        Instead, you can use any{" "}
+                                        <strong>custom design</strong>
+                                        or <strong>UI framework</strong> for
+                                        <strong>
+                                            100% control over styling.
+                                        </strong>
+                                    </p> */}
+                                </div>
+                            </div>
                         </div>
                         <div className="w-full flex-shrink-0 bg-red-400 snap-center">
                             asdasdasd
