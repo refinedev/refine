@@ -36,7 +36,16 @@ export const Items: React.FC<ItemsProps> = ({ cartId, items, region }) => {
                                           <div>
                                               <h3 className="text-base-regular mr-4 overflow-hidden overflow-ellipsis whitespace-nowrap">
                                                   <Link
-                                                      href={`/products/${item.variant.product.handle}`}
+                                                      href={{
+                                                          pathname:
+                                                              "/product/[handle]",
+                                                          query: {
+                                                              handle: item
+                                                                  .variant
+                                                                  .product
+                                                                  .handle,
+                                                          },
+                                                      }}
                                                   >
                                                       <a>{item.title}</a>
                                                   </Link>

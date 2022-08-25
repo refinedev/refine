@@ -99,7 +99,11 @@ export const Overview: React.FC<OverviewProps> = ({ orders, customer }) => {
                                         return (
                                             <li key={order.id}>
                                                 <Link
-                                                    href={`/order/details/${order.id}`}
+                                                    href={{
+                                                        pathname:
+                                                            "/order/details/[id]",
+                                                        query: { id: order.id },
+                                                    }}
                                                 >
                                                     <a>
                                                         <div

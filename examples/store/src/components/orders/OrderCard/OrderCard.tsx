@@ -69,7 +69,12 @@ export const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
                 )}
             </div>
             <div className="flex justify-end">
-                <Link href={`/order/details/${order.id}`}>
+                <Link
+                    href={{
+                        pathname: "/order/details/[id]",
+                        query: { id: order.id },
+                    }}
+                >
                     <a>
                         <Button>See details</Button>
                     </a>

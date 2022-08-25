@@ -116,7 +116,12 @@ export const CartItem: React.FC<CartItemProps> = ({ item }) => {
         >
             <div className="flex flex-row space-x-4 py-4">
                 <div className="bg-violet relative z-0 h-16 w-16 cursor-pointer overflow-hidden">
-                    <Link href={`/product/${item.variant.product.handle}`}>
+                    <Link
+                        href={{
+                            pathname: "/product/[handle]",
+                            query: { handle: item.variant.product.handle },
+                        }}
+                    >
                         <Image
                             onClick={() => closeSidebarIfPresent()}
                             className={s.productImage}
@@ -131,7 +136,12 @@ export const CartItem: React.FC<CartItemProps> = ({ item }) => {
                     </Link>
                 </div>
                 <div className="flex flex-1 flex-col gap-1 text-base">
-                    <Link href={`/product/${item.variant.product.handle}`}>
+                    <Link
+                        href={{
+                            pathname: "/product/[handle]",
+                            query: { handle: item.variant.product.handle },
+                        }}
+                    >
                         <span
                             className={s.productName}
                             onClick={() => closeSidebarIfPresent()}

@@ -107,7 +107,13 @@ export default function Search({ products }: { products?: MedusaProduct[] }) {
                                                 )}
                                             >
                                                 <Link
-                                                    href={`/search/${cat.handle}`}
+                                                    href={{
+                                                        pathname:
+                                                            "/search/[handle]",
+                                                        query: {
+                                                            handle: cat.handle,
+                                                        },
+                                                    }}
                                                     className={
                                                         "block px-4 py-2 lg:my-2 lg:mx-4 lg:inline-block lg:p-0"
                                                     }
