@@ -50,7 +50,7 @@ function App() {
                     show: CompanyShow,
                 },
             ]}
-            disableTelemetry={true}
+            options={{ disableTelemetry: true }}
         />
     );
 }

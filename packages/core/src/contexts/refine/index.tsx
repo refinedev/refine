@@ -1,9 +1,21 @@
 import React from "react";
 
-import { IRefineContext, IRefineContextProvider } from "./IRefineContext";
+import {
+    IRefineOptions,
+    IRefineContext,
+    IRefineContextProvider,
+} from "./IRefineContext";
 import { DefaultLayout } from "@components/layoutWrapper/defaultLayout";
 
 import { LoginPage as DefaultLoginPage } from "@components/pages";
+
+export const defaultRefineOptions: IRefineOptions = {
+    mutationMode: "pessimistic",
+    syncWithLocation: false,
+    undoableTimeout: 5000,
+    warnWhenUnsavedChanges: false,
+    liveMode: "off",
+};
 
 export const RefineContext = React.createContext<IRefineContext>({
     hasDashboard: false,
@@ -19,6 +31,7 @@ export const RefineContext = React.createContext<IRefineContext>({
     OffLayoutArea: undefined,
     liveMode: "off",
     onLiveEvent: undefined,
+    options: defaultRefineOptions,
 });
 
 export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
@@ -39,6 +52,7 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
     catchAll,
     liveMode = "off",
     onLiveEvent,
+    options,
 }) => {
     return (
         <RefineContext.Provider
@@ -59,6 +73,7 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
                 catchAll,
                 liveMode,
                 onLiveEvent,
+                options,
             }}
         >
             {children}

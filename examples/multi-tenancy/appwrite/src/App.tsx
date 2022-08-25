@@ -28,7 +28,7 @@ function App() {
                 dataProvider={dataProvider(appwriteClient)}
                 authProvider={authProvider}
                 LoginPage={Login}
-                liveMode="auto"
+                options={{ liveMode: "auto", disableTelemetry: true }}
                 Sider={CustomSider}
                 resources={[
                     {
@@ -54,7 +54,6 @@ function App() {
                 notificationProvider={notificationProvider}
                 Layout={Layout}
                 catchAll={<ErrorComponent />}
-                disableTelemetry={true}
             />
         </StoreProvider>
     );

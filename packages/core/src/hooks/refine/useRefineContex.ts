@@ -18,6 +18,7 @@ export const useRefineContext = () => {
         DashboardPage,
         LoginPage,
         catchAll,
+        options,
     } = useContext(RefineContext);
 
     return {
@@ -28,12 +29,13 @@ export const useRefineContext = () => {
         Sider,
         Title,
         hasDashboard,
-        mutationMode,
+        mutationMode: mutationMode ?? options.mutationMode,
         syncWithLocation,
         undoableTimeout,
         warnWhenUnsavedChanges,
         DashboardPage,
         LoginPage,
         catchAll,
+        options,
     };
 };
