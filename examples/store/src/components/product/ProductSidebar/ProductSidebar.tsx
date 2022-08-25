@@ -42,12 +42,13 @@ export const ProductSidebar: React.FC<ProductSidebarProps> = ({
                 className="w-full max-w-xl break-words pb-4"
                 html={product.description || ""}
             />
-            <div className="flex flex-row items-center justify-between">
+            {/* TODO: Reviews featured will be addded here */}
+            {/* <div className="flex flex-row items-center justify-between">
                 <Rating value={4} />
                 <div className="text-accent-6 pr-1 text-sm font-medium">
                     36 reviews
                 </div>
-            </div>
+            </div> */}
             <div>
                 <Button
                     aria-label="Add to Cart"
