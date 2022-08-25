@@ -14,7 +14,7 @@ type UseSyncWithLocationType = () => {
  * @see {@link https://refine.dev/docs/api-references/components/refine-config#syncwithlocation} for more details.
  */
 export const useSyncWithLocation: UseSyncWithLocationType = () => {
-    const { syncWithLocation, options } = useContext(RefineContext);
+    const { syncWithLocation } = useContext(RefineContext);
 
-    return { syncWithLocation: syncWithLocation ?? options.syncWithLocation };
+    return { syncWithLocation };
 };

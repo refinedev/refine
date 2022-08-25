@@ -16,11 +16,7 @@ type UseMutationModeType = () => {
  * @see {@link https://refine.dev/docs/guides-and-concepts/mutation-mode} for more details.
  */
 export const useMutationMode: UseMutationModeType = () => {
-    const { mutationMode, undoableTimeout, options } =
-        useContext(RefineContext);
+    const { mutationMode, undoableTimeout } = useContext(RefineContext);
 
-    const mode = mutationMode ?? options.mutationMode;
-    const timeout = undoableTimeout ?? options.undoableTimeout;
-
-    return { mutationMode: mode, undoableTimeout: timeout };
+    return { mutationMode, undoableTimeout };
 };

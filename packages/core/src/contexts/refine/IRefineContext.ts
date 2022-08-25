@@ -17,10 +17,10 @@ export interface IRefineOptions {
 
 export interface IRefineContext {
     hasDashboard: boolean;
-    mutationMode?: MutationMode;
-    warnWhenUnsavedChanges?: boolean;
-    syncWithLocation?: boolean;
-    undoableTimeout?: number;
+    mutationMode: MutationMode;
+    warnWhenUnsavedChanges: boolean;
+    syncWithLocation: boolean;
+    undoableTimeout: number;
     catchAll?: React.ReactNode;
     DashboardPage?: React.FC;
     LoginPage?: React.FC | false;
@@ -30,17 +30,17 @@ export interface IRefineContext {
     Header?: React.FC;
     Footer?: React.FC;
     OffLayoutArea?: React.FC;
-    liveMode?: LiveModeProps["liveMode"];
+    liveMode: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
     options: IRefineOptions;
 }
 
 export interface IRefineContextProvider {
     hasDashboard: boolean;
-    mutationMode?: MutationMode;
-    warnWhenUnsavedChanges?: boolean;
-    syncWithLocation?: boolean;
-    undoableTimeout?: number;
+    mutationMode: MutationMode;
+    warnWhenUnsavedChanges: boolean;
+    syncWithLocation: boolean;
+    undoableTimeout: number;
     catchAll?: React.ReactNode;
     DashboardPage?: React.FC;
     LoginPage?: React.FC | false;
@@ -50,7 +50,7 @@ export interface IRefineContextProvider {
     Header?: React.FC;
     Footer?: React.FC;
     OffLayoutArea?: React.FC;
-    liveMode?: LiveModeProps["liveMode"];
+    liveMode: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
     options: IRefineOptions;
     children?: ReactNode;
