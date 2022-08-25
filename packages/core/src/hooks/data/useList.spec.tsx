@@ -8,6 +8,7 @@ import { IRefineContextProvider } from "../../interfaces";
 
 const mockRefineProvider: IRefineContextProvider = {
     hasDashboard: false,
+    ...defaultRefineOptions,
     options: defaultRefineOptions,
 };
 
