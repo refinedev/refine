@@ -114,6 +114,10 @@ import {
     List,
     Table,
     DateField,
+    Layout,
+    ReadyPage,
+    notificationProvider,
+    ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -126,6 +130,10 @@ const App: React.FC = () => {
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[{ name: "posts", list: PostList }]}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
         />
     );
 };
