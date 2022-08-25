@@ -10,6 +10,18 @@ import { withCloud } from "@pankod/refine-cloud";
 import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+import {
+    ProductList,
+    ProductCreate,
+    ProductEdit,
+    ProductShow,
+} from "pages/products";
+import {
+    CategoryList,
+    CategoryShow,
+    CategoryCreate,
+    CategoryEdit,
+} from "pages/categories";
 import { Login } from "pages/login";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -40,6 +52,20 @@ const App: React.FC = () => {
                     edit: PostEdit,
                     show: PostShow,
                     canDelete: true,
+                },
+                {
+                    name: "products",
+                    list: ProductList,
+                    create: ProductCreate,
+                    edit: ProductEdit,
+                    show: ProductShow,
+                },
+                {
+                    name: "categories",
+                    list: CategoryList,
+                    create: CategoryCreate,
+                    edit: CategoryEdit,
+                    show: CategoryShow,
                 },
             ]}
             notificationProvider={notificationProvider}
