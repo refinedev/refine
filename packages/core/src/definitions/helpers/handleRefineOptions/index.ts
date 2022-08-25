@@ -63,6 +63,14 @@ export const handleRefineOptions = ({
             defaultRefineOptions.warnWhenUnsavedChanges,
         liveMode:
             options?.liveMode ?? liveMode ?? defaultRefineOptions.liveMode,
+        redirect: {
+            create:
+                options?.redirect?.create ??
+                defaultRefineOptions.redirect.create,
+            clone:
+                options?.redirect?.clone ?? defaultRefineOptions.redirect.clone,
+            edit: options?.redirect?.edit ?? defaultRefineOptions.redirect.edit,
+        },
     };
 
     const disableTelemetryWithDefault =
