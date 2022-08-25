@@ -1,7 +1,7 @@
 import React from "react";
 
 import {
-    IRefineOptions,
+    IRefineContextOptions,
     IRefineContext,
     IRefineContextProvider,
 } from "./IRefineContext";
@@ -9,7 +9,7 @@ import { DefaultLayout } from "@components/layoutWrapper/defaultLayout";
 
 import { LoginPage as DefaultLoginPage } from "@components/pages";
 
-export const defaultRefineOptions: IRefineOptions = {
+export const defaultRefineOptions: IRefineContextOptions = {
     mutationMode: "pessimistic",
     syncWithLocation: false,
     undoableTimeout: 5000,

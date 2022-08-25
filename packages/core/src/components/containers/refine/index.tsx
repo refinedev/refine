@@ -13,7 +13,7 @@ import { DataContextProvider } from "@contexts/data";
 import { LiveContextProvider } from "@contexts/live";
 import { TranslationContextProvider } from "@contexts/translation";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
-import { defaultRefineOptions, RefineContextProvider } from "@contexts/refine";
+import { RefineContextProvider } from "@contexts/refine";
 import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 import { UnsavedWarnContextProvider } from "@contexts/unsavedWarn";
 import { RouterContextProvider } from "@contexts/router";
@@ -21,7 +21,7 @@ import { AccessControlContextProvider } from "@contexts/accessControl";
 import { NotificationContextProvider } from "@contexts/notification";
 import { AuditLogContextProvider } from "@contexts/auditLog";
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
-import { routeGenerator } from "@definitions";
+import { handleRefineOptions, routeGenerator } from "@definitions";
 import { Telemetry } from "@components/telemetry";
 import { useDeepMemo } from "@hooks/deepMemo";
 
@@ -120,20 +120,7 @@ export interface RefineProps {
         @example  `options={{ disableTelemetry: true }}`
      */
     disableTelemetry?: boolean;
-    options?: {
-        mutationMode?: MutationMode;
-        syncWithLocation?: boolean;
-        warnWhenUnsavedChanges?: boolean;
-        undoableTimeout?: number;
-        liveMode?: LiveModeProps["liveMode"];
-        disableTelemetry?: boolean;
-        reactQuery?: {
-            clientConfig?: QueryClientConfig;
-            devtoolConfig?:
-                | React.ComponentProps<typeof ReactQueryDevtools>
-                | false;
-        };
-    };
+    options?: IRefineOptions;
 }
 
 /**
@@ -175,34 +162,21 @@ export const Refine: React.FC<RefineProps> = ({
     disableTelemetry,
     options,
 }) => {
-    const optionsWithDefaults: IRefineOptions = {
-        mutationMode:
-            options?.mutationMode ??
-            mutationMode ??
-            defaultRefineOptions.mutationMode,
-        undoableTimeout:
-            options?.undoableTimeout ??
-            undoableTimeout ??
-            defaultRefineOptions.undoableTimeout,
-        syncWithLocation:
-            options?.syncWithLocation ??
-            syncWithLocation ??
-            defaultRefineOptions.syncWithLocation,
-        warnWhenUnsavedChanges:
-            options?.warnWhenUnsavedChanges ??
-            warnWhenUnsavedChanges ??
-            defaultRefineOptions.warnWhenUnsavedChanges,
-        liveMode:
-            options?.liveMode ?? liveMode ?? defaultRefineOptions.liveMode,
-    };
-    const disableTelemetryWithDefault =
-        options?.disableTelemetry ?? disableTelemetry ?? false;
-    const reactQueryWithDefaults = {
-        clientConfig:
-            options?.reactQuery?.clientConfig ?? reactQueryClientConfig ?? {},
-        devtoolConfig:
-            options?.reactQuery?.devtoolConfig ?? reactQueryDevtoolConfig ?? {},
-    };
+    const {
+        optionsWithDefaults,
+        disableTelemetryWithDefault,
+        reactQueryWithDefaults,
+    } = handleRefineOptions({
+        options,
+        disableTelemetry,
+        liveMode,
+        mutationMode,
+        reactQueryClientConfig,
+        reactQueryDevtoolConfig,
+        syncWithLocation,
+        warnWhenUnsavedChanges,
+        undoableTimeout,
+    });
 
     const queryClient = useDeepMemo(() => {
         return new QueryClient({

@@ -1,4 +1,6 @@
 import React, { ReactNode } from "react";
+import { QueryClientConfig } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import {
     MutationMode,
@@ -8,11 +10,24 @@ import {
 } from "../../interfaces";
 
 export interface IRefineOptions {
-    mutationMode: MutationMode;
-    syncWithLocation: boolean;
-    warnWhenUnsavedChanges: boolean;
-    undoableTimeout: number;
-    liveMode: LiveModeProps["liveMode"];
+    mutationMode?: MutationMode;
+    syncWithLocation?: boolean;
+    warnWhenUnsavedChanges?: boolean;
+    undoableTimeout?: number;
+    liveMode?: LiveModeProps["liveMode"];
+    disableTelemetry?: boolean;
+    reactQuery?: {
+        clientConfig?: QueryClientConfig;
+        devtoolConfig?: React.ComponentProps<typeof ReactQueryDevtools> | false;
+    };
+}
+
+export interface IRefineContextOptions {
+    mutationMode: IRefineOptions["mutationMode"];
+    syncWithLocation: IRefineOptions["syncWithLocation"];
+    warnWhenUnsavedChanges: IRefineOptions["warnWhenUnsavedChanges"];
+    undoableTimeout: IRefineOptions["undoableTimeout"];
+    liveMode: IRefineOptions["liveMode"];
 }
 
 export interface IRefineContext {
@@ -32,7 +47,7 @@ export interface IRefineContext {
     OffLayoutArea?: React.FC;
     liveMode: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
-    options: IRefineOptions;
+    options: IRefineContextOptions;
 }
 
 export interface IRefineContextProvider {
@@ -52,6 +67,6 @@ export interface IRefineContextProvider {
     OffLayoutArea?: React.FC;
     liveMode: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
-    options: IRefineOptions;
+    options: IRefineContextOptions;
     children?: ReactNode;
 }
