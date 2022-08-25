@@ -10,6 +10,7 @@ import {
     useRedirectionAfterSubmission,
     useMutationMode,
     useOne,
+    useRefineContext,
 } from "@hooks";
 
 import {
@@ -29,6 +30,7 @@ import {
 } from "../../interfaces";
 import { UpdateParams, UseUpdateReturnType } from "../data/useUpdate";
 import { UseCreateReturnType } from "../data/useCreate";
+import { redirectPath } from "@definitions/helpers";
 
 export type ActionParams = {
     action?: "edit" | "create" | "clone";
@@ -128,6 +130,7 @@ export const useForm = <
     TError,
     TVariables
 > => {
+    const { options } = useRefineContext();
     const { useParams } = useRouterContext();
     const {
         resource: resourceFromRoute,
@@ -144,7 +147,10 @@ export const useForm = <
     const [id, setId] = React.useState<BaseKey | undefined>(defaultId);
 
     const resourceName = resourceFromProps ?? resourceFromRoute;
-    const action = actionFromProps ?? actionFromRoute ?? "create";
+    const action =
+        actionFromProps ??
+        (actionFromRoute === "show" ? "create" : actionFromRoute) ??
+        "create";
 
     const resourceWithRoute = useResourceWithRoute();
     const resource = resourceWithRoute(resourceName);
@@ -156,7 +162,11 @@ export const useForm = <
     const isEdit = action === "edit";
     const isClone = action === "clone";
 
-    const redirect = redirectFromProps ?? "list";
+    const redirect = redirectPath({
+        redirectFromProps,
+        action,
+        redirectOptions: options.redirect,
+    });
 
     const enableQuery = id !== undefined && (isEdit || isClone);
 
