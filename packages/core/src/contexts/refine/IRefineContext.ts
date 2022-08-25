@@ -23,11 +23,11 @@ export interface IRefineOptions {
 }
 
 export interface IRefineContextOptions {
-    mutationMode: IRefineOptions["mutationMode"];
-    syncWithLocation: IRefineOptions["syncWithLocation"];
-    warnWhenUnsavedChanges: IRefineOptions["warnWhenUnsavedChanges"];
-    undoableTimeout: IRefineOptions["undoableTimeout"];
-    liveMode: IRefineOptions["liveMode"];
+    mutationMode: MutationMode;
+    syncWithLocation: boolean;
+    warnWhenUnsavedChanges: boolean;
+    undoableTimeout: number;
+    liveMode: LiveModeProps["liveMode"];
 }
 
 export interface IRefineContext {

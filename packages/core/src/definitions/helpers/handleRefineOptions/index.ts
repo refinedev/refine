@@ -43,7 +43,7 @@ export const handleRefineOptions = ({
     syncWithLocation,
     undoableTimeout,
     warnWhenUnsavedChanges,
-}: HandleRefineOptionsProps): HandleRefineOptionsReturnValues => {
+}: HandleRefineOptionsProps = {}): HandleRefineOptionsReturnValues => {
     const optionsWithDefaults: IRefineContextOptions = {
         mutationMode:
             options?.mutationMode ??
