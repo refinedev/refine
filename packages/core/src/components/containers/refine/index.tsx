@@ -344,7 +344,6 @@ export const Refine: React.FC<RefineProps> = ({
                     initialIsOpen={false}
                     position="bottom-right"
                     {...reactQueryWithDefaults.devtoolConfig}
-                    {...reactQueryWithDefaults.devtoolConfig}
                 />
             )}
         </QueryClientProvider>
