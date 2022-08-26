@@ -1,0 +1,31 @@
+.container {
+    @apply font-montserrat mx-52 mt-16;
+}
+
+.header {
+    @apply mx-auto mt-32 mb-20 flex flex-col items-center gap-2.5;
+}
+
+.headerTitle {
+    @apply flex flex-col items-center text-[42px] leading-[48px] text-[#6714CC];
+}
+
+.boldHeader {
+    @apply font-extrabold;
+}
+
+.headerText {
+    @apply max-w-2xl text-center text-[20px] font-medium leading-[24px] text-[#1F1F1F];
+}
+
+.integrationsWrapper {
+    @apply flex flex-col gap-[50px];
+}
+
+.integrationTitle {
+    @apply mb-2.5 text-2xl font-extrabold;
+}
+
+.integrations {
+    @apply grid grid-cols-3 gap-2;
+}
