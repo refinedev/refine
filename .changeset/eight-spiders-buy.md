@@ -9,6 +9,6 @@ By default, when a form is submitted, it will redirect to the "list" page of the
 ```tsx
 <Refine
     ...
-    options={{ redirect: { create: "show", clone: "edit", edit: false }, }}
+    options={{ redirect: { afterCreate: "show", afterClone: "edit", afterEdit: false }, }}
 />
 ```
