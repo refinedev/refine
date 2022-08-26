@@ -42,7 +42,7 @@
     },
     "dependencies": {
         "export-to-csv-fix-source-map": "^0.2.1",
-        "humanize-string": "^2.1.0",
+        "decamelize": "^5.0.0",
         "lodash-es": "^4.17.21",
         "lodash": "^4.17.21",
         "papaparse": "^5.3.0",

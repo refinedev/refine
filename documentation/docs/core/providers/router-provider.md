@@ -390,7 +390,7 @@ const routerProvider: IRouterProvider = {
 import { IRouterProvider } from "@pankod/refine-core";
 // highlight-start
 import { useRouter } from "next/router";
-import qs from "qs";
+import queryString from "query-string";
 // highlight-end
 
 const routerProvider: IRouterProvider = {
@@ -400,7 +400,7 @@ const routerProvider: IRouterProvider = {
         const router = useRouter();
         const { pathname, query } = router;
 
-        const queryParams = qs.stringify(query);
+        const queryParams = queryString.stringify(query);
 
         return {
             pathname,

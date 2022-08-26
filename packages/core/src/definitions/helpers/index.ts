@@ -6,3 +6,4 @@ export { queryKeys } from "./queryKeys";
 export { hasPermission } from "./hasPermission";
 export { routeGenerator } from "./routeGenerator";
 export { createTreeView } from "./treeView/createTreeView";
+export { humanizeString } from "./humanizeString";
