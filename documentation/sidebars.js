@@ -53,6 +53,9 @@ module.exports = {
                                 "core/hooks/auth/useLogin",
                                 "core/hooks/auth/useLogout",
                                 "core/hooks/auth/usePermissions",
+                                "core/hooks/auth/useRegister",
+                                "core/hooks/auth/useResetPassword",
+                                "core/hooks/auth/useUpdatePassword",
                             ],
                         },
                         {
@@ -174,6 +177,7 @@ module.exports = {
                     type: "category",
                     label: "Components",
                     items: [
+                        "core/components/auth-page",
                         "core/components/refine-config",
                         "core/components/layout-wrapper",
                         {
