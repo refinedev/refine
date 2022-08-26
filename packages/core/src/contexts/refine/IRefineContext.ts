@@ -7,6 +7,7 @@ import {
     TitleProps,
     LayoutProps,
     LiveModeProps,
+    RedirectionTypes,
 } from "../../interfaces";
 
 export interface IRefineOptions {
@@ -16,6 +17,11 @@ export interface IRefineOptions {
     undoableTimeout?: number;
     liveMode?: LiveModeProps["liveMode"];
     disableTelemetry?: boolean;
+    redirect?: {
+        afterCreate?: RedirectionTypes;
+        afterClone?: RedirectionTypes;
+        afterEdit?: RedirectionTypes;
+    };
     reactQuery?: {
         clientConfig?: QueryClientConfig;
         devtoolConfig?: React.ComponentProps<typeof ReactQueryDevtools> | false;
@@ -28,6 +34,11 @@ export interface IRefineContextOptions {
     warnWhenUnsavedChanges: boolean;
     undoableTimeout: number;
     liveMode: LiveModeProps["liveMode"];
+    redirect: {
+        afterCreate: RedirectionTypes;
+        afterClone: RedirectionTypes;
+        afterEdit: RedirectionTypes;
+    };
 }
 
 export interface IRefineContext {

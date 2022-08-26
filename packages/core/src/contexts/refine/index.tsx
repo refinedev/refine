@@ -15,6 +15,11 @@ export const defaultRefineOptions: IRefineContextOptions = {
     undoableTimeout: 5000,
     warnWhenUnsavedChanges: false,
     liveMode: "off",
+    redirect: {
+        afterCreate: "list",
+        afterClone: "list",
+        afterEdit: "list",
+    },
 };
 
 export const RefineContext = React.createContext<IRefineContext>({

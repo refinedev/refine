@@ -17,5 +17,5 @@
         "noEmit": true,
         "jsx": "react-jsx"
     },
-    "include": ["antd/src"]
+    "include": ["src"]
 }

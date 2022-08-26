@@ -402,6 +402,37 @@ Whether to update data automatically (`auto`) or not (`manual`) if a related liv
 
 [Refer to refine telemetry documentation for detailed information. &#8594](/guides-and-concepts/telemetry/telemetry.md)
 
+### `redirect`
+
+By default, **refine** redirects to the `list` page of the resource after a successful form mutation. To change this behaviour based on the form [action](/core/hooks/useForm.md#actions), set `redirect` as follows:
+
+```tsx title="App.tsx"
+const App: React.FC = () => {
+    return (
+        <Refine
+            ...
+            // highlight-start
+            options={{
+                redirect: {
+                    afterCreate: "show",
+                    afterClone: "edit",
+                    afterEdit: false,
+                },
+            }}
+            // highlight-end
+        />
+    );
+};
+```
+
+When `redirect` option is set to `false`, no redirect is performed after a successful form mutation.
+
+:::caution
+
+If you don't have a show page and you redirect to the show page, the user will be redirected to the list page. Also, in `undoable` and `optimistic` mutation modes, redirect happens before the mutation succeeds. Therefore, if there is no data in query cache, the user will be redirected to the list page.
+
+:::
+
 ### `reactQuery`
 
 #### `clientConfig`

@@ -23,6 +23,11 @@ describe("handleRefineOptions", () => {
             undoableTimeout: 1000,
             syncWithLocation: true,
             warnWhenUnsavedChanges: true,
+            redirect: {
+                afterClone: "show",
+                afterCreate: "edit",
+                afterEdit: "show",
+            },
         };
 
         const {
@@ -37,6 +42,11 @@ describe("handleRefineOptions", () => {
             syncWithLocation: true,
             undoableTimeout: 1000,
             warnWhenUnsavedChanges: true,
+            redirect: {
+                afterClone: "show",
+                afterCreate: "edit",
+                afterEdit: "show",
+            },
         });
         expect(disableTelemetryWithDefault).toBe(true);
         expect(reactQueryWithDefaults).toEqual({
@@ -89,6 +99,11 @@ describe("handleRefineOptions", () => {
             syncWithLocation: true,
             undoableTimeout: 1000,
             warnWhenUnsavedChanges: true,
+            redirect: {
+                afterClone: "list",
+                afterCreate: "list",
+                afterEdit: "list",
+            },
         });
         expect(disableTelemetryWithDefault).toBe(true);
         expect(reactQueryWithDefaults).toEqual({
@@ -125,6 +140,11 @@ describe("handleRefineOptions", () => {
             syncWithLocation: false,
             undoableTimeout: 2000,
             warnWhenUnsavedChanges: false,
+            redirect: {
+                afterClone: "list",
+                afterCreate: "list",
+                afterEdit: "list",
+            },
         });
         expect(disableTelemetryWithDefault).toBe(true);
         expect(reactQueryWithDefaults).toEqual({
@@ -134,6 +154,22 @@ describe("handleRefineOptions", () => {
             devtoolConfig: {
                 position: "bottom-right",
             },
+        });
+    });
+
+    it("if some of the redirect options are not provided, should return the default ones for those options", () => {
+        const { optionsWithDefaults } = handleRefineOptions({
+            options: {
+                redirect: {
+                    afterClone: "show",
+                },
+            },
+        });
+
+        expect(optionsWithDefaults.redirect).toEqual({
+            afterClone: "show",
+            afterCreate: "list",
+            afterEdit: "list",
         });
     });
 });
