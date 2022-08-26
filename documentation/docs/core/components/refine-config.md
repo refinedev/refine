@@ -411,18 +411,25 @@ const App: React.FC = () => {
     return (
         <Refine
             ...
-            // highlight-next-line
-            options={{ redirect: { create: "show", clone: "edit", edit: false } }}
+            // highlight-start
+            options={{
+                redirect: {
+                    afterCreate: "show",
+                    afterClone: "edit",
+                    afterEdit: false,
+                },
+            }}
+            // highlight-end
         />
     );
 };
 ```
 
-When `redirect` is set to `false`, no redirect is performed after a successful form mutation.
+When `redirect` option is set to `false`, no redirect is performed after a successful form mutation.
 
 :::caution
 
-If you don't have a show page and you redirect to the show page, the user will be redirected to the list page. Also, in some `mutationMode`, if a redirect is made before the mutation is completed, it will be redirected to the list page.
+If you don't have a show page and you redirect to the show page, the user will be redirected to the list page. Also, in `undoable` and `optimistic` mutation modes, redirect happens before the mutation succeeds. Therefore, if there is no data in query cache, the user will be redirected to the list page.
 
 :::
 
