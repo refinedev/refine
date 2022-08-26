@@ -1,5 +1,49 @@
 # @pankod/refine-core
 
+## 3.61.0
+
+### Minor Changes
+
+-   Added a new `<Refine>` component property: `options`.
+
+    Previously, the options were passed as a property to the `<Refine>` component. Now, the options are passed to the `<Refine>` via `options` property like this:
+
+    ```diff
+        <Refine
+    -       mutationMode="undoable"
+    -       undoableTimeout={5000}
+    -       warnWhenUnsavedChanges
+    -       syncWithLocation
+    -       liveMode="off"
+    -       disableTelemetry={false}
+    +       options={{
+    +           mutationMode: "undoable",
+    +           undoableTimeout: 5000,
+    +           warnWhenUnsavedChanges: true,
+    +           syncWithLocation: true,
+    +           liveMode: "off",
+    +           disableTelemetry: false,
+    +       }}
+        />
+    ```
+
+*   Added a new redirect feature. It is now possible to set default redirects.
+
+    By default, when a form is submitted, it will redirect to the "list" page of the current resource. You can change this behavior by setting the `redirect` parameter like this:
+
+    ```tsx
+    <Refine
+        ...
+        options={{ redirect: { afterCreate: "show", afterClone: "edit", afterEdit: false }, }}
+    />
+    ```
+
+### Patch Changes
+
+-   -   `lodash` moved to "dependencies" for CommonJS builds
+
+*   -   Fixed `lodash-es` usage for ESM builds
+
 ## 3.60.0
 
 ### Minor Changes
