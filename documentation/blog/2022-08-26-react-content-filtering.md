@@ -125,6 +125,14 @@ Within seconds it should automatically bring up your default browser with the pr
 
 ## Add global styling
 
+refine is a headless Framework, so it does not include UI Components by default. 
+However, refine supports Materil UI and Antdesign for quick and easy solutions.
+
+
+[Refer to refine tutorials for UI implementation examples](https://refine.dev/docs/#introduction)
+
+We will create our custom styles.
+
 In order to create the global style rules for the app, navigate to the `src` directory, create a new file `styles.css`, and include the following code:
 
 ```css title="src/styles.css"
