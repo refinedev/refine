@@ -264,25 +264,25 @@ register: ({ username, password, remember }) => {
 
 > [Refer to useRegister documentation for more information. &#8594](/core/hooks/auth/useRegister.md)
 
-### `updatePassword`
+### `resetPassword`
 
-**refine** expects this method to return a resolved Promise if the updatePassword is successful, and a rejected Promise if it is not.
+**refine** expects this method to return a resolved Promise if the reset password is successful, and a rejected Promise if it is not.
 
--   If the update password is successfull new user is created.
+-   If the reset password is successfull you can send an email to the user with a link to reset the password.
 
--   If the update password fails, **refine** displays an error notification to the user.
+-   If the reset password fails, **refine** displays an error notification to the user.
 
 <br />
 
-Here we show an example `updatePassword` method.
+Here we show an example `resetPassword` method.
 
 ```tsx title="auth-provider.ts"
 const authProvider = {
     // highlight-start
-    updatePassword: ({ password, newPassword }) => {
+    resetPassword: ({ email }) => {
         // We suppose we actually send a request to the back end here.
-        if (password && newPassword) {
-            //we can update password here
+        if (email) {
+            //we can send an email to the user with a link to reset the password.
             return Promise.resolve();
         }
         return Promise.reject();
@@ -317,7 +317,7 @@ const { mutate: resetPassword } =
 :::
 
 :::tip
-**refine** automatically displays an error notification if the update password fails. You can customize the default error message.
+**refine** automatically displays an error notification if the reset password fails. You can customize the default error message.
 
 ```tsx
 resetPassword: ({ email }) => {
@@ -337,6 +337,82 @@ resetPassword: ({ email }) => {
 :::
 
 > [Refer to useResetPassword documentation for more information. &#8594](/core/hooks/auth/useResetPassword.md)
+
+### `updatePassword`
+
+**refine** expects this method to return a resolved Promise if the update password is successful, and a rejected Promise if it is not.
+
+-   If the update password is successfull your password is updated.
+
+-   `updatePassword` can gives you the query params from the url.
+
+-   If the update password fails, **refine** displays an error notification to the user.
+
+<br />
+
+Here we show an example `resetPassword` method.
+
+```tsx title="auth-provider.ts"
+const authProvider = {
+    // highlight-start
+    updatePassword: ({ newPassword, queryStrings }) => {
+        // If you want to get token the query params from the url, you can use `queryStrings`.
+        if (newPassword) {
+            //we can update the password.
+            return Promise.resolve();
+        }
+        return Promise.reject();
+    },
+    // highlight-end
+};
+```
+
+<br />
+
+`updatePassword` method will be accessible via `useUpdatePassword` auth hook.
+
+```tsx
+import { useUpdatePassword } from "@pankod/refine-core";
+
+const { mutate: updatePassword } = useUpdatePassword();
+
+updatePassword(values);
+```
+
+:::tip
+`mutate` acquired from `useUpdatePassword` can accept any kind of object for values since `updatePassword` method from `authProvider` does not have a restriction on its parameters.  
+A type parameter for the values can be provided to `useUpdatePassword`.
+
+```tsx
+const { mutate: updatePassword } =
+    useUpdatePassword<{
+        newPassword: string;
+    }>();
+```
+
+:::
+
+:::tip
+**refine** automatically displays an error notification if the update password fails. You can customize the default error message.
+
+```tsx
+resetPassword: ({ email }) => {
+     if (email) {
+            return Promise.resolve();
+        }
+        //highlight-start
+        return Promise.reject({
+            name: "Update Password Failed!",
+            message: "Update Password token expired.",
+        });
+        //highlight-end
+    },
+
+```
+
+:::
+
+> [Refer to useUpdatePassword documentation for more information. &#8594](/core/hooks/auth/useUpdatePassword.md)
 
 ### `logout`
 
