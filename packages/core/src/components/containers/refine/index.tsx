@@ -13,7 +13,7 @@ import { DataContextProvider } from "@contexts/data";
 import { LiveContextProvider } from "@contexts/live";
 import { TranslationContextProvider } from "@contexts/translation";
 import { ResourceContextProvider, IResourceItem } from "@contexts/resource";
-import { defaultRefineOptions, RefineContextProvider } from "@contexts/refine";
+import { RefineContextProvider } from "@contexts/refine";
 import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 import { UnsavedWarnContextProvider } from "@contexts/unsavedWarn";
 import { RouterContextProvider } from "@contexts/router";
@@ -21,7 +21,7 @@ import { AccessControlContextProvider } from "@contexts/accessControl";
 import { NotificationContextProvider } from "@contexts/notification";
 import { AuditLogContextProvider } from "@contexts/auditLog";
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
-import { routeGenerator } from "@definitions";
+import { handleRefineOptions, routeGenerator } from "@definitions";
 import { Telemetry } from "@components/telemetry";
 import { useDeepMemo } from "@hooks/deepMemo";
 
@@ -40,6 +40,7 @@ import {
     NotificationProvider,
     AccessControlProvider,
     AuditLogProvider,
+    IRefineOptions,
 } from "../../../interfaces";
 
 interface QueryClientConfig {
@@ -119,21 +120,7 @@ export interface RefineProps {
         @example  `options={{ disableTelemetry: true }}`
      */
     disableTelemetry?: boolean;
-    options?: {
-        mutationMode?: MutationMode;
-        syncWithLocation?: boolean;
-        warnWhenUnsavedChanges?: boolean;
-        undoableTimeout?: number;
-        liveMode?: LiveModeProps["liveMode"];
-        disableTelemetry?: boolean;
-        redirect?: {};
-        reactQuery?: {
-            clientConfig?: QueryClientConfig;
-            devtoolConfig?:
-                | React.ComponentProps<typeof ReactQueryDevtools>
-                | false;
-        };
-    };
+    options?: IRefineOptions;
 }
 
 /**
@@ -175,25 +162,36 @@ export const Refine: React.FC<RefineProps> = ({
     disableTelemetry,
     options,
 }) => {
-    const optionsDisableTelemetry = options?.disableTelemetry ?? false;
+    const {
+        optionsWithDefaults,
+        disableTelemetryWithDefault,
+        reactQueryWithDefaults,
+    } = handleRefineOptions({
+        options,
+        disableTelemetry,
+        liveMode,
+        mutationMode,
+        reactQueryClientConfig,
+        reactQueryDevtoolConfig,
+        syncWithLocation,
+        warnWhenUnsavedChanges,
+        undoableTimeout,
+    });
 
     const queryClient = useDeepMemo(() => {
         return new QueryClient({
-            ...reactQueryClientConfig,
-            ...options?.reactQuery?.clientConfig,
+            ...reactQueryWithDefaults.clientConfig,
             defaultOptions: {
-                ...reactQueryClientConfig?.defaultOptions,
-                ...options?.reactQuery?.clientConfig?.defaultOptions,
+                ...reactQueryWithDefaults.clientConfig.defaultOptions,
                 queries: {
                     refetchOnWindowFocus: false,
                     keepPreviousData: true,
-                    ...reactQueryClientConfig?.defaultOptions?.queries,
-                    ...options?.reactQuery?.clientConfig?.defaultOptions
+                    ...reactQueryWithDefaults.clientConfig.defaultOptions
                         ?.queries,
                 },
             },
         });
-    }, [reactQueryClientConfig, options?.reactQuery?.clientConfig]);
+    }, [reactQueryWithDefaults.clientConfig]);
 
     const notificationProviderContextValues = React.useMemo(() => {
         return typeof notificationProvider === "function"
@@ -258,17 +256,17 @@ export const Refine: React.FC<RefineProps> = ({
                                                 <UndoableQueueContextProvider>
                                                     <RefineContextProvider
                                                         mutationMode={
-                                                            mutationMode
+                                                            optionsWithDefaults.mutationMode
                                                         }
                                                         warnWhenUnsavedChanges={
-                                                            warnWhenUnsavedChanges
+                                                            optionsWithDefaults.warnWhenUnsavedChanges
                                                         }
                                                         syncWithLocation={
-                                                            syncWithLocation
+                                                            optionsWithDefaults.syncWithLocation
                                                         }
                                                         Title={Title}
                                                         undoableTimeout={
-                                                            undoableTimeout
+                                                            optionsWithDefaults.undoableTimeout
                                                         }
                                                         catchAll={catchAll}
                                                         DashboardPage={
@@ -285,22 +283,22 @@ export const Refine: React.FC<RefineProps> = ({
                                                         hasDashboard={
                                                             !!DashboardPage
                                                         }
-                                                        liveMode={liveMode}
+                                                        liveMode={
+                                                            optionsWithDefaults.liveMode
+                                                        }
                                                         onLiveEvent={
                                                             onLiveEvent
                                                         }
-                                                        options={{
-                                                            ...defaultRefineOptions,
-                                                            ...options,
-                                                        }}
+                                                        options={
+                                                            optionsWithDefaults
+                                                        }
                                                     >
                                                         <UnsavedWarnContextProvider>
                                                             <RouterComponent>
                                                                 {children}
-                                                                {!disableTelemetry &&
-                                                                    !optionsDisableTelemetry && (
-                                                                        <Telemetry />
-                                                                    )}
+                                                                {!disableTelemetryWithDefault && (
+                                                                    <Telemetry />
+                                                                )}
                                                                 <RouteChangeHandler />
                                                             </RouterComponent>
                                                         </UnsavedWarnContextProvider>
@@ -315,13 +313,11 @@ export const Refine: React.FC<RefineProps> = ({
                     </DataContextProvider>
                 </AuthContextProvider>
             </NotificationContextProvider>
-            {reactQueryDevtoolConfig === false ||
-            options?.reactQuery?.devtoolConfig === false ? null : (
+            {reactQueryWithDefaults.devtoolConfig === false ? null : (
                 <ReactQueryDevtools
                     initialIsOpen={false}
                     position="bottom-right"
-                    {...(reactQueryDevtoolConfig ?? {})}
-                    {...(options?.reactQuery?.devtoolConfig ?? {})}
+                    {...reactQueryWithDefaults.devtoolConfig}
                 />
             )}
         </QueryClientProvider>

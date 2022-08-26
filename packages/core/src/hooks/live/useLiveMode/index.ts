@@ -5,8 +5,8 @@ import { RefineContext } from "@contexts/refine";
 export const useLiveMode = (
     liveMode: LiveModeProps["liveMode"],
 ): LiveModeProps["liveMode"] => {
-    const { liveMode: liveModeFromContext, options } =
+    const { liveMode: liveModeFromContext } =
         useContext<IRefineContext>(RefineContext);
 
-    return liveMode ?? liveModeFromContext ?? options.liveMode;
+    return liveMode ?? liveModeFromContext;
 };

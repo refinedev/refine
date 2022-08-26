@@ -2,10 +2,13 @@ import { useContext } from "react";
 
 import { RefineContext } from "@contexts/refine";
 import { UnsavedWarnContext } from "@contexts/unsavedWarn";
-import { IRefineOptions, IUnsavedWarnContext } from "../../../interfaces";
+import {
+    IRefineContextOptions,
+    IUnsavedWarnContext,
+} from "../../../interfaces";
 
 type UseWarnAboutChangeType = () => {
-    warnWhenUnsavedChanges: IRefineOptions["warnWhenUnsavedChanges"];
+    warnWhenUnsavedChanges: IRefineContextOptions["warnWhenUnsavedChanges"];
     warnWhen: NonNullable<IUnsavedWarnContext["warnWhen"]>;
     setWarnWhen: NonNullable<IUnsavedWarnContext["setWarnWhen"]>;
 };
@@ -17,13 +20,12 @@ type UseWarnAboutChangeType = () => {
  * @see {@link https://refine.dev/docs/api-references/components/refine-config#warnwhenunsavedchanges} for more details.
  */
 export const useWarnAboutChange: UseWarnAboutChangeType = () => {
-    const { warnWhenUnsavedChanges, options } = useContext(RefineContext);
+    const { warnWhenUnsavedChanges } = useContext(RefineContext);
 
     const { warnWhen, setWarnWhen } = useContext(UnsavedWarnContext);
 
     return {
-        warnWhenUnsavedChanges:
-            warnWhenUnsavedChanges ?? options.warnWhenUnsavedChanges,
+        warnWhenUnsavedChanges,
         warnWhen: Boolean(warnWhen),
         setWarnWhen: setWarnWhen ?? (() => undefined),
     };
