@@ -8,7 +8,7 @@ import createAuthRefreshInterceptor, {
     AxiosAuthRefreshRequestConfig,
 } from "axios-auth-refresh";
 
-import { Auth, Log, DraftResource, Config } from "./services";
+import { Auth, Log, DraftResource, Config, CloudQuery } from "./services";
 
 class Client {
     private baseUrl: string;
@@ -131,6 +131,10 @@ class Client {
 
     get config(): Config {
         return new Config(this);
+    }
+
+    get cloudQuery(): CloudQuery {
+        return new CloudQuery(this);
     }
 
     async call<D>(payload: {

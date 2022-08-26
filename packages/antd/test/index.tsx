@@ -62,7 +62,7 @@ export const TestWrapper: (
                     resources={resources ?? [{ name: "posts", list: List }]}
                     accessControlProvider={accessControlProvider}
                     DashboardPage={DashboardPage ?? undefined}
-                    disableTelemetry={true}
+                    options={{ disableTelemetry: true }}
                 >
                     {children}
                 </Refine>

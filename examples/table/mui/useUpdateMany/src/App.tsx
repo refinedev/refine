@@ -36,7 +36,7 @@ const App: React.FC = () => {
                             list: PostsList,
                         },
                     ]}
-                    disableTelemetry={true}
+                    options={{ disableTelemetry: true }}
                 />
             </RefineSnackbarProvider>
         </ThemeProvider>

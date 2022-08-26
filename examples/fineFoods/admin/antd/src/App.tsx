@@ -71,8 +71,11 @@ const App: React.FC = () => {
                     Title={Title}
                     Header={Header}
                     Layout={Layout}
-                    syncWithLocation
-                    warnWhenUnsavedChanges
+                    options={{
+                        syncWithLocation: true,
+                        warnWhenUnsavedChanges: true,
+                        disableTelemetry: true,
+                    }}
                     resources={[
                         {
                             name: "orders",
@@ -119,8 +122,7 @@ const App: React.FC = () => {
                     ]}
                     notificationProvider={notificationProvider}
                     catchAll={<ErrorComponent />}
-                    disableTelemetry={true}
-                ></Refine>
+                />
             </ConfigProvider>
         </RefineKbarProvider>
     );

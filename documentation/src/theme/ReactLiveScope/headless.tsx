@@ -6,7 +6,14 @@ import * as RefineSimpleRest from "@pankod/refine-simple-rest";
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
 const Refine = (props) => (
-    <RefineCore.Refine {...props} reactQueryDevtoolConfig={false} />
+    <RefineCore.Refine
+        {...props}
+        options={{
+            reactQuery: {
+                devtoolConfig: false,
+            },
+        }}
+    />
 );
 
 const RefineDemoReactRouterV6 = (
@@ -27,8 +34,12 @@ const RefineHeadlessDemo: React.FC<
         <RefineCore.Refine
             routerProvider={RefineDemoReactRouterV6(initialRoutes)}
             dataProvider={RefineSimpleRest.default(SIMPLE_REST_API_URL)}
-            disableTelemetry={true}
-            reactQueryDevtoolConfig={false}
+            options={{
+                disableTelemetry: true,
+                reactQuery: {
+                    devtoolConfig: false,
+                },
+            }}
             {...rest}
         />
     );

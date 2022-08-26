@@ -84,34 +84,8 @@ This tutorial assumes your project is configured for absolute imports. Since CRA
 First, run the **superplate** with the following command:
 
 ```
-npx superplate-cli -p refine-react tutorial
+npx superplate-cli -o refine-headless tutorial
 ```
-
-Select the following options to complete the _CLI wizard_:
-
-```
-? What will be the name of your app:
-> tutorial
-
-? Package manager:
-❯ Npm
-
-? Do you want to use a UI Framework?:
-❯ No (Headless)
-
-? Router Provider:
-❯ React Router v6
-
-? Data Provider:
-❯ REST API
-
-? Auth Provider:
-❯ None
-
-? i18n - Internationalization:
-❯ No
-```
-
 </TabItem>
 </Tabs>
 

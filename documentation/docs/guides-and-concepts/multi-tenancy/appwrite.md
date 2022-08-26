@@ -613,7 +613,7 @@ function App() {
                 routerProvider={routerProvider}
                 //highlight-start
                 liveProvider={liveProvider(appwriteClient)}
-                liveMode="auto"
+                options={{ liveMode: "auto" }}
                 //highlight-end
                 dataProvider={dataProvider(appwriteClient)}
                 authProvider={authProvider}
