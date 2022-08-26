@@ -3,14 +3,13 @@ import { renderHook } from "@testing-library/react";
 import { TestWrapper } from "@test";
 
 import { useResourceSubscription } from "./";
+import { defaultRefineOptions } from "@contexts/refine";
 import { IRefineContextProvider } from "../../../interfaces";
 
 const mockRefineProvider: IRefineContextProvider = {
     hasDashboard: false,
-    mutationMode: "pessimistic",
-    warnWhenUnsavedChanges: false,
-    syncWithLocation: false,
-    undoableTimeout: 500,
+    ...defaultRefineOptions,
+    options: defaultRefineOptions,
 };
 
 const onLiveEventMock = jest.fn();

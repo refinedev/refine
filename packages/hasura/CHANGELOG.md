@@ -1,5 +1,11 @@
 # @pankod/refine-hasura
 
+## 4.9.1
+
+### Patch Changes
+
+-   [#2366](https://github.com/pankod/refine/pull/2366) [`de87f13dad`](https://github.com/pankod/refine/commit/de87f13dadabc3de947534988abfbb2ff6263ca4) Thanks [@omeraplak](https://github.com/omeraplak)! - - `lodash` moved to "dependencies" for CommonJS builds
+
 ## 4.9.0
 
 ### Minor Changes

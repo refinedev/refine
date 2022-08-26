@@ -225,7 +225,7 @@ const publish = usePublish();
 
 ## `liveMode`
 
-`liveMode` must be passed to either `<Refine>` or [supported hooks](#supported-hooks) for `liveProvider` to work. If it's not provided live features won't be activated. Passing it to `<Refine>` configures it app wide and hooks will use this option. It can also be passed to hooks directly without passing to `<Refine>` for detailed configuration. If both are provided value passed to the hook will override the value at `<Refine>`.
+`liveMode` must be passed to `<Refine>` in `options` or [supported hooks](#supported-hooks) for `liveProvider` to work. If it's not provided live features won't be activated. Passing it to `<Refine>` in `options` configures it app wide and hooks will use this option. It can also be passed to hooks directly without passing to `<Refine>` for detailed configuration. If both are provided value passed to the hook will override the value at `<Refine>`.
 
 #### Usage in `<Refine>`:
 
@@ -233,7 +233,9 @@ const publish = usePublish();
 // ...
 
 const App: React.FC = () => {
-    return <Refine liveProvider={liveProvider} liveMode="auto" />;
+    return (
+        <Refine liveProvider={liveProvider} options={{ liveMode: "auto" }} />
+    );
 };
 ```
 
@@ -273,7 +275,7 @@ const App: React.FC = () => {
     return (
         <Refine
             liveProvider={liveProvider}
-            liveMode="auto"
+            options={{ liveMode: "auto" }}
             onLiveEvent={(event) => {
                 // Put your own logic based on event
             }}
@@ -297,15 +299,15 @@ const { data } = useList({
 
 ## Supported Hooks
 
-| Supported data hooks                                     | Supported form hooks                                                 | Supported other hooks                                                       |
-| -------------------------------------------------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| [`useList` &#8594](/core/hooks/data/useList.md) | [`useForm` &#8594](/core/hooks/useForm.md)             | [`useTable` &#8594](/core/hooks/useTable.md)                 |
+| Supported data hooks                            | Supported form hooks                                                      | Supported other hooks                                                            |
+| ----------------------------------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| [`useList` &#8594](/core/hooks/data/useList.md) | [`useForm` &#8594](/core/hooks/useForm.md)                                | [`useTable` &#8594](/core/hooks/useTable.md)                                     |
 | [`useOne` &#8594](/core/hooks/data/useOne.md)   | [`useModalForm` &#8594](/ui-frameworks/antd/hooks/form/useModalForm.md)   | [`useEditableTable` &#8594](/ui-frameworks/antd/hooks/table/useEditableTable.md) |
 | [`useMany` &#8594](/core/hooks/data/useMany.md) | [`useDrawerForm` &#8594](/ui-frameworks/antd/hooks/form/useDrawerForm.md) | [`useSimpleList` &#8594](/ui-frameworks/antd/hooks/list/useSimpleList.md)        |
-|                                                          | [`useStepsForm` &#8594](/ui-frameworks/antd/hooks/form/useStepsForm.md)   | [`useShow` &#8594](/core/hooks/show/useShow.md)                    |
-|                                                          |                                                                      | [`useCheckboxGroup` &#8594](/ui-frameworks/antd/hooks/field/useCheckboxGroup.md) |
-|                                                          |                                                                      | [`useSelect` &#8594](/core/hooks/useSelect.md)               |
-|                                                          |                                                                      | [`useRadioGroup` &#8594](/ui-frameworks/antd/hooks/field/useRadioGroup.md)       |
+|                                                 | [`useStepsForm` &#8594](/ui-frameworks/antd/hooks/form/useStepsForm.md)   | [`useShow` &#8594](/core/hooks/show/useShow.md)                                  |
+|                                                 |                                                                           | [`useCheckboxGroup` &#8594](/ui-frameworks/antd/hooks/field/useCheckboxGroup.md) |
+|                                                 |                                                                           | [`useSelect` &#8594](/core/hooks/useSelect.md)                                   |
+|                                                 |                                                                           | [`useRadioGroup` &#8594](/ui-frameworks/antd/hooks/field/useRadioGroup.md)       |
 
 ## Supported Hooks Subscriptions
 
