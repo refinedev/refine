@@ -16,9 +16,9 @@ export const defaultRefineOptions: IRefineContextOptions = {
     warnWhenUnsavedChanges: false,
     liveMode: "off",
     redirect: {
-        create: "list",
-        clone: "list",
-        edit: "list",
+        afterCreate: "list",
+        afterClone: "list",
+        afterEdit: "list",
     },
 };
 

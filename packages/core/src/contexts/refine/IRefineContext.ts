@@ -18,9 +18,9 @@ export interface IRefineOptions {
     liveMode?: LiveModeProps["liveMode"];
     disableTelemetry?: boolean;
     redirect?: {
-        create?: RedirectionTypes;
-        clone?: RedirectionTypes;
-        edit?: RedirectionTypes;
+        afterCreate?: RedirectionTypes;
+        afterClone?: RedirectionTypes;
+        afterEdit?: RedirectionTypes;
     };
     reactQuery?: {
         clientConfig?: QueryClientConfig;
@@ -35,9 +35,9 @@ export interface IRefineContextOptions {
     undoableTimeout: number;
     liveMode: LiveModeProps["liveMode"];
     redirect: {
-        create: RedirectionTypes;
-        clone: RedirectionTypes;
-        edit: RedirectionTypes;
+        afterCreate: RedirectionTypes;
+        afterClone: RedirectionTypes;
+        afterEdit: RedirectionTypes;
     };
 }
 

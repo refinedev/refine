@@ -1,17 +1,17 @@
 import { IRefineContextOptions } from "../../../../src/interfaces";
-import { redirectPath } from ".";
+import { redirectPage } from ".";
 
 describe("redirectPath", () => {
     it("should return redirectFromProps if it is provided", () => {
         const redirectFromProps = "edit";
         const action = "create";
         const redirectOptions: IRefineContextOptions["redirect"] = {
-            clone: "edit",
-            create: "list",
-            edit: "show",
+            afterClone: "edit",
+            afterCreate: "list",
+            afterEdit: "show",
         };
 
-        const result = redirectPath({
+        const result = redirectPage({
             redirectFromProps,
             action,
             redirectOptions,
@@ -23,16 +23,27 @@ describe("redirectPath", () => {
         "should return redirect option according to action %s",
         (action) => {
             const redirectOptions: IRefineContextOptions["redirect"] = {
-                clone: "edit",
-                create: "list",
-                edit: "show",
+                afterClone: "edit",
+                afterCreate: "list",
+                afterEdit: "show",
             };
 
-            const result = redirectPath({
+            const result = redirectPage({
                 action,
                 redirectOptions,
             });
-            expect(result).toEqual(redirectOptions[action]);
+
+            switch (action) {
+                case "clone":
+                    expect(result).toEqual(redirectOptions.afterClone);
+                    break;
+                case "create":
+                    expect(result).toEqual(redirectOptions.afterCreate);
+                    break;
+                case "edit":
+                    expect(result).toEqual(redirectOptions.afterEdit);
+                    break;
+            }
         },
     );
 });

@@ -30,7 +30,7 @@ import {
 } from "../../interfaces";
 import { UpdateParams, UseUpdateReturnType } from "../data/useUpdate";
 import { UseCreateReturnType } from "../data/useCreate";
-import { redirectPath } from "@definitions/helpers";
+import { redirectPage } from "@definitions/helpers";
 
 export type ActionParams = {
     action?: "edit" | "create" | "clone";
@@ -162,7 +162,7 @@ export const useForm = <
     const isEdit = action === "edit";
     const isClone = action === "clone";
 
-    const redirect = redirectPath({
+    const redirect = redirectPage({
         redirectFromProps,
         action,
         redirectOptions: options.redirect,

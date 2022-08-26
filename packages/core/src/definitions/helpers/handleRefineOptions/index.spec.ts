@@ -24,9 +24,9 @@ describe("handleRefineOptions", () => {
             syncWithLocation: true,
             warnWhenUnsavedChanges: true,
             redirect: {
-                clone: "show",
-                create: "edit",
-                edit: "show",
+                afterClone: "show",
+                afterCreate: "edit",
+                afterEdit: "show",
             },
         };
 
@@ -43,9 +43,9 @@ describe("handleRefineOptions", () => {
             undoableTimeout: 1000,
             warnWhenUnsavedChanges: true,
             redirect: {
-                clone: "show",
-                create: "edit",
-                edit: "show",
+                afterClone: "show",
+                afterCreate: "edit",
+                afterEdit: "show",
             },
         });
         expect(disableTelemetryWithDefault).toBe(true);
@@ -100,9 +100,9 @@ describe("handleRefineOptions", () => {
             undoableTimeout: 1000,
             warnWhenUnsavedChanges: true,
             redirect: {
-                clone: "list",
-                create: "list",
-                edit: "list",
+                afterClone: "list",
+                afterCreate: "list",
+                afterEdit: "list",
             },
         });
         expect(disableTelemetryWithDefault).toBe(true);
@@ -141,9 +141,9 @@ describe("handleRefineOptions", () => {
             undoableTimeout: 2000,
             warnWhenUnsavedChanges: false,
             redirect: {
-                clone: "list",
-                create: "list",
-                edit: "list",
+                afterClone: "list",
+                afterCreate: "list",
+                afterEdit: "list",
             },
         });
         expect(disableTelemetryWithDefault).toBe(true);
@@ -161,15 +161,15 @@ describe("handleRefineOptions", () => {
         const { optionsWithDefaults } = handleRefineOptions({
             options: {
                 redirect: {
-                    clone: "show",
+                    afterClone: "show",
                 },
             },
         });
 
         expect(optionsWithDefaults.redirect).toEqual({
-            clone: "show",
-            create: "list",
-            edit: "list",
+            afterClone: "show",
+            afterCreate: "list",
+            afterEdit: "list",
         });
     });
 });

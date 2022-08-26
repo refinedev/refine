@@ -1,19 +1,26 @@
 import { IRefineContextOptions, RedirectionTypes } from "src/interfaces";
 
-type RedirectPathProps = {
+type RedirectPageProps = {
     redirectFromProps?: RedirectionTypes;
     action: "edit" | "create" | "clone";
     redirectOptions: IRefineContextOptions["redirect"];
 };
 
-export const redirectPath = ({
+export const redirectPage = ({
     redirectFromProps,
     action,
     redirectOptions,
-}: RedirectPathProps): RedirectionTypes => {
+}: RedirectPageProps): RedirectionTypes => {
     if (redirectFromProps) {
         return redirectFromProps;
     }
 
-    return redirectOptions[action];
+    switch (action) {
+        case "clone":
+            return redirectOptions.afterClone;
+        case "create":
+            return redirectOptions.afterCreate;
+        case "edit":
+            return redirectOptions.afterEdit;
+    }
 };
