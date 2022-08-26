@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@js-temporal/polyfill": "^0.4.2",
-    "@pankod/refine-core": "^3.61.0",
+    "@pankod/refine-core": "^3.62.0",
     "@pankod/refine-react-hook-form": "^3.31.4",
     "@pankod/refine-react-router-v6": "^3.18.0",
     "@pankod/refine-react-table": "^4.5.0",
