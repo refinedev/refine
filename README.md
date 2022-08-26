@@ -74,7 +74,7 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 
 ⚡ Out-of-the-box support for **live / real-time applications**
 
-📄 Easy **audit logs** &** **document versioning**
+📄 Easy **audit logs** & **document versioning**
 
 💬 Support for any **i18n** framework
 
