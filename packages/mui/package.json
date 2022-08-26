@@ -1,6 +1,6 @@
 {
     "name": "@pankod/refine-mui",
-    "version": "3.41.8",
+    "version": "3.41.10",
     "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
     "private": false,
     "main": "dist/index.js",
@@ -19,7 +19,7 @@
     },
     "devDependencies": {
         "@pankod/refine-ui-tests": "^0.3.2",
-        "@pankod/refine-core": "^3.56.11",
+        "@pankod/refine-core": "^3.58.5",
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
@@ -33,7 +33,6 @@
         "esbuild-copy-static-files": "^0.1.0",
         "esbuild-plugin-inline-image": "^0.0.8",
         "identity-obj-proxy": "^3.0.0",
-        "lodash": "^4.17.21",
         "jest": "^27.5.1",
         "postcss": "^8.1.4",
         "react-router-dom": "^6.0.0",
@@ -52,6 +51,7 @@
         "@pankod/refine-react-hook-form": "^3.31.2",
         "dayjs": "^1.10.7",
         "lodash-es": "^4.17.21",
+        "lodash": "^4.17.21",
         "notistack": "^2.0.4",
         "react-markdown": "^6.0.1",
         "remark-gfm": "^1.0.0",

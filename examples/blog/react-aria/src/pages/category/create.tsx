@@ -24,13 +24,13 @@ export const CategoryCreate: React.FC = () => {
 
     return (
         <div className="container">
-            <div className="w-full flex justify-end">
+            <div className="flex w-full justify-end">
                 <Button onPress={state.open}>Create</Button>
             </div>
             <Modal overlayState={state} title="Create a category">
                 <form
                     onSubmit={handleSubmit(onFinish)}
-                    className="w-full flex flex-col gap-4"
+                    className="flex w-full flex-col gap-4"
                 >
                     <Controller
                         control={control}
@@ -44,7 +44,7 @@ export const CategoryCreate: React.FC = () => {
                                     placeholder="Title"
                                 />
                                 {errors?.title && (
-                                    <div className="text-red-500 text-xs mt-1 font-semibold">
+                                    <div className="mt-1 text-xs font-semibold text-red-500">
                                         {errors.title.message}
                                     </div>
                                 )}

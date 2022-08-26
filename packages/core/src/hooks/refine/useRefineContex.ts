@@ -19,6 +19,7 @@ export const useRefineContext = () => {
         LoginPage,
         AuthPage,
         catchAll,
+        options,
     } = useContext(RefineContext);
 
     return {
@@ -37,5 +38,6 @@ export const useRefineContext = () => {
         LoginPage,
         AuthPage,
         catchAll,
+        options,
     };
 };

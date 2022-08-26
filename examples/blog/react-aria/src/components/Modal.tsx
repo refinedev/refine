@@ -41,11 +41,11 @@ function ModalDialog(props: AriaButtonProps<ElementType> | any) {
                     {...dialogProps}
                     {...modalProps}
                     ref={ref}
-                    className="w-full bg-white text-black p-7 max-w-xl"
+                    className="w-full max-w-xl bg-white p-7 text-black"
                 >
                     <h3
                         {...titleProps}
-                        className="mt-0 pb-4 border-b border-slate-200 border-solid text-xl mb-6 font-bold"
+                        className="mt-0 mb-6 border-b border-solid border-slate-200 pb-4 text-xl font-bold"
                     >
                         {title}
                     </h3>

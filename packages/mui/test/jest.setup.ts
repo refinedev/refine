@@ -32,3 +32,5 @@ Object.defineProperty(window, "TextDecoder", {
     writable: true,
     value: util.TextDecoder,
 });
+
+jest.setTimeout(20000);

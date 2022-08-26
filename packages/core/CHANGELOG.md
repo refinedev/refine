@@ -1,5 +1,17 @@
 # @pankod/refine-core
 
+## 3.58.5
+
+### Patch Changes
+
+-   `lodash` moved to dependencies.
+
+## 3.58.4
+
+### Patch Changes
+
+-   [#2350](https://github.com/pankod/refine/pull/2350) [`f8e5d99598`](https://github.com/pankod/refine/commit/f8e5d99598265af434f25fde104fafc9b7cac792) Thanks [@ozkalai](https://github.com/ozkalai)! - `lodash` moved to dependencies.
+
 ## 3.58.3
 
 ### Patch Changes

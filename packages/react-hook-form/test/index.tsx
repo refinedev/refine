@@ -25,13 +25,17 @@ export const TestWrapper: (
                     dataProvider={dataProvider ?? MockJSONServer}
                     routerProvider={MockRouterProvider}
                     resources={resources ?? [{ name: "posts" }]}
-                    disableTelemetry={true}
-                    reactQueryClientConfig={{
-                        defaultOptions: {
-                            queries: {
-                                retry: false,
+                    options={{
+                        reactQuery: {
+                            clientConfig: {
+                                defaultOptions: {
+                                    queries: {
+                                        retry: false,
+                                    },
+                                },
                             },
                         },
+                        disableTelemetry: true,
                     }}
                 >
                     {children}

@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import humanizeString from "humanize-string";
 import warnOnce from "warn-once";
 
 import { useResource, useRouterContext, useTranslate } from "@hooks";
 import { TranslationContext } from "@contexts/translation";
+import { humanizeString } from "@definitions";
 
 import { ResourceRouterParams } from "../../interfaces";
 
