@@ -1,10 +1,10 @@
 ---
-title: React search bar and content filtering components in refine app
-description: How to create Search and Filter Components in React based refine apps?
-slug: react-search-bar-and-filtering-refine
+title: Creating a React search bar and content filtering components 
+description: Article about how to create Search bar and filter component in React
+slug: react-search-bar-and-filtering
 authors: madar_biss
 tags: [react, refine, search-bar, filtering]
-image: https://refine.dev/img/blog/2022-08-24-mui-icons/mui-icons-social.png
+image: https://refine.dev/img/blog/2022-08-26-react-content-filtering/refine-filter-social.png
 hide_table_of_contents: false
 ---
 
@@ -16,7 +16,13 @@ import mobile from '@site/static/img/blog/2022-08-26-react-content-filtering/mob
 import search from '@site/static/img/blog/2022-08-26-react-content-filtering/search.gif';
 import terminal from '@site/static/img/blog/2022-08-26-react-content-filtering/terminal.png';
 import wireframe from '@site/static/img/blog/2022-08-26-react-content-filtering/wireframe.png';
+import social from '@site/static/img/blog/2022-08-26-react-content-filtering/refine-filter-social.png';
 
+<br />
+
+<div class="img-container">
+    <img src={social} alt="social" />
+</div>
 
 ## Introduction
 Filtering systems are common for most modern web applications. They are especially useful if there are large amounts of data. They allow users to save time and easily access the information they are looking for.
@@ -42,6 +48,9 @@ Steps we'll cover:
   - [Content card](#content-card)
 - [Implementing the logic](#implementing-the-logic)
 - [Testing the app](#testing-the-app)
+- [Conclusion](#conclusion)
+- [Live StackBlitz Example](#live-stackblitz-example)
+- [Build your React-based CRUD applications without constraints](#build-your-react-based-crud-applications-without-constraints)
 
 
 
