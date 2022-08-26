@@ -1,0 +1,201 @@
+{
+    "ui-framework-packages": [
+        {
+            "name": "ANT DESIGN",
+            "icon": "/integrations/antd.svg",
+            "description": "a fully featured Ant Design System UI Framework support. Includes +20 Table, Form, Select, Menu, Layout, Notification and CRUD components and hooks.",
+            "url": "https://ant.design",
+            "status": "stable"
+        },
+        {
+            "name": "MATERIAL UI",
+            "icon": "/integrations/mui.svg",
+            "description": "a fully featured Material UI Framework support. Includes DataGrid (Pro included), AutoComplete, Menu, Layout, Notification and CRUD components and hooks.",
+            "url": "https://www.google.com",
+            "status": "stable"
+        },
+        {
+            "name": "MANTINE UI",
+            "icon": "/integrations/mantine.svg",
+            "description": "a fully featured React component library. Build fully functional accessible web applications faster than ever – Mantine includes more than 100 customizable components and 40 hooks to cover you in any situation",
+            "url": "https://mantine.dev",
+            "status": "soon"
+        }
+    ],
+    "data-provider-packages": [
+        {
+            "name": "REST API Data Provider",
+            "icon": "/integrations/rest.svg",
+            "description": "",
+            "url": "",
+            "status": "stable"
+        },
+        {
+            "name": "GraphQL Data Provider",
+            "icon": "/integrations/graphql.svg",
+            "description": "GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data.",
+            "url": "https://graphql.org/",
+            "status": "stable"
+        },
+        {
+            "name": "NestJsX Crud Data Provider",
+            "icon": "/integrations/nest.svg",
+            "description": "Nest (NestJS) is a framework for building efficient, scalable Node.js server-side applications.",
+            "url": "https://docs.nestjs.com",
+            "status": "stable"
+        },
+        {
+            "name": "Strapi Data Provider",
+            "icon": "/integrations/strapi.svg",
+            "description": "Strapi is the leading open-source headless CMS. It’s 100% JavaScript, fully customizable and developer-first.",
+            "url": "https://strapi.io",
+            "status": "stable"
+        },
+        {
+            "name": "Supabase Data Provider",
+            "icon": "/integrations/supabase.svg",
+            "description": "Supabase is an open source Firebase alternative. Start your project with a Postgres Database, Authentication, instant APIs, Realtime subscriptions and Storage.",
+            "url": "https://supabase.com/",
+            "status": "stable"
+        },
+        {
+            "name": "Hasura GraphQL Data Provider",
+            "icon": "/integrations/hasura.svg",
+            "description": "From your databases to a unified GraphQL API in just one minute",
+            "url": "https://hasura.io",
+            "status": "stable"
+        },
+        {
+            "name": "Nhost Data Provider",
+            "icon": "/integrations/nhost.svg",
+            "description": "The Open Source Firebase Alternative with GraphQL",
+            "url": "https://nhost.io/",
+            "status": "stable"
+        },
+        {
+            "name": "Appwrite Data Provider",
+            "icon": "/integrations/appwrite.svg",
+            "description": "Appwrite is a self-hosted backend-as-a-service platform that provides developers with all the core APIs required to build any application.",
+            "url": "https://appwrite.io/",
+            "status": "stable"
+        },
+        {
+            "name": "Airtable Data Provider",
+            "icon": "/integrations/airtable.svg",
+            "description": "Accelerate work and unlock potential with powerful apps that connect your data, workflows and teams.",
+            "url": "https://www.airtable.com/",
+            "status": "stable"
+        },
+        {
+            "name": "Medusa Data Provider",
+            "icon": "/integrations/medusa.svg",
+            "description": "The Open Source Shopify alternative. Medusa is a composable engine that combines an amazing  developer experience with endless customizations for merchants to scale.",
+            "url": "https://medusajs.com/",
+            "status": "stable"
+        },
+        {
+            "name": "Altogic Data Provider",
+            "icon": "/integrations/altogic.svg",
+            "description": "Powerful backend app development and execution platform helping you to easily build, deploy and manage scalable web services.",
+            "url": "https://altogic.com/",
+            "status": "stable"
+        },
+        {
+            "name": "Strapi - GraphQL Data Provider",
+            "icon": "/integrations/strapi.svg",
+            "description": "Powerful backend app development and execution platform helping you to easily build, deploy and manage scalable web services.",
+            "url": "https://docs-v3.strapi.io/developer-docs/latest/development/plugins/graphql.html#usage",
+            "status": "stable"
+        },
+        {
+            "name": "Firebase Data Provider",
+            "icon": "/integrations/firebase.svg",
+            "description": "Firebase is an app development platform that helps you build and grow apps and games users love.",
+            "url": "https://firebase.google.com/",
+            "status": "stable",
+            "contributors": [
+                {
+                    "name": "rturan29",
+                    "url": "https://github.com/rturan29"
+                }
+            ]
+        },
+        {
+            "name": "Directus Data Provider",
+            "icon": "/integrations/directus.svg",
+            "description": "Power any project with a modern, open source data platform",
+            "url": "https://directus.io",
+            "status": "stable",
+            "contributors": [
+                {
+                    "name": "tspvivek",
+                    "url": "https://github.com/tspvivek"
+                }
+            ]
+        }
+    ],
+    "frameworks": [
+        {
+            "name": "NEXTJS",
+            "icon": "/integrations/next.svg",
+            "description": "The React Framework for Production",
+            "url": "https://nextjs.org",
+            "status": "stable"
+        },
+        {
+            "name": "REMIX",
+            "icon": "/integrations/remix.svg",
+            "description": "Remix is a full stack web framework that lets you focus on the user interface and work back through web standards to deliver a fast, slick, and resilient user experience.",
+            "url": "https://remix.run",
+            "status": "stable"
+        },
+        {
+            "name": "GATSBY",
+            "icon": "/integrations/gatsby.svg",
+            "description": "we’re obsessed with delivering dynamic web experiences with performance and security that scales.",
+            "url": "https://www.gatsbyjs.com",
+            "status": "soon"
+        }
+    ],
+    "integrations": [
+        {
+            "name": "React Table",
+            "icon": "/integrations/react.svg",
+            "description": "Headless UI for building powerful tables & datagrids",
+            "url": "https://tanstack.com/table/v8",
+            "status": "stable"
+        },
+        {
+            "name": "React Hook Form",
+            "icon": "/integrations/hook-form.svg",
+            "description": "Performant, flexible and extensible forms with easy-to-use validation.",
+            "url": "https://react-hook-form.com",
+            "status": "stable"
+        },
+        {
+            "name": "kbar interface",
+            "icon": "/integrations/kbar.svg",
+            "description": "kbar is a fully extensible command+k interface for your site.",
+            "url": "https://kbar.vercel.app",
+            "status": "stable"
+        }
+    ],
+    "live-providers": [
+        {
+            "name": "Ably Live Provider",
+            "icon": "/integrations/ably.svg",
+            "description": "The platform to power synchronized digital experiences in realtime. Guaranteed to deliver at scale.",
+            "url": "https://ably.com",
+            "status": "stable"
+        }
+    ],
+    "community-packages": [
+        {
+            "name": "DP Customizer",
+            "icon": "/integrations/dp.svg",
+            "description": "mixes with different data providers/data methods",
+            "url": "https://github.com/miyavsu-limited/data-provider-customizer",
+            "status": "stable"
+        }
+    ]
+}
