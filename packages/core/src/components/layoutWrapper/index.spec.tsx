@@ -76,6 +76,7 @@ describe("LayoutWrapper", () => {
                 Footer: CustomFooter,
                 OffLayoutArea: CustomOffLayoutArea,
                 Title: CustomTitle,
+                ...defaultRefineOptions,
                 options: defaultRefineOptions,
             },
         );
@@ -114,6 +115,7 @@ describe("LayoutWrapper", () => {
                 Footer: CustomFooter,
                 OffLayoutArea: CustomOffLayoutArea,
                 Title: CustomTitle,
+                ...defaultRefineOptions,
                 options: defaultRefineOptions,
             },
         );
@@ -170,6 +172,7 @@ describe("LayoutWrapper", () => {
                 <div>test</div>
             </LayoutWrapper>,
             {
+                ...defaultRefineOptions,
                 options: defaultRefineOptions,
                 hasDashboard: false,
             },

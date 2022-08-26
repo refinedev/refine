@@ -5,7 +5,7 @@ Added `useCloudQuery` and `useCloudMutation` for refine cloud queries.
 
 **Usage**
 
-```
+```tsx
 import { useCloudQuery, useCloudMutation } from "@pankod/refine-cloud";
 
 const { data } = useCloudQuery({
