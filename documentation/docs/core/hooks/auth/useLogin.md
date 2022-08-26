@@ -2,7 +2,7 @@
 id: useLogin
 title: useLogin
 siderbar_label: useLogin
-description: useLogin data hook from refine is a modified version of react-query's useMutation for authenttication.
+description: useLogin data hook from refine is a modified version of react-query's useMutation for authentication.
 ---
 
 `useLogin` calls `login` method from [`authProvider`](/core/providers/auth-provider.md) under the hood.  
