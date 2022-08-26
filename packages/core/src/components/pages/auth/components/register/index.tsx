@@ -5,7 +5,6 @@ import { IAuthCommonProps, IRegisterForm } from "../..";
 export const Register: React.FC<IAuthCommonProps> = ({
     registerLink,
     loginLink,
-    resetPasswordLink,
 }) => {
     const { Link } = useRouterContext();
 
@@ -91,14 +90,6 @@ export const Register: React.FC<IAuthCommonProps> = ({
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                     <br />
-                    {resetPasswordLink &&
-                        renderLink(
-                            resetPasswordLink,
-                            translate(
-                                "pages.login.resetPassword",
-                                "Forgot your password?",
-                            ),
-                        )}
                     {registerLink ? (
                         renderLink(
                             registerLink,
