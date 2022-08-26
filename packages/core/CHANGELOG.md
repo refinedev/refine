@@ -1,5 +1,32 @@
 # @pankod/refine-core
 
+## 3.59.0
+
+### Minor Changes
+
+-   [#2352](https://github.com/pankod/refine/pull/2352) [`e4d39eff33`](https://github.com/pankod/refine/commit/e4d39eff339d1c0ac391947843ebaa78d93830d6) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added a new `<Refine>` component property: `options`.
+
+    Previously, the options were passed as a property to the `<Refine>` component. Now, the options are passed to the `<Refine>` via `options` property like this:
+
+    ```diff
+        <Refine
+    -       mutationMode="undoable"
+    -       undoableTimeout={5000}
+    -       warnWhenUnsavedChanges
+    -       syncWithLocation
+    -       liveMode="off"
+    -       disableTelemetry={false}
+    +       options={{
+    +           mutationMode: "undoable",
+    +           undoableTimeout: 5000,
+    +           warnWhenUnsavedChanges: true,
+    +           syncWithLocation: true,
+    +           liveMode: "off",
+    +           disableTelemetry: false,
+    +       }}
+        />
+    ```
+
 ## 3.58.5
 
 ### Patch Changes
