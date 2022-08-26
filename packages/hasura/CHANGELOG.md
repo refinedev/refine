@@ -1,5 +1,11 @@
 # @pankod/refine-hasura
 
+## 4.9.3
+
+### Patch Changes
+
+-   -   `lodash` moved to "dependencies" for CommonJS builds
+
 ## 4.9.2
 
 ### Patch Changes
