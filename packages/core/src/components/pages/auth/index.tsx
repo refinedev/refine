@@ -71,14 +71,13 @@ export const AuthPage: React.FC<IAuthPageProps> = ({
                     <Register
                         registerLink={registerLink}
                         loginLink={loginLink}
-                        resetPasswordLink={resetPasswordLink}
                         backLink={backLink}
                     />
                 );
             case "resetPassword":
                 return (
                     <ResetPassword
-                        resetPasswordLink={registerLink}
+                        resetPasswordLink={resetPasswordLink}
                         backLink={backLink}
                     />
                 );

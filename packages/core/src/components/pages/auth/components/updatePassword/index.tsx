@@ -78,7 +78,7 @@ export const UpdatePassword: React.FC<IAuthCommonProps> = ({
                             updatePasswordLink,
                             translate(
                                 "pages.updatePassword.button",
-                                "Reset Password",
+                                "Update Password",
                             ),
                         )
                     ) : (
