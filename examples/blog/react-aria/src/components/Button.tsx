@@ -10,7 +10,7 @@ export default function Button(props: AriaButtonProps<ElementType> | any) {
         <button
             {...buttonProps}
             ref={ref}
-            className="flex items-center self-end rounded-lg bg-indigo-500 mb-5 px-5 py-2.5 mt-3 text-center text-sm font-medium text-white hover:bg-indigo-600 sm:w-auto"
+            className="mb-5 mt-3 flex items-center self-end rounded-lg bg-indigo-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-indigo-600 sm:w-auto"
         >
             {props.children}
         </button>

@@ -13,7 +13,7 @@ export default function Input(props: AriaTextFieldProps) {
             <input
                 {...inputProps}
                 ref={ref}
-                className={`border-2 border-slate-300 hover:border-sky-200 focus:border-sky-400 active:border-sky-400 rounded-md py-1.5 px-2.5 w-full ${className}`}
+                className={`w-full rounded-md border-2 border-slate-300 py-1.5 px-2.5 hover:border-sky-200 focus:border-sky-400 active:border-sky-400 ${className}`}
             />
         </div>
     );
