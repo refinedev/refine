@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 3.41.12
+
+### Patch Changes
+
+-   -   `lodash` moved to "dependencies" for CommonJS builds
+
 ## 3.41.11
 
 ### Patch Changes
