@@ -1,0 +1,15 @@
+.cardWrapper {
+    @apply shadow-tile font-montserrat rounded-[10px]  text-black no-underline hover:text-black hover:no-underline;
+}
+
+.card {
+    @apply my-auto flex items-center gap-5 px-3.5 py-6;
+}
+
+.cardTitle {
+    @apply mb-2 text-sm font-bold;
+}
+
+.cardDescription {
+    @apply text-xs;
+}
