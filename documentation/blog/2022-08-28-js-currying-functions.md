@@ -254,3 +254,27 @@ Currying a variadic function is quite different from currying functions with fix
 ## Conclusion
 
 In this post, we found out that deviating from unary currying in leads to variadic partial application in JavaScript, which turns out to be more powerful. We also saw how currying an existing variadic function follows a different logic than those with fixed arity with a unary implementation.
+
+---
+
+## Build your React-based CRUD applications without constraints
+
+Building CRUD applications involves many repetitive task consuming your precious development time. If you are starting from scratch, you also have to implement custom solutions for critical parts of your application like authentication, authorization, state management and networking. 
+
+Check out [refine](https://github.com/pankod/refine), if you are interested in a headless framework with robust architecture and full of industry best practices for your next CRUD project.
+
+
+<div>
+<a href="https://github.com/pankod/refine">
+    <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
+</a>
+</div>
+
+<br/>
+
+**refine** is a open-source React-based framework for building CRUD applications **without constraints.**
+It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
+
+**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
+
+Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials, and example projects.
