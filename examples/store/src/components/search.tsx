@@ -1,23 +1,20 @@
+import React from "react";
 import cn from "clsx";
 import Link from "next/link";
 import { useList } from "@pankod/refine-core";
 import { useRouter } from "next/router";
+import { ProductCollection } from "@medusajs/medusa";
 
 import { ProductCard } from "@components/product";
 import { Container, Skeleton } from "@components/ui";
-
+import ClickOutside from "@lib/click-outside";
 import rangeMap from "@lib/range-map";
+
 import { MedusaProduct } from "./product/helpers";
 
-const SORT = {
-    "trending-desc": "Trending",
-    "latest-desc": "Latest arrivals",
-    "price-asc": "Price: Low to high",
-    "price-desc": "Price: High to low",
-};
-
 export default function Search({ products }: { products?: MedusaProduct[] }) {
-    const { data: categories } = useList({
+    const [filtersVisible, setFiltersVisible] = React.useState(false);
+    const { data: categories } = useList<ProductCollection>({
         resource: "collections",
     });
 
@@ -28,7 +25,7 @@ export default function Search({ products }: { products?: MedusaProduct[] }) {
     // of those is selected
 
     const activeCategory = categories?.data?.find(
-        (cat: any) => cat.handle === handle,
+        (cat: ProductCollection) => cat.handle === handle,
     );
     /*     const activeBrand = brands?.find(
         (b: any) => getSlug(b.node.path) === `brands/${brand}`,
@@ -43,13 +40,14 @@ export default function Search({ products }: { products?: MedusaProduct[] }) {
                             <span className="rounded-md shadow-sm">
                                 <button
                                     type="button"
+                                    onClick={() => setFiltersVisible((p) => !p)}
                                     className="border-accent-3 bg-accent-0 text-accent-4 hover:text-accent-5 focus:shadow-outline-normal active:bg-accent-1 active:text-accent-8 flex w-full justify-between rounded-sm border px-4 py-3 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:border-blue-300 focus:outline-none"
                                     id="options-menu"
                                     aria-haspopup="true"
                                     aria-expanded="true"
                                 >
-                                    {activeCategory?.name
-                                        ? `Category: ${activeCategory?.name}`
+                                    {activeCategory?.title
+                                        ? `Category: ${activeCategory?.title}`
                                         : "All Categories"}
                                     <svg
                                         className="-mr-1 ml-2 h-5 w-5"
@@ -66,66 +64,73 @@ export default function Search({ products }: { products?: MedusaProduct[] }) {
                                 </button>
                             </span>
                         </div>
-                        <div
-                            className={`absolute left-0 z-10 mt-2 mb-10 w-full origin-top-left rounded-md shadow-lg lg:relative lg:block lg:shadow-none`}
+                        <ClickOutside
+                            active={filtersVisible}
+                            onClick={() => setFiltersVisible(false)}
                         >
-                            <div className="bg-accent-0 shadow-xs rounded-sm lg:bg-none lg:shadow-none">
-                                <div
-                                    role="menu"
-                                    aria-orientation="vertical"
-                                    aria-labelledby="options-menu"
-                                >
-                                    <ul>
-                                        <li
-                                            className={cn(
-                                                "text-accent-4 hover:bg-accent-1 hover:text-accent-8 focus:bg-accent-1 focus:text-accent-8 block text-sm leading-5 focus:outline-none lg:text-base lg:font-bold lg:tracking-wide lg:no-underline lg:hover:bg-transparent",
-                                                // {
-                                                //     underline:
-                                                //         !activeCategory?.name,
-                                                // },
-                                            )}
-                                        >
-                                            <Link
-                                                href="/search"
-                                                className={
-                                                    "block px-4 py-2 lg:my-2 lg:mx-4 lg:inline-block lg:p-0"
-                                                }
-                                            >
-                                                All Categories
-                                            </Link>
-                                        </li>
-                                        {categories?.data.map((cat: any) => (
+                            <div
+                                className={`absolute left-0 z-10 mt-2 mb-10 w-full origin-top-left rounded-md shadow-lg lg:relative lg:block lg:shadow-none ${
+                                    filtersVisible !== true ? "hidden" : ""
+                                }`}
+                            >
+                                <div className="bg-accent-0 shadow-xs rounded-sm lg:bg-none lg:shadow-none">
+                                    <div
+                                        role="menu"
+                                        aria-orientation="vertical"
+                                        aria-labelledby="options-menu"
+                                    >
+                                        <ul>
                                             <li
-                                                key={cat.handle}
                                                 className={cn(
-                                                    "text-accent-4 hover:bg-accent-1 hover:text-accent-8 focus:bg-accent-1 focus:text-accent-8 block text-sm leading-5 focus:outline-none lg:hover:bg-transparent",
-                                                    {
-                                                        underline:
-                                                            activeCategory?.id ===
-                                                            cat.id,
-                                                    },
+                                                    "text-accent-4 hover:bg-accent-1 hover:text-accent-8 focus:bg-accent-1 focus:text-accent-8 block text-sm leading-5 focus:outline-none lg:text-base lg:font-bold lg:tracking-wide lg:no-underline lg:hover:bg-transparent",
+                                                    // {
+                                                    //     underline:
+                                                    //         !activeCategory?.name,
+                                                    // },
                                                 )}
                                             >
                                                 <Link
-                                                    href={{
-                                                        pathname:
-                                                            "/search/[handle]",
-                                                        query: {
-                                                            handle: cat.handle,
-                                                        },
-                                                    }}
+                                                    href="/search"
                                                     className={
                                                         "block px-4 py-2 lg:my-2 lg:mx-4 lg:inline-block lg:p-0"
                                                     }
                                                 >
-                                                    {cat.title}
+                                                    All Categories
                                                 </Link>
                                             </li>
-                                        ))}
-                                    </ul>
+                                            {categories?.data.map((cat) => (
+                                                <li
+                                                    key={cat.handle}
+                                                    className={cn(
+                                                        "text-accent-4 hover:bg-accent-1 hover:text-accent-8 focus:bg-accent-1 focus:text-accent-8 block text-sm leading-5 focus:outline-none lg:hover:bg-transparent",
+                                                        {
+                                                            underline:
+                                                                activeCategory?.id ===
+                                                                cat.id,
+                                                        },
+                                                    )}
+                                                >
+                                                    <Link
+                                                        href={{
+                                                            pathname:
+                                                                "/search/[handle]",
+                                                            query: {
+                                                                handle: cat.handle,
+                                                            },
+                                                        }}
+                                                        className={
+                                                            "block px-4 py-2 lg:my-2 lg:mx-4 lg:inline-block lg:p-0"
+                                                        }
+                                                    >
+                                                        {cat.title}
+                                                    </Link>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </ClickOutside>
                     </div>
                 </div>
                 {/* Products */}
