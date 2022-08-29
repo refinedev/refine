@@ -231,7 +231,7 @@ describe("useSelect Hook", () => {
 
         selectProps?.onSearch?.("3");
 
-        expect(getListMock).toBeCalledTimes(4);
+        await waitFor(() => expect(getListMock).toBeCalledTimes(4));
     });
 
     it("should invoke queryOptions methods successfully", async () => {

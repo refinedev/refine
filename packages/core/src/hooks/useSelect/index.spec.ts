@@ -196,7 +196,7 @@ describe("useSelect Hook", () => {
             expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
-        expect(getListMock).toBeCalledTimes(1);
+        await waitFor(() => expect(getListMock).toBeCalledTimes(1));
 
         const { onSearch } = result.current;
 
@@ -206,16 +206,10 @@ describe("useSelect Hook", () => {
         });
 
         onSearch("1");
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
 
         onSearch("1");
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
 
-        expect(getListMock).toBeCalledTimes(2);
+        await waitFor(() => expect(getListMock).toBeCalledTimes(2));
 
         await waitFor(() => {
             expect(result.current.queryResult.isSuccess).toBeTruthy();
@@ -250,27 +244,17 @@ describe("useSelect Hook", () => {
             expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
-        expect(getListMock).toBeCalledTimes(1);
+        await waitFor(() => expect(getListMock).toBeCalledTimes(1));
 
         const { onSearch } = result.current;
 
         onSearch("1");
 
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
-
         onSearch("2");
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
 
         onSearch("3");
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
 
-        expect(getListMock).toBeCalledTimes(4);
+        await waitFor(() => expect(getListMock).toBeCalledTimes(4));
 
         await waitFor(() => {
             expect(result.current.queryResult.isSuccess).toBeTruthy();
