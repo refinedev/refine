@@ -17,13 +17,9 @@ const file = new File(
     { type: "text/csv" },
 );
 
-beforeEach(() => {
-    jest.clearAllMocks();
-    jest.useRealTimers();
-});
-
 describe("useImport hook", () => {
     beforeEach(() => {
+        jest.clearAllMocks();
         jest.useFakeTimers();
     });
 
