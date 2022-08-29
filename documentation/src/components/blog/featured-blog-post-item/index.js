@@ -14,7 +14,7 @@ export const FeaturedBlogPostItem = () => {
                         <img
                             src={metadata.frontMatter.image}
                             alt="Post image"
-                            className="absolute inset-0 w-full h-full object-cover"
+                            className="absolute inset-0 w-full h-full object-cover hover:brightness-90 transition-all"
                             loading="lazy"
                         />
                     </div>
@@ -31,7 +31,7 @@ export const FeaturedBlogPostItem = () => {
                                 to={metadata.permalink}
                                 className="hover:no-underline"
                             >
-                                <div className="font-bold text-color-base hover:text-stone-600">
+                                <div className="font-bold text-color-base hover:text-stone-600 transition-all">
                                     {metadata.title}
                                 </div>
                             </Link>
