@@ -11,6 +11,10 @@ import BlogListPaginator from "@theme/BlogListPaginator";
 import SearchMetadata from "@theme/SearchMetadata";
 import BlogPostItems from "@theme/BlogPostItems";
 
+import { FeaturedBlogPostItems } from "../../components/blog";
+
+const FEATURED_POSTS_COUNT = 4;
+
 function BlogListPageMetadata(props) {
     const { metadata } = props;
     const {
@@ -29,9 +33,34 @@ function BlogListPageMetadata(props) {
 
 function BlogListPageContent(props) {
     const { metadata, items, sidebar } = props;
+
+    const featuredPosts = items.filter(({ content }) => {
+        if (content.metadata.frontMatter.is_featured) {
+            return content;
+        }
+    });
+
+    const notFeaturedPosts = items.filter(({ content }) => {
+        if (!content.metadata.frontMatter.is_featured) {
+            return content;
+        }
+    });
+
+    if (featuredPosts.length < FEATURED_POSTS_COUNT) {
+        const missingCount = FEATURED_POSTS_COUNT - featuredPosts.length;
+
+        for (let index = 0; index < missingCount; index++) {
+            featuredPosts.push(notFeaturedPosts[index]);
+            notFeaturedPosts.splice(index, 1);
+        }
+    }
+
     return (
         <BlogLayout sidebar={sidebar}>
-            <BlogPostItems items={items} />
+            <FeaturedBlogPostItems items={featuredPosts} />
+            <br />
+            <br />
+            <BlogPostItems items={notFeaturedPosts} />
             <BlogListPaginator metadata={metadata} />
         </BlogLayout>
     );

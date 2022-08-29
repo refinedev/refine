@@ -492,3 +492,7 @@ html {
 #__docusaurus .text-color-base {
     color: var(--ifm-font-color-base);
 }
+
+#__docusaurus .blog-post-item-shadow {
+    box-shadow: 6px 8px 16px rgba(42, 42, 66, 0.4);
+}

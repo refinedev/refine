@@ -1,18 +1,16 @@
 import React from "react";
 import Link from "@docusaurus/Link";
 import { useBlogPost } from "@docusaurus/theme-common/internal";
-
 import BlogPostItemContainer from "@theme/BlogPostItem/Container";
 
-export default function BlogPostItem({ children, className }) {
-    // TODO: if isBlogPostPage, we should handle the blog post page layout with using children
-    const { metadata, isBlogPostPage } = useBlogPost();
+export const FeaturedBlogPostItem = () => {
+    const { metadata } = useBlogPost();
 
     return (
-        <BlogPostItemContainer className={className}>
-            <div className="overflow-hidden rounded-lg blog-post-item-shadow">
+        <BlogPostItemContainer>
+            <div className="flex overflow-hidden rounded-lg blog-post-item-shadow">
                 <Link itemProp="url" to={metadata.permalink}>
-                    <div className="h-48 relative">
+                    <div className="w-72 h-full relative">
                         <img
                             src={metadata.frontMatter.image}
                             alt="Post image"
@@ -26,7 +24,7 @@ export default function BlogPostItem({ children, className }) {
                         {metadata.formattedDate} ·{" "}
                         {Math.round(metadata.readingTime)} mins
                     </div>
-                    <div className="mt-1 h-[250px]">
+                    <div className="mt-1 h-[200px]">
                         <Link
                             itemProp="url"
                             to={metadata.permalink}
@@ -66,4 +64,4 @@ export default function BlogPostItem({ children, className }) {
             </div>
         </BlogPostItemContainer>
     );
-}
+};
