@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.62.1
+
+### Patch Changes
+
+-   fix redirectPage return value #2377
+
 ## 3.62.0
 
 ### Minor Changes
