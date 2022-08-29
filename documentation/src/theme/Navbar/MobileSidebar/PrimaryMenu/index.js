@@ -28,15 +28,12 @@ export default function NavbarMobilePrimaryMenu() {
                     mobile
                     {...item}
                     className={`${
-                        (
-                            item.activeBaseRegex
-                                ? !!window.location.pathname.match(
-                                      new RegExp(
-                                          item.activeBaseRegex.slice(1, -1),
-                                      ),
-                                  )
-                                : location.pathname.startsWith(item.to)
-                        )
+                        typeof window !== "undefined" &&
+                        (item.activeBaseRegex
+                            ? !!window.location.pathname.match(
+                                  new RegExp(item.activeBaseRegex.slice(1, -1)),
+                              )
+                            : location.pathname.startsWith(item.to))
                             ? "active-item"
                             : ""
                     } block text-center font-montserrat font-semibold text-[#2A2A42] text-lg mb-1 hoveline-link`}
