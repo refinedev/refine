@@ -51,12 +51,14 @@ export default function NavbarNavLink({
             isNavLink
             {...((activeBasePath || activeBaseRegex) && {
                 isActive: (_match, location) =>
-                    activeBaseRegex
-                        ? isRegexpStringMatch(
-                              activeBaseRegex,
-                              location.pathname,
-                          )
-                        : location.pathname.startsWith(activeBaseUrl),
+                    typeof window !== "undefined"
+                        ? activeBaseRegex
+                            ? isRegexpStringMatch(
+                                  activeBaseRegex,
+                                  location.pathname,
+                              )
+                            : location.pathname.startsWith(activeBaseUrl)
+                        : false,
             })}
             {...props}
             {...linkContentProps}
