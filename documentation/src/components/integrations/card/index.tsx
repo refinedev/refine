@@ -3,6 +3,7 @@ import clsx from "clsx";
 
 import styles from "./styles.module.css";
 import ContributerTag from "../contributer-tag";
+import ComingSoon from "../coming-soon";
 
 type Contributer = {
     name: string;
@@ -15,6 +16,7 @@ type CardProps = {
     imageUrl: string;
     linkUrl: string;
     contributer?: Contributer;
+    status: string;
 };
 
 const Card: React.FC<CardProps> = ({
@@ -23,6 +25,7 @@ const Card: React.FC<CardProps> = ({
     imageUrl,
     linkUrl,
     contributer,
+    status,
 }) => {
     return (
         <div className={clsx(contributer && "mb-10")}>
@@ -44,7 +47,17 @@ const Card: React.FC<CardProps> = ({
                 </div>
                 <div className={styles.cardContent}>
                     <div className={styles.cardTitle}>{title}</div>
-                    <p className={styles.cardDescription}>{description}</p>
+                    {status === "soon" ? (
+                        <div>
+                            <ComingSoon />
+                        </div>
+                    ) : (
+                        <>
+                            <p className={styles.cardDescription}>
+                                {description}
+                            </p>
+                        </>
+                    )}
                 </div>
             </a>
         </div>

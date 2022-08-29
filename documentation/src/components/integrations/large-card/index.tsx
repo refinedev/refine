@@ -1,4 +1,5 @@
 import React from "react";
+import ComingSoon from "../coming-soon";
 
 import styles from "./styles.module.css";
 
@@ -7,6 +8,7 @@ type LargeCardProps = {
     description: string;
     imageUrl: string;
     linkUrl: string;
+    status: string;
 };
 
 const LargeCard: React.FC<LargeCardProps> = ({
@@ -14,6 +16,7 @@ const LargeCard: React.FC<LargeCardProps> = ({
     description,
     imageUrl,
     linkUrl,
+    status,
 }) => {
     return (
         <a
@@ -29,7 +32,15 @@ const LargeCard: React.FC<LargeCardProps> = ({
                     </div>
                     <div>{title}</div>
                 </div>
-                <div className={styles.cardContent}>{description}</div>
+                <div className={styles.cardContent}>
+                    {status === "soon" ? (
+                        <div>
+                            <ComingSoon />
+                        </div>
+                    ) : (
+                        <p className={styles.description}>{description}</p>
+                    )}
+                </div>
             </div>
         </a>
     );

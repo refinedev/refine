@@ -3,7 +3,7 @@
 }
 
 .card {
-    @apply my-auto flex flex-col justify-center gap-5 rounded-[10px]  p-5;
+    @apply my-auto flex h-full flex-col justify-center gap-4 rounded-[10px]  p-5;
 }
 
 .cardHeader {
@@ -19,5 +19,9 @@
 }
 
 .cardContent {
-    @apply text-xs;
+    @apply flex h-full justify-center text-xs;
+}
+
+.description {
+    @apply mb-0;
 }
