@@ -271,7 +271,7 @@ If you are willing to fix an issue or propose a feature; all PRs with clear expl
 
 ## License
 
-Licensed under the MIT License, Copyright © 2021-present Pankod
+Licensed under the MIT License, Copyright © 2021-present Pankod.
 
 ## Special Thanks
 
