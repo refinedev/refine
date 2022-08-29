@@ -1,7 +1,7 @@
 ---
 title: 5 Most Common useState Mistakes React Developers Often Make
 description: Find out what the five most common mistakes React developers make with useState and how to avoid them.
-slug: common-usestate-mistakes-and-how-to-avoid-them
+slug: common-usestate-mistakes-and-how-to-avoid
 authors: david_herbert
 tags: [react, usestate, best-practices ]
 image: https://refine.dev/img/blog/2022-08-29-usestate-mistakes/usestate-mistakes-social.png
