@@ -48,16 +48,14 @@ export const FeaturedBlogPostItem = () => {
                             />
                         </Link>
                         <div className="flex-auto">
-                            <div className="text-base relative text-slate-900 font-semibold">
-                                <Link
-                                    href={metadata.authors[0]?.url}
-                                    itemProp="url"
-                                >
-                                    <span className="absolute inset-0"></span>
-                                    {metadata.authors[0]?.name}
-                                </Link>
-                            </div>
-                            <div className="mt-0.5">
+                            <Link
+                                href={metadata.authors[0]?.url}
+                                itemProp="url"
+                                className="text-color-base font-semibold"
+                            >
+                                {metadata.authors[0]?.name}
+                            </Link>
+                            <div className="text-sm text-slate-600">
                                 {metadata.authors[0]?.title}
                             </div>
                         </div>
