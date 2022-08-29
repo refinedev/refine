@@ -8,10 +8,6 @@ import styles from "./styles.module.css";
 
 const Integrations: React.FC = () => {
     const integrationFields = Object.keys(integrations);
-    console.log(integrationFields);
-    integrationFields.map((field) => {
-        console.log(integrations[field]);
-    });
 
     return (
         <Layout>
@@ -49,6 +45,23 @@ const Integrations: React.FC = () => {
                                                     }
                                                     linkUrl={integration.url}
                                                     imageUrl={integration.icon}
+                                                />
+                                            );
+                                        } else if (
+                                            field === "community-packages"
+                                        ) {
+                                            return (
+                                                <Card
+                                                    title={integration.name}
+                                                    description={
+                                                        integration.description
+                                                    }
+                                                    linkUrl={integration.url}
+                                                    imageUrl={integration.icon}
+                                                    contributer={
+                                                        integration
+                                                            ?.contributors[0]
+                                                    }
                                                 />
                                             );
                                         } else {
