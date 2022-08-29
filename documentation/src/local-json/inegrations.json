@@ -137,7 +137,7 @@
     "frameworks": [
         {
             "name": "NEXTJS",
-            "icon": "/integrations/next.svg",
+            "icon": "/integrations/nextjs.svg",
             "description": "The React Framework for Production",
             "url": "https://nextjs.org",
             "status": "stable"
@@ -195,7 +195,39 @@
             "icon": "/integrations/dp.svg",
             "description": "mixes with different data providers/data methods",
             "url": "https://github.com/miyavsu-limited/data-provider-customizer",
-            "status": "stable"
+            "status": "stable",
+            "contributors": [
+                {
+                    "name": "tspvivek",
+                    "url": "https://github.com/tspvivek"
+                }
+            ]
+        },
+        {
+            "name": "Directus Data Provider",
+            "icon": "/integrations/directus.svg",
+            "description": "Power any project with a modern, open source data platform",
+            "url": "https://directus.io",
+            "status": "stable",
+            "contributors": [
+                {
+                    "name": "tspvivek",
+                    "url": "https://github.com/tspvivek"
+                }
+            ]
+        },
+        {
+            "name": "Firebase Data Provider",
+            "icon": "/integrations/firebase.svg",
+            "description": "Firebase is an app development platform that helps you build and grow apps and games users love.",
+            "url": "https://firebase.google.com/",
+            "status": "stable",
+            "contributors": [
+                {
+                    "name": "rturan29",
+                    "url": "https://github.com/rturan29"
+                }
+            ]
         }
     ]
 }
