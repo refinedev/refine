@@ -3,10 +3,12 @@ import React from "react";
 import Layout from "../../theme/Layout";
 import Card from "../../components/integrations/card";
 import LargeCard from "../../components/integrations/large-card";
-import integrations from "../../local-json/inegrations.json";
+import data from "../../local-json/inegrations.json";
 import styles from "./styles.module.css";
+import { IntegrationsType } from "../../types/integrations";
 
 const Integrations: React.FC = () => {
+    const integrations: IntegrationsType = data;
     const integrationFields = Object.keys(integrations);
 
     return (
