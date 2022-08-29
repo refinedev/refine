@@ -10,6 +10,16 @@ hide_table_of_contents: false
 
 
 import social from '@site/static/img/blog/2022-08-29-usestate-mistakes/usestate-mistakes-social.png';
+import blank from '@site/static/img/blog/2022-08-29-usestate-mistakes/blank-page-error.png';
+import chain from '@site/static/img/blog/2022-08-29-usestate-mistakes/chain-error.png';
+import directUpdateError from '@site/static/img/blog/2022-08-29-usestate-mistakes/direct-update-error.gif';
+import directUpdateGif from '@site/static/img/blog/2022-08-29-usestate-mistakes/direct-update.gif';
+import fixBlankPage from '@site/static/img/blog/2022-08-29-usestate-mistakes/fix-blank-page-error.png';
+import functionalState from '@site/static/img/blog/2022-08-29-usestate-mistakes/functional-state-update.gif';
+import initializeError from '@site/static/img/blog/2022-08-29-usestate-mistakes/initialize-error.png';
+import objectAssign from '@site/static/img/blog/2022-08-29-usestate-mistakes/object-property-assignment.png';
+import objectStateError from '@site/static/img/blog/2022-08-29-usestate-mistakes/object-property-state-error.png';
+import objectState from '@site/static/img/blog/2022-08-29-usestate-mistakes/object-property-state.png';
 
 <br />
 
@@ -31,11 +41,14 @@ It's no secret that hooks have become increasingly crucial in React component de
 The `useState` hook can be tricky to understand, especially for newer React developers or those migrating from class-based components to functional components. In this guide, we'll explore the top 5 common `useState` mistakes that React developers often make and how you can avoid them.
 
 Steps we'll cover:
+- [Introduction](#introduction)
 - [Initializing useState Wrongly](#initializing-usestate-wrongly)
 - [Not Using Optional Chaining](#not-using-optional-chaining)
 - [Updating useState Directly](#updating-usestate-directly)
 - [Updating Specific Object Property](#updating-specific-object-property)
 - [Managing Multiple Input Fields in Forms](#managing-multiple-input-fields-in-forms)
+- [Conclusion](#conclusion)
+- [Build your React-based CRUD applications without constraints](#build-your-react-based-crud-applications-without-constraints)
 
 ## Initializing useState Wrongly
 Initiating the useState hook incorrectly is one of the most common mistakes developers make when utilizing it. What does it mean to initialize useState? To initialize something is to set its initial value. 
@@ -66,10 +79,22 @@ function App() {
 export default App;
 ```
 Output:
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={blank} alt="blank" />
+</div>
 
+<br/>
 
 Inspecting the console would throw a similar error as shown below:
-
+<div class="img-container">
+    <img src={initializeError} alt="initializeError" />
+</div>
+<br/>
 
 Newer developers often make this mistake when initializing their state, especially when fetching data from a server or database, as the retrieved data is expected to update the state with the actual user object. However, this is bad practice and could lead to expected behavior, as shown above.
 
@@ -95,7 +120,16 @@ function App() {
 export default App;
 ```
 Output:
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={fixBlankPage} alt="fixBlankPage" />
+</div>
 
+<br/>
 
 We could take this a notch further by defining the user object's expected properties when initializing the state.
 
@@ -153,6 +187,10 @@ export default App;
 
 Output error:
 
+<div class="img-container">
+    <img src={chain} alt="chain" />
+</div>
+<br/>
 
 
 
@@ -213,6 +251,17 @@ export default App;
 
 The output:
 
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={directUpdateGif} alt="directUpdateGif" />
+</div>
+
+<br/>
+
 
 This works as expected. However, directly updating the state is a bad practice that could lead to potential bugs when dealing with a live application that several users use. Why? Because contrary to what you may think, React doesn't update the state immediately when the button is clicked, as shown in the example demo. Instead, React takes a snapshot of the current state and schedules this Update (+1) to be made later for performance gains - this happens in milliseconds, so it is not noticeable to the human eyes. However, while the scheduled Update is still in pending transition, the current state may be changed by something else (such as multiple users' cases). The scheduled Update would have no way of knowing about this new event because it only has a record of the state snapshot it took when the button got clicked.
 
@@ -246,6 +295,17 @@ function App() {
 ```
 
 Pay attention to the bug in the output:
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={directUpdateError} alt="directUpdateError" />
+</div>
+
+<br/>
 
 Notice the bug? We start by clicking on the first "Add +1" button twice (which updates the state to 1 + 1 = 2). After which, we click on the "Add +1 later" – this takes a snapshot of the current state (2) and schedules an update to add 1 to that state after two seconds. But while this scheduled update is still in transition, we went ahead to click on the "Add +1" button thrice, updating the current state to 5 (i.e., 2 + 1 + 1 + 1 = 5). However, the asynchronous scheduled Update tries to update the state after two seconds using the snapshot (2) it has in memory (i.e., 2 + 1 = 3), not realizing that the current state has been updated to 5. As a result, the state is updated to 3 instead of 6.
 
@@ -283,7 +343,16 @@ export default App;
 ```
 
 Output:
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={directUpdateError} alt="directUpdateError" />
+</div>
 
+<br/>
 
 With functional update, the `setState()` function knows the state has been updated to 5, so it updates the state to 6.
 
@@ -321,8 +390,32 @@ export default function App() {
 
 Initial state before the button is clicked:
 
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={objectState} alt="objectState" />
+</div>
+
+<br/>
 
 Updated state after the button is clicked:
+
+
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={objectStateError} alt="objectStateError" />
+</div>
+
+<br/>
+
 
 As you can see, instead of the specific property getting modified, the user is no longer an object but has been overwritten to the string “Mark”. Why? Because setState() assigns whatever value returned or passed to it as the new state. This mistake is common with React developers migrating from class-based components to functional components as they are used to updating state using `this.state.user.property = newValue` in class-based components.
 
@@ -355,6 +448,17 @@ export default function App() {
 ```
 
 Updated state after the button is clicked:
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={objectAssign} alt="objectAssign" />
+</div>
+
+<br/>
 
 
 Notice that just the user’s name has been modified, while the other property remains the same.
