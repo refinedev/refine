@@ -9,7 +9,7 @@
     "scripts": {
         "start": "tsup --watch --dts --format esm,cjs,iife --legacy-output",
         "build": "tsup --dts --format esm,cjs,iife --minify --legacy-output",
-        "test": "jest --passWithNoTests --runInBand ----verbose --maxWorkers=2",
+        "test": "jest --passWithNoTests --runInBand --verbose --maxWorkers=2",
         "prepare": "npm run build",
         "generate-theme": "npx @emeks/antd-custom-theme-generator -w --antd ../../node_modules/antd ./src/assets/styles/custom-theme.less ./src/assets/styles/styles.min.css"
     },
