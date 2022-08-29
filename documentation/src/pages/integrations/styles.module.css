@@ -3,7 +3,7 @@
 }
 
 .header {
-    @apply mx-auto mt-32 flex flex-col sm:mb-[74px] sm:items-center  sm:gap-2.5;
+    @apply mx-auto mt-10 flex flex-col sm:mb-[74px] sm:items-center sm:gap-2.5  md:mt-16;
 }
 
 .headerTitle {
