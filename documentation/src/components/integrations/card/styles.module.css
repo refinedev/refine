@@ -1,9 +1,17 @@
 .cardWrapper {
-    @apply shadow-tile font-montserrat rounded-[10px]  text-black no-underline hover:text-black hover:no-underline;
+    @apply shadow-integrationTile font-montserrat flex items-center justify-center rounded-[10px]  text-black no-underline hover:text-black hover:no-underline;
 }
 
 .card {
-    @apply my-auto flex items-center gap-5 px-3.5 py-6;
+    @apply flex h-full w-full gap-5 px-3.5 py-6;
+}
+
+.imageWrapper {
+    @apply h-12 w-12 flex-shrink-0;
+}
+
+.image {
+    @apply h-full w-full object-contain;
 }
 
 .cardTitle {
@@ -11,5 +19,5 @@
 }
 
 .cardDescription {
-    @apply text-xs;
+    @apply mb-0 text-xs;
 }

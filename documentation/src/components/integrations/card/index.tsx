@@ -18,8 +18,8 @@ const Card: React.FC<CardProps> = ({
     return (
         <a href={linkUrl} className={styles.cardWrapper}>
             <div className={styles.card}>
-                <div className={styles.cardImage}>
-                    <img src={imageUrl} alt={title} />
+                <div className={styles.imageWrapper}>
+                    <img className={styles.image} src={imageUrl} alt={title} />
                 </div>
                 <div className={styles.cardContent}>
                     <div className={styles.cardTitle}>{title}</div>

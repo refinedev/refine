@@ -19,7 +19,9 @@ const Integrations: React.FC = () => {
                 <div className={styles.header}>
                     <div className={styles.headerTitle}>
                         <span>ADD 3rd PARTY MODULES</span>
-                        <span className={styles.boldHeader}>AND SOLUTIONS</span>
+                        <span className={styles.headerTitleBold}>
+                            AND SOLUTIONS
+                        </span>
                     </div>
                     <p className={styles.headerText}>
                         Use your source control & CI/CD Pipeline. Deploy to

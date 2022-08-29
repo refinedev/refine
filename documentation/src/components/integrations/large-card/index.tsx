@@ -19,7 +19,9 @@ const LargeCard: React.FC<LargeCardProps> = ({
         <a href={linkUrl} className={styles.cardWrapper}>
             <div className={styles.card}>
                 <div className={styles.cardHeader}>
-                    <img src={imageUrl} />
+                    <div className={styles.imageWrapper}>
+                        <img className={styles.image} src={imageUrl} />
+                    </div>
                     <div>{title}</div>
                 </div>
                 <div className={styles.cardContent}>{description}</div>

@@ -1,5 +1,5 @@
 .cardWrapper {
-    @apply font-montserrat shadow-tile rounded-[10px]  text-black  no-underline hover:text-black hover:no-underline;
+    @apply font-montserrat shadow-integrationTile rounded-[10px]  text-black  no-underline hover:text-black hover:no-underline;
 }
 
 .card {
@@ -8,6 +8,14 @@
 
 .cardHeader {
     @apply flex items-center gap-5 text-base font-extrabold;
+}
+
+.imageWrapper {
+    @apply h-16 w-16;
+}
+
+.image {
+    @apply h-full w-full object-contain;
 }
 
 .cardContent {
