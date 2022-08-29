@@ -20,17 +20,18 @@ describe("useSelect Hook", () => {
             expect(!result.current.queryResult.isFetching).toBeTruthy();
         });
 
-        const { selectProps } = result.current;
-        const { options } = selectProps;
-
-        expect(options).toHaveLength(2);
-        expect(options).toEqual([
-            {
-                label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
-                value: "1",
-            },
-            { label: "Recusandae consectetur aut atque est.", value: "2" },
-        ]);
+        await waitFor(() =>
+            expect(result.current.selectProps.options).toHaveLength(2),
+        );
+        await waitFor(() =>
+            expect(result.current.selectProps.options).toEqual([
+                {
+                    label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
+                    value: "1",
+                },
+                { label: "Recusandae consectetur aut atque est.", value: "2" },
+            ]),
+        );
     });
 
     it("defaultValue", async () => {
@@ -49,17 +50,18 @@ describe("useSelect Hook", () => {
             expect(!result.current.queryResult.isFetching).toBeTruthy();
         });
 
-        const { selectProps } = result.current;
-        const { options } = selectProps;
-
-        expect(options).toHaveLength(2);
-        expect(options).toEqual([
-            {
-                label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
-                value: "1",
-            },
-            { label: "Recusandae consectetur aut atque est.", value: "2" },
-        ]);
+        await waitFor(() =>
+            expect(result.current.selectProps.options).toHaveLength(2),
+        );
+        await waitFor(() =>
+            expect(result.current.selectProps.options).toEqual([
+                {
+                    label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
+                    value: "1",
+                },
+                { label: "Recusandae consectetur aut atque est.", value: "2" },
+            ]),
+        );
     });
 
     it("defaultValue is not an array", async () => {
@@ -78,17 +80,18 @@ describe("useSelect Hook", () => {
             expect(!result.current.queryResult.isFetching).toBeTruthy();
         });
 
-        const { selectProps } = result.current;
-        const { options } = selectProps;
-
-        expect(options).toHaveLength(2);
-        expect(options).toEqual([
-            {
-                label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
-                value: "1",
-            },
-            { label: "Recusandae consectetur aut atque est.", value: "2" },
-        ]);
+        await waitFor(() =>
+            expect(result.current.selectProps.options).toHaveLength(2),
+        );
+        await waitFor(() =>
+            expect(result.current.selectProps.options).toEqual([
+                {
+                    label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
+                    value: "1",
+                },
+                { label: "Recusandae consectetur aut atque est.", value: "2" },
+            ]),
+        );
     });
 
     it("should success data with resource with optionLabel and optionValue", async () => {
@@ -108,14 +111,15 @@ describe("useSelect Hook", () => {
             expect(!result.current.queryResult.isFetching).toBeTruthy();
         });
 
-        const { selectProps } = result.current;
-        const { options } = selectProps;
-
-        expect(options).toHaveLength(2);
-        expect(options).toEqual([
-            { label: "ut-ad-et", value: "1" },
-            { label: "consequatur-molestiae-rerum", value: "2" },
-        ]);
+        await waitFor(() =>
+            expect(result.current.selectProps.options).toHaveLength(2),
+        );
+        await waitFor(() =>
+            expect(result.current.selectProps.options).toEqual([
+                { label: "ut-ad-et", value: "1" },
+                { label: "consequatur-molestiae-rerum", value: "2" },
+            ]),
+        );
     });
 
     it("should success data with resource with filters", async () => {
@@ -140,22 +144,21 @@ describe("useSelect Hook", () => {
             expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
-        const { selectProps } = result.current;
-        const { options } = selectProps;
-
-        expect(options).toHaveLength(2);
-        expect(options).toEqual([
-            {
-                label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
-                value: "1",
-            },
-            { label: "Recusandae consectetur aut atque est.", value: "2" },
-        ]);
+        await waitFor(() =>
+            expect(result.current.selectProps.options).toHaveLength(2),
+        );
+        await waitFor(() =>
+            expect(result.current.selectProps.options).toEqual([
+                {
+                    label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
+                    value: "1",
+                },
+                { label: "Recusandae consectetur aut atque est.", value: "2" },
+            ]),
+        );
     });
 
     it("onSearch debounce with default value (300ms)", async () => {
-        jest.useFakeTimers();
-
         const getListMock = jest.fn(() =>
             Promise.resolve({ data: [], total: 0 }),
         );
@@ -179,7 +182,7 @@ describe("useSelect Hook", () => {
             expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
-        expect(getListMock).toBeCalledTimes(1);
+        await waitFor(() => expect(getListMock).toBeCalledTimes(1));
 
         const { selectProps } = result.current;
 
@@ -187,15 +190,11 @@ describe("useSelect Hook", () => {
         selectProps?.onSearch?.("12");
         selectProps?.onSearch?.("123");
 
-        await act(async () => {
-            jest.advanceTimersToNextTimer();
-        });
-
         await waitFor(() => {
             expect(!result.current.queryResult.isFetching).toBeTruthy();
         });
 
-        expect(getListMock).toBeCalledTimes(2);
+        await waitFor(() => expect(getListMock).toBeCalledTimes(2));
     });
 
     it("onSearch disabled debounce (0ms)", async () => {
@@ -222,24 +221,15 @@ describe("useSelect Hook", () => {
             expect(!result.current.queryResult.isFetching).toBeTruthy();
         });
 
-        expect(getListMock).toBeCalledTimes(1);
+        await waitFor(() => expect(getListMock).toBeCalledTimes(1));
 
         const { selectProps } = result.current;
 
         selectProps?.onSearch?.("1");
-        await act(async () => {
-            jest.advanceTimersToNextTimer();
-        });
 
         selectProps?.onSearch?.("2");
-        await act(async () => {
-            jest.advanceTimersToNextTimer();
-        });
 
         selectProps?.onSearch?.("3");
-        await act(async () => {
-            jest.advanceTimersToNextTimer();
-        });
 
         expect(getListMock).toBeCalledTimes(4);
     });
@@ -266,17 +256,18 @@ describe("useSelect Hook", () => {
             expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
-        const { selectProps } = result.current;
-        const { options } = selectProps;
-
-        expect(options).toHaveLength(2);
-        expect(options).toEqual([
-            {
-                label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
-                value: "1",
-            },
-            { label: "Recusandae consectetur aut atque est.", value: "2" },
-        ]);
+        await waitFor(() =>
+            expect(result.current.selectProps.options).toHaveLength(2),
+        );
+        await waitFor(() =>
+            expect(result.current.selectProps.options).toEqual([
+                {
+                    label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
+                    value: "1",
+                },
+                { label: "Recusandae consectetur aut atque est.", value: "2" },
+            ]),
+        );
 
         expect(mockFunc).toBeCalled();
     });
@@ -304,17 +295,18 @@ describe("useSelect Hook", () => {
             expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
-        const { selectProps } = result.current;
-        const { options } = selectProps;
-
-        expect(options).toHaveLength(2);
-        expect(options).toEqual([
-            {
-                label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
-                value: "1",
-            },
-            { label: "Recusandae consectetur aut atque est.", value: "2" },
-        ]);
+        await waitFor(() =>
+            expect(result.current.selectProps.options).toHaveLength(2),
+        );
+        await waitFor(() =>
+            expect(result.current.selectProps.options).toEqual([
+                {
+                    label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
+                    value: "1",
+                },
+                { label: "Recusandae consectetur aut atque est.", value: "2" },
+            ]),
+        );
         expect(mockFunc).toBeCalled();
     });
 });
