@@ -198,6 +198,8 @@ describe("useSelect Hook", () => {
     });
 
     it("onSearch disabled debounce (0ms)", async () => {
+        jest.useFakeTimers();
+
         const getListMock = jest.fn(() => {
             return Promise.resolve({ data: [], total: 0 });
         });
@@ -226,12 +228,23 @@ describe("useSelect Hook", () => {
         const { selectProps } = result.current;
 
         selectProps?.onSearch?.("1");
+        act(() => {
+            jest.advanceTimersToNextTimer();
+        });
 
         selectProps?.onSearch?.("2");
+        act(() => {
+            jest.advanceTimersToNextTimer();
+        });
 
         selectProps?.onSearch?.("3");
+        act(() => {
+            jest.advanceTimersToNextTimer();
+        });
 
         await waitFor(() => expect(getListMock).toBeCalledTimes(4));
+
+        jest.useRealTimers();
     });
 
     it("should invoke queryOptions methods successfully", async () => {
