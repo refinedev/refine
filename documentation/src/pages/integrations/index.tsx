@@ -5,11 +5,48 @@ import Card from "../../components/integrations/card";
 import LargeCard from "../../components/integrations/large-card";
 import data from "../../local-json/inegrations.json";
 import styles from "./styles.module.css";
-import { IntegrationsType } from "../../types/integrations";
+import { Integration, IntegrationsType } from "../../types/integrations";
 
 const Integrations: React.FC = () => {
     const integrations: IntegrationsType = data;
     const integrationFields = Object.keys(integrations);
+
+    const renderIntegration = (integration: Integration, field: string) => {
+        switch (field) {
+            case "ui-framework-packages":
+            case "frameworks":
+                return (
+                    <LargeCard
+                        status={integration.status}
+                        title={integration.name}
+                        description={integration.description}
+                        linkUrl={integration.url}
+                        imageUrl={integration.icon}
+                    />
+                );
+            case "community-packages":
+                return (
+                    <Card
+                        status={integration.status}
+                        title={integration.name}
+                        description={integration.description}
+                        linkUrl={integration.url}
+                        imageUrl={integration.icon}
+                        contributer={integration?.contributors[0]}
+                    />
+                );
+            default:
+                return (
+                    <Card
+                        status={integration.status}
+                        title={integration.name}
+                        description={integration.description}
+                        linkUrl={integration.url}
+                        imageUrl={integration.icon}
+                    />
+                );
+        }
+    };
 
     return (
         <Layout>
@@ -31,54 +68,12 @@ const Integrations: React.FC = () => {
                         return (
                             <div key={field}>
                                 <div className={styles.integrationTitle}>
-                                    {field.replaceAll("-", " ").toUpperCase()}
+                                    {field.replace(/-/g, " ").toUpperCase()}
                                 </div>
                                 <div className={styles.integrations}>
-                                    {integrations[field].map((integration) => {
-                                        if (
-                                            field === "ui-framework-packages" ||
-                                            field === "frameworks"
-                                        ) {
-                                            return (
-                                                <LargeCard
-                                                    title={integration.name}
-                                                    description={
-                                                        integration.description
-                                                    }
-                                                    linkUrl={integration.url}
-                                                    imageUrl={integration.icon}
-                                                />
-                                            );
-                                        } else if (
-                                            field === "community-packages"
-                                        ) {
-                                            return (
-                                                <Card
-                                                    title={integration.name}
-                                                    description={
-                                                        integration.description
-                                                    }
-                                                    linkUrl={integration.url}
-                                                    imageUrl={integration.icon}
-                                                    contributer={
-                                                        integration
-                                                            ?.contributors[0]
-                                                    }
-                                                />
-                                            );
-                                        } else {
-                                            return (
-                                                <Card
-                                                    title={integration.name}
-                                                    description={
-                                                        integration.description
-                                                    }
-                                                    linkUrl={integration.url}
-                                                    imageUrl={integration.icon}
-                                                />
-                                            );
-                                        }
-                                    })}
+                                    {integrations[field].map((integration) =>
+                                        renderIntegration(integration, field),
+                                    )}
                                 </div>
                             </div>
                         );
