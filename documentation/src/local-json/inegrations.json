@@ -26,7 +26,7 @@
         {
             "name": "REST API Data Provider",
             "icon": "/integrations/rest.svg",
-            "description": "",
+            "description": "full featured",
             "url": "",
             "status": "stable"
         },
