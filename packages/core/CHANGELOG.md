@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.61.1
+
+### Patch Changes
+
+-   [#2377](https://github.com/pankod/refine/pull/2377) [`c62fb114b1`](https://github.com/pankod/refine/commit/c62fb114b1e0ea3e246e33809bbb64ada1db25b2) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix redirectPage return value #2377
+
 ## 3.61.0
 
 ### Minor Changes
