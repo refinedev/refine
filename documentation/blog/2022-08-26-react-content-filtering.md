@@ -37,7 +37,6 @@ Steps we'll cover:
 
 
 
-- [Introduction](#introduction)
 - [Why refine framework?](#why-refine-framework)
 - [App wireframe](#app-wireframe)
 - [Setting up the refine](#setting-up-the-refine)
@@ -48,11 +47,6 @@ Steps we'll cover:
   - [Content card](#content-card)
 - [Implementing the logic](#implementing-the-logic)
 - [Testing the app](#testing-the-app)
-- [Conclusion](#conclusion)
-- [Live StackBlitz Example](#live-stackblitz-example)
-- [Build your React-based CRUD applications without constraints](#build-your-react-based-crud-applications-without-constraints)
-
-
 
 
 
