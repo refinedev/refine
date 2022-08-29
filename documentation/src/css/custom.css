@@ -9,7 +9,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 /* You can override the default Infima variables here. */
 :root {
@@ -139,7 +139,8 @@
     word-break: keep-all;
 }
 
-.deprecated::before, .deprecated--block::before {
+.deprecated::before,
+.deprecated--block::before {
     content: "⚠️ deprecated";
     color: orange;
     margin-right: 4px;
@@ -300,9 +301,9 @@
 }
 
 .tutorial-cards {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
 }
 
 .tutorial-cards > a {
@@ -314,19 +315,19 @@
     justify-content: center;
     margin-top: 16px;
 }
-  
+
 .tutorial-cards-center > a {
-      width: 50%;
+    width: 50%;
 }
 
 @media (max-width: 425px) {
     .tutorial-cards {
-       flex-direction: column;
-    }        
+        flex-direction: column;
+    }
     .tutorial-cards-center > a {
         width: 100%;
     }
-} 
+}
 
 /* Antd Sider Issue Fix */
 .ant-layout-sider-trigger {
@@ -337,7 +338,8 @@
     margin-top: 0;
 }
 
-.live-editor-wrapper table th, .live-editor-wrapper table td {
+.live-editor-wrapper table th,
+.live-editor-wrapper table td {
     border: none;
 }
 
@@ -354,11 +356,11 @@
     @apply relative;
 }
 
-.with-hoverline .hoverline-link:hover::after, .with-hoverline .navbar__link--active::after {
+.with-hoverline .hoverline-link:hover::after,
+.with-hoverline .navbar__link--active::after {
     content: "";
     @apply absolute bottom-[-5px] left-[calc(50%-12px)] w-6 h-1 bg-[#1890ff] rounded-sm transition-opacity duration-200 ease-in-out;
 }
-
 
 .refine-docsearch-button {
     @apply border-none appearance-none h-7 bg-[#f6f6f9] px-2 md:px-3 rounded-2xl flex items-center py-0 w-7 md:w-[196px] justify-between cursor-pointer;
@@ -401,21 +403,23 @@
 }
 
 #__docusaurus .navbar-sidebar__items--show-secondary {
-    transform: translate3d(
-        calc(100% * -1),
-          0,
-          0
-        );
+    transform: translate3d(calc(100% * -1), 0, 0);
 }
 
-#__docusaurus .navbar-sidebar__items .menu__list .menu__link.menu__link--sublist::after {
+#__docusaurus
+    .navbar-sidebar__items
+    .menu__list
+    .menu__link.menu__link--sublist::after {
     display: block;
     position: relative;
     margin-top: -20px;
     filter: none;
 }
 
-#__docusaurus .navbar-sidebar__items .menu__list .menu__link.menu__link--sublist[role="button"]::after {
+#__docusaurus
+    .navbar-sidebar__items
+    .menu__list
+    .menu__link.menu__link--sublist[role="button"]::after {
     bottom: unset;
     margin-top: 0;
     top: -26px;
@@ -433,7 +437,8 @@
     @apply text-[#2a2a42] text-center font-montserrat font-semibold mb-4;
 }
 
-#__docusaurus .navbar-sidebar__item.menu a[href="https://github.com/pankod/refine"]::after {
+#__docusaurus .navbar-sidebar__item.menu a[href="https://github.com/pankod/refine"]::after
+{
     display: none;
 }
 
@@ -446,7 +451,10 @@
     position: relative;
 }
 
-#__docusaurus .with-hoverline .navbar-sidebar__items .menu__link--active::before {
+#__docusaurus
+    .with-hoverline
+    .navbar-sidebar__items
+    .menu__link--active::before {
     content: "";
     @apply absolute bottom-[-5px] left-[calc(50%-12px)] w-6 h-1 bg-[#1890ff] rounded-sm transition-opacity duration-200 ease-in-out;
 }
@@ -455,7 +463,6 @@
     content: "";
     @apply absolute bottom-[-5px] left-[calc(50%-12px)] w-6 h-1 bg-[#1890ff] rounded-sm transition-opacity duration-200 ease-in-out;
 }
-
 
 #__docusaurus .with-hoverline .navbar-sidebar__items .menu__link--active {
     position: relative;
@@ -478,6 +485,14 @@ html {
     scroll-behavior: smooth;
 }
 
-.blog-wrapper aside + main, .docs-wrapper aside + main {
+#__docusaurus .main-wrapper {
     padding-top: 64px;
+}
+
+#__docusaurus .text-color-base {
+    color: var(--ifm-font-color-base);
+}
+
+#__docusaurus .blog-post-item-shadow {
+    box-shadow: 6px 8px 16px rgba(42, 42, 66, 0.4);
 }
