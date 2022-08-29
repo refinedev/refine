@@ -10,7 +10,7 @@ export default function BlogPostItem({ children, className }) {
 
     return (
         <BlogPostItemContainer className={className}>
-            <div className="overflow-hidden rounded-lg blog-post-item-shadow">
+            <div className="flex flex-col overflow-hidden rounded-lg blog-post-item-shadow h-full">
                 <Link itemProp="url" to={metadata.permalink}>
                     <div className="h-48 relative">
                         <img
@@ -21,22 +21,24 @@ export default function BlogPostItem({ children, className }) {
                         />
                     </div>
                 </Link>
-                <div className="flex flex-col justify-between h-full p-5">
-                    <div className="text-sm text-slate-600">
-                        {metadata.formattedDate} ·{" "}
-                        {Math.round(metadata.readingTime)} mins
-                    </div>
-                    <div className="mt-1 h-[250px]">
-                        <Link
-                            itemProp="url"
-                            to={metadata.permalink}
-                            className="hover:no-underline"
-                        >
-                            <div className="font-bold text-color-base hover:text-stone-600">
-                                {metadata.title}
-                            </div>
-                        </Link>
-                        <div className="mt-4">{metadata.description}</div>
+                <div className="flex flex-col justify-between min-h-[300px] sm:min-h-[375px] h-full p-5">
+                    <div>
+                        <div className="text-sm text-slate-600">
+                            {metadata.formattedDate} ·{" "}
+                            {Math.round(metadata.readingTime)} mins
+                        </div>
+                        <div className="mt-1">
+                            <Link
+                                itemProp="url"
+                                to={metadata.permalink}
+                                className="hover:no-underline"
+                            >
+                                <div className="font-bold text-color-base hover:text-stone-600">
+                                    {metadata.title}
+                                </div>
+                            </Link>
+                            <div className="mt-4">{metadata.description}</div>
+                        </div>
                     </div>
                     <figcaption className="flex items-center space-x-4 mt-2">
                         <Link href={metadata.authors[0]?.url} itemProp="url">

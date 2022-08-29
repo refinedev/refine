@@ -8,9 +8,9 @@ export const FeaturedBlogPostItem = () => {
 
     return (
         <BlogPostItemContainer>
-            <div className="flex overflow-hidden rounded-lg blog-post-item-shadow">
+            <div className="flex flex-col lg:flex-row overflow-hidden rounded-lg blog-post-item-shadow h-full">
                 <Link itemProp="url" to={metadata.permalink}>
-                    <div className="w-72 h-full relative">
+                    <div className="h-48 lg:w-48 xl:w-72 lg:h-full relative">
                         <img
                             src={metadata.frontMatter.image}
                             alt="Post image"
@@ -19,22 +19,24 @@ export const FeaturedBlogPostItem = () => {
                         />
                     </div>
                 </Link>
-                <div className="flex flex-col justify-between h-full p-5">
-                    <div className="text-sm text-slate-600">
-                        {metadata.formattedDate} ·{" "}
-                        {Math.round(metadata.readingTime)} mins
-                    </div>
-                    <div className="mt-1 h-[200px]">
-                        <Link
-                            itemProp="url"
-                            to={metadata.permalink}
-                            className="hover:no-underline"
-                        >
-                            <div className="font-bold text-color-base hover:text-stone-600">
-                                {metadata.title}
-                            </div>
-                        </Link>
-                        <div className="mt-4">{metadata.description}</div>
+                <div className="flex flex-col justify-between min-h-[300px] sm:min-h-[350px] p-5">
+                    <div>
+                        <div className="text-sm text-slate-600">
+                            {metadata.formattedDate} ·{" "}
+                            {Math.round(metadata.readingTime)} mins
+                        </div>
+                        <div className="mt-1">
+                            <Link
+                                itemProp="url"
+                                to={metadata.permalink}
+                                className="hover:no-underline"
+                            >
+                                <div className="font-bold text-color-base hover:text-stone-600">
+                                    {metadata.title}
+                                </div>
+                            </Link>
+                            <div className="mt-4">{metadata.description}</div>
+                        </div>
                     </div>
                     <figcaption className="flex items-center space-x-4 mt-2">
                         <Link href={metadata.authors[0]?.url} itemProp="url">
