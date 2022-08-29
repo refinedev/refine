@@ -34,6 +34,8 @@ function BlogListPageMetadata(props) {
 function BlogListPageContent(props) {
     const { metadata, items, sidebar } = props;
 
+    const isFirstPage = metadata.page === 1;
+
     const featuredPosts = items.filter(({ content }) => {
         if (content.metadata.frontMatter.is_featured) {
             return content;
@@ -57,10 +59,9 @@ function BlogListPageContent(props) {
 
     return (
         <BlogLayout sidebar={sidebar}>
-            <FeaturedBlogPostItems items={featuredPosts} />
+            {isFirstPage && <FeaturedBlogPostItems items={featuredPosts} />}
+            <BlogPostItems items={isFirstPage ? notFeaturedPosts : items} />
             <br />
-            <br />
-            <BlogPostItems items={notFeaturedPosts} />
             <BlogListPaginator metadata={metadata} />
         </BlogLayout>
     );
