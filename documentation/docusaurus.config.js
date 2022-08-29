@@ -43,7 +43,7 @@ const siteConfig = {
                     blogDescription: "A Docusaurus powered blog!",
                     postsPerPage: "ALL",
                     blogSidebarTitle: "All posts",
-                    blogSidebarCount: "ALL",
+                    blogSidebarCount: 0,
                     feedOptions: {
                         type: "all",
                         copyright: `Copyright © ${new Date().getFullYear()} refine.`,
