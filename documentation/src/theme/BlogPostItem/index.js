@@ -45,7 +45,7 @@ export default function BlogPostItem({ children, className }) {
                             <img
                                 src={metadata.authors[0]?.imageURL}
                                 alt={metadata.authors[0]?.name}
-                                className="flex-none w-14 h-14 rounded-full object-cover"
+                                className="flex w-12 h-12 rounded-full object-cover"
                                 loading="lazy"
                             />
                         </Link>
@@ -53,11 +53,11 @@ export default function BlogPostItem({ children, className }) {
                             <Link
                                 href={metadata.authors[0]?.url}
                                 itemProp="url"
-                                className="text-color-base font-semibold"
+                                className="text-sm text-color-base font-semibold"
                             >
                                 {metadata.authors[0]?.name}
                             </Link>
-                            <div className="text-sm text-slate-600">
+                            <div className="text-xs text-slate-600 -mt-0.5">
                                 {metadata.authors[0]?.title}
                             </div>
                         </div>
