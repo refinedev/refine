@@ -16,7 +16,12 @@ const LargeCard: React.FC<LargeCardProps> = ({
     linkUrl,
 }) => {
     return (
-        <a href={linkUrl} className={styles.cardWrapper}>
+        <a
+            target="_blank"
+            href={linkUrl}
+            className={styles.cardWrapper}
+            rel="noreferrer"
+        >
             <div className={styles.card}>
                 <div className={styles.cardHeader}>
                     <div className={styles.imageWrapper}>

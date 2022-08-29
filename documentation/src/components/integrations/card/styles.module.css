@@ -1,9 +1,5 @@
-.cardWrapper {
-    @apply shadow-integrationTile font-montserrat flex items-center justify-center rounded-[10px]  text-black no-underline hover:text-black hover:no-underline;
-}
-
 .card {
-    @apply flex h-full w-full gap-5 px-3.5 py-6;
+    @apply font-montserrat shadow-integrationTile flex h-full w-full justify-start gap-5 rounded-[10px] px-3.5 py-6 text-black no-underline hover:text-black hover:no-underline;
 }
 
 .imageWrapper {
