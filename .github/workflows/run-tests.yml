@@ -1,0 +1,55 @@
+name: Bulk Run Tests
+
+on:
+    pull_request:
+        types: [labeled, synchronize]
+
+jobs:
+    build-all-examples:
+        if: github.event_name == 'pull_request' && contains(steps.pr-labels.outputs.labels, ' run-tests ')
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [16.x]
+        steps:
+        - uses: actions/checkout@v1
+        - name: Cache node modules
+            uses: actions/cache@v2
+            env:
+                cache-name: cache-node-modules
+            with:
+                path: ~/.npm
+                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+                restore-keys: |
+                    ${{ runner.os }}-build-${{ env.cache-name }}-
+                    ${{ runner.os }}-build-
+                    ${{ runner.os }}-
+        - name: Use Node.js ${{ matrix.node-version }}
+            uses: actions/setup-node@v1
+            with:
+                node-version: ${{ matrix.node-version }}
+        - name: npm install & build
+            run: |
+                npm install
+                npm run bootstrap
+        - name: test 1
+            run: |
+                npm run test
+        - name: test 2
+            run: |
+                npm run test
+        - name: test 3
+            run: |
+                npm run test
+        - name: test 4
+            run: |
+                npm run test
+        - name: test 5
+            run: |
+                npm run test
+        - name: test 6
+            run: |
+                npm run test
+        - name: test 7
+            run: |
+                npm run test
