@@ -269,6 +269,7 @@ interface IResourceItem extends IResourceComponents {
     canEdit?: boolean;
     canShow?: boolean;
     canDelete?: boolean;
+    options?: OptionsProps;
     parentName?: string;
 }
 
@@ -287,6 +288,16 @@ interface IResourceComponentsProps<TCrudData = any> {
     name?: string;
     initialData?: TCrudData;
 }
+
+type OptionsProps<TExtends = { [key: string]: any }> = TExtends & {
+    label?: string;
+    route?: string;
+    auditLog?: {
+        permissions?: AuditLogPermissions[number][] | string[];
+    };
+    hide?: boolean;
+    [key: string]: any;
+};
 
 // highlight-start
 type IMenuItem = IResourceItem & {
