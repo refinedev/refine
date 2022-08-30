@@ -33,8 +33,6 @@ Flexbox helps in creating one-dimensional layouts through space distribution and
 Creating layouts with CSS can be tricky, and it's complicated by the fact that both flexbox and grid are used for designing the page layouts. This guide includes the some differences between flexbox and grid. We'll see how to decide which one of these to use while designing a layout.    
 
 In this guide, we'll cover:
-- [Introduction](#introduction)
-- [Prerequisites](#prerequisites)
 - [Control of Child Elements](#control-of-child-elements)
 - [Intrinsic and Extrinsic Sizing](#intrinsic-and-extrinsic-sizing)
 - [Box Alignment](#box-alignment)
@@ -42,7 +40,6 @@ In this guide, we'll cover:
 - [Use cases](#use-cases)
 - [Browser Support](#browser-support)
 - [Conclusion](#conclusion)
-- [Build your React-based CRUD applications without constraints](#build-your-react-based-crud-applications-without-constraints)
 
 
 
