@@ -5,7 +5,7 @@ on:
         types: [labeled, synchronize]
 
 jobs:
-    bulk-run-tests:
+    bulk-run-tests-1:
         if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'run-tests')
         runs-on: ubuntu-latest
         strategy:
@@ -13,17 +13,6 @@ jobs:
                 node-version: [16.x]
         steps:
             - uses: actions/checkout@v1
-            - name: Cache node modules
-              uses: actions/cache@v2
-              env:
-                  cache-name: cache-node-modules
-              with:
-                  path: ~/.npm
-                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-                  restore-keys: |
-                      ${{ runner.os }}-build-${{ env.cache-name }}-
-                      ${{ runner.os }}-build-
-                      ${{ runner.os }}-
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
@@ -38,21 +27,201 @@ jobs:
             - name: test 2
               run: |
                   npm run test
-            - name: test 3
+    bulk-run-tests-2:
+        if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'run-tests')
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [16.x]
+        steps:
+            - uses: actions/checkout@v1
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - name: npm install & build
+              run: |
+                  npm install
+                  npm run bootstrap
+            - name: test 1
               run: |
                   npm run test
-            - name: test 4
+            - name: test 2
               run: |
                   npm run test
-            - name: test 5
+    bulk-run-tests-3:
+        if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'run-tests')
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [16.x]
+        steps:
+            - uses: actions/checkout@v1
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - name: npm install & build
+              run: |
+                  npm install
+                  npm run bootstrap
+            - name: test 1
               run: |
                   npm run test
-            - name: test 6
+            - name: test 2
               run: |
                   npm run test
-            - name: test 7
+    bulk-run-tests-4:
+        if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'run-tests')
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [16.x]
+        steps:
+            - uses: actions/checkout@v1
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - name: npm install & build
+              run: |
+                  npm install
+                  npm run bootstrap
+            - name: test 1
               run: |
                   npm run test
-            - name: test 8
+            - name: test 2
+              run: |
+                  npm run test
+    bulk-run-tests-5:
+        if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'run-tests')
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [16.x]
+        steps:
+            - uses: actions/checkout@v1
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - name: npm install & build
+              run: |
+                  npm install
+                  npm run bootstrap
+            - name: test 1
+              run: |
+                  npm run test
+            - name: test 2
+              run: |
+                  npm run test
+    bulk-run-tests-6:
+        if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'run-tests')
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [16.x]
+        steps:
+            - uses: actions/checkout@v1
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - name: npm install & build
+              run: |
+                  npm install
+                  npm run bootstrap
+            - name: test 1
+              run: |
+                  npm run test
+            - name: test 2
+              run: |
+                  npm run test
+    bulk-run-tests-7:
+        if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'run-tests')
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [16.x]
+        steps:
+            - uses: actions/checkout@v1
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - name: npm install & build
+              run: |
+                  npm install
+                  npm run bootstrap
+            - name: test 1
+              run: |
+                  npm run test
+            - name: test 2
+              run: |
+                  npm run test
+    bulk-run-tests-8:
+        if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'run-tests')
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [16.x]
+        steps:
+            - uses: actions/checkout@v1
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - name: npm install & build
+              run: |
+                  npm install
+                  npm run bootstrap
+            - name: test 1
+              run: |
+                  npm run test
+            - name: test 2
+              run: |
+                  npm run test
+    bulk-run-tests-9:
+        if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'run-tests')
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [16.x]
+        steps:
+            - uses: actions/checkout@v1
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - name: npm install & build
+              run: |
+                  npm install
+                  npm run bootstrap
+            - name: test 1
+              run: |
+                  npm run test
+            - name: test 2
+              run: |
+                  npm run test
+    bulk-run-tests-10:
+        if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'run-tests')
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [16.x]
+        steps:
+            - uses: actions/checkout@v1
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - name: npm install & build
+              run: |
+                  npm install
+                  npm run bootstrap
+            - name: test 1
+              run: |
+                  npm run test
+            - name: test 2
               run: |
                   npm run test
