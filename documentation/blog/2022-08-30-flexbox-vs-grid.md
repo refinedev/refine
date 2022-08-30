@@ -4,12 +4,12 @@ description: In this brief guide, we compare some concept of the two most popula
 slug: css-grid-vs-flexbox
 authors: muhammed_arslan
 tags: [css, html, grid, flexbox, comparison]
-image: https://refine.dev/img/blog/2022-08-30-flex-vs-grid/social.png
+image: https://refine.dev/img/blog/2022-08-30-flex-vs-grid/social2.png
 hide_table_of_contents: false
 ---
 
 
-import social from '@site/static/img/blog/2022-08-30-flex-vs-grid/social.png';
+import social2 from '@site/static/img/blog/2022-08-30-flex-vs-grid/social2.png';
 import pic1 from '@site/static/img/blog/2022-08-30-flex-vs-grid/pic-1.png';
 import pic2 from '@site/static/img/blog/2022-08-30-flex-vs-grid/pic-2.png';
 import pic3 from '@site/static/img/blog/2022-08-30-flex-vs-grid/pic-3.png';
@@ -22,7 +22,7 @@ import flex from '@site/static/img/blog/2022-08-30-flex-vs-grid/flex.png';
 <br />
 
 <div class="img-container">
-    <img src={social} alt="social" />
+    <img src={social2} alt="social2" />
 </div>
 
 ## Introduction
@@ -168,42 +168,13 @@ In CSS, you have intrinsic and extrinsic sizing, like:
 }
 ```
 
-It's a really important part of how layouts work in CSS. In intrinsic sizing, the browser figures out the size of an element. 
+It's a really important part of how layouts work in CSS. In intrinsic sizing, the browser figures out the size of an element.
 
-In extrinsic sizing, you declare a specific width. Flexbox relies heavily on the intrinsic sizing of elements while growing and shrinking. Flexbox figures out content size in the first place. When you do `display:flex`, element size is based completely on the size of content.
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src={pic5} alt="Control of Child Elements" />
-</div>
-
-<br/>
-
-
-If you display flex in the product meta, two columns will take width according to the content size. It will help in creating the desired layout. So, dynamic columns can fit into this layout. 
-
-Unlike grid, where each column will take full width, or you need to specify the size in the parent element. Hence, flexbox will provide more flexibility in this case. Grid helps in creating a more controlled layout.
-
-
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src={pic6} alt="Control of Child Elements" />
-</div>
-
-<br/>
+ In extrinsic sizing, you declare a specific width. Flexbox relies heavily on the intrinsic sizing of elements while growing and shrinking.
 
 ```html
 <div class="product">
-  <img src="https://assets.codepen.io/308367/betteroutreach-logo.avif" alt="" class="logo">
+  <img src="https://assets.codepen.io/308367/betteroutreach-logo.avif">
   <div class="product__info">
     <h2>Product One</h2>
     <p>A collection of the best cold email templates ever sent</p>
@@ -215,7 +186,7 @@ Unlike grid, where each column will take full width, or you need to specify the 
 </div>
 
 <div class="product">
-  <img src="https://assets.codepen.io/308367/sliderule-logo.avif" alt="" class="logo">
+  <img src="https://assets.codepen.io/308367/sliderule-logo.avif">
   <div class="product__info">
     <h2>Product two</h2>
     <p>The no-code rules engine for risk & fraud</p>
@@ -227,7 +198,7 @@ Unlike grid, where each column will take full width, or you need to specify the 
 </div>
 
 <div class="product">
-  <img src="https://assets.codepen.io/308367/warmy-logo.avif" alt="" class="logo">
+  <img src="https://assets.codepen.io/308367/warmy-logo.avif">
   <div class="product__info">
     <h2>Product three</h2>
     <p>Auto all-in-one tool to make your email channel reliable</p>
@@ -270,6 +241,50 @@ body {
   grid-template-rows: min-content;
 }
 ```
+
+
+Flexbox figures out content size in the first place. When you do `display:flex`, element size is based completely on the size of content. 
+
+If you display flex in the product meta, two columns will take width according to the content size. It will help in creating the desired layout. So, dynamic columns can fit into this layout. 
+
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={pic5} alt="Control of Child Elements" />
+</div>
+
+<br/>
+<br />
+
+Unlike grid, where each column will take full width, or you need to specify the size in the parent element. 
+
+```css
+.product__meta {
+  font-size: 12px;
+  outline: 3px solid red;
+  // highlight-next-line
+  display: grid;
+  gap: 1rem;
+}
+```
+
+<div class="img-container">
+    <div class="window">
+        <div class="control red"></div>
+        <div class="control orange"></div>
+        <div class="control green"></div>
+    </div>
+    <img src={pic6} alt="Control of Child Elements" />
+</div>
+
+<br/>
+
+Hence, flexbox will provide more flexibility in this case. Grid helps in creating a more controlled layout.
+
 
 ## Box Alignment
 Let's not forget about box alignment. Because flexbox holds the ability to align elements very easily. Before flexbox, it was very difficult to align items properly. Different hacks and tricks were used to align elements in the desired layout.
