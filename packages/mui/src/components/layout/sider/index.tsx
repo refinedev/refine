@@ -79,6 +79,8 @@ export const Sider: React.FC<RefineLayoutSiderProps> = () => {
 
     const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
         return tree.map((item: ITreeMenu) => {
+            if (item.options?.hide) return null;
+
             const { icon, label, route, name, children, parentName } = item;
             const isOpen = open[route || ""] || false;
 

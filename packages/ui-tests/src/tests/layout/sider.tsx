@@ -1,7 +1,7 @@
 import React from "react";
 import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
 
-import { act, fireEvent, render, TestWrapper, waitFor } from "@test";
+import { act, render, TestWrapper, waitFor } from "@test";
 
 const mockAuthProvider = {
     login: () => Promise.resolve(),
@@ -93,6 +93,15 @@ export const layoutSiderTests = function (
                                 return <div>users</div>;
                             },
                         },
+                        {
+                            name: "hiddens",
+                            list: function render() {
+                                return <div>hidden</div>;
+                            },
+                            options: {
+                                hide: true,
+                            },
+                        },
                     ],
                     accessControlProvider: {
                         can: ({ action, resource }) => {
@@ -114,6 +123,61 @@ export const layoutSiderTests = function (
 
             await waitFor(() => getAllByText("Posts")[0]);
             await waitFor(() => expect(queryByText("Users")).toBeNull());
+            await waitFor(() =>
+                expect(queryByText(/hiddens/i)).not.toBeInTheDocument(),
+            );
+        });
+
+        it("should tree view render all except hide true", async () => {
+            const { getAllByText, queryByRole } = render(<SiderElement />, {
+                wrapper: TestWrapper({
+                    resources: [
+                        {
+                            name: "CMS",
+                        },
+                        {
+                            name: "posts",
+                            list: function render() {
+                                return <div>posts</div>;
+                            },
+                            parentName: "CMS",
+                        },
+                        {
+                            name: "categories",
+                            list: function render() {
+                                return <div>users</div>;
+                            },
+                            parentName: "CMS",
+                        },
+                        {
+                            name: "users",
+                            list: function render() {
+                                return <div>hidden</div>;
+                            },
+                            options: {
+                                hide: true,
+                            },
+                            parentName: "CMS",
+                        },
+                    ],
+                }),
+            });
+
+            await act(async () => {
+                jest.advanceTimersToNextTimer(1);
+            });
+
+            await act(async () => {
+                getAllByText(/cms/i)[0].click();
+            });
+
+            expect(queryByRole("link", { name: /posts/i })).toBeInTheDocument();
+
+            expect(
+                queryByRole("link", { name: /categories/i }),
+            ).toBeInTheDocument();
+
+            expect(queryByRole("link", { name: /users/i })).toBeNull();
         });
     });
 };
