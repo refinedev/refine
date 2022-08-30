@@ -15,6 +15,7 @@ type OptionsProps<TExtends = { [key: string]: any }> = TExtends & {
     auditLog?: {
         permissions?: AuditLogPermissions[number][] | string[];
     };
+    hide?: boolean;
     [key: string]: any;
 };
 
