@@ -39,7 +39,6 @@ In this guide, we'll cover:
 - [Behavior of Flexbox and Grid](#behavior-of-flexbox-and-grid)
 - [Use cases](#use-cases)
 - [Browser Support](#browser-support)
-- [Conclusion](#conclusion)
 
 
 
@@ -97,9 +96,9 @@ If you set `display: flex`, it creates a flex layout. You'll notice that you don
 
 <br/>
 
-If you want to make three equal columns, you can't do this in a parent element. You need to do this in the child element as  `width:100%;` or `flex:1;`. It will create three equal child elements in width.
+If you want to make three equal columns, you can't do this in a parent element. You need to do this in the child element as  `width:100%` or `flex:1`. It will create three equal child elements in width.
 
-Basically, child elements have control because the parent element delegates it to child elements in a flexbox. If child elements have equal content, they will be equal in size without doing `width:100%;` or `flex:1;`. 
+Basically, child elements have control because the parent element delegates it to child elements in a flexbox. If child elements have equal content, they will be equal in size without doing `width:100%` or `flex:1`. 
 
 So, we need to be careful while using flexbox.
 
@@ -140,7 +139,7 @@ So, we need to be careful while using flexbox.
 
 <br/>
 
-Nothing will happen if we change `display: flex;` to `display: grid;` You have to do something else to actually get things in the right place.
+Nothing will happen if we change `display: flex` to `display: grid` You have to do something else to actually get things in the right place.
 
  So, add this line `grid-template-columns: 1fr 1fr 1fr` in parent element. Then, the content will fit into those columns that are created. When you create a grid, children of the grid fit into those cells.
 
