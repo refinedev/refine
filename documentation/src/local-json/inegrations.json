@@ -184,7 +184,7 @@
         {
             "name": "Ably Live Provider",
             "icon": "/integrations/ably.svg",
-            "description": "The platform to power synchronized digital experiences in **realtime**. Guaranteed to deliver at scale.",
+            "description": "The platform to power synchronized digital experiences in realtime. Guaranteed to deliver at scale.",
             "url": "https://github.com/pankod/refine/tree/next/packages/ably",
             "status": "stable"
         }
