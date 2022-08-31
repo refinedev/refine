@@ -62,7 +62,20 @@ export const TestWrapper: (
                     resources={resources ?? [{ name: "posts", list: List }]}
                     accessControlProvider={accessControlProvider}
                     DashboardPage={DashboardPage ?? undefined}
-                    options={{ disableTelemetry: true }}
+                    options={{
+                        disableTelemetry: true,
+                        reactQuery: {
+                            clientConfig: {
+                                defaultOptions: {
+                                    queries: {
+                                        cacheTime: 0,
+                                        staleTime: 0,
+                                        networkMode: "always",
+                                    },
+                                },
+                            },
+                        },
+                    }}
                 >
                     {children}
                 </Refine>
