@@ -1,11 +1,16 @@
 import React from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, animate } from "framer-motion";
 import {
     ChevronDown,
     MaterialUIIcon,
     AntDesignLogoIcon,
     RefineBgIcon,
+    BusinessLogic01,
+    BusinessLogic02,
+    BusinessLogic04,
+    BusinessLogic03,
 } from "../icons";
+import { CountingNumber } from "../counting-number";
 
 export const SectionNoConstraints: React.FC = () => {
     const ref = React.useRef<HTMLDivElement>(null);
@@ -87,6 +92,30 @@ export const SectionNoConstraints: React.FC = () => {
         [0, 0, 1],
     );
 
+    const cardsSlideScaleAndOpacity = useTransform(
+        scrollYProgress,
+        [0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1],
+        [0, 0, 0, 0, 1, 0, 0],
+    );
+
+    const slideSubtitleY = useTransform(
+        scrollYProgress,
+        [0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1],
+        [0, 0, 0, -36, -36 * 2, -36 * 3, -36 * 4],
+    );
+
+    const slideCounterCardsRotateX = useTransform(
+        scrollYProgress,
+        [0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1],
+        ["90deg", "90deg", "90deg", "90deg", "90deg", "0deg", "0deg"],
+    );
+
+    const slideCounterCardsOpacity = useTransform(
+        scrollYProgress,
+        [0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1],
+        [0, 0, 0, 0, 0.5, 1, 1],
+    );
+
     React.useEffect(() => {
         return slideScreen03Y.onChange(async () => {
             console.log("CCC", slideScreen03Y.get());
@@ -133,11 +162,24 @@ export const SectionNoConstraints: React.FC = () => {
                         <div className="w-full text-center font-montserrat text-[90px] leading-none font-extrabold text-[#1890FF]">
                             no constraints
                         </div>
-                        <div className="w-full">
-                            {/* change this */}
-                            <div className="font-medium uppercase text-4xl leading-none font-montserrat text-[#1890FF] text-center">
-                                on styling
-                            </div>
+                        <div className="w-full font-medium uppercase text-4xl leading-none font-montserrat text-[#1890FF] text-center h-9 relative overflow-hidden">
+                            <motion.div
+                                className="absolute left-0 top-0 w-full"
+                                style={{ y: slideSubtitleY }}
+                            >
+                                <div className="w-full h-9 text-center">
+                                    on styling
+                                </div>
+                                <div className="w-full h-9 text-center">
+                                    on backend
+                                </div>
+                                <div className="w-full h-9 text-center">
+                                    on your workflow
+                                </div>
+                                <div className="w-full h-9 text-center">
+                                    with open software
+                                </div>
+                            </motion.div>
                         </div>
                     </div>
                     <motion.div
@@ -448,11 +490,304 @@ export const SectionNoConstraints: React.FC = () => {
                             <div className="w-full flex-shrink-0 bg-red-600 snap-center">
                                 asdasdasd
                             </div>
-                            <div className="w-full flex-shrink-0 bg-red-500 snap-center">
-                                asdasdasd
+                            <div className="w-full flex-shrink-0 snap-center h-full">
+                                <div className="flex h-full">
+                                    <div className="flex-1 flex relative p-12 pt-6 justify-center items-center">
+                                        <motion.div
+                                            style={{
+                                                perspective: "1000px",
+                                                perspectiveOrigin: "left top",
+                                                scale: cardsSlideScaleAndOpacity,
+                                                opacity:
+                                                    cardsSlideScaleAndOpacity,
+                                            }}
+                                            className="flex relative w-full max-w-[400px] h-full"
+                                        >
+                                            <motion.div
+                                                className="bg-transparent"
+                                                animate={{
+                                                    rotateY: ["10deg", "20deg"],
+                                                    rotateX: ["5deg", "-5deg"],
+                                                }}
+                                                transition={{
+                                                    yoyo: Infinity,
+                                                    ease: "easeInOut",
+                                                    duration: 3,
+                                                    delay: 0,
+                                                }}
+                                                style={{
+                                                    width: "45%",
+                                                }}
+                                            >
+                                                <BusinessLogic02
+                                                    style={{
+                                                        width: "100%",
+                                                        height: "auto",
+                                                        borderRadius: "20px",
+                                                        boxShadow:
+                                                            "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
+                                                    }}
+                                                />
+                                            </motion.div>
+                                            <motion.div
+                                                className="bg-transparent absolute top-[10%] left-[19%]"
+                                                animate={{
+                                                    rotateY: ["10deg", "20deg"],
+                                                    rotateX: ["5deg", "-5deg"],
+                                                }}
+                                                transition={{
+                                                    yoyo: Infinity,
+                                                    ease: "easeInOut",
+                                                    duration: 3,
+                                                    delay: 0,
+                                                }}
+                                                style={{
+                                                    width: "45%",
+                                                }}
+                                            >
+                                                <BusinessLogic03
+                                                    style={{
+                                                        width: "100%",
+                                                        height: "auto",
+                                                        borderRadius: "20px",
+                                                        boxShadow:
+                                                            "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
+                                                    }}
+                                                />
+                                            </motion.div>
+                                            <motion.div
+                                                className="bg-transparent absolute top-[20%] left-[38%]"
+                                                animate={{
+                                                    rotateY: ["10deg", "20deg"],
+                                                    rotateX: ["5deg", "-5deg"],
+                                                }}
+                                                transition={{
+                                                    yoyo: Infinity,
+                                                    ease: "easeInOut",
+                                                    duration: 3,
+                                                    delay: 0,
+                                                }}
+                                                style={{
+                                                    width: "45%",
+                                                }}
+                                            >
+                                                <BusinessLogic04
+                                                    style={{
+                                                        width: "100%",
+                                                        height: "auto",
+                                                        borderRadius: "20px",
+                                                        boxShadow:
+                                                            "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
+                                                    }}
+                                                />
+                                            </motion.div>
+                                            <motion.div
+                                                className="bg-transparent absolute top-[30%] left-[55%]"
+                                                animate={{
+                                                    rotateY: ["10deg", "20deg"],
+                                                    rotateX: ["5deg", "-5deg"],
+                                                }}
+                                                transition={{
+                                                    yoyo: Infinity,
+                                                    ease: "easeInOut",
+                                                    duration: 3,
+                                                    delay: 0,
+                                                }}
+                                                style={{
+                                                    width: "45%",
+                                                }}
+                                            >
+                                                <BusinessLogic01
+                                                    style={{
+                                                        width: "100%",
+                                                        height: "auto",
+                                                        borderRadius: "20px",
+                                                        boxShadow:
+                                                            "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
+                                                    }}
+                                                />
+                                            </motion.div>
+                                        </motion.div>
+                                    </div>
+                                    <div className="flex-1 place-self-center ">
+                                        <div className="max-w-[390px] font-montserrat -ml-5 text-[#2A2A42]">
+                                            <p className="text-xl max-w-[360px]">
+                                                <strong>refine</strong> gives
+                                                you and your team{" "}
+                                                <strong>100% control</strong>{" "}
+                                                over your project and totally
+                                                prevents vendor lock-in:
+                                            </p>
+                                            <p className="text-base">
+                                                <ul>
+                                                    <li>
+                                                        Write your code as you
+                                                        are developing a vanilla
+                                                        React project.
+                                                    </li>
+                                                    <li>
+                                                        Add unlimited 3rd party
+                                                        modules and
+                                                        integrations.
+                                                    </li>
+                                                    <li>
+                                                        Use your own source
+                                                        control, CI & CD
+                                                        systems.
+                                                    </li>
+                                                    <li>
+                                                        Deploy your application
+                                                        anywhere, including edge
+                                                        & cloud workers.
+                                                    </li>
+                                                </ul>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="w-full flex-shrink-0 bg-red-600 snap-center">
-                                asdasdasd
+                            <div className="w-full flex-shrink-0 snap-center h-full">
+                                <div className="flex h-full w-full">
+                                    <div className="flex-1 flex flex-col justify-center items-center w-full gap-4">
+                                        <div className="font-montserrat text-xl text-[#2A2A42] text-center max-w-[800px]">
+                                            <p>
+                                                <strong>refine</strong> core is
+                                                an open source framework and it
+                                                will always{" "}
+                                                <strong>stay free</strong>.
+                                            </p>
+                                            <p>
+                                                It has a very strong community
+                                                of maintainers, contributers and
+                                                and users providing{" "}
+                                                <strong>7/24</strong> support on
+                                                our Github, Twitter and Discord
+                                                channels.
+                                            </p>
+                                        </div>
+                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-5 gap-x-2.5 w-full px-5 pb-5 max-w-[1000px]">
+                                            <motion.div
+                                                style={{
+                                                    rotateX:
+                                                        slideCounterCardsRotateX,
+                                                    opacity:
+                                                        slideCounterCardsOpacity,
+                                                }}
+                                                className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
+                                            >
+                                                <div className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] text-center">
+                                                    &times;
+                                                </div>
+                                                <div className="font-montserrat font-black text-6xl leading-[1.1] text-center">
+                                                    <CountingNumber to={63} />
+                                                </div>
+                                                <div className="font-montserrat font-medium text-[14px] leading-[18px] text-center">
+                                                    Contributors
+                                                </div>
+                                            </motion.div>
+                                            <motion.div
+                                                style={{
+                                                    rotateX:
+                                                        slideCounterCardsRotateX,
+                                                    opacity:
+                                                        slideCounterCardsOpacity,
+                                                }}
+                                                className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
+                                            >
+                                                <div className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] text-center">
+                                                    &times;
+                                                </div>
+                                                <div className="font-montserrat font-black text-6xl leading-[1.1] text-center">
+                                                    <CountingNumber to={1600} />
+                                                    +
+                                                </div>
+                                                <div className="font-montserrat font-medium text-[14px] leading-[18px] text-center">
+                                                    Commits
+                                                </div>
+                                            </motion.div>
+                                            <motion.div
+                                                style={{
+                                                    rotateX:
+                                                        slideCounterCardsRotateX,
+                                                    opacity:
+                                                        slideCounterCardsOpacity,
+                                                }}
+                                                className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
+                                            >
+                                                <div className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] text-center">
+                                                    &times;
+                                                </div>
+                                                <div className="font-montserrat font-black text-6xl leading-[1.1] text-center">
+                                                    <CountingNumber to={2500} />
+                                                    +
+                                                </div>
+                                                <div className="font-montserrat font-medium text-[14px] leading-[18px] text-center">
+                                                    GitHub Stars
+                                                </div>
+                                            </motion.div>
+                                            <motion.div
+                                                style={{
+                                                    rotateX:
+                                                        slideCounterCardsRotateX,
+                                                    opacity:
+                                                        slideCounterCardsOpacity,
+                                                }}
+                                                className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
+                                            >
+                                                <div className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] text-center">
+                                                    &times;
+                                                </div>
+                                                <div className="font-montserrat font-black text-6xl leading-[1.1] text-center">
+                                                    <CountingNumber to={300} />+
+                                                </div>
+                                                <div className="font-montserrat font-medium text-[14px] leading-[18px] text-center">
+                                                    Discord Members
+                                                </div>
+                                            </motion.div>
+                                            <motion.div
+                                                style={{
+                                                    rotateX:
+                                                        slideCounterCardsRotateX,
+                                                    opacity:
+                                                        slideCounterCardsOpacity,
+                                                }}
+                                                className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
+                                            >
+                                                <div className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] text-center">
+                                                    &times;
+                                                </div>
+                                                <div className="font-montserrat font-black text-6xl leading-[1.1] text-center">
+                                                    <CountingNumber to={650} />+
+                                                </div>
+                                                <div className="font-montserrat font-medium text-[14px] leading-[18px] text-center">
+                                                    Twitter Followers
+                                                </div>
+                                            </motion.div>
+                                            <motion.div
+                                                style={{
+                                                    rotateX:
+                                                        slideCounterCardsRotateX,
+                                                    opacity:
+                                                        slideCounterCardsOpacity,
+                                                }}
+                                                className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
+                                            >
+                                                <div className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] text-center">
+                                                    &times;
+                                                </div>
+                                                <div className="font-montserrat font-bold text-xl text-center pb-4">
+                                                    Come to our side
+                                                </div>
+                                                <div className="flex gap-6 justify-center">
+                                                    <div className="w-8 h-8 bg-red-100 rounded-full" />
+                                                    <div className="w-8 h-8 bg-red-100 rounded-full" />
+                                                    <div className="w-8 h-8 bg-red-100 rounded-full" />
+                                                    <div className="w-8 h-8 bg-red-100 rounded-full" />
+                                                </div>
+                                            </motion.div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </motion.div>
                     </motion.div>
