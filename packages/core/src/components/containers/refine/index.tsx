@@ -21,7 +21,7 @@ import { AccessControlContextProvider } from "@contexts/accessControl";
 import { NotificationContextProvider } from "@contexts/notification";
 import { AuditLogContextProvider } from "@contexts/auditLog";
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
-import { routeGenerator } from "@definitions";
+import { handleRefineOptions, routeGenerator } from "@definitions";
 import { Telemetry } from "@components/telemetry";
 import { useDeepMemo } from "@hooks/deepMemo";
 
@@ -41,6 +41,7 @@ import {
     AccessControlProvider,
     AuditLogProvider,
     DashboardPageProps,
+    IRefineOptions,
 } from "../../../interfaces";
 
 interface QueryClientConfig {
@@ -62,9 +63,29 @@ export interface RefineProps {
     LoginPage?: React.FC;
     DashboardPage?: React.FC<DashboardPageProps>;
     ReadyPage?: React.FC;
+    /** 
+        @deprecated `mutationMode` property is deprecated at this level. Use it from within `options` instead.
+        @example  `options={{ mutationMode: "optimistic" }}`
+        @see https://refine.dev/docs/core/components/refine-config/#mutationmode
+     */
     mutationMode?: MutationMode;
+    /** 
+        @deprecated `syncWithLocation` property is deprecated at this level. Use it from within `options` instead.
+        @example  `options={{ syncWithLocation: true }}`
+        @see https://refine.dev/docs/core/components/refine-config/#syncwithlocation
+     */
     syncWithLocation?: boolean;
+    /** 
+        @deprecated `warnwhenunsavedchanges` property is deprecated at this level. Use it from within `options` instead.
+        @example  `options={{ warnwhenunsavedchanges: true }}`
+        @see https://refine.dev/docs/core/components/refine-config/#warnwhenunsavedchanges
+     */
     warnWhenUnsavedChanges?: boolean;
+    /** 
+        @deprecated `undoableTimeout` property is deprecated at this level. Use it from within `options` instead.
+        @example  `options={{ undoableTimeout: 5000 }}`
+        @see https://refine.dev/docs/core/components/refine-config/#undoabletimeout
+     */
     undoableTimeout?: number;
     Layout?: React.FC<LayoutProps>;
     Sider?: React.FC;
@@ -72,14 +93,35 @@ export interface RefineProps {
     Footer?: React.FC;
     OffLayoutArea?: React.FC;
     Title?: React.FC<TitleProps>;
+    /** 
+        @deprecated `reactQueryClientConfig` property is deprecated. Use `clientConfig` in `reactQuery` in `options` instead.
+        @example  `options={{ reactQuery: { clientConfig: { queryCache: new QueryCache() } } }}`
+        @see https://refine.dev/docs/core/components/refine-config/#clientconfig
+     */
     reactQueryClientConfig?: QueryClientConfig;
+    /** 
+        @deprecated `reactQueryDevtoolConfig` property is deprecated. Use `devtoolConfig` in `reactQuery` in `options` instead.
+        @example  `options={{ reactQuery: { devtoolConfig: false } }}`
+        @see https://refine.dev/docs/core/components/refine-config/#devtoolConfig
+     */
     reactQueryDevtoolConfig?:
         | React.ComponentProps<typeof ReactQueryDevtools>
         | false;
+
+    /** 
+        @deprecated `liveMode` property is deprecated. Use it from within `options` instead.
+        @example  `options={{ liveMode: "auto" }}`
+        @see https://refine.dev/docs/core/components/refine-config/#livemode
+     */
     liveMode?: LiveModeProps["liveMode"];
     onLiveEvent?: LiveModeProps["onLiveEvent"];
     children?: React.ReactNode;
+    /** 
+        @deprecated `disableTelemetry` property is deprecated. Use it from within `options` instead.
+        @example  `options={{ disableTelemetry: true }}`
+     */
     disableTelemetry?: boolean;
+    options?: IRefineOptions;
 }
 
 /**
@@ -104,10 +146,10 @@ export const Refine: React.FC<RefineProps> = ({
     children,
     liveProvider,
     i18nProvider,
-    mutationMode = "pessimistic",
-    syncWithLocation = false,
-    warnWhenUnsavedChanges = false,
-    undoableTimeout = 5000,
+    mutationMode,
+    syncWithLocation,
+    warnWhenUnsavedChanges,
+    undoableTimeout,
     Title,
     Layout,
     Sider,
@@ -118,21 +160,39 @@ export const Refine: React.FC<RefineProps> = ({
     reactQueryDevtoolConfig,
     liveMode,
     onLiveEvent,
-    disableTelemetry = false,
+    disableTelemetry,
+    options,
 }) => {
+    const {
+        optionsWithDefaults,
+        disableTelemetryWithDefault,
+        reactQueryWithDefaults,
+    } = handleRefineOptions({
+        options,
+        disableTelemetry,
+        liveMode,
+        mutationMode,
+        reactQueryClientConfig,
+        reactQueryDevtoolConfig,
+        syncWithLocation,
+        warnWhenUnsavedChanges,
+        undoableTimeout,
+    });
+
     const queryClient = useDeepMemo(() => {
         return new QueryClient({
-            ...reactQueryClientConfig,
+            ...reactQueryWithDefaults.clientConfig,
             defaultOptions: {
-                ...reactQueryClientConfig?.defaultOptions,
+                ...reactQueryWithDefaults.clientConfig.defaultOptions,
                 queries: {
                     refetchOnWindowFocus: false,
                     keepPreviousData: true,
-                    ...reactQueryClientConfig?.defaultOptions?.queries,
+                    ...reactQueryWithDefaults.clientConfig.defaultOptions
+                        ?.queries,
                 },
             },
         });
-    }, [reactQueryClientConfig]);
+    }, [reactQueryWithDefaults.clientConfig]);
 
     const notificationProviderContextValues = React.useMemo(() => {
         return typeof notificationProvider === "function"
@@ -197,17 +257,17 @@ export const Refine: React.FC<RefineProps> = ({
                                                 <UndoableQueueContextProvider>
                                                     <RefineContextProvider
                                                         mutationMode={
-                                                            mutationMode
+                                                            optionsWithDefaults.mutationMode
                                                         }
                                                         warnWhenUnsavedChanges={
-                                                            warnWhenUnsavedChanges
+                                                            optionsWithDefaults.warnWhenUnsavedChanges
                                                         }
                                                         syncWithLocation={
-                                                            syncWithLocation
+                                                            optionsWithDefaults.syncWithLocation
                                                         }
                                                         Title={Title}
                                                         undoableTimeout={
-                                                            undoableTimeout
+                                                            optionsWithDefaults.undoableTimeout
                                                         }
                                                         catchAll={catchAll}
                                                         DashboardPage={
@@ -224,15 +284,20 @@ export const Refine: React.FC<RefineProps> = ({
                                                         hasDashboard={
                                                             !!DashboardPage
                                                         }
-                                                        liveMode={liveMode}
+                                                        liveMode={
+                                                            optionsWithDefaults.liveMode
+                                                        }
                                                         onLiveEvent={
                                                             onLiveEvent
+                                                        }
+                                                        options={
+                                                            optionsWithDefaults
                                                         }
                                                     >
                                                         <UnsavedWarnContextProvider>
                                                             <RouterComponent>
                                                                 {children}
-                                                                {!disableTelemetry && (
+                                                                {!disableTelemetryWithDefault && (
                                                                     <Telemetry />
                                                                 )}
                                                                 <RouteChangeHandler />
@@ -249,11 +314,11 @@ export const Refine: React.FC<RefineProps> = ({
                     </DataContextProvider>
                 </AuthContextProvider>
             </NotificationContextProvider>
-            {reactQueryDevtoolConfig === false ? null : (
+            {reactQueryWithDefaults.devtoolConfig === false ? null : (
                 <ReactQueryDevtools
                     initialIsOpen={false}
                     position="bottom-right"
-                    {...(reactQueryDevtoolConfig ?? {})}
+                    {...reactQueryWithDefaults.devtoolConfig}
                 />
             )}
         </QueryClientProvider>

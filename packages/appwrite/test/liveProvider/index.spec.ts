@@ -7,11 +7,11 @@ const mockClient: Appwrite = {
 
 const testDate = new Date().getTime();
 
-afterEach(() => {
-    jest.useRealTimers();
-});
-
 describe("liveProvider", () => {
+    afterEach(() => {
+        jest.useRealTimers();
+    });
+
     it("calls appwriteClient.subscribe with correct channel", () => {
         const provider = liveProvider(mockClient);
         const dummyCallback = () => undefined;

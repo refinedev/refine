@@ -1,5 +1,205 @@
 # @pankod/refine-core
 
+## 3.62.1
+
+### Patch Changes
+
+-   fix redirectPage return value #2377
+
+## 3.62.0
+
+### Minor Changes
+
+-   Added a new `<Refine>` component property: `options`.
+
+    Previously, the options were passed as a property to the `<Refine>` component. Now, the options are passed to the `<Refine>` via `options` property like this:
+
+    ```diff
+        <Refine
+    -       mutationMode="undoable"
+    -       undoableTimeout={5000}
+    -       warnWhenUnsavedChanges
+    -       syncWithLocation
+    -       liveMode="off"
+    -       disableTelemetry={false}
+    +       options={{
+    +           mutationMode: "undoable",
+    +           undoableTimeout: 5000,
+    +           warnWhenUnsavedChanges: true,
+    +           syncWithLocation: true,
+    +           liveMode: "off",
+    +           disableTelemetry: false,
+    +       }}
+        />
+    ```
+
+*   Added a new redirect feature. It is now possible to set default redirects.
+
+    By default, when a form is submitted, it will redirect to the "list" page of the current resource. You can change this behavior by setting the `redirect` parameter like this:
+
+    ```tsx
+    <Refine
+        ...
+        options={{ redirect: { afterCreate: "show", afterClone: "edit", afterEdit: false }, }}
+    />
+    ```
+
+### Patch Changes
+
+-   -   `lodash` moved to "dependencies" for CommonJS builds
+
+*   -   Fixed `lodash-es` usage for ESM builds
+
+## 3.61.1
+
+### Patch Changes
+
+-   [#2377](https://github.com/pankod/refine/pull/2377) [`c62fb114b1`](https://github.com/pankod/refine/commit/c62fb114b1e0ea3e246e33809bbb64ada1db25b2) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix redirectPage return value #2377
+
+## 3.61.0
+
+### Minor Changes
+
+-   Added a new `<Refine>` component property: `options`.
+
+    Previously, the options were passed as a property to the `<Refine>` component. Now, the options are passed to the `<Refine>` via `options` property like this:
+
+    ```diff
+        <Refine
+    -       mutationMode="undoable"
+    -       undoableTimeout={5000}
+    -       warnWhenUnsavedChanges
+    -       syncWithLocation
+    -       liveMode="off"
+    -       disableTelemetry={false}
+    +       options={{
+    +           mutationMode: "undoable",
+    +           undoableTimeout: 5000,
+    +           warnWhenUnsavedChanges: true,
+    +           syncWithLocation: true,
+    +           liveMode: "off",
+    +           disableTelemetry: false,
+    +       }}
+        />
+    ```
+
+*   Added a new redirect feature. It is now possible to set default redirects.
+
+    By default, when a form is submitted, it will redirect to the "list" page of the current resource. You can change this behavior by setting the `redirect` parameter like this:
+
+    ```tsx
+    <Refine
+        ...
+        options={{ redirect: { afterCreate: "show", afterClone: "edit", afterEdit: false }, }}
+    />
+    ```
+
+### Patch Changes
+
+-   -   `lodash` moved to "dependencies" for CommonJS builds
+
+*   -   Fixed `lodash-es` usage for ESM builds
+
+## 3.60.0
+
+### Minor Changes
+
+-   Added a new `<Refine>` component property: `options`.
+
+    Previously, the options were passed as a property to the `<Refine>` component. Now, the options are passed to the `<Refine>` via `options` property like this:
+
+    ```diff
+        <Refine
+    -       mutationMode="undoable"
+    -       undoableTimeout={5000}
+    -       warnWhenUnsavedChanges
+    -       syncWithLocation
+    -       liveMode="off"
+    -       disableTelemetry={false}
+    +       options={{
+    +           mutationMode: "undoable",
+    +           undoableTimeout: 5000,
+    +           warnWhenUnsavedChanges: true,
+    +           syncWithLocation: true,
+    +           liveMode: "off",
+    +           disableTelemetry: false,
+    +       }}
+        />
+    ```
+
+*   Added a new redirect feature. It is now possible to set default redirects.
+
+    By default, when a form is submitted, it will redirect to the "list" page of the current resource. You can change this behavior by setting the `redirect` parameter like this:
+
+    ```tsx
+    <Refine
+        ...
+        options={{ redirect: { afterCreate: "show", afterClone: "edit", afterEdit: false }, }}
+    />
+    ```
+
+### Patch Changes
+
+-   -   `lodash` moved to "dependencies" for CommonJS builds
+
+*   -   Fixed `lodash-es` usage for ESM builds
+
+## 3.59.0
+
+### Minor Changes
+
+-   [#2352](https://github.com/pankod/refine/pull/2352) [`e4d39eff33`](https://github.com/pankod/refine/commit/e4d39eff339d1c0ac391947843ebaa78d93830d6) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added a new `<Refine>` component property: `options`.
+
+    Previously, the options were passed as a property to the `<Refine>` component. Now, the options are passed to the `<Refine>` via `options` property like this:
+
+    ```diff
+        <Refine
+    -       mutationMode="undoable"
+    -       undoableTimeout={5000}
+    -       warnWhenUnsavedChanges
+    -       syncWithLocation
+    -       liveMode="off"
+    -       disableTelemetry={false}
+    +       options={{
+    +           mutationMode: "undoable",
+    +           undoableTimeout: 5000,
+    +           warnWhenUnsavedChanges: true,
+    +           syncWithLocation: true,
+    +           liveMode: "off",
+    +           disableTelemetry: false,
+    +       }}
+        />
+    ```
+
+*   [#2361](https://github.com/pankod/refine/pull/2361) [`95e1a17cd1`](https://github.com/pankod/refine/commit/95e1a17cd1e10d126ce38954d0f01c0e5a39ad6a) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added a new redirect feature. It is now possible to set default redirects.
+
+    By default, when a form is submitted, it will redirect to the "list" page of the current resource. You can change this behavior by setting the `redirect` parameter like this:
+
+    ```tsx
+    <Refine
+        ...
+        options={{ redirect: { afterCreate: "show", afterClone: "edit", afterEdit: false }, }}
+    />
+    ```
+
+### Patch Changes
+
+-   [#2366](https://github.com/pankod/refine/pull/2366) [`de87f13dad`](https://github.com/pankod/refine/commit/de87f13dadabc3de947534988abfbb2ff6263ca4) Thanks [@omeraplak](https://github.com/omeraplak)! - - `lodash` moved to "dependencies" for CommonJS builds
+
+*   [#2366](https://github.com/pankod/refine/pull/2366) [`de87f13dad`](https://github.com/pankod/refine/commit/de87f13dadabc3de947534988abfbb2ff6263ca4) Thanks [@omeraplak](https://github.com/omeraplak)! - - Fixed `lodash-es` usage for ESM builds
+
+## 3.58.5
+
+### Patch Changes
+
+-   `lodash` moved to dependencies.
+
+## 3.58.4
+
+### Patch Changes
+
+-   [#2350](https://github.com/pankod/refine/pull/2350) [`f8e5d99598`](https://github.com/pankod/refine/commit/f8e5d99598265af434f25fde104fafc9b7cac792) Thanks [@ozkalai](https://github.com/ozkalai)! - `lodash` moved to dependencies.
+
 ## 3.58.3
 
 ### Patch Changes

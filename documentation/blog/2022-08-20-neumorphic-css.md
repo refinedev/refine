@@ -27,7 +27,7 @@ The Parallax Effect, 3D graphics, Memphis design, Neo-brutalism, Visible boundar
 
 "How do you know which to use?" is the question.
 
-In contemporary web design, designers and developers have adopted minimalism as a strategy for streamlining interface design by removing unnecessary components and focusing on performance. Design concepts like [skeuomorphic design](https://www.sketch.com/blog/2022/06/14/complete-guide-skeuomorphism/), [flag design](https://elementor.com/blog/flat-design/), and neomorphic design can be used to accomplish this. 
+In contemporary web design, designers and developers have adopted minimalism as a strategy for streamlining interface design by removing unnecessary components and focusing on performance. Design concepts like [skeuomorphic design](https://www.sketch.com/blog/2022/06/14/complete-guide-skeuomorphism/), [flat design](https://elementor.com/blog/flat-design/), and neomorphic design can be used to accomplish this. 
 
 In this article, we'll talk about the Neumorphism trend, which emphasizes minimalism in design circles, and show you how to use it as a web developer in CSS. You'll need a basic understanding of CSS and HTML to follow along with the article.
 

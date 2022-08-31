@@ -20,18 +20,19 @@ describe("render hook default options", () => {
             expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
-        const { radioGroupProps } = result.current;
-        const { options } = radioGroupProps;
+        await waitFor(() =>
+            expect(result.current.radioGroupProps.options).toHaveLength(2),
+        );
 
-        expect(options).toHaveLength(2);
-
-        expect(options).toEqual([
-            {
-                label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
-                value: "1",
-            },
-            { label: "Recusandae consectetur aut atque est.", value: "2" },
-        ]);
+        await waitFor(() =>
+            expect(result.current.radioGroupProps.options).toEqual([
+                {
+                    label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
+                    value: "1",
+                },
+                { label: "Recusandae consectetur aut atque est.", value: "2" },
+            ]),
+        );
     });
 
     it("should success data with resource with optionLabel and optionValue", async () => {
@@ -51,14 +52,15 @@ describe("render hook default options", () => {
             expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
-        const { radioGroupProps } = result.current;
-        const { options } = radioGroupProps;
-
-        expect(options).toHaveLength(2);
-        expect(options).toEqual([
-            { label: "ut-ad-et", value: "1" },
-            { label: "consequatur-molestiae-rerum", value: "2" },
-        ]);
+        await waitFor(() =>
+            expect(result.current.radioGroupProps.options).toHaveLength(2),
+        );
+        await waitFor(() =>
+            expect(result.current.radioGroupProps.options).toEqual([
+                { label: "ut-ad-et", value: "1" },
+                { label: "consequatur-molestiae-rerum", value: "2" },
+            ]),
+        );
     });
 
     it("should invoke queryOptions methods successfully", async () => {
@@ -85,14 +87,15 @@ describe("render hook default options", () => {
             expect(result.current.queryResult.isSuccess).toBeTruthy();
         });
 
-        const { radioGroupProps } = result.current;
-        const { options } = radioGroupProps;
-
-        expect(options).toHaveLength(2);
-        expect(options).toEqual([
-            { label: "ut-ad-et", value: "1" },
-            { label: "consequatur-molestiae-rerum", value: "2" },
-        ]);
+        await waitFor(() =>
+            expect(result.current.radioGroupProps.options).toHaveLength(2),
+        );
+        await waitFor(() =>
+            expect(result.current.radioGroupProps.options).toEqual([
+                { label: "ut-ad-et", value: "1" },
+                { label: "consequatur-molestiae-rerum", value: "2" },
+            ]),
+        );
 
         expect(mockFunc).toBeCalled();
     });
