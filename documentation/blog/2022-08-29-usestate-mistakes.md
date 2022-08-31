@@ -41,14 +41,12 @@ It's no secret that hooks have become increasingly crucial in React component de
 The `useState` hook can be tricky to understand, especially for newer React developers or those migrating from class-based components to functional components. In this guide, we'll explore the top 5 common `useState` mistakes that React developers often make and how you can avoid them.
 
 Steps we'll cover:
-- [Introduction](#introduction)
 - [Initializing useState Wrongly](#initializing-usestate-wrongly)
 - [Not Using Optional Chaining](#not-using-optional-chaining)
 - [Updating useState Directly](#updating-usestate-directly)
 - [Updating Specific Object Property](#updating-specific-object-property)
 - [Managing Multiple Input Fields in Forms](#managing-multiple-input-fields-in-forms)
-- [Conclusion](#conclusion)
-- [Build your React-based CRUD applications without constraints](#build-your-react-based-crud-applications-without-constraints)
+
 
 ## Initializing useState Wrongly
 Initiating the useState hook incorrectly is one of the most common mistakes developers make when utilizing it. What does it mean to initialize useState? To initialize something is to set its initial value. 

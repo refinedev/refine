@@ -30,10 +30,12 @@ If it doesn't meet your needs as part of Chrome DevTools, Google lighthouse is a
 
 You will explore the different ways of using Google Lighthouse in this article. You will also learn how to remedy some of the issues highlighted in the performance measurement and use Google lighthouse in continuous integration(CI) workflow.
 
+<!--truncate-->
+
 Step we'll cover:
 
-- [Introduction](#introduction)
-- [Prerequisite tools](#prerequisite-tools)
+
+
 - [What is Google Lighthouse](#what-is-google-lighthouse)
 - [How to use Google lighthouse from Chrome DevTools](#how-to-use-google-lighthouse-from-chrome-devtools)
 - [How to use Google lighthouse Node CLI](#how-to-use-google-lighthouse-node-cli)
@@ -42,6 +44,8 @@ Step we'll cover:
 - [How to use Google lighthouse for auditing progressive web apps](#how-to-use-google-lighthouse-for-auditing-progressive-web-apps)
 - [How to view Google lighthouse report](#how-to-view-google-lighthouse-report)
 - [How to add Google lighthouse to a CI workflow](#how-to-add-google-lighthouse-to-a-ci-workflow)
+
+## Prerequisites
 
 Depending on how you intend to use Google lighthouse, you need to have some or all of the following tools.
 
