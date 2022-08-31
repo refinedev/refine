@@ -231,18 +231,12 @@ describe("useMenu Hook", () => {
             ]),
         );
 
-        expect(result.current.menuItems).toEqual(
+      expect(result.current.menuItems).toEqual(
             expect.not.arrayContaining([
                 expect.objectContaining({ name: "hidden" }),
-            ]),
-        );
-
-        expect(result.current.menuItems).toEqual(
-            expect.not.arrayContaining([
                 expect.objectContaining({ name: "posts" }),
             ]),
         );
-    });
 
     it("should hide all necessary resources with nested structure", async () => {
         const { result } = renderHook(() => useMenu(), {
