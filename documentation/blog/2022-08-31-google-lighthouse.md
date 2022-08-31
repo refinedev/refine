@@ -30,6 +30,8 @@ If it doesn't meet your needs as part of Chrome DevTools, Google lighthouse is a
 
 You will explore the different ways of using Google Lighthouse in this article. You will also learn how to remedy some of the issues highlighted in the performance measurement and use Google lighthouse in continuous integration(CI) workflow.
 
+<!--truncate-->
+
 Step we'll cover:
 
 - [Introduction](#introduction)

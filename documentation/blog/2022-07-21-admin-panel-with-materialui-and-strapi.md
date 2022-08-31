@@ -19,6 +19,7 @@ We will build an **admin panel** that supports **CRUD** operations, has built-in
 
 Industry-standard tools and practices can be hard to reach and time-consuming to maintain on your own. Frameworks can save you time by doing these jobs for you. So, we'll use powerful frameworks including  [Material UI](https://mui.com), [Strapi](https://strapi.io/), and [refine](https://refine.dev/) to build a high-quality admin panel.
 
+<!--truncate-->
 
 UI design can be a complex and time-consuming process, but a tool like Material UI can help simplify the process and speed up the development cycle. In this tutorial, we'll use Material UI's benefits and refine's built-in hooks to handle data fetching and mutations. We'll also integrate the Strapi data provider that refine has built-in support.
 
@@ -39,7 +40,7 @@ Steps we'll cover includes:
 - [Implementing mutation mode](#implementing-mutation-mode)
 - [Sharing the current page with filters](#sharing-the-current-page-with-filters)
 
-<!--truncate-->
+
 
 ## Prerequisities
 Before we dive into the meat of the article, let's first take a look at the tools documents we'll be using. 
