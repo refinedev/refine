@@ -202,12 +202,18 @@ describe("useMenu Hook", () => {
                         },
                     },
                     {
-                        name: "Posts",
+                        name: "posts",
                         parentName: "Shop-1",
                     },
                     {
-                        name: "Categories",
+                        name: "categories",
                         parentName: "Shop-1",
+                    },
+                    {
+                        name: "visible-item-2",
+                        list: function list() {
+                            return <div>render me!</div>;
+                        },
                     },
                 ]),
             }),
@@ -220,6 +226,12 @@ describe("useMenu Hook", () => {
         );
 
         expect(result.current.menuItems).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({ name: "visible-item-2" }),
+            ]),
+        );
+
+        expect(result.current.menuItems).toEqual(
             expect.not.arrayContaining([
                 expect.objectContaining({ name: "hidden" }),
             ]),
@@ -227,7 +239,7 @@ describe("useMenu Hook", () => {
 
         expect(result.current.menuItems).toEqual(
             expect.not.arrayContaining([
-                expect.objectContaining({ name: "Posts" }),
+                expect.objectContaining({ name: "posts" }),
             ]),
         );
     });
