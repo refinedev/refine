@@ -26,13 +26,13 @@ const LargeCard: React.FC<LargeCardProps> = ({
             rel="noreferrer"
         >
             <div className={styles.card}>
-                <div className={styles.cardHeader}>
+                <div className={styles.header}>
                     <div className={styles.imageWrapper}>
                         <img className={styles.image} src={imageUrl} />
                     </div>
-                    <div>{title}</div>
+                    <div className={styles.title}>{title}</div>
                 </div>
-                <div className={styles.cardContent}>
+                <div className={styles.content}>
                     {status === "soon" ? (
                         <div className={styles.coming}>
                             <ComingSoon />

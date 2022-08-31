@@ -6,8 +6,8 @@
     @apply my-auto flex h-full flex-col justify-center gap-4 rounded-[10px]  p-5;
 }
 
-.cardHeader {
-    @apply flex items-center gap-5 text-base font-extrabold;
+.header {
+    @apply flex items-center gap-5 text-base font-bold;
 }
 
 .imageWrapper {
@@ -18,7 +18,11 @@
     @apply h-full w-full object-contain;
 }
 
-.cardContent {
+.title {
+    @apply uppercase;
+}
+
+.content {
     @apply h-full text-xs;
 }
 

@@ -59,8 +59,8 @@ const Integrations: React.FC = () => {
                         </span>
                     </div>
                     <p className={styles.headerText}>
-                        Use your source control & CI/CD Pipeline. Deploy to
-                        anywhere, including serverless, edge, cloud workers etc.
+                        USE YOUR SOURCE CONTROL & CI/CD PIPELINE. DEPLOY TO
+                        ANYWHERE, INCLUDING SERVERLESS, EDGE, CLOUD WORKERS ETC.
                     </p>
                 </div>
                 <div className={styles.integrationsWrapper}>
