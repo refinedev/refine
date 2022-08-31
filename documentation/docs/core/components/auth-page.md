@@ -10,10 +10,7 @@ description: <AuthPage> component from refine is a authentication page that can 
 Before using `<AuthPage>` component you need to add [authProvider](/core/providers/auth-provider.md) that will be used to handle authentication.
 
 :::info
-
--   `<LoginPage>` is deprecated and use `<AuthPage>` instead.
--   `<AuthPage>` default type is `"login"`.
-
+`<AuthPage>` default type is `"login"`.
 :::
 
 ## Usage
@@ -47,52 +44,25 @@ It can be one of the following:
 
 ### `registerLink`
 
-`registerLink` property defines the link to the registration page. It is used when `type` is `"login"`. It render a link to the registration page.
+`registerLink` property defines the link to the registration page.
 
-```tsx
-<AuthPage type="login" registerLink="/register" />
-```
+#### When `type` is `"login"`
 
-### `resetPasswordLink`
+`registerLink` property defines the link to the registration page. It render a link to the registration page.
 
-`resetPasswordLink` property defines the link to the reset password page. It is used when `type` is `"login"`. It render a link to the reset password page. Also it is used when `type` is `"resetPassword"`. If `type` is `"resetPassword"` then `resetPasswordLink` uses for rendering link to the reset password button.
+#### When `type` is `"register"`
 
-```tsx
-<AuthPage type="login" resetPasswordLink="/reset-password" />
-```
-
-### `updatePasswordLink`
-
-`updatePasswordLink` property defines the render node for the update password link. It is used when `type` is `"updatePassword"`. If `updatePasswordLink` doesn't exist then `<AuthPage>` is rendered `<button>` for submitting update password form.
+`registerLink` render a ReactNode that will be used as a register link. If you want to use custom link you can use `registerLink` property. Also, you can reach to form values with the `onClick` property.
 
 ```tsx
 <AuthPage
-    type="updatePassword"
-    updatePasswordLink={<a href="/update-password">Update password</a>}
-/>
-```
-
-### `loginLink`
-
-`loginLink` property defines the render node for the login link. It is used when `type` is `"register"`. If `loginLink` doesn't exist then `<AuthPage>` is rendered `<button>` for submitting login form.
-
-```tsx
-<AuthPage type="register" loginLink={<a href="/login">Login</a>} />
-```
-
-:::tip
-You can use your own elements for submit all kind of forms(`login` \| `register` \| `resetPassword` \| `updatePassword`).
-For example you can use `<button>`. But you need to handle submit form logic in `onSubmit` callback. You can access `form` from `<AuthPage>` component and use `form` values as you want.
-
-```tsx
-<AuthPage
-    type="login"
-    loginLink={
+    type="register"
+    registerLink={
         <button
             type="submit"
             onClick={(event) => {
                 event.preventDefault();
-                // you can access form data from `event.target`
+                // you can access register form data from `event.target`
                 console.log(event.target.form);
             }}
         >
@@ -102,11 +72,91 @@ For example you can use `<button>`. But you need to handle submit form logic in 
 />
 ```
 
-:::
+### `resetPasswordLink`
+
+`resetPasswordLink` property defines the link to the reset password page.
+
+#### When `type` is `"login"`
+
+`resetPasswordLink` property defines the link to the reset password page. It render a link to the reset password page.
+
+#### When `type` is `"resetPassword"`
+
+`resetPasswordLink` render a ReactNode that will be used as a reset password link. If you want to use custom link you can use `resetPasswordLink` property. Also, you can reach to form values with the `onClick` property.
+
+```tsx
+<AuthPage
+    type="resetPassword"
+    registerLink={
+        <button
+            type="submit"
+            onClick={(event) => {
+                event.preventDefault();
+                // you can access reset password form data from `event.target`
+                console.log(event.target.form);
+            }}
+        >
+            login
+        </button>
+    }
+/>
+```
+
+### `updatePasswordLink`
+
+It is used when `type` is `"updatePassword"`. It render a ReactNode that will be used as a update password link. If you want to use custom link you can use `updatePasswordLink` property. Also, you can reach to form values with the `onClick` property.
+
+```tsx
+<AuthPage
+    type="updatePassword"
+    registerLink={
+        <button
+            type="submit"
+            onClick={(event) => {
+                event.preventDefault();
+                // you can access update Password form data from `event.target`
+                console.log(event.target.form);
+            }}
+        >
+            login
+        </button>
+    }
+/>
+```
+
+### `loginLink`
+
+`loginLink` property defines the render a ReactNode for the login link.
+
+#### When `type` is `"register"`
+
+`loginLink` render a ReactNode that will be used as a login link.
+
+#### When `type` is `"login"`
+
+`loginLink` render a ReactNode that will be used as a login link. If you want to use custom link you can use `loginLink` property. Also, you can reach to form values with the `onClick` property.
+
+```tsx
+<AuthPage
+    type="login"
+    loginLink={
+        <button
+            type="submit"
+            onClick={(event) => {
+                event.preventDefault();
+                // you can access login form data from `event.target`
+                console.log(event.target.form);
+            }}
+        >
+            login
+        </button>
+    }
+/>
+```
 
 ### `providers`
 
-`providers` property defines the list of providers that will be used to handle social login authentication.
+It is used when `type` is `"login"`. `providers` property defines the list of providers that will be used to handle social login authentication.
 
 ```tsx
 <AuthPage
@@ -148,7 +198,7 @@ const authProvider: AuthProvider = {
 
 ### `backLink`
 
-`backLink` property defines the render node for the go back link.
+`backLink` property defines the render ReactNode that will be used as a back link.
 
 ```tsx
 <AuthPage type="register" backLink={<a href="/login">Login</a>} />
@@ -176,4 +226,8 @@ interface IProvider {
     icon?: React.ReactNode;
     label?: string;
 }
+```
+
+```
+
 ```
