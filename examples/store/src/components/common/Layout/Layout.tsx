@@ -102,7 +102,7 @@ const Layout: React.FC<LayoutProps & { categories: any }> = ({
             initialData: categories,
         },
     });
-    const collections = collectionsData?.data.slice(0, 2).map((col) => ({
+    const collections = collectionsData?.data.slice(0, 3).map((col) => ({
         title: col.title,
         id: col.handle,
     }));
