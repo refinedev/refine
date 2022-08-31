@@ -164,4 +164,38 @@ describe("useMenu Hook", () => {
             expect.arrayContaining(["/CMS", "/CMS/categories"]),
         );
     });
+
+    it("should tree view render all except hide true", async () => {
+        const { result } = renderHook(() => useMenu(), {
+            wrapper: TestWrapper({
+                routerInitialEntries: ["/else-new"],
+                resources: prepareResources([
+                    {
+                        name: "visible",
+                        list: function list() {
+                            return <div>render me!</div>;
+                        },
+                    },
+                    {
+                        name: "hidden",
+                        options: {
+                            hide: true,
+                        },
+                    },
+                ]),
+            }),
+        });
+
+        expect(result.current.menuItems).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({ name: "visible" }),
+            ]),
+        );
+
+        expect(result.current.menuItems).toEqual(
+            expect.not.arrayContaining([
+                expect.objectContaining({ name: "hidden" }),
+            ]),
+        );
+    });
 });
