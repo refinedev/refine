@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { IAuthCommonProps, IRegisterForm } from "../..";
 
 export const Register: React.FC<IAuthCommonProps> = ({
-    registerLink,
+    submitButton,
     loginLink,
 }) => {
     const { Link } = useRouterContext();
@@ -90,13 +90,14 @@ export const Register: React.FC<IAuthCommonProps> = ({
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                     <br />
-                    {registerLink ? (
-                        renderLink(
-                            registerLink,
-                            translate("pages.register.button", "Register"),
-                        )
-                    ) : (
-                        <input type="submit" value="Register" />
+                    {submitButton ?? (
+                        <input
+                            type="submit"
+                            value={translate(
+                                "pages.register.button",
+                                "Register",
+                            )}
+                        />
                     )}
                     <br />
                     {loginLink &&
