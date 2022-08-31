@@ -513,3 +513,8 @@ html {
 #__docusaurus .dots {
     @apply border-none h-8 cursor-default;
 }
+
+#__docusaurus .custom-table-of-contents .table-of-contents {
+    @apply pl-0;
+    border: 1px solid var(--ifm-toc-border-color);
+}

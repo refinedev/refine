@@ -1,12 +1,10 @@
 import React from "react";
 import Link from "@docusaurus/Link";
 import { useBlogPost } from "@docusaurus/theme-common/internal";
-
 import BlogPostItemContainer from "@theme/BlogPostItem/Container";
 
-export default function BlogPostItem({ children, className }) {
-    // TODO: if isBlogPostPage, we should handle the blog post page layout with using children
-    const { metadata, isBlogPostPage } = useBlogPost();
+export default function BlogPostItem({ className }) {
+    const { metadata } = useBlogPost();
 
     return (
         <BlogPostItemContainer className={className}>
