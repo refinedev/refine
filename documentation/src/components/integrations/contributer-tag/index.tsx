@@ -7,20 +7,11 @@ import styles from "./styles.module.css";
 type ContributerTagProps = {
     name: string;
     url: string;
-    className?: string;
 };
 
-const ContributerTag: React.FC<ContributerTagProps> = ({
-    name,
-    url,
-    className,
-}) => {
+const ContributerTag: React.FC<ContributerTagProps> = ({ name, url }) => {
     return (
-        <div
-            className={clsx(
-                className ? [styles.container, className] : styles.container,
-            )}
-        >
+        <div className={styles.container}>
             <Heart />
             <div className={styles.text}>
                 <span className={styles.bold}>by</span>

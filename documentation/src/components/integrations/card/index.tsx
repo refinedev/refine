@@ -28,38 +28,28 @@ const Card: React.FC<CardProps> = ({
     status,
 }) => {
     return (
-        <div className={clsx(contributer && "mb-10")}>
-            {contributer && (
-                <ContributerTag
-                    className={styles.tag}
-                    url={contributer.url}
-                    name={contributer.name}
-                />
-            )}
+        <div className={clsx(styles.container, contributer && "mb-10")}>
             <a
                 target="_blank"
                 href={linkUrl}
-                className={clsx(styles.card, contributer && "rounded-tl-none")}
+                className={clsx(styles.card, contributer && "rounded-b-none")}
                 rel="noreferrer"
             >
                 <div className={styles.imageWrapper}>
                     <img className={styles.image} src={imageUrl} alt={title} />
                 </div>
-                <div className={styles.cardContent}>
-                    <div className={styles.cardTitle}>{title}</div>
+                <div className={styles.content}>
+                    <div className={styles.title}>{title}</div>
                     {status === "soon" ? (
-                        <div>
-                            <ComingSoon />
-                        </div>
+                        <ComingSoon />
                     ) : (
-                        <>
-                            <p className={styles.cardDescription}>
-                                {description}
-                            </p>
-                        </>
+                        <div className={styles.description}>{description}</div>
                     )}
                 </div>
             </a>
+            {contributer && (
+                <ContributerTag url={contributer.url} name={contributer.name} />
+            )}
         </div>
     );
 };

@@ -1,9 +1,9 @@
 .container {
-    @apply shadow-tagTile  flex w-2/5 items-center gap-2.5 rounded-t-lg border-[1px] border-solid border-[#f5f5f5] px-2.5 py-1 text-sm;
+    @apply justify-center absolute bottom-[-40px] h-10 bg-[#2A2A42] flex w-full items-center gap-2.5 rounded-b-lg border-[1px] border-solid border-[#f5f5f5] border-t-0 px-2.5 py-1 text-sm;
 }
 
 .text {
-    @apply flex gap-1 text-black;
+    @apply flex gap-1 text-white;
 }
 
 .bold {
