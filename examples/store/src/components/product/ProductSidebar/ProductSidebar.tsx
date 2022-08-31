@@ -67,7 +67,7 @@ export const ProductSidebar: React.FC<ProductSidebarProps> = ({
                 >
                     {variant?.inventory_quantity > 0
                         ? "Add to Cart"
-                        : "Out of Stock"}
+                        : "Soon in Stock"}
                 </Button>
             </div>
         </div>
