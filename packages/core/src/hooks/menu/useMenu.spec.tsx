@@ -226,12 +226,13 @@ describe("useMenu Hook", () => {
             ]),
         );
 
-      expect(result.current.menuItems).toEqual(
+        expect(result.current.menuItems).toEqual(
             expect.not.arrayContaining([
                 expect.objectContaining({ name: "hidden" }),
                 expect.objectContaining({ name: "posts" }),
             ]),
         );
+    });
 
     it("should hide all necessary resources with nested structure", async () => {
         const { result } = renderHook(() => useMenu(), {
@@ -260,17 +261,14 @@ describe("useMenu Hook", () => {
                         },
                     },
                     {
-                        // this is not hidden but its parent is hidden therefore it should be hidden.
                         name: "Shop-1",
                         parentName: "CMS",
                     },
                     {
-                        // this is not hidden but its parent's parent is hidden therefore it should be hidden.
                         name: "posts",
                         parentName: "Shop-1",
                     },
                     {
-                        // this is not hidden but its parent's parent is hidden therefore it should be hidden.
                         name: "categories",
                         parentName: "Shop-1",
                     },
@@ -293,11 +291,6 @@ describe("useMenu Hook", () => {
         expect(result.current.menuItems).toEqual(
             expect.arrayContaining([
                 expect.objectContaining({ name: "visible" }),
-            ]),
-        );
-
-        expect(result.current.menuItems).toEqual(
-            expect.arrayContaining([
                 expect.objectContaining({ name: "visible-item-2" }),
             ]),
         );
@@ -305,20 +298,17 @@ describe("useMenu Hook", () => {
         expect(result.current.menuItems).toEqual(
             expect.not.arrayContaining([
                 expect.objectContaining({
-                    name: expect.stringContaining("hidden"),
+                    name: "hidden",
                 }),
-            ]),
-        );
-
-        expect(result.current.menuItems).toEqual(
-            expect.not.arrayContaining([
-                expect.objectContaining({ name: "posts" }),
-            ]),
-        );
-
-        expect(result.current.menuItems).toEqual(
-            expect.not.arrayContaining([
-                expect.objectContaining({ name: "categories" }),
+                expect.objectContaining({
+                    name: "Shop-1",
+                }),
+                expect.objectContaining({
+                    name: "posts",
+                }),
+                expect.objectContaining({
+                    name: "categories",
+                }),
             ]),
         );
     });
