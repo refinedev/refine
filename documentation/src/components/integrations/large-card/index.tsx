@@ -34,7 +34,7 @@ const LargeCard: React.FC<LargeCardProps> = ({
                 </div>
                 <div className={styles.cardContent}>
                     {status === "soon" ? (
-                        <div>
+                        <div className={styles.coming}>
                             <ComingSoon />
                         </div>
                     ) : (

@@ -19,7 +19,11 @@
 }
 
 .cardContent {
-    @apply flex h-full justify-center text-xs;
+    @apply h-full text-xs;
+}
+
+.coming {
+    @apply flex items-center justify-center px-8;
 }
 
 .description {
