@@ -168,7 +168,6 @@ describe("useMenu Hook", () => {
     it("should tree view render all except hide true", async () => {
         const { result } = renderHook(() => useMenu(), {
             wrapper: TestWrapper({
-                routerInitialEntries: ["/else-new"],
                 resources: prepareResources([
                     {
                         name: "visible",
