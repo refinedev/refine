@@ -41,7 +41,6 @@ It's no secret that hooks have become increasingly crucial in React component de
 The `useState` hook can be tricky to understand, especially for newer React developers or those migrating from class-based components to functional components. In this guide, we'll explore the top 5 common `useState` mistakes that React developers often make and how you can avoid them.
 
 Steps we'll cover:
-- [Introduction](#introduction)
 - [Initializing useState Wrongly](#initializing-usestate-wrongly)
 - [Not Using Optional Chaining](#not-using-optional-chaining)
 - [Updating useState Directly](#updating-usestate-directly)
