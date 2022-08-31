@@ -225,7 +225,12 @@ export * from "./list";
 [Refer to offical refine's Material UI tutorial for detailed explanations and examples &#8594](https://refine.dev/docs/ui-frameworks/mui/tutorial/#showing-a-single-record)
 
 
-
+<br/>
+<div>
+<a href="https://github.com/pankod/refine">
+  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
+</a>
+</div>
 
 
 ### Adding resources and connect pages to refine app
@@ -1045,6 +1050,13 @@ We covered:
 refine is an open source tool that rapidly and flexibly develops for CRUD admin panels or web apps. It is easy to get started with and doesn't require a lot of code. It has nice documentation that covered examples, guidelines, and tutorials using best practices. refine is constantly being updated with new features and improvements.
 
 [Refer to official refine page for more information &#8594](https://refine.dev/)
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
+</a>
+</div>
   
   ## Build your React-based CRUD applications without constraints
 

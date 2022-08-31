@@ -113,6 +113,13 @@ export const Main = () => {
 ```
 Above we can see that we do fetch call to [refine](https://github.com/pankod/refine)'s fake REST API URL and thereafter returned data shows on the screen.
 
+<br/>
+<div>
+<a href="https://github.com/pankod/refine">
+  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
+</a>
+</div>
+
 ## Adding a unit test
 
 Now, we are going to create a test file.
@@ -309,7 +316,12 @@ We have seen how to test only the behavior of an application in isolation. Avoid
 
 
 
-
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
+</a>
+</div>
 
 
 ## Build your React-based CRUD applications without constraints

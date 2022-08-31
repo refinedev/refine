@@ -101,6 +101,13 @@ Neumorphism's top accessibility rule is to comply with the [Web Content Accessib
 
 Another issue is with clickable items; even though you're aiming for minimalism, don't abuse the flat design idea. When users interact with clickable objects like buttons and links, they need to change their appearance and should be obvious.
 
+<br/>
+<div>
+<a href="https://github.com/pankod/refine">
+  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
+</a>
+</div>
+
 ## Neumorphism in CSS
 Now that you know how Neumorphism affects UI/UX let's look at how you as a developer might use it in actual projects.
 ### Buttons
@@ -356,6 +363,14 @@ Using Neumorphism appropriately can produce mind-blowing results. You will have 
 
 Visit this [Neumorphism Playground](https://neumorphism.io/#55b9f3) if you wish to experiment with different ideas using Neumorphism. 
 Additionally, you may learn more about [Neumorphism's history](https://www.svgator.com/blog/neumorphism-origin-influence-design/) and how it combines flat and skeuomorphic design.
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
+</a>
+</div>
+
 
 ## Build your React-based CRUD applications without constraints
 
