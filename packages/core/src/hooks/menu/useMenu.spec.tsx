@@ -164,4 +164,152 @@ describe("useMenu Hook", () => {
             expect.arrayContaining(["/CMS", "/CMS/categories"]),
         );
     });
+
+    it("should tree view render all except hide true", async () => {
+        const { result } = renderHook(() => useMenu(), {
+            wrapper: TestWrapper({
+                resources: prepareResources([
+                    {
+                        name: "visible",
+                        list: function list() {
+                            return <div>render me!</div>;
+                        },
+                    },
+                    {
+                        name: "hidden",
+                        options: {
+                            hide: true,
+                        },
+                    },
+                    {
+                        name: "hidden-parent-menu",
+                        options: {
+                            hide: true,
+                        },
+                    },
+                    {
+                        name: "hidden-child",
+                        parentName: "hidden-parent-menu",
+                    },
+                    {
+                        name: "CMS",
+                    },
+                    {
+                        name: "Shop-1",
+                        parentName: "CMS",
+                        options: {
+                            hide: true,
+                        },
+                    },
+                    {
+                        name: "posts",
+                        parentName: "Shop-1",
+                    },
+                    {
+                        name: "categories",
+                        parentName: "Shop-1",
+                    },
+                    {
+                        name: "visible-item-2",
+                        list: function list() {
+                            return <div>render me!</div>;
+                        },
+                    },
+                ]),
+            }),
+        });
+
+        expect(result.current.menuItems).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({ name: "visible" }),
+                expect.objectContaining({ name: "visible-item-2" }),
+            ]),
+        );
+
+        expect(result.current.menuItems).toEqual(
+            expect.not.arrayContaining([
+                expect.objectContaining({ name: "hidden" }),
+                expect.objectContaining({ name: "posts" }),
+            ]),
+        );
+    });
+
+    it("should hide all necessary resources with nested structure", async () => {
+        const { result } = renderHook(() => useMenu(), {
+            wrapper: TestWrapper({
+                resources: prepareResources([
+                    {
+                        name: "visible",
+                        list: function list() {
+                            return <div>render me!</div>;
+                        },
+                    },
+                    {
+                        name: "hidden-level-1",
+                        options: {
+                            hide: true,
+                        },
+                    },
+                    {
+                        name: "hidden-child-level-2",
+                        parentName: "hidden-parent-menu",
+                    },
+                    {
+                        name: "hidden-parent-level-1",
+                        options: {
+                            hide: true,
+                        },
+                    },
+                    {
+                        name: "Shop-1",
+                        parentName: "CMS",
+                    },
+                    {
+                        name: "posts",
+                        parentName: "Shop-1",
+                    },
+                    {
+                        name: "categories",
+                        parentName: "Shop-1",
+                    },
+                    {
+                        name: "CMS",
+                        options: {
+                            hide: true,
+                        },
+                    },
+                    {
+                        name: "visible-item-2",
+                        list: function list() {
+                            return <div>render me!</div>;
+                        },
+                    },
+                ]),
+            }),
+        });
+
+        expect(result.current.menuItems).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({ name: "visible" }),
+                expect.objectContaining({ name: "visible-item-2" }),
+            ]),
+        );
+
+        expect(result.current.menuItems).toEqual(
+            expect.not.arrayContaining([
+                expect.objectContaining({
+                    name: "hidden",
+                }),
+                expect.objectContaining({
+                    name: "Shop-1",
+                }),
+                expect.objectContaining({
+                    name: "posts",
+                }),
+                expect.objectContaining({
+                    name: "categories",
+                }),
+            ]),
+        );
+    });
 });

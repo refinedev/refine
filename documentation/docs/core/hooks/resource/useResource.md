@@ -42,6 +42,10 @@ const { resource } = useResource({
 type OptionsProps<TExtends = { [key: string]: any }> = TExtends & {
     label?: string;
     route?: string;
+    hide?: boolean;
+    auditLog?: {
+        permissions?: AuditLogPermissions[number][] | string[];
+    };
 }
 
 interface IResourceComponentsProps<TCrudData = any, TOptionsPropsExtends = { [key: string]: any }> {
