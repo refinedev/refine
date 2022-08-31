@@ -5,7 +5,7 @@ siderbar_label: useUpdatePassword
 description: useUpdatePassword data hook from refine is a modified version of react-query's useMutation for registration.
 ---
 
-`useUpdatePassword` calls `updatePassword` method from [`authProvider`](/core/providers/auth-provider.md) under the hood. It updatePasswords the app if `updatePassword` method from `authProvider` resolves and if it rejects shows an error notification.
+`useUpdatePassword` calls `updatePassword` method from [`authProvider`](/core/providers/auth-provider.md) under the hood. It update passwords the user if `updatePassword` method from `authProvider` resolves and if it rejects shows an error notification.
 
 It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation).
 
@@ -13,12 +13,11 @@ Data that is resolved from `updatePassword` will be returned as the `data` in th
 
 ## Usage
 
-Normally refine provides a default updatePassword page. If you prefer to use this default updatePassword page, there is no need to handle updatePassword flow manually.  
-If we want to build a custom updatePassword page instead of default one that comes with refine, `useUpdatePassword` can be used like this:
+Normally refine provides a default update password page. If you prefer to use this default update password page, there is no need to handle update password flow manually.  
+If we want to build a custom update password page instead of default one that comes with **refine**, `useUpdatePassword` can be used like this:
 
 ```tsx title="pages/customupdatePasswordPage"
 import { useUpdatePassword } from "@pankod/refine-core";
-import { Form } from "@pankod/refine-antd";
 
 type updatePasswordVariables = {
     password: string;
@@ -32,12 +31,18 @@ export const updatePasswordPage = () => {
         updatePassword(values);
     };
 
-    return <Form onFinish={onSubmit}>// rest of the updatePassword form</Form>;
+    return (
+        <form onFinish={onSubmit}>
+            <label>Password</label>
+            <input name="password" value="refine" />
+            <button type="submit">Submit</button>
+        </form>
+    );
 };
 ```
 
 :::tip
-`mutate` acquired from `useUpdatePassword` can accept any kind of object for values since `updatePassword` method from `authProvider` doesn't have a restriction on its parameters.  
+`mutate` acquired from `useUpdatePassword` can accept any kind of object for values since the `updatePassword` method from `authProvider` doesn't have a restriction on its parameters.  
 A type parameter for the values can be provided to `useUpdatePassword`.
 
 ```tsx
@@ -46,9 +51,28 @@ const { mutate: updatePassword } = useUpdatePassword<{ newPassword: string }>();
 
 :::
 
+:::info
+`useUpdatePassword` gives you query strings for the `updatePassword` method from `authProvider`. If you have a logic that sends a password regeneration email to the email address while resetting the password and proceeds through the access token. You can use `queryStrings` variable `updatePassword` method from `authProvider`. For example, your regeneration link is `YOUR_DOMAIN/update-password?token=123`. You can access the token from the parameters of the URL.
+
+```tsx
+const authProvider: AuthProvider = {
+    ...
+    updatePassword: (params) => {
+        // you can access query strings from params.queryStrings
+        console.log(params.token);
+        if(param.token === "123") {
+            // your logic to update the password
+        }
+        ...
+    }
+}
+```
+
+:::
+
 ## Redirection after updatePassword
 
-We have 2 options for redirecting the app after updatePassword successfully .
+We have 2 options for redirecting the app after updatePassword successfully.
 
 -   A custom url can be resolved from the promise returned from the `updatePassword` method of the [authProvider](/core/providers/auth-provider.md).
 
@@ -62,7 +86,7 @@ const authProvider: AuthProvider = {
 }
 ```
 
-A custom url can be given to mutate function from the `useUpdatePassword` hook if you want to redirect yourself to a certain url.
+A custom url can be given to mutate the function from the `useUpdatePassword` hook if you want to redirect yourself to a certain url.
 
 ```tsx
 import { useUpdatePassword } from "@pankod/refine-core";
@@ -86,7 +110,7 @@ const authProvider: AuthProvider = {
 
 ```
 
--   If promise returned from the `updatePassword` method of the `authProvider` gets resolved with `false` no redirection will occur.
+-   If the promise returned from the `updatePassword` method of the `authProvider` gets resolved with `false` no redirection will occur.
 
 ```tsx
 const authProvider: AuthProvider = {
@@ -98,25 +122,8 @@ const authProvider: AuthProvider = {
 }
 ```
 
-:::info
-`useUpdatePassword` gives you query strings for the `updatePassword` method from `authProvider`. if you want to use them, you can use `queryStrings` variable `updatePassword` method from `authProvider`. Why do we need this? Because you can use token is your update password flow
-
-```tsx
-const url=`YOUR_BASE_URL/update-password?token=${token}`;
-const authProvider: AuthProvider = {
-    ...
-    updatePassword: (params) => {
-        // you can access query strings from params.queryStrings
-        console.log(params.queryStrings.token);
-        ...
-    }
-}
-```
-
-:::
-
 :::tip
-If promise returned from `updatePassword` is resolved with nothing, app won't be redirected to any route by default.
+If the promise returned from `updatePassword` is resolved with nothing, app won't be redirected to any route by default.
 :::
 
 :::caution

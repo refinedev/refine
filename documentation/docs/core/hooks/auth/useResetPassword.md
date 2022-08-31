@@ -5,7 +5,7 @@ siderbar_label: useResetPassword
 description: useResetPassword data hook from refine is a modified version of react-query's useMutation for registration.
 ---
 
-`useResetPassword` calls `resetPassword` method from [`authProvider`](/core/providers/auth-provider.md) under the hood. It resetPasswords the app if `resetPassword` method from `authProvider` resolves and if it rejects shows an error notification.
+`useResetPassword` calls `resetPassword` method from [`authProvider`](/core/providers/auth-provider.md) under the hood. It reset passwords the user if `resetPassword` method from `authProvider` resolves and if it rejects shows an error notification.
 
 It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation).
 
@@ -13,12 +13,11 @@ Data that is resolved from `resetPassword` will be returned as the `data` in the
 
 ## Usage
 
-Normally refine provides a default resetPassword page. If you prefer to use this default resetPassword page, there is no need to handle resetPassword flow manually.  
+Normally refine provides a default reset password page. If you prefer to use this default reset password page, there is no need to handle reset password flow manually.  
 If we want to build a custom resetPassword page instead of default one that comes with refine, `useResetPassword` can be used like this:
 
 ```tsx title="pages/customResetPasswordPage"
 import { useResetPassword } from "@pankod/refine-core";
-import { Form } from "@pankod/refine-antd";
 
 type resetPasswordVariables = {
     email: string;
@@ -32,7 +31,13 @@ export const resetPasswordPage = () => {
         resetPassword(values);
     };
 
-    return <Form onFinish={onSubmit}>// rest of the resetPassword form</Form>;
+    return (
+        <form onFinish={onSubmit}>
+            <label>Email</label>
+            <input name="email" value="test@refine.com" />
+            <button type="submit">Submit</button>
+        </form>
+    );
 };
 ```
 
@@ -86,7 +91,7 @@ const authProvider: AuthProvider = {
 
 ```
 
--   If promise returned from the `resetPassword` method of the `authProvider` gets resolved with `false` no redirection will occur.
+-   If the promise returned from the `resetPassword` method of the `authProvider` gets resolved with `false` no redirection will occur.
 
 ```tsx
 const authProvider: AuthProvider = {
@@ -99,7 +104,7 @@ const authProvider: AuthProvider = {
 ```
 
 :::tip
-If promise returned from `resetPassword` is resolved with nothing, app won't be redirected to any route by default.
+If the promise returned from `resetPassword` is resolved with nothing, app won't be redirected to any route by default.
 :::
 
 :::caution
