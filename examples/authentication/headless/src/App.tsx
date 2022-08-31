@@ -38,7 +38,7 @@ const App: React.FC = () => {
             return Promise.reject();
         },
         updatePassword: (params: any) => {
-            if (params.password && params.newPassword) {
+            if (params.newPassword) {
                 //we can update password here
                 return Promise.resolve();
             }

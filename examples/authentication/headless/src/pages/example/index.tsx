@@ -17,6 +17,13 @@ export const ExamplePage: React.FC = () => {
             ),
             label: "Sign in with Facebook",
         },
+        {
+            name: "github",
+            icon: (
+                <img src="https://img.icons8.com/color/48/000000/github.png" />
+            ),
+            label: "Sign in with GitHub",
+        },
     ];
     const Box = ({ children }: any) => (
         <div
