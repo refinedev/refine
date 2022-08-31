@@ -243,4 +243,94 @@ describe("useMenu Hook", () => {
             ]),
         );
     });
+
+    it("should hide all necessary resources with nested structure", async () => {
+        const { result } = renderHook(() => useMenu(), {
+            wrapper: TestWrapper({
+                resources: prepareResources([
+                    {
+                        name: "visible",
+                        list: function list() {
+                            return <div>render me!</div>;
+                        },
+                    },
+                    {
+                        name: "hidden-level-1",
+                        options: {
+                            hide: true,
+                        },
+                    },
+                    {
+                        name: "hidden-child-level-2",
+                        parentName: "hidden-parent-menu",
+                    },
+                    {
+                        name: "hidden-parent-level-1",
+                        options: {
+                            hide: true,
+                        },
+                    },
+                    {
+                        // this is not hidden but its parent is hidden therefore it should be hidden.
+                        name: "Shop-1",
+                        parentName: "CMS",
+                    },
+                    {
+                        // this is not hidden but its parent's parent is hidden therefore it should be hidden.
+                        name: "posts",
+                        parentName: "Shop-1",
+                    },
+                    {
+                        // this is not hidden but its parent's parent is hidden therefore it should be hidden.
+                        name: "categories",
+                        parentName: "Shop-1",
+                    },
+                    {
+                        name: "CMS",
+                        options: {
+                            hide: true,
+                        },
+                    },
+                    {
+                        name: "visible-item-2",
+                        list: function list() {
+                            return <div>render me!</div>;
+                        },
+                    },
+                ]),
+            }),
+        });
+
+        expect(result.current.menuItems).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({ name: "visible" }),
+            ]),
+        );
+
+        expect(result.current.menuItems).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({ name: "visible-item-2" }),
+            ]),
+        );
+
+        expect(result.current.menuItems).toEqual(
+            expect.not.arrayContaining([
+                expect.objectContaining({
+                    name: expect.stringContaining("hidden"),
+                }),
+            ]),
+        );
+
+        expect(result.current.menuItems).toEqual(
+            expect.not.arrayContaining([
+                expect.objectContaining({ name: "posts" }),
+            ]),
+        );
+
+        expect(result.current.menuItems).toEqual(
+            expect.not.arrayContaining([
+                expect.objectContaining({ name: "categories" }),
+            ]),
+        );
+    });
 });
