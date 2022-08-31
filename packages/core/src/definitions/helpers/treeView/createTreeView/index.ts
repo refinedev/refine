@@ -14,6 +14,9 @@ export const createTreeView = (
 
         const route = parent.route ?? parent.options?.route ?? "";
 
+        if (parent.options?.hide === true) {
+            continue;
+        }
         resourcesRouteObject[route] = parent;
         resourcesRouteObject[route]["children"] = [];
 

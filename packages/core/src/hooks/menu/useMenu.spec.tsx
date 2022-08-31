@@ -165,7 +165,7 @@ describe("useMenu Hook", () => {
         );
     });
 
-    it("should tree view render all except hide true", async () => {
+    fit("should tree view render all except hide true", async () => {
         const { result } = renderHook(() => useMenu(), {
             wrapper: TestWrapper({
                 resources: prepareResources([
@@ -181,6 +181,34 @@ describe("useMenu Hook", () => {
                             hide: true,
                         },
                     },
+                    {
+                        name: "hidden-parent-menu",
+                        options: {
+                            hide: true,
+                        },
+                    },
+                    {
+                        name: "hidden-child",
+                        parentName: "hidden-parent-menu",
+                    },
+                    {
+                        name: "CMS",
+                    },
+                    {
+                        name: "Shop-1",
+                        parentName: "CMS",
+                        options: {
+                            hide: true,
+                        },
+                    },
+                    {
+                        name: "Posts",
+                        parentName: "Shop-1",
+                    },
+                    {
+                        name: "Categories",
+                        parentName: "Shop-1",
+                    },
                 ]),
             }),
         });
@@ -194,6 +222,12 @@ describe("useMenu Hook", () => {
         expect(result.current.menuItems).toEqual(
             expect.not.arrayContaining([
                 expect.objectContaining({ name: "hidden" }),
+            ]),
+        );
+
+        expect(result.current.menuItems).toEqual(
+            expect.not.arrayContaining([
+                expect.objectContaining({ name: "Posts" }),
             ]),
         );
     });

@@ -56,27 +56,22 @@ export const useMenu: () => useMenuReturnType = () => {
 
     const treeMenuItems: IMenuItem[] = React.useMemo(
         () =>
-            resources
-                .filter((resource) => resource.options?.hide !== true)
-                .map((resource) => {
-                    const route = `/${resource.route}`;
+            resources.map((resource) => {
+                const route = `/${resource.route}`;
 
-                    return {
-                        ...resource,
-                        icon: resource.icon,
-                        route: route,
-                        key: resource.key ?? route,
-                        label:
-                            resource.label ??
-                            translate(
-                                `${resource.name}.${resource.name}`,
-                                userFriendlyResourceName(
-                                    resource.name,
-                                    "plural",
-                                ),
-                            ),
-                    };
-                }),
+                return {
+                    ...resource,
+                    icon: resource.icon,
+                    route: route,
+                    key: resource.key ?? route,
+                    label:
+                        resource.label ??
+                        translate(
+                            `${resource.name}.${resource.name}`,
+                            userFriendlyResourceName(resource.name, "plural"),
+                        ),
+                };
+            }),
         [resources, hasDashboard],
     );
     const menuItems: ITreeMenu[] = React.useMemo(
