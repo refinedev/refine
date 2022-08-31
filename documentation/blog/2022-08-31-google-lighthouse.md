@@ -1,9 +1,10 @@
 ---
-title: Using Google Lighthouse to improve app performance.
+title: Using Google Lighthouse to improve app performance
 description: Learn how to use the Google Chrome Lighthouse performance audit tool to identify and improve problems with your app.
 slug: lighthouse-google-chrome
 authors: joseph_mawa
 tags: [lighthouse, seo, performance]
+image: https://refine.dev/img/blog/2022-08-31-google-lighthouse/social.png
 hide_table_of_contents: false
 ---
 
@@ -12,11 +13,15 @@ import checkedCategories from '@site/static/img/blog/2022-08-31-google-lighthous
 import extensionDropdown from '@site/static/img/blog/2022-08-31-google-lighthouse/chrome-extension-dropdown.png';
 import scoresAll from '@site/static/img/blog/2022-08-31-google-lighthouse/scores-all-categories.png';
 import pwaCategory from '@site/static/img/blog/2022-08-31-google-lighthouse/scores-pwa-category.png';
+import social from '@site/static/img/blog/2022-08-31-google-lighthouse/social.png';
 
-<!-- <div class="img-container">
-    <img src={social2} alt="social2" />
+<br />
+
+ <div class="img-container">
+    <img src={social} alt="social" />
 </div>
- -->
+
+
 ## Introduction
 
 As websites and web applications become more complex, it is necessary to measure and track their overall quality to provide a seamless browsing experience to your clients. Though several other tools exist for this purpose, Google lighthouse is quite popular among web developers mainly because it is part of the Chrome DevTools.
@@ -26,8 +31,6 @@ If it doesn't meet your needs as part of Chrome DevTools, Google lighthouse is a
 You will explore the different ways of using Google Lighthouse in this article. You will also learn how to remedy some of the issues highlighted in the performance measurement and use Google lighthouse in continuous integration(CI) workflow.
 
 Step we'll cover:
-- [Introduction](#introduction)
-- [Prerequisite tools](#prerequisite-tools)
 - [What is Google Lighthouse](#what-is-google-lighthouse)
 - [How to use Google Lighthouse from Chrome DevTools](#how-to-use-google-lighthouse-from-chrome-devtools)
 - [How to use Google Lighthouse Node CLI](#how-to-use-google-lighthouse-node-cli)
