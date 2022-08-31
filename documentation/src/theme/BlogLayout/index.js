@@ -2,6 +2,8 @@ import React from "react";
 import clsx from "clsx";
 import Layout from "@theme/Layout";
 
+import { AuthorCard } from "../../components/blog";
+
 export default function BlogLayout(props) {
     const { children, toc, ...layoutProps } = props;
 
@@ -11,7 +13,8 @@ export default function BlogLayout(props) {
                 <div className="row">
                     {toc && (
                         <div className="col col--3">
-                            <div>Author</div>
+                            <AuthorCard />
+                            <br />
                             {toc}
                         </div>
                     )}

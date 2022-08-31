@@ -30,7 +30,7 @@ function BlogPostPageContent({ sidebar, children }) {
             toc={
                 !hideTableOfContents && toc.length > 0 ? (
                     <TOC
-                        className="custom-table-of-contents"
+                        className="custom-table-of-contents shadow-sm"
                         toc={toc}
                         minHeadingLevel={tocMinHeadingLevel}
                         maxHeadingLevel={tocMaxHeadingLevel}

@@ -66,7 +66,7 @@ export const BlogPostPageView = ({ children }) => {
                     </>
                 )}
             </div>
-            <h1 className="text-[2rem] md:text-5xl -mb-2" itemProp="headline">
+            <h1 className="text-[2rem] md:text-5xl" itemProp="headline">
                 {isBlogPostPage ? (
                     title
                 ) : (

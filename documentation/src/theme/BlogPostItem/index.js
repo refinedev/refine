@@ -3,7 +3,7 @@ import Link from "@docusaurus/Link";
 import { useBlogPost } from "@docusaurus/theme-common/internal";
 import BlogPostItemContainer from "@theme/BlogPostItem/Container";
 
-export default function BlogPostItem({ children, className }) {
+export default function BlogPostItem({ className }) {
     const { metadata } = useBlogPost();
 
     return (
