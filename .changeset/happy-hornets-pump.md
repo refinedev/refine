@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-core": patch
+"@pankod/refine-core": minor
 ---
 
 Add an option to hide `resources` from the `Sider` menu
