@@ -165,7 +165,7 @@ describe("useMenu Hook", () => {
         );
     });
 
-    fit("should tree view render all except hide true", async () => {
+    it("should tree view render all except hide true", async () => {
         const { result } = renderHook(() => useMenu(), {
             wrapper: TestWrapper({
                 resources: prepareResources([
