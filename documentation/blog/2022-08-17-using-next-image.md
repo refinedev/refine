@@ -114,6 +114,13 @@ const Profile = () => {
 You **should** always add the `width` and `height` props in the image component when using remote images because NextJS cannot determine the images dimension during the build process for proper page rendering to prevent layout shifts.
 :::
 
+<br/>
+<div>
+<a href="https://github.com/pankod/refine">
+  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
+</a>
+</div>
+
 ## The image component properties
 
 The `<Image />` component accepts a number of properties (props) that enhance its performance. Basically, there are three kinds of properties that can be passed to the component. These include: **required,** **optional**, and **advanced** props. Let's walk through them one by one.
@@ -393,6 +400,13 @@ module.exports = {
   },
 }
 ```
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
+</a>
+</div>
 
 ## Conclusion
 

@@ -157,6 +157,12 @@ function App() {
 export default App;
 ```
 
+<br/>
+<div>
+<a href="https://github.com/pankod/refine">
+  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
+</a>
+</div>
 
 ## Not Using Optional Chaining
 Sometimes just initializing the useState with the expected data type is often not enough to prevent the unexpected blank page error. This is especially true when trying to access the property of a deeply nested object buried deep inside a chain of related objects. 
@@ -597,6 +603,15 @@ With this implementation, the event handler function is fired for each user inpu
 
 ## Conclusion
 As a React developer creating highly interactive user interfaces, you have probably made some of the mistakes mentioned above. Hopefully, these helpful useState practices will help you avoid some of these potential mistakes while using the `useState` hook down the road while building your React-powered applications.
+
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
+</a>
+</div>
+
 
 ---
 

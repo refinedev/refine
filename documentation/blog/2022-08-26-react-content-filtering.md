@@ -282,6 +282,15 @@ Then we implemented the hover effect, where the button gets zoomed in when the u
 
 We set the button's title to be positioned left for the button's contents. For the color tag, we used a flex layout, added static width and height, set some margins, and described the border parameters.
 
+<br/>
+<div>
+<a href="https://github.com/pankod/refine">
+  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
+</a>
+</div>
+
+
+
 ### Creating a search bar
 
 To create a search component used to filter the content based on the custom user search queries, open the `Search.tsx` file and include the following code:
@@ -607,6 +616,15 @@ In this tutorial, we first designed the overall layout for the app, then set up 
 Two different types of content filtering (filter buttons and search bar) were implemented. In order to improve the overall user experience, we used the Framer motion library to add some great animations.
 
 Feel free to modify the app with your own custom features. Play around with different color schemes, layouts, and font families. Also, since refine comes with a rich data provider, feel free to extend the content card with description, author, dates, or even images.
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
+</a>
+</div>
+
+
 
 ## Live StackBlitz Example
 

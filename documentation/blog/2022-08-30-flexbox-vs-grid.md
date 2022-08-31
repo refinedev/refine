@@ -158,6 +158,14 @@ Nothing will happen if we change `display: flex` to `display: grid` You have to 
 
 <br/>
 
+
+<br/>
+<div>
+<a href="https://github.com/pankod/refine">
+  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
+</a>
+</div>
+
 ## Intrinsic and Extrinsic Sizing
 In CSS, you have intrinsic and extrinsic sizing, like:
 
@@ -330,6 +338,14 @@ Use grid:
 Grids can be your best friend when you need to create the outer layout of a webpage. With these, complex designs are not out-of reach and responsive too!
 
 To summarise, when you should use flexbox and when you should use the grid. Although you can design any layout with both flexbox and grid, you need to follow a path of least resistance.   
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
+</a>
+</div>
+
 
 ---
 
