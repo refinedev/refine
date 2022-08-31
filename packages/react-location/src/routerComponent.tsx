@@ -32,7 +32,7 @@ export const RouterComponent: React.FC<RouterProps> = ({
     ...rest
 }) => {
     const { resources } = useResource();
-    const { DashboardPage, catchAll, LoginPage, AuthPage } = useRefineContext();
+    const { DashboardPage, catchAll, LoginPage } = useRefineContext();
 
     const { routes: customRoutes }: { routes: Route[] } = useRouterContext();
 
@@ -47,7 +47,6 @@ export const RouterComponent: React.FC<RouterProps> = ({
     const isAuthenticated = isError ? false : true;
 
     const renderRouteElement = (): JSX.Element => {
-        if (AuthPage) return <AuthPage />;
         if (LoginPage) return <LoginPage />;
         return <DefaultAuthPage />;
     };

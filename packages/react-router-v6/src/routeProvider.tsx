@@ -159,7 +159,7 @@ const ResourceComponent: React.FC<{ route: string }> = ({ route }) => {
 
 export const RouteProvider = () => {
     const { resources } = useResource();
-    const { catchAll, DashboardPage, AuthPage, LoginPage } = useRefineContext();
+    const { catchAll, DashboardPage, LoginPage } = useRefineContext();
 
     const { routes: customRoutes } = useRouterContext();
 
@@ -261,7 +261,6 @@ export const RouteProvider = () => {
     );
 
     const renderRouteElement = (): JSX.Element => {
-        if (AuthPage) return <AuthPage />;
         if (LoginPage) return <LoginPage />;
         return <DefaultAuthPage />;
     };
