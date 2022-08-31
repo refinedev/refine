@@ -2,7 +2,7 @@
 "@pankod/refine-core": minor
 ---
 
-Add object path support for useSelect hook
+Add object path syntax support for useSelect hook
 
 
 ```tsx
