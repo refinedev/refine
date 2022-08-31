@@ -196,7 +196,7 @@ If an `authProvider` is given, `resources` passed to `<Refine>` as propery are o
 
 **refine** expects this method to return a resolved Promise if the register is successful, and a rejected Promise if it is not.
 
--   If the register is successfull new user is created.
+-   If the register is successful new user is created.
 
 -   If the register fails, **refine** displays an error notification to the user.
 
@@ -241,7 +241,7 @@ const { mutate: register } =
 :::
 
 :::tip
-**refine** automatically displays an error notification if the register fails. You can customize the default error message.
+**refine** automatically displays an error notification if the registration fails. You can customize the default error message.
 
 ```tsx
 register: ({ username, password, remember }) => {
@@ -266,7 +266,7 @@ register: ({ username, password, remember }) => {
 
 **refine** expects this method to return a resolved Promise if the reset password is successful, and a rejected Promise if it is not.
 
--   If the reset password is successfull you can send an email to the user with a link to reset the password.
+-   If the reset password is successful you can send an email to the user with a link to reset the password.
 
 -   If the reset password fails, **refine** displays an error notification to the user.
 
@@ -338,7 +338,7 @@ resetPassword: ({ email }) => {
 
 **refine** expects this method to return a resolved Promise if the update password is successful, and a rejected Promise if it is not.
 
--   If the update password is successfull your password is updated.
+-   If the update password is successful your password is updated.
 
 -   `updatePassword` can gives you the query params from the url.
 
