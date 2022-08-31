@@ -32,14 +32,35 @@ You will explore the different ways of using Google Lighthouse in this article. 
 
 Step we'll cover:
 
+- [Introduction](#introduction)
+- [Prerequisite tools](#prerequisite-tools)
 - [What is Google Lighthouse](#what-is-google-lighthouse)
 - [How to use Google lighthouse from Chrome DevTools](#how-to-use-google-lighthouse-from-chrome-devtools)
+  - [Step 1 - Navigate to the site you want to audit](#step-1---navigate-to-the-site-you-want-to-audit)
+  - [Step 2 - Open Chrome DevTools](#step-2---open-chrome-devtools)
+  - [Step 3 - Select categories to audit](#step-3---select-categories-to-audit)
+  - [Step 4 - Run the audit](#step-4---run-the-audit)
+  - [Step 5 - Interpret the audit results](#step-5---interpret-the-audit-results)
+    - [Best practices](#best-practices)
+    - [Performance](#performance)
+    - [Accessibility](#accessibility)
+    - [Progressive Web Apps](#progressive-web-apps)
+    - [Search Engine Optimization](#search-engine-optimization)
 - [How to use Google lighthouse Node CLI](#how-to-use-google-lighthouse-node-cli)
 - [How to use Google lighthouse Node module](#how-to-use-google-lighthouse-node-module)
 - [How to use Google Lighthouse Chrome browser extension](#how-to-use-google-lighthouse-chrome-browser-extension)
+  - [Step 1 - Navigate to the website you want to audit](#step-1---navigate-to-the-website-you-want-to-audit)
+  - [Step 2 - Open the extension popup](#step-2---open-the-extension-popup)
+  - [Step 3 - Select the categories to audit](#step-3---select-the-categories-to-audit)
+  - [Step 4 - Generate report](#step-4---generate-report)
 - [How to use Google lighthouse for auditing progressive web apps](#how-to-use-google-lighthouse-for-auditing-progressive-web-apps)
 - [How to view Google lighthouse report](#how-to-view-google-lighthouse-report)
 - [How to add Google lighthouse to a CI workflow](#how-to-add-google-lighthouse-to-a-ci-workflow)
+  - [Step  1 - Create GitHub Actions workflow directory](#step--1---create-github-actions-workflow-directory)
+  - [Step 2 - Create GitHub Actions workflow file](#step-2---create-github-actions-workflow-file)
+  - [Step 3 - Push the changes to GitHub](#step-3---push-the-changes-to-github)
+- [Conclusion](#conclusion)
+- [Build your React-based CRUD applications without constraints](#build-your-react-based-crud-applications-without-constraints)
 
 
 ## Prerequisite tools
@@ -352,7 +373,7 @@ Therefore, you must go above and beyond to test your site with actual users even
 
 <br/>
 <div>
-<a href="https://discord.gg/tK29jTte">
+<a href="https://discord.gg/refine">
   <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
 </a>
 </div>
