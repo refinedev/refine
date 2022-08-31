@@ -59,7 +59,9 @@ export interface RefineProps {
     resources?: ResourceProps[];
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
-    /** @deprecated LoginPage deprecated. Use AuthPage instead. */
+    /** @deprecated LoginPage deprecated. Use AuthPage instead.
+     * @see {@link https://refine.dev/docs/core/components/auth-page} for more details.
+     */
     LoginPage?: React.FC;
     AuthPage?: React.FC;
     DashboardPage?: React.FC;
@@ -142,7 +144,6 @@ export const Refine: React.FC<RefineProps> = ({
     resources: resourcesFromProps,
     DashboardPage,
     ReadyPage,
-    LoginPage,
     AuthPage,
     catchAll,
     children,
@@ -275,7 +276,7 @@ export const Refine: React.FC<RefineProps> = ({
                                                         DashboardPage={
                                                             DashboardPage
                                                         }
-                                                        AuthPage={AuthPage}
+                                                        LoginPage={AuthPage}
                                                         Layout={Layout}
                                                         Sider={Sider}
                                                         Footer={Footer}
