@@ -206,7 +206,6 @@ Here we show an example `register` method.
 
 ```tsx title="auth-provider.ts"
 const authProvider = {
-    // highlight-start
     register: ({ email, password }) => {
         // We suppose we actually send a request to the back end here.
         if (email && password) {
@@ -215,13 +214,12 @@ const authProvider = {
         }
         return Promise.reject();
     },
-    // highlight-end
 };
 ```
 
 <br />
 
-`register` method will be accessible via `useRegister` auth hook.
+`register` method will be accessible via [`useRegister`](/core/hooks/auth/useRegister.md) auth hook.
 
 ```tsx
 import { useRegister } from "@pankod/refine-core";
@@ -278,7 +276,6 @@ Here we show an example `resetPassword` method.
 
 ```tsx title="auth-provider.ts"
 const authProvider = {
-    // highlight-start
     resetPassword: ({ email }) => {
         // We suppose we actually send a request to the back end here.
         if (email) {
@@ -287,13 +284,12 @@ const authProvider = {
         }
         return Promise.reject();
     },
-    // highlight-end
 };
 ```
 
 <br />
 
-`resetPassword` method will be accessible via `useResetPassword` auth hook.
+`resetPassword` method will be accessible via [`useResetPassword`](/core/hooks/auth/useResetPassword.md) auth hook.
 
 ```tsx
 import { useResetPassword } from "@pankod/refine-core";
@@ -354,7 +350,6 @@ Here we show an example `resetPassword` method.
 
 ```tsx title="auth-provider.ts"
 const authProvider = {
-    // highlight-start
     updatePassword: ({ newPassword, queryStrings }) => {
         // If you want to get token the query params from the url, you can use `queryStrings`.
         if (newPassword) {
@@ -363,13 +358,12 @@ const authProvider = {
         }
         return Promise.reject();
     },
-    // highlight-end
 };
 ```
 
 <br />
 
-`updatePassword` method will be accessible via `useUpdatePassword` auth hook.
+`updatePassword` method will be accessible via [`useUpdatePassword`](/core/hooks/auth/useUpdatePassword.md) auth hook.
 
 ```tsx
 import { useUpdatePassword } from "@pankod/refine-core";
@@ -429,12 +423,10 @@ Here we show an example `logout` that removes auth data from local storage and r
 ```tsx title="auth-provider.ts"
 const authProvider = {
     ...
-// highlight-start
     logout: () => {
         localStorage.removeItem("auth");
         return Promise.resolve();
     }
-// highlight-end
     ...
 }
 ```
@@ -548,7 +540,7 @@ checkError(error);
 
 You can override the default redirection by giving a path to the rejected promise.
 
-```tsx {1-3}
+```tsx
 checkError: (error) => {
     if (error.status === 401) {
         return Promise.reject("custom-url");
@@ -573,11 +565,9 @@ Checking the authentication data can be easily done here. For example if the aut
 ```tsx title="auth-provider.ts"
 const authProvider = {
    ...
-// highlight-start
     checkAuth: () => {
         return localStorage.getItem("auth") ? Promise.resolve() : Promise.reject();
     },
-// highlight-end
    ...
 };
 ```
@@ -589,7 +579,6 @@ const authProvider = {
 ```tsx
 const authProvider = {
    ...
-// highlight-next-line
     checkAuth: () => {
         return localStorage.getItem("auth")
             ? Promise.resolve()
@@ -683,7 +672,6 @@ User data can be accessed within the app by returning a resolved Promise in the 
 ```tsx title="auth-provider.ts"
 const authProvider = {
 ...
-// highlight-start
     getUserIdentity: () => {
         const auth = localStorage.getItem("auth");
         if (auth) {
@@ -692,7 +680,6 @@ const authProvider = {
         }
         return Promise.reject();
     }
-// highlight-end
 ...
 };
 ```
@@ -715,7 +702,6 @@ const { data: userIdentity } = useGetIdentity<string>();
 ```tsx title="auth-provider.ts"
 const authProvider = {
     ...
-// highlight-start
     getUserIdentity: () => {
         const user = {
             name: "Jane Doe",
@@ -723,7 +709,6 @@ const authProvider = {
         };
         return Promise.resolve(user);
     },
-// highlight-end
     ...
 };
 ```
