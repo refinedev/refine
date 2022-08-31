@@ -46,8 +46,7 @@ Steps we'll cover:
 - [Updating useState Directly](#updating-usestate-directly)
 - [Updating Specific Object Property](#updating-specific-object-property)
 - [Managing Multiple Input Fields in Forms](#managing-multiple-input-fields-in-forms)
-- [Conclusion](#conclusion)
-- [Build your React-based CRUD applications without constraints](#build-your-react-based-crud-applications-without-constraints)
+
 
 ## Initializing useState Wrongly
 Initiating the useState hook incorrectly is one of the most common mistakes developers make when utilizing it. What does it mean to initialize useState? To initialize something is to set its initial value. 
