@@ -222,11 +222,6 @@ describe("useMenu Hook", () => {
         expect(result.current.menuItems).toEqual(
             expect.arrayContaining([
                 expect.objectContaining({ name: "visible" }),
-            ]),
-        );
-
-        expect(result.current.menuItems).toEqual(
-            expect.arrayContaining([
                 expect.objectContaining({ name: "visible-item-2" }),
             ]),
         );
