@@ -227,7 +227,3 @@ interface IProvider {
     label?: string;
 }
 ```
-
-```
-
-```
