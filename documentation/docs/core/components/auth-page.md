@@ -84,14 +84,18 @@ const LoginPage = () => {
     type="login"
     providers={[
         {
-            name: "Google",
-            icon: "google-icon",
-            color: "red",
+            name: "github",
+            icon: (
+                <img src="https://img.icons8.com/color/48/000000/github.png" />
+            ),
+            label: "Sign in with GitHub",
         },
         {
-            name: "Facebook",
-            icon: "facebook",
-            color: "blue",
+            name: "google",
+            icon: (
+                <img src="https://img.icons8.com/color/48/000000/google-logo.png" />
+            ),
+            label: "Sign in with Google",
         },
     ]}
 />
@@ -105,11 +109,11 @@ If you want to use providers then you need to handle your provider name to use s
 const authProvider: AuthProvider = {
     ...
     login: ({ providerName }) => {
-        if (providerName === "Google") {
-            return GoogleAuth.login();
+        if (providerName === "github") {
+            // handle Github Auth flow
         }
-        if (providerName === "Facebook") {
-            return FacebookAuth.login();
+        if (providerName === "google") {
+            // handle Google Auth flow
         }
     }
 }
