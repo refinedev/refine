@@ -31,14 +31,16 @@ If it doesn't meet your needs as part of Chrome DevTools, Google lighthouse is a
 You will explore the different ways of using Google Lighthouse in this article. You will also learn how to remedy some of the issues highlighted in the performance measurement and use Google lighthouse in continuous integration(CI) workflow.
 
 Step we'll cover:
+
 - [What is Google Lighthouse](#what-is-google-lighthouse)
-- [How to use Google Lighthouse from Chrome DevTools](#how-to-use-google-lighthouse-from-chrome-devtools)
-- [How to use Google Lighthouse Node CLI](#how-to-use-google-lighthouse-node-cli)
-- [How to use Google Lighthouse Node module](#how-to-use-google-lighthouse-node-module)
+- [How to use Google lighthouse from Chrome DevTools](#how-to-use-google-lighthouse-from-chrome-devtools)
+- [How to use Google lighthouse Node CLI](#how-to-use-google-lighthouse-node-cli)
+- [How to use Google lighthouse Node module](#how-to-use-google-lighthouse-node-module)
 - [How to use Google Lighthouse Chrome browser extension](#how-to-use-google-lighthouse-chrome-browser-extension)
-- [How to use Google Lighthouse for auditing progressive web apps](#how-to-use-google-lighthouse-for-auditing-progressive-web-apps)
-- [How to view Google Lighthouse report](#how-to-view-google-lighthouse-report)
-- [How to add Google Lighthouse to a CI workflow](#how-to-add-google-lighthouse-to-a-ci-workflow)
+- [How to use Google lighthouse for auditing progressive web apps](#how-to-use-google-lighthouse-for-auditing-progressive-web-apps)
+- [How to view Google lighthouse report](#how-to-view-google-lighthouse-report)
+- [How to add Google lighthouse to a CI workflow](#how-to-add-google-lighthouse-to-a-ci-workflow)
+
 
 ## Prerequisite tools
 
@@ -137,6 +139,13 @@ It is also worth mentioning that newer versions of Google Lighthouse run in thre
 The Navigation mode analyzes a single page load and is the default. We will use the default mode throughout this article. The Time span mode analyzes for an arbitrary period, usually as the user interacts with the page. On the other hand, the Snapshot mode analyzes the page in a snapshot when the page is in a particular state.
 
 Each mode has unique use cases, benefits, and limitations which the [Lighthouse documentation](https://github.com/GoogleChrome/lighthouse/blob/HEAD/docs/user-flows.md#user-flows-in-lighthouse) articulates in great detail. Do check it out. You can select one of the other modes before analyzing if the default doesn't meet your use case.
+
+<br/>
+<div>
+<a href="https://github.com/pankod/refine">
+  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
+</a>
+</div>
 
 
 ## How to use Google lighthouse Node CLI
@@ -339,6 +348,14 @@ You can use Google Lighthouse for auditing a website or application for performa
 On the other hand, it is worth mentioning that Google Lighthouse is just a tool. And a tool is only as good as the user. Striving for the highest Google lighthouse scores is commendable but not sufficient. One fine example where the Google lighthouse usually falls short is the accessibility audit. It is common to have an inaccessible site with a perfect Google lighthouse accessibility score.
 
 Therefore, you must go above and beyond to test your site with actual users even though you have perfect Google lighthouse accessibility scores. We have covered the introduction to Google Lighthouse in this article. Check the documentation for in-depth guides.
+
+
+<br/>
+<div>
+<a href="https://discord.gg/tK29jTte">
+  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
+</a>
+</div>
 
 ---
 
