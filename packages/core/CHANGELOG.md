@@ -1,5 +1,37 @@
 # @pankod/refine-core
 
+## 3.64.0
+
+### Minor Changes
+
+-   Add an option to hide `resources` from the `Sider` menu
+
+    ```tsx
+    <Refine
+        ...
+        ...
+        resources={[
+            {
+                name: "posts",
+                list: PostList,
+                options: {
+                    hide: true,
+                },
+            },
+        ]}
+    />
+    ```
+
+*   Add object path syntax support for the useSelect hook
+
+    ```tsx
+    useSelect({
+        resource: "posts",
+        optionLabel: "nested.title",
+        optionLabel: "nested.id",
+    });
+    ```
+
 ## 3.63.0
 
 ### Minor Changes
