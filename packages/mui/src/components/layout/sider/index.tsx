@@ -87,70 +87,83 @@ export const Sider: React.FC<RefineLayoutSiderProps> = () => {
 
             if (children.length > 0) {
                 return (
-                    <div key={route}>
-                        <Tooltip
-                            title={label ?? name}
-                            placement="right"
-                            disableHoverListener={!collapsed}
-                            arrow
-                        >
-                            <ListItemButton
-                                onClick={() => {
-                                    if (collapsed) {
-                                        setCollapsed(false);
-                                        if (!isOpen) {
+                    <CanAccess
+                        key={route}
+                        resource={name.toLowerCase()}
+                        action="list"
+                        params={{
+                            resource: item,
+                        }}
+                    >
+                        <div key={route}>
+                            <Tooltip
+                                title={label ?? name}
+                                placement="right"
+                                disableHoverListener={!collapsed}
+                                arrow
+                            >
+                                <ListItemButton
+                                    onClick={() => {
+                                        if (collapsed) {
+                                            setCollapsed(false);
+                                            if (!isOpen) {
+                                                handleClick(route || "");
+                                            }
+                                        } else {
                                             handleClick(route || "");
                                         }
-                                    } else {
-                                        handleClick(route || "");
-                                    }
-                                }}
-                                sx={{
-                                    pl: isNested ? 4 : 2,
-                                    justifyContent: "center",
-                                    "&.Mui-selected": {
-                                        "&:hover": {
+                                    }}
+                                    sx={{
+                                        pl: isNested ? 4 : 2,
+                                        justifyContent: "center",
+                                        "&.Mui-selected": {
+                                            "&:hover": {
+                                                backgroundColor: "transparent",
+                                            },
                                             backgroundColor: "transparent",
                                         },
-                                        backgroundColor: "transparent",
-                                    },
-                                }}
-                            >
-                                <ListItemIcon
-                                    sx={{
-                                        justifyContent: "center",
-                                        minWidth: 36,
-                                        color: "primary.contrastText",
                                     }}
                                 >
-                                    {icon ?? <ListOutlined />}
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary={label}
-                                    primaryTypographyProps={{
-                                        noWrap: true,
-                                        fontSize: "14px",
-                                        fontWeight: isSelected
-                                            ? "bold"
-                                            : "normal",
-                                    }}
-                                />
-                                {!collapsed &&
-                                    (isOpen ? <ExpandLess /> : <ExpandMore />)}
-                            </ListItemButton>
-                        </Tooltip>
-                        {!collapsed && (
-                            <Collapse
-                                in={open[route || ""]}
-                                timeout="auto"
-                                unmountOnExit
-                            >
-                                <List component="div" disablePadding>
-                                    {renderTreeView(children, selectedKey)}
-                                </List>
-                            </Collapse>
-                        )}
-                    </div>
+                                    <ListItemIcon
+                                        sx={{
+                                            justifyContent: "center",
+                                            minWidth: 36,
+                                            color: "primary.contrastText",
+                                        }}
+                                    >
+                                        {icon ?? <ListOutlined />}
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        primary={label}
+                                        primaryTypographyProps={{
+                                            noWrap: true,
+                                            fontSize: "14px",
+                                            fontWeight: isSelected
+                                                ? "bold"
+                                                : "normal",
+                                        }}
+                                    />
+                                    {!collapsed &&
+                                        (isOpen ? (
+                                            <ExpandLess />
+                                        ) : (
+                                            <ExpandMore />
+                                        ))}
+                                </ListItemButton>
+                            </Tooltip>
+                            {!collapsed && (
+                                <Collapse
+                                    in={open[route || ""]}
+                                    timeout="auto"
+                                    unmountOnExit
+                                >
+                                    <List component="div" disablePadding>
+                                        {renderTreeView(children, selectedKey)}
+                                    </List>
+                                </Collapse>
+                            )}
+                        </div>
+                    </CanAccess>
                 );
             }
 
