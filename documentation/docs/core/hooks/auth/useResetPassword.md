@@ -32,7 +32,7 @@ export const resetPasswordPage = () => {
     };
 
     return (
-        <form onFinish={onSubmit}>
+        <form onSubmit={onSubmit}>
             <label>Email</label>
             <input name="email" value="test@refine.com" />
             <button type="submit">Submit</button>

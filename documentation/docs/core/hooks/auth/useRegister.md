@@ -32,7 +32,7 @@ export const RegisterPage = () => {
     };
 
     return (
-        <form onFinish={onSubmit}>
+        <form onSubmit={onSubmit}>
             <label>Email</label>
             <input name="email" value="test@refine.com" />
             <label>Password</label>
@@ -80,7 +80,7 @@ export const RegisterPage = () => {
     };
 
     return (
-        <form onFinish={onSubmit}>
+        <form onSubmit={onSubmit}>
             <label>Email</label>
             <input name="email" value="test@refine.com" />
             <label>Password</label>

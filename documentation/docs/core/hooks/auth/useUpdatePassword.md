@@ -32,7 +32,7 @@ export const updatePasswordPage = () => {
     };
 
     return (
-        <form onFinish={onSubmit}>
+        <form onSubmit={onSubmit}>
             <label>Password</label>
             <input name="password" value="refine" />
             <button type="submit">Submit</button>
