@@ -10,18 +10,18 @@ export default function BlogLayout(props) {
     return (
         <Layout {...layoutProps}>
             <div className="container margin-vert--lg">
-                <div className="row">
+                <div className="flex flex-row flex-wrap lg:flex-nowrap lg:gap-8">
                     {toc && (
-                        <div className="col col--3">
+                        <div className="w-full lg:w-1/4">
                             <AuthorCard />
                             <br />
                             {toc}
                         </div>
                     )}
                     <main
-                        className={clsx("col", {
-                            "col--9": toc,
-                            "col--12": !toc,
+                        className={clsx({
+                            "w-full lg:w-3/4": toc,
+                            "w-full": !toc,
                         })}
                         itemScope
                         itemType="http://schema.org/Blog"

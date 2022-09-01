@@ -519,6 +519,12 @@ html {
     border: 1px solid var(--ifm-toc-border-color);
 }
 
+@media (max-width: 1023px) {
+    #__docusaurus .custom-table-of-contents .table-of-contents {
+        @apply hidden;
+    }
+}
+
 #__docusaurus .github-banner-bg {
     background-image: url("/img/blog-static/github-bg.png");
     background-size: cover;
