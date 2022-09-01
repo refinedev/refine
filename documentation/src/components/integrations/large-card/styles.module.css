@@ -18,10 +18,6 @@
     @apply h-full w-full object-contain;
 }
 
-.title {
-    @apply uppercase;
-}
-
 .content {
     @apply h-full text-xs;
 }
