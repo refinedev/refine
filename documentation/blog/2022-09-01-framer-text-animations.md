@@ -40,7 +40,7 @@ Steps we'll cover:
 - [What is Framer Motion?](#what-is-framer-motion)
 - [Getting started with Framer Motion in React](#getting-started-with-framer-motion-in-react)
 - [Getting started with text animation](#getting-started-with-text-animation)
-- [Getting Started With Image Animation](#getting-started-with-image-animation)
+- [Getting started with image animation](#getting-started-with-image-animation)
 
 ## Prerequisites
 To follow along with this tutorial, you need to have:
@@ -163,7 +163,7 @@ function App() {
 </div>
 
 
-## Getting Started With Image Animation
+## Getting started with image animation
 In this section, we'll demonstrate how to use Framer Motion when animating images.
  
 First, you need to create an image folder inside the "src" folder to keep your images. For the sake of this project, I used some random images. Feel free to use any image of your choice.
