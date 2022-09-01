@@ -9,6 +9,8 @@ import MDXUl from "@theme/MDXComponents/Ul";
 import MDXImg from "@theme/MDXComponents/Img";
 import Admonition from "@theme/Admonition";
 
+import { DiscordBanner } from "../../components/blog";
+
 const MDXComponents = {
     head: MDXHead,
     code: MDXCode,
@@ -24,6 +26,7 @@ const MDXComponents = {
     h5: (props) => <MDXHeading as="h5" {...props} />,
     h6: (props) => <MDXHeading as="h6" {...props} />,
     admonition: Admonition,
+    discord: DiscordBanner,
 };
 
 export default MDXComponents;
