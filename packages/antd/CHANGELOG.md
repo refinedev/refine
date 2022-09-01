@@ -1,5 +1,17 @@
 # @pankod/refine-antd
 
+## 3.37.6
+
+### Patch Changes
+
+-   Fix `useModalForm` hook reset issue after successful submit
+
+## 3.37.5
+
+### Patch Changes
+
+-   [#2403](https://github.com/pankod/refine/pull/2403) [`ef8622cba3`](https://github.com/pankod/refine/commit/ef8622cba32acc8f5edf9e4190fbe90d99e642c6) Thanks [@omeraplak](https://github.com/omeraplak)! - Fix `useModalForm` hook reset issue after successful submit
+
 ## 3.37.4
 
 ### Patch Changes
