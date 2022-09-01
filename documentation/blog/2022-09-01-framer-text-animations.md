@@ -74,7 +74,7 @@ We are going to break this article into two sections first, the text animation, 
 ## Getting started with text animation
 In this section, we'll demonstrate how to use Framer Motion when animating text using the `motion` components. 
 
-Add the following code into your `App.js` file.
+Add the following code to your `App.js` file.
 
 ```ts title="App.js"
 import { motion } from "framer-motion";
@@ -186,7 +186,7 @@ export default[fox, jill, cha1,cha2]
 
 We are going to import all our images into the `image.js` file mentioned above before using them in our `App.js` file. This will help us avoid redundant importation where we will use these images.
 
-Add the following code into your `App.css` file.
+Add the following code to your `App.css` file.
 
 ```css title="App.css"
 .item{
@@ -217,7 +217,7 @@ Add the following code into your `App.css` file.
 }
 ```
 
-Change `App.js` file with following code:
+Change `App.js` file with the following code:
 
 ```ts title="App.js"
 import { motion } from "framer-motion";
