@@ -18,6 +18,8 @@ export default function BlogListPaginator(props) {
 
     const lastPage = paginationRange[paginationRange.length - 1];
 
+    return null;
+
     return (
         <nav
             className="flex justify-end font-montserrat"
