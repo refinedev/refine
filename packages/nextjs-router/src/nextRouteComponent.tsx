@@ -4,7 +4,7 @@ import {
     LayoutWrapper,
     ErrorComponent,
     useResource,
-    LoginPage as DefaultLoginPage,
+    AuthPage as DefaultAuthPage,
     CanAccess,
 } from "@pankod/refine-core";
 import type { ResourceRouterParams } from "@pankod/refine-core";
@@ -41,8 +41,13 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
 
     const isServer = typeof window !== "undefined";
 
+    const renderRouteElement = (): JSX.Element => {
+        if (LoginPage) return <LoginPage />;
+        return <DefaultAuthPage />;
+    };
+
     if (routeResourceName === "login") {
-        return LoginPage ? <LoginPage /> : <DefaultLoginPage />;
+        return renderRouteElement();
     }
 
     if (pathname === "/") {

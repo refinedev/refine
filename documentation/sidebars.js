@@ -53,6 +53,9 @@ module.exports = {
                                 "core/hooks/auth/useLogin",
                                 "core/hooks/auth/useLogout",
                                 "core/hooks/auth/usePermissions",
+                                "core/hooks/auth/useRegister",
+                                "core/hooks/auth/useResetPassword",
+                                "core/hooks/auth/useUpdatePassword",
                             ],
                         },
                         {

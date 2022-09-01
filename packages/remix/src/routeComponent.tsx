@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect, useLayoutEffect } from "react";
+import React, { PropsWithChildren, useEffect } from "react";
 import { useLoaderData } from "@remix-run/react";
 
 import {
@@ -6,7 +6,7 @@ import {
     LayoutWrapper,
     ErrorComponent,
     useResource,
-    LoginPage as DefaultLoginPage,
+    AuthPage as DefaultAuthPage,
     CanAccess,
 } from "@pankod/refine-core";
 import type { ResourceRouterParams } from "@pankod/refine-core";
@@ -45,8 +45,13 @@ export const RemixRouteComponent: React.FC<
         }
     }, [pathname]);
 
+    const renderRouteElement = (): JSX.Element => {
+        if (LoginPage) return <LoginPage />;
+        return <DefaultAuthPage />;
+    };
+
     if (routeResourceName === "login") {
-        return LoginPage ? <LoginPage /> : <DefaultLoginPage />;
+        return renderRouteElement();
     }
 
     if (pathname === "/") {
