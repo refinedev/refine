@@ -453,6 +453,7 @@ const PostCreate: React.FC = () => {
         <Create
             // highlight-start
             headerProps={{
+                subTitle: "This is a subtitle",
                 style: {
                     backgroundColor: "cornflowerblue",
                     padding: "16px",

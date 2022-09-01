@@ -57,7 +57,6 @@ const authProvider: AuthProvider = {
 };
 
 const App: React.FC = () => {
-    console.log("render");
     return (
         <Refine
             dataProvider={dataProvider(appwriteClient, {
@@ -66,7 +65,7 @@ const App: React.FC = () => {
             liveProvider={liveProvider(appwriteClient, {
                 databaseId: "default",
             })}
-            liveMode="auto"
+            options={{ liveMode: "auto", disableTelemetry: true }}
             authProvider={authProvider}
             routerProvider={routerProvider}
             LoginPage={Login}
@@ -85,7 +84,6 @@ const App: React.FC = () => {
             notificationProvider={notificationProvider}
             Layout={Layout}
             catchAll={<ErrorComponent />}
-            disableTelemetry={true}
         />
     );
 };

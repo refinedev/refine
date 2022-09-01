@@ -108,6 +108,21 @@ const { checkboxGroupProps } = useCheckboxGroup({
 
 `optionLabel` and `optionValue` allows you to change the values and appearances of your options. Default values are `optionLabel = "title"` and `optionValue = "id"`.
 
+:::tip
+
+Supports use with `optionLabel` and `optionValue` [Object path](https://lodash.com/docs/4.17.15#get) syntax.
+
+```tsx
+const { options } = useSelect({
+    resource: "categories",
+// highlight-start
+    optionLabel: "nested.title",
+    optionValue: "nested.id",
+// highlight-end
+});
+```
+:::
+
 ### `filters`
 
 ```tsx

@@ -29,7 +29,7 @@ const App: React.FC = () => {
                     <ToastContainer />
                 </div>
             )}
-            disableTelemetry={true}
+            options={{ disableTelemetry: true }}
         />
     );
 };

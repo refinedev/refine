@@ -119,17 +119,24 @@ export const useMenu: () => useMenuReturnType = () => {
     );
 
     const values = React.useMemo(() => {
-        const filterMenuItemsByListView = (menus: ITreeMenu[]): ITreeMenu[] => {
+        const filterMenuItemsByListViewAndHideOption = (
+            menus: ITreeMenu[],
+        ): ITreeMenu[] => {
             return menus.reduce((menuItem: ITreeMenu[], obj) => {
-                if (obj.children.length > 0)
+                if (obj.children.length > 0 && obj.options?.hide !== true)
                     return [
                         ...menuItem,
                         {
                             ...obj,
-                            children: filterMenuItemsByListView(obj.children),
+                            children: filterMenuItemsByListViewAndHideOption(
+                                obj.children,
+                            ),
                         },
                     ];
-                else if (typeof obj.list !== "undefined")
+                else if (
+                    typeof obj.list !== "undefined" &&
+                    obj.options?.hide !== true
+                )
                     return [...menuItem, obj];
 
                 return menuItem;
@@ -139,7 +146,7 @@ export const useMenu: () => useMenuReturnType = () => {
         return {
             defaultOpenKeys,
             selectedKey,
-            menuItems: filterMenuItemsByListView(menuItems),
+            menuItems: filterMenuItemsByListViewAndHideOption(menuItems),
         };
     }, [defaultOpenKeys, selectedKey, menuItems]);
 

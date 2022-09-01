@@ -1,5 +1,29 @@
 # @pankod/refine-antd
 
+## 3.37.4
+
+### Patch Changes
+
+-   Updated `<Edit/>` component's default footer buttons property wrapper with `<Space/>` component like `<Footer>
+
+## 3.37.3
+
+### Patch Changes
+
+-   Updated `<Edit/>` component's default footer buttons property wrapper with `<Space/>` component like `<Footer>
+
+## 3.37.2
+
+### Patch Changes
+
+-   Updated `<Edit/>` component's default footer buttons property wrapper with `<Space/>` component like `<Footer>
+
+## 3.37.1
+
+### Patch Changes
+
+-   [#2343](https://github.com/pankod/refine/pull/2343) [`90b39d4f83`](https://github.com/pankod/refine/commit/90b39d4f839dc97868b7126ffb2903e29b8bb51a) Thanks [@aliemir](https://github.com/aliemir)! - Updated `<Edit/>` component's default footer buttons property wrapper with `<Space/>` component like `<Footer>
+
 ## 3.37.0
 
 ### Minor Changes

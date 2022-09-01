@@ -40,6 +40,37 @@ describe("useSelect Hook", () => {
         ]);
     });
 
+    it("with nested optionLabel", async () => {
+        const { result } = renderHook(
+            () =>
+                useSelect({
+                    resource: "posts",
+                    optionLabel: "nested.title",
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: MockJSONServer,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
+        });
+
+        const { options } = result.current;
+
+        expect(options).toHaveLength(2);
+        expect(options).toEqual([
+            {
+                label: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
+                value: "1",
+            },
+            { label: "Recusandae consectetur aut atque est.", value: "2" },
+        ]);
+    });
+
     it("defaultValue", async () => {
         const { result } = renderHook(
             () =>
