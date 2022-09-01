@@ -260,6 +260,13 @@ NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=YOUR_SECRET
 ```
 
+<br/>
+<div>
+<a href="https://github.com/pankod/refine">
+  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
+</a>
+</div>
+
 ### For GithubProvider (you will need a GitHub account):
 
 To create your GithubProvider ID and SECRET, navigate to your GitHub account [developer settings](https://github.com/settings/apps) and click on the OAuth Apps tab to register a new application.
@@ -659,6 +666,14 @@ In the above code snippet, we imported the `unstable_getServerSession` method an
 
 ## Conclusion
 Throughout this tutorial, we've implemented how to add Google and GitHub authentication to a Nextjs application using NextAuth. We started by knowing what NextAuth is and why you should use it. Then we built a blog application for the demonstration. Now that you have the knowledge you seek, how would you add authentication to your next Nextjs project? Perhaps you can learn more about NextAuth from the [documentation](https://next-auth.js.org/).
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
+</a>
+</div>
+
 
 ## Build your React-based CRUD applications without constraints
 

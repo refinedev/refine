@@ -1,5 +1,145 @@
 # @pankod/refine-cloud
 
+## 2.4.0
+
+### Minor Changes
+
+-   Added `useCloudQuery` and `useCloudMutation` for refine cloud queries.
+
+    **Usage**
+
+    ```tsx
+    import { useCloudQuery, useCloudMutation } from "@pankod/refine-cloud";
+
+    const { data } = useCloudQuery({
+        key: "postgres-list-user",
+        config: {},
+        customParams: {
+            name: "John Doe",
+        },
+    });
+
+    const { mutation } = useCloudMutation();
+
+    mutation({
+        key: "postgres-create-user",
+        config: {},
+        customParams: {
+            name: "John Doe",
+            email: "johndoe@mail.com",
+        },
+    });
+    ```
+
+### Patch Changes
+
+-   -   `lodash` moved to "dependencies" for CommonJS builds
+
+## 2.3.0
+
+### Minor Changes
+
+-   Added `useCloudQuery` and `useCloudMutation` for refine cloud queries.
+
+    **Usage**
+
+    ```tsx
+    import { useCloudQuery, useCloudMutation } from "@pankod/refine-cloud";
+
+    const { data } = useCloudQuery({
+        key: "postgres-list-user",
+        config: {},
+        customParams: {
+            name: "John Doe",
+        },
+    });
+
+    const { mutation } = useCloudMutation();
+
+    mutation({
+        key: "postgres-create-user",
+        config: {},
+        customParams: {
+            name: "John Doe",
+            email: "johndoe@mail.com",
+        },
+    });
+    ```
+
+### Patch Changes
+
+-   -   `lodash` moved to "dependencies" for CommonJS builds
+
+## 2.2.0
+
+### Minor Changes
+
+-   Added `useCloudQuery` and `useCloudMutation` for refine cloud queries.
+
+    **Usage**
+
+    ```tsx
+    import { useCloudQuery, useCloudMutation } from "@pankod/refine-cloud";
+
+    const { data } = useCloudQuery({
+        key: "postgres-list-user",
+        config: {},
+        customParams: {
+            name: "John Doe",
+        },
+    });
+
+    const { mutation } = useCloudMutation();
+
+    mutation({
+        key: "postgres-create-user",
+        config: {},
+        customParams: {
+            name: "John Doe",
+            email: "johndoe@mail.com",
+        },
+    });
+    ```
+
+### Patch Changes
+
+-   -   `lodash` moved to "dependencies" for CommonJS builds
+
+## 2.1.0
+
+### Minor Changes
+
+-   [#2328](https://github.com/pankod/refine/pull/2328) [`a44cb8cea6`](https://github.com/pankod/refine/commit/a44cb8cea6ff6baf8481ea47688c5707095808ab) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Added `useCloudQuery` and `useCloudMutation` for refine cloud queries.
+
+    **Usage**
+
+    ```tsx
+    import { useCloudQuery, useCloudMutation } from "@pankod/refine-cloud";
+
+    const { data } = useCloudQuery({
+        key: "postgres-list-user",
+        config: {},
+        customParams: {
+            name: "John Doe",
+        },
+    });
+
+    const { mutation } = useCloudMutation();
+
+    mutation({
+        key: "postgres-create-user",
+        config: {},
+        customParams: {
+            name: "John Doe",
+            email: "johndoe@mail.com",
+        },
+    });
+    ```
+
+### Patch Changes
+
+-   [#2366](https://github.com/pankod/refine/pull/2366) [`de87f13dad`](https://github.com/pankod/refine/commit/de87f13dadabc3de947534988abfbb2ff6263ca4) Thanks [@omeraplak](https://github.com/omeraplak)! - - `lodash` moved to "dependencies" for CommonJS builds
+
 ## 2.0.4
 
 ### Patch Changes

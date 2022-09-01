@@ -25,9 +25,10 @@ const mockNotification = [
     },
 ];
 
-jest.useFakeTimers();
-
 describe("Cancel Notification", () => {
+    beforeEach(() => {
+        jest.useFakeTimers();
+    });
     it("should trigger notification open function", async () => {
         render(
             <UndoableQueueContext.Provider

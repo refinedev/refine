@@ -16,6 +16,7 @@ type OptionsProps<TExtends = { [key: string]: any }> = TExtends & {
         permissions?: AuditLogPermissions[number][] | string[];
     };
     [key: string]: any;
+    hide?: boolean;
 };
 
 export interface ResourceProps extends IResourceComponents {

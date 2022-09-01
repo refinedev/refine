@@ -98,6 +98,13 @@ import { Temporal } from '@js-temporal/polyfill';
 
 Now, we are able to inspect the browser console when testing the following cases.
 
+<br/>
+<div>
+<a href="https://github.com/pankod/refine">
+  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
+</a>
+</div>
+
 ## Temporal API Data Types
 
 ### Temporal.Now
@@ -275,6 +282,14 @@ Now, after reading all this, you may get excited to start trying out the `Tempor
 
 ## Conclusion
 Dates in JavaScript include multiple issues with the implementation. Temporal API solves this problem with easy-to-use APIs. JavaScript developers will find it helpful once browsers start supporting this API.
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
+</a>
+</div>
+
 
 ## Build your React-based CRUD applications without constraints
 

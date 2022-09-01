@@ -11,7 +11,7 @@ export const redirectPage = ({
     action,
     redirectOptions,
 }: RedirectPageProps): RedirectionTypes => {
-    if (redirectFromProps) {
+    if (redirectFromProps || redirectFromProps === false) {
         return redirectFromProps;
     }
 
