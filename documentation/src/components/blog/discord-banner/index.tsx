@@ -10,7 +10,7 @@ export const DiscordBanner = () => {
                     src="/img/blog-static/discord-banner.png"
                     alt="Discord Logo"
                 />
-                <div className=" text-white font-montserrat font-bold max-w-md">
+                <div className="text-white font-montserrat font-bold max-w-md text-center md:text-left">
                     <h1 className="text-2xl uppercase leading-tight mb-0 font-montserrat">
                         Join to refine discord server
                     </h1>

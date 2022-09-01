@@ -518,3 +518,9 @@ html {
     @apply pl-0;
     border: 1px solid var(--ifm-toc-border-color);
 }
+
+#__docusaurus .github-banner-bg {
+    background-image: url("/img/blog-static/github-bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
