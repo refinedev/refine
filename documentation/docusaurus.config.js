@@ -20,6 +20,7 @@ const siteConfig = {
     organizationName: "pankod",
     trailingSlash: true,
     favicon: "img/refine_favicon.png",
+    scripts: ["https://platform.twitter.com/widgets.js"],
     presets: [
         [
             "@docusaurus/preset-classic",

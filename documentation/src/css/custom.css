@@ -524,3 +524,7 @@ html {
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+#__docusaurus .twitter-banner-bg {
+    background: linear-gradient(90deg, #3fdcf7 2.01%, #1890ff 99.51%);
+}
