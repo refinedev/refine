@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "@docusaurus/Link";
 
-export const DiscordBanner = () => {
+const DiscordBanner = () => {
     return (
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0 h-auto md:h-[150px] bg-[#5865F2] w-full rounded-2xl py-5 px-5 md:px-12">
             <div className="flex items-center gap-16">
@@ -27,3 +27,5 @@ export const DiscordBanner = () => {
         </div>
     );
 };
+
+export default DiscordBanner;

@@ -7,7 +7,7 @@ const token = "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";
 const repo = "refine";
 const org = "pankod";
 
-export const GithubBanner = () => {
+const GithubBanner = () => {
     const [githubStarCount, setGithubStarCount] = React.useState(0);
 
     React.useEffect(() => {
@@ -69,3 +69,5 @@ export const GithubBanner = () => {
         </div>
     );
 };
+
+export default GithubBanner;
