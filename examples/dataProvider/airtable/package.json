@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@pankod/refine-airtable": "^3.27.0",
-    "@pankod/refine-antd": "^3.37.4",
+    "@pankod/refine-antd": "^3.37.5",
     "@pankod/refine-core": "^3.64.0",
     "@pankod/refine-react-router-v6": "^3.31.0",
     "@types/node": "^12.20.11",
