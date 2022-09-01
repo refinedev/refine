@@ -40,6 +40,7 @@ const SearchPage: React.FC<IResourceComponentsProps<GetListResponse<Product>>> =
                     value: q,
                 },
             ],
+            hasPagination: false,
         });
 
         return (

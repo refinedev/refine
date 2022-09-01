@@ -12,7 +12,7 @@ import { API_URL } from "@lib/constants";
 const SearchPage: React.FC<{
     handle: string;
     initialData: GetListResponse<Product>;
-    collection: any;
+    collection: ProductCollection;
 }> = ({ initialData, collection }) => {
     const { cartId } = useCartContext();
 
@@ -35,6 +35,7 @@ const SearchPage: React.FC<{
         queryOptions: {
             initialData,
         },
+        hasPagination: false,
     });
 
     return (
