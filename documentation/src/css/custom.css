@@ -496,3 +496,25 @@ html {
 #__docusaurus .blog-post-item-shadow {
     box-shadow: 6px 8px 16px rgba(42, 42, 66, 0.4);
 }
+
+#__docusaurus .pagination-item {
+    @apply h-8 w-8 flex items-center justify-center rounded-lg leading-tight border border-solid border-gray-200 hover:text-[#1890FF] hover:border-[#1890FF] transition duration-200 ease-in-out;
+    color: var(--ifm-font-color-base);
+}
+
+#__docusaurus .pagination-item.disabled {
+    @apply text-gray-200 cursor-not-allowed hover:text-gray-200 hover:border-gray-200;
+}
+
+#__docusaurus .pagination-item.active {
+    @apply text-[#1890FF] border-[#1890FF];
+}
+
+#__docusaurus .dots {
+    @apply border-none h-8 cursor-default;
+}
+
+#__docusaurus .custom-table-of-contents .table-of-contents {
+    @apply pl-0;
+    border: 1px solid var(--ifm-toc-border-color);
+}

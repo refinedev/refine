@@ -41,7 +41,7 @@ const siteConfig = {
                 blog: {
                     blogTitle: "refine blog!",
                     blogDescription: "A Docusaurus powered blog!",
-                    postsPerPage: "ALL",
+                    postsPerPage: 10,
                     blogSidebarTitle: "All posts",
                     blogSidebarCount: 0,
                     feedOptions: {
