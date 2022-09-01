@@ -234,8 +234,7 @@ register(values);
 A type parameter for the values can be provided to `useRegister`.
 
 ```tsx
-const { mutate: register } =
-    useRegister<{ username: string; password: string; remember: boolean }>();
+const { mutate: register } = useRegister<{ email: string; password: string }>();
 ```
 
 :::
@@ -244,14 +243,14 @@ const { mutate: register } =
 **refine** automatically displays an error notification if the registration fails. You can customize the default error message.
 
 ```tsx
-register: ({ username, password, remember }) => {
+register: ({ email, password }) => {
      if (email && password) {
             return Promise.resolve();
         }
         //highlight-start
         return Promise.reject({
             name: "Register Failed!",
-            message: "The username or password missing.",
+            message: "The email or password missing.",
         });
         //highlight-end
     },
