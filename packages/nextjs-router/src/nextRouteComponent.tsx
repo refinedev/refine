@@ -32,7 +32,7 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
     } = useParams<ResourceRouterParams>();
 
     const { pathname } = useLocation();
-    const { DashboardPage, catchAll, LoginPage, AuthPage } = useRefineContext();
+    const { DashboardPage, catchAll, LoginPage } = useRefineContext();
 
     const resource = resources.find(
         (res) =>
@@ -42,7 +42,6 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
     const isServer = typeof window !== "undefined";
 
     const renderRouteElement = (): JSX.Element => {
-        if (AuthPage) return <AuthPage />;
         if (LoginPage) return <LoginPage />;
         return <DefaultAuthPage />;
     };

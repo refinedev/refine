@@ -32,7 +32,7 @@ export const RemixRouteComponent: React.FC<
 
     const { pathname } = useLocation();
 
-    const { DashboardPage, catchAll, LoginPage, AuthPage } = useRefineContext();
+    const { DashboardPage, catchAll, LoginPage } = useRefineContext();
 
     const resource = resources.find(
         (res) =>
@@ -46,7 +46,6 @@ export const RemixRouteComponent: React.FC<
     }, [pathname]);
 
     const renderRouteElement = (): JSX.Element => {
-        if (AuthPage) return <AuthPage />;
         if (LoginPage) return <LoginPage />;
         return <DefaultAuthPage />;
     };

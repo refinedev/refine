@@ -4,7 +4,7 @@ import { IAuthCommonProps, IResetPasswordForm } from "../..";
 
 export const ResetPassword: React.FC<IAuthCommonProps> = ({
     backLink,
-    resetPasswordLink,
+    submitButton,
 }) => {
     const translate = useTranslate();
     const { Link } = useRouterContext();
@@ -55,16 +55,14 @@ export const ResetPassword: React.FC<IAuthCommonProps> = ({
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     <br />
-                    {resetPasswordLink ? (
-                        renderLink(
-                            resetPasswordLink,
-                            translate(
+                    {submitButton ?? (
+                        <input
+                            type="submit"
+                            value={translate(
                                 "pages.resetPassword.button",
                                 "Reset Password",
-                            ),
-                        )
-                    ) : (
-                        <input type="submit" value="Reset Password" />
+                            )}
+                        />
                     )}
                     {backLink &&
                         renderLink(

@@ -5,7 +5,7 @@ import { IAuthCommonProps, IUpdatePasswordForm } from "../..";
 
 export const UpdatePassword: React.FC<IAuthCommonProps> = ({
     backLink,
-    updatePasswordLink,
+    submitButton,
 }) => {
     const translate = useTranslate();
     const { Link } = useRouterContext();
@@ -73,15 +73,7 @@ export const UpdatePassword: React.FC<IAuthCommonProps> = ({
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                     <br />
-                    {updatePasswordLink ? (
-                        renderLink(
-                            updatePasswordLink,
-                            translate(
-                                "pages.updatePassword.button",
-                                "Reset Password",
-                            ),
-                        )
-                    ) : (
+                    {submitButton ?? (
                         <input
                             type="submit"
                             value={translate(
@@ -90,7 +82,6 @@ export const UpdatePassword: React.FC<IAuthCommonProps> = ({
                             )}
                         />
                     )}
-
                     {backLink &&
                         renderLink(
                             backLink,

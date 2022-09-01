@@ -1,9 +1,10 @@
-import { AuthPage, AuthProvider, Refine } from "@pankod/refine-core";
+import { AuthProvider, Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit } from "./pages/posts";
+import { LoginPage } from "./pages/auth/login";
 import { RegisterPage } from "./pages/auth";
 import { ForgotPasswordPage } from "./pages/auth/forgotPassword";
 import { ExamplePage } from "./pages/example";
@@ -37,7 +38,7 @@ const App: React.FC = () => {
             return Promise.reject();
         },
         updatePassword: (params: any) => {
-            if (params.password && params.newPassword) {
+            if (params.newPassword) {
                 //we can update password here
                 return Promise.resolve();
             }
@@ -88,7 +89,7 @@ const App: React.FC = () => {
             }}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             authProvider={authProvider}
-            AuthPage={AuthPage}
+            AuthPage={LoginPage}
             resources={[
                 {
                     name: "posts",

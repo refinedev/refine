@@ -28,6 +28,7 @@ export interface IProvider {
 }
 
 export interface IAuthCommonProps {
+    submitButton?: React.ReactNode;
     registerLink?: React.ReactNode;
     loginLink?: React.ReactNode;
     resetPasswordLink?: React.ReactNode;
@@ -51,7 +52,7 @@ export const AuthPage: React.FC<IAuthPageProps> = ({
     loginLink,
     registerLink,
     resetPasswordLink,
-    updatePasswordLink,
+    submitButton,
     backLink,
 }) => {
     const renderView = () => {
@@ -60,7 +61,7 @@ export const AuthPage: React.FC<IAuthPageProps> = ({
                 return (
                     <Login
                         providers={providers}
-                        loginLink={loginLink}
+                        submitButton={submitButton}
                         registerLink={registerLink}
                         resetPasswordLink={resetPasswordLink}
                         backLink={backLink}
@@ -69,16 +70,15 @@ export const AuthPage: React.FC<IAuthPageProps> = ({
             case "register":
                 return (
                     <Register
-                        registerLink={registerLink}
+                        submitButton={submitButton}
                         loginLink={loginLink}
-                        resetPasswordLink={resetPasswordLink}
                         backLink={backLink}
                     />
                 );
             case "resetPassword":
                 return (
                     <ResetPassword
-                        resetPasswordLink={registerLink}
+                        submitButton={submitButton}
                         backLink={backLink}
                     />
                 );
@@ -86,7 +86,7 @@ export const AuthPage: React.FC<IAuthPageProps> = ({
                 return (
                     <UpdatePassword
                         backLink={backLink}
-                        updatePasswordLink={updatePasswordLink}
+                        submitButton={submitButton}
                     />
                 );
 
@@ -94,7 +94,7 @@ export const AuthPage: React.FC<IAuthPageProps> = ({
                 return (
                     <Login
                         providers={providers}
-                        loginLink={loginLink}
+                        submitButton={submitButton}
                         registerLink={registerLink}
                         resetPasswordLink={resetPasswordLink}
                         backLink={backLink}

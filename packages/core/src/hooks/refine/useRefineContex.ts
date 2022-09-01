@@ -17,7 +17,6 @@ export const useRefineContext = () => {
         warnWhenUnsavedChanges,
         DashboardPage,
         LoginPage,
-        AuthPage,
         catchAll,
         options,
     } = useContext(RefineContext);
@@ -36,7 +35,6 @@ export const useRefineContext = () => {
         warnWhenUnsavedChanges,
         DashboardPage,
         LoginPage,
-        AuthPage,
         catchAll,
         options,
     };
