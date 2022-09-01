@@ -28,28 +28,39 @@ const Card: React.FC<CardProps> = ({
     status,
 }) => {
     return (
-        <div className={clsx(styles.container, contributer && "mb-10")}>
+        <div className={styles.container}>
             <a
                 target="_blank"
                 href={linkUrl}
-                className={clsx(styles.card, contributer && "rounded-b-none")}
+                className={styles.card}
                 rel="noreferrer"
             >
-                <div className={styles.imageWrapper}>
-                    <img className={styles.image} src={imageUrl} alt={title} />
+                <div className="flex flex-1 flex-row justify-start gap-5 px-3.5 py-6">
+                    <div className={styles.imageWrapper}>
+                        <img
+                            className={styles.image}
+                            src={imageUrl}
+                            alt={title}
+                        />
+                    </div>
+                    <div className={styles.content}>
+                        <div className={styles.title}>{title}</div>
+                        {status === "soon" ? (
+                            <ComingSoon />
+                        ) : (
+                            <div className={styles.description}>
+                                {description}
+                            </div>
+                        )}
+                    </div>
                 </div>
-                <div className={styles.content}>
-                    <div className={styles.title}>{title}</div>
-                    {status === "soon" ? (
-                        <ComingSoon />
-                    ) : (
-                        <div className={styles.description}>{description}</div>
-                    )}
-                </div>
+                {contributer && (
+                    <ContributerTag
+                        url={contributer.url}
+                        name={contributer.name}
+                    />
+                )}
             </a>
-            {contributer && (
-                <ContributerTag url={contributer.url} name={contributer.name} />
-            )}
         </div>
     );
 };

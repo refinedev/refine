@@ -3,7 +3,7 @@
 }
 
 .card {
-    @apply h-full border-[1px] border-solid border-[#f5f5f5] font-montserrat shadow-integrationTile flex w-full justify-start gap-5 rounded-[10px] px-3.5 py-6 text-black no-underline hover:text-black hover:no-underline;
+    @apply h-full border-[1px] border-solid border-[#f5f5f5] flex-col font-montserrat shadow-integrationTile flex w-full justify-start rounded-[10px]  text-black no-underline hover:text-black hover:no-underline;
 }
 
 .imageWrapper {
