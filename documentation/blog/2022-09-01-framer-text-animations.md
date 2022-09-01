@@ -182,7 +182,7 @@ export default[fox, jill, cha1,cha2]
 
 We are going to import all our images into the `image.js` file mentioned above before using them in our `App.js` file. This will help us avoid redundant importation where we will use these images.
 
-Add the following code into your `App.css` file.
+Add the following code to your `App.css` file.
 
 ```css title="App.css"
 .item{
