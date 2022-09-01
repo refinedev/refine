@@ -1,6 +1,6 @@
 ---
-"@pankod/refine-antd": minor
-"@pankod/refine-mui": minor
+"@pankod/refine-antd": patch
+"@pankod/refine-mui": patch
 ---
 
 Fix: Wrap with [`<CanAccess />`](https://refine.dev/docs/core/components/accessControl/can-access/) component to parent sider items
