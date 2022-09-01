@@ -55,11 +55,11 @@ const Integrations: React.FC = () => {
                 </div>
                 <div className={styles.integrationsWrapper}>
                     <span
-                        className="fixed -left-10 bottom-[20vh] "
+                        className="fixed z-10 -left-10 bottom-[20vh] "
                         id="leftReward"
                     />
                     <span
-                        className="fixed -right-10 bottom-[20vh] "
+                        className="fixed z-10 -right-10 bottom-[20vh] "
                         id="rightReward"
                     />
                     {integrationFields.map((field) => {
