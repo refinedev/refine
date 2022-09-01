@@ -7,7 +7,7 @@
 }
 
 .headerTitle {
-    @apply mb-10 flex flex-col items-start text-lg leading-7 text-[#6714CC] sm:mb-0 sm:items-center sm:text-[42px] sm:leading-[48px];
+    @apply mb-10 flex flex-col items-start text-2xl leading-7 text-[#6714CC] sm:mb-0 sm:items-center sm:text-[42px] sm:leading-[48px];
 }
 
 .headerTitleBold {

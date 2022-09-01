@@ -24,17 +24,6 @@ const Integrations: React.FC = () => {
                         imageUrl={integration.icon}
                     />
                 );
-            case "community-packages":
-                return (
-                    <Card
-                        status={integration.status}
-                        title={integration.name}
-                        description={integration.description}
-                        linkUrl={integration.url}
-                        imageUrl={integration.icon}
-                        contributer={integration?.contributors[0]}
-                    />
-                );
             default:
                 return (
                     <Card
@@ -43,6 +32,7 @@ const Integrations: React.FC = () => {
                         description={integration.description}
                         linkUrl={integration.url}
                         imageUrl={integration.icon}
+                        contributer={integration?.contributors?.[0]}
                     />
                 );
         }
@@ -64,6 +54,14 @@ const Integrations: React.FC = () => {
                     </p>
                 </div>
                 <div className={styles.integrationsWrapper}>
+                    <span
+                        className="fixed -left-10 bottom-[20vh] "
+                        id="leftReward"
+                    />
+                    <span
+                        className="fixed -right-10 bottom-[20vh] "
+                        id="rightReward"
+                    />
                     {integrationFields.map((field) => {
                         return (
                             <div key={field}>
