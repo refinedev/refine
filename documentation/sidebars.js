@@ -177,7 +177,6 @@ module.exports = {
                     type: "category",
                     label: "Components",
                     items: [
-                        "core/components/auth-page",
                         "core/components/refine-config",
                         "core/components/layout-wrapper",
                         {
