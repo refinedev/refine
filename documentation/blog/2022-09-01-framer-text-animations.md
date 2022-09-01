@@ -213,7 +213,7 @@ Add the following code into your `App.css` file.
 }
 ```
 
-Change `App.js` file with following code:
+Change `App.js` file with the following code:
 
 ```ts title="App.js"
 import { motion } from "framer-motion";
