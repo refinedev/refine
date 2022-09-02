@@ -266,9 +266,8 @@ export let open = false;
 
 In the above code snippet, we used the `Dialog` component to hide and show a modal, the `Card` to group the `Textfield` together, and a `Button` component to submit the data. 
 
-In the button, we created four variables, `open` to store the initial state of the modal which will be passed as props from the root route, `valueA`, `value`, and `url`, to store the value of the input fields by binding them to the respective inputs.
+In the button, we created four variables, `open` to store the initial state of the modal which will be passed as props from the root route, `title` anc  `content`, to store the value of the input fields by binding them to the respective inputs.
 
- We also created an `items_lenghth` variable which will be passed as props from the root index route to get the length of items in the posts. We'll add one to the length to get the id of the post.
 Then we attached an event handler that calls the `createPost` function, which will be created later to send a request to the **Refine-fake-API**.
 
 Now add the code snippets below in the script tag to create `createPost` function. 
