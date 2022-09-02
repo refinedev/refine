@@ -6,6 +6,7 @@ authors: aydin
 tags: [refine, supabase, react, tutorial]
 image: https://refine.dev/img/refine_social.png
 hide_table_of_contents: false
+is_featured: true
 ---
 
 import cli from '@site/static/img/blog/2021-10-4-simple-web-application/cli.png';
@@ -43,10 +44,11 @@ I will use superplate-cli and select a Supabase. You can customize other options
 
 ## Create admin panel with refine
 
- * We should add our Supabase url and key in *supabaseClient.tsx*
- * Add custom login page in *App.tsx*
+-   We should add our Supabase url and key in _supabaseClient.tsx_
+-   Add custom login page in _App.tsx_
 
-*App.tsx*
+_App.tsx_
+
 ```tsx
 import { Refine } from "@pankod/refine";
 import { dataProvider } from "@pankod/refine-supabase";
@@ -58,33 +60,32 @@ import "@pankod/refine/dist/styles.min.css";
 import { Login } from "./pages/login";
 
 function App() {
-  return (
-    <Refine
-      dataProvider={dataProvider(supabaseClient)}
-      authProvider={authProvider}
-      LoginPage={Login}
-    />
-  );
+    return (
+        <Refine
+            dataProvider={dataProvider(supabaseClient)}
+            authProvider={authProvider}
+            LoginPage={Login}
+        />
+    );
 }
 
 export default App;
-
 ```
 
 ## Login page
-```tsx
 
+```tsx
 import React from "react";
 import {
-  Row,
-  Col,
-  AntdLayout,
-  Card,
-  Typography,
-  Form,
-  Input,
-  Button,
-  Checkbox,
+    Row,
+    Col,
+    AntdLayout,
+    Card,
+    Typography,
+    Form,
+    Input,
+    Button,
+    Checkbox,
 } from "@pankod/refine";
 import "./styles.css";
 
@@ -93,133 +94,146 @@ import { useLogin } from "@pankod/refine";
 const { Text, Title } = Typography;
 
 export interface ILoginForm {
-  username: string;
-  password: string;
-  remember: boolean;
+    username: string;
+    password: string;
+    remember: boolean;
 }
 
 export const Login: React.FC = () => {
-  const [form] = Form.useForm<ILoginForm>();
+    const [form] = Form.useForm<ILoginForm>();
 
-  const { mutate: login } = useLogin<ILoginForm>();
+    const { mutate: login } = useLogin<ILoginForm>();
 
-  const CardTitle = (
-    <Title level={3} className="title">
-      Sign in your account
-    </Title>
-  );
+    const CardTitle = (
+        <Title level={3} className="title">
+            Sign in your account
+        </Title>
+    );
 
-  return (
-    <AntdLayout className="layout">
-      <Row
-        justify="center"
-        align="middle"
-        style={{
-          height: "100vh",
-        }}
-      >
-        <Col xs={22}>
-          <div className="container">
-            <div className="imageContainer">
-              <img src="./refine.svg" alt="Refine Logo" />
-            </div>
-            <Card title={CardTitle} headStyle={{ borderBottom: 0 }}>
-              <Form<ILoginForm>
-                layout="vertical"
-                form={form}
-                onFinish={(values) => {
-                  login(values);
+    return (
+        <AntdLayout className="layout">
+            <Row
+                justify="center"
+                align="middle"
+                style={{
+                    height: "100vh",
                 }}
-                requiredMark={false}
-                initialValues={{
-                  remember: false,
-                  email: "info+refineflix@refine.dev",
-                  password: "refineflix",
-                }}
-              >
-                <Form.Item
-                  name="email"
-                  label="Email"
-                  rules={[{ required: true, type: "email" }]}
-                >
-                  <Input size="large" placeholder="Email" />
-                </Form.Item>
-                <Form.Item
-                  name="password"
-                  label="Password"
-                  rules={[{ required: true }]}
-                  style={{ marginBottom: "12px" }}
-                >
-                  <Input type="password" placeholder="●●●●●●●●" size="large" />
-                </Form.Item>
-                <div style={{ marginBottom: "12px" }}>
-                  <Form.Item name="remember" valuePropName="checked" noStyle>
-                    <Checkbox
-                      style={{
-                        fontSize: "12px",
-                      }}
-                    >
-                      Remember me
-                    </Checkbox>
-                  </Form.Item>
+            >
+                <Col xs={22}>
+                    <div className="container">
+                        <div className="imageContainer">
+                            <img src="./refine.svg" alt="Refine Logo" />
+                        </div>
+                        <Card title={CardTitle} headStyle={{ borderBottom: 0 }}>
+                            <Form<ILoginForm>
+                                layout="vertical"
+                                form={form}
+                                onFinish={(values) => {
+                                    login(values);
+                                }}
+                                requiredMark={false}
+                                initialValues={{
+                                    remember: false,
+                                    email: "info+refineflix@refine.dev",
+                                    password: "refineflix",
+                                }}
+                            >
+                                <Form.Item
+                                    name="email"
+                                    label="Email"
+                                    rules={[{ required: true, type: "email" }]}
+                                >
+                                    <Input size="large" placeholder="Email" />
+                                </Form.Item>
+                                <Form.Item
+                                    name="password"
+                                    label="Password"
+                                    rules={[{ required: true }]}
+                                    style={{ marginBottom: "12px" }}
+                                >
+                                    <Input
+                                        type="password"
+                                        placeholder="●●●●●●●●"
+                                        size="large"
+                                    />
+                                </Form.Item>
+                                <div style={{ marginBottom: "12px" }}>
+                                    <Form.Item
+                                        name="remember"
+                                        valuePropName="checked"
+                                        noStyle
+                                    >
+                                        <Checkbox
+                                            style={{
+                                                fontSize: "12px",
+                                            }}
+                                        >
+                                            Remember me
+                                        </Checkbox>
+                                    </Form.Item>
 
-                  <a
-                    style={{
-                      float: "right",
-                      fontSize: "12px",
-                    }}
-                    href="#"
-                  >
-                    Forgot password?
-                  </a>
-                </div>
-                <Button type="primary" size="large" htmlType="submit" block>
-                  Sign in
-                </Button>
-              </Form>
-              <div style={{ marginTop: 8 }}>
-                <Text style={{ fontSize: 12 }}>
-                  Don’t have an account?{" "}
-                  <a href="#" style={{ fontWeight: "bold" }}>
-                    Sign up
-                  </a>
-                </Text>
-              </div>
-            </Card>
-          </div>
-        </Col>
-      </Row>
-    </AntdLayout>
-  );
+                                    <a
+                                        style={{
+                                            float: "right",
+                                            fontSize: "12px",
+                                        }}
+                                        href="#"
+                                    >
+                                        Forgot password?
+                                    </a>
+                                </div>
+                                <Button
+                                    type="primary"
+                                    size="large"
+                                    htmlType="submit"
+                                    block
+                                >
+                                    Sign in
+                                </Button>
+                            </Form>
+                            <div style={{ marginTop: 8 }}>
+                                <Text style={{ fontSize: 12 }}>
+                                    Don’t have an account?{" "}
+                                    <a href="#" style={{ fontWeight: "bold" }}>
+                                        Sign up
+                                    </a>
+                                </Text>
+                            </div>
+                        </Card>
+                    </div>
+                </Col>
+            </Row>
+        </AntdLayout>
+    );
 };
-
 ```
+
 ```css
 .layout {
     background: radial-gradient(50% 50% at 50% 50%, #63386a 0%, #310438 100%);
     background-size: "cover";
-  }
-  
-  .container {
+}
+
+.container {
     max-width: 408px;
     margin: auto;
-  }
-  
-  .title {
+}
+
+.title {
     text-align: center;
     color: #626262;
     font-size: 30px;
     letter-spacing: -0.04em;
-  }
-  
-  .imageContainer {
+}
+
+.imageContainer {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 16px;
-  }
-  
+}
 ```
+
 You can use default user for login.
 
 <div class="img-container">
@@ -232,7 +246,7 @@ You can use default user for login.
 </div>
 <br />
 
-* Create movies list page with add a resource in *App.tsx*
+-   Create movies list page with add a resource in _App.tsx_
 
 ```tsx
 import { Refine, Resource } from "@pankod/refine";
@@ -243,103 +257,116 @@ import { dataProvider } from "@pankod/refine-supabase";
 import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
 
-import {
-  AdminMovieList,
-} from "./pages/admin/movies";
+import { AdminMovieList } from "./pages/admin/movies";
 import { Login } from "./pages/login";
 
 function App() {
-  return (
-    <Refine
-      dataProvider={dataProvider(supabaseClient)}
-      authProvider={authProvider}
-      LoginPage={Login}
-      resources={[
-          {
-            name: "movies",
-            list: AdminMovieList,
-            options: {
-                route: "admin/movies",
-            },
-          },
-     ]}
-    />
-  );
+    return (
+        <Refine
+            dataProvider={dataProvider(supabaseClient)}
+            authProvider={authProvider}
+            LoginPage={Login}
+            resources={[
+                {
+                    name: "movies",
+                    list: AdminMovieList,
+                    options: {
+                        route: "admin/movies",
+                    },
+                },
+            ]}
+        />
+    );
 }
 
 export default App;
 ```
-* AdminMovieList page
+
+-   AdminMovieList page
+
 ```tsx
 import {
-  List,
-  Table,
-  useTable,
-  IResourceComponentsProps,
-  Space,
-  EditButton,
-  ShowButton,
-  getDefaultSortOrder,
-  CreateButton,
-  DeleteButton,
+    List,
+    Table,
+    useTable,
+    IResourceComponentsProps,
+    Space,
+    EditButton,
+    ShowButton,
+    getDefaultSortOrder,
+    CreateButton,
+    DeleteButton,
 } from "@pankod/refine";
 
 import { IMovies } from "interfaces";
 
 export const AdminMovieList: React.FC<IResourceComponentsProps> = () => {
-  const { tableProps, sorter } = useTable<IMovies>({
-    initialSorter: [
-      {
-        field: "id",
-        order: "asc",
-      },
-    ],
-  });
+    const { tableProps, sorter } = useTable<IMovies>({
+        initialSorter: [
+            {
+                field: "id",
+                order: "asc",
+            },
+        ],
+    });
 
-  return (
-    <List pageHeaderProps={{ extra: <CreateButton /> }}>
-      <Table {...tableProps} rowKey="id">
-        <Table.Column
-          key="id"
-          dataIndex="id"
-          title="ID"
-          sorter
-          defaultSortOrder={getDefaultSortOrder("id", sorter)}
-        />
-        <Table.Column key="name" dataIndex="name" title="name" sorter />
+    return (
+        <List pageHeaderProps={{ extra: <CreateButton /> }}>
+            <Table {...tableProps} rowKey="id">
+                <Table.Column
+                    key="id"
+                    dataIndex="id"
+                    title="ID"
+                    sorter
+                    defaultSortOrder={getDefaultSortOrder("id", sorter)}
+                />
+                <Table.Column key="name" dataIndex="name" title="name" sorter />
 
-        <Table.Column<IMovies>
-          title="Actions"
-          dataIndex="actions"
-          render={(_, record) => (
-            <Space>
-              <EditButton hideText size="small" recordItemId={record.id} />
-              <ShowButton hideText size="small" recordItemId={record.id} />
-              <DeleteButton hideText size="small" recordItemId={record.id} />
-            </Space>
-          )}
-        />
-      </Table>
-    </List>
-  );
+                <Table.Column<IMovies>
+                    title="Actions"
+                    dataIndex="actions"
+                    render={(_, record) => (
+                        <Space>
+                            <EditButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <ShowButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            <DeleteButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                        </Space>
+                    )}
+                />
+            </Table>
+        </List>
+    );
 };
-
 ```
 
-* Movies interface
+-   Movies interface
+
 ```tsx
 export interface IMovies {
-  id: string;
-  name: string;
-  description: string;
-  preload: string;
-  director: string;
-  stars: string;
-  premiere: string;
-  trailer: string;
-  images: IFile[];
+    id: string;
+    name: string;
+    description: string;
+    preload: string;
+    director: string;
+    stars: string;
+    premiere: string;
+    trailer: string;
+    images: IFile[];
 }
 ```
+
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -350,7 +377,7 @@ export interface IMovies {
 </div>
 <br />
 
-* Now we will add create page
+-   Now we will add create page
 
 ## Create page
 
@@ -369,92 +396,102 @@ export interface IMovies {
 
 ```tsx
 import {
-  Create,
-  Form,
-  Input,
-  IResourceComponentsProps,
-  Upload,
-  useForm,
-  RcFile,
+    Create,
+    Form,
+    Input,
+    IResourceComponentsProps,
+    Upload,
+    useForm,
+    RcFile,
 } from "@pankod/refine";
 import { IMovies } from "interfaces";
 import { supabaseClient, normalizeFile } from "utility";
 
 export const AdminMovieCreate: React.FC<IResourceComponentsProps> = () => {
-  const { formProps, saveButtonProps } = useForm<IMovies>();
+    const { formProps, saveButtonProps } = useForm<IMovies>();
 
-  return (
-    <Create saveButtonProps={saveButtonProps}>
-      <Form {...formProps} layout="vertical">
-        <Form.Item
-          label="Name"
-          name="name"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item label="Premiere" name="premiere">
-          <Input />
-        </Form.Item>
-        <Form.Item label="Description" name="description">
-          <Input />
-        </Form.Item>
-        <Form.Item label="Director" name="director">
-          <Input />
-        </Form.Item>
-        <Form.Item label="Stars" name="stars">
-          <Input />
-        </Form.Item>
+    return (
+        <Create saveButtonProps={saveButtonProps}>
+            <Form {...formProps} layout="vertical">
+                <Form.Item
+                    label="Name"
+                    name="name"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item label="Premiere" name="premiere">
+                    <Input />
+                </Form.Item>
+                <Form.Item label="Description" name="description">
+                    <Input />
+                </Form.Item>
+                <Form.Item label="Director" name="director">
+                    <Input />
+                </Form.Item>
+                <Form.Item label="Stars" name="stars">
+                    <Input />
+                </Form.Item>
 
-        <Form.Item label="Images">
-          <Form.Item
-            name="images"
-            valuePropName="fileList"
-            normalize={normalizeFile}
-            noStyle
-          >
-            <Upload.Dragger
-              name="file"
-              listType="picture"
-              multiple
-              customRequest={async ({ file, onError, onSuccess }) => {
-                try {
-                  const rcFile = file as RcFile;
+                <Form.Item label="Images">
+                    <Form.Item
+                        name="images"
+                        valuePropName="fileList"
+                        normalize={normalizeFile}
+                        noStyle
+                    >
+                        <Upload.Dragger
+                            name="file"
+                            listType="picture"
+                            multiple
+                            customRequest={async ({
+                                file,
+                                onError,
+                                onSuccess,
+                            }) => {
+                                try {
+                                    const rcFile = file as RcFile;
 
-                  await supabaseClient.storage
-                    .from("refineflix")
-                    .upload(`public/${rcFile.name}`, file, {
-                      cacheControl: "3600",
-                      upsert: true,
-                    });
+                                    await supabaseClient.storage
+                                        .from("refineflix")
+                                        .upload(`public/${rcFile.name}`, file, {
+                                            cacheControl: "3600",
+                                            upsert: true,
+                                        });
 
-                  const { data } = supabaseClient.storage
-                    .from("refineflix")
-                    .getPublicUrl(`public/${rcFile.name}`);
+                                    const { data } = supabaseClient.storage
+                                        .from("refineflix")
+                                        .getPublicUrl(`public/${rcFile.name}`);
 
-                  const xhr = new XMLHttpRequest();
-                  onSuccess && onSuccess({ url: data?.publicURL }, xhr);
-                } catch (error) {
-                  onError && onError(new Error("Upload Error"));
-                }
-              }}
-            >
-              <p className="ant-upload-text">Drag & drop a file in this area</p>
-            </Upload.Dragger>
-          </Form.Item>
-        </Form.Item>
-      </Form>
-    </Create>
-  );
+                                    const xhr = new XMLHttpRequest();
+                                    onSuccess &&
+                                        onSuccess(
+                                            { url: data?.publicURL },
+                                            xhr,
+                                        );
+                                } catch (error) {
+                                    onError &&
+                                        onError(new Error("Upload Error"));
+                                }
+                            }}
+                        >
+                            <p className="ant-upload-text">
+                                Drag & drop a file in this area
+                            </p>
+                        </Upload.Dragger>
+                    </Form.Item>
+                </Form.Item>
+            </Form>
+        </Create>
+    );
 };
-
 ```
 
-* normalize file in utility folder
+-   normalize file in utility folder
 
 ```tsx
 import { UploadFile } from "@pankod/refine";
@@ -484,8 +521,8 @@ export const normalizeFile = (event: EventArgs) => {
         };
     });
 };
-
 ```
+
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -501,93 +538,107 @@ export const normalizeFile = (event: EventArgs) => {
 ```tsx
 import React from "react";
 import {
-  Edit,
-  Form,
-  Input,
-  IResourceComponentsProps,
-  RcFile,
-  Upload,
-  useForm,
+    Edit,
+    Form,
+    Input,
+    IResourceComponentsProps,
+    RcFile,
+    Upload,
+    useForm,
 } from "@pankod/refine";
 
 import { IMovies } from "interfaces";
 import { supabaseClient, normalizeFile } from "utility";
 
 export const AdminMovieEdit: React.FC<IResourceComponentsProps> = () => {
-  const { formProps, saveButtonProps } = useForm<IMovies>();
+    const { formProps, saveButtonProps } = useForm<IMovies>();
 
-  return (
-    <Edit saveButtonProps={saveButtonProps} pageHeaderProps={{ extra: null }}>
-      <Form {...formProps} layout="vertical">
-        <Form.Item
-          label="Name"
-          name="name"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
+    return (
+        <Edit
+            saveButtonProps={saveButtonProps}
+            pageHeaderProps={{ extra: null }}
         >
-          <Input />
-        </Form.Item>
-        <Form.Item label="Premiere" name="premiere">
-          <Input />
-        </Form.Item>
-        <Form.Item label="Description" name="description">
-          <Input />
-        </Form.Item>
-        <Form.Item label="Director" name="director">
-          <Input />
-        </Form.Item>
-        <Form.Item label="Stars" name="stars">
-          <Input />
-        </Form.Item>
-        <Form.Item label="Trailer" name="trailer">
-          <Input />
-        </Form.Item>
-        <Form.Item label="Images">
-          <Form.Item
-            name="images"
-            valuePropName="fileList"
-            normalize={normalizeFile}
-            noStyle
-          >
-            <Upload.Dragger
-              name="file"
-              listType="picture"
-              multiple
-              customRequest={async ({ file, onError, onSuccess }) => {
-                try {
-                  const rcFile = file as RcFile;
+            <Form {...formProps} layout="vertical">
+                <Form.Item
+                    label="Name"
+                    name="name"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item label="Premiere" name="premiere">
+                    <Input />
+                </Form.Item>
+                <Form.Item label="Description" name="description">
+                    <Input />
+                </Form.Item>
+                <Form.Item label="Director" name="director">
+                    <Input />
+                </Form.Item>
+                <Form.Item label="Stars" name="stars">
+                    <Input />
+                </Form.Item>
+                <Form.Item label="Trailer" name="trailer">
+                    <Input />
+                </Form.Item>
+                <Form.Item label="Images">
+                    <Form.Item
+                        name="images"
+                        valuePropName="fileList"
+                        normalize={normalizeFile}
+                        noStyle
+                    >
+                        <Upload.Dragger
+                            name="file"
+                            listType="picture"
+                            multiple
+                            customRequest={async ({
+                                file,
+                                onError,
+                                onSuccess,
+                            }) => {
+                                try {
+                                    const rcFile = file as RcFile;
 
-                  await supabaseClient.storage
-                    .from("refineflix")
-                    .upload(`public/${rcFile.name}`, file, {
-                      cacheControl: "3600",
-                      upsert: true,
-                    });
+                                    await supabaseClient.storage
+                                        .from("refineflix")
+                                        .upload(`public/${rcFile.name}`, file, {
+                                            cacheControl: "3600",
+                                            upsert: true,
+                                        });
 
-                  const { data } = supabaseClient.storage
-                    .from("refineflix")
-                    .getPublicUrl(`public/${rcFile.name}`);
+                                    const { data } = supabaseClient.storage
+                                        .from("refineflix")
+                                        .getPublicUrl(`public/${rcFile.name}`);
 
-                  const xhr = new XMLHttpRequest();
-                  onSuccess && onSuccess({ url: data?.publicURL }, xhr);
-                } catch (error) {
-                  onError && onError(new Error("Upload Error"));
-                }
-              }}
-            >
-              <p className="ant-upload-text">Drag & drop a file in this area</p>
-            </Upload.Dragger>
-          </Form.Item>
-        </Form.Item>
-      </Form>
-    </Edit>
-  );
+                                    const xhr = new XMLHttpRequest();
+                                    onSuccess &&
+                                        onSuccess(
+                                            { url: data?.publicURL },
+                                            xhr,
+                                        );
+                                } catch (error) {
+                                    onError &&
+                                        onError(new Error("Upload Error"));
+                                }
+                            }}
+                        >
+                            <p className="ant-upload-text">
+                                Drag & drop a file in this area
+                            </p>
+                        </Upload.Dragger>
+                    </Form.Item>
+                </Form.Item>
+            </Form>
+        </Edit>
+    );
 };
-
 ```
+
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -602,15 +653,15 @@ export const AdminMovieEdit: React.FC<IResourceComponentsProps> = () => {
 
 ```tsx
 import {
-  useShow,
-  Show,
-  Typography,
-  IResourceComponentsProps,
-  Space,
-  ImageField,
-  RefreshButton,
-  EditButton,
-  useNavigation,
+    useShow,
+    Show,
+    Typography,
+    IResourceComponentsProps,
+    Space,
+    ImageField,
+    RefreshButton,
+    EditButton,
+    useNavigation,
 } from "@pankod/refine";
 
 import { IMovies } from "interfaces";
@@ -618,61 +669,63 @@ import { IMovies } from "interfaces";
 const { Title, Text } = Typography;
 
 export const AdminMovieShow: React.FC<IResourceComponentsProps> = () => {
-  const { queryResult } = useShow<IMovies>();
-  const { data, isLoading } = queryResult;
-  const record = data?.data;
+    const { queryResult } = useShow<IMovies>();
+    const { data, isLoading } = queryResult;
+    const record = data?.data;
 
-  const { push } = useNavigation();
+    const { push } = useNavigation();
 
-  return (
-    <Show
-      isLoading={isLoading}
-      pageHeaderProps={{
-        title: record?.name,
-        subTitle: record?.premiere,
-        extra: (
-          <>
-            <EditButton
-              onClick={() => push(`/admin/movies/edit/${record?.id}`)}
-            />
-            <RefreshButton />
-          </>
-        ),
-      }}
-    >
-      <Title level={5}>Director</Title>
-      <Text>{record?.director || "-"}</Text>
+    return (
+        <Show
+            isLoading={isLoading}
+            pageHeaderProps={{
+                title: record?.name,
+                subTitle: record?.premiere,
+                extra: (
+                    <>
+                        <EditButton
+                            onClick={() =>
+                                push(`/admin/movies/edit/${record?.id}`)
+                            }
+                        />
+                        <RefreshButton />
+                    </>
+                ),
+            }}
+        >
+            <Title level={5}>Director</Title>
+            <Text>{record?.director || "-"}</Text>
 
-      <Title level={5}>Stars</Title>
-      <Text>{record?.stars || "-"}</Text>
+            <Title level={5}>Stars</Title>
+            <Text>{record?.stars || "-"}</Text>
 
-      <Title level={5}>Trailer</Title>
-      {record?.trailer && (
-        <video width="400" controls>
-          <source src={record.trailer} type="video/mp4" />
-        </video>
-      )}
+            <Title level={5}>Trailer</Title>
+            {record?.trailer && (
+                <video width="400" controls>
+                    <source src={record.trailer} type="video/mp4" />
+                </video>
+            )}
 
-      <Title level={5}>Images</Title>
-      <Space wrap>
-        {record?.images ? (
-          record.images.map((img) => (
-            <ImageField
-              key={img.name}
-              value={img.url}
-              title={img.name}
-              width={200}
-            />
-          ))
-        ) : (
-          <Text>Not found any images</Text>
-        )}
-      </Space>
-    </Show>
-  );
+            <Title level={5}>Images</Title>
+            <Space wrap>
+                {record?.images ? (
+                    record.images.map((img) => (
+                        <ImageField
+                            key={img.name}
+                            value={img.url}
+                            title={img.name}
+                            width={200}
+                        />
+                    ))
+                ) : (
+                    <Text>Not found any images</Text>
+                )}
+            </Space>
+        </Show>
+    );
 };
-
 ```
+
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -704,7 +757,7 @@ Final version of our `<Resource>`.
 
 We will create custom list and show pages for the unauthorized users because of that, we should add custom routes for these pages.
 
-*App.tsx*
+_App.tsx_
 
 ```tsx
 import { Refine, Resource } from "@pankod/refine";
@@ -716,117 +769,122 @@ import authProvider from "./authProvider";
 import { supabaseClient } from "utility";
 
 import {
-  AdminMovieList,
-  AdminMovieCreate,
-  AdminMovieShow,
-  AdminMovieEdit,
+    AdminMovieList,
+    AdminMovieCreate,
+    AdminMovieShow,
+    AdminMovieEdit,
 } from "./pages/admin/movies";
 import { MoviesList, MovieShow } from "./pages/movies";
 import { Login } from "./pages/login";
 
 function App() {
-  return (
-   <Refine
-        dataProvider={dataProvider(supabaseClient)}
-        authProvider={authProvider}
-        LoginPage={Login}
-        routerProvider={{
-            ...routerProvider,
+    return (
+        <Refine
+            dataProvider={dataProvider(supabaseClient)}
+            authProvider={authProvider}
+            LoginPage={Login}
+            routerProvider={{
+                ...routerProvider,
 
-            routes: [
+                routes: [
+                    {
+                        exact: true,
+                        component: MoviesList,
+                        path: "/movies",
+                    },
+                    {
+                        exact: true,
+                        component: MovieShow,
+                        path: "/:resource(movies)/:action(show)/:id",
+                    },
+                ],
+            }}
+            resources={[
                 {
-                    exact: true,
-                    component: MoviesList,
-                    path: "/movies",
-                },
-                {
-                    exact: true,
-                    component: MovieShow,
-                    path: "/:resource(movies)/:action(show)/:id",
-                },
-            ],
-        }}
-        resources={[
-            {
-                name: "movies",
-                list: AdminMovieList,
-                create: AdminMovieCreate,
-                show: AdminMovieShow,
-                edit: AdminMovieEdit,
+                    name: "movies",
+                    list: AdminMovieList,
+                    create: AdminMovieCreate,
+                    show: AdminMovieShow,
+                    edit: AdminMovieEdit,
 
-                options: {
-                    route: "admin/movies",
+                    options: {
+                        route: "admin/movies",
+                    },
                 },
-            },
-        ]}
-    />
-  );
+            ]}
+        />
+    );
 }
 
 export default App;
-
 ```
+
 ### Movies list page
 
 ```tsx
 import {
-  IResourceComponentsProps,
-  Card,
-  Space,
-  useList,
-  useNavigation,
+    IResourceComponentsProps,
+    Card,
+    Space,
+    useList,
+    useNavigation,
 } from "@pankod/refine";
 import { Layout } from "components";
 
 import { IMovies } from "interfaces";
 
 export const MoviesList: React.FC<IResourceComponentsProps> = () => {
-  const { Meta } = Card;
+    const { Meta } = Card;
 
-  const { data, isLoading } = useList<IMovies>({
-    resource: "movies",
-    queryOptions: {
-      staleTime: 0,
-    },
-  });
+    const { data, isLoading } = useList<IMovies>({
+        resource: "movies",
+        queryOptions: {
+            staleTime: 0,
+        },
+    });
 
-  const { push } = useNavigation();
+    const { push } = useNavigation();
 
-  const renderMovies = () => {
-    if (data) {
-      return data.data.map((movie) => {
-        return (
-          <Card
-            hoverable
-            key={movie.name}
-            style={{ width: 240, minHeight: 400 }}
-            cover={
-              movie.images?.length > 0 ? (
-                <img alt={movie.images[0].name} src={movie.images[0].url} />
-              ) : (
-                <img
-                  alt="default"
-                  src="https://cdn.pixabay.com/photo/2019/04/24/21/55/cinema-4153289_960_720.jpg"
-                />
-              )
-            }
-            loading={isLoading}
-            onClick={() => push(`/movies/show/${movie.id}`)}
-          >
-            <Meta title={movie.name} description={movie.description} />
-          </Card>
-        );
-      });
-    }
-  };
+    const renderMovies = () => {
+        if (data) {
+            return data.data.map((movie) => {
+                return (
+                    <Card
+                        hoverable
+                        key={movie.name}
+                        style={{ width: 240, minHeight: 400 }}
+                        cover={
+                            movie.images?.length > 0 ? (
+                                <img
+                                    alt={movie.images[0].name}
+                                    src={movie.images[0].url}
+                                />
+                            ) : (
+                                <img
+                                    alt="default"
+                                    src="https://cdn.pixabay.com/photo/2019/04/24/21/55/cinema-4153289_960_720.jpg"
+                                />
+                            )
+                        }
+                        loading={isLoading}
+                        onClick={() => push(`/movies/show/${movie.id}`)}
+                    >
+                        <Meta
+                            title={movie.name}
+                            description={movie.description}
+                        />
+                    </Card>
+                );
+            });
+        }
+    };
 
-  return (
-    <Layout>
-      <Space align="start">{renderMovies()}</Space>
-    </Layout>
-  );
+    return (
+        <Layout>
+            <Space align="start">{renderMovies()}</Space>
+        </Layout>
+    );
 };
-
 ```
 
 <div class="img-container">
@@ -839,17 +897,16 @@ export const MoviesList: React.FC<IResourceComponentsProps> = () => {
 </div>
 <br />
 
-
 ### Movies detail page
 
 ```tsx
 import {
-  useShow,
-  Show,
-  Typography,
-  IResourceComponentsProps,
-  Space,
-  ImageField,
+    useShow,
+    Show,
+    Typography,
+    IResourceComponentsProps,
+    Space,
+    ImageField,
 } from "@pankod/refine";
 import { Layout } from "components";
 
@@ -858,58 +915,58 @@ import { IMovies } from "interfaces";
 const { Title, Text } = Typography;
 
 export const MovieShow: React.FC<IResourceComponentsProps> = () => {
-  const { queryResult } = useShow<IMovies>();
-  const { data, isLoading } = queryResult;
-  const record = data?.data;
+    const { queryResult } = useShow<IMovies>();
+    const { data, isLoading } = queryResult;
+    const record = data?.data;
 
-  const renderDetail = () => (
-    <>
-      <Title level={5}>Director</Title>
-      <Text>{record?.director || "-"}</Text>
+    const renderDetail = () => (
+        <>
+            <Title level={5}>Director</Title>
+            <Text>{record?.director || "-"}</Text>
 
-      <Title level={5}>Stars</Title>
-      <Text>{record?.stars || "-"}</Text>
-      <Title level={5}>Trailer</Title>
-      {record?.trailer && (
-        <video width="400" controls>
-          <source src={record.trailer} type="video/mp4" />
-        </video>
-      )}
-      <Title level={5}>Images</Title>
-      <Space wrap>
-        {record?.images ? (
-          record.images.map((img) => (
-            <ImageField
-              key={img.name}
-              value={img.url}
-              title={img.name}
-              width={200}
-            />
-          ))
-        ) : (
-          <Text>Not found any images</Text>
-        )}
-      </Space>
-    </>
-  );
+            <Title level={5}>Stars</Title>
+            <Text>{record?.stars || "-"}</Text>
+            <Title level={5}>Trailer</Title>
+            {record?.trailer && (
+                <video width="400" controls>
+                    <source src={record.trailer} type="video/mp4" />
+                </video>
+            )}
+            <Title level={5}>Images</Title>
+            <Space wrap>
+                {record?.images ? (
+                    record.images.map((img) => (
+                        <ImageField
+                            key={img.name}
+                            value={img.url}
+                            title={img.name}
+                            width={200}
+                        />
+                    ))
+                ) : (
+                    <Text>Not found any images</Text>
+                )}
+            </Space>
+        </>
+    );
 
-  return (
-    <Layout>
-      <Show
-        isLoading={isLoading}
-        pageHeaderProps={{
-          title: record?.name,
-          subTitle: record?.premiere,
-          extra: null,
-        }}
-      >
-        {renderDetail()}
-      </Show>
-    </Layout>
-  );
+    return (
+        <Layout>
+            <Show
+                isLoading={isLoading}
+                pageHeaderProps={{
+                    title: record?.name,
+                    subTitle: record?.premiere,
+                    extra: null,
+                }}
+            >
+                {renderDetail()}
+            </Show>
+        </Layout>
+    );
 };
-
 ```
+
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
