@@ -304,7 +304,7 @@ Lastly, add the code snippet below to the `+page.svelte` file to add a button th
   ...
 // highlight-start
 import Button from '@smui/button';
-postimport Dialog from '../components/Dialog.svelte';
+import Dialog from '../components/Dialog.svelte';
 // highlight-end
   ...
 </script>
