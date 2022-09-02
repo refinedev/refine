@@ -18,7 +18,7 @@
         "@docusaurus/theme-live-codeblock": "^2.0.1",
         "@mdx-js/react": "^1.6.21",
         "@pankod/refine-antd": "latest",
-        "@pankod/refine-core": "latest",
+        "@pankod/refine-core": "^3.64.1",
         "@pankod/refine-mui": "latest",
         "@pankod/refine-react-hook-form": "latest",
         "@pankod/refine-react-router-v6": "latest",
