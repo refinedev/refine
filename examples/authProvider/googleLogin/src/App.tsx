@@ -6,7 +6,7 @@ import {
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
 import "@pankod/refine-antd/dist/styles.min.css";
 
@@ -14,15 +14,26 @@ import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Login } from "pages/login";
 import { parseJwt } from "utils/parse-jwt";
 
+const axiosInstance = axios.create();
+
 const API_URL = "https://api.fake-rest.refine.dev";
+
+axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
+    const token = localStorage.getItem("token");
+    if (request.headers) {
+        request.headers["Authorization"] = `Bearer ${token}`;
+    } else {
+        request.headers = {
+            Authorization: `Bearer ${token}`,
+        };
+    }
+
+    return request;
+});
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
         login: ({ credential }: CredentialResponse) => {
-            axios.defaults.headers.common = {
-                Authorization: `Bearer ${credential}`,
-            };
-
             const profileObj = credential ? parseJwt(credential) : null;
 
             if (profileObj) {
@@ -74,7 +85,7 @@ const App: React.FC = () => {
 
     return (
         <Refine
-            dataProvider={dataProvider(API_URL, axios)}
+            dataProvider={dataProvider(API_URL, axiosInstance)}
             routerProvider={routerProvider}
             authProvider={authProvider}
             LoginPage={Login}
