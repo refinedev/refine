@@ -1,9 +1,9 @@
 ---
 "@pankod/refine-core": minor
-"@pankod/refine-nextjs-router": minor
-"@pankod/refine-react-location": minor
-"@pankod/refine-react-router-v6": minor
-"@pankod/refine-remix-router": minor
+"@pankod/refine-nextjs-router": patch
+"@pankod/refine-react-location": patch
+"@pankod/refine-react-router-v6": patch
+"@pankod/refine-remix-router": patch
 ---
 
 🎉 Added `AuthPage` component to the `refine` app. This page is used to login, register, reset password and update password. Login page is default page and old `LoginPage` component is deprecated.
@@ -44,13 +44,3 @@ interface IProvider {
     label?: string;
 }
 ```
-
-# Add `AuthPage` as a default page to Routers
-
-📌 Added `AuthPage` to the `refine-nextjs-router`. Default page is `AuthPage`.
-
-📌 Added `AuthPage` to the `refine-react-location`. Default page is `AuthPage`.
-
-📌 Added `AuthPage` to the `refine-react-router-v6`. Default page is `AuthPage`.
-
-📌 Added `AuthPage` to the `refine-remix-router`. Default page is `AuthPage`.
