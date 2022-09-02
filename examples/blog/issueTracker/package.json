@@ -5,7 +5,7 @@
   "dependencies": {
     "@ant-design/charts": "^1.2.14",
     "@pankod/refine": "2.0.11",
-    "@pankod/refine-antd": "^3.37.9",
+    "@pankod/refine-antd": "^3.37.10",
     "@pankod/refine-core": "^3.65.0",
     "@pankod/refine-react-router-v6": "^3.31.3",
     "@pankod/refine-supabase": "^3.29.0",
