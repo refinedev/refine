@@ -19,10 +19,15 @@ export const generateSorting: GenerateSortingType = (sorting?: CrudSorting) => {
         return undefined;
     }
 
-    const sortingQueryResult: Record<string, "asc" | "desc"> = {};
+    const sortingQueryResult: Record<string, "asc" | "desc" | HasuraSortingType> = {};
 
     sorting.forEach((sortItem) => {
+      if(sortItem.field.indexOf(",") !== -1) {
+        const [field, subField] = sortItem.field.split(",");
+        setWith(sortingQueryResult, `${field}.${subField}`, sortItem.order, Object);
+      } else {
         sortingQueryResult[sortItem.field] = sortItem.order;
+      }
     });
 
     return sortingQueryResult as HasuraSortingType;
