@@ -319,7 +319,7 @@ import Dialog from '../components/Dialog.svelte';
 // highlight-end
 ```
 
-In the above code snippets we atteched an event habdler to change the value of the open varrible to show the modal.
+In the above code snippets, we attached an event handler to change the value of the open variable to show the modal.
 
 
 <div class="img-container">
