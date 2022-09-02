@@ -12,6 +12,7 @@ import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Login } from "pages/login";
+import { parseJwt } from "utils/parse-jwt";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -22,6 +23,18 @@ const App: React.FC = () => {
                 Authorization: `Bearer ${credential}`,
             };
 
+            const profileObj = credential ? parseJwt(credential) : null;
+
+            if (profileObj) {
+                localStorage.setItem(
+                    "user",
+                    JSON.stringify({
+                        ...profileObj,
+                        avatar: profileObj.picture,
+                    }),
+                );
+            }
+
             localStorage.setItem("token", `${credential}`);
 
             return Promise.resolve();
@@ -31,6 +44,7 @@ const App: React.FC = () => {
 
             if (token && typeof window !== "undefined") {
                 localStorage.removeItem("token");
+                localStorage.removeItem("user");
                 axios.defaults.headers.common = {};
                 window.google?.accounts.id.revoke(token, () => {
                     return Promise.resolve();
@@ -51,7 +65,10 @@ const App: React.FC = () => {
 
         getPermissions: () => Promise.resolve(),
         getUserIdentity: async () => {
-            return Promise.resolve({});
+            const user = localStorage.getItem("user");
+            if (user) {
+                return Promise.resolve(JSON.parse(user));
+            }
         },
     };
 
