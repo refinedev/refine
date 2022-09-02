@@ -4,7 +4,7 @@ description: Framer Motion tutorial - Create text and image animations in React 
 slug: framer-motion-react-animations
 authors: joel_ezimorah
 tags: [css, react, animation, framer-motion]
-image: https://refine.dev/img/blog/2022-09-01-framer-text-animations//social.png
+image: https://refine.dev/img/blog/2022-09-01-framer-text-animations/social.png
 hide_table_of_contents: false
 ---
 
