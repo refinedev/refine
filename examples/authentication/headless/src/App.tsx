@@ -1,7 +1,6 @@
 import { AuthProvider, Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
-import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit } from "./pages/posts";
 import { LoginPage } from "./pages/auth/login";

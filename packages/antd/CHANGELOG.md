@@ -1,5 +1,40 @@
 # @pankod/refine-antd
 
+## 3.37.9
+
+### Patch Changes
+
+-   [#2421](https://github.com/pankod/refine/pull/2421) [`2b1c5e01b0`](https://github.com/pankod/refine/commit/2b1c5e01b0f65b2c7558ba79539fab411480cc06) Thanks [@omeraplak](https://github.com/omeraplak)! - Fix: `useStepsForm`'s `submit` function can be overridden
+
+## 3.37.8
+
+### Patch Changes
+
+-   Fix: Wrap with [`<CanAccess />`](https://refine.dev/docs/core/components/accessControl/can-access/) component to parent sider items
+
+    ```tsx
+    <Refine
+        accessControlProvider={{
+            can: async ({ action, resource }) => {
+                // console.log({ action, resource });
+                // output: {action: "list", resource: "cms" }
+
+                return { can: true };
+            },
+        }}
+        resources={[
+            {
+                name: "CMS",
+            },
+            {
+                name: "posts",
+                parentName: "CMS",
+                list: PostList,
+            },
+        ]}
+    />
+    ```
+
 ## 3.37.7
 
 ### Patch Changes
