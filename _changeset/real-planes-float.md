@@ -1,12 +1,12 @@
 ---
-"@pankod/refine-core": patch
-"@pankod/refine-nextjs-router": patch
-"@pankod/refine-react-location": patch
-"@pankod/refine-react-router-v6": patch
-"@pankod/refine-remix-router": patch
+"@pankod/refine-core": minor
+"@pankod/refine-nextjs-router": minor
+"@pankod/refine-react-location": minor
+"@pankod/refine-react-router-v6": minor
+"@pankod/refine-remix-router": minor
 ---
 
-🎉 Added `AuthPage` to the `refine` app. This page is used to login, register, reset password and update password. Login page is default page and old `LoginPage` component is deprecated.
+🎉 Added `AuthPage` component to the `refine` app. This page is used to login, register, reset password and update password. Login page is default page and old `LoginPage` component is deprecated.
 
 # New Auth Hooks
 
@@ -29,6 +29,7 @@ interface IAuthPageProps extends IAuthCommonProps {
 }
 
 interface IAuthCommonProps {
+    submitButton?: React.ReactNode;
     registerLink?: React.ReactNode;
     loginLink?: React.ReactNode;
     resetPasswordLink?: React.ReactNode;
