@@ -266,7 +266,7 @@ export let open = false;
 
 In the above code snippet, we used the `Dialog` component to hide and show a modal, the `Card` to group the `Textfield` together, and a `Button` component to submit the data. 
 
-In the button, we created four variables, `open` to store the initial state of the modal which will be passed as props from the root route, `title` anc  `content`, to store the value of the input fields by binding them to the respective inputs.
+In the button, we created four variables, `open` to store the initial state of the modal which will be passed as props from the root route, `title` and  `content` to store the value of the input fields by binding them to the respective inputs.
 
 Then we attached an event handler that calls the `createPost` function, which will be created later to send a request to the **Refine-fake-API**.
 
