@@ -1,5 +1,13 @@
 # @pankod/refine-core
 
+## 3.64.2
+
+### Patch Changes
+
+-   [#2415](https://github.com/pankod/refine/pull/2415) [`f7c98f0ef9`](https://github.com/pankod/refine/commit/f7c98f0ef9743fbee2cc44206548cf2da3ceb01c) Thanks [@biskuvit](https://github.com/biskuvit)! - Fixed `<AuthPage>` by adding missing props to "login" and "register" pages.
+
+    Fixed `<Refine>` component `LoginPage` property.
+
 ## 3.64.1
 
 ### Patch Changes

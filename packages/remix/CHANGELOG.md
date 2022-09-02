@@ -1,5 +1,11 @@
 # @pankod/refine-remix-router
 
+## 1.2.2
+
+### Patch Changes
+
+-   [#2415](https://github.com/pankod/refine/pull/2415) [`f7c98f0ef9`](https://github.com/pankod/refine/commit/f7c98f0ef9743fbee2cc44206548cf2da3ceb01c) Thanks [@biskuvit](https://github.com/biskuvit)! - Fixed default login page is `<LoginPage>`.
+
 ## 1.2.1
 
 ### Patch Changes
