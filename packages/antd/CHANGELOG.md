@@ -1,5 +1,11 @@
 # @pankod/refine-antd
 
+## 3.37.9
+
+### Patch Changes
+
+-   [#2421](https://github.com/pankod/refine/pull/2421) [`2b1c5e01b0`](https://github.com/pankod/refine/commit/2b1c5e01b0f65b2c7558ba79539fab411480cc06) Thanks [@omeraplak](https://github.com/omeraplak)! - Fix: `useStepsForm`'s `submit` function can be overridden
+
 ## 3.37.8
 
 ### Patch Changes
