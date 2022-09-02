@@ -2,4 +2,4 @@
 "@pankod/refine-antd": patch
 ---
 
-Fix: `submit` function of `useStepsForm` can be overridden
+Fix: `useStepsForm`'s `submit` function can be overridden
