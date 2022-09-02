@@ -23,6 +23,9 @@ const App: React.FC = () => {
                     "https://accounts.google.com/o/oauth2/v2/auth",
                 );
             }
+            if (params.providerName === "github") {
+                return Promise.resolve("https://github.com/login");
+            }
             if (params.email === "admin@refine.com") {
                 localStorage.setItem("email", params.username);
                 return Promise.resolve();
@@ -31,7 +34,7 @@ const App: React.FC = () => {
             return Promise.reject();
         },
         register: (params: any) => {
-            if (params.username && params.password) {
+            if (params.email && params.password) {
                 localStorage.setItem("email", params.username);
                 return Promise.resolve();
             }
@@ -89,7 +92,7 @@ const App: React.FC = () => {
             }}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             authProvider={authProvider}
-            AuthPage={LoginPage}
+            LoginPage={LoginPage}
             resources={[
                 {
                     name: "posts",

@@ -2,7 +2,7 @@
 import React from "react";
 import { Route, Routes, Navigate, Outlet } from "react-router-dom";
 import {
-    AuthPage as DefaultAuthPage,
+    LoginPage as DefaultLoginPage,
     ErrorComponent,
     LayoutWrapper,
     useAuthenticated,
@@ -260,9 +260,9 @@ export const RouteProvider = () => {
         </Routes>
     );
 
-    const renderRouteElement = (): JSX.Element => {
+    const renderLoginRouteElement = (): JSX.Element => {
         if (LoginPage) return <LoginPage />;
-        return <DefaultAuthPage />;
+        return <DefaultLoginPage />;
     };
 
     const renderUnauthorized = () => (
@@ -270,8 +270,8 @@ export const RouteProvider = () => {
             {[...(customRoutes || [])].map((route, i) => (
                 <Route key={`custom-route-${i}`} {...route} />
             ))}
-            <Route path="/" element={renderRouteElement()} />
-            <Route path="/login" element={renderRouteElement()} />
+            <Route path="/" element={renderLoginRouteElement()} />
+            <Route path="/login" element={renderLoginRouteElement()} />
             <Route path="*" element={<CustomPathAfterLogin />} />
         </Routes>
     );

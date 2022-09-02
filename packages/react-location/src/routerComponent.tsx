@@ -4,7 +4,7 @@ import {
     useRefineContext,
     useResource,
     useRouterContext,
-    AuthPage as DefaultAuthPage,
+    LoginPage as DefaultLoginPage,
     LayoutWrapper,
     CanAccess,
     ErrorComponent,
@@ -46,9 +46,9 @@ export const RouterComponent: React.FC<RouterProps> = ({
 
     const isAuthenticated = isError ? false : true;
 
-    const renderRouteElement = (): JSX.Element => {
+    const renderLoginRouteElement = (): JSX.Element => {
         if (LoginPage) return <LoginPage />;
-        return <DefaultAuthPage />;
+        return <DefaultLoginPage />;
     };
 
     if (!isAuthenticated) {
@@ -56,11 +56,11 @@ export const RouterComponent: React.FC<RouterProps> = ({
             ...[...(customRoutes || [])],
             {
                 path: "/",
-                element: renderRouteElement(),
+                element: renderLoginRouteElement(),
             },
             {
                 path: "/login",
-                element: renderRouteElement(),
+                element: renderLoginRouteElement(),
             },
             {
                 path: "*",
