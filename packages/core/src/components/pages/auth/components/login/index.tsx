@@ -7,6 +7,7 @@ export const Login: React.FC<IAuthCommonProps> = ({
     registerLink,
     submitButton,
     resetPasswordLink,
+    backLink,
     providers,
 }) => {
     const { Link } = useRouterContext();
@@ -45,11 +46,18 @@ export const Login: React.FC<IAuthCommonProps> = ({
                                 providerName: provider.name,
                             })
                         }
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                        }}
                     >
                         {provider?.icon}
                         {provider.label ?? (
                             <label>
-                                {translate("pages.login.button", "login")}
+                                {translate(
+                                    "pages.login.button",
+                                    `login with ${provider.name}`,
+                                )}
                             </label>
                         )}
                     </button>
@@ -126,7 +134,12 @@ export const Login: React.FC<IAuthCommonProps> = ({
                     {registerLink &&
                         renderLink(
                             registerLink,
-                            translate("pages.login.register", "go to register"),
+                            translate("pages.login.register", "Go to register"),
+                        )}
+                    {backLink &&
+                        renderLink(
+                            backLink,
+                            translate("pages.login.backLink", "Back"),
                         )}
                 </div>
             </form>

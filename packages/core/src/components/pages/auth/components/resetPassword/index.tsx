@@ -67,7 +67,10 @@ export const ResetPassword: React.FC<IAuthCommonProps> = ({
                     {backLink &&
                         renderLink(
                             backLink,
-                            translate("pages.resetPassword.backLink", "Back"),
+                            translate(
+                                "pages.resetPassword.backLink",
+                                "Go Back",
+                            ),
                         )}
                 </div>
             </form>
