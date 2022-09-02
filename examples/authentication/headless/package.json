@@ -1,0 +1,28 @@
+{
+    "name": "refine-headless-authentication-example",
+    "private": true,
+    "scripts": {
+        "start": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "@pankod/refine-core": "^3.65.0",
+        "@pankod/refine-react-hook-form": "^3.31.4",
+        "@pankod/refine-react-table": "^4.5.0",
+        "@pankod/refine-react-router-v6": "^3.31.3",
+        "@pankod/refine-simple-rest": "^3.27.0",
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0",
+        "react-markdown": "^6.0.1",
+        "react-mde": "^11.1.0"
+    },
+    "devDependencies": {
+        "@types/react": "^18.0.0",
+        "@types/react-dom": "^18.0.0",
+        "@vitejs/plugin-react": "^1.0.7",
+        "typescript": "^4.7.4",
+        "vite": "^2.8.0"
+    },
+    "version": "3.25.0"
+}
