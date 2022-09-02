@@ -2,7 +2,7 @@ import React from "react";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 import { useNavigation } from "@pankod/refine-core";
 
-import { IPost } from "interfaces";
+import { IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
     const { edit, create } = useNavigation();

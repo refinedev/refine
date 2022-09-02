@@ -353,7 +353,7 @@ Output:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={directUpdateError} alt="directUpdateError" />
+    <img src={functionalState} alt="functionalState" />
 </div>
 
 <br/>
