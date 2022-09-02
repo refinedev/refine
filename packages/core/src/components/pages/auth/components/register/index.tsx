@@ -4,6 +4,7 @@ import { IAuthCommonProps, IRegisterForm } from "../..";
 
 export const Register: React.FC<IAuthCommonProps> = ({
     submitButton,
+    backLink,
     loginLink,
 }) => {
     const { Link } = useRouterContext();
@@ -107,6 +108,11 @@ export const Register: React.FC<IAuthCommonProps> = ({
                                 "pages.register.loginLink",
                                 "Go to Login",
                             ),
+                        )}
+                    {backLink &&
+                        renderLink(
+                            backLink,
+                            translate("pages.register.backLink", "Go Back"),
                         )}
                 </div>
             </form>

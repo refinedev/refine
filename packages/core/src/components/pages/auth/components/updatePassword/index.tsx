@@ -60,11 +60,12 @@ export const UpdatePassword: React.FC<IAuthCommonProps> = ({
                         value={newPassword}
                         onChange={(e) => setNewPassword(e.target.value)}
                     />
-                    {translate(
-                        "pages.updatePassword.confirmNewPassword",
-                        "Confirm New Password",
-                    )}
-
+                    <label>
+                        {translate(
+                            "pages.updatePassword.confirmNewPassword",
+                            "Confirm New Password",
+                        )}
+                    </label>
                     <input
                         type="password"
                         required
@@ -85,7 +86,10 @@ export const UpdatePassword: React.FC<IAuthCommonProps> = ({
                     {backLink &&
                         renderLink(
                             backLink,
-                            translate("pages.updatePassword.backLink", "Back"),
+                            translate(
+                                "pages.updatePassword.backLink",
+                                "Go Back",
+                            ),
                         )}
                 </div>
             </form>
