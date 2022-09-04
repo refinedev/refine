@@ -821,7 +821,7 @@ export const SectionNoConstraints: React.FC = () => {
                             <div className="w-full flex-shrink-0 snap-center h-full">
                                 <div className="flex h-full w-full">
                                     <div className="flex-1 flex flex-col justif text-[#2A2A42] text-center max-w-[800px]y-center items-center w-full gap-4">
-                                        <div className="font-montserrat text-xl">
+                                        <div className="font-montserrat text-xl pt-[14px]">
                                             <p>
                                                 <strong>refine</strong> core is
                                                 an open source framework and it
