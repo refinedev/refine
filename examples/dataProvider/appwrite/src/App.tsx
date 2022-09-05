@@ -65,7 +65,7 @@ const App: React.FC = () => {
             liveProvider={liveProvider(appwriteClient, {
                 databaseId: "default",
             })}
-            options={{ liveMode: "auto", disableTelemetry: true }}
+            options={{ liveMode: "auto" }}
             authProvider={authProvider}
             routerProvider={routerProvider}
             LoginPage={Login}

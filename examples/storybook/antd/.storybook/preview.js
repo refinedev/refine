@@ -33,7 +33,7 @@ export const RefineWithLayout = (Story) => (
         list: Story,
       },
     ]}
-    options={{ disableTelemetry: true }}
+
   />
 );
 
@@ -50,6 +50,6 @@ export const RefineWithoutLayout = (Story) => (
         list: Story,
       },
     ]}
-    options={{ disableTelemetry: true }}
+
   />
 );

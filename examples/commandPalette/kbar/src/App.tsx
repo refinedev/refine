@@ -49,7 +49,6 @@ const App: React.FC = () => {
                 Layout={Layout}
                 OffLayoutArea={OffLayoutArea}
                 catchAll={<ErrorComponent />}
-                options={{ disableTelemetry: true }}
             />
         </RefineKbarProvider>
     );
