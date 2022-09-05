@@ -156,6 +156,7 @@ export const useUI = (): ContextType => {
 
 export const ManagedUIContext: FC<PropsWithChildren> = ({ children }) => (
     <UIProvider>
-        <ThemeProvider>{children}</ThemeProvider>
+        {/*  TODO:  enable system */}
+        <ThemeProvider enableSystem={false}>{children}</ThemeProvider>
     </UIProvider>
 );
