@@ -60,7 +60,8 @@ export const CustomerMenuContent: React.FC = () => {
                     </a>
                 </DropdownMenuItem>
             ))}
-            <DropdownMenuItem>
+            {/* TODO: uncomment dark mode when theme is ready */}
+            {/* <DropdownMenuItem>
                 <a
                     className={cn(s.link, "justify-between")}
                     onClick={() => {
@@ -78,7 +79,7 @@ export const CustomerMenuContent: React.FC = () => {
                         )}
                     </div>
                 </a>
-            </DropdownMenuItem>
+            </DropdownMenuItem> */}
             <DropdownMenuItem>
                 <a
                     className={cn(s.link, "border-accent-2 mt-4 border-t")}
