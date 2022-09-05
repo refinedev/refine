@@ -76,7 +76,7 @@ const siteConfig = {
                 blogTitle: "refine blog!",
                 blogDescription: "A Docusaurus powered blog!",
                 routeBasePath: "/blog",
-                postsPerPage: 10,
+                postsPerPage: 12,
                 blogSidebarTitle: "All posts",
                 blogSidebarCount: 0,
                 feedOptions: {
