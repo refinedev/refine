@@ -4,7 +4,7 @@ description: A complete guide on using Material UI (MUI) button in a React app
 slug: mui-button-in-react
 authors: doro_onome
 tags: [material-ui, react, mui, mui-button]
-image: https://refine.dev/img/blog/2022-08-24-mui-icons/mui-icons-social.png
+image: https://refine.dev/img/blog/2022-09-05-mui-button/social.png
 hide_table_of_contents: false
 ---
 
@@ -20,6 +20,13 @@ import mainComponent from '@site/static/img/blog/2022-09-05-mui-button/mainCompo
 import navbar from '@site/static/img/blog/2022-09-05-mui-button/navbar.gif';
 import outlinedButton from '@site/static/img/blog/2022-09-05-mui-button/outlinedButton.png';
 import textButton from '@site/static/img/blog/2022-09-05-mui-button/textButton.png';
+import social from '@site/static/img/blog/2022-09-05-mui-button/social.png';
+
+ <br />
+
+ <div class="img-container">
+    <img src={social} alt="social" />
+</div>
 
 
 ## Introduction
