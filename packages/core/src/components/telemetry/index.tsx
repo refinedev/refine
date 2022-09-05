@@ -23,7 +23,9 @@ export const Telemetry: React.FC<{}> = () => {
         }
 
         const img = new Image();
-        img.src = `http://localhost:5001/track?payload=${encode(payload)}`;
+        img.src = `https://telemetry.refine.dev/track?payload=${encode(
+            payload,
+        )}`;
     }, []);
 
     return null;
