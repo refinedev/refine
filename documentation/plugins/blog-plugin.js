@@ -78,6 +78,7 @@ function getReletadPosts(allBlogPosts, metadata) {
             formattedDate: post.metadata.formattedDate,
             authors: post.metadata.authors,
             readingTime: post.metadata.readingTime,
+            date: post.metadata.date,
         };
     });
 
@@ -101,6 +102,7 @@ function getAuthorPosts(allBlogPosts, metadata) {
             formattedDate: post.metadata.formattedDate,
             authors: post.metadata.authors,
             readingTime: post.metadata.readingTime,
+            date: post.metadata.date,
         };
     });
 

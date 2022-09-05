@@ -16,6 +16,8 @@ export default function BlogListPaginator(props) {
         return null;
     }
 
+    return null;
+
     const lastPage = paginationRange[paginationRange.length - 1];
 
     return (

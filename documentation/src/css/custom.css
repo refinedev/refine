@@ -534,3 +534,20 @@ html {
 #__docusaurus .twitter-banner-bg {
     background: linear-gradient(90deg, #3fdcf7 2.01%, #1890ff 99.51%);
 }
+
+#__docusaurus .blog-paginator-item:hover {
+    background: linear-gradient(90deg, #3fdcf7 2.01%, #1890ff 99.51%);
+}
+
+#__docusaurus .blog-paginator-item:hover #post-title {
+    @apply text-white;
+}
+#__docusaurus .blog-paginator-item:hover #author-title {
+    @apply text-white font-semibold;
+}
+#__docusaurus .blog-paginator-item:hover #author-name {
+    @apply text-white;
+}
+#__docusaurus .blog-paginator-item:hover #post-info {
+    @apply text-white font-semibold;
+}
