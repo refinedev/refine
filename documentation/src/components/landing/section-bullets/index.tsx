@@ -197,13 +197,15 @@ export const SectionBullets = () => {
                                         </strong>{" "}
                                         support with{" "}
                                     </div>
-                                    <div className="flex items-center gap-3">
+                                    <div className="flex items-center gap-3 pt-2">
                                         <BenefitIcons.NextjsIcon
-                                            width={67}
-                                            height="auto"
-                                            className="-mt-3 -mb-3"
+                                            width="auto"
+                                            height={18}
                                         />
-                                        <BenefitIcons.RemixIcon />
+                                        <BenefitIcons.RemixIcon
+                                            width="auto"
+                                            height={18}
+                                        />
                                     </div>
                                 </div>
                             </motion.div>
