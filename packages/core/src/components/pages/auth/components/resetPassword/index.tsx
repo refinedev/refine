@@ -49,7 +49,6 @@ export const ResetPassword: React.FC<IAuthCommonProps> = ({
                         autoCorrect="off"
                         spellCheck={false}
                         autoCapitalize="off"
-                        autoFocus
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
