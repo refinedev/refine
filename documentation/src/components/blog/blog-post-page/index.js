@@ -6,8 +6,8 @@ import { blogPostContainerID } from "@docusaurus/utils-common";
 import { translate } from "@docusaurus/Translate";
 import MDXContent from "@theme/MDXContent";
 import BlogPostItemContainer from "@theme/BlogPostItem/Container";
-import { GithubBanner } from "../github-banner";
-import { DiscordBanner } from "../discord-banner";
+
+import { Tags } from "@site/src/components/blog";
 
 function useReadingTimePlural() {
     const { selectMessage } = usePluralForm();
@@ -81,6 +81,8 @@ export const BlogPostPageView = ({ children }) => {
                 itemProp="articleBody"
             >
                 <MDXContent>{children}</MDXContent>
+                <br />
+                <Tags />
             </div>
         </BlogPostItemContainer>
     );

@@ -12,8 +12,7 @@ import BlogLayout from "@theme/BlogLayout";
 import BlogPostPageMetadata from "@theme/BlogPostPage/Metadata";
 import TOC from "@theme/TOC";
 
-import { BlogPostPageView } from "../../components/blog";
-import { PostPaginator } from "../../components/blog/post-paginator";
+import { BlogPostPageView, PostPaginator } from "../../components/blog";
 
 function BlogPostPageContent({ children }) {
     const { metadata, toc } = useBlogPost();
