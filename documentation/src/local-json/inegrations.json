@@ -3,21 +3,21 @@
         {
             "name": "Ant Design",
             "icon": "/integrations/antd.svg",
-            "description": "A fully featured Ant Design System UI Framework support. Includes +20 Table, Form, Select, Menu, Layout, Notification and CRUD components and hooks.",
+            "description": "<strong>Ant Design</strong> System UI Framework support. 20+ framework-specific <strong>hooks</strong> and  <strong>components</strong> incl. Table, Form, Select, Menu, Layout, Notification and CRUD components.",
             "url": "https://www.npmjs.com/package/@pankod/refine-antd",
             "status": "stable"
         },
         {
             "name": "Material UI",
             "icon": "/integrations/mui.svg",
-            "description": "A fully featured Material UI Framework support. Includes DataGrid (Pro included), AutoComplete, Menu, Layout, Notification and CRUD components and hooks.",
+            "description": "<strong>Material UI</strong> Framework support. 20+ framework-specific hooks and  components  incl. DataGrid (+ Pro), AutoComplete, Menu, Layout, Notification and CRUD components.",
             "url": "https://www.npmjs.com/package/@pankod/refine-mui",
             "status": "stable"
         },
         {
             "name": "Mantine UI",
             "icon": "/integrations/mantine.svg",
-            "description": "A fully featured React component library. Build fully functional accessible web applications faster than ever – Mantine includes more than 100 customizable components and 40 hooks to cover you in any situation",
+            "description": " <strong>Mantine UI</strong> Framework support.",
             "url": "https://mantine.dev",
             "status": "soon"
         }
@@ -26,91 +26,91 @@
         {
             "name": "REST API Data Provider",
             "icon": "/integrations/rest.svg",
-            "description": "Full featured",
+            "description": "Connect any custom <strong>REST API</strong> backend.",
             "url": "https://www.npmjs.com/package/@pankod/refine-simple-rest",
             "status": "stable"
         },
         {
             "name": "GraphQL Data Provider",
             "icon": "/integrations/graphql.svg",
-            "description": "GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data.",
+            "description": "Connect any custom <strong>GraphQL</strong> backend.",
             "url": "https://www.npmjs.com/package/@pankod/refine-graphql",
             "status": "stable"
         },
         {
             "name": "NestJsX Crud Data Provider",
             "icon": "/integrations/nest.svg",
-            "description": "Nest (NestJS) is a framework for building efficient, scalable Node.js server-side applications.",
+            "description": "Consume <strong>REST API's</strong> built with <strong>NestJs</strong>.",
             "url": "https://www.npmjs.com/package/@pankod/refine-nestjsx-crud",
             "status": "stable"
         },
         {
             "name": "Strapi Data Provider",
             "icon": "/integrations/strapi.svg",
-            "description": "Strapi is the leading open-source headless CMS. It’s 100% JavaScript, fully customizable and developer-first.",
+            "description": "<strong>Strapi</strong> connector for <strong>v4 REST API</strong>.",
             "url": "https://www.npmjs.com/package/@pankod/refine-strapi",
             "status": "stable"
         },
         {
             "name": "Supabase Data Provider",
             "icon": "/integrations/supabase.svg",
-            "description": "Supabase is an open source Firebase alternative. Start your project with a Postgres Database, Authentication, instant APIs, Realtime subscriptions and Storage.",
+            "description": "<strong>Supabase</strong> data provider. Supports <strong>Supabase Realtime</strong> for <strong>live/realtime</strong> projects.",
             "url": "https://www.npmjs.com/package/@pankod/refine-supabase",
             "status": "stable"
         },
         {
             "name": "Hasura GraphQL Data Provider",
             "icon": "/integrations/hasura.svg",
-            "description": "From your databases to a unified GraphQL API in just one minute",
+            "description": "<strong>Hasura GraphQL</strong> data provider. Supports <strong>GraphQL Subscriptions</strong> for <strong>live/realtime</strong> projects.",
             "url": "https://www.npmjs.com/package/@pankod/refine-hasura",
             "status": "stable"
         },
         {
             "name": "Nhost Data Provider",
             "icon": "/integrations/nhost.svg",
-            "description": "The Open Source Firebase Alternative with GraphQL",
+            "description": "<strong>Nhost</strong> data provider. Supports <strong>GraphQL Subscriptions</strong> for <strong>live/realtime</strong> projects.",
             "url": "https://www.npmjs.com/package/@pankod/refine-nhost",
             "status": "stable"
         },
         {
             "name": "Appwrite Data Provider",
             "icon": "/integrations/appwrite.svg",
-            "description": "Appwrite is a self-hosted backend-as-a-service platform that provides developers with all the core APIs required to build any application.",
+            "description": " Appwrite data provider. Supports <strong>Appwrite Realtime</strong> for <strong>live/realtime</strong> projects.",
             "url": "https://www.npmjs.com/package/@pankod/refine-appwrite",
             "status": "stable"
         },
         {
             "name": "Airtable Data Provider",
             "icon": "/integrations/airtable.svg",
-            "description": "Accelerate work and unlock potential with powerful apps that connect your data, workflows and teams.",
+            "description": "Use <strong>Airtable</strong> as backend service.",
             "url": "https://www.npmjs.com/package/@pankod/refine-airtable",
             "status": "stable"
         },
         {
             "name": "Medusa Data Provider",
             "icon": "/integrations/medusa.svg",
-            "description": "The Open Source Shopify alternative. Medusa is a composable engine that combines an amazing  developer experience with endless customizations for merchants to scale.",
+            "description": "<strong>Medusa</strong> connector for your e-commerce projects.",
             "url": "https://www.npmjs.com/package/@pankod/refine-medusa",
             "status": "stable"
         },
         {
             "name": "Altogic Data Provider",
             "icon": "/integrations/altogic.svg",
-            "description": "Powerful backend app development and execution platform helping you to easily build, deploy and manage scalable web services.",
+            "description": "Connect backends created with <strong>Altogic</strong>",
             "url": "https://www.npmjs.com/package/@pankod/refine-altogic",
             "status": "stable"
         },
         {
             "name": "Strapi - GraphQL Data Provider",
             "icon": "/integrations/strapi.svg",
-            "description": "Powerful backend app development and execution platform helping you to easily build, deploy and manage scalable web services.",
+            "description": "<strong>Strapi</strong> connector for <strong>GraphQL API</strong>.",
             "url": "https://www.npmjs.com/package/@pankod/refine-strapi-graphql",
             "status": "stable"
         },
         {
             "name": "Firebase Data Provider",
             "icon": "/integrations/firebase.svg",
-            "description": "Firebase is an app development platform that helps you build and grow apps and games users love.",
+            "description": "Support for <strong>Firebase</strong> services.",
             "url": "https://www.npmjs.com/package/refine-firebase",
             "status": "stable",
             "contributors": [
@@ -123,7 +123,7 @@
         {
             "name": "Directus Data Provider",
             "icon": "/integrations/directus.svg",
-            "description": "Power any project with a modern, open source data platform",
+            "description": "Connector for backends created with <strong>Directus</strong>",
             "url": "https://www.npmjs.com/package/@tspvivek/refine-directus",
             "status": "stable",
             "contributors": [
@@ -138,14 +138,14 @@
         {
             "name": "Next.js",
             "icon": "/integrations/nextjs.svg",
-            "description": "The React Framework for Production",
+            "description": "Router Provider for <strong>Next.js</strong>",
             "url": "https://www.npmjs.com/package/@pankod/refine-nextjs-router",
             "status": "stable"
         },
         {
             "name": "Remix",
             "icon": "/integrations/remix.svg",
-            "description": "Remix is a full stack web framework that lets you focus on the user interface and work back through web standards to deliver a fast, slick, and resilient user experience.",
+            "description": "Router Provider for <strong>Remix</strong>",
             "url": "https://www.npmjs.com/package/@pankod/refine-remix-router",
             "status": "stable"
         },
@@ -161,21 +161,21 @@
         {
             "name": "React Table",
             "icon": "/integrations/react.svg",
-            "description": "Headless UI for building powerful tables & datagrids",
+            "description": "<strong>React Table</strong> integration. Powerful tables & datagrids for your <strong>headless</strong> projects.",
             "url": "https://www.npmjs.com/package/@pankod/refine-react-table",
             "status": "stable"
         },
         {
             "name": "React Hook Form",
             "icon": "/integrations/hook-form.svg",
-            "description": "Performant, flexible and extensible forms with easy-to-use validation.",
+            "description": "<strong>React Hook Form</strong> integration. Extensible forms and validation for your projects.",
             "url": "https://www.npmjs.com/package/@pankod/refine-react-hook-form",
             "status": "stable"
         },
         {
             "name": "kbar interface",
             "icon": "/integrations/kbar.svg",
-            "description": "kbar is a fully extensible command+k interface for your site.",
+            "description": "<strong>kbar</strong> integration. Add command/crtrl+k interfaces to your project.",
             "url": "https://www.npmjs.com/package/@pankod/refine-kbar",
             "status": "stable"
         }
@@ -184,7 +184,7 @@
         {
             "name": "Ably Live Provider",
             "icon": "/integrations/ably.svg",
-            "description": "The platform to power synchronized digital experiences in realtime. Guaranteed to deliver at scale.",
+            "description": "<strong>Ably</strong> support for for <strong>live/realtime</strong> projects.",
             "url": "https://www.npmjs.com/package/@pankod/refine-ably",
             "status": "stable"
         }
@@ -193,7 +193,7 @@
         {
             "name": "DP Customizer",
             "icon": "/integrations/dp.svg",
-            "description": "Mixes with different data providers/data methods",
+            "description": " Mix & match different data providers",
             "url": "https://www.npmjs.com/package/data-provider-customizer",
             "status": "stable",
             "contributors": [
@@ -206,7 +206,7 @@
         {
             "name": "Directus Data Provider",
             "icon": "/integrations/directus.svg",
-            "description": "Power any project with a modern, open source data platform",
+            "description": "Connector for backends created with <strong>Directus</strong>",
             "url": "https://www.npmjs.com/package/@tspvivek/refine-directus",
             "status": "stable",
             "contributors": [
@@ -219,7 +219,7 @@
         {
             "name": "Firebase Data Provider",
             "icon": "/integrations/firebase.svg",
-            "description": "Firebase is an app development platform that helps you build and grow apps and games users love.",
+            "description": "Support for <strong>Firebase</strong> services.",
             "url": "https://www.npmjs.com/package/refine-firebase",
             "status": "stable",
             "contributors": [
