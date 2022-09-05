@@ -551,3 +551,8 @@ html {
 #__docusaurus .blog-paginator-item:hover #post-info {
     @apply text-white font-semibold;
 }
+
+#__docusaurus .sticky-author-card {
+    position: sticky;
+    top: calc(var(--ifm-navbar-height) + 1rem);
+}

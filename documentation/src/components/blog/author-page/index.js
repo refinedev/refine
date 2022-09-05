@@ -30,7 +30,10 @@ const AuthorPage = (props) => {
             <BlogLayout
                 sidebar={
                     <div className="w-full lg:w-1/4 mb-6">
-                        <AuthorCardWithProps author={author} />
+                        <AuthorCardWithProps
+                            author={author}
+                            className="sticky-author-card"
+                        />
                     </div>
                 }
             >
