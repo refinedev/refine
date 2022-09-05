@@ -85,10 +85,10 @@ function getReletadPosts(allBlogPosts, metadata) {
 }
 
 function getAuthorPosts(allBlogPosts, metadata) {
-    console.log("metadata:", metadata);
     const authorPosts = allBlogPosts.filter(
         (post) =>
-            post.metadata.frontMatter.authors === metadata.frontMatter.authors &&
+            post.metadata.frontMatter.authors ===
+                metadata.frontMatter.authors &&
             post.metadata.title !== metadata.title,
     );
 
@@ -224,6 +224,39 @@ async function blogPluginExtended(...pluginArgs) {
                     });
                 }),
             );
+
+            const authorsArray = allBlogPosts
+                .map((post) => post.metadata.frontMatter.authors)
+                .filter((authorName) => authorName !== undefined);
+            const uniqueAuthors = [...new Set(authorsArray)];
+
+            uniqueAuthors.map(async (author) => {
+                const authorPosts = allBlogPosts.filter(
+                    (post) => post.metadata.frontMatter.authors === author,
+                );
+
+                const authorListPaginated = paginateBlogPosts({
+                    blogPosts: authorPosts,
+                    basePageUrl: "/blog/author/" + author,
+                    blogTitle,
+                    blogDescription,
+                    postsPerPageOption: "ALL",
+                });
+
+                authorListPaginated.map((authorListPage) => {
+                    const { metadata, items } = authorListPage;
+                    const { permalink } = metadata;
+
+                    addRoute({
+                        path: permalink,
+                        component: "@site/src/components/blog/author-page",
+                        exact: true,
+                        modules: {
+                            items: blogPostItemsModule(items),
+                        },
+                    });
+                });
+            });
         },
     };
 }
