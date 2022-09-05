@@ -51,7 +51,7 @@ export const PostPaginator = ({ posts, title }) => {
                     >
                         <figcaption className="flex justify-center items-center space-x-2">
                             <Link
-                                href={post.authors[0]?.url}
+                                to={`/blog/author/${post.authors[0]?.key}`}
                                 itemProp="url"
                                 className="self-end"
                             >
@@ -64,7 +64,7 @@ export const PostPaginator = ({ posts, title }) => {
                             </Link>
                             <div>
                                 <Link
-                                    href={post.authors[0]?.url}
+                                    to={`/blog/author/${post.authors[0]?.key}`}
                                     itemProp="url"
                                     id="author-name"
                                     className="text-sm text-color-base font-semibold"

@@ -23,7 +23,7 @@ const AuthorCard = ({ author }) => {
     return (
         <div className="p-4 blog-post-item-shadow rounded-[10px]">
             <figcaption className="flex flex-col items-center">
-                <Link href={author?.url} itemProp="url">
+                <Link to={`/blog/author/${author?.key}`} itemProp="url">
                     <img
                         src={author?.imageURL}
                         alt={author?.name}
@@ -33,7 +33,7 @@ const AuthorCard = ({ author }) => {
                 </Link>
                 <div className="text-center mt-2">
                     <Link
-                        href={author?.url}
+                        to={`/blog/author/${author.key}`}
                         itemProp="url"
                         className="text-sm text-color-base font-semibold"
                     >

@@ -6,6 +6,8 @@ import BlogPostItemContainer from "@theme/BlogPostItem/Container";
 export const FeaturedBlogPostItem = () => {
     const { metadata } = useBlogPost();
 
+    const author = metadata.authors[0];
+
     return (
         <BlogPostItemContainer>
             <div className="flex flex-col lg:flex-row overflow-hidden rounded-lg blog-post-item-shadow h-full">
@@ -39,24 +41,24 @@ export const FeaturedBlogPostItem = () => {
                         </div>
                     </div>
                     <figcaption className="flex items-center space-x-4 mt-2">
-                        <Link href={metadata.authors[0]?.url} itemProp="url">
+                        <Link to={`/blog/author/${author?.key}`} itemProp="url">
                             <img
-                                src={metadata.authors[0]?.imageURL}
-                                alt={metadata.authors[0]?.name}
+                                src={author?.imageURL}
+                                alt={author?.name}
                                 className="flex w-12 h-12 rounded-full object-cover"
                                 loading="lazy"
                             />
                         </Link>
                         <div className="flex-auto">
                             <Link
-                                href={metadata.authors[0]?.url}
+                                to={`/blog/author/${author?.key}`}
                                 itemProp="url"
                                 className="text-sm text-color-base font-semibold"
                             >
-                                {metadata.authors[0]?.name}
+                                {author?.name}
                             </Link>
                             <div className="text-xs text-slate-600 -mt-0.5">
-                                {metadata.authors[0]?.title}
+                                {author?.title}
                             </div>
                         </div>
                     </figcaption>
