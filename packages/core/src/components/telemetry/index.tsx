@@ -7,7 +7,7 @@ import { ITelemetryData } from "../../interfaces/telementry";
 const encode = (payload: ITelemetryData): string => {
     const stringifyedPayload = JSON.stringify(payload || {});
 
-    if (btoa) {
+    if (typeof btoa !== "undefined") {
         return btoa(stringifyedPayload);
     }
 
