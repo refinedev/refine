@@ -42,8 +42,10 @@ function Spacer() {
 export const PostPaginator = ({ posts, title }) => {
     return (
         <div className="blog-post-item-shadow p-4 rounded-[10px]">
-            <h2 className="mb-4 uppercase font-montserrat">{title}</h2>
-            <div className="grid grid-cols-3 gap-4">
+            <h2 className="mb-4 uppercase font-montserrat font-extrabold">
+                {title}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {posts.map((post) => (
                     <div
                         key={post.id}
