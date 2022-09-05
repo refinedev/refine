@@ -90,10 +90,10 @@ You can use the following props for the `<AuthPage>` component when the type is 
 
 ### `registerLink`
 
-`registerLink` property defines the link to the registration page.
+`registerLink` property defines the link to the registration page and also you can give a node to render.
 
 ```tsx live disableScroll hideCode url=http://localhost:3000/login previewHeight=390px
-const { AuthPage, Refine, useNavigation } = RefineCore;
+const { AuthPage, Refine, useNavigation, useRouterContext } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
@@ -130,8 +130,25 @@ const Wrapper = (children) => {
     );
 };
 
-const LoginPage = () =>
-    Wrapper(<AuthPage type="login" registerLink="/register" />);
+const LoginPage = () => {
+    const { Link } = useRouterContext();
+    return Wrapper(
+        <AuthPage
+            type="login"
+            registerLink={
+                <div
+                    style={{
+                        border: "1px dashed cornflowerblue",
+                        marginTop: 5,
+                    }}
+                >
+                    <Link to="/register">Don't have an account? Register</Link>
+                </div>
+            }
+        />,
+    );
+};
+
 const RegisterPage = () =>
     Wrapper(<AuthPage type="register" loginLink="/login" />);
 
@@ -189,10 +206,10 @@ render(
 
 ### `resetPasswordLink`
 
-`resetPasswordLink` property defines the link to the reset password page.
+`resetPasswordLink` property defines the link to the reset password page and also you can a give node to render.
 
 ```tsx live disableScroll hideCode url=http://localhost:3000/login previewHeight=350px
-const { AuthPage, Refine, useNavigation } = RefineCore;
+const { AuthPage, Refine, useNavigation, useRouterContext } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
@@ -229,13 +246,29 @@ const Wrapper = (children) => {
     );
 };
 
-const LoginPage = () =>
-    Wrapper(<AuthPage type="login" resetPasswordLink="/reset-password" />);
+const LoginPage = () => {
+    const { Link } = useRouterContext();
+
+    return Wrapper(
+        <AuthPage
+            type="login"
+            resetPasswordLink={
+                <div
+                    style={{
+                        border: "1px dashed cornflowerblue",
+                        marginTop: 5,
+                    }}
+                >
+                    <Link to="/reset-password">Forgot your password?</Link>
+                </div>
+            }
+        />,
+    );
+};
 const RegisterPage = () =>
     Wrapper(<AuthPage type="register" loginLink="/login" />);
-const ResetPasswordPage = () => (
-    <AuthPage type="resetPassword" backLink="/login" />
-);
+const ResetPasswordPage = () =>
+    Wrapper(<AuthPage type="resetPassword" backLink="/login" />);
 
 const App = () => {
     return (
@@ -263,7 +296,7 @@ render(
             routes: [
                 { path: "/login", element: <LoginPage /> },
                 { path: "/register", element: <RegisterPage /> },
-                { path: "/reset", element: <ResetPasswordPage /> },
+                { path: "/reset-password", element: <ResetPasswordPage /> },
             ],
         }}
         LoginPage={AuthPage}
@@ -296,10 +329,10 @@ render(
 
 ### `backLink`
 
-`backLink` property defines the render ReactNode that will be used as a back link.
+`backLink` property defines the render ReactNode that will be used as a back link and also you can give a node to render.
 
 ```tsx live disableScroll hideCode url=http://localhost:3000/login previewHeight=350px
-const { AuthPage, Refine, useNavigation } = RefineCore;
+const { AuthPage, Refine, useNavigation, useRouterContext } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
@@ -318,6 +351,7 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import { authProvider } from "./authProvider";
 
 const LoginPage = () => {
+    const { Link } = useRouterContext();
     return (
         <div
             style={{
@@ -330,7 +364,19 @@ const LoginPage = () => {
                     width: "300px",
                 }}
             >
-                <AuthPage type="login" backLink="/home" />
+                <AuthPage
+                    type="login"
+                    backLink={
+                        <div
+                            style={{
+                                border: "1px dashed cornflowerblue",
+                                marginTop: 5,
+                            }}
+                        >
+                            <Link to="/home">Go Home</Link>
+                        </div>
+                    }
+                />
             </div>
         </div>
     );
@@ -443,18 +489,33 @@ const LoginPage = () => {
                 <AuthPage
                     type="login"
                     submitButton={
-                        <button
-                            type="submit"
-                            onClick={(event) => {
-                                event.preventDefault();
-                                // you can access login form data from `event.target`
-                                console.log("email", event.target.form);
-                                // run your custom login logic
-                                login();
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                padding: 5,
+                                border: "1px dashed cornflowerblue",
+                                marginTop: 5,
                             }}
                         >
-                            Login
-                        </button>
+                            <button
+                                type="submit"
+                                style={{
+                                    display: "flex",
+                                    flex: 1,
+                                    justifyContent: "center",
+                                }}
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    // you can access login form data from `event.target`
+                                    console.log("email", event.target.form);
+                                    // run your custom login logic
+                                    login();
+                                }}
+                            >
+                                Login
+                            </button>
+                        </div>
                     }
                 />
             </div>
@@ -538,8 +599,21 @@ const LoginPage = () => {
             <div
                 style={{
                     width: "300px",
+                    position: "relative",
                 }}
             >
+                <div
+                    style={{
+                        position: "absolute",
+                        display: "flex",
+                        justifyContent: "center",
+                        border: "1px dashed cornflowerblue",
+                        width: "220px",
+                        height: "115px",
+                        top: 40,
+                        left: 40,
+                    }}
+                />
                 <AuthPage
                     type="login"
                     providers={[
@@ -671,10 +745,10 @@ You can use following props for `<AuthPage>` component when type is `"register"`
 
 ### `loginLink`
 
-`loginLink` property defines the link to the login page.
+`loginLink` property defines the link to the login page and also you can give a node to render.
 
 ```tsx live disableScroll hideCode url=http://localhost:3000/register
-const { AuthPage, Refine, useNavigation } = RefineCore;
+const { AuthPage, Refine, useNavigation, useRouterContext } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
@@ -711,8 +785,24 @@ const Wrapper = (children) => {
     );
 };
 
-const RegisterPage = () =>
-    Wrapper(<AuthPage type="register" loginLink="/login" />);
+const RegisterPage = () => {
+    const { Link } = useRouterContext();
+    return Wrapper(
+        <AuthPage
+            type="register"
+            loginLink={
+                <div
+                    style={{
+                        border: "1px dashed cornflowerblue",
+                        marginTop: 5,
+                    }}
+                >
+                    <Link to="/login">Have an account? Login</Link>
+                </div>
+            }
+        />,
+    );
+};
 const LoginPage = () =>
     Wrapper(<AuthPage type="login" registerLink="/register" />);
 
@@ -770,10 +860,10 @@ render(
 
 ### `backLink`
 
-`backLink` property defines the render ReactNode that will be used as a back link.
+`backLink` property defines the render ReactNode that will be used as a back link and also you can give a node to render.
 
 ```tsx live disableScroll hideCode url=http://localhost:3000/register
-const { AuthPage, Refine, useNavigation } = RefineCore;
+const { AuthPage, Refine, useNavigation, useRouterContext } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
@@ -810,8 +900,24 @@ const Wrapper = (children) => {
     );
 };
 
-const RegisterPage = () =>
-    Wrapper(<AuthPage type="register" backLink="/login" />);
+const RegisterPage = () => {
+    const { Link } = useRouterContext();
+    return Wrapper(
+        <AuthPage
+            type="register"
+            backLink={
+                <div
+                    style={{
+                        border: "1px dashed cornflowerblue",
+                        marginTop: 5,
+                    }}
+                >
+                    <Link to="/login">Go Back</Link>
+                </div>
+            }
+        />,
+    );
+};
 const LoginPage = () =>
     Wrapper(<AuthPage type="login" registerLink="/register" />);
 
@@ -917,18 +1023,33 @@ const RegisterPage = () => {
             type="register"
             backLink="/login"
             submitButton={
-                <button
-                    type="submit"
-                    onClick={(event) => {
-                        event.preventDefault();
-                        // you can access register form data from `event.target`
-                        console.log(event.target.form);
-                        // run your custom register logic(validation, etc.)
-                        register();
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        padding: 5,
+                        border: "1px dashed cornflowerblue",
+                        marginTop: 5,
                     }}
                 >
-                    Register
-                </button>
+                    <button
+                        type="submit"
+                        style={{
+                            display: "flex",
+                            flex: 1,
+                            justifyContent: "center",
+                        }}
+                        onClick={(event) => {
+                            event.preventDefault();
+                            // you can access register form data from `event.target`
+                            console.log(event.target.form);
+                            // run your custom register logic(validation, etc.)
+                            register();
+                        }}
+                    >
+                        Register
+                    </button>
+                </div>
             }
         />,
     );
@@ -994,10 +1115,10 @@ You can use the following props for the `<AuthPage>` component when the type is 
 
 ### `backLink`
 
-`backLink` property defines the render ReactNode that will be used as a back link.
+`backLink` property defines the render ReactNode that will be used as a back link and also you can give a node to render.
 
 ```tsx live disableScroll hideCode url=http://localhost:3000/reset-password
-const { AuthPage, Refine, useNavigation } = RefineCore;
+const { AuthPage, Refine, useNavigation, useRouterContext } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
@@ -1034,8 +1155,25 @@ const Wrapper = (children) => {
     );
 };
 
-const ResetPasswordPage = () =>
-    Wrapper(<AuthPage type="resetPassword" backLink="/login" />);
+const ResetPasswordPage = () => {
+    const { Link } = useRouterContext();
+
+    return Wrapper(
+        <AuthPage
+            type="resetPassword"
+            backLink={
+                <div
+                    style={{
+                        border: "1px dashed cornflowerblue",
+                        marginTop: 5,
+                    }}
+                >
+                    <Link to="/login">Go Back</Link>
+                </div>
+            }
+        />,
+    );
+};
 
 const LoginPage = () =>
     Wrapper(<AuthPage type="login" resetPasswordLink="/reset-password" />);
@@ -1138,19 +1276,34 @@ const ResetPasswordPage = () => {
                     type="resetPassword"
                     backLink="/login"
                     submitButton={
-                        <button
-                            type="submit"
-                            onClick={(event) => {
-                                event.preventDefault();
-                                // you can access reset password form data from `event.target`
-                                console.log(event.target.form);
-                                // run your custom reset password logic(validation, etc.)
-                                resetPassword();
-                                replace("/login");
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                padding: 5,
+                                border: "1px dashed cornflowerblue",
+                                marginTop: 5,
                             }}
                         >
-                            Reset Password
-                        </button>
+                            <button
+                                type="submit"
+                                style={{
+                                    display: "flex",
+                                    flex: 1,
+                                    justifyContent: "center",
+                                }}
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    // you can access reset password form data from `event.target`
+                                    console.log(event.target.form);
+                                    // run your custom reset password logic(validation, etc.)
+                                    resetPassword();
+                                    replace("/login");
+                                }}
+                            >
+                                Reset Password
+                            </button>
+                        </div>
                     }
                 />
             </div>
@@ -1206,10 +1359,10 @@ You can use the following props for the `<AuthPage>` component when the type is 
 
 ### `backLink`
 
-`backLink` property defines the render ReactNode that will be used as a back link.
+`backLink` property defines the render ReactNode that will be used as a back link and also you can give a node to render.
 
 ```tsx live disableScroll hideCode url=http://localhost:3000/update-password
-const { AuthPage, Refine, useNavigation } = RefineCore;
+const { AuthPage, Refine, useNavigation, useRouterContext } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
@@ -1246,8 +1399,25 @@ const Wrapper = (children) => {
     );
 };
 
-const UpdatePasswordPage = () =>
-    Wrapper(<AuthPage type="updatePassword" backLink="/login" />);
+const UpdatePasswordPage = () => {
+    const { Link } = useRouterContext();
+
+    return Wrapper(
+        <AuthPage
+            type="updatePassword"
+            backLink={
+                <div
+                    style={{
+                        border: "1px dashed cornflowerblue",
+                        marginTop: 5,
+                    }}
+                >
+                    <Link to="/login">Go Back</Link>
+                </div>
+            }
+        />,
+    );
+};
 
 const LoginPage = () =>
     Wrapper(<AuthPage type="login" backLink="/update-password" />);
@@ -1344,18 +1514,33 @@ const UpdatePasswordPage = () => {
             type="updatePassword"
             backLink="/login"
             submitButton={
-                <button
-                    type="submit"
-                    onClick={(event) => {
-                        event.preventDefault();
-                        // you can access update password form data from `event.target`
-                        console.log(event.target.form);
-                        // run your custom update password logic(validation, etc.)
-                        updatePassword();
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        padding: 5,
+                        border: "1px dashed cornflowerblue",
+                        marginTop: 5,
                     }}
                 >
-                    Update Password
-                </button>
+                    <button
+                        type="submit"
+                        style={{
+                            display: "flex",
+                            flex: 1,
+                            justifyContent: "center",
+                        }}
+                        onClick={(event) => {
+                            event.preventDefault();
+                            // you can access update password form data from `event.target`
+                            console.log(event.target.form);
+                            // run your custom update password logic(validation, etc.)
+                            updatePassword();
+                        }}
+                    >
+                        Update Password
+                    </button>
+                </div>
             }
         />,
     );
