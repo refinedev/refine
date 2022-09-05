@@ -87,13 +87,9 @@ render(
 
 You can use the following props for the `<AuthPage>` component when the type is `"login"`:
 
--   `registerLink` property defines the link to the registration page.
--   `resetPasswordLink` property defines the link to the reset password page.
--   `backLink` property defines the render ReactNode that will be used as a back link.
--   `submitButton` render your custom ReactNode to submit the form. Also, you can reach form values with the `onClick` property and use your own logic to submit the form.
--   `providers` property defines the list of providers used to handle social login authentication.
-
 ### `registerLink`
+
+`registerLink` property defines the link to the registration page.
 
 ```tsx live url=http://localhost:3000/login previewHeight=350px
 const { AuthPage, Refine, useNavigation } = RefineCore;
@@ -163,6 +159,8 @@ render(
 ```
 
 ### `resetPasswordLink`
+
+`resetPasswordLink` property defines the link to the reset password page.
 
 ```tsx live url=http://localhost:3000/login previewHeight=350px
 const { AuthPage, Refine, useNavigation } = RefineCore;
@@ -236,6 +234,8 @@ render(
 ```
 
 ### `backLink`
+
+`backLink` property defines the render ReactNode that will be used as a back link.
 
 ```tsx live url=http://localhost:3000/login previewHeight=350px
 const { AuthPage, Refine, useNavigation } = RefineCore;
@@ -320,6 +320,8 @@ render(
 ```
 
 ### `submitButton`
+
+`submitButton` render your custom ReactNode to submit the form. Also, you can reach form values with the `onClick` property and use your own logic to submit the form.
 
 ```tsx live url=http://localhost:3000/login previewHeight=350px
 const { AuthPage, Refine, useNavigation, useLogin } = RefineCore;
@@ -407,6 +409,8 @@ render(
 ```
 
 ### `providers`
+
+`providers` property defines the list of providers used to handle social login authentication.
 
 ```tsx live url=http://localhost:3000/login previewHeight=455px
 const { AuthPage, Refine, useNavigation } = RefineCore;
@@ -530,11 +534,9 @@ const authProvider: AuthProvider = {
 
 You can use following props for `<AuthPage>` component when type is `"register"`:
 
--   `loginLink` property defines the link to the login page.
--   `backLink` property defines the render ReactNode that will be used as a back link.
--   `submitButton` render your custom ReactNode to submit the form. Also, you can reach form values with the `onClick` property and use your own logic to submit the form.
-
 ### `loginLink`
+
+`loginLink` property defines the link to the login page.
 
 ```tsx live url=http://localhost:3000/register
 const { AuthPage, Refine, useNavigation } = RefineCore;
@@ -611,6 +613,8 @@ render(
 
 ### `backLink`
 
+`backLink` property defines the render ReactNode that will be used as a back link.
+
 ```tsx live url=http://localhost:3000/register
 const { AuthPage, Refine, useNavigation } = RefineCore;
 const authProvider = {
@@ -685,6 +689,8 @@ render(
 ```
 
 ### `submitButton`
+
+`submitButton` render your custom ReactNode to submit the form. Also, you can reach form values with the `onClick` property and use your own logic to submit the form.
 
 ```tsx live url=http://localhost:3000/register
 const { AuthPage, Refine, useNavigation, useRegister } = RefineCore;
@@ -786,10 +792,9 @@ render(
 
 You can use the following props for the `<AuthPage>` component when the type is `"resetPassword"`:
 
--   `backLink` property defines the render ReactNode that will be used as a back link.
--   `submitButton` render your custom ReactNode to submit the form. Also, you can reach form values with the `onClick` property and use your own logic to submit the form.
-
 ### `backLink`
+
+`backLink` property defines the render ReactNode that will be used as a back link.
 
 ```tsx live url=http://localhost:3000/reset-password
 const { AuthPage, Refine, useNavigation } = RefineCore;
@@ -871,6 +876,8 @@ render(
 ```
 
 ### `submitButton`
+
+`submitButton` render your custom ReactNode to submit the form. Also, you can reach form values with the `onClick` property and use your own logic to submit the form.
 
 ```tsx live url=http://localhost:3000/reset-password
 const { AuthPage, Refine, useNavigation, useResetPassword } = RefineCore;
@@ -962,10 +969,9 @@ render(
 
 You can use the following props for the `<AuthPage>` component when the type is `"updatePassword"`:
 
--   `backLink` property defines the render ReactNode that will be used as a back link.
--   `submitButton` render your custom ReactNode to submit the form. Also, you can reach form values with the `onClick` property and use your own logic to submit the form.
-
 ### `backLink`
+
+`backLink` property defines the render ReactNode that will be used as a back link.
 
 ```tsx live url=http://localhost:3000/update-password
 const { AuthPage, Refine, useNavigation } = RefineCore;
@@ -1032,6 +1038,8 @@ render(
 ```
 
 ### `submitButton`
+
+`submitButton` render your custom ReactNode to submit the form. Also, you can reach form values with the `onClick` property and use your own logic to submit the form.
 
 ```tsx live url=http://localhost:3000/reset-password
 const { AuthPage, Refine, useNavigation, useUpdatePassword } = RefineCore;
