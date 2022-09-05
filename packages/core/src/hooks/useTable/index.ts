@@ -204,9 +204,19 @@ export function useTable<
         }
     }, [search]);
 
+    const currentQueryParams = (): object => {
+        // We get QueryString parameters that are uncontrolled by refine.
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { sorter, filters, pageSize, current, ...rest } = qs.parse(
+            search?.slice(1),
+        ); // remove first ? character
+
+        return rest;
+    };
+
     useEffect(() => {
         if (syncWithLocation) {
-            const currentQueryParams = qs.parse(search?.slice(1)); // remove first ? character
+            const queryParams = currentQueryParams();
             const stringifyParams = stringifyTableParams({
                 ...(hasPagination
                     ? {
@@ -218,7 +228,7 @@ export function useTable<
                     : {}),
                 sorter: differenceWith(sorter, permanentSorter, isEqual),
                 filters: differenceWith(filters, permanentFilter, isEqual),
-                ...currentQueryParams,
+                ...queryParams,
             });
 
             // Careful! This triggers render
