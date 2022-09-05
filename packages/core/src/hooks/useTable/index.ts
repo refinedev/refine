@@ -207,9 +207,9 @@ export function useTable<
     const currentQueryParams = (): object => {
         // We get QueryString parameters that are uncontrolled by refine.
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { sorter, filters, pageSize, current, ...rest } = qs.parse(
-            search?.slice(1),
-        ); // remove first ? character
+ const { sorter, filters, pageSize, current, ...rest } = qs.parse(search, {
+        ignoreQueryPrefix: true,
+    });
 
         return rest;
     };
