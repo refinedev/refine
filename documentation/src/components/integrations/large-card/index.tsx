@@ -38,7 +38,10 @@ const LargeCard: React.FC<LargeCardProps> = ({
                             <ComingSoon />
                         </div>
                     ) : (
-                        <p className={styles.description}>{description}</p>
+                        <p
+                            className={styles.description}
+                            dangerouslySetInnerHTML={{ __html: description }}
+                        />
                     )}
                 </div>
             </div>

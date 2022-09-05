@@ -48,9 +48,12 @@ const Card: React.FC<CardProps> = ({
                         {status === "soon" ? (
                             <ComingSoon />
                         ) : (
-                            <div className={styles.description}>
-                                {description}
-                            </div>
+                            <div
+                                className={styles.description}
+                                dangerouslySetInnerHTML={{
+                                    __html: description,
+                                }}
+                            />
                         )}
                     </div>
                 </div>
