@@ -96,7 +96,6 @@ export const Login: React.FC<IAuthCommonProps> = ({
                         autoCorrect="off"
                         spellCheck={false}
                         autoCapitalize="off"
-                        autoFocus
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -134,7 +133,10 @@ export const Login: React.FC<IAuthCommonProps> = ({
                     {registerLink &&
                         renderLink(
                             registerLink,
-                            translate("pages.login.register", "Go to register"),
+                            translate(
+                                "pages.login.register",
+                                "Don't have an account? Register",
+                            ),
                         )}
                     {backLink &&
                         renderLink(
