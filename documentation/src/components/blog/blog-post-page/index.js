@@ -51,7 +51,7 @@ export const BlogPostPageView = ({ children }) => {
         metadata;
 
     return (
-        <BlogPostItemContainer>
+        <BlogPostItemContainer className="blog-post-item-shadow rounded-[10px] p-4">
             <img
                 className="rounded-xl mb-2"
                 src={frontMatter.image}

@@ -516,7 +516,7 @@ html {
 
 #__docusaurus .custom-table-of-contents .table-of-contents {
     @apply pl-0;
-    border: 1px solid var(--ifm-toc-border-color);
+    border: none;
 }
 
 @media (max-width: 1023px) {

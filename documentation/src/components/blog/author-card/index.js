@@ -4,15 +4,24 @@ import { useBlogPost } from "@docusaurus/theme-common/internal";
 
 import { Github, Twitter, Linkedin } from "../icons";
 
-export const AuthorCard = () => {
+export const AuthorCardWithHook = () => {
     const { metadata } = useBlogPost();
 
     const author = metadata.authors[0];
+
+    return <AuthorCard author={author} />;
+};
+
+export const AuthorCardWithProps = ({ author }) => {
+    return <AuthorCard author={author} />;
+};
+
+const AuthorCard = ({ author }) => {
     const authorHasSocialInfo =
         author.github || author.twitter || author.linkedin;
 
     return (
-        <div className="p-4 border border-solid border-[#dadde1] shadow-sm">
+        <div className="p-4 blog-post-item-shadow rounded-[10px]">
             <figcaption className="flex flex-col items-center">
                 <Link href={author?.url} itemProp="url">
                     <img

@@ -8,7 +8,7 @@ export default function BlogPostItem({ className }) {
 
     return (
         <BlogPostItemContainer className={className}>
-            <div className="flex flex-col overflow-hidden rounded-lg blog-post-item-shadow h-full">
+            <div className="flex flex-col overflow-hidden rounded-[10px] blog-post-item-shadow h-full">
                 <Link itemProp="url" to={metadata.permalink}>
                     <div className="h-48 relative">
                         <img
