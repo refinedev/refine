@@ -9,14 +9,13 @@ import clsx from "clsx";
 export default function BlogListPaginator(props) {
     const { metadata } = props;
     const { totalPages, page: currentPage } = metadata;
+    console.log("currentPAge: ", currentPage);
 
     const paginationRange = usePagination({ totalPages, currentPage });
 
     if (currentPage === 0 || paginationRange.length < 2) {
         return null;
     }
-
-    return null;
 
     const lastPage = paginationRange[paginationRange.length - 1];
 
@@ -34,7 +33,9 @@ export default function BlogListPaginator(props) {
                     <Link
                         to={
                             currentPage === 1
-                                ? ""
+                                ? undefined
+                                : currentPage - 1 === 1
+                                ? "/blog"
                                 : `/blog/page/${currentPage - 1}`
                         }
                         className="hover:no-underline"
@@ -79,7 +80,7 @@ export default function BlogListPaginator(props) {
                     <Link
                         to={
                             currentPage === lastPage
-                                ? ""
+                                ? undefined
                                 : `/blog/page/${currentPage + 1}`
                         }
                         className="hover:no-underline"
