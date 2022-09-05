@@ -1,9 +1,9 @@
 ---
 title: Material UI button in React
-description: A complete guide on using Material UI(MUI) button in a React app
-slug: material-ui-button-mui
+description: A complete guide on using Material UI (MUI) button in a React app
+slug: mui-button-in-react
 authors: doro_onome
-tags: [material-ui, react, mui]
+tags: [material-ui, react, mui, mui-button]
 image: https://refine.dev/img/blog/2022-08-24-mui-icons/mui-icons-social.png
 hide_table_of_contents: false
 ---
