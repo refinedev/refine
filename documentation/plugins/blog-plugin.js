@@ -123,7 +123,11 @@ async function blogPluginExtended(...pluginArgs) {
         contentLoaded: async function (data) {
             const { content: blogContents, actions } = data;
             const { addRoute, createData } = actions;
-            const { blogPosts: allBlogPosts } = blogContents;
+            const {
+                blogPosts: allBlogPosts,
+                blogTags,
+                blogTagsListPath,
+            } = blogContents;
 
             const blogItemsToMetadata = {};
 
@@ -259,6 +263,72 @@ async function blogPluginExtended(...pluginArgs) {
                     });
                 });
             });
+
+            // Tags. This is the last part so we early-return if there are no tags.
+            if (Object.keys(blogTags).length === 0) {
+                return;
+            }
+
+            async function createTagsListPage() {
+                const tagsProp = Object.values(blogTags).map((tag) => ({
+                    label: tag.label,
+                    permalink: tag.permalink,
+                    count: tag.items.length,
+                }));
+
+                const tagsPropPath = await createData(
+                    `${utils.docuHash(`${blogTagsListPath}-tags`)}.json`,
+                    JSON.stringify(tagsProp, null, 2),
+                );
+
+                addRoute({
+                    path: blogTagsListPath,
+                    component: "@theme/BlogTagsListPage",
+                    exact: true,
+                    modules: {
+                        tags: aliasedSource(tagsPropPath),
+                    },
+                });
+            }
+
+            async function createTagPostsListPage(tag) {
+                await Promise.all(
+                    tag.pages.map(async (blogPaginated) => {
+                        const { metadata, items } = blogPaginated;
+                        const tagProp = {
+                            label: tag.label,
+                            permalink: tag.permalink,
+                            allTagsPath: blogTagsListPath,
+                            count: tag.items.length,
+                        };
+                        const tagPropPath = await createData(
+                            `${utils.docuHash(metadata.permalink)}.json`,
+                            JSON.stringify(tagProp, null, 2),
+                        );
+
+                        const listMetadataPath = await createData(
+                            `${utils.docuHash(metadata.permalink)}-list.json`,
+                            JSON.stringify(metadata, null, 2),
+                        );
+
+                        addRoute({
+                            path: metadata.permalink,
+                            component: "@theme/BlogTagsPostsPage",
+                            exact: true,
+                            modules: {
+                                items: blogPostItemsModule(items),
+                                tag: aliasedSource(tagPropPath),
+                                listMetadata: aliasedSource(listMetadataPath),
+                            },
+                        });
+                    }),
+                );
+            }
+
+            await createTagsListPage();
+            await Promise.all(
+                Object.values(blogTags).map(createTagPostsListPage),
+            );
         },
     };
 }
