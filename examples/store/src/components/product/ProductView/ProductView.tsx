@@ -52,12 +52,15 @@ export const ProductView: FC<ProductViewProps> = ({
                                     >
                                         <Image
                                             className={s.img}
-                                            src={image.url!}
+                                            src={image.url?.replace(
+                                                "https://refine-store.fra1.cdn.digitaloceanspaces.com/",
+                                                "",
+                                            )}
                                             alt={"Product Image"}
                                             width={600}
                                             height={600}
                                             priority={i === 0}
-                                            quality="85"
+                                            quality="100"
                                         />
                                     </div>
                                 ))}
