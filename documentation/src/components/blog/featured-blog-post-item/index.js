@@ -21,18 +21,18 @@ export const FeaturedBlogPostItem = () => {
 
     return (
         <BlogPostItemContainer>
-            <div className="flex flex-col lg:flex-row overflow-hidden rounded-[10px] blog-post-item-shadow h-full md:h-[380px] lg:h-[260px] xl:h-[240px]">
+            <div className="flex flex-col lg:flex-row overflow-hidden rounded-[10px] blog-post-item-shadow h-full lg:h-[260px] xl:h-[240px]">
                 <Link itemProp="url" to={permalink}>
                     <div className="relative lg:h-full w-full h-40 lg:w-44 ">
                         <img
                             src={frontMatter.image}
                             alt="Post image"
-                            className="absolute inset-0 w-full h-full object-cover hover:brightness-90 transition-all"
+                            className="absolute inset-0 w-full h-full object-cover hover:brightness-90 transition duration-150"
                             loading="lazy"
                         />
                     </div>
                 </Link>
-                <div className="flex flex-col justify-between p-3 h-full gap-3 md:gap-0">
+                <div className="flex flex-col justify-between p-3 h-full gap-3 lg:gap-0">
                     <div>
                         <div className="text-xs text-[#525860]">
                             <Date date={date} formattedDate={formattedDate} />
