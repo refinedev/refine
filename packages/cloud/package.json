@@ -12,8 +12,8 @@
         "node": ">=10"
     },
     "scripts": {
-        "start": "tsup --watch --dts --format esm,cjs,iife --legacy-output",
-        "build": "tsup --dts --format esm,cjs,iife --minify --legacy-output",
+        "start": "tsup --watch --format esm,cjs,iife --legacy-output",
+        "build": "tsup --format esm,cjs,iife --minify --legacy-output",
         "test": "jest --passWithNoTests --runInBand",
         "prepare": "npm run build"
     },
