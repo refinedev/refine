@@ -4,7 +4,7 @@ export { Sider } from "./layout/sider";
 export { Title } from "./layout/title";
 
 // Pages
-export { LoginPage, ReadyPage, ErrorComponent } from "./pages";
+export { LoginPage, ReadyPage, ErrorComponent, AuthPage } from "./pages";
 
 export * from "./crud";
 export * from "./buttons";
