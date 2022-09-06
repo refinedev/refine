@@ -51,6 +51,7 @@
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^2.0.0-beta.9",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "@tsconfig/docusaurus": "^1.0.4",
     "@types/react": "^17.0.19",
     "@types/react-helmet": "^6.1.2",
