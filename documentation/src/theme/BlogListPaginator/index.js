@@ -9,7 +9,6 @@ import clsx from "clsx";
 export default function BlogListPaginator(props) {
     const { metadata } = props;
     const { totalPages, page: currentPage } = metadata;
-    console.log("currentPAge: ", currentPage);
 
     const paginationRange = usePagination({ totalPages, currentPage });
 
