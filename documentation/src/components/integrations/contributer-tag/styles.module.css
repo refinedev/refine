@@ -1,5 +1,5 @@
 .container {
-    @apply justify-center h-10 bg-[#2A2A42] flex w-full items-center gap-2.5 rounded-b-lg border-[1px] border-solid border-[#f5f5f5] border-t-0 px-2.5 py-1 text-sm;
+    @apply flex h-10 w-full appearance-none items-center justify-center gap-2.5 rounded-b-lg border-[1px] border-t-0 border-solid border-[#f5f5f5] bg-[#2A2A42] px-2.5 py-1 text-sm;
 }
 
 .text {
