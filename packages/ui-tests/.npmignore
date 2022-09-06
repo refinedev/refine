@@ -1,6 +1,6 @@
 node_modules
 .DS_Store
 jest.config.js
-tsup.config.js
+tsup.config.ts
 tsconfig.test.json
 tsconfig.declarations.json
