@@ -1,0 +1,6 @@
+node_modules
+.DS_Store
+jest.config.js
+tsup.config.js
+tsconfig.test.json
+tsconfig.declarations.json
