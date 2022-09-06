@@ -5,3 +5,4 @@ export * from "./key-features";
 export * from "./perfect-implementation";
 export * from "./get-started";
 export * from "./browser-window";
+export * from "./integrations";

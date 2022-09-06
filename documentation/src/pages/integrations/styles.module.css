@@ -1,0 +1,31 @@
+.container {
+    @apply font-montserrat mx-4 sm:mx-10 md:mx-12 sm:mt-16 lg:mx-28 xl:mx-36 2xl:mx-52;
+}
+
+.header {
+    @apply mx-auto mt-10 flex flex-col sm:mb-[74px] sm:items-center sm:gap-2.5  md:mt-16;
+}
+
+.headerTitle {
+    @apply mb-10 flex flex-col items-start text-2xl leading-7 text-[#6714CC] sm:mb-0 sm:items-center sm:text-[42px] sm:leading-[48px];
+}
+
+.headerTitleBold {
+    @apply font-extrabold;
+}
+
+.headerText {
+    @apply mb-10 max-w-2xl text-base sm:text-[20px] font-medium leading-[24px] text-[#1F1F1F] sm:mb-0 sm:text-center;
+}
+
+.integrationsWrapper {
+    @apply mb-[50px] flex flex-col gap-[50px];
+}
+
+.integrationTitle {
+    @apply mb-2.5 text-lg font-extrabold sm:text-2xl;
+}
+
+.integrations {
+    @apply grid grid-cols-1 gap-5 sm:gap-2 md:grid-cols-3;
+}
