@@ -46,7 +46,6 @@ function App() {
                         edit: CategoryEdit,
                     },
                 ]}
-                disableTelemetry={true}
             />
         </ThemeProvider>
     );

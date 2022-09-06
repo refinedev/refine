@@ -260,19 +260,18 @@ export const RouteProvider = () => {
         </Routes>
     );
 
+    const renderLoginRouteElement = (): JSX.Element => {
+        if (LoginPage) return <LoginPage />;
+        return <DefaultLoginPage />;
+    };
+
     const renderUnauthorized = () => (
         <Routes>
             {[...(customRoutes || [])].map((route, i) => (
                 <Route key={`custom-route-${i}`} {...route} />
             ))}
-            <Route
-                path="/"
-                element={LoginPage ? <LoginPage /> : <DefaultLoginPage />}
-            />
-            <Route
-                path="/login"
-                element={LoginPage ? <LoginPage /> : <DefaultLoginPage />}
-            />
+            <Route path="/" element={renderLoginRouteElement()} />
+            <Route path="/login" element={renderLoginRouteElement()} />
             <Route path="*" element={<CustomPathAfterLogin />} />
         </Routes>
     );

@@ -50,7 +50,7 @@ export default function App() {
                             show: PostShow,
                         },
                     ]}
-                    syncWithLocation
+                    options={{ syncWithLocation: true }}
                 >
                     <Outlet />
                 </Refine>

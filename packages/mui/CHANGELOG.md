@@ -1,5 +1,99 @@
 # @pankod/refine-mui
 
+## 3.41.16
+
+### Patch Changes
+
+-   Fix: Wrap with [`<CanAccess />`](https://refine.dev/docs/core/components/accessControl/can-access/) component to parent sider items
+
+    ```tsx
+    <Refine
+        accessControlProvider={{
+            can: async ({ action, resource }) => {
+                // console.log({ action, resource });
+                // output: {action: "list", resource: "cms" }
+
+                return { can: true };
+            },
+        }}
+        resources={[
+            {
+                name: "CMS",
+            },
+            {
+                name: "posts",
+                parentName: "CMS",
+                list: PostList,
+            },
+        ]}
+    />
+    ```
+
+## 3.41.15
+
+### Patch Changes
+
+-   [#2411](https://github.com/pankod/refine/pull/2411) [`c61470a2e0`](https://github.com/pankod/refine/commit/c61470a2e00df94a211395541601fd39b63e2cff) Thanks [@omeraplak](https://github.com/omeraplak)! - Fix: Wrap with [`<CanAccess />`](https://refine.dev/docs/core/components/accessControl/can-access/) component to parent sider items
+
+    ```tsx
+    <Refine
+        accessControlProvider={{
+            can: async ({ action, resource }) => {
+                // console.log({ action, resource });
+                // output: {action: "list", resource: "cms" }
+
+                return { can: true };
+            },
+        }}
+        resources={[
+            {
+                name: "CMS",
+            },
+            {
+                name: "posts",
+                parentName: "CMS",
+                list: PostList,
+            },
+        ]}
+    />
+    ```
+
+## 3.41.14
+
+### Patch Changes
+
+-   -   `lodash` moved to "dependencies" for CommonJS builds
+
+## 3.41.13
+
+### Patch Changes
+
+-   -   `lodash` moved to "dependencies" for CommonJS builds
+
+## 3.41.12
+
+### Patch Changes
+
+-   -   `lodash` moved to "dependencies" for CommonJS builds
+
+## 3.41.11
+
+### Patch Changes
+
+-   [#2366](https://github.com/pankod/refine/pull/2366) [`de87f13dad`](https://github.com/pankod/refine/commit/de87f13dadabc3de947534988abfbb2ff6263ca4) Thanks [@omeraplak](https://github.com/omeraplak)! - - `lodash` moved to "dependencies" for CommonJS builds
+
+## 3.41.10
+
+### Patch Changes
+
+-   `lodash` moved to dependencies.
+
+## 3.41.9
+
+### Patch Changes
+
+-   [#2350](https://github.com/pankod/refine/pull/2350) [`f8e5d99598`](https://github.com/pankod/refine/commit/f8e5d99598265af434f25fde104fafc9b7cac792) Thanks [@ozkalai](https://github.com/ozkalai)! - `lodash` moved to dependencies.
+
 ## 3.41.8
 
 ### Patch Changes

@@ -1,9 +1,26 @@
 import React from "react";
 
-import { IRefineContext, IRefineContextProvider } from "./IRefineContext";
+import {
+    IRefineContextOptions,
+    IRefineContext,
+    IRefineContextProvider,
+} from "./IRefineContext";
 import { DefaultLayout } from "@components/layoutWrapper/defaultLayout";
 
-import { LoginPage as DefaultLoginPage } from "@components/pages";
+import { AuthPage as DefaultAuthPage } from "@components/pages";
+
+export const defaultRefineOptions: IRefineContextOptions = {
+    mutationMode: "pessimistic",
+    syncWithLocation: false,
+    undoableTimeout: 5000,
+    warnWhenUnsavedChanges: false,
+    liveMode: "off",
+    redirect: {
+        afterCreate: "list",
+        afterClone: "list",
+        afterEdit: "list",
+    },
+};
 
 export const RefineContext = React.createContext<IRefineContext>({
     hasDashboard: false,
@@ -19,6 +36,7 @@ export const RefineContext = React.createContext<IRefineContext>({
     OffLayoutArea: undefined,
     liveMode: "off",
     onLiveEvent: undefined,
+    options: defaultRefineOptions,
 });
 
 export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
@@ -35,10 +53,11 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
     Sider,
     Footer,
     OffLayoutArea,
-    LoginPage = DefaultLoginPage,
+    LoginPage = DefaultAuthPage,
     catchAll,
     liveMode = "off",
     onLiveEvent,
+    options,
 }) => {
     return (
         <RefineContext.Provider
@@ -59,6 +78,7 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
                 catchAll,
                 liveMode,
                 onLiveEvent,
+                options,
             }}
         >
             {children}

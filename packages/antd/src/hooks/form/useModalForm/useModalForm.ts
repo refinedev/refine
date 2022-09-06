@@ -106,6 +106,10 @@ export const useModalForm = <
             if (isSuccessMutation && !isLoadingMutation) {
                 close();
                 resetMutation?.();
+                // Prevents resetting form values before closing modal in UI
+                setTimeout(() => {
+                    form.resetFields();
+                });
             }
         }
     }, [isSuccessMutation, isLoadingMutation]);
@@ -117,6 +121,10 @@ export const useModalForm = <
 
             if (!(mutationMode === "pessimistic")) {
                 close();
+                // Prevents resetting form values before closing modal in UI
+                setTimeout(() => {
+                    form.resetFields();
+                });
             }
         },
         loading: formLoading,

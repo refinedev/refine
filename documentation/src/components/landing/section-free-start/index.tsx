@@ -24,24 +24,38 @@ export const SectionFreeStart: React.FC = () => {
 
     const leftCardOpacity = useTransform(scroll, [1, 0, -1], [0, 1, 0]);
     const leftCardX = useTransform(scroll, [1, 0, -1], [-100, 0, -100]);
+    const leftCardRotate = useTransform(
+        scroll,
+        [1, 0, -1],
+        ["0deg", "-4deg", "0deg"],
+    );
     const rightCardOpacity = useTransform(scroll, [1, 0, -1], [0, 1, 0]);
     const rightCardX = useTransform(scroll, [1, 0, -1], [100, 0, 100]);
+    const rightCardRotate = useTransform(
+        scroll,
+        [1, 0, -1],
+        ["0deg", "4deg", "0deg"],
+    );
     const orOpacity = useTransform(scroll, [1, 0, -1], [0, 1, 0]);
     const orY = useTransform(scroll, [1, 0, -1], [200, 0, -200]);
     const orRotate = useTransform(scroll, [1, 0, -1], [-180, -5, 180]);
 
+    const whyNotOpacity = useTransform(scroll, [1, 0, -1], [0, 1, 1]);
+    const whyNotY = useTransform(scroll, [1, 0, -1], [180, 0, 180]);
+
     return (
         // Scroll animated container
-        <motion.div
-            ref={ref}
-            className="h-[calc(578px+48px)] lg:h-[calc(400px+48px)] bg-white"
-        >
+        <motion.div ref={ref} className="h-screen lg:h-[318px] bg-white">
             {/* Scroll animated section */}
-            <motion.div className="h-[calc(578px+48px)] lg:h-[calc(400px+48px)] w-screen top-0 left-0 sticky pt-16 px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col">
+            <motion.div className="h-screen lg:h-[318px] w-screen top-0 left-0 sticky pt-16 px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col">
                 <div className="flex pt-12 gap-7 max-w-5xl px-3 mx-auto w-full items-center">
                     <motion.div
                         className="shadow-startTiles rounded-xl p-2.5 flex-1 h-full"
-                        style={{ x: leftCardX, opacity: leftCardOpacity }}
+                        style={{
+                            x: leftCardX,
+                            opacity: leftCardOpacity,
+                            rotate: leftCardRotate,
+                        }}
                     >
                         <div className="border-2 border-dashed border-[#1784EB] rounded relative flex w-full pr-2.5 pl-7 pt-8 pb-10 h-full items-center">
                             <div className="text-[#1784EB]">
@@ -66,7 +80,11 @@ export const SectionFreeStart: React.FC = () => {
                     </motion.div>
                     <motion.div
                         className="shadow-startTiles rounded-xl p-2.5 flex-1 h-full"
-                        style={{ x: rightCardX, opacity: rightCardOpacity }}
+                        style={{
+                            x: rightCardX,
+                            opacity: rightCardOpacity,
+                            rotate: rightCardRotate,
+                        }}
                     >
                         <div className="border-2 border-dashed border-[#1784EB] rounded relative flex w-full pr-2.5 pl-8 py-5 h-full items-center justify-center">
                             <div className="text-[#1784EB]">
@@ -87,17 +105,21 @@ export const SectionFreeStart: React.FC = () => {
                         </div>
                     </motion.div>
                 </div>
-                <div className="flex items-center justify-center pt-11">
+                {/* <div className="flex items-center justify-center pt-14">
                     <motion.div
-                        style={{ y: orY, opacity: orOpacity, rotate: -2.5 }}
-                        className="h-fit z-[1] px-5 -mx-16 bg-[#3FDCF7] font-extrabold font-montserrat text-white uppercase text-[52px] leading-[52px] py-0.5 -rotate-3 shadow-startTiles flex"
+                        style={{
+                            y: whyNotY,
+                            opacity: whyNotOpacity,
+                            rotate: -2.5,
+                        }}
+                        className="h-fit z-[1] px-5 -mx-16 bg-[#1784EB] font-extrabold font-montserrat text-white uppercase text-[52px] leading-[52px] py-0.5 -rotate-3 shadow-startTiles flex"
                     >
                         why not both?
                     </motion.div>
-                </div>
+                </div> */}
             </motion.div>
             {/* Scroll snap alignment */}
-            <div className="snap-start h-[calc(578px+48px)] lg:h-[calc(400px+48px)]" />
+            <div className="snap-start h-screen lg:h-[318px]" />
         </motion.div>
     );
 };

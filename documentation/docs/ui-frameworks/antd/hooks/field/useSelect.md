@@ -135,6 +135,21 @@ const { selectProps } = useSelect({
 
 Allows you to change the values and appearance of your options. Default values are `optionLabel = "title"` and `optionValue = "id"`.
 
+:::tip
+
+Supports use with `optionLabel` and `optionValue` [Object path](https://lodash.com/docs/4.17.15#get) syntax.
+
+```tsx
+const { options } = useSelect({
+    resource: "categories",
+// highlight-start
+    optionLabel: "nested.title",
+    optionValue: "nested.id",
+// highlight-end
+});
+```
+:::
+
 ### `filters`
 
 ```tsx
@@ -200,8 +215,25 @@ const { selectProps } = useSelect({
 // highlight-end
 });
 ```
-
 If defined, it allows us to override the filters to use when fetching list of records. Thus, it . It should return [`CrudFilters`](/core/interfaces.md#crudfilters).
+
+#### Client-side filtering
+
+```tsx
+const { selectProps } = useSelect({
+    resource: "categories",
+});
+
+<Select
+    {...selectProps}
+// highlight-start
+    onSearch={undefined}
+    filterOption={true}
+    optionFilterProp="label" // or "value"
+// highlight-end
+/>
+```
+
 
 ### `queryOptions`
 

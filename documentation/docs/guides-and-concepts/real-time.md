@@ -76,7 +76,7 @@ const App: React.FC = () => {
             catchAll={<ErrorComponent />}
             //highlight-start
             liveProvider={liveProvider(ablyClient)}
-            liveMode="auto"
+            options={{ liveMode: "auto" }}
             //highlight-end
             resources={[
                 {
@@ -97,7 +97,7 @@ export default App;
 
 :::note
 
-For live features to work automatically we also added `liveMode="auto"`.
+For live features to work automatically we added `liveMode: "auto"` in `options` prop.
 
 [Refer to the Live Provider documentation for detailed information. &#8594](/core/providers/live-provider.md#livemode)
 :::

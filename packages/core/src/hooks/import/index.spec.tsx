@@ -44,12 +44,12 @@ const parsedData = [
     },
 ];
 
-afterEach(() => {
-    jest.clearAllMocks();
-    jest.useRealTimers();
-});
-
 describe("useImport hook", () => {
+    afterEach(() => {
+        jest.clearAllMocks();
+        jest.useRealTimers();
+    });
+
     it("should render hook without crashing", () => {
         const result = renderHook(() => useImport(), {
             wrapper: TestWrapper({

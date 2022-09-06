@@ -1,12 +1,10 @@
 import React from "react";
-import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import { useBlogPost } from "@docusaurus/theme-common/internal";
 import { usePluralForm } from "@docusaurus/theme-common";
 import { blogPostContainerID } from "@docusaurus/utils-common";
 import { translate } from "@docusaurus/Translate";
 import MDXContent from "@theme/MDXContent";
-
 import BlogPostItemContainer from "@theme/BlogPostItem/Container";
 
 function useReadingTimePlural() {

@@ -156,3 +156,57 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "6c59586e8bf05488-IST",
         ],
     );
+
+nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
+    .post("/v1/graphql", {
+        query: "query ($limit: Int, $offset: Int, $where: posts_bool_exp) { posts (limit: $limit, offset: $offset, where: $where) { id, title } posts_aggregate (where: $where) { aggregate { count } } }",
+        variables: {
+            limit: 10,
+            offset: 0,
+            where: {
+                category: {
+                    id: { _eq: "8332c138-3231-406d-9655-1328ded9d5f2" },
+                },
+            },
+        },
+    })
+    .reply(
+        200,
+        [
+            "1f8b0800000000000403754ed10ac23010fb15b9e71dd8aeebdafe8a885cafbd311027b63e95fdbb15059f0c041208491a24aa04a1c17d2bb540383558130488c43acb91d0792f68ac37e84c168c9ead649358c71906a86bbde61ea792e4cd4249601f0edf16274ac559595469223471b2e8462538138963cb79b4fca7c5380dfb79f8fcbad0b23cf242b56f35f89943e84bbc3d6f15bad47bc70bc5192fefd2000000",
+        ],
+        [
+            "Date",
+            "Tue, 23 Aug 2022 12:42:59 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Transfer-Encoding",
+            "chunked",
+            "Connection",
+            "close",
+            "x-request-id",
+            "4d6b8e1a42671cb194971665d7bd0276",
+            "Content-Encoding",
+            "gzip",
+            "CF-Cache-Status",
+            "DYNAMIC",
+            "Expect-CT",
+            'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+            "Content-Security-Policy",
+            "upgrade-insecure-requests",
+            "Referrer-Policy",
+            "strict-origin-when-cross-origin",
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-Frame-Options",
+            "SAMEORIGIN",
+            "X-XSS-Protection",
+            "0",
+            "Server",
+            "cloudflare",
+            "CF-RAY",
+            "73f3ee5f8943b9d8-OTP",
+        ],
+    );
