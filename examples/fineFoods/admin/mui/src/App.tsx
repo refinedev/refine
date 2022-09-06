@@ -73,7 +73,6 @@ const App: React.FC = () => {
                         options={{
                             syncWithLocation: true,
                             warnWhenUnsavedChanges: true,
-                            disableTelemetry: true,
                         }}
                         notificationProvider={notificationProvider}
                         OffLayoutArea={OffLayoutArea}

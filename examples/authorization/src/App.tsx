@@ -87,7 +87,6 @@ const App: React.FC = () => {
             LoginPage={LoginPage}
             Layout={Layout}
             catchAll={<ErrorComponent />}
-            options={{ disableTelemetry: true }}
         />
     );
 };

@@ -17,7 +17,6 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             dataProvider={dataProvider(API_URL)}
             Layout={Layout}
             resources={[{ name: "users" }]}
-            options={{ disableTelemetry: true }}
         >
             <Head>
                 <title>finefoods client example - refine</title>
