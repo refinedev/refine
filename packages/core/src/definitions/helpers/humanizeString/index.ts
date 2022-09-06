@@ -1,7 +1,7 @@
-import decamelize from "decamelize";
-
 export const humanizeString = (text: string): string => {
-    text = decamelize(text);
+    text = text.replace(/([a-z]{1})([A-Z]{1})/g, "$1-$2");
+    text = text.replace(/([A-Z]{1})([A-Z]{1})([a-z]{1})/g, "$1-$2$3");
+
     text = text
         .toLowerCase()
         .replace(/[_-]+/g, " ")

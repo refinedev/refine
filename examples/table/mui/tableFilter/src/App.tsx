@@ -30,7 +30,7 @@ const App: React.FC = () => {
                     ReadyPage={ReadyPage}
                     Layout={Layout}
                     catchAll={<ErrorComponent />}
-                    options={{ syncWithLocation: true, disableTelemetry: true }}
+                    options={{ syncWithLocation: true }}
                     resources={[
                         {
                             name: "posts",

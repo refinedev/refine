@@ -46,7 +46,6 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             notificationProvider={notificationProvider}
             Layout={Layout}
             catchAll={<ErrorComponent />}
-            options={{ disableTelemetry: true }}
         >
             <Component {...pageProps} />
         </Refine>

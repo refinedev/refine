@@ -15,7 +15,6 @@ const App: React.FC = () => {
                     list: PostList,
                 },
             ]}
-            options={{ disableTelemetry: true }}
         />
     );
 };

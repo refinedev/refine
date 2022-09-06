@@ -215,8 +215,25 @@ const { selectProps } = useSelect({
 // highlight-end
 });
 ```
-
 If defined, it allows us to override the filters to use when fetching list of records. Thus, it . It should return [`CrudFilters`](/core/interfaces.md#crudfilters).
+
+#### Client-side filtering
+
+```tsx
+const { selectProps } = useSelect({
+    resource: "categories",
+});
+
+<Select
+    {...selectProps}
+// highlight-start
+    onSearch={undefined}
+    filterOption={true}
+    optionFilterProp="label" // or "value"
+// highlight-end
+/>
+```
+
 
 ### `queryOptions`
 
