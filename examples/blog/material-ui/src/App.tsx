@@ -45,7 +45,6 @@ function App() {
                     options={{
                         mutationMode: "undoable",
                         syncWithLocation: true,
-                        disableTelemetry: true,
                     }}
                 />
             </RefineSnackbarProvider>

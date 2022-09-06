@@ -282,6 +282,15 @@ Then we implemented the hover effect, where the button gets zoomed in when the u
 
 We set the button's title to be positioned left for the button's contents. For the color tag, we used a flex layout, added static width and height, set some margins, and described the border parameters.
 
+<br/>
+<div>
+<a href="https://github.com/pankod/refine">
+  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
+</a>
+</div>
+
+
+
 ### Creating a search bar
 
 To create a search component used to filter the content based on the custom user search queries, open the `Search.tsx` file and include the following code:
@@ -608,6 +617,15 @@ Two different types of content filtering (filter buttons and search bar) were im
 
 Feel free to modify the app with your own custom features. Play around with different color schemes, layouts, and font families. Also, since refine comes with a rich data provider, feel free to extend the content card with description, author, dates, or even images.
 
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
+</a>
+</div>
+
+
+
 ## Live StackBlitz Example
 
 <iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/blog/refine-filtering/?embed=1&view=preview&theme=dark&preset=node"
@@ -634,7 +652,7 @@ Check out [refine](https://github.com/pankod/refine), if you are interested in a
 
 <br/>
 
-**refine** is a open-source React-based framework for building CRUD applications **without constraints.**
+**refine** is an open-source React-based framework for building CRUD applications **without constraints.**
 It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
 
 **refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.

@@ -46,16 +46,21 @@ export const RouterComponent: React.FC<RouterProps> = ({
 
     const isAuthenticated = isError ? false : true;
 
+    const renderLoginRouteElement = (): JSX.Element => {
+        if (LoginPage) return <LoginPage />;
+        return <DefaultLoginPage />;
+    };
+
     if (!isAuthenticated) {
         const routes: Route[] = [
             ...[...(customRoutes || [])],
             {
                 path: "/",
-                element: LoginPage ? <LoginPage /> : <DefaultLoginPage />,
+                element: renderLoginRouteElement(),
             },
             {
                 path: "/login",
-                element: LoginPage ? <LoginPage /> : <DefaultLoginPage />,
+                element: renderLoginRouteElement(),
             },
             {
                 path: "*",

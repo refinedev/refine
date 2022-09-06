@@ -10,7 +10,7 @@ const App: React.FC = () => {
         <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             routerProvider={routerProvider}
-            options={{ mutationMode: "pessimistic", disableTelemetry: true }}
+            options={{ mutationMode: "pessimistic" }}
             resources={[
                 {
                     name: "posts",

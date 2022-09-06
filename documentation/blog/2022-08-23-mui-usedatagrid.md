@@ -117,6 +117,13 @@ Although **refine** is a headless framework that can be used with any UI framewo
 
 We'll see how to leverage these components with refine's `useDataGrid` hook in our refine app in the coming sections.
 
+<br/>
+<div>
+<a href="https://github.com/pankod/refine">
+  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
+</a>
+</div>
+
 ## Adding styled-components
 
 We'll use styled-components to style our app, as refine doesn't control how we choose to style our applications. So let's go ahead and install it with its types definition as follows:
@@ -817,6 +824,13 @@ We hope this article helps you in getting started with the `<DataGrid/>` compone
 
 Where to go next? Check the useDataGrid hook documentation [here](https://refine.dev/docs/ui-frameworks/mui/hooks/useDataGrid/) and the MUI X `<DataGrid/>` [documentation](https://mui.com/x/react-data-grid/) for additional usage information and reference.
 
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
+</a>
+</div>
+
 ## Live StackBlitz Example
 
 <iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/blog/mui-datagrid/?embed=1&view=preview&theme=dark&preset=node"
@@ -841,7 +855,7 @@ Check out [refine](https://github.com/pankod/refine), if you are interested in a
 
 <br/>
 
-**refine** is a open-source React-based framework for building CRUD applications **without constraints.**
+**refine** is an open-source React-based framework for building CRUD applications **without constraints.**
 It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
 
 **refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.

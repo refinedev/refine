@@ -10,5 +10,4 @@ module.exports = {
     },
     testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/dist/"],
     testEnvironment: "jsdom",
-    setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
 };

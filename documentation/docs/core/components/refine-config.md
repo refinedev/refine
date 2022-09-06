@@ -130,6 +130,7 @@ These components will receive some properties.
 type OptionsProps<TExtends = { [key: string]: any }> = TExtends & {
     label?: string;
     route?: string;
+    hide?: boolean;
 }
 
 interface IResourceComponentsProps<TCrudData = any, TOptionsPropsExtends = { [key: string]: any }> {
@@ -249,6 +250,10 @@ Name to show in the menu. Plural form of the resource name is shown by default.
 #### `route`
 
 Custom route name
+
+#### `hide`
+
+Can be used to hide a `resource` in `Sider`. This resource is also filtered in the `useMenu` hook.
 
 :::tip
 You can also pass any type of property into the options object. This property you pass can be recieved from the [useResource](/core/hooks/resource/useResource.md) and [useResourceWithRoute](/core/hooks/resource/useResourceWithRoute.md) hooks as well as the components rendered in the `list`, `create`, `edit` and `show` pages.

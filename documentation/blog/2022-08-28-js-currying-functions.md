@@ -108,6 +108,13 @@ So basically, what we've done is allow the accumulator to take multiple argument
 
 But now our `curry()` function is much more powerful. We can pass any number of arguments to an accumulator, as long as that is returned. And it is common to implement this with native JavaScript `Function.prototype` methods.
 
+<br/>
+<div>
+<a href="https://github.com/pankod/refine">
+  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
+</a>
+</div>
+
 ### Using `Function.prototype` Methods
 We can re-write the `curry()` function with `Function.prototype.apply`, and with `Function.prototype.bind`:
 
@@ -255,6 +262,15 @@ Currying a variadic function is quite different from currying functions with fix
 
 In this post, we found out that deviating from unary currying in leads to variadic partial application in JavaScript, which turns out to be more powerful. We also saw how currying an existing variadic function follows a different logic than those with fixed arity with a unary implementation.
 
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
+</a>
+</div>
+
+
+
 ---
 
 ## Build your React-based CRUD applications without constraints
@@ -272,7 +288,7 @@ Check out [refine](https://github.com/pankod/refine), if you are interested in a
 
 <br/>
 
-**refine** is a open-source React-based framework for building CRUD applications **without constraints.**
+**refine** is an open-source React-based framework for building CRUD applications **without constraints.**
 It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
 
 **refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.

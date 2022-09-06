@@ -1,10 +1,9 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import ReactRouterDom from "react-router-dom";
 
-import { TestWrapper } from "@test";
+import { TestWrapper, act } from "@test";
 
 import { useLogin } from "./";
-import { act } from "react-dom/test-utils";
 
 const mHistory = jest.fn();
 
@@ -17,7 +16,7 @@ describe("useLogin Hook", () => {
     beforeEach(() => {
         mHistory.mockReset();
         jest.spyOn(console, "error").mockImplementation((message) => {
-            if (message?.message === "Wrong username") return;
+            if (message?.message === "Wrong email") return;
             if (typeof message === "undefined") return;
             console.warn(message);
         });
@@ -27,12 +26,12 @@ describe("useLogin Hook", () => {
         const { result } = renderHook(() => useLogin(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: ({ username }) => {
-                        if (username === "test") {
+                    login: ({ email }) => {
+                        if (email === "test") {
                             return Promise.resolve();
                         }
 
-                        return Promise.reject(new Error("Wrong username"));
+                        return Promise.reject(new Error("Wrong email"));
                     },
                     checkAuth: () => Promise.resolve(),
                     checkError: () => Promise.resolve(),
@@ -46,7 +45,7 @@ describe("useLogin Hook", () => {
         const { mutate: login } = result.current ?? { mutate: () => 0 };
 
         await act(async () => {
-            await login({ username: "test" });
+            login({ email: "test" });
         });
 
         await waitFor(() => {
@@ -60,12 +59,12 @@ describe("useLogin Hook", () => {
         const { result } = renderHook(() => useLogin(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: ({ username }) => {
-                        if (username === "test") {
+                    login: ({ email }) => {
+                        if (email === "test") {
                             return Promise.resolve(false);
                         }
 
-                        return Promise.reject(new Error("Wrong username"));
+                        return Promise.reject(new Error("Wrong email"));
                     },
                     checkAuth: () => Promise.resolve(),
                     checkError: () => Promise.resolve(),
@@ -79,7 +78,7 @@ describe("useLogin Hook", () => {
         const { mutate: login } = result.current ?? { mutate: () => 0 };
 
         await act(async () => {
-            await login({ username: "test" });
+            login({ email: "test" });
         });
 
         await waitFor(() => {
@@ -93,12 +92,12 @@ describe("useLogin Hook", () => {
         const { result } = renderHook(() => useLogin(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: ({ username, redirectPath }) => {
-                        if (username === "test") {
+                    login: ({ email, redirectPath }) => {
+                        if (email === "test") {
                             return Promise.resolve(redirectPath);
                         }
 
-                        return Promise.reject(new Error("Wrong username"));
+                        return Promise.reject(new Error("Wrong email"));
                     },
                     checkAuth: () => Promise.resolve(),
                     checkError: () => Promise.resolve(),
@@ -112,7 +111,7 @@ describe("useLogin Hook", () => {
         const { mutate: login } = result.current ?? { mutate: () => 0 };
 
         await act(async () => {
-            await login({ username: "test", redirectPath: "/custom-path" });
+            login({ email: "test", redirectPath: "/custom-path" });
         });
 
         await waitFor(() => {
@@ -126,12 +125,12 @@ describe("useLogin Hook", () => {
         const { result } = renderHook(() => useLogin(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: ({ username, redirectPath }) => {
-                        if (username === "test") {
+                    login: ({ email, redirectPath }) => {
+                        if (email === "test") {
                             return Promise.resolve(redirectPath);
                         }
 
-                        return Promise.reject(new Error("Wrong username"));
+                        return Promise.reject(new Error("Wrong email"));
                     },
                     checkAuth: () => Promise.resolve(),
                     checkError: () => Promise.resolve(),
@@ -146,7 +145,7 @@ describe("useLogin Hook", () => {
         const { mutate: login } = result.current ?? { mutate: () => 0 };
 
         await act(async () => {
-            await login({ username: "test", redirectPath: "/custom-path" });
+            login({ email: "test", redirectPath: "/custom-path" });
         });
 
         await waitFor(() => {
@@ -160,7 +159,7 @@ describe("useLogin Hook", () => {
         const { result } = renderHook(() => useLogin(), {
             wrapper: TestWrapper({
                 authProvider: {
-                    login: () => Promise.reject(new Error("Wrong username")),
+                    login: () => Promise.reject(new Error("Wrong email")),
                     checkAuth: () => Promise.resolve(),
                     checkError: () => Promise.resolve(),
                     getPermissions: () => Promise.resolve(),
@@ -173,7 +172,7 @@ describe("useLogin Hook", () => {
         const { mutate: login } = result.current ?? { mutate: () => 0 };
 
         await act(async () => {
-            await login({ username: "demo" });
+            login({ email: "demo" });
         });
 
         await waitFor(() => {
@@ -182,7 +181,7 @@ describe("useLogin Hook", () => {
 
         const { error } = result.current ?? { error: undefined };
 
-        expect(error).toEqual(new Error("Wrong username"));
+        expect(error).toEqual(new Error("Wrong email"));
     });
 
     it("login rejected with undefined error", async () => {
@@ -202,7 +201,7 @@ describe("useLogin Hook", () => {
         const { mutate: login } = result.current ?? { mutate: () => 0 };
 
         await act(async () => {
-            await login({ username: "demo" });
+            login({ email: "demo" });
         });
 
         await waitFor(() => {

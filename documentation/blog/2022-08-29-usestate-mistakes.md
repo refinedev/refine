@@ -41,14 +41,12 @@ It's no secret that hooks have become increasingly crucial in React component de
 The `useState` hook can be tricky to understand, especially for newer React developers or those migrating from class-based components to functional components. In this guide, we'll explore the top 5 common `useState` mistakes that React developers often make and how you can avoid them.
 
 Steps we'll cover:
-- [Introduction](#introduction)
 - [Initializing useState Wrongly](#initializing-usestate-wrongly)
 - [Not Using Optional Chaining](#not-using-optional-chaining)
 - [Updating useState Directly](#updating-usestate-directly)
 - [Updating Specific Object Property](#updating-specific-object-property)
 - [Managing Multiple Input Fields in Forms](#managing-multiple-input-fields-in-forms)
-- [Conclusion](#conclusion)
-- [Build your React-based CRUD applications without constraints](#build-your-react-based-crud-applications-without-constraints)
+
 
 ## Initializing useState Wrongly
 Initiating the useState hook incorrectly is one of the most common mistakes developers make when utilizing it. What does it mean to initialize useState? To initialize something is to set its initial value. 
@@ -157,6 +155,12 @@ function App() {
 export default App;
 ```
 
+<br/>
+<div>
+<a href="https://github.com/pankod/refine">
+  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
+</a>
+</div>
 
 ## Not Using Optional Chaining
 Sometimes just initializing the useState with the expected data type is often not enough to prevent the unexpected blank page error. This is especially true when trying to access the property of a deeply nested object buried deep inside a chain of related objects. 
@@ -349,7 +353,7 @@ Output:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={directUpdateError} alt="directUpdateError" />
+    <img src={functionalState} alt="functionalState" />
 </div>
 
 <br/>
@@ -598,6 +602,15 @@ With this implementation, the event handler function is fired for each user inpu
 ## Conclusion
 As a React developer creating highly interactive user interfaces, you have probably made some of the mistakes mentioned above. Hopefully, these helpful useState practices will help you avoid some of these potential mistakes while using the `useState` hook down the road while building your React-powered applications.
 
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
+</a>
+</div>
+
+
 ---
 
 ## Build your React-based CRUD applications without constraints
@@ -615,7 +628,7 @@ Check out [refine](https://github.com/pankod/refine), if you are interested in a
 
 <br/>
 
-**refine** is a open-source React-based framework for building CRUD applications **without constraints.**
+**refine** is an open-source React-based framework for building CRUD applications **without constraints.**
 It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
 
 **refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.

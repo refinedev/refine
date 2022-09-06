@@ -28,7 +28,9 @@ import flex from '@site/static/img/blog/2022-08-30-flex-vs-grid/flex.png';
 ## Introduction
 Flexbox helps in creating one-dimensional layouts through space distribution and alignment capabilities. Flexbox makes it easier to design responsive layouts without using float or positioning. It has made life much easier for people that use CSS.
 
- Grid is a two-dimensional layout model that helps in creating a layout and aligning items in it. It offers a layout system with rows and columns, making it easier to design web pages without using floats and positioning.   
+Grid is a two-dimensional layout model that helps in creating a layout and aligning items in it. It offers a layout system with rows and columns, making it easier to design web pages without using floats and positioning.  
+
+<!--truncate-->
 
 Creating layouts with CSS can be tricky, and it's complicated by the fact that both flexbox and grid are used for designing the page layouts. This guide includes the some differences between flexbox and grid. We'll see how to decide which one of these to use while designing a layout.    
 
@@ -155,6 +157,14 @@ Nothing will happen if we change `display: flex` to `display: grid` You have to 
 </div>
 
 <br/>
+
+
+<br/>
+<div>
+<a href="https://github.com/pankod/refine">
+  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
+</a>
+</div>
 
 ## Intrinsic and Extrinsic Sizing
 In CSS, you have intrinsic and extrinsic sizing, like:
@@ -329,6 +339,14 @@ Grids can be your best friend when you need to create the outer layout of a webp
 
 To summarise, when you should use flexbox and when you should use the grid. Although you can design any layout with both flexbox and grid, you need to follow a path of least resistance.   
 
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
+</a>
+</div>
+
+
 ---
 
 ## Build your React-based CRUD applications without constraints
@@ -346,7 +364,7 @@ Check out [refine](https://github.com/pankod/refine), if you are interested in a
 
 <br/>
 
-**refine** is a open-source React-based framework for building CRUD applications **without constraints.**
+**refine** is an open-source React-based framework for building CRUD applications **without constraints.**
 It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
 
 **refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
