@@ -556,3 +556,11 @@ html {
     position: sticky;
     top: calc(var(--ifm-navbar-height) + 1rem);
 }
+
+#__docusaurus .all-tags-button {
+    background: linear-gradient(90deg, #3fdcf7 2.01%, #1890ff 99.51%);
+}
+
+#__docusaurus .all-tags-button:hover svg {
+    @apply -translate-x-1;
+}
