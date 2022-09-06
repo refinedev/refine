@@ -1,43 +1,7 @@
 import React from "react";
 import Link from "@docusaurus/Link";
-import { usePluralForm } from "@docusaurus/theme-common";
-import { translate } from "@docusaurus/Translate";
 
-function useReadingTimePlural() {
-    const { selectMessage } = usePluralForm();
-    return (readingTimeFloat) => {
-        const readingTime = Math.ceil(readingTimeFloat);
-        return selectMessage(
-            readingTime,
-            translate(
-                {
-                    id: "theme.blog.post.readingTime.plurals",
-                    description:
-                        'Pluralized label for "{readingTime} min read". Use as much plural forms (separated by "|") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)',
-                    message: "One min read|{readingTime} min read",
-                },
-                { readingTime },
-            ),
-        );
-    };
-}
-
-function ReadingTime({ readingTime }) {
-    const readingTimePlural = useReadingTimePlural();
-    return <>{readingTimePlural(readingTime)}</>;
-}
-
-function Date({ date, formattedDate }) {
-    return (
-        <time dateTime={date} itemProp="datePublished">
-            {formattedDate}
-        </time>
-    );
-}
-
-function Spacer() {
-    return <>{" · "}</>;
-}
+import { Date, ReadingTime, Spacer } from "@site/src/components/blog/common";
 
 export const PostPaginator = ({ posts, title }) => {
     if (posts.length < 1) {

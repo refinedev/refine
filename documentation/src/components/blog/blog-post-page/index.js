@@ -1,49 +1,12 @@
 import React from "react";
 import Link from "@docusaurus/Link";
 import { useBlogPost } from "@docusaurus/theme-common/internal";
-import { usePluralForm } from "@docusaurus/theme-common";
 import { blogPostContainerID } from "@docusaurus/utils-common";
-import { translate } from "@docusaurus/Translate";
 import MDXContent from "@theme/MDXContent";
 import BlogPostItemContainer from "@theme/BlogPostItem/Container";
 
 import { Tags } from "@site/src/components/blog";
-
-function useReadingTimePlural() {
-    const { selectMessage } = usePluralForm();
-    return (readingTimeFloat) => {
-        const readingTime = Math.ceil(readingTimeFloat);
-        return selectMessage(
-            readingTime,
-            translate(
-                {
-                    id: "theme.blog.post.readingTime.plurals",
-                    description:
-                        'Pluralized label for "{readingTime} min read". Use as much plural forms (separated by "|") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)',
-                    message: "One min read|{readingTime} min read",
-                },
-                { readingTime },
-            ),
-        );
-    };
-}
-
-function ReadingTime({ readingTime }) {
-    const readingTimePlural = useReadingTimePlural();
-    return <>{readingTimePlural(readingTime)}</>;
-}
-
-function Date({ date, formattedDate }) {
-    return (
-        <time dateTime={date} itemProp="datePublished">
-            {formattedDate}
-        </time>
-    );
-}
-
-function Spacer() {
-    return <>{" · "}</>;
-}
+import { Date, ReadingTime, Spacer } from "@site/src/components/blog/common";
 
 export const BlogPostPageView = ({ children }) => {
     const { metadata, isBlogPostPage } = useBlogPost();
