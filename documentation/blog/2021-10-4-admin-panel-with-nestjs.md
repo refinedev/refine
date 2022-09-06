@@ -6,7 +6,6 @@ authors: yildiray
 tags: [refine, nestjs, crud, react]
 image: https://refine.dev/img/refine_social.png
 hide_table_of_contents: false
-is_featured: true
 ---
 
 import api from '@site/static/img/blog/2021-10-4-admin-panel-with-nestjs/api.png';

@@ -4,8 +4,9 @@ description: How to implement Google and GitHub authentications using NextAuth.j
 slug: nextauth-google-github-authentication-nextjs
 authors: ekekenta_clinton
 tags: [nextjs, nextauth, github-authentication, google-authentication, oauth]
-image: https://refine.dev/img/refine_social.png
+image: http://refine.dev/img/blog/2022-08-18-auth-with-nextauth/social.png
 hide_table_of_contents: false
+is_featured: true
 ---
 
 import authClientCreated from '@site/static/img/blog/2022-08-18-auth-with-nextauth/auth-client-created.png';
