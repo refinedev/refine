@@ -37,3 +37,7 @@ export type RefineResetPasswordPageProps = {
     submitButton?: React.ReactNode;
     loginLink?: React.ReactNode;
 };
+
+export type RefineUpdatePasswordPageProps = {
+    submitButton?: React.ReactNode;
+};
