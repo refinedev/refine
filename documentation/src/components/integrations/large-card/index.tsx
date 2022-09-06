@@ -6,15 +6,15 @@ import styles from "./styles.module.css";
 type LargeCardProps = {
     title: string;
     description: string;
-    imageUrl: string;
     linkUrl: string;
     status: string;
+    icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 };
 
 const LargeCard: React.FC<LargeCardProps> = ({
     title,
     description,
-    imageUrl,
+    icon: Icon,
     linkUrl,
     status,
 }) => {
@@ -28,7 +28,7 @@ const LargeCard: React.FC<LargeCardProps> = ({
             <div className={styles.card}>
                 <div className={styles.header}>
                     <div className={styles.imageWrapper}>
-                        <img className={styles.image} src={imageUrl} />
+                        <Icon className={styles.image} />
                     </div>
                     <div className={styles.title}>{title}</div>
                 </div>

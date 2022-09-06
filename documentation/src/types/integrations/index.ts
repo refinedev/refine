@@ -4,7 +4,7 @@ export type IntegrationsType = {
 
 export type Integration = {
     name: string;
-    icon: string;
+    icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
     description: string;
     url?: string;
     status: string;

@@ -3,12 +3,11 @@ import React from "react";
 import Layout from "../../theme/Layout";
 import Card from "../../components/integrations/card";
 import LargeCard from "../../components/integrations/large-card";
-import data from "../../local-json/inegrations.json";
+import { integrations } from "../../assets/inegrations";
 import styles from "./styles.module.css";
-import { Integration, IntegrationsType } from "../../types/integrations";
+import { Integration } from "../../types/integrations";
 
 const Integrations: React.FC = () => {
-    const integrations: IntegrationsType = data;
     const integrationFields = Object.keys(integrations);
 
     const renderIntegration = (integration: Integration, field: string) => {
@@ -21,7 +20,7 @@ const Integrations: React.FC = () => {
                         title={integration.name}
                         description={integration.description}
                         linkUrl={integration.url}
-                        imageUrl={integration.icon}
+                        icon={integration.icon}
                     />
                 );
             default:
@@ -31,7 +30,7 @@ const Integrations: React.FC = () => {
                         title={integration.name}
                         description={integration.description}
                         linkUrl={integration.url}
-                        imageUrl={integration.icon}
+                        icon={integration.icon}
                         contributer={integration?.contributors?.[0]}
                     />
                 );
@@ -55,11 +54,11 @@ const Integrations: React.FC = () => {
                 </div>
                 <div className={styles.integrationsWrapper}>
                     <span
-                        className="fixed z-10 -left-10 bottom-[20vh] "
+                        className="fixed -left-10 bottom-[20vh] z-10 "
                         id="leftReward"
                     />
                     <span
-                        className="fixed z-10 -right-10 bottom-[20vh] "
+                        className="fixed -right-10 bottom-[20vh] z-10 "
                         id="rightReward"
                     />
                     {integrationFields.map((field) => {

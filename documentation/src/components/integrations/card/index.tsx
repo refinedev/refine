@@ -13,19 +13,19 @@ type Contributer = {
 type CardProps = {
     title: string;
     description: string;
-    imageUrl: string;
     linkUrl: string;
     contributer?: Contributer;
     status: string;
+    icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 };
 
 const Card: React.FC<CardProps> = ({
     title,
     description,
-    imageUrl,
     linkUrl,
     contributer,
     status,
+    icon: Icon,
 }) => {
     return (
         <div className={styles.container}>
@@ -37,11 +37,7 @@ const Card: React.FC<CardProps> = ({
             >
                 <div className="flex flex-1 flex-row justify-start gap-5 px-3.5 py-6">
                     <div className={styles.imageWrapper}>
-                        <img
-                            className={styles.image}
-                            src={imageUrl}
-                            alt={title}
-                        />
+                        <Icon className={styles.image} />
                     </div>
                     <div className={styles.content}>
                         <div className={styles.title}>{title}</div>
