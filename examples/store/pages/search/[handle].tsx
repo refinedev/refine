@@ -16,8 +16,6 @@ const SearchPage: React.FC<{
 }> = ({ initialData, collection }) => {
     const { cartId } = useCartContext();
 
-    console.log({ initialData });
-
     const { tableQueryResult } = useTable<Product>({
         resource: "products",
         initialFilter: [
