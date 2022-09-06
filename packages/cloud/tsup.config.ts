@@ -66,4 +66,5 @@ export default defineConfig({
             },
         }),
     ],
+    onSuccess: "tsc --project tsconfig.declarations.json",
 });

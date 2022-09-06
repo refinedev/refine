@@ -54,8 +54,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                     {product?.images && (
                         <div>
                             <Image
-                                quality="85"
-                                src={product.images[0]?.url || placeholderImg}
+                                quality="100"
+                                src={
+                                    product.images[0]?.url.replace(
+                                        "https://refine-store.fra1.cdn.digitaloceanspaces.com/",
+                                        "",
+                                    ) || placeholderImg
+                                }
                                 alt={product.title || "Product Image"}
                                 height={320}
                                 width={320}
@@ -88,11 +93,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                                     alt={product.title || "Product Image"}
                                     className={s.productImage}
                                     src={
-                                        product.images[0]?.url || placeholderImg
+                                        product.images[0]?.url.replace(
+                                            "https://refine-store.fra1.cdn.digitaloceanspaces.com/",
+                                            "",
+                                        ) || placeholderImg
                                     }
                                     height={540}
                                     width={540}
-                                    quality="85"
+                                    quality="100"
                                     layout="responsive"
                                     {...imgProps}
                                 />
@@ -117,11 +125,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                                     alt={product.title || "Product Image"}
                                     className={s.productImage}
                                     src={
-                                        product.images[0]?.url || placeholderImg
+                                        product.images[0]?.url.replace(
+                                            "https://refine-store.fra1.cdn.digitaloceanspaces.com/",
+                                            "",
+                                        ) || placeholderImg
                                     }
                                     height={540}
                                     width={540}
-                                    quality="85"
+                                    quality="100"
                                     layout="responsive"
                                     {...imgProps}
                                 />

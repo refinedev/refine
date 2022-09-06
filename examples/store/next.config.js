@@ -5,6 +5,7 @@ module.exports = withPlugins([], {
         newNextLinkBehavior: true,
     },
     images: {
-        domains: ["refine-store.fra1.cdn.digitaloceanspaces.com"],
+        loader: "imgix",
+        path: "https://refine-store.imgix.net/",
     },
 });

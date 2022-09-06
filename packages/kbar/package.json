@@ -1,7 +1,7 @@
 {
     "name": "@pankod/refine-kbar",
     "description": "refine fully kbar(cmd+k/ctrl+k) integration. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
-    "version": "0.8.0",
+    "version": "0.9.0",
     "license": "MIT",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
@@ -14,8 +14,8 @@
         "node": ">=10"
     },
     "scripts": {
-        "start": "tsup --watch --dts --format esm,cjs,iife --legacy-output",
-        "build": "tsup --dts --format esm,cjs,iife --minify --legacy-output",
+        "start": "tsup --watch --format esm,cjs,iife --legacy-output",
+        "build": "tsup --format esm,cjs,iife --minify --legacy-output",
         "test": "jest --passWithNoTests --runInBand",
         "prepare": "npm run build"
     },
@@ -27,7 +27,7 @@
     "author": "Pankod",
     "module": "dist/esm/index.js",
     "devDependencies": {
-        "@pankod/refine-core": "^3.56.0",
+        "@pankod/refine-core": "^3.66.0",
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
