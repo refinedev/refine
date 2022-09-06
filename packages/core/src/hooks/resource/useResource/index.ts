@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { ResourceContext, IResourceContext } from "@contexts/resource";
+import { ResourceContext } from "@contexts/resource";
 import { BaseKey, IResourceItem, ResourceRouterParams } from "src/interfaces";
 import { useRouterContext, useResourceWithRoute } from "@hooks";
 
@@ -14,7 +14,7 @@ export type UseResourcePropsType = {
 };
 
 type UseResourceReturnType = {
-    resources: IResourceContext["resources"];
+    resources: IResourceItem[];
     resource: IResourceItem;
     resourceName: string;
     id?: BaseKey;
