@@ -6,7 +6,7 @@
     "@ant-design/charts": "^1.2.14",
     "@pankod/refine": "2.0.11",
     "@pankod/refine-antd": "^3.37.11",
-    "@pankod/refine-core": "^3.65.0",
+    "@pankod/refine-core": "^3.65.3",
     "@pankod/refine-react-router-v6": "^3.31.3",
     "@pankod/refine-supabase": "^3.29.0",
     "@testing-library/jest-dom": "^5.16.4",

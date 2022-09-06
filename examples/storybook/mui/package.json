@@ -3,7 +3,7 @@
   "version": "3.25.0",
   "private": true,
   "dependencies": {
-    "@pankod/refine-core": "^3.65.0",
+    "@pankod/refine-core": "^3.65.3",
     "@pankod/refine-mui": "^3.41.16",
     "@pankod/refine-react-hook-form": "^3.31.4",
     "@pankod/refine-react-router-v6": "^3.31.3",

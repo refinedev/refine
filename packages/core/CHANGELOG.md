@@ -1,5 +1,25 @@
 # @pankod/refine-core
 
+## 3.65.3
+
+### Patch Changes
+
+-   Fixed, `loginLink` and `registerLink` texts and remove unnecessary props from forms
+
+*   Fixed syncWithLocation not tracking when useTable filters were reset
+
+## 3.65.2
+
+### Patch Changes
+
+-   [#2435](https://github.com/pankod/refine/pull/2435) [`bdf32c6cf9`](https://github.com/pankod/refine/commit/bdf32c6cf935adbe2f7a23d4473978485922d8f0) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed syncWithLocation not tracking when useTable filters were reset
+
+## 3.65.1
+
+### Patch Changes
+
+-   [#2433](https://github.com/pankod/refine/pull/2433) [`3ce29dda52`](https://github.com/pankod/refine/commit/3ce29dda52772aaacfb38f4a33155fd23c52c833) Thanks [@biskuvit](https://github.com/biskuvit)! - Fixed, `loginLink` and `registerLink` texts and remove unnecessary props from forms
+
 ## 3.65.0
 
 ### Minor Changes

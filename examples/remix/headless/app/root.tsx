@@ -42,7 +42,7 @@ export default function App() {
                             edit: PostEdit,
                         },
                     ]}
-                    options={{ syncWithLocation: true, disableTelemetry: true }}
+                    options={{ syncWithLocation: true }}
                 >
                     <Outlet />
                 </Refine>

@@ -10,7 +10,7 @@
     },
     "dependencies": {
         "@pankod/refine-antd": "^3.37.11",
-        "@pankod/refine-core": "^3.65.0",
+        "@pankod/refine-core": "^3.65.3",
         "@pankod/refine-nextjs-router": "^3.31.3",
         "@pankod/refine-simple-rest": "^3.27.0",
         "next": "^12.1.6",

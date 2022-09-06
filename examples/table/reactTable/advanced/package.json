@@ -4,7 +4,7 @@
     "private": true,
     "dependencies": {
         "@hookform/error-message": "^2.0.0",
-        "@pankod/refine-core": "^3.65.0",
+        "@pankod/refine-core": "^3.65.3",
         "@pankod/refine-react-hook-form": "^3.31.4",
         "@pankod/refine-react-router-v6": "^3.31.3",
         "@pankod/refine-react-table": "^4.5.0",
