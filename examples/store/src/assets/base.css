@@ -10,6 +10,11 @@
     --hover: rgba(0, 0, 0, 0.075);
     --hover-1: rgba(0, 0, 0, 0.15);
     --hover-2: rgba(0, 0, 0, 0.25);
+    --product-gray: #d4d4d9;
+    --product-gray-dark: #aaaab3;
+    --product-blue: #d1e9ff;
+    --product-green: #d9f8fd;
+    --product-pink: #e1d0f5;
     --cyan: #22b8cf;
     --green: #37b679;
     --red: #da3c3c;

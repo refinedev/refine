@@ -43,6 +43,7 @@ export const ProductView: FC<ProductViewProps> = ({
                             price={selectedPrice?.calculated_price}
                             fontSize={32}
                         />
+                        (
                         <div className={s.sliderContainer}>
                             <ProductSlider key={product.id}>
                                 {product.images.map((image, i: number) => (
@@ -63,6 +64,7 @@ export const ProductView: FC<ProductViewProps> = ({
                                 ))}
                             </ProductSlider>
                         </div>
+                        )
                     </div>
 
                     <ProductSidebar

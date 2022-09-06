@@ -61,7 +61,7 @@ export const Dashboard: React.FC<
                 ))}
             </Grid>
             <Marquee variant="secondary">
-                {data?.data.slice(0, 3).map((product) => (
+                {data?.data.slice(0, 10).map((product) => (
                     <ProductCard
                         key={product.id}
                         product={product}
@@ -71,7 +71,7 @@ export const Dashboard: React.FC<
             </Marquee>
             <Hero description="Official swag store to buy refine branded t-shirt's, mugs and other merchandise." />
             <Grid layout="B" variant="filled">
-                {data?.data.slice(0, 3).map((product, i: number) => (
+                {data?.data.slice(4, 7).map((product, i: number) => (
                     <ProductCard
                         key={product.id}
                         product={product}
@@ -84,7 +84,7 @@ export const Dashboard: React.FC<
                 ))}
             </Grid>
             <Marquee>
-                {data?.data.slice(3).map((product) => (
+                {data?.data.slice(3, 10).map((product) => (
                     <ProductCard
                         key={product.id}
                         product={product}

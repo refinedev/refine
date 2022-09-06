@@ -12,7 +12,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ description }) => {
     return (
-        <div className="bg-violet">
+        <div className="bg-blue">
             <Container>
                 <div className={s.root}>
                     <div className={s.headline}>

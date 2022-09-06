@@ -1,29 +1,29 @@
 .control {
-  @apply bg-violet absolute bottom-10 right-10 flex flex-row
-  border-accent-0 border text-accent-0 z-30 shadow-xl select-none;
-  height: 48px;
+    @apply bg-blue border-accent-0 text-accent-0 absolute bottom-10 right-10
+  z-30 flex select-none flex-row border shadow-xl;
+    height: 48px;
 }
 
 .leftControl,
 .rightControl {
-  @apply px-9 cursor-pointer;
-  transition: background-color 0.2s ease;
+    @apply cursor-pointer px-9;
+    transition: background-color 0.2s ease;
 }
 
 .leftControl:hover,
 .rightControl:hover {
-  background-color: var(--violet-dark);
+    background-color: var(--blue);
 }
 
 .leftControl:focus,
 .rightControl:focus {
-  @apply outline-none;
+    @apply outline-none;
 }
 
 .rightControl {
-  @apply border-l border-accent-0;
+    @apply border-accent-0 border-l;
 }
 
 .leftControl {
-  margin-right: -1px;
+    margin-right: -1px;
 }
