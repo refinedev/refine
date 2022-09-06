@@ -1,11 +1,11 @@
 import { useContext } from "react";
 
 import { RefineContext } from "@contexts/refine";
-import { IRefineContext } from "../../interfaces";
+import { IRefineContextOptions } from "../../interfaces";
 
 type UseMutationModeType = () => {
-    mutationMode: IRefineContext["mutationMode"];
-    undoableTimeout: IRefineContext["undoableTimeout"];
+    mutationMode: IRefineContextOptions["mutationMode"];
+    undoableTimeout: IRefineContextOptions["undoableTimeout"];
 };
 
 /**

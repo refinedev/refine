@@ -361,14 +361,14 @@ export const buttonDeleteTests = function (
                     <Route
                         path="/:resource"
                         element={
-                            <DeleteButton resourceNameOrRouteName="categories" />
+                            <DeleteButton resourceNameOrRouteName="users" />
                         }
                     />
                 </Routes>,
 
                 {
                     wrapper: TestWrapper({
-                        resources: [{ name: "posts" }, { name: "categories" }],
+                        resources: [{ name: "posts" }, { name: "users" }],
                         routerInitialEntries: ["/posts"],
                     }),
                 },

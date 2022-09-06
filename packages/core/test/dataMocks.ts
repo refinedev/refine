@@ -18,6 +18,9 @@ export const posts = [
         status: "active",
         userId: 5,
         tags: [16, 31, 45],
+        nested: {
+            title: "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
+        },
     },
     {
         id: "2",
@@ -29,6 +32,9 @@ export const posts = [
         status: "active",
         userId: 36,
         tags: [16, 30, 46],
+        nested: {
+            title: "Recusandae consectetur aut atque est.",
+        },
     },
 ];
 

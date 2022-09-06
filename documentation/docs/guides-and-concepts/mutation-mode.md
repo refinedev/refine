@@ -82,7 +82,10 @@ The mutation is applied locally, redirection and UI updates are executed immedia
 Mutation mode can be set application-wide in [`<Refine>`](/core/components/refine-config.md#mutationmode) component.
 
 ```tsx title="App.tsx"
-<Refine ... mutationMode="optimistic" />
+<Refine
+    ...
+    options={{ mutationMode: "optimistic" }}
+/>
 ```
 
 > Its default value is `pessimistic`.
@@ -100,7 +103,7 @@ mutate({
     resource: "categories",
     id: "2",
     values: { title: "New Category Title" },
-// highlight-next-line
+    // highlight-next-line
     mutationMode: "optimistic",
 });
 ```

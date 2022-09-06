@@ -17,7 +17,7 @@ npm i @pankod/refine-core @pankod/refine-remix-router @pankod/refine-simple-rest
 We recommend [**superplate**][superplate] to initialize your refine projects. It configures the project according to your needs including SSR with Remix!
 
 ```sh
-npx superplate-cli my-remix-app -p refine-remix
+npx superplate-cli -o refine-remix my-refine-remix-app
 ```
 :::
 

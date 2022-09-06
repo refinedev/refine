@@ -16,6 +16,10 @@ npm i @pankod/refine-core @pankod/refine-antd @pankod/refine-nextjs-router
 
 :::tip
 We recommend [**superplate**][superplate] to initialize your refine projects. It configures the project according to your needs including SSR with Next.js.
+
+```
+npx superplate-cli -o refine-nextjs my-refine-nextjs-app
+```
 :::
 
 :::caution

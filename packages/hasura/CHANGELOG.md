@@ -1,5 +1,65 @@
 # @pankod/refine-hasura
 
+## 4.9.4
+
+### Patch Changes
+
+-   -   `lodash` moved to "dependencies" for CommonJS builds
+
+## 4.9.3
+
+### Patch Changes
+
+-   -   `lodash` moved to "dependencies" for CommonJS builds
+
+## 4.9.2
+
+### Patch Changes
+
+-   -   `lodash` moved to "dependencies" for CommonJS builds
+
+## 4.9.1
+
+### Patch Changes
+
+-   [#2366](https://github.com/pankod/refine/pull/2366) [`de87f13dad`](https://github.com/pankod/refine/commit/de87f13dadabc3de947534988abfbb2ff6263ca4) Thanks [@omeraplak](https://github.com/omeraplak)! - - `lodash` moved to "dependencies" for CommonJS builds
+
+## 4.9.0
+
+### Minor Changes
+
+-   Add nested filter support to `Hasura` data provider.
+
+    Example usage:
+
+    ```
+    filters: [
+        {
+            field: "category.id",
+            operator: "eq",
+            value: "8332c138-3231-406d-9655-1328ded9d5f2",
+        },
+    ],
+    ```
+
+## 4.8.0
+
+### Minor Changes
+
+-   [#2347](https://github.com/pankod/refine/pull/2347) [`628324d950`](https://github.com/pankod/refine/commit/628324d95090172bc5921cce251c79696183079a) Thanks [@ozkalai](https://github.com/ozkalai)! - Add nested filter support to `Hasura` data provider.
+
+    Example usage:
+
+    ```
+    filters: [
+        {
+            field: "category.id",
+            operator: "eq",
+            value: "8332c138-3231-406d-9655-1328ded9d5f2",
+        },
+    ],
+    ```
+
 ## 4.7.0
 
 ### Minor Changes

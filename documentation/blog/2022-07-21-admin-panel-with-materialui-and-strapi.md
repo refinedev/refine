@@ -19,6 +19,7 @@ We will build an **admin panel** that supports **CRUD** operations, has built-in
 
 Industry-standard tools and practices can be hard to reach and time-consuming to maintain on your own. Frameworks can save you time by doing these jobs for you. So, we'll use powerful frameworks including  [Material UI](https://mui.com), [Strapi](https://strapi.io/), and [refine](https://refine.dev/) to build a high-quality admin panel.
 
+<!--truncate-->
 
 UI design can be a complex and time-consuming process, but a tool like Material UI can help simplify the process and speed up the development cycle. In this tutorial, we'll use Material UI's benefits and refine's built-in hooks to handle data fetching and mutations. We'll also integrate the Strapi data provider that refine has built-in support.
 
@@ -26,9 +27,6 @@ We'll walk through the process of listing, creating and deleting posts in a refi
 
 Steps we'll cover includes:
  
-
-- [Introduction](#introduction)
-- [Prerequisities](#prerequisities)
 - [What are the benefits of using refine?](#what-are-the-benefits-of-using-refine)
 - [Bootstrapping the refine app](#bootstrapping-the-refine-app)
   - [Implementing Strapi v4 data provider](#implementing-strapi-v4-data-provider)
@@ -41,9 +39,8 @@ Steps we'll cover includes:
   - [Deleting a record](#deleting-a-record)
 - [Implementing mutation mode](#implementing-mutation-mode)
 - [Sharing the current page with filters](#sharing-the-current-page-with-filters)
-- [Conclusion](#conclusion)
-- [Live StackBlitz Example](#live-stackblitz-example)
-<!--truncate-->
+
+
 
 ## Prerequisities
 Before we dive into the meat of the article, let's first take a look at the tools documents we'll be using. 
@@ -229,7 +226,12 @@ export * from "./list";
 [Refer to offical refine's Material UI tutorial for detailed explanations and examples &#8594](https://refine.dev/docs/ui-frameworks/mui/tutorial/#showing-a-single-record)
 
 
-
+<br/>
+<div>
+<a href="https://github.com/pankod/refine">
+  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
+</a>
+</div>
 
 
 ### Adding resources and connect pages to refine app
@@ -941,7 +943,7 @@ During the timeout, mutation can be cancelled from the notification with an undo
 
 
 
-To activate mutation mode, we'll set `mutationMode` property to the `<Refine/>` component.
+To activate mutation mode, we'll set `mutationMode` property in `options` to the `<Refine/>` component.
 
 ```tsx title="src/App.tsx"
 ...
@@ -969,7 +971,7 @@ function App() {
                         },
                     ]}
                     //highlight-next-line
-                    mutationMode="undoable"
+                    options={{ mutationMode: "undoable" }}
                 />
             </RefineSnackbarProvider>
         </ThemeProvider>
@@ -1020,9 +1022,11 @@ function App() {
             <RefineSnackbarProvider>
                 <Refine
                     ...
-                    mutationMode="undoable"
-                    //highlight-next-line
-                    syncWithLocation
+                    options={{ 
+                        mutationMode: "undoable", 
+                        //highlight-next-line
+                        syncWithLocation: true 
+                    }}
                 />
             </RefineSnackbarProvider>
         </ThemeProvider>
@@ -1047,7 +1051,34 @@ We covered:
 refine is an open source tool that rapidly and flexibly develops for CRUD admin panels or web apps. It is easy to get started with and doesn't require a lot of code. It has nice documentation that covered examples, guidelines, and tutorials using best practices. refine is constantly being updated with new features and improvements.
 
 [Refer to official refine page for more information &#8594](https://refine.dev/)
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
+</a>
+</div>
   
+  ## Build your React-based CRUD applications without constraints
+
+Low-code React frameworks are great for gaining development speed but they often fall short of flexibility if you need extensive styling and customization for your project.
+
+Check out [refine](https://github.com/pankod/refine), if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
+
+<div>
+<a href="https://github.com/pankod/refine">
+    <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
+</a>
+</div>
+
+<br/>
+
+**refine** is a React-based framework for building CRUD applications **without constraints.**
+It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
+
+**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
+
+Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials and example projects.
 
 ## Live StackBlitz Example
 

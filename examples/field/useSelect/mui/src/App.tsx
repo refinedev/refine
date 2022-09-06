@@ -36,7 +36,7 @@ const App: React.FC = () => {
                             edit: PostEdit,
                         },
                     ]}
-                    disableTelemetry={true}
+                    options={{ disableTelemetry: true }}
                 />
             </SnackbarProvider>
         </ThemeProvider>

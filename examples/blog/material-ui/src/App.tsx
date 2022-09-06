@@ -42,8 +42,11 @@ function App() {
                             canDelete: true,
                         },
                     ]}
-                    mutationMode="undoable"
-                    syncWithLocation={true}
+                    options={{
+                        mutationMode: "undoable",
+                        syncWithLocation: true,
+                        disableTelemetry: true,
+                    }}
                 />
             </RefineSnackbarProvider>
         </ThemeProvider>

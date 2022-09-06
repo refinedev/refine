@@ -140,7 +140,7 @@ const siteConfig = {
                     position: "left",
                 },
                 {
-                    to: "docs/guides-and-concepts/ssr-nextjs",
+                    to: "docs/guides-and-concepts/ssr/remix/",
                     label: "Guides",
                     position: "left",
                 },

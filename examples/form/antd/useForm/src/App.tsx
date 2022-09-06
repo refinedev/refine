@@ -29,7 +29,7 @@ const App: React.FC = () => {
             notificationProvider={notificationProvider}
             Layout={Layout}
             catchAll={<ErrorComponent />}
-            disableTelemetry={true}
+            options={{ disableTelemetry: true }}
         />
     );
 };

@@ -38,7 +38,6 @@
 [![npm](https://img.shields.io/npm/dm/@pankod/refine-mui)](https://www.npmjs.com/package/@pankod/refine-antd)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](code_of_conduct.md)
 
-
 </div>
 
 <div align="center">
@@ -60,13 +59,14 @@ For more detailed information and usage, refer to the [refine documentation](htt
 Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to _admin panels_, _B2B applications_ and _dashboards_.
 
 ## What is a "headless" Framework?
+
 **refine** is a **headless** React framework, which means all out-of-the-box features(**Routing**, **Networking**, **Authentication**, **Authorization**, **State Management**, **Realtime**, **i18n**, etc.), it can be used without being tied to any UI elements or framework. Also, Ant Design as out-of-the-box is supported.
 
-- Customization & Extensibility -  UI is a completely customizable area and each developer uses different solutions. **refine** features does not restrict or interfere with your UI structure. **refine** allows the you to design and customizable the UI based on their unique use case.
+-   Customization & Extensibility - UI is a completely customizable area and each developer uses different solutions. **refine** features does not restrict or interfere with your UI structure. **refine** allows the you to design and customizable the UI based on their unique use case.
 
-- Separation of Concerns - **refine** as a framework, is not responsible for your UI and is independent.
+-   Separation of Concerns - **refine** as a framework, is not responsible for your UI and is independent.
 
-- Maintenance - By removing the API surface to support every UI use case, **refine** easy to use and update/maintain is simple.
+-   Maintenance - By removing the API surface to support every UI use case, **refine** easy to use and update/maintain is simple.
 
 ###
 
@@ -256,7 +256,8 @@ interface ICategory {
 ```
 
 ## Roadmap
-You can find Refine's <a href="https://github.com/pankod/refine/projects/1">Public Roadmap here!</a> 
+
+You can find Refine's <a href="https://github.com/pankod/refine/projects/1">Public Roadmap here!</a>
 
 ## Stargazers
 

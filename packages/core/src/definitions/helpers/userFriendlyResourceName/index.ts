@@ -1,5 +1,5 @@
-import humanizeString from "humanize-string";
 import pluralize from "pluralize";
+import { humanizeString } from "@definitions";
 
 /**
  * A method that the internal uses
