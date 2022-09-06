@@ -124,7 +124,7 @@ const App: React.FC = () => {
             liveProvider={liveProvider(appwriteClient, {
                 databaseId: "default",
             })}
-            liveMode="auto"
+             options={{ liveMode: "auto" }}
             authProvider={authProvider}
         //highlight-end    
             routerProvider={routerProvider}
@@ -377,7 +377,7 @@ const App: React.FC = () => {
             liveProvider={liveProvider(appwriteClient, {
                 databaseId: "default",
             })}
-            liveMode="auto"
+             options={{ liveMode: "auto" }}
             authProvider={authProvider}
             routerProvider={routerProvider}
             Layout={Layout}

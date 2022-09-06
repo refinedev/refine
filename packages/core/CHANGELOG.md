@@ -1,5 +1,410 @@
 # @pankod/refine-core
 
+## 3.65.3
+
+### Patch Changes
+
+-   Fixed, `loginLink` and `registerLink` texts and remove unnecessary props from forms
+
+*   Fixed syncWithLocation not tracking when useTable filters were reset
+
+## 3.65.2
+
+### Patch Changes
+
+-   [#2435](https://github.com/pankod/refine/pull/2435) [`bdf32c6cf9`](https://github.com/pankod/refine/commit/bdf32c6cf935adbe2f7a23d4473978485922d8f0) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed syncWithLocation not tracking when useTable filters were reset
+
+## 3.65.1
+
+### Patch Changes
+
+-   [#2433](https://github.com/pankod/refine/pull/2433) [`3ce29dda52`](https://github.com/pankod/refine/commit/3ce29dda52772aaacfb38f4a33155fd23c52c833) Thanks [@biskuvit](https://github.com/biskuvit)! - Fixed, `loginLink` and `registerLink` texts and remove unnecessary props from forms
+
+## 3.65.0
+
+### Minor Changes
+
+-   🎉 Added `AuthPage` component to the `refine` app. This page is used to login, register, reset password and update password. Login page is default page and old `LoginPage` component is deprecated.
+
+    # New Auth Hooks
+
+    📌 Added `useRegister` hook. This hook is used to register new user. `useRegister` falls into register function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
+
+    📌 Added `useResetPassword` hook. This hook is used to reset password. `useResetPassword` falls into `resetPassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
+
+    📌 Added `useUpdatePassword` hook. This hook is used to update password. `useUpdatePassword` falls into `updatePassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
+
+    ```diff
+    - <LoginPage>
+    + <AuthPage>
+    ```
+
+    # New `AuthPage` props:
+
+    ```info
+    interface IAuthPageProps extends IAuthCommonProps {
+        type?: "login" | "register" | "resetPassword" | "updatePassword";
+    }
+
+    interface IAuthCommonProps {
+        submitButton?: React.ReactNode;
+        registerLink?: React.ReactNode;
+        loginLink?: React.ReactNode;
+        resetPasswordLink?: React.ReactNode;
+        updatePasswordLink?: React.ReactNode;
+        backLink?: React.ReactNode;
+        providers?: IProvider[];
+    }
+
+    interface IProvider {
+        name: string;
+        icon?: React.ReactNode;
+        label?: string;
+    }
+    ```
+
+### Patch Changes
+
+-   Fixed `<AuthPage>` by adding missing props to "login" and "register" pages.
+
+    Fixed `<Refine>` component `LoginPage` property.
+
+## 3.64.2
+
+### Patch Changes
+
+-   [#2415](https://github.com/pankod/refine/pull/2415) [`f7c98f0ef9`](https://github.com/pankod/refine/commit/f7c98f0ef9743fbee2cc44206548cf2da3ceb01c) Thanks [@biskuvit](https://github.com/biskuvit)! - Fixed `<AuthPage>` by adding missing props to "login" and "register" pages.
+
+    Fixed `<Refine>` component `LoginPage` property.
+
+## 3.64.1
+
+### Patch Changes
+
+-   [#2299](https://github.com/pankod/refine/pull/2299) [`a02cb9e8ef`](https://github.com/pankod/refine/commit/a02cb9e8ef20f14194d772720442208930e3aa40) Thanks [@biskuvit](https://github.com/biskuvit)! - 🎉 Added `AuthPage` to the `refine` app. This page is used to login, register, reset password and update password. Login page is default page and old `LoginPage` component is deprecated.
+
+    # New Auth Hooks
+
+    📌 Added `useRegister` hook. This hook is used to register new user. `useRegister` falls into register function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
+
+    📌 Added `useResetPassword` hook. This hook is used to reset password. `useResetPassword` falls into `resetPassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
+
+    📌 Added `useUpdatePassword` hook. This hook is used to update password. `useUpdatePassword` falls into `updatePassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
+
+    ```diff
+    - <LoginPage>
+    + <AuthPage>
+    ```
+
+    # New `AuthPage` props:
+
+    ```info
+    interface IAuthPageProps extends IAuthCommonProps {
+        type?: "login" | "register" | "resetPassword" | "updatePassword";
+    }
+
+    interface IAuthCommonProps {
+        registerLink?: React.ReactNode;
+        loginLink?: React.ReactNode;
+        resetPasswordLink?: React.ReactNode;
+        updatePasswordLink?: React.ReactNode;
+        backLink?: React.ReactNode;
+        providers?: IProvider[];
+    }
+
+    interface IProvider {
+        name: string;
+        icon?: React.ReactNode;
+        label?: string;
+    }
+    ```
+
+    # Add `AuthPage` as a default page to Routers
+
+    📌 Added `AuthPage` to the `refine-nextjs-router`. Default page is `AuthPage`.
+
+    📌 Added `AuthPage` to the `refine-react-location`. Default page is `AuthPage`.
+
+    📌 Added `AuthPage` to the `refine-react-router-v6`. Default page is `AuthPage`.
+
+    📌 Added `AuthPage` to the `refine-remix-router`. Default page is `AuthPage`.
+
+## 3.64.0
+
+### Minor Changes
+
+-   Add an option to hide `resources` from the `Sider` menu
+
+    ```tsx
+    <Refine
+        ...
+        ...
+        resources={[
+            {
+                name: "posts",
+                list: PostList,
+                options: {
+                    hide: true,
+                },
+            },
+        ]}
+    />
+    ```
+
+*   Add object path syntax support for the useSelect hook
+
+    ```tsx
+    useSelect({
+        resource: "posts",
+        optionLabel: "nested.title",
+        optionLabel: "nested.id",
+    });
+    ```
+
+## 3.63.0
+
+### Minor Changes
+
+-   [#2391](https://github.com/pankod/refine/pull/2391) [`e530670c2d`](https://github.com/pankod/refine/commit/e530670c2d5f6e8a734a37770d1f1c89fb0b81b5) Thanks [@omeraplak](https://github.com/omeraplak)! - Add an option to hide `resources` from the `Sider` menu
+
+    ```tsx
+    <Refine
+        ...
+        ...
+        resources={[
+            {
+                name: "posts",
+                list: PostList,
+                options: {
+                    hide: true,
+                },
+            },
+        ]}
+    />
+    ```
+
+*   [#2395](https://github.com/pankod/refine/pull/2395) [`3019fae7a0`](https://github.com/pankod/refine/commit/3019fae7a00c4fe9d3f17639e0129bd336e42aef) Thanks [@omeraplak](https://github.com/omeraplak)! - Add object path syntax support for the useSelect hook
+
+    ```tsx
+    useSelect({
+        resource: "posts",
+        optionLabel: "nested.title",
+        optionLabel: "nested.id",
+    });
+    ```
+
+## 3.62.1
+
+### Patch Changes
+
+-   fix redirectPage return value #2377
+
+## 3.62.0
+
+### Minor Changes
+
+-   Added a new `<Refine>` component property: `options`.
+
+    Previously, the options were passed as a property to the `<Refine>` component. Now, the options are passed to the `<Refine>` via `options` property like this:
+
+    ```diff
+        <Refine
+    -       mutationMode="undoable"
+    -       undoableTimeout={5000}
+    -       warnWhenUnsavedChanges
+    -       syncWithLocation
+    -       liveMode="off"
+    -       disableTelemetry={false}
+    +       options={{
+    +           mutationMode: "undoable",
+    +           undoableTimeout: 5000,
+    +           warnWhenUnsavedChanges: true,
+    +           syncWithLocation: true,
+    +           liveMode: "off",
+    +           disableTelemetry: false,
+    +       }}
+        />
+    ```
+
+*   Added a new redirect feature. It is now possible to set default redirects.
+
+    By default, when a form is submitted, it will redirect to the "list" page of the current resource. You can change this behavior by setting the `redirect` parameter like this:
+
+    ```tsx
+    <Refine
+        ...
+        options={{ redirect: { afterCreate: "show", afterClone: "edit", afterEdit: false }, }}
+    />
+    ```
+
+### Patch Changes
+
+-   -   `lodash` moved to "dependencies" for CommonJS builds
+
+*   -   Fixed `lodash-es` usage for ESM builds
+
+## 3.61.1
+
+### Patch Changes
+
+-   [#2377](https://github.com/pankod/refine/pull/2377) [`c62fb114b1`](https://github.com/pankod/refine/commit/c62fb114b1e0ea3e246e33809bbb64ada1db25b2) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix redirectPage return value #2377
+
+## 3.61.0
+
+### Minor Changes
+
+-   Added a new `<Refine>` component property: `options`.
+
+    Previously, the options were passed as a property to the `<Refine>` component. Now, the options are passed to the `<Refine>` via `options` property like this:
+
+    ```diff
+        <Refine
+    -       mutationMode="undoable"
+    -       undoableTimeout={5000}
+    -       warnWhenUnsavedChanges
+    -       syncWithLocation
+    -       liveMode="off"
+    -       disableTelemetry={false}
+    +       options={{
+    +           mutationMode: "undoable",
+    +           undoableTimeout: 5000,
+    +           warnWhenUnsavedChanges: true,
+    +           syncWithLocation: true,
+    +           liveMode: "off",
+    +           disableTelemetry: false,
+    +       }}
+        />
+    ```
+
+*   Added a new redirect feature. It is now possible to set default redirects.
+
+    By default, when a form is submitted, it will redirect to the "list" page of the current resource. You can change this behavior by setting the `redirect` parameter like this:
+
+    ```tsx
+    <Refine
+        ...
+        options={{ redirect: { afterCreate: "show", afterClone: "edit", afterEdit: false }, }}
+    />
+    ```
+
+### Patch Changes
+
+-   -   `lodash` moved to "dependencies" for CommonJS builds
+
+*   -   Fixed `lodash-es` usage for ESM builds
+
+## 3.60.0
+
+### Minor Changes
+
+-   Added a new `<Refine>` component property: `options`.
+
+    Previously, the options were passed as a property to the `<Refine>` component. Now, the options are passed to the `<Refine>` via `options` property like this:
+
+    ```diff
+        <Refine
+    -       mutationMode="undoable"
+    -       undoableTimeout={5000}
+    -       warnWhenUnsavedChanges
+    -       syncWithLocation
+    -       liveMode="off"
+    -       disableTelemetry={false}
+    +       options={{
+    +           mutationMode: "undoable",
+    +           undoableTimeout: 5000,
+    +           warnWhenUnsavedChanges: true,
+    +           syncWithLocation: true,
+    +           liveMode: "off",
+    +           disableTelemetry: false,
+    +       }}
+        />
+    ```
+
+*   Added a new redirect feature. It is now possible to set default redirects.
+
+    By default, when a form is submitted, it will redirect to the "list" page of the current resource. You can change this behavior by setting the `redirect` parameter like this:
+
+    ```tsx
+    <Refine
+        ...
+        options={{ redirect: { afterCreate: "show", afterClone: "edit", afterEdit: false }, }}
+    />
+    ```
+
+### Patch Changes
+
+-   -   `lodash` moved to "dependencies" for CommonJS builds
+
+*   -   Fixed `lodash-es` usage for ESM builds
+
+## 3.59.0
+
+### Minor Changes
+
+-   [#2352](https://github.com/pankod/refine/pull/2352) [`e4d39eff33`](https://github.com/pankod/refine/commit/e4d39eff339d1c0ac391947843ebaa78d93830d6) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added a new `<Refine>` component property: `options`.
+
+    Previously, the options were passed as a property to the `<Refine>` component. Now, the options are passed to the `<Refine>` via `options` property like this:
+
+    ```diff
+        <Refine
+    -       mutationMode="undoable"
+    -       undoableTimeout={5000}
+    -       warnWhenUnsavedChanges
+    -       syncWithLocation
+    -       liveMode="off"
+    -       disableTelemetry={false}
+    +       options={{
+    +           mutationMode: "undoable",
+    +           undoableTimeout: 5000,
+    +           warnWhenUnsavedChanges: true,
+    +           syncWithLocation: true,
+    +           liveMode: "off",
+    +           disableTelemetry: false,
+    +       }}
+        />
+    ```
+
+*   [#2361](https://github.com/pankod/refine/pull/2361) [`95e1a17cd1`](https://github.com/pankod/refine/commit/95e1a17cd1e10d126ce38954d0f01c0e5a39ad6a) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added a new redirect feature. It is now possible to set default redirects.
+
+    By default, when a form is submitted, it will redirect to the "list" page of the current resource. You can change this behavior by setting the `redirect` parameter like this:
+
+    ```tsx
+    <Refine
+        ...
+        options={{ redirect: { afterCreate: "show", afterClone: "edit", afterEdit: false }, }}
+    />
+    ```
+
+### Patch Changes
+
+-   [#2366](https://github.com/pankod/refine/pull/2366) [`de87f13dad`](https://github.com/pankod/refine/commit/de87f13dadabc3de947534988abfbb2ff6263ca4) Thanks [@omeraplak](https://github.com/omeraplak)! - - `lodash` moved to "dependencies" for CommonJS builds
+
+*   [#2366](https://github.com/pankod/refine/pull/2366) [`de87f13dad`](https://github.com/pankod/refine/commit/de87f13dadabc3de947534988abfbb2ff6263ca4) Thanks [@omeraplak](https://github.com/omeraplak)! - - Fixed `lodash-es` usage for ESM builds
+
+## 3.58.5
+
+### Patch Changes
+
+-   `lodash` moved to dependencies.
+
+## 3.58.4
+
+### Patch Changes
+
+-   [#2350](https://github.com/pankod/refine/pull/2350) [`f8e5d99598`](https://github.com/pankod/refine/commit/f8e5d99598265af434f25fde104fafc9b7cac792) Thanks [@ozkalai](https://github.com/ozkalai)! - `lodash` moved to dependencies.
+
+## 3.58.3
+
+### Patch Changes
+
+-   Fixed react-query devtools was consuming high CPU
+
+## 3.58.2
+
+### Patch Changes
+
+-   [#2333](https://github.com/pankod/refine/pull/2333) [`2f0255ec95`](https://github.com/pankod/refine/commit/2f0255ec95b1a1fafedaa05143e02f17d86ddc81) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed react-query devtools was consuming high CPU
+
 ## 3.58.1
 
 ### Patch Changes

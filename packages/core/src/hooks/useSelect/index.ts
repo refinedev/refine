@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
 import uniqBy from "lodash/uniqBy";
 import debounce from "lodash/debounce";
+import get from "lodash/get";
 
 import { useList, useMany } from "@hooks";
 import {
@@ -80,8 +81,8 @@ export const useSelect = <
     const defaultValueQueryOnSuccess = (data: GetManyResponse<TData>) => {
         setSelectedOptions(
             data.data.map((item) => ({
-                label: item[optionLabel],
-                value: item[optionValue],
+                label: get(item, optionLabel),
+                value: get(item, optionValue),
             })),
         );
     };
@@ -108,8 +109,8 @@ export const useSelect = <
     const defaultQueryOnSuccess = (data: GetListResponse<TData>) => {
         setOptions(
             data.data.map((item) => ({
-                label: item[optionLabel],
-                value: item[optionValue],
+                label: get(item, optionLabel),
+                value: get(item, optionValue),
             })),
         );
     };

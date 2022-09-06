@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect, useLayoutEffect } from "react";
+import React, { PropsWithChildren, useEffect } from "react";
 import { useLoaderData } from "@remix-run/react";
 
 import {
@@ -45,8 +45,13 @@ export const RemixRouteComponent: React.FC<
         }
     }, [pathname]);
 
+    const renderLoginRouteElement = (): JSX.Element => {
+        if (LoginPage) return <LoginPage />;
+        return <DefaultLoginPage />;
+    };
+
     if (routeResourceName === "login") {
-        return LoginPage ? <LoginPage /> : <DefaultLoginPage />;
+        return renderLoginRouteElement();
     }
 
     if (pathname === "/") {

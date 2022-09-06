@@ -50,7 +50,6 @@ function App() {
                     show: CompanyShow,
                 },
             ]}
-            disableTelemetry={true}
         />
     );
 }

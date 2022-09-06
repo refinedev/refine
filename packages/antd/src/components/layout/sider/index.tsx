@@ -45,13 +45,22 @@ export const Sider: React.FC<RefineLayoutSiderProps> = () => {
 
             if (children.length > 0) {
                 return (
-                    <SubMenu
+                    <CanAccess
                         key={route}
-                        icon={icon ?? <UnorderedListOutlined />}
-                        title={label}
+                        resource={name.toLowerCase()}
+                        action="list"
+                        params={{
+                            resource: item,
+                        }}
                     >
-                        {renderTreeView(children, selectedKey)}
-                    </SubMenu>
+                        <SubMenu
+                            key={route}
+                            icon={icon ?? <UnorderedListOutlined />}
+                            title={label}
+                        >
+                            {renderTreeView(children, selectedKey)}
+                        </SubMenu>
+                    </CanAccess>
                 );
             }
             const isSelected = route === selectedKey;

@@ -9,11 +9,14 @@ import {
     BusinessLogic02,
     BusinessLogic04,
     BusinessLogic03,
+    BackendIcons,
 } from "../icons";
 import { CountingNumber } from "../counting-number";
 
 export const SectionNoConstraints: React.FC = () => {
     const ref = React.useRef<HTMLDivElement>(null);
+
+    const [currentSlide, setCurrentSlide] = React.useState(1);
 
     const { scrollYProgress: fullScrollYProgress } = useScroll();
 
@@ -116,9 +119,33 @@ export const SectionNoConstraints: React.FC = () => {
         [0, 0, 0, 0, 0.5, 1, 1],
     );
 
+    const backendScaleUp = useTransform(
+        scrollYProgress,
+        [0, 1 / 6, 2 / 6, 2.1 / 6, 3 / 6, 4 / 6, 5 / 6, 1],
+        [0, 0, 0, 0, 1, 0, 0, 0],
+    );
+
+    const backendScaleDown = useTransform(
+        scrollYProgress,
+        [0, 1 / 6, 2 / 6, 2.1 / 6, 3 / 6, 4 / 6, 5 / 6, 1],
+        [1.5, 1.5, 1.5, 1.5, 1, 1.5, 1.5, 1.5],
+    );
+
+    const backendOpacity = useTransform(
+        scrollYProgress,
+        [0, 1 / 6, 2 / 6, 2.1 / 6, 3 / 6, 3.5 / 6, 4 / 6, 5 / 6, 1],
+        [0, 0, 0, 0, 1, 1, 0, 0, 0],
+    );
+
+    const slideNumbers = useTransform(
+        scrollYProgress,
+        [0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1],
+        [1, 1, 1, 2, 3, 4, 5],
+    );
+
     React.useEffect(() => {
-        return slideScreen03Y.onChange(async () => {
-            console.log("CCC", slideScreen03Y.get());
+        return slideNumbers.onChange(async () => {
+            setCurrentSlide(Math.round(slideNumbers.get()));
         });
     });
 
@@ -127,6 +154,84 @@ export const SectionNoConstraints: React.FC = () => {
         [0, 5 / 6, 1],
         [1, 1, 0],
     );
+
+    const backendItems = [
+        {
+            name: "Nestjs",
+            Icon: BackendIcons.Nestjs,
+            AltIcon: BackendIcons.NestjsAlt,
+        },
+        {
+            name: "Airtable",
+            Icon: BackendIcons.Airtable,
+            AltIcon: BackendIcons.AirtableAlt,
+        },
+        {
+            name: "Strapi",
+            Icon: BackendIcons.Strapi,
+            AltIcon: BackendIcons.StrapiAlt,
+        },
+        {
+            name: "Supabase",
+            Icon: BackendIcons.Supabase,
+            AltIcon: BackendIcons.SupabaseAlt,
+        },
+        {
+            name: "Hasura",
+            Icon: BackendIcons.Hasura,
+            AltIcon: BackendIcons.HasuraAlt,
+        },
+        {
+            name: "Nhost",
+            Icon: BackendIcons.Nhost,
+            AltIcon: BackendIcons.NhostAlt,
+        },
+        {
+            name: "Appwrite",
+            Icon: BackendIcons.Appwrite,
+            AltIcon: BackendIcons.AppwriteAlt,
+        },
+        {
+            name: "Medusa",
+            Icon: BackendIcons.Medusa,
+            AltIcon: BackendIcons.MedusaAlt,
+        },
+        {
+            name: "Firebase",
+            Icon: BackendIcons.Firebase,
+            AltIcon: BackendIcons.FirebaseAlt,
+        },
+        {
+            name: "Directus",
+            Icon: BackendIcons.Directus,
+            AltIcon: BackendIcons.DirectusAlt,
+        },
+        {
+            name: "Altogic",
+            Icon: BackendIcons.Altogic,
+            AltIcon: BackendIcons.AltogicAlt,
+        },
+        {
+            name: "Node",
+            Icon: BackendIcons.Node,
+            AltIcon: BackendIcons.NodeAlt,
+        },
+        {
+            name: "Python",
+            Icon: BackendIcons.Python,
+            AltIcon: BackendIcons.PythonAlt,
+        },
+        {
+            name: "Json",
+            Icon: BackendIcons.Json,
+            AltIcon: BackendIcons.JsonAlt,
+        },
+        {
+            name: "GraphQL",
+            Icon: BackendIcons.Graphql,
+            AltIcon: BackendIcons.GraphqlAlt,
+        },
+    ];
 
     return (
         <>
@@ -487,8 +592,79 @@ export const SectionNoConstraints: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="w-full flex-shrink-0 bg-red-600 snap-center">
-                                asdasdasd
+                            <div className="w-full h-full flex-shrink-0 snap-center">
+                                <div className="flex w-full h-full pt-3">
+                                    <div className="flex-1 flex flex-col justify-start items-center w-full gap-4">
+                                        <div className="font-montserrat text-xl leading-8 font-medium text-[#2A2A42] text-center max-w-[860px] mb-4">
+                                            <p className="mb-0">
+                                                <strong className="font-bold">
+                                                    refine
+                                                </strong>{" "}
+                                                connects to any custom
+                                                <strong className="font-bold">
+                                                    REST
+                                                </strong>{" "}
+                                                or{" "}
+                                                <strong className="font-bold">
+                                                    GraphQL
+                                                </strong>{" "}
+                                                API.
+                                            </p>
+                                            <p className="mb-0">
+                                                It also includes ready-made
+                                                integrations for{" "}
+                                                <strong className="font-bold">
+                                                    30+
+                                                </strong>{" "}
+                                                popular backend services.
+                                                <a className="no-underline text-[#1890FF] visited:text-[#1890FF]">
+                                                    (SEE ALL)
+                                                </a>
+                                            </p>
+                                        </div>
+                                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 w-full px-5 gap-x-2 gap-y-5">
+                                            {backendItems.map(
+                                                (
+                                                    { name, Icon, AltIcon },
+                                                    index,
+                                                ) => (
+                                                    <motion.div
+                                                        style={{
+                                                            scale:
+                                                                index % 2 === 0
+                                                                    ? backendScaleUp
+                                                                    : backendScaleDown,
+                                                            opacity:
+                                                                backendOpacity,
+                                                            boxShadow:
+                                                                "6px 8px 16px 0 rgba(42, 42, 66, 0.4)",
+                                                        }}
+                                                        key={name}
+                                                        className={`group relative w-full h-20 lg:h-[90px] bg-white rounded-[10px] ${
+                                                            name === "Python"
+                                                                ? "pt-1.5"
+                                                                : "pt-0"
+                                                        }`}
+                                                    >
+                                                        <div className="group-hover:opacity-0 scale-100 group-hover:scale-0 opacity-100 transition-all duration-300 w-full h-full flex justify-center items-center">
+                                                            <AltIcon />
+                                                        </div>
+                                                        <div
+                                                            className={`opacity-0 scale-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300 absolute left-0 ${
+                                                                name ===
+                                                                "Python"
+                                                                    ? "top-1"
+                                                                    : "top-0"
+                                                            } w-full h-full flex justify-center items-center`}
+                                                        >
+                                                            <Icon />
+                                                        </div>
+                                                    </motion.div>
+                                                ),
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div className="w-full flex-shrink-0 snap-center h-full">
                                 <div className="flex h-full">
@@ -504,7 +680,7 @@ export const SectionNoConstraints: React.FC = () => {
                                             className="flex relative w-full max-w-[400px] h-full"
                                         >
                                             <motion.div
-                                                className="bg-transparent"
+                                                className="bg-transparent h-min rounded-[20px]"
                                                 animate={{
                                                     rotateY: ["10deg", "20deg"],
                                                     rotateX: ["5deg", "-5deg"],
@@ -517,20 +693,19 @@ export const SectionNoConstraints: React.FC = () => {
                                                 }}
                                                 style={{
                                                     width: "45%",
+                                                    boxShadow:
+                                                        "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
                                                 }}
                                             >
                                                 <BusinessLogic02
                                                     style={{
                                                         width: "100%",
                                                         height: "auto",
-                                                        borderRadius: "20px",
-                                                        boxShadow:
-                                                            "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
                                                     }}
                                                 />
                                             </motion.div>
                                             <motion.div
-                                                className="bg-transparent absolute top-[10%] left-[19%]"
+                                                className="bg-transparent absolute top-[10%] left-[19%] h-min rounded-[20px]"
                                                 animate={{
                                                     rotateY: ["10deg", "20deg"],
                                                     rotateX: ["5deg", "-5deg"],
@@ -543,20 +718,19 @@ export const SectionNoConstraints: React.FC = () => {
                                                 }}
                                                 style={{
                                                     width: "45%",
+                                                    boxShadow:
+                                                        "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
                                                 }}
                                             >
                                                 <BusinessLogic03
                                                     style={{
                                                         width: "100%",
                                                         height: "auto",
-                                                        borderRadius: "20px",
-                                                        boxShadow:
-                                                            "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
                                                     }}
                                                 />
                                             </motion.div>
                                             <motion.div
-                                                className="bg-transparent absolute top-[20%] left-[38%]"
+                                                className="bg-transparent absolute top-[20%] left-[38%] h-min rounded-[20px]"
                                                 animate={{
                                                     rotateY: ["10deg", "20deg"],
                                                     rotateX: ["5deg", "-5deg"],
@@ -569,20 +743,19 @@ export const SectionNoConstraints: React.FC = () => {
                                                 }}
                                                 style={{
                                                     width: "45%",
+                                                    boxShadow:
+                                                        "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
                                                 }}
                                             >
                                                 <BusinessLogic04
                                                     style={{
                                                         width: "100%",
                                                         height: "auto",
-                                                        borderRadius: "20px",
-                                                        boxShadow:
-                                                            "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
                                                     }}
                                                 />
                                             </motion.div>
                                             <motion.div
-                                                className="bg-transparent absolute top-[30%] left-[55%]"
+                                                className="bg-transparent absolute top-[30%] left-[55%] h-min rounded-[20px]"
                                                 animate={{
                                                     rotateY: ["10deg", "20deg"],
                                                     rotateX: ["5deg", "-5deg"],
@@ -595,15 +768,14 @@ export const SectionNoConstraints: React.FC = () => {
                                                 }}
                                                 style={{
                                                     width: "45%",
+                                                    boxShadow:
+                                                        "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
                                                 }}
                                             >
                                                 <BusinessLogic01
                                                     style={{
                                                         width: "100%",
                                                         height: "auto",
-                                                        borderRadius: "20px",
-                                                        boxShadow:
-                                                            "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
                                                     }}
                                                 />
                                             </motion.div>
@@ -648,8 +820,8 @@ export const SectionNoConstraints: React.FC = () => {
                             </div>
                             <div className="w-full flex-shrink-0 snap-center h-full">
                                 <div className="flex h-full w-full">
-                                    <div className="flex-1 flex flex-col justify-center items-center w-full gap-4">
-                                        <div className="font-montserrat text-xl text-[#2A2A42] text-center max-w-[800px]">
+                                    <div className="flex-1 flex flex-col justif text-[#2A2A42] text-center max-w-[800px]y-center items-center w-full gap-4">
+                                        <div className="font-montserrat text-xl pt-[14px]">
                                             <p>
                                                 <strong>refine</strong> core is
                                                 an open source framework and it
@@ -793,23 +965,85 @@ export const SectionNoConstraints: React.FC = () => {
                     </motion.div>
                     <div className="flex-shrink-0">
                         <div
-                            className="w-full flex max-w-5xl mx-auto bg-white"
+                            className="w-full flex max-w-5xl mx-auto bg-white relative"
                             style={{
                                 boxShadow:
                                     "6px 8px 16px 0 rgba(42, 42, 66, 0.4)",
                             }}
                         >
-                            <div className="flex-1 uppercase font-montserrat font-medium text-[#1890FF] text-lg text-center py-3 border border-[#1890FF] border-solid">
+                            <motion.div
+                                style={{
+                                    zIndex: currentSlide === 1 ? 2 : 0,
+                                    color:
+                                        currentSlide === 1
+                                            ? "#1890FF"
+                                            : "#A3D3FF",
+                                    borderColor:
+                                        currentSlide === 1
+                                            ? "#1890FF"
+                                            : "#A3D3FF",
+                                }}
+                                className="ml-px transition-colors duration-200 ease-in-out flex-1 uppercase font-montserrat font-medium text-lg text-center py-3 border border-solid"
+                            >
                                 headless ui
-                            </div>
-                            <div className="flex-1 uppercase font-montserrat font-medium text-[#1890FF] text-lg text-center py-3 border border-[#1890FF] border-solid">
+                            </motion.div>
+                            <motion.div
+                                style={{
+                                    zIndex: currentSlide === 2 ? 2 : 0,
+                                    color:
+                                        currentSlide === 2
+                                            ? "#1890FF"
+                                            : "#A3D3FF",
+                                    borderColor:
+                                        currentSlide === 2
+                                            ? "#1890FF"
+                                            : "#A3D3FF",
+                                }}
+                                className="-ml-px transition-colors duration-200 ease-in-out flex-1 uppercase font-montserrat font-medium text-lg text-center py-3 border border-solid"
+                            >
                                 backend agnostic
-                            </div>
-                            <div className="flex-1 uppercase font-montserrat font-medium text-[#1890FF] text-lg text-center py-3 border border-[#1890FF] border-solid">
+                            </motion.div>
+                            <motion.div
+                                style={{
+                                    zIndex: currentSlide === 3 ? 2 : 0,
+                                    color:
+                                        currentSlide === 3
+                                            ? "#1890FF"
+                                            : "#A3D3FF",
+                                    borderColor:
+                                        currentSlide === 3
+                                            ? "#1890FF"
+                                            : "#A3D3FF",
+                                }}
+                                className="-ml-px transition-colors duration-200 ease-in-out flex-1 uppercase font-montserrat font-medium text-lg text-center py-3 border border-solid"
+                            >
                                 custom workflow
-                            </div>
-                            <div className="flex-1 uppercase font-montserrat font-medium text-[#1890FF] text-lg text-center py-3 border border-[#1890FF] border-solid">
+                            </motion.div>
+                            <motion.div
+                                style={{
+                                    zIndex: currentSlide === 4 ? 2 : 0,
+                                    color:
+                                        currentSlide === 4
+                                            ? "#1890FF"
+                                            : "#A3D3FF",
+                                    borderColor:
+                                        currentSlide === 4
+                                            ? "#1890FF"
+                                            : "#A3D3FF",
+                                }}
+                                className="-ml-px transition-colors duration-200 ease-in-out flex-1 uppercase font-montserrat font-medium text-lg text-center py-3 border border-solid"
+                            >
                                 open source
+                            </motion.div>
+                            <div
+                                className="absolute top-0 h-2.5 -mt-2 transition-all duration-200"
+                                style={{
+                                    left: `calc(${
+                                        (currentSlide - 1) * 25
+                                    }% + calc(12.5% - 3px))`,
+                                }}
+                            >
+                                <ChevronDown />
                             </div>
                         </div>
                     </div>

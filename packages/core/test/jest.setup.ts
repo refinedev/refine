@@ -16,11 +16,4 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
 window.scroll = jest.fn();
 window.alert = jest.fn();
 
-Object.defineProperty(window, "TextEncoder", {
-    writable: true,
-    value: util.TextEncoder,
-});
-Object.defineProperty(window, "TextDecoder", {
-    writable: true,
-    value: util.TextDecoder,
-});
+jest.setTimeout(20000);

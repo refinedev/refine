@@ -83,50 +83,7 @@ This tutorial assumes your project is configured for absolute imports. Since CRA
 First, run the **superplate** with the following command:
 
 ```
-npx superplate-cli -p refine-react tutorial
-```
-
-Select the following options to complete the _CLI wizard_:
-
-```
-? Select your project type:
-❯ refine-react
-
-? What will be the name of your app:
-> tutorial
-
-? Package manager:
-❯ Npm
-
-? Do you want to use a UI Framework?:
-❯ Material UI
-
-? Do you want an extended theme?:
-❯ No
-
-? Do you want to add dark mode support?:
-❯ No
-
-? Router Provider:
-❯ React Router v6
-
-? Data Provider:
-❯ REST API
-
-? Auth Provider:
-❯ None
-
-? Do you want to add example pages?:
-❯ No
-
-? Do you want a customized layout?:
-❯ No
-
-? Do you want to add Kbar command pallete?:
-❯ No
-
-? i18n - Internationalization:
-❯ No
+npx superplate-cli -o refine-mui tutorial
 ```
 
 </TabItem>
@@ -464,29 +421,26 @@ import {
 
 import { IPost } from "interfaces";
 
-const columns = React.useMemo<GridColumns<IPost>>(
-    () => [
-        { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
-        {
-            field: "status",
-            headerName: "Status",
-            minWidth: 150,
-            flex: 1,
-            renderCell: function render(params) {
-                return <TagField value={params.row.status} />;
-            },
+const columns: GridColumns<IPost> = [
+    { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
+    {
+        field: "status",
+        headerName: "Status",
+        minWidth: 150,
+        flex: 1,
+        renderCell: function render(params) {
+            return <TagField value={params.row.status} />;
         },
-        {
-            field: "createdAt",
-            headerName: "CreatedAt",
-            minWidth: 220,
-            renderCell: function render(params) {
-                return <DateField format="LLL" value={params.row.createdAt} />;
-            },
+    },
+    {
+        field: "createdAt",
+        headerName: "CreatedAt",
+        minWidth: 220,
+        renderCell: function render(params) {
+            return <DateField format="LLL" value={params.row.createdAt} />;
         },
-    ],
-    [],
-);
+    },
+];
 
 export const PostList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>();

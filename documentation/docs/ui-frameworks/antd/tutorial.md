@@ -82,46 +82,8 @@ This tutorial assumes your project is configured for absolute imports. Since CRA
 First, run the **superplate** with the following command:
 
 ```
-npx superplate-cli -p refine-react tutorial
+npx superplate-cli -o refine-antd tutorial
 ```
-
-Select the following options to complete the _CLI wizard_:
-
-```
-? What will be the name of your app:
-> tutorial
-
-? Package manager:
-❯ Npm
-
-? Do you want to use a UI Framework?:
-❯ Ant Design
-
-? Do you want a customized theme?:
-❯ Default theme
-
-? Router Provider:
-❯ React Router v6
-
-? Data Provider:
-❯ REST API
-
-? Auth Provider:
-❯ None
-
-? Do you want to add example pages?:
-❯ No
-
-? Do you want a customized layout?:
-❯ No
-
-? Do you want to add Kbar command pallete?:
-❯ No
-
-? i18n - Internationalization:
-❯ No
-```
-
 </TabItem>
 </Tabs>
 

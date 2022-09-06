@@ -6,7 +6,6 @@ import { appWithTranslation, useTranslation } from "next-i18next";
 
 import {
     notificationProvider,
-    LoginPage,
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
@@ -47,7 +46,6 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             notificationProvider={notificationProvider}
             Layout={Layout}
             catchAll={<ErrorComponent />}
-            disableTelemetry={true}
         >
             <Component {...pageProps} />
         </Refine>

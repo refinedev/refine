@@ -3,14 +3,13 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { MockJSONServer, TestWrapper } from "@test";
 
 import { useOne } from "./useOne";
+import { defaultRefineOptions } from "@contexts/refine";
 import { IRefineContextProvider } from "../../interfaces";
 
 const mockRefineProvider: IRefineContextProvider = {
     hasDashboard: false,
-    mutationMode: "pessimistic",
-    warnWhenUnsavedChanges: false,
-    syncWithLocation: false,
-    undoableTimeout: 500,
+    ...defaultRefineOptions,
+    options: defaultRefineOptions,
 };
 
 describe("useOne Hook", () => {

@@ -10,7 +10,6 @@ const App: React.FC = () => {
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             routerProvider={routerProvider}
             resources={[{ name: "posts", list: DummyList }]}
-            disableTelemetry={true}
         />
     );
 };

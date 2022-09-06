@@ -7,7 +7,14 @@ import * as RefineAntd from "@pankod/refine-antd";
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
 const Refine = (props) => (
-    <RefineCore.Refine {...props} reactQueryDevtoolConfig={false} />
+    <RefineCore.Refine
+        {...props}
+        options={{
+            reactQuery: {
+                devtoolConfig: false,
+            },
+        }}
+    />
 );
 
 const antLayoutSider: React.CSSProperties = {
@@ -174,8 +181,12 @@ const RefineAntdDemo: React.FC<
             Layout={RefineAntd.Layout}
             Sider={() => null}
             catchAll={<RefineAntd.ErrorComponent />}
-            disableTelemetry={true}
-            reactQueryDevtoolConfig={false}
+            options={{
+                disableTelemetry: true,
+                reactQuery: {
+                    devtoolConfig: false,
+                },
+            }}
             {...rest}
         />
     );

@@ -1,5 +1,117 @@
 # @pankod/refine-antd
 
+## 3.37.11
+
+### Patch Changes
+
+-   Fix: `useStepsForm`'s `submit` function can be overridden
+
+## 3.37.10
+
+### Patch Changes
+
+-   Fix: `useStepsForm`'s `submit` function can be overridden
+
+## 3.37.9
+
+### Patch Changes
+
+-   [#2421](https://github.com/pankod/refine/pull/2421) [`2b1c5e01b0`](https://github.com/pankod/refine/commit/2b1c5e01b0f65b2c7558ba79539fab411480cc06) Thanks [@omeraplak](https://github.com/omeraplak)! - Fix: `useStepsForm`'s `submit` function can be overridden
+
+## 3.37.8
+
+### Patch Changes
+
+-   Fix: Wrap with [`<CanAccess />`](https://refine.dev/docs/core/components/accessControl/can-access/) component to parent sider items
+
+    ```tsx
+    <Refine
+        accessControlProvider={{
+            can: async ({ action, resource }) => {
+                // console.log({ action, resource });
+                // output: {action: "list", resource: "cms" }
+
+                return { can: true };
+            },
+        }}
+        resources={[
+            {
+                name: "CMS",
+            },
+            {
+                name: "posts",
+                parentName: "CMS",
+                list: PostList,
+            },
+        ]}
+    />
+    ```
+
+## 3.37.7
+
+### Patch Changes
+
+-   [#2411](https://github.com/pankod/refine/pull/2411) [`c61470a2e0`](https://github.com/pankod/refine/commit/c61470a2e00df94a211395541601fd39b63e2cff) Thanks [@omeraplak](https://github.com/omeraplak)! - Fix: Wrap with [`<CanAccess />`](https://refine.dev/docs/core/components/accessControl/can-access/) component to parent sider items
+
+    ```tsx
+    <Refine
+        accessControlProvider={{
+            can: async ({ action, resource }) => {
+                // console.log({ action, resource });
+                // output: {action: "list", resource: "cms" }
+
+                return { can: true };
+            },
+        }}
+        resources={[
+            {
+                name: "CMS",
+            },
+            {
+                name: "posts",
+                parentName: "CMS",
+                list: PostList,
+            },
+        ]}
+    />
+    ```
+
+## 3.37.6
+
+### Patch Changes
+
+-   Fix `useModalForm` hook reset issue after successful submit
+
+## 3.37.5
+
+### Patch Changes
+
+-   [#2403](https://github.com/pankod/refine/pull/2403) [`ef8622cba3`](https://github.com/pankod/refine/commit/ef8622cba32acc8f5edf9e4190fbe90d99e642c6) Thanks [@omeraplak](https://github.com/omeraplak)! - Fix `useModalForm` hook reset issue after successful submit
+
+## 3.37.4
+
+### Patch Changes
+
+-   Updated `<Edit/>` component's default footer buttons property wrapper with `<Space/>` component like `<Footer>
+
+## 3.37.3
+
+### Patch Changes
+
+-   Updated `<Edit/>` component's default footer buttons property wrapper with `<Space/>` component like `<Footer>
+
+## 3.37.2
+
+### Patch Changes
+
+-   Updated `<Edit/>` component's default footer buttons property wrapper with `<Space/>` component like `<Footer>
+
+## 3.37.1
+
+### Patch Changes
+
+-   [#2343](https://github.com/pankod/refine/pull/2343) [`90b39d4f83`](https://github.com/pankod/refine/commit/90b39d4f839dc97868b7126ffb2903e29b8bb51a) Thanks [@aliemir](https://github.com/aliemir)! - Updated `<Edit/>` component's default footer buttons property wrapper with `<Space/>` component like `<Footer>
+
 ## 3.37.0
 
 ### Minor Changes

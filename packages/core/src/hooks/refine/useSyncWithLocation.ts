@@ -1,10 +1,10 @@
 import { useContext } from "react";
 
 import { RefineContext } from "@contexts/refine";
-import { IRefineContext } from "../../interfaces";
+import { IRefineContextOptions } from "../../interfaces";
 
 type UseSyncWithLocationType = () => {
-    syncWithLocation: IRefineContext["syncWithLocation"];
+    syncWithLocation: IRefineContextOptions["syncWithLocation"];
 };
 
 /**

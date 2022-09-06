@@ -130,6 +130,7 @@ These components will receive some properties.
 type OptionsProps<TExtends = { [key: string]: any }> = TExtends & {
     label?: string;
     route?: string;
+    hide?: boolean;
 }
 
 interface IResourceComponentsProps<TCrudData = any, TOptionsPropsExtends = { [key: string]: any }> {
@@ -250,6 +251,10 @@ Name to show in the menu. Plural form of the resource name is shown by default.
 
 Custom route name
 
+#### `hide`
+
+Can be used to hide a `resource` in `Sider`. This resource is also filtered in the `useMenu` hook.
+
 :::tip
 You can also pass any type of property into the options object. This property you pass can be recieved from the [useResource](/core/hooks/resource/useResource.md) and [useResourceWithRoute](/core/hooks/resource/useResourceWithRoute.md) hooks as well as the components rendered in the `list`, `create`, `edit` and `show` pages.
 
@@ -314,6 +319,204 @@ const PostList: React.FC<IResourceComponentsProps<DataType, OptionType>> = (prop
 
 <br />
 
+## `options`
+
+`options` is used to configure the app.
+
+### `mutationMode`
+
+`mutationMode` determines which mode the mutations run with. (e.g. useUpdate, useDelete).
+
+```tsx title="App.tsx"
+const App: React.FC = () => {
+    return (
+        <Refine
+            ...
+            // highlight-next-line
+            options={{ mutationMode: "optimistic" }}
+        />
+    );
+};
+```
+
+`pessimistic`: The mutation runs immediately. Redirection and UI updates are executed after the mutation returns successfuly. This is the default setting.
+
+`optimistic`: The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is succesful. If the mutation returns with error, UI updates accordingly.
+
+`undoable`: The mutation is applied locally, redirection and UI updates are executed immediately as if mutation is succesful. Waits for a customizable amount of timeout before mutation is applied. During the timeout, mutation can be cancelled from the notification with the ?undo? button. UI will revert back accordingly.
+
+[Refer to the Mutation Mode docs for further information. &#8594](/guides-and-concepts/mutation-mode.md)
+
+### `undoableTimeout`
+
+The duration of the timeout period in **undoable** mode, shown in milliseconds. Mutations can be cancelled during this period. This period can also be set on the supported data hooks.  
+The value set in hooks will override the value set with `undoableTimeout`.  
+`undoableTimeout` has a default value of `5000`.
+
+```tsx title="App.tsx"
+const App: React.FC = () => {
+    return (
+        <Refine
+            ...
+            // highlight-next-line
+            options={{ mutationMode: "undoable", undoableTimeout: 3500 }}
+        />
+    );
+};
+```
+
+### `syncWithLocation`
+
+List query parameter values can be edited manually by typing directly in the URL. To activate this feature `syncWithLocation` needs to be set to `true`.
+
+When `syncWithLocation` is active, URL on the listing page shows query parameters like below:
+
+```
+/posts?current=1&pageSize=8&sort[]=createdAt&order[]=desc
+```
+
+Users are able to change current page, items count per page, sort and filter parameters.
+
+Default value is `false`.
+
+### `warnWhenUnsavedChanges`
+
+When you have unsaved changes and try to leave the current page, **refine** shows a confirmation modal box.
+To activate this feature, set the `warnWhenUnsavedChanges` to `true`.
+
+<br />
+
+<div style={{textAlign: "center",  backgroundColor:"#efefef",  padding: "13px 10px 10px"}}>
+
+<img src={warnwhen} />
+
+</div>
+<br/>
+
+Default value is `false`.
+
+### `liveMode`
+
+Whether to update data automatically (`auto`) or not (`manual`) if a related live event is received. The `off` value is used to avoid creating a subscription.
+
+[Refer to live provider documentation for detailed information. &#8594](/core/providers/live-provider.md#livemode)
+
+### `disableTelemetry`
+
+**refine** implements a simple and transparent telemetry module for collecting usage statistics defined in a very limited scope. This telemetry module is used to improve the **refine** experience. You can disable this by setting `disableTelemetry` to `true`.
+
+[Refer to refine telemetry documentation for detailed information. &#8594](/guides-and-concepts/telemetry/telemetry.md)
+
+### `redirect`
+
+By default, **refine** redirects to the `list` page of the resource after a successful form mutation. To change this behaviour based on the form [action](/core/hooks/useForm.md#actions), set `redirect` as follows:
+
+```tsx title="App.tsx"
+const App: React.FC = () => {
+    return (
+        <Refine
+            ...
+            // highlight-start
+            options={{
+                redirect: {
+                    afterCreate: "show",
+                    afterClone: "edit",
+                    afterEdit: false,
+                },
+            }}
+            // highlight-end
+        />
+    );
+};
+```
+
+When `redirect` option is set to `false`, no redirect is performed after a successful form mutation.
+
+:::caution
+
+If you don't have a show page and you redirect to the show page, the user will be redirected to the list page. Also, in `undoable` and `optimistic` mutation modes, redirect happens before the mutation succeeds. Therefore, if there is no data in query cache, the user will be redirected to the list page.
+
+:::
+
+### `reactQuery`
+
+#### `clientConfig`
+
+Config for React Query client that **refine** uses.
+
+**refine** uses some defaults that applies to all queries:
+
+```ts
+{
+    refetchOnWindowFocus: false,
+    keepPreviousData: true,
+}
+```
+
+[Refer to the QueryClient documentation for detailed information. &#8594](https://react-query.tanstack.com/reference/QueryClient#queryclient)
+
+```tsx
+const App: React.FC = () => (
+    <Refine
+        ...
+        // highlight-start
+        options={{
+            reactQuery: {
+                clientConfig: {
+                    defaultOptions: {
+                        queries: {
+                            staleTime: Infinity,
+                        },
+                    },
+                },
+            },
+        }}
+        // highlight-end
+    />
+);
+```
+
+#### `devtoolConfig`
+
+Config for customize React Query Devtools. If you want to disable the Devtools, set `devtoolConfig` to `false`.
+
+**refine** uses some defaults that applies to react-query devtool:
+
+```ts
+{
+    initialIsOpen: false,
+    position: "bottom-right"
+}
+```
+
+[Refer to the Devtools documentation for detailed information. &#8594](https://react-query.tanstack.com/devtools#options)
+
+```tsx {4-7}
+const App: React.FC = () => (
+    <Refine
+        ...
+        // highlight-start
+        options={{
+            reactQuery: {
+                devtoolConfig: {
+                    initialIsOpen: true,
+                    position: "bottom-left",
+                },
+            },
+        }}
+        // highlight-end
+    />
+);
+```
+
+<br />
+
+## `onLiveEvent`
+
+Callback to handle all live events.
+
+[Refer to live provider documentation for detailed information. &#8594](/core/providers/live-provider.md#refine)
+
 ## `catchAll`
 
 When the app is navigated to a non-existent route, **refine** shows a default error page. A custom error component can be used for this error page by passing the customized component to `catchAll` property:
@@ -334,97 +537,6 @@ const App: React.FC = () => {
 ```
 
 <br />
-
-## `mutationMode`
-
-`mutationMode` determines which mode the mutations run with. (e.g. useUpdate, useDelete).
-
-```tsx title="App.tsx"
-const App: React.FC = () => {
-    return (
-        <Refine
-            ...
-            // highlight-next-line
-            mutationMode="optimistic"
-        />
-    );
-};
-```
-
-`pessimistic`: The mutation runs immediately. Redirection and UI updates are executed after the mutation returns successfuly. This is the default setting.
-
-`optimistic`: The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is succesful. If the mutation returns with error, UI updates accordingly.
-
-`undoable`: The mutation is applied locally, redirection and UI updates are executed immediately as if mutation is succesful. Waits for a customizable amount of timeout before mutation is applied. During the timeout, mutation can be cancelled from the notification with the ?undo? button. UI will revert back accordingly.
-
-[Refer to the Mutation Mode docs for further information. &#8594](/guides-and-concepts/mutation-mode.md)
-
-## `undoableTimeout`
-
-The duration of the timeout period in **undoable** mode, shown in milliseconds. Mutations can be cancelled during this period. This period can also be set on the supported data hooks.  
-The value set in hooks will override the value set with `undoableTimeout`.  
-`undoableTimeout` has a default value of `5000`.
-
-```tsx title="App.tsx"
-const App: React.FC = () => {
-    return (
-        <Refine
-            ...
-            mutationMode="undoable"
-            // highlight-next-line
-            undoableTimeout={3500}
-        />
-    );
-};
-```
-
-<br />
-
-## `syncWithLocation`
-
-List query parameter values can be edited manually by typing directly in the URL. To activate this feature `syncWithLocation` needs to be set to `true`.
-
-When `syncWithLocation` is active, URL on the listing page shows query parameters like below:
-
-```
-/posts?current=1&pageSize=8&sort[]=createdAt&order[]=desc
-```
-
-Users are able to change current page, items count per page, sort and filter parameters.
-
-Default value is `false`.
-
-<br />
-
-## `warnWhenUnsavedChanges`
-
-When you have unsaved changes and try to leave the current page, **refine** shows a confirmation modal box.
-To activate this feature, set the `warnWhenUnsavedChanges` to `true`.
-
-<br />
-
-<div style={{textAlign: "center",  backgroundColor:"#efefef",  padding: "13px 10px 10px"}}>
-
-<img src={warnwhen} />
-
-</div>
-<br/>
-
-Default value is `false`.
-
-<br />
-
-## `liveMode`
-
-Whether to update data automatically (`auto`) or not (`manual`) if a related live event is received. The `off` value is used to avoid creating a subscription.
-
-[Refer to live provider documentation for detailed information. &#8594](/core/providers/live-provider.md#livemode)
-
-## `onLiveEvent`
-
-Callback to handle all live events.
-
-[Refer to live provider documentation for detailed information. &#8594](/core/providers/live-provider.md#refine)
 
 ## `LoginPage`
 
@@ -633,69 +745,6 @@ const App: React.FC = () => (
         // highlight-next-line
         Title={CustomTitle}
     />
-);
-```
-
-<br />
-
-## `reactQueryClientConfig`
-
-Config for React Query client that **refine** uses.
-
-**refine** uses some defaults that applies to all queries:
-
-```ts
-{
-    refetchOnWindowFocus: false,
-    keepPreviousData: true,
-}
-```
-
-[Refer to the QueryClient documentation for detailed information. &#8594](https://react-query.tanstack.com/reference/QueryClient#queryclient)
-
-```tsx
-const App: React.FC = () => (
-    <Refine
-        ...
-        // highlight-start
-        reactQueryClientConfig={{
-            defaultOptions: {
-                queries: {
-                    staleTime: Infinity,
-                },
-            },
-        }}
-        // highlight-end
-    />
-);
-```
-
-### `reactQueryDevtoolConfig`
-
-Config for customize React Query Devtools. If you want to disable the Devtools, set `reactQueryDevtoolConfig` to `false`.
-
-**refine** uses some defaults that applies to react-query devtool:
-
-```ts
-{
-    initialIsOpen: false,
-    position: "bottom-right"
-}
-```
-
-[Refer to the Devtools documentation for detailed information. &#8594](https://react-query.tanstack.com/devtools#options)
-
-```tsx {4-7}
-const App: React.FC = () => (
-    <Refine
-        dataProvider={dataProvider(API_URL)}
-        reactQueryDevtoolConfig={{
-            position: "bottom-left",
-            initialIsOpen: true,
-        }}
-    >
-        ...
-    </Refine>
 );
 ```
 
