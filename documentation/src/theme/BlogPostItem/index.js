@@ -21,7 +21,7 @@ export default function BlogPostItem({ className }) {
 
     return (
         <BlogPostItemContainer className={className}>
-            <div className="flex flex-col overflow-hidden rounded-[10px] blog-post-item-shadow h-full lg:h-[380px]">
+            <div className="flex flex-col overflow-hidden rounded-[10px] blog-post-item-shadow h-full">
                 <Link itemProp="url" to={permalink}>
                     <div className="h-40 relative">
                         <img
@@ -32,7 +32,7 @@ export default function BlogPostItem({ className }) {
                         />
                     </div>
                 </Link>
-                <div className="flex flex-col justify-between p-3 h-full gap-3 lg:gap-0">
+                <div className="flex flex-col justify-between p-3 h-full gap-3">
                     <div>
                         <div className="text-xs text-[#525860]">
                             <Date date={date} formattedDate={formattedDate} />
