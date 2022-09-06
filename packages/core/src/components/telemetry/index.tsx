@@ -23,7 +23,7 @@ export const Telemetry: React.FC<{}> = () => {
         }
 
         const img = new Image();
-        img.src = `https://telemetry.refine.dev/track?payload=${encode(
+        img.src = `https://telemetry.refine.dev/telemetry?payload=${encode(
             payload,
         )}`;
     }, []);
