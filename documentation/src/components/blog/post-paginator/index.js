@@ -40,6 +40,10 @@ function Spacer() {
 }
 
 export const PostPaginator = ({ posts, title }) => {
+    if (posts.length < 1) {
+        return null;
+    }
+
     return (
         <div className="blog-post-item-shadow p-4 rounded-[10px]">
             <h2 className="mb-4 uppercase font-montserrat font-extrabold">
