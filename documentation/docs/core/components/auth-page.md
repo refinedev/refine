@@ -105,11 +105,6 @@ const authProvider = {
     getPermissions: () => Promise.resolve(),
     getUserIdentity: () => Promise.resolve(),
 };
-// visible-block-start
-import { Refine, AuthPage } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
 
 const Wrapper = (children) => {
     return (
@@ -121,7 +116,7 @@ const Wrapper = (children) => {
         >
             <div
                 style={{
-                    width: "300px",
+                    width: "400px",
                 }}
             >
                 {children}
@@ -129,6 +124,12 @@ const Wrapper = (children) => {
         </div>
     );
 };
+// visible-block-start
+import { Refine, AuthPage } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+import { Wrapper } from "./Wrapper";
+import { authProvider } from "./authProvider";
 
 const LoginPage = () => {
     const { Link } = useRouterContext();
@@ -221,11 +222,6 @@ const authProvider = {
     getPermissions: () => Promise.resolve(),
     getUserIdentity: () => Promise.resolve(),
 };
-// visible-block-start
-import { Refine, AuthPage } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
 
 const Wrapper = (children) => {
     return (
@@ -237,7 +233,7 @@ const Wrapper = (children) => {
         >
             <div
                 style={{
-                    width: "300px",
+                    width: "400px",
                 }}
             >
                 {children}
@@ -245,6 +241,13 @@ const Wrapper = (children) => {
         </div>
     );
 };
+
+// visible-block-start
+import { Refine, AuthPage } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+import { authProvider } from "./authProvider";
+import { Wrapper } from "./Wrapper";
 
 const LoginPage = () => {
     const { Link } = useRouterContext();
@@ -361,7 +364,7 @@ const LoginPage = () => {
         >
             <div
                 style={{
-                    width: "300px",
+                    width: "400px",
                 }}
             >
                 <AuthPage
@@ -483,7 +486,7 @@ const LoginPage = () => {
         >
             <div
                 style={{
-                    width: "300px",
+                    width: "400px",
                 }}
             >
                 <AuthPage
@@ -598,8 +601,9 @@ const LoginPage = () => {
         >
             <div
                 style={{
-                    width: "300px",
+                    width: "400px",
                     position: "relative",
+                    zIndex: 1,
                 }}
             >
                 <div
@@ -611,7 +615,8 @@ const LoginPage = () => {
                         width: "220px",
                         height: "115px",
                         top: 40,
-                        left: 40,
+                        left: 90,
+                        zIndex: -1,
                     }}
                 />
                 <AuthPage
@@ -760,11 +765,6 @@ const authProvider = {
     getPermissions: () => Promise.resolve(),
     getUserIdentity: () => Promise.resolve(),
 };
-// visible-block-start
-import { Refine, AuthPage } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
 
 const Wrapper = (children) => {
     return (
@@ -776,7 +776,7 @@ const Wrapper = (children) => {
         >
             <div
                 style={{
-                    width: "300px",
+                    width: "400px",
                 }}
             >
                 {children}
@@ -784,6 +784,12 @@ const Wrapper = (children) => {
         </div>
     );
 };
+// visible-block-start
+import { Refine, AuthPage } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+import { Wrapper } from "./Wrapper";
+import { authProvider } from "./authProvider";
 
 const RegisterPage = () => {
     const { Link } = useRouterContext();
@@ -875,11 +881,6 @@ const authProvider = {
     getPermissions: () => Promise.resolve(),
     getUserIdentity: () => Promise.resolve(),
 };
-// visible-block-start
-import { Refine, AuthPage } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
 
 const Wrapper = (children) => {
     return (
@@ -891,7 +892,7 @@ const Wrapper = (children) => {
         >
             <div
                 style={{
-                    width: "300px",
+                    width: "400px",
                 }}
             >
                 {children}
@@ -899,6 +900,13 @@ const Wrapper = (children) => {
         </div>
     );
 };
+
+// visible-block-start
+import { Refine, AuthPage } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+import { Wrapper } from "./Wrapper";
+import { authProvider } from "./authProvider";
 
 const RegisterPage = () => {
     const { Link } = useRouterContext();
@@ -990,11 +998,6 @@ const authProvider = {
     getPermissions: () => Promise.resolve(),
     getUserIdentity: () => Promise.resolve(),
 };
-// visible-block-start
-import { Refine, AuthPage, useRegister } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
 
 const Wrapper = (children) => {
     return (
@@ -1006,7 +1009,7 @@ const Wrapper = (children) => {
         >
             <div
                 style={{
-                    width: "300px",
+                    width: "400px",
                 }}
             >
                 {children}
@@ -1014,6 +1017,13 @@ const Wrapper = (children) => {
         </div>
     );
 };
+
+// visible-block-start
+import { Refine, AuthPage, useRegister } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+import { Wrapper } from "./Wrapper";
+import { authProvider } from "./authProvider";
 
 const RegisterPage = () => {
     const { mutate: register } = useRegister();
@@ -1130,11 +1140,6 @@ const authProvider = {
     getPermissions: () => Promise.resolve(),
     getUserIdentity: () => Promise.resolve(),
 };
-// visible-block-start
-import { Refine, AuthPage } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
 
 const Wrapper = (children) => {
     return (
@@ -1146,7 +1151,7 @@ const Wrapper = (children) => {
         >
             <div
                 style={{
-                    width: "300px",
+                    width: "375px",
                 }}
             >
                 {children}
@@ -1154,6 +1159,12 @@ const Wrapper = (children) => {
         </div>
     );
 };
+// visible-block-start
+import { Refine, AuthPage } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+import { Wrapper } from "./Wrapper";
+import { authProvider } from "./authProvider";
 
 const ResetPasswordPage = () => {
     const { Link } = useRouterContext();
@@ -1269,7 +1280,7 @@ const ResetPasswordPage = () => {
         >
             <div
                 style={{
-                    width: "300px",
+                    width: "375px",
                 }}
             >
                 <AuthPage
@@ -1374,11 +1385,6 @@ const authProvider = {
     getPermissions: () => Promise.resolve(),
     getUserIdentity: () => Promise.resolve(),
 };
-// visible-block-start
-import { Refine, AuthPage } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
 
 const Wrapper = (children) => {
     return (
@@ -1390,7 +1396,7 @@ const Wrapper = (children) => {
         >
             <div
                 style={{
-                    width: "300px",
+                    width: "400px",
                 }}
             >
                 {children}
@@ -1398,6 +1404,12 @@ const Wrapper = (children) => {
         </div>
     );
 };
+// visible-block-start
+import { Refine, AuthPage } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+import { Wrapper } from "./Wrapper";
+import { authProvider } from "./authProvider";
 
 const UpdatePasswordPage = () => {
     const { Link } = useRouterContext();
@@ -1481,12 +1493,6 @@ const authProvider = {
     getPermissions: () => Promise.resolve(),
     getUserIdentity: () => Promise.resolve(),
 };
-// visible-block-start
-import { Refine, AuthPage, useUpdatePassword } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-
 const Wrapper = (children) => {
     return (
         <div
@@ -1497,7 +1503,7 @@ const Wrapper = (children) => {
         >
             <div
                 style={{
-                    width: "300px",
+                    width: "400px",
                 }}
             >
                 {children}
@@ -1505,6 +1511,12 @@ const Wrapper = (children) => {
         </div>
     );
 };
+// visible-block-start
+import { Refine, AuthPage, useUpdatePassword } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+import { Wrapper } from "./Wrapper";
+import { authProvider } from "./authProvider";
 
 const UpdatePasswordPage = () => {
     const { mutate: updatePassword } = useUpdatePassword();
