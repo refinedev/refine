@@ -6,53 +6,70 @@ import {
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
-
-import { useGoogleLogout, GoogleLoginResponse } from "react-google-login";
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
 import "@pankod/refine-antd/dist/styles.min.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 import { Login } from "pages/login";
+import { parseJwt } from "utils/parse-jwt";
+
+const axiosInstance = axios.create();
 
 const API_URL = "https://api.fake-rest.refine.dev";
-const clientId =
-    "149954872426-ga5qkfj6v6fjr98p4lbakvf8u6mgtnp6.apps.googleusercontent.com";
+
+axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
+    const token = localStorage.getItem("token");
+    if (request.headers) {
+        request.headers["Authorization"] = `Bearer ${token}`;
+    } else {
+        request.headers = {
+            Authorization: `Bearer ${token}`,
+        };
+    }
+
+    return request;
+});
 
 const App: React.FC = () => {
-    const { signOut } = useGoogleLogout({
-        clientId,
-        cookiePolicy: "single_host_origin",
-    });
-
     const authProvider: AuthProvider = {
-        login: ({ tokenId, profileObj, tokenObj }: GoogleLoginResponse) => {
-            axios.defaults.headers.common = {
-                Authorization: `Bearer ${tokenId}`,
-            };
+        login: ({ credential }: CredentialResponse) => {
+            const profileObj = credential ? parseJwt(credential) : null;
 
-            localStorage.setItem(
-                "user",
-                JSON.stringify({ ...profileObj, avatar: profileObj.imageUrl }),
-            );
-            localStorage.setItem("expiresAt", tokenObj.expires_at.toString());
+            if (profileObj) {
+                localStorage.setItem(
+                    "user",
+                    JSON.stringify({
+                        ...profileObj,
+                        avatar: profileObj.picture,
+                    }),
+                );
+            }
+
+            localStorage.setItem("token", `${credential}`);
 
             return Promise.resolve();
         },
         logout: () => {
-            signOut();
-            localStorage.removeItem("user");
-            localStorage.removeItem("expiresAt");
+            const token = localStorage.getItem("token");
+
+            if (token && typeof window !== "undefined") {
+                localStorage.removeItem("token");
+                localStorage.removeItem("user");
+                axios.defaults.headers.common = {};
+                window.google?.accounts.id.revoke(token, () => {
+                    return Promise.resolve();
+                });
+            }
+
             return Promise.resolve();
         },
         checkError: () => Promise.resolve(),
         checkAuth: async () => {
-            const expiresAt = localStorage.getItem("expiresAt");
+            const token = localStorage.getItem("token");
 
-            if (expiresAt) {
-                return new Date().getTime() / 1000 < +expiresAt
-                    ? Promise.resolve()
-                    : Promise.reject();
+            if (token) {
+                return Promise.resolve();
             }
             return Promise.reject();
         },
@@ -68,7 +85,7 @@ const App: React.FC = () => {
 
     return (
         <Refine
-            dataProvider={dataProvider(API_URL, axios)}
+            dataProvider={dataProvider(API_URL, axiosInstance)}
             routerProvider={routerProvider}
             authProvider={authProvider}
             LoginPage={Login}
@@ -84,7 +101,6 @@ const App: React.FC = () => {
             notificationProvider={notificationProvider}
             Layout={Layout}
             catchAll={<ErrorComponent />}
-            options={{ disableTelemetry: true }}
         />
     );
 };

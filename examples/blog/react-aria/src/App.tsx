@@ -19,7 +19,6 @@ function App() {
                 },
             ]}
             Layout={({ children }) => <Layout> {children}</Layout>}
-            options={{ disableTelemetry: true }}
         />
     );
 }

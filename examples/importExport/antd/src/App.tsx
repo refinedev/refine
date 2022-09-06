@@ -24,7 +24,6 @@ const App: React.FC = () => {
                     show: PostShow,
                 },
             ]}
-            options={{ disableTelemetry: true }}
         />
     );
 };
