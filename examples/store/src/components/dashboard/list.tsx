@@ -32,6 +32,11 @@ export const Dashboard: React.FC<
                 value: cartId,
                 operator: "eq",
             },
+            {
+                field: "tags",
+                value: ["ptag_01GCBDFH0EV71KPH85EHWE5EWR"], //homepage tag
+                operator: "eq",
+            },
         ],
     });
 

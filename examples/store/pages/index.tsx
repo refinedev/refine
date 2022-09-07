@@ -9,11 +9,6 @@ import { API_URL } from "@lib/constants";
 import { CART_KEY } from "@lib/context";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    context.res.setHeader(
-        "Cache-Control",
-        "public, max-age=172800, stale-while-revalidate=86400",
-    );
-
     const cookies = nookies.get(context);
 
     const medusaDataProvider = dataProvider(API_URL);
@@ -69,6 +64,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
                 {
                     field: "cart_id",
                     value: cartId,
+                    operator: "eq",
+                },
+                {
+                    field: "tags",
+                    value: ["ptag_01GCBDFH0EV71KPH85EHWE5EWR"], //homepage tag
                     operator: "eq",
                 },
             ],

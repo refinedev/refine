@@ -33,6 +33,17 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                     },
                 ]}
                 warnWhenUnsavedChanges={true}
+                options={{
+                    reactQuery: {
+                        clientConfig: {
+                            defaultOptions: {
+                                queries: {
+                                    keepPreviousData: false,
+                                },
+                            },
+                        },
+                    },
+                }}
             >
                 <CartProvider>
                     <SEO />
