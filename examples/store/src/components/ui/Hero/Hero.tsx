@@ -33,7 +33,7 @@ export const Hero: React.FC<HeroProps> = ({ description }) => {
                             className="text-accent-0 w-max-content flex cursor-pointer items-center pt-3 font-bold hover:underline"
                         >
                             <>
-                                Read it here
+                                SEE ALL
                                 <ArrowRight
                                     width="20"
                                     height="20"
