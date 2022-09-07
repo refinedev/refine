@@ -76,7 +76,7 @@ export const Dashboard: React.FC<
             </Marquee>
             <Hero description="Official swag store to buy refine branded t-shirt's, mugs and other merchandise." />
             <Grid layout="B" variant="filled">
-                {data?.data.slice(4, 7).map((product, i: number) => (
+                {data?.data.slice(3, 6).map((product, i: number) => (
                     <ProductCard
                         key={product.id}
                         product={product}
