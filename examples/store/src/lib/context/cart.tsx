@@ -151,13 +151,17 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
     const storeCart = (id: string) => {
         if (!IS_SERVER) {
-            setCookie(null, CART_KEY, id);
+            setCookie(null, CART_KEY, id, {
+                path: "/",
+            });
         }
     };
 
     const deleteCart = () => {
         if (!IS_SERVER) {
-            destroyCookie(null, CART_KEY);
+            destroyCookie(null, CART_KEY, {
+                path: "/",
+            });
         }
     };
 
