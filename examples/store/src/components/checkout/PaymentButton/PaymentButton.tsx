@@ -15,6 +15,7 @@ export const PaymentButton: React.FC<PaymentButtonProps> = ({
 }) => {
     const [notReady, setNotReady] = useState(true);
     const { cart } = useCartContext();
+    const { onPaymentCompleted } = useCheckout();
 
     useEffect(() => {
         setNotReady(true);
@@ -41,6 +42,14 @@ export const PaymentButton: React.FC<PaymentButtonProps> = ({
 
         setNotReady(false);
     }, [cart]);
+
+    const handlePayment = () => {
+        onPaymentCompleted();
+    };
+
+    if (!paymentSession && cart?.total === 0) {
+        return <Button onClick={handlePayment}>Checkout</Button>;
+    }
 
     switch (paymentSession?.provider_id) {
         case "stripe":

@@ -32,6 +32,10 @@ export const Payment: React.FC = () => {
         };
     }, [cart]);
 
+    if (cart?.total === 0) {
+        return null;
+    }
+
     return (
         <StepContainer
             className="bg-accent-2"
