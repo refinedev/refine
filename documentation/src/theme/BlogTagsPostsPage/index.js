@@ -13,8 +13,6 @@ import BlogListPaginator from "@theme/BlogListPaginator";
 import SearchMetadata from "@theme/SearchMetadata";
 import BlogPostItems from "@theme/BlogPostItems";
 
-import { ChevronLeft } from "../../components/blog/icons";
-
 // Very simple pluralization: probably good enough for now
 function useBlogPostsPlural() {
     const { selectMessage } = usePluralForm();
@@ -67,7 +65,6 @@ function BlogTagsPostsPageContent({ tag, items, sidebar, listMetadata }) {
                     href={tag.allTagsPath}
                     className="uppercase all-tags-button text-white font-extrabold p-2 rounded-[10px] inline-flex items-center"
                 >
-                    <ChevronLeft className="w-5 h-5 transition duration-150" />
                     <Translate
                         id="theme.tags.tagsPageLink"
                         description="The label of the link targeting the tag list page"
