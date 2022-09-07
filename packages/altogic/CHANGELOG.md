@@ -1,5 +1,11 @@
 # @pankod/refine-altogic
 
+## 3.29.0
+
+### Minor Changes
+
+-   Update type declaration generation with `tsc` instead of `tsup` for better navigation throughout projects source code.
+
 ## 3.28.0
 
 ### Minor Changes

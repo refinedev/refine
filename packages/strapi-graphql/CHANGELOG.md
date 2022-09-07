@@ -1,5 +1,11 @@
 # @pankod/refine-strapi-graphql
 
+## 4.5.0
+
+### Minor Changes
+
+-   Update type declaration generation with `tsc` instead of `tsup` for better navigation throughout projects source code.
+
 ## 4.4.0
 
 ### Minor Changes
