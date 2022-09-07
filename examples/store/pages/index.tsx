@@ -35,7 +35,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             },
         });
 
-        nookies.set(context, CART_KEY, data.cart.id);
+        nookies.set(context, CART_KEY, data.cart.id, {
+            path: "/",
+        });
         nookies.set(
             context,
             "medusa_region",
@@ -44,6 +46,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
                 countryCode:
                     region?.countryCode ?? data.cart.region.countries[0].iso_2,
             }),
+            {
+                path: "/",
+            },
         );
 
         return data.cart.id;
