@@ -41,7 +41,7 @@ jobs:
           alias: deploy-preview-antd-${{ github.event.number }}
           enable-pull-request-comment: false
           overwrites-pull-request-comment: false
-          github-deployment-environment: "deploy-preview-mui-${{ github.event.number }}"
+          github-deployment-environment: "deploy-preview-antd-${{ github.event.number }}"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
