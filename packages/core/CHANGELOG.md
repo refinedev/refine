@@ -1,5 +1,21 @@
 # @pankod/refine-core
 
+## 3.67.0
+
+### Minor Changes
+
+-   Updated the generation of type declarations, moved the declarations from `tsup` to `tsc` for a better experience with `Peek Definition` and `Go to Definition` features. After this change, it's expected to navigate to the source code of the `refine` packages instead of the `dist` directory with combined declarations.
+
+*   Removed `jose` dependency.
+
+-   Remove `decamelize` dependency from `humanizeString` helper and replace the functionality with regExp.
+
+### Patch Changes
+
+-   Fixed the issue with the TS compiler and `useResource` hooks return type.
+
+*   Pass `dataProviderName` prop to mutations in `@pankod/refine-core`'s `useImport` hook.
+
 ## 3.66.1
 
 ### Patch Changes

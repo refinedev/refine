@@ -1,5 +1,16 @@
 # @pankod/refine-antd
 
+## 3.39.0
+
+### Minor Changes
+
+-   Update type declaration generation with `tsc` instead of `tsup` for better navigation throughout projects source code.
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-ui-types@0.5.0
+
 ## 3.38.0
 
 ### Minor Changes

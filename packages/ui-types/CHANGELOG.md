@@ -1,5 +1,18 @@
 # @pankod/refine-ui-types
 
+## 0.5.0
+
+### Minor Changes
+
+-   Update type declaration generation with `tsc` instead of `tsup` for better navigation throughout projects source code.
+
+### Patch Changes
+
+-   Update `TestWrapper` props with `children` prop type.
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.67.0
+
 ## 0.4.0
 
 ### Minor Changes
