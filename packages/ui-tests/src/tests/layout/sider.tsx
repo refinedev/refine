@@ -1,7 +1,7 @@
 import React from "react";
 import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
 
-import { act, fireEvent, render, TestWrapper, waitFor } from "@test";
+import { act, render, TestWrapper, waitFor } from "@test";
 
 const mockAuthProvider = {
     login: () => Promise.resolve(),
@@ -114,6 +114,120 @@ export const layoutSiderTests = function (
 
             await waitFor(() => getAllByText("Posts")[0]);
             await waitFor(() => expect(queryByText("Users")).toBeNull());
+        });
+
+        it("should hides logout button when pass null to bottomSection", async () => {
+            const { getAllByText, queryByText } = render(
+                <SiderElement bottomSection={null} />,
+                {
+                    wrapper: TestWrapper({
+                        authProvider: mockAuthProvider,
+                    }),
+                },
+            );
+
+            await waitFor(() =>
+                expect(getAllByText("Posts").length).toBeGreaterThanOrEqual(1),
+            );
+            expect(queryByText("Logout")).not.toBeInTheDocument();
+        });
+
+        it("should render custom element for bottomSection", async () => {
+            const { getAllByText, queryByText, queryAllByText } = render(
+                <SiderElement bottomSection={<div>custom-element</div>} />,
+                {
+                    wrapper: TestWrapper({
+                        authProvider: mockAuthProvider,
+                    }),
+                },
+            );
+
+            await waitFor(() =>
+                expect(getAllByText("Posts").length).toBeGreaterThanOrEqual(1),
+            );
+            expect(queryByText("Logout")).not.toBeInTheDocument();
+            expect(
+                queryAllByText("custom-element").length,
+            ).toBeGreaterThanOrEqual(1);
+        });
+
+        it("should render custom element with logout for bottomSection", async () => {
+            const { getAllByText, queryByText, queryAllByText } = render(
+                <SiderElement
+                    bottomSection={(defaultBottom) => (
+                        <>
+                            <div>custom-element</div>
+                            {defaultBottom}
+                        </>
+                    )}
+                />,
+                {
+                    wrapper: TestWrapper({
+                        authProvider: mockAuthProvider,
+                    }),
+                },
+            );
+
+            await waitFor(() =>
+                expect(getAllByText("Posts").length).toBeGreaterThanOrEqual(1),
+            );
+            expect(queryAllByText("Logout").length).toBeGreaterThanOrEqual(1);
+            expect(
+                queryAllByText("custom-element").length,
+            ).toBeGreaterThanOrEqual(1);
+        });
+
+        it("should render custom element for topSection", async () => {
+            const { getAllByText, queryByText, queryAllByText } = render(
+                <SiderElement topSection={<div>custom-element</div>} />,
+                {
+                    wrapper: TestWrapper({
+                        authProvider: mockAuthProvider,
+                        DashboardPage: function Dashboard() {
+                            return <div>Dashboard</div>;
+                        },
+                    }),
+                },
+            );
+
+            await waitFor(() =>
+                expect(getAllByText("Posts").length).toBeGreaterThanOrEqual(1),
+            );
+            expect(queryByText("Dashboard")).not.toBeInTheDocument();
+            expect(
+                queryAllByText("custom-element").length,
+            ).toBeGreaterThanOrEqual(1);
+        });
+
+        it("should render custom element with dashboard for topSection", async () => {
+            const { getAllByText, queryByText, queryAllByText } = render(
+                <SiderElement
+                    bottomSection={(defaultTop) => (
+                        <>
+                            <div>custom-element</div>
+                            {defaultTop}
+                        </>
+                    )}
+                />,
+                {
+                    wrapper: TestWrapper({
+                        authProvider: mockAuthProvider,
+                        DashboardPage: function Dashboard() {
+                            return <div>Dashboard</div>;
+                        },
+                    }),
+                },
+            );
+
+            await waitFor(() =>
+                expect(getAllByText("Posts").length).toBeGreaterThanOrEqual(1),
+            );
+            expect(queryAllByText("Dashboard").length).toBeGreaterThanOrEqual(
+                1,
+            );
+            expect(
+                queryAllByText("custom-element").length,
+            ).toBeGreaterThanOrEqual(1);
         });
     });
 };
