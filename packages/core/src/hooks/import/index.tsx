@@ -107,6 +107,7 @@ export const useImport = <
     onFinish,
     metaData,
     onProgress,
+    dataProviderName,
 }: ImportOptions<TItem, TVariables, TData> = {}): UseImportReturnType<
     TData,
     TVariables,
@@ -182,6 +183,7 @@ export const useImport = <
                                             values: value,
                                             successNotification: false,
                                             errorNotification: false,
+                                            dataProviderName,
                                             metaData,
                                         });
 
@@ -228,6 +230,7 @@ export const useImport = <
                                                 values: batch,
                                                 successNotification: false,
                                                 errorNotification: false,
+                                                dataProviderName,
                                                 metaData,
                                             }),
                                             currentBatchLength: batch.length,

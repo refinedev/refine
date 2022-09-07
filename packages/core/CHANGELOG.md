@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.66.1
+
+### Patch Changes
+
+-   [#2448](https://github.com/pankod/refine/pull/2448) [`f1edb19979`](https://github.com/pankod/refine/commit/f1edb199793b89dd231d2ab8d1ffed3ee63dce70) Thanks [@aliemir](https://github.com/aliemir)! - Pass `dataProviderName` prop to mutations in `@pankod/refine-core`'s `useImport` hook.
+
 ## 3.66.0
 
 ### Minor Changes
