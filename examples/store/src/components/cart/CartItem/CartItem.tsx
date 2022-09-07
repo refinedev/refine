@@ -115,7 +115,7 @@ export const CartItem: React.FC<CartItemProps> = ({ item }) => {
             })}
         >
             <div className="flex flex-row space-x-4 py-4">
-                <div className="bg-violet relative z-0 h-16 w-16 cursor-pointer overflow-hidden">
+                <div className="border-product-gray relative z-0 h-16 w-16 cursor-pointer overflow-hidden rounded-[4px] border-[1px] border-solid p-1">
                     <Link
                         href={{
                             pathname: "/product/[handle]",
