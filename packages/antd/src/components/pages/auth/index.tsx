@@ -17,7 +17,7 @@ export const AuthPage: React.FC<RefineAuthPageProps> = ({
     type,
     providers,
     loginLink,
-    remember,
+    rememberMe,
     registerLink,
     resetPasswordLink,
     submitButton,
@@ -31,7 +31,7 @@ export const AuthPage: React.FC<RefineAuthPageProps> = ({
                         submitButton={submitButton}
                         registerLink={registerLink}
                         resetPasswordLink={resetPasswordLink}
-                        remember={remember}
+                        rememberMe={rememberMe}
                     />
                 );
             case "register":

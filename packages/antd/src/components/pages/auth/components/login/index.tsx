@@ -34,7 +34,7 @@ export const LoginPage: React.FC<RefineLoginPageProps> = ({
     submitButton,
     registerLink,
     resetPasswordLink,
-    remember,
+    rememberMe,
 }) => {
     const [form] = Form.useForm<ILoginForm>();
     const translate = useTranslate();
@@ -128,7 +128,7 @@ export const LoginPage: React.FC<RefineLoginPageProps> = ({
                                         marginBottom: "12px",
                                     }}
                                 >
-                                    {remember && (
+                                    {rememberMe ?? (
                                         <Form.Item
                                             name="remember"
                                             valuePropName="checked"

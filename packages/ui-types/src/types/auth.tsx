@@ -7,12 +7,10 @@ export type RefineAuthPageProps = {
     resetPasswordLink?: React.ReactNode;
     updatePasswordLink?: React.ReactNode;
     /**
-     * @default false
-     * @description when `type` is `login` show the remember me checkbox on login form
+     * @description when `<AuthPage>` `type` is `login` show the remember me checkbox on login form
      * @optional
      * */
-
-    remember?: boolean;
+    rememberMe?: React.ReactNode;
 };
 export type IProvider = {
     name: string;
@@ -25,7 +23,7 @@ export type RefineLoginPageProps = {
     submitButton?: React.ReactNode;
     registerLink?: React.ReactNode;
     resetPasswordLink?: React.ReactNode;
-    remember?: boolean;
+    rememberMe?: React.ReactNode;
 };
 
 export type RefineRegisterPageProps = {
