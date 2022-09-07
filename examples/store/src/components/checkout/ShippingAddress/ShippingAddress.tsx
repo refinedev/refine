@@ -105,7 +105,7 @@ export const ShippingAddress: React.FC = () => {
                         touched={touchedFields}
                     />
                 </div>
-                <CountrySelect />
+                <CountrySelect registerName="shipping_address.country_code" />
                 <Input
                     label="State / Province"
                     {...register("shipping_address.province")}

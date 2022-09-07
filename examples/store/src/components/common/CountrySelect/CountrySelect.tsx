@@ -5,7 +5,13 @@ import { Cart } from "@medusajs/medusa";
 import { useCartContext } from "@lib/context";
 import { NativeSelect } from "@components";
 
-export const CountrySelect: React.FC = () => {
+interface CountrySelectProps {
+    registerName: string;
+}
+
+export const CountrySelect: React.FC<CountrySelectProps> = ({
+    registerName,
+}) => {
     const { cart } = useCartContext();
 
     const {
@@ -25,7 +31,7 @@ export const CountrySelect: React.FC = () => {
     return (
         <NativeSelect
             label="Country/Region"
-            {...register("shipping_address.country_code", {
+            {...register(registerName, {
                 required: "country is required",
             })}
             errors={errors}
