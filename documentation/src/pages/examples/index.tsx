@@ -1,12 +1,9 @@
 import React from "react";
 import Layout from "@theme/Layout";
 
-const Examples = () => {
+const Examples: React.FC = () => {
     return (
-        <Layout
-            title="Examples"
-            description="Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. It ships with Ant Design System, an enterprise-level UI toolkit."
-        >
+        <Layout>
             <div className="container">
                 <h1 className="font-montserrat uppercase text-center text-5xl font-medium text-[#1890FF] my-10">
                     Awesome Things <br />{" "}
