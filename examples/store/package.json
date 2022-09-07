@@ -10,6 +10,7 @@
     },
     "dependencies": {
         "@headlessui/react": "^1.6.1",
+        "nextjs-progressbar": "^0.0.14",
         "@medusajs/medusa-js": "^1.2.3",
         "@pankod/refine-core": "^3.56.0",
         "@pankod/refine-nextjs-router": "^3.31.0",

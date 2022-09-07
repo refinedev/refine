@@ -4,9 +4,10 @@ import "@assets/main.css";
 import "@assets/chrome-bug.css";
 import "keen-slider/keen-slider.min.css";
 
-import { Refine, LoginPage } from "@pankod/refine-core";
+import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-nextjs-router";
 import dataProvider, { authProvider } from "@pankod/refine-medusa";
+import NextNProgress from "nextjs-progressbar";
 
 import { API_URL, PROXY_URL } from "@lib/constants";
 import { Dashboard, SEO } from "@components";
@@ -22,7 +23,6 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                 Layout={({ ...rest }) => (
                     <Layout {...rest} categories={categories} />
                 )}
-                LoginPage={LoginPage}
                 DashboardPage={Dashboard}
                 authProvider={authProvider(PROXY_URL)}
                 routerProvider={routerProvider}
@@ -47,6 +47,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             >
                 <CartProvider>
                     <SEO />
+                    <NextNProgress options={{ showSpinner: false }} />
                     <Component {...pageProps} />
                 </CartProvider>
             </Refine>
