@@ -57,6 +57,7 @@ function BlogTagsPostsPageMetadata({ tag }) {
 
 function BlogTagsPostsPageContent({ tag, items, sidebar, listMetadata }) {
     const title = useBlogTagsPostsPageTitle(tag);
+
     return (
         <BlogLayout sidebar={sidebar}>
             <header className="margin-bottom--lg">
@@ -64,7 +65,7 @@ function BlogTagsPostsPageContent({ tag, items, sidebar, listMetadata }) {
 
                 <Link
                     href={tag.allTagsPath}
-                    className="uppercase all-tags-button text-white font-extrabold p-2 rounded-[10px] inline-flex items-center active:scale-95"
+                    className="uppercase all-tags-button text-white font-extrabold p-2 rounded-[10px] inline-flex items-center"
                 >
                     <ChevronLeft className="w-5 h-5 transition duration-150" />
                     <Translate
@@ -77,7 +78,10 @@ function BlogTagsPostsPageContent({ tag, items, sidebar, listMetadata }) {
             </header>
             <BlogPostItems items={items} />
             <br />
-            <BlogListPaginator metadata={listMetadata} />
+            <BlogListPaginator
+                metadata={listMetadata}
+                basePath={`/blog/tags/${tag.label}`}
+            />
         </BlogLayout>
     );
 }

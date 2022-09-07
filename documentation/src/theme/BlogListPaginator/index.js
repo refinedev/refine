@@ -7,7 +7,7 @@ import { usePagination, DOTS } from "../../hooks/use-pagination";
 import clsx from "clsx";
 
 export default function BlogListPaginator(props) {
-    const { metadata } = props;
+    const { metadata, basePath = "/blog" } = props;
     const { totalPages, page: currentPage } = metadata;
 
     const paginationRange = usePagination({ totalPages, currentPage });
@@ -34,8 +34,8 @@ export default function BlogListPaginator(props) {
                             currentPage === 1
                                 ? undefined
                                 : currentPage - 1 === 1
-                                ? "/blog"
-                                : `/blog/page/${currentPage - 1}`
+                                ? basePath
+                                : `${basePath}/page/${currentPage - 1}`
                         }
                         className="hover:no-underline"
                     >
@@ -59,8 +59,8 @@ export default function BlogListPaginator(props) {
                             <Link
                                 to={
                                     pageNumber === 1
-                                        ? "/blog"
-                                        : `/blog/page/${pageNumber}`
+                                        ? basePath
+                                        : `${basePath}/page/${pageNumber}`
                                 }
                                 className="hover:no-underline"
                             >
@@ -80,7 +80,7 @@ export default function BlogListPaginator(props) {
                         to={
                             currentPage === lastPage
                                 ? undefined
-                                : `/blog/page/${currentPage + 1}`
+                                : `${basePath}/page/${currentPage + 1}`
                         }
                         className="hover:no-underline"
                     >
