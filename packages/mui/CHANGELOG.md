@@ -1,5 +1,19 @@
 # @pankod/refine-mui
 
+## 3.43.0
+
+### Minor Changes
+
+-   Update type declaration generation with `tsc` instead of `tsup` for better navigation throughout projects source code.
+
+### Patch Changes
+
+-   Update `ThemeProvider` export as value instead of type.
+
+-   Updated dependencies []:
+    -   @pankod/refine-react-hook-form@3.33.0
+    -   @pankod/refine-ui-types@0.5.0
+
 ## 3.42.0
 
 ### Minor Changes
