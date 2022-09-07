@@ -16,7 +16,10 @@ export const Thumbnail: React.FC<ThumbnailProps> = ({
     images,
     size = "small",
 }) => {
-    const initialImage = thumbnail || images?.[0]?.url;
+    const initialImage = (thumbnail || images?.[0]?.url)?.replace(
+        "https://refine-store.fra1.cdn.digitaloceanspaces.com/",
+        "",
+    );
 
     return (
         <div
