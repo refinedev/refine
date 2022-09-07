@@ -22,6 +22,10 @@ export interface Pagination {
 // | containss           | Contains, case sensitive       |
 // | ncontainss          | Doesn't contain, case sensitive|
 // | null                | Is null or not null            |
+// | startswith          | Starts with                    |
+// | nstartswith         | Doesn't start with             |
+// | endswith            | Ends with                      |
+// | nendswith           | Doesn't end with               |
 
 export type CrudOperators =
     | "eq"
@@ -40,7 +44,11 @@ export type CrudOperators =
     | "nbetween"
     | "null"
     | "nnull"
-    | "or";
+    | "or"
+    | "startswith"
+    | "nstartswith"
+    | "endswith"
+    | "nendswith";
 
 export type SortOrder = "desc" | "asc" | null;
 
