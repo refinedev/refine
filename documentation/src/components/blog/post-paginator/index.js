@@ -15,8 +15,9 @@ export const PostPaginator = ({ posts, title }) => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {posts.map((post) => (
-                    <div
+                    <Link
                         key={post.id}
+                        to={post.permalink}
                         className="blog-paginator-item p-4 rounded-2xl min-h-[150px] bg-[#f6f6f9] flex flex-col justify-between gap-4 font-montserrat transition duration-150 ease-in-out"
                     >
                         <figcaption className="flex justify-center items-center space-x-2">
@@ -49,13 +50,12 @@ export const PostPaginator = ({ posts, title }) => {
                                 </div>
                             </div>
                         </figcaption>
-                        <Link
+                        <div
                             id="post-title"
-                            to={post.permalink}
                             className="text-center font-bold text-[#2A2A42]"
                         >
                             {post.title}
-                        </Link>
+                        </div>
                         <div
                             id="post-info"
                             className="mb-2 text-sm text-[#525860] text-center transition duration-150 ease-in-out"
@@ -73,7 +73,7 @@ export const PostPaginator = ({ posts, title }) => {
                                 </>
                             )}
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </div>
