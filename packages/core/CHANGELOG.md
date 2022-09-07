@@ -1,5 +1,25 @@
 # @pankod/refine-core
 
+## 3.66.1
+
+### Patch Changes
+
+-   [#2448](https://github.com/pankod/refine/pull/2448) [`f1edb19979`](https://github.com/pankod/refine/commit/f1edb199793b89dd231d2ab8d1ffed3ee63dce70) Thanks [@aliemir](https://github.com/aliemir)! - Pass `dataProviderName` prop to mutations in `@pankod/refine-core`'s `useImport` hook.
+
+## 3.66.0
+
+### Minor Changes
+
+-   [#2440](https://github.com/pankod/refine/pull/2440) [`0150dcd070`](https://github.com/pankod/refine/commit/0150dcd0700253f1c4908e7e5f2e178bb122e9af) Thanks [@aliemir](https://github.com/aliemir)! - Updated the generation of type declarations, moved the declarations from `tsup` to `tsc` for a better experience with `Peek Definition` and `Go to Definition` features. After this change, it's expected to navigate to the source code of the `refine` packages instead of the `dist` directory with combined declarations.
+
+*   [#2439](https://github.com/pankod/refine/pull/2439) [`f2faf99f25`](https://github.com/pankod/refine/commit/f2faf99f25542f73215ee89c74b241311177b327) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Removed `jose` dependency.
+
+-   [#2443](https://github.com/pankod/refine/pull/2443) [`2c428b3105`](https://github.com/pankod/refine/commit/2c428b31057e3e7c8901fc3da2773bc810235491) Thanks [@ozkalai](https://github.com/ozkalai)! - Remove `decamelize` dependency from `humanizeString` helper and replace the functionality with regExp.
+
+### Patch Changes
+
+-   [#2440](https://github.com/pankod/refine/pull/2440) [`0150dcd070`](https://github.com/pankod/refine/commit/0150dcd0700253f1c4908e7e5f2e178bb122e9af) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the issue with the TS compiler and `useResource` hooks return type.
+
 ## 3.65.3
 
 ### Patch Changes

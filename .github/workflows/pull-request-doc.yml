@@ -43,14 +43,6 @@ jobs:
           cd documentation
           npm install
           npm run build
-      - uses: afc163/surge-preview@v1
-        id: preview_step
-        with:
-          surge_token: ${{ secrets.SURGE_TOKEN }}
-          github_token: ${{ secrets.PANKOD_BOT_TOKEN }}
-          dist: documentation/build
-          teardown: 'true'
-          build: echo
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
