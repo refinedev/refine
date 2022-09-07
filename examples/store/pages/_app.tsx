@@ -1,5 +1,7 @@
 import React from "react";
 import { AppProps } from "next/app";
+import Script from "next/script";
+
 import "@assets/main.css";
 import "@assets/chrome-bug.css";
 import "keen-slider/keen-slider.min.css";
@@ -48,6 +50,19 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                 <CartProvider>
                     <SEO />
                     <NextNProgress options={{ showSpinner: false }} />
+                    <Script
+                        src="https://www.googletagmanager.com/gtag/js?id=G-MBME4VEPK4"
+                        strategy="afterInteractive"
+                    />
+                    <Script id="google-analytics" strategy="afterInteractive">
+                        {`
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){window.dataLayer.push(arguments);}
+                        gtag('js', new Date());
+
+                        gtag('config', 'G-MBME4VEPK4');
+                        `}
+                    </Script>
                     <Component {...pageProps} />
                 </CartProvider>
             </Refine>
