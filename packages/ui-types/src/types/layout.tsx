@@ -1,13 +1,16 @@
-import { TitleProps, LayoutProps, ITreeMenu } from "@pankod/refine-core";
-import {} from "@pankod/refine-core";
+import { TitleProps, LayoutProps } from "@pankod/refine-core";
 
-export type RefineLayoutHeaderProps = {};
+export type SiderRenderProps = {
+    items: JSX.Element[];
+    logout: React.ReactNode;
+    dashboard: React.ReactNode;
+};
 
 export type RefineLayoutSiderProps = {
-    items?: JSX.Element[];
-    logout?: React.ReactNode;
-    dashboard?: React.ReactNode;
+    render?: (props: SiderRenderProps) => React.ReactNode;
 };
+
+export type RefineLayoutHeaderProps = {};
 
 export type RefineLayoutFooterProps = {};
 
