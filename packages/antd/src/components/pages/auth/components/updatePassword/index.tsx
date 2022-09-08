@@ -1,13 +1,9 @@
 import React from "react";
 import { RefineUpdatePasswordPageProps } from "@pankod/refine-ui-types";
 import { Row, Col, Layout, Card, Typography, Form, Input, Button } from "antd";
-import {
-    useTranslate,
-    useRouterContext,
-    useUpdatePassword,
-} from "@pankod/refine-core";
+import { useTranslate, useUpdatePassword } from "@pankod/refine-core";
 
-import { layoutStyles, containerStyles, titleStyles } from "./styles";
+import { layoutStyles, containerStyles, titleStyles } from "../styles";
 
 const { Title } = Typography;
 interface IUpdatePasswordForm {
@@ -25,10 +21,7 @@ export const UpdatePasswordPage: React.FC<RefineUpdatePasswordPageProps> = ({
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>
-            {translate(
-                "pages.updatePassword.title",
-                "Finish resetting your password",
-            )}
+            {translate("pages.updatePassword.title", "Set New Password")}
         </Title>
     );
 

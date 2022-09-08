@@ -17,7 +17,7 @@ import {
 } from "antd";
 import { useLogin, useTranslate, useRouterContext } from "@pankod/refine-core";
 
-import { layoutStyles, containerStyles, titleStyles } from "./styles";
+import { layoutStyles, containerStyles, titleStyles } from "../styles";
 
 const { Text, Title } = Typography;
 interface ILoginForm {
@@ -58,40 +58,30 @@ export const LoginPage: React.FC<LoginProps> = ({
         if (providers) {
             return (
                 <>
-                    <Space
-                        direction="vertical"
-                        align="center"
-                        style={{
-                            display: "flex",
-                            flex: 1,
-                        }}
-                    >
-                        {providers.map((provider) => {
-                            return (
-                                <Button
-                                    key={provider.name}
-                                    type="ghost"
-                                    block
-                                    style={{
-                                        display: "inline-flex",
-                                        height: "auto",
-                                        alignItems: "center",
-                                    }}
-                                    icon={provider.icon}
-                                    onClick={() =>
-                                        login({
-                                            providerName: provider.name,
-                                        })
-                                    }
-                                >
-                                    {provider.label}
-                                </Button>
-                            );
-                        })}
-                    </Space>
-                    <Divider>
-                        {translate("pages.login.divider", "or continue with")}
-                    </Divider>
+                    {providers.map((provider) => {
+                        return (
+                            <Button
+                                key={provider.name}
+                                type="ghost"
+                                block
+                                icon={provider.icon}
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    width: "100%",
+                                    marginBottom: "8px",
+                                }}
+                                onClick={() =>
+                                    login({
+                                        providerName: provider.name,
+                                    })
+                                }
+                            >
+                                {provider.label}
+                            </Button>
+                        );
+                    })}
+                    <Divider>{translate("pages.login.divider", "or")}</Divider>
                 </>
             );
         }

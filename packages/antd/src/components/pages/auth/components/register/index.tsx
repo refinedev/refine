@@ -7,7 +7,7 @@ import {
     useRegister,
 } from "@pankod/refine-core";
 
-import { layoutStyles, containerStyles, titleStyles } from "./styles";
+import { layoutStyles, containerStyles, titleStyles } from "../styles";
 
 const { Text, Title } = Typography;
 

@@ -7,7 +7,7 @@ import {
     useResetPassword,
 } from "@pankod/refine-core";
 
-import { layoutStyles, containerStyles, titleStyles } from "./styles";
+import { layoutStyles, containerStyles, titleStyles } from "../styles";
 
 const { Text, Title } = Typography;
 interface IResestPasswordForm {
@@ -111,7 +111,7 @@ export const ResetPasswordPage: React.FC<RefineResetPasswordPageProps> = ({
                                     >
                                         {translate(
                                             "pages.resetPassword.buttons.submit",
-                                            "Send reset link",
+                                            "Send",
                                         )}
                                     </Button>
                                 )}
