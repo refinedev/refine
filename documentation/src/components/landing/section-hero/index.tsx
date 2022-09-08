@@ -12,9 +12,12 @@ import {
     GithubIcon,
     ScrollIcon,
 } from "../icons";
+import { useTWBreakpoints } from "../../../hooks/use-tw-breakpoints";
 
 export const SectionHero: React.FC = () => {
     const ref = React.useRef<HTMLDivElement>(null);
+
+    const { md, lg, xl } = useTWBreakpoints();
 
     const { scrollYProgress } = useScroll({
         target: ref,
@@ -26,11 +29,13 @@ export const SectionHero: React.FC = () => {
     React.useEffect(() => {
         return scrollYProgress.onChange(async () => {
             if (scrollYProgress.get() >= 0.3) {
-                await scrollButtonControls.start({
-                    y: 40,
-                });
+                if (lg) {
+                    await scrollButtonControls.start({
+                        y: 40,
+                    });
+                }
                 scrollButtonControls.start({
-                    y: [40, 46],
+                    y: !lg ? [-10, 10] : [40, 46],
                     transition: {
                         duration: 1.5,
                         ease: "easeInOut",
@@ -38,9 +43,11 @@ export const SectionHero: React.FC = () => {
                     },
                 });
             } else {
-                await scrollButtonControls.start({ y: 0 });
+                if (lg) {
+                    await scrollButtonControls.start({ y: 0 });
+                }
                 scrollButtonControls.start({
-                    y: [0, 6],
+                    y: !lg ? [-10, 10] : [0, 6],
                     transition: {
                         duration: 1.5,
                         ease: "easeInOut",
@@ -49,7 +56,7 @@ export const SectionHero: React.FC = () => {
                 });
             }
         });
-    });
+    }, [lg]);
 
     const caretPosition = useTransform(
         scrollYProgress,
@@ -120,7 +127,7 @@ export const SectionHero: React.FC = () => {
         // Scroll animated container
         <motion.div
             ref={ref}
-            className="h-[200vh]"
+            className="h-auto lg:h-[200vh]"
             style={{
                 backgroundImage:
                     "linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 20%, rgba(18,105,186,1) 50%, rgba(18,105,186,1) 55%, rgba(24,144,255,1) 100%)",
@@ -129,53 +136,123 @@ export const SectionHero: React.FC = () => {
             }}
         >
             {/* Scroll animated section */}
-            <motion.div className="h-screen w-screen top-0 left-0 sticky px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col justify-center">
-                <div className="flex pt-16 flex-col lg:flex-row">
-                    <div className="heading flex flex-[2] gap-6 h-min">
+            <motion.div className="h-auto lg:h-screen w-screen top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col justify-center">
+                <div className="flex pt-16 flex-col lg:flex-row gap-12 lg:gap-0">
+                    <div className="heading mx-auto lg:mx-0 flex flex-[2] gap-6 h-min">
                         <div className="caret-wrapper relative py-2.5 w-[33px]">
                             <motion.div
+                                transition={{
+                                    yoyo: Infinity,
+                                    ease: "easeInOut",
+                                    duration: 4,
+                                    delay: 1,
+                                }}
                                 style={{
                                     position: "absolute",
-                                    bottom: caretPosition,
+                                    bottom: lg ? caretPosition : undefined,
                                 }}
+                                animate={
+                                    lg
+                                        ? {}
+                                        : {
+                                              bottom: [
+                                                  ...(md
+                                                      ? [
+                                                            "25%",
+                                                            "25%",
+                                                            "25%",
+                                                            "25%",
+                                                            "0%",
+                                                            "0%",
+                                                            "0%",
+                                                            "0%",
+                                                        ]
+                                                      : [
+                                                            "36%",
+                                                            "36%",
+                                                            "36%",
+                                                            "36%",
+                                                            "3%",
+                                                            "3%",
+                                                            "3%",
+                                                            "3%",
+                                                        ]),
+                                              ],
+                                          }
+                                }
                             >
                                 <ArrowIcon />
                             </motion.div>
                         </div>
-                        <div className="line-wrapper text-white font-montserrat tracking-tighter leading-[60px]">
-                            <div className="font-extrabold text-[3.75rem]">
+                        <div className="line-wrapper text-white font-montserrat tracking-tighter leading-[32px] md:leading-[45px] lg:leading-[50px] xl:leading-[60px]">
+                            <div className="font-extrabold text-[2rem] md:text-[2.5rem] lg:text-[3rem] xl:text-[3.75rem]">
                                 build your
                             </div>
-                            <div className="font-normal text-[3rem]">
+                            <div className="font-normal text-[1.5rem] md:text-[1.825rem] lg:text-[2rem] xl:text-[3rem]">
                                 REACT BASED
                             </div>
-                            <div className="font-extrabold text-[3.75rem]">
+                            <div className="font-extrabold text-[2rem] md:text-[2.5rem] lg:text-[3rem] xl:text-[3.75rem]">
                                 CRUD applications
                             </div>
-                            <div className="font-normal text-[3rem]">
+                            <div className="font-normal text-[1.5rem] md:text-[1.825rem] lg:text-[2rem] xl:text-[3rem]">
                                 WITHOUT CONSTRAINTS
                             </div>
                         </div>
                     </div>
-                    <div className="tiles flex-[1] flex flex-col uppercase font-montserrat text-2xl tracking-tight font-medium text-[#1890FF]">
+                    <div className="tiles flex-[1] mx-auto lg:mx-0 min-w-[320px] lg:min-w-0 flex flex-col uppercase font-montserrat text-2xl tracking-tight font-medium text-[#1890FF]">
                         <motion.div
-                            animate={{ y: -8 }}
                             transition={{
                                 yoyo: Infinity,
                                 ease: "easeInOut",
-                                duration: 3,
+                                duration: 6,
                                 delay: 1,
                             }}
-                            style={{
-                                rotate: tileRotateLeft,
-                                x: -10,
-                            }}
+                            style={
+                                lg
+                                    ? {
+                                          rotate: tileRotateLeft,
+                                          x: -10,
+                                      }
+                                    : { x: -10 }
+                            }
+                            animate={
+                                lg
+                                    ? { y: -8 }
+                                    : {
+                                          rotate: [4, 4, 4, -4, -4, -4],
+                                          y: -8,
+                                      }
+                            }
                             className="tile shadow-tile relative overflow-hidden bg-white w-full md:max-w-[338px] h-[4.5rem]"
                         >
                             <motion.div
-                                style={{
-                                    y: tileTextPosition,
+                                transition={{
+                                    yoyo: Infinity,
+                                    ease: "easeInOut",
+                                    duration: 6,
+                                    delay: 1,
                                 }}
+                                style={
+                                    lg
+                                        ? {
+                                              y: tileTextPosition,
+                                          }
+                                        : {}
+                                }
+                                animate={
+                                    lg
+                                        ? {}
+                                        : {
+                                              y: [
+                                                  "0rem",
+                                                  "0rem",
+                                                  "0rem",
+                                                  "-4.5rem",
+                                                  "-4.5rem",
+                                                  "-4.5rem",
+                                              ],
+                                          }
+                                }
                             >
                                 <span className="block w-full text-center p-[18px] h-[4.5rem]">
                                     admin panels
@@ -186,23 +263,58 @@ export const SectionHero: React.FC = () => {
                             </motion.div>
                         </motion.div>
                         <motion.div
-                            animate={{ y: -8 }}
                             transition={{
                                 yoyo: Infinity,
                                 ease: "easeInOut",
-                                duration: 3,
-                                delay: 0,
+                                duration: 6,
+                                delay: 1,
                             }}
-                            style={{
-                                rotate: tileRotateRight,
-                                x: 10,
-                            }}
+                            style={
+                                lg
+                                    ? {
+                                          rotate: tileRotateRight,
+                                          x: 10,
+                                      }
+                                    : { x: 10 }
+                            }
+                            animate={
+                                lg
+                                    ? { y: -8 }
+                                    : {
+                                          rotate: [-4, -4, -4, 4, 4, 4],
+                                          y: -8,
+                                      }
+                            }
                             className="tile shadow-tile relative overflow-hidden bg-white w-full md:max-w-[338px] h-[4.5rem]"
                         >
                             <motion.div
-                                style={{
-                                    y: tileTextPosition,
+                                transition={{
+                                    yoyo: Infinity,
+                                    ease: "easeInOut",
+                                    duration: 6,
+                                    delay: 1,
                                 }}
+                                style={
+                                    lg
+                                        ? {
+                                              y: tileTextPosition,
+                                          }
+                                        : {}
+                                }
+                                animate={
+                                    lg
+                                        ? {}
+                                        : {
+                                              y: [
+                                                  "0rem",
+                                                  "0rem",
+                                                  "0rem",
+                                                  "-4.5rem",
+                                                  "-4.5rem",
+                                                  "-4.5rem",
+                                              ],
+                                          }
+                                }
                             >
                                 <span className="block w-full text-center p-[18px] h-[4.5rem]">
                                     dashboards
@@ -213,23 +325,58 @@ export const SectionHero: React.FC = () => {
                             </motion.div>
                         </motion.div>
                         <motion.div
-                            animate={{ y: -8 }}
                             transition={{
                                 yoyo: Infinity,
                                 ease: "easeInOut",
-                                duration: 3,
-                                delay: 3,
+                                duration: 6,
+                                delay: 1,
                             }}
-                            style={{
-                                rotate: tileRotateLeft,
-                                x: -10,
-                            }}
+                            style={
+                                lg
+                                    ? {
+                                          rotate: tileRotateLeft,
+                                          x: -10,
+                                      }
+                                    : { x: -10 }
+                            }
+                            animate={
+                                lg
+                                    ? { y: -8 }
+                                    : {
+                                          rotate: [4, 4, 4, -4, -4, -4],
+                                          y: -8,
+                                      }
+                            }
                             className="tile shadow-tile relative overflow-hidden bg-white w-full md:max-w-[338px] h-[4.5rem]"
                         >
                             <motion.div
-                                style={{
-                                    y: tileTextPosition,
+                                transition={{
+                                    yoyo: Infinity,
+                                    ease: "easeInOut",
+                                    duration: 6,
+                                    delay: 1,
                                 }}
+                                style={
+                                    lg
+                                        ? {
+                                              y: tileTextPosition,
+                                          }
+                                        : {}
+                                }
+                                animate={
+                                    lg
+                                        ? {}
+                                        : {
+                                              y: [
+                                                  "0rem",
+                                                  "0rem",
+                                                  "0rem",
+                                                  "-4.5rem",
+                                                  "-4.5rem",
+                                                  "-4.5rem",
+                                              ],
+                                          }
+                                }
                             >
                                 <span className="block w-full text-center p-[18px] h-[4.5rem]">
                                     storefronts
@@ -240,23 +387,58 @@ export const SectionHero: React.FC = () => {
                             </motion.div>
                         </motion.div>
                         <motion.div
-                            animate={{ y: -8 }}
                             transition={{
                                 yoyo: Infinity,
                                 ease: "easeInOut",
-                                duration: 3,
-                                delay: 1.7,
+                                duration: 6,
+                                delay: 1,
                             }}
-                            style={{
-                                rotate: tileRotateRight,
-                                x: 10,
-                            }}
+                            style={
+                                lg
+                                    ? {
+                                          rotate: tileRotateRight,
+                                          x: 10,
+                                      }
+                                    : { x: 10 }
+                            }
+                            animate={
+                                lg
+                                    ? { y: -8 }
+                                    : {
+                                          rotate: [-4, -4, -4, 4, 4, 4],
+                                          y: -8,
+                                      }
+                            }
                             className="tile shadow-tile relative overflow-hidden bg-white w-full md:max-w-[338px] h-[4.5rem]"
                         >
                             <motion.div
-                                style={{
-                                    y: tileTextPosition,
+                                transition={{
+                                    yoyo: Infinity,
+                                    ease: "easeInOut",
+                                    duration: 6,
+                                    delay: 1,
                                 }}
+                                style={
+                                    lg
+                                        ? {
+                                              y: tileTextPosition,
+                                          }
+                                        : {}
+                                }
+                                animate={
+                                    lg
+                                        ? {}
+                                        : {
+                                              y: [
+                                                  "0rem",
+                                                  "0rem",
+                                                  "0rem",
+                                                  "-4.5rem",
+                                                  "-4.5rem",
+                                                  "-4.5rem",
+                                              ],
+                                          }
+                                }
                             >
                                 <span className="block w-full text-center p-[18px] h-[4.5rem]">
                                     internal tools
@@ -268,7 +450,7 @@ export const SectionHero: React.FC = () => {
                         </motion.div>
                     </div>
                 </div>
-                <div className="flex flex-col lg:flex-row pt-24 pb-8">
+                <div className="flex flex-col lg:flex-row pt-24 pb-8 gap-6 lg:gap-0">
                     <div className="flex flex-col lg:flex-row flex-1 gap-4 px-4 md:px-8 lg:px-12">
                         <a
                             className="flex flex-1 justify-center items-center appearance-none no-underline font-montserrat font-bold text-xl text-white text-center py-3 px-4 rounded-lg shadow-lg hover:shadow-xl focus:outline-none focus:shadow-xl bg-gradient-to-l from-[#1890FF] to-[#47EBF5]"
@@ -283,7 +465,7 @@ export const SectionHero: React.FC = () => {
                             Read the docs <ChevronRight />
                         </a>
                     </div>
-                    <div className="flex flex-row flex-1 gap-1 justify-end px-4 md:px-8 lg:px-12 opacity-80">
+                    <div className="flex flex-col lg:flex-row flex-1 gap-1 justify-end px-4 md:px-8 lg:px-12 opacity-80">
                         <div>
                             <a
                                 href="https://www.producthunt.com/posts/refine-2?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-refine&#0045;2"
@@ -293,8 +475,7 @@ export const SectionHero: React.FC = () => {
                                 <img
                                     src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=319164&theme=dark"
                                     alt="refine - Open&#0032;Source&#0032;React&#0032;Framework | Product Hunt"
-                                    style={{ width: "250px", height: "54px" }}
-                                    className="w-[250px] h-[54px] bg-[#211d21] rounded-tl-xl rounded-bl-xl"
+                                    className="w-full lg:w-[250px] h-[54px] bg-[#211d21] rounded-xl lg:rounded-br-none lg:rounded-tr-none rounded-tl-xl rounded-bl-xl"
                                 />
                             </a>
                         </div>
@@ -303,7 +484,7 @@ export const SectionHero: React.FC = () => {
                                 href="https://github.com/pankod/refine"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="bg-[#211d21] no-underline rounded-tr-xl rounded-br-xl h-[54px] flex gap-2 pl-3.5 py-2.5 pr-2.5 items-center"
+                                className="bg-[#211d21] no-underline rounded-xl lg:rounded-bl-none lg:rounded-tl-none rounded-tr-xl rounded-br-xl h-[54px] flex gap-2 pl-3.5 py-2.5 pr-2.5 items-center justify-center lg:justify-start"
                             >
                                 <GithubIcon />
                                 <div className="font-bold font-montserrat text-base text-white">
@@ -319,10 +500,24 @@ export const SectionHero: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex items-center justify-center">
+                <div
+                    className="flex items-center justify-center"
+                    style={{ paddingBottom: lg ? 0 : "40px" }}
+                >
                     <motion.button
                         className="appearance-none border-none bg-none bg-transparent flex w-auto items-center justify-center gap-2.5"
-                        animate={scrollButtonControls}
+                        animate={
+                            lg
+                                ? scrollButtonControls
+                                : {
+                                      y: [-10, 10],
+                                  }
+                        }
+                        transition={{
+                            yoyo: Infinity,
+                            ease: "easeInOut",
+                            duration: 1.5,
+                        }}
                         onClick={() => {
                             if (typeof window !== "undefined") {
                                 window.scrollTo({
@@ -343,9 +538,8 @@ export const SectionHero: React.FC = () => {
                 </div>
             </motion.div>
             {/* Scroll snap alignment */}
-            <div className="snap-start h-screen w-screen" />
+            <div className="snap-start hidden lg:block h-screen w-screen" />
             {/* Scroll snap alignment */}
-            <div className="snap-start h-screen w-screen" />
         </motion.div>
     );
 };
