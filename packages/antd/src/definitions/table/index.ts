@@ -47,16 +47,24 @@ export const mapAntdSorterToCrudSorting = (
             })
             .map((item) => {
                 if (item.field && item.order) {
+                    const field = Array.isArray(item.field)
+                        ? item.field.join(".")
+                        : `${item.field}`;
+
                     crudSorting.push({
-                        field: `${item.columnKey ?? item.field}`,
+                        field: `${item.columnKey ?? field}`,
                         order: item.order.replace("end", "") as "asc" | "desc",
                     });
                 }
             });
     } else {
         if (sorter.field && sorter.order) {
+            const field = Array.isArray(sorter.field)
+                ? sorter.field.join(".")
+                : `${sorter.field}`;
+
             crudSorting.push({
-                field: `${sorter.columnKey ?? sorter.field}`,
+                field: `${sorter.columnKey ?? field}`,
                 order: sorter.order.replace("end", "") as "asc" | "desc",
             });
         }
