@@ -1,6 +1,17 @@
 import React from "react";
 import { RefineRegisterPageProps } from "@pankod/refine-ui-types";
-import { Row, Col, Layout, Card, Typography, Form, Input, Button } from "antd";
+import {
+    Row,
+    Col,
+    Layout,
+    Card,
+    Typography,
+    Form,
+    Input,
+    Button,
+    LayoutProps,
+    CardProps,
+} from "antd";
 import {
     useTranslate,
     useRouterContext,
@@ -11,13 +22,15 @@ import { layoutStyles, containerStyles, titleStyles } from "../styles";
 
 const { Text, Title } = Typography;
 
+type RegisterProps = RefineRegisterPageProps<LayoutProps, CardProps>;
+
 interface IRegisterForm {
     username?: string;
     email?: string;
     password?: string;
 }
 
-export const RegisterPage: React.FC<RefineRegisterPageProps> = ({
+export const RegisterPage: React.FC<RegisterProps> = ({
     submitButton,
     loginLink,
     wrapperProps,

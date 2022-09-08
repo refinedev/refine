@@ -17,7 +17,7 @@ export type AuthProps = RefineAuthPageProps<LayoutProps, CardProps>;
  * @see {@link https://refine.dev/docs/api-references/components/refine-config#authpage} for more details.
  */
 export const AuthPage: React.FC<AuthProps> = ({
-    type,
+    type = "login",
     providers,
     loginLink,
     rememberMe,

@@ -1,17 +1,31 @@
 import React from "react";
 import { RefineUpdatePasswordPageProps } from "@pankod/refine-ui-types";
-import { Row, Col, Layout, Card, Typography, Form, Input, Button } from "antd";
+import {
+    Row,
+    Col,
+    Layout,
+    Card,
+    Typography,
+    Form,
+    Input,
+    Button,
+    LayoutProps,
+    CardProps,
+} from "antd";
 import { useTranslate, useUpdatePassword } from "@pankod/refine-core";
 
 import { layoutStyles, containerStyles, titleStyles } from "../styles";
 
 const { Title } = Typography;
+
+type UpdatePassworProps = RefineUpdatePasswordPageProps<LayoutProps, CardProps>;
+
 interface IUpdatePasswordForm {
     password?: string;
     confirmPassword?: string;
 }
 
-export const UpdatePasswordPage: React.FC<RefineUpdatePasswordPageProps> = ({
+export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
     submitButton,
     wrapperProps,
     contentProps,

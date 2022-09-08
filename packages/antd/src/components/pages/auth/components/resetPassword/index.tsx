@@ -1,6 +1,17 @@
 import React from "react";
 import { RefineResetPasswordPageProps } from "@pankod/refine-ui-types";
-import { Row, Col, Layout, Card, Typography, Form, Input, Button } from "antd";
+import {
+    Row,
+    Col,
+    Layout,
+    Card,
+    Typography,
+    Form,
+    Input,
+    Button,
+    LayoutProps,
+    CardProps,
+} from "antd";
 import {
     useTranslate,
     useRouterContext,
@@ -9,12 +20,14 @@ import {
 
 import { layoutStyles, containerStyles, titleStyles } from "../styles";
 
+type ResetPassworProps = RefineResetPasswordPageProps<LayoutProps, CardProps>;
+
 const { Text, Title } = Typography;
 interface IResestPasswordForm {
     email: string;
 }
 
-export const ResetPasswordPage: React.FC<RefineResetPasswordPageProps> = ({
+export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
     submitButton,
     loginLink,
     wrapperProps,
