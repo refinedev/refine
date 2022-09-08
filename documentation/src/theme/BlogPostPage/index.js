@@ -9,15 +9,14 @@ import {
     useBlogPost,
 } from "@docusaurus/theme-common/internal";
 import BlogLayout from "@theme/BlogLayout";
-import BlogPostPaginator from "@theme/BlogPostPaginator";
 import BlogPostPageMetadata from "@theme/BlogPostPage/Metadata";
 import TOC from "@theme/TOC";
 
-import { BlogPostPageView } from "../../components/blog";
+import { BlogPostPageView, PostPaginator } from "../../components/blog";
 
-function BlogPostPageContent({ sidebar, children }) {
+function BlogPostPageContent({ children }) {
     const { metadata, toc } = useBlogPost();
-    const { nextItem, prevItem, frontMatter } = metadata;
+    const { frontMatter, relatedPosts, authorPosts } = metadata;
     const {
         hide_table_of_contents: hideTableOfContents,
         toc_min_heading_level: tocMinHeadingLevel,
@@ -26,11 +25,10 @@ function BlogPostPageContent({ sidebar, children }) {
 
     return (
         <BlogLayout
-            sidebar={sidebar}
             toc={
                 !hideTableOfContents && toc.length > 0 ? (
                     <TOC
-                        className="custom-table-of-contents shadow-sm"
+                        className="custom-table-of-contents rounded-[10px] blog-post-item-shadow"
                         toc={toc}
                         minHeadingLevel={tocMinHeadingLevel}
                         maxHeadingLevel={tocMaxHeadingLevel}
@@ -39,10 +37,10 @@ function BlogPostPageContent({ sidebar, children }) {
             }
         >
             <BlogPostPageView>{children}</BlogPostPageView>
-
-            {(nextItem || prevItem) && (
-                <BlogPostPaginator nextItem={nextItem} prevItem={prevItem} />
-            )}
+            <br />
+            <PostPaginator title="Related Articles" posts={relatedPosts} />
+            <br />
+            <PostPaginator title="From Same Author" posts={authorPosts} />
         </BlogLayout>
     );
 }
@@ -58,7 +56,7 @@ export default function BlogPostPage(props) {
                 )}
             >
                 <BlogPostPageMetadata />
-                <BlogPostPageContent sidebar={props.sidebar}>
+                <BlogPostPageContent>
                     <BlogPostContent />
                 </BlogPostPageContent>
             </HtmlClassNameProvider>

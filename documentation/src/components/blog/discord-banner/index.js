@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "@docusaurus/Link";
 
-export const DiscordBanner = () => {
+const DiscordBanner = () => {
     return (
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0 h-auto md:h-[150px] bg-[#5865F2] w-full rounded-2xl py-5 px-5 md:px-12">
             <div className="flex items-center gap-16">
@@ -10,7 +10,7 @@ export const DiscordBanner = () => {
                     src="/img/blog-static/discord-banner.png"
                     alt="Discord Logo"
                 />
-                <div className=" text-white font-montserrat font-bold max-w-md">
+                <div className="text-white font-montserrat font-bold max-w-md text-center md:text-left">
                     <h1 className="text-2xl uppercase leading-tight mb-0 font-montserrat">
                         Join to refine discord server
                     </h1>
@@ -27,3 +27,5 @@ export const DiscordBanner = () => {
         </div>
     );
 };
+
+export default DiscordBanner;

@@ -15,9 +15,12 @@ module.exports = {
                 tagTile: "3px -2px 8px 0 rgba(42, 42, 66, 0.25)",
                 startTiles: "4px 8px 12px 0 rgba(0, 0, 0, 0.2)",
             },
+            screens: {
+                "2xl": "1280px",
+            },
         },
     },
-    plugins: [],
+    plugins: [require("@tailwindcss/line-clamp")],
     corePlugins: {
         preflight: false,
     },

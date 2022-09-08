@@ -516,5 +516,51 @@ html {
 
 #__docusaurus .custom-table-of-contents .table-of-contents {
     @apply pl-0;
-    border: 1px solid var(--ifm-toc-border-color);
+    border: none;
+}
+
+@media (max-width: 1023px) {
+    #__docusaurus .custom-table-of-contents .table-of-contents {
+        @apply hidden;
+    }
+}
+
+#__docusaurus .github-banner-bg {
+    background-image: url("/img/blog-static/github-bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#__docusaurus .twitter-banner-bg {
+    background: linear-gradient(90deg, #3fdcf7 2.01%, #1890ff 99.51%);
+}
+
+#__docusaurus .blog-paginator-item:hover {
+    background: linear-gradient(90deg, #3fdcf7 2.01%, #1890ff 99.51%);
+}
+
+#__docusaurus .blog-paginator-item:hover #post-title {
+    @apply text-white;
+}
+#__docusaurus .blog-paginator-item:hover #author-title {
+    @apply text-white font-semibold;
+}
+#__docusaurus .blog-paginator-item:hover #author-name {
+    @apply text-white;
+}
+#__docusaurus .blog-paginator-item:hover #post-info {
+    @apply text-white font-semibold;
+}
+
+#__docusaurus .sticky-author-card {
+    position: sticky;
+    top: calc(var(--ifm-navbar-height) + 1rem);
+}
+
+#__docusaurus .all-tags-button {
+    background: linear-gradient(90deg, #3fdcf7 2.01%, #1890ff 99.51%);
+}
+
+#__docusaurus .all-tags-button:hover svg {
+    @apply -translate-x-1;
 }

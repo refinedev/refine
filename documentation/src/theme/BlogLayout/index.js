@@ -2,26 +2,27 @@ import React from "react";
 import clsx from "clsx";
 import Layout from "@theme/Layout";
 
-import { AuthorCard } from "../../components/blog";
+import { AuthorCardWithHook } from "../../components/blog";
 
 export default function BlogLayout(props) {
-    const { children, toc, ...layoutProps } = props;
+    const { children, toc, sidebar, ...layoutProps } = props;
 
     return (
         <Layout {...layoutProps}>
             <div className="container margin-vert--lg">
-                <div className="row">
-                    {toc && (
-                        <div className="col col--3">
-                            <AuthorCard />
-                            <br />
-                            {toc}
-                        </div>
-                    )}
+                <div className="flex flex-row flex-wrap lg:flex-nowrap lg:gap-4">
+                    {sidebar ??
+                        (toc && (
+                            <div className="w-full lg:w-1/4">
+                                <AuthorCardWithHook />
+                                <br />
+                                {toc}
+                            </div>
+                        ))}
                     <main
-                        className={clsx("col", {
-                            "col--9": toc,
-                            "col--12": !toc,
+                        className={clsx({
+                            "w-full lg:w-3/4": toc,
+                            "w-full": !toc,
                         })}
                         itemScope
                         itemType="http://schema.org/Blog"

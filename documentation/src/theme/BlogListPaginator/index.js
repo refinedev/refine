@@ -7,7 +7,7 @@ import { usePagination, DOTS } from "../../hooks/use-pagination";
 import clsx from "clsx";
 
 export default function BlogListPaginator(props) {
-    const { metadata } = props;
+    const { metadata, basePath = "/blog" } = props;
     const { totalPages, page: currentPage } = metadata;
 
     const paginationRange = usePagination({ totalPages, currentPage });
@@ -17,8 +17,6 @@ export default function BlogListPaginator(props) {
     }
 
     const lastPage = paginationRange[paginationRange.length - 1];
-
-    return null;
 
     return (
         <nav
@@ -34,8 +32,10 @@ export default function BlogListPaginator(props) {
                     <Link
                         to={
                             currentPage === 1
-                                ? ""
-                                : `/blog/page/${currentPage - 1}`
+                                ? undefined
+                                : currentPage - 1 === 1
+                                ? basePath
+                                : `${basePath}/page/${currentPage - 1}`
                         }
                         className="hover:no-underline"
                     >
@@ -59,8 +59,8 @@ export default function BlogListPaginator(props) {
                             <Link
                                 to={
                                     pageNumber === 1
-                                        ? "/blog"
-                                        : `/blog/page/${pageNumber}`
+                                        ? basePath
+                                        : `${basePath}/page/${pageNumber}`
                                 }
                                 className="hover:no-underline"
                             >
@@ -79,8 +79,8 @@ export default function BlogListPaginator(props) {
                     <Link
                         to={
                             currentPage === lastPage
-                                ? ""
-                                : `/blog/page/${currentPage + 1}`
+                                ? undefined
+                                : `${basePath}/page/${currentPage + 1}`
                         }
                         className="hover:no-underline"
                     >

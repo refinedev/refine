@@ -1,60 +1,80 @@
 import React from "react";
 import Link from "@docusaurus/Link";
 import { useBlogPost } from "@docusaurus/theme-common/internal";
-import { usePluralForm } from "@docusaurus/theme-common";
 import { blogPostContainerID } from "@docusaurus/utils-common";
-import { translate } from "@docusaurus/Translate";
 import MDXContent from "@theme/MDXContent";
 import BlogPostItemContainer from "@theme/BlogPostItem/Container";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import {
+    LinkedinShareButton,
+    RedditShareButton,
+    TwitterShareButton,
+    TwitterIcon,
+    RedditIcon,
+    LinkedinIcon,
+} from "react-share";
 
-function useReadingTimePlural() {
-    const { selectMessage } = usePluralForm();
-    return (readingTimeFloat) => {
-        const readingTime = Math.ceil(readingTimeFloat);
-        return selectMessage(
-            readingTime,
-            translate(
-                {
-                    id: "theme.blog.post.readingTime.plurals",
-                    description:
-                        'Pluralized label for "{readingTime} min read". Use as much plural forms (separated by "|") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)',
-                    message: "One min read|{readingTime} min read",
-                },
-                { readingTime },
-            ),
-        );
-    };
-}
-
-function ReadingTime({ readingTime }) {
-    const readingTimePlural = useReadingTimePlural();
-    return <>{readingTimePlural(readingTime)}</>;
-}
-
-function Date({ date, formattedDate }) {
-    return (
-        <time dateTime={date} itemProp="datePublished">
-            {formattedDate}
-        </time>
-    );
-}
-
-function Spacer() {
-    return <>{" · "}</>;
-}
+import { Tags } from "@site/src/components/blog";
+import { Date, ReadingTime, Spacer } from "@site/src/components/blog/common";
 
 export const BlogPostPageView = ({ children }) => {
     const { metadata, isBlogPostPage } = useBlogPost();
-    const { permalink, title, date, formattedDate, readingTime, frontMatter } =
-        metadata;
+    const {
+        permalink,
+        title,
+        date,
+        formattedDate,
+        readingTime,
+        frontMatter,
+        tags,
+        description,
+    } = metadata;
+
+    const {
+        siteConfig: { url },
+    } = useDocusaurusContext();
 
     return (
-        <BlogPostItemContainer>
-            <img
-                className="rounded-xl mb-2"
-                src={frontMatter.image}
-                alt="Post image"
-            />
+        <BlogPostItemContainer className="blog-post-item-shadow rounded-[10px] p-4">
+            <div className="relative">
+                <div className="absolute top-0 right-0 bg-white rounded-bl-[10px]">
+                    <div className="flex items-center space-x-2 py-1 px-2">
+                        <TwitterShareButton
+                            windowWidth={750}
+                            windowHeight={800}
+                            url={url + permalink}
+                            className="flex"
+                            title={title}
+                            hashtags={tags.map((tag) => tag.label)}
+                        >
+                            <TwitterIcon size={36} round />
+                        </TwitterShareButton>
+                        <RedditShareButton
+                            className="flex"
+                            windowWidth={750}
+                            windowHeight={600}
+                            url={url + permalink}
+                            title={title}
+                        >
+                            <RedditIcon size={36} round />
+                        </RedditShareButton>
+                        <LinkedinShareButton
+                            url={url + permalink}
+                            title={title}
+                            source={url}
+                            summary={description}
+                            className="flex"
+                        >
+                            <LinkedinIcon size={36} round />
+                        </LinkedinShareButton>
+                    </div>
+                </div>
+                <img
+                    className="rounded-xl mb-2"
+                    src={frontMatter.image}
+                    alt="Post image"
+                />
+            </div>
             <div className="mb-2 text-sm text-[#525860]">
                 <Date date={date} formattedDate={formattedDate} />
                 {typeof readingTime !== "undefined" && (
@@ -79,6 +99,8 @@ export const BlogPostPageView = ({ children }) => {
                 itemProp="articleBody"
             >
                 <MDXContent>{children}</MDXContent>
+                <br />
+                <Tags />
             </div>
         </BlogPostItemContainer>
     );
