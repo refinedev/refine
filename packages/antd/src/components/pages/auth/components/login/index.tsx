@@ -68,6 +68,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                                 style={{
                                     display: "flex",
                                     justifyContent: "center",
+                                    alignItems: "center",
                                     width: "100%",
                                     marginBottom: "8px",
                                 }}
