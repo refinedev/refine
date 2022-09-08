@@ -143,8 +143,10 @@ export const layoutSiderTests = function (
             await waitFor(() =>
                 expect(getAllByText("Posts").length).toBeGreaterThanOrEqual(1),
             );
-            expect(queryByText("Logout")).toBeInTheDocument();
-            expect(queryByText("Dashboard")).toBeInTheDocument();
+            expect(queryAllByText("Logout").length).toBeGreaterThanOrEqual(1);
+            expect(queryAllByText("Dashboard").length).toBeGreaterThanOrEqual(
+                1,
+            );
             expect(
                 queryAllByText("custom-element").length,
             ).toBeGreaterThanOrEqual(1);
