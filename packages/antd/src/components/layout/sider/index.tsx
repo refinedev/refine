@@ -23,11 +23,7 @@ import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
 const { SubMenu } = Menu;
 
-export const Sider: React.FC<RefineLayoutSiderProps> = ({
-    logout,
-    dashboard,
-    items,
-}) => {
+export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const isExistAuthentication = useIsExistAuthentication();
     const { Link } = useRouterContext();
@@ -97,24 +93,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
         });
     };
 
-    const defaultDashboard = hasDashboard ? (
-        <CanAccess resource="dashboard" action="list">
-            <Menu.Item
-                key="dashboard"
-                style={{
-                    fontWeight: selectedKey === "/" ? "bold" : "normal",
-                }}
-                icon={<DashboardOutlined />}
-            >
-                <Link to="/">{translate("dashboard.title", "Dashboard")}</Link>
-                {!collapsed && selectedKey === "/" && (
-                    <div className="ant-menu-tree-arrow" />
-                )}
-            </Menu.Item>
-        </CanAccess>
-    ) : null;
-
-    const defaultLogout = isExistAuthentication && (
+    const logout = isExistAuthentication && (
         <Menu.Item
             key="logout"
             onClick={() => mutateLogout()}
@@ -124,10 +103,39 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
         </Menu.Item>
     );
 
-    const logoutButton = typeof logout !== "undefined" ? logout : defaultLogout;
-    const dashboardMenuItem =
-        typeof dashboard !== "undefined" ? dashboard : defaultDashboard;
-    const menuItemsToRender = items ?? renderTreeView(menuItems, selectedKey);
+    const dashboard = hasDashboard ? (
+        <Menu.Item
+            key="dashboard"
+            style={{
+                fontWeight: selectedKey === "/" ? "bold" : "normal",
+            }}
+            icon={<DashboardOutlined />}
+        >
+            <Link to="/">{translate("dashboard.title", "Dashboard")}</Link>
+            {!collapsed && selectedKey === "/" && (
+                <div className="ant-menu-tree-arrow" />
+            )}
+        </Menu.Item>
+    ) : null;
+
+    const items = renderTreeView(menuItems, selectedKey);
+
+    const renderSider = () => {
+        if (render) {
+            return render({
+                dashboard,
+                items,
+                logout,
+            });
+        }
+        return (
+            <>
+                {dashboard}
+                {items}
+                {logout}
+            </>
+        );
+    };
 
     return (
         <Layout.Sider
@@ -149,9 +157,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
                     }
                 }}
             >
-                {dashboardMenuItem}
-                {menuItemsToRender}
-                {logoutButton}
+                {renderSider()}
             </Menu>
         </Layout.Sider>
     );
