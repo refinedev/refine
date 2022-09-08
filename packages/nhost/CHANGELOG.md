@@ -1,5 +1,13 @@
 # @pankod/refine-nhost
 
+## 3.35.2
+
+### Patch Changes
+
+-   Added nested sorting feature 💥
+
+*   Added new CRUD Filter Operators with undefined
+
 ## 3.35.1
 
 ### Patch Changes
