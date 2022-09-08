@@ -55,8 +55,8 @@ export const UpdatePasswordPage: React.FC<RefineUpdatePasswordPageProps> = ({
                                 <Form.Item
                                     name="password"
                                     label={translate(
-                                        "pages.updatePassword.password",
-                                        "Password",
+                                        "pages.updatePassword.fields.password",
+                                        "New Password",
                                     )}
                                     rules={[{ required: true }]}
                                     style={{ marginBottom: "12px" }}
@@ -70,18 +70,14 @@ export const UpdatePasswordPage: React.FC<RefineUpdatePasswordPageProps> = ({
                                 <Form.Item
                                     name="confirmPassword"
                                     label={translate(
-                                        "pages.updatePassword.confirmPassword",
-                                        "Confirm Password",
+                                        "pages.updatePassword.fields.confirmPassword",
+                                        "Confirm New Password",
                                     )}
                                     hasFeedback
                                     dependencies={["password"]}
                                     rules={[
                                         {
                                             required: true,
-                                            message: translate(
-                                                "pages.updatePassword.confirmPasswordRequired",
-                                                "Please confirm your password!",
-                                            ),
                                         },
                                         ({ getFieldValue }) => ({
                                             validator(_, value) {
@@ -96,8 +92,8 @@ export const UpdatePasswordPage: React.FC<RefineUpdatePasswordPageProps> = ({
                                                 return Promise.reject(
                                                     new Error(
                                                         translate(
-                                                            "pages.updatePassword.confirmPasswordNotMatch",
-                                                            "The two passwords that you entered do not match!",
+                                                            "pages.updatePassword.errors.confirmPasswordNotMatch",
+                                                            "The two passwords that you entered do not match",
                                                         ),
                                                     ),
                                                 );
@@ -122,7 +118,7 @@ export const UpdatePasswordPage: React.FC<RefineUpdatePasswordPageProps> = ({
                                         block
                                     >
                                         {translate(
-                                            "pages.updatePassword.submit",
+                                            "pages.updatePassword.buttons.submit",
                                             "Change Password",
                                         )}
                                     </Button>

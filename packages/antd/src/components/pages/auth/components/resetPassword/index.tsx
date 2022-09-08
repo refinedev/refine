@@ -9,7 +9,7 @@ import {
 
 import { layoutStyles, containerStyles, titleStyles } from "./styles";
 
-const { Title } = Typography;
+const { Text, Title } = Typography;
 interface IResestPasswordForm {
     email: string;
 }
@@ -54,7 +54,7 @@ export const ResetPasswordPage: React.FC<RefineResetPasswordPageProps> = ({
                                 <Form.Item
                                     name="email"
                                     label={translate(
-                                        "pages.resetPassword.email",
+                                        "pages.resetPassword.fields.email",
                                         "Email",
                                     )}
                                     rules={[{ required: true }]}
@@ -62,7 +62,7 @@ export const ResetPasswordPage: React.FC<RefineResetPasswordPageProps> = ({
                                     <Input
                                         size="large"
                                         placeholder={translate(
-                                            "pages.resetPassword.email",
+                                            "pages.resetPassword.fields.email",
                                             "Email",
                                         )}
                                     />
@@ -76,18 +76,28 @@ export const ResetPasswordPage: React.FC<RefineResetPasswordPageProps> = ({
                                     }}
                                 >
                                     {loginLink ?? (
-                                        <Link
+                                        <Text
                                             style={{
-                                                fontSize: "12px",
+                                                fontSize: 12,
                                                 marginLeft: "auto",
                                             }}
-                                            to="/login"
                                         >
                                             {translate(
-                                                "pages.register.signup",
-                                                "Have an account? Login",
-                                            )}
-                                        </Link>
+                                                "pages.register.buttons.haveAccount",
+                                                "Have an account? ",
+                                            )}{" "}
+                                            <Link
+                                                style={{
+                                                    fontWeight: "bold",
+                                                }}
+                                                to="/login"
+                                            >
+                                                {translate(
+                                                    "pages.login.signin",
+                                                    "Sign in",
+                                                )}
+                                            </Link>
+                                        </Text>
                                     )}
                                 </div>
 
@@ -100,7 +110,7 @@ export const ResetPasswordPage: React.FC<RefineResetPasswordPageProps> = ({
                                         block
                                     >
                                         {translate(
-                                            "pages.resetPassword.submit",
+                                            "pages.resetPassword.buttons.submit",
                                             "Send reset link",
                                         )}
                                     </Button>

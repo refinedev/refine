@@ -16,3 +16,10 @@ export const titleStyles: CSSProperties = {
     fontSize: "30px",
     letterSpacing: "-0.04em",
 };
+
+export const titleStyles2: CSSProperties = {
+    textAlign: "center",
+    color: "#67be23",
+    fontSize: "30px",
+    letterSpacing: "-0.04em",
+};
