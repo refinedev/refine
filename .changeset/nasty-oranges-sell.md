@@ -2,4 +2,4 @@
 "@pankod/refine-ui-tests": minor
 ---
 
-Updated `Sider` test for `top` and `bottom` props.
+Updated `Sider` test for `dashboard`, `logout` and `items` props.
