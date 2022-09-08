@@ -1,3 +1,4 @@
+import { RefineProps } from "@components/containers";
 import React, { ReactNode } from "react";
 import { QueryClientConfig } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -48,7 +49,7 @@ export interface IRefineContext {
     syncWithLocation: boolean;
     undoableTimeout: number;
     catchAll?: React.ReactNode;
-    DashboardPage?: React.FC;
+    DashboardPage?: RefineProps["DashboardPage"];
     LoginPage?: React.FC | false;
     Title?: React.FC<TitleProps>;
     Layout: React.FC<LayoutProps>;
@@ -68,7 +69,7 @@ export interface IRefineContextProvider {
     syncWithLocation: boolean;
     undoableTimeout: number;
     catchAll?: React.ReactNode;
-    DashboardPage?: React.FC;
+    DashboardPage?: RefineProps["DashboardPage"];
     LoginPage?: React.FC | false;
     Title?: React.FC<TitleProps>;
     Layout?: React.FC<LayoutProps>;

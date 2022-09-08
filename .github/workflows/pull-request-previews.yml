@@ -32,13 +32,20 @@ jobs:
           npm ci
           npm run bootstrap -- --scope fine-foods
           npm run build -- --scope fine-foods
-      - uses: afc163/surge-preview@v1
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.2
         with:
-          surge_token: ${{ secrets.SURGE_TOKEN }}
-          github_token: ${{ secrets.PANKOD_BOT_TOKEN }}
-          dist: examples/fineFoods/admin/antd/build
-          teardown: 'true'
-          build: echo
+          publish-dir: './examples/fineFoods/admin/antd/build'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions"
+          alias: deploy-preview-antd-${{ github.event.number }}
+          enable-pull-request-comment: false
+          overwrites-pull-request-comment: false
+          github-deployment-environment: "deploy-preview-antd-${{ github.event.number }}"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 10
   mui-fine-foods:
     runs-on: ubuntu-latest
     strategy:
@@ -60,10 +67,17 @@ jobs:
           npm ci
           npm run bootstrap -- --scope mui-fine-foods
           npm run build -- --scope mui-fine-foods
-      - uses: afc163/surge-preview@v1
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.2
         with:
-          surge_token: ${{ secrets.SURGE_TOKEN }}
-          github_token: ${{ secrets.PANKOD_BOT_TOKEN }}
-          dist: examples/fineFoods/admin/mui/build
-          teardown: 'true'
-          build: echo
+          publish-dir: './examples/fineFoods/admin/mui/build'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions"
+          alias: deploy-preview-mui-${{ github.event.number }}
+          enable-pull-request-comment: false
+          overwrites-pull-request-comment: false
+          github-deployment-environment: "deploy-preview-mui-${{ github.event.number }}"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 10

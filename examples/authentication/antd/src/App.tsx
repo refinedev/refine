@@ -123,7 +123,6 @@ const App: React.FC = () => {
             )}
             Layout={Layout}
             catchAll={<ErrorComponent />}
-            options={{ disableTelemetry: true }}
         />
     );
 };
