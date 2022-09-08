@@ -23,11 +23,15 @@ import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
 const { SubMenu } = Menu;
 
-export const Sider: React.FC<RefineLayoutSiderProps> = ({ bottom, top }) => {
+export const Sider: React.FC<RefineLayoutSiderProps> = ({
+    logout,
+    dashboard,
+    items,
+}) => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const isExistAuthentication = useIsExistAuthentication();
     const { Link } = useRouterContext();
-    const { mutate: logout } = useLogout();
+    const { mutate: mutateLogout } = useLogout();
     const Title = useTitle();
     const translate = useTranslate();
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
@@ -93,7 +97,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ bottom, top }) => {
         });
     };
 
-    const defaultTop = hasDashboard ? (
+    const defaultDashboard = hasDashboard ? (
         <CanAccess resource="dashboard" action="list">
             <Menu.Item
                 key="dashboard"
@@ -110,29 +114,20 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ bottom, top }) => {
         </CanAccess>
     ) : null;
 
-    const renderTop =
-        typeof top !== "undefined"
-            ? typeof top === "function"
-                ? top(defaultTop)
-                : top
-            : defaultTop;
-
-    const defaultBottom = isExistAuthentication && (
+    const defaultLogout = isExistAuthentication && (
         <Menu.Item
             key="logout"
-            onClick={() => logout()}
+            onClick={() => mutateLogout()}
             icon={<LogoutOutlined />}
         >
             {translate("buttons.logout", "Logout")}
         </Menu.Item>
     );
 
-    const renderBottom =
-        typeof bottom !== "undefined"
-            ? typeof bottom === "function"
-                ? bottom(defaultBottom)
-                : bottom
-            : defaultBottom;
+    const logoutButton = typeof logout !== "undefined" ? logout : defaultLogout;
+    const dashboardMenuItem =
+        typeof dashboard !== "undefined" ? dashboard : defaultDashboard;
+    const menuItemsToRender = items ?? renderTreeView(menuItems, selectedKey);
 
     return (
         <Layout.Sider
@@ -154,11 +149,9 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ bottom, top }) => {
                     }
                 }}
             >
-                {renderTop}
-
-                {renderTreeView(menuItems, selectedKey)}
-
-                {renderBottom}
+                {dashboardMenuItem}
+                {menuItemsToRender}
+                {logoutButton}
             </Menu>
         </Layout.Sider>
     );
