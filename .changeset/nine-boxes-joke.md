@@ -2,4 +2,4 @@
 "@pankod/refine-ui-types": minor
 ---
 
-Updated `Sider` type with `topSection` and `bottomSection` props.
+Updated `Sider` type with `top` and `bottom` props.
