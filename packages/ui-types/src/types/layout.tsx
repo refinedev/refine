@@ -1,12 +1,12 @@
-import { TitleProps, LayoutProps } from "@pankod/refine-core";
+import { TitleProps, LayoutProps, ITreeMenu } from "@pankod/refine-core";
+import {} from "@pankod/refine-core";
 
 export type RefineLayoutHeaderProps = {};
 
 export type RefineLayoutSiderProps = {
-    bottom?:
-        | React.ReactNode
-        | ((defaultBottom: React.ReactNode) => React.ReactNode);
-    top?: React.ReactNode | ((defaultTop: React.ReactNode) => React.ReactNode);
+    items?: JSX.Element[];
+    logout?: React.ReactNode;
+    dashboard?: React.ReactNode;
 };
 
 export type RefineLayoutFooterProps = {};
