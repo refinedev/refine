@@ -47,6 +47,9 @@ export const AuthPage: React.FC<AuthProps> = ({
                 return (
                     <RegisterPage
                         submitButton={submitButton}
+                        wrapperProps={wrapperProps}
+                        contentProps={contentProps}
+                        renderContent={renderContent}
                         loginLink={loginLink}
                     />
                 );
@@ -54,11 +57,21 @@ export const AuthPage: React.FC<AuthProps> = ({
                 return (
                     <ResetPasswordPage
                         submitButton={submitButton}
+                        wrapperProps={wrapperProps}
+                        contentProps={contentProps}
+                        renderContent={renderContent}
                         loginLink={loginLink}
                     />
                 );
             case "updatePassword":
-                return <UpdatePasswordPage submitButton={submitButton} />;
+                return (
+                    <UpdatePasswordPage
+                        submitButton={submitButton}
+                        wrapperProps={wrapperProps}
+                        contentProps={contentProps}
+                        renderContent={renderContent}
+                    />
+                );
 
             default:
                 return (
@@ -67,6 +80,9 @@ export const AuthPage: React.FC<AuthProps> = ({
                         submitButton={submitButton}
                         registerLink={registerLink}
                         resetPasswordLink={resetPasswordLink}
+                        rememberMe={rememberMe}
+                        wrapperProps={wrapperProps}
+                        contentProps={contentProps}
                         renderContent={renderContent}
                     />
                 );

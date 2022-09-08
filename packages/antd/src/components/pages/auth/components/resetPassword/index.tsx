@@ -17,6 +17,8 @@ interface IResestPasswordForm {
 export const ResetPasswordPage: React.FC<RefineResetPasswordPageProps> = ({
     submitButton,
     loginLink,
+    wrapperProps,
+    contentProps,
     renderContent,
 }) => {
     const [form] = Form.useForm<IResestPasswordForm>();
@@ -37,6 +39,7 @@ export const ResetPasswordPage: React.FC<RefineResetPasswordPageProps> = ({
             title={CardTitle}
             headStyle={{ borderBottom: 0 }}
             style={containerStyles}
+            {...(contentProps ?? {})}
         >
             <Form<IResestPasswordForm>
                 layout="vertical"
@@ -112,7 +115,7 @@ export const ResetPasswordPage: React.FC<RefineResetPasswordPageProps> = ({
     );
 
     return (
-        <Layout style={layoutStyles}>
+        <Layout style={layoutStyles} {...(wrapperProps ?? {})}>
             <Row
                 justify="center"
                 align="middle"

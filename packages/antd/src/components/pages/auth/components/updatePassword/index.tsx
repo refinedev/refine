@@ -13,6 +13,9 @@ interface IUpdatePasswordForm {
 
 export const UpdatePasswordPage: React.FC<RefineUpdatePasswordPageProps> = ({
     submitButton,
+    wrapperProps,
+    contentProps,
+    renderContent,
 }) => {
     const [form] = Form.useForm<IUpdatePasswordForm>();
     const translate = useTranslate();
@@ -30,6 +33,7 @@ export const UpdatePasswordPage: React.FC<RefineUpdatePasswordPageProps> = ({
             title={CardTitle}
             headStyle={{ borderBottom: 0 }}
             style={containerStyles}
+            {...(contentProps ?? {})}
         >
             <Form<IUpdatePasswordForm>
                 layout="vertical"
@@ -113,7 +117,7 @@ export const UpdatePasswordPage: React.FC<RefineUpdatePasswordPageProps> = ({
     );
 
     return (
-        <Layout style={layoutStyles}>
+        <Layout style={layoutStyles} {...(wrapperProps ?? {})}>
             <Row
                 justify="center"
                 align="middle"

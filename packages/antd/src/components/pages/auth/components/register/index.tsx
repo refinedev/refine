@@ -20,6 +20,8 @@ interface IRegisterForm {
 export const RegisterPage: React.FC<RefineRegisterPageProps> = ({
     submitButton,
     loginLink,
+    wrapperProps,
+    contentProps,
     renderContent,
 }) => {
     const [form] = Form.useForm<IRegisterForm>();
@@ -39,6 +41,7 @@ export const RegisterPage: React.FC<RefineRegisterPageProps> = ({
             title={CardTitle}
             headStyle={{ borderBottom: 0 }}
             style={containerStyles}
+            {...(contentProps ?? {})}
         >
             <Form<IRegisterForm>
                 layout="vertical"
@@ -122,7 +125,7 @@ export const RegisterPage: React.FC<RefineRegisterPageProps> = ({
     );
 
     return (
-        <Layout style={layoutStyles}>
+        <Layout style={layoutStyles} {...(wrapperProps ?? {})}>
             <Row
                 justify="center"
                 align="middle"
