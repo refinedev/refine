@@ -141,8 +141,8 @@ const siteConfig = {
                 },
                 { to: "blog", label: "Blog", position: "left" },
                 {
-                    to: "/enterprise",
-                    label: "Enterprise",
+                    to: "https://store.refine.dev",
+                    label: "Store 🎁",
                     position: "left",
                 },
                 {
