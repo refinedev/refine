@@ -1,5 +1,17 @@
 # @pankod/refine-medusa
 
+## 1.0.0
+
+### Major Changes
+
+-   [#2142](https://github.com/pankod/refine/pull/2142) [`dd00de215a`](https://github.com/pankod/refine/commit/dd00de215a869a11076a539227de9dc1de731a55) Thanks [@ozkalai](https://github.com/ozkalai)! - Updated `checkError` methods of `authProvider`
+
+### Patch Changes
+
+-   [#2142](https://github.com/pankod/refine/pull/2142) [`dd00de215a`](https://github.com/pankod/refine/commit/dd00de215a869a11076a539227de9dc1de731a55) Thanks [@ozkalai](https://github.com/ozkalai)! - Removed api url `/store` suffix from `authProvider`.
+
+*   [#2142](https://github.com/pankod/refine/pull/2142) [`dd00de215a`](https://github.com/pankod/refine/commit/dd00de215a869a11076a539227de9dc1de731a55) Thanks [@ozkalai](https://github.com/ozkalai)! - Fix Medusa data provider return type
+
 ## 0.5.0
 
 ### Minor Changes
