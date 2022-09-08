@@ -57,7 +57,7 @@ export const useShow = <TData extends BaseRecord = BaseRecord>({
     const [showId, setShowId] = useState<BaseKey | undefined>(defaultId);
 
     React.useEffect(() => {
-        if (id !== showId) {
+        if (defaultId !== showId) {
             setShowId(defaultId);
         }
     }, [defaultId]);

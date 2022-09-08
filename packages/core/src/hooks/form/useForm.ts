@@ -147,7 +147,7 @@ export const useForm = <
     const [id, setId] = React.useState<BaseKey | undefined>(defaultId);
 
     React.useEffect(() => {
-        if (idFromProps !== id) {
+        if (defaultId !== id) {
             setId(idFromProps);
         }
     }, [idFromProps]);
