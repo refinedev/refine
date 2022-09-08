@@ -116,9 +116,9 @@ export const layoutSiderTests = function (
             await waitFor(() => expect(queryByText("Users")).toBeNull());
         });
 
-        it("should hides logout button when pass null to bottom", async () => {
+        it("should hides logout button when pass null as prop", async () => {
             const { getAllByText, queryByText } = render(
-                <SiderElement bottom={null} />,
+                <SiderElement logout={null} />,
                 {
                     wrapper: TestWrapper({
                         authProvider: mockAuthProvider,
@@ -132,9 +132,9 @@ export const layoutSiderTests = function (
             expect(queryByText("Logout")).not.toBeInTheDocument();
         });
 
-        it("should render custom element for bottom", async () => {
+        it("should render custom element instead of logout", async () => {
             const { getAllByText, queryByText, queryAllByText } = render(
-                <SiderElement bottom={<div>custom-element</div>} />,
+                <SiderElement logout={<div>custom-element</div>} />,
                 {
                     wrapper: TestWrapper({
                         authProvider: mockAuthProvider,
@@ -151,35 +151,9 @@ export const layoutSiderTests = function (
             ).toBeGreaterThanOrEqual(1);
         });
 
-        it("should render custom element with logout for bottom", async () => {
-            const { getAllByText, queryAllByText } = render(
-                <SiderElement
-                    bottom={(defaultBottom) => (
-                        <>
-                            <div>custom-element</div>
-                            {defaultBottom}
-                        </>
-                    )}
-                />,
-                {
-                    wrapper: TestWrapper({
-                        authProvider: mockAuthProvider,
-                    }),
-                },
-            );
-
-            await waitFor(() =>
-                expect(getAllByText("Posts").length).toBeGreaterThanOrEqual(1),
-            );
-            expect(queryAllByText("Logout").length).toBeGreaterThanOrEqual(1);
-            expect(
-                queryAllByText("custom-element").length,
-            ).toBeGreaterThanOrEqual(1);
-        });
-
-        it("should render custom element for top", async () => {
+        it("should render custom element instead of dashboard", async () => {
             const { getAllByText, queryByText, queryAllByText } = render(
-                <SiderElement top={<div>custom-element</div>} />,
+                <SiderElement dashboard={<div>custom-element</div>} />,
                 {
                     wrapper: TestWrapper({
                         authProvider: mockAuthProvider,
@@ -199,34 +173,26 @@ export const layoutSiderTests = function (
             ).toBeGreaterThanOrEqual(1);
         });
 
-        it("should render custom element with dashboard for top", async () => {
-            const { getAllByText, queryAllByText } = render(
+        it("should render custom items instead of menu", async () => {
+            const { queryAllByText } = render(
                 <SiderElement
-                    bottom={(defaultTop) => (
-                        <>
-                            <div>custom-element</div>
-                            {defaultTop}
-                        </>
-                    )}
+                    items={[
+                        <div key={1}>custom-element</div>,
+                        <div key={2}>custom-element2</div>,
+                    ]}
                 />,
                 {
                     wrapper: TestWrapper({
                         authProvider: mockAuthProvider,
-                        DashboardPage: function Dashboard() {
-                            return <div>Dashboard</div>;
-                        },
                     }),
                 },
             );
 
-            await waitFor(() =>
-                expect(getAllByText("Posts").length).toBeGreaterThanOrEqual(1),
-            );
-            expect(queryAllByText("Dashboard").length).toBeGreaterThanOrEqual(
-                1,
-            );
             expect(
                 queryAllByText("custom-element").length,
+            ).toBeGreaterThanOrEqual(1);
+            expect(
+                queryAllByText("custom-element2").length,
             ).toBeGreaterThanOrEqual(1);
         });
     });
