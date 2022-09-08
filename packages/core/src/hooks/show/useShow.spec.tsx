@@ -149,12 +149,12 @@ describe("useShow Hook", () => {
             initialProps: { id: "1" },
         });
 
-        expect(result.current.showId).toEqual("1");
+        await waitFor(() => expect(result.current.showId).toEqual("1"));
 
         await act(async () => {
             rerender({ id: "2" });
         });
 
-        expect(result.current.showId).toEqual("2");
+        await waitFor(() => expect(result.current.showId).toEqual("2"));
     });
 });
