@@ -2,4 +2,4 @@
 "@pankod/refine-antd": minor
 ---
 
-Added `dashboard`, `logout` and `items` props to render customize`Sider` component.
+Added `render` prop to `Sider` component. You can get `dashboard`, `logout` and `items` from `render` props to customize the `Sider` component.
