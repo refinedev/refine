@@ -3,18 +3,15 @@ import {
     notificationProvider,
     Layout,
     ErrorComponent,
+    AuthPage,
 } from "@pankod/refine-antd";
+import { GoogleOutlined, GithubOutlined } from "@ant-design/icons";
+
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import "@pankod/refine-antd/dist/styles.min.css";
 
-import {
-    LoginPage,
-    RegisterPage,
-    ResetPasswordPage,
-    UpdatePasswordPage,
-} from "pages/auth";
 import { PostList, PostEdit, PostShow } from "pages/posts";
 import { DashboardPage } from "pages/dashboard";
 
@@ -23,11 +20,6 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
         login: (params: any) => {
-            if (params.providerName === "facebook") {
-                return Promise.resolve(
-                    "https://www.facebook.com/v2.12/dialog/oauth",
-                );
-            }
             if (params.providerName === "google") {
                 return Promise.resolve(
                     "https://accounts.google.com/o/oauth2/v2/auth",
@@ -37,7 +29,7 @@ const App: React.FC = () => {
                 return Promise.resolve("https://github.com/login");
             }
             if (params.email === "admin@refine.com") {
-                localStorage.setItem("email", params.username);
+                localStorage.setItem("email", params.email);
                 return Promise.resolve();
             }
 
@@ -45,7 +37,7 @@ const App: React.FC = () => {
         },
         register: (params: any) => {
             if (params.email && params.password) {
-                localStorage.setItem("email", params.username);
+                localStorage.setItem("email", params.email);
                 return Promise.resolve();
             }
             return Promise.reject();
@@ -65,12 +57,12 @@ const App: React.FC = () => {
             return Promise.reject();
         },
         logout: () => {
-            localStorage.removeItem("username");
+            localStorage.removeItem("email");
             return Promise.resolve();
         },
         checkError: () => Promise.resolve(),
         checkAuth: () =>
-            localStorage.getItem("username")
+            localStorage.getItem("email")
                 ? Promise.resolve()
                 : Promise.reject(),
         getPermissions: () => Promise.resolve(["admin"]),
@@ -89,14 +81,17 @@ const App: React.FC = () => {
             routerProvider={{
                 ...routerProvider,
                 routes: [
-                    { path: "/register", element: <RegisterPage /> },
+                    {
+                        path: "/register",
+                        element: <AuthPage type="register" />,
+                    },
                     {
                         path: "/reset-password",
-                        element: <ResetPasswordPage />,
+                        element: <AuthPage type="resetPassword" />,
                     },
                     {
                         path: "/update-password",
-                        element: <UpdatePasswordPage />,
+                        element: <AuthPage type="updatePassword" />,
                     },
                 ],
             }}
@@ -110,7 +105,22 @@ const App: React.FC = () => {
                 },
             ]}
             notificationProvider={notificationProvider}
-            LoginPage={LoginPage}
+            LoginPage={() => (
+                <AuthPage
+                    providers={[
+                        {
+                            name: "google",
+                            label: "Sign in with Google",
+                            icon: <GoogleOutlined style={{ fontSize: 24 }} />,
+                        },
+                        {
+                            name: "github",
+                            label: "Sign in with GitHub",
+                            icon: <GithubOutlined style={{ fontSize: 24 }} />,
+                        },
+                    ]}
+                />
+            )}
             Layout={Layout}
             catchAll={<ErrorComponent />}
             options={{ disableTelemetry: true }}
