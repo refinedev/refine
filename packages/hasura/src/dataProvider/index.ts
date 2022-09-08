@@ -7,6 +7,7 @@ import {
     DataProvider,
 } from "@pankod/refine-core";
 import setWith from "lodash/setWith";
+import set from "lodash/set";
 
 export type HasuraSortingType = Record<string, "asc" | "desc">;
 
@@ -19,15 +20,13 @@ export const generateSorting: GenerateSortingType = (sorting?: CrudSorting) => {
         return undefined;
     }
 
-    const sortingQueryResult: Record<string, "asc" | "desc" | HasuraSortingType> = {};
+    const sortingQueryResult: Record<
+        string,
+        "asc" | "desc" | HasuraSortingType
+    > = {};
 
     sorting.forEach((sortItem) => {
-      if(sortItem.field.indexOf(",") !== -1) {
-        const [field, subField] = sortItem.field.split(",");
-        setWith(sortingQueryResult, `${field}.${subField}`, sortItem.order, Object);
-      } else {
-        sortingQueryResult[sortItem.field] = sortItem.order;
-      }
+        set(sortingQueryResult, sortItem.field, sortItem.order);
     });
 
     return sortingQueryResult as HasuraSortingType;
