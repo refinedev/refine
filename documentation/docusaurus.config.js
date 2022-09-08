@@ -57,10 +57,7 @@ const siteConfig = {
                     ],
                 },
                 gtag: {
-                    // You can also use your "G-" Measurement ID here.
                     trackingID: "G-27Z1WY952H",
-                    // Optional fields.
-                    anonymizeIP: true, // Should IPs be anonymized?
                 },
             },
         ],
