@@ -3,7 +3,7 @@ name: store Release
 on:
   push:
     branches:
-      - medusa-storefront
+      - next
     paths:
       - "examples/store/**"
       - ".github/workflows/store-deploy.yml"
