@@ -1,5 +1,11 @@
 # @pankod/refine-antd
 
+## 3.41.0
+
+### Minor Changes
+
+-   Added support nested sorting
+
 ## 3.40.0
 
 ### Minor Changes

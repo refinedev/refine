@@ -1,5 +1,11 @@
 # @pankod/refine-nextjs-router
 
+## 3.35.0
+
+### Minor Changes
+
+-   Add `initialData` support to `DashboardPage` for `@pankod/refine-nextjs-router`.
+
 ## 3.34.0
 
 ### Minor Changes
