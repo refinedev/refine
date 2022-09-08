@@ -36,11 +36,7 @@ import {
 
 import { Title as DefaultTitle } from "../title";
 
-export const Sider: React.FC<RefineLayoutSiderProps> = ({
-    logout,
-    dashboard,
-    items,
-}) => {
+export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const [collapsed, setCollapsed] = useState(false);
     const [opened, setOpened] = useState(false);
 
@@ -227,7 +223,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
         });
     };
 
-    const defaultDashboard = hasDashboard ? (
+    const dashboard = hasDashboard ? (
         <CanAccess resource="dashboard" action="list">
             <Tooltip
                 title={translate("dashboard.title", "Dashboard")}
@@ -276,7 +272,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
         </CanAccess>
     ) : null;
 
-    const defaultLogout = isExistAuthentication && (
+    const logout = isExistAuthentication && (
         <Tooltip
             title={t("buttons.logout", "Logout")}
             placement="right"
@@ -308,16 +304,28 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
         </Tooltip>
     );
 
-    const logoutButton = typeof logout !== "undefined" ? logout : defaultLogout;
-    const dashboardMenuItem =
-        typeof dashboard !== "undefined" ? dashboard : defaultDashboard;
-    const menuItemsToRender = items ?? renderTreeView(menuItems, selectedKey);
+    const items = renderTreeView(menuItems, selectedKey);
+
+    const renderSider = () => {
+        if (render) {
+            return render({
+                dashboard,
+                logout,
+                items,
+            });
+        }
+        return (
+            <>
+                {dashboard}
+                {items}
+                {logout}
+            </>
+        );
+    };
 
     const drawer = (
         <List disablePadding sx={{ mt: 1, color: "primary.contrastText" }}>
-            {dashboardMenuItem}
-            {menuItemsToRender}
-            {logoutButton}
+            {renderSider()}
         </List>
     );
 
