@@ -25,6 +25,7 @@ export const AuthPage: React.FC<AuthProps> = ({
     resetPasswordLink,
     submitButton,
     wrapperProps,
+    renderContent,
     contentProps,
 }) => {
     const renderView = () => {
@@ -39,6 +40,7 @@ export const AuthPage: React.FC<AuthProps> = ({
                         rememberMe={rememberMe}
                         wrapperProps={wrapperProps}
                         contentProps={contentProps}
+                        renderContent={renderContent}
                     />
                 );
             case "register":
@@ -65,6 +67,7 @@ export const AuthPage: React.FC<AuthProps> = ({
                         submitButton={submitButton}
                         registerLink={registerLink}
                         resetPasswordLink={resetPasswordLink}
+                        renderContent={renderContent}
                     />
                 );
         }

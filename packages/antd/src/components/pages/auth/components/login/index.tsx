@@ -12,7 +12,6 @@ import {
     Checkbox,
     CardProps,
     LayoutProps,
-    Space,
     Divider,
 } from "antd";
 import { useLogin, useTranslate, useRouterContext } from "@pankod/refine-core";
@@ -41,6 +40,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     rememberMe,
     contentProps,
     wrapperProps,
+    renderContent,
 }) => {
     const [form] = Form.useForm<ILoginForm>();
     const translate = useTranslate();
@@ -89,6 +89,119 @@ export const LoginPage: React.FC<LoginProps> = ({
         return null;
     };
 
+    const CardContent = (
+        <Card
+            title={CardTitle}
+            headStyle={{ borderBottom: 0 }}
+            style={containerStyles}
+            {...(contentProps ?? {})}
+        >
+            {renderProviders()}
+            <Form<ILoginForm>
+                layout="vertical"
+                form={form}
+                onFinish={(values) => {
+                    login(values);
+                }}
+                requiredMark={false}
+                initialValues={{
+                    remember: false,
+                }}
+            >
+                <Form.Item
+                    name="email"
+                    label={translate("pages.login.fields.email", "Email")}
+                    rules={[{ required: true }]}
+                >
+                    <Input
+                        size="large"
+                        placeholder={translate(
+                            "pages.login.fields.email",
+                            "Email",
+                        )}
+                    />
+                </Form.Item>
+                <Form.Item
+                    name="password"
+                    label={translate("pages.login.fields.password", "Password")}
+                    rules={[{ required: true }]}
+                    style={{ marginBottom: "12px" }}
+                >
+                    <Input
+                        type="password"
+                        placeholder="●●●●●●●●"
+                        size="large"
+                    />
+                </Form.Item>
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        marginBottom: "12px",
+                    }}
+                >
+                    {rememberMe ?? (
+                        <Form.Item
+                            name="remember"
+                            valuePropName="checked"
+                            noStyle
+                        >
+                            <Checkbox
+                                style={{
+                                    fontSize: "12px",
+                                }}
+                            >
+                                {translate(
+                                    "pages.login.buttons.rememberMe",
+                                    "Remember me",
+                                )}
+                            </Checkbox>
+                        </Form.Item>
+                    )}
+                    {resetPasswordLink ?? (
+                        <Link
+                            style={{
+                                fontSize: "12px",
+                                marginLeft: "auto",
+                            }}
+                            to="/reset-password"
+                        >
+                            {translate(
+                                "pages.login.buttons.resetPassword",
+                                "Forgot password?",
+                            )}
+                        </Link>
+                    )}
+                </div>
+
+                {submitButton ?? (
+                    <Button
+                        type="primary"
+                        size="large"
+                        htmlType="submit"
+                        loading={isLoading}
+                        block
+                    >
+                        {translate("pages.login.signin", "Sign in")}
+                    </Button>
+                )}
+            </Form>
+            <div style={{ marginTop: 8 }}>
+                {registerLink ?? (
+                    <Text style={{ fontSize: 12 }}>
+                        {translate(
+                            "pages.login.buttons.noAccount",
+                            "Don’t have an account?",
+                        )}{" "}
+                        <Link to="/register" style={{ fontWeight: "bold" }}>
+                            {translate("pages.login.buttons.submit", "Sign up")}
+                        </Link>
+                    </Text>
+                )}
+            </div>
+        </Card>
+    );
+
     return (
         <Layout style={layoutStyles} {...(wrapperProps ?? {})}>
             <Row
@@ -99,128 +212,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                 }}
             >
                 <Col xs={22}>
-                    <Card
-                        title={CardTitle}
-                        headStyle={{ borderBottom: 0 }}
-                        style={containerStyles}
-                        {...(contentProps ?? {})}
-                    >
-                        {renderProviders()}
-                        <Form<ILoginForm>
-                            layout="vertical"
-                            form={form}
-                            onFinish={(values) => {
-                                login(values);
-                            }}
-                            requiredMark={false}
-                            initialValues={{
-                                remember: false,
-                            }}
-                        >
-                            <Form.Item
-                                name="email"
-                                label={translate(
-                                    "pages.login.fields.email",
-                                    "Email",
-                                )}
-                                rules={[{ required: true }]}
-                            >
-                                <Input
-                                    size="large"
-                                    placeholder={translate(
-                                        "pages.login.fields.email",
-                                        "Email",
-                                    )}
-                                />
-                            </Form.Item>
-                            <Form.Item
-                                name="password"
-                                label={translate(
-                                    "pages.login.fields.password",
-                                    "Password",
-                                )}
-                                rules={[{ required: true }]}
-                                style={{ marginBottom: "12px" }}
-                            >
-                                <Input
-                                    type="password"
-                                    placeholder="●●●●●●●●"
-                                    size="large"
-                                />
-                            </Form.Item>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                    marginBottom: "12px",
-                                }}
-                            >
-                                {rememberMe ?? (
-                                    <Form.Item
-                                        name="remember"
-                                        valuePropName="checked"
-                                        noStyle
-                                    >
-                                        <Checkbox
-                                            style={{
-                                                fontSize: "12px",
-                                            }}
-                                        >
-                                            {translate(
-                                                "pages.login.buttons.rememberMe",
-                                                "Remember me",
-                                            )}
-                                        </Checkbox>
-                                    </Form.Item>
-                                )}
-                                {resetPasswordLink ?? (
-                                    <Link
-                                        style={{
-                                            fontSize: "12px",
-                                            marginLeft: "auto",
-                                        }}
-                                        to="/reset-password"
-                                    >
-                                        {translate(
-                                            "pages.login.buttons.resetPassword",
-                                            "Forgot password?",
-                                        )}
-                                    </Link>
-                                )}
-                            </div>
-
-                            {submitButton ?? (
-                                <Button
-                                    type="primary"
-                                    size="large"
-                                    htmlType="submit"
-                                    loading={isLoading}
-                                    block
-                                >
-                                    {translate("pages.login.signin", "Sign in")}
-                                </Button>
-                            )}
-                        </Form>
-                        <div style={{ marginTop: 8 }}>
-                            {registerLink ?? (
-                                <Text style={{ fontSize: 12 }}>
-                                    {translate(
-                                        "pages.login.buttons.noAccount",
-                                        "Don’t have an account?",
-                                    )}{" "}
-                                    <Link
-                                        to="/register"
-                                        style={{ fontWeight: "bold" }}
-                                    >
-                                        {translate(
-                                            "pages.login.buttons.submit",
-                                            "Sign up",
-                                        )}
-                                    </Link>
-                                </Text>
-                            )}
-                        </div>
-                    </Card>
+                    {renderContent ? renderContent(CardContent) : CardContent}
                 </Col>
             </Row>
         </Layout>

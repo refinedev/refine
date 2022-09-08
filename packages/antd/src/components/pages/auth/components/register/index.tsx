@@ -20,6 +20,7 @@ interface IRegisterForm {
 export const RegisterPage: React.FC<RefineRegisterPageProps> = ({
     submitButton,
     loginLink,
+    renderContent,
 }) => {
     const [form] = Form.useForm<IRegisterForm>();
     const translate = useTranslate();
@@ -33,6 +34,93 @@ export const RegisterPage: React.FC<RefineRegisterPageProps> = ({
         </Title>
     );
 
+    const CardContent = (
+        <Card
+            title={CardTitle}
+            headStyle={{ borderBottom: 0 }}
+            style={containerStyles}
+        >
+            <Form<IRegisterForm>
+                layout="vertical"
+                form={form}
+                onFinish={(values) => {
+                    register(values);
+                }}
+                requiredMark={false}
+            >
+                <Form.Item
+                    name="email"
+                    label={translate("pages.register.email", "Email")}
+                    rules={[{ required: true }]}
+                >
+                    <Input
+                        size="large"
+                        placeholder={translate(
+                            "pages.register.fields.email",
+                            "Email",
+                        )}
+                    />
+                </Form.Item>
+                <Form.Item
+                    name="password"
+                    label={translate(
+                        "pages.register.fields.password",
+                        "Password",
+                    )}
+                    rules={[{ required: true }]}
+                    style={{ marginBottom: "12px" }}
+                >
+                    <Input
+                        type="password"
+                        placeholder="●●●●●●●●"
+                        size="large"
+                    />
+                </Form.Item>
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        marginBottom: "12px",
+                    }}
+                >
+                    {loginLink ?? (
+                        <Text
+                            style={{
+                                fontSize: 12,
+                                marginLeft: "auto",
+                            }}
+                        >
+                            {translate(
+                                "pages.login.buttons.haveAccount",
+                                "Have an account? ",
+                            )}{" "}
+                            <Link
+                                style={{
+                                    fontWeight: "bold",
+                                }}
+                                to="/login"
+                            >
+                                {translate("pages.login.signin", "Sign in")}
+                            </Link>
+                        </Text>
+                    )}
+                </div>
+
+                {submitButton ?? (
+                    <Button
+                        type="primary"
+                        size="large"
+                        htmlType="submit"
+                        loading={isLoading}
+                        block
+                    >
+                        {translate("pages.register.buttons.submit", "Sign up")}
+                    </Button>
+                )}
+            </Form>
+        </Card>
+    );
+
     return (
         <Layout style={layoutStyles}>
             <Row
@@ -43,99 +131,7 @@ export const RegisterPage: React.FC<RefineRegisterPageProps> = ({
                 }}
             >
                 <Col xs={22}>
-                    <Card
-                        title={CardTitle}
-                        headStyle={{ borderBottom: 0 }}
-                        style={containerStyles}
-                    >
-                        <Form<IRegisterForm>
-                            layout="vertical"
-                            form={form}
-                            onFinish={(values) => {
-                                register(values);
-                            }}
-                            requiredMark={false}
-                        >
-                            <Form.Item
-                                name="email"
-                                label={translate(
-                                    "pages.register.email",
-                                    "Email",
-                                )}
-                                rules={[{ required: true }]}
-                            >
-                                <Input
-                                    size="large"
-                                    placeholder={translate(
-                                        "pages.register.fields.email",
-                                        "Email",
-                                    )}
-                                />
-                            </Form.Item>
-                            <Form.Item
-                                name="password"
-                                label={translate(
-                                    "pages.register.fields.password",
-                                    "Password",
-                                )}
-                                rules={[{ required: true }]}
-                                style={{ marginBottom: "12px" }}
-                            >
-                                <Input
-                                    type="password"
-                                    placeholder="●●●●●●●●"
-                                    size="large"
-                                />
-                            </Form.Item>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                    marginBottom: "12px",
-                                }}
-                            >
-                                {loginLink ?? (
-                                    <Text
-                                        style={{
-                                            fontSize: 12,
-                                            marginLeft: "auto",
-                                        }}
-                                    >
-                                        {translate(
-                                            "pages.login.buttons.haveAccount",
-                                            "Have an account? ",
-                                        )}{" "}
-                                        <Link
-                                            style={{
-                                                fontWeight: "bold",
-                                            }}
-                                            to="/login"
-                                        >
-                                            {translate(
-                                                "pages.login.signin",
-                                                "Sign in",
-                                            )}
-                                        </Link>
-                                    </Text>
-                                )}
-                            </div>
-
-                            {submitButton ?? (
-                                <Button
-                                    type="primary"
-                                    size="large"
-                                    htmlType="submit"
-                                    loading={isLoading}
-                                    block
-                                >
-                                    {translate(
-                                        "pages.register.buttons.submit",
-                                        "Sign up",
-                                    )}
-                                </Button>
-                            )}
-                        </Form>
-                    </Card>
+                    {renderContent ? renderContent(CardContent) : CardContent}
                 </Col>
             </Row>
         </Layout>

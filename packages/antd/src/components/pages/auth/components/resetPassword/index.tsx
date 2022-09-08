@@ -17,6 +17,7 @@ interface IResestPasswordForm {
 export const ResetPasswordPage: React.FC<RefineResetPasswordPageProps> = ({
     submitButton,
     loginLink,
+    renderContent,
 }) => {
     const [form] = Form.useForm<IResestPasswordForm>();
     const translate = useTranslate();
@@ -31,6 +32,85 @@ export const ResetPasswordPage: React.FC<RefineResetPasswordPageProps> = ({
         </Title>
     );
 
+    const CardContent = (
+        <Card
+            title={CardTitle}
+            headStyle={{ borderBottom: 0 }}
+            style={containerStyles}
+        >
+            <Form<IResestPasswordForm>
+                layout="vertical"
+                form={form}
+                onFinish={(values) => {
+                    resetPassword(values);
+                }}
+                requiredMark={false}
+            >
+                <Form.Item
+                    name="email"
+                    label={translate(
+                        "pages.resetPassword.fields.email",
+                        "Email",
+                    )}
+                    rules={[{ required: true }]}
+                >
+                    <Input
+                        size="large"
+                        placeholder={translate(
+                            "pages.resetPassword.fields.email",
+                            "Email",
+                        )}
+                    />
+                </Form.Item>
+
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        marginBottom: "12px",
+                    }}
+                >
+                    {loginLink ?? (
+                        <Text
+                            style={{
+                                fontSize: 12,
+                                marginLeft: "auto",
+                            }}
+                        >
+                            {translate(
+                                "pages.register.buttons.haveAccount",
+                                "Have an account? ",
+                            )}{" "}
+                            <Link
+                                style={{
+                                    fontWeight: "bold",
+                                }}
+                                to="/login"
+                            >
+                                {translate("pages.login.signin", "Sign in")}
+                            </Link>
+                        </Text>
+                    )}
+                </div>
+
+                {submitButton ?? (
+                    <Button
+                        type="primary"
+                        size="large"
+                        htmlType="submit"
+                        loading={isLoading}
+                        block
+                    >
+                        {translate(
+                            "pages.resetPassword.buttons.submit",
+                            "Send",
+                        )}
+                    </Button>
+                )}
+            </Form>
+        </Card>
+    );
+
     return (
         <Layout style={layoutStyles}>
             <Row
@@ -41,83 +121,7 @@ export const ResetPasswordPage: React.FC<RefineResetPasswordPageProps> = ({
                 }}
             >
                 <Col xs={22}>
-                    <div style={containerStyles}>
-                        <Card title={CardTitle} headStyle={{ borderBottom: 0 }}>
-                            <Form<IResestPasswordForm>
-                                layout="vertical"
-                                form={form}
-                                onFinish={(values) => {
-                                    resetPassword(values);
-                                }}
-                                requiredMark={false}
-                            >
-                                <Form.Item
-                                    name="email"
-                                    label={translate(
-                                        "pages.resetPassword.fields.email",
-                                        "Email",
-                                    )}
-                                    rules={[{ required: true }]}
-                                >
-                                    <Input
-                                        size="large"
-                                        placeholder={translate(
-                                            "pages.resetPassword.fields.email",
-                                            "Email",
-                                        )}
-                                    />
-                                </Form.Item>
-
-                                <div
-                                    style={{
-                                        display: "flex",
-                                        justifyContent: "space-between",
-                                        marginBottom: "12px",
-                                    }}
-                                >
-                                    {loginLink ?? (
-                                        <Text
-                                            style={{
-                                                fontSize: 12,
-                                                marginLeft: "auto",
-                                            }}
-                                        >
-                                            {translate(
-                                                "pages.register.buttons.haveAccount",
-                                                "Have an account? ",
-                                            )}{" "}
-                                            <Link
-                                                style={{
-                                                    fontWeight: "bold",
-                                                }}
-                                                to="/login"
-                                            >
-                                                {translate(
-                                                    "pages.login.signin",
-                                                    "Sign in",
-                                                )}
-                                            </Link>
-                                        </Text>
-                                    )}
-                                </div>
-
-                                {submitButton ?? (
-                                    <Button
-                                        type="primary"
-                                        size="large"
-                                        htmlType="submit"
-                                        loading={isLoading}
-                                        block
-                                    >
-                                        {translate(
-                                            "pages.resetPassword.buttons.submit",
-                                            "Send",
-                                        )}
-                                    </Button>
-                                )}
-                            </Form>
-                        </Card>
-                    </div>
+                    {renderContent ? renderContent(CardContent) : CardContent}
                 </Col>
             </Row>
         </Layout>

@@ -25,6 +25,93 @@ export const UpdatePasswordPage: React.FC<RefineUpdatePasswordPageProps> = ({
         </Title>
     );
 
+    const CardContent = (
+        <Card
+            title={CardTitle}
+            headStyle={{ borderBottom: 0 }}
+            style={containerStyles}
+        >
+            <Form<IUpdatePasswordForm>
+                layout="vertical"
+                form={form}
+                onFinish={(values) => {
+                    register(values);
+                }}
+                requiredMark={false}
+            >
+                <Form.Item
+                    name="password"
+                    label={translate(
+                        "pages.updatePassword.fields.password",
+                        "New Password",
+                    )}
+                    rules={[{ required: true }]}
+                    style={{ marginBottom: "12px" }}
+                >
+                    <Input
+                        type="password"
+                        placeholder="●●●●●●●●"
+                        size="large"
+                    />
+                </Form.Item>
+                <Form.Item
+                    name="confirmPassword"
+                    label={translate(
+                        "pages.updatePassword.fields.confirmPassword",
+                        "Confirm New Password",
+                    )}
+                    hasFeedback
+                    dependencies={["password"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                        ({ getFieldValue }) => ({
+                            validator(_, value) {
+                                if (
+                                    !value ||
+                                    getFieldValue("password") === value
+                                ) {
+                                    return Promise.resolve();
+                                }
+                                return Promise.reject(
+                                    new Error(
+                                        translate(
+                                            "pages.updatePassword.errors.confirmPasswordNotMatch",
+                                            "The two passwords that you entered do not match",
+                                        ),
+                                    ),
+                                );
+                            },
+                        }),
+                    ]}
+                    style={{ marginBottom: "12px" }}
+                >
+                    <Input
+                        type="password"
+                        placeholder="●●●●●●●●"
+                        size="large"
+                    />
+                </Form.Item>
+
+                {submitButton ?? (
+                    <Button
+                        type="primary"
+                        size="large"
+                        htmlType="submit"
+                        loading={isLoading}
+                        block
+                    >
+                        {translate(
+                            "pages.updatePassword.buttons.submit",
+                            "Change Password",
+                        )}
+                    </Button>
+                )}
+            </Form>
+        </Card>
+    );
+
     return (
         <Layout style={layoutStyles}>
             <Row
@@ -35,90 +122,7 @@ export const UpdatePasswordPage: React.FC<RefineUpdatePasswordPageProps> = ({
                 }}
             >
                 <Col xs={22}>
-                    <div style={containerStyles}>
-                        <Card title={CardTitle} headStyle={{ borderBottom: 0 }}>
-                            <Form<IUpdatePasswordForm>
-                                layout="vertical"
-                                form={form}
-                                onFinish={(values) => {
-                                    register(values);
-                                }}
-                                requiredMark={false}
-                            >
-                                <Form.Item
-                                    name="password"
-                                    label={translate(
-                                        "pages.updatePassword.fields.password",
-                                        "New Password",
-                                    )}
-                                    rules={[{ required: true }]}
-                                    style={{ marginBottom: "12px" }}
-                                >
-                                    <Input
-                                        type="password"
-                                        placeholder="●●●●●●●●"
-                                        size="large"
-                                    />
-                                </Form.Item>
-                                <Form.Item
-                                    name="confirmPassword"
-                                    label={translate(
-                                        "pages.updatePassword.fields.confirmPassword",
-                                        "Confirm New Password",
-                                    )}
-                                    hasFeedback
-                                    dependencies={["password"]}
-                                    rules={[
-                                        {
-                                            required: true,
-                                        },
-                                        ({ getFieldValue }) => ({
-                                            validator(_, value) {
-                                                if (
-                                                    !value ||
-                                                    getFieldValue(
-                                                        "password",
-                                                    ) === value
-                                                ) {
-                                                    return Promise.resolve();
-                                                }
-                                                return Promise.reject(
-                                                    new Error(
-                                                        translate(
-                                                            "pages.updatePassword.errors.confirmPasswordNotMatch",
-                                                            "The two passwords that you entered do not match",
-                                                        ),
-                                                    ),
-                                                );
-                                            },
-                                        }),
-                                    ]}
-                                    style={{ marginBottom: "12px" }}
-                                >
-                                    <Input
-                                        type="password"
-                                        placeholder="●●●●●●●●"
-                                        size="large"
-                                    />
-                                </Form.Item>
-
-                                {submitButton ?? (
-                                    <Button
-                                        type="primary"
-                                        size="large"
-                                        htmlType="submit"
-                                        loading={isLoading}
-                                        block
-                                    >
-                                        {translate(
-                                            "pages.updatePassword.buttons.submit",
-                                            "Change Password",
-                                        )}
-                                    </Button>
-                                )}
-                            </Form>
-                        </Card>
-                    </div>
+                    {renderContent ? renderContent(CardContent) : CardContent}
                 </Col>
             </Row>
         </Layout>

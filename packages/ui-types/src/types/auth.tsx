@@ -1,4 +1,14 @@
-import { PropsWithChildren } from "react";
+import React, { PropsWithChildren } from "react";
+
+export type IProvider = {
+    name: string;
+    icon?: React.ReactNode;
+    label?: string;
+};
+
+export type ContentProps = {
+    Content?: React.FC;
+};
 
 /**
  * This should be the base type for `AuthPage` component implementations in UI integrations.
@@ -20,6 +30,7 @@ export type RefineAuthPageProps<
     loginLink?: React.ReactNode;
     resetPasswordLink?: React.ReactNode;
     updatePasswordLink?: React.ReactNode;
+    renderContent?: (content: React.ReactNode) => React.ReactNode;
     wrapperProps?: TWrapperProps;
     /**
      * @description when `<AuthPage>` `type` is `login` show the remember me checkbox on login form
@@ -46,16 +57,11 @@ export type RefineLoginPageProps<
     resetPasswordLink?: React.ReactNode;
     rememberMe?: React.ReactNode;
     wrapperProps?: TWrapperProps;
+    renderContent?: (content: React.ReactNode) => React.ReactNode;
     // Card Props
     contentProps?: TContentProps;
 }> &
     TExtraProps;
-
-export type IProvider = {
-    name: string;
-    icon?: React.ReactNode;
-    label?: string;
-};
 
 /**
  * This should be the base type for `AuthPage` `Register` component implementations in UI integrations.
@@ -69,6 +75,7 @@ export type RefineRegisterPageProps<
     submitButton?: React.ReactNode;
     loginLink?: React.ReactNode;
     wrapperProps?: TWrapperProps;
+    renderContent?: (content: React.ReactNode) => React.ReactNode;
     // Card Props
     contentProps?: TContentProps;
 }> &
@@ -86,6 +93,7 @@ export type RefineResetPasswordPageProps<
     submitButton?: React.ReactNode;
     loginLink?: React.ReactNode;
     wrapperProps?: TWrapperProps;
+    renderContent?: (content: React.ReactNode) => React.ReactNode;
     // Card Props
     contentProps?: TContentProps;
 }> &
@@ -102,6 +110,7 @@ export type RefineUpdatePasswordPageProps<
     // Common Props
     submitButton?: React.ReactNode;
     wrapperProps?: TWrapperProps;
+    renderContent?: (content: React.ReactNode) => React.ReactNode;
     // Card Props
     contentProps?: TContentProps;
 }> &
