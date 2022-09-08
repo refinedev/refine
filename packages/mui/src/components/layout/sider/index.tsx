@@ -36,10 +36,7 @@ import {
 
 import { Title as DefaultTitle } from "../title";
 
-export const Sider: React.FC<RefineLayoutSiderProps> = ({
-    bottomSection,
-    topSection,
-}) => {
+export const Sider: React.FC<RefineLayoutSiderProps> = ({ bottom, top }) => {
     const [collapsed, setCollapsed] = useState(false);
     const [opened, setOpened] = useState(false);
 
@@ -227,57 +224,59 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
     };
 
     const defaultTop = hasDashboard ? (
-        <Tooltip
-            title={translate("dashboard.title", "Dashboard")}
-            placement="right"
-            disableHoverListener={!collapsed}
-            arrow
-        >
-            <ListItemButton
-                component={Link}
-                to="/"
-                selected={selectedKey === "/"}
-                onClick={() => {
-                    setOpened(false);
-                }}
-                sx={{
-                    pl: 2,
-                    py: 1,
-                    "&.Mui-selected": {
-                        "&:hover": {
+        <CanAccess resource="dashboard" action="list">
+            <Tooltip
+                title={translate("dashboard.title", "Dashboard")}
+                placement="right"
+                disableHoverListener={!collapsed}
+                arrow
+            >
+                <ListItemButton
+                    component={Link}
+                    to="/"
+                    selected={selectedKey === "/"}
+                    onClick={() => {
+                        setOpened(false);
+                    }}
+                    sx={{
+                        pl: 2,
+                        py: 1,
+                        "&.Mui-selected": {
+                            "&:hover": {
+                                backgroundColor: "transparent",
+                            },
                             backgroundColor: "transparent",
                         },
-                        backgroundColor: "transparent",
-                    },
-                    justifyContent: "center",
-                }}
-            >
-                <ListItemIcon
-                    sx={{
                         justifyContent: "center",
-                        minWidth: 36,
-                        color: "primary.contrastText",
                     }}
                 >
-                    <Dashboard />
-                </ListItemIcon>
-                <ListItemText
-                    primary={translate("dashboard.title", "Dashboard")}
-                    primaryTypographyProps={{
-                        noWrap: true,
-                        fontSize: "14px",
-                        fontWeight: selectedKey === "/" ? "bold" : "normal",
-                    }}
-                />
-            </ListItemButton>
-        </Tooltip>
+                    <ListItemIcon
+                        sx={{
+                            justifyContent: "center",
+                            minWidth: 36,
+                            color: "primary.contrastText",
+                        }}
+                    >
+                        <Dashboard />
+                    </ListItemIcon>
+                    <ListItemText
+                        primary={translate("dashboard.title", "Dashboard")}
+                        primaryTypographyProps={{
+                            noWrap: true,
+                            fontSize: "14px",
+                            fontWeight: selectedKey === "/" ? "bold" : "normal",
+                        }}
+                    />
+                </ListItemButton>
+            </Tooltip>
+        </CanAccess>
     ) : null;
 
     const renderTop =
-        typeof topSection !== "undefined"
-            ? typeof topSection === "function"
-                ? topSection(defaultTop)
-                : topSection
+        typeof top !== "undefined"
+            ? typeof top === "function"
+                ? top(defaultTop)
+                : top
             : defaultTop;
 
     const defaultBottom = isExistAuthentication && (
@@ -313,10 +312,10 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
     );
 
     const renderBottom =
-        typeof bottomSection !== "undefined"
-            ? typeof bottomSection === "function"
-                ? bottomSection(defaultBottom)
-                : bottomSection
+        typeof bottom !== "undefined"
+            ? typeof bottom === "function"
+                ? bottom(defaultBottom)
+                : bottom
             : defaultBottom;
 
     const drawer = (

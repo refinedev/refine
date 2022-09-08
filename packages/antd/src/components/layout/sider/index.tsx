@@ -23,10 +23,7 @@ import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
 const { SubMenu } = Menu;
 
-export const Sider: React.FC<RefineLayoutSiderProps> = ({
-    bottomSection,
-    topSection,
-}) => {
+export const Sider: React.FC<RefineLayoutSiderProps> = ({ bottom, top }) => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const isExistAuthentication = useIsExistAuthentication();
     const { Link } = useRouterContext();
@@ -97,25 +94,27 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
     };
 
     const defaultTop = hasDashboard ? (
-        <Menu.Item
-            key="dashboard"
-            style={{
-                fontWeight: selectedKey === "/" ? "bold" : "normal",
-            }}
-            icon={<DashboardOutlined />}
-        >
-            <Link to="/">{translate("dashboard.title", "Dashboard")}</Link>
-            {!collapsed && selectedKey === "/" && (
-                <div className="ant-menu-tree-arrow" />
-            )}
-        </Menu.Item>
+        <CanAccess resource="dashboard" action="list">
+            <Menu.Item
+                key="dashboard"
+                style={{
+                    fontWeight: selectedKey === "/" ? "bold" : "normal",
+                }}
+                icon={<DashboardOutlined />}
+            >
+                <Link to="/">{translate("dashboard.title", "Dashboard")}</Link>
+                {!collapsed && selectedKey === "/" && (
+                    <div className="ant-menu-tree-arrow" />
+                )}
+            </Menu.Item>
+        </CanAccess>
     ) : null;
 
     const renderTop =
-        typeof topSection !== "undefined"
-            ? typeof topSection === "function"
-                ? topSection(defaultTop)
-                : topSection
+        typeof top !== "undefined"
+            ? typeof top === "function"
+                ? top(defaultTop)
+                : top
             : defaultTop;
 
     const defaultBottom = isExistAuthentication && (
@@ -129,10 +128,10 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
     );
 
     const renderBottom =
-        typeof bottomSection !== "undefined"
-            ? typeof bottomSection === "function"
-                ? bottomSection(defaultBottom)
-                : bottomSection
+        typeof bottom !== "undefined"
+            ? typeof bottom === "function"
+                ? bottom(defaultBottom)
+                : bottom
             : defaultBottom;
 
     return (

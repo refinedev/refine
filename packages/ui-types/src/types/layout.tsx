@@ -3,12 +3,10 @@ import { TitleProps, LayoutProps } from "@pankod/refine-core";
 export type RefineLayoutHeaderProps = {};
 
 export type RefineLayoutSiderProps = {
-    bottomSection?:
+    bottom?:
         | React.ReactNode
         | ((defaultBottom: React.ReactNode) => React.ReactNode);
-    topSection?:
-        | React.ReactNode
-        | ((defaultTop: React.ReactNode) => React.ReactNode);
+    top?: React.ReactNode | ((defaultTop: React.ReactNode) => React.ReactNode);
 };
 
 export type RefineLayoutFooterProps = {};

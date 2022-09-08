@@ -116,9 +116,9 @@ export const layoutSiderTests = function (
             await waitFor(() => expect(queryByText("Users")).toBeNull());
         });
 
-        it("should hides logout button when pass null to bottomSection", async () => {
+        it("should hides logout button when pass null to bottom", async () => {
             const { getAllByText, queryByText } = render(
-                <SiderElement bottomSection={null} />,
+                <SiderElement bottom={null} />,
                 {
                     wrapper: TestWrapper({
                         authProvider: mockAuthProvider,
@@ -132,9 +132,9 @@ export const layoutSiderTests = function (
             expect(queryByText("Logout")).not.toBeInTheDocument();
         });
 
-        it("should render custom element for bottomSection", async () => {
+        it("should render custom element for bottom", async () => {
             const { getAllByText, queryByText, queryAllByText } = render(
-                <SiderElement bottomSection={<div>custom-element</div>} />,
+                <SiderElement bottom={<div>custom-element</div>} />,
                 {
                     wrapper: TestWrapper({
                         authProvider: mockAuthProvider,
@@ -151,10 +151,10 @@ export const layoutSiderTests = function (
             ).toBeGreaterThanOrEqual(1);
         });
 
-        it("should render custom element with logout for bottomSection", async () => {
-            const { getAllByText, queryByText, queryAllByText } = render(
+        it("should render custom element with logout for bottom", async () => {
+            const { getAllByText, queryAllByText } = render(
                 <SiderElement
-                    bottomSection={(defaultBottom) => (
+                    bottom={(defaultBottom) => (
                         <>
                             <div>custom-element</div>
                             {defaultBottom}
@@ -177,9 +177,9 @@ export const layoutSiderTests = function (
             ).toBeGreaterThanOrEqual(1);
         });
 
-        it("should render custom element for topSection", async () => {
+        it("should render custom element for top", async () => {
             const { getAllByText, queryByText, queryAllByText } = render(
-                <SiderElement topSection={<div>custom-element</div>} />,
+                <SiderElement top={<div>custom-element</div>} />,
                 {
                     wrapper: TestWrapper({
                         authProvider: mockAuthProvider,
@@ -199,10 +199,10 @@ export const layoutSiderTests = function (
             ).toBeGreaterThanOrEqual(1);
         });
 
-        it("should render custom element with dashboard for topSection", async () => {
-            const { getAllByText, queryByText, queryAllByText } = render(
+        it("should render custom element with dashboard for top", async () => {
+            const { getAllByText, queryAllByText } = render(
                 <SiderElement
-                    bottomSection={(defaultTop) => (
+                    bottom={(defaultTop) => (
                         <>
                             <div>custom-element</div>
                             {defaultTop}
