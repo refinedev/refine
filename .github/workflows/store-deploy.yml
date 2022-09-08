@@ -1,0 +1,54 @@
+name: store Release
+
+on:
+  push:
+    branches:
+      - next
+    paths:
+      - "examples/store/**"
+      - ".github/workflows/store-deploy.yml"
+
+jobs:
+  store-deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - name: Workflow run cleanup action
+        uses: rokroskar/workflow-run-cleanup-action@v0.2.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: client docker build
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          registry: ghcr.io
+          repository: pankod/refine/refine-store
+          tag_with_sha: true
+          dockerfile: examples/store/Dockerfile
+      - name: Set up kubectl
+        uses: matootie/dokube@v1.3.4
+        with:
+          personalAccessToken: ${{ secrets.REFINE_DIGITALOCEAN_TOKEN }}
+          clusterName: refine-k8s
+          expirationTime: 1200
+      - name: Get nodes
+        run: kubectl get nodes
+      - name: Deploy refine-store to k8s
+        run: |
+          cd examples/store
+          mv ./k8s/refine-store/Chart.yaml ./k8s/refine-store/Chart.old.yaml &&
+          cat ./k8s/refine-store/Chart.old.yaml | grep -v appVersion > ./k8s/refine-store/Chart.yaml &&
+          echo -e "\r\nappVersion: sha-${GITHUB_SHA::7}\r\n" >> ./k8s/refine-store/Chart.yaml &&
+          cat ./k8s/refine-store/Chart.yaml
+          helm upgrade refine-store ./k8s/refine-store --install --atomic --values=./k8s/refine-store/values.yaml --timeout 7m0s  \
+            --set NEXT_PUBLIC_STRIPE_KEY=${{ secrets.NEXT_PUBLIC_STRIPE_KEY }} \

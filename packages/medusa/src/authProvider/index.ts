@@ -18,7 +18,7 @@ export const authProvider = (API_URL: string): AuthProvider => {
             return Promise.reject(customError);
         },
     );
-    axiosInstance.defaults.baseURL = `${API_URL}/store`;
+    axiosInstance.defaults.baseURL = API_URL;
 
     return {
         login: async ({ username, password }) => {
@@ -47,10 +47,7 @@ export const authProvider = (API_URL: string): AuthProvider => {
 
             return Promise.resolve(props?.redirectPath);
         },
-        checkError: (error) => {
-            if (error?.response?.status === 401) {
-                return Promise.reject("/register");
-            }
+        checkError: () => {
             return Promise.resolve();
         },
         checkAuth: async () => {

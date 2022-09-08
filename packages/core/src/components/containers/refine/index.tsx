@@ -40,6 +40,7 @@ import {
     NotificationProvider,
     AccessControlProvider,
     AuditLogProvider,
+    DashboardPageProps,
     IRefineOptions,
 } from "../../../interfaces";
 
@@ -60,7 +61,7 @@ export interface RefineProps {
     i18nProvider?: I18nProvider;
     catchAll?: React.ReactNode;
     LoginPage?: React.FC;
-    DashboardPage?: React.FC;
+    DashboardPage?: React.FC<DashboardPageProps>;
     ReadyPage?: React.FC;
     /** 
         @deprecated `mutationMode` property is deprecated at this level. Use it from within `options` instead.

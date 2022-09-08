@@ -1,0 +1,48 @@
+.skeleton {
+  @apply block;
+  background-image: linear-gradient(
+    270deg,
+    var(--accent-0),
+    var(--accent-2),
+    var(--accent-0),
+    var(--accent-1)
+  );
+  background-size: 400% 100%;
+  animation: loading 8s ease-in-out infinite;
+}
+
+.wrapper {
+  @apply block relative;
+
+  &:not(.show)::before {
+    content: none;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background-image: linear-gradient(
+      270deg,
+      var(--accent-0),
+      var(--accent-2),
+      var(--accent-0),
+      var(--accent-1)
+    );
+    background-size: 400% 100%;
+    animation: loading 8s ease-in-out infinite;
+  }
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
