@@ -116,44 +116,20 @@ export const layoutSiderTests = function (
             await waitFor(() => expect(queryByText("Users")).toBeNull());
         });
 
-        it("should hides logout button when pass null as prop", async () => {
-            const { getAllByText, queryByText } = render(
-                <SiderElement logout={null} />,
-                {
-                    wrapper: TestWrapper({
-                        authProvider: mockAuthProvider,
-                    }),
-                },
-            );
-
-            await waitFor(() =>
-                expect(getAllByText("Posts").length).toBeGreaterThanOrEqual(1),
-            );
-            expect(queryByText("Logout")).not.toBeInTheDocument();
-        });
-
-        it("should render custom element instead of logout", async () => {
+        it("should render ", async () => {
             const { getAllByText, queryByText, queryAllByText } = render(
-                <SiderElement logout={<div>custom-element</div>} />,
-                {
-                    wrapper: TestWrapper({
-                        authProvider: mockAuthProvider,
-                    }),
-                },
-            );
-
-            await waitFor(() =>
-                expect(getAllByText("Posts").length).toBeGreaterThanOrEqual(1),
-            );
-            expect(queryByText("Logout")).not.toBeInTheDocument();
-            expect(
-                queryAllByText("custom-element").length,
-            ).toBeGreaterThanOrEqual(1);
-        });
-
-        it("should render custom element instead of dashboard", async () => {
-            const { getAllByText, queryByText, queryAllByText } = render(
-                <SiderElement dashboard={<div>custom-element</div>} />,
+                <SiderElement
+                    render={({ logout, dashboard, items }) => {
+                        return (
+                            <>
+                                <div>custom-element</div>
+                                {dashboard}
+                                {items}
+                                {logout}
+                            </>
+                        );
+                    }}
+                />,
                 {
                     wrapper: TestWrapper({
                         authProvider: mockAuthProvider,
@@ -167,32 +143,10 @@ export const layoutSiderTests = function (
             await waitFor(() =>
                 expect(getAllByText("Posts").length).toBeGreaterThanOrEqual(1),
             );
-            expect(queryByText("Dashboard")).not.toBeInTheDocument();
+            expect(queryByText("Logout")).toBeInTheDocument();
+            expect(queryByText("Dashboard")).toBeInTheDocument();
             expect(
                 queryAllByText("custom-element").length,
-            ).toBeGreaterThanOrEqual(1);
-        });
-
-        it("should render custom items instead of menu", async () => {
-            const { queryAllByText } = render(
-                <SiderElement
-                    items={[
-                        <div key={1}>custom-element</div>,
-                        <div key={2}>custom-element2</div>,
-                    ]}
-                />,
-                {
-                    wrapper: TestWrapper({
-                        authProvider: mockAuthProvider,
-                    }),
-                },
-            );
-
-            expect(
-                queryAllByText("custom-element").length,
-            ).toBeGreaterThanOrEqual(1);
-            expect(
-                queryAllByText("custom-element2").length,
             ).toBeGreaterThanOrEqual(1);
         });
     });
