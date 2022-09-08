@@ -33,27 +33,43 @@ title: Interface References
     "between" |
     "nbetween" |
     "null" |
-    "nnull";
+    "nnull" |
+    "startswith" |
+    "nstartswith" |
+    "startswiths" |
+    "nstartswiths" |
+    "endswith" |
+    "nendswith" |
+    "endswiths" |
+    "nendswiths";
 ```
 
-| Type           | Description                     |
-| -------------- | ------------------------------- |
-| `"eq"`         | Equal                           |
-| `"ne"`         | Not equal                       |
-| `"lt"`         | Less than                       |
-| `"gt"`         | Greater than                    |
-| `"lte"`        | Less than or equal to           |
-| `"gte"`        | Greater than or equal to        |
-| `"in"`         | Included in an array            |
-| `"nin"`        | Not included in an array        |
-| `"contains"`   | Contains                        |
-| `"ncontains"`  | Doesn't contain                 |
-| `"containss"`  | Contains, case sensitive        |
-| `"ncontainss"` | Doesn't contain, case sensitive |
-| `"between"`    | Between                         |
-| `"nbetween"`   | Doesn't between                 |
-| `"null"`       | Is null                         |
-| `"nnull"`      | Is not null                     |
+| Type             | Description                        |
+| ---------------- | ---------------------------------- |
+| `"eq"`           | Equal                              |
+| `"ne"`           | Not equal                          |
+| `"lt"`           | Less than                          |
+| `"gt"`           | Greater than                       |
+| `"lte"`          | Less than or equal to              |
+| `"gte"`          | Greater than or equal to           |
+| `"in"`           | Included in an array               |
+| `"nin"`          | Not included in an array           |
+| `"contains"`     | Contains                           |
+| `"ncontains"`    | Doesn't contain                    |
+| `"containss"`    | Contains, case sensitive           |
+| `"ncontainss"`   | Doesn't contain, case sensitive    |
+| `"between"`      | Between                            |
+| `"nbetween"`     | Doesn't between                    |
+| `"null"`         | Is null                            |
+| `"nnull"`        | Is not null                        |
+| `"startswith"`   | Starts with                        |
+| `"nstartswith"`  | Doesn't start with                 |
+| `"startswiths"`  | Starts with, case sensitive        |
+| `"nstartswiths"` | Doesn't start with, case sensitive |
+| `"endswith"`     | Ends with                          |
+| `"nendswith"`    | Doesn't end with                   |
+| `"endswiths"`    | Ends with, case sensitive          |
+| `"nendswiths"`   | Doesn't end with, case sensitive   |
 
 ## CrudSorting
 

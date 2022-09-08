@@ -66,6 +66,14 @@ const hasuraFilters: Record<CrudOperators, HasuraFilterCondition | undefined> =
         between: undefined,
         nbetween: undefined,
         nnull: undefined,
+        startswith: undefined,
+        nstartswith: undefined,
+        startswiths: undefined,
+        nstartswiths: undefined,
+        endswith: undefined,
+        nendswith: undefined,
+        endswiths: undefined,
+        nendswiths: undefined,
     };
 
 export const generateFilters: any = (filters?: CrudFilters) => {
