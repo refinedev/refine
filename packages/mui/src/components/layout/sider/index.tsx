@@ -36,7 +36,11 @@ import {
 
 import { Title as DefaultTitle } from "../title";
 
-export const Sider: React.FC<RefineLayoutSiderProps> = ({ bottom, top }) => {
+export const Sider: React.FC<RefineLayoutSiderProps> = ({
+    logout,
+    dashboard,
+    items,
+}) => {
     const [collapsed, setCollapsed] = useState(false);
     const [opened, setOpened] = useState(false);
 
@@ -52,7 +56,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ bottom, top }) => {
 
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const isExistAuthentication = useIsExistAuthentication();
-    const { mutate: logout } = useLogout();
+    const { mutate: mutateLogout } = useLogout();
     const Title = useTitle();
 
     const [open, setOpen] = useState<{ [k: string]: any }>({});
@@ -223,7 +227,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ bottom, top }) => {
         });
     };
 
-    const defaultTop = hasDashboard ? (
+    const defaultDashboard = hasDashboard ? (
         <CanAccess resource="dashboard" action="list">
             <Tooltip
                 title={translate("dashboard.title", "Dashboard")}
@@ -272,14 +276,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ bottom, top }) => {
         </CanAccess>
     ) : null;
 
-    const renderTop =
-        typeof top !== "undefined"
-            ? typeof top === "function"
-                ? top(defaultTop)
-                : top
-            : defaultTop;
-
-    const defaultBottom = isExistAuthentication && (
+    const defaultLogout = isExistAuthentication && (
         <Tooltip
             title={t("buttons.logout", "Logout")}
             placement="right"
@@ -288,7 +285,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ bottom, top }) => {
         >
             <ListItemButton
                 key="logout"
-                onClick={() => logout()}
+                onClick={() => mutateLogout()}
                 sx={{ justifyContent: "center" }}
             >
                 <ListItemIcon
@@ -311,18 +308,16 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ bottom, top }) => {
         </Tooltip>
     );
 
-    const renderBottom =
-        typeof bottom !== "undefined"
-            ? typeof bottom === "function"
-                ? bottom(defaultBottom)
-                : bottom
-            : defaultBottom;
+    const logoutButton = typeof logout !== "undefined" ? logout : defaultLogout;
+    const dashboardMenuItem =
+        typeof dashboard !== "undefined" ? dashboard : defaultDashboard;
+    const menuItemsToRender = items ?? renderTreeView(menuItems, selectedKey);
 
     const drawer = (
         <List disablePadding sx={{ mt: 1, color: "primary.contrastText" }}>
-            {renderTop}
-            {renderTreeView(menuItems, selectedKey)}
-            {renderBottom}
+            {dashboardMenuItem}
+            {menuItemsToRender}
+            {logoutButton}
         </List>
     );
 
