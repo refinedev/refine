@@ -22,9 +22,9 @@ export const generateSorting: GenerateSortingType = (sorting?: CrudSorting) => {
     }
 
     const sortingQueryResult: Record<
-         string,
-         "asc" | "desc" | HasuraSortingType
-     > = {};
+        string,
+        "asc" | "desc" | HasuraSortingType
+    > = {};
 
     sorting.forEach((sortItem) => {
         set(sortingQueryResult, sortItem.field, sortItem.order);
