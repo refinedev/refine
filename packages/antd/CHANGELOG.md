@@ -1,5 +1,11 @@
 # @pankod/refine-antd
 
+## 3.40.0
+
+### Minor Changes
+
+-   [#2427](https://github.com/pankod/refine/pull/2427) [`b21908e872`](https://github.com/pankod/refine/commit/b21908e87209c3a8825991c6ab829f7c45c19e9b) Thanks [@geoffatsource](https://github.com/geoffatsource)! - Added support nested sorting
+
 ## 3.39.0
 
 ### Minor Changes

@@ -1,5 +1,13 @@
 # @pankod/refine-core
 
+## 3.68.0
+
+### Minor Changes
+
+-   [#2456](https://github.com/pankod/refine/pull/2456) [`f20a0ed621`](https://github.com/pankod/refine/commit/f20a0ed621f9f038dce762e75a0a99058bcb4edb) Thanks [@workatease](https://github.com/workatease)! - Adding more CRUD Filter Operators
+
+*   [#2142](https://github.com/pankod/refine/pull/2142) [`dd00de215a`](https://github.com/pankod/refine/commit/dd00de215a869a11076a539227de9dc1de731a55) Thanks [@ozkalai](https://github.com/ozkalai)! - Add `initialData` support to `DashboardPage` for `@pankod/refine-nextjs-router`.
+
 ## 3.67.0
 
 ### Minor Changes
