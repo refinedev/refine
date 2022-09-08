@@ -12,11 +12,6 @@ import { UpdatePasswordPage } from "./pages/auth/updatePassword";
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
         login: (params: any) => {
-            if (params.providerName === "facebook") {
-                return Promise.resolve(
-                    "https://www.facebook.com/v2.12/dialog/oauth",
-                );
-            }
             if (params.providerName === "google") {
                 return Promise.resolve(
                     "https://accounts.google.com/o/oauth2/v2/auth",
@@ -67,7 +62,6 @@ const App: React.FC = () => {
             Promise.resolve({
                 id: 1,
                 name: "Jane Doe",
-
                 avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
             }),
     };
