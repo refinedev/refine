@@ -80,9 +80,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                                 <span>{product.title}</span>
                             </h3>
                             <div className={s.price}>
-                                {`${amount / 100} ${currencySymbolFromCode(
+                                {`${currencySymbolFromCode(
                                     currency_code ?? "USD",
-                                )}`}
+                                )} ${amount / 100}`}
                             </div>
                         </div>
                     )}
@@ -114,9 +114,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 <>
                     <ProductTag
                         name={product.title}
-                        price={`${amount / 100} ${currencySymbolFromCode(
+                        price={`${currencySymbolFromCode(
                             currency_code ?? "USD",
-                        )}`}
+                        )} ${amount / 100}`}
                     />
                     <div className={s.imageContainer}>
                         {product?.images && (
