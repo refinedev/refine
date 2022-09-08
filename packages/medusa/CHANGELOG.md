@@ -1,5 +1,17 @@
 # @pankod/refine-medusa
 
+## 1.1.0
+
+### Minor Changes
+
+-   Updated `checkError` methods of `authProvider`
+
+### Patch Changes
+
+-   Removed api url `/store` suffix from `authProvider`.
+
+*   Fix Medusa data provider return type
+
 ## 1.0.0
 
 ### Major Changes

@@ -1,5 +1,13 @@
 # @pankod/refine-hasura
 
+## 4.11.2
+
+### Patch Changes
+
+-   Added nested sorting feature 💥
+
+*   Added new CRUD Filter Operators with undefined
+
 ## 4.11.1
 
 ### Patch Changes
