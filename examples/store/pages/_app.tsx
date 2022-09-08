@@ -54,7 +54,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                     <SEO />
                     <NextNProgress options={{ showSpinner: false }} />
                     <Script
-                        src="https://www.googletagmanager.com/gtag/js?id=G-MBME4VEPK4"
+                        src="https://www.googletagmanager.com/gtag/js?id=G-7BSVVDBPMB"
                         strategy="afterInteractive"
                     />
                     <Script id="google-analytics" strategy="afterInteractive">
@@ -63,7 +63,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                         function gtag(){window.dataLayer.push(arguments);}
                         gtag('js', new Date());
 
-                        gtag('config', 'G-MBME4VEPK4');
+                        gtag('config', 'G-7BSVVDBPMB');
                         `}
                     </Script>
                     <Component {...pageProps} />

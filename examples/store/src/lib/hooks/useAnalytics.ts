@@ -6,7 +6,7 @@ export const useAnalytics = (): void => {
 
     useEffect(() => {
         const handleRouteChange = (url: string) => {
-            window.gtag("config", "G-MBME4VEPK4", {
+            window.gtag("config", "G-7BSVVDBPMB", {
                 page_path: url,
             });
         };
