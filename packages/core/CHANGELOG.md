@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.69.3
+
+### Patch Changes
+
+-   [#2475](https://github.com/pankod/refine/pull/2475) [`fc859677d9`](https://github.com/pankod/refine/commit/fc859677d980bd787c084736fb23552e958d0505) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed default login page for headless
+
 ## 3.69.2
 
 ### Patch Changes
