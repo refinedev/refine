@@ -142,4 +142,19 @@ describe("useShow Hook", () => {
 
         expect(result.current.showId).toEqual("3");
     });
+
+    it("correctly return id value after its updated with a new value", async () => {
+        const { result, rerender } = renderHook(({ id }) => useShow({ id }), {
+            wrapper: WrapperWithRoute,
+            initialProps: { id: "1" },
+        });
+
+        await waitFor(() => expect(result.current.showId).toEqual("1"));
+
+        await act(async () => {
+            rerender({ id: "2" });
+        });
+
+        await waitFor(() => expect(result.current.showId).toEqual("2"));
+    });
 });

@@ -1,5 +1,21 @@
 # @pankod/refine-hasura
 
+## 4.11.2
+
+### Patch Changes
+
+-   Added nested sorting feature 💥
+
+*   Added new CRUD Filter Operators with undefined
+
+## 4.11.1
+
+### Patch Changes
+
+-   [#2427](https://github.com/pankod/refine/pull/2427) [`b21908e872`](https://github.com/pankod/refine/commit/b21908e87209c3a8825991c6ab829f7c45c19e9b) Thanks [@geoffatsource](https://github.com/geoffatsource)! - Added nested sorting feature 💥
+
+*   [#2456](https://github.com/pankod/refine/pull/2456) [`f20a0ed621`](https://github.com/pankod/refine/commit/f20a0ed621f9f038dce762e75a0a99058bcb4edb) Thanks [@workatease](https://github.com/workatease)! - Added new CRUD Filter Operators with undefined
+
 ## 4.11.0
 
 ### Minor Changes
