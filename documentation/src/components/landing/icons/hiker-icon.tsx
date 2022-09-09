@@ -6,6 +6,7 @@ export const HikerIcon = (
     <svg
         width={257}
         height={160}
+        viewBox="0 0 257 160"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         {...props}
