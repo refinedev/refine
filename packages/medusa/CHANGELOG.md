@@ -1,5 +1,11 @@
 # @pankod/refine-medusa
 
+## 1.3.0
+
+### Minor Changes
+
+-   Fixed payload data in delete on nestjsx data provider custom method.
+
 ## 1.2.0
 
 ### Minor Changes

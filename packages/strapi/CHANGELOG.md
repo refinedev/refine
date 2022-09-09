@@ -1,5 +1,11 @@
 # @pankod/refine-strapi
 
+## 3.33.0
+
+### Minor Changes
+
+-   Fixed payload data in delete on nestjsx data provider custom method.
+
 ## 3.32.0
 
 ### Minor Changes
