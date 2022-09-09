@@ -144,7 +144,7 @@ export const SectionHero: React.FC = () => {
                                 transition={{
                                     yoyo: Infinity,
                                     ease: "easeInOut",
-                                    duration: 4,
+                                    duration: 6,
                                     delay: 1,
                                 }}
                                 style={{
@@ -199,7 +199,7 @@ export const SectionHero: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="tiles flex-[1] mx-auto lg:mx-0 min-w-[320px] lg:min-w-0 flex flex-col uppercase font-montserrat text-2xl tracking-tight font-medium text-[#1890FF]">
+                    <div className="tiles flex-[1] mx-auto lg:mx-0 min-w-[270px] max-w-[270px] sm:max-w-none lg:min-w-0 flex flex-col uppercase font-montserrat text-lg sm:text-xl lg:text-2xl tracking-tight font-medium text-[#1890FF]">
                         <motion.div
                             transition={{
                                 yoyo: Infinity,
@@ -254,10 +254,10 @@ export const SectionHero: React.FC = () => {
                                           }
                                 }
                             >
-                                <span className="block w-full text-center p-[18px] h-[4.5rem]">
+                                <span className="block w-full text-center py-[23px] sm:py-[18px] p-[18px] h-[4.5rem]">
                                     admin panels
                                 </span>
-                                <span className="block w-full text-center p-[18px] h-[4.5rem]">
+                                <span className="block w-full text-center py-[23px] sm:py-[18px] p-[18px] h-[4.5rem]">
                                     headless ui
                                 </span>
                             </motion.div>
@@ -316,10 +316,10 @@ export const SectionHero: React.FC = () => {
                                           }
                                 }
                             >
-                                <span className="block w-full text-center p-[18px] h-[4.5rem]">
+                                <span className="block w-full text-center py-[23px] sm:py-[18px] p-[18px] h-[4.5rem]">
                                     dashboards
                                 </span>
-                                <span className="block w-full text-center p-[18px] h-[4.5rem]">
+                                <span className="block w-full text-center py-[23px] sm:py-[18px] p-[18px] h-[4.5rem]">
                                     backend agnostic
                                 </span>
                             </motion.div>
@@ -378,10 +378,10 @@ export const SectionHero: React.FC = () => {
                                           }
                                 }
                             >
-                                <span className="block w-full text-center p-[18px] h-[4.5rem]">
+                                <span className="block w-full text-center py-[23px] sm:py-[18px] p-[18px] h-[4.5rem]">
                                     storefronts
                                 </span>
-                                <span className="absolute block w-full text-center p-[18px] h-[4.5rem]">
+                                <span className="absolute block w-full text-center py-[23px] sm:py-[18px] p-[18px] h-[4.5rem]">
                                     custom workflow
                                 </span>
                             </motion.div>
@@ -440,18 +440,18 @@ export const SectionHero: React.FC = () => {
                                           }
                                 }
                             >
-                                <span className="block w-full text-center p-[18px] h-[4.5rem]">
+                                <span className="block w-full text-center py-[23px] sm:py-[18px] p-[18px] h-[4.5rem]">
                                     internal tools
                                 </span>
-                                <span className="block w-full text-center p-[18px] h-[4.5rem]">
+                                <span className="block w-full text-center py-[23px] sm:py-[18px] p-[18px] h-[4.5rem]">
                                     open source
                                 </span>
                             </motion.div>
                         </motion.div>
                     </div>
                 </div>
-                <div className="flex flex-col lg:flex-row pt-24 pb-8 gap-6 lg:gap-0">
-                    <div className="flex flex-col lg:flex-row flex-1 gap-4 px-4 md:px-8 lg:px-12">
+                <div className="flex flex-col-reverse lg:flex-row pt-12 sm:pt-16 lg:pt-24 pb-8 gap-2 lg:gap-0 mx-auto lg:mx-0 max-w-lg lg:max-w-none">
+                    <div className="flex flex-col lg:flex-row flex-1 gap-4 -mx-4 px-0 md:px-8 lg:px-12">
                         <a
                             className="flex flex-1 justify-center items-center appearance-none no-underline font-montserrat font-bold text-xl text-white text-center py-3 px-4 rounded-lg shadow-lg hover:shadow-xl focus:outline-none focus:shadow-xl bg-gradient-to-l from-[#1890FF] to-[#47EBF5]"
                             href=""
@@ -465,7 +465,7 @@ export const SectionHero: React.FC = () => {
                             Read the docs <ChevronRight />
                         </a>
                     </div>
-                    <div className="flex flex-col lg:flex-row flex-1 gap-1 justify-end px-4 md:px-8 lg:px-12 opacity-80">
+                    <div className="flex flex-row flex-1 gap-1 justify-end -mx-4 px-0 md:px-8 lg:px-12">
                         <div>
                             <a
                                 href="https://www.producthunt.com/posts/refine-2?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-refine&#0045;2"
@@ -475,7 +475,7 @@ export const SectionHero: React.FC = () => {
                                 <img
                                     src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=319164&theme=dark"
                                     alt="refine - Open&#0032;Source&#0032;React&#0032;Framework | Product Hunt"
-                                    className="w-full lg:w-[250px] h-[54px] bg-[#211d21] rounded-xl lg:rounded-br-none lg:rounded-tr-none rounded-tl-xl rounded-bl-xl"
+                                    className="w-full lg:w-[250px] h-[54px] bg-[#211d21] rounded-tl-xl rounded-bl-xl"
                                 />
                             </a>
                         </div>
@@ -484,26 +484,26 @@ export const SectionHero: React.FC = () => {
                                 href="https://github.com/pankod/refine"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="bg-[#211d21] no-underline rounded-xl lg:rounded-bl-none lg:rounded-tl-none rounded-tr-xl rounded-br-xl h-[54px] flex gap-2 pl-3.5 py-2.5 pr-2.5 items-center justify-center lg:justify-start"
+                                className="bg-[#211d21] no-underline rounded-tr-xl rounded-br-xl h-[54px] flex gap-2 pl-3.5 py-2.5 pr-2.5 items-center justify-center lg:justify-start"
                             >
                                 <GithubIcon />
-                                <div className="font-bold font-montserrat text-base text-white">
+                                <div className="hidden sm:block font-bold font-montserrat text-base text-white">
                                     Star
                                 </div>
                                 <div className="flex items-start h-full">
                                     <CloudTipIcon className="mt-2 -mr-px" />
                                     <div className="cloud rounded-md bg-white text-[#211d21] h-full flex items-center justify-center px-1.5 font-montserrat font-bold text-base">
-                                        {`${githubStarCount}`.padStart(4, "0")}
+                                        {`${githubStarCount ?? "0"}`.padStart(
+                                            4,
+                                            "0",
+                                        )}
                                     </div>
                                 </div>
                             </a>
                         </div>
                     </div>
                 </div>
-                <div
-                    className="flex items-center justify-center"
-                    style={{ paddingBottom: lg ? 0 : "40px" }}
-                >
+                <div className="hidden lg:flex items-center justify-center">
                     <motion.button
                         className="appearance-none border-none bg-none bg-transparent flex w-auto items-center justify-center gap-2.5"
                         animate={
