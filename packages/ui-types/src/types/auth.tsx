@@ -16,31 +16,93 @@ export type ContentProps = {
 export type RefineAuthPageProps<
     TWrapperProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
-    TExtraProps extends {} = {},
-> = PropsWithChildren<{
-    // Common Props
-    type?: "login" | "register" | "resetPassword" | "updatePassword";
+> = (
+    | PropsWithChildren<{
+          /**
+           * @default "login"
+           * @description The type of the auth page.
+           * @optional
+           */
+          type?: "login";
+          /**
+           * @description Providers array for login with third party auth services.
+           * @optional
+           */
+          providers?: IProvider[];
+          /**
+           * @description Render a redirect to register page button node. If set to false, register button will not be rendered.
+           * @optional
+           */
+          registerLink?: React.ReactNode;
+          /**
+           * @description Render a redirect to reset password page button node. If set to false, reset password button will not be rendered.
+           * @optional
+           */
+          resetPasswordLink?: React.ReactNode;
+          /**
+           * @description Render a remember me button node. If set to false, remember me button will not be rendered.
+           * @optional
+           */
+          rememberMe?: React.ReactNode;
+      }>
+    | PropsWithChildren<{
+          /**
+           * @description The type of the auth page.
+           * @optional
+           */
+          type: "register";
+          /**
+           * @description Render a redirect to login page button node. If set to false, login button will not be rendered.
+           * @optional
+           */
+          loginLink?: React.ReactNode;
+          /**
+           * @description render a redirect to update password page button node. If set to false, update password button will not be rendered.
+           * @optional
+           */
+          updatePasswordLink?: React.ReactNode;
+      }>
+    | PropsWithChildren<{
+          /**
+           * @description The type of the auth page.
+           * @optional
+           */
+          type: "resetPassword";
+          /**
+           * @description render a redirect to login page button node. If set to false, login button will not be rendered.
+           * @optional
+           */
+          loginLink?: React.ReactNode;
+      }>
+    | PropsWithChildren<{
+          /**
+           * @description The type of the auth page.
+           * @optional
+           */
+          type: "updatePassword";
+      }>
+) & {
     /**
-     * @description when `<AuthPage>` `type` is `login` show the providers on login form
+     * @description Render a submit button node. If set to false, submit button will not be rendered.
      * @optional
-     * */
-    providers?: IProvider[];
+     */
     submitButton?: React.ReactNode;
-    registerLink?: React.ReactNode;
-    loginLink?: React.ReactNode;
-    resetPasswordLink?: React.ReactNode;
-    updatePasswordLink?: React.ReactNode;
-    renderContent?: (content: React.ReactNode) => React.ReactNode;
+    /**
+     * @description The props that will be passed to the wrapper component.
+     * @optional
+     */
     wrapperProps?: TWrapperProps;
     /**
-     * @description when `<AuthPage>` `type` is `login` show the remember me checkbox on login form
+     * @description The props that will be passed to the content component.
      * @optional
-     * */
-    rememberMe?: React.ReactNode;
-    // Card Props
+     */
     contentProps?: TContentProps;
-}> &
-    TExtraProps;
+    /**
+     * @description This method gives you the ability to render a custom content node.
+     * @optional
+     */
+    renderContent?: (content: React.ReactNode) => React.ReactNode;
+};
 
 /**
  * This should be the base type for `AuthPage` `Login` component implementations in UI integrations.
@@ -48,9 +110,7 @@ export type RefineAuthPageProps<
 export type RefineLoginPageProps<
     TWrapperProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
-    TExtraProps extends {} = {},
 > = PropsWithChildren<{
-    // Common Props
     providers?: IProvider[];
     submitButton?: React.ReactNode;
     registerLink?: React.ReactNode;
@@ -58,10 +118,8 @@ export type RefineLoginPageProps<
     rememberMe?: React.ReactNode;
     wrapperProps?: TWrapperProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;
-    // Card Props
     contentProps?: TContentProps;
-}> &
-    TExtraProps;
+}>;
 
 /**
  * This should be the base type for `AuthPage` `Register` component implementations in UI integrations.
@@ -69,17 +127,13 @@ export type RefineLoginPageProps<
 export type RefineRegisterPageProps<
     TWrapperProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
-    TExtraProps extends {} = {},
 > = PropsWithChildren<{
-    // Common Props
     submitButton?: React.ReactNode;
     loginLink?: React.ReactNode;
     wrapperProps?: TWrapperProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;
-    // Card Props
     contentProps?: TContentProps;
-}> &
-    TExtraProps;
+}>;
 
 /**
  * This should be the base type for `AuthPage` `Reset Password` component implementations in UI integrations.
@@ -87,17 +141,13 @@ export type RefineRegisterPageProps<
 export type RefineResetPasswordPageProps<
     TWrapperProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
-    TExtraProps extends {} = {},
 > = PropsWithChildren<{
-    // Common Props
     submitButton?: React.ReactNode;
     loginLink?: React.ReactNode;
     wrapperProps?: TWrapperProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;
-    // Card Props
     contentProps?: TContentProps;
-}> &
-    TExtraProps;
+}>;
 
 /**
  * This should be the base type for `AuthPage` `Update Password` component implementations in UI integrations.
@@ -105,13 +155,9 @@ export type RefineResetPasswordPageProps<
 export type RefineUpdatePasswordPageProps<
     TWrapperProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
-    TExtraProps extends {} = {},
 > = PropsWithChildren<{
-    // Common Props
     submitButton?: React.ReactNode;
     wrapperProps?: TWrapperProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;
-    // Card Props
     contentProps?: TContentProps;
-}> &
-    TExtraProps;
+}>;
