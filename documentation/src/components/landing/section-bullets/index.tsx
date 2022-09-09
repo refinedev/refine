@@ -1,50 +1,13 @@
 import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import {
-    CrossIcon,
-    HeartCodeIcon,
-    ScrollIcon,
-    ShieldIcon,
-    TripleIcon,
-    BenefitIcons,
-} from "../icons";
-
-const Bullet = ({ icon, title, children, scrollYProgress }) => {
-    const rotateX = useTransform(
-        scrollYProgress,
-        [0, 0.25, 0.75, 1],
-        [-180, 0, 0, 180],
-    );
-
-    const opacity = useTransform(
-        scrollYProgress,
-        [0, 0.25, 0.75, 1],
-        [0, 1, 1, 0],
-    );
-
-    return (
-        <motion.div
-            className="flex items-center gap-4"
-            style={{ rotateX, opacity }}
-        >
-            <div className="shadow-startTiles rounded-[10px] h-24 w-24 flex justify-center items-center">
-                {icon}
-            </div>
-            <div className="max-w-[223px] flex flex-col gap-2">
-                <div className="font-montserrat font-black text-xl leading-6 text-[#2A2A42]">
-                    {title}
-                </div>
-                <div className="font-montserrat font-normal text-sm leading-4 text-[#2A2A42]">
-                    {children}
-                </div>
-            </div>
-        </motion.div>
-    );
-};
+import { BenefitIcons } from "../icons";
+import { useTWBreakpoints } from "../../../hooks/use-tw-breakpoints";
 
 export const SectionBullets = () => {
     const ref = React.useRef<HTMLDivElement>(null);
     const innerRef = React.useRef<HTMLDivElement>(null);
+
+    const { sm, md, lg, xl } = useTWBreakpoints();
 
     const { scrollYProgress: scrollYProgressIncoming } = useScroll({
         target: ref,
@@ -60,13 +23,6 @@ export const SectionBullets = () => {
         target: ref,
         offset: ["start start", "end start"],
     });
-
-    const scrollYProgress = useTransform<number, number>(
-        [scrollYProgressIncoming, scrollYProgressOutgoing],
-        ([incoming, outgoing]) => {
-            return incoming - outgoing;
-        },
-    );
 
     const whyNotY = useTransform(
         scrollYProgressInnerIncoming,
@@ -125,37 +81,59 @@ export const SectionBullets = () => {
         });
     });
 
+    console.log({ sm, md, lg, xl });
+
     return (
         // Scroll animated container
-        <motion.div ref={ref} className="h-[200vh] lg:h-[100vh] bg-white">
+        <motion.div ref={ref} className="h-auto lg:h-[100vh] bg-white">
             {/* Scroll animated section */}
             <motion.div
                 ref={innerRef}
-                className="h-screen w-screen top-0 left-0 sticky pt-8 px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col"
+                className="h-auto lg:h-screen w-screen top-0 left-0 relative lg:sticky pt-8 px-4 md:px-10 lg:px-16 xl:px-24 flex flex-col"
             >
                 <motion.div
-                    className="flex items-center justify-center pt-16 pb-4"
-                    style={{
-                        rotate: whyNotRotate,
-                        y: whyNotY,
-                        opacity: whyNotOpacity,
-                    }}
+                    className="flex items-center justify-center lg:pt-16 lg:pb-4 opacity-100 px-2 lg:px-0"
+                    animate={
+                        !lg
+                            ? {
+                                  opacity: 1,
+                                  rotate: -2,
+                                  y: 0,
+                              }
+                            : {}
+                    }
+                    style={
+                        lg
+                            ? {
+                                  rotate: whyNotRotate,
+                                  y: whyNotY,
+                                  opacity: whyNotOpacity,
+                              }
+                            : { rotate: -3, y: 0, opacity: 1 }
+                    }
                 >
-                    <motion.div className="h-fit z-[1] px-5 -mx-16 bg-[#1784EB] font-extrabold font-montserrat text-white uppercase text-[52px] leading-[52px] py-0.5 -rotate-3 shadow-startTiles flex">
+                    <motion.div className="h-fit z-[1] px-1 lg:px-5 -mx-16 bg-[#1784EB] font-extrabold font-montserrat text-white uppercase text-[36px] leading-[36px] lg:text-[52px] lg:leading-[52px] py-0.5 lg:-rotate-3 shadow-startTiles flex">
                         why not both?
                     </motion.div>
                 </motion.div>
                 <motion.div
-                    style={{
-                        opacity: bulletsOpacity,
-                        y: bulletsY,
-                    }}
-                    className="flex pt-12 gap-7 max-w-6xl px-3 mx-auto w-full justify-center flex-col"
+                    animate={!lg ? { opacity: 1, y: 0 } : {}}
+                    style={
+                        lg
+                            ? {
+                                  opacity: bulletsOpacity,
+                                  y: bulletsY,
+                              }
+                            : { opacity: 1, y: 0 }
+                    }
+                    className="flex pt-12 gap-7 max-w-6xl lg:px-3 mx-auto w-full justify-center flex-col"
                 >
                     <div className="flex w-full flex-col gap-6">
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                             <motion.div
-                                animate={{ scale: [1, 1.02] }}
+                                animate={
+                                    lg ? { scale: [1, 1.02] } : { scale: 1 }
+                                }
                                 transition={{
                                     repeat: Infinity,
                                     repeatType: "reverse",
@@ -178,7 +156,9 @@ export const SectionBullets = () => {
                                 </div>
                             </motion.div>
                             <motion.div
-                                animate={{ scale: [1, 1.02] }}
+                                animate={
+                                    lg ? { scale: [1, 1.02] } : { scale: 1 }
+                                }
                                 transition={{
                                     repeat: Infinity,
                                     repeatType: "reverse",
@@ -210,7 +190,9 @@ export const SectionBullets = () => {
                                 </div>
                             </motion.div>
                             <motion.div
-                                animate={{ scale: [1, 1.02] }}
+                                animate={
+                                    lg ? { scale: [1, 1.02] } : { scale: 1 }
+                                }
                                 transition={{
                                     repeat: Infinity,
                                     repeatType: "reverse",
@@ -240,7 +222,9 @@ export const SectionBullets = () => {
                         </div>
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                             <motion.div
-                                animate={{ scale: [1, 1.02] }}
+                                animate={
+                                    lg ? { scale: [1, 1.02] } : { scale: 1 }
+                                }
                                 transition={{
                                     repeat: Infinity,
                                     repeatType: "reverse",
@@ -261,7 +245,9 @@ export const SectionBullets = () => {
                                 </div>
                             </motion.div>
                             <motion.div
-                                animate={{ scale: [1, 1.02] }}
+                                animate={
+                                    lg ? { scale: [1, 1.02] } : { scale: 1 }
+                                }
                                 transition={{
                                     repeat: Infinity,
                                     repeatType: "reverse",
@@ -286,7 +272,9 @@ export const SectionBullets = () => {
                                 </div>
                             </motion.div>
                             <motion.div
-                                animate={{ scale: [1, 1.02] }}
+                                animate={
+                                    lg ? { scale: [1, 1.02] } : { scale: 1 }
+                                }
                                 transition={{
                                     repeat: Infinity,
                                     repeatType: "reverse",
@@ -308,14 +296,16 @@ export const SectionBullets = () => {
                         </div>
                         <div className="grid grid-cols-2 lg:grid-cols-6 gap-6">
                             <motion.div
-                                animate={{ scale: [1, 1.02] }}
+                                animate={
+                                    lg ? { scale: [1, 1.02] } : { scale: 1 }
+                                }
                                 transition={{
                                     repeat: Infinity,
                                     repeatType: "reverse",
                                     duration: 2,
                                     delay: 3,
                                 }}
-                                className="col-span-2 col-start-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex gap-6 items-center justify-between w-full max-w-[400px]"
+                                className="col-span-2 lg:col-start-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex gap-6 items-center justify-between w-full max-w-[400px]"
                             >
                                 <div>
                                     <BenefitIcons.AuditIcon />
@@ -332,7 +322,9 @@ export const SectionBullets = () => {
                                 </div>
                             </motion.div>
                             <motion.div
-                                animate={{ scale: [1, 1.02] }}
+                                animate={
+                                    lg ? { scale: [1, 1.02] } : { scale: 1 }
+                                }
                                 transition={{
                                     repeat: Infinity,
                                     repeatType: "reverse",
@@ -354,56 +346,19 @@ export const SectionBullets = () => {
                             </motion.div>
                         </div>
                     </div>
-                    {/* <div className="grid grid-cols-2 gap-5 place-content-center w-full">
-                        <Bullet
-                            scrollYProgress={scrollYProgress}
-                            icon={<TripleIcon />}
-                            title="FAST"
-                        >
-                            Up to 3x increase in speed of development. (*)
-                        </Bullet>
-                        <Bullet
-                            scrollYProgress={scrollYProgress}
-                            icon={<ShieldIcon />}
-                            title="FUTURE-PROOF"
-                        >
-                            Robust architecture, full test coverage and no
-                            technical debt.
-                        </Bullet>
-                        <Bullet
-                            scrollYProgress={scrollYProgress}
-                            icon={<CrossIcon />}
-                            title="UNIVERSAL"
-                        >
-                            Single framework for internal tools and
-                            customer-facing apps. SSR included.
-                        </Bullet>
-                        <Bullet
-                            scrollYProgress={scrollYProgress}
-                            icon={<HeartCodeIcon />}
-                            title="1-MINUTE SETUP"
-                        >
-                            Start your project with a single CLI command.
-                        </Bullet>
-                    </div>
-                    <div className="flex pt-12 gap-7 max-w-5xl px-3 mx-auto w-full justify-center">
-                        <p className="text-center">
-                            <p className="font-medium font-montserrat text-2xl text-[#2A2A42]">
-                                With{" "}
-                                <strong className="font-bold">refine</strong>{" "}
-                                you can have it all
-                            </p>
-                            <p className="font-medium font-montserrat text-2xl text-[#2A2A42]">
-                                without compromising your freedom or facing
-                                constraints.
-                            </p>
+                    <div className="text-center font-montserrat font-medium text-lg lg:text-2xl text-[#2A2A42] pt-2 pb-6 lg:pb-2 lg:pt-6 tracking-wide">
+                        <p className="mb-0">
+                            With <strong className="font-bold">refine</strong>{" "}
+                            you can have it all without compromising
                         </p>
-                    </div> */}
+                        <p className="mb-0">
+                            your freedom or facing constraints.
+                        </p>
+                    </div>
                 </motion.div>
             </motion.div>
             {/* Scroll snap alignment */}
-            <div className="snap-start h-screen" />
-            <div className="snap-start h-screen lg:hidden" />
+            <div className="hidden lg:block snap-start h-screen" />
         </motion.div>
     );
 };
