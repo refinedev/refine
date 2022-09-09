@@ -1,5 +1,5 @@
 import cn from "clsx";
-import { LayoutProps, useList } from "@pankod/refine-core";
+import { GetListResponse, LayoutProps, useList } from "@pankod/refine-core";
 import dynamic from "next/dynamic";
 import { ProductCollection } from "@medusajs/medusa";
 
@@ -90,10 +90,9 @@ const SidebarUI: React.FC<{ links: { title: string; id: string }[] }> = ({
     ) : null;
 };
 
-const Layout: React.FC<LayoutProps & { categories: any }> = ({
-    children,
-    categories,
-}) => {
+const Layout: React.FC<
+    LayoutProps & { categories: GetListResponse<ProductCollection> }
+> = ({ children, categories }) => {
     const { acceptedCookies, onAcceptCookies } = useAcceptCookies();
 
     const { data: collectionsData } = useList<ProductCollection>({

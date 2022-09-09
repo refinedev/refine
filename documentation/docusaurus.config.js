@@ -57,7 +57,7 @@ const siteConfig = {
                     ],
                 },
                 gtag: {
-                    trackingID: "G-27Z1WY952H",
+                    trackingID: "G-5KB745H746",
                 },
             },
         ],
