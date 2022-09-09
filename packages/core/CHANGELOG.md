@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.69.2
+
+### Patch Changes
+
+-   Update `useForm` and `useShow` hooks to watch for `id` from `props` and update the query with the new `id` when it changes.
+
 ## 3.69.1
 
 ### Patch Changes
