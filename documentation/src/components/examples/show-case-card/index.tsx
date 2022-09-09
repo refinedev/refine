@@ -42,7 +42,7 @@ export const ShowCaseCard: React.FC<ShowCaseCardProps> = ({ showCase }) => {
                                 },
                             )}
                         >
-                            {b?.icon && <Icon className=" object-contain" />}
+                            {Icon && <Icon className=" object-contain" />}
                             {b.text}
                             <Link
                                 to={b.link}
