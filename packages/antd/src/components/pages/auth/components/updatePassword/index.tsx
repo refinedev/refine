@@ -96,7 +96,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
                                     new Error(
                                         translate(
                                             "pages.updatePassword.errors.confirmPasswordNotMatch",
-                                            "The two passwords that you entered do not match",
+                                            "Passwords do not match",
                                         ),
                                     ),
                                 );
@@ -122,7 +122,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
                     >
                         {translate(
                             "pages.updatePassword.buttons.submit",
-                            "Change Password",
+                            "Update",
                         )}
                     </Button>
                 )}

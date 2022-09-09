@@ -119,7 +119,7 @@ export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
                     >
                         {translate(
                             "pages.resetPassword.buttons.submit",
-                            "Send",
+                            "Send reset instructions",
                         )}
                     </Button>
                 )}
