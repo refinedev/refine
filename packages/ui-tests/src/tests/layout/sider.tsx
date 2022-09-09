@@ -116,8 +116,8 @@ export const layoutSiderTests = function (
             await waitFor(() => expect(queryByText("Users")).toBeNull());
         });
 
-        it("should render ", async () => {
-            const { getAllByText, queryByText, queryAllByText } = render(
+        it("should render custom element passed with render prop", async () => {
+            const { getAllByText, queryAllByText } = render(
                 <SiderElement
                     render={({ logout, dashboard, items }) => {
                         return (
