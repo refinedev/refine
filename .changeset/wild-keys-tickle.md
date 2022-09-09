@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-ui-tests": patch
+"@pankod/refine-ui-types": patch
 ---
 
 Added new types for `<AuthPage>`. You can see following new types:
@@ -7,15 +7,34 @@ Added new types for `<AuthPage>`. You can see following new types:
 -   `RefineAuthPageProps`
 
 ```tsx
-type RefineAuthPageProps = {
-    type?: "login" | "register" | "resetPassword" | "updatePassword";
-    providers?: IProvider[];
+export type RefineAuthPageProps<
+    TWrapperProps extends {} = Record<keyof any, unknown>,
+    TContentProps extends {} = Record<keyof any, unknown>,
+> = (
+    | PropsWithChildren<{
+          type?: "login";
+          providers?: IProvider[];
+          registerLink?: React.ReactNode;
+          resetPasswordLink?: React.ReactNode;
+          rememberMe?: React.ReactNode;
+      }>
+    | PropsWithChildren<{
+          type: "register";
+          loginLink?: React.ReactNode;
+          updatePasswordLink?: React.ReactNode;
+      }>
+    | PropsWithChildren<{
+          type: "resetPassword";
+          loginLink?: React.ReactNode;
+      }>
+    | PropsWithChildren<{
+          type: "updatePassword";
+      }>
+) & {
     submitButton?: React.ReactNode;
-    registerLink?: React.ReactNode;
-    loginLink?: React.ReactNode;
-    resetPasswordLink?: React.ReactNode;
-    updatePasswordLink?: React.ReactNode;
-    remember?: boolean;
+    wrapperProps?: TWrapperProps;
+    contentProps?: TContentProps;
+    renderContent?: (content: React.ReactNode) => React.ReactNode;
 };
 
 type IProvider = {
@@ -28,37 +47,61 @@ type IProvider = {
 -   `RefineLoginPageProps`
 
     ```tsx
-    type RefineLoginPageProps = {
+    export type RefineLoginPageProps<
+        TWrapperProps extends {} = Record<keyof any, unknown>,
+        TContentProps extends {} = Record<keyof any, unknown>,
+    > = PropsWithChildren<{
         providers?: IProvider[];
         submitButton?: React.ReactNode;
         registerLink?: React.ReactNode;
         resetPasswordLink?: React.ReactNode;
-        remember?: boolean;
-    };
+        rememberMe?: React.ReactNode;
+        wrapperProps?: TWrapperProps;
+        renderContent?: (content: React.ReactNode) => React.ReactNode;
+        contentProps?: TContentProps;
+    }>;
     ```
 
 -   `RefineRegisterPageProps`
 
     ```tsx
-    type RefineRegisterPageProps = {
+    export type RefineRegisterPageProps<
+        TWrapperProps extends {} = Record<keyof any, unknown>,
+        TContentProps extends {} = Record<keyof any, unknown>,
+    > = PropsWithChildren<{
         submitButton?: React.ReactNode;
         loginLink?: React.ReactNode;
-    };
+        wrapperProps?: TWrapperProps;
+        renderContent?: (content: React.ReactNode) => React.ReactNode;
+        contentProps?: TContentProps;
+    }>;
     ```
 
 -   `RefineResetPasswordPageProps`
 
     ```tsx
-    type RefineResetPasswordPageProps = {
+    export type RefineResetPasswordPageProps<
+        TWrapperProps extends {} = Record<keyof any, unknown>,
+        TContentProps extends {} = Record<keyof any, unknown>,
+    > = PropsWithChildren<{
         submitButton?: React.ReactNode;
         loginLink?: React.ReactNode;
-    };
+        wrapperProps?: TWrapperProps;
+        renderContent?: (content: React.ReactNode) => React.ReactNode;
+        contentProps?: TContentProps;
+    }>;
     ```
 
 -   `RefineUpdatePasswordPageProps`
 
     ```tsx
-    type RefineUpdatePasswordPageProps = {
+    export type RefineUpdatePasswordPageProps<
+        TWrapperProps extends {} = Record<keyof any, unknown>,
+        TContentProps extends {} = Record<keyof any, unknown>,
+    > = PropsWithChildren<{
         submitButton?: React.ReactNode;
-    };
+        wrapperProps?: TWrapperProps;
+        renderContent?: (content: React.ReactNode) => React.ReactNode;
+        contentProps?: TContentProps;
+    }>;
     ```
