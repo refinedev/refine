@@ -1,5 +1,11 @@
 # @pankod/refine-nestjsx-crud
 
+## 3.31.0
+
+### Minor Changes
+
+-   Fixed payload data in delete on nestjsx data provider custom method.
+
 ## 3.30.0
 
 ### Minor Changes
