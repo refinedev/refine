@@ -161,6 +161,30 @@ describe("useForm Hook", () => {
         expect(result.current.id).toEqual("3");
     });
 
+    it("correctly return id value after its updated with a new value", async () => {
+        const { result, rerender } = renderHook(
+            ({ id }) =>
+                useForm({
+                    resource: "posts",
+                    id,
+                }),
+            {
+                wrapper: EditWrapperWithRoute,
+                initialProps: {
+                    id: "1",
+                },
+            },
+        );
+
+        await waitFor(() => expect(result.current.id).toEqual("1"));
+
+        await act(async () => {
+            rerender({ id: "2" });
+        });
+
+        await waitFor(() => expect(result.current.id).toEqual("2"));
+    });
+
     it("correctly return id undefined when route and options is different", async () => {
         const { result } = renderHook(
             () =>
