@@ -16,76 +16,20 @@ export type AuthProps = RefineAuthPageProps<LayoutProps, CardProps>;
  *
  * @see {@link https://refine.dev/docs/api-references/components/refine-config#authpage} for more details.
  */
-export const AuthPage: React.FC<AuthProps> = ({
-    type = "login",
-    providers,
-    loginLink,
-    rememberMe,
-    registerLink,
-    resetPasswordLink,
-    submitButton,
-    wrapperProps,
-    renderContent,
-    contentProps,
-}) => {
+export const AuthPage: React.FC<AuthProps> = (props) => {
+    const { type } = props;
     const renderView = () => {
         switch (type) {
             case "login":
-                return (
-                    <LoginPage
-                        providers={providers}
-                        submitButton={submitButton}
-                        registerLink={registerLink}
-                        resetPasswordLink={resetPasswordLink}
-                        rememberMe={rememberMe}
-                        wrapperProps={wrapperProps}
-                        contentProps={contentProps}
-                        renderContent={renderContent}
-                    />
-                );
+                return <LoginPage {...props} />;
             case "register":
-                return (
-                    <RegisterPage
-                        submitButton={submitButton}
-                        wrapperProps={wrapperProps}
-                        contentProps={contentProps}
-                        renderContent={renderContent}
-                        loginLink={loginLink}
-                    />
-                );
+                return <RegisterPage {...props} />;
             case "resetPassword":
-                return (
-                    <ResetPasswordPage
-                        submitButton={submitButton}
-                        wrapperProps={wrapperProps}
-                        contentProps={contentProps}
-                        renderContent={renderContent}
-                        loginLink={loginLink}
-                    />
-                );
+                return <ResetPasswordPage {...props} />;
             case "updatePassword":
-                return (
-                    <UpdatePasswordPage
-                        submitButton={submitButton}
-                        wrapperProps={wrapperProps}
-                        contentProps={contentProps}
-                        renderContent={renderContent}
-                    />
-                );
-
+                return <UpdatePasswordPage {...props} />;
             default:
-                return (
-                    <LoginPage
-                        providers={providers}
-                        submitButton={submitButton}
-                        registerLink={registerLink}
-                        resetPasswordLink={resetPasswordLink}
-                        rememberMe={rememberMe}
-                        wrapperProps={wrapperProps}
-                        contentProps={contentProps}
-                        renderContent={renderContent}
-                    />
-                );
+                return <LoginPage {...props} />;
         }
     };
 
