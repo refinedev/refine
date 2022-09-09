@@ -1,6 +1,6 @@
 ---
 id: mui-custom-sider
-title: Custom Sider
+title: Sider
 ---
 
 import customMenu from '@site/static/img/guides-and-concepts/hooks/useMenu/mui/custom-menu.gif';
@@ -9,7 +9,7 @@ import customMenuLogout from '@site/static/img/guides-and-concepts/hooks/useMenu
 
 import customMobileMenu from '@site/static/img/guides-and-concepts/hooks/useMenu/mui/custom-menu-mobile.gif';
 
-You can create a custom `<Sider />` component and use it either by passing it to [`<Refine />`][refine] or using a [Custom Layout][muicustomlayout].
+You can access the `logout`, `dashboard` and `items` elements that we use in our default `Sider` component by using `render` properties. Customize it to your needs or you can create a custom `<Sider />` component and use it either by passing it to [`<Refine />`][refine] or using a [Custom Layout][antdcustomlayout].
 
 ## Recreating the Default Sider Menu
 
