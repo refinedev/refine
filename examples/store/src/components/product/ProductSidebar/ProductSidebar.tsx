@@ -49,27 +49,24 @@ export const ProductSidebar: React.FC<ProductSidebarProps> = ({
                     36 reviews
                 </div>
             </div> */}
-            <div>
-                <Button
-                    aria-label="Add to Cart"
-                    type="button"
-                    className={s.button}
-                    onClick={async () => {
-                        await addItem?.({
-                            variantId: variant.id,
-                            quantity: 1,
-                        });
+            <Button
+                aria-label="Add to Cart"
+                className={s.button}
+                onClick={async () => {
+                    await addItem?.({
+                        variantId: variant.id,
+                        quantity: 1,
+                    });
 
-                        setSidebarView("CART_VIEW");
-                        openSidebar();
-                    }}
-                    disabled={variant?.inventory_quantity === 0}
-                >
-                    {variant?.inventory_quantity > 0
-                        ? "Add to Cart"
-                        : "Soon in Stock"}
-                </Button>
-            </div>
+                    setSidebarView("CART_VIEW");
+                    openSidebar();
+                }}
+                disabled={variant?.inventory_quantity === 0}
+            >
+                {variant?.inventory_quantity > 0
+                    ? "Add to Cart"
+                    : "Soon in Stock"}
+            </Button>
         </div>
     );
 };
