@@ -1,11 +1,42 @@
 import { AuthProvider } from "@pankod/refine-core";
+import { notification } from "@pankod/refine-antd";
 
 export const TOKEN_KEY = "refine-auth";
 
 export const authProvider: AuthProvider = {
-    login: async ({ username, password }) => {
-        localStorage.setItem(TOKEN_KEY, `${username}-${password}`);
-        return Promise.resolve();
+    login: async ({ email, password }) => {
+        if (email && password) {
+            localStorage.setItem(TOKEN_KEY, `${email}-${password}`);
+            return Promise.resolve();
+        }
+        return Promise.reject("Invalid email or password");
+    },
+    register: async ({ email, password }) => {
+        if (email && password) {
+            localStorage.setItem(TOKEN_KEY, `${email}-${password}`);
+            notification.success({
+                message: "Register",
+                description: "Register successfully",
+            });
+            return Promise.resolve();
+        }
+        return Promise.reject();
+    },
+    updatePassword: async ({ password }) => {
+        if (password) {
+            notification.success({
+                message: "Updated Password",
+                description: "Password updated successfully",
+            });
+            return Promise.resolve();
+        }
+        return Promise.reject();
+    },
+    resetPassword: async ({ email }) => {
+        notification.success({
+            message: "Reset Password",
+            description: `Reset password link sent to "${email}"`,
+        });
     },
     logout: () => {
         localStorage.removeItem(TOKEN_KEY);
