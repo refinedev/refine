@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.69.1
+
+### Patch Changes
+
+-   [#2467](https://github.com/pankod/refine/pull/2467) [`21bb649bc7`](https://github.com/pankod/refine/commit/21bb649bc737a13479254dfdedc91f904e9144b0) Thanks [@aliemir](https://github.com/aliemir)! - Update `useForm` and `useShow` hooks to watch for `id` from `props` and update the query with the new `id` when it changes.
+
 ## 3.69.0
 
 ### Minor Changes
