@@ -35,6 +35,8 @@ Today, we are delighted to respond to one of the most often asked questions we h
 
 The [refine swag store](https://store.refine.dev/) is now open for those who enjoy this open source project. 
 
+<!--truncate-->
+
 For now, it may appear like there are only a few things available. But don't worry, we're really working on it. Hope you will understand because we are relatively newbies to this swag business. To be honest, most of our team members have a lot of experience in collecting these tees, but this is our first time distributing 😁.
 
 As is clear from the last sentence, gifting is the fundamental goal of our swag strategy. So, for us, this will be a way to **say thank you to people who have made meaningful contributions to refine**. Of course, special thanks in advance to those who want to support us by also purchasing products from here :). 
