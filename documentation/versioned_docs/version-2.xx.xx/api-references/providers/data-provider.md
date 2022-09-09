@@ -944,7 +944,9 @@ const SimpleRestDataProvider = (
                 axiosResponse = await httpClient[method](url, payload);
                 break;
             case "delete":
-                axiosResponse = await httpClient.delete(url);
+                axiosResponse = await httpClient.delete(url, {
+                    data: payload,
+                });
                 break;
             default:
                 axiosResponse = await httpClient.get(requestUrl);
@@ -960,15 +962,15 @@ const SimpleRestDataProvider = (
 
 #### Parameter Types
 
-| Name     | Type                                                             |
-| -------- | ---------------------------------------------------------------- |
-| url      | `string`                                                         |
-| method   | `get`, `delete`, `head`, `options`, `post`, `put`, `patch`       |
+| Name     | Type                                                        |
+| -------- | ----------------------------------------------------------- |
+| url      | `string`                                                    |
+| method   | `get`, `delete`, `head`, `options`, `post`, `put`, `patch`  |
 | sort?    | [`CrudSorting`](/api-references/interfaces.md#crudsorting); |
 | filters? | [`CrudFilters`](/api-references/interfaces.md#crudfilters); |
-| payload? | `{}`                                                             |
-| query?   | `{}`                                                             |
-| headers? | `{}`                                                             |
+| payload? | `{}`                                                        |
+| query?   | `{}`                                                        |
+| headers? | `{}`                                                        |
 
 <br/>
 
