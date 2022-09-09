@@ -8,7 +8,7 @@
 		"@pankod/refine-antd": "^3.41.0",
 		"@pankod/refine-core": "^3.69.2",
 		"@pankod/refine-react-router-v6": "^3.33.0",
-		"@pankod/refine-simple-rest": "^3.29.0",
+		"@pankod/refine-simple-rest": "^3.30.0",
 		"@pankod/refine-kbar": "0.10.0",
 		"@testing-library/jest-dom": "^5.16.4",
 		"@testing-library/react": "^13.1.1",

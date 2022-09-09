@@ -1,5 +1,11 @@
 # @pankod/refine-medusa
 
+## 1.2.0
+
+### Minor Changes
+
+-   [#2465](https://github.com/pankod/refine/pull/2465) [`4d07f33993`](https://github.com/pankod/refine/commit/4d07f33993fa5a6facaf33cd651ef94892d15dae) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fixed payload data in delete on nestjsx data provider custom method.
+
 ## 1.1.0
 
 ### Minor Changes
