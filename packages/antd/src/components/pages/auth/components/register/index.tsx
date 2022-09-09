@@ -70,6 +70,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     rules={[{ required: true }]}
                 >
                     <Input
+                        type="email"
                         size="large"
                         placeholder={translate(
                             "pages.register.fields.email",

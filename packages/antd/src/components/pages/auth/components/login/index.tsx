@@ -114,6 +114,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                     rules={[{ required: true }]}
                 >
                     <Input
+                        type="email"
                         size="large"
                         placeholder={translate(
                             "pages.login.fields.email",

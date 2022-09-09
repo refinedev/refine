@@ -71,6 +71,7 @@ export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
                     rules={[{ required: true }]}
                 >
                     <Input
+                        type="email"
                         size="large"
                         placeholder={translate(
                             "pages.resetPassword.fields.email",
