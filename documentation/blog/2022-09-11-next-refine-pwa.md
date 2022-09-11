@@ -1,12 +1,12 @@
 ---
-title: PWA
-description: React 18 was released! Are you looking to upgrade to React 18?  Learn about the new features and changes in this comprehensive guide.
-slug: pwa
-authors: joel_adewole
-tags: [react, react-18]
+title: Build a Progressive Web App (PWA) with Next.js
+description: We will walk you through the entire process of building a PWA using Next.JS and refine framework, from start to finish!
+slug: build-next-js-pwa
+authors: david_omotayo
+tags: [nextjs, react, pwa, refine]
+image: https://refine.dev/img/blog/2022-09-11-next-refine-pwa/social.png
 hide_table_of_contents: false
 ---
-
 
 
 import cli from '@site/static/img/blog/2022-09-11-next-refine-pwa/cli.png';
@@ -15,13 +15,14 @@ import final from '@site/static/img/blog/2022-09-11-next-refine-pwa/final.png';
 import layout from '@site/static/img/blog/2022-09-11-next-refine-pwa/layout.png';
 import manifest from '@site/static/img/blog/2022-09-11-next-refine-pwa/manifest.png';
 import pwa from '@site/static/img/blog/2022-09-11-next-refine-pwa/pwa.png';
+import social from '@site/static/img/blog/2022-09-11-next-refine-pwa/social.png';
 
-<!--  <br />
+ <br />
 
  <div class="img-container">
     <img src={social} alt="social" />
 </div>
- -->
+
 
 
 
