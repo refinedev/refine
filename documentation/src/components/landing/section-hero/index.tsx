@@ -539,6 +539,7 @@ export const SectionHero: React.FC = () => {
             </motion.div>
             {/* Scroll snap alignment */}
             <div className="snap-start hidden lg:block h-screen w-screen" />
+            <div className="snap-start hidden lg:block h-screen w-screen" />
             {/* Scroll snap alignment */}
         </motion.div>
     );
