@@ -1,13 +1,13 @@
-import React from 'react';
-import { AppProps } from 'next/app';
-import { Refine } from '@pankod/refine-core';
-import routerProvider from '@pankod/refine-nextjs-router';
-import dataProvider from '@pankod/refine-simple-rest';
-import { Layout } from '@components/Layout';
+import React from "react";
+import { AppProps } from "next/app";
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-nextjs-router";
+import dataProvider from "@pankod/refine-simple-rest";
+import { Layout } from "@components/Layout";
 
-import 'src/styles/global.css';
+import "src/styles/global.css";
 
-const API_URL = 'https://fakestoreapi.com';
+const API_URL = "https://fakestoreapi.com";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
             Layout={Layout}
-            resources={[{ name: 'products' }]}
+            resources={[{ name: "products" }]}
         >
             <Component {...pageProps} />
         </Refine>

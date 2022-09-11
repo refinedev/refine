@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { LayoutProps } from '@pankod/refine-core';
+import * as React from "react";
+import { LayoutProps } from "@pankod/refine-core";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (

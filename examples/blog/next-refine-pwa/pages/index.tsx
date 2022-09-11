@@ -1,7 +1,7 @@
-import { GetServerSideProps } from 'next';
-import dataProvider from '@pankod/refine-simple-rest';
-import { GetListResponse, LayoutWrapper, useTable } from '@pankod/refine-core';
-import ProductCards from '@components/ProductCards';
+import { GetServerSideProps } from "next";
+import dataProvider from "@pankod/refine-simple-rest";
+import { GetListResponse, LayoutWrapper, useTable } from "@pankod/refine-core";
+import ProductCards from "@components/ProductCards";
 
 interface IProduct {
     id: number;
@@ -17,7 +17,7 @@ type ItemProp = {
 
 const ProductList: React.FC<ItemProp> = ({ products }) => {
     const { tableQueryResult } = useTable<IProduct>({
-        resource: 'products',
+        resource: "products",
         queryOptions: {
             initialData: products,
         },
@@ -47,9 +47,9 @@ export default ProductList;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const data = await dataProvider(
-        'https://fakestoreapi.com'
+        "https://fakestoreapi.com",
     ).getList<IProduct>({
-        resource: 'products',
+        resource: "products",
     });
     return {
         props: { products: data },
