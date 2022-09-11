@@ -1,6 +1,7 @@
 import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronRight } from "../icons";
+import { useTWBreakpoints } from "../../../hooks/use-tw-breakpoints";
 
 export const SectionUseCase: React.FC = () => {
     const ref = React.useRef<HTMLDivElement>(null);
@@ -12,12 +13,14 @@ export const SectionUseCase: React.FC = () => {
 
     const cardOpacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
+    const { sm, md, lg, xl } = useTWBreakpoints();
+
     return (
         // Scroll animated container
-        <motion.div ref={ref} className="h-screen bg-white">
+        <motion.div ref={ref} className="h-auto lg:h-screen bg-white">
             {/* Scroll animated section */}
-            <motion.div className="h-screen w-screen top-0 left-0 sticky pt-16 flex flex-col items-center justify-end">
-                <div className="flex-1 flex max-w-7xl px-3 mx-auto w-full items-center justify-center px-7 md:px-10 lg:px-16 xl:px-24 ">
+            <motion.div className="h-auto lg:h-screen w-screen top-0 left-0 relative lg:sticky pt-16 flex flex-col items-center justify-end gap-12 lg:gap-0">
+                <div className="flex-1 flex flex-col-reverse gap-8 lg:gap-0 lg:flex-row max-w-7xl mx-auto w-full items-center justify-center px-7 md:px-10 lg:px-16 xl:px-24 ">
                     <div className="flex-1">
                         <div className="font-montserrat text-[#1890FF] text-[42px] leading-[42px] mb-9">
                             <div className="font-extrabold">SHARE</div>
@@ -56,16 +59,21 @@ export const SectionUseCase: React.FC = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="flex-1 flex flex-col justify-end items-end relative mt-auto">
+                    <div className="flex-1 w-full lg:w-auto flex flex-col justify-end items-end relative mt-auto">
                         <motion.img
                             src="landing/giftcard.png"
-                            className="w-full max-w-[440px] absolute top-0"
-                            style={{
-                                opacity: cardOpacity,
-                            }}
+                            className="w-full max-w-screen lg:max-w-[440px] absolute top-0"
+                            style={
+                                lg
+                                    ? {
+                                          opacity: cardOpacity,
+                                      }
+                                    : {}
+                            }
                             animate={{
                                 translateY: ["20px", "0px"],
                                 rotate: ["-3deg", "0deg"],
+                                ...(!lg ? { opacity: [1, 1] } : {}),
                             }}
                             transition={{
                                 duration: 5,
@@ -73,7 +81,7 @@ export const SectionUseCase: React.FC = () => {
                                 yoyo: Infinity,
                             }}
                         />
-                        <div className="w-full max-w-[440px] flex justify-center items-end min-h-[400px]">
+                        <div className="w-full max-w-screen min-h-[calc(100vw-56px)] lg:max-w-[440px] flex justify-center items-end lg:min-h-[400px]">
                             <motion.div
                                 style={{
                                     position: "absolute",
@@ -102,11 +110,11 @@ export const SectionUseCase: React.FC = () => {
                 </div>
                 <div className="w-full">
                     <div className="bg-[#2A2A42] py-9 px-6">
-                        <div className="max-w-6xl mx-auto flex items-center justify-between lg:pl-16">
+                        <div className="max-w-6xl mx-auto flex items-center justify-between lg:pl-16 flex-col lg:flex-row gap-6 lg:gap-0">
                             <div className="font-montserrat text-2xl font-extrabold text-white">
                                 NOW YOU’RE READY
                             </div>
-                            <div className="flex gap-1">
+                            <div className="flex gap-3 lg:gap-1 flex-col lg:flex-row">
                                 <button
                                     className="appearance-none rounded-lg h-12 w-[270px] bg-gradient-to-r from-[#47EBF5] to-[#1890FF] font-montserrat font-bold text-xl border-0 text-white"
                                     style={{
@@ -130,7 +138,7 @@ export const SectionUseCase: React.FC = () => {
                         </div>
                     </div>
                     <div className="bg-[#3FDCF7] py-9 px-6">
-                        <div className="max-w-5xl mx-auto flex items-center justify-between">
+                        <div className="max-w-5xl mx-auto flex items-center justify-between flex-col lg:flex-row gap-6 lg:gap-0">
                             <div className="font-montserrat text-2xl leading-[24px] font-medium text-white">
                                 <div>NEED ANY FURTHER INFORMATION?</div>
                                 <div>
