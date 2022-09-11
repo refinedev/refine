@@ -237,6 +237,14 @@ With our Fake store endpoint:
 
 [Refer to documentation for more information about data providers in refine. &#8594](https://refine.dev/docs/core/providers/data-provider/)
 
+<br/>
+<div>
+<a href="https://github.com/pankod/refine">
+  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
+</a>
+</div>
+
+
  ## Adding a Layout component
 A Layout component is a component that refine uses to create a template for our app. The template is independent of the app’s default UI, thus giving us the option to design as many templates as possible. 
 
@@ -721,14 +729,9 @@ The purpose of this tutorial is to give you a headstart with refine and its ecos
 </a>
 </div>
 
-## Live StackBlitz Example
+## Project source code
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/blog/next-refine-pwa/?embed=1&view=preview&theme=dark&preset=node"
-     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-     title="nextjs-refine-pwa"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-></iframe>
+https://github.com/pankod/refine/tree/next/examples/blog/next-refine-pwa
 
 ---
 
