@@ -22,7 +22,7 @@ export const SectionUseCase: React.FC = () => {
             <motion.div className="h-auto lg:h-screen w-screen top-0 left-0 relative lg:sticky pt-16 flex flex-col items-center justify-end gap-12 lg:gap-0">
                 <div className="flex-1 flex flex-col-reverse gap-8 lg:gap-0 lg:flex-row max-w-7xl mx-auto w-full items-center justify-center px-7 md:px-10 lg:px-16 xl:px-24 ">
                     <div className="flex-1">
-                        <div className="font-montserrat text-[#1890FF] text-[42px] leading-[42px] mb-9">
+                        <div className="font-montserrat text-[#1890FF] text-[36px] leading-[36px] lg:text-[42px] lg:leading-[42px] mb-9">
                             <div className="font-extrabold">SHARE</div>
                             <div className="font-medium">YOUR USECASE</div>
                             <div className="font-medium">
@@ -45,7 +45,7 @@ export const SectionUseCase: React.FC = () => {
                                 .
                             </p>
                         </div>
-                        <div>
+                        <div className="flex lg:block justify-center">
                             <button
                                 type="button"
                                 style={{
@@ -59,7 +59,7 @@ export const SectionUseCase: React.FC = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="flex-1 w-full lg:w-auto flex flex-col justify-end items-end relative mt-auto">
+                    <div className="flex-1 w-full lg:w-auto flex flex-col justify-end items-end relative">
                         <motion.img
                             src="landing/giftcard.png"
                             className="w-full max-w-screen lg:max-w-[440px] absolute top-0"
