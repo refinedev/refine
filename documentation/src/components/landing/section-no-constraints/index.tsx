@@ -12,13 +12,14 @@ import {
     BackendIcons,
 } from "../icons";
 import { CountingNumber } from "../counting-number";
+import { useTWBreakpoints } from "../../../hooks/use-tw-breakpoints";
 
 export const SectionNoConstraints: React.FC = () => {
     const ref = React.useRef<HTMLDivElement>(null);
 
-    const [currentSlide, setCurrentSlide] = React.useState(1);
+    const { sm, md, lg, xl } = useTWBreakpoints();
 
-    const { scrollYProgress: fullScrollYProgress } = useScroll();
+    const [currentSlide, setCurrentSlide] = React.useState(1);
 
     const { scrollYProgress } = useScroll({
         target: ref,
@@ -244,11 +245,11 @@ export const SectionNoConstraints: React.FC = () => {
             >
                 <RefineBgIcon />
             </motion.div> */}
-            <motion.div ref={ref} className="h-[600vh] bg-white">
+            <motion.div ref={ref} className="h-auto lg:h-[600vh] bg-white">
                 {/* Scroll animated section */}
-                <motion.div className="overflow-hidden h-screen w-screen top-0 left-0 sticky px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col justify-center py-[86px]">
+                <motion.div className="lg:overflow-hidden h-auto lg:h-screen w-screen top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col justify-center py-[86px]">
                     <motion.div
-                        className="absolute -left-36 -top-24 z-[-1]"
+                        className="hidden lg:block absolute -left-36 -top-24 z-[-1]"
                         style={{
                             translateY: slideLeftBgY,
                         }}
@@ -256,7 +257,7 @@ export const SectionNoConstraints: React.FC = () => {
                         <RefineBgIcon />
                     </motion.div>
                     <motion.div
-                        className="absolute -right-36 -top-24 z-[-1]"
+                        className="hidden lg:block absolute -right-36 -top-24 z-[-1]"
                         style={{
                             translateY: slideRightBgY,
                         }}
@@ -264,10 +265,10 @@ export const SectionNoConstraints: React.FC = () => {
                         <RefineBgIcon />
                     </motion.div>
                     <div className="w-full flex-shrink-0">
-                        <div className="w-full text-center font-montserrat text-[90px] leading-none font-extrabold text-[#1890FF]">
+                        <div className="w-full text-center font-montserrat text-[36px] md:text-[60px] lg:text-[90px] leading-none font-extrabold text-[#1890FF]">
                             no constraints
                         </div>
-                        <div className="w-full font-medium uppercase text-4xl leading-none font-montserrat text-[#1890FF] text-center h-9 relative overflow-hidden">
+                        <div className="w-full font-medium uppercase text-2xl md:text-3xl lg:text-4xl leading-none font-montserrat text-[#1890FF] text-center h-9 relative overflow-hidden">
                             <motion.div
                                 className="absolute left-0 top-0 w-full"
                                 style={{ y: slideSubtitleY }}
@@ -288,16 +289,16 @@ export const SectionNoConstraints: React.FC = () => {
                         </div>
                     </div>
                     <motion.div
-                        className="overflow-x-hidden overflow-y-hidden snap-x snap-mandatory relative flex-1"
+                        className="overflow-x-hidden lg:overflow-y-hidden lg:snap-x lg:snap-mandatory relative flex-1 lg:max-h-[600px]"
                         style={{ opacity: slideOpacity }}
                     >
                         <motion.div
-                            className="flex w-full h-full absolute"
+                            className="flex w-full lg:h-full lg:absolute flex-col lg:flex-row"
                             style={{ x: slideX }}
                         >
                             {/* slide 01 */}
-                            <div className="w-full flex-shrink-0 snap-center h-full">
-                                <div className="flex h-full">
+                            <div className="w-full flex-shrink-0 lg:snap-center lg:h-full flex justify-center items-center">
+                                <div className="flex flex-col lg:flex-row h-auto max-w-screen-xl w-full">
                                     <div className="flex-[3] flex justify-center items-center relative">
                                         <motion.div
                                             style={{
@@ -412,13 +413,15 @@ export const SectionNoConstraints: React.FC = () => {
                                             </motion.div>
                                         </motion.div>
                                         <motion.div
-                                            className="absolute right-10 bottom-2"
+                                            className="absolute"
                                             style={{
                                                 perspective: "500px",
                                                 perspectiveOrigin: "center",
                                                 padding: "50px",
                                                 scale: slideScreen03Y,
                                                 opacity: slideScreen03Y,
+                                                translateY: "40px",
+                                                translateX: "30px",
                                             }}
                                         >
                                             <motion.img
@@ -592,8 +595,8 @@ export const SectionNoConstraints: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="w-full h-full flex-shrink-0 snap-center">
-                                <div className="flex w-full h-full pt-3">
+                            <div className="w-full lg:h-full flex-shrink-0 lg:snap-center flex justify-center items-center">
+                                <div className="flex pt-3 h-auto max-w-screen-xl w-full">
                                     <div className="flex-1 flex flex-col justify-start items-center w-full gap-4">
                                         <div className="font-montserrat text-xl leading-8 font-medium text-[#2A2A42] text-center max-w-[860px] mb-4">
                                             <p className="mb-0">
@@ -666,8 +669,8 @@ export const SectionNoConstraints: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="w-full flex-shrink-0 snap-center h-full">
-                                <div className="flex h-full">
+                            <div className="w-full flex-shrink-0 lg:snap-center lg:h-full flex justify-center items-center">
+                                <div className="flex h-auto max-w-screen-xl w-full">
                                     <div className="flex-1 flex relative p-12 pt-6 justify-center items-center">
                                         <motion.div
                                             style={{
@@ -818,8 +821,8 @@ export const SectionNoConstraints: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="w-full flex-shrink-0 snap-center h-full">
-                                <div className="flex h-full w-full">
+                            <div className="w-full flex-shrink-0 lg:snap-center lg:h-full flex justify-center items-center">
+                                <div className="flex h-auto max-w-screen-xl w-full">
                                     <div className="flex-1 flex flex-col justif text-[#2A2A42] text-center max-w-[800px]y-center items-center w-full gap-4">
                                         <div className="font-montserrat text-xl pt-[14px]">
                                             <p>
@@ -963,7 +966,7 @@ export const SectionNoConstraints: React.FC = () => {
                             </div>
                         </motion.div>
                     </motion.div>
-                    <div className="flex-shrink-0">
+                    <div className="hidden lg:block flex-shrink-0">
                         <div
                             className="w-full flex max-w-5xl mx-auto bg-white relative"
                             style={{
@@ -1050,7 +1053,10 @@ export const SectionNoConstraints: React.FC = () => {
                 </motion.div>
                 {/* Scroll snap alignment */}
                 {Array.from({ length: 6 }, (_, i) => i).map((i) => (
-                    <div key={i} className="snap-start h-screen w-screen" />
+                    <div
+                        key={i}
+                        className="hidden lg:block snap-start h-screen w-screen"
+                    />
                 ))}
             </motion.div>
         </>
