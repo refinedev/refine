@@ -68,7 +68,16 @@ export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
                         "pages.resetPassword.fields.email",
                         "Email",
                     )}
-                    rules={[{ required: true }]}
+                    rules={[
+                        { required: true },
+                        {
+                            type: "email",
+                            message: translate(
+                                "pages.register.valiEmail",
+                                "Please enter a valid email address",
+                            ),
+                        },
+                    ]}
                 >
                     <Input
                         type="email"

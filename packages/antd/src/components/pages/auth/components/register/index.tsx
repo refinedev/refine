@@ -67,10 +67,18 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                 <Form.Item
                     name="email"
                     label={translate("pages.register.email", "Email")}
-                    rules={[{ required: true }]}
+                    rules={[
+                        { required: true },
+                        {
+                            type: "email",
+                            message: translate(
+                                "pages.register.valiEmail",
+                                "Please enter a valid email address",
+                            ),
+                        },
+                    ]}
                 >
                     <Input
-                        type="email"
                         size="large"
                         placeholder={translate(
                             "pages.register.fields.email",
