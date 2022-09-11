@@ -1,15 +1,15 @@
 import React from "react";
-import { motion, useScroll, useTransform, animate } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import {
     ChevronDown,
     MaterialUIIcon,
     AntDesignLogoIcon,
-    RefineBgIcon,
     BusinessLogic01,
     BusinessLogic02,
     BusinessLogic04,
     BusinessLogic03,
     BackendIcons,
+    RefineAnimatedBgIcon,
 } from "../icons";
 import { CountingNumber } from "../counting-number";
 import { useTWBreakpoints } from "../../../hooks/use-tw-breakpoints";
@@ -55,10 +55,30 @@ export const SectionNoConstraints: React.FC = () => {
         ["100%", "0%", "-25%", "-50%", "-75%", "-100%", "-200%"],
     );
 
+    const slideLeftBgDotY = useTransform(
+        scrollYProgress,
+        [0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1],
+        ["0%", "0%", "25%", "50%", "75%", "100%", "100%"],
+    );
+
     const slideRightBgY = useTransform(
         scrollYProgress,
         [0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1],
         ["200%", "150%", "75%", "50%", "25%", "0%", "-100%"],
+    );
+
+    const slideRightBgDotY = useTransform(
+        scrollYProgress,
+        [0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1],
+        [
+            `${0}px`,
+            `${0}px`,
+            `${Math.floor((974 - 402) / 4)}px`,
+            `${Math.floor((974 - 402) / 4) * 2}px`,
+            `${Math.floor((974 - 402) / 4) * 3}px`,
+            `${Math.floor(974 - 402)}px`,
+            `${Math.floor(974 - 402)}px`,
+        ],
     );
 
     const slide01ScreenProgress = useTransform<number, number>(
@@ -254,7 +274,7 @@ export const SectionNoConstraints: React.FC = () => {
                             translateY: slideLeftBgY,
                         }}
                     >
-                        <RefineBgIcon />
+                        <RefineAnimatedBgIcon dotY={slideLeftBgDotY} />
                     </motion.div>
                     <motion.div
                         className="hidden lg:block absolute -right-36 -top-24 z-[-1]"
@@ -262,7 +282,7 @@ export const SectionNoConstraints: React.FC = () => {
                             translateY: slideRightBgY,
                         }}
                     >
-                        <RefineBgIcon />
+                        <RefineAnimatedBgIcon dotY={slideRightBgDotY} />
                     </motion.div>
                     <div className="w-full flex-shrink-0">
                         <div className="w-full text-center font-montserrat text-[36px] md:text-[60px] lg:text-[90px] leading-none font-extrabold text-[#1890FF]">
