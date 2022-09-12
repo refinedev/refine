@@ -1,5 +1,8 @@
 import React from "react";
-import { RefineLoginPageProps } from "@pankod/refine-ui-types";
+import {
+    RefineLoginPageProps,
+    RefineLoginFormTypes,
+} from "@pankod/refine-ui-types";
 import {
     Row,
     Col,
@@ -19,12 +22,7 @@ import { useLogin, useTranslate, useRouterContext } from "@pankod/refine-core";
 import { layoutStyles, containerStyles, titleStyles } from "../styles";
 
 const { Text, Title } = Typography;
-interface ILoginForm {
-    email?: string;
-    password?: string;
-    remember?: boolean;
-    providerName?: string;
-}
+
 type LoginProps = RefineLoginPageProps<LayoutProps, CardProps>;
 
 /**
@@ -42,11 +40,11 @@ export const LoginPage: React.FC<LoginProps> = ({
     onSubmit,
     renderContent,
 }) => {
-    const [form] = Form.useForm<ILoginForm>();
+    const [form] = Form.useForm<RefineLoginFormTypes>();
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
-    const { mutate: login, isLoading } = useLogin<ILoginForm>();
+    const { mutate: login, isLoading } = useLogin<RefineLoginFormTypes>();
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>
@@ -97,7 +95,7 @@ export const LoginPage: React.FC<LoginProps> = ({
             {...(contentProps ?? {})}
         >
             {renderProviders()}
-            <Form<ILoginForm>
+            <Form<RefineLoginFormTypes>
                 layout="vertical"
                 form={form}
                 onFinish={(values) => {

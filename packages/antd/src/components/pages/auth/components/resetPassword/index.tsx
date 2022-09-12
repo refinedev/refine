@@ -1,5 +1,8 @@
 import React from "react";
-import { RefineResetPasswordPageProps } from "@pankod/refine-ui-types";
+import {
+    RefineResetPasswordPageProps,
+    RefineResetPasswordFormTypes,
+} from "@pankod/refine-ui-types";
 import {
     Row,
     Col,
@@ -23,9 +26,6 @@ import { layoutStyles, containerStyles, titleStyles } from "../styles";
 type ResetPassworProps = RefineResetPasswordPageProps<LayoutProps, CardProps>;
 
 const { Text, Title } = Typography;
-interface IResestPasswordForm {
-    email: string;
-}
 
 export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
     onSubmit,
@@ -34,12 +34,12 @@ export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
     contentProps,
     renderContent,
 }) => {
-    const [form] = Form.useForm<IResestPasswordForm>();
+    const [form] = Form.useForm<RefineResetPasswordFormTypes>();
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
     const { mutate: resetPassword, isLoading } =
-        useResetPassword<IResestPasswordForm>();
+        useResetPassword<RefineResetPasswordFormTypes>();
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>
@@ -54,7 +54,7 @@ export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
             style={containerStyles}
             {...(contentProps ?? {})}
         >
-            <Form<IResestPasswordForm>
+            <Form<RefineResetPasswordFormTypes>
                 layout="vertical"
                 form={form}
                 onFinish={(values) => {

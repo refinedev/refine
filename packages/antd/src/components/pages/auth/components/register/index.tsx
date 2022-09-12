@@ -1,5 +1,8 @@
 import React from "react";
-import { RefineRegisterPageProps } from "@pankod/refine-ui-types";
+import {
+    RefineRegisterPageProps,
+    RefineRegisterFormTypes,
+} from "@pankod/refine-ui-types";
 import {
     Row,
     Col,
@@ -24,12 +27,6 @@ const { Text, Title } = Typography;
 
 type RegisterProps = RefineRegisterPageProps<LayoutProps, CardProps>;
 
-interface IRegisterForm {
-    username?: string;
-    email?: string;
-    password?: string;
-}
-
 export const RegisterPage: React.FC<RegisterProps> = ({
     loginLink,
     wrapperProps,
@@ -37,11 +34,12 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     renderContent,
     onSubmit,
 }) => {
-    const [form] = Form.useForm<IRegisterForm>();
+    const [form] = Form.useForm<RefineRegisterFormTypes>();
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
-    const { mutate: register, isLoading } = useRegister<IRegisterForm>();
+    const { mutate: register, isLoading } =
+        useRegister<RefineRegisterFormTypes>();
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>
@@ -56,7 +54,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             style={containerStyles}
             {...(contentProps ?? {})}
         >
-            <Form<IRegisterForm>
+            <Form<RefineRegisterFormTypes>
                 layout="vertical"
                 form={form}
                 onFinish={(values) => {

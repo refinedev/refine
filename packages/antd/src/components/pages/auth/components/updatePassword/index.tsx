@@ -1,5 +1,8 @@
 import React from "react";
-import { RefineUpdatePasswordPageProps } from "@pankod/refine-ui-types";
+import {
+    RefineUpdatePasswordPageProps,
+    RefineUpdatePasswordFormTypes,
+} from "@pankod/refine-ui-types";
 import {
     Row,
     Col,
@@ -20,21 +23,16 @@ const { Title } = Typography;
 
 type UpdatePassworProps = RefineUpdatePasswordPageProps<LayoutProps, CardProps>;
 
-interface IUpdatePasswordForm {
-    password?: string;
-    confirmPassword?: string;
-}
-
 export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
     onSubmit,
     wrapperProps,
     contentProps,
     renderContent,
 }) => {
-    const [form] = Form.useForm<IUpdatePasswordForm>();
+    const [form] = Form.useForm<RefineUpdatePasswordFormTypes>();
     const translate = useTranslate();
     const { mutate: updatePassword, isLoading } =
-        useUpdatePassword<IUpdatePasswordForm>();
+        useUpdatePassword<RefineUpdatePasswordFormTypes>();
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>
@@ -49,7 +47,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
             style={containerStyles}
             {...(contentProps ?? {})}
         >
-            <Form<IUpdatePasswordForm>
+            <Form<RefineUpdatePasswordFormTypes>
                 layout="vertical"
                 form={form}
                 onFinish={(values) => {
