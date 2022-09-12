@@ -10,6 +10,7 @@ import {
     BusinessLogic03,
     BackendIcons,
     RefineAnimatedBgIcon,
+    GraySocialIcons,
 } from "../icons";
 import { CountingNumber } from "../counting-number";
 import { useTWBreakpoints } from "../../../hooks/use-tw-breakpoints";
@@ -1315,10 +1316,34 @@ export const SectionNoConstraints: React.FC = () => {
                                                     Come to our side
                                                 </div>
                                                 <div className="flex gap-6 justify-center">
-                                                    <div className="w-8 h-8 bg-red-100 rounded-full" />
-                                                    <div className="w-8 h-8 bg-red-100 rounded-full" />
-                                                    <div className="w-8 h-8 bg-red-100 rounded-full" />
-                                                    <div className="w-8 h-8 bg-red-100 rounded-full" />
+                                                    <a
+                                                        target="_blank"
+                                                        rel="noreferrer"
+                                                        href="https://github.com/pankod/refine"
+                                                    >
+                                                        <GraySocialIcons.GithubIcon className="h-8 w-8" />
+                                                    </a>
+                                                    <a
+                                                        target="_blank"
+                                                        rel="noreferrer"
+                                                        href="https://discord.gg/refine"
+                                                    >
+                                                        <GraySocialIcons.DiscordIcon className="h-8 w-8" />
+                                                    </a>
+                                                    <a
+                                                        target="_blank"
+                                                        rel="noreferrer"
+                                                        href="https://twitter.com/refine_dev"
+                                                    >
+                                                        <GraySocialIcons.TwitterIcon className="h-8 w-8" />
+                                                    </a>
+                                                    <a
+                                                        target="_blank"
+                                                        rel="noreferrer"
+                                                        href="https://www.linkedin.com/company/refine-dev"
+                                                    >
+                                                        <GraySocialIcons.LinkedinIcon className="h-8 w-8" />
+                                                    </a>
                                                 </div>
                                             </motion.div>
                                         </div>

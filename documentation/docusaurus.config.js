@@ -298,7 +298,7 @@ const siteConfig = {
                             label: "twitter",
                         },
                         {
-                            href: "https://twitter.com/refine_dev",
+                            href: "https://www.linkedin.com/company/refine-dev",
                             label: "linkedin",
                         },
                     ],
