@@ -570,3 +570,29 @@ html {
         scroll-snap-align: end;
     }
 }
+
+.DocSearch--active .DocSearch-Modal {
+    position: fixed;
+}
+
+.navbar-sidebar__items.navbar-sidebar__items--show-secondary .navbar-sidebar__item.menu .menu__list,
+.navbar-sidebar__items.navbar-sidebar__items--show-secondary .menu__list-item,
+.navbar-sidebar__items.navbar-sidebar__items--show-secondary .menu__link {
+    text-align: left !important;
+}
+
+#__docusaurus .with-hoverline .navbar-sidebar__items.navbar-sidebar__items--show-secondary .menu__link.menu__link--active {
+    display: none;
+}
+
+#__docusaurus .navbar-sidebar__items.navbar-sidebar__items--show-secondary .menu__list {
+    padding-left: 0.75rem;
+}
+
+#__docusaurus .navbar-sidebar__items.navbar-sidebar__items--show-secondary .menu__link {
+    padding-left: 0;
+}
+
+#__docusaurus .navbar-sidebar__items {
+    padding-top: 20px;
+}
