@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "@docusaurus/Link";
 import { useReward } from "react-rewards";
+import clsx from "clsx";
 import { IoMdOpen, IoMdHeart } from "react-icons/io";
 
 import { Example } from "../../../types/examples";
@@ -59,7 +60,14 @@ export const ExampleCard: React.FC<ExampleCardProps> = ({ example }) => {
                         alt={title}
                     />
                 </Link>
-                <div className="mt-2 flex items-center justify-between gap-2">
+                <div
+                    className={clsx(
+                        "mt-2 flex items-center justify-end gap-2",
+                        {
+                            "justify-between": isExternal,
+                        },
+                    )}
+                >
                     {isExternal && (
                         <button
                             disabled={leftIsAnimating || rightIsAnimating}
