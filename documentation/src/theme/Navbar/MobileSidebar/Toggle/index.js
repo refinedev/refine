@@ -8,7 +8,7 @@ export default function MobileSidebarToggle() {
             onClick={mobileSidebar.toggle}
             onKeyDown={mobileSidebar.toggle}
             aria-label="Navigation bar toggle"
-            className="bg-transparent border-0 cursor-pointer px-0 pb-0 pt-0.5 text-[#1890FF] xl:hidden"
+            className="bg-transparent border-0 cursor-pointer px-0 pb-0 pt-0.5 text-[#1890FF] lg:hidden"
             type="button"
             tabIndex={0}
         >
