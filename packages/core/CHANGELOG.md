@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.69.5
+
+### Patch Changes
+
+-   [#2481](https://github.com/pankod/refine/pull/2481) [`7820454ae7`](https://github.com/pankod/refine/commit/7820454ae71ff56d032a561389e99ff567812851) Thanks [@omeraplak](https://github.com/omeraplak)! - Fix import of react-query `DevtoolsOptions` interface
+
 ## 3.69.4
 
 ### Patch Changes
