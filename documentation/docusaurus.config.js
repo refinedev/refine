@@ -39,7 +39,7 @@ const siteConfig = {
                     lastVersion: "current",
                 },
                 blog: {
-                    blogTitle: "refine blog!",
+                    blogTitle: "Blog",
                     blogDescription: "A Docusaurus powered blog!",
                     postsPerPage: "ALL",
                     blogSidebarTitle: "All posts",
