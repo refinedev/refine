@@ -96,7 +96,7 @@ export const EXAMPLES: Examples = [
     {
         title: "INTERNAL ISSUE TRACKER",
         description:
-            "A web application to create issue and tasks for your team members also priotize, tag and assign.",
+            "A web application to create issues and tasks for your team members also prioritize, tag and assign.",
         image: "/examples/issue-tracker.png",
         button: {
             text: "READ BLOG",
