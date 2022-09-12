@@ -1,8 +1,16 @@
 import { TitleProps, LayoutProps } from "@pankod/refine-core";
 
-export type RefineLayoutHeaderProps = {};
+export type SiderRenderProps = {
+    items: JSX.Element[];
+    logout: React.ReactNode;
+    dashboard: React.ReactNode;
+};
 
-export type RefineLayoutSiderProps = {};
+export type RefineLayoutSiderProps = {
+    render?: (props: SiderRenderProps) => React.ReactNode;
+};
+
+export type RefineLayoutHeaderProps = {};
 
 export type RefineLayoutFooterProps = {};
 

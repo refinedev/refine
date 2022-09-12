@@ -1,7 +1,7 @@
 import React from "react";
 import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
 
-import { act, fireEvent, render, TestWrapper, waitFor } from "@test";
+import { act, render, TestWrapper, waitFor } from "@test";
 
 const mockAuthProvider = {
     login: () => Promise.resolve(),
@@ -114,6 +114,42 @@ export const layoutSiderTests = function (
 
             await waitFor(() => getAllByText("Posts")[0]);
             await waitFor(() => expect(queryByText("Users")).toBeNull());
+        });
+
+        it("should render custom element passed with render prop", async () => {
+            const { getAllByText, queryAllByText } = render(
+                <SiderElement
+                    render={({ logout, dashboard, items }) => {
+                        return (
+                            <>
+                                <div>custom-element</div>
+                                {dashboard}
+                                {items}
+                                {logout}
+                            </>
+                        );
+                    }}
+                />,
+                {
+                    wrapper: TestWrapper({
+                        authProvider: mockAuthProvider,
+                        DashboardPage: function Dashboard() {
+                            return <div>Dashboard</div>;
+                        },
+                    }),
+                },
+            );
+
+            await waitFor(() =>
+                expect(getAllByText("Posts").length).toBeGreaterThanOrEqual(1),
+            );
+            expect(queryAllByText("Logout").length).toBeGreaterThanOrEqual(1);
+            expect(queryAllByText("Dashboard").length).toBeGreaterThanOrEqual(
+                1,
+            );
+            expect(
+                queryAllByText("custom-element").length,
+            ).toBeGreaterThanOrEqual(1);
         });
     });
 };

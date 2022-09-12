@@ -23,11 +23,11 @@ import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
 const { SubMenu } = Menu;
 
-export const Sider: React.FC<RefineLayoutSiderProps> = () => {
+export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const isExistAuthentication = useIsExistAuthentication();
     const { Link } = useRouterContext();
-    const { mutate: logout } = useLogout();
+    const { mutate: mutateLogout } = useLogout();
     const Title = useTitle();
     const translate = useTranslate();
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
@@ -93,6 +93,50 @@ export const Sider: React.FC<RefineLayoutSiderProps> = () => {
         });
     };
 
+    const logout = isExistAuthentication && (
+        <Menu.Item
+            key="logout"
+            onClick={() => mutateLogout()}
+            icon={<LogoutOutlined />}
+        >
+            {translate("buttons.logout", "Logout")}
+        </Menu.Item>
+    );
+
+    const dashboard = hasDashboard ? (
+        <Menu.Item
+            key="dashboard"
+            style={{
+                fontWeight: selectedKey === "/" ? "bold" : "normal",
+            }}
+            icon={<DashboardOutlined />}
+        >
+            <Link to="/">{translate("dashboard.title", "Dashboard")}</Link>
+            {!collapsed && selectedKey === "/" && (
+                <div className="ant-menu-tree-arrow" />
+            )}
+        </Menu.Item>
+    ) : null;
+
+    const items = renderTreeView(menuItems, selectedKey);
+
+    const renderSider = () => {
+        if (render) {
+            return render({
+                dashboard,
+                items,
+                logout,
+            });
+        }
+        return (
+            <>
+                {dashboard}
+                {items}
+                {logout}
+            </>
+        );
+    };
+
     return (
         <Layout.Sider
             collapsible
@@ -113,34 +157,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = () => {
                     }
                 }}
             >
-                {hasDashboard ? (
-                    <Menu.Item
-                        key="dashboard"
-                        style={{
-                            fontWeight: selectedKey === "/" ? "bold" : "normal",
-                        }}
-                        icon={<DashboardOutlined />}
-                    >
-                        <Link to="/">
-                            {translate("dashboard.title", "Dashboard")}
-                        </Link>
-                        {!collapsed && selectedKey === "/" && (
-                            <div className="ant-menu-tree-arrow" />
-                        )}
-                    </Menu.Item>
-                ) : null}
-
-                {renderTreeView(menuItems, selectedKey)}
-
-                {isExistAuthentication && (
-                    <Menu.Item
-                        key="logout"
-                        onClick={() => logout()}
-                        icon={<LogoutOutlined />}
-                    >
-                        {translate("buttons.logout", "Logout")}
-                    </Menu.Item>
-                )}
+                {renderSider()}
             </Menu>
         </Layout.Sider>
     );
