@@ -113,7 +113,7 @@ export default function FooterLayout({
                 <div className="h-2.5 border-0 border-b-2 w-full border-solid border-b-[#9696B4]" />
                 <div className="flex flex-col-reverse gap-6 lg:gap-0 lg:flex-row">
                     <div className="flex-1">
-                        <div className="flex items-center text-[#9696B4] text-xs leading-[12px] font-montserrat justify-center lg:justify-start">
+                        <div className="flex items-center text-[#9696B4] text-[11px] sm:text-xs leading-[12px] font-montserrat justify-center lg:justify-start">
                             © 2022, refine from Delaware to whereever you’re
                             with <LoveIcon className="ml-2" />
                         </div>
