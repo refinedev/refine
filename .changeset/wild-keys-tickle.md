@@ -13,23 +13,23 @@ export type IProvider = {
     label?: string;
 };
 
-export interface LoginFormTypes {
+export interface RefineLoginFormTypes {
     email?: string;
     password?: string;
     remember?: boolean;
     providerName?: string;
 }
 
-export interface RegisterFormTypes {
+export interface RefineRegisterFormTypes {
     email?: string;
     password?: string;
 }
 
-export interface ResetPasswordFormTypes {
+export interface RefineResetPasswordFormTypes {
     email: string;
 }
 
-export interface UpdatePasswordFormTypes {
+export interface RefineUpdatePasswordFormTypes {
     password?: string;
     confirmPassword?: string;
 }
@@ -44,22 +44,22 @@ export type RefineAuthPageProps<
           registerLink?: React.ReactNode;
           resetPasswordLink?: React.ReactNode;
           rememberMe?: React.ReactNode;
-          onSubmit?: (formValues: LoginFormTypes) => void;
+          onSubmit?: (formValues: RefineLoginFormTypes) => void;
       }>
     | PropsWithChildren<{
           type: "register";
           loginLink?: React.ReactNode;
           updatePasswordLink?: React.ReactNode;
-          onSubmit?: (formValues: RegisterFormTypes) => void;
+          onSubmit?: (formValues: RefineRegisterFormTypes) => void;
       }>
     | PropsWithChildren<{
           type: "resetPassword";
           loginLink?: React.ReactNode;
-          onSubmit?: (formValues: ResetPasswordFormTypes) => void;
+          onSubmit?: (formValues: RefineResetPasswordFormTypes) => void;
       }>
     | PropsWithChildren<{
           type: "updatePassword";
-          onSubmit?: (formValues: UpdatePasswordFormTypes) => void;
+          onSubmit?: (formValues: RefineUpdatePasswordFormTypes) => void;
       }>
 ) & {
     wrapperProps?: TWrapperProps;
