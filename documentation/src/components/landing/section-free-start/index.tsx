@@ -65,7 +65,7 @@ export const SectionFreeStart: React.FC = () => {
                         }
                     >
                         <div className="border-2 border-dashed border-[#1784EB] rounded relative flex w-full pr-2.5 pl-1 lg:pl-7 pt-8 pb-10 h-full items-center">
-                            <div className="text-[#1784EB] w-2/3 lg:w-full">
+                            <div className="text-[#1784EB] w-2/3">
                                 <div className="font-extrabold text-[43px] md:text-5xl lg:text-6xl font-montserrat tracking-normal leading-[50px] text-center">
                                     START
                                 </div>
