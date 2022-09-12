@@ -19,7 +19,7 @@ export const SectionUseCase: React.FC = () => {
         // Scroll animated container
         <motion.div ref={ref} className="h-auto lg:h-screen bg-white">
             {/* Scroll animated section */}
-            <motion.div className="h-auto lg:h-screen w-screen top-0 left-0 relative lg:sticky pt-16 flex flex-col items-center justify-end gap-12 lg:gap-0">
+            <motion.div className="h-auto lg:h-screen w-screen top-0 left-0 relative lg:sticky pt-16 flex flex-col items-center justify-end gap-24 lg:gap-0">
                 <div className="flex-1 flex flex-col-reverse gap-8 lg:gap-0 lg:flex-row max-w-7xl mx-auto w-full items-center justify-center px-7 md:px-10 lg:px-16 xl:px-24 ">
                     <div className="flex-1">
                         <div className="font-montserrat text-[#1890FF] text-[36px] leading-[36px] lg:text-[42px] lg:leading-[42px] mb-9">
@@ -59,10 +59,10 @@ export const SectionUseCase: React.FC = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="flex-1 w-full lg:w-auto flex flex-col justify-end items-end relative">
+                    <div className="flex-1 w-full lg:w-auto flex flex-col justify-end items-center lg:items-end relative">
                         <motion.img
                             src="landing/giftcard.png"
-                            className="w-full max-w-screen lg:max-w-[440px] absolute top-0"
+                            className="w-full max-w-screen md:max-w-[400px] lg:max-w-[440px] absolute top-0"
                             style={
                                 lg
                                     ? {
@@ -81,7 +81,7 @@ export const SectionUseCase: React.FC = () => {
                                 yoyo: Infinity,
                             }}
                         />
-                        <div className="w-full max-w-screen min-h-[calc(100vw-56px)] lg:max-w-[440px] flex justify-center items-end lg:min-h-[400px]">
+                        <div className="w-full max-w-screen md:max-w-[400px] min-h-[calc(100vw-56px)] md:min-h-[400px] lg:max-w-[440px] flex justify-center items-end lg:min-h-[400px]">
                             <motion.div
                                 style={{
                                     position: "absolute",

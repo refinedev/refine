@@ -942,7 +942,7 @@ export const SectionNoConstraints: React.FC = () => {
                                 </div>
                             </div>
                             <div className="mb-24 lg:mb-0 w-full flex-shrink-0 lg:snap-center lg:h-full flex justify-center items-center">
-                                <div className="flex h-auto max-w-screen-xl w-full flex-col lg:flex-row gap-20 lg:gap-0">
+                                <div className="flex h-auto max-w-screen-xl w-full flex-col lg:flex-row gap-20 md:gap-32 lg:gap-0">
                                     <div className="flex-1 flex relative -mx-6 lg:mx-0 px-[55px] pt-0 pb-4 lg:px-12 lg:pb-12 lg:pt-6 justify-center items-center">
                                         <motion.div
                                             style={{
@@ -1124,7 +1124,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 channels.
                                             </p>
                                         </div>
-                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-5 gap-x-2.5 w-full px-5 pb-5 max-w-[1000px]">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-5 gap-x-2.5 w-full px-5 pb-5 max-w-[1000px]">
                                             <motion.div
                                                 style={
                                                     lg

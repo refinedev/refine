@@ -128,8 +128,8 @@ export const SectionBullets = () => {
                     }
                     className="flex pt-12 gap-7 max-w-6xl lg:px-3 mx-auto w-full justify-center flex-col"
                 >
-                    <div className="flex w-full flex-col gap-6">
-                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div className="flex w-full flex-col gap-6 justify-center">
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 place-items-center lg:place-items-start">
                             <motion.div
                                 animate={
                                     lg ? { scale: [1, 1.02] } : { scale: 1 }
@@ -220,7 +220,7 @@ export const SectionBullets = () => {
                                 </div>
                             </motion.div>
                         </div>
-                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 place-items-center lg:place-items-start">
                             <motion.div
                                 animate={
                                     lg ? { scale: [1, 1.02] } : { scale: 1 }
@@ -294,7 +294,7 @@ export const SectionBullets = () => {
                                 </div>
                             </motion.div>
                         </div>
-                        <div className="grid grid-cols-2 lg:grid-cols-6 gap-6">
+                        <div className="grid grid-cols-2 lg:grid-cols-6 gap-6 place-items-center lg:place-items-start">
                             <motion.div
                                 animate={
                                     lg ? { scale: [1, 1.02] } : { scale: 1 }
