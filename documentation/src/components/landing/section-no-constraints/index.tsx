@@ -618,7 +618,12 @@ export const SectionNoConstraints: React.FC = () => {
                                                                 ANT DESIGN
                                                             </div>
                                                             <div className="w-0.5 bg-slate-400 h-8" />
-                                                            <a className="text-[#9595A1] text-xs font-montserrat">
+                                                            <a
+                                                                className="text-[#9595A1] text-xs font-montserrat"
+                                                                target="_blank"
+                                                                rel="noreferrer"
+                                                                href="https://example.admin.refine.dev"
+                                                            >
                                                                 <ExternalLinkIcon className="mr-1 mt-2" />
                                                                 view demo
                                                             </a>
@@ -631,7 +636,12 @@ export const SectionNoConstraints: React.FC = () => {
                                                                 MATERIAL UI
                                                             </div>
                                                             <div className="w-0.5 bg-slate-400 h-8" />
-                                                            <a className="text-[#9595A1] text-xs font-montserrat">
+                                                            <a
+                                                                className="text-[#9595A1] text-xs font-montserrat"
+                                                                target="_blank"
+                                                                rel="noreferrer"
+                                                                href="https://example.mui.admin.refine.dev"
+                                                            >
                                                                 <ExternalLinkIcon className="mr-1 mt-2" />
                                                                 view demo
                                                             </a>
@@ -831,7 +841,12 @@ export const SectionNoConstraints: React.FC = () => {
                                                                 ANT DESIGN
                                                             </div>
                                                             <div className="w-0.5 bg-slate-400 h-8" />
-                                                            <a className="text-[#9595A1] text-xs font-montserrat">
+                                                            <a
+                                                                className="text-[#9595A1] text-xs font-montserrat"
+                                                                target="_blank"
+                                                                rel="noreferrer"
+                                                                href="https://example.admin.refine.dev"
+                                                            >
                                                                 <ExternalLinkIcon className="mr-1 mt-2" />
                                                                 view demo
                                                             </a>
@@ -844,7 +859,12 @@ export const SectionNoConstraints: React.FC = () => {
                                                                 MATERIAL UI
                                                             </div>
                                                             <div className="w-0.5 bg-slate-400 h-8" />
-                                                            <a className="text-[#9595A1] text-xs font-montserrat">
+                                                            <a
+                                                                className="text-[#9595A1] text-xs font-montserrat"
+                                                                target="_blank"
+                                                                rel="noreferrer"
+                                                                href="https://example.mui.admin.refine.dev"
+                                                            >
                                                                 <ExternalLinkIcon className="mr-1 mt-2" />
                                                                 view demo
                                                             </a>
