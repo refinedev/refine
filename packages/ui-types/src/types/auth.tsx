@@ -83,10 +83,10 @@ export type RefineAuthPageProps<
       }>
 ) & {
     /**
-     * @description Render a submit button node. If set to false, submit button will not be rendered.
+     * @description Custom submit function for the form. Trigger after submitting the form.
      * @optional
      */
-    submitButton?: React.ReactNode;
+    onSubmit?: (formValues: any) => void;
     /**
      * @description The props that will be passed to the wrapper component.
      * @optional
@@ -112,7 +112,7 @@ export type RefineLoginPageProps<
     TContentProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
     providers?: IProvider[];
-    submitButton?: React.ReactNode;
+    onSubmit?: (formValues: any) => void;
     registerLink?: React.ReactNode;
     resetPasswordLink?: React.ReactNode;
     rememberMe?: React.ReactNode;
@@ -127,8 +127,9 @@ export type RefineLoginPageProps<
 export type RefineRegisterPageProps<
     TWrapperProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
+    TFormProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
-    submitButton?: React.ReactNode;
+    onSubmit?: (formValues: TFormProps | any) => void;
     loginLink?: React.ReactNode;
     wrapperProps?: TWrapperProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;
@@ -142,7 +143,7 @@ export type RefineResetPasswordPageProps<
     TWrapperProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
-    submitButton?: React.ReactNode;
+    onSubmit?: (formValues: any) => void;
     loginLink?: React.ReactNode;
     wrapperProps?: TWrapperProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;
@@ -156,7 +157,7 @@ export type RefineUpdatePasswordPageProps<
     TWrapperProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
-    submitButton?: React.ReactNode;
+    onSubmit?: (formValues: any) => void;
     wrapperProps?: TWrapperProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;
     contentProps?: TContentProps;
