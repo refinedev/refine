@@ -4,7 +4,7 @@ export const SHOW_CASES: Examples = [
     {
         title: "refine SWAG STORE",
         description:
-            "COMPLETE HEADLESS E-COMMERCE BUILT ON TOP OF MEDUSA. FEATURES A FULLY WORKING SOLUTION WITH PRODUCT LISTINGS, SHOPPING CART AND CHECKOUT.",
+            "Complete headless e-commerce built on top of Medusa. Features a fully working solution with product listings, shopping cart and checkout.",
         image: "/examples/swag-store.png",
         button: {
             text: "VIEW DEMO",
@@ -14,7 +14,7 @@ export const SHOW_CASES: Examples = [
     {
         title: "FINEFOODS ADMIN PANEL [ANT DESIGN]",
         description:
-            "COMPLETE ADMIN PANEL EXAMPLE BUILT WITH ANT DESIGN. FEATURES AUTHENTICATION, DASHBOARD AND 10+ CRUD SCREENS FROM ORDERS TO USER MANAGEMENT.",
+            "Complete admin panel example built with Ant Design. Features authentication, dashboard and 10+ CRUD screens from orders to user management.",
         image: "/examples/antd-finefoods.png",
         button: {
             text: "VIEW DEMO",
@@ -24,7 +24,7 @@ export const SHOW_CASES: Examples = [
     {
         title: "FINEFOODS STOREFRONT",
         description:
-            "HEADLESS STOREFRONT EXAMPLE BUILT WITH TAILWIND CSS. FEATURES PRODUCT LISTINGS AND A SIMPLE SHOPPING CART. SUPPORTS SSR WITH NEXTJS.",
+            "Headless storefront example built with Tailwind CSS. Features product listings and a simple shopping cart. Supports SSR with NextJS.",
         image: "/examples/food-delivery.png",
         button: {
             text: "VIEW DEMO",
@@ -34,7 +34,7 @@ export const SHOW_CASES: Examples = [
     {
         title: "FINEFOODS ADMIN PANEL [MATERIAL UI]",
         description:
-            "COMPLETE ADMIN PANEL EXAMPLE BUILT WITH MUI. FEATURES AUTHENTICATION, DASHBOARD AND 10+ CRUD SCREENS FROM ORDERS TO USER MANAGEMENT.",
+            "Complete admin panel example built with Material UI. Features authentication, dashboard and 10+ CRUD screens from orders to user management.",
         image: "/examples/mui-finefoods.png",
         button: {
             text: "VIEW DEMO",
@@ -46,7 +46,7 @@ export const SHOW_CASES: Examples = [
 export const EXAMPLES: Examples = [
     {
         title: "REALWORLD EXAMPLE",
-        description: `"THE MOTHER OF ALL DEMO APPS" - EXEMPLARY FULLSTACK MEDIUM.COM CLONE POWERED BY <strong>refine</strong>!`,
+        description: `"The mother of all demo apps" - Exemplary fullstack Medium.com clone powered by <strong>refine</strong>!`,
         image: "/examples/real-world.png",
         button: {
             text: "VIEW DEMO",
@@ -56,7 +56,7 @@ export const EXAMPLES: Examples = [
     {
         title: "WIN95 STYLE ADMIN PANEL",
         description:
-            "WITH <strong>refine</strong>'S HEADLESS FEATURE, YOU CAN INCLUDE ANY UI IN YOUR PROJECT AND TAKE FULL ADVANTAGE OF ALL ITS FEATURES WITHOUT WORRYING ABOUT COMPATIBILITY.",
+            "With <strong>refine</strong>'s headless feature, you can include any UI in your project and take full advantage of all its features without worrying about compatibility.",
         image: "/examples/win95.png",
         button: {
             text: "READ BLOG",
@@ -66,7 +66,7 @@ export const EXAMPLES: Examples = [
     {
         title: "INVOICE GENERATOR APP",
         description:
-            "YOU CAN DEVELOP ANY WEB APPLICATION OR ADMIN PANEL YOU WANT IN A VERY SHORT TIME WITH <strong>refine</strong> LIKE AN INVOICE APP.",
+            "You can develop any web application or admin panel you want in a very short time with <strong>refine</strong> like an invoice app.",
         image: "/examples/invoice-generator.png",
         button: {
             text: "READ BLOG",
@@ -76,7 +76,7 @@ export const EXAMPLES: Examples = [
     {
         title: "REFEEDBACK!",
         description:
-            "FEEDBACK ADMIN PANEL WITH STRAPI & ANT DESIGN & <strong>refine</strong>",
+            "Feedback Admin Panel with Strapi & Ant Design & <strong>refine</strong>",
         image: "/examples/refeedback.png",
         button: {
             text: "READ BLOG",
@@ -86,7 +86,7 @@ export const EXAMPLES: Examples = [
     {
         title: "E-MAIL SUBSCRIPTION PANEL",
         description:
-            "A WEB APPLICATION THAT ALLOWS YOU TO QUICKLY CREATE SUBSCRIBERS AND SEND EMAILS TO YOUR SUBSCRIBERS IN A SIMPLE WAY.",
+            "A web application that allows you to quickly create subscribers and send emails to your subscribers in a simple way.",
         image: "/examples/email-subscription.png",
         button: {
             text: "READ BLOG",
@@ -96,7 +96,7 @@ export const EXAMPLES: Examples = [
     {
         title: "INTERNAL ISSUE TRACKER",
         description:
-            "A WEB APPLICATION TO CREATE ISSUE AND TASKS FOR YOUR TEAM MEMBERS ALSO PRIOTIZE, TAG AND ASSIGN.",
+            "A web application to create issue and tasks for your team members also priotize, tag and assign.",
         image: "/examples/issue-tracker.png",
         button: {
             text: "READ BLOG",
@@ -106,7 +106,7 @@ export const EXAMPLES: Examples = [
     {
         title: "NEXT.JS E-COMMERCE APP",
         description:
-            "AN E-COMMERCE CLIENT DEVELOPED WITH STRAPI & CHAKRA UI & <strong>refine</strong>",
+            "An e-commerce client developed with Strapi & Chakra UI & <strong>refine</strong>",
         image: "/examples/nextjs-ecommerce.png",
         button: {
             text: "READ BLOG",
@@ -116,7 +116,7 @@ export const EXAMPLES: Examples = [
     {
         title: "MULTI-TENANCY EXAMPLE",
         description:
-            "CAKE HOUSE APPLICATION USING <strong>refine</strong> AND STRAPI-V4 AND APPWRITE.",
+            "Cake House application using <strong>refine</strong> and Strapi-v4 and AppWrite.",
         image: "/examples/multi-tenancy.png",
         button: {
             text: "READ BLOG",
@@ -126,7 +126,7 @@ export const EXAMPLES: Examples = [
     {
         title: "refine PIXELS!",
         description:
-            "OUR INTERNAL HACKATHON WINNER BY  ALI EMIR ŞEN. HE USED SUPABASE AS A DB AND REAL-TIME API AND IT WORKED IN PERFECT HARMONY WITH <strong>refine</strong>.",
+            "Our internal hackathon winner by  Ali Emir Şen. He used Supabase as a db and real-time API and it worked in perfect harmony with <strong>refine</strong>.",
         image: "/examples/refine-pixels.png",
         button: {
             text: "VIEW DEMO",
