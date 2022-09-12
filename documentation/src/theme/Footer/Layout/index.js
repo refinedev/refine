@@ -97,7 +97,7 @@ export default function FooterLayout({
 }) {
     return (
         <footer className="bg-[#F6F6F9] px-4 md:px-6 pt-7 pb-24 lg:pt-10 lg:pb-24 lg:snap-end">
-            <div className="max-w-7xl mx-auto flex flex-col gap-5">
+            <div className="max-w-6xl mx-auto flex flex-col gap-5">
                 <div>{logo && <div>{logo}</div>}</div>
                 <div className="flex flex-col lg:flex-row gap-6 lg:gap-20">
                     <div className="flex-shrink-0 max-w-full lg:max-w-[280px] w-full font-montserrat text-xs text-[#9696B4] tracking-wide">
