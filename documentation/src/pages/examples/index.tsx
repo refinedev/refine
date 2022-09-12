@@ -9,7 +9,7 @@ import { ChevronRight } from "../../components/blog/icons";
 const Examples: React.FC = () => {
     return (
         <Layout>
-            <div className="container">
+            <div className="container max-w-[1040px]">
                 <span
                     className="fixed -left-10 bottom-[20vh] z-10 "
                     id="leftReward"
@@ -18,13 +18,13 @@ const Examples: React.FC = () => {
                     className="fixed -right-10 bottom-[20vh] z-10 "
                     id="rightReward"
                 />
-                <h1 className="font-montserrat my-10 text-center text-5xl font-medium uppercase text-[#1890FF]">
+                <h1 className="font-montserrat my-10 text-center text-[42px] font-medium uppercase text-[#1890FF]">
                     Awesome Things <br />{" "}
                     <span className="font-extrabold">
                         You Can Build With Refine.
                     </span>
                 </h1>
-                <p className="font-montserrat text-center text-2xl font-medium uppercase">
+                <p className="font-montserrat text-center text-[20px] font-medium uppercase">
                     A collection of reference applications you can use as a{" "}
                     <br />
                     starting point for your next project.
@@ -46,11 +46,11 @@ const Examples: React.FC = () => {
                 <div className="flex justify-end">
                     <Link
                         to="/docs/examples/tutorial/headless-tutorial"
-                        className="flex items-center font-bold uppercase text-inherit"
+                        className="flex items-center text-xl font-bold uppercase text-inherit"
                         target="_blank"
                     >
                         See All Examples
-                        <ChevronRight />
+                        <ChevronRight className="h-8 w-8" />
                     </Link>
                 </div>
                 <br />

@@ -549,13 +549,13 @@ html {
     @apply text-white;
 }
 #__docusaurus .blog-paginator-item:hover #author-title {
-    @apply text-white font-semibold;
+    @apply font-semibold text-white;
 }
 #__docusaurus .blog-paginator-item:hover #author-name {
     @apply text-white;
 }
 #__docusaurus .blog-paginator-item:hover #post-info {
-    @apply text-white font-semibold;
+    @apply font-semibold text-white;
 }
 
 #__docusaurus .sticky-author-card {
@@ -581,17 +581,23 @@ html {
     @apply fixed md:relative;
 }
 
-.navbar-sidebar__items.navbar-sidebar__items--show-secondary .navbar-sidebar__item.menu .menu__list,
+.navbar-sidebar__items.navbar-sidebar__items--show-secondary
+    .navbar-sidebar__item.menu
+    .menu__list,
 .navbar-sidebar__items.navbar-sidebar__items--show-secondary .menu__list-item,
 .navbar-sidebar__items.navbar-sidebar__items--show-secondary .menu__link {
     text-align: left !important;
 }
 
-#__docusaurus .navbar-sidebar__items.navbar-sidebar__items--show-secondary .menu__list {
+#__docusaurus
+    .navbar-sidebar__items.navbar-sidebar__items--show-secondary
+    .menu__list {
     padding-left: 0.75rem;
 }
 
-#__docusaurus .navbar-sidebar__items.navbar-sidebar__items--show-secondary .menu__link {
+#__docusaurus
+    .navbar-sidebar__items.navbar-sidebar__items--show-secondary
+    .menu__link {
     padding-left: 0;
 }
 
@@ -625,18 +631,4 @@ html {
 #__docusaurus .example-card:hover img {
     filter: drop-shadow(0px 0px 8px #a7e6ff);
     transform: scale(1.01);
-}
-
-#__docusaurus .example-card:hover .gradient-button {
-    @apply text-white;
-    background: linear-gradient(90deg, #3fdcf7 2.01%, #1890ff 99.51%);
-}
-
-#__docusaurus .example-card:hover .gradient-button a {
-    @apply bg-transparent;
-}
-
-#__docusaurus .example-card:hover .gradient-button .export-icon {
-    background: #1373cc;
-    box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.25);
 }
