@@ -1,5 +1,5 @@
 import { AuthPage as AntdAuthPage } from "@pankod/refine-antd";
-import { useRouterContext } from "@pankod/refine-core";
+import { useRegister, useRouterContext } from "@pankod/refine-core";
 
 const authWrapperProps = {
     style: {
@@ -35,11 +35,23 @@ const renderAuthContent = (content: React.ReactNode) => {
 export const AuthPage: React.FC<{
     type?: "login" | "register" | "resetPassword" | "updatePassword";
 }> = ({ type }) => {
+    const { mutate: register } = useRegister();
+
     return (
         <AntdAuthPage
             type={type}
             wrapperProps={authWrapperProps}
             renderContent={renderAuthContent}
+            {...(type === "register" && {
+                onSubmit: async (values: {
+                    email?: string;
+                    password?: string;
+                }) => {
+                    if (values.email && values.password) {
+                        register(values);
+                    }
+                },
+            })}
         />
     );
 };
