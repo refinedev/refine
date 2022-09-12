@@ -546,7 +546,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                         slideScreenText12Progress,
                                                 }}
                                             >
-                                                <p className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] mb-0">
+                                                <p className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] mb-0 text-[#2A2A42]">
                                                     <strong className="font-bold">
                                                         refine
                                                     </strong>{" "}
@@ -555,13 +555,13 @@ export const SectionNoConstraints: React.FC = () => {
                                                         headless by design.
                                                     </strong>{" "}
                                                 </p>
-                                                <p className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px]">
+                                                <p className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] text-[#2A2A42]">
                                                     It doesn’t ship with any
                                                     pre-styled components or UI
                                                     by default.
                                                 </p>
                                                 <motion.p
-                                                    className="hidden lg:block font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px]"
+                                                    className="hidden lg:block font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] text-[#2A2A42]"
                                                     style={{
                                                         opacity:
                                                             slideScreenText2Progress,
@@ -583,28 +583,28 @@ export const SectionNoConstraints: React.FC = () => {
                                                 </motion.p>
                                             </motion.div>
                                             <motion.div
-                                                className="hidden lg:block font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] mb-0"
+                                                className="hidden lg:block font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] mb-0 text-[#2A2A42]"
                                                 style={{
                                                     opacity:
                                                         slideScreenText3Progress,
                                                 }}
                                             >
-                                                <p className="mb-0">
+                                                <p className="mb-0 text-[#2A2A42]">
                                                     Not ready for going headless
                                                     yet?
                                                 </p>
-                                                <p>
+                                                <p className="text-[#2A2A42]">
                                                     <strong className="font-bold">
                                                         No problem.
                                                     </strong>
                                                 </p>
-                                                <p className="mb-0">
+                                                <p className="mb-0 text-[#2A2A42]">
                                                     <strong className="font-bold">
                                                         refine
                                                     </strong>{" "}
                                                     supports two powerful
                                                 </p>
-                                                <p>
+                                                <p className="text-[#2A2A42]">
                                                     <strong className="font-bold">
                                                         UI frameworks
                                                     </strong>{" "}
@@ -614,7 +614,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     <div>
                                                         <div className="flex items-center gap-2.5 max-w-[300px]">
                                                             <AntDesignLogoIcon className="z-10 w-9 lg:w-12 h-auto" />
-                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[21px] flex-1">
+                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[21px] flex-1 text-[#2A2A42]">
                                                                 ANT DESIGN
                                                             </div>
                                                             <div className="w-0.5 bg-slate-400 h-8" />
@@ -632,7 +632,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     <div>
                                                         <div className="flex items-center gap-2.5 max-w-[300px]">
                                                             <MaterialUIIcon className="w-9 lg:w-12 h-auto" />
-                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[21px] flex-1">
+                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[21px] flex-1 text-[#2A2A42]">
                                                                 MATERIAL UI
                                                             </div>
                                                             <div className="w-0.5 bg-slate-400 h-8" />
@@ -710,7 +710,7 @@ export const SectionNoConstraints: React.FC = () => {
                                     <div className="flex-[2] place-self-center">
                                         <div className="relative">
                                             <motion.div className="w-full h-full left-0 top-0">
-                                                <motion.p className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px]">
+                                                <motion.p className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] text-[#2A2A42]">
                                                     Instead, you can use any{" "}
                                                     <strong className="font-bold">
                                                         custom design
@@ -811,23 +811,23 @@ export const SectionNoConstraints: React.FC = () => {
                                                         slideScreenText12Progress,
                                                 }}
                                             ></motion.div>
-                                            <motion.div className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] mb-0">
-                                                <p className="mb-0">
+                                            <motion.div className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] mb-0 text-[#2A2A42]">
+                                                <p className="mb-0 text-[#2A2A42]">
                                                     Not ready for going headless
                                                     yet?
                                                 </p>
-                                                <p>
+                                                <p className="text-[#2A2A42]">
                                                     <strong className="font-bold">
                                                         No problem.
                                                     </strong>
                                                 </p>
-                                                <p className="mb-0">
+                                                <p className="mb-0 text-[#2A2A42]">
                                                     <strong className="font-bold">
                                                         refine
                                                     </strong>{" "}
                                                     supports two powerful
                                                 </p>
-                                                <p>
+                                                <p className="text-[#2A2A42]">
                                                     <strong className="font-bold">
                                                         UI frameworks
                                                     </strong>{" "}
@@ -837,7 +837,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     <div>
                                                         <div className="flex items-center gap-2.5 max-w-[300px]">
                                                             <AntDesignLogoIcon className="z-10 w-9 lg:w-12 h-auto" />
-                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[21px] flex-1">
+                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[21px] flex-1 text-[#2A2A42]">
                                                                 ANT DESIGN
                                                             </div>
                                                             <div className="w-0.5 bg-slate-400 h-8" />
@@ -855,7 +855,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     <div>
                                                         <div className="flex items-center gap-2.5 max-w-[300px]">
                                                             <MaterialUIIcon className="w-9 lg:w-12 h-auto" />
-                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[21px] flex-1">
+                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[21px] flex-1 text-[#2A2A42]">
                                                                 MATERIAL UI
                                                             </div>
                                                             <div className="w-0.5 bg-slate-400 h-8" />

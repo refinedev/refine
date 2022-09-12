@@ -89,7 +89,7 @@ export const SectionBullets = () => {
             {/* Scroll animated section */}
             <motion.div
                 ref={innerRef}
-                className="h-auto lg:h-screen w-screen top-0 left-0 relative lg:sticky pt-8 px-4 md:px-10 lg:px-16 xl:px-24 flex flex-col"
+                className="h-auto lg:h-screen w-screen top-0 left-0 relative lg:sticky pt-8 px-4 md:px-10 lg:px-16 xl:px-24 flex flex-col -mt-px"
             >
                 <motion.div
                     className="flex items-center justify-center lg:pt-16 lg:pb-4 opacity-100 px-2 lg:px-0"
@@ -180,7 +180,7 @@ export const SectionBullets = () => {
                                             </strong>{" "}
                                             support with{" "}
                                         </div>
-                                        <div className="flex items-center flex-col lg:flex-row gap-3 pt-2">
+                                        <div className="flex items-center flex-row justify-center lg:justify-start lg: gap-3 pt-2">
                                             <BenefitIcons.NextjsIcon className="w-auto h-[12px] lg:h-[18px]" />
                                             <BenefitIcons.RemixIcon className="w-auto h-[12px] lg:h-[18px]" />
                                         </div>
@@ -341,7 +341,7 @@ export const SectionBullets = () => {
                                     <div className="flex justify-center mb-4 lg:mb-0 lg:block">
                                         <BenefitIcons.GlobalIcon className="h-[36px] lg:h-[50px]" />
                                     </div>
-                                    <div className="font-montserrat font-normal text-center lg:text-left text-sm lg:text-base leading-4 lg:leading-5 text-[#2A2A42] tracking-tight">
+                                    <div className="flex-1 font-montserrat font-normal text-center lg:text-left text-sm lg:text-base leading-4 lg:leading-5 text-[#2A2A42] tracking-tight">
                                         Support for any{" "}
                                         <strong className="font-extrabold">
                                             i18n
