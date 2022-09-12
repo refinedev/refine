@@ -1,5 +1,11 @@
 # @pankod/refine-ui-types
 
+## 0.6.0
+
+### Minor Changes
+
+-   [#2454](https://github.com/pankod/refine/pull/2454) [`72487a4126`](https://github.com/pankod/refine/commit/72487a4126fb7d827dccd3bcbdee9a83aa1f56af) Thanks [@ozkalai](https://github.com/ozkalai)! - Updated `Sider` types for `render` props.
+
 ## 0.5.0
 
 ### Minor Changes
