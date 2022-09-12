@@ -434,7 +434,7 @@
 }
 
 #__docusaurus .clean-btn.navbar-sidebar__back {
-    @apply text-[#2a2a42] text-center font-montserrat font-semibold mb-4;
+    @apply text-[#2a2a42] text-center font-montserrat font-semibold mb-0;
 }
 
 #__docusaurus .navbar-sidebar__item.menu a[href="https://github.com/pankod/refine"]::after
@@ -622,3 +622,6 @@ html {
 #__docusaurus .theme-doc-sidebar-menu.menu__list .menu__link {
     padding-left: 22px;
 }
+
+/* #__docusaurus .navbar-sidebar__items.navbar-sidebar__items--show-secondary {
+} */
