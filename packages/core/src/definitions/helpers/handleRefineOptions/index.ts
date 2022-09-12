@@ -1,6 +1,6 @@
 import { QueryClientConfig } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { DevtoolsOptions } from "@tanstack/react-query-devtools/build/types/react-query-devtools/src/devtools";
+import { DevtoolsOptions } from "@tanstack/react-query-devtools/build/lib/devtools";
 
 import { defaultRefineOptions } from "@contexts/refine";
 import {
