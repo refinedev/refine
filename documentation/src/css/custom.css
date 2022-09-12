@@ -631,6 +631,7 @@ html {
 
 #__docusaurus .theme-doc-sidebar-menu.menu__list .menu__link--active::after {
 	background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24"><path fill="rgba(24,144,255,1)" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>');
+    filter: none;
 }
 
 #__docusaurus .theme-doc-sidebar-menu.menu__list .menu__link {
@@ -642,4 +643,51 @@ html {
 
 html[data-page="index"] #__docusaurus .navbar__item.dropdown.dropdown--hoverable.dropdown--right {
     display: none;
+}
+
+#__docusaurus .DocSearch-Search-Icon {
+    @apply text-[#2A2A42];
+}
+
+#__docusaurus footer.refine-footer {
+    background-color: #F6F6F9;
+}
+
+html[data-theme="dark"]:not([data-page="index"]) #__docusaurus footer.refine-footer {
+    background-color: #272729;;
+}
+
+html[data-page="index"] #__docusaurus .navbar-theme-toggle {
+    display: none;
+}
+
+#__docusaurus .navbar {
+    @apply bg-white bg-opacity-80 border-0 border-opacity-80 border-b border-solid border-b-[#F6F6F9];
+}
+
+html[data-theme="dark"]:not([data-page="index"]) #__docusaurus .navbar {
+    @apply bg-[#272729] bg-opacity-80 border-0 border-opacity-80 border-b border-solid border-b-[#2A2A42];
+}
+
+html:not([data-theme="dark"]):not([data-page="index"]) #__docusaurus .navbar {
+    @apply bg-white bg-opacity-80 border-0 border-opacity-80 border-b border-solid border-b-[#F6F6F9];
+}
+
+html[data-theme="dark"]:not([data-page="index"]) #__docusaurus .refine-docsearch-button {
+    @apply bg-[#1b1b1d];
+}
+
+html[data-theme="dark"]:not([data-page="index"]) #__docusaurus .DocSearch-Button-Placeholder,
+html[data-theme="dark"]:not([data-page="index"]) #__docusaurus .DocSearch-Search-Icon,
+html[data-theme="dark"]:not([data-page="index"]) #__docusaurus .DocSearch-Button-Keys kbd {
+    @apply text-[#F6F6F9];
+}
+
+html[data-theme="dark"]:not([data-page="index"]) #__docusaurus .navbar .navbar__item,
+html[data-theme="dark"]:not([data-page="index"]) #__docusaurus .navbar .navbar__link {
+    @apply text-[#F6F6F9];
+}
+
+html[data-theme="dark"]:not([data-page="index"]) #__docusaurus .navbar .header-github-link::before {
+    @apply brightness-[50];
 }

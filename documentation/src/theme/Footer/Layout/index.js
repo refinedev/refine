@@ -96,7 +96,7 @@ export default function FooterLayout({
     socialLinks,
 }) {
     return (
-        <footer className="refine-footer bg-[#F6F6F9] px-4 md:px-6 pt-7 pb-24 lg:pt-10 lg:pb-24">
+        <footer className="refine-footer px-4 md:px-6 pt-7 pb-24 lg:pt-10 lg:pb-24">
             <div className="max-w-6xl mx-auto flex flex-col gap-5">
                 <div>{logo && <div>{logo}</div>}</div>
                 <div className="flex flex-col lg:flex-row gap-6 lg:gap-20">
