@@ -270,7 +270,7 @@ export const SectionNoConstraints: React.FC = () => {
             </motion.div> */}
             <motion.div ref={ref} className="h-auto lg:h-[600vh] bg-white">
                 {/* Scroll animated section */}
-                <motion.div className="lg:overflow-hidden h-auto lg:h-screen w-screen top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col justify-center py-[86px]">
+                <motion.div className="lg:overflow-hidden h-auto lg:h-screen w-screen top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col justify-center pt-[86px] pb-[65px]">
                     <motion.div
                         className="hidden lg:block absolute -left-36 -top-24 z-[-1]"
                         style={{
