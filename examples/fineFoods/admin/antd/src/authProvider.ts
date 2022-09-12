@@ -14,11 +14,7 @@ export const authProvider: AuthProvider = {
     register: async ({ email, password }) => {
         if (email && password) {
             localStorage.setItem(TOKEN_KEY, `${email}-${password}`);
-            notification.success({
-                message: "Register",
-                description: "Register successfully",
-            });
-            return Promise.resolve();
+            return Promise.resolve("orders");
         }
         return Promise.reject();
     },
