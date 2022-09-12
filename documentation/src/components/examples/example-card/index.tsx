@@ -19,7 +19,6 @@ export const ExampleCard: React.FC<ExampleCardProps> = ({ example }) => {
         "emoji",
         {
             emoji: ["🔥", "⭐", "❤️"],
-            // emoji: ["❤️", "💙", "💜", "🧡", "💖"],
             angle: 45,
             elementCount: 80,
             startVelocity: 45,
