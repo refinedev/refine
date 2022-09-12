@@ -13,6 +13,7 @@ import {
 } from "../icons";
 import { CountingNumber } from "../counting-number";
 import { useTWBreakpoints } from "../../../hooks/use-tw-breakpoints";
+import { ExternalLinkIcon } from "../icons/external-link-icon";
 
 export const SectionNoConstraints: React.FC = () => {
     const ref = React.useRef<HTMLDivElement>(null);
@@ -616,6 +617,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                             </div>
                                                             <div className="w-0.5 bg-slate-400 h-8" />
                                                             <a className="text-[#9595A1] text-xs font-montserrat">
+                                                                <ExternalLinkIcon className="mr-1 mt-2" />
                                                                 view demo
                                                             </a>
                                                         </div>
@@ -628,6 +630,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                             </div>
                                                             <div className="w-0.5 bg-slate-400 h-8" />
                                                             <a className="text-[#9595A1] text-xs font-montserrat">
+                                                                <ExternalLinkIcon className="mr-1 mt-2" />
                                                                 view demo
                                                             </a>
                                                         </div>
@@ -827,6 +830,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                             </div>
                                                             <div className="w-0.5 bg-slate-400 h-8" />
                                                             <a className="text-[#9595A1] text-xs font-montserrat">
+                                                                <ExternalLinkIcon className="mr-1 mt-2" />
                                                                 view demo
                                                             </a>
                                                         </div>
@@ -839,6 +843,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                             </div>
                                                             <div className="w-0.5 bg-slate-400 h-8" />
                                                             <a className="text-[#9595A1] text-xs font-montserrat">
+                                                                <ExternalLinkIcon className="mr-1 mt-2" />
                                                                 view demo
                                                             </a>
                                                         </div>

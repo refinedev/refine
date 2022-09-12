@@ -8,7 +8,7 @@ export const MaterialUIIcon = (props: React.SVGProps<SVGSVGElement>) => (
         xmlns="http://www.w3.org/2000/svg"
         {...props}
     >
-        <g clipPath="url(#a)">
+        <g clipPath="url(#mui-logo-a)">
             <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -17,7 +17,7 @@ export const MaterialUIIcon = (props: React.SVGProps<SVGSVGElement>) => (
             />
         </g>
         <defs>
-            <clipPath id="a">
+            <clipPath id="mui-logo-a">
                 <path fill="#fff" d="M0 0h48v41.28H0z" />
             </clipPath>
         </defs>
