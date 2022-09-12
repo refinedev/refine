@@ -564,3 +564,9 @@ html {
 #__docusaurus .all-tags-button:hover svg {
     @apply -translate-x-1;
 }
+
+@media (min-width: 1024px) {
+    html[data-page="index"] footer.refine-footer {
+        scroll-snap-align: end;
+    }
+}
