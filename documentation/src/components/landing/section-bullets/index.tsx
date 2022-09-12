@@ -129,221 +129,227 @@ export const SectionBullets = () => {
                     className="flex pt-12 gap-7 max-w-6xl lg:px-3 mx-auto w-full justify-center flex-col"
                 >
                     <div className="flex w-full flex-col gap-6 justify-center">
-                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 place-items-center lg:place-items-start">
-                            <motion.div
-                                animate={
-                                    lg ? { scale: [1, 1.02] } : { scale: 1 }
-                                }
-                                transition={{
-                                    repeat: Infinity,
-                                    repeatType: "reverse",
-                                    duration: 2,
-                                    delay: 0,
-                                }}
-                                className="rounded-2xl bg-white shadow-tile p-6 pb-7 flex gap-6 items-center justify-between w-full max-w-[400px]"
-                            >
-                                <div>
-                                    <BenefitIcons.ChronoIcon />
-                                </div>
-                                <div className="font-montserrat font-normal text-base leading-5 text-[#2A2A42] tracking-tight">
-                                    <strong className="font-extrabold">
-                                        1-minute
-                                    </strong>{" "}
-                                    setup with a single{" "}
-                                    <strong className="font-extrabold">
-                                        CLI command
-                                    </strong>
-                                </div>
-                            </motion.div>
-                            <motion.div
-                                animate={
-                                    lg ? { scale: [1, 1.02] } : { scale: 1 }
-                                }
-                                transition={{
-                                    repeat: Infinity,
-                                    repeatType: "reverse",
-                                    duration: 2,
-                                    delay: 0.5,
-                                }}
-                                className="rounded-2xl bg-white shadow-tile p-6 pb-7 flex gap-6 items-center justify-between w-full max-w-[400px]"
-                            >
-                                <div className="flex-shrink-0">
-                                    <BenefitIcons.SsrIcon />
-                                </div>
-                                <div className="flex-1 font-montserrat font-normal text-base leading-5 text-[#2A2A42] tracking-tight">
-                                    <div>
+                        <div className="grid grid-cols-6 gap-4 lg:gap-6 place-items-center lg:place-items-start">
+                            <div className="col-span-3 lg:col-span-2 h-full flex">
+                                <motion.div
+                                    animate={
+                                        lg ? { scale: [1, 1.02] } : { scale: 1 }
+                                    }
+                                    transition={{
+                                        repeat: Infinity,
+                                        repeatType: "reverse",
+                                        duration: 2,
+                                        delay: 0,
+                                    }}
+                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex-col lg:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
+                                >
+                                    <div className="flex justify-center mb-4 lg:mb-0 lg:block">
+                                        <BenefitIcons.ChronoIcon className="h-[36px] lg:h-[50px]" />
+                                    </div>
+                                    <div className="font-montserrat font-normal text-center lg:text-left text-sm lg:text-base leading-4 lg:leading-5 text-[#2A2A42] tracking-tight">
                                         <strong className="font-extrabold">
-                                            SSR
+                                            1-minute
                                         </strong>{" "}
-                                        support with{" "}
+                                        setup with a single{" "}
+                                        <strong className="font-extrabold">
+                                            CLI command
+                                        </strong>
                                     </div>
-                                    <div className="flex items-center gap-3 pt-2">
-                                        <BenefitIcons.NextjsIcon
-                                            width="auto"
-                                            height={18}
-                                        />
-                                        <BenefitIcons.RemixIcon
-                                            width="auto"
-                                            height={18}
-                                        />
+                                </motion.div>
+                            </div>
+                            <div className="col-span-3 lg:col-span-2 h-full flex">
+                                <motion.div
+                                    animate={
+                                        lg ? { scale: [1, 1.02] } : { scale: 1 }
+                                    }
+                                    transition={{
+                                        repeat: Infinity,
+                                        repeatType: "reverse",
+                                        duration: 2,
+                                        delay: 0.5,
+                                    }}
+                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex-col lg:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
+                                >
+                                    <div className="flex-shrink-0 flex justify-center mb-4 lg:mb-0 lg:block">
+                                        <BenefitIcons.SsrIcon className="h-[36px] lg:h-[50px]" />
                                     </div>
-                                </div>
-                            </motion.div>
-                            <motion.div
-                                animate={
-                                    lg ? { scale: [1, 1.02] } : { scale: 1 }
-                                }
-                                transition={{
-                                    repeat: Infinity,
-                                    repeatType: "reverse",
-                                    duration: 2,
-                                    delay: 1,
-                                }}
-                                className="rounded-2xl bg-white shadow-tile p-6 pb-7 flex gap-6 items-center justify-between w-full max-w-[400px]"
-                            >
-                                <div>
-                                    <BenefitIcons.ReactIcon />
-                                </div>
-                                <div className="font-montserrat font-normal text-base leading-5 text-[#2A2A42] tracking-tight">
-                                    Perfect{" "}
-                                    <strong className="font-extrabold">
-                                        state management
-                                    </strong>{" "}
-                                    &{" "}
-                                    <strong className="font-extrabold">
-                                        mutations
-                                    </strong>{" "}
-                                    with{" "}
-                                    <strong className="font-extrabold">
-                                        React Query
-                                    </strong>
-                                </div>
-                            </motion.div>
-                        </div>
-                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 place-items-center lg:place-items-start">
-                            <motion.div
-                                animate={
-                                    lg ? { scale: [1, 1.02] } : { scale: 1 }
-                                }
-                                transition={{
-                                    repeat: Infinity,
-                                    repeatType: "reverse",
-                                    duration: 2,
-                                    delay: 1.5,
-                                }}
-                                className="rounded-2xl bg-white shadow-tile p-6 pb-7 flex gap-6 items-center justify-between w-full max-w-[400px]"
-                            >
-                                <div>
-                                    <BenefitIcons.RouteIcon />
-                                </div>
-                                <div className="font-montserrat font-normal text-base leading-5 text-[#2A2A42] tracking-tight">
-                                    Advanced routing with any{" "}
-                                    <strong className="font-extrabold">
-                                        router
-                                    </strong>{" "}
-                                    library of your choice
-                                </div>
-                            </motion.div>
-                            <motion.div
-                                animate={
-                                    lg ? { scale: [1, 1.02] } : { scale: 1 }
-                                }
-                                transition={{
-                                    repeat: Infinity,
-                                    repeatType: "reverse",
-                                    duration: 2,
-                                    delay: 2,
-                                }}
-                                className="rounded-2xl bg-white shadow-tile p-6 pb-7 flex gap-6 items-center justify-between w-full max-w-[400px]"
-                            >
-                                <div>
-                                    <BenefitIcons.AuthIcon />
-                                </div>
-                                <div className="font-montserrat font-normal text-base leading-5 text-[#2A2A42] tracking-tight">
-                                    Providers for seamless{" "}
-                                    <strong className="font-extrabold">
-                                        authentication
-                                    </strong>{" "}
-                                    &{" "}
-                                    <strong className="font-extrabold">
-                                        access control
-                                    </strong>{" "}
-                                    flows
-                                </div>
-                            </motion.div>
-                            <motion.div
-                                animate={
-                                    lg ? { scale: [1, 1.02] } : { scale: 1 }
-                                }
-                                transition={{
-                                    repeat: Infinity,
-                                    repeatType: "reverse",
-                                    duration: 2,
-                                    delay: 2.5,
-                                }}
-                                className="rounded-2xl bg-white shadow-tile p-6 pb-7 flex gap-6 items-center justify-between w-full max-w-[400px]"
-                            >
-                                <div>
-                                    <BenefitIcons.RealtimeIcon />
-                                </div>
-                                <div className="font-montserrat font-normal text-base leading-5 text-[#2A2A42] tracking-tight">
-                                    Out-of-the-box support for
-                                    <strong className="font-extrabold">
-                                        live / real-time applications
-                                    </strong>
-                                </div>
-                            </motion.div>
-                        </div>
-                        <div className="grid grid-cols-2 lg:grid-cols-6 gap-6 place-items-center lg:place-items-start">
-                            <motion.div
-                                animate={
-                                    lg ? { scale: [1, 1.02] } : { scale: 1 }
-                                }
-                                transition={{
-                                    repeat: Infinity,
-                                    repeatType: "reverse",
-                                    duration: 2,
-                                    delay: 3,
-                                }}
-                                className="col-span-2 lg:col-start-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex gap-6 items-center justify-between w-full max-w-[400px]"
-                            >
-                                <div>
-                                    <BenefitIcons.AuditIcon />
-                                </div>
-                                <div className="font-montserrat font-normal text-base leading-5 text-[#2A2A42] tracking-tight">
-                                    Easy{" "}
-                                    <strong className="font-extrabold">
-                                        audit logs
-                                    </strong>{" "}
-                                    &{" "}
-                                    <strong className="font-extrabold">
-                                        document versioning
-                                    </strong>
-                                </div>
-                            </motion.div>
-                            <motion.div
-                                animate={
-                                    lg ? { scale: [1, 1.02] } : { scale: 1 }
-                                }
-                                transition={{
-                                    repeat: Infinity,
-                                    repeatType: "reverse",
-                                    duration: 2,
-                                    delay: 3.5,
-                                }}
-                                className="col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex gap-6 items-center justify-between w-full max-w-[400px]"
-                            >
-                                <div>
-                                    <BenefitIcons.GlobalIcon />
-                                </div>
-                                <div className="font-montserrat font-normal text-base leading-5 text-[#2A2A42] tracking-tight">
-                                    Support for any{" "}
-                                    <strong className="font-extrabold">
-                                        i18n
-                                    </strong>{" "}
-                                    framework
-                                </div>
-                            </motion.div>
+                                    <div className="flex-1 font-montserrat font-normal text-center lg:text-left text-sm lg:text-base leading-4 lg:leading-5 text-[#2A2A42] tracking-tight">
+                                        <div>
+                                            <strong className="font-extrabold">
+                                                SSR
+                                            </strong>{" "}
+                                            support with{" "}
+                                        </div>
+                                        <div className="flex items-center flex-col lg:flex-row gap-3 pt-2">
+                                            <BenefitIcons.NextjsIcon className="w-auto h-[12px] lg:h-[18px]" />
+                                            <BenefitIcons.RemixIcon className="w-auto h-[12px] lg:h-[18px]" />
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            </div>
+                            <div className="col-span-3 lg:col-span-2 h-full flex">
+                                <motion.div
+                                    animate={
+                                        lg ? { scale: [1, 1.02] } : { scale: 1 }
+                                    }
+                                    transition={{
+                                        repeat: Infinity,
+                                        repeatType: "reverse",
+                                        duration: 2,
+                                        delay: 1,
+                                    }}
+                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex-col lg:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
+                                >
+                                    <div className="flex justify-center mb-4 lg:mb-0 lg:block">
+                                        <BenefitIcons.ReactIcon className="h-[36px] lg:h-[50px]" />
+                                    </div>
+                                    <div className="font-montserrat font-normal text-center lg:text-left text-sm lg:text-base leading-4 lg:leading-5 text-[#2A2A42] tracking-tight">
+                                        Perfect{" "}
+                                        <strong className="font-extrabold">
+                                            state management
+                                        </strong>{" "}
+                                        &{" "}
+                                        <strong className="font-extrabold">
+                                            mutations
+                                        </strong>{" "}
+                                        with{" "}
+                                        <strong className="font-extrabold">
+                                            React Query
+                                        </strong>
+                                    </div>
+                                </motion.div>
+                            </div>
+                            <div className="col-span-3 lg:col-span-2 h-full flex">
+                                <motion.div
+                                    animate={
+                                        lg ? { scale: [1, 1.02] } : { scale: 1 }
+                                    }
+                                    transition={{
+                                        repeat: Infinity,
+                                        repeatType: "reverse",
+                                        duration: 2,
+                                        delay: 1.5,
+                                    }}
+                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex-col lg:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
+                                >
+                                    <div className="flex justify-center mb-4 lg:mb-0 lg:block">
+                                        <BenefitIcons.RouteIcon className="h-[36px] lg:h-[50px]" />
+                                    </div>
+                                    <div className="font-montserrat font-normal text-center lg:text-left text-sm lg:text-base leading-4 lg:leading-5 text-[#2A2A42] tracking-tight">
+                                        Advanced routing with any{" "}
+                                        <strong className="font-extrabold">
+                                            router
+                                        </strong>{" "}
+                                        library of your choice
+                                    </div>
+                                </motion.div>
+                            </div>
+                            <div className="col-span-3 lg:col-span-2 h-full flex">
+                                <motion.div
+                                    animate={
+                                        lg ? { scale: [1, 1.02] } : { scale: 1 }
+                                    }
+                                    transition={{
+                                        repeat: Infinity,
+                                        repeatType: "reverse",
+                                        duration: 2,
+                                        delay: 2,
+                                    }}
+                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex-col lg:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
+                                >
+                                    <div className="flex justify-center mb-4 lg:mb-0 lg:block">
+                                        <BenefitIcons.AuthIcon className="h-[36px] lg:h-[50px]" />
+                                    </div>
+                                    <div className="font-montserrat font-normal text-center lg:text-left text-sm lg:text-base leading-4 lg:leading-5 text-[#2A2A42] tracking-tight">
+                                        Providers for seamless{" "}
+                                        <strong className="font-extrabold">
+                                            authentication
+                                        </strong>{" "}
+                                        &{" "}
+                                        <strong className="font-extrabold">
+                                            access control
+                                        </strong>{" "}
+                                        flows
+                                    </div>
+                                </motion.div>
+                            </div>
+                            <div className="col-span-3 lg:col-span-2 h-full flex">
+                                <motion.div
+                                    animate={
+                                        lg ? { scale: [1, 1.02] } : { scale: 1 }
+                                    }
+                                    transition={{
+                                        repeat: Infinity,
+                                        repeatType: "reverse",
+                                        duration: 2,
+                                        delay: 2.5,
+                                    }}
+                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex-col lg:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
+                                >
+                                    <div className="flex justify-center mb-4 lg:mb-0 lg:block">
+                                        <BenefitIcons.RealtimeIcon className="h-[36px] lg:h-[50px]" />
+                                    </div>
+                                    <div className="font-montserrat font-normal text-center lg:text-left text-sm lg:text-base leading-4 lg:leading-5 text-[#2A2A42] tracking-tight">
+                                        Out-of-the-box support for
+                                        <strong className="font-extrabold">
+                                            live / real-time applications
+                                        </strong>
+                                    </div>
+                                </motion.div>
+                            </div>
+                            <div className="col-span-3 lg:col-span-2 h-full flex">
+                                <motion.div
+                                    animate={
+                                        lg ? { scale: [1, 1.02] } : { scale: 1 }
+                                    }
+                                    transition={{
+                                        repeat: Infinity,
+                                        repeatType: "reverse",
+                                        duration: 2,
+                                        delay: 3,
+                                    }}
+                                    className="col-span-3 lg:col-span-2 lg:col-start-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex-col lg:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
+                                >
+                                    <div className="flex justify-center mb-4 lg:mb-0 lg:block">
+                                        <BenefitIcons.AuditIcon className="h-[36px] lg:h-[50px]" />
+                                    </div>
+                                    <div className="font-montserrat font-normal text-center lg:text-left text-sm lg:text-base leading-4 lg:leading-5 text-[#2A2A42] tracking-tight">
+                                        Easy{" "}
+                                        <strong className="font-extrabold">
+                                            audit logs
+                                        </strong>{" "}
+                                        &{" "}
+                                        <strong className="font-extrabold">
+                                            document versioning
+                                        </strong>
+                                    </div>
+                                </motion.div>
+                            </div>
+                            <div className="col-span-3 lg:col-span-2 h-full flex">
+                                <motion.div
+                                    animate={
+                                        lg ? { scale: [1, 1.02] } : { scale: 1 }
+                                    }
+                                    transition={{
+                                        repeat: Infinity,
+                                        repeatType: "reverse",
+                                        duration: 2,
+                                        delay: 3.5,
+                                    }}
+                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex-col lg:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
+                                >
+                                    <div className="flex justify-center mb-4 lg:mb-0 lg:block">
+                                        <BenefitIcons.GlobalIcon className="h-[36px] lg:h-[50px]" />
+                                    </div>
+                                    <div className="font-montserrat font-normal text-center lg:text-left text-sm lg:text-base leading-4 lg:leading-5 text-[#2A2A42] tracking-tight">
+                                        Support for any{" "}
+                                        <strong className="font-extrabold">
+                                            i18n
+                                        </strong>{" "}
+                                        framework
+                                    </div>
+                                </motion.div>
+                            </div>
                         </div>
                     </div>
                     <div className="text-center font-montserrat font-medium text-lg lg:text-2xl text-[#2A2A42] pt-2 pb-6 lg:pb-2 lg:pt-6 tracking-wide">

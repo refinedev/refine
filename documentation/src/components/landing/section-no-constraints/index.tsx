@@ -312,7 +312,7 @@ export const SectionNoConstraints: React.FC = () => {
                         </div>
                     </div>
                     <motion.div
-                        className="overflow-x-hidden lg:overflow-y-hidden lg:snap-x lg:snap-mandatory relative flex-1 lg:max-h-[600px]"
+                        className="overflow-x-visible lg:overflow-x-hidden lg:overflow-y-hidden lg:snap-x lg:snap-mandatory relative flex-1 lg:max-h-[600px]"
                         style={{ opacity: slideOpacity }}
                     >
                         <motion.div
@@ -613,8 +613,8 @@ export const SectionNoConstraints: React.FC = () => {
                                                 <div className="flex flex-col gap-2">
                                                     <div>
                                                         <div className="flex items-center gap-2.5 max-w-[300px]">
-                                                            <AntDesignLogoIcon className="z-10" />
-                                                            <div className="font-montserrat font-medium text-[21px] flex-1">
+                                                            <AntDesignLogoIcon className="z-10 w-9 lg:w-12 h-auto" />
+                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[21px] flex-1">
                                                                 ANT DESIGN
                                                             </div>
                                                             <div className="w-0.5 bg-slate-400 h-8" />
@@ -626,8 +626,8 @@ export const SectionNoConstraints: React.FC = () => {
                                                     </div>
                                                     <div>
                                                         <div className="flex items-center gap-2.5 max-w-[300px]">
-                                                            <MaterialUIIcon />
-                                                            <div className="font-montserrat font-medium text-[21px] flex-1">
+                                                            <MaterialUIIcon className="w-9 lg:w-12 h-auto" />
+                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[21px] flex-1">
                                                                 MATERIAL UI
                                                             </div>
                                                             <div className="w-0.5 bg-slate-400 h-8" />
@@ -826,8 +826,8 @@ export const SectionNoConstraints: React.FC = () => {
                                                 <div className="flex flex-col gap-2">
                                                     <div>
                                                         <div className="flex items-center gap-2.5 max-w-[300px]">
-                                                            <AntDesignLogoIcon className="z-10" />
-                                                            <div className="font-montserrat font-medium text-[21px] flex-1">
+                                                            <AntDesignLogoIcon className="z-10 w-9 lg:w-12 h-auto" />
+                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[21px] flex-1">
                                                                 ANT DESIGN
                                                             </div>
                                                             <div className="w-0.5 bg-slate-400 h-8" />
@@ -839,8 +839,8 @@ export const SectionNoConstraints: React.FC = () => {
                                                     </div>
                                                     <div>
                                                         <div className="flex items-center gap-2.5 max-w-[300px]">
-                                                            <MaterialUIIcon />
-                                                            <div className="font-montserrat font-medium text-[21px] flex-1">
+                                                            <MaterialUIIcon className="w-9 lg:w-12 h-auto" />
+                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[21px] flex-1">
                                                                 MATERIAL UI
                                                             </div>
                                                             <div className="w-0.5 bg-slate-400 h-8" />
@@ -864,7 +864,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 <strong className="font-bold">
                                                     refine
                                                 </strong>{" "}
-                                                connects to any custom
+                                                connects to any custom{" "}
                                                 <strong className="font-bold">
                                                     REST
                                                 </strong>{" "}
@@ -880,13 +880,13 @@ export const SectionNoConstraints: React.FC = () => {
                                                 <strong className="font-bold">
                                                     30+
                                                 </strong>{" "}
-                                                popular backend services.
+                                                popular backend services.{" "}
                                                 <a className="no-underline text-[#1890FF] visited:text-[#1890FF]">
                                                     (SEE ALL)
                                                 </a>
                                             </p>
                                         </div>
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 w-full px-5 gap-x-2 gap-y-5">
+                                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 w-[calc(100vw-32px)] sm:w-full px-4 -mx-4 sm:mx-0 gap-x-2 gap-y-2 md:gap-y-5">
                                             {backendItems.map(
                                                 (
                                                     { name, Icon, AltIcon },
@@ -922,7 +922,13 @@ export const SectionNoConstraints: React.FC = () => {
                                                                   }
                                                         }
                                                         key={name}
-                                                        className={`group relative w-full h-20 lg:h-[90px] bg-white rounded-[10px] ${
+                                                        className={`group relative w-full h-16 md:h-20 lg:h-[90px] bg-white rounded-[10px] ${
+                                                            index ===
+                                                            backendItems.length -
+                                                                1
+                                                                ? "col-span-2 max-w-[50%] sm:max-w-none sm:col-span-1 mx-auto sm:mx-0"
+                                                                : ""
+                                                        } ${
                                                             name === "Python"
                                                                 ? "pt-1.5"
                                                                 : "pt-0"
