@@ -363,11 +363,11 @@
 }
 
 .refine-docsearch-button {
-    @apply border-none appearance-none h-7 bg-[#f6f6f9] px-2 md:px-3 rounded-2xl flex items-center py-0 w-7 md:w-[196px] justify-between cursor-pointer;
+    @apply border-none appearance-none h-7 bg-[#f6f6f9] px-2 md:px-3 rounded-2xl flex items-center py-0 w-7 md:w-[150px] xl:w-[196px] justify-between cursor-pointer;
 }
 
 .refine-docsearch-button .DocSearch-Button-Placeholder {
-    @apply font-montserrat font-semibold text-xs text-[#2A2A42];
+    @apply font-montserrat font-semibold text-xs text-[#2A2A42] hidden md:block;
 }
 
 .refine-docsearch-button .DocSearch-Search-Icon {
@@ -375,7 +375,15 @@
 }
 
 .refine-docsearch-button .DocSearch-Button-Keys {
-    @apply w-auto min-w-0;
+    @apply w-auto min-w-0 hidden md:flex;
+}
+
+#__docusaurus .navbar .navbar__items .navbar__item {
+    @apply hidden lg:inline-block;
+}
+
+#__docusaurus .navbar .navbar__items .header-icon-link {
+    @apply hidden xl:inline-block;
 }
 
 .refine-docsearch-button .DocSearch-Button-Keys kbd {
