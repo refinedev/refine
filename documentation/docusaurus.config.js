@@ -45,10 +45,7 @@ const siteConfig = {
                     ],
                 },
                 gtag: {
-                    // You can also use your "G-" Measurement ID here.
                     trackingID: "G-27Z1WY952H",
-                    // Optional fields.
-                    anonymizeIP: true, // Should IPs be anonymized?
                 },
             },
         ],
@@ -151,8 +148,8 @@ const siteConfig = {
                 },
                 { to: "blog", label: "Blog", position: "left" },
                 {
-                    to: "/enterprise",
-                    label: "Enterprise",
+                    to: "https://store.refine.dev",
+                    label: "Store 🎁",
                     position: "left",
                 },
                 // {

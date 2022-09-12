@@ -63,4 +63,5 @@ export default defineConfig({
     loader: {
         ".svg": "dataurl",
     },
+    onSuccess: "tsc --project tsconfig.declarations.json",
 });

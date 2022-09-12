@@ -288,7 +288,9 @@ const NestsxCrud = (
                 axiosResponse = await httpClient[method](url, payload);
                 break;
             case "delete":
-                axiosResponse = await httpClient.delete(url);
+                axiosResponse = await httpClient.delete(url, {
+                    data: payload,
+                });
                 break;
             default:
                 axiosResponse = await httpClient.get(requestUrl);

@@ -1,5 +1,33 @@
 # @pankod/refine-nhost
 
+## 3.35.2
+
+### Patch Changes
+
+-   Added nested sorting feature 💥
+
+*   Added new CRUD Filter Operators with undefined
+
+## 3.35.1
+
+### Patch Changes
+
+-   [#2427](https://github.com/pankod/refine/pull/2427) [`b21908e872`](https://github.com/pankod/refine/commit/b21908e87209c3a8825991c6ab829f7c45c19e9b) Thanks [@geoffatsource](https://github.com/geoffatsource)! - Added nested sorting feature 💥
+
+*   [#2456](https://github.com/pankod/refine/pull/2456) [`f20a0ed621`](https://github.com/pankod/refine/commit/f20a0ed621f9f038dce762e75a0a99058bcb4edb) Thanks [@workatease](https://github.com/workatease)! - Added new CRUD Filter Operators with undefined
+
+## 3.35.0
+
+### Minor Changes
+
+-   Update type declaration generation with `tsc` instead of `tsup` for better navigation throughout projects source code.
+
+## 3.34.0
+
+### Minor Changes
+
+-   [#2440](https://github.com/pankod/refine/pull/2440) [`0150dcd070`](https://github.com/pankod/refine/commit/0150dcd0700253f1c4908e7e5f2e178bb122e9af) Thanks [@aliemir](https://github.com/aliemir)! - Update type declaration generation with `tsc` instead of `tsup` for better navigation throughout projects source code.
+
 ## 3.33.0
 
 ### Minor Changes

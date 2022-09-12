@@ -1,5 +1,93 @@
 # @pankod/refine-core
 
+## 3.69.6
+
+### Patch Changes
+
+-   Fix import of react-query `DevtoolsOptions` interface
+
+## 3.69.5
+
+### Patch Changes
+
+-   [#2481](https://github.com/pankod/refine/pull/2481) [`7820454ae7`](https://github.com/pankod/refine/commit/7820454ae71ff56d032a561389e99ff567812851) Thanks [@omeraplak](https://github.com/omeraplak)! - Fix import of react-query `DevtoolsOptions` interface
+
+## 3.69.4
+
+### Patch Changes
+
+-   Fixed default login page for headless
+
+## 3.69.3
+
+### Patch Changes
+
+-   [#2475](https://github.com/pankod/refine/pull/2475) [`fc859677d9`](https://github.com/pankod/refine/commit/fc859677d980bd787c084736fb23552e958d0505) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed default login page for headless
+
+## 3.69.2
+
+### Patch Changes
+
+-   Update `useForm` and `useShow` hooks to watch for `id` from `props` and update the query with the new `id` when it changes.
+
+## 3.69.1
+
+### Patch Changes
+
+-   [#2467](https://github.com/pankod/refine/pull/2467) [`21bb649bc7`](https://github.com/pankod/refine/commit/21bb649bc737a13479254dfdedc91f904e9144b0) Thanks [@aliemir](https://github.com/aliemir)! - Update `useForm` and `useShow` hooks to watch for `id` from `props` and update the query with the new `id` when it changes.
+
+## 3.69.0
+
+### Minor Changes
+
+-   Adding more CRUD Filter Operators
+
+*   Add `initialData` support to `DashboardPage` for `@pankod/refine-nextjs-router`.
+
+## 3.68.0
+
+### Minor Changes
+
+-   [#2456](https://github.com/pankod/refine/pull/2456) [`f20a0ed621`](https://github.com/pankod/refine/commit/f20a0ed621f9f038dce762e75a0a99058bcb4edb) Thanks [@workatease](https://github.com/workatease)! - Adding more CRUD Filter Operators
+
+*   [#2142](https://github.com/pankod/refine/pull/2142) [`dd00de215a`](https://github.com/pankod/refine/commit/dd00de215a869a11076a539227de9dc1de731a55) Thanks [@ozkalai](https://github.com/ozkalai)! - Add `initialData` support to `DashboardPage` for `@pankod/refine-nextjs-router`.
+
+## 3.67.0
+
+### Minor Changes
+
+-   Updated the generation of type declarations, moved the declarations from `tsup` to `tsc` for a better experience with `Peek Definition` and `Go to Definition` features. After this change, it's expected to navigate to the source code of the `refine` packages instead of the `dist` directory with combined declarations.
+
+*   Removed `jose` dependency.
+
+-   Remove `decamelize` dependency from `humanizeString` helper and replace the functionality with regExp.
+
+### Patch Changes
+
+-   Fixed the issue with the TS compiler and `useResource` hooks return type.
+
+*   Pass `dataProviderName` prop to mutations in `@pankod/refine-core`'s `useImport` hook.
+
+## 3.66.1
+
+### Patch Changes
+
+-   [#2448](https://github.com/pankod/refine/pull/2448) [`f1edb19979`](https://github.com/pankod/refine/commit/f1edb199793b89dd231d2ab8d1ffed3ee63dce70) Thanks [@aliemir](https://github.com/aliemir)! - Pass `dataProviderName` prop to mutations in `@pankod/refine-core`'s `useImport` hook.
+
+## 3.66.0
+
+### Minor Changes
+
+-   [#2440](https://github.com/pankod/refine/pull/2440) [`0150dcd070`](https://github.com/pankod/refine/commit/0150dcd0700253f1c4908e7e5f2e178bb122e9af) Thanks [@aliemir](https://github.com/aliemir)! - Updated the generation of type declarations, moved the declarations from `tsup` to `tsc` for a better experience with `Peek Definition` and `Go to Definition` features. After this change, it's expected to navigate to the source code of the `refine` packages instead of the `dist` directory with combined declarations.
+
+*   [#2439](https://github.com/pankod/refine/pull/2439) [`f2faf99f25`](https://github.com/pankod/refine/commit/f2faf99f25542f73215ee89c74b241311177b327) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Removed `jose` dependency.
+
+-   [#2443](https://github.com/pankod/refine/pull/2443) [`2c428b3105`](https://github.com/pankod/refine/commit/2c428b31057e3e7c8901fc3da2773bc810235491) Thanks [@ozkalai](https://github.com/ozkalai)! - Remove `decamelize` dependency from `humanizeString` helper and replace the functionality with regExp.
+
+### Patch Changes
+
+-   [#2440](https://github.com/pankod/refine/pull/2440) [`0150dcd070`](https://github.com/pankod/refine/commit/0150dcd0700253f1c4908e7e5f2e178bb122e9af) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the issue with the TS compiler and `useResource` hooks return type.
+
 ## 3.65.3
 
 ### Patch Changes
