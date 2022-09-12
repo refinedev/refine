@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.69.6
+
+### Patch Changes
+
+-   Fix import of react-query `DevtoolsOptions` interface
+
 ## 3.69.5
 
 ### Patch Changes
