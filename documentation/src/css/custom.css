@@ -447,6 +447,12 @@
     height: 32px;
 }
 
+#__docusaurus .social-icons .header-icon-link.header-github-link::before {
+    width: 32px;
+    height: 32px;
+    margin-top: 3px;
+}
+
 #__docusaurus .navbar-sidebar__items .with-hoverline .menu__link--active {
     position: relative;
 }
@@ -572,7 +578,7 @@ html {
 }
 
 .DocSearch--active .DocSearch-Modal {
-    position: fixed;
+    @apply fixed md:relative;
 }
 
 .navbar-sidebar__items.navbar-sidebar__items--show-secondary .navbar-sidebar__item.menu .menu__list,
