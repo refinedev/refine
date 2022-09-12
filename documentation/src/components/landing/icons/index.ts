@@ -19,3 +19,5 @@ export * from "./shield-icon";
 export * from "./triple-icon";
 export * as BackendIcons from "./backend";
 export * as BenefitIcons from "./benefit";
+export * as GraySocialIcons from "./gray-social-icons";
+export * as SmallSocialIcons from "./small-social-icons";

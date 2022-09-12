@@ -152,11 +152,11 @@ const siteConfig = {
                     label: "Store 🎁",
                     position: "left",
                 },
-                // {
-                //     type: "docsVersionDropdown",
-                //     position: "right",
-                //     dropdownActiveClassDisabled: true,
-                // },
+                {
+                    type: "docsVersionDropdown",
+                    position: "right",
+                    dropdownActiveClassDisabled: true,
+                },
                 {
                     href: "https://github.com/pankod/refine",
                     position: "right",
@@ -298,7 +298,7 @@ const siteConfig = {
                             label: "twitter",
                         },
                         {
-                            href: "https://twitter.com/refine_dev",
+                            href: "https://www.linkedin.com/company/refine-dev",
                             label: "linkedin",
                         },
                     ],
