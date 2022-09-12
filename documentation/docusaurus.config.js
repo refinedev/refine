@@ -177,6 +177,137 @@ const siteConfig = {
                 },
             ],
         },
+        footer: {
+            logo: {
+                alt: "refine",
+                src: "img/refine_logo.png",
+            },
+            links: [
+                {
+                    title: "Why refine?",
+                    items: [
+                        {
+                            label: "Features",
+                            to: "docs/getting-started/overview",
+                        },
+                        {
+                            label: "Enterprise",
+                            to: "/enterprise",
+                        },
+                        {
+                            label: "Demo",
+                            to: "/demo",
+                        },
+                    ],
+                },
+                {
+                    title: "Product",
+                    items: [
+                        {
+                            label: "Features",
+                            to: "docs/getting-started/overview",
+                        },
+                        {
+                            label: "Enterprise",
+                            to: "/enterprise",
+                        },
+                        {
+                            label: "Demo",
+                            to: "/demo",
+                        },
+                    ],
+                },
+                {
+                    title: "Open Source",
+                    items: [
+                        {
+                            label: "Features",
+                            to: "docs/getting-started/overview",
+                        },
+                        {
+                            label: "Enterprise",
+                            to: "/enterprise",
+                        },
+                        {
+                            label: "Demo",
+                            to: "/demo",
+                        },
+                    ],
+                },
+                {
+                    title: "Developers",
+                    items: [
+                        {
+                            label: "Features",
+                            to: "docs/getting-started/overview",
+                        },
+                        {
+                            label: "Enterprise",
+                            to: "/enterprise",
+                        },
+                        {
+                            label: "Demo",
+                            to: "/demo",
+                        },
+                    ],
+                },
+                {
+                    title: "Company",
+                    items: [
+                        {
+                            label: "Features",
+                            to: "docs/getting-started/overview",
+                        },
+                        {
+                            label: "Enterprise",
+                            to: "/enterprise",
+                        },
+                        {
+                            label: "Demo",
+                            to: "/demo",
+                        },
+                    ],
+                },
+                {
+                    title: "__LEGAL",
+                    items: [
+                        {
+                            label: "License",
+                            to: "docs/getting-started/overview",
+                        },
+                        {
+                            label: "Terms",
+                            to: "/enterprise",
+                        },
+                        {
+                            label: "Privacy",
+                            to: "/demo",
+                        },
+                    ],
+                },
+                {
+                    title: "__SOCIAL",
+                    items: [
+                        {
+                            href: "https://github.com/pankod/refine",
+                            label: "github",
+                        },
+                        {
+                            href: "https://discord.gg/refine",
+                            label: "discord",
+                        },
+                        {
+                            href: "https://twitter.com/refine_dev",
+                            label: "twitter",
+                        },
+                        {
+                            href: "https://twitter.com/refine_dev",
+                            label: "linkedin",
+                        },
+                    ],
+                },
+            ],
+        },
     },
 };
 
