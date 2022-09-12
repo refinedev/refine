@@ -1,0 +1,15 @@
+.fieldset {
+    @apply mt-3 flex flex-col;
+}
+
+.fieldset .label {
+    @apply text-accent-7 mb-2 text-xs font-medium uppercase;
+}
+
+.fieldset .input {
+    @apply border-accent-2 w-full border p-2 text-sm font-normal;
+}
+
+.fieldset .input:focus {
+    @apply shadow-outline-normal outline-none;
+}

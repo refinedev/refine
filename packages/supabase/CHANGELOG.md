@@ -1,5 +1,11 @@
 # @pankod/refine-supabase
 
+## 3.31.0
+
+### Minor Changes
+
+-   Update type declaration generation with `tsc` instead of `tsup` for better navigation throughout projects source code.
+
 ## 3.30.0
 
 ### Minor Changes

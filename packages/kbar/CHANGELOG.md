@@ -1,5 +1,11 @@
 # @pankod/refine-kbar
 
+## 0.10.0
+
+### Minor Changes
+
+-   Update type declaration generation with `tsc` instead of `tsup` for better navigation throughout projects source code.
+
 ## 0.9.0
 
 ### Minor Changes
