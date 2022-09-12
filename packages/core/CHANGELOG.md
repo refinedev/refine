@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.69.4
+
+### Patch Changes
+
+-   Fixed default login page for headless
+
 ## 3.69.3
 
 ### Patch Changes
