@@ -10,15 +10,15 @@ export const SHOW_CASES: ShowCases = [
             "A simple customer facing app  built with Refine Headless Refine Headless > Refine Core + Next.js (SSR) + Tailwind CSS",
         buttons: [
             {
-                text: "Food Delivery",
-                link: "https://example.refine.dev",
-                image: "/examples/food-delivery.png",
+                text: "Swag Store",
+                link: "https://store.refine.dev",
+                image: "/examples/swag-store.png",
                 default: true,
             },
             {
-                text: "Swag Store",
+                text: "Food Delivery",
                 link: "https://example.refine.dev",
-                image: "/examples/antd-finefoods.png",
+                image: "/examples/food-delivery.png",
             },
         ],
     },

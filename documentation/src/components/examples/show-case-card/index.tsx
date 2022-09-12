@@ -42,11 +42,11 @@ export const ShowCaseCard: React.FC<ShowCaseCardProps> = ({ showCase }) => {
                                 },
                             )}
                         >
-                            {Icon && <Icon className=" object-contain" />}
+                            {Icon && <Icon className="object-contain" />}
                             {b.text}
                             <Link
                                 to={b.link}
-                                className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-inherit"
+                                className="export-icon flex h-6 w-6 items-center justify-center rounded-full bg-white text-inherit transition duration-150"
                             >
                                 <IoMdOpen />
                             </Link>
