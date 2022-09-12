@@ -519,24 +519,42 @@ html {
     border: 1px solid var(--ifm-toc-border-color);
 }
 
-#__docusaurus .example-active-lineer-gradient-button {
+#__docusaurus .gradient-button:hover {
+    background: linear-gradient(90deg, #3fdcf7 2.01%, #1890ff 99.51%);
+}
+
+#__docusaurus .gradient-button:hover a {
+    @apply bg-transparent;
+}
+
+#__docusaurus .gradient-button:hover .export-icon {
+    background: #1373cc;
+    box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.25);
+}
+
+#__docusaurus .example-card {
+    border: 1px solid #f5f5f5;
+    box-shadow: 6px 8px 16px rgba(42, 42, 66, 0.1);
+}
+
+#__docusaurus .example-card:hover {
+    box-shadow: 6px 8px 16px rgba(42, 42, 66, 0.4);
+}
+
+#__docusaurus .example-card:hover img {
+    filter: drop-shadow(0px 0px 16px rgba(49, 192, 250, 0.6));
+}
+
+#__docusaurus .example-card:hover .gradient-button {
     @apply text-white;
     background: linear-gradient(90deg, #3fdcf7 2.01%, #1890ff 99.51%);
 }
 
-#__docusaurus .example-active-lineer-gradient-button a {
+#__docusaurus .example-card:hover .gradient-button a {
     @apply bg-transparent;
 }
 
-#__docusaurus .example-lineer-gradient-button:hover {
-    background: linear-gradient(90deg, #3fdcf7 2.01%, #1890ff 99.51%);
-}
-
-#__docusaurus .example-lineer-gradient-button:hover a {
-    @apply bg-transparent;
-}
-
-#__docusaurus .example-lineer-gradient-button:hover .export-icon {
+#__docusaurus .example-card:hover .gradient-button .export-icon {
     background: #1373cc;
     box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.25);
 }

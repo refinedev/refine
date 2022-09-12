@@ -1,53 +1,52 @@
-import { ShowCases, Examples } from "../types/examples";
+import { Examples } from "../types/examples";
 
-import SvgAntd from "./example-icons/antd";
-import SvgMui from "./example-icons/mui";
-
-export const SHOW_CASES: ShowCases = [
+export const SHOW_CASES: Examples = [
     {
-        title: "Storefront",
+        title: "refine Swag Store",
         description:
-            "A simple customer facing app  built with Refine Headless Refine Headless > Refine Core + Next.js (SSR) + Tailwind CSS",
-        buttons: [
-            {
-                text: "Swag Store",
-                link: "https://store.refine.dev",
-                image: "/examples/swag-store.png",
-                default: true,
-            },
-            {
-                text: "Food Delivery",
-                link: "https://example.refine.dev",
-                image: "/examples/food-delivery.png",
-            },
-        ],
+            "Complete headless e-commerce built on top of Medusa. Features a fully working solution with product listings, shopping cart and checkout.",
+        image: "/examples/swag-store.png",
+        button: {
+            text: "View Demo",
+            link: "https://store.refine.dev",
+        },
     },
     {
-        title: "Admin Panel",
+        title: "Ant Design Admin Panel",
         description:
-            "A simple admin panel for a CMS-like application. Refine Core + Ant Design / Material UI",
-        buttons: [
-            {
-                text: "Ant Design",
-                link: "https://example.admin.refine.dev",
-                image: "/examples/antd-finefoods.png",
-                icon: SvgAntd,
-                default: true,
-            },
-            {
-                text: "Material UI",
-                link: "https://example.mui.admin.refine.dev",
-                image: "/examples/mui-finefoods.png",
-                icon: SvgMui,
-            },
-        ],
+            "Complete admin panel example built with Ant Design. Features authentication, dashboard and 10+ CRUD screens from orders to user management.",
+        image: "/examples/antd-finefoods.png",
+        button: {
+            text: "View Demo",
+            link: "https://example.admin.refine.dev",
+        },
+    },
+    {
+        title: "Finefoods Storefront",
+        description:
+            "Headless storefront example built with Tailwind CSS. Features product listings and a simple shopping cart. Supports SSR with NextJS.",
+        image: "/examples/food-delivery.png",
+        button: {
+            text: "View Demo",
+            link: "https://example.refine.dev",
+        },
+    },
+    {
+        title: "Finefoods Admin Panel [MUI]",
+        description:
+            "Complete admin panel example built with MUI. Features authentication, dashboard and 10+ CRUD screens from orders to user management.",
+        image: "/examples/mui-finefoods.png",
+        button: {
+            text: "View Demo",
+            link: "https://example.mui.admin.refine.dev",
+        },
     },
 ];
 
 export const EXAMPLES: Examples = [
     {
         title: "RealWorld Example",
-        description: `"The mother of all demo apps" - Exemplary fullstack Medium.com clone powered by refine!`,
+        description: `"The mother of all demo apps" - Exemplary fullstack Medium.com clone powered by <strong>refine</strong>!`,
         image: "/examples/real-world.png",
         button: {
             text: "View Demo",
@@ -57,7 +56,7 @@ export const EXAMPLES: Examples = [
     {
         title: "Win95 Style Admin Panel",
         description:
-            "With refine's headless feature, you can include any UI in your project and take full advantage of all its features without worrying about compatibility.",
+            "With <strong>refine</strong>'s headless feature, you can include any UI in your project and take full advantage of all its features without worrying about compatibility.",
         image: "/examples/win95.png",
         button: {
             text: "Read Blog",
@@ -117,7 +116,7 @@ export const EXAMPLES: Examples = [
     {
         title: "Multi-tenancy Example",
         description:
-            "Cake House application using refine and Strapi-v4 and AppWrite.",
+            "Cake House application using <strong>refine</strong> and Strapi-v4 and AppWrite.",
         image: "/examples/multi-tenancy.png",
         button: {
             text: "Read Blog",

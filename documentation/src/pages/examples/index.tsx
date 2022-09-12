@@ -3,7 +3,7 @@ import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 
 import { SHOW_CASES, EXAMPLES } from "../../assets/examples";
-import { ExampleCard, ShowCaseCard } from "../../components/examples";
+import { ExampleCard } from "../../components/examples";
 import { ChevronRight } from "../../components/blog/icons";
 
 const Examples: React.FC = () => {
@@ -22,9 +22,9 @@ const Examples: React.FC = () => {
                     starting point for your next project.
                 </p>
                 <br />
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                     {SHOW_CASES.map((showCase, index) => (
-                        <ShowCaseCard key={index} showCase={showCase} />
+                        <ExampleCard key={index} example={showCase} />
                     ))}
                 </div>
                 <br />
@@ -39,6 +39,7 @@ const Examples: React.FC = () => {
                     <Link
                         to="/docs/examples/tutorial/headless-tutorial"
                         className="flex items-center font-bold uppercase text-inherit"
+                        target="_blank"
                     >
                         See All Examples
                         <ChevronRight />
