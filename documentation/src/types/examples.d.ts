@@ -6,5 +6,6 @@ export type Example = {
         text: string;
         link: string;
     };
+    isExternal?: boolean;
 };
 export type Examples = Example[];

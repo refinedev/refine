@@ -539,10 +539,12 @@ html {
 
 #__docusaurus .example-card:hover {
     box-shadow: 6px 8px 16px rgba(42, 42, 66, 0.4);
+    transform: scale(1.02);
 }
 
 #__docusaurus .example-card:hover img {
-    filter: drop-shadow(0px 0px 16px rgba(49, 192, 250, 0.6));
+    filter: drop-shadow(0px 0px 8px #a7e6ff);
+    transform: scale(1.01);
 }
 
 #__docusaurus .example-card:hover .gradient-button {

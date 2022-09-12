@@ -12,7 +12,7 @@ export const SHOW_CASES: Examples = [
         },
     },
     {
-        title: "Ant Design Admin Panel",
+        title: "Finefoods Admin Panel [ANT DESIGN]",
         description:
             "Complete admin panel example built with Ant Design. Features authentication, dashboard and 10+ CRUD screens from orders to user management.",
         image: "/examples/antd-finefoods.png",
@@ -32,7 +32,7 @@ export const SHOW_CASES: Examples = [
         },
     },
     {
-        title: "Finefoods Admin Panel [MUI]",
+        title: "Finefoods Admin Panel [MATERIAL UI]",
         description:
             "Complete admin panel example built with MUI. Features authentication, dashboard and 10+ CRUD screens from orders to user management.",
         image: "/examples/mui-finefoods.png",
@@ -132,5 +132,6 @@ export const EXAMPLES: Examples = [
             text: "View Demo",
             link: "https://refine-pixels.vercel.app/canvases",
         },
+        isExternal: true,
     },
 ];

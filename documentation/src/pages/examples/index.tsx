@@ -10,6 +10,14 @@ const Examples: React.FC = () => {
     return (
         <Layout>
             <div className="container">
+                <span
+                    className="fixed -left-10 bottom-[20vh] z-10 "
+                    id="leftReward"
+                />
+                <span
+                    className="fixed -right-10 bottom-[20vh] z-10 "
+                    id="rightReward"
+                />
                 <h1 className="font-montserrat my-10 text-center text-5xl font-medium uppercase text-[#1890FF]">
                     Awesome Things <br />{" "}
                     <span className="font-extrabold">
