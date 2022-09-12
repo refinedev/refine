@@ -367,7 +367,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 src="/landing/no-constraints/custom-ui.png"
                                             />
                                             <motion.div
-                                                className="bg-white text-[34px] leading-[34px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#2A2A42] absolute right-[100px] bottom-[50px]"
+                                                className="bg-white text-[22px] leading-[22px] lg:text-[34px] lg:leading-[34px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#2A2A42] absolute right-[70px] bottom-[60px] lg:right-[100px] lg:bottom-[50px]"
                                                 animate={{
                                                     rotateY: ["10deg", "17deg"],
                                                     rotateX: [
@@ -435,7 +435,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 src="/landing/no-constraints/custom-ui-2.png"
                                             />
                                             <motion.div
-                                                className="bg-white text-[34px] leading-[34px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#2A2A42] absolute right-[100px] bottom-[50px]"
+                                                className="bg-white text-[22px] leading-[22px] lg:text-[34px] lg:leading-[34px]  py-0.5 px-1.5 font-montserrat font-extrabold text-[#2A2A42] absolute right-[100px] bottom-[50px]"
                                                 animate={{
                                                     rotateY: ["10deg", "17deg"],
                                                     rotateX: [
@@ -517,7 +517,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 }}
                                             >
                                                 <div
-                                                    className="bg-white text-[28px] leading-[28px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#2EBBFB]"
+                                                    className="bg-white text-[22px] leading-[22px] lg:text-[28px] lg:leading-[28px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#2EBBFB]"
                                                     style={{
                                                         boxShadow:
                                                             "6px 8px 16px rgba(42, 42, 66, 0.2)",
@@ -526,7 +526,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     ANT DESIGN
                                                 </div>
                                                 <div
-                                                    className="bg-white text-[28px] leading-[28px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#247EF8]"
+                                                    className="bg-white text-[22px] leading-[22px] lg:text-[28px] lg:leading-[28px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#247EF8]"
                                                     style={{
                                                         boxShadow:
                                                             "6px 8px 16px rgba(42, 42, 66, 0.2)",
@@ -675,7 +675,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 src="/landing/no-constraints/custom-ui-2.png"
                                             />
                                             <motion.div
-                                                className="bg-white text-[34px] leading-[34px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#2A2A42] absolute right-[60px] bottom-[50px]"
+                                                className="bg-white text-[22px] leading-[22px] lg:text-[34px] lg:leading-[34px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#2A2A42] absolute right-[70px] bottom-[60px]"
                                                 animate={{
                                                     rotateY: ["10deg", "17deg"],
                                                     rotateX: [
@@ -752,7 +752,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 src="/landing/no-constraints/custom-ui-3.png"
                                             />
                                             <motion.div
-                                                className="absolute right-[30px] bottom-[50px] flex gap-2 z-10 flex-col"
+                                                className="absolute right-[50px] bottom-[50px] flex gap-2 z-10 flex-col"
                                                 animate={{
                                                     rotateY: ["10deg", "17deg"],
                                                     rotateX: [
@@ -772,7 +772,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 style={{}}
                                             >
                                                 <div
-                                                    className="bg-white text-[28px] leading-[28px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#2EBBFB]"
+                                                    className="bg-white text-[22px] leading-[22px] lg:text-[28px] lg:leading-[28px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#2EBBFB]"
                                                     style={{
                                                         boxShadow:
                                                             "6px 8px 16px rgba(42, 42, 66, 0.2)",
@@ -781,7 +781,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     ANT DESIGN
                                                 </div>
                                                 <div
-                                                    className="bg-white text-[28px] leading-[28px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#247EF8]"
+                                                    className="bg-white text-[22px] leading-[22px] lg:text-[28px] lg:leading-[28px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#247EF8]"
                                                     style={{
                                                         boxShadow:
                                                             "6px 8px 16px rgba(42, 42, 66, 0.2)",
