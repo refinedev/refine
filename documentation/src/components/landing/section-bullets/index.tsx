@@ -130,18 +130,18 @@ export const SectionBullets = () => {
                 >
                     <div className="flex w-full flex-col gap-6 justify-center">
                         <div className="grid grid-cols-6 gap-4 lg:gap-6 place-items-center lg:place-items-start">
-                            <div className="col-span-3 lg:col-span-2 h-full flex">
+                            <div className="col-span-3 lg:col-span-2 h-full flex w-full">
                                 <motion.div
-                                    animate={
+                                    /* animate={
                                         lg ? { scale: [1, 1.02] } : { scale: 1 }
-                                    }
+                                    } */
                                     transition={{
                                         repeat: Infinity,
                                         repeatType: "reverse",
                                         duration: 2,
                                         delay: 0,
                                     }}
-                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex-col lg:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
+                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex flex-col md:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
                                 >
                                     <div className="flex justify-center mb-4 lg:mb-0 lg:block">
                                         <BenefitIcons.ChronoIcon className="h-[36px] lg:h-[50px]" />
@@ -157,18 +157,18 @@ export const SectionBullets = () => {
                                     </div>
                                 </motion.div>
                             </div>
-                            <div className="col-span-3 lg:col-span-2 h-full flex">
+                            <div className="col-span-3 lg:col-span-2 h-full flex w-full">
                                 <motion.div
-                                    animate={
+                                    /* animate={
                                         lg ? { scale: [1, 1.02] } : { scale: 1 }
-                                    }
+                                    } */
                                     transition={{
                                         repeat: Infinity,
                                         repeatType: "reverse",
                                         duration: 2,
                                         delay: 0.5,
                                     }}
-                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex-col lg:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
+                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex flex-col md:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
                                 >
                                     <div className="flex-shrink-0 flex justify-center mb-4 lg:mb-0 lg:block">
                                         <BenefitIcons.SsrIcon className="h-[36px] lg:h-[50px]" />
@@ -187,18 +187,18 @@ export const SectionBullets = () => {
                                     </div>
                                 </motion.div>
                             </div>
-                            <div className="col-span-3 lg:col-span-2 h-full flex">
+                            <div className="col-span-3 lg:col-span-2 h-full flex w-full">
                                 <motion.div
-                                    animate={
+                                    /* animate={
                                         lg ? { scale: [1, 1.02] } : { scale: 1 }
-                                    }
+                                    } */
                                     transition={{
                                         repeat: Infinity,
                                         repeatType: "reverse",
                                         duration: 2,
                                         delay: 1,
                                     }}
-                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex-col lg:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
+                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex flex-col md:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
                                 >
                                     <div className="flex justify-center mb-4 lg:mb-0 lg:block">
                                         <BenefitIcons.ReactIcon className="h-[36px] lg:h-[50px]" />
@@ -219,18 +219,18 @@ export const SectionBullets = () => {
                                     </div>
                                 </motion.div>
                             </div>
-                            <div className="col-span-3 lg:col-span-2 h-full flex">
+                            <div className="col-span-3 lg:col-span-2 h-full flex w-full">
                                 <motion.div
-                                    animate={
+                                    /* animate={
                                         lg ? { scale: [1, 1.02] } : { scale: 1 }
-                                    }
+                                    } */
                                     transition={{
                                         repeat: Infinity,
                                         repeatType: "reverse",
                                         duration: 2,
                                         delay: 1.5,
                                     }}
-                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex-col lg:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
+                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex flex-col md:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
                                 >
                                     <div className="flex justify-center mb-4 lg:mb-0 lg:block">
                                         <BenefitIcons.RouteIcon className="h-[36px] lg:h-[50px]" />
@@ -244,18 +244,18 @@ export const SectionBullets = () => {
                                     </div>
                                 </motion.div>
                             </div>
-                            <div className="col-span-3 lg:col-span-2 h-full flex">
+                            <div className="col-span-3 lg:col-span-2 h-full flex w-full">
                                 <motion.div
-                                    animate={
+                                    /* animate={
                                         lg ? { scale: [1, 1.02] } : { scale: 1 }
-                                    }
+                                    } */
                                     transition={{
                                         repeat: Infinity,
                                         repeatType: "reverse",
                                         duration: 2,
                                         delay: 2,
                                     }}
-                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex-col lg:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
+                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex flex-col md:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
                                 >
                                     <div className="flex justify-center mb-4 lg:mb-0 lg:block">
                                         <BenefitIcons.AuthIcon className="h-[36px] lg:h-[50px]" />
@@ -273,18 +273,18 @@ export const SectionBullets = () => {
                                     </div>
                                 </motion.div>
                             </div>
-                            <div className="col-span-3 lg:col-span-2 h-full flex">
+                            <div className="col-span-3 lg:col-span-2 h-full flex w-full">
                                 <motion.div
-                                    animate={
+                                    /* animate={
                                         lg ? { scale: [1, 1.02] } : { scale: 1 }
-                                    }
+                                    } */
                                     transition={{
                                         repeat: Infinity,
                                         repeatType: "reverse",
                                         duration: 2,
                                         delay: 2.5,
                                     }}
-                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex-col lg:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
+                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex flex-col md:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
                                 >
                                     <div className="flex justify-center mb-4 lg:mb-0 lg:block">
                                         <BenefitIcons.RealtimeIcon className="h-[36px] lg:h-[50px]" />
@@ -297,18 +297,18 @@ export const SectionBullets = () => {
                                     </div>
                                 </motion.div>
                             </div>
-                            <div className="col-span-3 lg:col-span-2 h-full flex">
+                            <div className="col-span-3 lg:col-span-2 lg:col-start-2 h-full flex w-full">
                                 <motion.div
-                                    animate={
+                                    /* animate={
                                         lg ? { scale: [1, 1.02] } : { scale: 1 }
-                                    }
+                                    } */
                                     transition={{
                                         repeat: Infinity,
                                         repeatType: "reverse",
                                         duration: 2,
                                         delay: 3,
                                     }}
-                                    className="col-span-3 lg:col-span-2 lg:col-start-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex-col lg:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
+                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex flex-col md:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
                                 >
                                     <div className="flex justify-center mb-4 lg:mb-0 lg:block">
                                         <BenefitIcons.AuditIcon className="h-[36px] lg:h-[50px]" />
@@ -325,18 +325,18 @@ export const SectionBullets = () => {
                                     </div>
                                 </motion.div>
                             </div>
-                            <div className="col-span-3 lg:col-span-2 h-full flex">
+                            <div className="col-span-3 lg:col-span-2 h-full flex w-full">
                                 <motion.div
-                                    animate={
+                                    /* animate={
                                         lg ? { scale: [1, 1.02] } : { scale: 1 }
-                                    }
+                                    } */
                                     transition={{
                                         repeat: Infinity,
                                         repeatType: "reverse",
                                         duration: 2,
                                         delay: 3.5,
                                     }}
-                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex-col lg:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
+                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex flex-col md:flex-row gap-6 items-center justify-between w-full lg:w-auto max-w-[400px]"
                                 >
                                     <div className="flex justify-center mb-4 lg:mb-0 lg:block">
                                         <BenefitIcons.GlobalIcon className="h-[36px] lg:h-[50px]" />
