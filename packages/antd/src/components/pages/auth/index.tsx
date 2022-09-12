@@ -12,16 +12,14 @@ import {
 export type AuthProps = RefineAuthPageProps<LayoutProps, CardProps>;
 
 /**
- * **refine** has a default auth page form which is served on `/login` route when the `authProvider` configuration is provided.
+ * **refine** has a default auth page form served on the `/login` route when the `authProvider` configuration is provided.
  *
- * @see {@link https://refine.dev/docs/api-references/components/refine-config#authpage} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/authpage/} for more details.
  */
 export const AuthPage: React.FC<AuthProps> = (props) => {
     const { type } = props;
     const renderView = () => {
         switch (type) {
-            case "login":
-                return <LoginPage {...props} />;
             case "register":
                 return <RegisterPage {...props} />;
             case "resetPassword":
