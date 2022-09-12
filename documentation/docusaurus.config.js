@@ -155,11 +155,11 @@ const siteConfig = {
                     label: "Enterprise",
                     position: "left",
                 },
-                {
-                    type: "docsVersionDropdown",
-                    position: "right",
-                    dropdownActiveClassDisabled: true,
-                },
+                // {
+                //     type: "docsVersionDropdown",
+                //     position: "right",
+                //     dropdownActiveClassDisabled: true,
+                // },
                 {
                     href: "https://github.com/pankod/refine",
                     position: "right",
