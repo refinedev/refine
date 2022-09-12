@@ -31,7 +31,7 @@ export type RefineAuthPageProps<
           type: "updatePassword";
       }>
 ) & {
-    submitButton?: React.ReactNode;
+    onSubmit?: (formValues: any) => void;
     wrapperProps?: TWrapperProps;
     contentProps?: TContentProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;
@@ -52,7 +52,7 @@ type IProvider = {
         TContentProps extends {} = Record<keyof any, unknown>,
     > = PropsWithChildren<{
         providers?: IProvider[];
-        submitButton?: React.ReactNode;
+        onSubmit?: (formValues: any) => void;
         registerLink?: React.ReactNode;
         resetPasswordLink?: React.ReactNode;
         rememberMe?: React.ReactNode;
@@ -69,7 +69,7 @@ type IProvider = {
         TWrapperProps extends {} = Record<keyof any, unknown>,
         TContentProps extends {} = Record<keyof any, unknown>,
     > = PropsWithChildren<{
-        submitButton?: React.ReactNode;
+        onSubmit?: (formValues: any) => void;
         loginLink?: React.ReactNode;
         wrapperProps?: TWrapperProps;
         renderContent?: (content: React.ReactNode) => React.ReactNode;
@@ -84,7 +84,7 @@ type IProvider = {
         TWrapperProps extends {} = Record<keyof any, unknown>,
         TContentProps extends {} = Record<keyof any, unknown>,
     > = PropsWithChildren<{
-        submitButton?: React.ReactNode;
+        onSubmit?: (formValues: any) => void;
         loginLink?: React.ReactNode;
         wrapperProps?: TWrapperProps;
         renderContent?: (content: React.ReactNode) => React.ReactNode;
@@ -99,7 +99,7 @@ type IProvider = {
         TWrapperProps extends {} = Record<keyof any, unknown>,
         TContentProps extends {} = Record<keyof any, unknown>,
     > = PropsWithChildren<{
-        submitButton?: React.ReactNode;
+        onSubmit?: (formValues: any) => void;
         wrapperProps?: TWrapperProps;
         renderContent?: (content: React.ReactNode) => React.ReactNode;
         contentProps?: TContentProps;
