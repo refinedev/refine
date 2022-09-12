@@ -2,42 +2,42 @@ import { Examples } from "../types/examples";
 
 export const SHOW_CASES: Examples = [
     {
-        title: "refine Swag Store",
+        title: "refine SWAG STORE",
         description:
-            "Complete headless e-commerce built on top of Medusa. Features a fully working solution with product listings, shopping cart and checkout.",
+            "COMPLETE HEADLESS E-COMMERCE BUILT ON TOP OF MEDUSA. FEATURES A FULLY WORKING SOLUTION WITH PRODUCT LISTINGS, SHOPPING CART AND CHECKOUT.",
         image: "/examples/swag-store.png",
         button: {
-            text: "View Demo",
+            text: "VIEW DEMO",
             link: "https://store.refine.dev",
         },
     },
     {
-        title: "Finefoods Admin Panel [ANT DESIGN]",
+        title: "FINEFOODS ADMIN PANEL [ANT DESIGN]",
         description:
-            "Complete admin panel example built with Ant Design. Features authentication, dashboard and 10+ CRUD screens from orders to user management.",
+            "COMPLETE ADMIN PANEL EXAMPLE BUILT WITH ANT DESIGN. FEATURES AUTHENTICATION, DASHBOARD AND 10+ CRUD SCREENS FROM ORDERS TO USER MANAGEMENT.",
         image: "/examples/antd-finefoods.png",
         button: {
-            text: "View Demo",
+            text: "VIEW DEMO",
             link: "https://example.admin.refine.dev",
         },
     },
     {
-        title: "Finefoods Storefront",
+        title: "FINEFOODS STOREFRONT",
         description:
-            "Headless storefront example built with Tailwind CSS. Features product listings and a simple shopping cart. Supports SSR with NextJS.",
+            "HEADLESS STOREFRONT EXAMPLE BUILT WITH TAILWIND CSS. FEATURES PRODUCT LISTINGS AND A SIMPLE SHOPPING CART. SUPPORTS SSR WITH NEXTJS.",
         image: "/examples/food-delivery.png",
         button: {
-            text: "View Demo",
+            text: "VIEW DEMO",
             link: "https://example.refine.dev",
         },
     },
     {
-        title: "Finefoods Admin Panel [MATERIAL UI]",
+        title: "FINEFOODS ADMIN PANEL [MATERIAL UI]",
         description:
-            "Complete admin panel example built with MUI. Features authentication, dashboard and 10+ CRUD screens from orders to user management.",
+            "COMPLETE ADMIN PANEL EXAMPLE BUILT WITH MUI. FEATURES AUTHENTICATION, DASHBOARD AND 10+ CRUD SCREENS FROM ORDERS TO USER MANAGEMENT.",
         image: "/examples/mui-finefoods.png",
         button: {
-            text: "View Demo",
+            text: "VIEW DEMO",
             link: "https://example.mui.admin.refine.dev",
         },
     },
@@ -45,91 +45,91 @@ export const SHOW_CASES: Examples = [
 
 export const EXAMPLES: Examples = [
     {
-        title: "RealWorld Example",
-        description: `"The mother of all demo apps" - Exemplary fullstack Medium.com clone powered by <strong>refine</strong>!`,
+        title: "REALWORLD EXAMPLE",
+        description: `"THE MOTHER OF ALL DEMO APPS" - EXEMPLARY FULLSTACK MEDIUM.COM CLONE POWERED BY <strong>refine</strong>!`,
         image: "/examples/real-world.png",
         button: {
-            text: "View Demo",
+            text: "VIEW DEMO",
             link: "https://refine.dev/docs/examples/real-world-refine-example",
         },
     },
     {
-        title: "Win95 Style Admin Panel",
+        title: "WIN95 STYLE ADMIN PANEL",
         description:
-            "With <strong>refine</strong>'s headless feature, you can include any UI in your project and take full advantage of all its features without worrying about compatibility.",
+            "WITH <strong>refine</strong>'S HEADLESS FEATURE, YOU CAN INCLUDE ANY UI IN YOUR PROJECT AND TAKE FULL ADVANTAGE OF ALL ITS FEATURES WITHOUT WORRYING ABOUT COMPATIBILITY.",
         image: "/examples/win95.png",
         button: {
-            text: "Read Blog",
+            text: "READ BLOG",
             link: "https://refine.dev/blog/awesome-react-windows95-ui-with-refine",
         },
     },
     {
-        title: "Invoice Generator App",
+        title: "INVOICE GENERATOR APP",
         description:
-            "You can develop any web application or admin panel you want in a very short time with <strong>refine</strong> like an invoice app.",
+            "YOU CAN DEVELOP ANY WEB APPLICATION OR ADMIN PANEL YOU WANT IN A VERY SHORT TIME WITH <strong>refine</strong> LIKE AN INVOICE APP.",
         image: "/examples/invoice-generator.png",
         button: {
-            text: "Read Blog",
+            text: "READ BLOG",
             link: "https://refine.dev/blog/awesome-react-windows95-ui-with-refine",
         },
     },
     {
-        title: "Refeedback!",
+        title: "REFEEDBACK!",
         description:
-            "Feedback Admin Panel with Strapi & Ant Design & <strong>refine</strong>",
+            "FEEDBACK ADMIN PANEL WITH STRAPI & ANT DESIGN & <strong>refine</strong>",
         image: "/examples/refeedback.png",
         button: {
-            text: "Read Blog",
+            text: "READ BLOG",
             link: "https://refine.dev/blog/create-a-feedback-admin-panel-with-refine-and-strapi",
         },
     },
     {
-        title: "E-mail Subscription Panel",
+        title: "E-MAIL SUBSCRIPTION PANEL",
         description:
-            "A web application that allows you to quickly create subscribers and send emails to your subscribers in a simple way.",
+            "A WEB APPLICATION THAT ALLOWS YOU TO QUICKLY CREATE SUBSCRIBERS AND SEND EMAILS TO YOUR SUBSCRIBERS IN A SIMPLE WAY.",
         image: "/examples/email-subscription.png",
         button: {
-            text: "Read Blog",
+            text: "READ BLOG",
             link: "https://refine.dev/blog/e-mail-subscription-panel-with-refine",
         },
     },
     {
-        title: "Internal Issue Tracker",
+        title: "INTERNAL ISSUE TRACKER",
         description:
-            "A web application to create issue and tasks for your team members also priotize, tag and assign.",
+            "A WEB APPLICATION TO CREATE ISSUE AND TASKS FOR YOUR TEAM MEMBERS ALSO PRIOTIZE, TAG AND ASSIGN.",
         image: "/examples/issue-tracker.png",
         button: {
-            text: "Read Blog",
+            text: "READ BLOG",
             link: "https://refine.dev/blog/customizable-issue-tracker-with-refine-and-supabase",
         },
     },
     {
-        title: "Next.js E-commerce App",
+        title: "NEXT.JS E-COMMERCE APP",
         description:
-            "An e-commerce client developed with Strapi & Chakra UI & <strong>refine</strong>",
+            "AN E-COMMERCE CLIENT DEVELOPED WITH STRAPI & CHAKRA UI & <strong>refine</strong>",
         image: "/examples/nextjs-ecommerce.png",
         button: {
-            text: "Read Blog",
+            text: "READ BLOG",
             link: "https://refine.dev/blog/handcrafted-nextjs-e-commerce-app-tutorial-strapi-chakra-ui",
         },
     },
     {
-        title: "Multi-tenancy Example",
+        title: "MULTI-TENANCY EXAMPLE",
         description:
-            "Cake House application using <strong>refine</strong> and Strapi-v4 and AppWrite.",
+            "CAKE HOUSE APPLICATION USING <strong>refine</strong> AND STRAPI-V4 AND APPWRITE.",
         image: "/examples/multi-tenancy.png",
         button: {
-            text: "Read Blog",
+            text: "READ BLOG",
             link: "https://refine.dev/docs/guides-and-concepts/multi-tenancy/appwrite",
         },
     },
     {
-        title: "Refine Pixels!",
+        title: "refine PIXELS!",
         description:
-            "Our internal hackathon winner by  Ali Emir Şen. He used Supabase as a db and real-time API and it worked in perfect harmony with <strong>refine</strong>.",
+            "OUR INTERNAL HACKATHON WINNER BY  ALI EMIR ŞEN. HE USED SUPABASE AS A DB AND REAL-TIME API AND IT WORKED IN PERFECT HARMONY WITH <strong>refine</strong>.",
         image: "/examples/refine-pixels.png",
         button: {
-            text: "View Demo",
+            text: "VIEW DEMO",
             link: "https://refine-pixels.vercel.app/canvases",
         },
         isExternal: true,

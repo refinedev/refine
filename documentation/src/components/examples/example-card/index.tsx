@@ -42,7 +42,7 @@ export const ExampleCard: React.FC<ExampleCardProps> = ({ example }) => {
         <div className="example-card flex flex-col justify-between rounded-[10px] p-4 transition duration-150">
             <div>
                 <Link className="text-inherit" to={button.link}>
-                    <h2 className="font-montserrat uppercase">{title}</h2>
+                    <h2 className="font-montserrat">{title}</h2>
                 </Link>
                 <p
                     dangerouslySetInnerHTML={{
@@ -74,7 +74,7 @@ export const ExampleCard: React.FC<ExampleCardProps> = ({ example }) => {
                         </button>
                     )}
                     <Link to={button.link} className="no-underline">
-                        <button className="gradient-button color-[#9696B4] font-montserrat flex cursor-pointer items-center gap-2 rounded-full border border-solid border-[#F0F2F5] bg-[#F6F6F9] px-3 py-2 font-bold uppercase transition duration-150 hover:text-white">
+                        <button className="gradient-button color-[#9696B4] font-montserrat flex cursor-pointer items-center gap-2 rounded-full border border-solid border-[#F0F2F5] bg-[#F6F6F9] px-3 py-2 font-bold transition duration-150 hover:text-white">
                             {button.text}
                             <div className="export-icon flex h-6 w-6 items-center justify-center rounded-full bg-white text-inherit">
                                 <IoMdOpen />
