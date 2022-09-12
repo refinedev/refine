@@ -57,6 +57,10 @@ export type {
     RefineLoginPageProps,
     RefineResetPasswordPageProps,
     RefineUpdatePasswordPageProps,
+    RefineUpdatePasswordFormTypes,
+    RefineLoginFormTypes,
+    RefineRegisterFormTypes,
+    RefineResetPasswordFormTypes,
 } from "./types";
 
 export { RefineButtonTestIds } from "./ids";

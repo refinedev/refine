@@ -6,9 +6,26 @@ export type IProvider = {
     label?: string;
 };
 
-export type ContentProps = {
-    Content?: React.FC;
-};
+export interface RefineLoginFormTypes {
+    email?: string;
+    password?: string;
+    remember?: boolean;
+    providerName?: string;
+}
+
+export interface RefineRegisterFormTypes {
+    email?: string;
+    password?: string;
+}
+
+export interface RefineResetPasswordFormTypes {
+    email: string;
+}
+
+export interface RefineUpdatePasswordFormTypes {
+    password?: string;
+    confirmPassword?: string;
+}
 
 /**
  * This should be the base type for `AuthPage` component implementations in UI integrations.
@@ -44,6 +61,11 @@ export type RefineAuthPageProps<
            * @optional
            */
           rememberMe?: React.ReactNode;
+          /**
+           * @description Custom submit function for the form. Trigger after submitting the form.
+           * @optional
+           */
+          onSubmit?: (formValues: RefineLoginFormTypes) => void;
       }>
     | PropsWithChildren<{
           /**
@@ -61,6 +83,11 @@ export type RefineAuthPageProps<
            * @optional
            */
           updatePasswordLink?: React.ReactNode;
+          /**
+           * @description Custom submit function for the form. Trigger after submitting the form.
+           * @optional
+           */
+          onSubmit?: (formValues: RefineRegisterFormTypes) => void;
       }>
     | PropsWithChildren<{
           /**
@@ -73,6 +100,11 @@ export type RefineAuthPageProps<
            * @optional
            */
           loginLink?: React.ReactNode;
+          /**
+           * @description Custom submit function for the form. Trigger after submitting the form.
+           * @optional
+           */
+          onSubmit?: (formValues: RefineResetPasswordFormTypes) => void;
       }>
     | PropsWithChildren<{
           /**
@@ -80,13 +112,13 @@ export type RefineAuthPageProps<
            * @optional
            */
           type: "updatePassword";
+          /**
+           * @description Custom submit function for the form. Trigger after submitting the form.
+           * @optional
+           */
+          onSubmit?: (formValues: RefineUpdatePasswordFormTypes) => void;
       }>
 ) & {
-    /**
-     * @description Custom submit function for the form. Trigger after submitting the form.
-     * @optional
-     */
-    onSubmit?: (formValues: any) => void;
     /**
      * @description The props that will be passed to the wrapper component.
      * @optional
@@ -112,7 +144,7 @@ export type RefineLoginPageProps<
     TContentProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
     providers?: IProvider[];
-    onSubmit?: (formValues: any) => void;
+    onSubmit?: (formValues: RefineLoginFormTypes) => void;
     registerLink?: React.ReactNode;
     resetPasswordLink?: React.ReactNode;
     rememberMe?: React.ReactNode;
@@ -127,9 +159,8 @@ export type RefineLoginPageProps<
 export type RefineRegisterPageProps<
     TWrapperProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
-    TFormProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
-    onSubmit?: (formValues: TFormProps | any) => void;
+    onSubmit?: (formValues: RefineRegisterFormTypes) => void;
     loginLink?: React.ReactNode;
     wrapperProps?: TWrapperProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;
@@ -143,7 +174,7 @@ export type RefineResetPasswordPageProps<
     TWrapperProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
-    onSubmit?: (formValues: any) => void;
+    onSubmit?: (formValues: RefineResetPasswordFormTypes) => void;
     loginLink?: React.ReactNode;
     wrapperProps?: TWrapperProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;
@@ -157,7 +188,7 @@ export type RefineUpdatePasswordPageProps<
     TWrapperProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
-    onSubmit?: (formValues: any) => void;
+    onSubmit?: (formValues: RefineUpdatePasswordFormTypes) => void;
     wrapperProps?: TWrapperProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;
     contentProps?: TContentProps;
