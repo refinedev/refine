@@ -107,7 +107,7 @@ export const EXAMPLES: Examples = [
         title: "Next.js E-commerce App",
         description:
             "An e-commerce client developed with Strapi & Chakra UI & <strong>refine</strong>",
-        image: "/examples/issue-tracker.png",
+        image: "/examples/nextjs-ecommerce.png",
         button: {
             text: "Read Blog",
             link: "https://refine.dev/blog/handcrafted-nextjs-e-commerce-app-tutorial-strapi-chakra-ui",
