@@ -64,7 +64,7 @@ const App: React.FC = () => {
 
 render(
     <RefineAntdDemo
-        Layout={({ children, Footer, OffLayoutArea }) => (
+        Layout={({ children, Sider }) => (
             <AntdLayout>
                 <Sider
                     render={({ items }) => {
