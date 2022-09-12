@@ -57,13 +57,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             <Form<RefineRegisterFormTypes>
                 layout="vertical"
                 form={form}
-                onFinish={(values) => {
-                    if (onSubmit) {
-                        onSubmit(values);
-                    } else {
-                        register(values);
-                    }
-                }}
+                onFinish={(values) => (onSubmit ?? register)(values)}
                 requiredMark={false}
             >
                 <Form.Item

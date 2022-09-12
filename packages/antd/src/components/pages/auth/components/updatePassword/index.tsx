@@ -50,13 +50,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
             <Form<RefineUpdatePasswordFormTypes>
                 layout="vertical"
                 form={form}
-                onFinish={(values) => {
-                    if (onSubmit) {
-                        onSubmit(values);
-                    } else {
-                        updatePassword(values);
-                    }
-                }}
+                onFinish={(values) => (onSubmit ?? updatePassword)(values)}
                 requiredMark={false}
             >
                 <Form.Item

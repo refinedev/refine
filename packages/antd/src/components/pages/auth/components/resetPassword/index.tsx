@@ -57,13 +57,7 @@ export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
             <Form<RefineResetPasswordFormTypes>
                 layout="vertical"
                 form={form}
-                onFinish={(values) => {
-                    if (onSubmit) {
-                        onSubmit(values);
-                    } else {
-                        resetPassword(values);
-                    }
-                }}
+                onFinish={(values) => (onSubmit ?? resetPassword)(values)}
                 requiredMark={false}
             >
                 <Form.Item

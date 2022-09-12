@@ -98,13 +98,7 @@ export const LoginPage: React.FC<LoginProps> = ({
             <Form<RefineLoginFormTypes>
                 layout="vertical"
                 form={form}
-                onFinish={(values) => {
-                    if (onSubmit) {
-                        onSubmit(values);
-                    } else {
-                        login(values);
-                    }
-                }}
+                onFinish={(values) => (onSubmit ?? login)(values)}
                 requiredMark={false}
                 initialValues={{
                     remember: false,
