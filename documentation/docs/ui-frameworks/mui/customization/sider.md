@@ -66,7 +66,7 @@ const App: React.FC = () => {
 
 ## Recreating the Default Sider Menu
 
-You can also customize your Sider component by creating the `Custom Sider` component.
+You can also customize your Sider component by creating the `CustomSider` component.
 
 When you examine the code of the livepreview example below, you will see the same code that we used for the `default sider` component. You can create a customized `CustomSider` component for yourself by following this code.
 
