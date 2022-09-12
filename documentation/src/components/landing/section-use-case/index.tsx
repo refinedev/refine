@@ -149,15 +149,18 @@ export const SectionUseCase: React.FC = () => {
                                     ENGINEER.
                                 </div>
                             </div>
-                            <button
-                                className="appearance-none rounded-lg h-12 w-full max-w-[270px] bg-gradient-to-r from-[#47EBF5] to-[#1890FF] font-montserrat font-bold text-xl border-0 text-white"
+                            <a
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                href="https://calendly.com/d/cmk-5gb-b2p/meet-refine"
+                                className="appearance-none inline-block rounded-lg h-12 w-full max-w-[270px] bg-gradient-to-r from-[#47EBF5] to-[#1890FF] font-montserrat font-bold text-xl border-0 text-white"
                                 style={{
                                     boxShadow:
                                         "6px 8px 16px 0 rgba(42, 42, 66, 0.4)",
                                 }}
                             >
                                 Book a session
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
