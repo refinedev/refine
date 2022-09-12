@@ -180,7 +180,7 @@ const siteConfig = {
         footer: {
             logo: {
                 alt: "refine",
-                src: "img/refine_logo.png",
+                src: "/img/refine_logo.png",
             },
             links: [
                 {
