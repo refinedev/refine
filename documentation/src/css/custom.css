@@ -639,3 +639,7 @@ html {
 
 /* #__docusaurus .navbar-sidebar__items.navbar-sidebar__items--show-secondary {
 } */
+
+html[data-page="index"] #__docusaurus .navbar__item.dropdown.dropdown--hoverable.dropdown--right {
+    display: none;
+}
