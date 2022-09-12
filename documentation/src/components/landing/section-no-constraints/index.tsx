@@ -11,6 +11,7 @@ import {
     BackendIcons,
     RefineAnimatedBgIcon,
     GraySocialIcons,
+    SmallSocialIcons,
 } from "../icons";
 import { CountingNumber } from "../counting-number";
 import { useTWBreakpoints } from "../../../hooks/use-tw-breakpoints";
@@ -1152,8 +1153,14 @@ export const SectionNoConstraints: React.FC = () => {
                                                 }
                                                 className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
                                             >
-                                                <div className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] text-center">
-                                                    &times;
+                                                <div
+                                                    style={{
+                                                        boxShadow:
+                                                            "inset 2px 4px 6px 0 rgba(0, 0, 0, 0.3)",
+                                                    }}
+                                                    className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] flex justify-center items-center pl-px pt-1"
+                                                >
+                                                    <SmallSocialIcons.GithubIcon />
                                                 </div>
                                                 <div className="font-montserrat font-black text-6xl leading-[1.1] text-center">
                                                     <CountingNumber to={63} />
@@ -1183,8 +1190,14 @@ export const SectionNoConstraints: React.FC = () => {
                                                 }
                                                 className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
                                             >
-                                                <div className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] text-center">
-                                                    &times;
+                                                <div
+                                                    style={{
+                                                        boxShadow:
+                                                            "inset 2px 4px 6px 0 rgba(0, 0, 0, 0.3)",
+                                                    }}
+                                                    className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] flex justify-center items-center pl-px pt-1"
+                                                >
+                                                    <SmallSocialIcons.GithubIcon />
                                                 </div>
                                                 <div className="font-montserrat font-black text-6xl leading-[1.1] text-center">
                                                     <CountingNumber to={1600} />
@@ -1215,8 +1228,14 @@ export const SectionNoConstraints: React.FC = () => {
                                                 }
                                                 className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
                                             >
-                                                <div className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] text-center">
-                                                    &times;
+                                                <div
+                                                    style={{
+                                                        boxShadow:
+                                                            "inset 2px 4px 6px 0 rgba(0, 0, 0, 0.3)",
+                                                    }}
+                                                    className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] flex justify-center items-center pl-px pt-1"
+                                                >
+                                                    <SmallSocialIcons.GithubIcon />
                                                 </div>
                                                 <div className="font-montserrat font-black text-6xl leading-[1.1] text-center">
                                                     <CountingNumber to={2500} />
@@ -1247,8 +1266,14 @@ export const SectionNoConstraints: React.FC = () => {
                                                 }
                                                 className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
                                             >
-                                                <div className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] text-center">
-                                                    &times;
+                                                <div
+                                                    style={{
+                                                        boxShadow:
+                                                            "inset 2px 4px 6px 0 rgba(0, 0, 0, 0.3)",
+                                                    }}
+                                                    className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] flex justify-center items-center pl-px pt-1"
+                                                >
+                                                    <SmallSocialIcons.DiscordIcon />
                                                 </div>
                                                 <div className="font-montserrat font-black text-6xl leading-[1.1] text-center">
                                                     <CountingNumber to={300} />+
@@ -1278,8 +1303,14 @@ export const SectionNoConstraints: React.FC = () => {
                                                 }
                                                 className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
                                             >
-                                                <div className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] text-center">
-                                                    &times;
+                                                <div
+                                                    style={{
+                                                        boxShadow:
+                                                            "inset 2px 4px 6px 0 rgba(0, 0, 0, 0.3)",
+                                                    }}
+                                                    className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] flex justify-center items-center pl-px pt-1"
+                                                >
+                                                    <SmallSocialIcons.TwitterIcon />
                                                 </div>
                                                 <div className="font-montserrat font-black text-6xl leading-[1.1] text-center">
                                                     <CountingNumber to={650} />+
@@ -1309,8 +1340,14 @@ export const SectionNoConstraints: React.FC = () => {
                                                 }
                                                 className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
                                             >
-                                                <div className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] text-center">
-                                                    &times;
+                                                <div
+                                                    style={{
+                                                        boxShadow:
+                                                            "inset 2px 4px 6px 0 rgba(0, 0, 0, 0.3)",
+                                                    }}
+                                                    className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] flex justify-center items-center pl-px pt-px"
+                                                >
+                                                    <SmallSocialIcons.LikeIcon />
                                                 </div>
                                                 <div className="font-montserrat font-bold text-xl text-center pb-4">
                                                     Come to our side
