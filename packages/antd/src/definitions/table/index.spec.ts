@@ -126,6 +126,43 @@ describe("definitions/table", () => {
         `);
     });
 
+    it("mapAntdSorterToCrudSorting for nested columnKey and field", () => {
+        expect(
+            mapAntdSorterToCrudSorting([
+                {
+                    columnKey: "category.title",
+                    field: "title",
+                    order: "ascend",
+                    column: {
+                        sorter: {
+                            multiple: 1,
+                        },
+                    },
+                },
+                {
+                    field: ["version", "title"],
+                    order: "descend",
+                    column: {
+                        sorter: {
+                            multiple: 2,
+                        },
+                    },
+                },
+            ]),
+        ).toMatchInlineSnapshot(`
+            Array [
+              Object {
+                "field": "category.title",
+                "order": "asc",
+              },
+              Object {
+                "field": "version.title",
+                "order": "desc",
+              },
+            ]
+        `);
+    });
+
     it("mapAntdFilterToCrudFilter", () => {
         expect(
             mapAntdFilterToCrudFilter(

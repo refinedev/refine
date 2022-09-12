@@ -1,0 +1,20 @@
+FROM node:16-alpine
+
+WORKDIR /opt/app
+
+ENV NODE_ENV development
+
+COPY package*.json ./
+COPY .npmrc ./
+
+RUN npm install
+
+COPY . /opt/app
+
+RUN npm run bootstrap -- --scope refine-store
+RUN npm run build -- --scope refine-store
+
+#Example client
+WORKDIR /opt/app/examples/store
+
+CMD npm run start:prod

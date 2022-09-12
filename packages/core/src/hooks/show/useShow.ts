@@ -56,6 +56,12 @@ export const useShow = <TData extends BaseRecord = BaseRecord>({
 
     const [showId, setShowId] = useState<BaseKey | undefined>(defaultId);
 
+    React.useEffect(() => {
+        if (defaultId !== showId) {
+            setShowId(defaultId);
+        }
+    }, [defaultId]);
+
     const resourceWithRoute = useResourceWithRoute();
 
     const resource = resourceWithRoute(resourceFromProp ?? routeResourceName);

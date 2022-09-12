@@ -62,7 +62,7 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                             resource,
                         }}
                     >
-                        <DashboardPage />
+                        <DashboardPage initialData={initialData} {...rest} />
                     </CanAccess>
                 </LayoutWrapper>
             );

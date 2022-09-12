@@ -1,5 +1,11 @@
 # @pankod/refine-sdk
 
+## 0.4.0
+
+### Minor Changes
+
+-   Update type declaration generation with `tsc` instead of `tsup` for better navigation throughout projects source code.
+
 ## 0.3.0
 
 ### Minor Changes

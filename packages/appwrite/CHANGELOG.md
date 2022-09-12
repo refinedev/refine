@@ -1,5 +1,11 @@
 # @pankod/refine-appwrite
 
+## 4.3.0
+
+### Minor Changes
+
+-   Update type declaration generation with `tsc` instead of `tsup` for better navigation throughout projects source code.
+
 ## 4.2.0
 
 ### Minor Changes
