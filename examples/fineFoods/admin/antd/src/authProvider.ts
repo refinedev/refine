@@ -13,8 +13,8 @@ export const authProvider: AuthProvider = {
     },
     register: async ({ email, password }) => {
         if (email && password) {
-            localStorage.setItem(TOKEN_KEY, `${email}-${password}`);
-            return Promise.resolve("orders");
+            authProvider.login({ email, password });
+            return Promise.resolve();
         }
         return Promise.reject();
     },
