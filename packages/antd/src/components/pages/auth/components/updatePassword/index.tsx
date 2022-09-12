@@ -26,14 +26,14 @@ interface IUpdatePasswordForm {
 }
 
 export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
-    submitButton,
+    onSubmit,
     wrapperProps,
     contentProps,
     renderContent,
 }) => {
     const [form] = Form.useForm<IUpdatePasswordForm>();
     const translate = useTranslate();
-    const { mutate: register, isLoading } =
+    const { mutate: updatePassword, isLoading } =
         useUpdatePassword<IUpdatePasswordForm>();
 
     const CardTitle = (
@@ -53,7 +53,11 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
                 layout="vertical"
                 form={form}
                 onFinish={(values) => {
-                    register(values);
+                    if (onSubmit) {
+                        onSubmit(values);
+                    } else {
+                        updatePassword(values);
+                    }
                 }}
                 requiredMark={false}
             >
@@ -112,20 +116,15 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
                     />
                 </Form.Item>
 
-                {submitButton ?? (
-                    <Button
-                        type="primary"
-                        size="large"
-                        htmlType="submit"
-                        loading={isLoading}
-                        block
-                    >
-                        {translate(
-                            "pages.updatePassword.buttons.submit",
-                            "Update",
-                        )}
-                    </Button>
-                )}
+                <Button
+                    type="primary"
+                    size="large"
+                    htmlType="submit"
+                    loading={isLoading}
+                    block
+                >
+                    {translate("pages.updatePassword.buttons.submit", "Update")}
+                </Button>
             </Form>
         </Card>
     );

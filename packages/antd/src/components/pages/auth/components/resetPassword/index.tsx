@@ -28,7 +28,7 @@ interface IResestPasswordForm {
 }
 
 export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
-    submitButton,
+    onSubmit,
     loginLink,
     wrapperProps,
     contentProps,
@@ -58,7 +58,11 @@ export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
                 layout="vertical"
                 form={form}
                 onFinish={(values) => {
-                    resetPassword(values);
+                    if (onSubmit) {
+                        onSubmit(values);
+                    } else {
+                        resetPassword(values);
+                    }
                 }}
                 requiredMark={false}
             >
@@ -73,8 +77,8 @@ export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
                         {
                             type: "email",
                             message: translate(
-                                "pages.register.valiEmail",
-                                "Please enter a valid email address",
+                                "pages.register.validEmail",
+                                "Invalid email address",
                             ),
                         },
                     ]}
@@ -119,20 +123,18 @@ export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
                     )}
                 </div>
 
-                {submitButton ?? (
-                    <Button
-                        type="primary"
-                        size="large"
-                        htmlType="submit"
-                        loading={isLoading}
-                        block
-                    >
-                        {translate(
-                            "pages.resetPassword.buttons.submit",
-                            "Send reset instructions",
-                        )}
-                    </Button>
-                )}
+                <Button
+                    type="primary"
+                    size="large"
+                    htmlType="submit"
+                    loading={isLoading}
+                    block
+                >
+                    {translate(
+                        "pages.resetPassword.buttons.submit",
+                        "Send reset instructions",
+                    )}
+                </Button>
             </Form>
         </Card>
     );

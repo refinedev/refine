@@ -31,11 +31,11 @@ interface IRegisterForm {
 }
 
 export const RegisterPage: React.FC<RegisterProps> = ({
-    submitButton,
     loginLink,
     wrapperProps,
     contentProps,
     renderContent,
+    onSubmit,
 }) => {
     const [form] = Form.useForm<IRegisterForm>();
     const translate = useTranslate();
@@ -60,7 +60,11 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                 layout="vertical"
                 form={form}
                 onFinish={(values) => {
-                    register(values);
+                    if (onSubmit) {
+                        onSubmit(values);
+                    } else {
+                        register(values);
+                    }
                 }}
                 requiredMark={false}
             >
@@ -72,8 +76,8 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         {
                             type: "email",
                             message: translate(
-                                "pages.register.valiEmail",
-                                "Please enter a valid email address",
+                                "pages.register.validEmail",
+                                "Invalid email address",
                             ),
                         },
                     ]}
@@ -130,18 +134,15 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         </Text>
                     )}
                 </div>
-
-                {submitButton ?? (
-                    <Button
-                        type="primary"
-                        size="large"
-                        htmlType="submit"
-                        loading={isLoading}
-                        block
-                    >
-                        {translate("pages.register.buttons.submit", "Sign up")}
-                    </Button>
-                )}
+                <Button
+                    type="primary"
+                    size="large"
+                    htmlType="submit"
+                    loading={isLoading}
+                    block
+                >
+                    {translate("pages.register.buttons.submit", "Sign up")}
+                </Button>
             </Form>
         </Card>
     );

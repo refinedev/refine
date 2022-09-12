@@ -34,12 +34,12 @@ type LoginProps = RefineLoginPageProps<LayoutProps, CardProps>;
  */
 export const LoginPage: React.FC<LoginProps> = ({
     providers,
-    submitButton,
     registerLink,
     resetPasswordLink,
     rememberMe,
     contentProps,
     wrapperProps,
+    onSubmit,
     renderContent,
 }) => {
     const [form] = Form.useForm<ILoginForm>();
@@ -101,7 +101,11 @@ export const LoginPage: React.FC<LoginProps> = ({
                 layout="vertical"
                 form={form}
                 onFinish={(values) => {
-                    login(values);
+                    if (onSubmit) {
+                        onSubmit(values);
+                    } else {
+                        login(values);
+                    }
                 }}
                 requiredMark={false}
                 initialValues={{
@@ -116,8 +120,8 @@ export const LoginPage: React.FC<LoginProps> = ({
                         {
                             type: "email",
                             message: translate(
-                                "pages.register.valiEmail",
-                                "Please enter a valid email address",
+                                "pages.register.validEmail",
+                                "Invalid email address",
                             ),
                         },
                     ]}
@@ -182,18 +186,15 @@ export const LoginPage: React.FC<LoginProps> = ({
                         </Link>
                     )}
                 </div>
-
-                {submitButton ?? (
-                    <Button
-                        type="primary"
-                        size="large"
-                        htmlType="submit"
-                        loading={isLoading}
-                        block
-                    >
-                        {translate("pages.login.signin", "Sign in")}
-                    </Button>
-                )}
+                <Button
+                    type="primary"
+                    size="large"
+                    htmlType="submit"
+                    loading={isLoading}
+                    block
+                >
+                    {translate("pages.login.signin", "Sign in")}
+                </Button>
             </Form>
             <div style={{ marginTop: 8 }}>
                 {registerLink ?? (
