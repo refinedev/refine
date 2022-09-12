@@ -1,6 +1,6 @@
 ---
 title: How to become a modern Node.js developer?
-description: The Most essential skills to have as a modern Node.js developer
+description: The most essential skills to have as a modern Node.js developer
 slug: node-js-developer-skills
 authors: david_herbert
 tags: [nodejs, javascript]

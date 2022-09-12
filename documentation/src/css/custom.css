@@ -447,6 +447,12 @@
     height: 32px;
 }
 
+#__docusaurus .social-icons .header-icon-link.header-github-link::before {
+    width: 32px;
+    height: 32px;
+    margin-top: 3px;
+}
+
 #__docusaurus .navbar-sidebar__items .with-hoverline .menu__link--active {
     position: relative;
 }
@@ -516,7 +522,81 @@ html {
 
 #__docusaurus .custom-table-of-contents .table-of-contents {
     @apply pl-0;
-    border: 1px solid var(--ifm-toc-border-color);
+    border: none;
+}
+
+@media (max-width: 1023px) {
+    #__docusaurus .custom-table-of-contents .table-of-contents {
+        @apply hidden;
+    }
+}
+
+#__docusaurus .github-banner-bg {
+    background-image: url("/img/blog-static/github-bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#__docusaurus .twitter-banner-bg {
+    background: linear-gradient(90deg, #3fdcf7 2.01%, #1890ff 99.51%);
+}
+
+#__docusaurus .blog-paginator-item:hover {
+    background: linear-gradient(90deg, #3fdcf7 2.01%, #1890ff 99.51%);
+}
+
+#__docusaurus .blog-paginator-item:hover #post-title {
+    @apply text-white;
+}
+#__docusaurus .blog-paginator-item:hover #author-title {
+    @apply text-white font-semibold;
+}
+#__docusaurus .blog-paginator-item:hover #author-name {
+    @apply text-white;
+}
+#__docusaurus .blog-paginator-item:hover #post-info {
+    @apply text-white font-semibold;
+}
+
+#__docusaurus .sticky-author-card {
+    position: sticky;
+    top: calc(var(--ifm-navbar-height) + 1rem);
+}
+
+#__docusaurus .all-tags-button {
+    background: linear-gradient(90deg, #3fdcf7 2.01%, #1890ff 99.51%);
+}
+
+#__docusaurus .all-tags-button:hover svg {
+    @apply -translate-x-1;
+}
+
+@media (min-width: 1024px) {
+    html[data-page="index"] footer.refine-footer {
+        scroll-snap-align: end;
+    }
+}
+
+.DocSearch--active .DocSearch-Modal {
+    @apply fixed md:relative;
+}
+
+.navbar-sidebar__items.navbar-sidebar__items--show-secondary .navbar-sidebar__item.menu .menu__list,
+.navbar-sidebar__items.navbar-sidebar__items--show-secondary .menu__list-item,
+.navbar-sidebar__items.navbar-sidebar__items--show-secondary .menu__link {
+    text-align: left !important;
+}
+
+#__docusaurus .navbar-sidebar__items.navbar-sidebar__items--show-secondary .menu__list {
+    padding-left: 0.75rem;
+}
+
+#__docusaurus .navbar-sidebar__items.navbar-sidebar__items--show-secondary .menu__link {
+    padding-left: 0;
+}
+
+#__docusaurus .navbar-sidebar__items {
+    padding-top: 20px;
 }
 
 #__docusaurus .gradient-button:hover {

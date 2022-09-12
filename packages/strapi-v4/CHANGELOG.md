@@ -1,5 +1,29 @@
 # @pankod/refine-strapi-v4
 
+## 3.33.0
+
+### Minor Changes
+
+-   Fixed payload data in delete on nestjsx data provider custom method.
+
+## 3.32.0
+
+### Minor Changes
+
+-   [#2465](https://github.com/pankod/refine/pull/2465) [`4d07f33993`](https://github.com/pankod/refine/commit/4d07f33993fa5a6facaf33cd651ef94892d15dae) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fixed payload data in delete on nestjsx data provider custom method.
+
+## 3.31.0
+
+### Minor Changes
+
+-   Update type declaration generation with `tsc` instead of `tsup` for better navigation throughout projects source code.
+
+## 3.30.0
+
+### Minor Changes
+
+-   [#2440](https://github.com/pankod/refine/pull/2440) [`0150dcd070`](https://github.com/pankod/refine/commit/0150dcd0700253f1c4908e7e5f2e178bb122e9af) Thanks [@aliemir](https://github.com/aliemir)! - Update type declaration generation with `tsc` instead of `tsup` for better navigation throughout projects source code.
+
 ## 3.29.0
 
 ### Minor Changes

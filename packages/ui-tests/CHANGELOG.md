@@ -1,5 +1,40 @@
 # @pankod/refine-ui-tests
 
+## 0.6.0
+
+### Minor Changes
+
+-   [#2454](https://github.com/pankod/refine/pull/2454) [`72487a4126`](https://github.com/pankod/refine/commit/72487a4126fb7d827dccd3bcbdee9a83aa1f56af) Thanks [@ozkalai](https://github.com/ozkalai)! - Updated `Sider` test for `render` props.
+
+### Patch Changes
+
+-   Updated dependencies [[`72487a4126`](https://github.com/pankod/refine/commit/72487a4126fb7d827dccd3bcbdee9a83aa1f56af)]:
+    -   @pankod/refine-ui-types@0.6.0
+
+## 0.5.0
+
+### Minor Changes
+
+-   Update type declaration generation with `tsc` instead of `tsup` for better navigation throughout projects source code.
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.67.0
+    -   @pankod/refine-ui-types@0.5.0
+
+## 0.4.0
+
+### Minor Changes
+
+-   [#2440](https://github.com/pankod/refine/pull/2440) [`0150dcd070`](https://github.com/pankod/refine/commit/0150dcd0700253f1c4908e7e5f2e178bb122e9af) Thanks [@aliemir](https://github.com/aliemir)! - Update type declaration generation with `tsc` instead of `tsup` for better navigation throughout projects source code.
+
+### Patch Changes
+
+-   Updated dependencies [[`0150dcd070`](https://github.com/pankod/refine/commit/0150dcd0700253f1c4908e7e5f2e178bb122e9af), [`0150dcd070`](https://github.com/pankod/refine/commit/0150dcd0700253f1c4908e7e5f2e178bb122e9af), [`0150dcd070`](https://github.com/pankod/refine/commit/0150dcd0700253f1c4908e7e5f2e178bb122e9af), [`f2faf99f25`](https://github.com/pankod/refine/commit/f2faf99f25542f73215ee89c74b241311177b327), [`0150dcd070`](https://github.com/pankod/refine/commit/0150dcd0700253f1c4908e7e5f2e178bb122e9af), [`2c428b3105`](https://github.com/pankod/refine/commit/2c428b31057e3e7c8901fc3da2773bc810235491)]:
+    -   @pankod/refine-core@3.66.0
+    -   @pankod/refine-ui-types@0.4.0
+
 ## 0.3.2
 
 ### Patch Changes

@@ -13,3 +13,7 @@ export type LayoutProps = {
     dashboard?: boolean;
     children?: ReactNode;
 };
+
+export type DashboardPageProps<TCrudData = any> = {
+    initialData?: TCrudData;
+} & Record<any, any>;

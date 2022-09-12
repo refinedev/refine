@@ -1,5 +1,50 @@
 # @pankod/refine-antd
 
+## 3.42.0
+
+### Minor Changes
+
+-   [#2454](https://github.com/pankod/refine/pull/2454) [`72487a4126`](https://github.com/pankod/refine/commit/72487a4126fb7d827dccd3bcbdee9a83aa1f56af) Thanks [@ozkalai](https://github.com/ozkalai)! - Added `render` prop to `Sider` component. You can get `dashboard`, `logout` and `items` from `render` props to customize the `Sider` component.
+
+### Patch Changes
+
+-   Updated dependencies [[`72487a4126`](https://github.com/pankod/refine/commit/72487a4126fb7d827dccd3bcbdee9a83aa1f56af)]:
+    -   @pankod/refine-ui-types@0.6.0
+
+## 3.41.0
+
+### Minor Changes
+
+-   Added support nested sorting
+
+## 3.40.0
+
+### Minor Changes
+
+-   [#2427](https://github.com/pankod/refine/pull/2427) [`b21908e872`](https://github.com/pankod/refine/commit/b21908e87209c3a8825991c6ab829f7c45c19e9b) Thanks [@geoffatsource](https://github.com/geoffatsource)! - Added support nested sorting
+
+## 3.39.0
+
+### Minor Changes
+
+-   Update type declaration generation with `tsc` instead of `tsup` for better navigation throughout projects source code.
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-ui-types@0.5.0
+
+## 3.38.0
+
+### Minor Changes
+
+-   [#2440](https://github.com/pankod/refine/pull/2440) [`0150dcd070`](https://github.com/pankod/refine/commit/0150dcd0700253f1c4908e7e5f2e178bb122e9af) Thanks [@aliemir](https://github.com/aliemir)! - Update type declaration generation with `tsc` instead of `tsup` for better navigation throughout projects source code.
+
+### Patch Changes
+
+-   Updated dependencies [[`0150dcd070`](https://github.com/pankod/refine/commit/0150dcd0700253f1c4908e7e5f2e178bb122e9af), [`0150dcd070`](https://github.com/pankod/refine/commit/0150dcd0700253f1c4908e7e5f2e178bb122e9af)]:
+    -   @pankod/refine-ui-types@0.4.0
+
 ## 3.37.11
 
 ### Patch Changes

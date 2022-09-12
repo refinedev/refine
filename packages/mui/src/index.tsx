@@ -36,6 +36,7 @@ export {
     useTheme,
     useThemeProps,
     withStyles,
+    ThemeProvider,
     withTheme,
 } from "@mui/material/styles";
 export type {
@@ -73,7 +74,6 @@ export type {
     SxProps,
     Theme,
     ThemeOptions,
-    ThemeProvider,
     ThemeWithProps,
     ThemedProps,
     Transitions,
@@ -525,8 +525,6 @@ export * from "@mui/material/Zoom";
 export { default as useMuiAutocomplete } from "@mui/material/useAutocomplete";
 
 export { default as GlobalStyles } from "@mui/material/GlobalStyles";
-
-export { StyledEngineProvider } from "@mui/material/styles";
 
 export { default as unstable_composeClasses } from "@mui/base/composeClasses";
 

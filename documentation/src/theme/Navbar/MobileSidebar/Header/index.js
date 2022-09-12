@@ -31,7 +31,7 @@ function CloseButton() {
 export default function NavbarMobileSidebarHeader() {
     return (
         <div className="navbar-sidebar__brand">
-            <div className="absolute left-3 top-6">
+            <div className="absolute left-5 top-6">
                 <CloseButton />
             </div>
             <NavbarLogo className="select-none mx-auto items-center flex min-w-0" />

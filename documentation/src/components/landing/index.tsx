@@ -8,13 +8,13 @@ import { SectionUseCase } from "./section-use-case";
 export const Landing: React.FC = () => {
     return (
         <main id="landing_main">
-            <div className="snap-start" />
+            <div className="hidden lg:block snap-start" />
             <SectionHero />
             <SectionFreeStart />
             <SectionBullets />
             <SectionNoConstraints />
             <SectionUseCase />
-            <div className="snap-end" />
+            <div className="hidden lg:block snap-end" />
         </main>
     );
 };

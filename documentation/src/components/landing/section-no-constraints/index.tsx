@@ -1,24 +1,25 @@
 import React from "react";
-import { motion, useScroll, useTransform, animate } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import {
     ChevronDown,
     MaterialUIIcon,
     AntDesignLogoIcon,
-    RefineBgIcon,
     BusinessLogic01,
     BusinessLogic02,
     BusinessLogic04,
     BusinessLogic03,
     BackendIcons,
+    RefineAnimatedBgIcon,
 } from "../icons";
 import { CountingNumber } from "../counting-number";
+import { useTWBreakpoints } from "../../../hooks/use-tw-breakpoints";
 
 export const SectionNoConstraints: React.FC = () => {
     const ref = React.useRef<HTMLDivElement>(null);
 
-    const [currentSlide, setCurrentSlide] = React.useState(1);
+    const { sm, md, lg, xl } = useTWBreakpoints();
 
-    const { scrollYProgress: fullScrollYProgress } = useScroll();
+    const [currentSlide, setCurrentSlide] = React.useState(1);
 
     const { scrollYProgress } = useScroll({
         target: ref,
@@ -54,10 +55,30 @@ export const SectionNoConstraints: React.FC = () => {
         ["100%", "0%", "-25%", "-50%", "-75%", "-100%", "-200%"],
     );
 
+    const slideLeftBgDotY = useTransform(
+        scrollYProgress,
+        [0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1],
+        ["0%", "0%", "25%", "50%", "75%", "100%", "100%"],
+    );
+
     const slideRightBgY = useTransform(
         scrollYProgress,
         [0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1],
         ["200%", "150%", "75%", "50%", "25%", "0%", "-100%"],
+    );
+
+    const slideRightBgDotY = useTransform(
+        scrollYProgress,
+        [0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1],
+        [
+            `${0}px`,
+            `${0}px`,
+            `${Math.floor((974 - 402) / 4)}px`,
+            `${Math.floor((974 - 402) / 4) * 2}px`,
+            `${Math.floor((974 - 402) / 4) * 3}px`,
+            `${Math.floor(974 - 402)}px`,
+            `${Math.floor(974 - 402)}px`,
+        ],
     );
 
     const slide01ScreenProgress = useTransform<number, number>(
@@ -244,30 +265,30 @@ export const SectionNoConstraints: React.FC = () => {
             >
                 <RefineBgIcon />
             </motion.div> */}
-            <motion.div ref={ref} className="h-[600vh] bg-white">
+            <motion.div ref={ref} className="h-auto lg:h-[600vh] bg-white">
                 {/* Scroll animated section */}
-                <motion.div className="overflow-hidden h-screen w-screen top-0 left-0 sticky px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col justify-center py-[86px]">
+                <motion.div className="lg:overflow-hidden h-auto lg:h-screen w-screen top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col justify-center py-[86px]">
                     <motion.div
-                        className="absolute -left-36 -top-24 z-[-1]"
+                        className="hidden lg:block absolute -left-36 -top-24 z-[-1]"
                         style={{
                             translateY: slideLeftBgY,
                         }}
                     >
-                        <RefineBgIcon />
+                        <RefineAnimatedBgIcon dotY={slideLeftBgDotY} />
                     </motion.div>
                     <motion.div
-                        className="absolute -right-36 -top-24 z-[-1]"
+                        className="hidden lg:block absolute -right-36 -top-24 z-[-1]"
                         style={{
                             translateY: slideRightBgY,
                         }}
                     >
-                        <RefineBgIcon />
+                        <RefineAnimatedBgIcon dotY={slideRightBgDotY} />
                     </motion.div>
                     <div className="w-full flex-shrink-0">
-                        <div className="w-full text-center font-montserrat text-[90px] leading-none font-extrabold text-[#1890FF]">
+                        <div className="w-full text-center font-montserrat text-[36px] md:text-[60px] lg:text-[90px] leading-none font-extrabold text-[#1890FF]">
                             no constraints
                         </div>
-                        <div className="w-full font-medium uppercase text-4xl leading-none font-montserrat text-[#1890FF] text-center h-9 relative overflow-hidden">
+                        <div className="w-full font-medium uppercase text-2xl md:text-3xl lg:text-4xl leading-none font-montserrat text-[#1890FF] text-center h-9 relative overflow-hidden">
                             <motion.div
                                 className="absolute left-0 top-0 w-full"
                                 style={{ y: slideSubtitleY }}
@@ -288,22 +309,23 @@ export const SectionNoConstraints: React.FC = () => {
                         </div>
                     </div>
                     <motion.div
-                        className="overflow-x-hidden overflow-y-hidden snap-x snap-mandatory relative flex-1"
+                        className="overflow-x-hidden lg:overflow-y-hidden lg:snap-x lg:snap-mandatory relative flex-1 lg:max-h-[600px]"
                         style={{ opacity: slideOpacity }}
                     >
                         <motion.div
-                            className="flex w-full h-full absolute"
-                            style={{ x: slideX }}
+                            className="flex w-full lg:h-full lg:absolute flex-col lg:flex-row"
+                            style={lg ? { x: slideX } : {}}
+                            animate={lg ? {} : { x: 0 }}
                         >
                             {/* slide 01 */}
-                            <div className="w-full flex-shrink-0 snap-center h-full">
-                                <div className="flex h-full">
+                            <div className="w-full flex-shrink-0 lg:snap-center lg:h-full flex justify-center items-center">
+                                <div className="flex flex-col lg:flex-row h-auto max-w-screen-xl w-full">
                                     <div className="flex-[3] flex justify-center items-center relative">
                                         <motion.div
+                                            className="p-16 lg:p-[50px] -mx-6 lg:mx-0"
                                             style={{
                                                 perspective: "500px",
                                                 perspectiveOrigin: "center",
-                                                padding: "50px",
                                             }}
                                         >
                                             <motion.img
@@ -312,8 +334,13 @@ export const SectionNoConstraints: React.FC = () => {
                                                     maxWidth: "500px",
                                                     boxShadow:
                                                         "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
-                                                    scale: slideScreen01Y,
-                                                    opacity: slideScreen01Y,
+                                                    ...(lg
+                                                        ? {
+                                                              scale: slideScreen01Y,
+                                                              opacity:
+                                                                  slideScreen01Y,
+                                                          }
+                                                        : {}),
                                                 }}
                                                 animate={{
                                                     rotateY: ["10deg", "17deg"],
@@ -321,6 +348,12 @@ export const SectionNoConstraints: React.FC = () => {
                                                         "2.5deg",
                                                         "-2.5deg",
                                                     ],
+                                                    ...(lg
+                                                        ? {}
+                                                        : {
+                                                              scale: [1, 1],
+                                                              opacity: [1, 1],
+                                                          }),
                                                 }}
                                                 transition={{
                                                     yoyo: Infinity,
@@ -338,6 +371,12 @@ export const SectionNoConstraints: React.FC = () => {
                                                         "2.5deg",
                                                         "-2.5deg",
                                                     ],
+                                                    ...(lg
+                                                        ? {}
+                                                        : {
+                                                              scale: [1, 1],
+                                                              opacity: [1, 1],
+                                                          }),
                                                 }}
                                                 transition={{
                                                     yoyo: Infinity,
@@ -347,8 +386,13 @@ export const SectionNoConstraints: React.FC = () => {
                                                 style={{
                                                     boxShadow:
                                                         "6px 8px 16px rgba(42, 42, 66, 0.2)",
-                                                    scale: slideScreen01Y,
-                                                    opacity: slideScreen01Y,
+                                                    ...(lg
+                                                        ? {
+                                                              scale: slideScreen01Y,
+                                                              opacity:
+                                                                  slideScreen01Y,
+                                                          }
+                                                        : {}),
                                                 }}
                                             >
                                                 HEADLESS UI
@@ -412,13 +456,15 @@ export const SectionNoConstraints: React.FC = () => {
                                             </motion.div>
                                         </motion.div>
                                         <motion.div
-                                            className="absolute right-10 bottom-2"
+                                            className="absolute"
                                             style={{
                                                 perspective: "500px",
                                                 perspectiveOrigin: "center",
                                                 padding: "50px",
                                                 scale: slideScreen03Y,
                                                 opacity: slideScreen03Y,
+                                                translateY: "40px",
+                                                translateX: "30px",
                                             }}
                                         >
                                             <motion.img
@@ -491,7 +537,7 @@ export const SectionNoConstraints: React.FC = () => {
                                     <div className="flex-[2] place-self-center">
                                         <div className="relative">
                                             <motion.div
-                                                className="absolute w-full h-full left-0 top-0"
+                                                className="relative lg:absolute w-full h-full left-0 top-0"
                                                 style={{
                                                     opacity:
                                                         slideScreenText12Progress,
@@ -512,7 +558,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     by default.
                                                 </p>
                                                 <motion.p
-                                                    className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px]"
+                                                    className="hidden lg:block font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px]"
                                                     style={{
                                                         opacity:
                                                             slideScreenText2Progress,
@@ -534,7 +580,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 </motion.p>
                                             </motion.div>
                                             <motion.div
-                                                className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] mb-0"
+                                                className="hidden lg:block font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] mb-0"
                                                 style={{
                                                     opacity:
                                                         slideScreenText3Progress,
@@ -592,8 +638,219 @@ export const SectionNoConstraints: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="w-full h-full flex-shrink-0 snap-center">
-                                <div className="flex w-full h-full pt-3">
+                            <div className="flex lg:hidden w-full flex-shrink-0 lg:snap-center lg:h-full justify-center items-center">
+                                <div className="flex flex-col lg:flex-row h-auto max-w-screen-xl w-full">
+                                    <div className="flex-[3] flex justify-center items-center relative">
+                                        <motion.div
+                                            className="p-16 lg:p-[50px] -mx-6 lg:mx-0"
+                                            style={{
+                                                perspective: "500px",
+                                                perspectiveOrigin: "center",
+                                            }}
+                                        >
+                                            <motion.img
+                                                style={{
+                                                    width: "100%",
+                                                    maxWidth: "500px",
+                                                    boxShadow:
+                                                        "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
+                                                }}
+                                                animate={{
+                                                    rotateY: ["10deg", "17deg"],
+                                                    rotateX: [
+                                                        "2.5deg",
+                                                        "-2.5deg",
+                                                    ],
+                                                }}
+                                                transition={{
+                                                    yoyo: Infinity,
+                                                    ease: "easeInOut",
+                                                    duration: 3,
+                                                }}
+                                                src="/landing/no-constraints/custom-ui-2.png"
+                                            />
+                                            <motion.div
+                                                className="bg-white text-[34px] leading-[34px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#2A2A42] absolute right-[60px] bottom-[50px]"
+                                                animate={{
+                                                    rotateY: ["10deg", "17deg"],
+                                                    rotateX: [
+                                                        "2.5deg",
+                                                        "-2.5deg",
+                                                    ],
+                                                }}
+                                                transition={{
+                                                    yoyo: Infinity,
+                                                    ease: "easeInOut",
+                                                    duration: 3,
+                                                }}
+                                                style={{
+                                                    boxShadow:
+                                                        "6px 8px 16px rgba(42, 42, 66, 0.2)",
+                                                }}
+                                            >
+                                                CUSTOM UI
+                                            </motion.div>
+                                        </motion.div>
+                                    </div>
+                                    <div className="flex-[2] place-self-center">
+                                        <div className="relative">
+                                            <motion.div className="w-full h-full left-0 top-0">
+                                                <motion.p className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px]">
+                                                    Instead, you can use any{" "}
+                                                    <strong className="font-bold">
+                                                        custom design
+                                                    </strong>
+                                                    or{" "}
+                                                    <strong className="font-bold">
+                                                        UI framework
+                                                    </strong>{" "}
+                                                    for
+                                                    <strong className="font-bold">
+                                                        100% control over
+                                                        styling.
+                                                    </strong>
+                                                </motion.p>
+                                            </motion.div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="mb-24 lg:mb-0 flex lg:hidden w-full flex-shrink-0 lg:snap-center lg:h-full justify-center items-center">
+                                <div className="flex flex-col lg:flex-row h-auto max-w-screen-xl w-full">
+                                    <div className="flex-[3] flex justify-center items-center relative">
+                                        <motion.div
+                                            className="p-16 lg:p-[50px] -mx-6 lg:mx-0"
+                                            style={{
+                                                perspective: "500px",
+                                                perspectiveOrigin: "center",
+                                            }}
+                                        >
+                                            <motion.img
+                                                style={{
+                                                    width: "100%",
+                                                    maxWidth: "500px",
+                                                    boxShadow:
+                                                        "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
+                                                }}
+                                                animate={{
+                                                    rotateY: ["10deg", "17deg"],
+                                                    rotateX: [
+                                                        "2.5deg",
+                                                        "-2.5deg",
+                                                    ],
+                                                }}
+                                                transition={{
+                                                    yoyo: Infinity,
+                                                    ease: "easeInOut",
+                                                    duration: 3,
+                                                }}
+                                                src="/landing/no-constraints/custom-ui-3.png"
+                                            />
+                                            <motion.div
+                                                className="absolute right-[30px] bottom-[50px] flex gap-2 z-10 flex-col"
+                                                animate={{
+                                                    rotateY: ["10deg", "17deg"],
+                                                    rotateX: [
+                                                        "2.5deg",
+                                                        "-2.5deg",
+                                                    ],
+                                                    translateZ: [
+                                                        "50px",
+                                                        "50px",
+                                                    ],
+                                                }}
+                                                transition={{
+                                                    yoyo: Infinity,
+                                                    ease: "easeInOut",
+                                                    duration: 3,
+                                                }}
+                                                style={{}}
+                                            >
+                                                <div
+                                                    className="bg-white text-[28px] leading-[28px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#2EBBFB]"
+                                                    style={{
+                                                        boxShadow:
+                                                            "6px 8px 16px rgba(42, 42, 66, 0.2)",
+                                                    }}
+                                                >
+                                                    ANT DESIGN
+                                                </div>
+                                                <div
+                                                    className="bg-white text-[28px] leading-[28px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#247EF8]"
+                                                    style={{
+                                                        boxShadow:
+                                                            "6px 8px 16px rgba(42, 42, 66, 0.2)",
+                                                    }}
+                                                >
+                                                    MATERIAL UI
+                                                </div>
+                                            </motion.div>
+                                        </motion.div>
+                                    </div>
+                                    <div className="flex-[2] place-self-center">
+                                        <div className="relative">
+                                            <motion.div
+                                                className="w-full h-full left-0 top-0"
+                                                style={{
+                                                    opacity:
+                                                        slideScreenText12Progress,
+                                                }}
+                                            ></motion.div>
+                                            <motion.div className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] mb-0">
+                                                <p className="mb-0">
+                                                    Not ready for going headless
+                                                    yet?
+                                                </p>
+                                                <p>
+                                                    <strong className="font-bold">
+                                                        No problem.
+                                                    </strong>
+                                                </p>
+                                                <p className="mb-0">
+                                                    <strong className="font-bold">
+                                                        refine
+                                                    </strong>{" "}
+                                                    supports two powerful
+                                                </p>
+                                                <p>
+                                                    <strong className="font-bold">
+                                                        UI frameworks
+                                                    </strong>{" "}
+                                                    out-of-the box:
+                                                </p>
+                                                <div className="flex flex-col gap-2">
+                                                    <div>
+                                                        <div className="flex items-center gap-2.5 max-w-[300px]">
+                                                            <AntDesignLogoIcon className="z-10" />
+                                                            <div className="font-montserrat font-medium text-[21px] flex-1">
+                                                                ANT DESIGN
+                                                            </div>
+                                                            <div className="w-0.5 bg-slate-400 h-8" />
+                                                            <a className="text-[#9595A1] text-xs font-montserrat">
+                                                                view demo
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div className="flex items-center gap-2.5 max-w-[300px]">
+                                                            <MaterialUIIcon />
+                                                            <div className="font-montserrat font-medium text-[21px] flex-1">
+                                                                MATERIAL UI
+                                                            </div>
+                                                            <div className="w-0.5 bg-slate-400 h-8" />
+                                                            <a className="text-[#9595A1] text-xs font-montserrat">
+                                                                view demo
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </motion.div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="mb-24 lg:mb-0 w-full lg:h-full flex-shrink-0 lg:snap-center flex justify-center items-center">
+                                <div className="flex pt-3 h-auto max-w-screen-xl w-full">
                                     <div className="flex-1 flex flex-col justify-start items-center w-full gap-4">
                                         <div className="font-montserrat text-xl leading-8 font-medium text-[#2A2A42] text-center max-w-[860px] mb-4">
                                             <p className="mb-0">
@@ -622,7 +879,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 </a>
                                             </p>
                                         </div>
-                                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 w-full px-5 gap-x-2 gap-y-5">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 w-full px-5 gap-x-2 gap-y-5">
                                             {backendItems.map(
                                                 (
                                                     { name, Icon, AltIcon },
@@ -630,15 +887,33 @@ export const SectionNoConstraints: React.FC = () => {
                                                 ) => (
                                                     <motion.div
                                                         style={{
-                                                            scale:
-                                                                index % 2 === 0
-                                                                    ? backendScaleUp
-                                                                    : backendScaleDown,
-                                                            opacity:
-                                                                backendOpacity,
+                                                            ...(lg
+                                                                ? {
+                                                                      scale:
+                                                                          index %
+                                                                              2 ===
+                                                                          0
+                                                                              ? backendScaleUp
+                                                                              : backendScaleDown,
+                                                                      opacity:
+                                                                          backendOpacity,
+                                                                  }
+                                                                : {}),
                                                             boxShadow:
                                                                 "6px 8px 16px 0 rgba(42, 42, 66, 0.4)",
                                                         }}
+                                                        animate={
+                                                            lg
+                                                                ? {}
+                                                                : {
+                                                                      opacity: [
+                                                                          1, 1,
+                                                                      ],
+                                                                      scale: [
+                                                                          1, 1,
+                                                                      ],
+                                                                  }
+                                                        }
                                                         key={name}
                                                         className={`group relative w-full h-20 lg:h-[90px] bg-white rounded-[10px] ${
                                                             name === "Python"
@@ -647,7 +922,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                         }`}
                                                     >
                                                         <div className="group-hover:opacity-0 scale-100 group-hover:scale-0 opacity-100 transition-all duration-300 w-full h-full flex justify-center items-center">
-                                                            <AltIcon />
+                                                            <AltIcon className="scale-75 lg:scale-100" />
                                                         </div>
                                                         <div
                                                             className={`opacity-0 scale-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300 absolute left-0 ${
@@ -657,7 +932,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                                     : "top-0"
                                                             } w-full h-full flex justify-center items-center`}
                                                         >
-                                                            <Icon />
+                                                            <Icon className="scale-75 lg:scale-100" />
                                                         </div>
                                                     </motion.div>
                                                 ),
@@ -666,17 +941,29 @@ export const SectionNoConstraints: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="w-full flex-shrink-0 snap-center h-full">
-                                <div className="flex h-full">
-                                    <div className="flex-1 flex relative p-12 pt-6 justify-center items-center">
+                            <div className="mb-24 lg:mb-0 w-full flex-shrink-0 lg:snap-center lg:h-full flex justify-center items-center">
+                                <div className="flex h-auto max-w-screen-xl w-full flex-col lg:flex-row gap-20 md:gap-32 lg:gap-0">
+                                    <div className="flex-1 flex relative -mx-6 lg:mx-0 px-[55px] pt-0 pb-4 lg:px-12 lg:pb-12 lg:pt-6 justify-center items-center">
                                         <motion.div
                                             style={{
                                                 perspective: "1000px",
                                                 perspectiveOrigin: "left top",
-                                                scale: cardsSlideScaleAndOpacity,
-                                                opacity:
-                                                    cardsSlideScaleAndOpacity,
+                                                ...(lg
+                                                    ? {
+                                                          scale: cardsSlideScaleAndOpacity,
+                                                          opacity:
+                                                              cardsSlideScaleAndOpacity,
+                                                      }
+                                                    : {}),
                                             }}
+                                            animate={
+                                                lg
+                                                    ? {}
+                                                    : {
+                                                          scale: [1, 1],
+                                                          opacity: [1, 1],
+                                                      }
+                                            }
                                             className="flex relative w-full max-w-[400px] h-full"
                                         >
                                             <motion.div
@@ -782,7 +1069,7 @@ export const SectionNoConstraints: React.FC = () => {
                                         </motion.div>
                                     </div>
                                     <div className="flex-1 place-self-center ">
-                                        <div className="max-w-[390px] font-montserrat -ml-5 text-[#2A2A42]">
+                                        <div className="max-w-[390px] font-montserrat ml-auto mr-auto lg:mr-0 lg:-ml-5 text-[#2A2A42]">
                                             <p className="text-xl max-w-[360px]">
                                                 <strong>refine</strong> gives
                                                 you and your team{" "}
@@ -818,10 +1105,10 @@ export const SectionNoConstraints: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="w-full flex-shrink-0 snap-center h-full">
-                                <div className="flex h-full w-full">
+                            <div className="w-full flex-shrink-0 lg:snap-center lg:h-full flex justify-center items-center">
+                                <div className="flex h-auto max-w-screen-xl w-full">
                                     <div className="flex-1 flex flex-col justif text-[#2A2A42] text-center max-w-[800px]y-center items-center w-full gap-4">
-                                        <div className="font-montserrat text-xl pt-[14px]">
+                                        <div className="font-montserrat text-xl pt-[14px] max-w-screen-lg">
                                             <p>
                                                 <strong>refine</strong> core is
                                                 an open source framework and it
@@ -837,14 +1124,26 @@ export const SectionNoConstraints: React.FC = () => {
                                                 channels.
                                             </p>
                                         </div>
-                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-5 gap-x-2.5 w-full px-5 pb-5 max-w-[1000px]">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-5 gap-x-2.5 w-full px-5 pb-5 max-w-[1000px]">
                                             <motion.div
-                                                style={{
-                                                    rotateX:
-                                                        slideCounterCardsRotateX,
-                                                    opacity:
-                                                        slideCounterCardsOpacity,
-                                                }}
+                                                style={
+                                                    lg
+                                                        ? {
+                                                              rotateX:
+                                                                  slideCounterCardsRotateX,
+                                                              opacity:
+                                                                  slideCounterCardsOpacity,
+                                                          }
+                                                        : {}
+                                                }
+                                                animate={
+                                                    lg
+                                                        ? {}
+                                                        : {
+                                                              rotateX: [0, 0],
+                                                              opacity: [1, 1],
+                                                          }
+                                                }
                                                 className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
                                             >
                                                 <div className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] text-center">
@@ -858,12 +1157,24 @@ export const SectionNoConstraints: React.FC = () => {
                                                 </div>
                                             </motion.div>
                                             <motion.div
-                                                style={{
-                                                    rotateX:
-                                                        slideCounterCardsRotateX,
-                                                    opacity:
-                                                        slideCounterCardsOpacity,
-                                                }}
+                                                style={
+                                                    lg
+                                                        ? {
+                                                              rotateX:
+                                                                  slideCounterCardsRotateX,
+                                                              opacity:
+                                                                  slideCounterCardsOpacity,
+                                                          }
+                                                        : {}
+                                                }
+                                                animate={
+                                                    lg
+                                                        ? {}
+                                                        : {
+                                                              rotateX: [0, 0],
+                                                              opacity: [1, 1],
+                                                          }
+                                                }
                                                 className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
                                             >
                                                 <div className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] text-center">
@@ -878,12 +1189,24 @@ export const SectionNoConstraints: React.FC = () => {
                                                 </div>
                                             </motion.div>
                                             <motion.div
-                                                style={{
-                                                    rotateX:
-                                                        slideCounterCardsRotateX,
-                                                    opacity:
-                                                        slideCounterCardsOpacity,
-                                                }}
+                                                style={
+                                                    lg
+                                                        ? {
+                                                              rotateX:
+                                                                  slideCounterCardsRotateX,
+                                                              opacity:
+                                                                  slideCounterCardsOpacity,
+                                                          }
+                                                        : {}
+                                                }
+                                                animate={
+                                                    lg
+                                                        ? {}
+                                                        : {
+                                                              rotateX: [0, 0],
+                                                              opacity: [1, 1],
+                                                          }
+                                                }
                                                 className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
                                             >
                                                 <div className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] text-center">
@@ -898,12 +1221,24 @@ export const SectionNoConstraints: React.FC = () => {
                                                 </div>
                                             </motion.div>
                                             <motion.div
-                                                style={{
-                                                    rotateX:
-                                                        slideCounterCardsRotateX,
-                                                    opacity:
-                                                        slideCounterCardsOpacity,
-                                                }}
+                                                style={
+                                                    lg
+                                                        ? {
+                                                              rotateX:
+                                                                  slideCounterCardsRotateX,
+                                                              opacity:
+                                                                  slideCounterCardsOpacity,
+                                                          }
+                                                        : {}
+                                                }
+                                                animate={
+                                                    lg
+                                                        ? {}
+                                                        : {
+                                                              rotateX: [0, 0],
+                                                              opacity: [1, 1],
+                                                          }
+                                                }
                                                 className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
                                             >
                                                 <div className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] text-center">
@@ -917,12 +1252,24 @@ export const SectionNoConstraints: React.FC = () => {
                                                 </div>
                                             </motion.div>
                                             <motion.div
-                                                style={{
-                                                    rotateX:
-                                                        slideCounterCardsRotateX,
-                                                    opacity:
-                                                        slideCounterCardsOpacity,
-                                                }}
+                                                style={
+                                                    lg
+                                                        ? {
+                                                              rotateX:
+                                                                  slideCounterCardsRotateX,
+                                                              opacity:
+                                                                  slideCounterCardsOpacity,
+                                                          }
+                                                        : {}
+                                                }
+                                                animate={
+                                                    lg
+                                                        ? {}
+                                                        : {
+                                                              rotateX: [0, 0],
+                                                              opacity: [1, 1],
+                                                          }
+                                                }
                                                 className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
                                             >
                                                 <div className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] text-center">
@@ -936,12 +1283,24 @@ export const SectionNoConstraints: React.FC = () => {
                                                 </div>
                                             </motion.div>
                                             <motion.div
-                                                style={{
-                                                    rotateX:
-                                                        slideCounterCardsRotateX,
-                                                    opacity:
-                                                        slideCounterCardsOpacity,
-                                                }}
+                                                style={
+                                                    lg
+                                                        ? {
+                                                              rotateX:
+                                                                  slideCounterCardsRotateX,
+                                                              opacity:
+                                                                  slideCounterCardsOpacity,
+                                                          }
+                                                        : {}
+                                                }
+                                                animate={
+                                                    lg
+                                                        ? {}
+                                                        : {
+                                                              rotateX: [0, 0],
+                                                              opacity: [1, 1],
+                                                          }
+                                                }
                                                 className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
                                             >
                                                 <div className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] text-center">
@@ -963,7 +1322,7 @@ export const SectionNoConstraints: React.FC = () => {
                             </div>
                         </motion.div>
                     </motion.div>
-                    <div className="flex-shrink-0">
+                    <div className="hidden lg:block flex-shrink-0">
                         <div
                             className="w-full flex max-w-5xl mx-auto bg-white relative"
                             style={{
@@ -1050,7 +1409,10 @@ export const SectionNoConstraints: React.FC = () => {
                 </motion.div>
                 {/* Scroll snap alignment */}
                 {Array.from({ length: 6 }, (_, i) => i).map((i) => (
-                    <div key={i} className="snap-start h-screen w-screen" />
+                    <div
+                        key={i}
+                        className="hidden lg:block snap-start h-screen w-screen"
+                    />
                 ))}
             </motion.div>
         </>

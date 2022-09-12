@@ -7,7 +7,7 @@ import {
 } from "./IRefineContext";
 import { DefaultLayout } from "@components/layoutWrapper/defaultLayout";
 
-import { AuthPage as DefaultAuthPage } from "@components/pages";
+import { LoginPage as DefaultLoginPage } from "@components/pages";
 
 export const defaultRefineOptions: IRefineContextOptions = {
     mutationMode: "pessimistic",
@@ -53,7 +53,7 @@ export const RefineContextProvider: React.FC<IRefineContextProvider> = ({
     Sider,
     Footer,
     OffLayoutArea,
-    LoginPage = DefaultAuthPage,
+    LoginPage = DefaultLoginPage,
     catchAll,
     liveMode = "off",
     onLiveEvent,

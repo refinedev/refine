@@ -57,6 +57,10 @@ necati:
     title: Software Developer
     url: https://github.com/necatiozmen
     image_url: https://github.com/necatiozmen.png
+    description: ReactJs and Python Web Developer - Technical Writer - Currently learning Web3 and Typescript
+    github: https://github.com/necatiozmen
+    twitter: https://github.com/necatiozmen
+    linkedin: https://github.com/necatiozmen
 
 michael:
     name: Michael Hungbo
@@ -117,3 +121,15 @@ joel_ezimorah:
     title: Software Developer
     url: https://github.com/prince-joel
     image_url: https://github.com/prince-joel.png
+
+eren_erkalkan:
+    name: Eren Erkalkan
+    title: Co-Founder, refine
+    url: https://github.com/piyerro
+    image_url: https://github.com/piyerro.png
+
+david_omotayo:
+    name: David Omotayo
+    title: Frontend developer
+    url: https://github.com/david4473
+    image_url: https://github.com/david4473.png

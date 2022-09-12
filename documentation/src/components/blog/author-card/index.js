@@ -1,20 +1,35 @@
 import React from "react";
+import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import { useBlogPost } from "@docusaurus/theme-common/internal";
 
 import { Github, Twitter, Linkedin } from "../icons";
 
-export const AuthorCard = () => {
+export const AuthorCardWithHook = ({ className }) => {
     const { metadata } = useBlogPost();
 
     const author = metadata.authors[0];
+
+    return <AuthorCard author={author} className={className} />;
+};
+
+export const AuthorCardWithProps = ({ author, className }) => {
+    return <AuthorCard author={author} className={className} />;
+};
+
+const AuthorCard = ({ author, className }) => {
     const authorHasSocialInfo =
         author.github || author.twitter || author.linkedin;
 
     return (
-        <div className="p-4 border border-solid border-[#dadde1] shadow-sm">
+        <div
+            className={clsx(
+                "p-4 blog-post-item-shadow rounded-[10px]",
+                className,
+            )}
+        >
             <figcaption className="flex flex-col items-center">
-                <Link href={author?.url} itemProp="url">
+                <Link to={`/blog/author/${author?.key}`} itemProp="url">
                     <img
                         src={author?.imageURL}
                         alt={author?.name}
@@ -24,7 +39,7 @@ export const AuthorCard = () => {
                 </Link>
                 <div className="text-center mt-2">
                     <Link
-                        href={author?.url}
+                        to={`/blog/author/${author.key}`}
                         itemProp="url"
                         className="text-sm text-color-base font-semibold"
                     >
