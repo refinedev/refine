@@ -20,8 +20,10 @@ export const SectionUseCase: React.FC = () => {
             ref={ref}
             className="h-auto lg:h-screen lg:max-h-[550px] bg-white -mt-px"
         >
+            {/* Scroll snap alignment */}
+            {/* <div className="hidden lg:block snap-start h-screen lg:max-h-[550px]" /> */}
             {/* Scroll animated section */}
-            <motion.div className="h-auto lg:h-screen lg:max-h-[550px] w-screen top-0 left-0 relative lg:sticky pt-16 flex flex-col items-center justify-end gap-24 lg:gap-0">
+            <motion.div className="h-auto lg:h-screen lg:max-h-[550px] lg:snap-start w-screen top-0 left-0 relative lg:sticky pt-16 pb-12 flex flex-col items-center justify-end gap-24 lg:gap-0">
                 <div className="flex-1 flex flex-col-reverse gap-8 lg:gap-0 lg:flex-row max-w-7xl mx-auto w-full items-center justify-center px-7 md:px-10 lg:px-16 xl:px-24 ">
                     <div className="flex-1">
                         <div className="font-montserrat text-[#1890FF] text-[36px] leading-[36px] lg:text-[42px] lg:leading-[42px] mb-9">
@@ -119,8 +121,6 @@ export const SectionUseCase: React.FC = () => {
                     </div>
                 </div>
             </motion.div>
-            {/* Scroll snap alignment */}
-            <div className="hidden lg:block snap-start h-screen lg:max-h-[550px]" />
         </motion.div>
     );
 };
