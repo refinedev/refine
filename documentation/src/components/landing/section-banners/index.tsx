@@ -81,7 +81,7 @@ export const SectionBanners: React.FC = () => {
                 </div>
             </motion.div>
             {/* Scroll snap alignment */}
-            <div className="snap-end h-[240px]" />
+            <div className="hidden lg:block lg:snap-end h-[240px]" />
         </motion.div>
     );
 };
