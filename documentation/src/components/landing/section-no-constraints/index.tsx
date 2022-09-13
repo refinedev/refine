@@ -176,7 +176,7 @@ export const SectionNoConstraints: React.FC = () => {
 
     const slideOpacity = useTransform(
         scrollYProgress,
-        [0, 5 / 6, 1],
+        [0, 5 / 6, 5.5 / 6],
         [1, 1, 0],
     );
 
@@ -273,6 +273,7 @@ export const SectionNoConstraints: React.FC = () => {
                 ref={ref}
                 className="h-auto lg:h-[600vh] bg-white -mt-px"
             >
+                <div className="hidden lg:block snap-start h-0 w-screen" />
                 {/* Scroll animated section */}
                 <motion.div className="lg:overflow-hidden h-auto lg:h-screen w-screen top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col justify-center pt-[86px] pb-[50px]">
                     <motion.div
@@ -1546,7 +1547,10 @@ export const SectionNoConstraints: React.FC = () => {
                             </div>
                         </motion.div>
                     </motion.div>
-                    <div className="hidden lg:block flex-shrink-0">
+                    <motion.div
+                        style={lg ? { opacity: slideOpacity } : {}}
+                        className="hidden lg:block flex-shrink-0"
+                    >
                         <div
                             className="w-full flex max-w-5xl mx-auto bg-white relative"
                             style={{
@@ -1629,10 +1633,10 @@ export const SectionNoConstraints: React.FC = () => {
                                 <ChevronDown />
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </motion.div>
                 {/* Scroll snap alignment */}
-                {Array.from({ length: 6 }, (_, i) => i).map((i) => (
+                {Array.from({ length: 5 }, (_, i) => i).map((i) => (
                     <div
                         key={i}
                         className="hidden lg:block snap-start h-screen w-screen"
