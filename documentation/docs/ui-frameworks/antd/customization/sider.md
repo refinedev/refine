@@ -9,15 +9,50 @@ You can access the `logout`, `dashboard` and `items` elements that we use in our
 
 ## Customize Sider by Using `render` property
 
-```tsx live previewHeight=300px disableScroll url=http://localhost:3000/posts
-const { Layout, Sider, AntdLayout } = RefineAntd;
-import { Sider } from "@pankod/refine-antd";
+```tsx live hideCode disableScroll url=http://localhost:3000/posts
+const { AntdLayout, Grid, Menu, Icons, Title: DefaultTitle } = RefineAntd;
+const {
+    useTranslate,
+    useLogout,
+    useTitle,
+    CanAccess,
+    ITreeMenu,
+    useIsExistAuthentication,
+    useRouterContext,
+    useMenu,
+    useRefineContext,
+} = RefineCore;
 
 // visible-block-start
-import { Layout, AntdLayout } from "@pankod/refine-antd";
+import {
+    useTranslate,
+    useLogout,
+    useTitle,
+    CanAccess,
+    ITreeMenu,
+    useIsExistAuthentication,
+    useRouterContext,
+    useMenu,
+    useRefineContext,
+} from "@pankod/refine-core";
+import {
+    AntdLayout,
+    Grid,
+    Icons,
+    Title as DefaultTitle,
+} from "@pankod/refine-antd";
+export type SiderRenderProps = {
+    items: JSX.Element[];
+    logout: React.ReactNode;
+    dashboard: React.ReactNode;
+};
+
+export type RefineLayoutSiderProps = {
+    render?: (props: SiderRenderProps) => React.ReactNode;
+};
 
 const PostList: React.FC = () => {
-    return <div>PostList Page</div>;
+    return <div>Post List</div>;
 };
 
 const App: React.FC = () => {
@@ -33,20 +68,22 @@ const App: React.FC = () => {
                     list: PostList,
                 },
             ]}
-            Layout={({ children, Footer, OffLayoutArea }) => (
+            Layout={({ children, Sider }) => (
                 <AntdLayout>
-                    // highlight-start
-                    <Sider
-                        render={({ items }) => {
-                            return (
-                                <>
-                                    <div>custom-element</div>
-                                    {items}
-                                </>
-                            );
-                        }}
-                    />
-                    // highlight-end
+                    <AntdLayout.Header>
+                        // highlight-start
+                        <Sider
+                            render={({ items }) => {
+                                return (
+                                    <>
+                                        <div>custom-element</div>
+                                        {items}
+                                    </>
+                                );
+                            }}
+                        />
+                        // highlight-end
+                    </AntdLayout.Header>
                     <AntdLayout.Content>
                         <AntdLayout.Content>
                             <div style={{ padding: 24, minHeight: 360 }}>
@@ -66,16 +103,18 @@ render(
     <RefineAntdDemo
         Layout={({ children, Sider }) => (
             <AntdLayout>
-                <Sider
-                    render={({ items }) => {
-                        return (
-                            <>
-                                <div>custom-element</div>
-                                {items}
-                            </>
-                        );
-                    }}
-                />
+                <AntdLayout.Header>
+                    <Sider
+                        render={({ items }) => {
+                            return (
+                                <>
+                                    <div>custom-element</div>
+                                    {items}
+                                </>
+                            );
+                        }}
+                    />
+                </AntdLayout.Header>
                 <AntdLayout.Content>
                     <AntdLayout.Content>
                         <div style={{ padding: 24, minHeight: 360 }}>
@@ -100,7 +139,7 @@ render(
 
 You can also customize your Sider component by creating the `CustomSider` component.
 
-When you examine the code of the livepreview example below, you will see the same code that we used for the `default sider` component. You can create a customized `CustomSider` component for yourself by following this code.
+When you examine the code of the live-preview example below, you will see the same code that we used for the `default sider` component. You can create a customized `CustomSider` component for yourself by following this code.
 
 ```tsx live hideCode disableScroll url=http://localhost:3000/posts
 const { AntdLayout, Grid, Menu, Icons, Title: DefaultTitle } = RefineAntd;
