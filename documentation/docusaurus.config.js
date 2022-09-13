@@ -36,17 +36,7 @@ const siteConfig = {
                     },
                     lastVersion: "current",
                 },
-                blog: {
-                    blogTitle: "Blog",
-                    blogDescription: "A Docusaurus powered blog!",
-                    postsPerPage: "ALL",
-                    blogSidebarTitle: "All posts",
-                    blogSidebarCount: "ALL",
-                    feedOptions: {
-                        type: "all",
-                        copyright: `Copyright © ${new Date().getFullYear()} refine.`,
-                    },
-                },
+                blog: false,
                 theme: {
                     customCss: [
                         require.resolve("./src/css/custom.css"),
