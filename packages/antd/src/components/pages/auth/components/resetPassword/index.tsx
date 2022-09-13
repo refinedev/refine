@@ -76,7 +76,7 @@ export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
                         {
                             type: "email",
                             message: translate(
-                                "pages.register.validEmail",
+                                "pages.resetPassword.errors.validEmail",
                                 "Invalid email address",
                             ),
                         },
@@ -91,7 +91,6 @@ export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
                         )}
                     />
                 </Form.Item>
-
                 <div
                     style={{
                         display: "flex",
@@ -121,7 +120,6 @@ export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
                         </Text>
                     )}
                 </div>
-
                 <Button
                     type="primary"
                     size="large"

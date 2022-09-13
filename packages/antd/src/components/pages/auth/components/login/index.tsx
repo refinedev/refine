@@ -48,7 +48,7 @@ export const LoginPage: React.FC<LoginProps> = ({
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>
-            {translate("pages.login.title", "Sign in your account")}
+            {translate("pages.login.title", "Sign in to your account")}
         </Title>
     );
 
@@ -112,7 +112,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         {
                             type: "email",
                             message: translate(
-                                "pages.register.validEmail",
+                                "pages.login.errors.validEmail",
                                 "Invalid email address",
                             ),
                         },

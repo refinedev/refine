@@ -48,7 +48,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>
-            {translate("pages.register.title", "Sign up your account")}
+            {translate("pages.register.title", "Sign up for your account")}
         </Title>
     );
 
@@ -73,7 +73,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         {
                             type: "email",
                             message: translate(
-                                "pages.register.validEmail",
+                                "pages.register.errors.validEmail",
                                 "Invalid email address",
                             ),
                         },

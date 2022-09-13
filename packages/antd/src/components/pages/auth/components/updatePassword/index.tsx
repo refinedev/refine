@@ -112,7 +112,6 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
                         size="large"
                     />
                 </Form.Item>
-
                 <Button
                     type="primary"
                     size="large"
