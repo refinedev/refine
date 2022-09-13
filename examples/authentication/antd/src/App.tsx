@@ -1,10 +1,12 @@
 import { Refine, AuthProvider } from "@pankod/refine-core";
 import {
     notificationProvider,
-    LoginPage,
     Layout,
     ErrorComponent,
+    AuthPage,
 } from "@pankod/refine-antd";
+import { GoogleOutlined, GithubOutlined } from "@ant-design/icons";
+
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
@@ -18,20 +20,49 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
         login: (params: any) => {
-            if (params.username === "admin") {
-                localStorage.setItem("username", params.username);
+            if (params.providerName === "google") {
+                return Promise.resolve(
+                    "https://accounts.google.com/o/oauth2/v2/auth",
+                );
+            }
+            if (params.providerName === "github") {
+                return Promise.resolve("https://github.com/login");
+            }
+            if (params.email === "admin@refine.com") {
+                localStorage.setItem("email", params.email);
                 return Promise.resolve();
             }
 
             return Promise.reject();
         },
+        register: (params: any) => {
+            if (params.email && params.password) {
+                localStorage.setItem("email", params.email);
+                return Promise.resolve();
+            }
+            return Promise.reject();
+        },
+        updatePassword: (params: any) => {
+            if (params.newPassword) {
+                //we can update password here
+                return Promise.resolve();
+            }
+            return Promise.reject();
+        },
+        resetPassword: (params: any) => {
+            if (params.email) {
+                //we can send email with reset password link here
+                return Promise.resolve();
+            }
+            return Promise.reject();
+        },
         logout: () => {
-            localStorage.removeItem("username");
+            localStorage.removeItem("email");
             return Promise.resolve();
         },
         checkError: () => Promise.resolve(),
         checkAuth: () =>
-            localStorage.getItem("username")
+            localStorage.getItem("email")
                 ? Promise.resolve()
                 : Promise.reject(),
         getPermissions: () => Promise.resolve(["admin"]),
@@ -47,7 +78,23 @@ const App: React.FC = () => {
         <Refine
             authProvider={authProvider}
             dataProvider={dataProvider(API_URL)}
-            routerProvider={routerProvider}
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                    {
+                        path: "/register",
+                        element: <AuthPage type="register" />,
+                    },
+                    {
+                        path: "/reset-password",
+                        element: <AuthPage type="resetPassword" />,
+                    },
+                    {
+                        path: "/update-password",
+                        element: <AuthPage type="updatePassword" />,
+                    },
+                ],
+            }}
             DashboardPage={DashboardPage}
             resources={[
                 {
@@ -58,7 +105,22 @@ const App: React.FC = () => {
                 },
             ]}
             notificationProvider={notificationProvider}
-            LoginPage={LoginPage}
+            LoginPage={() => (
+                <AuthPage
+                    providers={[
+                        {
+                            name: "google",
+                            label: "Sign in with Google",
+                            icon: <GoogleOutlined style={{ fontSize: 24 }} />,
+                        },
+                        {
+                            name: "github",
+                            label: "Sign in with GitHub",
+                            icon: <GithubOutlined style={{ fontSize: 24 }} />,
+                        },
+                    ]}
+                />
+            )}
             Layout={Layout}
             catchAll={<ErrorComponent />}
         />
