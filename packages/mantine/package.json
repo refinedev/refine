@@ -1,8 +1,8 @@
 {
     "name": "@pankod/refine-mantine",
-    "version": "3.37.3",
-    "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
-    "private": false,
+    "version": "1.0.0",
+    "description": "refine is a React-based framework for building internal tools, rapidly.",
+    "private": true,
     "main": "dist/index.js",
     "module": "dist/esm/index.js",
     "typings": "dist/index.d.ts",
@@ -70,7 +70,7 @@
     "repository": {
         "type": "git",
         "url": "https://github.com/pankod/refine.git",
-        "directory": "packages/antd"
+        "directory": "packages/mantine"
     },
     "publishConfig": {
         "access": "public"
