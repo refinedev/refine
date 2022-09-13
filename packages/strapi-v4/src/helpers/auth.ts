@@ -33,11 +33,14 @@ export const AuthHelper = (apiUrl: string) => ({
             password,
         });
     },
-    me: async (token: string) => {
-        return await axios.get<IUser>(`${apiUrl}/users/me`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-    },
+    me: async (token: string, populate?: any) => {
+    const query = stringify(populate, {
+      encodeValuesOnly: true,
+    });
+    return await axios.get<IUser>(`${apiUrl}/users/me?${query}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
 });
