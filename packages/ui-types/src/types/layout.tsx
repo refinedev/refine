@@ -4,6 +4,7 @@ export type SiderRenderProps = {
     items: JSX.Element[];
     logout: React.ReactNode;
     dashboard: React.ReactNode;
+    collapsed: boolean;
 };
 
 export type RefineLayoutSiderProps = {
