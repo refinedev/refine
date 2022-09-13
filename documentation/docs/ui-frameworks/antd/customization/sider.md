@@ -5,12 +5,19 @@ title: Sider
 
 There are 2 ways that will allow you to customize your `<Sider />` component if you need it.
 
-You can access the `logout`, `dashboard` and `items` elements that we use in our default `Sider` component by using `render` properties. Customize it to your needs or you can create a custom `<Sider />` component and use it either by passing it to [`<Refine />`][refine] or using a [Custom Layout][antdcustomlayout].
+You can access the `logout`, `dashboard`, `items` elements and `collapsed` state that we use in our default `Sider` component by using `render` properties. Customize it to your needs or you can create a custom `<Sider />` component and use it either by passing it to [`<Refine />`][refine] or using a [Custom Layout][antdcustomlayout].
 
 ## Customize Sider by Using `render` property
 
-```tsx live hideCode disableScroll url=http://localhost:3000/posts
-const { AntdLayout, Grid, Menu, Icons, Title: DefaultTitle } = RefineAntd;
+```tsx live previewHeight=360px hideCode disableScroll url=http://localhost:3000/posts
+const {
+    AntdLayout,
+    Grid,
+    Menu,
+    Icons,
+    Title: DefaultTitle,
+    Sider,
+} = RefineAntd;
 const {
     useTranslate,
     useLogout,
@@ -22,6 +29,7 @@ const {
     useMenu,
     useRefineContext,
 } = RefineCore;
+import { Sider } from "@pankod/refine-antd";
 
 // visible-block-start
 import {
@@ -40,6 +48,7 @@ import {
     Grid,
     Icons,
     Title as DefaultTitle,
+    Menu,
 } from "@pankod/refine-antd";
 export type SiderRenderProps = {
     items: JSX.Element[];
@@ -68,7 +77,7 @@ const App: React.FC = () => {
                     list: PostList,
                 },
             ]}
-            Layout={({ children, Sider }) => (
+            Layout={({ children, Sider, collapsed }) => (
                 <AntdLayout>
                     <AntdLayout.Header>
                         // highlight-start
@@ -76,7 +85,13 @@ const App: React.FC = () => {
                             render={({ items }) => {
                                 return (
                                     <>
-                                        <div>custom-element</div>
+                                        <Menu.Item
+                                            style={{
+                                                fontWeight: 700,
+                                            }}
+                                        >
+                                            Custom Element
+                                        </Menu.Item>
                                         {items}
                                     </>
                                 );
@@ -101,23 +116,32 @@ const App: React.FC = () => {
 
 render(
     <RefineAntdDemo
-        Layout={({ children, Sider }) => (
+        Layout={({ children }) => (
             <AntdLayout>
-                <AntdLayout.Header>
-                    <Sider
-                        render={({ items }) => {
-                            return (
-                                <>
-                                    <div>custom-element</div>
-                                    {items}
-                                </>
-                            );
-                        }}
-                    />
-                </AntdLayout.Header>
+                <Sider
+                    render={({ items }) => {
+                        return (
+                            <>
+                                <Menu.Item
+                                    style={{
+                                        fontWeight: 700,
+                                    }}
+                                >
+                                    Custom Element
+                                </Menu.Item>
+                                {items}
+                            </>
+                        );
+                    }}
+                />
                 <AntdLayout.Content>
                     <AntdLayout.Content>
-                        <div style={{ padding: 24, minHeight: 360 }}>
+                        <div
+                            style={{
+                                padding: 12,
+                                minHeight: 360,
+                            }}
+                        >
                             {children}
                         </div>
                     </AntdLayout.Content>
@@ -134,6 +158,10 @@ render(
     />,
 );
 ```
+
+:::tip
+The `Menu.Item` component gives you an implemention ready component compatible with Sider menu items. If you want to add anything else to your `Sider` component, you can use the `collapsed` state to manage your component.
+:::
 
 ## Recreating the Default Sider Menu
 
