@@ -4,6 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+require("dotenv").config();
 
 const redirectJson = require("./redirects.json");
 
@@ -305,6 +306,9 @@ const siteConfig = {
                 },
             ],
         },
+    },
+    customFields: {
+        GITHUB_STARGAZER_TOKEN: process.env.GITHUB_STARGAZER_TOKEN,
     },
 };
 

@@ -1,5 +1,7 @@
 import React from "react";
 import Link from "@docusaurus/Link";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+
 import {
     motion,
     useScroll,
@@ -17,6 +19,11 @@ import { useTWBreakpoints } from "../../../hooks/use-tw-breakpoints";
 
 export const SectionHero: React.FC = () => {
     const ref = React.useRef<HTMLDivElement>(null);
+    const {
+        siteConfig: {
+            customFields: { GITHUB_STARGAZER_TOKEN },
+        },
+    } = useDocusaurusContext();
 
     const { md, lg, xl } = useTWBreakpoints();
 
@@ -65,7 +72,6 @@ export const SectionHero: React.FC = () => {
         [4, -4],
     );
 
-    const token = "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";
     const repo = "refine";
     const org = "pankod";
 
@@ -74,7 +80,7 @@ export const SectionHero: React.FC = () => {
     React.useEffect(() => {
         (async () => {
             const response = await fetch(
-                `https://api.github.com/repos/${org}/${repo}?access_token=${token}`,
+                `https://api.github.com/repos/${org}/${repo}?access_token=${GITHUB_STARGAZER_TOKEN}`,
                 {
                     method: "GET",
                     headers: {
