@@ -26,8 +26,8 @@ export const SectionBullets = () => {
 
     const whyNotY = useTransform(
         scrollYProgressInnerIncoming,
-        [0, 0.5],
-        [100, 0],
+        [0, 0.25, 1],
+        [100, -50, 0],
     );
 
     const whyNotRotate = useTransform(
@@ -38,7 +38,7 @@ export const SectionBullets = () => {
 
     const whyNotOpacity = useTransform(
         scrollYProgressInnerIncoming,
-        [0, 0.5, 1],
+        [0, 0.25, 1],
         [0, 1, 1],
     );
 
