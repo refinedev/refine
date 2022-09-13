@@ -4,7 +4,7 @@
 
 Added new types for `<AuthPage>`. You can see following new types:
 
--   `RefineAuthPageProps`
+**`RefineAuthPageProps`**
 
 ```tsx
 export type RefineAuthPageProps<
