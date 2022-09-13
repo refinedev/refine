@@ -8,6 +8,12 @@ image: https://refine.dev/img/blog/2022-09-12-next-typescript/social.png
 hide_table_of_contents: false
 ---
 
+import memo1 from '@site/static/img/blog/2022-09-13-react-memo/social.png';
+import memo2 from '@site/static/img/blog/2022-09-13-react-memo/memo2.png';
+import memo3 from '@site/static/img/blog/2022-09-13-react-memo/memo3.png';
+import memo4 from '@site/static/img/blog/2022-09-13-react-memo/memo4.png';
+import signout from '@site/static/img/blog/2022-09-13-react-memo/signout.png';
+
 # Memoization in React
 
 ## Introduction
@@ -20,20 +26,20 @@ In this post, we'll demonstrate the use of `React.memo()`, which is a **Higher O
 ## What is Memoization ?
 Memoization is an optimization technique that allows us to store the last computed value or object from a resource-intensive function. It allows us to bypass the function's costly computations when the function is called with the same parameters repeatedly.
 
-In React, memoization is used for optimizing the performance of an app by preventing unnecessary renders of components participating in the component hierarchy and by caching callbacks and values of expensive utility functions.
+In React, **memoization** is used for optimizing the performance of an app by preventing unnecessary renders of components participating in the component hierarchy and by caching callbacks and values of expensive utility functions.
 
 As React is all about rendering components in the virtual DOM prior to updating the actual Document Object Model in the browser, a lot of memory and time is wasted on useless renderings due to unaccounted for state updates. Using memoization in the right way helps in better use of computing resources in an app.
 
 On the other hand, using it the wrong way can rip us off the benefits. Not only that, on the flip side of unnecessary re-renderings, unnecessary memoization can sometimes cost more than ignoring memoization - eventually hurting performance.
 
 ## Project Setup
-This series is more of a demo than a coding tutorial, as I've made the code already available in this [GitHub repo](https://github.com/anewman15/react-memoization). All the components have been coded ahead of time, and we'll use **_commenting out_** and **_uncommenting_** on the existing code to discuss different aspects of the above mentioned memoization methods.
+This series is more of a demo than a coding tutorial, as we've made the code already available in this [GitHub repo](https://github.com/refinedev/react-memoization). All the components have been coded ahead of time, and we'll use **_commenting out_** and **_uncommenting_** on the existing code to discuss different aspects of the above mentioned memoization methods.
 
 We'll follow the impact of memoization mainly from the browser's console. I'll be using Google Chrome, and recommend it for the demonstration.
 
 In order to get everything up and running, please follow these steps:
 
-1. Clone the `react-memoization` project from [this repo](https://github.com/anewman15/react-memoization) to a folder of your choice.
+1. Clone the `react-memoization` project from [this repo](https://github.com/refinedev/react-memoization) to a folder of your choice.
 2. Navigate to the cloned folder and open it in your code editor.
 3. Run `yarn install` to install all npm packages.
 4. Run `yarn start` to start the server.
@@ -54,40 +60,34 @@ The focus of this article will be the `<Post />` component, but `<App />`, `<Blo
 ## Memoizing a Functional Component using `React.memo()`
 To begin the example, we have an `<App />` component that houses `<Blog />`.
 
-We'll skip both for brevity, but if we look `<App />` in the repository, we're storing a `signedIn` state with `useState()` hook. We also have a toggler function that alters the value of `signedIn`. In the JSX, we pass `signedIn` to `<Blog />`:
+We'll skip both for brevity, but if we look `<App />` in the repository, we're storing a `signedIn` state with `useState()` hook. We also have a toggler function that alters the value of `signedIn`.  
 
-```
-// src/components/App.jsx
+In the component, we pass `signedIn` to `<Blog />`:
 
+```tsx title="src/components/App.jsx"
  <Blog signedIn={signedIn} setSignedIn={setSignedIn} />
 ```
 
 Looking at `<Blog />`, it gets a list of posts with a click on the `Get Latest Post`  button and sets the `updatedPosts` state:
 
-```
-// src/components/Blog.jsx
-
-  const getLatestPosts = () => {
-    const posts = fetchUpdatedPosts();
-    setUpdatedPosts(posts);
-  };
+```tsx title="src/components/Blog.jsx"
+const getLatestPosts = () => {
+  const posts = fetchUpdatedPosts();
+  setUpdatedPosts(posts);
+};
 ```
 
 We can see that the first item from a sorted array is then passed to `<LatestPost />` component along with `signedIn`:
 
-```
-// src/components/Blog.jsx
-
-  <LatestPost signedIn={signedIn} post={sortedPosts[0]} />
+```tsx title="src/components/Blog.jsx"
+<LatestPost signedIn={signedIn} post={sortedPosts[0]} />
 ```
 
 Then coming to `<LatestPost />`, it nests the `<Post />` component, which we are going to memoize with `React.memo()`. Let's quickly run through `<LatestPost />` in the repository to see what it does.
 
 We can see that `<LatestPost />` changes its local state of `likesCount` every 3 seconds in the `useEffect()` hook:
 
-```
-// src/components/LatestPost.jsx
-
+```tsx title="src/components/LatestPost.jsx"
 useEffect(
     () => {
       const id = setInterval(() =>{
@@ -102,23 +102,18 @@ useEffect(
 
 Because of this, `<LatestPost />` should re-render every 3 seconds. So should `<Post />` as a consequence of being a child of `<LatestPost />`:
 
-```
-// src/components/LatestPost.jsx
-
+```tsx title="src/components/LatestPost.jsx"
 <Post signedIn={signedIn} post={post} />
 ```
 
 Let's now focus on `<Post />`. It receives `signedIn` and `post` as props and displays the content of `post`:
 
-```
-// src/components/Post.jsx
-
+```tsx title="src/components/Post.jsx"
 import React from 'react';
 
 const Post = ({ signedIn, post }) => {
 
-  console.log('Rendering Post component');
-  // console.log(signedIn);
+console.log('Rendering Post component');
 
   return (
     <div className="">
@@ -134,13 +129,7 @@ const Post = ({ signedIn, post }) => {
   );
 };
 
-const customComparator = (prevProps, nextProps) => {
-  return nextProps.post === prevProps.post;
-};
-
 export default Post;
-// export default React.memo(Post);
-// export default React.memo(Post, customComparator);
 ```
 
 As you can see `<Post />` does not depend on `likesCount` but is re-rendered by the latter's change via `<LatestPost />`. We can see this in the console.
@@ -149,22 +138,28 @@ If we check our Chrome's console we have `<Post />` rendering again and again fo
 
 ![React.memo-1](https://imgbox.com/funhoBmF)
 
-Notice, rendering `<Post />` is accompanied by `<LatestPost />`, so it is consistent that `<Post />" s re-renders are happening due to `likesCount` state changes in `<LatestPost />`. They are coming at `3000ms` intervals from `<LatestPost />`'s `useEffect()` hook.
+Notice, rendering `<Post />` is accompanied by `<LatestPost />`, so it is consistent that `<Post />`'s re-renders are happening due to `likesCount` state changes in `<LatestPost />`.
+
+ They are coming at `3000ms` intervals from `<LatestPost />`'s `useEffect()` hook.
 
 All these re-renders are futile for `<Post />` and costly for the app.
 
-Now, if we memoize `<Post />` with `React.memo()`, the re-renders should stop. So, in `<Post />`, let's comment out `export default Post;` and uncomment `// export default React.memo(Post);`:
+Now, if we memoize `<Post />` with `React.memo()`, the re-renders should stop. 
 
-```
-// src/components/Post.jsx
+So, in `<Post />`, let's the component export with the highlighted code:
 
-// const customComparator = (prevProps, nextProps) => {
-//   return nextProps.post === prevProps.post;
-// };
+```tsx title="src/components/Post.jsx"
+const Post = ({ signedIn, post }) => {
 
-// export default Post;
+console.log('Rendering Post component');
+
+  return (
+   ... 
+  );
+};
+
+//highlight-next-line
 export default React.memo(Post);
-// export default React.memo(Post, customComparator);
 ```
 
 Looking at the console, we can see that `Post` is no longer re-rendered at 3s intervals:
