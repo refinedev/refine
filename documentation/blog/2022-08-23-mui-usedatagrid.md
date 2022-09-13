@@ -4,7 +4,7 @@ description: How to use Material UI DataGrid component with refine apps?
 slug: mui-datagrid-refine
 authors: michael
 tags: [material-ui, react, datagrid, mui]
-image: https://refine.dev/img/refine_social.png
+image: /img/placeholder.png
 hide_table_of_contents: false
 ---
 
@@ -33,13 +33,24 @@ In this article, we'll show how to use Material UI [`<DataGrid/>`](https://mui.c
 Material UI is a React UI component library with a rich set of components and tools for bootstrapping elegant user interfaces. We'll use the `<DataGrid/>` component to render a list of employees from a mock server. We'll also look at some of the properties and custom configurations that can be used with the component.
 
 Steps we’ll cover:
-- [Setting up a refine application](#setting-up-a-refine-application)
+- [Introduction](#introduction)
+- [Prerequisites](#prerequisites)
+- [Setting up a `refine` application](#setting-up-a-refine-application)
 - [Creating mock API with Mockaroo and My JSON Server](#creating-mock-api-with-mockaroo-and-my-json-server)
 - [Material UI DataGrid component](#material-ui-datagrid-component)
 - [Adding styled-components](#adding-styled-components)
-- [refine's useDataGrid hook](#refines-usedatagrid-hook)
-- [Rendering data with the DataGrid component](#rendering-data-with-the-datagrid-component)
+- [refine's `useDataGrid` hook](#refines-usedatagrid-hook)
+- [Rendering data with the `<DataGrid/>` component](#rendering-data-with-the-datagrid-component)
 - [Pagination, Filtering, and Sorting using the `useDataGrid` hook](#pagination-filtering-and-sorting-using-the-usedatagrid-hook)
+  - [Pagination](#pagination)
+  - [Sorting](#sorting)
+    - [Initial sort order](#initial-sort-order)
+    - [Controlled sorting](#controlled-sorting)
+  - [Filtering](#filtering)
+    - [Controlled filtering](#controlled-filtering)
+- [Conclusion](#conclusion)
+- [Live StackBlitz Example](#live-stackblitz-example)
+- [Build your React-based CRUD applications without constraints](#build-your-react-based-crud-applications-without-constraints)
   
 
 ## Prerequisites
