@@ -9,12 +9,12 @@ import customMenuLogout from '@site/static/img/guides-and-concepts/hooks/useMenu
 
 import customMobileMenu from '@site/static/img/guides-and-concepts/hooks/useMenu/mui/custom-menu-mobile.gif';
 
-You can access the `logout`, `dashboard` and `items` elements that we use in our default `Sider` component by using `render` properties. Customize it to your needs or you can create a custom `<Sider />` component and use it either by passing it to [`<Refine />`][refine] or using a [Custom Layout][antdcustomlayout].
+You can access the `logout`, `dashboard`, `items` elements and `collapsed` state that we use in our default `Sider` component by using `render` properties. Customize it to your needs or you can create a custom `<Sider />` component and use it either by passing it to [`<Refine />`][refine] or using a [Custom Layout][antdcustomlayout].
 
 ## Customize Sider by Using `render` property
 
 ```tsx title="src/App.tsx"
-import { Box } from "@pankod/refine-mui";
+import { Box, ListItemText } from "@pankod/refine-mui";
 
 const PostList: React.FC = () => {
     return <div>PostList Page</div>;
@@ -40,7 +40,7 @@ const App: React.FC = () => {
                         render={({ items }) => {
                             return (
                                 <>
-                                    <div>custom-element</div>
+                                    <ListItemText primary="Custom Element" />
                                     {items}
                                 </>
                             );
@@ -63,6 +63,10 @@ const App: React.FC = () => {
     );
 };
 ```
+
+:::tip
+You can also use the `collapsed` state to manage the component that you want to add to your `Sider` component.
+:::
 
 ## Recreating the Default Sider Menu
 
