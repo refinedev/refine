@@ -11,7 +11,7 @@ import {
     IResourceItem,
 } from "@pankod/refine-core";
 
-import { MockRouterProvider, MockJSONServer } from "src/test";
+import { MockRouterProvider, MockJSONServer } from "@test";
 
 /* interface ITestWrapperProps {
     authProvider?: IAuthContext;

@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import { render, TestWrapper, ITestWrapperProps, act } from "src/test";
+import { render, TestWrapper, ITestWrapperProps, act } from "@test";
 
 import { Breadcrumb } from "./";
 import { breadcrumbTests } from "@pankod/refine-ui-tests";
@@ -59,5 +59,19 @@ describe("Breadcrumb", () => {
         });
 
         expect(container.querySelector("svg")).toBeFalsy();
+    });
+
+    it("should render breadcrumb items", async () => {
+        const { getByText } = renderBreadcrumb(<Breadcrumb />, {
+            resources: [{ name: "posts" }],
+            routerInitialEntries: ["/posts/create"],
+        });
+
+        await act(async () => {
+            jest.advanceTimersToNextTimer(1);
+        });
+
+        getByText("Posts");
+        getByText("Create");
     });
 });
