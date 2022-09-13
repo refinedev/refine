@@ -24,7 +24,7 @@ const AuthorCard = ({ author, className }) => {
     return (
         <div
             className={clsx(
-                "p-4 blog-post-item-shadow rounded-[10px]",
+                "blog-post-item-shadow rounded-[10px] p-4",
                 className,
             )}
         >
@@ -33,43 +33,43 @@ const AuthorCard = ({ author, className }) => {
                     <img
                         src={author?.imageURL}
                         alt={author?.name}
-                        className="flex w-24 h-24 rounded-full object-cover"
                         loading="lazy"
+                        className="flex h-[120px] w-[120px] rounded-full object-cover"
                     />
                 </Link>
-                <div className="text-center mt-2">
+                <div className="mt-2 text-center">
                     <Link
                         to={`/blog/author/${author.key}`}
                         itemProp="url"
-                        className="text-sm text-color-base font-semibold"
+                        className="text-sm font-semibold text-inherit"
                     >
                         {author?.name}
                     </Link>
-                    <div className="text-xs text-slate-600 -mt-0.5">
+                    <div className="-mt-0.5 text-xs text-[#9696B4] ">
                         {author?.title}
                     </div>
 
                     {author?.description && (
-                        <div className="text-sm text-slate-700 mt-4">
+                        <div className="mt-4 text-[10px] font-medium text-[#9696B4]">
                             {author?.description}
                         </div>
                     )}
 
                     {authorHasSocialInfo && (
-                        <div className="flex justify-center gap-3 mt-4">
+                        <div className="mt-4 flex justify-center gap-3">
                             {author?.github && (
                                 <Link to={author?.github}>
-                                    <Github className="w-8 h-8" />
+                                    <Github className="h-6 w-6" />
                                 </Link>
                             )}
                             {author?.twitter && (
                                 <Link to={author?.twitter}>
-                                    <Twitter className="w-8 h-8" />
+                                    <Twitter className="h-6 w-6" />
                                 </Link>
                             )}
                             {author?.linkedin && (
                                 <Link to={author?.linkedin}>
-                                    <Linkedin className="w-8 h-8" />
+                                    <Linkedin className="h-6 w-6" />
                                 </Link>
                             )}
                         </div>

@@ -9,7 +9,7 @@ export default function BlogLayout(props) {
 
     return (
         <Layout {...layoutProps}>
-            <div className="container margin-vert--lg">
+            <div className="margin-vert--lg container  max-w-[1040px]">
                 <div className="flex flex-row flex-wrap lg:flex-nowrap lg:gap-4">
                     {sidebar ??
                         (toc && (

@@ -15,7 +15,7 @@ export const Tags = () => {
                         to={tag.permalink}
                         className="no-underline"
                     >
-                        <span className="bg-[#F6F6F9] px-2 py-1 capitalize text-sm rounded border border-solid border-[#2A2A42] text-[#2A2A42] hover:text-[#1890FF] hover:border-[#1890FF] transition duration-150">
+                        <span className="rounded border border-solid border-[#2A2A42] bg-[#F6F6F9] px-2 py-1 text-[10px] capitalize text-[#2A2A42] transition duration-150 hover:border-[#1890FF] hover:text-[#1890FF]">
                             {tag.label}
                         </span>
                     </Link>
