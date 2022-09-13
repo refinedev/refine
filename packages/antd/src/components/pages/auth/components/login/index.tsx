@@ -28,7 +28,7 @@ type LoginProps = RefineLoginPageProps<LayoutProps, CardProps>;
 /**
  * **refine** has a default login page form which is served on `/login` route when the `authProvider` configuration is provided.
  *
- * @see {@link https://refine.dev/docs/api-references/components/refine-config#loginpage} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/antd-auth-page/#login} for more details.
  */
 export const LoginPage: React.FC<LoginProps> = ({
     providers,

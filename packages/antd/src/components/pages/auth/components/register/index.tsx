@@ -27,6 +27,11 @@ const { Text, Title } = Typography;
 
 type RegisterProps = RefineRegisterPageProps<LayoutProps, CardProps>;
 
+/**
+ * **refine** has register page form which is served on `/register` route when the `authProvider` configuration is provided.
+ *
+ * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/antd-auth-page/#register} for more details.
+ */
 export const RegisterPage: React.FC<RegisterProps> = ({
     loginLink,
     wrapperProps,
