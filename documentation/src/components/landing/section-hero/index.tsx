@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "@docusaurus/Link";
 import {
     motion,
     useScroll,
@@ -452,18 +453,18 @@ export const SectionHero: React.FC = () => {
                 </div>
                 <div className="flex flex-col-reverse lg:flex-row pt-12 sm:pt-16 lg:pt-24 pb-8 gap-2 lg:gap-0 mx-auto lg:mx-0 max-w-lg lg:max-w-none">
                     <div className="flex flex-col lg:flex-row flex-1 gap-4 -mx-4 px-0 md:px-8 lg:px-12">
-                        <a
+                        <Link
                             className="flex flex-1 justify-center items-center appearance-none no-underline font-montserrat font-bold text-xl text-white text-center py-3 px-4 rounded-lg shadow-lg hover:shadow-xl focus:outline-none focus:shadow-xl bg-gradient-to-l from-[#1890FF] to-[#47EBF5]"
-                            href=""
+                            to="/docs"
                         >
                             Start Tutorial
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                             className="flex flex-1 justify-center items-center gap-3 appearance-none no-underline font-montserrat font-bold text-xl text-white text-center py-3 px-4 focus:outline-none"
-                            href=""
+                            href="/docs/getting-started/overview"
                         >
                             Read the docs <ChevronRight />
-                        </a>
+                        </Link>
                     </div>
                     <div className="flex flex-row flex-1 gap-1 justify-end -mx-4 px-0 md:px-8 lg:px-12">
                         <div>

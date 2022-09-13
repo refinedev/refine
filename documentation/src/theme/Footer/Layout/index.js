@@ -96,7 +96,7 @@ export default function FooterLayout({
     socialLinks,
 }) {
     return (
-        <footer className="refine-footer bg-[#F6F6F9] px-4 md:px-6 pt-7 pb-24 lg:pt-10 lg:pb-24">
+        <footer className="refine-footer px-4 md:px-6 pt-7 pb-24 lg:pt-10 lg:pb-24">
             <div className="max-w-6xl mx-auto flex flex-col gap-5">
                 <div>{logo && <div>{logo}</div>}</div>
                 <div className="flex flex-col lg:flex-row gap-6 lg:gap-20">
@@ -113,7 +113,7 @@ export default function FooterLayout({
                 <div className="h-2.5 border-0 border-b-2 w-full border-solid border-b-[#9696B4]" />
                 <div className="flex flex-col-reverse gap-6 lg:gap-0 lg:flex-row">
                     <div className="flex-1">
-                        <div className="flex items-center text-[#9696B4] text-xs leading-[12px] font-montserrat justify-center lg:justify-start">
+                        <div className="flex items-center text-[#9696B4] text-[11px] sm:text-xs leading-[12px] font-montserrat justify-center lg:justify-start">
                             © 2022, refine from Delaware to whereever you’re
                             with <LoveIcon className="ml-2" />
                         </div>

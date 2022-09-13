@@ -270,7 +270,7 @@ export const SectionNoConstraints: React.FC = () => {
             </motion.div> */}
             <motion.div ref={ref} className="h-auto lg:h-[600vh] bg-white">
                 {/* Scroll animated section */}
-                <motion.div className="lg:overflow-hidden h-auto lg:h-screen w-screen top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col justify-center py-[86px]">
+                <motion.div className="lg:overflow-hidden h-auto lg:h-screen w-screen top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col justify-center pt-[86px] pb-[65px]">
                     <motion.div
                         className="hidden lg:block absolute -left-36 -top-24 z-[-1]"
                         style={{
@@ -312,7 +312,7 @@ export const SectionNoConstraints: React.FC = () => {
                         </div>
                     </div>
                     <motion.div
-                        className="overflow-x-hidden lg:overflow-y-hidden lg:snap-x lg:snap-mandatory relative flex-1 lg:max-h-[600px]"
+                        className="overflow-x-visible lg:overflow-x-hidden lg:overflow-y-hidden lg:snap-x lg:snap-mandatory relative flex-1 lg:max-h-[600px]"
                         style={{ opacity: slideOpacity }}
                     >
                         <motion.div
@@ -367,7 +367,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 src="/landing/no-constraints/custom-ui.png"
                                             />
                                             <motion.div
-                                                className="bg-white text-[34px] leading-[34px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#2A2A42] absolute right-[100px] bottom-[50px]"
+                                                className="bg-white text-[22px] leading-[22px] lg:text-[34px] lg:leading-[34px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#2A2A42] absolute right-[70px] bottom-[60px] lg:right-[100px] lg:bottom-[50px]"
                                                 animate={{
                                                     rotateY: ["10deg", "17deg"],
                                                     rotateX: [
@@ -435,7 +435,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 src="/landing/no-constraints/custom-ui-2.png"
                                             />
                                             <motion.div
-                                                className="bg-white text-[34px] leading-[34px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#2A2A42] absolute right-[100px] bottom-[50px]"
+                                                className="bg-white text-[22px] leading-[22px] lg:text-[34px] lg:leading-[34px]  py-0.5 px-1.5 font-montserrat font-extrabold text-[#2A2A42] absolute right-[100px] bottom-[50px]"
                                                 animate={{
                                                     rotateY: ["10deg", "17deg"],
                                                     rotateX: [
@@ -517,7 +517,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 }}
                                             >
                                                 <div
-                                                    className="bg-white text-[28px] leading-[28px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#2EBBFB]"
+                                                    className="bg-white text-[22px] leading-[22px] lg:text-[28px] lg:leading-[28px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#2EBBFB]"
                                                     style={{
                                                         boxShadow:
                                                             "6px 8px 16px rgba(42, 42, 66, 0.2)",
@@ -526,7 +526,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     ANT DESIGN
                                                 </div>
                                                 <div
-                                                    className="bg-white text-[28px] leading-[28px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#247EF8]"
+                                                    className="bg-white text-[22px] leading-[22px] lg:text-[28px] lg:leading-[28px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#247EF8]"
                                                     style={{
                                                         boxShadow:
                                                             "6px 8px 16px rgba(42, 42, 66, 0.2)",
@@ -546,7 +546,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                         slideScreenText12Progress,
                                                 }}
                                             >
-                                                <p className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] mb-0">
+                                                <p className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] mb-0 text-[#2A2A42]">
                                                     <strong className="font-bold">
                                                         refine
                                                     </strong>{" "}
@@ -555,13 +555,13 @@ export const SectionNoConstraints: React.FC = () => {
                                                         headless by design.
                                                     </strong>{" "}
                                                 </p>
-                                                <p className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px]">
+                                                <p className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] text-[#2A2A42]">
                                                     It doesn’t ship with any
                                                     pre-styled components or UI
                                                     by default.
                                                 </p>
                                                 <motion.p
-                                                    className="hidden lg:block font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px]"
+                                                    className="hidden lg:block font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] text-[#2A2A42]"
                                                     style={{
                                                         opacity:
                                                             slideScreenText2Progress,
@@ -583,28 +583,28 @@ export const SectionNoConstraints: React.FC = () => {
                                                 </motion.p>
                                             </motion.div>
                                             <motion.div
-                                                className="hidden lg:block font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] mb-0"
+                                                className="hidden lg:block font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] mb-0 text-[#2A2A42]"
                                                 style={{
                                                     opacity:
                                                         slideScreenText3Progress,
                                                 }}
                                             >
-                                                <p className="mb-0">
+                                                <p className="mb-0 text-[#2A2A42]">
                                                     Not ready for going headless
                                                     yet?
                                                 </p>
-                                                <p>
+                                                <p className="text-[#2A2A42]">
                                                     <strong className="font-bold">
                                                         No problem.
                                                     </strong>
                                                 </p>
-                                                <p className="mb-0">
+                                                <p className="mb-0 text-[#2A2A42]">
                                                     <strong className="font-bold">
                                                         refine
                                                     </strong>{" "}
                                                     supports two powerful
                                                 </p>
-                                                <p>
+                                                <p className="text-[#2A2A42]">
                                                     <strong className="font-bold">
                                                         UI frameworks
                                                     </strong>{" "}
@@ -613,12 +613,17 @@ export const SectionNoConstraints: React.FC = () => {
                                                 <div className="flex flex-col gap-2">
                                                     <div>
                                                         <div className="flex items-center gap-2.5 max-w-[300px]">
-                                                            <AntDesignLogoIcon className="z-10" />
-                                                            <div className="font-montserrat font-medium text-[21px] flex-1">
+                                                            <AntDesignLogoIcon className="z-10 w-9 lg:w-12 h-auto" />
+                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[21px] flex-1 text-[#2A2A42]">
                                                                 ANT DESIGN
                                                             </div>
                                                             <div className="w-0.5 bg-slate-400 h-8" />
-                                                            <a className="text-[#9595A1] text-xs font-montserrat">
+                                                            <a
+                                                                className="text-[#9595A1] text-xs font-montserrat"
+                                                                target="_blank"
+                                                                rel="noreferrer"
+                                                                href="https://example.admin.refine.dev"
+                                                            >
                                                                 <ExternalLinkIcon className="mr-1 mt-2" />
                                                                 view demo
                                                             </a>
@@ -626,12 +631,17 @@ export const SectionNoConstraints: React.FC = () => {
                                                     </div>
                                                     <div>
                                                         <div className="flex items-center gap-2.5 max-w-[300px]">
-                                                            <MaterialUIIcon />
-                                                            <div className="font-montserrat font-medium text-[21px] flex-1">
+                                                            <MaterialUIIcon className="w-9 lg:w-12 h-auto" />
+                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[21px] flex-1 text-[#2A2A42]">
                                                                 MATERIAL UI
                                                             </div>
                                                             <div className="w-0.5 bg-slate-400 h-8" />
-                                                            <a className="text-[#9595A1] text-xs font-montserrat">
+                                                            <a
+                                                                className="text-[#9595A1] text-xs font-montserrat"
+                                                                target="_blank"
+                                                                rel="noreferrer"
+                                                                href="https://example.mui.admin.refine.dev"
+                                                            >
                                                                 <ExternalLinkIcon className="mr-1 mt-2" />
                                                                 view demo
                                                             </a>
@@ -675,7 +685,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 src="/landing/no-constraints/custom-ui-2.png"
                                             />
                                             <motion.div
-                                                className="bg-white text-[34px] leading-[34px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#2A2A42] absolute right-[60px] bottom-[50px]"
+                                                className="bg-white text-[22px] leading-[22px] lg:text-[34px] lg:leading-[34px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#2A2A42] absolute right-[70px] bottom-[60px]"
                                                 animate={{
                                                     rotateY: ["10deg", "17deg"],
                                                     rotateX: [
@@ -700,7 +710,7 @@ export const SectionNoConstraints: React.FC = () => {
                                     <div className="flex-[2] place-self-center">
                                         <div className="relative">
                                             <motion.div className="w-full h-full left-0 top-0">
-                                                <motion.p className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px]">
+                                                <motion.p className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] text-[#2A2A42]">
                                                     Instead, you can use any{" "}
                                                     <strong className="font-bold">
                                                         custom design
@@ -752,7 +762,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 src="/landing/no-constraints/custom-ui-3.png"
                                             />
                                             <motion.div
-                                                className="absolute right-[30px] bottom-[50px] flex gap-2 z-10 flex-col"
+                                                className="absolute right-[50px] bottom-[50px] flex gap-2 z-10 flex-col"
                                                 animate={{
                                                     rotateY: ["10deg", "17deg"],
                                                     rotateX: [
@@ -772,7 +782,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 style={{}}
                                             >
                                                 <div
-                                                    className="bg-white text-[28px] leading-[28px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#2EBBFB]"
+                                                    className="bg-white text-[22px] leading-[22px] lg:text-[28px] lg:leading-[28px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#2EBBFB]"
                                                     style={{
                                                         boxShadow:
                                                             "6px 8px 16px rgba(42, 42, 66, 0.2)",
@@ -781,7 +791,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     ANT DESIGN
                                                 </div>
                                                 <div
-                                                    className="bg-white text-[28px] leading-[28px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#247EF8]"
+                                                    className="bg-white text-[22px] leading-[22px] lg:text-[28px] lg:leading-[28px] py-0.5 px-1.5 font-montserrat font-extrabold text-[#247EF8]"
                                                     style={{
                                                         boxShadow:
                                                             "6px 8px 16px rgba(42, 42, 66, 0.2)",
@@ -801,23 +811,23 @@ export const SectionNoConstraints: React.FC = () => {
                                                         slideScreenText12Progress,
                                                 }}
                                             ></motion.div>
-                                            <motion.div className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] mb-0">
-                                                <p className="mb-0">
+                                            <motion.div className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] mb-0 text-[#2A2A42]">
+                                                <p className="mb-0 text-[#2A2A42]">
                                                     Not ready for going headless
                                                     yet?
                                                 </p>
-                                                <p>
+                                                <p className="text-[#2A2A42]">
                                                     <strong className="font-bold">
                                                         No problem.
                                                     </strong>
                                                 </p>
-                                                <p className="mb-0">
+                                                <p className="mb-0 text-[#2A2A42]">
                                                     <strong className="font-bold">
                                                         refine
                                                     </strong>{" "}
                                                     supports two powerful
                                                 </p>
-                                                <p>
+                                                <p className="text-[#2A2A42]">
                                                     <strong className="font-bold">
                                                         UI frameworks
                                                     </strong>{" "}
@@ -826,12 +836,17 @@ export const SectionNoConstraints: React.FC = () => {
                                                 <div className="flex flex-col gap-2">
                                                     <div>
                                                         <div className="flex items-center gap-2.5 max-w-[300px]">
-                                                            <AntDesignLogoIcon className="z-10" />
-                                                            <div className="font-montserrat font-medium text-[21px] flex-1">
+                                                            <AntDesignLogoIcon className="z-10 w-9 lg:w-12 h-auto" />
+                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[21px] flex-1 text-[#2A2A42]">
                                                                 ANT DESIGN
                                                             </div>
                                                             <div className="w-0.5 bg-slate-400 h-8" />
-                                                            <a className="text-[#9595A1] text-xs font-montserrat">
+                                                            <a
+                                                                className="text-[#9595A1] text-xs font-montserrat"
+                                                                target="_blank"
+                                                                rel="noreferrer"
+                                                                href="https://example.admin.refine.dev"
+                                                            >
                                                                 <ExternalLinkIcon className="mr-1 mt-2" />
                                                                 view demo
                                                             </a>
@@ -839,12 +854,17 @@ export const SectionNoConstraints: React.FC = () => {
                                                     </div>
                                                     <div>
                                                         <div className="flex items-center gap-2.5 max-w-[300px]">
-                                                            <MaterialUIIcon />
-                                                            <div className="font-montserrat font-medium text-[21px] flex-1">
+                                                            <MaterialUIIcon className="w-9 lg:w-12 h-auto" />
+                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[21px] flex-1 text-[#2A2A42]">
                                                                 MATERIAL UI
                                                             </div>
                                                             <div className="w-0.5 bg-slate-400 h-8" />
-                                                            <a className="text-[#9595A1] text-xs font-montserrat">
+                                                            <a
+                                                                className="text-[#9595A1] text-xs font-montserrat"
+                                                                target="_blank"
+                                                                rel="noreferrer"
+                                                                href="https://example.mui.admin.refine.dev"
+                                                            >
                                                                 <ExternalLinkIcon className="mr-1 mt-2" />
                                                                 view demo
                                                             </a>
@@ -864,7 +884,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 <strong className="font-bold">
                                                     refine
                                                 </strong>{" "}
-                                                connects to any custom
+                                                connects to any custom{" "}
                                                 <strong className="font-bold">
                                                     REST
                                                 </strong>{" "}
@@ -880,13 +900,13 @@ export const SectionNoConstraints: React.FC = () => {
                                                 <strong className="font-bold">
                                                     30+
                                                 </strong>{" "}
-                                                popular backend services.
+                                                popular backend services.{" "}
                                                 <a className="no-underline text-[#1890FF] visited:text-[#1890FF]">
                                                     (SEE ALL)
                                                 </a>
                                             </p>
                                         </div>
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 w-full px-5 gap-x-2 gap-y-5">
+                                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 w-[calc(100vw-32px)] sm:w-full px-4 -mx-4 sm:mx-0 gap-x-2 gap-y-2 md:gap-y-5">
                                             {backendItems.map(
                                                 (
                                                     { name, Icon, AltIcon },
@@ -922,7 +942,13 @@ export const SectionNoConstraints: React.FC = () => {
                                                                   }
                                                         }
                                                         key={name}
-                                                        className={`group relative w-full h-20 lg:h-[90px] bg-white rounded-[10px] ${
+                                                        className={`group relative w-full h-16 md:h-20 lg:h-[90px] bg-white rounded-[10px] ${
+                                                            index ===
+                                                            backendItems.length -
+                                                                1
+                                                                ? "col-span-2 max-w-[50%] sm:max-w-none sm:col-span-1 mx-auto sm:mx-0"
+                                                                : ""
+                                                        } ${
                                                             name === "Python"
                                                                 ? "pt-1.5"
                                                                 : "pt-0"

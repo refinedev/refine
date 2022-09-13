@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "@docusaurus/Link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronRight } from "../icons";
 import { useTWBreakpoints } from "../../../hooks/use-tw-breakpoints";
@@ -115,25 +116,27 @@ export const SectionUseCase: React.FC = () => {
                                 NOW YOU’RE READY
                             </div>
                             <div className="flex gap-3 lg:gap-1 flex-col lg:flex-row">
-                                <button
-                                    className="appearance-none rounded-lg h-12 w-[270px] bg-gradient-to-r from-[#47EBF5] to-[#1890FF] font-montserrat font-bold text-xl border-0 text-white"
+                                <Link
+                                    className="appearance-none flex justify-center items-center rounded-lg h-12 w-[270px] bg-gradient-to-r from-[#47EBF5] to-[#1890FF] font-montserrat font-bold text-xl border-0 text-white"
                                     style={{
                                         boxShadow:
                                             "6px 8px 16px 0 rgba(42, 42, 66, 0.4)",
                                     }}
+                                    href="/docs"
                                 >
                                     Start Tutorial
-                                </button>
-                                <button
+                                </Link>
+                                <Link
                                     className="appearance-none rounded-lg h-12 w-[270px] bg-transparent font-montserrat font-bold text-xl border-0 text-white flex items-center justify-center gap-4"
                                     style={{
                                         boxShadow:
                                             "6px 8px 16px 0 rgba(42, 42, 66, 0.4)",
                                     }}
+                                    to="/docs/getting-started/overview"
                                 >
                                     Read the docs
                                     <ChevronRight />
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -149,15 +152,18 @@ export const SectionUseCase: React.FC = () => {
                                     ENGINEER.
                                 </div>
                             </div>
-                            <button
-                                className="appearance-none rounded-lg h-12 w-full max-w-[270px] bg-gradient-to-r from-[#47EBF5] to-[#1890FF] font-montserrat font-bold text-xl border-0 text-white"
+                            <a
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                href="https://calendly.com/d/cmk-5gb-b2p/meet-refine"
+                                className="appearance-none flex justify-center items-center rounded-lg h-12 w-full max-w-[270px] bg-gradient-to-r from-[#47EBF5] to-[#1890FF] font-montserrat font-bold text-xl border-0 text-white"
                                 style={{
                                     boxShadow:
                                         "6px 8px 16px 0 rgba(42, 42, 66, 0.4)",
                                 }}
                             >
                                 Book a session
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>

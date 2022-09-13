@@ -31,7 +31,7 @@ function NavbarItems({ items }) {
 function NavbarContentLayout({ left, right }) {
     return (
         <div className="navbar__inner">
-            <div className="navbar__items flex gap-0 lg:gap-8 font-montserrat font-semibold with-hoverline">
+            <div className="navbar__items flex gap-0 lg:gap-3 xl:gap-6 font-montserrat font-semibold with-hoverline">
                 {left}
             </div>
             <div className="navbar__items navbar__items--right flex gap-4">
@@ -60,7 +60,9 @@ export default function NavbarContent() {
                 // Ask the user to add the respective navbar items => more flexible
                 <>
                     <NavbarItems items={rightItems} />
-                    {/* <NavbarColorModeToggle className={styles.colorModeToggle} /> */}
+                    <NavbarColorModeToggle
+                        className={`${styles.colorModeToggle} navbar-theme-toggle`}
+                    />
                     {!searchBarItem && (
                         <NavbarSearch>
                             <SearchBar />

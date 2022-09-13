@@ -48,9 +48,9 @@ export const SectionFreeStart: React.FC = () => {
 
     return (
         // Scroll animated container
-        <motion.div ref={ref} className="h-auto lg:h-[380px] bg-white">
+        <motion.div ref={ref} className="h-[500px] lg:h-[420px] bg-white">
             {/* Scroll animated section */}
-            <motion.div className="h-auto lg:h-[380px] w-screen max-w-screen overflow-x-hidden top-0 left-0 relative lg:sticky pt-8 lg:pt-16 px-4 md:px-10 lg:px-16 xl:px-24 flex flex-col">
+            <motion.div className="h-[500px] lg:h-[420px] w-screen max-w-screen overflow-x-hidden top-0 left-0 relative lg:sticky pt-8 lg:pt-16 px-4 md:px-10 lg:px-16 xl:px-24 flex flex-col">
                 <div className="flex flex-col lg:flex-row lg:pt-12 gap-0 lg:gap-7 max-w-5xl lg:px-3 lg:mx-auto w-full items-center">
                     <motion.div
                         className="shadow-startTiles rounded-xl p-2.5 flex-1 h-full w-full max-w-[450px] lg:max-w-none lg:w-auto"
@@ -65,7 +65,7 @@ export const SectionFreeStart: React.FC = () => {
                         }
                     >
                         <div className="border-2 border-dashed border-[#1784EB] rounded relative flex w-full pr-2.5 pl-1 lg:pl-7 pt-8 pb-10 h-full items-center">
-                            <div className="text-[#1784EB] w-2/3 lg:w-full">
+                            <div className="text-[#1784EB] w-2/3">
                                 <div className="font-extrabold text-[43px] md:text-5xl lg:text-6xl font-montserrat tracking-normal leading-[50px] text-center">
                                     START
                                 </div>
@@ -126,7 +126,7 @@ export const SectionFreeStart: React.FC = () => {
                 </div>
             </motion.div>
             {/* Scroll snap alignment */}
-            <div className="hidden lg:block snap-start h-screen lg:h-[380px]" />
+            <div className="hidden lg:block snap-start h-[500px] lg:h-[420px]" />
         </motion.div>
     );
 };
