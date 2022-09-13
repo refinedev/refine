@@ -544,7 +544,7 @@ export const SectionNoConstraints: React.FC = () => {
                                     <div className="flex-[2] place-self-center">
                                         <div className="relative">
                                             <motion.div
-                                                className="relative lg:absolute w-full h-full left-0 top-0"
+                                                className="relative lg:absolute w-full h-full left-0 top-0 pointer-events-none"
                                                 style={{
                                                     opacity:
                                                         slideScreenText12Progress,
@@ -565,21 +565,22 @@ export const SectionNoConstraints: React.FC = () => {
                                                     by default.
                                                 </p>
                                                 <motion.p
-                                                    className="hidden lg:block font-montserrat font-normal text-[21px] leading-[30px] max-w-[350px] text-[#2A2A42]"
+                                                    className="hidden lg:block font-montserrat font-normal text-[21px] leading-[30px] max-w-[350px] text-[#2A2A42] z-[-1]"
                                                     style={{
                                                         opacity:
                                                             slideScreenText2Progress,
+                                                        scale: slideScreenText2Progress,
                                                     }}
                                                 >
                                                     Instead, you can use any{" "}
                                                     <strong className="font-bold">
                                                         custom design
-                                                    </strong>
+                                                    </strong>{" "}
                                                     or{" "}
                                                     <strong className="font-bold">
                                                         UI framework
                                                     </strong>{" "}
-                                                    for
+                                                    for{" "}
                                                     <strong className="font-bold">
                                                         100% control over
                                                         styling.
@@ -587,10 +588,11 @@ export const SectionNoConstraints: React.FC = () => {
                                                 </motion.p>
                                             </motion.div>
                                             <motion.div
-                                                className="hidden lg:block font-montserrat font-normal text-[21px] leading-[30px] max-w-[350px] mb-0 text-[#2A2A42]"
+                                                className="hidden lg:block font-montserrat font-normal text-[21px] leading-[30px] max-w-[350px] mb-0 text-[#2A2A42] z-[1]"
                                                 style={{
                                                     opacity:
                                                         slideScreenText3Progress,
+                                                    scale: slideScreenText3Progress,
                                                 }}
                                             >
                                                 <p className="mb-0 text-[#2A2A42]">
@@ -615,41 +617,18 @@ export const SectionNoConstraints: React.FC = () => {
                                                     out-of-the box:
                                                 </p>
                                                 <div className="flex flex-col gap-2">
-                                                    <div>
-                                                        <div className="flex items-center gap-2.5 max-w-[300px]">
-                                                            <AntDesignLogoIcon className="z-10 w-9 lg:w-12 h-auto" />
-                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[20px] flex-1 text-[#2A2A42]">
-                                                                ANT DESIGN
+                                                    <div className="">
+                                                        <Link
+                                                            to="/examples"
+                                                            className="z-[1] appearance-none border border-[#F0F2F5] bg-[#F6F6F9] border-solid rounded-[20px] h-7 w-[153px] flex items-center justify-between pl-3 py-1 pr-1"
+                                                        >
+                                                            <div className="uppercase text-[#9696B4] text-[12px] leading-[12px] font-montserrat font-bold">
+                                                                view examples
                                                             </div>
-                                                            <div className="w-0.5 bg-slate-400 h-8" />
-                                                            <a
-                                                                className="text-[#9595A1] text-xs font-montserrat"
-                                                                target="_blank"
-                                                                rel="noreferrer"
-                                                                href="https://example.admin.refine.dev"
-                                                            >
-                                                                <ExternalLinkIcon className="mr-1 mt-2" />
-                                                                view demo
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <div className="flex items-center gap-2.5 max-w-[300px]">
-                                                            <MaterialUIIcon className="w-9 lg:w-12 h-auto" />
-                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[20px] flex-1 text-[#2A2A42]">
-                                                                MATERIAL UI
+                                                            <div className="h-5 w-5 bg-white rounded-full flex justify-center items-center pl-px">
+                                                                <ExternalLinkIcon className="h-2.5 w-2.5 text-[#9696B4]" />
                                                             </div>
-                                                            <div className="w-0.5 bg-slate-400 h-8" />
-                                                            <a
-                                                                className="text-[#9595A1] text-xs font-montserrat"
-                                                                target="_blank"
-                                                                rel="noreferrer"
-                                                                href="https://example.mui.admin.refine.dev"
-                                                            >
-                                                                <ExternalLinkIcon className="mr-1 mt-2" />
-                                                                view demo
-                                                            </a>
-                                                        </div>
+                                                        </Link>
                                                     </div>
                                                 </div>
                                             </motion.div>
@@ -856,41 +835,18 @@ export const SectionNoConstraints: React.FC = () => {
                                                     out-of-the box:
                                                 </p>
                                                 <div className="flex flex-col gap-2">
-                                                    <div>
-                                                        <div className="flex items-center gap-2.5 max-w-[300px]">
-                                                            <AntDesignLogoIcon className="z-10 w-9 lg:w-12 h-auto" />
-                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[20px] flex-1 text-[#2A2A42]">
-                                                                ANT DESIGN
+                                                    <div className="">
+                                                        <Link
+                                                            to="/examples"
+                                                            className="appearance-none border border-[#F0F2F5] bg-[#F6F6F9] border-solid rounded-[20px] h-7 w-[153px] flex items-center justify-between pl-3 py-1 pr-1"
+                                                        >
+                                                            <span className="uppercase text-[#9696B4] text-[12px] leading-[12px] font-montserrat font-bold">
+                                                                view examples
+                                                            </span>
+                                                            <div className="h-5 w-5 bg-white rounded-full flex justify-center items-center pl-px">
+                                                                <ExternalLinkIcon className="h-2.5 w-2.5 text-[#9696B4]" />
                                                             </div>
-                                                            <div className="w-0.5 bg-slate-400 h-8" />
-                                                            <a
-                                                                className="text-[#9595A1] text-xs font-montserrat"
-                                                                target="_blank"
-                                                                rel="noreferrer"
-                                                                href="https://example.admin.refine.dev"
-                                                            >
-                                                                <ExternalLinkIcon className="mr-1 mt-2" />
-                                                                view demo
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <div className="flex items-center gap-2.5 max-w-[300px]">
-                                                            <MaterialUIIcon className="w-9 lg:w-12 h-auto" />
-                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[20px] flex-1 text-[#2A2A42]">
-                                                                MATERIAL UI
-                                                            </div>
-                                                            <div className="w-0.5 bg-slate-400 h-8" />
-                                                            <a
-                                                                className="text-[#9595A1] text-xs font-montserrat"
-                                                                target="_blank"
-                                                                rel="noreferrer"
-                                                                href="https://example.mui.admin.refine.dev"
-                                                            >
-                                                                <ExternalLinkIcon className="mr-1 mt-2" />
-                                                                view demo
-                                                            </a>
-                                                        </div>
+                                                        </Link>
                                                     </div>
                                                 </div>
                                             </motion.div>
