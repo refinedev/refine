@@ -12,12 +12,7 @@ hide_table_of_contents: false
 import social from '@site/static/img/blog/2022-09-12-next-typescript/social.png';
 import tsconfig from '@site/static/img/blog/2022-09-12-next-typescript/tsconfig.png';
 
- <br />
-
- <div class="img-container">
-    <img src={social} alt="social" />
-</div>
-
+ 
 
 ## Introduction
 

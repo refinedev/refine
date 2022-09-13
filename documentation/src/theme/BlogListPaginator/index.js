@@ -20,14 +20,14 @@ export default function BlogListPaginator(props) {
 
     return (
         <nav
-            className="flex justify-end font-montserrat"
+            className="font-montserrat flex justify-end"
             aria-label={translate({
                 id: "theme.blog.paginator.navAriaLabel",
                 message: "Blog list page navigation",
                 description: "The ARIA label for the blog pagination",
             })}
         >
-            <ul className="flex space-x-2 items-center list-none">
+            <ul className="flex list-none items-center space-x-2">
                 <li>
                     <Link
                         to={

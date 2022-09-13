@@ -28,7 +28,7 @@ function BlogPostPageContent({ children }) {
             toc={
                 !hideTableOfContents && toc.length > 0 ? (
                     <TOC
-                        className="custom-table-of-contents rounded-[10px] blog-post-item-shadow"
+                        className="custom-table-of-contents blog-post-item-shadow rounded-[10px]"
                         toc={toc}
                         minHeadingLevel={tocMinHeadingLevel}
                         maxHeadingLevel={tocMaxHeadingLevel}

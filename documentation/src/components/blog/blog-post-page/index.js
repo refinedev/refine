@@ -37,7 +37,7 @@ export const BlogPostPageView = ({ children }) => {
     return (
         <BlogPostItemContainer className="blog-post-item-shadow rounded-[10px] p-4">
             <div className="relative">
-                <div className="absolute top-0 right-0 bg-white rounded-bl-[10px]">
+                <div className="absolute top-0 right-0 rounded-bl-[10px] bg-white">
                     <div className="flex items-center space-x-2 py-1 px-2">
                         <TwitterShareButton
                             windowWidth={750}
@@ -70,7 +70,7 @@ export const BlogPostPageView = ({ children }) => {
                     </div>
                 </div>
                 <img
-                    className="rounded-xl mb-2"
+                    className="mb-2 rounded-xl"
                     src={frontMatter.image}
                     alt="Post image"
                 />
