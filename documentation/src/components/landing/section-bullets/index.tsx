@@ -54,33 +54,6 @@ export const SectionBullets = () => {
         [180, 0],
     );
 
-    React.useEffect(() => {
-        return scrollYProgressIncoming.onChange(() => {
-            console.log(
-                "scrollYProgressIncoming",
-                scrollYProgressIncoming.get(),
-            );
-        });
-    });
-
-    React.useEffect(() => {
-        return scrollYProgressOutgoing.onChange(() => {
-            console.log(
-                "scrollYProgressOutgoing",
-                scrollYProgressOutgoing.get(),
-            );
-        });
-    });
-
-    React.useEffect(() => {
-        return scrollYProgressInnerIncoming.onChange(() => {
-            console.log(
-                "scrollYProgressInnerIncoming",
-                scrollYProgressInnerIncoming.get(),
-            );
-        });
-    });
-
     return (
         // Scroll animated container
         <motion.div ref={ref} className="h-auto lg:h-[100vh] bg-white">

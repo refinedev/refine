@@ -35,18 +35,6 @@ export const SectionNoConstraints: React.FC = () => {
         offset: ["start end", "start start"],
     });
 
-    React.useEffect(() => {
-        return scrollYProgress.onChange(async () => {
-            console.log("S", scrollYProgress.get());
-        });
-    });
-
-    React.useEffect(() => {
-        return scrollYInScreenProgress.onChange(async () => {
-            console.log("I", scrollYInScreenProgress.get());
-        });
-    });
-
     const slideX = useTransform(
         scrollYProgress,
         [0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1],

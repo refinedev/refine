@@ -25,40 +25,6 @@ export const SectionHero: React.FC = () => {
         offset: ["start start", "end start"],
     });
 
-    const scrollButtonControls = useAnimationControls();
-
-    React.useEffect(() => {
-        return scrollYProgress.onChange(async () => {
-            if (scrollYProgress.get() >= 0.3) {
-                if (lg) {
-                    await scrollButtonControls.start({
-                        y: 40,
-                    });
-                }
-                scrollButtonControls.start({
-                    y: !lg ? [-10, 10] : [40, 46],
-                    transition: {
-                        duration: 1.5,
-                        ease: "easeInOut",
-                        yoyo: Infinity,
-                    },
-                });
-            } else {
-                if (lg) {
-                    await scrollButtonControls.start({ y: 0 });
-                }
-                scrollButtonControls.start({
-                    y: !lg ? [-10, 10] : [0, 6],
-                    transition: {
-                        duration: 1.5,
-                        ease: "easeInOut",
-                        yoyo: Infinity,
-                    },
-                });
-            }
-        });
-    }, [lg]);
-
     const caretPosition = useTransform(
         scrollYProgress,
         // Map x from these values:
@@ -543,13 +509,7 @@ export const SectionHero: React.FC = () => {
                 <div className="hidden lg:flex items-center justify-center">
                     <motion.button
                         className="appearance-none border-none bg-none bg-transparent flex w-auto items-center justify-center gap-2.5"
-                        animate={
-                            lg
-                                ? scrollButtonControls
-                                : {
-                                      y: [-10, 10],
-                                  }
-                        }
+                        animate={{ y: [-10, 10] }}
                         transition={{
                             yoyo: Infinity,
                             ease: "easeInOut",
