@@ -15,11 +15,6 @@ import scoresAll from '@site/static/img/blog/2022-08-31-google-lighthouse/scores
 import pwaCategory from '@site/static/img/blog/2022-08-31-google-lighthouse/scores-pwa-category.png';
 import social from '@site/static/img/blog/2022-08-31-google-lighthouse/social.png';
 
-<br />
-
- <div class="img-container">
-    <img src={social} alt="social" />
-</div>
 
 
 ## Introduction

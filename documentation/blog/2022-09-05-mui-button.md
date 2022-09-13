@@ -22,12 +22,7 @@ import outlinedButton from '@site/static/img/blog/2022-09-05-mui-button/outlined
 import textButton from '@site/static/img/blog/2022-09-05-mui-button/textButton.png';
 import social from '@site/static/img/blog/2022-09-05-mui-button/social.png';
 
- <br />
-
- <div class="img-container">
-    <img src={social} alt="social" />
-</div>
-
+ 
 
 ## Introduction
 Material UI is a dynamic React library because it provides numerous component infrastructures for responsive web design. One such essential component is the `Button`. 
