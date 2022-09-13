@@ -129,7 +129,7 @@ export const SectionNoConstraints: React.FC = () => {
     const slideSubtitleY = useTransform(
         scrollYProgress,
         [0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1],
-        [0, 0, 0, -36, -36 * 2, -36 * 3, -36 * 4],
+        [0, 0, 0, "-20%", "-40%", "-60%", "-80%"],
     );
 
     const slideCounterCardsRotateX = useTransform(
@@ -293,24 +293,24 @@ export const SectionNoConstraints: React.FC = () => {
                         <RefineAnimatedBgIcon dotY={slideRightBgDotY} />
                     </motion.div>
                     <div className="w-full flex-shrink-0">
-                        <div className="w-full text-center font-montserrat text-[36px] md:text-[60px] lg:text-[90px] leading-none font-extrabold text-[#1890FF]">
+                        <div className="w-full text-center font-montserrat text-[36px] md:text-[60px] lg:text-[90px] leading-none font-extrabold text-[#1890FF] short:text-[55px]">
                             no constraints
                         </div>
-                        <div className="w-full font-medium uppercase text-2xl md:text-3xl lg:text-4xl leading-none font-montserrat text-[#1890FF] text-center h-9 relative overflow-hidden">
+                        <div className="w-full font-medium uppercase text-2xl md:text-3xl lg:text-4xl leading-none font-montserrat text-[#1890FF] text-center h-9 relative overflow-hidden short:text-[24px] short:leading-[24px] short:h-6">
                             <motion.div
                                 className="absolute left-0 top-0 w-full"
                                 style={{ y: slideSubtitleY }}
                             >
-                                <div className="w-full h-9 text-center">
+                                <div className="w-full h-9 short:h-6 text-center">
                                     on styling
                                 </div>
-                                <div className="w-full h-9 text-center">
+                                <div className="w-full h-9 short:h-6 text-center">
                                     on backend
                                 </div>
-                                <div className="w-full h-9 text-center">
+                                <div className="w-full h-9 short:h-6 text-center">
                                     on your workflow
                                 </div>
-                                <div className="w-full h-9 text-center">
+                                <div className="w-full h-9 short:h-6 text-center">
                                     with open software
                                 </div>
                             </motion.div>
@@ -347,7 +347,6 @@ export const SectionNoConstraints: React.FC = () => {
                                             <motion.img
                                                 style={{
                                                     width: "100%",
-                                                    maxWidth: "460px",
                                                     maxHeight: "280px",
                                                     boxShadow:
                                                         "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
@@ -378,6 +377,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     duration: 3,
                                                     delay: 1,
                                                 }}
+                                                className="max-w-[460px] short:max-w-[430px]"
                                                 src="/landing/no-constraints/custom-ui.png"
                                             />
                                             <motion.div
@@ -428,7 +428,6 @@ export const SectionNoConstraints: React.FC = () => {
                                             <motion.img
                                                 style={{
                                                     width: "100%",
-                                                    maxWidth: "460px",
                                                     maxHeight: "280px",
                                                     boxShadow:
                                                         "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
@@ -447,6 +446,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     ease: "easeInOut",
                                                     duration: 3,
                                                 }}
+                                                className="max-w-[460px] short:max-w-[430px]"
                                                 src="/landing/no-constraints/custom-ui-2.png"
                                             />
                                             <motion.div
@@ -488,7 +488,6 @@ export const SectionNoConstraints: React.FC = () => {
                                             <motion.img
                                                 style={{
                                                     width: "100%",
-                                                    maxWidth: "460px",
                                                     maxHeight: "280px",
                                                     boxShadow:
                                                         "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
@@ -507,6 +506,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     ease: "easeInOut",
                                                     duration: 3,
                                                 }}
+                                                className="max-w-[460px] short:max-w-[430px]"
                                                 src="/landing/no-constraints/custom-ui-3.png"
                                             />
                                             <motion.div
@@ -630,7 +630,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     <div>
                                                         <div className="flex items-center gap-2.5 max-w-[300px]">
                                                             <AntDesignLogoIcon className="z-10 w-9 lg:w-12 h-auto" />
-                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[21px] flex-1 text-[#2A2A42]">
+                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[20px] flex-1 text-[#2A2A42]">
                                                                 ANT DESIGN
                                                             </div>
                                                             <div className="w-0.5 bg-slate-400 h-8" />
@@ -648,7 +648,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     <div>
                                                         <div className="flex items-center gap-2.5 max-w-[300px]">
                                                             <MaterialUIIcon className="w-9 lg:w-12 h-auto" />
-                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[21px] flex-1 text-[#2A2A42]">
+                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[20px] flex-1 text-[#2A2A42]">
                                                                 MATERIAL UI
                                                             </div>
                                                             <div className="w-0.5 bg-slate-400 h-8" />
@@ -690,7 +690,6 @@ export const SectionNoConstraints: React.FC = () => {
                                             <motion.img
                                                 style={{
                                                     width: "100%",
-                                                    maxWidth: "460px",
                                                     maxHeight: "280px",
                                                     boxShadow:
                                                         "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
@@ -707,6 +706,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     ease: "easeInOut",
                                                     duration: 3,
                                                 }}
+                                                className="max-w-[460px] short:max-w-[430px]"
                                                 src="/landing/no-constraints/custom-ui-2.png"
                                             />
                                             <motion.div
@@ -776,7 +776,6 @@ export const SectionNoConstraints: React.FC = () => {
                                             <motion.img
                                                 style={{
                                                     width: "100%",
-                                                    maxWidth: "460px",
                                                     maxHeight: "280px",
                                                     boxShadow:
                                                         "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
@@ -793,6 +792,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     ease: "easeInOut",
                                                     duration: 3,
                                                 }}
+                                                className="max-w-[460px] short:max-w-[430px]"
                                                 src="/landing/no-constraints/custom-ui-3.png"
                                             />
                                             <motion.div
@@ -871,7 +871,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     <div>
                                                         <div className="flex items-center gap-2.5 max-w-[300px]">
                                                             <AntDesignLogoIcon className="z-10 w-9 lg:w-12 h-auto" />
-                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[21px] flex-1 text-[#2A2A42]">
+                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[20px] flex-1 text-[#2A2A42]">
                                                                 ANT DESIGN
                                                             </div>
                                                             <div className="w-0.5 bg-slate-400 h-8" />
@@ -889,7 +889,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     <div>
                                                         <div className="flex items-center gap-2.5 max-w-[300px]">
                                                             <MaterialUIIcon className="w-9 lg:w-12 h-auto" />
-                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[21px] flex-1 text-[#2A2A42]">
+                                                            <div className="font-montserrat font-medium text-[17px] lg:text-[20px] flex-1 text-[#2A2A42]">
                                                                 MATERIAL UI
                                                             </div>
                                                             <div className="w-0.5 bg-slate-400 h-8" />
@@ -1249,21 +1249,21 @@ export const SectionNoConstraints: React.FC = () => {
                                                 viewport={{
                                                     margin: "25px",
                                                 }}
-                                                className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] flex flex-col justify-center relative"
+                                                className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] short:min-h-[95px] short:max-h-[95px] flex flex-col justify-center relative group hover:text-[#1890FF] text-[#2A2A42] select-none"
                                             >
                                                 <div
                                                     style={{
                                                         boxShadow:
                                                             "inset 2px 4px 6px 0 rgba(0, 0, 0, 0.3)",
                                                     }}
-                                                    className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] flex justify-center items-center pl-px pt-1"
+                                                    className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] group-hover:bg-[#1890FF] group-hover:!shadow-none flex justify-center items-center pl-px pt-1"
                                                 >
-                                                    <SmallSocialIcons.GithubIcon />
+                                                    <SmallSocialIcons.GithubIcon className="group-hover:text-white text-[#2A2A42]" />
                                                 </div>
-                                                <div className="font-montserrat font-black text-6xl leading-[1.1] text-center">
+                                                <div className="font-montserrat font-black text-6xl leading-[1.1] text-center select-none">
                                                     <CountingNumber to={63} />
                                                 </div>
-                                                <div className="font-montserrat font-medium text-[14px] leading-[18px] text-center">
+                                                <div className="font-montserrat font-medium text-[14px] leading-[18px] text-center select-none">
                                                     Contributors
                                                 </div>
                                             </motion.div>
@@ -1298,16 +1298,16 @@ export const SectionNoConstraints: React.FC = () => {
                                                 viewport={{
                                                     margin: "25px",
                                                 }}
-                                                className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] flex flex-col justify-center relative"
+                                                className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] short:min-h-[95px] short:max-h-[95px]flex flex-col justify-center relative group hover:text-[#1890FF] text-[#2A2A42] select-none"
                                             >
                                                 <div
                                                     style={{
                                                         boxShadow:
                                                             "inset 2px 4px 6px 0 rgba(0, 0, 0, 0.3)",
                                                     }}
-                                                    className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] flex justify-center items-center pl-px pt-1"
+                                                    className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] group-hover:bg-[#1890FF] group-hover:!shadow-none flex justify-center items-center pl-px pt-1"
                                                 >
-                                                    <SmallSocialIcons.GithubIcon />
+                                                    <SmallSocialIcons.GithubIcon className="group-hover:text-white text-[#2A2A42]" />
                                                 </div>
                                                 <div className="font-montserrat font-black text-6xl leading-[1.1] text-center">
                                                     <CountingNumber to={1600} />
@@ -1348,22 +1348,22 @@ export const SectionNoConstraints: React.FC = () => {
                                                 viewport={{
                                                     margin: "25px",
                                                 }}
-                                                className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] flex flex-col justify-center relative"
+                                                className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] short:min-h-[95px] short:max-h-[95px]flex flex-col justify-center relative group group-hover:text-[#1890FF] text-[#2A2A42] select-none"
                                             >
                                                 <div
                                                     style={{
                                                         boxShadow:
                                                             "inset 2px 4px 6px 0 rgba(0, 0, 0, 0.3)",
                                                     }}
-                                                    className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] flex justify-center items-center pl-px pt-1"
+                                                    className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] group-hover:bg-[#1890FF] group-hover:!shadow-none flex justify-center items-center pl-px pt-1"
                                                 >
-                                                    <SmallSocialIcons.GithubIcon />
+                                                    <SmallSocialIcons.GithubIcon className="group-hover:text-white text-[#2A2A42]" />
                                                 </div>
-                                                <div className="font-montserrat font-black text-6xl leading-[1.1] text-center">
+                                                <div className="font-montserrat font-black text-6xl leading-[1.1] text-center group-hover:text-[#1890FF] text-[#2A2A42]">
                                                     <CountingNumber to={2500} />
                                                     +
                                                 </div>
-                                                <div className="font-montserrat font-medium text-[14px] leading-[18px] text-center">
+                                                <div className="font-montserrat font-medium text-[14px] leading-[18px] text-center group-hover:text-[#1890FF] text-[#2A2A42]">
                                                     GitHub Stars
                                                 </div>
                                             </motion.div>
@@ -1398,21 +1398,21 @@ export const SectionNoConstraints: React.FC = () => {
                                                 viewport={{
                                                     margin: "25px",
                                                 }}
-                                                className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] flex flex-col justify-center relative"
+                                                className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] short:min-h-[95px] short:max-h-[95px]flex flex-col justify-center relative group"
                                             >
                                                 <div
                                                     style={{
                                                         boxShadow:
                                                             "inset 2px 4px 6px 0 rgba(0, 0, 0, 0.3)",
                                                     }}
-                                                    className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] flex justify-center items-center pl-px pt-1"
+                                                    className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] group-hover:bg-[#5865F2] group-hover:!shadow-none flex justify-center items-center pl-px pt-1"
                                                 >
-                                                    <SmallSocialIcons.DiscordIcon />
+                                                    <SmallSocialIcons.DiscordIcon className="group-hover:text-white text-[#5865F2]" />
                                                 </div>
-                                                <div className="font-montserrat font-black text-6xl leading-[1.1] text-center">
+                                                <div className="font-montserrat font-black text-6xl leading-[1.1] text-center select-none group-hover:text-[#1890FF] text-[#2A2A42]">
                                                     <CountingNumber to={300} />+
                                                 </div>
-                                                <div className="font-montserrat font-medium text-[14px] leading-[18px] text-center">
+                                                <div className="font-montserrat font-medium text-[14px] leading-[18px] text-center select-none group-hover:text-[#1890FF] text-[#2A2A42]">
                                                     Discord Members
                                                 </div>
                                             </motion.div>
@@ -1447,21 +1447,21 @@ export const SectionNoConstraints: React.FC = () => {
                                                 viewport={{
                                                     margin: "25px",
                                                 }}
-                                                className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] flex flex-col justify-center relative"
+                                                className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] short:min-h-[95px] short:max-h-[95px]flex flex-col justify-center relative group"
                                             >
                                                 <div
                                                     style={{
                                                         boxShadow:
                                                             "inset 2px 4px 6px 0 rgba(0, 0, 0, 0.3)",
                                                     }}
-                                                    className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] flex justify-center items-center pl-px pt-1"
+                                                    className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] group-hover:bg-[#00AAEC] group-hover:!shadow-none group flex justify-center items-center pl-px pt-1"
                                                 >
-                                                    <SmallSocialIcons.TwitterIcon />
+                                                    <SmallSocialIcons.TwitterIcon className="text-[#00AAEC] group-hover:text-white" />
                                                 </div>
-                                                <div className="font-montserrat font-black text-6xl leading-[1.1] text-center">
+                                                <div className="font-montserrat font-black text-6xl leading-[1.1] text-center select-none group-hover:text-[#1890FF] text-[#2A2A42]">
                                                     <CountingNumber to={650} />+
                                                 </div>
-                                                <div className="font-montserrat font-medium text-[14px] leading-[18px] text-center">
+                                                <div className="font-montserrat font-medium text-[14px] leading-[18px] text-center select-none group-hover:text-[#1890FF] text-[#2A2A42]">
                                                     Twitter Followers
                                                 </div>
                                             </motion.div>
@@ -1496,19 +1496,33 @@ export const SectionNoConstraints: React.FC = () => {
                                                 viewport={{
                                                     margin: "25px",
                                                 }}
-                                                className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] flex flex-col justify-center relative"
+                                                className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] short:min-h-[95px] short:max-h-[95px]flex flex-col justify-center relative group group-hover:text-[#1890FF] text-[#2A2A42]"
                                             >
                                                 <div
                                                     style={{
                                                         boxShadow:
                                                             "inset 2px 4px 6px 0 rgba(0, 0, 0, 0.3)",
                                                     }}
-                                                    className="absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] flex justify-center items-center pl-px pt-px"
+                                                    className="group-hover:hidden absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] group-hover:bg-[#1890FF] group-hover:!shadow-none flex justify-center items-center pl-px pt-px"
                                                 >
                                                     <SmallSocialIcons.LikeIcon />
                                                 </div>
-                                                <div className="font-montserrat font-bold text-xl text-center pb-4">
-                                                    Come to our side
+                                                <div
+                                                    style={{
+                                                        boxShadow:
+                                                            "inset 2px 4px 6px 0 rgba(0, 0, 0, 0.3)",
+                                                    }}
+                                                    className="hidden absolute right-2.5 top-2.5 w-8 h-8 rounded-full bg-[#F5F5F5] group-hover:bg-[#1890FF] group-hover:!shadow-none group-hover:flex justify-center items-center pl-px pt-px"
+                                                >
+                                                    <SmallSocialIcons.LikeIconAlt />
+                                                </div>
+                                                <div className="font-montserrat font-bold text-xl text-center pb-4 group-hover:text-[#1890FF] text-[#2A2A42] select-none">
+                                                    <span className="inline group-hover:hidden">
+                                                        Come to dark side
+                                                    </span>
+                                                    <span className="group-hover:inline hidden">
+                                                        We have cookies
+                                                    </span>
                                                 </div>
                                                 <div className="flex gap-6 justify-center">
                                                     <a
@@ -1516,28 +1530,35 @@ export const SectionNoConstraints: React.FC = () => {
                                                         rel="noreferrer"
                                                         href="https://github.com/pankod/refine"
                                                     >
-                                                        <GraySocialIcons.GithubIcon className="h-8 w-8" />
+                                                        <GraySocialIcons.GithubIcon className="h-8 w-8 hover:scale-110" />
                                                     </a>
                                                     <a
                                                         target="_blank"
                                                         rel="noreferrer"
                                                         href="https://discord.gg/refine"
                                                     >
-                                                        <GraySocialIcons.DiscordIcon className="h-8 w-8" />
+                                                        <GraySocialIcons.DiscordIcon className="h-8 w-8 hover:scale-110" />
+                                                    </a>
+                                                    <a
+                                                        target="_blank"
+                                                        rel="noreferrer"
+                                                        href="https://reddit.com/r/refine"
+                                                    >
+                                                        <GraySocialIcons.RedditIcon className="h-8 w-8 hover:scale-110" />
                                                     </a>
                                                     <a
                                                         target="_blank"
                                                         rel="noreferrer"
                                                         href="https://twitter.com/refine_dev"
                                                     >
-                                                        <GraySocialIcons.TwitterIcon className="h-8 w-8" />
+                                                        <GraySocialIcons.TwitterIcon className="h-8 w-8 hover:scale-110" />
                                                     </a>
                                                     <a
                                                         target="_blank"
                                                         rel="noreferrer"
                                                         href="https://www.linkedin.com/company/refine-dev"
                                                     >
-                                                        <GraySocialIcons.LinkedinIcon className="h-8 w-8" />
+                                                        <GraySocialIcons.LinkedinIcon className="h-8 w-8 hover:scale-110" />
                                                     </a>
                                                 </div>
                                             </motion.div>

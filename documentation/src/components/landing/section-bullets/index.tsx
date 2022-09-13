@@ -81,8 +81,6 @@ export const SectionBullets = () => {
         });
     });
 
-    console.log({ sm, md, lg, xl });
-
     return (
         // Scroll animated container
         <motion.div ref={ref} className="h-auto lg:h-[100vh] bg-white">
@@ -92,7 +90,7 @@ export const SectionBullets = () => {
                 className="h-auto lg:h-screen lg:snap-start overflow-x-hidden overflow-y-hidden w-screen top-0 left-0 relative lg:sticky pt-8 px-4 md:px-10 lg:px-16 xl:px-24 flex flex-col -mt-px"
             >
                 <motion.div
-                    className="flex items-center justify-center lg:pt-16 lg:pb-4 opacity-100 px-2 lg:px-0"
+                    className="flex items-center justify-center lg:pt-16 short:pt-14 lg:pb-4 opacity-100 px-2 lg:px-0"
                     // animate={
                     //     !lg
                     //         ? {
@@ -145,7 +143,7 @@ export const SectionBullets = () => {
                               }
                             : { opacity: 1, y: 0 }
                     }
-                    className="flex pt-12 gap-5 max-w-6xl lg:px-3 mx-auto w-full justify-center flex-col"
+                    className="flex pt-12 short:pt-4 gap-5 max-w-6xl lg:px-3 mx-auto w-full justify-center flex-col"
                 >
                     <div className="flex w-full flex-col gap-6 justify-center">
                         <div className="grid grid-cols-6 gap-4 lg:gap-4 place-items-center lg:place-items-start">
