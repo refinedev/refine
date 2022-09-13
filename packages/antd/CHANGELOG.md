@@ -1,5 +1,14 @@
 # @pankod/refine-antd
 
+## 3.42.1
+
+### Patch Changes
+
+-   [#2492](https://github.com/pankod/refine/pull/2492) [`7d5bf3023d`](https://github.com/pankod/refine/commit/7d5bf3023d00617890ffa7f9d22b1116af15e0b9) Thanks [@ozkalai](https://github.com/ozkalai)! - Passed `collapsed` prop to `render` method in `Sider` component of `@pankod/refine-antd`.
+
+-   Updated dependencies [[`7d5bf3023d`](https://github.com/pankod/refine/commit/7d5bf3023d00617890ffa7f9d22b1116af15e0b9)]:
+    -   @pankod/refine-ui-types@0.6.1
+
 ## 3.42.0
 
 ### Minor Changes
