@@ -93,15 +93,15 @@ export const SectionBullets = () => {
             >
                 <motion.div
                     className="flex items-center justify-center lg:pt-16 lg:pb-4 opacity-100 px-2 lg:px-0"
-                    animate={
-                        !lg
-                            ? {
-                                  opacity: 1,
-                                  rotate: -2,
-                                  y: 0,
-                              }
-                            : {}
-                    }
+                    // animate={
+                    //     !lg
+                    //         ? {
+                    //               opacity: 1,
+                    //               rotate: -2,
+                    //               y: 0,
+                    //           }
+                    //         : {}
+                    // }
                     style={
                         lg
                             ? {
@@ -109,7 +109,26 @@ export const SectionBullets = () => {
                                   y: whyNotY,
                                   opacity: whyNotOpacity,
                               }
-                            : { rotate: -3, y: 0, opacity: 1 }
+                            : undefined
+                    }
+                    whileInView={
+                        lg
+                            ? undefined
+                            : {
+                                  opacity: [0, 1],
+                                  y: [100, 0],
+                                  rotate: [0, -3],
+                              }
+                    }
+                    transition={
+                        lg
+                            ? undefined
+                            : {
+                                  repeat: 0,
+                                  duration: 0.3,
+                                  ease: "easeInOut",
+                                  delay: 0.3,
+                              }
                     }
                 >
                     <motion.div className="h-fit z-[1] px-1 lg:px-5 -mx-16 bg-[#1784EB] font-extrabold font-montserrat text-white uppercase text-[36px] leading-[36px] lg:text-[52px] lg:leading-[52px] py-0.5 lg:-rotate-3 shadow-startTiles flex">
@@ -132,16 +151,37 @@ export const SectionBullets = () => {
                         <div className="grid grid-cols-6 gap-4 lg:gap-6 place-items-center lg:place-items-start">
                             <div className="col-span-3 lg:col-span-2 h-full flex w-full">
                                 <motion.div
-                                    /* animate={
+                                    animate={
                                         lg ? { scale: [1, 1.02] } : { scale: 1 }
-                                    } */
-                                    transition={{
-                                        repeat: Infinity,
-                                        repeatType: "reverse",
-                                        duration: 2,
-                                        delay: 0,
+                                    }
+                                    transition={
+                                        lg
+                                            ? {
+                                                  repeat: Infinity,
+                                                  repeatType: "reverse",
+                                                  duration: 2,
+                                                  delay: 0,
+                                              }
+                                            : {
+                                                  duration: 0.3,
+                                                  ease: "easeInOut",
+                                                  delay: 0.1,
+                                              }
+                                    }
+                                    whileInView={
+                                        lg
+                                            ? undefined
+                                            : {
+                                                  opacity: [0, 1],
+                                                  y: [100, 0],
+                                                  x: [-100, 0],
+                                                  rotate: ["0deg", "0deg"],
+                                              }
+                                    }
+                                    viewport={{
+                                        margin: "20px",
                                     }}
-                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex flex-col md:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
+                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-2 md:p-6 pt-3 pb-3 md:pt-6 md:pb-7 flex flex-col md:flex-row gap-2 md:gap-6 items-center justify-between w-full max-w-[400px]"
                                 >
                                     <div className="flex justify-center mb-4 lg:mb-0 lg:block">
                                         <BenefitIcons.ChronoIcon className="h-[36px] lg:h-[50px]" />
@@ -159,16 +199,37 @@ export const SectionBullets = () => {
                             </div>
                             <div className="col-span-3 lg:col-span-2 h-full flex w-full">
                                 <motion.div
-                                    /* animate={
+                                    animate={
                                         lg ? { scale: [1, 1.02] } : { scale: 1 }
-                                    } */
-                                    transition={{
-                                        repeat: Infinity,
-                                        repeatType: "reverse",
-                                        duration: 2,
-                                        delay: 0.5,
+                                    }
+                                    transition={
+                                        lg
+                                            ? {
+                                                  repeat: Infinity,
+                                                  repeatType: "reverse",
+                                                  duration: 2,
+                                                  delay: 0.5,
+                                              }
+                                            : {
+                                                  duration: 0.3,
+                                                  ease: "easeInOut",
+                                                  delay: 0.1,
+                                              }
+                                    }
+                                    whileInView={
+                                        lg
+                                            ? undefined
+                                            : {
+                                                  opacity: [0, 1],
+                                                  y: [100, 0],
+                                                  x: [100, 0],
+                                                  rotate: ["0deg", "0deg"],
+                                              }
+                                    }
+                                    viewport={{
+                                        margin: "20px",
                                     }}
-                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex flex-col md:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
+                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-2 md:p-6 pt-3 pb-3 md:pt-6 md:pb-7 flex flex-col md:flex-row gap-2 md:gap-6 items-center justify-between w-full max-w-[400px]"
                                 >
                                     <div className="flex-shrink-0 flex justify-center mb-4 lg:mb-0 lg:block">
                                         <BenefitIcons.SsrIcon className="h-[36px] lg:h-[50px]" />
@@ -189,16 +250,37 @@ export const SectionBullets = () => {
                             </div>
                             <div className="col-span-3 lg:col-span-2 h-full flex w-full">
                                 <motion.div
-                                    /* animate={
+                                    animate={
                                         lg ? { scale: [1, 1.02] } : { scale: 1 }
-                                    } */
-                                    transition={{
-                                        repeat: Infinity,
-                                        repeatType: "reverse",
-                                        duration: 2,
-                                        delay: 1,
+                                    }
+                                    transition={
+                                        lg
+                                            ? {
+                                                  repeat: Infinity,
+                                                  repeatType: "reverse",
+                                                  duration: 2,
+                                                  delay: 1,
+                                              }
+                                            : {
+                                                  duration: 0.3,
+                                                  ease: "easeInOut",
+                                                  delay: 0.1,
+                                              }
+                                    }
+                                    whileInView={
+                                        lg
+                                            ? undefined
+                                            : {
+                                                  opacity: [0, 1],
+                                                  y: [100, 0],
+                                                  x: [-100, 0],
+                                                  rotate: ["0deg", "0deg"],
+                                              }
+                                    }
+                                    viewport={{
+                                        margin: "20px",
                                     }}
-                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex flex-col md:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
+                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-2 md:p-6 pt-3 pb-3 md:pt-6 md:pb-7 flex flex-col md:flex-row gap-2 md:gap-6 items-center justify-between w-full max-w-[400px]"
                                 >
                                     <div className="flex justify-center mb-4 lg:mb-0 lg:block">
                                         <BenefitIcons.ReactIcon className="h-[36px] lg:h-[50px]" />
@@ -221,16 +303,37 @@ export const SectionBullets = () => {
                             </div>
                             <div className="col-span-3 lg:col-span-2 h-full flex w-full">
                                 <motion.div
-                                    /* animate={
+                                    animate={
                                         lg ? { scale: [1, 1.02] } : { scale: 1 }
-                                    } */
-                                    transition={{
-                                        repeat: Infinity,
-                                        repeatType: "reverse",
-                                        duration: 2,
-                                        delay: 1.5,
+                                    }
+                                    transition={
+                                        lg
+                                            ? {
+                                                  repeat: Infinity,
+                                                  repeatType: "reverse",
+                                                  duration: 2,
+                                                  delay: 1.5,
+                                              }
+                                            : {
+                                                  duration: 0.3,
+                                                  ease: "easeInOut",
+                                                  delay: 0.1,
+                                              }
+                                    }
+                                    whileInView={
+                                        lg
+                                            ? undefined
+                                            : {
+                                                  opacity: [0, 1],
+                                                  y: [100, 0],
+                                                  x: [100, 0],
+                                                  rotate: ["0deg", "0deg"],
+                                              }
+                                    }
+                                    viewport={{
+                                        margin: "20px",
                                     }}
-                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex flex-col md:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
+                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-2 md:p-6 pt-3 pb-3 md:pt-6 md:pb-7 flex flex-col md:flex-row gap-2 md:gap-6 items-center justify-between w-full max-w-[400px]"
                                 >
                                     <div className="flex justify-center mb-4 lg:mb-0 lg:block">
                                         <BenefitIcons.RouteIcon className="h-[36px] lg:h-[50px]" />
@@ -246,16 +349,37 @@ export const SectionBullets = () => {
                             </div>
                             <div className="col-span-3 lg:col-span-2 h-full flex w-full">
                                 <motion.div
-                                    /* animate={
+                                    animate={
                                         lg ? { scale: [1, 1.02] } : { scale: 1 }
-                                    } */
-                                    transition={{
-                                        repeat: Infinity,
-                                        repeatType: "reverse",
-                                        duration: 2,
-                                        delay: 2,
+                                    }
+                                    transition={
+                                        lg
+                                            ? {
+                                                  repeat: Infinity,
+                                                  repeatType: "reverse",
+                                                  duration: 2,
+                                                  delay: 2,
+                                              }
+                                            : {
+                                                  duration: 0.3,
+                                                  ease: "easeInOut",
+                                                  delay: 0.1,
+                                              }
+                                    }
+                                    whileInView={
+                                        lg
+                                            ? undefined
+                                            : {
+                                                  opacity: [0, 1],
+                                                  y: [100, 0],
+                                                  x: [-100, 0],
+                                                  rotate: ["0deg", "0deg"],
+                                              }
+                                    }
+                                    viewport={{
+                                        margin: "20px",
                                     }}
-                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex flex-col md:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
+                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-2 md:p-6 pt-3 pb-3 md:pt-6 md:pb-7 flex flex-col md:flex-row gap-2 md:gap-6 items-center justify-between w-full max-w-[400px]"
                                 >
                                     <div className="flex justify-center mb-4 lg:mb-0 lg:block">
                                         <BenefitIcons.AuthIcon className="h-[36px] lg:h-[50px]" />
@@ -275,40 +399,82 @@ export const SectionBullets = () => {
                             </div>
                             <div className="col-span-3 lg:col-span-2 h-full flex w-full">
                                 <motion.div
-                                    /* animate={
+                                    animate={
                                         lg ? { scale: [1, 1.02] } : { scale: 1 }
-                                    } */
-                                    transition={{
-                                        repeat: Infinity,
-                                        repeatType: "reverse",
-                                        duration: 2,
-                                        delay: 2.5,
+                                    }
+                                    transition={
+                                        lg
+                                            ? {
+                                                  repeat: Infinity,
+                                                  repeatType: "reverse",
+                                                  duration: 2,
+                                                  delay: 2.5,
+                                              }
+                                            : {
+                                                  duration: 0.3,
+                                                  ease: "easeInOut",
+                                                  delay: 0.1,
+                                              }
+                                    }
+                                    whileInView={
+                                        lg
+                                            ? undefined
+                                            : {
+                                                  opacity: [0, 1],
+                                                  y: [100, 0],
+                                                  x: [100, 0],
+                                                  rotate: ["0deg", "0deg"],
+                                              }
+                                    }
+                                    viewport={{
+                                        margin: "20px",
                                     }}
-                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex flex-col md:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
+                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-2 md:p-6 pt-3 pb-3 md:pt-6 md:pb-7 flex flex-col md:flex-row gap-2 md:gap-6 items-center justify-between w-full max-w-[400px]"
                                 >
                                     <div className="flex justify-center mb-4 lg:mb-0 lg:block">
                                         <BenefitIcons.RealtimeIcon className="h-[36px] lg:h-[50px]" />
                                     </div>
                                     <div className="font-montserrat font-normal text-center lg:text-left text-sm lg:text-base leading-4 lg:leading-5 text-[#2A2A42] tracking-tight">
-                                        Out-of-the-box support for
+                                        Out-of-the-box support for{" "}
                                         <strong className="font-extrabold">
-                                            live / real-time applications
+                                            live / realtime applications
                                         </strong>
                                     </div>
                                 </motion.div>
                             </div>
                             <div className="col-span-3 lg:col-span-2 lg:col-start-2 h-full flex w-full">
                                 <motion.div
-                                    /* animate={
+                                    animate={
                                         lg ? { scale: [1, 1.02] } : { scale: 1 }
-                                    } */
-                                    transition={{
-                                        repeat: Infinity,
-                                        repeatType: "reverse",
-                                        duration: 2,
-                                        delay: 3,
+                                    }
+                                    transition={
+                                        lg
+                                            ? {
+                                                  repeat: Infinity,
+                                                  repeatType: "reverse",
+                                                  duration: 2,
+                                                  delay: 3,
+                                              }
+                                            : {
+                                                  duration: 0.3,
+                                                  ease: "easeInOut",
+                                                  delay: 0.1,
+                                              }
+                                    }
+                                    whileInView={
+                                        lg
+                                            ? undefined
+                                            : {
+                                                  opacity: [0, 1],
+                                                  y: [100, 0],
+                                                  x: [-100, 0],
+                                                  rotate: ["0deg", "0deg"],
+                                              }
+                                    }
+                                    viewport={{
+                                        margin: "20px",
                                     }}
-                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex flex-col md:flex-row gap-6 items-center justify-between w-full max-w-[400px]"
+                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-2 md:p-6 pt-3 pb-3 md:pt-6 md:pb-7 flex flex-col md:flex-row gap-2 md:gap-6 items-center justify-between w-full max-w-[400px]"
                                 >
                                     <div className="flex justify-center mb-4 lg:mb-0 lg:block">
                                         <BenefitIcons.AuditIcon className="h-[36px] lg:h-[50px]" />
@@ -327,16 +493,37 @@ export const SectionBullets = () => {
                             </div>
                             <div className="col-span-3 lg:col-span-2 h-full flex w-full">
                                 <motion.div
-                                    /* animate={
+                                    animate={
                                         lg ? { scale: [1, 1.02] } : { scale: 1 }
-                                    } */
-                                    transition={{
-                                        repeat: Infinity,
-                                        repeatType: "reverse",
-                                        duration: 2,
-                                        delay: 3.5,
+                                    }
+                                    transition={
+                                        lg
+                                            ? {
+                                                  repeat: Infinity,
+                                                  repeatType: "reverse",
+                                                  duration: 2,
+                                                  delay: 3.5,
+                                              }
+                                            : {
+                                                  duration: 0.3,
+                                                  ease: "easeInOut",
+                                                  delay: 0.1,
+                                              }
+                                    }
+                                    whileInView={
+                                        lg
+                                            ? undefined
+                                            : {
+                                                  opacity: [0, 1],
+                                                  y: [100, 0],
+                                                  x: [100, 0],
+                                                  rotate: ["0deg", "0deg"],
+                                              }
+                                    }
+                                    viewport={{
+                                        margin: "20px",
                                     }}
-                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-6 pb-7 flex flex-col md:flex-row gap-6 items-center justify-between w-full lg:w-auto max-w-[400px]"
+                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-2 md:p-6 pt-3 pb-3 md:pt-6 md:pb-7 flex flex-col md:flex-row gap-2 md:gap-6 items-center justify-between w-full lg:w-auto max-w-[400px]"
                                 >
                                     <div className="flex justify-center mb-4 lg:mb-0 lg:block">
                                         <BenefitIcons.GlobalIcon className="h-[36px] lg:h-[50px]" />
