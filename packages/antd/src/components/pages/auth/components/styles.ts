@@ -15,4 +15,8 @@ export const titleStyles: CSSProperties = {
     color: "#626262",
     fontSize: "24px",
     letterSpacing: "-0.04em",
+    overflowWrap: "break-word",
+    hyphens: "manual",
+    textOverflow: "unset",
+    whiteSpace: "pre-wrap",
 };
