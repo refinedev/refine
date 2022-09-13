@@ -68,7 +68,7 @@ const App: React.FC = () => {
 
 You can also customize your Sider component by creating the `CustomSider` component.
 
-When you examine the code of the livepreview example below, you will see the same code that we used for the `default sider` component. You can create a customized `CustomSider` component for yourself by following this code.
+When you examine the code of the live-preview example below, you will see the same code that we used for the `default sider` component. You can create a customized `CustomSider` component for yourself by following this code.
 
 ```tsx title="src/CustomSider.tsx"
 import React, { useState } from "react";
