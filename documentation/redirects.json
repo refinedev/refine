@@ -701,10 +701,6 @@
             "to": "/docs/examples/web3/web3Login/"
         },
         {
-            "from": "/docs/next/getting-started/basics/",
-            "to": "/docs/getting-started/overview/"
-        },
-        {
             "from": "/docs/next/getting-started/components/",
             "to": "/docs/getting-started/components/"
         },
