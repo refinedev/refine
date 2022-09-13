@@ -11,11 +11,6 @@ hide_table_of_contents: false
 
 import social from '@site/static/img/blog/2022-08-28-js-currying-functions/currying-social-image.png';
 
-<br />
-
-<div class="img-container">
-    <img src={social} alt="social" />
-</div>
 
 ## Introduction
 

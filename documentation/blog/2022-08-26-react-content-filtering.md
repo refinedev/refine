@@ -18,11 +18,7 @@ import terminal from '@site/static/img/blog/2022-08-26-react-content-filtering/t
 import wireframe from '@site/static/img/blog/2022-08-26-react-content-filtering/wireframe.png';
 import social from '@site/static/img/blog/2022-08-26-react-content-filtering/refine-filter-social.png';
 
-<br />
 
-<div class="img-container">
-    <img src={social} alt="social" />
-</div>
 
 ## Introduction
 Filtering systems are common for most modern web applications. They are especially useful if there are large amounts of data. They allow users to save time and easily access the information they are looking for.
