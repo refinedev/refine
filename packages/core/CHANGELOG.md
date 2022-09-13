@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.69.7
+
+### Patch Changes
+
+-   [#2447](https://github.com/pankod/refine/pull/2447) [`628a37a675`](https://github.com/pankod/refine/commit/628a37a6753a778cbec5c29b698981e0157caa42) Thanks [@biskuvit](https://github.com/biskuvit)! - Add register function to `AuthContextProvider` for invalidate auth store queries.
+
 ## 3.69.6
 
 ### Patch Changes
