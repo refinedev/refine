@@ -30,14 +30,12 @@ Because of Svelte’s popularity over the years, many companies are beginning to
 Steps we’ll cover:
 
 - [What is Sveltekit](#what-is-sveltekit)
-- [Prerequisites](#prerequisites)
 - [Create Sveltekit Application](#create-sveltekit-application)
 - [Create the App UI](#create-the-app-ui)
 - [Read Blogs](#read-blogs)
 - [Create New Blog](#create-new-blog)
 - [Update Blog](#update-blog)
 - [Delete Blog](#delete-blog)
-- [Conclusion](#conclusion)
 
 
 ## What is Sveltekit

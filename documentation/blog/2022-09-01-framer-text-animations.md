@@ -32,7 +32,6 @@ In this article, we'll examine Framer Motion's functionality, installation proce
 
 Steps we'll cover:
 
-- [Prerequisites](#prerequisites)
 - [What is Framer Motion?](#what-is-framer-motion)
 - [Getting started with Framer Motion in React](#getting-started-with-framer-motion-in-react)
 - [Getting started with text animation](#getting-started-with-text-animation)
