@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
+import Head from "@docusaurus/Head";
 
 import { SHOW_CASES, EXAMPLES } from "../../assets/examples";
 import { ExampleCard } from "../../components/examples";
@@ -9,6 +10,9 @@ import { ChevronRight } from "../../components/blog/icons";
 const Examples: React.FC = () => {
     return (
         <Layout>
+            <Head>
+                <html data-page="examples" data-customized="true" />
+            </Head>
             <div className="container max-w-[1040px]">
                 <span
                     className="fixed -left-10 bottom-[20vh] z-10 "
@@ -24,7 +28,7 @@ const Examples: React.FC = () => {
                         You Can Build With Refine.
                     </span>
                 </h1>
-                <p className="font-montserrat text-center text-[20px] font-medium uppercase">
+                <p className="font-montserrat text-center text-[20px] font-medium uppercase text-[#2A2A42]">
                     A collection of reference applications you can use as a{" "}
                     <br />
                     starting point for your next project.
@@ -46,7 +50,7 @@ const Examples: React.FC = () => {
                 <div className="flex justify-end">
                     <Link
                         to="/docs/examples/tutorial/headless-tutorial"
-                        className="flex items-center text-xl font-bold uppercase text-inherit"
+                        className="flex items-center text-xl font-bold uppercase text-[#2A2A42]"
                         target="_blank"
                     >
                         See All Examples

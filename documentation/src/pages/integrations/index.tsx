@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "@docusaurus/Head";
 
 import Layout from "../../theme/Layout";
 import Card from "../../components/integrations/card";
@@ -39,7 +40,10 @@ const Integrations: React.FC = () => {
 
     return (
         <Layout>
-            <div className={styles.container}>
+            <Head>
+                <html data-page="integrations" data-customized="true" />
+            </Head>
+            <div className={styles.integrations_container}>
                 <div className={styles.header}>
                     <div className={styles.headerTitle}>
                         <span>ADD 3rd PARTY MODULES</span>

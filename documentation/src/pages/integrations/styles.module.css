@@ -1,5 +1,5 @@
-.container {
-    @apply font-montserrat mx-4 sm:mx-10 md:mx-12 sm:mt-16 lg:mx-28 xl:mx-36 2xl:mx-52;
+.integrations_container {
+    @apply container font-montserrat max-w-[1040px] mx-auto px-4 bg-white;
 }
 
 .header {
@@ -23,7 +23,7 @@
 }
 
 .integrationTitle {
-    @apply mb-2.5 text-lg font-extrabold sm:text-2xl;
+    @apply text-[#2A2A42] mb-2.5 text-lg font-extrabold sm:text-2xl;
 }
 
 .integrations {
