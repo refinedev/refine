@@ -17,12 +17,7 @@ import manifest from '@site/static/img/blog/2022-09-11-next-refine-pwa/manifest.
 import pwa from '@site/static/img/blog/2022-09-11-next-refine-pwa/pwa.png';
 import social from '@site/static/img/blog/2022-09-11-next-refine-pwa/social.png';
 
- <br />
-
- <div class="img-container">
-    <img src={social} alt="social" />
-</div>
-
+ 
 
 
 

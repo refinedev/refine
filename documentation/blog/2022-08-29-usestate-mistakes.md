@@ -21,11 +21,7 @@ import objectAssign from '@site/static/img/blog/2022-08-29-usestate-mistakes/obj
 import objectStateError from '@site/static/img/blog/2022-08-29-usestate-mistakes/object-property-state-error.png';
 import objectState from '@site/static/img/blog/2022-08-29-usestate-mistakes/object-property-state.png';
 
-<br />
 
-<div class="img-container">
-    <img src={social} alt="social" />
-</div>
 
 ## Introduction
 
