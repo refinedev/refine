@@ -661,6 +661,10 @@ html[data-page="index"] #__docusaurus .navbar-theme-toggle {
     display: none;
 }
 
+html[data-page="index"], html[data-theme="dark"][data-page="index"] {
+    background: white;
+}
+
 #__docusaurus .navbar {
     @apply bg-white bg-opacity-80 border-0 border-opacity-80 border-b border-solid border-b-[#F6F6F9];
 }

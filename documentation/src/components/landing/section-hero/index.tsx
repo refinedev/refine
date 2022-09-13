@@ -137,7 +137,7 @@ export const SectionHero: React.FC = () => {
             }}
         >
             {/* Scroll animated section */}
-            <motion.div className="h-auto lg:h-screen w-screen max-w-screen-xl mx-auto w-full top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col justify-center">
+            <motion.div className="h-auto lg:h-screen w-screen max-w-screen-xl mx-auto w-full top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 pt-16 lg:pt-0 flex flex-col justify-center">
                 <div className="flex pt-16 flex-col lg:flex-row gap-12 lg:gap-0">
                     <div className="heading mx-auto lg:mx-0 flex flex-[2] gap-6 h-min">
                         <div className="caret-wrapper relative py-2.5 w-[33px]">
