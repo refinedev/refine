@@ -196,7 +196,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                             "Don’t have an account?",
                         )}{" "}
                         <Link to="/register" style={{ fontWeight: "bold" }}>
-                            {translate("pages.login.buttons.submit", "Sign up")}
+                            {translate("pages.login.signup", "Sign up")}
                         </Link>
                     </Text>
                 )}

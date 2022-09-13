@@ -12,11 +12,13 @@ export const authProvider: AuthProvider = {
         return Promise.reject("Invalid email or password");
     },
     register: async ({ email, password }) => {
-        if (email && password) {
-            authProvider.login({ email, password });
+        if (!(email && password)) return Promise.reject();
+        try {
+            await authProvider.login({ email, password });
             return Promise.resolve();
+        } catch (error) {
+            return Promise.reject();
         }
-        return Promise.reject();
     },
     updatePassword: async ({ password }) => {
         if (password) {
