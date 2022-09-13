@@ -21,20 +21,20 @@ export default function BlogPostItem({ className }) {
 
     return (
         <BlogPostItemContainer className={className}>
-            <div className="flex flex-col overflow-hidden rounded-[10px] blog-post-item-shadow h-full">
+            <div className="blog-post-item-shadow flex h-full flex-col overflow-hidden rounded-[10px]">
                 <Link itemProp="url" to={permalink}>
-                    <div className="h-40 relative">
+                    <div className="relative m-0 h-40 overflow-hidden pt-[56.25%]">
                         <img
                             src={frontMatter.image}
                             alt="Post image"
-                            className="absolute inset-0 w-full h-full object-cover hover:brightness-90 transition duration-150"
+                            className="absolute inset-0 h-full w-full object-cover transition duration-150 hover:brightness-90"
                             loading="lazy"
                         />
                     </div>
                 </Link>
-                <div className="flex flex-col justify-between p-3 h-full gap-3">
+                <div className="flex h-full flex-col justify-between gap-3 p-3">
                     <div>
-                        <div className="text-xs text-[#525860]">
+                        <div className="text-[10px] font-medium text-[#9696B4]">
                             <Date date={date} formattedDate={formattedDate} />
                             {typeof readingTime !== "undefined" && (
                                 <>
@@ -49,11 +49,11 @@ export default function BlogPostItem({ className }) {
                                 to={permalink}
                                 className="hover:no-underline"
                             >
-                                <div className="font-bold text-color-base hover:text-stone-600 transition duration-150">
+                                <div className="text-color-base text-base font-bold transition duration-150 hover:text-stone-600">
                                     {title}
                                 </div>
                             </Link>
-                            <div className="mt-1 text-color-base text-sm line-clamp-3">
+                            <div className="text-color-base line-clamp-3 mt-1 text-xs">
                                 {description}
                             </div>
                         </div>
@@ -66,7 +66,7 @@ export default function BlogPostItem({ className }) {
                             <img
                                 src={author?.imageURL}
                                 alt={author?.name}
-                                className="flex w-12 h-12 rounded-full object-cover"
+                                className="flex h-12 w-12 rounded-full object-cover"
                                 loading="lazy"
                             />
                         </Link>
@@ -74,11 +74,11 @@ export default function BlogPostItem({ className }) {
                             <Link
                                 href={`/blog/author/${author?.key}`}
                                 itemProp="url"
-                                className="text-sm text-color-base font-semibold"
+                                className="text-color-base text-xs font-bold"
                             >
                                 {author?.name}
                             </Link>
-                            <div className="text-xs text-slate-600 -mt-0.5">
+                            <div className="-mt-0.5 text-[10px] font-medium text-[#9696B4]">
                                 {author?.title}
                             </div>
                         </div>

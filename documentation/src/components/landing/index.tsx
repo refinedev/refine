@@ -14,8 +14,8 @@ export const Landing: React.FC = () => {
             <SectionFreeStart />
             <SectionBullets />
             <SectionNoConstraints />
-            <SectionUseCase />
             <SectionBanners />
+            <SectionUseCase />
         </main>
     );
 };

@@ -21,22 +21,22 @@ export const FeaturedBlogPostItem = () => {
 
     return (
         <BlogPostItemContainer>
-            <div className="flex flex-col lg:flex-row overflow-hidden rounded-[10px] blog-post-item-shadow h-full lg:h-[260px] xl:h-[240px]">
+            <div className="blog-post-item-shadow flex h-full flex-col overflow-hidden rounded-[10px] lg:h-[210px] lg:flex-row">
                 <Link itemProp="url" to={permalink}>
-                    <div className="relative lg:h-full w-full h-40 lg:w-44 ">
+                    <div className="relative h-40 w-full lg:h-full lg:w-44 ">
                         <img
                             src={
                                 frontMatter.featured_image ?? frontMatter.image
                             }
                             alt="Post image"
-                            className="absolute inset-0 w-full h-full object-cover hover:brightness-90 transition duration-150"
+                            className="absolute inset-0 h-full w-full object-cover transition duration-150 hover:brightness-90"
                             loading="lazy"
                         />
                     </div>
                 </Link>
-                <div className="flex flex-col justify-between p-3 h-full gap-3 lg:gap-0">
+                <div className="flex h-full flex-col justify-between gap-3 p-3 lg:gap-0">
                     <div>
-                        <div className="text-xs text-[#525860]">
+                        <div className="text-[10px] font-medium text-[#9696B4]">
                             <Date date={date} formattedDate={formattedDate} />
                             {typeof readingTime !== "undefined" && (
                                 <>
@@ -51,11 +51,11 @@ export const FeaturedBlogPostItem = () => {
                                 to={permalink}
                                 className="hover:no-underline"
                             >
-                                <div className="font-bold text-color-base hover:text-stone-600 transition duration-150">
+                                <div className="text-color-base text-base font-bold transition duration-150 hover:text-stone-600">
                                     {title}
                                 </div>
                             </Link>
-                            <div className="mt-1 text-color-base text-sm line-clamp-3">
+                            <div className="text-color-base line-clamp-3 mt-4 text-xs">
                                 {description}
                             </div>
                         </div>
@@ -65,7 +65,7 @@ export const FeaturedBlogPostItem = () => {
                             <img
                                 src={author?.imageURL}
                                 alt={author?.name}
-                                className="flex w-12 h-12 rounded-full object-cover"
+                                className="flex h-12 w-12 rounded-full object-cover"
                                 loading="lazy"
                             />
                         </Link>
@@ -73,11 +73,11 @@ export const FeaturedBlogPostItem = () => {
                             <Link
                                 to={`/blog/author/${author?.key}`}
                                 itemProp="url"
-                                className="text-sm text-color-base font-semibold"
+                                className="text-color-base text-xs font-bold"
                             >
                                 {author?.name}
                             </Link>
-                            <div className="text-xs text-[#525860] -mt-0.5">
+                            <div className="-mt-0.5 text-[10px] font-medium text-[#9696B4]">
                                 {author?.title}
                             </div>
                         </div>
