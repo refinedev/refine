@@ -27,6 +27,11 @@ const { Text, Title } = Typography;
 
 type RegisterProps = RefineRegisterPageProps<LayoutProps, CardProps>;
 
+/**
+ * **refine** has register page form which is served on `/register` route when the `authProvider` configuration is provided.
+ *
+ * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/antd-auth-page/#register} for more details.
+ */
 export const RegisterPage: React.FC<RegisterProps> = ({
     loginLink,
     wrapperProps,
@@ -43,7 +48,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>
-            {translate("pages.register.title", "Sign up your account")}
+            {translate("pages.register.title", "Sign up for your account")}
         </Title>
     );
 
@@ -68,7 +73,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         {
                             type: "email",
                             message: translate(
-                                "pages.register.validEmail",
+                                "pages.register.errors.validEmail",
                                 "Invalid email address",
                             ),
                         },
@@ -126,6 +131,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         </Text>
                     )}
                 </div>
+
                 <Button
                     type="primary"
                     size="large"

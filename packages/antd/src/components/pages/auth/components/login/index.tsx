@@ -28,7 +28,7 @@ type LoginProps = RefineLoginPageProps<LayoutProps, CardProps>;
 /**
  * **refine** has a default login page form which is served on `/login` route when the `authProvider` configuration is provided.
  *
- * @see {@link https://refine.dev/docs/api-references/components/refine-config#loginpage} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/antd-auth-page/#login} for more details.
  */
 export const LoginPage: React.FC<LoginProps> = ({
     providers,
@@ -48,7 +48,7 @@ export const LoginPage: React.FC<LoginProps> = ({
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>
-            {translate("pages.login.title", "Sign in your account")}
+            {translate("pages.login.title", "Sign in to your account")}
         </Title>
     );
 
@@ -112,7 +112,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         {
                             type: "email",
                             message: translate(
-                                "pages.register.validEmail",
+                                "pages.login.errors.validEmail",
                                 "Invalid email address",
                             ),
                         },
@@ -196,7 +196,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                             "Don’t have an account?",
                         )}{" "}
                         <Link to="/register" style={{ fontWeight: "bold" }}>
-                            {translate("pages.login.buttons.submit", "Sign up")}
+                            {translate("pages.login.signup", "Sign up")}
                         </Link>
                     </Text>
                 )}

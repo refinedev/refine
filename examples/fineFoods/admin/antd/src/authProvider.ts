@@ -5,34 +5,30 @@ export const TOKEN_KEY = "refine-auth";
 
 export const authProvider: AuthProvider = {
     login: async ({ email, password }) => {
-        if (email && password) {
-            localStorage.setItem(TOKEN_KEY, `${email}-${password}`);
-            return Promise.resolve();
-        }
-        return Promise.reject("Invalid email or password");
+        localStorage.setItem(TOKEN_KEY, `${email}-${password}`);
+        return Promise.resolve();
     },
     register: async ({ email, password }) => {
-        if (email && password) {
-            authProvider.login({ email, password });
+        try {
+            await authProvider.login({ email, password });
             return Promise.resolve();
+        } catch (error) {
+            return Promise.reject();
         }
-        return Promise.reject();
     },
-    updatePassword: async ({ password }) => {
-        if (password) {
-            notification.success({
-                message: "Updated Password",
-                description: "Password updated successfully",
-            });
-            return Promise.resolve();
-        }
-        return Promise.reject();
+    updatePassword: async () => {
+        notification.success({
+            message: "Updated Password",
+            description: "Password updated successfully",
+        });
+        return Promise.resolve();
     },
     resetPassword: async ({ email }) => {
         notification.success({
             message: "Reset Password",
             description: `Reset password link sent to "${email}"`,
         });
+        return Promise.resolve();
     },
     logout: () => {
         localStorage.removeItem(TOKEN_KEY);
