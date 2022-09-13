@@ -63,6 +63,24 @@ export const SectionFreeStart: React.FC = () => {
                                   }
                                 : {}
                         }
+                        whileInView={
+                            lg
+                                ? undefined
+                                : {
+                                      opacity: [0, 1],
+                                      x: [-100, 0],
+                                      rotate: ["0deg", "0deg"],
+                                  }
+                        }
+                        transition={
+                            lg
+                                ? undefined
+                                : {
+                                      duration: 0.3,
+                                      ease: "easeInOut",
+                                      delay: 0.2,
+                                  }
+                        }
                     >
                         <div className="border-2 border-dashed border-[#1784EB] rounded relative flex w-full pr-2.5 pl-1 lg:pl-7 pt-8 pb-10 h-full items-center">
                             <div className="text-[#1784EB] w-2/3">
@@ -89,6 +107,24 @@ export const SectionFreeStart: React.FC = () => {
                                   }
                                 : { rotate: -3 }
                         }
+                        whileInView={
+                            lg
+                                ? undefined
+                                : {
+                                      opacity: [0, 1],
+                                      y: [200, 0],
+                                      rotate: [-180, -5],
+                                  }
+                        }
+                        transition={
+                            lg
+                                ? undefined
+                                : {
+                                      duration: 0.3,
+                                      ease: "easeInOut",
+                                      delay: 0.2,
+                                  }
+                        }
                         className="h-fit z-[1] px-5 -my-4 lg:my-0 lg:-mx-16 bg-[#3FDCF7] font-extrabold font-montserrat text-white uppercase text-[39px] leading-[42px] lg:text-[52px] lg:leading-[52px] py-0.5 -rotate-3 shadow-startTiles"
                     >
                         or
@@ -103,6 +139,24 @@ export const SectionFreeStart: React.FC = () => {
                                       rotate: rightCardRotate,
                                   }
                                 : {}
+                        }
+                        whileInView={
+                            lg
+                                ? undefined
+                                : {
+                                      opacity: [0, 1],
+                                      x: [100, 0],
+                                      rotate: ["0deg", "0deg"],
+                                  }
+                        }
+                        transition={
+                            lg
+                                ? undefined
+                                : {
+                                      duration: 0.3,
+                                      ease: "easeInOut",
+                                      delay: 0.3,
+                                  }
                         }
                     >
                         <div className="border-2 border-dashed border-[#1784EB] rounded relative flex w-full pr-2.5 pl-1 lg:pl-8 py-5 h-full items-center justify-center">

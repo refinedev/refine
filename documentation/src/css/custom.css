@@ -640,7 +640,7 @@ html {
 /* #__docusaurus .navbar-sidebar__items.navbar-sidebar__items--show-secondary {
 } */
 
-html[data-page="index"]
+html[data-customized="true"]
     #__docusaurus
     .navbar__item.dropdown.dropdown--hoverable.dropdown--right {
     display: none;
@@ -654,59 +654,63 @@ html[data-page="index"]
     background-color: #f6f6f9;
 }
 
-html[data-theme="dark"]:not([data-page="index"])
+html[data-theme="dark"]:not([data-customized="true"])
     #__docusaurus
     footer.refine-footer {
     background-color: #272729;
 }
 
-html[data-page="index"] #__docusaurus .navbar-theme-toggle {
+html[data-customized="true"] #__docusaurus .navbar-theme-toggle {
     display: none;
+}
+
+html[data-customized="true"], html[data-theme="dark"][data-customized="true"] {
+    background: white;
 }
 
 #__docusaurus .navbar {
     @apply border-0 border-b border-solid border-b-[#F6F6F9] border-opacity-80 bg-white bg-opacity-80;
 }
 
-html[data-theme="dark"]:not([data-page="index"]) #__docusaurus .navbar {
+html[data-theme="dark"]:not([data-customized="true"]) #__docusaurus .navbar {
     @apply border-0 border-b border-solid border-b-[#2A2A42] border-opacity-80 bg-[#272729] bg-opacity-80;
 }
 
-html:not([data-theme="dark"]):not([data-page="index"]) #__docusaurus .navbar {
+html:not([data-theme="dark"]):not([data-customized="true"]) #__docusaurus .navbar {
     @apply border-0 border-b border-solid border-b-[#F6F6F9] border-opacity-80 bg-white bg-opacity-80;
 }
 
-html[data-theme="dark"]:not([data-page="index"])
+html[data-theme="dark"]:not([data-customized="true"])
     #__docusaurus
     .refine-docsearch-button {
     @apply bg-[#1b1b1d];
 }
 
-html[data-theme="dark"]:not([data-page="index"])
+html[data-theme="dark"]:not([data-customized="true"])
     #__docusaurus
     .DocSearch-Button-Placeholder,
-html[data-theme="dark"]:not([data-page="index"])
+html[data-theme="dark"]:not([data-customized="true"])
     #__docusaurus
     .DocSearch-Search-Icon,
-html[data-theme="dark"]:not([data-page="index"])
+html[data-theme="dark"]:not([data-customized="true"])
     #__docusaurus
     .DocSearch-Button-Keys
     kbd {
     @apply text-[#F6F6F9];
 }
 
-html[data-theme="dark"]:not([data-page="index"])
+html[data-theme="dark"]:not([data-customized="true"])
     #__docusaurus
     .navbar
     .navbar__item,
-html[data-theme="dark"]:not([data-page="index"])
+html[data-theme="dark"]:not([data-customized="true"])
     #__docusaurus
     .navbar
     .navbar__link {
     @apply text-[#F6F6F9];
 }
 
-html[data-theme="dark"]:not([data-page="index"])
+html[data-theme="dark"]:not([data-customized="true"])
     #__docusaurus
     .navbar
     .header-github-link::before {

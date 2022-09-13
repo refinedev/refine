@@ -9,7 +9,7 @@ function Home() {
     return (
         <>
             <Head>
-                <html data-page="index" />
+                <html data-page="index" data-customized="true" />
             </Head>
             <Layout
                 title={`refine | A React-based framework for building internal tools, rapidly!`}

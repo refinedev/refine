@@ -1,7 +1,5 @@
 import React from "react";
-import Link from "@docusaurus/Link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ChevronRight } from "../icons";
 import { useTWBreakpoints } from "../../../hooks/use-tw-breakpoints";
 
 export const SectionUseCase: React.FC = () => {
@@ -18,9 +16,12 @@ export const SectionUseCase: React.FC = () => {
 
     return (
         // Scroll animated container
-        <motion.div ref={ref} className="h-auto lg:h-screen bg-white">
+        <motion.div
+            ref={ref}
+            className="h-auto lg:h-screen lg:max-h-[550px] bg-white -mt-px"
+        >
             {/* Scroll animated section */}
-            <motion.div className="h-auto lg:h-screen w-screen top-0 left-0 relative lg:sticky pt-16 flex flex-col items-center justify-end gap-24 lg:gap-0">
+            <motion.div className="h-auto lg:h-screen lg:max-h-[550px] w-screen top-0 left-0 relative lg:sticky pt-16 flex flex-col items-center justify-end gap-24 lg:gap-0">
                 <div className="flex-1 flex flex-col-reverse gap-8 lg:gap-0 lg:flex-row max-w-7xl mx-auto w-full items-center justify-center px-7 md:px-10 lg:px-16 xl:px-24 ">
                     <div className="flex-1">
                         <div className="font-montserrat text-[#1890FF] text-[36px] leading-[36px] lg:text-[42px] lg:leading-[42px] mb-9">
@@ -60,45 +61,28 @@ export const SectionUseCase: React.FC = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="flex-1 w-full lg:w-auto flex flex-col justify-end items-center lg:items-end relative">
-                        <motion.img
-                            src="landing/giftcard.png"
-                            className="w-full max-w-screen md:max-w-[400px] lg:max-w-[440px] absolute top-0"
-                            style={
-                                lg
-                                    ? {
-                                          opacity: cardOpacity,
-                                      }
-                                    : {}
-                            }
-                            animate={{
-                                translateY: ["20px", "0px"],
-                                rotate: ["-3deg", "0deg"],
-                                ...(!lg ? { opacity: [1, 1] } : {}),
+                    <div className="flex-1 w-full lg:w-auto flex">
+                        <motion.div
+                            className="flex-1 w-full lg:w-auto flex flex-col justify-end items-center lg:items-end relative"
+                            whileInView={!lg ? { scale: [0, 1] } : undefined}
+                            viewport={{
+                                margin: "20px",
                             }}
-                            transition={{
-                                duration: 5,
-                                ease: "easeInOut",
-                                yoyo: Infinity,
-                            }}
-                        />
-                        <div className="w-full max-w-screen md:max-w-[400px] min-h-[calc(100vw-56px)] md:min-h-[400px] lg:max-w-[440px] flex justify-center items-end lg:min-h-[400px]">
-                            <motion.div
-                                style={{
-                                    position: "absolute",
-                                    width: "100%",
-                                    maxWidth: "200px",
-                                    height: "200px",
-                                    borderRadius: "999px",
-                                    rotateX: "88deg",
-                                    background: "#2A2A42",
-                                    filter: "blur(50px)",
-                                }}
+                        >
+                            <motion.img
+                                src="landing/giftcard.png"
+                                className="w-full max-w-screen md:max-w-[400px] lg:max-w-[440px] absolute top-0"
+                                style={
+                                    lg
+                                        ? {
+                                              opacity: cardOpacity,
+                                          }
+                                        : {}
+                                }
                                 animate={{
-                                    opacity: [0.75, 0.2],
-                                    width: ["200px", "300px"],
-                                    height: ["200px", "300px"],
-                                    bottom: ["-80px", "-130px"],
+                                    translateY: ["20px", "0px"],
+                                    rotate: ["-3deg", "0deg"],
+                                    ...(!lg ? { opacity: [1, 1] } : {}),
                                 }}
                                 transition={{
                                     duration: 5,
@@ -106,70 +90,37 @@ export const SectionUseCase: React.FC = () => {
                                     yoyo: Infinity,
                                 }}
                             />
-                        </div>
-                    </div>
-                </div>
-                <div className="w-full">
-                    <div className="bg-[#2A2A42] py-9 px-6">
-                        <div className="max-w-6xl mx-auto flex items-center justify-between lg:pl-16 flex-col lg:flex-row gap-6 lg:gap-0">
-                            <div className="font-montserrat text-2xl font-extrabold text-white">
-                                NOW YOU’RE READY
-                            </div>
-                            <div className="flex gap-3 lg:gap-1 flex-col lg:flex-row">
-                                <Link
-                                    className="appearance-none flex justify-center items-center rounded-lg h-12 w-[270px] bg-gradient-to-r from-[#47EBF5] to-[#1890FF] font-montserrat font-bold text-xl border-0 text-white"
+                            <div className="w-full max-w-screen md:max-w-[400px] min-h-[calc(100vw-56px)] md:min-h-[400px] lg:max-w-[440px] flex justify-center items-end lg:min-h-[400px]">
+                                <motion.div
                                     style={{
-                                        boxShadow:
-                                            "6px 8px 16px 0 rgba(42, 42, 66, 0.4)",
+                                        position: "absolute",
+                                        width: "100%",
+                                        maxWidth: "200px",
+                                        height: "200px",
+                                        borderRadius: "999px",
+                                        rotateX: "88deg",
+                                        background: "#2A2A42",
+                                        filter: "blur(50px)",
                                     }}
-                                    href="/docs"
-                                >
-                                    Start Tutorial
-                                </Link>
-                                <Link
-                                    className="appearance-none rounded-lg h-12 w-[270px] bg-transparent font-montserrat font-bold text-xl border-0 text-white flex items-center justify-center gap-4"
-                                    style={{
-                                        boxShadow:
-                                            "6px 8px 16px 0 rgba(42, 42, 66, 0.4)",
+                                    animate={{
+                                        opacity: [0.75, 0.2],
+                                        width: ["200px", "300px"],
+                                        height: ["200px", "300px"],
+                                        bottom: ["-80px", "-130px"],
                                     }}
-                                    to="/docs/getting-started/overview"
-                                >
-                                    Read the docs
-                                    <ChevronRight />
-                                </Link>
+                                    transition={{
+                                        duration: 5,
+                                        ease: "easeInOut",
+                                        yoyo: Infinity,
+                                    }}
+                                />
                             </div>
-                        </div>
-                    </div>
-                    <div className="bg-[#3FDCF7] py-9 px-6">
-                        <div className="max-w-5xl mx-auto flex items-center justify-between flex-col lg:flex-row gap-6 lg:gap-0">
-                            <div className="font-montserrat text-2xl leading-[24px] font-medium text-white">
-                                <div>NEED ANY FURTHER INFORMATION?</div>
-                                <div>
-                                    SET UP 1X1 WITH A{" "}
-                                    <strong className="font-bold">
-                                        refine
-                                    </strong>{" "}
-                                    ENGINEER.
-                                </div>
-                            </div>
-                            <a
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                href="https://calendly.com/d/cmk-5gb-b2p/meet-refine"
-                                className="appearance-none flex justify-center items-center rounded-lg h-12 w-full max-w-[270px] bg-gradient-to-r from-[#47EBF5] to-[#1890FF] font-montserrat font-bold text-xl border-0 text-white"
-                                style={{
-                                    boxShadow:
-                                        "6px 8px 16px 0 rgba(42, 42, 66, 0.4)",
-                                }}
-                            >
-                                Book a session
-                            </a>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </motion.div>
             {/* Scroll snap alignment */}
-            {/* <div className="snap-start h-screen" /> */}
+            <div className="hidden lg:block snap-start h-screen lg:max-h-[550px]" />
         </motion.div>
     );
 };

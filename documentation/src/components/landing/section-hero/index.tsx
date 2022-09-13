@@ -137,17 +137,21 @@ export const SectionHero: React.FC = () => {
             }}
         >
             {/* Scroll animated section */}
-            <motion.div className="h-auto lg:h-screen w-screen max-w-screen-xl mx-auto w-full top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col justify-center">
+            <motion.div className="h-auto lg:h-screen w-screen max-w-screen-xl mx-auto w-full top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 pt-16 lg:pt-0 flex flex-col justify-center">
                 <div className="flex pt-16 flex-col lg:flex-row gap-12 lg:gap-0">
                     <div className="heading mx-auto lg:mx-0 flex flex-[2] gap-6 h-min">
                         <div className="caret-wrapper relative py-2.5 w-[33px]">
                             <motion.div
-                                transition={{
-                                    yoyo: Infinity,
-                                    ease: "easeInOut",
-                                    duration: 6,
-                                    delay: 1,
-                                }}
+                                transition={
+                                    !lg
+                                        ? {
+                                              yoyo: Infinity,
+                                              ease: "easeInOut",
+                                              duration: 3.5,
+                                              delay: 0.5,
+                                          }
+                                        : {}
+                                }
                                 style={{
                                     position: "absolute",
                                     bottom: lg ? caretPosition : undefined,
@@ -202,12 +206,16 @@ export const SectionHero: React.FC = () => {
                     </div>
                     <div className="tiles flex-[1] mx-auto lg:mx-0 min-w-[270px] max-w-[270px] sm:max-w-none lg:min-w-0 flex flex-col uppercase font-montserrat text-lg sm:text-xl lg:text-2xl tracking-tight font-medium text-[#1890FF]">
                         <motion.div
-                            transition={{
-                                yoyo: Infinity,
-                                ease: "easeInOut",
-                                duration: 6,
-                                delay: 1,
-                            }}
+                            transition={
+                                !lg
+                                    ? {
+                                          yoyo: Infinity,
+                                          ease: "easeInOut",
+                                          duration: 3.5,
+                                          delay: 0.5,
+                                      }
+                                    : {}
+                            }
                             style={
                                 lg
                                     ? {
@@ -227,12 +235,16 @@ export const SectionHero: React.FC = () => {
                             className="tile shadow-tile relative overflow-hidden bg-white w-full md:max-w-[338px] h-[4.5rem]"
                         >
                             <motion.div
-                                transition={{
-                                    yoyo: Infinity,
-                                    ease: "easeInOut",
-                                    duration: 6,
-                                    delay: 1,
-                                }}
+                                transition={
+                                    !lg
+                                        ? {
+                                              yoyo: Infinity,
+                                              ease: "easeInOut",
+                                              duration: 3.5,
+                                              delay: 0.5,
+                                          }
+                                        : {}
+                                }
                                 style={
                                     lg
                                         ? {
@@ -264,12 +276,16 @@ export const SectionHero: React.FC = () => {
                             </motion.div>
                         </motion.div>
                         <motion.div
-                            transition={{
-                                yoyo: Infinity,
-                                ease: "easeInOut",
-                                duration: 6,
-                                delay: 1,
-                            }}
+                            transition={
+                                !lg
+                                    ? {
+                                          yoyo: Infinity,
+                                          ease: "easeInOut",
+                                          duration: 3.5,
+                                          delay: 0.5,
+                                      }
+                                    : {}
+                            }
                             style={
                                 lg
                                     ? {
@@ -289,12 +305,16 @@ export const SectionHero: React.FC = () => {
                             className="tile shadow-tile relative overflow-hidden bg-white w-full md:max-w-[338px] h-[4.5rem]"
                         >
                             <motion.div
-                                transition={{
-                                    yoyo: Infinity,
-                                    ease: "easeInOut",
-                                    duration: 6,
-                                    delay: 1,
-                                }}
+                                transition={
+                                    !lg
+                                        ? {
+                                              yoyo: Infinity,
+                                              ease: "easeInOut",
+                                              duration: 3.5,
+                                              delay: 0.5,
+                                          }
+                                        : {}
+                                }
                                 style={
                                     lg
                                         ? {
@@ -326,12 +346,16 @@ export const SectionHero: React.FC = () => {
                             </motion.div>
                         </motion.div>
                         <motion.div
-                            transition={{
-                                yoyo: Infinity,
-                                ease: "easeInOut",
-                                duration: 6,
-                                delay: 1,
-                            }}
+                            transition={
+                                !lg
+                                    ? {
+                                          yoyo: Infinity,
+                                          ease: "easeInOut",
+                                          duration: 3.5,
+                                          delay: 0.5,
+                                      }
+                                    : {}
+                            }
                             style={
                                 lg
                                     ? {
@@ -351,12 +375,16 @@ export const SectionHero: React.FC = () => {
                             className="tile shadow-tile relative overflow-hidden bg-white w-full md:max-w-[338px] h-[4.5rem]"
                         >
                             <motion.div
-                                transition={{
-                                    yoyo: Infinity,
-                                    ease: "easeInOut",
-                                    duration: 6,
-                                    delay: 1,
-                                }}
+                                transition={
+                                    !lg
+                                        ? {
+                                              yoyo: Infinity,
+                                              ease: "easeInOut",
+                                              duration: 3.5,
+                                              delay: 0.5,
+                                          }
+                                        : {}
+                                }
                                 style={
                                     lg
                                         ? {
@@ -388,12 +416,16 @@ export const SectionHero: React.FC = () => {
                             </motion.div>
                         </motion.div>
                         <motion.div
-                            transition={{
-                                yoyo: Infinity,
-                                ease: "easeInOut",
-                                duration: 6,
-                                delay: 1,
-                            }}
+                            transition={
+                                !lg
+                                    ? {
+                                          yoyo: Infinity,
+                                          ease: "easeInOut",
+                                          duration: 3.5,
+                                          delay: 0.5,
+                                      }
+                                    : {}
+                            }
                             style={
                                 lg
                                     ? {
@@ -413,12 +445,16 @@ export const SectionHero: React.FC = () => {
                             className="tile shadow-tile relative overflow-hidden bg-white w-full md:max-w-[338px] h-[4.5rem]"
                         >
                             <motion.div
-                                transition={{
-                                    yoyo: Infinity,
-                                    ease: "easeInOut",
-                                    duration: 6,
-                                    delay: 1,
-                                }}
+                                transition={
+                                    !lg
+                                        ? {
+                                              yoyo: Infinity,
+                                              ease: "easeInOut",
+                                              duration: 3.5,
+                                              delay: 0.5,
+                                          }
+                                        : {}
+                                }
                                 style={
                                     lg
                                         ? {

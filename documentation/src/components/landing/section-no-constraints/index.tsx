@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "@docusaurus/Link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
     ChevronDown,
@@ -268,9 +269,12 @@ export const SectionNoConstraints: React.FC = () => {
             >
                 <RefineBgIcon />
             </motion.div> */}
-            <motion.div ref={ref} className="h-auto lg:h-[600vh] bg-white">
+            <motion.div
+                ref={ref}
+                className="h-auto lg:h-[600vh] bg-white -mt-px"
+            >
                 {/* Scroll animated section */}
-                <motion.div className="lg:overflow-hidden h-auto lg:h-screen w-screen top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col justify-center pt-[86px] pb-[65px]">
+                <motion.div className="lg:overflow-hidden h-auto lg:h-screen w-screen top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col justify-center pt-[86px] pb-[50px]">
                     <motion.div
                         className="hidden lg:block absolute -left-36 -top-24 z-[-1]"
                         style={{
@@ -325,16 +329,25 @@ export const SectionNoConstraints: React.FC = () => {
                                 <div className="flex flex-col lg:flex-row h-auto max-w-screen-xl w-full">
                                     <div className="flex-[3] flex justify-center items-center relative">
                                         <motion.div
-                                            className="p-16 lg:p-[50px] -mx-6 lg:mx-0"
+                                            className="p-16 lg:p-[50px] lg:pt-[20px] -mx-6 lg:mx-0"
                                             style={{
                                                 perspective: "500px",
                                                 perspectiveOrigin: "center",
+                                            }}
+                                            whileInView={
+                                                !lg
+                                                    ? { scale: [0, 1] }
+                                                    : undefined
+                                            }
+                                            viewport={{
+                                                margin: "20px",
                                             }}
                                         >
                                             <motion.img
                                                 style={{
                                                     width: "100%",
-                                                    maxWidth: "500px",
+                                                    maxWidth: "460px",
+                                                    maxHeight: "280px",
                                                     boxShadow:
                                                         "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
                                                     ...(lg
@@ -406,7 +419,7 @@ export const SectionNoConstraints: React.FC = () => {
                                             style={{
                                                 perspective: "500px",
                                                 perspectiveOrigin: "center",
-                                                padding: "50px",
+                                                padding: "20px 50px 50px",
                                                 scale: slideScreen02Y,
                                                 opacity: slideScreen02Y,
                                             }}
@@ -414,7 +427,8 @@ export const SectionNoConstraints: React.FC = () => {
                                             <motion.img
                                                 style={{
                                                     width: "100%",
-                                                    maxWidth: "500px",
+                                                    maxWidth: "460px",
+                                                    maxHeight: "280px",
                                                     boxShadow:
                                                         "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
                                                     scale: slideScreen02Y,
@@ -463,17 +477,18 @@ export const SectionNoConstraints: React.FC = () => {
                                             style={{
                                                 perspective: "500px",
                                                 perspectiveOrigin: "center",
-                                                padding: "50px",
+                                                padding: "20px 50px 50px",
                                                 scale: slideScreen03Y,
                                                 opacity: slideScreen03Y,
-                                                translateY: "40px",
-                                                translateX: "30px",
+                                                translateY: "30px",
+                                                translateX: "25px",
                                             }}
                                         >
                                             <motion.img
                                                 style={{
                                                     width: "100%",
-                                                    maxWidth: "500px",
+                                                    maxWidth: "460px",
+                                                    maxHeight: "280px",
                                                     boxShadow:
                                                         "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
                                                     scale: slideScreen03Y,
@@ -494,7 +509,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 src="/landing/no-constraints/custom-ui-3.png"
                                             />
                                             <motion.div
-                                                className="absolute right-[50px] bottom-[70px] flex gap-2 z-10"
+                                                className="absolute right-[50px] bottom-[60px] flex gap-2 z-10"
                                                 animate={{
                                                     rotateY: ["10deg", "17deg"],
                                                     rotateX: [
@@ -546,7 +561,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                         slideScreenText12Progress,
                                                 }}
                                             >
-                                                <p className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] mb-0 text-[#2A2A42]">
+                                                <p className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[350px] mb-0 text-[#2A2A42]">
                                                     <strong className="font-bold">
                                                         refine
                                                     </strong>{" "}
@@ -555,13 +570,13 @@ export const SectionNoConstraints: React.FC = () => {
                                                         headless by design.
                                                     </strong>{" "}
                                                 </p>
-                                                <p className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] text-[#2A2A42]">
+                                                <p className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[350px] text-[#2A2A42]">
                                                     It doesn’t ship with any
                                                     pre-styled components or UI
                                                     by default.
                                                 </p>
                                                 <motion.p
-                                                    className="hidden lg:block font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] text-[#2A2A42]"
+                                                    className="hidden lg:block font-montserrat font-normal text-[21px] leading-[30px] max-w-[350px] text-[#2A2A42]"
                                                     style={{
                                                         opacity:
                                                             slideScreenText2Progress,
@@ -583,7 +598,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 </motion.p>
                                             </motion.div>
                                             <motion.div
-                                                className="hidden lg:block font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] mb-0 text-[#2A2A42]"
+                                                className="hidden lg:block font-montserrat font-normal text-[21px] leading-[30px] max-w-[350px] mb-0 text-[#2A2A42]"
                                                 style={{
                                                     opacity:
                                                         slideScreenText3Progress,
@@ -657,16 +672,25 @@ export const SectionNoConstraints: React.FC = () => {
                                 <div className="flex flex-col lg:flex-row h-auto max-w-screen-xl w-full">
                                     <div className="flex-[3] flex justify-center items-center relative">
                                         <motion.div
-                                            className="p-16 lg:p-[50px] -mx-6 lg:mx-0"
+                                            className="p-16 lg:p-[50px] lg:pt-[20px] -mx-6 lg:mx-0"
                                             style={{
                                                 perspective: "500px",
                                                 perspectiveOrigin: "center",
+                                            }}
+                                            whileInView={
+                                                !lg
+                                                    ? { scale: [0, 1] }
+                                                    : undefined
+                                            }
+                                            viewport={{
+                                                margin: "20px",
                                             }}
                                         >
                                             <motion.img
                                                 style={{
                                                     width: "100%",
-                                                    maxWidth: "500px",
+                                                    maxWidth: "460px",
+                                                    maxHeight: "280px",
                                                     boxShadow:
                                                         "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
                                                 }}
@@ -710,7 +734,7 @@ export const SectionNoConstraints: React.FC = () => {
                                     <div className="flex-[2] place-self-center">
                                         <div className="relative">
                                             <motion.div className="w-full h-full left-0 top-0">
-                                                <motion.p className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] text-[#2A2A42]">
+                                                <motion.p className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[350px] text-[#2A2A42]">
                                                     Instead, you can use any{" "}
                                                     <strong className="font-bold">
                                                         custom design
@@ -734,16 +758,25 @@ export const SectionNoConstraints: React.FC = () => {
                                 <div className="flex flex-col lg:flex-row h-auto max-w-screen-xl w-full">
                                     <div className="flex-[3] flex justify-center items-center relative">
                                         <motion.div
-                                            className="p-16 lg:p-[50px] -mx-6 lg:mx-0"
+                                            className="p-16 lg:p-[50px] lg:pt-[20px] -mx-6 lg:mx-0"
                                             style={{
                                                 perspective: "500px",
                                                 perspectiveOrigin: "center",
+                                            }}
+                                            whileInView={
+                                                !lg
+                                                    ? { scale: [0, 1] }
+                                                    : undefined
+                                            }
+                                            viewport={{
+                                                margin: "20px",
                                             }}
                                         >
                                             <motion.img
                                                 style={{
                                                     width: "100%",
-                                                    maxWidth: "500px",
+                                                    maxWidth: "460px",
+                                                    maxHeight: "280px",
                                                     boxShadow:
                                                         "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
                                                 }}
@@ -811,7 +844,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                         slideScreenText12Progress,
                                                 }}
                                             ></motion.div>
-                                            <motion.div className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[400px] mb-0 text-[#2A2A42]">
+                                            <motion.div className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[350px] mb-0 text-[#2A2A42]">
                                                 <p className="mb-0 text-[#2A2A42]">
                                                     Not ready for going headless
                                                     yet?
@@ -878,7 +911,7 @@ export const SectionNoConstraints: React.FC = () => {
                             </div>
                             <div className="mb-24 lg:mb-0 w-full lg:h-full flex-shrink-0 lg:snap-center flex justify-center items-center">
                                 <div className="flex pt-3 h-auto max-w-screen-xl w-full">
-                                    <div className="flex-1 flex flex-col justify-start items-center w-full gap-4">
+                                    <div className="flex-1 flex flex-col justify-start items-center w-full gap-2">
                                         <div className="font-montserrat text-xl leading-8 font-medium text-[#2A2A42] text-center max-w-[860px] mb-4">
                                             <p className="mb-0">
                                                 <strong className="font-bold">
@@ -901,12 +934,15 @@ export const SectionNoConstraints: React.FC = () => {
                                                     30+
                                                 </strong>{" "}
                                                 popular backend services.{" "}
-                                                <a className="no-underline text-[#1890FF] visited:text-[#1890FF]">
+                                                <Link
+                                                    className="no-underline text-[#1890FF] visited:text-[#1890FF]"
+                                                    to="/integrations"
+                                                >
                                                     (SEE ALL)
-                                                </a>
+                                                </Link>
                                             </p>
                                         </div>
-                                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 w-[calc(100vw-32px)] sm:w-full px-4 -mx-4 sm:mx-0 gap-x-2 gap-y-2 md:gap-y-5">
+                                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 w-[calc(100vw-32px)] lg:max-w-5xl sm:w-full px-4 pb-5 -mx-4 sm:mx-0 gap-x-2 md:gap-x-4 gap-y-2 md:gap-y-4">
                                             {backendItems.map(
                                                 (
                                                     { name, Icon, AltIcon },
@@ -941,8 +977,23 @@ export const SectionNoConstraints: React.FC = () => {
                                                                       ],
                                                                   }
                                                         }
+                                                        whileInView={
+                                                            lg
+                                                                ? undefined
+                                                                : {
+                                                                      opacity: [
+                                                                          0, 1,
+                                                                      ],
+                                                                      scale: [
+                                                                          0, 1,
+                                                                      ],
+                                                                  }
+                                                        }
+                                                        viewport={{
+                                                            margin: "30px",
+                                                        }}
                                                         key={name}
-                                                        className={`group relative w-full h-16 md:h-20 lg:h-[90px] bg-white rounded-[10px] ${
+                                                        className={`group relative w-full h-16 md:h-20 lg:h-[65px] bg-white rounded-[10px] ${
                                                             index ===
                                                             backendItems.length -
                                                                 1
@@ -955,7 +1006,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                         }`}
                                                     >
                                                         <div className="group-hover:opacity-0 scale-100 group-hover:scale-0 opacity-100 transition-all duration-300 w-full h-full flex justify-center items-center">
-                                                            <AltIcon className="scale-75 lg:scale-100" />
+                                                            <AltIcon className="scale-50 lg:scale-75" />
                                                         </div>
                                                         <div
                                                             className={`opacity-0 scale-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300 absolute left-0 ${
@@ -965,7 +1016,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                                     : "top-0"
                                                             } w-full h-full flex justify-center items-center`}
                                                         >
-                                                            <Icon className="scale-75 lg:scale-100" />
+                                                            <Icon className="scale-50 lg:scale-75" />
                                                         </div>
                                                     </motion.div>
                                                 ),
@@ -976,7 +1027,7 @@ export const SectionNoConstraints: React.FC = () => {
                             </div>
                             <div className="mb-24 lg:mb-0 w-full flex-shrink-0 lg:snap-center lg:h-full flex justify-center items-center">
                                 <div className="flex h-auto max-w-screen-xl w-full flex-col lg:flex-row gap-20 md:gap-32 lg:gap-0">
-                                    <div className="flex-1 flex relative -mx-6 lg:mx-0 px-[55px] pt-0 pb-4 lg:px-12 lg:pb-12 lg:pt-6 justify-center items-center">
+                                    <div className="flex-1 flex relative -mx-6 lg:mx-0 px-[55px] pt-0 pb-4 lg:px-12 lg:pb-12 lg:pt-0 justify-center items-center">
                                         <motion.div
                                             style={{
                                                 perspective: "1000px",
@@ -997,7 +1048,15 @@ export const SectionNoConstraints: React.FC = () => {
                                                           opacity: [1, 1],
                                                       }
                                             }
-                                            className="flex relative w-full max-w-[400px] h-full"
+                                            whileInView={
+                                                !lg
+                                                    ? { scale: [0, 1] }
+                                                    : undefined
+                                            }
+                                            viewport={{
+                                                margin: "20px",
+                                            }}
+                                            className="flex relative w-full max-w-[350px] h-full"
                                         >
                                             <motion.div
                                                 className="bg-transparent h-min rounded-[20px]"
@@ -1140,15 +1199,15 @@ export const SectionNoConstraints: React.FC = () => {
                             </div>
                             <div className="w-full flex-shrink-0 lg:snap-center lg:h-full flex justify-center items-center">
                                 <div className="flex h-auto max-w-screen-xl w-full">
-                                    <div className="flex-1 flex flex-col justif text-[#2A2A42] text-center max-w-[800px]y-center items-center w-full gap-4">
+                                    <div className="flex-1 flex flex-col justif text-[#2A2A42] text-center max-w-[800px]y-center items-center w-full gap-4 lg:gap-2">
                                         <div className="font-montserrat text-xl pt-[14px] max-w-screen-lg">
-                                            <p>
+                                            <p className="lg:mb-2">
                                                 <strong>refine</strong> core is
                                                 an open source framework and it
                                                 will always{" "}
                                                 <strong>stay free</strong>.
                                             </p>
-                                            <p>
+                                            <p className="lg:mb-0">
                                                 It has a very strong community
                                                 of maintainers, contributers and
                                                 and users providing{" "}
@@ -1157,7 +1216,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 channels.
                                             </p>
                                         </div>
-                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-5 gap-x-2.5 w-full px-5 pb-5 max-w-[1000px]">
+                                        <div className="overflow-x-hidden overflow-y-hidden pt-5 lg:pt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-2.5 gap-x-2.5 w-full px-5 pb-5 max-w-[1000px]">
                                             <motion.div
                                                 style={
                                                     lg
@@ -1169,15 +1228,27 @@ export const SectionNoConstraints: React.FC = () => {
                                                           }
                                                         : {}
                                                 }
-                                                animate={
-                                                    lg
-                                                        ? {}
-                                                        : {
-                                                              rotateX: [0, 0],
-                                                              opacity: [1, 1],
+                                                transition={
+                                                    !lg
+                                                        ? {
+                                                              duration: 0.3,
+                                                              ease: "easeInOut",
+                                                              delay: 0.15,
                                                           }
+                                                        : {}
                                                 }
-                                                className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
+                                                whileInView={
+                                                    !lg
+                                                        ? {
+                                                              y: [100, 0],
+                                                              opacity: [0, 1],
+                                                          }
+                                                        : {}
+                                                }
+                                                viewport={{
+                                                    margin: "25px",
+                                                }}
+                                                className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] flex flex-col justify-center relative"
                                             >
                                                 <div
                                                     style={{
@@ -1206,15 +1277,27 @@ export const SectionNoConstraints: React.FC = () => {
                                                           }
                                                         : {}
                                                 }
-                                                animate={
-                                                    lg
-                                                        ? {}
-                                                        : {
-                                                              rotateX: [0, 0],
-                                                              opacity: [1, 1],
+                                                transition={
+                                                    !lg
+                                                        ? {
+                                                              duration: 0.3,
+                                                              ease: "easeInOut",
+                                                              delay: 0.15,
                                                           }
+                                                        : {}
                                                 }
-                                                className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
+                                                whileInView={
+                                                    !lg
+                                                        ? {
+                                                              y: [100, 0],
+                                                              opacity: [0, 1],
+                                                          }
+                                                        : {}
+                                                }
+                                                viewport={{
+                                                    margin: "25px",
+                                                }}
+                                                className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] flex flex-col justify-center relative"
                                             >
                                                 <div
                                                     style={{
@@ -1244,15 +1327,27 @@ export const SectionNoConstraints: React.FC = () => {
                                                           }
                                                         : {}
                                                 }
-                                                animate={
-                                                    lg
-                                                        ? {}
-                                                        : {
-                                                              rotateX: [0, 0],
-                                                              opacity: [1, 1],
+                                                transition={
+                                                    !lg
+                                                        ? {
+                                                              duration: 0.3,
+                                                              ease: "easeInOut",
+                                                              delay: 0.15,
                                                           }
+                                                        : {}
                                                 }
-                                                className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
+                                                whileInView={
+                                                    !lg
+                                                        ? {
+                                                              y: [100, 0],
+                                                              opacity: [0, 1],
+                                                          }
+                                                        : {}
+                                                }
+                                                viewport={{
+                                                    margin: "25px",
+                                                }}
+                                                className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] flex flex-col justify-center relative"
                                             >
                                                 <div
                                                     style={{
@@ -1282,15 +1377,27 @@ export const SectionNoConstraints: React.FC = () => {
                                                           }
                                                         : {}
                                                 }
-                                                animate={
-                                                    lg
-                                                        ? {}
-                                                        : {
-                                                              rotateX: [0, 0],
-                                                              opacity: [1, 1],
+                                                transition={
+                                                    !lg
+                                                        ? {
+                                                              duration: 0.3,
+                                                              ease: "easeInOut",
+                                                              delay: 0.15,
                                                           }
+                                                        : {}
                                                 }
-                                                className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
+                                                whileInView={
+                                                    !lg
+                                                        ? {
+                                                              y: [100, 0],
+                                                              opacity: [0, 1],
+                                                          }
+                                                        : {}
+                                                }
+                                                viewport={{
+                                                    margin: "25px",
+                                                }}
+                                                className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] flex flex-col justify-center relative"
                                             >
                                                 <div
                                                     style={{
@@ -1319,15 +1426,27 @@ export const SectionNoConstraints: React.FC = () => {
                                                           }
                                                         : {}
                                                 }
-                                                animate={
-                                                    lg
-                                                        ? {}
-                                                        : {
-                                                              rotateX: [0, 0],
-                                                              opacity: [1, 1],
+                                                transition={
+                                                    !lg
+                                                        ? {
+                                                              duration: 0.3,
+                                                              ease: "easeInOut",
+                                                              delay: 0.15,
                                                           }
+                                                        : {}
                                                 }
-                                                className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
+                                                whileInView={
+                                                    !lg
+                                                        ? {
+                                                              y: [100, 0],
+                                                              opacity: [0, 1],
+                                                          }
+                                                        : {}
+                                                }
+                                                viewport={{
+                                                    margin: "25px",
+                                                }}
+                                                className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] flex flex-col justify-center relative"
                                             >
                                                 <div
                                                     style={{
@@ -1356,15 +1475,27 @@ export const SectionNoConstraints: React.FC = () => {
                                                           }
                                                         : {}
                                                 }
-                                                animate={
-                                                    lg
-                                                        ? {}
-                                                        : {
-                                                              rotateX: [0, 0],
-                                                              opacity: [1, 1],
+                                                transition={
+                                                    !lg
+                                                        ? {
+                                                              duration: 0.3,
+                                                              ease: "easeInOut",
+                                                              delay: 0.15,
                                                           }
+                                                        : {}
                                                 }
-                                                className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
+                                                whileInView={
+                                                    !lg
+                                                        ? {
+                                                              y: [100, 0],
+                                                              opacity: [0, 1],
+                                                          }
+                                                        : {}
+                                                }
+                                                viewport={{
+                                                    margin: "25px",
+                                                }}
+                                                className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] flex flex-col justify-center relative"
                                             >
                                                 <div
                                                     style={{
