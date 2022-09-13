@@ -29,17 +29,22 @@ const AuthorCard = ({ author, className }) => {
             )}
         >
             <figcaption className="flex flex-col items-center">
-                <img
-                    src={author?.imageURL}
-                    alt={author?.name}
-                    className="flex w-24 h-24 rounded-full object-cover"
-                    loading="lazy"
-                />
-                <div className="text-center mt-2 text-sm text-color-base font-semibold">
-                    {author?.name}
-                    <div className="text-xs text-slate-600 -mt-0.5">
-                        {author?.title}
-                    </div>
+                <Link to={`/blog/author/${author?.key}`} itemProp="url">
+                    <img
+                        src={author?.imageURL}
+                        alt={author?.name}
+                        className="flex w-24 h-24 rounded-full object-cover"
+                        loading="lazy"
+                    />
+                </Link>
+                <div className="text-center mt-2">
+                    <Link
+                        to={`/blog/author/${author.key}`}
+                        itemProp="url"
+                        className="text-sm text-color-base font-semibold"
+                    >
+                        {author?.name}
+                    </Link>
 
                     {author?.description && (
                         <div className="text-sm text-slate-700 mt-4">
