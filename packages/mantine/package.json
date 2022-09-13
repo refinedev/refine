@@ -21,8 +21,8 @@
     },
     "devDependencies": {
         "@esbuild-plugins/node-resolve": "^0.1.4",
-        "@pankod/refine-core": "^3.58.3",
-        "@pankod/refine-ui-tests": "^0.3.2",
+        "@pankod/refine-core": "^3.67.0",
+        "@pankod/refine-ui-tests": "^0.6.0",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
         "@testing-library/react-hooks": "^8.0.0",

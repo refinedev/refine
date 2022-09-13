@@ -17,7 +17,7 @@ export const FileField: React.FC<FileFieldProps> = ({
     ...rest
 }) => {
     return (
-        <UrlField value={src} {...rest}>
+        <UrlField value={src} title={title} {...rest}>
             {title ?? src}
         </UrlField>
     );

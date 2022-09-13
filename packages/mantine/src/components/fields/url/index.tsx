@@ -5,7 +5,10 @@ import { Text, TextProps, Anchor, AnchorProps } from "@mantine/core";
 
 export type UrlFieldProps = RefineFieldUrlProps<
     string | undefined,
-    AnchorProps & TextProps
+    AnchorProps & TextProps,
+    {
+        title?: string;
+    }
 >;
 
 /**
@@ -18,11 +21,12 @@ export type UrlFieldProps = RefineFieldUrlProps<
 export const UrlField: React.FC<UrlFieldProps> = ({
     children,
     value,
+    title,
     ...rest
 }) => {
     return (
         <Text variant="text">
-            <Anchor href={value} {...rest}>
+            <Anchor href={value} title={title} {...rest}>
                 {children ?? value}
             </Anchor>
         </Text>

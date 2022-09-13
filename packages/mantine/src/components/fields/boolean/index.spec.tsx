@@ -10,7 +10,14 @@ describe("BooleanField", () => {
     describe("BooleanField with default props values", () => {
         const initialValues = [true, false, "true", "false", "", undefined];
 
-        const results = ["true", "false", "true", "true", "false", "false"];
+        const iconClass = [
+            "icon-tabler-check",
+            "icon-tabler-minus",
+            "icon-tabler-check",
+            "icon-tabler-check",
+            "icon-tabler-minus",
+            "icon-tabler-minus",
+        ];
 
         initialValues.forEach((element, index) => {
             const testName =
@@ -30,8 +37,12 @@ describe("BooleanField", () => {
                 );
 
                 expect(
-                    await baseDom.findByText(results[index]),
-                ).toBeInTheDocument();
+                    baseDom
+                        .getByTestId("default-field")
+                        .children[0].children[0].classList.contains(
+                            iconClass[index],
+                        ),
+                ).toBe(true);
             });
         });
     });
