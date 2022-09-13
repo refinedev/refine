@@ -4,6 +4,7 @@ import { SectionFreeStart } from "./section-free-start";
 import { SectionBullets } from "./section-bullets";
 import { SectionNoConstraints } from "./section-no-constraints";
 import { SectionUseCase } from "./section-use-case";
+import { SectionBanners } from "./section-banners";
 
 export const Landing: React.FC = () => {
     return (
@@ -14,7 +15,7 @@ export const Landing: React.FC = () => {
             <SectionBullets />
             <SectionNoConstraints />
             <SectionUseCase />
-            <div className="hidden lg:block snap-end" />
+            <SectionBanners />
         </main>
     );
 };
