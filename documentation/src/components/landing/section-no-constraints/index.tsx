@@ -1211,7 +1211,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 channels.
                                             </p>
                                         </div>
-                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-5 gap-x-2.5 w-full px-5 pb-5 max-w-[1000px]">
+                                        <div className="overflow-x-hidden overflow-y-hidden pt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-5 gap-x-2.5 w-full px-5 pb-5 max-w-[1000px]">
                                             <motion.div
                                                 style={
                                                     lg
@@ -1223,14 +1223,26 @@ export const SectionNoConstraints: React.FC = () => {
                                                           }
                                                         : {}
                                                 }
-                                                animate={
-                                                    lg
-                                                        ? {}
-                                                        : {
-                                                              rotateX: [0, 0],
-                                                              opacity: [1, 1],
+                                                transition={
+                                                    !lg
+                                                        ? {
+                                                              duration: 0.3,
+                                                              ease: "easeInOut",
+                                                              delay: 0.15,
                                                           }
+                                                        : {}
                                                 }
+                                                whileInView={
+                                                    !lg
+                                                        ? {
+                                                              y: [100, 0],
+                                                              opacity: [0, 1],
+                                                          }
+                                                        : {}
+                                                }
+                                                viewport={{
+                                                    margin: "25px",
+                                                }}
                                                 className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
                                             >
                                                 <div
@@ -1260,14 +1272,26 @@ export const SectionNoConstraints: React.FC = () => {
                                                           }
                                                         : {}
                                                 }
-                                                animate={
-                                                    lg
-                                                        ? {}
-                                                        : {
-                                                              rotateX: [0, 0],
-                                                              opacity: [1, 1],
+                                                transition={
+                                                    !lg
+                                                        ? {
+                                                              duration: 0.3,
+                                                              ease: "easeInOut",
+                                                              delay: 0.15,
                                                           }
+                                                        : {}
                                                 }
+                                                whileInView={
+                                                    !lg
+                                                        ? {
+                                                              y: [100, 0],
+                                                              opacity: [0, 1],
+                                                          }
+                                                        : {}
+                                                }
+                                                viewport={{
+                                                    margin: "25px",
+                                                }}
                                                 className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
                                             >
                                                 <div
@@ -1298,14 +1322,26 @@ export const SectionNoConstraints: React.FC = () => {
                                                           }
                                                         : {}
                                                 }
-                                                animate={
-                                                    lg
-                                                        ? {}
-                                                        : {
-                                                              rotateX: [0, 0],
-                                                              opacity: [1, 1],
+                                                transition={
+                                                    !lg
+                                                        ? {
+                                                              duration: 0.3,
+                                                              ease: "easeInOut",
+                                                              delay: 0.15,
                                                           }
+                                                        : {}
                                                 }
+                                                whileInView={
+                                                    !lg
+                                                        ? {
+                                                              y: [100, 0],
+                                                              opacity: [0, 1],
+                                                          }
+                                                        : {}
+                                                }
+                                                viewport={{
+                                                    margin: "25px",
+                                                }}
                                                 className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
                                             >
                                                 <div
@@ -1336,14 +1372,26 @@ export const SectionNoConstraints: React.FC = () => {
                                                           }
                                                         : {}
                                                 }
-                                                animate={
-                                                    lg
-                                                        ? {}
-                                                        : {
-                                                              rotateX: [0, 0],
-                                                              opacity: [1, 1],
+                                                transition={
+                                                    !lg
+                                                        ? {
+                                                              duration: 0.3,
+                                                              ease: "easeInOut",
+                                                              delay: 0.15,
                                                           }
+                                                        : {}
                                                 }
+                                                whileInView={
+                                                    !lg
+                                                        ? {
+                                                              y: [100, 0],
+                                                              opacity: [0, 1],
+                                                          }
+                                                        : {}
+                                                }
+                                                viewport={{
+                                                    margin: "25px",
+                                                }}
                                                 className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
                                             >
                                                 <div
@@ -1373,14 +1421,26 @@ export const SectionNoConstraints: React.FC = () => {
                                                           }
                                                         : {}
                                                 }
-                                                animate={
-                                                    lg
-                                                        ? {}
-                                                        : {
-                                                              rotateX: [0, 0],
-                                                              opacity: [1, 1],
+                                                transition={
+                                                    !lg
+                                                        ? {
+                                                              duration: 0.3,
+                                                              ease: "easeInOut",
+                                                              delay: 0.15,
                                                           }
+                                                        : {}
                                                 }
+                                                whileInView={
+                                                    !lg
+                                                        ? {
+                                                              y: [100, 0],
+                                                              opacity: [0, 1],
+                                                          }
+                                                        : {}
+                                                }
+                                                viewport={{
+                                                    margin: "25px",
+                                                }}
                                                 className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
                                             >
                                                 <div
@@ -1410,14 +1470,26 @@ export const SectionNoConstraints: React.FC = () => {
                                                           }
                                                         : {}
                                                 }
-                                                animate={
-                                                    lg
-                                                        ? {}
-                                                        : {
-                                                              rotateX: [0, 0],
-                                                              opacity: [1, 1],
+                                                transition={
+                                                    !lg
+                                                        ? {
+                                                              duration: 0.3,
+                                                              ease: "easeInOut",
+                                                              delay: 0.15,
                                                           }
+                                                        : {}
                                                 }
+                                                whileInView={
+                                                    !lg
+                                                        ? {
+                                                              y: [100, 0],
+                                                              opacity: [0, 1],
+                                                          }
+                                                        : {}
+                                                }
+                                                viewport={{
+                                                    margin: "25px",
+                                                }}
                                                 className="rounded-[10px] p-2.5 bg-white shadow-tile min-h-[120px] flex flex-col justify-center relative"
                                             >
                                                 <div
