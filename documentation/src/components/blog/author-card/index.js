@@ -29,22 +29,14 @@ const AuthorCard = ({ author, className }) => {
             )}
         >
             <figcaption className="flex flex-col items-center">
-                <Link to={`/blog/author/${author?.key}`} itemProp="url">
-                    <img
-                        src={author?.imageURL}
-                        alt={author?.name}
-                        className="flex w-24 h-24 rounded-full object-cover"
-                        loading="lazy"
-                    />
-                </Link>
-                <div className="text-center mt-2">
-                    <Link
-                        to={`/blog/author/${author.key}`}
-                        itemProp="url"
-                        className="text-sm text-color-base font-semibold"
-                    >
-                        {author?.name}
-                    </Link>
+                <img
+                    src={author?.imageURL}
+                    alt={author?.name}
+                    className="flex w-24 h-24 rounded-full object-cover"
+                    loading="lazy"
+                />
+                <div className="text-center mt-2 text-sm text-color-base font-semibold">
+                    {author?.name}
                     <div className="text-xs text-slate-600 -mt-0.5">
                         {author?.title}
                     </div>
@@ -59,17 +51,17 @@ const AuthorCard = ({ author, className }) => {
                         <div className="flex justify-center gap-3 mt-4">
                             {author?.github && (
                                 <Link to={author?.github}>
-                                    <Github className="w-8 h-8" />
+                                    <Github className="w-6 h-6" />
                                 </Link>
                             )}
                             {author?.twitter && (
                                 <Link to={author?.twitter}>
-                                    <Twitter className="w-8 h-8" />
+                                    <Twitter className="w-6 h-6" />
                                 </Link>
                             )}
                             {author?.linkedin && (
                                 <Link to={author?.linkedin}>
-                                    <Linkedin className="w-8 h-8" />
+                                    <Linkedin className="w-6 h-6" />
                                 </Link>
                             )}
                         </div>
