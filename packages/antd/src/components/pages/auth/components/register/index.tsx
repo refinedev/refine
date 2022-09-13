@@ -131,6 +131,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         </Text>
                     )}
                 </div>
+
                 <Button
                     type="primary"
                     size="large"
