@@ -18,7 +18,7 @@ export const SectionUseCase: React.FC = () => {
 
     return (
         // Scroll animated container
-        <motion.div ref={ref} className="h-auto lg:h-screen bg-white">
+        <motion.div ref={ref} className="h-auto lg:h-screen bg-white -mt-px">
             {/* Scroll animated section */}
             <motion.div className="h-auto lg:h-screen w-screen top-0 left-0 relative lg:sticky pt-16 flex flex-col items-center justify-end gap-24 lg:gap-0">
                 <div className="flex-1 flex flex-col-reverse gap-8 lg:gap-0 lg:flex-row max-w-7xl mx-auto w-full items-center justify-center px-7 md:px-10 lg:px-16 xl:px-24 ">
@@ -60,45 +60,28 @@ export const SectionUseCase: React.FC = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="flex-1 w-full lg:w-auto flex flex-col justify-end items-center lg:items-end relative">
-                        <motion.img
-                            src="landing/giftcard.png"
-                            className="w-full max-w-screen md:max-w-[400px] lg:max-w-[440px] absolute top-0"
-                            style={
-                                lg
-                                    ? {
-                                          opacity: cardOpacity,
-                                      }
-                                    : {}
-                            }
-                            animate={{
-                                translateY: ["20px", "0px"],
-                                rotate: ["-3deg", "0deg"],
-                                ...(!lg ? { opacity: [1, 1] } : {}),
+                    <div className="flex-1 w-full lg:w-auto flex">
+                        <motion.div
+                            className="flex-1 w-full lg:w-auto flex flex-col justify-end items-center lg:items-end relative"
+                            whileInView={!lg ? { scale: [0, 1] } : undefined}
+                            viewport={{
+                                margin: "20px",
                             }}
-                            transition={{
-                                duration: 5,
-                                ease: "easeInOut",
-                                yoyo: Infinity,
-                            }}
-                        />
-                        <div className="w-full max-w-screen md:max-w-[400px] min-h-[calc(100vw-56px)] md:min-h-[400px] lg:max-w-[440px] flex justify-center items-end lg:min-h-[400px]">
-                            <motion.div
-                                style={{
-                                    position: "absolute",
-                                    width: "100%",
-                                    maxWidth: "200px",
-                                    height: "200px",
-                                    borderRadius: "999px",
-                                    rotateX: "88deg",
-                                    background: "#2A2A42",
-                                    filter: "blur(50px)",
-                                }}
+                        >
+                            <motion.img
+                                src="landing/giftcard.png"
+                                className="w-full max-w-screen md:max-w-[400px] lg:max-w-[440px] absolute top-0"
+                                style={
+                                    lg
+                                        ? {
+                                              opacity: cardOpacity,
+                                          }
+                                        : {}
+                                }
                                 animate={{
-                                    opacity: [0.75, 0.2],
-                                    width: ["200px", "300px"],
-                                    height: ["200px", "300px"],
-                                    bottom: ["-80px", "-130px"],
+                                    translateY: ["20px", "0px"],
+                                    rotate: ["-3deg", "0deg"],
+                                    ...(!lg ? { opacity: [1, 1] } : {}),
                                 }}
                                 transition={{
                                     duration: 5,
@@ -106,7 +89,32 @@ export const SectionUseCase: React.FC = () => {
                                     yoyo: Infinity,
                                 }}
                             />
-                        </div>
+                            <div className="w-full max-w-screen md:max-w-[400px] min-h-[calc(100vw-56px)] md:min-h-[400px] lg:max-w-[440px] flex justify-center items-end lg:min-h-[400px]">
+                                <motion.div
+                                    style={{
+                                        position: "absolute",
+                                        width: "100%",
+                                        maxWidth: "200px",
+                                        height: "200px",
+                                        borderRadius: "999px",
+                                        rotateX: "88deg",
+                                        background: "#2A2A42",
+                                        filter: "blur(50px)",
+                                    }}
+                                    animate={{
+                                        opacity: [0.75, 0.2],
+                                        width: ["200px", "300px"],
+                                        height: ["200px", "300px"],
+                                        bottom: ["-80px", "-130px"],
+                                    }}
+                                    transition={{
+                                        duration: 5,
+                                        ease: "easeInOut",
+                                        yoyo: Infinity,
+                                    }}
+                                />
+                            </div>
+                        </motion.div>
                     </div>
                 </div>
                 <div className="w-full">

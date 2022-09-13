@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "@docusaurus/Link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
     ChevronDown,
@@ -268,7 +269,10 @@ export const SectionNoConstraints: React.FC = () => {
             >
                 <RefineBgIcon />
             </motion.div> */}
-            <motion.div ref={ref} className="h-auto lg:h-[600vh] bg-white">
+            <motion.div
+                ref={ref}
+                className="h-auto lg:h-[600vh] bg-white -mt-px"
+            >
                 {/* Scroll animated section */}
                 <motion.div className="lg:overflow-hidden h-auto lg:h-screen w-screen top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col justify-center pt-[86px] pb-[65px]">
                     <motion.div
@@ -329,6 +333,14 @@ export const SectionNoConstraints: React.FC = () => {
                                             style={{
                                                 perspective: "500px",
                                                 perspectiveOrigin: "center",
+                                            }}
+                                            whileInView={
+                                                !lg
+                                                    ? { scale: [0, 1] }
+                                                    : undefined
+                                            }
+                                            viewport={{
+                                                margin: "20px",
                                             }}
                                         >
                                             <motion.img
@@ -662,6 +674,14 @@ export const SectionNoConstraints: React.FC = () => {
                                                 perspective: "500px",
                                                 perspectiveOrigin: "center",
                                             }}
+                                            whileInView={
+                                                !lg
+                                                    ? { scale: [0, 1] }
+                                                    : undefined
+                                            }
+                                            viewport={{
+                                                margin: "20px",
+                                            }}
                                         >
                                             <motion.img
                                                 style={{
@@ -738,6 +758,14 @@ export const SectionNoConstraints: React.FC = () => {
                                             style={{
                                                 perspective: "500px",
                                                 perspectiveOrigin: "center",
+                                            }}
+                                            whileInView={
+                                                !lg
+                                                    ? { scale: [0, 1] }
+                                                    : undefined
+                                            }
+                                            viewport={{
+                                                margin: "20px",
                                             }}
                                         >
                                             <motion.img
@@ -901,12 +929,15 @@ export const SectionNoConstraints: React.FC = () => {
                                                     30+
                                                 </strong>{" "}
                                                 popular backend services.{" "}
-                                                <a className="no-underline text-[#1890FF] visited:text-[#1890FF]">
+                                                <Link
+                                                    className="no-underline text-[#1890FF] visited:text-[#1890FF]"
+                                                    to="/integrations"
+                                                >
                                                     (SEE ALL)
-                                                </a>
+                                                </Link>
                                             </p>
                                         </div>
-                                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 w-[calc(100vw-32px)] sm:w-full px-4 -mx-4 sm:mx-0 gap-x-2 gap-y-2 md:gap-y-5">
+                                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 w-[calc(100vw-32px)] sm:w-full px-4 pb-5 -mx-4 sm:mx-0 gap-x-2 gap-y-2 md:gap-y-5">
                                             {backendItems.map(
                                                 (
                                                     { name, Icon, AltIcon },
@@ -941,6 +972,21 @@ export const SectionNoConstraints: React.FC = () => {
                                                                       ],
                                                                   }
                                                         }
+                                                        whileInView={
+                                                            lg
+                                                                ? undefined
+                                                                : {
+                                                                      opacity: [
+                                                                          0, 1,
+                                                                      ],
+                                                                      scale: [
+                                                                          0, 1,
+                                                                      ],
+                                                                  }
+                                                        }
+                                                        viewport={{
+                                                            margin: "30px",
+                                                        }}
                                                         key={name}
                                                         className={`group relative w-full h-16 md:h-20 lg:h-[90px] bg-white rounded-[10px] ${
                                                             index ===
@@ -997,6 +1043,14 @@ export const SectionNoConstraints: React.FC = () => {
                                                           opacity: [1, 1],
                                                       }
                                             }
+                                            whileInView={
+                                                !lg
+                                                    ? { scale: [0, 1] }
+                                                    : undefined
+                                            }
+                                            viewport={{
+                                                margin: "20px",
+                                            }}
                                             className="flex relative w-full max-w-[400px] h-full"
                                         >
                                             <motion.div
