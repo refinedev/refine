@@ -24,9 +24,9 @@ export const SectionBanners: React.FC = () => {
             {/* Scroll animated section */}
             <motion.div className="h-auto lg:h-[240px] lg:snap-center w-screen top-0 left-0 relative lg:sticky pt-16 flex flex-col items-center justify-end gap-24 lg:gap-0">
                 <div className="w-full">
-                    <div className="bg-[#2A2A42] py-9 px-6">
-                        <div className="max-w-6xl mx-auto flex items-center justify-between lg:pl-16 flex-col lg:flex-row gap-6 lg:gap-0">
-                            <div className="font-montserrat text-2xl font-extrabold text-white">
+                    <div className="bg-[#F6F6F9] py-9 px-6">
+                        <div className="max-w-5xl mx-auto flex items-center justify-between flex-col lg:flex-row gap-6 lg:gap-0">
+                            <div className="font-montserrat text-2xl font-extrabold text-[#2A2A42]">
                                 NOW YOU’RE READY
                             </div>
                             <div className="flex gap-3 lg:gap-1 flex-col lg:flex-row">
@@ -40,23 +40,12 @@ export const SectionBanners: React.FC = () => {
                                 >
                                     Start Tutorial
                                 </Link>
-                                <Link
-                                    className="appearance-none rounded-lg h-12 w-[270px] bg-transparent font-montserrat font-bold text-xl border-0 text-white flex items-center justify-center gap-4"
-                                    style={{
-                                        boxShadow:
-                                            "6px 8px 16px 0 rgba(42, 42, 66, 0.4)",
-                                    }}
-                                    to="/docs/getting-started/overview"
-                                >
-                                    Read the docs
-                                    <ChevronRight />
-                                </Link>
                             </div>
                         </div>
                     </div>
-                    <div className="bg-[#3FDCF7] py-9 px-6">
+                    <div className="bg-[#E1E1E4] py-9 px-6">
                         <div className="max-w-5xl mx-auto flex items-center justify-between flex-col lg:flex-row gap-6 lg:gap-0">
-                            <div className="font-montserrat text-2xl leading-[24px] font-medium text-white">
+                            <div className="font-montserrat text-2xl leading-[24px] font-medium text-[#2A2A42]">
                                 <div>NEED ANY FURTHER INFORMATION?</div>
                                 <div>
                                     SET UP 1X1 WITH A{" "}
