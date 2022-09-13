@@ -105,6 +105,10 @@ export const authProvider: AuthProvider = {
 ```
 
 </p>
+:::tip
+If you need to populate relations or media fields, you can extend strapiAuthHelper like this: `strapiAuthHelper.me(token, {populate:["role"]})`
+:::
+    
 </details>
 
 ```tsx title="App.tsx"
