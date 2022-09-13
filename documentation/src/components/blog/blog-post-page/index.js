@@ -75,7 +75,7 @@ export const BlogPostPageView = ({ children }) => {
                     alt="Post image"
                 />
             </div>
-            <div className="mb-2 text-sm text-[#525860]">
+            <div className="mb-8 text-sm text-[#525860]">
                 <Date date={date} formattedDate={formattedDate} />
                 {typeof readingTime !== "undefined" && (
                     <>

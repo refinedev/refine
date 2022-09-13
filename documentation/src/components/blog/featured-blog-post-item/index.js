@@ -25,7 +25,9 @@ export const FeaturedBlogPostItem = () => {
                 <Link itemProp="url" to={permalink}>
                     <div className="relative lg:h-full w-full h-40 lg:w-44 ">
                         <img
-                            src={frontMatter.image}
+                            src={
+                                frontMatter.featured_image ?? frontMatter.image
+                            }
                             alt="Post image"
                             className="absolute inset-0 w-full h-full object-cover hover:brightness-90 transition duration-150"
                             loading="lazy"
