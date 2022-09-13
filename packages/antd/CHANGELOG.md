@@ -1,5 +1,16 @@
 # @pankod/refine-antd
 
+## 3.43.0
+
+### Minor Changes
+
+-   [#2447](https://github.com/pankod/refine/pull/2447) [`628a37a675`](https://github.com/pankod/refine/commit/628a37a6753a778cbec5c29b698981e0157caa42) Thanks [@biskuvit](https://github.com/biskuvit)! - Added `<AuthPage>` for Ant Design. `<AuthPage>` is a component that provides a login, register, reset password and update password pages.
+
+### Patch Changes
+
+-   Updated dependencies [[`628a37a675`](https://github.com/pankod/refine/commit/628a37a6753a778cbec5c29b698981e0157caa42)]:
+    -   @pankod/refine-ui-types@0.6.2
+
 ## 3.42.1
 
 ### Patch Changes

@@ -10,7 +10,7 @@
     },
     "dependencies": {
         "@hookform/resolvers": "^2.9.7",
-        "@pankod/refine-core": "^3.58.3",
+        "@pankod/refine-core": "^3.69.7",
         "@pankod/refine-mantine": "^1.0.0",
         "@pankod/refine-react-hook-form": "^3.31.4",
         "@pankod/refine-react-router-v6": "^3.31.0",
