@@ -13,7 +13,7 @@ tags:
         internal-tool,
         strapi,
     ]
-image: /img/placeholder.png
+image: https://refine.dev/img/refine_social.png
 hide_table_of_contents: false
 ---
 

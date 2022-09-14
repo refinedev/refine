@@ -4,7 +4,7 @@ description: We will compare the features of refine and react-admin
 slug: refine-vs-react-admin
 authors: melih
 tags: [refine, react-admin, react, admin-panel]
-image: /img/placeholder.png
+image: https://refine.dev/img/refine_social.png
 hide_table_of_contents: false
 ---
 

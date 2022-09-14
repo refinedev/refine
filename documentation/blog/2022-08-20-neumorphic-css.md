@@ -4,7 +4,7 @@ description: Overview and examples for Neumorphic CSS implementations.
 slug: neumorphic-css
 authors: joel_adewole
 tags: [neumorphism, css, UI, neumorphic, design]
-image: /img/placeholder.png
+image: https://refine.dev/img/refine_social.png
 hide_table_of_contents: false
 ---
 

@@ -3,7 +3,7 @@ module.exports = {
         {
             type: "category",
             label: "Getting Started",
-            items: ["getting-started/overview","getting-started/quickstart"],
+            items: ["getting-started/overview", "getting-started/basics"],
             collapsed: false,
         },
         {
@@ -14,10 +14,6 @@ module.exports = {
         {
             type: "doc",
             id: "tutorials",
-        },
-        {
-            type: "doc",
-            id: "general-concepts",
         },
         {
             type: "category",
@@ -403,7 +399,6 @@ module.exports = {
             type: "category",
             label: "Packages",
             items: [
-                "packages/list-of-packages",
                 "packages/command-palette",
                 "packages/react-table",
                 {

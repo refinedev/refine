@@ -4,7 +4,7 @@ description: In this article, we’ll learn how to efficiently implement dark mo
 slug: how-to-add-darkmode-in-ant-design
 authors: vmalep
 tags: [refine, darkmode, theme, ant-design]
-image: /img/placeholder.png
+image: https://refine.dev/img/refine_social.png
 hide_table_of_contents: false
 ---
 

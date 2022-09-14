@@ -4,7 +4,7 @@ description: In this article, I will explain how to build an Access Control n Re
 slug: build-access-control-permify
 authors: ege
 tags: [rbac, permissions, open-source, react, access, authorization, keystone, role, refine, abac]
-image: /img/placeholder.png
+image: https://refine.dev/img/refine_social.png
 hide_table_of_contents: false
 ---
 
