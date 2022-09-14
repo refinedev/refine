@@ -27,9 +27,9 @@ export const SectionUseCase: React.FC = () => {
             {/* Scroll animated section */}
             <motion.div className="h-auto lg:h-screen lg:max-h-[650px] lg:snap-start w-screen top-0 left-0 relative lg:sticky pt-16 pb-12 flex flex-col items-center justify-end gap-24 lg:gap-0">
                 <div className="w-full">
-                    <div className="bg-[#F6F6F9] py-4 px-6">
-                        <div className="max-w-5xl mx-auto flex items-center justify-between flex-col lg:flex-row gap-6 lg:gap-0">
-                            <div className="font-montserrat text-[20px] leading-[24px] font-extrabold text-[#2A2A42]">
+                    <div className="bg-[#F6F6F9] py-4 px-2 md:px-4 lg:px-6">
+                        <div className="max-w-5xl mx-auto flex items-center justify-between flex-col lg:flex-row gap-4 lg:gap-0">
+                            <div className="font-montserrat text-[18px] leading-[24px] font-extrabold text-[#2A2A42]">
                                 NOW YOU’RE READY
                             </div>
                             <div className="flex gap-3 lg:gap-1 flex-col lg:flex-row">
@@ -46,9 +46,9 @@ export const SectionUseCase: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="bg-[#E1E1E4] py-4 px-6">
-                        <div className="max-w-5xl mx-auto flex items-center justify-between flex-col lg:flex-row gap-6 lg:gap-0">
-                            <div className="font-montserrat text-[20px] leading-[24px] font-medium text-[#2A2A42]">
+                    <div className="bg-[#E1E1E4] py-4 px-2 md:px-4 lg:px-6">
+                        <div className="max-w-5xl mx-auto flex items-center justify-between flex-col lg:flex-row gap-4 lg:gap-0">
+                            <div className="font-montserrat text-[18px] leading-[24px] font-medium text-[#2A2A42]">
                                 <div>NEED ANY FURTHER INFORMATION?</div>
                                 <div>
                                     SET UP 1X1 WITH A{" "}
@@ -75,14 +75,16 @@ export const SectionUseCase: React.FC = () => {
                 </div>
                 <div className="flex-1 flex flex-col-reverse gap-8 lg:gap-0 lg:flex-row max-w-[1080px] mx-auto w-full items-center justify-center px-4 md:px-6 lg:px-8">
                     <div className="flex-1">
-                        <div className="font-montserrat text-[#1890FF] text-[28px] leading-[28px] lg:text-[30px] lg:leading-[36px] mb-2.5">
+                        <div className="font-montserrat text-[#1890FF] text-[26px] leading-[26px] sm:text-[28px] sm:leading-[28px] lg:text-[30px] lg:leading-[36px] mb-2.5">
                             <div className="font-medium">IF YOU’RE ALREADY</div>
                             <div className="font-medium">
                                 USING{" "}
                                 <span className="font-extrabold">refine,</span>
                             </div>
                             <div className="font-medium">
-                                <span className="font-extrabold">SHARE</span>{" "}
+                                <span className="font-extrabold tracking-tight">
+                                    SHARE
+                                </span>{" "}
                                 YOUR USECASE &
                             </div>
                             <div className="font-medium">
@@ -120,9 +122,11 @@ export const SectionUseCase: React.FC = () => {
                     <div className="flex-1 w-full lg:w-auto flex">
                         <motion.div
                             className="flex-1 w-full lg:w-auto flex flex-col justify-end items-center lg:items-end relative"
-                            whileInView={!lg ? { scale: [0, 1] } : undefined}
+                            whileInView={
+                                !lg && md ? { scale: [0, 1] } : undefined
+                            }
                             viewport={{
-                                margin: "20px",
+                                margin: "50px",
                             }}
                         >
                             <motion.img
