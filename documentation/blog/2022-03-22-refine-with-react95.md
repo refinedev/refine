@@ -5,7 +5,7 @@ slug: awesome-react-windows95-ui-with-refine
 authors: melih
 tags:
     [refine, react, admin-panel, Windows95, React95, Supabase, B2B, open-source]
-image: https://refine.dev/img/refine_social.png
+image: /img/placeholder.png
 hide_table_of_contents: false
 ---
 

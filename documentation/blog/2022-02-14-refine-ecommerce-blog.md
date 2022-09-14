@@ -4,7 +4,7 @@ description: Learn the power of Refine for e-commerce with this quick & easy exa
 slug: handcrafted-nextjs-e-commerce-app-tutorial-strapi-chakra-ui
 authors: melih
 tags: [refine, e-commerce, strapi, chakra-ui, next.js]
-image: https://refine.dev/img/refine_social.png
+image: /img/placeholder.png
 hide_table_of_contents: false
 ---
 

@@ -7,7 +7,6 @@ tags: [nextjs, nextauth, github-authentication, google-authentication, oauth]
 image: /img/blog/2022-08-18-auth-with-nextauth/social.png
 social_image: /img/blog/2022-08-18-auth-with-nextauth/social.png
 hide_table_of_contents: false
-is_featured: true
 ---
 
 import authClientCreated from '@site/static/img/blog/2022-08-18-auth-with-nextauth/auth-client-created.png';

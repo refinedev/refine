@@ -4,7 +4,7 @@ description: In this article, we will learn how we can create a full-featured cu
 slug: create-full-stack-app-with-refine
 authors: melih
 tags: [refine, react, next.js, full-stack, web-app, b2b, admin-panel]
-image: https://refine.dev/img/refine_social.png
+image: /img/placeholder.png
 hide_table_of_contents: false
 ---
 
