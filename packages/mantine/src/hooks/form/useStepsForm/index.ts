@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { FieldValues } from "react-hook-form";
 import { BaseRecord, HttpError } from "@pankod/refine-core";
 
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
@@ -7,7 +6,7 @@ import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 export type UseStepsFormReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables extends FieldValues = FieldValues,
+    TVariables = Record<string, unknown>,
 > = UseFormReturnType<TData, TError, TVariables> & {
     steps: {
         currentStep: number;
@@ -18,7 +17,7 @@ export type UseStepsFormReturnType<
 export type UseStepsFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables extends FieldValues = FieldValues,
+    TVariables = Record<string, unknown>,
 > = UseFormProps<TData, TError, TVariables> & {
     stepsProps?: {
         defaultStep?: number;
@@ -29,7 +28,7 @@ export type UseStepsFormProps<
 export const useStepsForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables extends FieldValues = FieldValues,
+    TVariables = Record<string, unknown>,
 >({
     stepsProps,
     ...rest

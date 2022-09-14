@@ -15,7 +15,7 @@ import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 export type UseModalFormReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables extends Record<string, unknown> = Record<string, unknown>,
+    TVariables = Record<string, unknown>,
 > = UseFormReturnType<TData, TError, TVariables> & {
     modal: {
         submit: (values: TVariables) => void;
@@ -29,7 +29,7 @@ export type UseModalFormReturnType<
 export type UseModalFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables extends Record<string, unknown> = Record<string, unknown>,
+    TVariables = Record<string, unknown>,
 > = UseFormProps<TData, TError, TVariables> & {
     modalProps?: {
         defaultVisible?: boolean;
@@ -41,7 +41,7 @@ export type UseModalFormProps<
 export const useModalForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables extends Record<string, unknown> = Record<string, unknown>,
+    TVariables = Record<string, unknown>,
 >({
     modalProps,
     refineCoreProps,

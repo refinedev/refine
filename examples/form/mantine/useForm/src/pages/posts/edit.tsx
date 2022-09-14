@@ -15,9 +15,6 @@ export const PostEdit: React.FC = () => {
         getInputProps,
         refineCore: { queryResult },
     } = useForm({
-        refineCoreProps: {
-            action: "edit",
-        },
         initialValues: {
             title: "",
             status: "",
@@ -60,11 +57,7 @@ export const PostEdit: React.FC = () => {
                     {...getInputProps("category.id")}
                     {...selectProps}
                 />
-                <RichTextEditor
-                    mt={8}
-                    placeholder="Pick one"
-                    {...getInputProps("content")}
-                />
+                <RichTextEditor mt={8} {...getInputProps("content")} />
             </form>
         </Edit>
     );

@@ -16,19 +16,19 @@ import {
 export type UseFormReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables extends Record<string, unknown> = Record<string, unknown>,
+    TVariables = Record<string, unknown>,
 > = UseMantineFormReturnType<TVariables> & {
     refineCore: UseFormReturnTypeCore<TData, TError, TVariables>;
     saveButtonProps: {
         disabled: boolean;
-        onClick: (e: React.FormEvent<HTMLFormElement>) => void;
+        onClick: (e: any) => void;
     };
 };
 
 export type UseFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables extends Record<string, unknown> = Record<string, unknown>,
+    TVariables = Record<string, unknown>,
 > = {
     refineCoreProps?: UseFormCoreProps<TData, TError, TVariables> & {
         warnWhenUnsavedChanges?: boolean;
@@ -38,7 +38,7 @@ export type UseFormProps<
 export const useForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
-    TVariables extends Record<string, unknown> = Record<string, unknown>,
+    TVariables = Record<string, unknown>,
 >({
     refineCoreProps,
     ...rest
@@ -103,7 +103,7 @@ export const useForm = <
 
     const saveButtonProps = {
         disabled: formLoading,
-        onClick: (e: React.FormEvent<HTMLFormElement>) => {
+        onClick: (e: any) => {
             onSubmit(onFinish, () => false)(e);
         },
     };

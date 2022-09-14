@@ -9,9 +9,6 @@ import {
 
 export const PostCreate: React.FC = () => {
     const { saveButtonProps, getInputProps } = useForm({
-        refineCoreProps: {
-            action: "edit",
-        },
         initialValues: {
             title: "",
             status: "",
@@ -24,7 +21,6 @@ export const PostCreate: React.FC = () => {
 
     const { selectProps } = useSelect({
         resource: "categories",
-        defaultValue: 1,
     });
 
     return (
@@ -54,11 +50,7 @@ export const PostCreate: React.FC = () => {
                     {...getInputProps("category.id")}
                     {...selectProps}
                 />
-                <RichTextEditor
-                    mt={8}
-                    placeholder="Pick one"
-                    {...getInputProps("content")}
-                />
+                <RichTextEditor mt={8} {...getInputProps("content")} />
             </form>
         </Create>
     );
