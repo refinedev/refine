@@ -1025,7 +1025,6 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                                 }}
                                                 style={{
                                                     width: "45%",
-                                                    height: "33.43%",
                                                     boxShadow:
                                                         "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
                                                 }}
