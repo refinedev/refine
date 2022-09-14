@@ -4,7 +4,6 @@ import { SectionFreeStart } from "./section-free-start";
 import { SectionBullets } from "./section-bullets";
 import { SectionNoConstraints } from "./section-no-constraints";
 import { SectionUseCase } from "./section-use-case";
-import { SectionBanners } from "./section-banners";
 
 export const Landing: React.FC = () => {
     return (
@@ -14,7 +13,6 @@ export const Landing: React.FC = () => {
             <SectionFreeStart />
             <SectionBullets />
             <SectionNoConstraints />
-            <SectionBanners />
             <SectionUseCase />
         </main>
     );

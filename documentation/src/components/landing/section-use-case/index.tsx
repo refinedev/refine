@@ -1,4 +1,6 @@
 import React from "react";
+import Link from "@docusaurus/Link";
+
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useTWBreakpoints } from "../../../hooks/use-tw-breakpoints";
 
@@ -18,15 +20,62 @@ export const SectionUseCase: React.FC = () => {
         // Scroll animated container
         <motion.div
             ref={ref}
-            className="h-auto lg:h-screen lg:max-h-[600px] bg-white -mt-px"
+            className="h-auto lg:h-screen lg:max-h-screen bg-white -mt-px"
         >
             {/* Scroll snap alignment */}
             {/* <div className="hidden lg:block snap-start h-screen lg:max-h-[550px]" /> */}
             {/* Scroll animated section */}
-            <motion.div className="h-auto lg:h-screen lg:max-h-[600px] lg:snap-start w-screen top-0 left-0 relative lg:sticky pt-16 pb-12 flex flex-col items-center justify-end gap-24 lg:gap-0">
-                <div className="flex-1 flex flex-col-reverse gap-8 lg:gap-0 lg:flex-row max-w-7xl mx-auto w-full items-center justify-center px-7 md:px-10 lg:px-16 xl:px-24 ">
+            <motion.div className="h-auto lg:h-screen lg:max-h-screen lg:snap-start w-screen top-0 left-0 relative lg:sticky pt-16 pb-12 flex flex-col items-center justify-end gap-24 lg:gap-0">
+                <div className="w-full">
+                    <div className="bg-[#F6F6F9] py-4 px-6">
+                        <div className="max-w-5xl mx-auto flex items-center justify-between flex-col lg:flex-row gap-6 lg:gap-0">
+                            <div className="font-montserrat text-[20px] leading-[24px] font-extrabold text-[#2A2A42]">
+                                NOW YOU’RE READY
+                            </div>
+                            <div className="flex gap-3 lg:gap-1 flex-col lg:flex-row">
+                                <Link
+                                    className="appearance-none flex justify-center items-center rounded-lg h-[38px] w-[210px] bg-gradient-to-r from-[#47EBF5] to-[#1890FF] font-montserrat font-bold text-base border-0 text-white"
+                                    style={{
+                                        boxShadow:
+                                            "6px 8px 16px 0 rgba(42, 42, 66, 0.4)",
+                                    }}
+                                    href="/docs"
+                                >
+                                    Start Tutorial
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="bg-[#E1E1E4] py-4 px-6">
+                        <div className="max-w-5xl mx-auto flex items-center justify-between flex-col lg:flex-row gap-6 lg:gap-0">
+                            <div className="font-montserrat text-[20px] leading-[24px] font-medium text-[#2A2A42]">
+                                <div>NEED ANY FURTHER INFORMATION?</div>
+                                <div>
+                                    SET UP 1X1 WITH A{" "}
+                                    <strong className="font-bold">
+                                        refine
+                                    </strong>{" "}
+                                    ENGINEER.
+                                </div>
+                            </div>
+                            <a
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                href="https://calendly.com/d/cmk-5gb-b2p/meet-refine"
+                                className="appearance-none flex justify-center items-center rounded-lg h-[38px] w-full max-w-[210px] bg-gradient-to-r from-[#47EBF5] to-[#1890FF] font-montserrat font-bold text-base border-0 text-white"
+                                style={{
+                                    boxShadow:
+                                        "6px 8px 16px 0 rgba(42, 42, 66, 0.4)",
+                                }}
+                            >
+                                Book a session
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div className="flex-1 flex flex-col-reverse gap-8 lg:gap-0 lg:flex-row max-w-6sxl mx-auto w-full items-center justify-center px-7 md:px-10 lg:px-16 xl:px-24 ">
                     <div className="flex-1">
-                        <div className="font-montserrat text-[#1890FF] text-[28px] leading-[36px] lg:text-[36px] lg:leading-[42px] mb-9">
+                        <div className="font-montserrat text-[#1890FF] text-[28px] leading-[28px] lg:text-[30px] lg:leading-[36px] mb-2.5">
                             <div className="font-medium">IF YOU’RE ALREADY</div>
                             <div className="font-medium">
                                 USING{" "}
@@ -41,13 +90,11 @@ export const SectionUseCase: React.FC = () => {
                                 OTHERS
                             </div>
                         </div>
-                        <div className="font-montserrat text-[21px] leading-[32px] tracking-tight text-[#2A2A42] mb-9">
+                        <div className="font-montserrat text-[16px] leading-[20px] tracking-tight text-[#2A2A42] mb-2.5">
                             <p>
                                 We are very happy to see how people are building
                                 great things with{" "}
                                 <strong className="text-bold">refine</strong>.
-                            </p>
-                            <p>
                                 Share your use-case to get listed on the
                                 showcase page and receive{" "}
                                 <strong className="text-bold">
@@ -80,7 +127,7 @@ export const SectionUseCase: React.FC = () => {
                         >
                             <motion.img
                                 src="landing/giftcard.png"
-                                className="w-full max-w-screen md:max-w-[400px] lg:max-w-[440px] absolute top-0"
+                                className="w-full max-w-screen md:max-w-[300px] lg:max-w-[330px] absolute top-0"
                                 style={
                                     lg
                                         ? {
@@ -99,7 +146,7 @@ export const SectionUseCase: React.FC = () => {
                                     yoyo: Infinity,
                                 }}
                             />
-                            <div className="w-full max-w-screen md:max-w-[400px] min-h-[calc(100vw-56px)] md:min-h-[400px] lg:max-w-[440px] flex justify-center items-end lg:min-h-[400px]">
+                            <div className="w-full max-w-screen md:max-w-[350px] min-h-[calc(100vw-56px)] md:min-h-[330px] lg:max-w-[330px] flex justify-center items-end lg:min-h-[300px]">
                                 <motion.div
                                     style={{
                                         position: "absolute",

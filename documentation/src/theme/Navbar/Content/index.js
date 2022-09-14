@@ -34,7 +34,7 @@ function NavbarContentLayout({ left, right }) {
             <div className="navbar__items flex gap-0 lg:gap-3 xl:gap-6 font-montserrat font-semibold with-hoverline">
                 {left}
             </div>
-            <div className="navbar__items navbar__items--right flex gap-4">
+            <div className="navbar__items navbar__items--right flex gap-2">
                 {right}
             </div>
         </div>
