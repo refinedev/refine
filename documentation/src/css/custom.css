@@ -769,3 +769,11 @@ html[data-theme="dark"]:not([data-customized="true"])
 /* #__docusaurus .navbar__item.dropdown.dropdown--hoverable.dropdown--right {
     @apply p-0;
 } */
+
+#__docusaurus .group:hover a:hover .nested-hover-visible {
+    display: block;
+}
+
+#__docusaurus .group:hover a:hover .nested-hover-hidden {
+    display: none;
+}

@@ -1459,7 +1459,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 >
                                                     <SmallSocialIcons.LikeIconAlt />
                                                 </div>
-                                                <div className="font-montserrat font-bold text-xl text-center pb-4 pt-2 group-hover:text-[#1890FF] text-[#2A2A42] select-none">
+                                                <div className="font-montserrat font-bold text-xl text-center pb-4 pt-1 group-hover:text-[#1890FF] text-[#2A2A42] select-none">
                                                     <span className="inline group-hover:hidden">
                                                         Come to dark side
                                                     </span>
@@ -1473,40 +1473,40 @@ export const SectionNoConstraints: React.FC = () => {
                                                         rel="noreferrer"
                                                         href="https://github.com/pankod/refine"
                                                     >
-                                                        <GraySocialIcons.GithubIcon className="h-8 w-8 hover:scale-110 block group-hover:hidden" />
-                                                        <ColoredSocialIcons.GithubIcon className="h-8 w-8 hover:scale-110 hidden group-hover:block" />
+                                                        <GraySocialIcons.GithubIcon className="h-8 w-8 hover:scale-110 block nested-hover-hidden" />
+                                                        <ColoredSocialIcons.GithubIcon className="h-8 w-8 hover:scale-110 hidden nested-hover-visible" />
                                                     </a>
                                                     <a
                                                         target="_blank"
                                                         rel="noreferrer"
                                                         href="https://discord.gg/refine"
                                                     >
-                                                        <GraySocialIcons.DiscordIcon className="h-8 w-8 hover:scale-110 block group-hover:hidden" />
-                                                        <ColoredSocialIcons.DiscordIcon className="h-8 w-8 hover:scale-110 hidden group-hover:block" />{" "}
+                                                        <GraySocialIcons.DiscordIcon className="h-8 w-8 hover:scale-110 block nested-hover-hidden" />
+                                                        <ColoredSocialIcons.DiscordIcon className="h-8 w-8 hover:scale-110 hidden nested-hover-visible" />{" "}
                                                     </a>
                                                     <a
                                                         target="_blank"
                                                         rel="noreferrer"
                                                         href="https://reddit.com/r/refine"
                                                     >
-                                                        <GraySocialIcons.RedditIcon className="h-8 w-8 hover:scale-110 block group-hover:hidden" />
-                                                        <ColoredSocialIcons.RedditIcon className="h-8 w-8 hover:scale-110 hidden group-hover:block" />
+                                                        <GraySocialIcons.RedditIcon className="h-8 w-8 hover:scale-110 block nested-hover-hidden" />
+                                                        <ColoredSocialIcons.RedditIcon className="h-8 w-8 hover:scale-110 hidden nested-hover-visible" />
                                                     </a>
                                                     <a
                                                         target="_blank"
                                                         rel="noreferrer"
                                                         href="https://twitter.com/refine_dev"
                                                     >
-                                                        <GraySocialIcons.TwitterIcon className="h-8 w-8 hover:scale-110 block group-hover:hidden" />
-                                                        <ColoredSocialIcons.TwitterIcon className="h-8 w-8 hover:scale-110 hidden group-hover:block" />
+                                                        <GraySocialIcons.TwitterIcon className="h-8 w-8 hover:scale-110 block nested-hover-hidden" />
+                                                        <ColoredSocialIcons.TwitterIcon className="h-8 w-8 hover:scale-110 hidden nested-hover-visible" />
                                                     </a>
                                                     <a
                                                         target="_blank"
                                                         rel="noreferrer"
                                                         href="https://www.linkedin.com/company/refine-dev"
                                                     >
-                                                        <GraySocialIcons.LinkedinIcon className="h-8 w-8 hover:scale-110 block group-hover:hidden" />
-                                                        <ColoredSocialIcons.LinkedinIcon className="h-8 w-8 hover:scale-110 hidden group-hover:block" />
+                                                        <GraySocialIcons.LinkedinIcon className="h-8 w-8 hover:scale-110 block nested-hover-hidden" />
+                                                        <ColoredSocialIcons.LinkedinIcon className="h-8 w-8 hover:scale-110 hidden nested-hover-visible" />
                                                     </a>
                                                 </div>
                                             </motion.div>
