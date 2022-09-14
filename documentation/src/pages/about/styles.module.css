@@ -1,0 +1,63 @@
+.root {
+    @apply px-5 sm:px-0 flex flex-col mx-auto justify-center items-center font-montserrat;
+}
+
+.header {
+    @apply max-w-[340px] sm:max-w-[812px] text-2xl md:text-5xl font-[500] text-center text-[#1890FF] mt-16 sm:mt-24 mb-16 sm:mb-24;
+}
+
+.semiBold {
+    @apply font-extrabold;
+}
+
+.title {
+    @apply text-xl font-bold flex flex-col gap-2 uppercase justify-center items-center text-[#1890FF];
+}
+
+.hat {
+    @apply w-6 h-1 rounded-md bg-[#1890FF];
+}
+
+.about {
+    @apply mb-16 md:mb-24;
+}
+
+.aboutParagraph {
+    @apply md:max-w-[680px] md:mb-5 text-justify text-base font-[500];
+}
+
+.openSourceCommunity {
+    @apply mb-16 md:mb-24 flex flex-col;
+}
+
+.container {
+    @apply md:mt-2 md:max-w-[1320px] flex flex-col gap-8 md:gap-0 md:flex-row;
+}
+
+.imageWrapper {
+    @apply md:justify-end w-full h-full object-contain md:w-[520px];
+}
+
+.image {
+    @apply w-full h-full object-contain;
+}
+
+.openSourceParagraphs {
+    @apply relative md:flex-1;
+}
+
+.mainParagraph {
+    @apply md:relative md:left-[-60px] md:mt-16 font-[500] max-w-[340px] uppercase text-xl;
+}
+
+.subParagraph {
+    @apply font-[500] text-base max-w-[400px];
+}
+
+.joinOurCommunity {
+    @apply mb-16 md:mb-24 flex flex-col gap-2;
+}
+
+.communityContainer {
+    @apply flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6;
+}
