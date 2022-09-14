@@ -36,7 +36,10 @@
         "react-player": "^2.10.1",
         "react-rewards": "^2.0.4",
         "react-share": "^4.4.0",
-        "sucrase": "^3.25.0"
+        "sucrase": "^3.25.0",
+        "autoprefixer": "^10.4.8",
+        "postcss": "^8.4.16",
+        "tailwindcss": "^3.1.8"
     },
     "browserslist": {
         "production": [
@@ -57,9 +60,6 @@
         "@types/react": "^17.0.19",
         "@types/react-helmet": "^6.1.2",
         "@types/react-router-dom": "^5.1.8",
-        "autoprefixer": "^10.4.8",
-        "postcss": "^8.4.16",
-        "tailwindcss": "^3.1.8",
         "typescript": "^4.4.2"
     }
 }
