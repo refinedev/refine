@@ -4,8 +4,8 @@ description: How to build CRUD admin panel with Material UI?
 slug: build-admin-panel-with-material-ui-and-strapi
 authors: necati
 tags: [refine, fundamentals, react, javascript, low-code, internal-tools, crud, material-ui, mui]
-image: https://refine.dev/img/blog/2022-07-21-admin-panel-with-materialui-and-strapi/social.png
-featured_image: https://refine.dev/img/blog/2022-07-21-admin-panel-with-materialui-and-strapi/featured.png
+image: /img/blog/2022-07-21-admin-panel-with-materialui-and-strapi/social.png
+featured_image: /img/blog/2022-07-21-admin-panel-with-materialui-and-strapi/featured.png
 is_featured: true
 hide_table_of_contents: false
 ---

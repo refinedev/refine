@@ -6,7 +6,6 @@ authors: salih
 tags: [refine, strapi, react, tutorial]
 image: /img/placeholder.png
 hide_table_of_contents: false
-is_featured: true
 ---
 
 import refine_welcome from '@site/static/img/blog/2021-10-4-feedback-admin-panel/refine_welcome.png';

@@ -4,8 +4,8 @@ description: We will walk you through the entire process of building a PWA using
 slug: next-js-pwa
 authors: david_omotayo
 tags: [nextjs, react, pwa, refine]
-image: https://refine.dev/img/blog/2022-09-11-next-refine-pwa/social.png
-featured_image: https://refine.dev/img/blog/2022-09-11-next-refine-pwa/featured.png
+image: /img/blog/2022-09-11-next-refine-pwa/social.png
+featured_image: /img/blog/2022-09-11-next-refine-pwa/featured.png
 is_featured: true
 hide_table_of_contents: false
 ---
