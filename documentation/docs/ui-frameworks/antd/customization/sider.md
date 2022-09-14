@@ -49,6 +49,7 @@ import {
     Icons,
     Title as DefaultTitle,
     Menu,
+    Sider,
 } from "@pankod/refine-antd";
 export type SiderRenderProps = {
     items: JSX.Element[];
@@ -77,10 +78,12 @@ const App: React.FC = () => {
                     list: PostList,
                 },
             ]}
-            Layout={({ children, Sider, collapsed }) => (
-                <AntdLayout>
-                    <AntdLayout.Header>
-                        // highlight-start
+            Sider={Sider}
+            Layout={({ children, Footer, Header, Sider, OffLayoutArea }) => {
+                return (
+                    <AntdLayout
+                        style={{ minHeight: "100vh", flexDirection: "row" }}
+                    >
                         <Sider
                             render={({ items }) => {
                                 return (
@@ -97,57 +100,72 @@ const App: React.FC = () => {
                                 );
                             }}
                         />
-                        // highlight-end
-                    </AntdLayout.Header>
-                    <AntdLayout.Content>
-                        <AntdLayout.Content>
-                            <div style={{ padding: 24, minHeight: 360 }}>
-                                {children}
-                            </div>
-                        </AntdLayout.Content>
-                    </AntdLayout.Content>
-                </AntdLayout>
-            )}
+                        <AntdLayout>
+                            {Header && <Header />}
+                            <AntdLayout.Content>
+                                <div
+                                    style={{
+                                        padding: 12,
+                                        minHeight: 360,
+                                    }}
+                                >
+                                    {children}
+                                </div>
+                                {OffLayoutArea && <OffLayoutArea />}
+                            </AntdLayout.Content>
+                            {Footer && <Footer />}
+                        </AntdLayout>
+                    </AntdLayout>
+                );
+            }}
         />
     );
 };
 
 // visible-block-end
-
+// Header and sider components import from antd package at the part of invisible code block to avoid getting render error
+// They are declared as null in ReactLiveScope
 render(
     <RefineAntdDemo
-        Layout={({ children }) => (
-            <AntdLayout>
-                <Sider
-                    render={({ items }) => {
-                        return (
-                            <>
-                                <Menu.Item
-                                    style={{
-                                        fontWeight: 700,
-                                    }}
-                                >
-                                    Custom Element
-                                </Menu.Item>
-                                {items}
-                            </>
-                        );
-                    }}
-                />
-                <AntdLayout.Content>
-                    <AntdLayout.Content>
-                        <div
-                            style={{
-                                padding: 12,
-                                minHeight: 360,
-                            }}
-                        >
-                            {children}
-                        </div>
-                    </AntdLayout.Content>
-                </AntdLayout.Content>
-            </AntdLayout>
-        )}
+        Layout={({ children, Footer, OffLayoutArea }) => {
+            return (
+                <AntdLayout
+                    style={{ minHeight: "100vh", flexDirection: "row" }}
+                >
+                    <Sider
+                        render={({ items }) => {
+                            return (
+                                <>
+                                    <Menu.Item
+                                        style={{
+                                            fontWeight: 700,
+                                        }}
+                                    >
+                                        Custom Element
+                                    </Menu.Item>
+                                    {items}
+                                </>
+                            );
+                        }}
+                    />
+                    <AntdLayout>
+                        <Header />
+                        <AntdLayout.Content>
+                            <div
+                                style={{
+                                    padding: 12,
+                                    minHeight: 360,
+                                }}
+                            >
+                                {children}
+                            </div>
+                            {OffLayoutArea && <OffLayoutArea />}
+                        </AntdLayout.Content>
+                        {Footer && <Footer />}
+                    </AntdLayout>
+                </AntdLayout>
+            );
+        }}
         initialRoutes={["/posts"]}
         resources={[
             {
