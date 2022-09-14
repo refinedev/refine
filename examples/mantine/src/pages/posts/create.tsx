@@ -1,43 +1,23 @@
-import { FormProvider, useForm } from "@pankod/refine-react-hook-form";
-import { Create, LoadingOverlay } from "@pankod/refine-mantine";
-import { HttpError } from "@pankod/refine-core";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Post } from "../../interfaces";
-import PostFormFields from "./formFields";
+import { Create, Select, TextInput, useForm } from "@pankod/refine-mantine";
 
-type PostForm = Pick<Post, "title" | "content">;
-
-const schema = yup.object().shape({
-    title: yup.string().required(),
-    content: yup.string().required(),
-});
-
-export const PostCreate = () => {
-    const {
-        refineCore: { onFinish, formLoading },
-        ...methods
-    } = useForm<Post, HttpError, PostForm>({
-        resolver: yupResolver(schema),
-    });
-
-    const onSubmitHandler = (e: any) => {
-        onFinish(e);
-    };
+export const PostCreate: React.FC = () => {
+    const { saveButtonProps, getInputProps } = useForm();
 
     return (
-        <Create
-            breadcrumb={null}
-            isLoading={formLoading}
-            saveButtonProps={{
-                onClick: methods.handleSubmit(onSubmitHandler),
-                leftIcon: null,
-            }}
-        >
-            <LoadingOverlay visible={formLoading} overlayBlur={0.1} />
-            <FormProvider {...methods}>
-                <PostFormFields onSubmit={onSubmitHandler} />
-            </FormProvider>
+        <Create saveButtonProps={saveButtonProps}>
+            <form>
+                <TextInput label="Title" {...getInputProps("title")} />
+                <Select
+                    label="Status"
+                    placeholder="Pick one"
+                    {...getInputProps("status")}
+                    data={[
+                        { label: "Published", value: "published" },
+                        { label: "Draft", value: "draft" },
+                        { label: "Rejected", value: "rejected" },
+                    ]}
+                />
+            </form>
         </Create>
     );
 };

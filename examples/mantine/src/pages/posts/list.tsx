@@ -3,13 +3,15 @@ import { useNavigation, useRouterContext, useTable } from "@pankod/refine-core";
 import {
     Anchor,
     Center,
+    EditButton,
     List,
     Pagination,
     Table,
 } from "@pankod/refine-mantine";
+
 import { Post } from "../../interfaces";
 
-export const PostList = () => {
+export const PostList: React.FC = () => {
     const { showUrl: generateShowUrl } = useNavigation();
 
     const { Link } = useRouterContext();
@@ -38,6 +40,9 @@ export const PostList = () => {
                 <td>{item.title}</td>
                 <td>{item.hit}</td>
                 <td>{item.status}</td>
+                <td>
+                    <EditButton hideText size="sm" recordItemId={item.id} />
+                </td>
             </tr>
         ));
     }, [tableQueryResult.data]);

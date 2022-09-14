@@ -13,7 +13,7 @@ import {
 } from "@pankod/refine-mantine";
 import { Post, Tag, User } from "../../interfaces";
 
-export const PostShow = () => {
+export const PostShow: React.FC = () => {
     const { queryResult } = useShow<Post>();
     const post = queryResult?.data?.data;
     const userId = post?.user?.id;

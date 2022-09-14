@@ -31,7 +31,7 @@ function App() {
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 authProvider={authProvider}
                 notificationProvider={notificationProvider}
-                Layout={Layout}
+                // Layout={Layout}
                 resources={[
                     {
                         name: "posts",
