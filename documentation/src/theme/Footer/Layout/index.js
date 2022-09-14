@@ -101,12 +101,11 @@ export default function FooterLayout({
                 <div>{logo && <div>{logo}</div>}</div>
                 <div className="flex flex-col lg:flex-row gap-6 lg:gap-20">
                     <div className="flex-shrink-0 max-w-full lg:max-w-[280px] w-full font-montserrat text-xs text-[#9696B4] tracking-wide">
-                        refine is a React-based framework for rapid building of
-                        internal tools. I&apos;s a collection of helper hooks,
-                        components and providers. They are all decoupled from
-                        your UI components and business logic, so they never
-                        keep you from customizing your UI or coding your own
-                        flow.
+                        <strong className="font-bold">refine</strong> is a
+                        React-based framework for the rapid development of web
+                        applications. It eliminates the repetitive tasks
+                        demanded by <strong className="font-bold">CRUD</strong>{" "}
+                        operations and provides industry standard solutions.
                     </div>
                     <div className="flex-1">{links}</div>
                 </div>
@@ -114,8 +113,8 @@ export default function FooterLayout({
                 <div className="flex flex-col-reverse gap-6 lg:gap-0 lg:flex-row">
                     <div className="flex-1">
                         <div className="flex items-center text-[#9696B4] text-[11px] sm:text-xs leading-[12px] font-montserrat justify-center lg:justify-start">
-                            © 2022, refine from Delaware to whereever you’re
-                            with <LoveIcon className="ml-2" />
+                            © 2022, refine from Delaware to whereever
+                            you&apos;re with <LoveIcon className="ml-2" />
                         </div>
                     </div>
                     <div className="flex-1 flex flex-col sm:flex-row gap-6 sm:gap-0">
