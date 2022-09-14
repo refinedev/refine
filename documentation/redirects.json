@@ -1039,6 +1039,14 @@
         {
             "from": "/docs/guides-and-concepts/ssr-nextjs/",
             "to": "/docs/guides-and-concepts/ssr/nextjs/"
+        },
+        {
+            "from": "/demo/",
+            "to": "/examples/"
+        },
+        {
+            "from": "/enterprise/",
+            "to": "/"
         }
     ]
 }
