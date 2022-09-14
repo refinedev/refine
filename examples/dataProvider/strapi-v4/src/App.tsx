@@ -63,7 +63,12 @@ const App: React.FC = () => {
                 return Promise.reject();
             }
 
-            const { data, status } = await strapiAuthHelper.me(token);
+            const { data, status } = await strapiAuthHelper.me(token, {
+                metaData: {
+                    populate: ["role"],
+                },
+            });
+
             if (status === 200) {
                 const { id, username, email } = data;
                 return Promise.resolve({

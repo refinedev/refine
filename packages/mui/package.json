@@ -41,7 +41,7 @@
         "typescript": "^4.7.4"
     },
     "dependencies": {
-        "@pankod/refine-ui-types": "^0.6.1",
+        "@pankod/refine-ui-types": "^0.6.2",
         "@emotion/react": "^11.8.2",
         "@emotion/styled": "^11.8.1",
         "@mui/icons-material": "^5.8.3",
