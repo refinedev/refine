@@ -106,17 +106,19 @@ export const SectionUseCase: React.FC = () => {
                             </p>
                         </div>
                         <div className="flex lg:block justify-center">
-                            <button
-                                type="button"
+                            <a
+                                href="https://refinedev.typeform.com/to/Ypm6r6oj"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 style={{
                                     boxShadow:
                                         "6px 8px 16px 0 rgba(42, 42, 66, 0.4)",
                                 }}
-                                className="appearance-none font-bold font-montserrat text-xl leading-[24px] py-3 w-60 text-white text-center bg-gradient-to-l from-[#1890FF] to-[#47EBF5] border-0 rounded-lg cursor-pointer"
+                                className="appearance-none block no-underline hover:text-white font-bold font-montserrat text-xl leading-[24px] py-3 w-60 text-white text-center bg-gradient-to-l from-[#1890FF] to-[#47EBF5] border-0 rounded-lg cursor-pointer"
                             >
                                 ADD YOURS <span className="font-normal">&</span>{" "}
                                 WIN
-                            </button>
+                            </a>
                         </div>
                     </div>
                     <div className="flex-1 w-full lg:w-auto flex">
