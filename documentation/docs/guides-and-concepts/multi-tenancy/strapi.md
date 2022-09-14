@@ -105,8 +105,19 @@ export const authProvider: AuthProvider = {
 ```
 
 </p>
+
 :::tip
-If you need to populate relations or media fields, you can extend strapiAuthHelper like this: `strapiAuthHelper.me(token, {populate:["role"]})`
+If you need the population for the `/me` request, you can use it like this in your `authProvider`.
+
+```tsx
+const strapiAuthHelper = AuthHelper(API_URL + "/api");
+
+strapiAuthHelper.me("token", {
+    metaData: {
+        populate: ["role"],
+    },
+});
+```
 :::
     
 </details>

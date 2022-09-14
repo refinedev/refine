@@ -1,4 +1,6 @@
+import { MetaDataQuery } from "@pankod/refine-core";
 import axios from "axios";
+import { stringify } from "qs";
 
 interface ILoginResponse {
     jwt: string;
@@ -24,6 +26,10 @@ interface IUser {
     updated_at: string;
 }
 
+export type MeOptions = {
+    metaData?: MetaDataQuery;
+};
+
 export const AuthHelper = (apiUrl: string) => ({
     login: async (identifier: string, password: string) => {
         const url = `${apiUrl}/auth/local`;
@@ -33,14 +39,27 @@ export const AuthHelper = (apiUrl: string) => ({
             password,
         });
     },
-    me: async (token: string, populate?: any) => {
-    const query = stringify(populate, {
-      encodeValuesOnly: true,
-    });
-    return await axios.get<IUser>(`${apiUrl}/users/me?${query}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  },
+    me: async (token: string, options?: MeOptions) => {
+        const { metaData } = options ?? {};
+        const locale = metaData?.locale;
+        const fields = metaData?.fields;
+        const populate = metaData?.populate;
+
+        const query = {
+            locale,
+            fields,
+            populate,
+        };
+
+        return await axios.get<IUser>(
+            `${apiUrl}/users/me?${stringify(query, {
+                encodeValuesOnly: true,
+            })}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            },
+        );
+    },
 });
