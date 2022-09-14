@@ -116,9 +116,9 @@ export const SectionBullets = () => {
                               }
                             : { opacity: 1, translateY: 0 }
                     }
-                    className="flex pt-12 short:pt-4 gap-5 max-w-6xl lg:px-3 mx-auto w-full justify-center flex-col"
+                    className="flex gap-5 max-w-6xl lg:px-3 mx-auto w-full justify-center flex-col"
                 >
-                    <div className="flex w-full flex-col gap-6 justify-center">
+                    <div className="grid pt-12 short:pt-4 w-full">
                         <div className="grid grid-cols-6 gap-4 lg:gap-4 place-items-center lg:place-items-start">
                             <div className="col-span-3 lg:col-span-2 h-full flex w-full">
                                 <motion.div
