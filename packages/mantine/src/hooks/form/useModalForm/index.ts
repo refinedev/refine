@@ -61,7 +61,7 @@ export const useModalForm = <
         autoResetForm = true,
     } = modalProps ?? {};
 
-    const useHookFormResult = useForm<TData, TError, TVariables>({
+    const useMantineFormResult = useForm<TData, TError, TVariables>({
         refineCoreProps,
         ...rest,
     });
@@ -71,7 +71,7 @@ export const useModalForm = <
         refineCore: { onFinish, setId },
         saveButtonProps,
         onSubmit,
-    } = useHookFormResult;
+    } = useMantineFormResult;
 
     const { visible, show, close } = useModal({
         defaultVisible,
@@ -137,7 +137,7 @@ export const useModalForm = <
             visible,
             title,
         },
-        ...useHookFormResult,
+        ...useMantineFormResult,
         saveButtonProps: {
             ...saveButtonProps,
             onClick: (e) => onSubmit(submit)(e),
