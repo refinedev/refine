@@ -777,3 +777,7 @@ html[data-theme="dark"]:not([data-customized="true"])
 #__docusaurus .group:hover a:hover .nested-hover-hidden {
     display: none;
 }
+
+#__docusaurus .footer__item {
+    line-height: 18px;
+}

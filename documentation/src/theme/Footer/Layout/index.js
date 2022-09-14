@@ -1,4 +1,5 @@
 import React from "react";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { useReward } from "react-rewards";
 
 const LoveIcon = (props) => (
@@ -111,6 +112,9 @@ export default function FooterLayout({
     legalLinks,
     socialLinks,
 }) {
+    const { siteConfig } = useDocusaurusContext();
+    const { customFields } = siteConfig;
+    const { footerDescription } = customFields;
     const { reward: leftReward, isAnimating: leftIsAnimating } = useReward(
         "leftReward",
         "emoji",
@@ -141,13 +145,10 @@ export default function FooterLayout({
             <div className="max-w-6xl mx-auto flex flex-col gap-5">
                 <div>{logo && <div>{logo}</div>}</div>
                 <div className="flex flex-col lg:flex-row gap-6 lg:gap-20">
-                    <div className="flex-shrink-0 max-w-full lg:max-w-[280px] w-full font-montserrat text-xs text-[#9696B4] tracking-wide">
-                        <strong className="font-bold">refine</strong> is a
-                        React-based framework for the rapid development of web
-                        applications. It eliminates the repetitive tasks
-                        demanded by <strong className="font-bold">CRUD</strong>{" "}
-                        operations and provides industry standard solutions.
-                    </div>
+                    <div
+                        className="flex-shrink-0 max-w-full lg:max-w-[280px] w-full font-montserrat text-xs text-[#9696B4] tracking-wide"
+                        dangerouslySetInnerHTML={{ __html: footerDescription }}
+                    />
                     <div className="flex-1">{links}</div>
                 </div>
                 <div className="h-2.5 border-0 border-b-2 w-full border-solid border-b-[#9696B4]" />
@@ -166,7 +167,7 @@ export default function FooterLayout({
                         </div>
                     </div>
                     <div className="flex-1 flex flex-col sm:flex-row gap-6 sm:gap-0">
-                        <div className="flex-1 flex justify-center sm:justify-start lg:justify-end items-center gap-4 text-[#9696B4] text-xs h-[18px] font-montserrat">
+                        <div className="flex-[2] flex justify-center sm:justify-start lg:justify-end items-center gap-4 text-[#9696B4] text-xs h-[18px] font-montserrat">
                             {legalLinks?.items?.map?.((item, i) => (
                                 <a
                                     key={i}
@@ -177,7 +178,7 @@ export default function FooterLayout({
                                 </a>
                             ))}
                         </div>
-                        <div className="flex-1 flex justify-center sm:justify-end items-center gap-4 text-[#9696B4] text-xs h-[18px] font-montserrat">
+                        <div className="flex-[3] flex justify-center sm:justify-end items-center gap-3 text-[#9696B4] text-xs h-[18px] font-montserrat">
                             <span>Join us on</span>
                             {socialLinks?.items?.map?.((socialLink, i) => (
                                 <a

@@ -230,10 +230,10 @@ const siteConfig = {
                         //     label: "Terms",
                         //     to: "/enterprise",
                         // },
-                        {
-                            label: "Privacy",
-                            to: "/privacy-policy",
-                        },
+                        // {
+                        //     label: "Privacy",
+                        //     to: "/privacy-policy",
+                        // },
                         // {
                         //     label: "info@refine.dev",
                         //     to: "mailto:info@refine.dev",
@@ -269,7 +269,14 @@ const siteConfig = {
         },
     },
     customFields: {
-        GITHUB_STARGAZER_TOKEN: process.env.GITHUB_STARGAZER_TOKEN,
+        footerDescription:
+            '<strong style="font-weight:700;">refine</strong> is a React-based framework for the rapid development of web applications. It eliminates the repetitive tasks demanded by <strong style="font-weight:700;">CRUD</strong> operations and provides industry standard solutions.',
+        contactTitle: "Contact",
+        contactDescription: [
+            "Refine Dev Corporation",
+            "256 Chapman Road STE 105-4 Newark, New Castle 19702",
+        ],
+        contactEmail: "info@refine.dev",
     },
 };
 
