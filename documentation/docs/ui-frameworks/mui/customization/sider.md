@@ -14,7 +14,7 @@ You can access the `logout`, `dashboard`, `items` elements and `collapsed` state
 ## Customize Sider by Using `render` property
 
 ```tsx title="src/App.tsx"
-import { Box, ListItemText } from "@pankod/refine-mui";
+import { Box, ListItemText, Sider } from "@pankod/refine-mui";
 
 const PostList: React.FC = () => {
     return <div>PostList Page</div>;
@@ -33,7 +33,8 @@ const App: React.FC = () => {
                     list: PostList,
                 },
             ]}
-            Layout={({ children, Sider }) => (
+            Sider={Sider}
+            Layout={({ children, Sider, Header, Footer, OffLayoutArea }) => (
                 <Box display="flex" flexDirection="row">
                     // highlight-start
                     <Sider
@@ -48,15 +49,28 @@ const App: React.FC = () => {
                     />
                     // highlight-end
                     <Box
-                        component="main"
                         sx={{
-                            p: { xs: 1, md: 2, lg: 3 },
-                            flexGrow: 1,
-                            bgcolor: "background.default",
+                            display: "flex",
+                            flexDirection: "column",
+                            flex: 1,
+                            minHeight: "100vh",
                         }}
                     >
-                        {children}
+                        {Header && <Header />}
+                        <Box
+                            component="main"
+                            sx={{
+                                p: { xs: 1, md: 2, lg: 3 },
+                                flexGrow: 1,
+                                bgcolor: (theme) =>
+                                    theme.palette.background.default,
+                            }}
+                        >
+                            {children}
+                        </Box>
+                        {Footer && <Footer />}
                     </Box>
+                    {OffLayoutArea && <OffLayoutArea />}
                 </Box>
             )}
         />
