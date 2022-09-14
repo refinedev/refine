@@ -16,8 +16,8 @@ export const BusinessLogic02 = (props: React.SVGProps<SVGSVGElement>) => (
                 width={222}
                 height={299}
                 rx={19.5}
-                fill="#fff"
-                stroke="#F5F5F5"
+                // fill="#fff"
+                // stroke="#F5F5F5"
             />
             <path
                 fillRule="evenodd"
