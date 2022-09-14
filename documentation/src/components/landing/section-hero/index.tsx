@@ -471,7 +471,7 @@ export const SectionHero: React.FC<{ starCount?: number }> = ({
                                     <CloudTipIcon className="mt-2 -mr-px" />
                                     <div className="cloud rounded-md bg-white text-[#211d21] h-full flex items-center justify-center px-1.5 font-montserrat font-bold text-base">
                                         <span
-                                            className={`${
+                                            className={`min-w-[45px] text-center ${
                                                 starCount ? "" : "invisible"
                                             }`}
                                         >
