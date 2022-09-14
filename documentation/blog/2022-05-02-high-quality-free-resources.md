@@ -4,7 +4,7 @@ description: We will examine the resources that will make our job easier when ma
 slug: 10-high-quality-free-resources
 authors: aydin
 tags: [refine, react, admin, framework, webdev, beginners, codenewbie, json, ant-design, antd, material-ui, mui, tailwind, tailwindcss, auth0, mui, cerbos, authorization, permissions, squoosh, compress, images]
-image: /img/placeholder.png
+image: https://refine.dev/img/refine_social.png
 hide_table_of_contents: false
 ---
 

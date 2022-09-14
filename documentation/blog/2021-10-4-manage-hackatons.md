@@ -4,8 +4,9 @@ description: We'll be building a demo app to manage hackathons with refine.
 slug: manage-hackathons-with-refine
 authors: muharrem
 tags: [refine, supabase, react, tutorial]
-image: /img/placeholder.png
+image: https://refine.dev/img/refine_social.png
 hide_table_of_contents: false
+is_featured: true
 ---
 
 import hackathons from '@site/static/img/blog/2021-10-4-manage-hackathons/hackathons.png';

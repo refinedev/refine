@@ -4,7 +4,7 @@ description: Guideline and tips for writing technical articles for Refine
 slug: refine-writer-program
 authors: necati
 tags: [technical articles, refine ]
-image: /img/placeholder.png
+image: https://refine.dev/img/refine_social.png
 hide_table_of_contents: false
 ---
 

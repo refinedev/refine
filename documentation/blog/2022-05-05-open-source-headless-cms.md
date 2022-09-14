@@ -4,7 +4,7 @@ description: A headless CMS system, which can be developed quickly, contains man
 slug: open-source-headless-cms
 authors: yildiray
 tags: [cms, headless, open-source, strapi, appwrite, directus, keystone, netlify, refine]
-image: /img/placeholder.png
+image: https://refine.dev/img/refine_social.png
 hide_table_of_contents: false
 ---
 

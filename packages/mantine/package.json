@@ -9,6 +9,7 @@
     "scripts": {
         "start": "tsup --watch --dts --format esm,cjs,iife --legacy-output",
         "build": "tsup --dts --format esm,cjs,iife --minify --legacy-output",
+        "test": "jest --passWithNoTests --runInBand",
         "prepare": "npm run build"
     },
     "peerDependencies": {
