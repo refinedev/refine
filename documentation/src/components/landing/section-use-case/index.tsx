@@ -73,7 +73,7 @@ export const SectionUseCase: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex-1 flex flex-col-reverse gap-8 lg:gap-0 lg:flex-row max-w-6sxl mx-auto w-full items-center justify-center px-7 md:px-10 lg:px-16 xl:px-24 ">
+                <div className="flex-1 flex flex-col-reverse gap-8 lg:gap-0 lg:flex-row max-w-[1080px] mx-auto w-full items-center justify-center px-4 md:px-6 lg:px-8">
                     <div className="flex-1">
                         <div className="font-montserrat text-[#1890FF] text-[28px] leading-[28px] lg:text-[30px] lg:leading-[36px] mb-2.5">
                             <div className="font-medium">IF YOU’RE ALREADY</div>
@@ -90,7 +90,7 @@ export const SectionUseCase: React.FC = () => {
                                 OTHERS
                             </div>
                         </div>
-                        <div className="font-montserrat text-[16px] leading-[20px] tracking-tight text-[#2A2A42] mb-2.5">
+                        <div className="font-montserrat text-[16px] leading-[20px] tracking-tight text-[#2A2A42] mb-2.5 max-w-[500px]">
                             <p>
                                 We are very happy to see how people are building
                                 great things with{" "}
@@ -127,7 +127,7 @@ export const SectionUseCase: React.FC = () => {
                         >
                             <motion.img
                                 src="landing/giftcard.png"
-                                className="w-full max-w-screen md:max-w-[300px] lg:max-w-[330px] absolute top-0"
+                                className="w-full max-w-[300px] lg:max-w-[330px] absolute top-0"
                                 style={
                                     lg
                                         ? {
@@ -146,7 +146,7 @@ export const SectionUseCase: React.FC = () => {
                                     yoyo: Infinity,
                                 }}
                             />
-                            <div className="w-full max-w-screen md:max-w-[350px] min-h-[calc(100vw-56px)] md:min-h-[330px] lg:max-w-[330px] flex justify-center items-end lg:min-h-[300px]">
+                            <div className="w-full max-w-screen md:max-w-[350px] min-h-[300px] md:min-h-[330px] lg:max-w-[330px] flex justify-center items-end lg:min-h-[300px]">
                                 <motion.div
                                     style={{
                                         position: "absolute",
