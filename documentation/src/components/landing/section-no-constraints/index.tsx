@@ -42,6 +42,12 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
         ["0%", "0%", "0%", "-100%", "-200%", "-300%", "-500%"],
     );
 
+    React.useEffect(() => {
+        return slideX.onChange(() => {
+            console.log("slideX", slideX.get());
+        });
+    });
+
     const slideLeftBgY = useTransform(
         scrollYProgress,
         [0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1],
@@ -316,7 +322,7 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                             animate={lg ? {} : { translateX: 0 }}
                         >
                             {/* slide 01 */}
-                            <div className="w-full flex-shrink-0 lg:snap-center lg:h-full flex justify-center items-center">
+                            <div className="w-full flex-shrink-0 lg:h-full flex justify-center items-center">
                                 <div className="flex flex-col lg:flex-row h-auto max-w-screen-xl w-full">
                                     <div className="flex-[3] flex justify-center items-center relative">
                                         <motion.div
@@ -638,7 +644,7 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex lg:hidden w-full flex-shrink-0 lg:snap-center lg:h-full justify-center items-center">
+                            <div className="flex lg:hidden w-full flex-shrink-0 lg:h-full justify-center items-center">
                                 <div className="flex flex-col lg:flex-row h-auto max-w-screen-xl w-full">
                                     <div className="flex-[3] flex justify-center items-center relative">
                                         <motion.div
@@ -724,7 +730,7 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                     </div>
                                 </div>
                             </div>
-                            <div className="mb-24 lg:mb-0 flex lg:hidden w-full flex-shrink-0 lg:snap-center lg:h-full justify-center items-center">
+                            <div className="mb-24 lg:mb-0 flex lg:hidden w-full flex-shrink-0 lg:h-full justify-center items-center">
                                 <div className="flex flex-col lg:flex-row h-auto max-w-screen-xl w-full">
                                     <div className="flex-[3] flex justify-center items-center relative">
                                         <motion.div
@@ -856,7 +862,7 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                     </div>
                                 </div>
                             </div>
-                            <div className="mb-24 lg:mb-0 w-full lg:h-full flex-shrink-0 lg:snap-center flex justify-center items-center">
+                            <div className="mb-24 lg:mb-0 w-full lg:h-full flex-shrink-0 flex justify-center items-center">
                                 <div className="flex pt-3 h-auto max-w-screen-xl w-full">
                                     <div className="flex-1 flex flex-col justify-start items-center w-full gap-2">
                                         <div className="font-montserrat text-xl leading-8 font-medium text-[#2A2A42] text-center max-w-[860px] mb-4">
@@ -972,7 +978,7 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                     </div>
                                 </div>
                             </div>
-                            <div className="mb-24 lg:mb-0 w-full flex-shrink-0 lg:snap-center lg:h-full flex justify-center items-center">
+                            <div className="mb-24 lg:mb-0 w-full flex-shrink-0 lg:h-full flex justify-center items-center">
                                 <div className="flex h-auto max-w-screen-xl w-full flex-col lg:flex-row gap-20 md:gap-32 lg:gap-0">
                                     <div className="flex-1 flex relative -mx-6 lg:mx-0 px-[55px] pt-0 pb-4 lg:px-12 lg:pb-12 lg:pt-0 justify-center items-center">
                                         <motion.div
@@ -1145,7 +1151,7 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                     </div>
                                 </div>
                             </div>
-                            <div className="w-full flex-shrink-0 lg:snap-center lg:h-full flex justify-center items-center">
+                            <div className="w-full flex-shrink-0 lg:h-full flex justify-center items-center">
                                 <div className="flex h-auto max-w-screen-xl w-full">
                                     <div className="flex-1 flex flex-col justif text-[#2A2A42] text-center max-w-[800px]y-center items-center w-full gap-4 lg:gap-2">
                                         <div className="font-montserrat text-xl pt-[14px] max-w-screen-lg">
