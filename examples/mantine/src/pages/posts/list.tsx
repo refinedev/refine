@@ -114,9 +114,12 @@ export const PostList: React.FC = () => {
             </Modal>
             <List
                 headerButtons={
-                    <CreateButton onClick={() => showCreateModal()}>
-                        Modal Create
-                    </CreateButton>
+                    <>
+                        <CreateButton onClick={() => showCreateModal()}>
+                            Modal Create
+                        </CreateButton>
+                        <CreateButton>Create</CreateButton>
+                    </>
                 }
             >
                 <Table>

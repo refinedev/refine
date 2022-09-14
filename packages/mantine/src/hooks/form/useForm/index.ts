@@ -66,15 +66,21 @@ export const useForm = <
         ...rest,
     });
 
-    const {
-        setValues,
-        onSubmit: onMantineSubmit,
-        isDirty,
-    } = useMantineFormResult;
+    const { setValues, onSubmit: onMantineSubmit } = useMantineFormResult;
 
     useEffect(() => {
         if (typeof queryResult?.data !== "undefined") {
-            setValues(queryResult?.data?.data as any);
+            const fields: any = {};
+            const registeredFields = Object.keys(rest.initialValues ?? {});
+            Object.entries(queryResult?.data?.data || {}).forEach(
+                ([key, value]) => {
+                    if (registeredFields.includes(key)) {
+                        fields[key] = value;
+                    }
+                },
+            );
+
+            setValues(fields);
         }
     }, [queryResult?.data]);
 

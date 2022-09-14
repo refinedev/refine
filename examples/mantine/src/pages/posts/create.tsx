@@ -1,7 +1,12 @@
 import { Create, Select, TextInput, useForm } from "@pankod/refine-mantine";
 
 export const PostCreate: React.FC = () => {
-    const { saveButtonProps, getInputProps } = useForm();
+    const { saveButtonProps, getInputProps } = useForm({
+        initialValues: {
+            title: "",
+            status: "rejected",
+        },
+    });
 
     return (
         <Create saveButtonProps={saveButtonProps}>
