@@ -6,6 +6,15 @@ import Head from "@docusaurus/Head";
 import { Landing } from "../components/landing";
 
 function Home() {
+    React.useEffect(() => {
+        return () => {
+            // scroll to top after unmount with set timeout
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 0);
+        };
+    }, []);
+
     return (
         <>
             <Head>
