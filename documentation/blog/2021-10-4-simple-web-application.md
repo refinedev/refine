@@ -6,7 +6,6 @@ authors: aydin
 tags: [refine, supabase, react, tutorial]
 image: /img/placeholder.png
 hide_table_of_contents: false
-is_featured: true
 ---
 
 import cli from '@site/static/img/blog/2021-10-4-simple-web-application/cli.png';
