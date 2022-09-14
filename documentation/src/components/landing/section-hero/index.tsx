@@ -77,7 +77,7 @@ export const SectionHero: React.FC<{ starCount?: number }> = ({
         >
             <div className="hidden lg:snap-start lg:block h-px w-full -mb-px" />
             {/* Scroll animated section */}
-            <motion.div className="h-auto lg:h-screen w-screen max-w-screen-xl mx-auto w-full top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 pt-16 lg:pt-0 flex flex-col justify-center">
+            <motion.div className="h-auto lg:h-screen w-screen max-w-screen-xl mx-auto w-full top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 pt-16 lg:pt-0 short:pt-16 flex flex-col justify-center">
                 <div className="flex pt-16 flex-col lg:flex-row gap-12 lg:gap-0">
                     <div className="heading mx-auto lg:mx-0 flex flex-[2] gap-6 h-min">
                         <div className="caret-wrapper relative py-2.5 w-[33px]">
@@ -427,16 +427,16 @@ export const SectionHero: React.FC<{ starCount?: number }> = ({
                         </motion.div>
                     </div>
                 </div>
-                <div className="flex flex-col-reverse lg:flex-row pt-12 sm:pt-16 lg:pt-24 short:pt-10 pb-8 short:pb-6 gap-2 lg:gap-0 mx-auto lg:mx-0 max-w-lg lg:max-w-none">
+                <div className="flex flex-col-reverse lg:flex-row pt-12 sm:pt-16 lg:pt-24 short:pt-10 pb-8 short:pb-4 gap-2 lg:gap-0 mx-auto lg:mx-0 max-w-lg lg:max-w-none">
                     <div className="flex flex-col lg:flex-row flex-1 gap-4 -mx-4 px-0 md:px-8 lg:px-12">
                         <Link
-                            className="flex flex-1 justify-center items-center appearance-none no-underline font-montserrat font-bold text-xl text-white text-center py-3 px-4 rounded-lg shadow-lg hover:shadow-xl focus:outline-none focus:shadow-xl bg-gradient-to-l from-[#1890FF] to-[#47EBF5]"
+                            className="flex flex-1 justify-center items-center appearance-none no-underline font-montserrat font-bold text-xl text-white text-center py-3 px-4 md:px-0 xl:px-4 rounded-lg shadow-lg hover:shadow-xl focus:outline-none focus:shadow-xl bg-gradient-to-l from-[#1890FF] to-[#47EBF5]"
                             to="/docs"
                         >
                             Start Tutorial
                         </Link>
                         <Link
-                            className="flex flex-1 justify-center items-center gap-3 appearance-none no-underline font-montserrat font-bold text-xl text-white text-center py-3 px-4 focus:outline-none"
+                            className="flex flex-1 justify-center items-center gap-3 appearance-none no-underline font-montserrat font-bold text-xl text-white text-center py-3 px-4 md:px-0 xl:px-4 focus:outline-none"
                             href="/docs/getting-started/overview"
                         >
                             Read the docs <ChevronRight />
@@ -483,7 +483,7 @@ export const SectionHero: React.FC<{ starCount?: number }> = ({
                         </div>
                     </div>
                 </div>
-                <div className="hidden lg:flex items-center justify-center">
+                <div className="hidden lg:flex items-center justify-center short:mt-auto lg:mt-6 pb-5 short:pb-7">
                     <motion.button
                         className="appearance-none border-none bg-none bg-transparent flex w-auto items-center justify-center gap-2.5"
                         animate={{ translateY: [-10, 10] }}
