@@ -123,7 +123,7 @@ const siteConfig = {
             items: [
                 {
                     to: "docs/getting-started/overview",
-                    label: "Quickstart",
+                    label: "Docs",
                     position: "left",
                 },
                 {
@@ -133,21 +133,17 @@ const siteConfig = {
                     activeBaseRegex: "/^/docs(/)?$/",
                 },
                 {
-                    to: "/demo",
-                    label: "Demo",
-                    position: "left",
-                },
-                {
-                    to: "docs/guides-and-concepts/ssr/remix/",
-                    label: "Guides",
-                    position: "left",
-                },
-                {
-                    to: "/examples",
+                    to: "examples",
                     label: "Examples",
                     position: "left",
                 },
+                {
+                    to: "integrations",
+                    label: "Integrations",
+                    position: "left",
+                },
                 { to: "blog", label: "Blog", position: "left" },
+                { to: "about", label: "About", position: "left" },
                 {
                     to: "https://store.refine.dev",
                     label: "Store 🎁",
