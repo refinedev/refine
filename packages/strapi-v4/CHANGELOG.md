@@ -1,5 +1,21 @@
 # @pankod/refine-strapi-v4
 
+## 3.35.0
+
+### Minor Changes
+
+-   Added `metaData` support for the `/me` request
+
+    ```tsx
+    const strapiAuthHelper = AuthHelper(API_URL + "/api");
+
+    strapiAuthHelper.me("token", {
+        metaData: {
+            populate: ["role"],
+        },
+    });
+    ```
+
 ## 3.34.0
 
 ### Minor Changes

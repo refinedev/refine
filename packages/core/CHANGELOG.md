@@ -1,5 +1,13 @@
 # @pankod/refine-core
 
+## 3.69.9
+
+### Patch Changes
+
+-   Add register function to `AuthContextProvider` for invalidate auth store queries.
+
+-   Fixed version of react-router to `6.3.0`
+
 ## 3.69.8
 
 ### Patch Changes

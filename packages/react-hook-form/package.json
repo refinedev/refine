@@ -1,5 +1,5 @@
 {
-  "version": "3.33.1",
+  "version": "3.33.2",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -30,7 +30,7 @@
     "@types/react-dom": "^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
-    "@pankod/refine-core": "^3.69.8",
+    "@pankod/refine-core": "^3.69.9",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "jest": "^27.5.1",
     "react-router-dom": "6.3.0",
