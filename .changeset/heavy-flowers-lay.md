@@ -11,4 +11,4 @@
 "@pankod/refine-ui-tests": patch
 ---
 
-Fixed version of react-router to 6
+Fixed version of react-router to `6.3.0`
