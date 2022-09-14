@@ -18,7 +18,7 @@ module.exports = {
             },
             screens: {
                 "2xl": "1280px",
-                short: { raw: "(max-height: 650px) and (min-width: 1280px)" },
+                short: { raw: "(max-height: 650px) and (min-width: 1024px)" },
             },
         },
     },

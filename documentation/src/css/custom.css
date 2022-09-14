@@ -499,15 +499,6 @@ html[data-page="index"] {
     scroll-behavior: smooth;
 }
 
-html:not([data-page="index"]) {
-    scroll-snap-type: y proximity;
-}
-
-html:not([data-page="index"]) body {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-}
-
 #__docusaurus .main-wrapper {
     padding-top: 64px;
 }
@@ -776,4 +767,8 @@ html[data-theme="dark"]:not([data-customized="true"])
 
 #__docusaurus .group:hover a:hover .nested-hover-hidden {
     display: none;
+}
+
+#__docusaurus .footer__item {
+    line-height: 18px;
 }
