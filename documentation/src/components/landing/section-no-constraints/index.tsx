@@ -262,10 +262,10 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                 ref={ref}
                 className="h-auto lg:h-[600vh] bg-white -mt-px"
             >
-                <div className="hidden lg:block snap-start h-0 w-screen" />
+                <div className="hidden lg:block snap-start h-0 w-screen max-w-full" />
                 <div className="hidden lg:snap-start lg:block h-px w-full -mb-px" />
                 {/* Scroll animated section */}
-                <motion.div className="lg:overflow-hidden h-auto lg:h-screen w-screen top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col justify-center pt-[86px] pb-[50px]">
+                <motion.div className="lg:overflow-hidden h-auto lg:h-screen w-screen max-w-full top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col justify-center pt-[86px] pb-[50px]">
                     <motion.div
                         className="hidden lg:block absolute -left-36 -top-24 z-[-1]"
                         style={{
@@ -1639,7 +1639,7 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                 {Array.from({ length: 5 }, (_, i) => i).map((i) => (
                     <div
                         key={i}
-                        className="hidden lg:block snap-start h-screen w-screen"
+                        className="hidden lg:block snap-start h-screen w-screen max-w-full"
                     />
                 ))}
             </motion.div>

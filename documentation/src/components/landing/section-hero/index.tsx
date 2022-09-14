@@ -512,7 +512,7 @@ export const SectionHero: React.FC<{ starCount?: number }> = ({
                 </div>
             </motion.div>
             {/* Scroll snap alignment */}
-            <div className="lg:snap-start hidden lg:block h-screen w-screen" />
+            <div className="lg:snap-start hidden lg:block h-screen w-screen max-w-full" />
             {/* Scroll snap alignment */}
         </motion.div>
     );
