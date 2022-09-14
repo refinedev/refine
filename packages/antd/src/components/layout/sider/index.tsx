@@ -126,6 +126,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 dashboard,
                 items,
                 logout,
+                collapsed,
             });
         }
         return (

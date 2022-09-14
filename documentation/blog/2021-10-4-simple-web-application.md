@@ -4,9 +4,8 @@ description: Do you want to develop a web application quickly? You are at the ri
 slug: simple-web-application-with-refine
 authors: aydin
 tags: [refine, supabase, react, tutorial]
-image: https://refine.dev/img/refine_social.png
+image: /img/placeholder.png
 hide_table_of_contents: false
-is_featured: true
 ---
 
 import cli from '@site/static/img/blog/2021-10-4-simple-web-application/cli.png';

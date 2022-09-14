@@ -4,7 +4,7 @@ description: In this article, we will learn how we can create a full-featured cu
 slug: create-full-stack-app-with-refine
 authors: melih
 tags: [refine, react, next.js, full-stack, web-app, b2b, admin-panel]
-image: https://refine.dev/img/refine_social.png
+image: /img/placeholder.png
 hide_table_of_contents: false
 ---
 
@@ -53,7 +53,7 @@ With the Data Provider feature it provides, you don't need to think about your A
 
 📝 Boilerplate-free Code : Keeps your codebase clean and readable.
 
-To learn more about **refine** features, we recommend that you read the [Overview](/docs/getting-started/overview/) and [Learn the Basics](/docs/getting-started/basics/) guides before starting development.
+To learn more about **refine** features, we recommend that you read the [Overview](/docs/getting-started/overview/) document.
 
 ### Benchmark
 
@@ -303,8 +303,6 @@ As you have seen, we have listed and paginated the titles coming from an API by 
 -   All features of **refine** are available as **open source**.
 
 [For more information about all **refine** features and **refine** →](/docs/getting-started/overview/)
-
-[Learn the **refine** basics →](/docs/getting-started/basics/)
 
 [Comparison | Refine vs React-Admin vs AdminBro vs Retool →](/docs/comparison/)
 
