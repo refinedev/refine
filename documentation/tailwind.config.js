@@ -1,4 +1,5 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
+const plugin = require("tailwindcss/plugin");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -21,7 +22,12 @@ module.exports = {
             },
         },
     },
-    plugins: [require("@tailwindcss/line-clamp")],
+    plugins: [
+        require("@tailwindcss/line-clamp"),
+        plugin(function ({ addVariant }) {
+            addVariant("is-firefox", "@supports (-moz-appearance:none)");
+        }),
+    ],
     corePlugins: {
         preflight: false,
     },

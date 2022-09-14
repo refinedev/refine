@@ -57,7 +57,7 @@ export const SectionFreeStart: React.FC = () => {
                         style={
                             lg
                                 ? {
-                                      x: leftCardX,
+                                      translateX: leftCardX,
                                       opacity: leftCardOpacity,
                                       rotate: leftCardRotate,
                                   }
@@ -68,7 +68,7 @@ export const SectionFreeStart: React.FC = () => {
                                 ? undefined
                                 : {
                                       opacity: [0, 1],
-                                      x: [-100, 0],
+                                      translateX: [-100, 0],
                                       rotate: ["0deg", "0deg"],
                                   }
                         }
@@ -101,7 +101,7 @@ export const SectionFreeStart: React.FC = () => {
                         style={
                             lg
                                 ? {
-                                      y: orY,
+                                      translateY: orY,
                                       opacity: orOpacity,
                                       rotate: orRotate,
                                   }
@@ -112,7 +112,7 @@ export const SectionFreeStart: React.FC = () => {
                                 ? undefined
                                 : {
                                       opacity: [0, 1],
-                                      y: [200, 0],
+                                      translateY: [200, 0],
                                       rotate: [-180, -5],
                                   }
                         }
@@ -134,7 +134,7 @@ export const SectionFreeStart: React.FC = () => {
                         style={
                             lg
                                 ? {
-                                      x: rightCardX,
+                                      translateX: rightCardX,
                                       opacity: rightCardOpacity,
                                       rotate: rightCardRotate,
                                   }
@@ -145,7 +145,7 @@ export const SectionFreeStart: React.FC = () => {
                                 ? undefined
                                 : {
                                       opacity: [0, 1],
-                                      x: [100, 0],
+                                      translateX: [100, 0],
                                       rotate: ["0deg", "0deg"],
                                   }
                         }

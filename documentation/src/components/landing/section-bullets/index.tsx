@@ -69,7 +69,7 @@ export const SectionBullets = () => {
                     //         ? {
                     //               opacity: 1,
                     //               rotate: -2,
-                    //               y: 0,
+                    //               translateY: 0,
                     //           }
                     //         : {}
                     // }
@@ -77,7 +77,7 @@ export const SectionBullets = () => {
                         lg
                             ? {
                                   rotate: whyNotRotate,
-                                  y: whyNotY,
+                                  translateY: whyNotY,
                                   opacity: whyNotOpacity,
                               }
                             : undefined
@@ -87,7 +87,7 @@ export const SectionBullets = () => {
                             ? undefined
                             : {
                                   opacity: [0, 1],
-                                  y: [100, 0],
+                                  translateY: [100, 0],
                                   rotate: [0, -3],
                               }
                     }
@@ -107,14 +107,14 @@ export const SectionBullets = () => {
                     </motion.div>
                 </motion.div>
                 <motion.div
-                    animate={!lg ? { opacity: 1, y: 0 } : {}}
+                    animate={!lg ? { opacity: 1, translateY: 0 } : {}}
                     style={
                         lg
                             ? {
                                   opacity: bulletsOpacity,
-                                  y: bulletsY,
+                                  translateY: bulletsY,
                               }
-                            : { opacity: 1, y: 0 }
+                            : { opacity: 1, translateY: 0 }
                     }
                     className="flex pt-12 short:pt-4 gap-5 max-w-6xl lg:px-3 mx-auto w-full justify-center flex-col"
                 >
@@ -144,8 +144,8 @@ export const SectionBullets = () => {
                                             ? undefined
                                             : {
                                                   opacity: [0, 1],
-                                                  y: [100, 0],
-                                                  x: [-100, 0],
+                                                  translateY: [100, 0],
+                                                  translateX: [-100, 0],
                                                   rotate: ["0deg", "0deg"],
                                               }
                                     }
@@ -192,8 +192,8 @@ export const SectionBullets = () => {
                                             ? undefined
                                             : {
                                                   opacity: [0, 1],
-                                                  y: [100, 0],
-                                                  x: [100, 0],
+                                                  translateY: [100, 0],
+                                                  translateX: [100, 0],
                                                   rotate: ["0deg", "0deg"],
                                               }
                                     }
@@ -243,8 +243,8 @@ export const SectionBullets = () => {
                                             ? undefined
                                             : {
                                                   opacity: [0, 1],
-                                                  y: [100, 0],
-                                                  x: [-100, 0],
+                                                  translateY: [100, 0],
+                                                  translateX: [-100, 0],
                                                   rotate: ["0deg", "0deg"],
                                               }
                                     }
@@ -296,8 +296,8 @@ export const SectionBullets = () => {
                                             ? undefined
                                             : {
                                                   opacity: [0, 1],
-                                                  y: [100, 0],
-                                                  x: [100, 0],
+                                                  translateY: [100, 0],
+                                                  translateX: [100, 0],
                                                   rotate: ["0deg", "0deg"],
                                               }
                                     }
@@ -342,8 +342,8 @@ export const SectionBullets = () => {
                                             ? undefined
                                             : {
                                                   opacity: [0, 1],
-                                                  y: [100, 0],
-                                                  x: [-100, 0],
+                                                  translateY: [100, 0],
+                                                  translateX: [-100, 0],
                                                   rotate: ["0deg", "0deg"],
                                               }
                                     }
@@ -392,8 +392,8 @@ export const SectionBullets = () => {
                                             ? undefined
                                             : {
                                                   opacity: [0, 1],
-                                                  y: [100, 0],
-                                                  x: [100, 0],
+                                                  translateY: [100, 0],
+                                                  translateX: [100, 0],
                                                   rotate: ["0deg", "0deg"],
                                               }
                                     }
@@ -437,8 +437,8 @@ export const SectionBullets = () => {
                                             ? undefined
                                             : {
                                                   opacity: [0, 1],
-                                                  y: [100, 0],
-                                                  x: [-100, 0],
+                                                  translateY: [100, 0],
+                                                  translateX: [-100, 0],
                                                   rotate: ["0deg", "0deg"],
                                               }
                                     }
@@ -486,8 +486,8 @@ export const SectionBullets = () => {
                                             ? undefined
                                             : {
                                                   opacity: [0, 1],
-                                                  y: [100, 0],
-                                                  x: [100, 0],
+                                                  translateY: [100, 0],
+                                                  translateX: [100, 0],
                                                   rotate: ["0deg", "0deg"],
                                               }
                                     }

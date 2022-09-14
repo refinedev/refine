@@ -261,6 +261,7 @@ export const SectionNoConstraints: React.FC = () => {
                 className="h-auto lg:h-[600vh] bg-white -mt-px"
             >
                 <div className="hidden lg:block snap-start h-0 w-screen" />
+                <div className="hidden lg:snap-start lg:block h-px w-full -mb-px" />
                 {/* Scroll animated section */}
                 <motion.div className="lg:overflow-hidden h-auto lg:h-screen w-screen top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col justify-center pt-[86px] pb-[50px]">
                     <motion.div
@@ -286,7 +287,7 @@ export const SectionNoConstraints: React.FC = () => {
                         <div className="w-full font-medium uppercase text-2xl md:text-3xl lg:text-4xl leading-none font-montserrat text-[#1890FF] text-center h-9 relative overflow-hidden short:text-[24px] short:leading-[24px] short:h-6">
                             <motion.div
                                 className="absolute left-0 top-0 w-full"
-                                style={{ y: slideSubtitleY }}
+                                style={{ translateY: slideSubtitleY }}
                             >
                                 <div className="w-full h-9 short:h-6 text-center">
                                     on styling
@@ -305,12 +306,12 @@ export const SectionNoConstraints: React.FC = () => {
                     </div>
                     <motion.div
                         className="overflow-x-visible lg:overflow-x-hidden lg:overflow-y-hidden lg:snap-x lg:snap-mandatory relative flex-1 lg:max-h-[600px]"
-                        style={{ opacity: slideOpacity }}
+                        style={lg ? { opacity: slideOpacity } : {}}
                     >
                         <motion.div
                             className="flex w-full lg:h-full lg:absolute flex-col lg:flex-row"
-                            style={lg ? { x: slideX } : {}}
-                            animate={lg ? {} : { x: 0 }}
+                            style={lg ? { translateX: slideX } : {}}
+                            animate={lg ? {} : { translateX: 0 }}
                         >
                             {/* slide 01 */}
                             <div className="w-full flex-shrink-0 lg:snap-center lg:h-full flex justify-center items-center">
@@ -1003,7 +1004,7 @@ export const SectionNoConstraints: React.FC = () => {
                                             className="flex relative w-full max-w-[350px] h-full"
                                         >
                                             <motion.div
-                                                className="bg-transparent h-min rounded-[20px]"
+                                                className="bg-white h-min rounded-[20px]"
                                                 animate={{
                                                     rotateY: ["10deg", "20deg"],
                                                     rotateX: ["5deg", "-5deg"],
@@ -1016,6 +1017,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 }}
                                                 style={{
                                                     width: "45%",
+                                                    height: "33.43%",
                                                     boxShadow:
                                                         "-12px 16px 28px 0 rgba(120, 120, 168, 0.3)",
                                                 }}
@@ -1028,7 +1030,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 />
                                             </motion.div>
                                             <motion.div
-                                                className="bg-transparent absolute top-[10%] left-[19%] h-min rounded-[20px]"
+                                                className="bg-white absolute top-[10%] left-[19%] h-min rounded-[20px]"
                                                 animate={{
                                                     rotateY: ["10deg", "20deg"],
                                                     rotateX: ["5deg", "-5deg"],
@@ -1053,7 +1055,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 />
                                             </motion.div>
                                             <motion.div
-                                                className="bg-transparent absolute top-[20%] left-[38%] h-min rounded-[20px]"
+                                                className="bg-white absolute top-[20%] left-[38%] h-min rounded-[20px]"
                                                 animate={{
                                                     rotateY: ["10deg", "20deg"],
                                                     rotateX: ["5deg", "-5deg"],
@@ -1078,7 +1080,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                 />
                                             </motion.div>
                                             <motion.div
-                                                className="bg-transparent absolute top-[30%] left-[55%] h-min rounded-[20px]"
+                                                className="bg-white absolute top-[30%] left-[55%] h-min rounded-[20px]"
                                                 animate={{
                                                     rotateY: ["10deg", "20deg"],
                                                     rotateX: ["5deg", "-5deg"],
@@ -1184,12 +1186,15 @@ export const SectionNoConstraints: React.FC = () => {
                                                 whileInView={
                                                     !lg
                                                         ? {
-                                                              y: [100, 0],
+                                                              translateY: [
+                                                                  100, 0,
+                                                              ],
                                                               opacity: [0, 1],
                                                           }
                                                         : {}
                                                 }
                                                 viewport={{
+                                                    once: true,
                                                     margin: "25px",
                                                 }}
                                                 className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] short:min-h-[95px] short:max-h-[95px] flex flex-col justify-center relative group hover:text-[#1890FF] text-[#2A2A42] select-none"
@@ -1233,12 +1238,15 @@ export const SectionNoConstraints: React.FC = () => {
                                                 whileInView={
                                                     !lg
                                                         ? {
-                                                              y: [100, 0],
+                                                              translateY: [
+                                                                  100, 0,
+                                                              ],
                                                               opacity: [0, 1],
                                                           }
                                                         : {}
                                                 }
                                                 viewport={{
+                                                    once: true,
                                                     margin: "25px",
                                                 }}
                                                 className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] short:min-h-[95px] short:max-h-[95px]flex flex-col justify-center relative group hover:text-[#1890FF] text-[#2A2A42] select-none"
@@ -1283,12 +1291,15 @@ export const SectionNoConstraints: React.FC = () => {
                                                 whileInView={
                                                     !lg
                                                         ? {
-                                                              y: [100, 0],
+                                                              translateY: [
+                                                                  100, 0,
+                                                              ],
                                                               opacity: [0, 1],
                                                           }
                                                         : {}
                                                 }
                                                 viewport={{
+                                                    once: true,
                                                     margin: "25px",
                                                 }}
                                                 className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] short:min-h-[95px] short:max-h-[95px]flex flex-col justify-center relative group group-hover:text-[#1890FF] text-[#2A2A42] select-none"
@@ -1333,12 +1344,15 @@ export const SectionNoConstraints: React.FC = () => {
                                                 whileInView={
                                                     !lg
                                                         ? {
-                                                              y: [100, 0],
+                                                              translateY: [
+                                                                  100, 0,
+                                                              ],
                                                               opacity: [0, 1],
                                                           }
                                                         : {}
                                                 }
                                                 viewport={{
+                                                    once: true,
                                                     margin: "25px",
                                                 }}
                                                 className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] short:min-h-[95px] short:max-h-[95px]flex flex-col justify-center relative group"
@@ -1382,12 +1396,15 @@ export const SectionNoConstraints: React.FC = () => {
                                                 whileInView={
                                                     !lg
                                                         ? {
-                                                              y: [100, 0],
+                                                              translateY: [
+                                                                  100, 0,
+                                                              ],
                                                               opacity: [0, 1],
                                                           }
                                                         : {}
                                                 }
                                                 viewport={{
+                                                    once: true,
                                                     margin: "25px",
                                                 }}
                                                 className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] short:min-h-[95px] short:max-h-[95px]flex flex-col justify-center relative group"
@@ -1431,12 +1448,15 @@ export const SectionNoConstraints: React.FC = () => {
                                                 whileInView={
                                                     !lg
                                                         ? {
-                                                              y: [100, 0],
+                                                              translateY: [
+                                                                  100, 0,
+                                                              ],
                                                               opacity: [0, 1],
                                                           }
                                                         : {}
                                                 }
                                                 viewport={{
+                                                    once: true,
                                                     margin: "25px",
                                                 }}
                                                 className="rounded-[10px] p-2.5 lg:p-0 bg-white shadow-tile min-h-[106px] short:min-h-[95px] short:max-h-[95px]flex flex-col justify-center relative group group-hover:text-[#1890FF] text-[#2A2A42]"

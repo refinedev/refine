@@ -108,6 +108,7 @@ export const SectionHero: React.FC = () => {
                 backgroundPositionY: bgPosition,
             }}
         >
+            <div className="hidden lg:snap-start lg:block h-px w-full -mb-px" />
             {/* Scroll animated section */}
             <motion.div className="h-auto lg:h-screen w-screen max-w-screen-xl mx-auto w-full top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 pt-16 lg:pt-0 flex flex-col justify-center">
                 <div className="flex pt-16 flex-col lg:flex-row gap-12 lg:gap-0">
@@ -192,16 +193,16 @@ export const SectionHero: React.FC = () => {
                                 lg
                                     ? {
                                           rotate: tileRotateLeft,
-                                          x: -10,
+                                          translateX: -10,
                                       }
-                                    : { x: -10 }
+                                    : { translateX: -10 }
                             }
                             animate={
                                 lg
-                                    ? { y: -8 }
+                                    ? { translateY: -8 }
                                     : {
                                           rotate: [4, 4, 4, -4, -4, -4],
-                                          y: -8,
+                                          translateY: -8,
                                       }
                             }
                             className="tile shadow-tile relative overflow-hidden bg-white w-full md:max-w-[338px] h-[4.5rem]"
@@ -220,7 +221,7 @@ export const SectionHero: React.FC = () => {
                                 style={
                                     lg
                                         ? {
-                                              y: tileTextPosition,
+                                              translateY: tileTextPosition,
                                           }
                                         : {}
                                 }
@@ -228,7 +229,7 @@ export const SectionHero: React.FC = () => {
                                     lg
                                         ? {}
                                         : {
-                                              y: [
+                                              translateY: [
                                                   "0rem",
                                                   "0rem",
                                                   "0rem",
@@ -262,16 +263,16 @@ export const SectionHero: React.FC = () => {
                                 lg
                                     ? {
                                           rotate: tileRotateRight,
-                                          x: 10,
+                                          translateX: 10,
                                       }
-                                    : { x: 10 }
+                                    : { translateX: 10 }
                             }
                             animate={
                                 lg
-                                    ? { y: -8 }
+                                    ? { translateY: -8 }
                                     : {
                                           rotate: [-4, -4, -4, 4, 4, 4],
-                                          y: -8,
+                                          translateY: -8,
                                       }
                             }
                             className="tile shadow-tile relative overflow-hidden bg-white w-full md:max-w-[338px] h-[4.5rem]"
@@ -290,7 +291,7 @@ export const SectionHero: React.FC = () => {
                                 style={
                                     lg
                                         ? {
-                                              y: tileTextPosition,
+                                              translateY: tileTextPosition,
                                           }
                                         : {}
                                 }
@@ -298,7 +299,7 @@ export const SectionHero: React.FC = () => {
                                     lg
                                         ? {}
                                         : {
-                                              y: [
+                                              translateY: [
                                                   "0rem",
                                                   "0rem",
                                                   "0rem",
@@ -332,16 +333,16 @@ export const SectionHero: React.FC = () => {
                                 lg
                                     ? {
                                           rotate: tileRotateLeft,
-                                          x: -10,
+                                          translateX: -10,
                                       }
-                                    : { x: -10 }
+                                    : { translateX: -10 }
                             }
                             animate={
                                 lg
-                                    ? { y: -8 }
+                                    ? { translateY: -8 }
                                     : {
                                           rotate: [4, 4, 4, -4, -4, -4],
-                                          y: -8,
+                                          translateY: -8,
                                       }
                             }
                             className="tile shadow-tile relative overflow-hidden bg-white w-full md:max-w-[338px] h-[4.5rem]"
@@ -360,7 +361,7 @@ export const SectionHero: React.FC = () => {
                                 style={
                                     lg
                                         ? {
-                                              y: tileTextPosition,
+                                              translateY: tileTextPosition,
                                           }
                                         : {}
                                 }
@@ -368,7 +369,7 @@ export const SectionHero: React.FC = () => {
                                     lg
                                         ? {}
                                         : {
-                                              y: [
+                                              translateY: [
                                                   "0rem",
                                                   "0rem",
                                                   "0rem",
@@ -402,16 +403,16 @@ export const SectionHero: React.FC = () => {
                                 lg
                                     ? {
                                           rotate: tileRotateRight,
-                                          x: 10,
+                                          translateX: 10,
                                       }
-                                    : { x: 10 }
+                                    : { translateX: 10 }
                             }
                             animate={
                                 lg
-                                    ? { y: -8 }
+                                    ? { translateY: -8 }
                                     : {
                                           rotate: [-4, -4, -4, 4, 4, 4],
-                                          y: -8,
+                                          translateY: -8,
                                       }
                             }
                             className="tile shadow-tile relative overflow-hidden bg-white w-full md:max-w-[338px] h-[4.5rem]"
@@ -430,7 +431,7 @@ export const SectionHero: React.FC = () => {
                                 style={
                                     lg
                                         ? {
-                                              y: tileTextPosition,
+                                              translateY: tileTextPosition,
                                           }
                                         : {}
                                 }
@@ -438,7 +439,7 @@ export const SectionHero: React.FC = () => {
                                     lg
                                         ? {}
                                         : {
-                                              y: [
+                                              translateY: [
                                                   "0rem",
                                                   "0rem",
                                                   "0rem",
@@ -515,7 +516,7 @@ export const SectionHero: React.FC = () => {
                 <div className="hidden lg:flex items-center justify-center">
                     <motion.button
                         className="appearance-none border-none bg-none bg-transparent flex w-auto items-center justify-center gap-2.5"
-                        animate={{ y: [-10, 10] }}
+                        animate={{ translateY: [-10, 10] }}
                         transition={{
                             yoyo: Infinity,
                             ease: "easeInOut",
@@ -541,7 +542,7 @@ export const SectionHero: React.FC = () => {
                 </div>
             </motion.div>
             {/* Scroll snap alignment */}
-            <div className="snap-start hidden lg:block h-screen w-screen" />
+            <div className="lg:snap-start hidden lg:block h-screen w-screen" />
             {/* Scroll snap alignment */}
         </motion.div>
     );
