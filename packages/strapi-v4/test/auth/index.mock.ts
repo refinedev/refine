@@ -61,7 +61,7 @@ nock("http://localhost:1337", { encodedQueryParams: true })
     );
 
 nock("http://localhost:1337", { encodedQueryParams: true })
-    .get("/api/users/me")
+    .get("/api/users/me?")
     .reply(
         200,
         {
