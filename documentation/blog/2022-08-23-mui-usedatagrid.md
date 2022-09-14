@@ -4,7 +4,7 @@ description: How to use Material UI DataGrid component with refine apps?
 slug: mui-datagrid-refine
 authors: michael
 tags: [material-ui, react, datagrid, mui]
-image: https://refine.dev/img/refine_social.png
+image: /img/placeholder.png
 hide_table_of_contents: false
 ---
 
@@ -25,7 +25,6 @@ import employeesFilter from '@site/static/img/blog/2022-08-23-mui-usedatagrid/em
 ## Introduction
 In this article, we'll show how to use Material UI [`<DataGrid/>`](https://mui.com/x/react-data-grid/) component and refine's [`useDataGrid`](https://refine.dev/docs/ui-frameworks/mui/hooks/useDataGrid/) hook to render data from a mock API server in tabular form using a `refine` application.  
 
-<!--truncate-->
 
 
 [refine](https://github.com/pankod/refine) is a React-based framework for rapidly developing data-driven applications through a collection of helper `hooks`, `components`, and `data-providers`. refine is a headless framework that doesn't include UI components by default but has support and configurations to inject any UI libraries or a framework of choices such as Material UI or Tailwind CSS.
@@ -33,13 +32,19 @@ In this article, we'll show how to use Material UI [`<DataGrid/>`](https://mui.c
 Material UI is a React UI component library with a rich set of components and tools for bootstrapping elegant user interfaces. We'll use the `<DataGrid/>` component to render a list of employees from a mock server. We'll also look at some of the properties and custom configurations that can be used with the component.
 
 Steps we’ll cover:
-- [Setting up a refine application](#setting-up-a-refine-application)
+- [Setting up a `refine` application](#setting-up-a-refine-application)
 - [Creating mock API with Mockaroo and My JSON Server](#creating-mock-api-with-mockaroo-and-my-json-server)
 - [Material UI DataGrid component](#material-ui-datagrid-component)
 - [Adding styled-components](#adding-styled-components)
-- [refine's useDataGrid hook](#refines-usedatagrid-hook)
-- [Rendering data with the DataGrid component](#rendering-data-with-the-datagrid-component)
+- [refine's `useDataGrid` hook](#refines-usedatagrid-hook)
+- [Rendering data with the `<DataGrid/>` component](#rendering-data-with-the-datagrid-component)
 - [Pagination, Filtering, and Sorting using the `useDataGrid` hook](#pagination-filtering-and-sorting-using-the-usedatagrid-hook)
+  - [Pagination](#pagination)
+  - [Sorting](#sorting)
+    - [Initial sort order](#initial-sort-order)
+    - [Controlled sorting](#controlled-sorting)
+  - [Filtering](#filtering)
+    - [Controlled filtering](#controlled-filtering)
   
 
 ## Prerequisites
