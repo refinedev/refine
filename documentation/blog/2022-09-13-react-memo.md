@@ -1,9 +1,9 @@
 ---
-title: Memoization in React
-description: We will explain the entire process of how to use Next.js in TypeScript
-slug: react-memo
-authors: michaabdullah_numanel
-tags: [reac, typescript]
+title: React memo guide with examples
+description: Improve the app performance with React.memo()
+slug: react-memo-guide
+authors: abdullah_numan
+tags: [react, memoization, react-memo, performance]
 image: https://refine.dev/img/blog/2022-09-13-react-memo/social.png
 hide_table_of_contents: false
 ---
@@ -13,8 +13,6 @@ import memo2 from '@site/static/img/blog/2022-09-13-react-memo/memo2.png';
 import memo3 from '@site/static/img/blog/2022-09-13-react-memo/memo3.png';
 import memo4 from '@site/static/img/blog/2022-09-13-react-memo/memo4.png';
 
-# 
-
 ## Introduction
 This is the first part of a series on the use of memoization in React. In this series, we'll cover memoizing a React component with `React.memo()` as well as caching functions and values with React's memoization hooks.
 
@@ -22,13 +20,15 @@ We will begin with a progressive example that involves memoizing a functional co
 
 In this post, we'll demonstrate the use of `React.memo()`, which is a Higher Order Function, or HOC that adds caching logic to the passed in component. In the upcoming articles, we'll discuss about how to use `useCallback()` and `useMemo()`.
 
+<!--truncate-->
+
 Steps we'll cover:
--[What is Memoization?](#what-is-memoization)
--[Project Setup](#project-setup)
--[Project Content Overview](#project-content-overview)
--[Memoizing a Functional Component using `React.memo()`](#memoizing-a-functional-component-using-reactmemo)
--[Memoizing Props](#memoizing-props)
--[Comparing Prop Values](#comparing-prop-values)
+- [What is Memoization?](#what-is-memoization)
+- [Project Setup](#project-setup)
+- [Project Content Overview](#project-content-overview)
+- [Memoizing a Functional Component using `React.memo()`](#memoizing-a-functional-component-using-reactmemo)
+- [Memoizing Props](#memoizing-props)
+- [Comparing Prop Values](#comparing-prop-values)
 
 ## What is Memoization?
 Memoization is an optimization technique that allows us to store the last computed value or object from a resource-intensive function. It allows us to bypass the function's costly computations when the function is called with the same parameters repeatedly.
