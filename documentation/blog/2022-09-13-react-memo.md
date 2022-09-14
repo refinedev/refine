@@ -40,17 +40,10 @@ As React is all about rendering components in the virtual DOM prior to updating 
 On the other hand, using it the wrong way can rip us off the benefits. Not only that, on the flip side of unnecessary re-renderings, unnecessary memoization can sometimes cost more than ignoring memoization - eventually hurting performance.
 
 ## Project Setup
-This series is more of a demo than a coding tutorial, as we've made the code already available in this [GitHub repo](https://github.com/refinedev/react-memoization). All the components have been coded ahead of time, and we'll highlighting on the existing code to discuss different aspects of the above mentioned memoization methods.
+This series is more of a demo than a coding tutorial, as we've made the code already available at the [here](#live-stackblitz-example). All the components have been coded ahead of time, and we'll highlighting on the existing code to discuss different aspects of the above mentioned memoization methods.
 
 We'll follow the impact of memoization mainly from the browser's console. 
 
-In order to get everything up and running, please follow these steps:
-
-1. Clone the `react-memoization` project from [this repo](https://github.com/refinedev/react-memoization) to a folder of your choice.
-2. Navigate to the cloned folder and open it in your code editor.
-3. Run `yarn install` to install all npm packages.
-4. Run `yarn start` to start the server.
-5. Open Google Chrome and navigate to `http://localhost:3000`.
 
 ## Project Content Overview
 If you look at the project folder, you'll find out that `react-memoization` is created using `create-react-app`.
