@@ -499,15 +499,6 @@ html[data-page="index"] {
     scroll-behavior: smooth;
 }
 
-html:not([data-page="index"]) {
-    scroll-snap-type: y proximity;
-}
-
-html:not([data-page="index"]) body {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-}
-
 #__docusaurus .main-wrapper {
     padding-top: 64px;
 }
