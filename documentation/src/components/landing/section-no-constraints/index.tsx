@@ -17,7 +17,9 @@ import { CountingNumber } from "../counting-number";
 import { useTWBreakpoints } from "../../../hooks/use-tw-breakpoints";
 import { ExternalLinkIcon } from "../icons/external-link-icon";
 
-export const SectionNoConstraints: React.FC = () => {
+export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
+    starCount,
+}) => {
     const ref = React.useRef<HTMLDivElement>(null);
 
     const { sm, md, lg, xl } = useTWBreakpoints();
@@ -1209,7 +1211,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     <SmallSocialIcons.GithubIcon className="group-hover:text-white text-[#2A2A42]" />
                                                 </div>
                                                 <div className="font-montserrat font-black text-6xl leading-[1.1] text-center select-none">
-                                                    <CountingNumber to={63} />
+                                                    <CountingNumber to={66} />
                                                 </div>
                                                 <div className="font-montserrat font-medium text-[14px] leading-[18px] text-center select-none">
                                                     Contributors
@@ -1261,7 +1263,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     <SmallSocialIcons.GithubIcon className="group-hover:text-white text-[#2A2A42]" />
                                                 </div>
                                                 <div className="font-montserrat font-black text-6xl leading-[1.1] text-center">
-                                                    <CountingNumber to={1600} />
+                                                    <CountingNumber to={2800} />
                                                     +
                                                 </div>
                                                 <div className="font-montserrat font-medium text-[14px] leading-[18px] text-center">
@@ -1314,7 +1316,16 @@ export const SectionNoConstraints: React.FC = () => {
                                                     <SmallSocialIcons.GithubIcon className="group-hover:text-white text-[#2A2A42]" />
                                                 </div>
                                                 <div className="font-montserrat font-black text-6xl leading-[1.1] text-center group-hover:text-[#1890FF] text-[#2A2A42]">
-                                                    <CountingNumber to={2500} />
+                                                    <CountingNumber
+                                                        to={
+                                                            Math.floor(
+                                                                (starCount
+                                                                    ? starCount
+                                                                    : 2800) /
+                                                                    100,
+                                                            ) * 100
+                                                        }
+                                                    />
                                                     +
                                                 </div>
                                                 <div className="font-montserrat font-medium text-[14px] leading-[18px] text-center group-hover:text-[#1890FF] text-[#2A2A42]">
@@ -1367,7 +1378,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     <SmallSocialIcons.DiscordIcon className="group-hover:text-white text-[#5865F2]" />
                                                 </div>
                                                 <div className="font-montserrat font-black text-6xl leading-[1.1] text-center select-none group-hover:text-[#1890FF] text-[#2A2A42]">
-                                                    <CountingNumber to={300} />+
+                                                    <CountingNumber to={500} />+
                                                 </div>
                                                 <div className="font-montserrat font-medium text-[14px] leading-[18px] text-center select-none group-hover:text-[#1890FF] text-[#2A2A42]">
                                                     Discord Members
@@ -1419,7 +1430,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     <SmallSocialIcons.TwitterIcon className="text-[#00AAEC] group-hover:text-white" />
                                                 </div>
                                                 <div className="font-montserrat font-black text-6xl leading-[1.1] text-center select-none group-hover:text-[#1890FF] text-[#2A2A42]">
-                                                    <CountingNumber to={650} />+
+                                                    <CountingNumber to={850} />+
                                                 </div>
                                                 <div className="font-montserrat font-medium text-[14px] leading-[18px] text-center select-none group-hover:text-[#1890FF] text-[#2A2A42]">
                                                     Twitter Followers

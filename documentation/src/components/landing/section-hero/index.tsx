@@ -1,13 +1,7 @@
 import React from "react";
 import Link from "@docusaurus/Link";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
-import {
-    motion,
-    useScroll,
-    useTransform,
-    useAnimationControls,
-} from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import {
     ArrowIcon,
     ChevronRight,
@@ -17,13 +11,10 @@ import {
 } from "../icons";
 import { useTWBreakpoints } from "../../../hooks/use-tw-breakpoints";
 
-export const SectionHero: React.FC = () => {
+export const SectionHero: React.FC<{ starCount?: number }> = ({
+    starCount,
+}) => {
     const ref = React.useRef<HTMLDivElement>(null);
-    const {
-        siteConfig: {
-            customFields: { GITHUB_STARGAZER_TOKEN },
-        },
-    } = useDocusaurusContext();
 
     const { md, lg, xl } = useTWBreakpoints();
 
@@ -71,30 +62,6 @@ export const SectionHero: React.FC = () => {
         // Into these values:
         [4, -4],
     );
-
-    const repo = "refine";
-    const org = "pankod";
-
-    const [githubStarCount, setGithubStarCount] = React.useState(0);
-
-    React.useEffect(() => {
-        (async () => {
-            const response = await fetch(
-                `https://api.github.com/repos/${org}/${repo}?access_token=${GITHUB_STARGAZER_TOKEN}`,
-                {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `token ${token}`,
-                    },
-                },
-            );
-
-            const json = await response.json();
-
-            setGithubStarCount(json.stargazers_count);
-        })();
-    }, []);
 
     return (
         // Scroll animated container
@@ -503,10 +470,13 @@ export const SectionHero: React.FC = () => {
                                 <div className="flex items-start h-full">
                                     <CloudTipIcon className="mt-2 -mr-px" />
                                     <div className="cloud rounded-md bg-white text-[#211d21] h-full flex items-center justify-center px-1.5 font-montserrat font-bold text-base">
-                                        {`${githubStarCount ?? "0"}`.padStart(
-                                            4,
-                                            "0",
-                                        )}
+                                        <span
+                                            className={`${
+                                                starCount ? "" : "invisible"
+                                            }`}
+                                        >
+                                            {starCount ? starCount : "1234"}
+                                        </span>
                                     </div>
                                 </div>
                             </a>
