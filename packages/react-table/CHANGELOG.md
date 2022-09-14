@@ -1,5 +1,11 @@
 # @pankod/refine-react-table
 
+## 4.7.2
+
+### Patch Changes
+
+-   Fixed version of react-router to `6.3.0`
+
 ## 4.7.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @pankod/refine-cloud
 
+## 4.0.2
+
+### Patch Changes
+
+-   Fixed version of react-router to `6.3.0`
+
 ## 4.0.1
 
 ### Patch Changes

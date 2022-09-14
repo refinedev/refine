@@ -1,5 +1,11 @@
 # @pankod/refine-react-hook-form
 
+## 3.33.2
+
+### Patch Changes
+
+-   Fixed version of react-router to `6.3.0`
+
 ## 3.33.1
 
 ### Patch Changes

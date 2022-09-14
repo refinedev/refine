@@ -1,5 +1,14 @@
 # @pankod/refine-mantine
 
+## 1.0.2
+
+### Patch Changes
+
+-   Fixed version of react-router to `6.3.0`
+
+-   Updated dependencies []:
+    -   @pankod/refine-ui-types@0.7.0
+
 ## 1.0.1
 
 ### Patch Changes

@@ -1,5 +1,21 @@
 # @pankod/refine-mui
 
+## 3.45.0
+
+### Minor Changes
+
+-   Added `render` prop to `Sider` component. You can get `dashboard`, `logout` and `items` from `render` props to customize the `Sider` component.
+
+### Patch Changes
+
+-   Fixed version of react-router to `6.3.0`
+
+-   Passed `collapsed` prop to `render` method in `Sider` component of `@pankod/refine-mui`.
+
+-   Updated dependencies []:
+    -   @pankod/refine-react-hook-form@3.33.2
+    -   @pankod/refine-ui-types@0.7.0
+
 ## 3.44.2
 
 ### Patch Changes

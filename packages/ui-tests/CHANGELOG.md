@@ -1,5 +1,19 @@
 # @pankod/refine-ui-tests
 
+## 0.7.0
+
+### Minor Changes
+
+-   Updated `Sider` test for `render` props.
+
+### Patch Changes
+
+-   Fixed version of react-router to `6.3.0`
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.69.9
+    -   @pankod/refine-ui-types@0.7.0
+
 ## 0.6.1
 
 ### Patch Changes

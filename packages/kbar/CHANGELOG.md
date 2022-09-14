@@ -1,5 +1,11 @@
 # @pankod/refine-kbar
 
+## 0.10.2
+
+### Patch Changes
+
+-   Fixed version of react-router to `6.3.0`
+
 ## 0.10.1
 
 ### Patch Changes
