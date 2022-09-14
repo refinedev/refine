@@ -16,11 +16,7 @@ import create from '@site/static/img/blog/2022-09-02-sveltekit-crud-app/create.p
 import terminal from '@site/static/img/blog/2022-09-02-sveltekit-crud-app/terminal.png';
 
 
- <br />
 
-<div class="img-container">
-    <img src={social} alt="social" />
-</div>
 
 
 
@@ -40,6 +36,7 @@ Steps we’ll cover:
 - [Create New Blog](#create-new-blog)
 - [Update Blog](#update-blog)
 - [Delete Blog](#delete-blog)
+
 
 ## What is Sveltekit
 
