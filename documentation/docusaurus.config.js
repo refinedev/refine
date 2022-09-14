@@ -178,19 +178,19 @@ const siteConfig = {
             },
             links: [
                 {
-                    title: "Why refine?",
+                    title: "Resources",
                     items: [
                         {
-                            label: "Features",
+                            label: "Getting Started",
                             to: "docs/getting-started/overview",
                         },
                         {
-                            label: "Enterprise",
-                            to: "/enterprise",
+                            label: "Tutorials",
+                            to: "docs",
                         },
                         {
-                            label: "Demo",
-                            to: "/demo",
+                            label: "Blog",
+                            to: "blog",
                         },
                     ],
                 },
@@ -198,50 +198,12 @@ const siteConfig = {
                     title: "Product",
                     items: [
                         {
-                            label: "Features",
-                            to: "docs/getting-started/overview",
+                            label: "Examples",
+                            to: "examples",
                         },
                         {
-                            label: "Enterprise",
-                            to: "/enterprise",
-                        },
-                        {
-                            label: "Demo",
-                            to: "/demo",
-                        },
-                    ],
-                },
-                {
-                    title: "Open Source",
-                    items: [
-                        {
-                            label: "Features",
-                            to: "docs/getting-started/overview",
-                        },
-                        {
-                            label: "Enterprise",
-                            to: "/enterprise",
-                        },
-                        {
-                            label: "Demo",
-                            to: "/demo",
-                        },
-                    ],
-                },
-                {
-                    title: "Developers",
-                    items: [
-                        {
-                            label: "Features",
-                            to: "docs/getting-started/overview",
-                        },
-                        {
-                            label: "Enterprise",
-                            to: "/enterprise",
-                        },
-                        {
-                            label: "Demo",
-                            to: "/demo",
+                            label: "Integrations",
+                            to: "integrations",
                         },
                     ],
                 },
@@ -249,16 +211,12 @@ const siteConfig = {
                     title: "Company",
                     items: [
                         {
-                            label: "Features",
-                            to: "docs/getting-started/overview",
+                            label: "About",
+                            to: "/",
                         },
                         {
-                            label: "Enterprise",
-                            to: "/enterprise",
-                        },
-                        {
-                            label: "Demo",
-                            to: "/demo",
+                            label: "Store 🎁",
+                            to: "https://store.refine.dev",
                         },
                     ],
                 },
