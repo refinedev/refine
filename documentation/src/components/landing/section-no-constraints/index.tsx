@@ -838,7 +838,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     <div className="">
                                                         <Link
                                                             to="/examples"
-                                                            className="appearance-none border border-[#F0F2F5] bg-[#F6F6F9] border-solid rounded-[20px] h-7 w-[153px] flex items-center justify-between pl-3 py-1 pr-1"
+                                                            className="appearance-none border border-[#F0F2F5] bg-[#F6F6F9] border-solid rounded-[20px] h-7 w-[153px] flex items-center justify-between pl-3 py-1 pr-1 mx-auto"
                                                         >
                                                             <span className="uppercase text-[#9696B4] text-[12px] leading-[12px] font-montserrat font-bold">
                                                                 view examples
