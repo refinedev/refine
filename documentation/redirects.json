@@ -1047,6 +1047,10 @@
         {
             "from": "/enterprise/",
             "to": "/"
+        },
+        {
+            "from": "/headset/",
+            "to": "/"
         }
     ]
 }
