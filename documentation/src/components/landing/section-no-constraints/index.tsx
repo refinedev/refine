@@ -1490,7 +1490,7 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                                 >
                                                     <SmallSocialIcons.LikeIconAlt />
                                                 </div>
-                                                <div className="font-montserrat font-bold text-xl text-center pb-4 pt-1 group-hover:text-[#1890FF] text-[#2A2A42] select-none">
+                                                <div className="font-montserrat font-bold leading-[28px] text-[18px] lg:text-[20px] text-center pb-4 pt-1 group-hover:text-[#1890FF] text-[#2A2A42] select-none">
                                                     <span className="inline group-hover:hidden">
                                                         Come to dark side
                                                     </span>
