@@ -7,16 +7,11 @@ import { Landing } from "../components/landing";
 
 function Home() {
     React.useEffect(() => {
-        const listener = function () {
+        return () => {
+            // scroll to top after unmount with set timeout
             setTimeout(() => {
                 window.scrollTo(0, 0);
             }, 0);
-        };
-
-        window.addEventListener("locationchange", listener);
-
-        return () => {
-            window.removeEventListener("locationchange", listener);
         };
     }, []);
 
