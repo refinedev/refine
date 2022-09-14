@@ -1,18 +1,40 @@
-import { Create, Select, TextInput, useForm } from "@pankod/refine-mantine";
+import {
+    Create,
+    Edit,
+    Select,
+    TextInput,
+    useForm,
+    useSelect,
+} from "@pankod/refine-mantine";
 
 export const PostCreate: React.FC = () => {
-    const { saveButtonProps, getInputProps } = useForm({
+    const { saveButtonProps, getInputProps, values } = useForm({
+        refineCoreProps: {
+            action: "edit",
+        },
         initialValues: {
             title: "",
             status: "rejected",
+            category: {
+                id: 49,
+            },
         },
     });
 
+    console.log("values", values);
+
+    const { selectProps } = useSelect({
+        resource: "categories",
+        defaultValue: 1,
+    });
+    console.log("selectProps", selectProps);
+
     return (
-        <Create saveButtonProps={saveButtonProps}>
+        <Edit saveButtonProps={saveButtonProps}>
             <form>
-                <TextInput label="Title" {...getInputProps("title")} />
+                <TextInput mt={4} label="Title" {...getInputProps("title")} />
                 <Select
+                    mt={4}
                     label="Status"
                     placeholder="Pick one"
                     {...getInputProps("status")}
@@ -22,7 +44,19 @@ export const PostCreate: React.FC = () => {
                         { label: "Rejected", value: "rejected" },
                     ]}
                 />
+                <Select
+                    mt={4}
+                    label="Categories"
+                    placeholder="Pick one"
+                    // {...selectProps}
+                    data={[
+                        { label: "Published", value: 1 },
+                        { label: "Draft", value: 2 },
+                        { label: "Rejected", value: 49 },
+                    ]}
+                    {...getInputProps("category.id")}
+                />
             </form>
-        </Create>
+        </Edit>
     );
 };
