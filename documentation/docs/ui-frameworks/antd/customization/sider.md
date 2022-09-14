@@ -17,6 +17,7 @@ const {
     Icons,
     Title: DefaultTitle,
     Sider,
+    Header,
 } = RefineAntd;
 const {
     useTranslate,
@@ -29,7 +30,7 @@ const {
     useMenu,
     useRefineContext,
 } = RefineCore;
-import { Sider } from "@pankod/refine-antd";
+import { Header } from "@pankod/refine-antd";
 
 // visible-block-start
 import {
