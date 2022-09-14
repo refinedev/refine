@@ -223,10 +223,10 @@ const siteConfig = {
                 {
                     title: "__LEGAL",
                     items: [
-                        // {
-                        //     label: "License",
-                        //     to: "docs/getting-started/overview",
-                        // },
+                        {
+                            label: "License",
+                            to: "https://github.com/pankod/refine/blob/next/LICENSE",
+                        },
                         // {
                         //     label: "Terms",
                         //     to: "/enterprise",
@@ -235,10 +235,10 @@ const siteConfig = {
                             label: "Privacy",
                             to: "/privacy-policy",
                         },
-                        {
-                            label: "info@refine.dev",
-                            to: "mailto:info@refine.dev",
-                        },
+                        // {
+                        //     label: "info@refine.dev",
+                        //     to: "mailto:info@refine.dev",
+                        // },
                     ],
                 },
                 {

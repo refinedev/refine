@@ -1,5 +1,5 @@
 import React from "react";
-import clsx from "clsx";
+import { useReward } from "react-rewards";
 
 const LoveIcon = (props) => (
     <svg
@@ -111,6 +111,31 @@ export default function FooterLayout({
     legalLinks,
     socialLinks,
 }) {
+    const { reward: leftReward, isAnimating: leftIsAnimating } = useReward(
+        "leftReward",
+        "emoji",
+        {
+            emoji: ["🔥", "⭐", "❤️"],
+            angle: 45,
+            elementCount: 80,
+            startVelocity: 45,
+            decay: 0.95,
+            lifetime: 150,
+        },
+    );
+    const { reward: rightReward, isAnimating: rightIsAnimating } = useReward(
+        "rightReward",
+        "emoji",
+        {
+            emoji: ["💙", "💜", "🧡", "💖"],
+            angle: 135,
+            elementCount: 80,
+            startVelocity: 45,
+            decay: 0.95,
+            lifetime: 150,
+        },
+    );
+
     return (
         <footer className="refine-footer px-4 md:px-6 pt-7 pb-24 lg:pt-10 lg:pb-24">
             <div className="max-w-6xl mx-auto flex flex-col gap-5">
@@ -130,7 +155,14 @@ export default function FooterLayout({
                     <div className="flex-1">
                         <div className="flex items-center text-[#9696B4] text-[11px] sm:text-xs leading-[12px] font-montserrat justify-center lg:justify-start">
                             © 2022, refine from Delaware to whereever
-                            you&apos;re with <LoveIcon className="ml-2" />
+                            you&apos;re with{" "}
+                            <LoveIcon
+                                className="ml-2"
+                                onClick={() => {
+                                    leftReward();
+                                    rightReward();
+                                }}
+                            />
                         </div>
                     </div>
                     <div className="flex-1 flex flex-col sm:flex-row gap-6 sm:gap-0">
@@ -176,6 +208,14 @@ export default function FooterLayout({
                     </div>
                 </div>
             </div>
+            <span
+                className="fixed -left-10 bottom-[20vh] z-10 "
+                id="leftReward"
+            />
+            <span
+                className="fixed -right-10 bottom-[20vh] z-10 "
+                id="rightReward"
+            />
         </footer>
     );
 }
