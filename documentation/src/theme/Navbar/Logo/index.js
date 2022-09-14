@@ -5,7 +5,7 @@ import { RefineIcon } from "../../../components/landing/icons/refine-icon";
 
 export default function NavbarLogo({ className, ...props }) {
     return (
-        <Link to="/">
+        <Link to="/" className="mx-auto lg:mx-0">
             <RefineIcon
                 className={
                     className
