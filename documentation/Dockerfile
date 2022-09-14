@@ -4,7 +4,7 @@ WORKDIR /opt/app
 
 RUN apk add git openssh-client
 
-ENV NODE_ENV production
+ENV NODE_ENV development
 
 COPY package*.json ./
 
