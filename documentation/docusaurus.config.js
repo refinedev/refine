@@ -253,6 +253,10 @@ const siteConfig = {
                             label: "discord",
                         },
                         {
+                            href: "https://reddit.com/r/refine",
+                            label: "reddit",
+                        },
+                        {
                             href: "https://twitter.com/refine_dev",
                             label: "twitter",
                         },

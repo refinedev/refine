@@ -30,7 +30,7 @@ function Column({ column }) {
 }
 export default function FooterLinksMultiColumn({ columns }) {
     return (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-auto lg:grid-flow-col max-w-[460px] ml-auto mr-auto lg:mr-0 place-content-center lg:place-items-end lg:place-content-end gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-auto lg:grid-flow-col max-w-[460px] ml-auto mr-auto lg:mr-0 place-content-center lg:place-content-end gap-4">
             {columns.map((column, i) => (
                 <Column key={i} column={column} />
             ))}
