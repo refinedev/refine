@@ -223,17 +223,21 @@ const siteConfig = {
                 {
                     title: "__LEGAL",
                     items: [
-                        {
-                            label: "License",
-                            to: "docs/getting-started/overview",
-                        },
-                        {
-                            label: "Terms",
-                            to: "/enterprise",
-                        },
+                        // {
+                        //     label: "License",
+                        //     to: "docs/getting-started/overview",
+                        // },
+                        // {
+                        //     label: "Terms",
+                        //     to: "/enterprise",
+                        // },
                         {
                             label: "Privacy",
-                            to: "/demo",
+                            to: "/privacy-policy",
+                        },
+                        {
+                            label: "info@refine.dev",
+                            to: "mailto:info@refine.dev",
                         },
                     ],
                 },
