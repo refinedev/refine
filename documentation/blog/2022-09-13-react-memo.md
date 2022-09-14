@@ -1,29 +1,36 @@
 ---
-title: A Guide for Next.js with TypeScript
+title: Memoization in React
 description: We will explain the entire process of how to use Next.js in TypeScript
 slug: react-memo
-authors: michael
-tags: [nextjs, typescript]
-image: https://refine.dev/img/blog/2022-09-12-next-typescript/social.png
+authors: michaabdullah_numanel
+tags: [reac, typescript]
+image: https://refine.dev/img/blog/2022-09-13-react-memo/social.png
 hide_table_of_contents: false
 ---
 
-import memo1 from '@site/static/img/blog/2022-09-13-react-memo/social.png';
+import memo1 from '@site/static/img/blog/2022-09-13-react-memo/memo1.png';
 import memo2 from '@site/static/img/blog/2022-09-13-react-memo/memo2.png';
 import memo3 from '@site/static/img/blog/2022-09-13-react-memo/memo3.png';
 import memo4 from '@site/static/img/blog/2022-09-13-react-memo/memo4.png';
-import signout from '@site/static/img/blog/2022-09-13-react-memo/signout.png';
 
-# Memoization in React
+# 
 
 ## Introduction
 This is the first part of a series on the use of memoization in React. In this series, we'll cover memoizing a React component with `React.memo()` as well as caching functions and values with React's memoization hooks.
 
 We will begin with a progressive example that involves memoizing a functional component, which will be gradually extended to include use cases for the hooks: `useCallback()` and `useMemo()`. `useCallback()` is leveraged for memoizing a callback function, whereas `useMemo()` is used to cache a computed value from an expensive function, for example, a sorting function that processes large amount of data.
 
-In this post, we'll demonstrate the use of `React.memo()`, which is a **Higher Order Function**, or **HOC** that adds caching logic to the passed in component. In the upcoming articles, we'll discuss about how to use `useCallback()` and `useMemo()`.
+In this post, we'll demonstrate the use of `React.memo()`, which is a Higher Order Function, or HOC that adds caching logic to the passed in component. In the upcoming articles, we'll discuss about how to use `useCallback()` and `useMemo()`.
 
-## What is Memoization ?
+Steps we'll cover:
+-[What is Memoization?](#what-is-memoization)
+-[Project Setup](#project-setup)
+-[Project Content Overview](#project-content-overview)
+-[Memoizing a Functional Component using `React.memo()`](#memoizing-a-functional-component-using-reactmemo)
+-[Memoizing Props](#memoizing-props)
+-[Comparing Prop Values](#comparing-prop-values)
+
+## What is Memoization?
 Memoization is an optimization technique that allows us to store the last computed value or object from a resource-intensive function. It allows us to bypass the function's costly computations when the function is called with the same parameters repeatedly.
 
 In React, **memoization** is used for optimizing the performance of an app by preventing unnecessary renders of components participating in the component hierarchy and by caching callbacks and values of expensive utility functions.
@@ -33,9 +40,9 @@ As React is all about rendering components in the virtual DOM prior to updating 
 On the other hand, using it the wrong way can rip us off the benefits. Not only that, on the flip side of unnecessary re-renderings, unnecessary memoization can sometimes cost more than ignoring memoization - eventually hurting performance.
 
 ## Project Setup
-This series is more of a demo than a coding tutorial, as we've made the code already available in this [GitHub repo](https://github.com/refinedev/react-memoization). All the components have been coded ahead of time, and we'll use **_commenting out_** and **_uncommenting_** on the existing code to discuss different aspects of the above mentioned memoization methods.
+This series is more of a demo than a coding tutorial, as we've made the code already available in this [GitHub repo](https://github.com/refinedev/react-memoization). All the components have been coded ahead of time, and we'll highlighting on the existing code to discuss different aspects of the above mentioned memoization methods.
 
-We'll follow the impact of memoization mainly from the browser's console. I'll be using Google Chrome, and recommend it for the demonstration.
+We'll follow the impact of memoization mainly from the browser's console. 
 
 In order to get everything up and running, please follow these steps:
 
@@ -44,14 +51,11 @@ In order to get everything up and running, please follow these steps:
 3. Run `yarn install` to install all npm packages.
 4. Run `yarn start` to start the server.
 5. Open Google Chrome and navigate to `http://localhost:3000`.
-6. Use `Ctrl + Shift + J` on Ubuntu or `Command + Option + J` on Mac to inspect the webpage and open browser's console.
 
 ## Project Content Overview
 If you look at the project folder, you'll find out that `react-memoization` is created using `create-react-app`.
 
 The app is based on the idea of a list of posts on a blog. There are several components involving a user seeing the latest posts and a list of the user's posts. Allow yourself some time to understand the components individually, their relationships, their state changes, and how props are passed through. It is crucial to pay close attention to how the change of a parent's state triggers re-render of its descendants.
-
-Our main components for the entire series will be `<App />`, `<Blog/>`, `<LatestPost />`, `<Post />`, `<UserPostsIndex />`, `<UserPostsList />` and `<UserPosts />`.
 
 The focus of this article will be the `<Post />` component, but `<App />`, `<Blog />` and `<LatestPost />` are also involved. Below, we'll delve into what memoizing the `<Post />` component with `React.memo()` does.
 
@@ -65,46 +69,125 @@ We'll skip both for brevity, but if we look `<App />` in the repository, we're s
 In the component, we pass `signedIn` to `<Blog />`:
 
 ```tsx title="src/components/App.jsx"
- <Blog signedIn={signedIn} setSignedIn={setSignedIn} />
+import { useState } from "react";
+import Blog from "./components/Blog";
+
+function App() {
+  const [signedIn, setSignedIn] = useState(false);
+  const handleClick = () => setSignedIn(!signedIn);
+
+console.log('Rendering App component');
+
+  return (
+    <main>
+      <nav>
+        <button onClick={handleClick}>Sign Out</button>
+      </nav>
+      <Blog signedIn={signedIn} setSignedIn={setSignedIn} />
+    </main>
+  );
+};
+
+export default App;
 ```
 
 Looking at `<Blog />`, it gets a list of posts with a click on the `Get Latest Post`  button and sets the `updatedPosts` state:
 
 ```tsx title="src/components/Blog.jsx"
-const getLatestPosts = () => {
-  const posts = fetchUpdatedPosts();
-  setUpdatedPosts(posts);
+import React, { useEffect, useMemo, useState } from "react";
+import fetchUpdatedPosts from "../fetch/fetchUpdatedPosts";
+import allPosts from "./../data/allPosts.json";
+import sortPosts from "../utils/sortPosts";
+import LatestPost from "./LatestPost";
+import UserPostsIndex from "./UserPostsIndex";
+
+const Blog = ({ signedIn }) => {
+  const [updatedPosts, setUpdatedPosts] = useState(allPosts);
+  const [localTime, setLocalTime] = useState(new Date().toLocaleTimeString());
+
+  const getLatestPosts = () => {
+    const posts = fetchUpdatedPosts();
+    setUpdatedPosts(posts);
+  };
+
+  const sortedPosts = sortPosts(updatedPosts);
+
+  useEffect(() => {
+    const id = setInterval(
+      () => setLocalTime(new Date().toLocaleTimeString()),
+      1000
+    );
+    return () => clearInterval(id);
+  }, []);
+
+  console.log("Rendering Blog component");
+
+  return (
+    <div>
+      <div>{localTime}</div>
+      <button onClick={getLatestPosts}>Get Latest Post</button>
+      //highlight-next-line
+      <LatestPost signedIn={signedIn} post={sortedPosts[0]} />
+      <UserPostsIndex signedIn={signedIn} />
+    </div>
+  );
 };
+
+export default Blog;
 ```
 
-We can see that the first item from a sorted array is then passed to `<LatestPost />` component along with `signedIn`:
 
-```tsx title="src/components/Blog.jsx"
-<LatestPost signedIn={signedIn} post={sortedPosts[0]} />
-```
+We can see that the first item from a sorted array is then passed to `<LatestPost />` component along with `signedIn`.
+
+
 
 Then coming to `<LatestPost />`, it nests the `<Post />` component, which we are going to memoize with `React.memo()`. Let's quickly run through `<LatestPost />` in the repository to see what it does.
 
 We can see that `<LatestPost />` changes its local state of `likesCount` every 3 seconds in the `useEffect()` hook:
 
 ```tsx title="src/components/LatestPost.jsx"
-useEffect(
-    () => {
-      const id = setInterval(() =>{
-        setLikesCount(likesCount => likesCount + 1)
-      }, 3000);
+import React, { useEffect, useState } from "react";
+import Post from "./Post";
 
-      return () => clearInterval(id);
-    },
-    []
+const LatestPost = ({ signedIn, post }) => {
+  const [likesCount, setLikesCount] = useState(null);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setLikesCount((likesCount) => likesCount + 1);
+    }, 3000);
+
+    return () => clearInterval(id);
+  }, []);
+
+  console.log("Rendering LatestPost component");
+
+  return (
+    <div>
+      {post ? (
+        <>
+        //highlight-next-line
+          <Post signedIn={signedIn} post={post} />
+          {likesCount && (
+            <div className="my-1 p-1">
+              <span>{likesCount} Likes</span>
+            </div>
+          )}
+        </>
+      ) : (
+        <p>Click on Get Latest Post button</p>
+      )}
+    </div>
   );
+};
+
+export default LatestPost;
+
 ```
 
 Because of this, `<LatestPost />` should re-render every 3 seconds. So should `<Post />` as a consequence of being a child of `<LatestPost />`:
 
-```tsx title="src/components/LatestPost.jsx"
-<Post signedIn={signedIn} post={post} />
-```
+
 
 Let's now focus on `<Post />`. It receives `signedIn` and `post` as props and displays the content of `post`:
 
@@ -136,7 +219,11 @@ As you can see `<Post />` does not depend on `likesCount` but is re-rendered by 
 
 If we check our Chrome's console we have `<Post />` rendering again and again following an interval:
 
-![React.memo-1](https://imgbox.com/funhoBmF)
+ <div class="img-container">
+    <img src={memo1} alt="memo1" />
+</div>
+
+<br/>
 
 Notice, rendering `<Post />` is accompanied by `<LatestPost />`, so it is consistent that `<Post />`'s re-renders are happening due to `likesCount` state changes in `<LatestPost />`.
 
@@ -153,9 +240,7 @@ const Post = ({ signedIn, post }) => {
 
 console.log('Rendering Post component');
 
-  return (
-   ... 
-  );
+  return ( ... );
 };
 
 //highlight-next-line
@@ -164,33 +249,43 @@ export default React.memo(Post);
 
 Looking at the console, we can see that `Post` is no longer re-rendered at 3s intervals:
 
-![React.memo-2](https://imgbox.com/qv2W1abO)
+
+ <div class="img-container">
+    <img src={memo2} alt="memo2" />
+</div>
+
+<br/>
 
 It is clear that memoizing `<Post />` reduces the number of re-renders. In a realtime app, this does huge a favor because re-renders due to frequent likes coming in turns out to be very costly for the app's performance.
 
 ## Memoizing Props
-We can see that `<Post />` receives `signedIn` and `post` props. Now, unlike with `likesCount`, `<Post />` **depends on** `signIn` and `post`. And `React.memo()` caches these props and checks for incoming changes in them. Incoming changes to them triggers a re-render. So, altering any of `signedIn` or `post` re-renders `Post`.
+We can see that `<Post />` receives `signedIn` and `post` props.
+
+ Now, unlike with `likesCount`, `<Post />` **depends on** `signIn` and `post`. And **React memo** caches these props and checks for incoming changes in them. Incoming changes to them triggers a re-render. So, altering any of `signedIn` or `post` re-renders `Post`.
 
 If you look at `<App />`, we see that `signedIn` originated from there and gets relayed via `<Blog />` and `<LatestPost />` to `<Post />` as props. We have a button in the navbar that toggles the value of `signedIn`.
 
 Let's try toggling its value to see the effect on memoized `<Post />`:
 
-![React-memo-signin](https://imgbox.com/gsbaHWrQ)
 
-This also requires uncommenting `// console.log(signedIn)` in `<Post />` in order to log the value of `signedIn` to the console:
 
-```
-// src/components/Post.jsx
+Add the following console log in `<Post />` in order to log the value of `signedIn` to the console:
 
-  console.log('Rendering Post component');
-  console.log(signedIn);
+```tsx
+//highlight-next-line
+console.log(signedIn);
 ```
 
 When we click on the `Sign Out` button in the navbar, we can see in the console that `<Post />` re-renders after `<LatestPost />`:
 
-![React.memo-3](https://imgbox.com/fwYzf04V)
 
-This is because `React.memo()` caches the props passed to the component and checks for incoming changes. Do notice the Boolean value of `signedIn` printed to the console. A change in `signedIn` 's state renews the memoization and a re-render of the component is triggered.
+<div class="img-container">
+    <img src={memo3} alt="memo3" />
+</div>
+
+<br/>
+
+This is because **React memo**  caches the props passed to the component and checks for incoming changes. Do notice the Boolean value of `signedIn` printed to the console. A change in `signedIn` 's state renews the memoization and a re-render of the component is triggered.
 
 This is actually what we want. Because we don't want `<Post />` to re-render when we don't need it to, and we want to re-render it when we need it to.
 
@@ -200,8 +295,8 @@ In our example, had we resorted to `React.memo()` solely to retain the value of 
 
 It is therefore important to figure out the performance gains by measuring and analyzing runtime performance using browser utilities like Chrome DevTools.
 
- ## Comparing Prop Values
- `React.memo()` checks for changes between the previous and current values for a given prop passed to the component. The default function carries out a shallow comparison on each passed in prop. It checks for equality of incoming values with the existing ones.
+## Comparing Prop Values
+ **React memo** checks for changes between the previous and current values for a given prop passed to the component. The default function carries out a shallow comparison on each passed in prop. It checks for equality of incoming values with the existing ones.
 
  In our `React.memo(Post)` memo, the current states of `signedIn` and `post` are checked for equality to their incoming states. If both values for each prop are equal, the memoized value is retained and re-render prevented. If they are not equal, the new value is cached and `<Post />` re-renders.
 
@@ -209,32 +304,87 @@ It is therefore important to figure out the performance gains by measuring and a
 
  It is also possible to customize the comparison by passing in a comparator function as a second argument:
 
-```
- React.memo(Post, customComparator);
+```tsx
+React.memo(Post, customComparator);
  ```
 
 We can specify dependencies for `React.memo()` and choose to compare only the props we want to:
 
-```
-// src/components/Post.jsx
+```tsx title="src/components/Post.jsx"
+import React from "react";
 
+const Post = ({ signedIn, post }) => {
+  console.log("Rendering Post component");
+
+  return ( ... );
+};
+
+//highlight-start
 const customComparator = (prevProps, nextProps) => {
   return nextProps.post === prevProps.post;
 };
+//highlight-end
 
-// export default Post;
-// export default React.memo(Post);
+//highlight-start
 export default React.memo(Post, customComparator);
+//highlight-end
 ```
 Here, we are omiting `signedIn` from being compared by comparing only `post` 's values. Now, if we click on `Sign Out` button, `Post` is not being re-rendered:
 
-![React.memo-4](https://imgbox.com/akoOqEna)
+
+<div class="img-container">
+    <img src={memo4} alt="memo4" />
+</div>
+
+<br/>
 
 `customComparator` checks for equality of incoming values of only `post` with its current value and returns `true` if they are equal. Memoization will renew if the incoming value of'post` is unequal to its cached value.
 
-### Summary
+## Conclusion
 In this post, we found out that `React.memo()` is very useful in preventing unnecessary, frequent re-renders of a component due to changes in states that it does not depend on. A good example involves a component that accepts props whose values change frequently and/or on demand. We can also choose to specify only the props we want in a custom comparator function.
 
 In the next article, we will turn our attention back to the `<Blog />` component and memoize a sorting function with `useMemo()` hook.
+
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
+</a>
+</div>
+
+
+## Live StackBlitz Example
+
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/blog/react-memoization-memo/?embed=1&view=preview&theme=dark&preset=node"
+     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+     title="react-memoization-memo"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
+
+---
+
+## Build your React-based CRUD applications without constraints
+
+Low-code React frameworks are great for gaining development speed but they often fall short of flexibility if you need extensive styling and customization for your project.
+
+Check out [refine](https://github.com/pankod/refine),if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
+
+
+<div>
+<a href="https://github.com/pankod/refine">
+    <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
+</a>
+</div>
+
+<br/>
+
+**refine** is an open-source React-based framework for building CRUD applications **without constraints.**
+It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
+
+**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
+
+Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials, and example projects.
 
 
