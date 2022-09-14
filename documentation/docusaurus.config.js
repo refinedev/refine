@@ -143,7 +143,7 @@ const siteConfig = {
                     position: "left",
                 },
                 { to: "blog", label: "Blog", position: "left" },
-                { to: "about", label: "About", position: "left" },
+                // { to: "about", label: "About", position: "left" },
                 {
                     to: "https://store.refine.dev",
                     label: "Store 🎁",
