@@ -784,5 +784,13 @@ module.exports = {
             type: "doc",
             id: "faq",
         },
+        {
+            type: "doc",
+            id: "licence",
+        },
+        {
+            type: "doc",
+            id: "benchmarks",
+        }
     ],
 };
