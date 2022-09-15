@@ -1,5 +1,6 @@
 import React from "react";
-// import { RefineAuthPageProps } from "@pankod/refine-ui-types";
+import { BoxProps, CardProps } from "@mui/material";
+import { RefineAuthPageProps } from "@pankod/refine-ui-types";
 
 import {
     LoginPage,
@@ -8,58 +9,25 @@ import {
     UpdatePasswordPage,
 } from "./components";
 
+export type AuthProps = RefineAuthPageProps<BoxProps, CardProps>;
+
 /**
- * **refine** has a default auth page form which is served on `/login` route when the `authProvider` configuration is provided.
+ * **refine** has a default auth page form served on the `/login` route when the `authProvider` configuration is provided.
  *
- * @see {@link https://refine.dev/docs/api-references/components/refine-config#authpage} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/mui-auth-page/} for more details.
  */
-export const AuthPage: React.FC<any> = ({
-    type,
-    providers,
-    loginLink,
-    remember,
-    registerLink,
-    resetPasswordLink,
-    submitButton,
-}) => {
+export const AuthPage: React.FC<AuthProps> = (props) => {
+    const { type } = props;
     const renderView = () => {
         switch (type) {
-            case "login":
-                return (
-                    <LoginPage
-                        providers={providers}
-                        submitButton={submitButton}
-                        registerLink={registerLink}
-                        resetPasswordLink={resetPasswordLink}
-                        remember={remember}
-                    />
-                );
             case "register":
-                return (
-                    <RegisterPage
-                        submitButton={submitButton}
-                        loginLink={loginLink}
-                    />
-                );
+                return <RegisterPage {...props} />;
             case "resetPassword":
-                return (
-                    <ResetPasswordPage
-                        submitButton={submitButton}
-                        loginLink={loginLink}
-                    />
-                );
+                return <ResetPasswordPage {...props} />;
             case "updatePassword":
-                return <UpdatePasswordPage submitButton={submitButton} />;
-
+                return <UpdatePasswordPage {...props} />;
             default:
-                return (
-                    <LoginPage
-                        providers={providers}
-                        submitButton={submitButton}
-                        registerLink={registerLink}
-                        resetPasswordLink={resetPasswordLink}
-                    />
-                );
+                return <LoginPage {...props} />;
         }
     };
 
