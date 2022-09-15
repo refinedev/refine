@@ -38,7 +38,17 @@ export const RouterProvider: IRouterProvider = {
         const router = useRouter();
 
         const { query } = router;
-        return handleUseParams(query);
+        const { refine } = query;
+        let params = {};
+        if (refine && Array.isArray(refine)) {
+            const [resource, action, id] = refine;
+            params = {
+                resource,
+                action,
+                id,
+            };
+        }
+        return { ...params, ...handleUseParams(query) } as Params;
     },
     Prompt,
     Link: RefineLink,
