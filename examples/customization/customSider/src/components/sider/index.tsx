@@ -4,18 +4,30 @@ import {
     ITreeMenu,
     CanAccess,
     useRouterContext,
+    useRefineContext,
+    useIsExistAuthentication,
+    useTranslate,
+    useLogout,
 } from "@pankod/refine-core";
-import { AntdLayout, Menu, useMenu, Grid } from "@pankod/refine-antd";
-import { UnorderedListOutlined } from "@ant-design/icons";
+import { AntdLayout, Menu, useMenu, Grid, Sider } from "@pankod/refine-antd";
+import {
+    DashboardOutlined,
+    LogoutOutlined,
+    UnorderedListOutlined,
+} from "@ant-design/icons";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
-export const CustomSider: React.FC = () => {
+export const CustomSider: typeof Sider = ({ render }) => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
-    const Title = useTitle();
+    const isExistAuthentication = useIsExistAuthentication();
     const { Link } = useRouterContext();
+    const { mutate: mutateLogout } = useLogout();
+    const Title = useTitle();
+    const translate = useTranslate();
+    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
+    const { hasDashboard } = useRefineContext();
     const { SubMenu } = Menu;
 
-    const { menuItems, selectedKey } = useMenu();
     const breakpoint = Grid.useBreakpoint();
 
     const isMobile =
@@ -64,6 +76,51 @@ export const CustomSider: React.FC = () => {
         });
     };
 
+    const logout = isExistAuthentication && (
+        <Menu.Item
+            key="logout"
+            onClick={() => mutateLogout()}
+            icon={<LogoutOutlined />}
+        >
+            {translate("buttons.logout", "Logout")}
+        </Menu.Item>
+    );
+
+    const dashboard = hasDashboard ? (
+        <Menu.Item
+            key="dashboard"
+            style={{
+                fontWeight: selectedKey === "/" ? "bold" : "normal",
+            }}
+            icon={<DashboardOutlined />}
+        >
+            <Link to="/">{translate("dashboard.title", "Dashboard")}</Link>
+            {!collapsed && selectedKey === "/" && (
+                <div className="ant-menu-tree-arrow" />
+            )}
+        </Menu.Item>
+    ) : null;
+
+    const items = renderTreeView(menuItems, selectedKey);
+
+    const renderSider = () => {
+        if (render) {
+            return render({
+                dashboard,
+                items,
+                logout,
+                collapsed,
+            });
+        }
+        return (
+            <>
+                {dashboard}
+                {items}
+                {logout}
+            </>
+        );
+    };
+
     return (
         <AntdLayout.Sider
             collapsible
@@ -75,6 +132,7 @@ export const CustomSider: React.FC = () => {
         >
             {Title && <Title collapsed={collapsed} />}
             <Menu
+                defaultOpenKeys={defaultOpenKeys}
                 selectedKeys={[selectedKey]}
                 mode="inline"
                 onClick={() => {
@@ -83,7 +141,7 @@ export const CustomSider: React.FC = () => {
                     }
                 }}
             >
-                {renderTreeView(menuItems, selectedKey)}
+                {renderSider()}
             </Menu>
         </AntdLayout.Sider>
     );

@@ -16,6 +16,7 @@ import {
     CardProps,
     LayoutProps,
     Divider,
+    FormProps,
 } from "antd";
 import { useLogin, useTranslate, useRouterContext } from "@pankod/refine-core";
 
@@ -23,7 +24,7 @@ import { layoutStyles, containerStyles, titleStyles } from "../styles";
 
 const { Text, Title } = Typography;
 
-type LoginProps = RefineLoginPageProps<LayoutProps, CardProps>;
+type LoginProps = RefineLoginPageProps<LayoutProps, CardProps, FormProps>;
 
 /**
  * **refine** has a default login page form which is served on `/login` route when the `authProvider` configuration is provided.
@@ -39,6 +40,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     wrapperProps,
     onSubmit,
     renderContent,
+    formProps,
 }) => {
     const [form] = Form.useForm<RefineLoginFormTypes>();
     const translate = useTranslate();
@@ -103,6 +105,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                 initialValues={{
                     remember: false,
                 }}
+                {...formProps}
             >
                 <Form.Item
                     name="email"

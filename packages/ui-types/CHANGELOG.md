@@ -1,5 +1,115 @@
 # @pankod/refine-ui-types
 
+## 0.9.0
+
+### Minor Changes
+
+-   Added `formProps` property to `RefineAuthPageProps`, `RefineResetPasswordPageProps`, `RefineRegisterPageProps`, and `RefineUpdatePasswordPageProps`
+
+## 0.8.0
+
+### Minor Changes
+
+-   [#2516](https://github.com/pankod/refine/pull/2516) [`ad99916d6d`](https://github.com/pankod/refine/commit/ad99916d6dbd181b857fd7df7b9619d8cac5e3e0) Thanks [@omeraplak](https://github.com/omeraplak)! - Added `formProps` property to `RefineAuthPageProps`, `RefineResetPasswordPageProps`, `RefineRegisterPageProps`, and `RefineUpdatePasswordPageProps`
+
+## 0.7.0
+
+### Minor Changes
+
+-   Updated `Sider` types for `render` props.
+
+### Patch Changes
+
+-   Updated `render` method type with `collapsed` prop in `RefineLayoutSiderProps`.
+
+-   Added new types for `<AuthPage>`. You can see following new types:
+
+    **`RefineAuthPageProps`**
+
+    ```tsx
+    export type RefineAuthPageProps<
+        TWrapperProps extends {} = Record<keyof any, unknown>,
+        TContentProps extends {} = Record<keyof any, unknown>,
+    > = (
+        | PropsWithChildren<{
+              type?: "login";
+              providers?: IProvider[];
+              registerLink?: React.ReactNode;
+              resetPasswordLink?: React.ReactNode;
+              rememberMe?: React.ReactNode;
+              onSubmit?: (formValues: RefineLoginFormTypes) => void;
+          }>
+        | PropsWithChildren<{
+              type: "register";
+              loginLink?: React.ReactNode;
+              updatePasswordLink?: React.ReactNode;
+              onSubmit?: (formValues: RefineRegisterFormTypes) => void;
+          }>
+        | PropsWithChildren<{
+              type: "resetPassword";
+              loginLink?: React.ReactNode;
+              onSubmit?: (formValues: RefineResetPasswordFormTypes) => void;
+          }>
+        | PropsWithChildren<{
+              type: "updatePassword";
+              onSubmit?: (formValues: RefineUpdatePasswordFormTypes) => void;
+          }>
+    ) & {
+        wrapperProps?: TWrapperProps;
+        contentProps?: TContentProps;
+        renderContent?: (content: React.ReactNode) => React.ReactNode;
+    };
+    ```
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.69.9
+
+## 0.6.2
+
+### Patch Changes
+
+-   [#2447](https://github.com/pankod/refine/pull/2447) [`628a37a675`](https://github.com/pankod/refine/commit/628a37a6753a778cbec5c29b698981e0157caa42) Thanks [@biskuvit](https://github.com/biskuvit)! - Added new types for `<AuthPage>`. You can see following new types:
+
+    **`RefineAuthPageProps`**
+
+    ```tsx
+    export type RefineAuthPageProps<
+        TWrapperProps extends {} = Record<keyof any, unknown>,
+        TContentProps extends {} = Record<keyof any, unknown>,
+    > = (
+        | PropsWithChildren<{
+              type?: "login";
+              providers?: IProvider[];
+              registerLink?: React.ReactNode;
+              resetPasswordLink?: React.ReactNode;
+              rememberMe?: React.ReactNode;
+              onSubmit?: (formValues: RefineLoginFormTypes) => void;
+          }>
+        | PropsWithChildren<{
+              type: "register";
+              loginLink?: React.ReactNode;
+              updatePasswordLink?: React.ReactNode;
+              onSubmit?: (formValues: RefineRegisterFormTypes) => void;
+          }>
+        | PropsWithChildren<{
+              type: "resetPassword";
+              loginLink?: React.ReactNode;
+              onSubmit?: (formValues: RefineResetPasswordFormTypes) => void;
+          }>
+        | PropsWithChildren<{
+              type: "updatePassword";
+              onSubmit?: (formValues: RefineUpdatePasswordFormTypes) => void;
+          }>
+    ) & {
+        wrapperProps?: TWrapperProps;
+        contentProps?: TContentProps;
+        renderContent?: (content: React.ReactNode) => React.ReactNode;
+    };
+    ```
+
+-   Updated dependencies [[`628a37a675`](https://github.com/pankod/refine/commit/628a37a6753a778cbec5c29b698981e0157caa42)]:
+    -   @pankod/refine-core@3.69.7
+
 ## 0.6.1
 
 ### Patch Changes

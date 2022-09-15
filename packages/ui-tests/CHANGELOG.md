@@ -1,5 +1,42 @@
 # @pankod/refine-ui-tests
 
+## 0.7.2
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-ui-types@0.9.0
+
+## 0.7.1
+
+### Patch Changes
+
+-   Updated dependencies [[`ad99916d6d`](https://github.com/pankod/refine/commit/ad99916d6dbd181b857fd7df7b9619d8cac5e3e0)]:
+    -   @pankod/refine-ui-types@0.8.0
+
+## 0.7.0
+
+### Minor Changes
+
+-   Updated `Sider` test for `render` props.
+
+### Patch Changes
+
+-   Fixed version of react-router to `6.3.0`
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.69.9
+    -   @pankod/refine-ui-types@0.7.0
+
+## 0.6.1
+
+### Patch Changes
+
+-   [#2501](https://github.com/pankod/refine/pull/2501) [`4095a578d4`](https://github.com/pankod/refine/commit/4095a578d471254ee58412f130ac5a0f3a62880f) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed version of react-router to `6.3.0`
+
+-   Updated dependencies [[`4095a578d4`](https://github.com/pankod/refine/commit/4095a578d471254ee58412f130ac5a0f3a62880f)]:
+    -   @pankod/refine-core@3.69.8
+
 ## 0.6.0
 
 ### Minor Changes

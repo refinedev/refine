@@ -1,5 +1,44 @@
 # @pankod/refine-mui
 
+## 3.45.2
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-ui-types@0.9.0
+
+## 3.45.1
+
+### Patch Changes
+
+-   Updated dependencies [[`ad99916d6d`](https://github.com/pankod/refine/commit/ad99916d6dbd181b857fd7df7b9619d8cac5e3e0)]:
+    -   @pankod/refine-ui-types@0.8.0
+
+## 3.45.0
+
+### Minor Changes
+
+-   Added `render` prop to `Sider` component. You can get `dashboard`, `logout` and `items` from `render` props to customize the `Sider` component.
+
+### Patch Changes
+
+-   Fixed version of react-router to `6.3.0`
+
+-   Passed `collapsed` prop to `render` method in `Sider` component of `@pankod/refine-mui`.
+
+-   Updated dependencies []:
+    -   @pankod/refine-react-hook-form@3.33.2
+    -   @pankod/refine-ui-types@0.7.0
+
+## 3.44.2
+
+### Patch Changes
+
+-   [#2501](https://github.com/pankod/refine/pull/2501) [`4095a578d4`](https://github.com/pankod/refine/commit/4095a578d471254ee58412f130ac5a0f3a62880f) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed version of react-router to `6.3.0`
+
+-   Updated dependencies [[`4095a578d4`](https://github.com/pankod/refine/commit/4095a578d471254ee58412f130ac5a0f3a62880f)]:
+    -   @pankod/refine-react-hook-form@3.33.1
+
 ## 3.44.1
 
 ### Patch Changes

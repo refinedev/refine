@@ -87,7 +87,7 @@ function Editor({ hidden }: { hidden: boolean }) {
             <div
                 className={clsx(styles.playgroundEditorWrapper)}
                 style={{
-                    maxHeight: visible ? "3000px" : "0px",
+                    maxHeight: visible ? "4500px" : "0px",
                     padding: visible ? undefined : "0px",
                     transition: "0.3s max-height ease-in-out",
                     overflow: "hidden",

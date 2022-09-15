@@ -5,7 +5,6 @@ import {
     CrudFilters,
     CrudSorting,
     CrudOperators,
-    BaseKey,
 } from "@pankod/refine-core";
 import { stringify, parse } from "qs";
 

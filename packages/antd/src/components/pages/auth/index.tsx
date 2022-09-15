@@ -1,5 +1,5 @@
 import React from "react";
-import { CardProps, LayoutProps } from "antd";
+import { CardProps, FormProps, LayoutProps } from "antd";
 import { RefineAuthPageProps } from "@pankod/refine-ui-types";
 
 import {
@@ -9,7 +9,7 @@ import {
     UpdatePasswordPage,
 } from "./components";
 
-export type AuthProps = RefineAuthPageProps<LayoutProps, CardProps>;
+export type AuthProps = RefineAuthPageProps<LayoutProps, CardProps, FormProps>;
 
 /**
  * **refine** has a default auth page form served on the `/login` route when the `authProvider` configuration is provided.
