@@ -124,7 +124,7 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
     const slideSubtitleY = useTransform(
         scrollYProgress,
         [0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1],
-        [0, 0, 0, "-20%", "-40%", "-60%", "-80%"],
+        ["0%", "0%", "0%", "-25%", "-50%", "-75%", "-100%"],
     );
 
     const slideCounterCardsRotateX = useTransform(
@@ -862,6 +862,18 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                     </div>
                                 </div>
                             </div>
+                            <div className="block lg:hidden mb-8 w-full flex-shrink-0">
+                                <div className="w-full text-center font-montserrat text-[36px] md:text-[60px] lg:text-[90px] leading-none font-extrabold text-[#1890FF] short:text-[55px]">
+                                    no constraints
+                                </div>
+                                <div className="w-full font-medium uppercase text-2xl md:text-3xl lg:text-4xl leading-none font-montserrat text-[#1890FF] text-center h-9 relative overflow-hidden short:text-[24px] short:leading-[24px] short:h-6">
+                                    <motion.div className="absolute left-0 top-0 w-full">
+                                        <div className="w-full h-9 short:h-6 text-center">
+                                            on backend
+                                        </div>
+                                    </motion.div>
+                                </div>
+                            </div>
                             <div className="mb-24 lg:mb-0 w-full lg:h-full flex-shrink-0 flex justify-center items-center">
                                 <div className="flex pt-3 h-auto max-w-screen-xl w-full">
                                     <div className="flex-1 flex flex-col justify-start items-center w-full gap-2">
@@ -976,6 +988,18 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                             )}
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div className="block lg:hidden mb-8 w-full flex-shrink-0">
+                                <div className="w-full text-center font-montserrat text-[36px] md:text-[60px] lg:text-[90px] leading-none font-extrabold text-[#1890FF] short:text-[55px]">
+                                    no constraints
+                                </div>
+                                <div className="w-full font-medium uppercase text-2xl md:text-3xl lg:text-4xl leading-none font-montserrat text-[#1890FF] text-center h-9 relative overflow-hidden short:text-[24px] short:leading-[24px] short:h-6">
+                                    <motion.div className="absolute left-0 top-0 w-full">
+                                        <div className="w-full h-9 short:h-6 text-center">
+                                            on your workflow
+                                        </div>
+                                    </motion.div>
                                 </div>
                             </div>
                             <div className="mb-24 lg:mb-0 w-full flex-shrink-0 lg:h-full flex justify-center items-center">
@@ -1148,6 +1172,18 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                             </p>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div className="block lg:hidden mb-8 w-full flex-shrink-0">
+                                <div className="w-full text-center font-montserrat text-[36px] md:text-[60px] lg:text-[90px] leading-none font-extrabold text-[#1890FF] short:text-[55px]">
+                                    no constraints
+                                </div>
+                                <div className="w-full font-medium uppercase text-2xl md:text-3xl lg:text-4xl leading-none font-montserrat text-[#1890FF] text-center h-9 relative overflow-hidden short:text-[24px] short:leading-[24px] short:h-6">
+                                    <motion.div className="absolute left-0 top-0 w-full">
+                                        <div className="w-full h-9 short:h-6 text-center">
+                                            with open software
+                                        </div>
+                                    </motion.div>
                                 </div>
                             </div>
                             <div className="w-full flex-shrink-0 lg:h-full flex justify-center items-center">
