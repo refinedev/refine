@@ -1,5 +1,12 @@
 # @pankod/refine-ui-tests
 
+## 0.7.2
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-ui-types@0.9.0
+
 ## 0.7.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @pankod/refine-ui-types
 
+## 0.9.0
+
+### Minor Changes
+
+-   Added `formProps` property to `RefineAuthPageProps`, `RefineResetPasswordPageProps`, `RefineRegisterPageProps`, and `RefineUpdatePasswordPageProps`
+
 ## 0.8.0
 
 ### Minor Changes
