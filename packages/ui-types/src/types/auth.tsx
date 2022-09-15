@@ -83,11 +83,6 @@ export type RefineAuthPageProps<
            * @description render a redirect to update password page button node. If set to false, update password button will not be rendered.
            * @optional
            */
-          updatePasswordLink?: React.ReactNode;
-          /**
-           * @description Custom submit function for the form. Trigger after submitting the form.
-           * @optional
-           */
           onSubmit?: (formValues: RefineRegisterFormTypes) => void;
       }>
     | PropsWithChildren<{
