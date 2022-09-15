@@ -1,5 +1,30 @@
 # @pankod/refine-antd
 
+## 3.46.0
+
+### Minor Changes
+
+-   Added `formProps` property support for AuthPage component
+
+    ## Usage
+
+    ```tsx
+    <AuthPage
+        type="login"
+        formProps={{
+            initialValues: {
+                email: "demo@refine.dev",
+                password: "demo",
+            },
+        }}
+    />
+    ```
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-ui-types@0.9.0
+
 ## 3.45.0
 
 ### Minor Changes
