@@ -76,7 +76,7 @@ export const EXAMPLES: Examples = [
         image: "/examples/invoice-generator.png",
         button: {
             text: "READ BLOG",
-            link: "https://refine.dev/blog/awesome-react-windows95-ui-with-refine",
+            link: "https://refine.dev/blog/refine-invoice-generator/",
         },
         source: "https://github.com/pankod/refine/tree/master/examples/blog/invoiceGenerator",
     },
