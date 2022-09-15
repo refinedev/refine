@@ -1,0 +1,57 @@
+export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
+import { checkAuthentication } from "@pankod/refine-nextjs-router";
+import dataProvider from "@pankod/refine-simple-rest";
+
+import { GetServerSideProps } from "next";
+
+import { API_URL } from "../src/constants";
+import { authProvider } from "../src/authProvider";
+
+export const getServerSideProps: GetServerSideProps<
+    { initialData?: unknown },
+    {
+        refine: [resource: string, action: string, id: string];
+    }
+> = async (context) => {
+    const [resource, action, id] = context.params?.refine ?? [];
+
+    const { isAuthenticated, ...props } = await checkAuthentication(
+        authProvider,
+        context,
+    );
+
+    if (!isAuthenticated) {
+        return props;
+    }
+
+    try {
+        if (resource && action === "show" && id) {
+            const data = await dataProvider(API_URL).getOne({
+                resource,
+                id,
+            });
+
+            return {
+                props: {
+                    initialData: data,
+                },
+            };
+        } else if (resource && !action && !id) {
+            const data = await dataProvider(API_URL).getList({
+                resource,
+            });
+
+            return {
+                props: {
+                    initialData: data,
+                },
+            };
+        }
+    } catch (error) {
+        return { props: {} };
+    }
+
+    return {
+        props: {},
+    };
+};
