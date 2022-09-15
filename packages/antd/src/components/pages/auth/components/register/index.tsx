@@ -121,7 +121,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         >
                             {translate(
                                 "pages.login.buttons.haveAccount",
-                                "Have an account? ",
+                                "Have an account?",
                             )}{" "}
                             <Link
                                 style={{
@@ -134,7 +134,6 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         </Text>
                     )}
                 </div>
-
                 <Button
                     type="primary"
                     size="large"
