@@ -3,7 +3,7 @@ module.exports = {
         {
             type: "category",
             label: "Getting Started",
-            items: ["getting-started/overview","getting-started/quickstart"],
+            items: ["getting-started/overview", "getting-started/quickstart"],
             collapsed: false,
         },
         {
@@ -260,6 +260,8 @@ module.exports = {
                             type: "category",
                             label: "Components",
                             items: [
+                                "ui-frameworks/antd/components/antd-auth-page",
+
                                 {
                                     type: "category",
                                     label: "Basic Views",
