@@ -1,6 +1,5 @@
 ---
 "@pankod/refine-antd": minor
-"@pankod/refine-ui-types": minor
 ---
 
 Added `formProps` property support for AuthPage component
