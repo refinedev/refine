@@ -49,7 +49,7 @@ const App = () => {
 
                         return (
                             <div>
-                                Login Succesful
+                                Home Page
                                 <br />
                                 <button
                                     onClick={() => {
@@ -82,7 +82,7 @@ render(
 
                     return (
                         <div>
-                            Login Succesful
+                            Home Page
                             <br />
                             <button
                                 onClick={() => {
@@ -185,7 +185,7 @@ const App = () => {
 
                         return (
                             <div>
-                                Login Succesful
+                                Home Page
                                 <button
                                     onClick={() => {
                                         replace("/login");
@@ -228,7 +228,7 @@ render(
 
                     return (
                         <div>
-                            Login Succesful
+                            Home Page
                             <button
                                 onClick={() => {
                                     replace("/login");
@@ -285,7 +285,7 @@ const App = () => {
 
                         return (
                             <div>
-                                Login Succesful
+                                Home Page
                                 <button
                                     onClick={() => {
                                         replace("/login");
@@ -351,7 +351,7 @@ render(
 
                     return (
                         <div>
-                            Login Succesful
+                            Home Page
                             <button
                                 onClick={() => {
                                     replace("/login");
@@ -408,7 +408,7 @@ const App = () => {
 
                         return (
                             <div>
-                                Login Succesful
+                                Home Page
                                 <button
                                     onClick={() => {
                                         replace("/login");
@@ -452,7 +452,7 @@ render(
 
                     return (
                         <div>
-                            Login Succesful
+                            Home Page
                             <button
                                 onClick={() => {
                                     replace("/login");
@@ -534,7 +534,7 @@ const App = () => {
 
                         return (
                             <div>
-                                Login Succesful
+                                Home Page
                                 <button
                                     onClick={() => {
                                         replace("/login");
@@ -590,7 +590,7 @@ render(
 
                     return (
                         <div>
-                            Login Succesful
+                            Home Page
                             <button
                                 onClick={() => {
                                     replace("/login");
@@ -657,7 +657,7 @@ const App = () => {
 
                         return (
                             <div>
-                                Login Succesful
+                                Home Page
                                 <button
                                     onClick={() => {
                                         replace("/login");
@@ -702,7 +702,7 @@ render(
 
                     return (
                         <div>
-                            Login Succesful
+                            Home Page
                             <button
                                 onClick={() => {
                                     replace("/login");
@@ -774,7 +774,7 @@ const App = () => {
 
                         return (
                             <div>
-                                Login Succesful
+                                Home Page
                                 <button
                                     onClick={() => {
                                         replace("/login");
@@ -824,7 +824,7 @@ render(
 
                     return (
                         <div>
-                            Login Succesful
+                            Home Page
                             <button
                                 onClick={() => {
                                     replace("/login");
@@ -892,7 +892,7 @@ const App = () => {
 
                         return (
                             <div>
-                                Login Succesful
+                                Home Page
                                 <button
                                     onClick={() => {
                                         replace("/login");
@@ -938,7 +938,7 @@ render(
 
                     return (
                         <div>
-                            Login Succesful
+                            Home Page
                             <button
                                 onClick={() => {
                                     replace("/login");
@@ -1020,7 +1020,7 @@ const App = () => {
 
                         return (
                             <div>
-                                Login Succesful
+                                Home Page
                                 <button
                                     onClick={() => {
                                         replace("/login");
@@ -1082,7 +1082,7 @@ render(
 
                     return (
                         <div>
-                            Login Succesful
+                            Home Page
                             <button
                                 onClick={() => {
                                     replace("/login");
@@ -1176,7 +1176,7 @@ const App = () => {
 
                         return (
                             <div>
-                                Login Succesful
+                                Home Page
                                 <button
                                     onClick={() => {
                                         replace("/login");
@@ -1217,7 +1217,7 @@ render(
 
                     return (
                         <div>
-                            Login Succesful
+                            Home Page
                             <button
                                 onClick={() => {
                                     replace("/login");
@@ -1292,7 +1292,7 @@ const App = () => {
 
                         return (
                             <div>
-                                Login Succesful
+                                Home Page
                                 <button
                                     onClick={() => {
                                         replace("/login");
@@ -1337,7 +1337,7 @@ render(
 
                     return (
                         <div>
-                            Login Succesful
+                            Home Page
                             <button
                                 onClick={() => {
                                     replace("/login");
@@ -1415,7 +1415,7 @@ const App = () => {
 
                         return (
                             <div>
-                                Home
+                                Home Page
                                 <button
                                     onClick={() => {
                                         replace("/login");
@@ -1466,7 +1466,7 @@ render(
 
                     return (
                         <div>
-                            Home
+                            Home Page
                             <button
                                 onClick={() => {
                                     replace("/login");
@@ -1549,7 +1549,7 @@ const App = () => {
 
                         return (
                             <div>
-                                Home
+                                Home Page
                                 <button
                                     onClick={() => {
                                         replace("/login");
@@ -1601,7 +1601,7 @@ render(
 
                     return (
                         <div>
-                            Home
+                            Home Page
                             <button
                                 onClick={() => {
                                     replace("/login");
@@ -1670,7 +1670,7 @@ const App = () => {
 
                         return (
                             <div>
-                                Login Succesful
+                                Home Page
                                 <button
                                     onClick={() => {
                                         replace("/login");
@@ -1717,7 +1717,7 @@ render(
 
                     return (
                         <div>
-                            Login Succesful
+                            Home Page
                             <button
                                 onClick={() => {
                                     replace("/login");
@@ -1812,7 +1812,7 @@ const App = () => {
 
                         return (
                             <div>
-                                Home
+                                Home Page
                                 <button
                                     onClick={() => {
                                         replace("/login");
@@ -1879,7 +1879,7 @@ render(
 
                     return (
                         <div>
-                            Home
+                            Home Page
                             <button
                                 onClick={() => {
                                     replace("/login");
@@ -1973,7 +1973,7 @@ const App = () => {
 
                         return (
                             <div>
-                                Home
+                                Home Page
                                 <button
                                     onClick={() => {
                                         replace("/login");
@@ -2014,7 +2014,7 @@ render(
 
                     return (
                         <div>
-                            Home
+                            Home Page
                             <button
                                 onClick={() => {
                                     replace("/login");
@@ -2106,7 +2106,7 @@ render(
 
                     return (
                         <div>
-                            Home
+                            Home Page
                             <button
                                 onClick={() => {
                                     replace("/reset-password");
@@ -2184,7 +2184,7 @@ const App = () => {
 
                         return (
                             <div>
-                                Home
+                                Home Page
                                 <button
                                     onClick={() => {
                                         replace("/login");
@@ -2231,7 +2231,7 @@ render(
 
                     return (
                         <div>
-                            Home
+                            Home Page
                             <button
                                 onClick={() => {
                                     replace("/login");
@@ -2279,14 +2279,13 @@ const App = () => {
     return (
         <Refine
             authProvider={authProvider}
+            // highlight-start
             routerProvider={{
                 ...routerProvider,
                 routes: [
                     {
                         path: "/reset-password",
-
                         element: (
-                            // highlight-start
                             <AuthPage
                                 type="resetPassword"
                                 loginLink={false}
@@ -2301,11 +2300,11 @@ const App = () => {
                                     },
                                 }}
                             />
-                            // highlight-end
                         ),
                     },
                 ],
             }}
+            // highlight-end
         />
     );
 };
@@ -2395,22 +2394,9 @@ const App = () => {
             )}
             resources={[
                 {
-                    name: "home",
+                    name: "Home",
                     list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Login Succesful
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
+                        return <div>Home</div>;
                     },
                 },
             ]}
@@ -2442,22 +2428,9 @@ render(
         authProvider={authProvider}
         resources={[
             {
-                name: "home",
+                name: "Home",
                 list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Login Succesful
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
+                    return <div>Home</div>;
                 },
             },
         ]}
@@ -2919,7 +2892,7 @@ const App = () => {
 
                         return (
                             <div>
-                                Login Succesful
+                                Home Page
                                 <button
                                     onClick={() => {
                                         replace("/login");
@@ -2966,7 +2939,7 @@ render(
 
                     return (
                         <div>
-                            Login Succesful
+                            Home Page
                             <button
                                 onClick={() => {
                                     replace("/login");
