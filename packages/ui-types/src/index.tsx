@@ -26,11 +26,7 @@ export type {
     ActionButtonRenderer,
 } from "./types";
 
-export type {
-    RefineErrorPageProps,
-    RefineLoginPageProps,
-    RefineReadyPageProps,
-} from "./types";
+export type { RefineErrorPageProps, RefineReadyPageProps } from "./types";
 
 export type {
     RefineFieldBooleanProps,
@@ -53,6 +49,18 @@ export type {
     RefineLayoutLayoutProps,
     RefineLayoutSiderProps,
     RefineLayoutTitleProps,
+} from "./types";
+
+export type {
+    RefineAuthPageProps,
+    RefineRegisterPageProps,
+    RefineLoginPageProps,
+    RefineResetPasswordPageProps,
+    RefineUpdatePasswordPageProps,
+    RefineUpdatePasswordFormTypes,
+    RefineLoginFormTypes,
+    RefineRegisterFormTypes,
+    RefineResetPasswordFormTypes,
 } from "./types";
 
 export { RefineButtonTestIds } from "./ids";

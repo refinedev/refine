@@ -7,9 +7,6 @@
 
 const redirectJson = require("./redirects.json");
 
-const TwitterSvg =
-    '<svg style="fill: #FFFFFF; vertical-align: middle;" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg>';
-
 /** @type {import('@docusaurus/types/src/index').DocusaurusConfig} */
 const siteConfig = {
     title: "refine",
@@ -20,6 +17,7 @@ const siteConfig = {
     organizationName: "pankod",
     trailingSlash: true,
     favicon: "img/refine_favicon.png",
+    scripts: ["https://platform.twitter.com/widgets.js"],
     presets: [
         [
             "@docusaurus/preset-classic",
@@ -38,17 +36,7 @@ const siteConfig = {
                     },
                     lastVersion: "current",
                 },
-                blog: {
-                    blogTitle: "refine blog!",
-                    blogDescription: "A Docusaurus powered blog!",
-                    postsPerPage: "ALL",
-                    blogSidebarTitle: "All posts",
-                    blogSidebarCount: "ALL",
-                    feedOptions: {
-                        type: "all",
-                        copyright: `Copyright © ${new Date().getFullYear()} refine.`,
-                    },
-                },
+                blog: false,
                 theme: {
                     customCss: [
                         require.resolve("./src/css/custom.css"),
@@ -67,6 +55,31 @@ const siteConfig = {
             "@docusaurus/plugin-client-redirects",
             {
                 redirects: redirectJson.redirects,
+            },
+        ],
+        async function tailwindcss() {
+            return {
+                name: "docusaurus-tailwindcss",
+                configurePostCss(postcssOptions) {
+                    postcssOptions.plugins.push(require("tailwindcss"));
+                    postcssOptions.plugins.push(require("autoprefixer"));
+                    return postcssOptions;
+                },
+            };
+        },
+        [
+            "./plugins/blog-plugin.js",
+            {
+                blogTitle: "refine blog!",
+                blogDescription: "A Docusaurus powered blog!",
+                routeBasePath: "/blog",
+                postsPerPage: 12,
+                blogSidebarTitle: "All posts",
+                blogSidebarCount: 0,
+                feedOptions: {
+                    type: "all",
+                    copyright: `Copyright © ${new Date().getFullYear()} refine.`,
+                },
             },
         ],
     ],
@@ -101,13 +114,6 @@ const siteConfig = {
                     "react-admin, react-framework, internal-tool, admin-panel, ant-design, material ui, mui",
             },
         ],
-        announcementBar: {
-            id: "support",
-            backgroundColor: "#0B82F0",
-            textColor: "#fff",
-            isCloseable: false,
-            content: `⭐️ If you like Refine, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/pankod/refine">GitHub</a> and follow us on <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/refine_dev">Twitter</a> ${TwitterSvg}`,
-        },
         navbar: {
             logo: {
                 alt: "refine",
@@ -116,27 +122,27 @@ const siteConfig = {
             items: [
                 {
                     to: "docs/getting-started/overview",
-                    label: "Quickstart",
-                    position: "left",
-                    className: "header-first-nav-item",
-                },
-                { to: "docs", label: "Tutorial", position: "left" },
-                {
-                    to: "/demo",
-                    label: "Demo",
+                    label: "Docs",
                     position: "left",
                 },
                 {
-                    to: "docs/guides-and-concepts/ssr/remix/",
-                    label: "Guides",
+                    to: "docs",
+                    label: "Tutorial",
                     position: "left",
+                    activeBaseRegex: "/^/docs(/)?$/",
                 },
                 {
-                    to: "docs/examples/tutorial/headless-tutorial",
+                    to: "examples",
                     label: "Examples",
                     position: "left",
                 },
+                {
+                    to: "integrations",
+                    label: "Integrations",
+                    position: "left",
+                },
                 { to: "blog", label: "Blog", position: "left" },
+                // { to: "about", label: "About", position: "left" },
                 {
                     to: "https://store.refine.dev",
                     label: "Store 🎁",
@@ -160,66 +166,117 @@ const siteConfig = {
                 {
                     href: "https://twitter.com/refine_dev",
                     position: "right",
-                    className:
-                        "header-icon-link header-twitter-link header-last-nav-item",
+                    className: "header-icon-link header-twitter-link",
                 },
             ],
         },
-        // footer: {
-        //     style: "dark",
-        //     links: [
-        //         {
-        //             title: "Docs",
-        //             items: [],
-        //         },
-        //         {
-        //             title: "Community",
-        //             items: [
-        //                 {
-        //                     label: "Twitter",
-        //                     href: "https://twitter.com/refine_dev",
-        //                 },
-        //             ],
-        //         },
-        //         {
-        //             title: "More",
-        //             items: [
-        //                 {
-        //                     label: "GitHub",
-        //                     href: "https://github.com/pankod/refine",
-        //                 },
-        //                 {
-        //                     html: `
-        //           <a href="https://github.com/pankod/refine" target="_blank" rel="noreferrer noopener" aria-label="Star this project on GitHub">
-        //             <img src="https://img.shields.io/github/stars/pankod/refine?logo=reverbnation&logoColor=white" alt="github-stars" />
-        //           </a>
-        //         `,
-        //                 },
-        //             ],
-        //         },
-        //     ],
-        //     logo: {
-        //         alt: "Pankod Logo",
-        //         src: "img/pankod_footer_logo.png",
-        //         href: "https://github.com/pankod",
-        //     },
-        //     copyright: `Copyright © ${new Date().getFullYear()} Pankod, Inc.`,
-        // },
-        /* plugins: [
-            [
-                "@docusaurus/plugin-client-redirects",
+        footer: {
+            logo: {
+                alt: "refine",
+                src: "/img/refine_logo.png",
+            },
+            links: [
                 {
-                    redirects: [
+                    title: "Resources",
+                    items: [
                         {
-                            to: "/docs/newDocPath", // string
-                            from: [
-                                "/docs/api-references/providers/auth-provider/",
-                            ],
+                            label: "Getting Started",
+                            to: "docs/getting-started/overview",
+                        },
+                        {
+                            label: "Tutorials",
+                            to: "docs",
+                        },
+                        {
+                            label: "Blog",
+                            to: "blog",
+                        },
+                    ],
+                },
+                {
+                    title: "Product",
+                    items: [
+                        {
+                            label: "Examples",
+                            to: "examples",
+                        },
+                        {
+                            label: "Integrations",
+                            to: "integrations",
+                        },
+                    ],
+                },
+                {
+                    title: "Company",
+                    items: [
+                        {
+                            label: "About",
+                            to: "/",
+                        },
+                        {
+                            label: "Store 🎁",
+                            to: "https://store.refine.dev",
+                        },
+                    ],
+                },
+                {
+                    title: "__LEGAL",
+                    items: [
+                        {
+                            label: "License",
+                            to: "https://github.com/pankod/refine/blob/next/LICENSE",
+                        },
+                        // {
+                        //     label: "Terms",
+                        //     to: "/enterprise",
+                        // },
+                        // {
+                        //     label: "Privacy",
+                        //     to: "/privacy-policy",
+                        // },
+                        // {
+                        //     label: "info@refine.dev",
+                        //     to: "mailto:info@refine.dev",
+                        // },
+                    ],
+                },
+                {
+                    title: "__SOCIAL",
+                    items: [
+                        {
+                            href: "https://github.com/pankod/refine",
+                            label: "github",
+                        },
+                        {
+                            href: "https://discord.gg/refine",
+                            label: "discord",
+                        },
+                        {
+                            href: "https://reddit.com/r/refine",
+                            label: "reddit",
+                        },
+                        {
+                            href: "https://twitter.com/refine_dev",
+                            label: "twitter",
+                        },
+                        {
+                            href: "https://www.linkedin.com/company/refine-dev",
+                            label: "linkedin",
                         },
                     ],
                 },
             ],
-        ], */
+        },
+    },
+    customFields: {
+        footerDescription:
+            '<strong style="font-weight:700;">refine</strong> is a React-based framework for the rapid development of web applications. It eliminates the repetitive tasks demanded by <strong style="font-weight:700;">CRUD</strong> operations and provides industry standard solutions.',
+        contactTitle: "Contact",
+        contactDescription: [
+            "Refine Dev Corporation",
+            "256 Chapman Road STE 105-4 Newark, New Castle 19702",
+        ],
+        contactEmail: "info@refine.dev",
     },
 };
 

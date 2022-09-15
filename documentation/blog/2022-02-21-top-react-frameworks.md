@@ -4,7 +4,7 @@ description: We will compare the features of refine and react-admin
 slug: best-react-frameworks
 authors: aydin
 tags: [refine, react, framework, webdev,create-react-app, ant-design, material-ui, react-bootstrap]
-image: https://refine.dev/img/refine_social.png
+image: /img/placeholder.png
 hide_table_of_contents: false
 ---
 
