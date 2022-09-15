@@ -1,5 +1,55 @@
 # @pankod/refine-strapi-v4
 
+## 3.35.0
+
+### Minor Changes
+
+-   Added `metaData` support for the `/me` request
+
+    ```tsx
+    const strapiAuthHelper = AuthHelper(API_URL + "/api");
+
+    strapiAuthHelper.me("token", {
+        metaData: {
+            populate: ["role"],
+        },
+    });
+    ```
+
+## 3.34.0
+
+### Minor Changes
+
+-   [#2496](https://github.com/pankod/refine/pull/2496) [`7e1538512e`](https://github.com/pankod/refine/commit/7e1538512e98e87b749f003df1183d74b36d4281) Thanks [@albcunha](https://github.com/albcunha)! - Added `metaData` support for the `/me` request
+
+    ```tsx
+    const strapiAuthHelper = AuthHelper(API_URL + "/api");
+
+    strapiAuthHelper.me("token", {
+        metaData: {
+            populate: ["role"],
+        },
+    });
+    ```
+
+## 3.33.0
+
+### Minor Changes
+
+-   Fixed payload data in delete on nestjsx data provider custom method.
+
+## 3.32.0
+
+### Minor Changes
+
+-   [#2465](https://github.com/pankod/refine/pull/2465) [`4d07f33993`](https://github.com/pankod/refine/commit/4d07f33993fa5a6facaf33cd651ef94892d15dae) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fixed payload data in delete on nestjsx data provider custom method.
+
+## 3.31.0
+
+### Minor Changes
+
+-   Update type declaration generation with `tsc` instead of `tsup` for better navigation throughout projects source code.
+
 ## 3.30.0
 
 ### Minor Changes

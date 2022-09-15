@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import { Refine } from "@pankod/refine-core";
 import { RefineKbarProvider } from "@pankod/refine-kbar";
 import routerProvider from "@pankod/refine-react-router-v6";
-import { Refine } from "@pankod/refine-core";
 import {
     Icons,
     ConfigProvider,
@@ -18,8 +18,8 @@ import "styles/antd.less";
 import "dayjs/locale/de";
 
 import { DashboardPage } from "./pages/dashboard";
-import { LoginPage } from "./pages/login";
 import { OrderList, OrderShow } from "./pages/orders";
+import { AuthPage } from "./pages/auth";
 import { UserList, UserShow } from "./pages/users";
 import {
     CourierList,
@@ -61,13 +61,49 @@ const App: React.FC = () => {
         <RefineKbarProvider>
             <ConfigProvider locale={locale === "de" ? de_DE : undefined}>
                 <Refine
-                    routerProvider={routerProvider}
+                    routerProvider={{
+                        ...routerProvider,
+                        routes: [
+                            {
+                                path: "/register",
+                                element: (
+                                    <AuthPage
+                                        type="register"
+                                        formProps={{
+                                            initialValues: {
+                                                email: "demo@refine.dev",
+                                                password: "demodemo",
+                                            },
+                                        }}
+                                    />
+                                ),
+                            },
+                            {
+                                path: "/reset-password",
+                                element: <AuthPage type="resetPassword" />,
+                            },
+                            {
+                                path: "/update-password",
+                                element: <AuthPage type="updatePassword" />,
+                            },
+                        ],
+                    }}
                     dataProvider={dataProvider}
                     authProvider={authProvider}
                     i18nProvider={i18nProvider}
                     OffLayoutArea={OffLayoutArea}
                     DashboardPage={DashboardPage}
-                    LoginPage={LoginPage}
+                    LoginPage={() => (
+                        <AuthPage
+                            type="login"
+                            formProps={{
+                                initialValues: {
+                                    email: "demo@refine.dev",
+                                    password: "demodemo",
+                                },
+                            }}
+                        />
+                    )}
                     Title={Title}
                     Header={Header}
                     Layout={Layout}

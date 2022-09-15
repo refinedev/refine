@@ -36,7 +36,7 @@ import {
 
 import { Title as DefaultTitle } from "../title";
 
-export const Sider: React.FC<RefineLayoutSiderProps> = () => {
+export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const [collapsed, setCollapsed] = useState(false);
     const [opened, setOpened] = useState(false);
 
@@ -52,7 +52,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = () => {
 
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const isExistAuthentication = useIsExistAuthentication();
-    const { mutate: logout } = useLogout();
+    const { mutate: mutateLogout } = useLogout();
     const Title = useTitle();
 
     const [open, setOpen] = useState<{ [k: string]: any }>({});
@@ -223,87 +223,110 @@ export const Sider: React.FC<RefineLayoutSiderProps> = () => {
         });
     };
 
-    const drawer = (
-        <List disablePadding sx={{ mt: 1, color: "primary.contrastText" }}>
-            {hasDashboard ? (
-                <Tooltip
-                    title={translate("dashboard.title", "Dashboard")}
-                    placement="right"
-                    disableHoverListener={!collapsed}
-                    arrow
-                >
-                    <ListItemButton
-                        component={Link}
-                        to="/"
-                        selected={selectedKey === "/"}
-                        onClick={() => {
-                            setOpened(false);
-                        }}
-                        sx={{
-                            pl: 2,
-                            py: 1,
-                            "&.Mui-selected": {
-                                "&:hover": {
-                                    backgroundColor: "transparent",
-                                },
+    const dashboard = hasDashboard ? (
+        <CanAccess resource="dashboard" action="list">
+            <Tooltip
+                title={translate("dashboard.title", "Dashboard")}
+                placement="right"
+                disableHoverListener={!collapsed}
+                arrow
+            >
+                <ListItemButton
+                    component={Link}
+                    to="/"
+                    selected={selectedKey === "/"}
+                    onClick={() => {
+                        setOpened(false);
+                    }}
+                    sx={{
+                        pl: 2,
+                        py: 1,
+                        "&.Mui-selected": {
+                            "&:hover": {
                                 backgroundColor: "transparent",
                             },
+                            backgroundColor: "transparent",
+                        },
+                        justifyContent: "center",
+                    }}
+                >
+                    <ListItemIcon
+                        sx={{
                             justifyContent: "center",
+                            minWidth: 36,
+                            color: "primary.contrastText",
                         }}
                     >
-                        <ListItemIcon
-                            sx={{
-                                justifyContent: "center",
-                                minWidth: 36,
-                                color: "primary.contrastText",
-                            }}
-                        >
-                            <Dashboard />
-                        </ListItemIcon>
-                        <ListItemText
-                            primary={translate("dashboard.title", "Dashboard")}
-                            primaryTypographyProps={{
-                                noWrap: true,
-                                fontSize: "14px",
-                                fontWeight:
-                                    selectedKey === "/" ? "bold" : "normal",
-                            }}
-                        />
-                    </ListItemButton>
-                </Tooltip>
-            ) : null}
-            {renderTreeView(menuItems, selectedKey)}
-            {isExistAuthentication && (
-                <Tooltip
-                    title={t("buttons.logout", "Logout")}
-                    placement="right"
-                    disableHoverListener={!collapsed}
-                    arrow
+                        <Dashboard />
+                    </ListItemIcon>
+                    <ListItemText
+                        primary={translate("dashboard.title", "Dashboard")}
+                        primaryTypographyProps={{
+                            noWrap: true,
+                            fontSize: "14px",
+                            fontWeight: selectedKey === "/" ? "bold" : "normal",
+                        }}
+                    />
+                </ListItemButton>
+            </Tooltip>
+        </CanAccess>
+    ) : null;
+
+    const logout = isExistAuthentication && (
+        <Tooltip
+            title={t("buttons.logout", "Logout")}
+            placement="right"
+            disableHoverListener={!collapsed}
+            arrow
+        >
+            <ListItemButton
+                key="logout"
+                onClick={() => mutateLogout()}
+                sx={{ justifyContent: "center" }}
+            >
+                <ListItemIcon
+                    sx={{
+                        justifyContent: "center",
+                        minWidth: 36,
+                        color: "primary.contrastText",
+                    }}
                 >
-                    <ListItemButton
-                        key="logout"
-                        onClick={() => logout()}
-                        sx={{ justifyContent: "center" }}
-                    >
-                        <ListItemIcon
-                            sx={{
-                                justifyContent: "center",
-                                minWidth: 36,
-                                color: "primary.contrastText",
-                            }}
-                        >
-                            <Logout />
-                        </ListItemIcon>
-                        <ListItemText
-                            primary={t("buttons.logout", "Logout")}
-                            primaryTypographyProps={{
-                                noWrap: true,
-                                fontSize: "14px",
-                            }}
-                        />
-                    </ListItemButton>
-                </Tooltip>
-            )}
+                    <Logout />
+                </ListItemIcon>
+                <ListItemText
+                    primary={t("buttons.logout", "Logout")}
+                    primaryTypographyProps={{
+                        noWrap: true,
+                        fontSize: "14px",
+                    }}
+                />
+            </ListItemButton>
+        </Tooltip>
+    );
+
+    const items = renderTreeView(menuItems, selectedKey);
+
+    const renderSider = () => {
+        if (render) {
+            return render({
+                dashboard,
+                logout,
+                items,
+                collapsed,
+            });
+        }
+        return (
+            <>
+                {dashboard}
+                {items}
+                {logout}
+            </>
+        );
+    };
+
+    const drawer = (
+        <List disablePadding sx={{ mt: 1, color: "primary.contrastText" }}>
+            {renderSider()}
         </List>
     );
 

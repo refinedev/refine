@@ -396,6 +396,20 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     <img src={category} alt="category" />
 </div>
 
+##### Relations Population for `/me` request
+
+If you need to the population for the `/me` request you can use it like this in your `authProvider`.
+
+```tsx
+const strapiAuthHelper = AuthHelper(API_URL + "/api");
+
+strapiAuthHelper.me("token", {
+    metaData: {
+        populate: ["role"],
+    },
+});
+```
+
 ### Publication State
 
 :::note

@@ -1,0 +1,25 @@
+.root {
+  @apply border-b border-accent-2 py-4 flex flex-col outline-none;
+}
+
+.header {
+  @apply flex flex-row items-center;
+}
+
+.header .label {
+  @apply text-base font-medium;
+}
+
+.content {
+  @apply pt-3 overflow-hidden pl-8;
+}
+
+.icon {
+  @apply mr-3 text-accent-6;
+  margin-left: -6px;
+  transition: transform 0.2s ease;
+}
+
+.icon.open {
+  transform: rotate(90deg);
+}

@@ -31,6 +31,17 @@ export const AuthContextProvider: React.FC<
         }
     };
 
+    const registerFunc = async (params: any) => {
+        try {
+            const result = await authOperations.register?.(params);
+
+            invalidateAuthStore();
+            return Promise.resolve(result);
+        } catch (error) {
+            return Promise.reject(error);
+        }
+    };
+
     const logoutFunc = async (params: any) => {
         try {
             const redirectPath = await authOperations.logout?.(params);
@@ -63,6 +74,7 @@ export const AuthContextProvider: React.FC<
                 login: loginFunc,
                 logout: logoutFunc,
                 checkAuth: checkAuthFunc,
+                register: registerFunc,
                 isProvided,
             }}
         >

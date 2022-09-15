@@ -3,7 +3,7 @@ module.exports = {
         {
             type: "category",
             label: "Getting Started",
-            items: ["getting-started/overview", "getting-started/basics"],
+            items: ["getting-started/overview", "getting-started/quickstart"],
             collapsed: false,
         },
         {
@@ -14,6 +14,10 @@ module.exports = {
         {
             type: "doc",
             id: "tutorials",
+        },
+        {
+            type: "doc",
+            id: "general-concepts",
         },
         {
             type: "category",
@@ -177,6 +181,7 @@ module.exports = {
                     type: "category",
                     label: "Components",
                     items: [
+                        "core/components/auth-page",
                         "core/components/refine-config",
                         "core/components/layout-wrapper",
                         {
@@ -255,6 +260,8 @@ module.exports = {
                             type: "category",
                             label: "Components",
                             items: [
+                                "ui-frameworks/antd/components/antd-auth-page",
+
                                 {
                                     type: "category",
                                     label: "Basic Views",
@@ -398,6 +405,7 @@ module.exports = {
             type: "category",
             label: "Packages",
             items: [
+                "packages/list-of-packages",
                 "packages/command-palette",
                 "packages/react-table",
                 {
@@ -778,5 +786,13 @@ module.exports = {
             type: "doc",
             id: "faq",
         },
+        {
+            type: "doc",
+            id: "licence",
+        },
+        {
+            type: "doc",
+            id: "benchmarks",
+        }
     ],
 };

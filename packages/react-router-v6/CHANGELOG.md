@@ -1,5 +1,23 @@
 # @pankod/refine-react-router-v6
 
+## 3.33.2
+
+### Patch Changes
+
+-   Fixed version of react-router to `6.3.0`
+
+## 3.33.1
+
+### Patch Changes
+
+-   [#2501](https://github.com/pankod/refine/pull/2501) [`4095a578d4`](https://github.com/pankod/refine/commit/4095a578d471254ee58412f130ac5a0f3a62880f) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed version of react-router to `6.3.0`
+
+## 3.33.0
+
+### Minor Changes
+
+-   Update type declaration generation with `tsc` instead of `tsup` for better navigation throughout projects source code.
+
 ## 3.32.0
 
 ### Minor Changes

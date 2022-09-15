@@ -171,14 +171,62 @@ Before we get started, let's look at the translations that refine uses in compon
 {
     "pages": {
         "login": {
+            "title": "Sign in to your account",
             "signin": "Sign in",
             "signup": "Sign up",
-            "username": "Username",
-            "password": "Password",
-            "remember": "Remember me",
-            "forgotPassword": "Forgot password?",
-            "title": "Sign in your account",
-            "noAccount": "Don’t have an account?"
+            "divider": "or",
+            "fields": {
+                "email": "Email",
+                "password": "Password"
+            },
+            "errors": {
+                "validEmail": "Invalid email address"
+            },
+            "buttons": {
+                "submit": "Login",
+                "resetPassword": "Forgot password?",
+                "noAccount": "Don’t have an account?",
+                "rememberMe": "Remember me"
+            }
+        },
+        "resetPassword": {
+            "title": "Forgot your password?",
+            "fields": {
+                "email": "Email"
+            },
+            "errors": {
+                "validEmail": "Invalid email address"
+            },
+            "buttons": {
+                "submit": "Send reset instructions"
+            }
+        },
+        "register": {
+            "title": "Sign up for your account",
+            "fields": {
+                "email": "Email",
+                "password": "Password"
+            },
+            "errors": {
+                "validEmail": "Invalid email address"
+            },
+            "buttons": {
+                "submit": "Register",
+                "haveAccount": "Have an account?"
+            }
+        },
+        "updatePassword": {
+            "title": "Update password",
+            "fields": {
+                "password": "New Password",
+                "confirmPassword": "Confirm new password"
+            },
+            "errors": {
+                "confirmPasswordNotMatch": "Passwords do not match"
+            },
+            "buttons": {
+                "submit": "Update"
+            }
         },
         "error": {
             "info": "You may have forgotten to add the {{action}} component to {{resource}} resource.",
@@ -258,14 +306,62 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
 {
     "pages": {
         "login": {
+            "title": "Sign in to your account",
             "signin": "Sign in",
             "signup": "Sign up",
-            "username": "Username",
-            "password": "Password",
-            "remember": "Remember me",
-            "forgotPassword": "Forgot password?",
-            "title": "Sign in your account",
-            "noAccount": "Don’t have an account?"
+            "divider": "or",
+            "fields": {
+                "email": "Email",
+                "password": "Password"
+            },
+            "errors": {
+                "validEmail": "Invalid email address"
+            },
+            "buttons": {
+                "submit": "Login",
+                "resetPassword": "Forgot password?",
+                "noAccount": "Don’t have an account?",
+                "rememberMe": "Remember me"
+            }
+        },
+        "resetPassword": {
+            "title": "Forgot your password?",
+            "fields": {
+                "email": "Email"
+            },
+            "errors": {
+                "validEmail": "Invalid email address"
+            },
+            "buttons": {
+                "submit": "Send reset instructions"
+            }
+        },
+        "register": {
+            "title": "Sign up for your account",
+            "fields": {
+                "email": "Email",
+                "password": "Password"
+            },
+            "errors": {
+                "validEmail": "Invalid email address"
+            },
+            "buttons": {
+                "submit": "Register",
+                "haveAccount": "Have an account?"
+            }
+        },
+        "updatePassword": {
+            "title": "Update password",
+            "fields": {
+                "password": "New Password",
+                "confirmPassword": "Confirm new password"
+            },
+            "errors": {
+                "confirmPasswordNotMatch": "Passwords do not match"
+            },
+            "buttons": {
+                "submit": "Update"
+            }
         },
         "error": {
             "info": "You may have forgotten to add the {{action}} component to {{resource}} resource.",
@@ -352,14 +448,62 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
 {
     "pages": {
         "login": {
+            "title": "Melden Sie sich bei Ihrem Konto an",
             "signin": "Einloggen",
             "signup": "Anmelden",
-            "username": "Benutzername",
-            "password": "Passwort",
-            "remember": "Login speichern",
-            "forgotPassword": "Passwort Vergessen?",
-            "title": "Benutzerkonto einloggen",
-            "noAccount": "Noch kein Benutzerkonto?"
+            "divider": "oder",
+            "fields": {
+                "email": "Email",
+                "password": "Passwort"
+            },
+            "errors": {
+                "validEmail": "Ungültige E-Mail-Adresse"
+            },
+            "buttons": {
+                "submit": "Anmeldung",
+                "resetPassword": "Passwort vergessen?",
+                "noAccount": "Sie haben kein Konto?",
+                "rememberMe": "Erinnere dich an mich"
+            }
+        },
+        "resetPassword": {
+            "title": "Haben Sie Ihr Passwort vergessen?",
+            "fields": {
+                "email": "Email"
+            },
+            "errors": {
+                "validEmail": "Ungültige E-Mail-Adresse"
+            },
+            "buttons": {
+                "submit": "Anweisungen zum Zurücksetzen senden"
+            }
+        },
+        "register": {
+            "title": "Registrieren Sie sich für Ihr Konto",
+            "fields": {
+                "email": "Email",
+                "password": "Passwort"
+            },
+            "errors": {
+                "validEmail": "Ungültige E-Mail-Adresse"
+            },
+            "buttons": {
+                "submit": "Registrieren",
+                "haveAccount": "Ein Konto haben?"
+            }
+        },
+        "updatePassword": {
+            "title": "Kennwort aktualisieren",
+            "fields": {
+                "password": "Neues Passwort",
+                "confirmPassword": "Bestätige neues Passwort"
+            },
+            "errors": {
+                "confirmPasswordNotMatch": "Passwörter stimmen nicht überein"
+            },
+            "buttons": {
+                "submit": "Aktualisieren"
+            }
         },
         "error": {
             "info": "Sie haben vergessen, {{action}} component zu {{resource}} hinzufügen.",
@@ -369,10 +513,10 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
         }
     },
     "actions": {
-        "list": "List",
-        "create": "Create",
-        "edit": "Edit",
-        "show": "Show"
+        "list": "Aufführen",
+        "create": "Erstellen",
+        "edit": "Bearbeiten",
+        "show": "Zeigen"
     },
     "buttons": {
         "create": "Erstellen",

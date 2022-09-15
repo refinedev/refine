@@ -1,6 +1,6 @@
 ---
 id: mui-custom-layout
-title: Custom Layout
+title: Layout
 ---
 
 You can create custom layouts using [`<Refine>`][refine] and [`<LayoutWrapper>`][layoutwrapper] components.

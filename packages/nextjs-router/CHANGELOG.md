@@ -1,5 +1,23 @@
 # @pankod/refine-nextjs-router
 
+## 3.35.0
+
+### Minor Changes
+
+-   Add `initialData` support to `DashboardPage` for `@pankod/refine-nextjs-router`.
+
+## 3.34.0
+
+### Minor Changes
+
+-   [#2142](https://github.com/pankod/refine/pull/2142) [`dd00de215a`](https://github.com/pankod/refine/commit/dd00de215a869a11076a539227de9dc1de731a55) Thanks [@ozkalai](https://github.com/ozkalai)! - Add `initialData` support to `DashboardPage` for `@pankod/refine-nextjs-router`.
+
+## 3.33.0
+
+### Minor Changes
+
+-   Update type declaration generation with `tsc` instead of `tsup` for better navigation throughout projects source code.
+
 ## 3.32.0
 
 ### Minor Changes

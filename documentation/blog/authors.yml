@@ -57,6 +57,10 @@ necati:
     title: Software Developer
     url: https://github.com/necatiozmen
     image_url: https://github.com/necatiozmen.png
+    description: Feeling irie
+    github: https://github.com/necatiozmen
+    twitter: https://github.com/necatiozmen
+    linkedin: https://github.com/necatiozmen
 
 michael:
     name: Michael Hungbo
@@ -81,6 +85,8 @@ joel_adewole:
     title: Web Developer
     url: https://github.com/wolz-codelife
     image_url: https://media-exp1.licdn.com/dms/image/C4D03AQEe9WMRgmUP-A/profile-displayphoto-shrink_800_800/0/1661127238637?e=1666828800&v=beta&t=Bvpzz5mN5PudGFbtV29l9lPvtbmqJ9hq-3SXhFpAQWo
+    github: https://github.com/wolz-codelife
+    linkedin: https://linkedin.com/in/wolz-codelife
 
 doro_onome:
     name: Doro Onome
@@ -105,6 +111,8 @@ david_herbert:
     title: Frontend Engineer
     url: https://github.com/DaveyHert
     image_url: https://github.com/DaveyHert.png
+    github: https://github.com/DaveyHert
+    linkedin: https://www.linkedin.com/in/daveyhert
 
 joseph_mawa:
     name: Joseph Mawa
@@ -117,3 +125,15 @@ joel_ezimorah:
     title: Software Developer
     url: https://github.com/prince-joel
     image_url: https://github.com/prince-joel.png
+
+eren_erkalkan:
+    name: Eren Erkalkan
+    title: Co-Founder, refine
+    url: https://github.com/piyerro
+    image_url: https://github.com/piyerro.png
+
+david_omotayo:
+    name: David Omotayo
+    title: Frontend developer
+    url: https://github.com/david4473
+    image_url: https://github.com/david4473.png

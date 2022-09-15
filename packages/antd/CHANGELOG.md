@@ -1,5 +1,132 @@
 # @pankod/refine-antd
 
+## 3.46.0
+
+### Minor Changes
+
+-   Added `formProps` property support for AuthPage component
+
+    ## Usage
+
+    ```tsx
+    <AuthPage
+        type="login"
+        formProps={{
+            initialValues: {
+                email: "demo@refine.dev",
+                password: "demo",
+            },
+        }}
+    />
+    ```
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-ui-types@0.9.0
+
+## 3.45.0
+
+### Minor Changes
+
+-   [#2516](https://github.com/pankod/refine/pull/2516) [`ad99916d6d`](https://github.com/pankod/refine/commit/ad99916d6dbd181b857fd7df7b9619d8cac5e3e0) Thanks [@omeraplak](https://github.com/omeraplak)! - Added `formProps` property support for AuthPage component
+
+    ## Usage
+
+    ```tsx
+    <AuthPage
+        type="login"
+        formProps={{
+            initialValues: {
+                email: "demo@refine.dev",
+                password: "demo",
+            },
+        }}
+    />
+    ```
+
+### Patch Changes
+
+-   Updated dependencies [[`ad99916d6d`](https://github.com/pankod/refine/commit/ad99916d6dbd181b857fd7df7b9619d8cac5e3e0)]:
+    -   @pankod/refine-ui-types@0.8.0
+
+## 3.44.0
+
+### Minor Changes
+
+-   Added `render` prop to `Sider` component. You can get `dashboard`, `logout` and `items` from `render` props to customize the `Sider` component.
+
+-   Added `<AuthPage>` for Ant Design. `<AuthPage>` is a component that provides a login, register, reset password and update password pages.
+
+### Patch Changes
+
+-   Fixed version of react-router to `6.3.0`
+
+-   Passed `collapsed` prop to `render` method in `Sider` component of `@pankod/refine-antd`.
+
+-   Updated dependencies []:
+    -   @pankod/refine-ui-types@0.7.0
+
+## 3.43.1
+
+### Patch Changes
+
+-   [#2501](https://github.com/pankod/refine/pull/2501) [`4095a578d4`](https://github.com/pankod/refine/commit/4095a578d471254ee58412f130ac5a0f3a62880f) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed version of react-router to `6.3.0`
+
+## 3.43.0
+
+### Minor Changes
+
+-   [#2447](https://github.com/pankod/refine/pull/2447) [`628a37a675`](https://github.com/pankod/refine/commit/628a37a6753a778cbec5c29b698981e0157caa42) Thanks [@biskuvit](https://github.com/biskuvit)! - Added `<AuthPage>` for Ant Design. `<AuthPage>` is a component that provides a login, register, reset password and update password pages.
+
+### Patch Changes
+
+-   Updated dependencies [[`628a37a675`](https://github.com/pankod/refine/commit/628a37a6753a778cbec5c29b698981e0157caa42)]:
+    -   @pankod/refine-ui-types@0.6.2
+
+## 3.42.1
+
+### Patch Changes
+
+-   [#2492](https://github.com/pankod/refine/pull/2492) [`7d5bf3023d`](https://github.com/pankod/refine/commit/7d5bf3023d00617890ffa7f9d22b1116af15e0b9) Thanks [@ozkalai](https://github.com/ozkalai)! - Passed `collapsed` prop to `render` method in `Sider` component of `@pankod/refine-antd`.
+
+-   Updated dependencies [[`7d5bf3023d`](https://github.com/pankod/refine/commit/7d5bf3023d00617890ffa7f9d22b1116af15e0b9)]:
+    -   @pankod/refine-ui-types@0.6.1
+
+## 3.42.0
+
+### Minor Changes
+
+-   [#2454](https://github.com/pankod/refine/pull/2454) [`72487a4126`](https://github.com/pankod/refine/commit/72487a4126fb7d827dccd3bcbdee9a83aa1f56af) Thanks [@ozkalai](https://github.com/ozkalai)! - Added `render` prop to `Sider` component. You can get `dashboard`, `logout` and `items` from `render` props to customize the `Sider` component.
+
+### Patch Changes
+
+-   Updated dependencies [[`72487a4126`](https://github.com/pankod/refine/commit/72487a4126fb7d827dccd3bcbdee9a83aa1f56af)]:
+    -   @pankod/refine-ui-types@0.6.0
+
+## 3.41.0
+
+### Minor Changes
+
+-   Added support nested sorting
+
+## 3.40.0
+
+### Minor Changes
+
+-   [#2427](https://github.com/pankod/refine/pull/2427) [`b21908e872`](https://github.com/pankod/refine/commit/b21908e87209c3a8825991c6ab829f7c45c19e9b) Thanks [@geoffatsource](https://github.com/geoffatsource)! - Added support nested sorting
+
+## 3.39.0
+
+### Minor Changes
+
+-   Update type declaration generation with `tsc` instead of `tsup` for better navigation throughout projects source code.
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-ui-types@0.5.0
+
 ## 3.38.0
 
 ### Minor Changes

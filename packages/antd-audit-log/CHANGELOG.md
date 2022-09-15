@@ -1,5 +1,17 @@
 # @pankod/refine-antd-audit-log
 
+## 3.29.0
+
+### Minor Changes
+
+-   Update type declaration generation with `tsc` instead of `tsup` for better navigation throughout projects source code.
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.67.0
+    -   @pankod/refine-antd@3.39.0
+
 ## 3.28.0
 
 ### Minor Changes

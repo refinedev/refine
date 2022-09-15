@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from "axios";
 import { stringify, StringifyOptions } from "query-string";
 import {
-    DataProvider,
+    DataProvider as DataProviderType,
     HttpError,
     CrudOperators,
     CrudFilter,
@@ -54,7 +54,7 @@ axiosInstance.interceptors.response.use(
 const DataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
-): DataProvider => {
+): DataProviderType => {
     httpClient.defaults.baseURL = `${apiUrl}/store`;
 
     return {
@@ -220,7 +220,9 @@ const DataProvider = (
                     axiosResponse = await httpClient[method](url, payload);
                     break;
                 case "delete":
-                    axiosResponse = await httpClient.delete(url);
+                    axiosResponse = await httpClient.delete(url, {
+                        data: payload,
+                    });
                     break;
                 default:
                     axiosResponse = await httpClient.get(requestUrl);
