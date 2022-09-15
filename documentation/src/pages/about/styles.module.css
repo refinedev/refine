@@ -61,3 +61,47 @@
 .communityContainer {
     @apply flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6;
 }
+
+.teamContainer {
+    @apply flex flex-wrap justify-center gap-[18px] md:max-w-[960px] mb-16 md:mb-24;
+}
+
+.backedBy {
+    @apply md:max-w-[960px] mx-auto w-full flex flex-col justify-center items-center;
+}
+
+.backedByContainer {
+    @apply mb-16 md:mb-24 flex flex-wrap gap-4;
+}
+
+.weAreHere {
+    @apply w-full flex flex-col gap-8;
+}
+
+.locationContainer {
+    @apply max-w-[960px] mx-auto mb-16 md:mb-24 flex flex-col md:flex-row;
+}
+
+.locationText {
+    @apply flex flex-col;
+}
+
+.iconWrapper {
+    @apply md:flex md:justify-start md:items-start;
+}
+
+.text {
+    @apply w-[222px];
+}
+
+.locationInfo {
+    @apply md:text-start md:justify-start flex flex-col md:gap-10 md:flex-row text-center  md:max-w-max mx-auto mb-8 md:mb-7;
+}
+
+.locationImageWrapper {
+    @apply w-full h-[206px];
+}
+
+.locationImage {
+    @apply w-full h-full object-cover;
+}

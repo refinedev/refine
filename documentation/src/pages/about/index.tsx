@@ -5,7 +5,12 @@ import Layout from "../../theme/Layout";
 import { team } from "../../assets/team";
 import { community } from "../../assets/community";
 import styles from "./styles.module.css";
-import { CommunityCard } from "../../components/about/community-cart";
+import {
+    Card500,
+    CommunityCard,
+    LinkednCard,
+    TeamCard,
+} from "../../components";
 
 // sections
 // 1. Header paragraph
@@ -113,15 +118,40 @@ const About: React.FC = () => {
                         <div className={styles.hat} />
                         <h2 className={styles.subtitle}>Team</h2>
                     </div>
-                    <div className={styles.container}></div>
+                    <div className={styles.teamContainer}>
+                        {team.map((item) => (
+                            <TeamCard
+                                key={item.name}
+                                fullName={item.name}
+                                image={item.avatar}
+                                role1={item.role1}
+                                role2={item?.role2}
+                                href={item.url}
+                            />
+                        ))}
+                        <LinkednCard />
+                    </div>
                 </div>
                 <div className={styles.backedBy}>
                     <div className={styles.title}>
                         <div className={styles.hat} />
                         <h2 className={styles.subtitle}>Backed by</h2>
                     </div>
-                    <div className={styles.container}>
-                        <div className={styles.card}></div>
+                    <div className={styles.backedByContainer}>
+                        <Card500 />
+                        <TeamCard
+                            fullName="Emre Baran"
+                            role1="CEO & Co-founder at Cerbos"
+                            role2="Expert-in-Residence at Seedcamp"
+                            image="/about/images/team-avatars/emre.png"
+                            href="https://www.linkedin.com/in/emrebaran/"
+                        />
+                        <TeamCard
+                            fullName="Burak Emre Kabakçı"
+                            role1="Staff SWE @ LiveRamp Maker"
+                            image="/about/images/team-avatars/burak.png"
+                            href="https://www.linkedin.com/in/burak-emre-kabakc%C4%B1-15b2bb33/"
+                        />
                     </div>
                 </div>
                 <div className={styles.weAreHere}>
@@ -129,9 +159,36 @@ const About: React.FC = () => {
                         <div className={styles.hat} />
                         <h2 className={styles.subtitle}>We are here</h2>
                     </div>
-                    <div className={styles.container}>
-                        <div className={styles.image}></div>
-                        <div className={styles.locationText}></div>
+                    <div className={styles.locationContainer}>
+                        <div className={styles.locationText}>
+                            <div className={styles.locationInfo}>
+                                <div className={styles.iconWrapper}>
+                                    <img
+                                        src="/icons/pin.svg"
+                                        className={styles.icon}
+                                    />
+                                </div>
+                                <p className={styles.text}>
+                                    256 Chapman Road STE 105-4 Newark, New
+                                    Castle <strong>Delaware 19702</strong>
+                                </p>
+                            </div>
+                            <div className={styles.locationInfo}>
+                                <div className={styles.iconWrapper}>
+                                    <img
+                                        src="/icons/mail.svg"
+                                        className={styles.icon}
+                                    />
+                                </div>
+                                <p className={styles.text}>info@refine.dev</p>
+                            </div>
+                        </div>
+                        <div className={styles.locationImageWrapper}>
+                            <img
+                                className={styles.locationImage}
+                                src="/about/images/map.png"
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
