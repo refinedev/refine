@@ -15,7 +15,10 @@ class DraftResource {
         return await this.client.call({
             method: "post",
             url: "/draft-resource/client",
-            data,
+            data: {
+                ...data,
+                applicationClientId: this.client.getClientId(),
+            },
             headers: {
                 "x-refine-cloud-token": refineCloudToken || "",
             },
