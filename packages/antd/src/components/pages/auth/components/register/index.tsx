@@ -14,6 +14,7 @@ import {
     Button,
     LayoutProps,
     CardProps,
+    FormProps,
 } from "antd";
 import {
     useTranslate,
@@ -25,7 +26,7 @@ import { layoutStyles, containerStyles, titleStyles } from "../styles";
 
 const { Text, Title } = Typography;
 
-type RegisterProps = RefineRegisterPageProps<LayoutProps, CardProps>;
+type RegisterProps = RefineRegisterPageProps<LayoutProps, CardProps, FormProps>;
 
 /**
  * **refine** has register page form which is served on `/register` route when the `authProvider` configuration is provided.
@@ -38,6 +39,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     contentProps,
     renderContent,
     onSubmit,
+    formProps,
 }) => {
     const [form] = Form.useForm<RefineRegisterFormTypes>();
     const translate = useTranslate();
@@ -64,6 +66,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                 form={form}
                 onFinish={(values) => (onSubmit ?? register)(values)}
                 requiredMark={false}
+                {...formProps}
             >
                 <Form.Item
                     name="email"

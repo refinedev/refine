@@ -66,7 +66,17 @@ const App: React.FC = () => {
                         routes: [
                             {
                                 path: "/register",
-                                element: <AuthPage type="register" />,
+                                element: (
+                                    <AuthPage
+                                        type="register"
+                                        formProps={{
+                                            initialValues: {
+                                                email: "demo@refine.dev",
+                                                password: "demodemo",
+                                            },
+                                        }}
+                                    />
+                                ),
                             },
                             {
                                 path: "/reset-password",
@@ -83,7 +93,17 @@ const App: React.FC = () => {
                     i18nProvider={i18nProvider}
                     OffLayoutArea={OffLayoutArea}
                     DashboardPage={DashboardPage}
-                    LoginPage={() => <AuthPage type="login" />}
+                    LoginPage={() => (
+                        <AuthPage
+                            type="login"
+                            formProps={{
+                                initialValues: {
+                                    email: "demo@refine.dev",
+                                    password: "demodemo",
+                                },
+                            }}
+                        />
+                    )}
                     Title={Title}
                     Header={Header}
                     Layout={Layout}
