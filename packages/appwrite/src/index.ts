@@ -139,9 +139,9 @@ export const dataProvider = (
         },
         getOne: async ({ resource, id }) => {
             const { $id, ...restData } = await database.getDocument(
+                databaseId,
                 resource,
                 id.toString(),
-                databaseId,
             );
 
             return {
@@ -155,8 +155,8 @@ export const dataProvider = (
             const permissions = [
                 Permission.read(Role.any()),
                 Permission.write(Role.any()),
-                ...metaData?.readPermissions,
-                ...metaData?.writePermissions,
+                ...(metaData?.readPermissions ?? ""),
+                ...(metaData?.writePermissions ?? ""),
             ];
             const { $id, ...restData } = await database.updateDocument(
                 databaseId,
@@ -177,8 +177,8 @@ export const dataProvider = (
             const permissions = [
                 Permission.read(Role.any()),
                 Permission.write(Role.any()),
-                ...metaData?.readPermissions,
-                ...metaData?.writePermissions,
+                ...(metaData?.readPermissions ?? ""),
+                ...(metaData?.writePermissions ?? ""),
             ];
 
             const { $id, ...restData } = await database.createDocument(
@@ -200,8 +200,8 @@ export const dataProvider = (
             const permissions = [
                 Permission.read(Role.any()),
                 Permission.write(Role.any()),
-                ...metaData?.readPermissions,
-                ...metaData?.writePermissions,
+                ...(metaData?.readPermissions ?? ""),
+                ...(metaData?.writePermissions ?? ""),
             ];
             const data = await Promise.all(
                 variables.map((document) =>
@@ -268,8 +268,8 @@ export const dataProvider = (
             const permissions = [
                 Permission.read(Role.any()),
                 Permission.write(Role.any()),
-                ...metaData?.readPermissions,
-                ...metaData?.writePermissions,
+                ...(metaData?.readPermissions ?? ""),
+                ...(metaData?.writePermissions ?? ""),
             ];
             const data = await Promise.all(
                 ids.map((id) =>
