@@ -16,10 +16,13 @@ import {
     Drawer,
     Navbar,
     NavLink,
+    NavLinkStylesNames,
+    NavLinkStylesParams,
     ScrollArea,
     MediaQuery,
     Button,
     Tooltip,
+    Styles,
 } from "@mantine/core";
 import {
     IconBoxMultiple,
@@ -54,6 +57,32 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
         return 200;
     };
 
+    const commonNavLinkStyles: Styles<NavLinkStylesNames, NavLinkStylesParams> =
+        {
+            root: {
+                display: "flex",
+                color: "white",
+                "&:hover": {
+                    backgroundColor: "unset",
+                },
+                "&[data-active]": {
+                    backgroundColor: "#ffffff1a",
+                    color: "white",
+                    fontWeight: 700,
+                    "&:hover": {
+                        backgroundColor: "#ffffff1a",
+                    },
+                },
+                justifyContent: collapsed && !opened ? "center" : "flex-start",
+            },
+            icon: {
+                marginRight: collapsed && !opened ? 0 : 12,
+            },
+            body: {
+                display: collapsed && !opened ? "none" : "flex",
+            },
+        };
+
     const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
         return tree.map((item) => {
             const { icon, label, route, name, children } = item;
@@ -75,7 +104,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                     }}
                 >
                     <Tooltip
-                        disabled={!collapsed}
+                        disabled={!collapsed || opened}
                         label={label}
                         position="right"
                         withinPortal
@@ -86,37 +115,14 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                     >
                         <NavLink
                             key={route}
-                            label={collapsed ? null : label}
+                            label={collapsed && !opened ? null : label}
                             icon={icon ?? defaultNavIcon}
                             active={isSelected}
-                            childrenOffset={collapsed ? 0 : 12}
+                            childrenOffset={collapsed && !opened ? 0 : 12}
                             defaultOpened={defaultOpenKeys.includes(
                                 route || "",
                             )}
-                            styles={{
-                                root: {
-                                    display: "flex",
-                                    color: "white",
-                                    "&:hover": {
-                                        backgroundColor: "unset",
-                                    },
-                                    "&[data-active]": {
-                                        backgroundColor: "#ffffff1a",
-                                        color: "white",
-                                        fontWeight: 700,
-                                        "&:hover": {
-                                            backgroundColor: "#ffffff1a",
-                                        },
-                                    },
-                                    justifyContent: collapsed
-                                        ? "center"
-                                        : "flex-start",
-                                },
-                                icon: {
-                                    marginRight: collapsed ? 0 : 12,
-                                },
-                                body: { display: collapsed ? "none" : "flex" },
-                            }}
+                            styles={commonNavLinkStyles}
                             {...additionalLinkProps}
                         >
                             {isParent && renderTreeView(children, selectedKey)}
@@ -148,28 +154,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                     component={Link}
                     to="/"
                     active={selectedKey === "/"}
-                    styles={{
-                        root: {
-                            display: "flex",
-                            color: "white",
-                            "&:hover": {
-                                backgroundColor: "unset",
-                            },
-                            "&[data-active]": {
-                                backgroundColor: "#ffffff1a",
-                                color: "white",
-                                fontWeight: 700,
-                                "&:hover": {
-                                    backgroundColor: "#ffffff1a",
-                                },
-                            },
-                            justifyContent: collapsed ? "center" : "flex-start",
-                        },
-                        icon: {
-                            marginRight: collapsed ? 0 : 12,
-                        },
-                        body: { display: collapsed ? "none" : "flex" },
-                    }}
+                    styles={commonNavLinkStyles}
                 />
             </Tooltip>
         </CanAccess>
@@ -191,28 +176,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 label={collapsed ? null : t("buttons.logout", "Logout")}
                 icon={<IconLogout />}
                 onClick={() => mutateLogout()}
-                styles={{
-                    root: {
-                        display: "flex",
-                        color: "white",
-                        "&:hover": {
-                            backgroundColor: "unset",
-                        },
-                        "&[data-active]": {
-                            backgroundColor: "#ffffff1a",
-                            color: "white",
-                            fontWeight: 700,
-                            "&:hover": {
-                                backgroundColor: "#ffffff1a",
-                            },
-                        },
-                        justifyContent: collapsed ? "center" : "flex-start",
-                    },
-                    icon: {
-                        marginRight: collapsed ? 0 : 12,
-                    },
-                    body: { display: collapsed ? "none" : "flex" },
-                }}
+                styles={commonNavLinkStyles}
             />
         </Tooltip>
     );
