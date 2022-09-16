@@ -81,10 +81,11 @@ export const getAppwriteSorting: GetAppwriteSortingType = (sort) => {
 
     if (sort) {
         sort.map((item) => {
+            const field = item.field === "id" ? "$id" : item.field;
             if (item.order === "asc") {
-                sorts.push(Query.orderAsc(item.field));
+                sorts.push(Query.orderAsc(field));
             } else {
-                sorts.push(Query.orderDesc(item.field));
+                sorts.push(Query.orderDesc(field));
             }
         });
     }
@@ -95,7 +96,7 @@ export const getAppwriteSorting: GetAppwriteSortingType = (sort) => {
 export const getAppwritePagination = (pagination: Pagination) => {
     const { current = 1, pageSize = 10 } = pagination ?? {};
 
-    return [Query.offset(current * pageSize), Query.limit(pageSize)];
+    return [Query.offset((current - 1) * pageSize), Query.limit(pageSize)];
 };
 
 export const dataProvider = (
@@ -118,6 +119,7 @@ export const dataProvider = (
             const appwritePagination = hasPagination
                 ? getAppwritePagination(pagination)
                 : [];
+
             const appwriteSorts = getAppwriteSorting(sort);
 
             const { total: total, documents: data } =
