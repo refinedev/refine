@@ -1,5 +1,8 @@
 import * as React from "react";
-// import { RefineLoginPageProps } from "@pankod/refine-ui-types";
+import {
+    RefineUpdatePasswordFormTypes,
+    RefineUpdatePasswordPageProps,
+} from "@pankod/refine-ui-types";
 import { useForm } from "@pankod/refine-react-hook-form";
 import {
     Button,
@@ -8,7 +11,9 @@ import {
     Typography,
     Container,
     Card,
-    CardContent,
+    CardContent as MuiCardContent,
+    BoxProps,
+    CardContentProps,
 } from "@mui/material";
 
 import {
@@ -18,31 +23,123 @@ import {
     useUpdatePassword,
 } from "@pankod/refine-core";
 
-type IRegisterForm = {
-    password: string;
-    confirmPassword?: string;
-};
+import { layoutStyles, titleStyles } from "../styles";
 
-export const UpdatePasswordPage: React.FC<any> = ({ submitButton }) => {
+type UpdatePasswordProps = RefineUpdatePasswordPageProps<
+    BoxProps,
+    CardContentProps
+>;
+
+export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
+    onSubmit,
+    wrapperProps,
+    contentProps,
+    renderContent,
+}) => {
     const {
         register,
         watch,
         handleSubmit,
         formState: { errors },
-    } = useForm<BaseRecord, HttpError, IRegisterForm>();
+    } = useForm<BaseRecord, HttpError, RefineUpdatePasswordFormTypes>();
 
-    const { mutate: update, isLoading } = useUpdatePassword<IRegisterForm>();
+    const { mutate: update, isLoading } =
+        useUpdatePassword<RefineUpdatePasswordFormTypes>();
     const translate = useTranslate();
+
+    const CardContent = (
+        <Card {...(contentProps ?? {})}>
+            <MuiCardContent sx={{ paddingX: "32px" }}>
+                <Typography
+                    component="h1"
+                    variant="h5"
+                    align="center"
+                    style={titleStyles}
+                >
+                    {translate(
+                        "pages.updatePassword.title",
+                        "Set New Password",
+                    )}
+                </Typography>
+                <Box
+                    component="form"
+                    onSubmit={handleSubmit((data) =>
+                        (onSubmit ?? update)(data),
+                    )}
+                    gap="16px"
+                >
+                    <TextField
+                        {...register("password", {
+                            required: true,
+                        })}
+                        id="password"
+                        size="small"
+                        margin="normal"
+                        fullWidth
+                        name="password"
+                        label={translate(
+                            "pages.updatePassword.fields.password",
+                            "New Password",
+                        )}
+                        helperText={errors?.password?.message}
+                        error={!!errors?.password}
+                        type="password"
+                        placeholder="●●●●●●●●"
+                        autoComplete="current-password"
+                    />
+
+                    <TextField
+                        {...register("confirmPassword", {
+                            required: true,
+                            validate: (value?: string) => {
+                                if (watch("password") !== value) {
+                                    return translate(
+                                        "pages.updatePassword.errors.confirmPasswordNotMatch",
+                                        "Passwords do not match",
+                                    );
+                                }
+                                return true;
+                            },
+                        })}
+                        id="confirmPassword"
+                        size="small"
+                        margin="normal"
+                        fullWidth
+                        name="confirmPassword"
+                        label={translate(
+                            "pages.updatePassword.fields.confirmPassword",
+                            "Confirm New Password",
+                        )}
+                        helperText={errors?.confirmPassword?.message}
+                        error={!!errors?.confirmPassword}
+                        type="password"
+                        placeholder="●●●●●●●●"
+                        autoComplete="current-confirm-password"
+                    />
+
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        sx={{
+                            my: "8px",
+                            color: "white",
+                        }}
+                        disabled={isLoading}
+                    >
+                        {translate(
+                            "pages.updatePassword.buttons.submit",
+                            "Update",
+                        )}
+                    </Button>
+                </Box>
+            </MuiCardContent>
+        </Card>
+    );
 
     return (
         <>
-            <Box
-                component="div"
-                sx={{
-                    background: `radial-gradient(50% 50% at 50% 50%, #63386A 0%, #310438 100%)`,
-                    backgroundSize: "cover",
-                }}
-            >
+            <Box component="div" style={layoutStyles} {...(wrapperProps ?? {})}>
                 <Container
                     component="main"
                     maxWidth="xs"
@@ -53,116 +150,7 @@ export const UpdatePasswordPage: React.FC<any> = ({ submitButton }) => {
                         height: "100vh",
                     }}
                 >
-                    <Box
-                        sx={{
-                            display: "flex",
-                            justifyContent: "center",
-                            flexDirection: "column",
-                            alignItems: "center",
-                        }}
-                    >
-                        <Box mt={4}>
-                            <Card>
-                                <CardContent sx={{ paddingX: "32px" }}>
-                                    <Typography
-                                        component="h1"
-                                        variant="h5"
-                                        align="center"
-                                        sx={{
-                                            fontWeight: "700",
-                                            margin: "12px 0",
-                                        }}
-                                    >
-                                        {translate(
-                                            "pages.updatePassword.title",
-                                            "Finish resetting your password",
-                                        )}
-                                    </Typography>
-                                    <Box
-                                        component="form"
-                                        onSubmit={handleSubmit((data) => {
-                                            update(data);
-                                        })}
-                                        gap="16px"
-                                    >
-                                        <TextField
-                                            {...register("password", {
-                                                required: true,
-                                            })}
-                                            id="password"
-                                            size="small"
-                                            margin="normal"
-                                            fullWidth
-                                            name="password"
-                                            label={translate(
-                                                "pages.register.password",
-                                                "Password",
-                                            )}
-                                            helperText={
-                                                errors?.password?.message
-                                            }
-                                            error={!!errors?.password}
-                                            type="password"
-                                            placeholder="●●●●●●●●"
-                                            autoComplete="current-password"
-                                        />
-
-                                        <TextField
-                                            {...register("confirmPassword", {
-                                                required: true,
-                                                validate: (value?: string) => {
-                                                    if (
-                                                        watch("password") !==
-                                                        value
-                                                    ) {
-                                                        return translate(
-                                                            "pages.updatePassword.confirmPasswordNotMatch",
-                                                            "The two passwords that you entered do not match!",
-                                                        );
-                                                    }
-                                                    return true;
-                                                },
-                                            })}
-                                            id="confirmPassword"
-                                            size="small"
-                                            margin="normal"
-                                            fullWidth
-                                            name="confirmPassword"
-                                            label={translate(
-                                                "pages.updatePassword.confirmPassword",
-                                                "Confirm Password",
-                                            )}
-                                            helperText={
-                                                errors?.confirmPassword?.message
-                                            }
-                                            error={!!errors?.confirmPassword}
-                                            type="password"
-                                            placeholder="●●●●●●●●"
-                                            autoComplete="current-confirm-password"
-                                        />
-
-                                        {submitButton ?? (
-                                            <Button
-                                                type="submit"
-                                                fullWidth
-                                                variant="contained"
-                                                sx={{
-                                                    my: "8px",
-                                                    color: "white",
-                                                }}
-                                                disabled={isLoading}
-                                            >
-                                                {translate(
-                                                    "pages.updatePassword.submit",
-                                                    "Change Password",
-                                                )}
-                                            </Button>
-                                        )}
-                                    </Box>
-                                </CardContent>
-                            </Card>
-                        </Box>
-                    </Box>
+                    {renderContent ? renderContent(CardContent) : CardContent}
                 </Container>
             </Box>
         </>

@@ -1,5 +1,8 @@
 import * as React from "react";
-// import { RefineLoginPageProps } from "@pankod/refine-ui-types";
+import {
+    RefineResetPasswordPageProps,
+    RefineResetPasswordFormTypes,
+} from "@pankod/refine-ui-types";
 import { useForm } from "@pankod/refine-react-hook-form";
 import {
     Button,
@@ -8,7 +11,9 @@ import {
     Typography,
     Container,
     Card,
-    CardContent,
+    CardContent as MuiCardContent,
+    BoxProps,
+    CardContentProps,
 } from "@mui/material";
 
 import {
@@ -19,33 +24,137 @@ import {
     useResetPassword,
 } from "@pankod/refine-core";
 
-type IResetPasswordForm = {
-    email: string;
-};
+import { layoutStyles, titleStyles } from "../styles";
 
-export const ResetPasswordPage: React.FC<any> = ({
-    submitButton,
+type ResetPasswordProps = RefineResetPasswordPageProps<
+    BoxProps,
+    CardContentProps
+>;
+
+/**
+ * **refine** has reset password page form which is served on `/register` route when the `authProvider` configuration is provided.
+ *
+ * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/mui-auth-page/#reset-password} for more details.
+ */
+
+export const ResetPasswordPage: React.FC<ResetPasswordProps> = ({
+    onSubmit,
     loginLink,
+    wrapperProps,
+    contentProps,
+    renderContent,
 }) => {
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<BaseRecord, HttpError, IResetPasswordForm>();
+    } = useForm<BaseRecord, HttpError, RefineResetPasswordFormTypes>();
 
-    const { mutate: reset, isLoading } = useResetPassword<IResetPasswordForm>();
+    const { mutate: reset, isLoading } =
+        useResetPassword<RefineResetPasswordFormTypes>();
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
+    const CardContent = (
+        <Card {...(contentProps ?? {})}>
+            <MuiCardContent sx={{ paddingX: "32px" }}>
+                <Typography
+                    component="h1"
+                    variant="h5"
+                    align="center"
+                    style={titleStyles}
+                >
+                    {translate(
+                        "pages.resetPassword.title",
+                        "Forgot your password?",
+                    )}
+                </Typography>
+                <Box
+                    component="form"
+                    onSubmit={handleSubmit((data) => (onSubmit ?? reset)(data))}
+                    gap="16px"
+                >
+                    <TextField
+                        {...register("email", {
+                            required: true,
+                            pattern: {
+                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                message: translate(
+                                    "pages.register.errors.validEmail",
+                                    "Invalid email address",
+                                ),
+                            },
+                        })}
+                        id="email"
+                        margin="normal"
+                        size="small"
+                        fullWidth
+                        label={translate(
+                            "pages.resetPassword.fields.email",
+                            "Email",
+                        )}
+                        name="email"
+                        type="email"
+                        error={!!errors.email}
+                        autoComplete="email"
+                    />
+                    {loginLink ?? (
+                        <div
+                            style={{
+                                display: "flex",
+                            }}
+                        >
+                            <Box
+                                sx={{
+                                    display: "flex",
+                                    marginTop: 1,
+                                    marginLeft: "auto",
+                                }}
+                            >
+                                <Typography variant="subtitle2">
+                                    {translate(
+                                        "pages.register.buttons.haveAccount",
+                                        "Have an account? ",
+                                    )}{" "}
+                                    <Link
+                                        underline="none"
+                                        to="/login"
+                                        style={{
+                                            fontWeight: "bold",
+                                        }}
+                                    >
+                                        {translate(
+                                            "pages.login.signin",
+                                            "Sign in",
+                                        )}
+                                    </Link>
+                                </Typography>
+                            </Box>
+                        </div>
+                    )}
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        sx={{
+                            my: "8px",
+                            color: "white",
+                        }}
+                        disabled={isLoading}
+                    >
+                        {translate(
+                            "pages.resetPassword.buttons.submit",
+                            "Send reset instructions",
+                        )}
+                    </Button>
+                </Box>
+            </MuiCardContent>
+        </Card>
+    );
+
     return (
         <>
-            <Box
-                component="div"
-                sx={{
-                    background: `radial-gradient(50% 50% at 50% 50%, #63386A 0%, #310438 100%)`,
-                    backgroundSize: "cover",
-                }}
-            >
+            <Box component="div" style={layoutStyles} {...(wrapperProps ?? {})}>
                 <Container
                     component="main"
                     maxWidth="xs"
@@ -56,99 +165,7 @@ export const ResetPasswordPage: React.FC<any> = ({
                         height: "100vh",
                     }}
                 >
-                    <Box
-                        sx={{
-                            display: "flex",
-                            justifyContent: "center",
-                            flexDirection: "column",
-                            alignItems: "center",
-                        }}
-                    >
-                        <Box mt={4}>
-                            <Card>
-                                <CardContent sx={{ paddingX: "32px" }}>
-                                    <Typography
-                                        component="h1"
-                                        variant="h5"
-                                        align="center"
-                                        sx={{
-                                            fontWeight: "700",
-                                            margin: "12px 0",
-                                        }}
-                                    >
-                                        {translate(
-                                            "pages.resetPassword.title",
-                                            "Forgot your password?",
-                                        )}
-                                    </Typography>
-                                    <Box
-                                        component="form"
-                                        onSubmit={handleSubmit((data) => {
-                                            reset(data);
-                                        })}
-                                        gap="16px"
-                                    >
-                                        <TextField
-                                            {...register("email", {
-                                                required: true,
-                                            })}
-                                            id="email"
-                                            margin="normal"
-                                            size="small"
-                                            fullWidth
-                                            label={translate(
-                                                "pages.resetPassword.email",
-                                                "Email",
-                                            )}
-                                            name="email"
-                                            type="email"
-                                            error={!!errors.email}
-                                            autoComplete="email"
-                                        />
-                                        {submitButton ?? (
-                                            <Button
-                                                type="submit"
-                                                fullWidth
-                                                variant="contained"
-                                                sx={{
-                                                    my: "8px",
-                                                    color: "white",
-                                                }}
-                                                disabled={isLoading}
-                                            >
-                                                {translate(
-                                                    "pages.resetPassword.signup",
-                                                    "Sign up",
-                                                )}
-                                            </Button>
-                                        )}
-                                        {loginLink ?? (
-                                            <Box style={{ marginTop: 8 }}>
-                                                <Typography variant="subtitle2">
-                                                    {translate(
-                                                        "pages.register.haveAccount",
-                                                        "Do you have an account?",
-                                                    )}{" "}
-                                                    <Link
-                                                        underline="none"
-                                                        to="/login"
-                                                        style={{
-                                                            fontWeight: "bold",
-                                                        }}
-                                                    >
-                                                        {translate(
-                                                            "pages.resetPassword.submit",
-                                                            "Send reset link",
-                                                        )}
-                                                    </Link>
-                                                </Typography>
-                                            </Box>
-                                        )}
-                                    </Box>
-                                </CardContent>
-                            </Card>
-                        </Box>
-                    </Box>
+                    {renderContent ? renderContent(CardContent) : CardContent}
                 </Container>
             </Box>
         </>

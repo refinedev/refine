@@ -3,7 +3,7 @@ import {
     RefineRegisterFormTypes,
     RefineRegisterPageProps,
 } from "@pankod/refine-ui-types";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { useForm, UseFormReturnType } from "@pankod/refine-react-hook-form";
 import {
     Button,
     TextField,
@@ -26,18 +26,22 @@ import {
 
 import { layoutStyles, titleStyles } from "../styles";
 
-type RegisterProps = RefineRegisterPageProps<BoxProps, CardContentProps>;
+type RegisterProps = RefineRegisterPageProps<
+    BoxProps,
+    CardContentProps,
+    UseFormReturnType
+>;
 
 /**
  * **refine** has register page form which is served on `/register` route when the `authProvider` configuration is provided.
  *
  * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/mui-auth-page/#register} for more details.
-
  */
 export const RegisterPage: React.FC<RegisterProps> = ({
     loginLink,
     wrapperProps,
     contentProps,
+    formProps,
     renderContent,
     onSubmit,
 }) => {
@@ -51,7 +55,6 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         useRegister<RefineRegisterFormTypes>();
     const translate = useTranslate();
     const { Link } = useRouterContext();
-
     const CardContent = (
         <Card {...(contentProps ?? {})}>
             <MuiCardContent>
