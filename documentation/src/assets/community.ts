@@ -1,26 +1,28 @@
+import { Reddit, Twitter, Discord, Github } from "./about-icons";
+
 export const community = [
     {
         title: "VISIT OUR",
         subtitle: "GITHUB REPO",
-        iconPath: "/icons/github.svg",
+        icon: Github,
         url: "https://github.com/pankod/refine",
     },
     {
         title: "JOIN OUR",
         subtitle: "DISCORD SERVER",
-        iconPath: "/icons/discord.svg",
+        icon: Discord,
         url: "https://discord.gg/refine",
     },
     {
         title: "FOLLOW US",
         subtitle: "ON REDDIT",
-        iconPath: "/icons/reddit.svg",
+        icon: Reddit,
         url: "https://www.reddit.com/r/refine/",
     },
     {
         title: "FOLLOW US",
         subtitle: "ON TWITTER",
-        iconPath: "/icons/twitter.svg",
+        icon: Twitter,
         url: "https://twitter.com/refine_dev",
     },
 ];
