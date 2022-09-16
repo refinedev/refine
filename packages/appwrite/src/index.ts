@@ -5,8 +5,15 @@ import {
     CrudFilters,
     CrudSorting,
     CrudFilter,
+    Pagination,
 } from "@pankod/refine-core";
-import { Client as Appwrite, Query, Databases } from "appwrite";
+import {
+    Client as Appwrite,
+    Query,
+    Databases,
+    Permission,
+    Role,
+} from "appwrite";
 
 const getRefineEvent = (event: string): LiveEvent["type"] | undefined => {
     if (event.includes(".create")) {
@@ -21,14 +28,11 @@ const getRefineEvent = (event: string): LiveEvent["type"] | undefined => {
 };
 
 type GetAppwriteFiltersType = {
-    (filters?: CrudFilters): string[] | undefined;
+    (filters?: CrudFilters): string[];
 };
 
 type GetAppwriteSortingType = {
-    (filters?: CrudSorting): {
-        orderField?: string[];
-        orderType?: string[];
-    };
+    (sorts?: CrudSorting): string[];
 };
 
 const generateFilter = (filter: CrudFilter) => {
@@ -38,13 +42,13 @@ const generateFilter = (filter: CrudFilter) => {
         case "ne":
             return Query.notEqual(filter.field, filter.value);
         case "gt":
-            return Query.greater(filter.field, filter.value);
+            return Query.greaterThan(filter.field, filter.value);
         case "gte":
-            return Query.greaterEqual(filter.field, filter.value);
+            return Query.greaterThanEqual(filter.field, filter.value);
         case "lt":
-            return Query.lesser(filter.field, filter.value);
+            return Query.lessThan(filter.field, filter.value);
         case "lte":
-            return Query.lesserEqual(filter.field, filter.value);
+            return Query.lessThanEqual(filter.field, filter.value);
         case "contains":
             return Query.search(filter.field, `%${filter.value}%`);
         default:
@@ -53,13 +57,9 @@ const generateFilter = (filter: CrudFilter) => {
 };
 
 export const getAppwriteFilters: GetAppwriteFiltersType = (filters) => {
-    if (!filters) {
-        return undefined;
-    }
-
     const appwriteFilters: string[] = [];
 
-    for (const filter of filters) {
+    for (const filter of filters ?? []) {
         if (filter.operator !== "or") {
             const filterField = filter.field === "id" ? "$id" : filter.field;
 
@@ -76,17 +76,25 @@ export const getAppwriteFilters: GetAppwriteFiltersType = (filters) => {
 };
 
 export const getAppwriteSorting: GetAppwriteSortingType = (sort) => {
-    const _sort: { orderField: string[]; orderType: string[] } = {
-        orderField: [],
-        orderType: [],
-    };
+    const sorts: string[] = [];
+
     if (sort) {
         sort.map((item) => {
-            _sort.orderField.push(item.field);
-            _sort.orderType.push(item.order.toUpperCase());
+            if (item.order === "asc") {
+                sorts.push(Query.orderAsc(item.field));
+            } else {
+                sorts.push(Query.orderDesc(item.field));
+            }
         });
     }
-    return _sort;
+
+    return sorts;
+};
+
+export const getAppwritePagination = (pagination: Pagination) => {
+    const { current = 1, pageSize = 10 } = pagination ?? {};
+
+    return [Query.offset(current * pageSize), Query.limit(pageSize)];
 };
 
 export const dataProvider = (
@@ -95,10 +103,9 @@ export const dataProvider = (
 ): DataProvider => {
     const { databaseId } = options;
 
-    const database = new Databases(appwriteClient, databaseId);
+    const database = new Databases(appwriteClient);
 
     return {
-        //TODO: Fix typing
         getList: async ({
             resource,
             hasPagination = true,
@@ -106,22 +113,18 @@ export const dataProvider = (
             filters,
             sort,
         }) => {
-            const { current = 1, pageSize = 10 } = pagination ?? {};
-
             const appwriteFilters = getAppwriteFilters(filters);
-            const { orderField, orderType } = getAppwriteSorting(sort);
+            const appwritePagination = hasPagination
+                ? getAppwritePagination(pagination)
+                : [];
+            const appwriteSorts = getAppwriteSorting(sort);
 
             const { total: total, documents: data } =
-                await database.listDocuments<any>(
-                    resource,
-                    appwriteFilters,
-                    pageSize,
-                    hasPagination ? (current - 1) * pageSize : undefined,
-                    undefined,
-                    undefined,
-                    orderField,
-                    orderType,
-                );
+                await database.listDocuments<any>(databaseId, resource, [
+                    ...appwriteFilters,
+                    ...appwritePagination,
+                    ...appwriteSorts,
+                ]);
 
             return {
                 data: data.map(({ $id, ...restData }: { $id: string }) => ({
@@ -135,6 +138,7 @@ export const dataProvider = (
             const { $id, ...restData } = await database.getDocument(
                 resource,
                 id.toString(),
+                databaseId,
             );
 
             return {
@@ -145,12 +149,18 @@ export const dataProvider = (
             } as any;
         },
         update: async ({ resource, id, variables, metaData }) => {
+            const permissions = [
+                Permission.read(Role.any()),
+                Permission.write(Role.any()),
+                ...metaData?.readPermissions,
+                ...metaData?.writePermissions,
+            ];
             const { $id, ...restData } = await database.updateDocument(
+                databaseId,
                 resource,
                 id.toString(),
                 variables as any,
-                metaData?.readPermissions ?? ["role:all"],
-                metaData?.writePermissions ?? ["role:all"],
+                permissions,
             );
 
             return {
@@ -161,12 +171,19 @@ export const dataProvider = (
             } as any;
         },
         create: async ({ resource, variables, metaData }) => {
+            const permissions = [
+                Permission.read(Role.any()),
+                Permission.write(Role.any()),
+                ...metaData?.readPermissions,
+                ...metaData?.writePermissions,
+            ];
+
             const { $id, ...restData } = await database.createDocument(
+                databaseId,
                 resource,
                 metaData?.documentId ?? "unique()",
                 variables as unknown as object,
-                metaData?.readPermissions ?? ["role:all"],
-                metaData?.writePermissions ?? ["role:all"],
+                permissions,
             );
 
             return {
@@ -177,14 +194,20 @@ export const dataProvider = (
             } as any;
         },
         createMany: async ({ resource, variables, metaData }) => {
+            const permissions = [
+                Permission.read(Role.any()),
+                Permission.write(Role.any()),
+                ...metaData?.readPermissions,
+                ...metaData?.writePermissions,
+            ];
             const data = await Promise.all(
                 variables.map((document) =>
                     database.createDocument<any>(
+                        databaseId,
                         resource,
                         metaData?.documentId ?? "unique()",
                         document as unknown as any,
-                        metaData?.readPermissions ?? ["role:all"],
-                        metaData?.writePermissions ?? ["role:all"],
+                        permissions,
                     ),
                 ),
             );
@@ -197,7 +220,7 @@ export const dataProvider = (
             } as any;
         },
         deleteOne: async ({ resource, id }) => {
-            await database.deleteDocument(resource, id.toString());
+            await database.deleteDocument(databaseId, resource, id.toString());
 
             return {
                 data: { id },
@@ -206,7 +229,11 @@ export const dataProvider = (
         deleteMany: async ({ resource, ids }) => {
             await Promise.all(
                 ids.map((id) =>
-                    database.deleteDocument(resource, id.toString()),
+                    database.deleteDocument(
+                        databaseId,
+                        resource,
+                        id.toString(),
+                    ),
                 ),
             );
 
@@ -219,7 +246,11 @@ export const dataProvider = (
         getMany: async ({ resource, ids }) => {
             const data = await Promise.all(
                 ids.map((id) =>
-                    database.getDocument<any>(resource, id.toString()),
+                    database.getDocument<any>(
+                        databaseId,
+                        resource,
+                        id.toString(),
+                    ),
                 ),
             );
 
@@ -231,14 +262,20 @@ export const dataProvider = (
             } as any;
         },
         updateMany: async ({ resource, ids, variables, metaData }) => {
+            const permissions = [
+                Permission.read(Role.any()),
+                Permission.write(Role.any()),
+                ...metaData?.readPermissions,
+                ...metaData?.writePermissions,
+            ];
             const data = await Promise.all(
                 ids.map((id) =>
                     database.updateDocument<any>(
+                        databaseId,
                         resource,
                         id.toString(),
                         variables as unknown as object,
-                        metaData?.readPermissions ?? ["role:all"],
-                        metaData?.writePermissions ?? ["role:all"],
+                        permissions,
                     ),
                 ),
             );
