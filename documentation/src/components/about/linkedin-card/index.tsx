@@ -3,7 +3,10 @@ import styles from "./styles.module.css";
 
 export const LinkednCard: React.FC = () => {
     return (
-        <a href="linkedin.com/refine" className={styles.container}>
+        <a
+            href="https://www.linkedin.com/company/refine-dev/mycompany/"
+            className={styles.container}
+        >
             <div className={styles.card}>
                 <div className={styles.title}>
                     SEE OPEN

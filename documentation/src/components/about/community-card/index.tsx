@@ -4,14 +4,14 @@ import styles from "./styles.module.css";
 type CommunityCardProps = {
     title: string;
     subtitle: string;
-    iconPath: string;
+    icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
     href: string;
 };
 
 export const CommunityCard: React.FC<CommunityCardProps> = ({
     title,
     subtitle,
-    iconPath,
+    icon: Icon,
     href,
 }) => {
     return (
@@ -23,7 +23,7 @@ export const CommunityCard: React.FC<CommunityCardProps> = ({
                     <strong>{subtitle}</strong>
                 </div>
                 <div className={styles.cardIconWrapper}>
-                    <img className={styles.cardIcon} src={iconPath} />
+                    <Icon className={styles.cardIcon} />
                 </div>
             </div>
         </a>
