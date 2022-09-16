@@ -42,12 +42,6 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
         ["0%", "0%", "0%", "-100%", "-200%", "-300%", "-500%"],
     );
 
-    React.useEffect(() => {
-        return slideX.onChange(() => {
-            console.log("slideX", slideX.get());
-        });
-    });
-
     const slideLeftBgY = useTransform(
         scrollYProgress,
         [0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1],
