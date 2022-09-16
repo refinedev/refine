@@ -4,7 +4,7 @@ description: We will explain the entire process of how to use Next.js in TypeScr
 slug: next-js-with-typescript
 authors: michael
 tags: [nextjs, typescript]
-image: https://refine.dev/img/blog/2022-09-12-next-typescript/social.png
+image: /img/blog/2022-09-12-next-typescript/social.png
 hide_table_of_contents: false
 ---
 

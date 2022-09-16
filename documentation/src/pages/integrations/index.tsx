@@ -40,7 +40,7 @@ const Integrations: React.FC = () => {
 
     return (
         <Layout>
-            <Head>
+            <Head title="Integrations | refine">
                 <html data-page="integrations" data-customized="true" />
             </Head>
             <div className={styles.integrations_container}>

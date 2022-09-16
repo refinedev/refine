@@ -4,7 +4,7 @@ description: The refine swag store is now open for those who enjoy this open sou
 slug: refine-swag-store
 authors: eren_erkalkan
 tags: [store, refine]
-image: https://refine.dev/img/blog/2022-09-08-swag-store/social.png
+image: /img/blog/2022-09-08-swag-store/social.png
 hide_table_of_contents: false
 ---
 

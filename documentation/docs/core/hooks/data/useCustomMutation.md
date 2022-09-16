@@ -63,6 +63,11 @@ mutate(
         values: {
             title: "New Category",
         },
+        config: {
+            headers: {
+                "x-custom-header": "foo-bar",
+            },
+        },
     },
     {
         onError: (error, variables, context) => {
@@ -90,7 +95,7 @@ mutate(
 | errorNotification                               | Unsuccessful Mutation notification                                                                 | [`SuccessErrorNotification`](/core/interfaces.md#successerrornotification) |
 | metaData                                        | Metadata query for `dataProvider`                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                       |
 | dataProviderName                                | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                                   |
-| config                                          | Config Params                                                                                      | { headers?: {};                                                            |
+| config                                          | The config of your request. You can send `headers`, `payload`, `query`, `filters` and `sort` using this field. | { sort?: [CrudSorting](/core/interfaces.md#crudsorting); filters?: [`CrudFilters`](/core/interfaces.md#crudfilters); payload?: {}; query?: {}, headers?: {}; } |
 
 ### Type Parameters
 

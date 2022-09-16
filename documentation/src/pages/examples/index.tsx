@@ -10,7 +10,7 @@ import { ChevronRight } from "../../components/blog/icons";
 const Examples: React.FC = () => {
     return (
         <Layout>
-            <Head>
+            <Head title="Examples | refine">
                 <html data-page="examples" data-customized="true" />
             </Head>
             <div className="container max-w-[1040px]">

@@ -21,6 +21,7 @@ class Auth {
                 data: {
                     email,
                     password,
+                    applicationClientId: this.client.getClientId(),
                 },
             });
         }
@@ -45,7 +46,10 @@ class Auth {
         return await this.client.call({
             method: "post",
             url: "/auth/register",
-            data,
+            data: {
+                ...data,
+                applicationClientId: this.client.getClientId(),
+            },
         });
     }
 
