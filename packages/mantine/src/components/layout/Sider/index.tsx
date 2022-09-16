@@ -22,6 +22,7 @@ import {
     MediaQuery,
     Button,
     Tooltip,
+    TooltipProps,
     Styles,
 } from "@mantine/core";
 import {
@@ -83,6 +84,16 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
             },
         };
 
+    const commonTooltipProps: Partial<TooltipProps> = {
+        disabled: !collapsed || opened,
+        position: "right",
+        withinPortal: true,
+        withArrow: true,
+        arrowSize: 8,
+        arrowOffset: 12,
+        offset: 4,
+    };
+
     const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
         return tree.map((item) => {
             const { icon, label, route, name, children } = item;
@@ -103,16 +114,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                         resource: item,
                     }}
                 >
-                    <Tooltip
-                        disabled={!collapsed || opened}
-                        label={label}
-                        position="right"
-                        withinPortal
-                        withArrow
-                        arrowSize={8}
-                        arrowOffset={12}
-                        offset={4}
-                    >
+                    <Tooltip label={label} {...commonTooltipProps}>
                         <NavLink
                             key={route}
                             label={collapsed && !opened ? null : label}
@@ -138,18 +140,16 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const dashboard = hasDashboard ? (
         <CanAccess resource="dashboard" action="list">
             <Tooltip
-                disabled={!collapsed}
                 label={t("dashboard.title", "Dashboard")}
-                position="right"
-                withinPortal
-                withArrow
-                arrowSize={8}
-                arrowOffset={12}
-                offset={4}
+                {...commonTooltipProps}
             >
                 <NavLink
                     key="dashboard"
-                    label={collapsed ? null : t("dashboard.title", "Dashboard")}
+                    label={
+                        collapsed && !opened
+                            ? null
+                            : t("dashboard.title", "Dashboard")
+                    }
                     icon={<IconHome />}
                     component={Link}
                     to="/"
@@ -161,19 +161,12 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     ) : null;
 
     const logout = isExistAuthentication && (
-        <Tooltip
-            disabled={!collapsed}
-            label={t("buttons.logout", "Logout")}
-            position="right"
-            withinPortal
-            withArrow
-            arrowSize={8}
-            arrowOffset={12}
-            offset={4}
-        >
+        <Tooltip label={t("buttons.logout", "Logout")} {...commonTooltipProps}>
             <NavLink
                 key="logout"
-                label={collapsed ? null : t("buttons.logout", "Logout")}
+                label={
+                    collapsed && !opened ? null : t("buttons.logout", "Logout")
+                }
                 icon={<IconLogout />}
                 onClick={() => mutateLogout()}
                 styles={commonNavLinkStyles}
