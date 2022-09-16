@@ -1,5 +1,11 @@
 # @pankod/refine-sdk
 
+## 0.6.0
+
+### Minor Changes
+
+-   Add storage support
+
 ## 0.5.0
 
 ### Minor Changes
