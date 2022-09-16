@@ -27,18 +27,16 @@ import {
     IconChevronRight,
     IconChevronLeft,
     IconLogout,
+    IconHome,
 } from "@tabler/icons";
 import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
 
 import { Title as DefaultTitle } from "../title";
 
-const defaultNavIcon = (
-    <ActionIcon variant="transparent">
-        <IconBoxMultiple color="white" size={16} stroke={1.5} />
-    </ActionIcon>
-);
+const defaultNavIcon = <IconBoxMultiple color="white" size={18} stroke={1.5} />;
+
 export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
-    const [collapsed, setCollapsed] = useState(false);
+    const [collapsed, setCollapsed] = useState(true);
     const [opened, setOpened] = useState(false);
 
     const { Link } = useRouterContext();
@@ -52,7 +50,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const RenderToTitle = Title ?? DefaultTitle;
 
     const drawerWidth = () => {
-        if (collapsed) return 64;
+        if (collapsed) return 80;
         return 200;
     };
 
@@ -84,17 +82,41 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                         withArrow
                         arrowSize={8}
                         arrowOffset={12}
-                        offset={-30}
+                        offset={4}
                     >
                         <NavLink
                             key={route}
-                            label={collapsed ? "" : label}
+                            label={collapsed ? null : label}
                             icon={icon ?? defaultNavIcon}
                             active={isSelected}
+                            childrenOffset={collapsed ? 0 : 12}
                             defaultOpened={defaultOpenKeys.includes(
                                 route || "",
                             )}
-                            rightSection={collapsed ? <></> : ""}
+                            styles={{
+                                root: {
+                                    display: "flex",
+                                    color: "white",
+                                    "&:hover": {
+                                        backgroundColor: "unset",
+                                    },
+                                    "&[data-active]": {
+                                        backgroundColor: "#ffffff1a",
+                                        color: "white",
+                                        fontWeight: 700,
+                                        "&:hover": {
+                                            backgroundColor: "#ffffff1a",
+                                        },
+                                    },
+                                    justifyContent: collapsed
+                                        ? "center"
+                                        : "flex-start",
+                                },
+                                icon: {
+                                    marginRight: collapsed ? 0 : 12,
+                                },
+                                body: { display: collapsed ? "none" : "flex" },
+                            }}
                             {...additionalLinkProps}
                         >
                             {isParent && renderTreeView(children, selectedKey)}
@@ -117,16 +139,37 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 withArrow
                 arrowSize={8}
                 arrowOffset={12}
-                offset={-30}
+                offset={4}
             >
                 <NavLink
                     key="dashboard"
                     label={collapsed ? null : t("dashboard.title", "Dashboard")}
-                    icon={<IconLogout />}
-                    rightSection={collapsed ? <></> : ""}
+                    icon={<IconHome />}
                     component={Link}
                     to="/"
                     active={selectedKey === "/"}
+                    styles={{
+                        root: {
+                            display: "flex",
+                            color: "white",
+                            "&:hover": {
+                                backgroundColor: "unset",
+                            },
+                            "&[data-active]": {
+                                backgroundColor: "#ffffff1a",
+                                color: "white",
+                                fontWeight: 700,
+                                "&:hover": {
+                                    backgroundColor: "#ffffff1a",
+                                },
+                            },
+                            justifyContent: collapsed ? "center" : "flex-start",
+                        },
+                        icon: {
+                            marginRight: collapsed ? 0 : 12,
+                        },
+                        body: { display: collapsed ? "none" : "flex" },
+                    }}
                 />
             </Tooltip>
         </CanAccess>
@@ -141,14 +184,35 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
             withArrow
             arrowSize={8}
             arrowOffset={12}
-            offset={-30}
+            offset={4}
         >
             <NavLink
                 key="logout"
                 label={collapsed ? null : t("buttons.logout", "Logout")}
                 icon={<IconLogout />}
-                rightSection={collapsed ? <></> : ""}
                 onClick={() => mutateLogout()}
+                styles={{
+                    root: {
+                        display: "flex",
+                        color: "white",
+                        "&:hover": {
+                            backgroundColor: "unset",
+                        },
+                        "&[data-active]": {
+                            backgroundColor: "#ffffff1a",
+                            color: "white",
+                            fontWeight: 700,
+                            "&:hover": {
+                                backgroundColor: "#ffffff1a",
+                            },
+                        },
+                        justifyContent: collapsed ? "center" : "flex-start",
+                    },
+                    icon: {
+                        marginRight: collapsed ? 0 : 12,
+                    },
+                    body: { display: collapsed ? "none" : "flex" },
+                }}
             />
         </Tooltip>
     );
@@ -182,7 +246,9 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                             borderRadius: "0 6px 6px 0",
                             backgroundColor: "#2A132E",
                             color: "white",
-                            "&:hover": {},
+                            "&:hover": {
+                                backgroundColor: "#2A132E",
+                            },
                         }}
                         onClick={() => setOpened((prev) => !prev)}
                     >

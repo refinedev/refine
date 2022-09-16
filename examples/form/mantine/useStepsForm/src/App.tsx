@@ -3,6 +3,7 @@ import {
     notificationProvider,
     MantineProvider,
     Layout,
+    LightTheme,
 } from "@pankod/refine-mantine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -12,7 +13,7 @@ import { PostCreate, PostEdit, PostList } from "./pages";
 const App: React.FC = () => {
     return (
         <MantineProvider
-            // theme={{ colorScheme: "dark" }}
+            theme={LightTheme}
             withNormalizeCSS
             notificationProps={{ position: "top-right" }}
         >
@@ -24,6 +25,12 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "posts",
+                        list: PostList,
+                        edit: PostEdit,
+                        create: PostCreate,
+                    },
+                    {
+                        name: "categories",
                         list: PostList,
                         edit: PostEdit,
                         create: PostCreate,
