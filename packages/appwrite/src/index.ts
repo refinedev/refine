@@ -13,6 +13,7 @@ import {
     Databases,
     Permission,
     Role,
+    ID,
 } from "appwrite";
 
 const getRefineEvent = (event: string): LiveEvent["type"] | undefined => {
@@ -181,7 +182,7 @@ export const dataProvider = (
             const { $id, ...restData } = await database.createDocument(
                 databaseId,
                 resource,
-                metaData?.documentId ?? "unique()",
+                metaData?.documentId ?? ID.unique(),
                 variables as unknown as object,
                 permissions,
             );
@@ -205,7 +206,7 @@ export const dataProvider = (
                     database.createDocument<any>(
                         databaseId,
                         resource,
-                        metaData?.documentId ?? "unique()",
+                        metaData?.documentId ?? ID.unique(),
                         document as unknown as any,
                         permissions,
                     ),
