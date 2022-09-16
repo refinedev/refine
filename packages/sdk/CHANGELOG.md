@@ -1,5 +1,11 @@
 # @pankod/refine-sdk
 
+## 0.5.0
+
+### Minor Changes
+
+-   [#2522](https://github.com/pankod/refine/pull/2522) [`e0dce4dda7`](https://github.com/pankod/refine/commit/e0dce4dda7ec2a2fa5a8619cb2747e68865b76ec) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Add storage support
+
 ## 0.4.0
 
 ### Minor Changes
