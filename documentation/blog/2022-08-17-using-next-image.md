@@ -8,8 +8,6 @@ image: /img/blog/2022-08-17-using-next-image/social.png
 hide_table_of_contents: false
 ---
 
-
-
 ## Introduction
 Images are a significant part of modern-day web application development. Depending on how you use them, they can either make or mar your applications' developer and user experiences. Images impact user experience and are equally crucial in Search Engine Optimization (SEO) ranking when used right.
 Traditionally, images are added to web pages with the HTML `img` tag. This might prove to be efficient for simple use-cases, but things quickly get untidy when dealing with a sizable amount of images. 
