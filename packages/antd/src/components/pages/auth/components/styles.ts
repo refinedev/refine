@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 
 export const layoutStyles: CSSProperties = {
-    background: `#450D87`,
+    background: `radial-gradient(50% 50% at 50% 50%, #6813CB 0%, #2A2A42 100%)`,
     backgroundSize: "cover",
 };
 
