@@ -4,6 +4,7 @@ import Head from "@docusaurus/Head";
 import Layout from "../../theme/Layout";
 import { team } from "../../assets/team";
 import { community } from "../../assets/community";
+import { Pin, Mail } from "../../assets/about-icons";
 import styles from "./styles.module.css";
 import {
     Card500,
@@ -11,15 +12,6 @@ import {
     LinkednCard,
     TeamCard,
 } from "../../components";
-
-// sections
-// 1. Header paragraph
-// 2. About section it has a subtitle and 3 short paragraph
-// 3. Open source community section it has a subtitle and a flex column container half of image and other half 2 short paragraph
-// 4. Join our community section it has a subtitle and a flex container with 4 cards
-// 5. Team section it has a subtitle and a grid container with 4 cards for each line
-// 6. Backed by section it has a subtitle and a grid container with 3 cards
-// 7. We are here section it has a subtitle and flex container that contain 2 parts one is a image and other is a paragraph
 
 const About: React.FC = () => {
     return (
@@ -107,7 +99,7 @@ const About: React.FC = () => {
                                 key={item.url}
                                 title={item.title}
                                 subtitle={item.subtitle}
-                                iconPath={item.iconPath}
+                                icon={item.icon}
                                 href={item.url}
                             />
                         ))}
@@ -139,19 +131,21 @@ const About: React.FC = () => {
                     </div>
                     <div className={styles.backedByContainer}>
                         <Card500 />
-                        <TeamCard
-                            fullName="Emre Baran"
-                            role1="CEO & Co-founder at Cerbos"
-                            role2="Expert-in-Residence at Seedcamp"
-                            image="/about/images/team-avatars/emre.png"
-                            href="https://www.linkedin.com/in/emrebaran/"
-                        />
-                        <TeamCard
-                            fullName="Burak Emre Kabakçı"
-                            role1="Staff SWE @ LiveRamp Maker"
-                            image="/about/images/team-avatars/burak.png"
-                            href="https://www.linkedin.com/in/burak-emre-kabakc%C4%B1-15b2bb33/"
-                        />
+                        <div className={styles.backedMember}>
+                            <TeamCard
+                                fullName="Emre Baran"
+                                role1="CEO & Co-founder at Cerbos"
+                                role2="Expert-in-Residence at Seedcamp"
+                                image="/about/images/team-avatars/emre.png"
+                                href="https://www.linkedin.com/in/emrebaran/"
+                            />
+                            <TeamCard
+                                fullName="Burak Emre Kabakçı"
+                                role1="Staff SWE @ LiveRamp Maker"
+                                image="/about/images/team-avatars/burak.png"
+                                href="https://www.linkedin.com/in/burak-emre-kabakc%C4%B1-15b2bb33/"
+                            />
+                        </div>
                     </div>
                 </div>
                 <div className={styles.weAreHere}>
@@ -163,10 +157,7 @@ const About: React.FC = () => {
                         <div className={styles.locationText}>
                             <div className={styles.locationInfo}>
                                 <div className={styles.iconWrapper}>
-                                    <img
-                                        src="/icons/pin.svg"
-                                        className={styles.icon}
-                                    />
+                                    <Pin className={styles.icon} />
                                 </div>
                                 <p className={styles.text}>
                                     256 Chapman Road STE 105-4 Newark, New
@@ -175,10 +166,7 @@ const About: React.FC = () => {
                             </div>
                             <div className={styles.locationInfo}>
                                 <div className={styles.iconWrapper}>
-                                    <img
-                                        src="/icons/mail.svg"
-                                        className={styles.icon}
-                                    />
+                                    <Mail className={styles.icon} />
                                 </div>
                                 <p className={styles.text}>info@refine.dev</p>
                             </div>
