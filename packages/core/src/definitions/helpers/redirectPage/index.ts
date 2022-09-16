@@ -1,8 +1,12 @@
-import { IRefineContextOptions, RedirectionTypes } from "src/interfaces";
+import {
+    FormAction,
+    IRefineContextOptions,
+    RedirectAction,
+} from "src/interfaces";
 
 type RedirectPageProps = {
-    redirectFromProps?: RedirectionTypes;
-    action: "edit" | "create" | "clone";
+    redirectFromProps?: RedirectAction;
+    action: FormAction;
     redirectOptions: IRefineContextOptions["redirect"];
 };
 
@@ -10,7 +14,7 @@ export const redirectPage = ({
     redirectFromProps,
     action,
     redirectOptions,
-}: RedirectPageProps): RedirectionTypes => {
+}: RedirectPageProps): RedirectAction => {
     if (redirectFromProps || redirectFromProps === false) {
         return redirectFromProps;
     }
