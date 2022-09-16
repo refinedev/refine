@@ -146,7 +146,6 @@ export type RefineLoginPageProps<
     TFormProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
     providers?: IProvider[];
-    onSubmit?: (formValues: RefineLoginFormTypes) => void;
     registerLink?: React.ReactNode;
     resetPasswordLink?: React.ReactNode;
     rememberMe?: React.ReactNode;
@@ -164,7 +163,6 @@ export type RefineRegisterPageProps<
     TContentProps extends {} = Record<keyof any, unknown>,
     TFormProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
-    onSubmit?: (formValues: RefineRegisterFormTypes) => void;
     loginLink?: React.ReactNode;
     wrapperProps?: TWrapperProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;
@@ -180,7 +178,6 @@ export type RefineResetPasswordPageProps<
     TContentProps extends {} = Record<keyof any, unknown>,
     TFormProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
-    onSubmit?: (formValues: RefineResetPasswordFormTypes) => void;
     loginLink?: React.ReactNode;
     wrapperProps?: TWrapperProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;
@@ -196,7 +193,6 @@ export type RefineUpdatePasswordPageProps<
     TContentProps extends {} = Record<keyof any, unknown>,
     TFormProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
-    onSubmit?: (formValues: RefineUpdatePasswordFormTypes) => void;
     wrapperProps?: TWrapperProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;
     contentProps?: TContentProps;
