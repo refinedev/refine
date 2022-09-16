@@ -1,4 +1,4 @@
-export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
+import { NextRouteComponent } from "@pankod/refine-nextjs-router";
 import { checkAuthentication } from "@pankod/refine-nextjs-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -55,3 +55,14 @@ export const getServerSideProps: GetServerSideProps<
         props: {},
     };
 };
+
+export default NextRouteComponent;
+
+/**
+ * To define a custom initial route for refine to redirect and start with:
+ *
+ * Bind the `initialRoute` value to the `NextRouteComponent` like the following:
+ *
+ * export default NextRouteComponent.bind({ initialRoute: "/posts" });
+ *
+ **/
