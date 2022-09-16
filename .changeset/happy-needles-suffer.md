@@ -2,4 +2,4 @@
 "@pankod/refine-ui-types": patch
 ---
 
-Removed unused `updatePasswordLink` prop from <AuthPage>
+Removed unused `updatePasswordLink` and `onSubmit` props from auth pages.
