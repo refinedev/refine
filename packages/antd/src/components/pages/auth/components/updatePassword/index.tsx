@@ -22,7 +22,7 @@ import { layoutStyles, containerStyles, titleStyles } from "../styles";
 
 const { Title } = Typography;
 
-type UpdatePassworProps = RefineUpdatePasswordPageProps<
+type UpdatePasswordProps = RefineUpdatePasswordPageProps<
     LayoutProps,
     CardProps,
     FormProps
@@ -31,10 +31,9 @@ type UpdatePassworProps = RefineUpdatePasswordPageProps<
 /**
  * **refine** has update password page form which is served on `/update-password` route when the `authProvider` configuration is provided.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/antd-auth-page/#updatepassword} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/antd-auth-page/#update-password} for more details.
  */
-export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
-    onSubmit,
+export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
     wrapperProps,
     contentProps,
     renderContent,
@@ -61,7 +60,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
             <Form<RefineUpdatePasswordFormTypes>
                 layout="vertical"
                 form={form}
-                onFinish={(values) => (onSubmit ?? updatePassword)(values)}
+                onFinish={(values) => updatePassword(values)}
                 requiredMark={false}
                 {...formProps}
             >

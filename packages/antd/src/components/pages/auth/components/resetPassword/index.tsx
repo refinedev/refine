@@ -35,10 +35,9 @@ const { Text, Title } = Typography;
 /**
  * **refine** has reset password page form which is served on `/reset-password` route when the `authProvider` configuration is provided.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/antd-auth-page/#resetpassword} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/antd-auth-page/#reset-password} for more details.
  */
 export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
-    onSubmit,
     loginLink,
     wrapperProps,
     contentProps,
@@ -57,7 +56,6 @@ export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
             {translate("pages.resetPassword.title", "Forgot your password?")}
         </Title>
     );
-
     const CardContent = (
         <Card
             title={CardTitle}
@@ -68,7 +66,7 @@ export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
             <Form<RefineResetPasswordFormTypes>
                 layout="vertical"
                 form={form}
-                onFinish={(values) => (onSubmit ?? resetPassword)(values)}
+                onFinish={(values) => resetPassword(values)}
                 requiredMark={false}
                 {...formProps}
             >

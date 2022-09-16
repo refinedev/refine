@@ -38,7 +38,6 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     wrapperProps,
     contentProps,
     renderContent,
-    onSubmit,
     formProps,
 }) => {
     const [form] = Form.useForm<RefineRegisterFormTypes>();
@@ -64,7 +63,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             <Form<RefineRegisterFormTypes>
                 layout="vertical"
                 form={form}
-                onFinish={(values) => (onSubmit ?? register)(values)}
+                onFinish={(values) => register(values)}
                 requiredMark={false}
                 {...formProps}
             >
