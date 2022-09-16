@@ -1,10 +1,11 @@
 import { useRouter } from "next/router";
 import qs from "qs";
 
-import { handleUseParams, IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@pankod/refine-core";
 
 import { Prompt } from "./prompt";
 import { RefineLink } from "./refineLink";
+import { useParams } from "./useParams";
 
 export const RouterProvider: IRouterProvider = {
     useHistory: () => {
@@ -34,22 +35,7 @@ export const RouterProvider: IRouterProvider = {
             search: queryParams && `?${queryParams}`,
         };
     },
-    useParams: <Params>() => {
-        const router = useRouter();
-
-        const { query } = router;
-        const { refine } = query;
-        let params = {};
-        if (refine && Array.isArray(refine)) {
-            const [resource, action, id] = refine;
-            params = {
-                resource,
-                action,
-                id,
-            };
-        }
-        return { ...params, ...handleUseParams(query) } as Params;
-    },
+    useParams,
     Prompt,
     Link: RefineLink,
 };
