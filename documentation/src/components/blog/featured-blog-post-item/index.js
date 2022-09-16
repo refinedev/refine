@@ -19,8 +19,6 @@ export const FeaturedBlogPostItem = () => {
 
     const author = metadata.authors[0];
 
-    console.log({ frontMatter });
-
     return (
         <BlogPostItemContainer>
             <div className="blog-post-item-shadow flex h-full flex-col overflow-hidden rounded-[10px] lg:h-[210px] lg:flex-row">
