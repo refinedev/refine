@@ -91,7 +91,7 @@ const LinkedinIcon = (props) => (
 const RedditIcon = (props) => (
     <svg
         width={24}
-        height="auto"
+        height={24}
         viewBox="0 0 35 31"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
