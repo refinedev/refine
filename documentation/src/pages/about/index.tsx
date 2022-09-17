@@ -69,6 +69,7 @@ const About: React.FC = () => {
                             <img
                                 className={styles.image}
                                 src="/about/images/community.png"
+                                srcSet="/about/images/community2x.png 1500w"
                             />
                         </div>
                         <div className={styles.openSourceParagraphs}>
