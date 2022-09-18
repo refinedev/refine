@@ -54,6 +54,14 @@ The focus of this article will be the `<Post />` component, but `<App />`, `<Blo
 
 `React.memo()` is a **HOC** that memoizes the passed in component. Doing so helps in optimizing its performance by preventing unnecessary re-renders due to state changes it does not depend on, e.g. those coming from ancestor components.
 
+<br/>
+<div>
+<a href="https://github.com/pankod/refine">
+  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
+</a>
+</div>
+
+
 ## Memoizing a Functional Component using `React.memo()`
 To begin the example, we have an `<App />` component that houses `<Blog />`.
 
