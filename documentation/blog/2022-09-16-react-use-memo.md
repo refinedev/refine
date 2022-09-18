@@ -137,6 +137,13 @@ Checking our console, we can see that `Sorting posts...` has been logged only on
 
 This gives us a huge performance gain.
 
+<br/>
+<div>
+<a href="https://github.com/pankod/refine">
+  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
+</a>
+</div>
+
 ## useMemo Dependencies
 Notice the dependency of `useMemo()` as the second argument, `updatedPosts`. We are asking the hook to renew the memo when `updatedPosts` changes. Let's try to change the value of `updatedPosts`:
 
@@ -181,6 +188,13 @@ It is also important to know that **useMemo** returns a value, as opposed to a f
 In this article, we looked into the use of `useMemo()` hook and found out it plays a crucial role in optimizing the performance of our app by memoizing an expensive utility function. We saw that it is important to specify the dependency of **useMemo**  so that the memo is renewed when the state of dependency changes.
 
 In the next post, we will demonstrate the use of `useCallback()` hook.
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
+</a>
+</div>
 
 
 ## Live StackBlitz Example
