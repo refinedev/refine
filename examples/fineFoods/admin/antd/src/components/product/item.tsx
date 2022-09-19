@@ -149,8 +149,8 @@ export const ProductItem: React.FC<ProductItemProps> = ({
                             keyboard
                             min={0}
                             value={item.stock || 0}
-                            onChange={(value: number) =>
-                                updateStock(value, item)
+                            onChange={(value: number | null) =>
+                                updateStock(value ?? 0, item)
                             }
                             style={{ width: "100%" }}
                         />
