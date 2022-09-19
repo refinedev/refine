@@ -16,7 +16,11 @@ export function BrowserRouterComponent(
 ): JSX.Element {
     return (
         <BrowserRouter {...props}>
-            <RouteProvider initialRoute={this.initialRoute} />
+            <RouteProvider
+                initialRoute={
+                    typeof this !== "undefined" ? this.initialRoute : undefined
+                }
+            />
             {children}
         </BrowserRouter>
     );
@@ -28,7 +32,11 @@ export function MemoryRouterComponent(
 ): JSX.Element {
     return (
         <MemoryRouter {...props}>
-            <RouteProvider initialRoute={this.initialRoute} />
+            <RouteProvider
+                initialRoute={
+                    typeof this !== "undefined" ? this.initialRoute : undefined
+                }
+            />
             {children}
         </MemoryRouter>
     );
@@ -40,7 +48,11 @@ export function HashRouterComponent(
 ): JSX.Element {
     return (
         <HashRouter {...props}>
-            <RouteProvider initialRoute={this.initialRoute} />
+            <RouteProvider
+                initialRoute={
+                    typeof this !== "undefined" ? this.initialRoute : undefined
+                }
+            />
             {children}
         </HashRouter>
     );
