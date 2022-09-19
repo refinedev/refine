@@ -1,5 +1,5 @@
 {
-  "version": "4.3.0",
+  "version": "5.1.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -30,7 +30,7 @@
     "tsup": "^5.11.13"
   },
   "dependencies": {
-    "appwrite": "^9.0.1"
+    "appwrite": "^10.0.1"
   },
   "peerDependencies": {
     "@pankod/refine-core": "^3.23.2"

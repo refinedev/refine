@@ -4,7 +4,7 @@ description: Learn how to use the Google Chrome Lighthouse performance audit too
 slug: lighthouse-google-chrome
 authors: joseph_mawa
 tags: [lighthouse, seo, performance]
-image: https://refine.dev/img/blog/2022-08-31-google-lighthouse/social.png
+image: /img/blog/2022-08-31-google-lighthouse/social.png
 hide_table_of_contents: false
 ---
 

@@ -4,7 +4,7 @@ description: Find out what the five most common mistakes React developers make w
 slug: common-usestate-mistakes-and-how-to-avoid
 authors: david_herbert
 tags: [react, usestate, best-practices ]
-image: https://refine.dev/img/blog/2022-08-29-usestate-mistakes/usestate-mistakes-social.png
+image: /img/blog/2022-08-29-usestate-mistakes/usestate-mistakes-social.png
 hide_table_of_contents: false
 ---
 

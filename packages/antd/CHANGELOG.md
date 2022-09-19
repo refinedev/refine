@@ -1,5 +1,67 @@
 # @pankod/refine-antd
 
+## 3.46.2
+
+### Patch Changes
+
+-   Fixed the spacing between `icon` and `breadcrumb label` in `Breadcrumb` component.
+
+## 3.46.1
+
+### Patch Changes
+
+-   [#2534](https://github.com/pankod/refine/pull/2534) [`a9676932cc`](https://github.com/pankod/refine/commit/a9676932ccae00f364918f163e44e73032ffa029) Thanks [@ozkalai](https://github.com/ozkalai)! - Fixed the spacing between `icon` and `breadcrumb label` in `Breadcrumb` component.
+
+## 3.46.0
+
+### Minor Changes
+
+-   Added `formProps` property support for AuthPage component
+
+    ## Usage
+
+    ```tsx
+    <AuthPage
+        type="login"
+        formProps={{
+            initialValues: {
+                email: "demo@refine.dev",
+                password: "demo",
+            },
+        }}
+    />
+    ```
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-ui-types@0.9.0
+
+## 3.45.0
+
+### Minor Changes
+
+-   [#2516](https://github.com/pankod/refine/pull/2516) [`ad99916d6d`](https://github.com/pankod/refine/commit/ad99916d6dbd181b857fd7df7b9619d8cac5e3e0) Thanks [@omeraplak](https://github.com/omeraplak)! - Added `formProps` property support for AuthPage component
+
+    ## Usage
+
+    ```tsx
+    <AuthPage
+        type="login"
+        formProps={{
+            initialValues: {
+                email: "demo@refine.dev",
+                password: "demo",
+            },
+        }}
+    />
+    ```
+
+### Patch Changes
+
+-   Updated dependencies [[`ad99916d6d`](https://github.com/pankod/refine/commit/ad99916d6dbd181b857fd7df7b9619d8cac5e3e0)]:
+    -   @pankod/refine-ui-types@0.8.0
+
 ## 3.44.0
 
 ### Minor Changes

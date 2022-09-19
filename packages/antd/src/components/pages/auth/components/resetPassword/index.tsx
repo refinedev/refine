@@ -14,6 +14,7 @@ import {
     Button,
     LayoutProps,
     CardProps,
+    FormProps,
 } from "antd";
 import {
     useTranslate,
@@ -23,7 +24,11 @@ import {
 
 import { layoutStyles, containerStyles, titleStyles } from "../styles";
 
-type ResetPassworProps = RefineResetPasswordPageProps<LayoutProps, CardProps>;
+type ResetPassworProps = RefineResetPasswordPageProps<
+    LayoutProps,
+    CardProps,
+    FormProps
+>;
 
 const { Text, Title } = Typography;
 
@@ -38,6 +43,7 @@ export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
     wrapperProps,
     contentProps,
     renderContent,
+    formProps,
 }) => {
     const [form] = Form.useForm<RefineResetPasswordFormTypes>();
     const translate = useTranslate();
@@ -64,6 +70,7 @@ export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
                 form={form}
                 onFinish={(values) => (onSubmit ?? resetPassword)(values)}
                 requiredMark={false}
+                {...formProps}
             >
                 <Form.Item
                     name="email"

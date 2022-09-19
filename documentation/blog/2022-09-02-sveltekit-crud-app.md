@@ -4,7 +4,7 @@ description: We'll build a CRUD Blog app using SvelteKit and Svelte MUI
 slug: sveltekit-crud-app-with-svelte-mui
 authors: ekekenta_clinton
 tags: [svelte, sveltekit, crud-app]
-image: https://refine.dev/img/blog/2022-09-02-sveltekit-crud-app/social.png
+image: /img/blog/2022-09-02-sveltekit-crud-app/social.png
 hide_table_of_contents: false
 ---
 
@@ -305,6 +305,9 @@ import Dialog from '../components/Dialog.svelte';
 // highlight-end
   ...
 </script>
+
+//highlight-next-line
+let open = false;
 
 // highlight-start
 <div style="display:flex; justify-content:space-between">

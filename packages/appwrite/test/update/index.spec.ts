@@ -4,18 +4,17 @@ import "./index.mock";
 
 describe("update", () => {
     it("correct response", async () => {
-        const { data } = await dataProvider(client).update({
-            resource: "6180e4315f3e7",
-            id: "61b9dd4a6261d",
+        const { data } = await dataProvider(client, {
+            databaseId: "632455a0b8d017403ce9",
+        }).update({
+            resource: "632455a55dc72e1aa016",
+            id: "63245b02205ba8cec507",
             variables: {
-                title: "Updated Title",
-                content: "Updated Content",
+                title: "Updated",
             },
         });
 
-        expect(data.id).toEqual("61b9dd4a6261d");
-        expect(data.title).toEqual("Updated Title");
-        expect(data.content).toEqual("Updated Content");
-        expect(data.categoryId).toEqual("61811751a3b04");
+        expect(data.id).toEqual("63245b02205ba8cec507");
+        expect(data.title).toEqual("Updated");
     });
 });

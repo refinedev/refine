@@ -109,6 +109,7 @@ export const CustomSider: typeof Sider = ({ render }) => {
                 dashboard,
                 items,
                 logout,
+                collapsed,
             });
         }
         return (
