@@ -1,5 +1,11 @@
 # @pankod/refine-appwrite
 
+## 5.0.0
+
+### Major Changes
+
+-   [#2528](https://github.com/pankod/refine/pull/2528) [`97574b512e`](https://github.com/pankod/refine/commit/97574b512ef458a52716d1f9b61c639622097db5) Thanks [@omeraplak](https://github.com/omeraplak)! - We've added [Appwrite 1.0](https://appwrite.io/1.0) support!
+
 ## 4.3.0
 
 ### Minor Changes
