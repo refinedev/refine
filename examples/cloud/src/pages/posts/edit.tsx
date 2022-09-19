@@ -1,15 +1,28 @@
 import React, { useState } from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import { Edit, Form, Input, Select, Row, Col } from "@pankod/refine-antd";
+import {
+    Edit,
+    Form,
+    Input,
+    Select,
+    Row,
+    Col,
+    Upload,
+    RcFile,
+} from "@pankod/refine-antd";
 import { useForm, useSelect } from "@pankod/refine-antd";
 import { LogList } from "@pankod/refine-antd-audit-log";
 import ReactMarkdown from "react-markdown";
+import { useSdk } from "@pankod/refine-cloud";
 import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
 
+import { normalizeFile } from "utility/normalize";
 import { IPost, ICategory } from "interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
+    const { sdk } = useSdk();
+
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
         warnWhenUnsavedChanges: true,
     });
@@ -96,6 +109,54 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                                     )
                                 }
                             />
+                        </Form.Item>
+                        <Form.Item label="Images">
+                            <Form.Item
+                                name="images"
+                                valuePropName="fileList"
+                                normalize={normalizeFile}
+                                noStyle
+                            >
+                                <Upload.Dragger
+                                    name="file"
+                                    listType="picture"
+                                    multiple
+                                    customRequest={async ({
+                                        file,
+                                        onError,
+                                        onSuccess,
+                                    }) => {
+                                        const bucket = "test1";
+                                        try {
+                                            await sdk.storage.upload({
+                                                bucket,
+                                                file,
+                                            });
+
+                                            // get uploaded file url
+                                            const path = (file as RcFile).name;
+                                            const { url } =
+                                                await sdk.storage.getPublicUrl({
+                                                    bucket,
+                                                    path,
+                                                });
+
+                                            const xhr = new XMLHttpRequest();
+                                            onSuccess &&
+                                                onSuccess({ url }, xhr);
+                                        } catch (error) {
+                                            onError &&
+                                                onError(
+                                                    new Error("Upload Error"),
+                                                );
+                                        }
+                                    }}
+                                >
+                                    <p className="ant-upload-text">
+                                        Drag & drop a file in this area
+                                    </p>
+                                </Upload.Dragger>
+                            </Form.Item>
                         </Form.Item>
                     </Form>
                 </Edit>

@@ -33,6 +33,7 @@ export interface RefineUpdatePasswordFormTypes {
 export type RefineAuthPageProps<
     TWrapperProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
+    TFormProps extends {} = Record<keyof any, unknown>,
 > = (
     | PropsWithChildren<{
           /**
@@ -134,6 +135,11 @@ export type RefineAuthPageProps<
      * @optional
      */
     renderContent?: (content: React.ReactNode) => React.ReactNode;
+    /**
+     * @description Can be used to pass additional properties for the `Form`
+     * @optional
+     */
+    formProps?: TFormProps;
 };
 
 /**
@@ -142,6 +148,7 @@ export type RefineAuthPageProps<
 export type RefineLoginPageProps<
     TWrapperProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
+    TFormProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
     providers?: IProvider[];
     onSubmit?: (formValues: RefineLoginFormTypes) => void;
@@ -151,6 +158,7 @@ export type RefineLoginPageProps<
     wrapperProps?: TWrapperProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;
     contentProps?: TContentProps;
+    formProps?: TFormProps;
 }>;
 
 /**
@@ -159,12 +167,14 @@ export type RefineLoginPageProps<
 export type RefineRegisterPageProps<
     TWrapperProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
+    TFormProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
     onSubmit?: (formValues: RefineRegisterFormTypes) => void;
     loginLink?: React.ReactNode;
     wrapperProps?: TWrapperProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;
     contentProps?: TContentProps;
+    formProps?: TFormProps;
 }>;
 
 /**
@@ -173,12 +183,14 @@ export type RefineRegisterPageProps<
 export type RefineResetPasswordPageProps<
     TWrapperProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
+    TFormProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
     onSubmit?: (formValues: RefineResetPasswordFormTypes) => void;
     loginLink?: React.ReactNode;
     wrapperProps?: TWrapperProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;
     contentProps?: TContentProps;
+    formProps?: TFormProps;
 }>;
 
 /**
@@ -187,9 +199,11 @@ export type RefineResetPasswordPageProps<
 export type RefineUpdatePasswordPageProps<
     TWrapperProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
+    TFormProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
     onSubmit?: (formValues: RefineUpdatePasswordFormTypes) => void;
     wrapperProps?: TWrapperProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;
     contentProps?: TContentProps;
+    formProps?: TFormProps;
 }>;
