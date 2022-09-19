@@ -16,7 +16,7 @@ import {
 const About: React.FC = () => {
     return (
         <Layout>
-            <Head>
+            <Head title="About | refine">
                 <html data-page="about" data-customized="true" />
             </Head>
             <div className={styles.root}>
