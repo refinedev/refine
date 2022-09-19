@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 import styles from "./styles.module.css";
 
@@ -7,7 +8,7 @@ export const LinkednCard: React.FC = () => {
             href="https://www.linkedin.com/company/refine-dev/mycompany/"
             className={styles.container}
         >
-            <div className={styles.card}>
+            <div className={clsx(styles.card, "example-card")}>
                 <div className={styles.title}>
                     SEE OPEN
                     <br />

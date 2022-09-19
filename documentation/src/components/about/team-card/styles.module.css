@@ -1,5 +1,5 @@
 .container {
-    @apply md:w-[222px] w-[162px] hover:scale-110 transition-transform ease-in-out no-underline text-black hover:text-black hover:no-underline;
+    @apply md:w-[222px] w-[162px] no-underline text-black hover:text-black hover:no-underline;
 }
 
 .card {

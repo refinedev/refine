@@ -1,5 +1,5 @@
 .container {
-    @apply hover:scale-110 transition-transform ease-in-out no-underline text-black hover:text-black hover:no-underline;
+    @apply no-underline text-black hover:text-black hover:no-underline;
 }
 
 .card {

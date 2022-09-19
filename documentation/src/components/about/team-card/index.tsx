@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 import styles from "./styles.module.css";
 
@@ -20,7 +21,7 @@ export const TeamCard: React.FC<TeamCardProps> = ({
 }) => {
     return (
         <a href={href} className={styles.container}>
-            <div className={styles.card}>
+            <div className={clsx(styles.card, "example-card")}>
                 <div className={styles.imageContainer}>
                     <img
                         srcSet={srcSet}
