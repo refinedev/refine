@@ -1,5 +1,11 @@
 # @pankod/refine-antd
 
+## 3.46.2
+
+### Patch Changes
+
+-   Fixed the spacing between `icon` and `breadcrumb label` in `Breadcrumb` component.
+
 ## 3.46.1
 
 ### Patch Changes
