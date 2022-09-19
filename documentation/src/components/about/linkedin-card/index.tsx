@@ -7,6 +7,8 @@ export const LinkednCard: React.FC = () => {
         <a
             href="https://www.linkedin.com/company/refine-dev/mycompany/"
             className={styles.container}
+            target="_blank"
+            rel="noreferrer"
         >
             <div className={clsx(styles.card, "example-card")}>
                 <div className={styles.title}>

@@ -20,7 +20,12 @@ export const TeamCard: React.FC<TeamCardProps> = ({
     srcSet,
 }) => {
     return (
-        <a href={href} className={styles.container}>
+        <a
+            href={href}
+            target="_blank"
+            className={styles.container}
+            rel="noreferrer"
+        >
             <div className={clsx(styles.card, "example-card")}>
                 <div className={styles.imageContainer}>
                     <img

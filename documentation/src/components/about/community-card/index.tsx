@@ -16,7 +16,12 @@ export const CommunityCard: React.FC<CommunityCardProps> = ({
     href,
 }) => {
     return (
-        <a href={href} className={styles.container}>
+        <a
+            href={href}
+            target="_blank"
+            className={styles.container}
+            rel="noreferrer"
+        >
             <div className={clsx(styles.card, "example-card")}>
                 <div className={styles.cardTitle}>
                     {title}
