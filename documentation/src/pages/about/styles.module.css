@@ -3,7 +3,7 @@
 }
 
 .header {
-    @apply sm:max-w-[600px]  md:max-w-[812px] text-2xl md:text-5xl font-[500] text-center text-[#1890FF] mt-16 sm:mt-24 mb-16 sm:mb-24;
+    @apply sm:max-w-[600px]  md:max-w-[930px] text-2xl md:text-5xl font-[500] text-center text-[#1890FF] mt-16 sm:mt-24 mb-16 sm:mb-24;
 }
 
 .semiBold {
@@ -103,9 +103,9 @@
 }
 
 .locationImageWrapper {
-    @apply overflow-hidden w-full h-[206px] border-[1px] border-solid rounded-lg border-[#9696B4];
+    @apply overflow-hidden w-full h-[206px] rounded-lg;
 }
 
 .locationImage {
-    @apply w-full h-full object-none;
+    @apply w-full h-full object-cover scale-125 relative left-1 top-5;
 }

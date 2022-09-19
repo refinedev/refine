@@ -7,6 +7,7 @@ type TeamCardProps = {
     role2?: string;
     image: string;
     href: string;
+    srcSet: string;
 };
 
 export const TeamCard: React.FC<TeamCardProps> = ({
@@ -15,12 +16,18 @@ export const TeamCard: React.FC<TeamCardProps> = ({
     role2,
     image,
     href,
+    srcSet,
 }) => {
     return (
         <a href={href} className={styles.container}>
             <div className={styles.card}>
                 <div className={styles.imageContainer}>
-                    <img src={image} alt={fullName} className={styles.image} />
+                    <img
+                        srcSet={srcSet}
+                        src={image}
+                        alt={fullName}
+                        className={styles.image}
+                    />
                 </div>
                 <div className={styles.textContainer}>
                     <h3 className={styles.fullName}>{fullName}</h3>

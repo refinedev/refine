@@ -21,13 +21,20 @@ const About: React.FC = () => {
             </Head>
             <div className={styles.root}>
                 <div className={styles.header}>
-                    AT <strong className={styles.semiBold}>refine</strong>,
-                    <br />
-                    WE ARE HELPING ORGANIZATIONS TO BUILD BETTER WEB APPLICATION{" "}
-                    <strong className={styles.semiBold}>
-                        IN LESS TIME
-                    </strong> &{" "}
-                    <strong className={styles.semiBold}>FEWER RESOURCES</strong>
+                    <div>
+                        AT <strong className={styles.semiBold}>refine</strong>,
+                    </div>
+                    <div> WE ARE HELPING ORGANIZATIONS</div>
+                    <div> TO BUILD BETTER WEB APPLICATION</div>
+                    <div>
+                        <strong className={styles.semiBold}>
+                            IN LESS TIME
+                        </strong>{" "}
+                        &{" "}
+                        <strong className={styles.semiBold}>
+                            FEWER RESOURCES
+                        </strong>
+                    </div>
                 </div>
                 <div className={styles.about}>
                     <div className={styles.title}>
@@ -36,7 +43,7 @@ const About: React.FC = () => {
                     </div>
                     <p className={styles.aboutParagraph}>
                         Shortly after its inital release on{" "}
-                        <strong>September 2021</strong>, <strong>refine</strong>
+                        <strong>September 2021</strong>, <strong>refine</strong>{" "}
                         project has gained attraction of open-source community
                         and has become increasingly popular among web
                         application frameworks.
@@ -120,6 +127,7 @@ const About: React.FC = () => {
                                 role1={item.role1}
                                 role2={item?.role2}
                                 href={item.url}
+                                srcSet={item.avatar2x}
                             />
                         ))}
                         <LinkednCard />
@@ -139,12 +147,14 @@ const About: React.FC = () => {
                                 role2="Expert-in-Residence at Seedcamp"
                                 image="/about/images/team-avatars/emre.png"
                                 href="https://www.linkedin.com/in/emrebaran/"
+                                srcSet="/about/images/team-avatars/emre2x.png"
                             />
                             <TeamCard
                                 fullName="Burak Emre Kabakçı"
                                 role1="Staff SWE @ LiveRamp Maker"
                                 image="/about/images/team-avatars/burak.png"
                                 href="https://www.linkedin.com/in/burak-emre-kabakc%C4%B1-15b2bb33/"
+                                srcSet="/about/images/team-avatars/burak2x.png"
                             />
                         </div>
                     </div>
@@ -176,6 +186,7 @@ const About: React.FC = () => {
                             <img
                                 className={styles.locationImage}
                                 src="/about/images/map.png"
+                                srcSet="/about/images/map2x.png 1500w"
                             />
                         </div>
                     </div>
