@@ -5,7 +5,7 @@ slug: awesome-react-windows95-ui-with-refine
 authors: melih
 tags:
     [refine, react, admin-panel, Windows95, React95, Supabase, B2B, open-source]
-image: /img/placeholder.png
+image: /img/blog/2022-03-22-refine-with-react95/social.jpg
 hide_table_of_contents: false
 ---
 
@@ -30,7 +30,6 @@ import overview from '@site/static/img/blog/2022-03-22-refine-with-react95/overv
 
 With **refine**'s **headless** feature, you can include any UI in your project and take full advantage of all its features without worrying about compatibility. To build a project with a vintage `Windows95` style using [React95](https://react95.io/) UI components, we'll use the **refine** headless feature.
 
-<!--truncate-->
 
 ## Introduction
 

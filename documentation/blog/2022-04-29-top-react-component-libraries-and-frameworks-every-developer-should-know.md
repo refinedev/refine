@@ -15,7 +15,7 @@ tags:
         chackra ui,
         mantine,
     ]
-image: /img/placeholder.png
+image: /img/blog/2022-04-29-top-react-component-libraries-and-frameworks-every-developer-should-know/social.jpg
 hide_table_of_contents: false
 ---
 
