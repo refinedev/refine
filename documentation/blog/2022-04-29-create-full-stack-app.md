@@ -4,7 +4,7 @@ description: In this article, we will learn how we can create a full-featured cu
 slug: create-full-stack-app-with-refine
 authors: melih
 tags: [refine, react, next.js, full-stack, web-app, b2b, admin-panel]
-image: /img/placeholder.png
+image: /img/blog/2022-04-29-create-full-stack-app/social.jpg
 hide_table_of_contents: false
 ---
 
@@ -21,7 +21,6 @@ We frequently require quick development and sometimes flexibility while developi
 
 In this article, we will use the **refine** framework to develop a full stack application. **Refine** will provide us with the speed and flexibility we are looking for, while assisting with the overall project architecture during web application development.
 
-<!--truncate-->
 
 ## What is Refine?
 
