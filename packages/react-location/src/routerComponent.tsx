@@ -139,10 +139,11 @@ export function RouterComponent(
                         </CanAccess>
                     ) : (
                         <Navigate
-                            to={`/${
-                                resources.find((p) => p.list !== undefined)
-                                    ?.route
-                            }`}
+                            to={
+                                typeof this !== "undefined" && this.initialRoute
+                                    ? this.initialRoute
+                                    : `/${resources.find((p) => p.list)?.route}`
+                            }
                         />
                     ),
                 },
