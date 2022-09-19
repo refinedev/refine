@@ -306,6 +306,9 @@ import Dialog from '../components/Dialog.svelte';
   ...
 </script>
 
+//highlight-next-line
+let open = false;
+
 // highlight-start
 <div style="display:flex; justify-content:space-between">
     <Button on:click={() => (open = true)}>Add New</Button>
