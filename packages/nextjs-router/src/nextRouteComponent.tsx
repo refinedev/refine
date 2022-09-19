@@ -20,7 +20,7 @@ type NextRouteComponentProps = {
 
 export function NextRouteComponent(
     this: { initialRoute?: string },
-    { initialData, children, ...rest }: NextRouteComponentProps,
+    { initialData, children: _children, ...rest }: NextRouteComponentProps,
 ): React.ReactNode {
     const { resources } = useResource();
     const { push } = useHistory();
