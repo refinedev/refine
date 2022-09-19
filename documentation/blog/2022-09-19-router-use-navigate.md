@@ -144,7 +144,8 @@ After navigation, the data you passed using `navigate` is accessible inside the 
 
 ```tsx
 const location = useLocation();
-console.log(location.state) // { messge: 'Failed to submit form' }
+console.log(location.state) 
+// { message: 'Failed to submit form' }
 ```
 
 ### Modifying the history stack
