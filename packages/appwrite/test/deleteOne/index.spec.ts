@@ -4,11 +4,13 @@ import "./index.mock";
 
 describe("deleteOne", () => {
     it("correct response with metaData", async () => {
-        const { data } = await dataProvider(client).deleteOne({
-            resource: "6180e6efb14df",
-            id: "61c1a17614a97",
+        const { data } = await dataProvider(client, {
+            databaseId: "632455a0b8d017403ce9",
+        }).deleteOne({
+            resource: "632455a55dc72e1aa016",
+            id: "63245af4d15590ca1984",
         });
 
-        expect(data.id).toEqual("61c1a17614a97");
+        expect(data.id).toEqual("63245af4d15590ca1984");
     });
 });
