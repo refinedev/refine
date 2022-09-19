@@ -4,6 +4,7 @@
 	"private": true,
 	"dependencies": {
 		"@ant-design/charts": "^1.2.0",
+		"@ant-design/graphs": "^1.2.7",
 		"@craco/craco": "^6.1.2",
 		"@pankod/refine-antd": "^3.46.0",
 		"@pankod/refine-core": "^3.69.9",
