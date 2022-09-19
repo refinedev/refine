@@ -13,7 +13,7 @@ import { RouteProvider } from "./routeProvider";
 export function BrowserRouterComponent(
     this: { initialRoute?: string },
     { children, ...props }: BrowserRouterProps,
-): React.ReactNode {
+): JSX.Element {
     return (
         <BrowserRouter {...props}>
             <RouteProvider initialRoute={this.initialRoute} />
@@ -25,7 +25,7 @@ export function BrowserRouterComponent(
 export function MemoryRouterComponent(
     this: { initialRoute?: string },
     { children, ...props }: MemoryRouterProps,
-): React.ReactNode {
+): JSX.Element {
     return (
         <MemoryRouter {...props}>
             <RouteProvider initialRoute={this.initialRoute} />
@@ -37,7 +37,7 @@ export function MemoryRouterComponent(
 export function HashRouterComponent(
     this: { initialRoute?: string },
     { children, ...props }: HashRouterProps,
-): React.ReactNode {
+): JSX.Element {
     return (
         <HashRouter {...props}>
             <RouteProvider initialRoute={this.initialRoute} />
