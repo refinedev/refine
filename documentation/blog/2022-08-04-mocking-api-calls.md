@@ -4,7 +4,7 @@ description: How to test API calls in React?
 slug: mocking-api-calls-in-react
 authors: necati
 tags: [react, testing, nock, jest, mocking]
-image: https://refine.dev/img/refine_social.png
+image: /img/blog/2022-08-04-mocking-api-calls/social.png
 hide_table_of_contents: false
 ---
 
@@ -17,7 +17,6 @@ Writing unit tests is very important for the development process. Testing compon
 In testing, we often want to make mock requests to test our code without actually making an HTTP request. This can be especially important when we are testing code that makes external API calls since we don't want to rely on the availability of the external API.
 
 We'll use a third-party package called [nock](https://github.com/nock/nock) that helps us to mock HTTP requests. With nock, we can specify the desired behavior of our mock HTTP requests, including the URL, headers, and body. This allows us to test our code against a known data set, making debugging and testing much more straightforward.
-<!--truncate-->
 
 I'll show how to write unit tests for API calls by mocking method in the simple React app.
 

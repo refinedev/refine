@@ -4,7 +4,7 @@ description: In this guide, I'm going to show you how to multipart files upload 
 slug: how-to-multipart-upload
 authors: melih
 tags: [JavaScript, multipart/form-data, multipart-upload, file-upload]
-image: https://refine.dev/img/refine_social.png
+image: /img/placeholder.png
 hide_table_of_contents: false
 ---
 

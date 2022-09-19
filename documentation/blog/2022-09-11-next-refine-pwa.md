@@ -4,7 +4,9 @@ description: We will walk you through the entire process of building a PWA using
 slug: next-js-pwa
 authors: david_omotayo
 tags: [nextjs, react, pwa, refine]
-image: https://refine.dev/img/blog/2022-09-11-next-refine-pwa/social.png
+image: /img/blog/2022-09-11-next-refine-pwa/social.png
+featured_image: /img/blog/2022-09-11-next-refine-pwa/featured.png
+is_featured: true
 hide_table_of_contents: false
 ---
 
@@ -15,14 +17,8 @@ import final from '@site/static/img/blog/2022-09-11-next-refine-pwa/final.png';
 import layout from '@site/static/img/blog/2022-09-11-next-refine-pwa/layout.png';
 import manifest from '@site/static/img/blog/2022-09-11-next-refine-pwa/manifest.png';
 import pwa from '@site/static/img/blog/2022-09-11-next-refine-pwa/pwa.png';
-import social from '@site/static/img/blog/2022-09-11-next-refine-pwa/social.png';
 
- <br />
-
- <div class="img-container">
-    <img src={social} alt="social" />
-</div>
-
+ 
 
 
 

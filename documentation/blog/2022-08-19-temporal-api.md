@@ -4,7 +4,7 @@ description: Are we saying goodbye to the JavaScript Date object? Use the Tempor
 slug: temporal-date-api
 authors: muhammed_arslan
 tags: [javascript, date, temporal-api, time]
-image: https://refine.dev/img/refine_social.png
+image: /img/blog/2022-08-19-temporal-api/social.png
 hide_table_of_contents: false
 ---
 
@@ -13,7 +13,6 @@ hide_table_of_contents: false
 
 Date object is the least-fun thing and a long-standing pain point in JavaScript. That's why there're other libraries like moment.js and date-fns. Developers use these to make sense of Date object. Implementation of Date object was directly copied from Java. Java scrapped it, but it remained in JavaScript for backward compatibility. It was written a long-time ago and not updated. There're some basic issues with the current Date implementation.
 
-<!--truncate-->
 
 - Supports only UTC and user's local time zone
 - The Date object is mutable: a date will change as methods are applied

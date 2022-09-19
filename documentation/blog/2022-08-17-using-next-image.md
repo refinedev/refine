@@ -4,18 +4,15 @@ description: Built-in image optimization using next image component
 slug: using-next-image
 authors: michael
 tags: [nextjs, img, image, next-image,image-optimization]
-image: https://refine.dev/img/refine_social.png
+image: /img/blog/2022-08-17-using-next-image/social.png
 hide_table_of_contents: false
 ---
-
-
 
 ## Introduction
 Images are a significant part of modern-day web application development. Depending on how you use them, they can either make or mar your applications' developer and user experiences. Images impact user experience and are equally crucial in Search Engine Optimization (SEO) ranking when used right.
 Traditionally, images are added to web pages with the HTML `img` tag. This might prove to be efficient for simple use-cases, but things quickly get untidy when dealing with a sizable amount of images. 
 
 NextJS introduced a solution for delivering performant images on the web in v.10. It features a new Image component and built-in automatic image optimization. In the coming sections, you'll learn how to leverage this solution for optimizing and developing performant applications, thereby improving developer and end-user experiences.  
-<!--truncate-->
 
 
 Steps we'll cover: 

@@ -4,7 +4,7 @@ description: A complete guide on using Material UI (MUI) button in a React app
 slug: mui-button-in-react
 authors: doro_onome
 tags: [material-ui, react, mui, mui-button]
-image: https://refine.dev/img/blog/2022-09-05-mui-button/social.png
+image: /img/blog/2022-09-05-mui-button/social.png
 hide_table_of_contents: false
 ---
 
@@ -22,12 +22,7 @@ import outlinedButton from '@site/static/img/blog/2022-09-05-mui-button/outlined
 import textButton from '@site/static/img/blog/2022-09-05-mui-button/textButton.png';
 import social from '@site/static/img/blog/2022-09-05-mui-button/social.png';
 
- <br />
-
- <div class="img-container">
-    <img src={social} alt="social" />
-</div>
-
+ 
 
 ## Introduction
 Material UI is a dynamic React library because it provides numerous component infrastructures for responsive web design. One such essential component is the `Button`. 
