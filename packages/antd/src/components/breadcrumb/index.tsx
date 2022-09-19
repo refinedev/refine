@@ -40,7 +40,11 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
                 return (
                     <AntdBreadcrumb.Item key={label}>
                         {!hideIcons && icon}
-                        {href ? <Link to={href}>{label}</Link> : label}
+                        {href ? (
+                            <Link to={href}>{label}</Link>
+                        ) : (
+                            <span>{label}</span>
+                        )}
                     </AntdBreadcrumb.Item>
                 );
             })}
