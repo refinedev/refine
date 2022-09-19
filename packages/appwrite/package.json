@@ -30,7 +30,7 @@
     "tsup": "^5.11.13"
   },
   "dependencies": {
-    "appwrite": "^9.0.1"
+    "appwrite": "^10.0.1"
   },
   "peerDependencies": {
     "@pankod/refine-core": "^3.23.2"

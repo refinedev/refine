@@ -16,7 +16,7 @@ import permission from '@site/static/img/guides-and-concepts/data-provider/appwr
 **refine** and [Appwrite](https://appwrite.io/) work in harmony, offering you quick development options. You can use your data (API, Database) very simply by using **refine**'s Appwrite data provider.
 
 :::info
-[Appwrite](https://appwrite.io/) version >= 0.13 is required
+[Appwrite](https://appwrite.io/) version >= 1.0 is required
 :::
 
 You can only focus on your UI as we can handle your data quickly and simply.
@@ -124,7 +124,7 @@ const App: React.FC = () => {
             liveProvider={liveProvider(appwriteClient, {
                 databaseId: "default",
             })}
-             options={{ liveMode: "auto" }}
+            options={{ liveMode: "auto" }}
             authProvider={authProvider}
         //highlight-end    
             routerProvider={routerProvider}
@@ -662,13 +662,14 @@ export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
 :::tip
 As we mentioned above, we need permissions to list or create documents in Appwrite. By default, Read Access and Write Access are public when creating documents from **refine** UI.
 
-If you want to restrict permissions and only allow specific users, you need to specify it in metaData.
+If you want to restrict [permissions](https://appwrite.io/docs/permissions#permission-types) and only allow specific users, you need to specify it in metaData.
 
 ```tsx
+import { Permission, Role } from "@pankod/refine-appwrite";
 const { formProps, saveButtonProps } = useForm<IPost>({
     metaData: {
-        writeAccess: ["User ID, Team ID, or Role"],
-        readAccess: ["User ID, Team ID, or Role"] 
+        writePermissions: [Permission.read(Role.any())],
+        readPermissions: [Permission.read(Role.any())] 
     }
 });
 ```
