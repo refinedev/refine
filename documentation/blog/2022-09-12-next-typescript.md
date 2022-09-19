@@ -22,7 +22,7 @@ Combining **Next.js and TypeScript** gives us superpowers to rapidly create appl
 
 In this article, we'll look at how you can integrate TypeScript in your Next.js apps. We'll also explore reasons why you should consider using this tool in your Next.js projects and also talk about its benefits. 
 
-<!--truncate-->
+
 
 Steps we'll cover:
 - [What is TypeScript?](#what-is-typescript)
