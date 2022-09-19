@@ -357,6 +357,9 @@ export {
     Query,
     Storage,
     Teams,
+    Permission,
+    ID,
+    Role,
 } from "appwrite";
 
 export type {
