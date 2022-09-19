@@ -1,5 +1,11 @@
 # @pankod/refine-appwrite
 
+## 5.1.0
+
+### Minor Changes
+
+-   We've added [Appwrite 1.0](https://appwrite.io/1.0) support!
+
 ## 5.0.0
 
 ### Major Changes
