@@ -7,7 +7,7 @@ import {
     Route,
     RouterProps,
     ReactLocation,
-} from "react-location";
+} from "@tanstack/react-location";
 
 import { RouterComponent, location } from "./routerComponent";
 import { Prompt } from "./prompt";

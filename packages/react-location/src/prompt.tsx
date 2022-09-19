@@ -1,4 +1,4 @@
-import { useLocation } from "react-location";
+import { useLocation } from "@tanstack/react-location";
 import { useEffect } from "react";
 
 import type { PromptProps } from "@pankod/refine-core";
