@@ -3,3 +3,4 @@ export * from "./fields";
 export * from "./buttons";
 export * from "./layout";
 export * from "./crud";
+export * from "./pages";
