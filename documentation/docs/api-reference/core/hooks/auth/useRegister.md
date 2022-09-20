@@ -5,7 +5,7 @@ siderbar_label: useRegister
 description: useRegister data hook from refine is a modified version of react-query's useMutation for registration.
 ---
 
-`useRegister` calls `register` method from [`authProvider`](/core/providers/auth-provider.md) under the hood. It registers the app if `register` method from `authProvider` resolves and if it rejects shows an error notification.
+`useRegister` calls `register` method from [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood. It registers the app if `register` method from `authProvider` resolves and if it rejects shows an error notification.
 
 It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation).
 
@@ -95,7 +95,7 @@ export const RegisterPage = () => {
 
 We have 2 options for redirecting the app after registering successfully .
 
--   A custom url can be resolved from the promise returned from the `register` method of the [authProvider](/core/providers/auth-provider.md).
+-   A custom url can be resolved from the promise returned from the `register` method of the [authProvider](/api-reference/core/providers/auth-provider.md).
 
 ```tsx
 const authProvider: AuthProvider = {

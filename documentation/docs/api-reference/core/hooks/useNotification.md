@@ -3,7 +3,7 @@ id: useNotification
 title: useNotification
 ---
 
-It can be used to `open` or `close` notification at any time. It returns the `open` and `close` method from [`notificationProvider`](/core/providers/notification-provider.md) under the hood.
+It can be used to `open` or `close` notification at any time. It returns the `open` and `close` method from [`notificationProvider`](/api-reference/core/providers/notification-provider.md) under the hood.
 
 ## Usage
 
@@ -14,7 +14,7 @@ const { open, close } = useNotification();
 ```
 
 :::caution
-This hook can only be used if [`notificationProvider`](/core/providers/notification-provider.md) is provided. 
+This hook can only be used if [`notificationProvider`](/api-reference/core/providers/notification-provider.md) is provided. 
 :::
 
 :::tip

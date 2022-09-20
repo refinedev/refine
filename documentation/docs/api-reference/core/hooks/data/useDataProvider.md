@@ -63,7 +63,7 @@ const secondDataProvider= dataProvider("second"); // return second data provider
 
 | Description   | Type                                                |
 | ------------- | --------------------------------------------------- |
-| Data Provider | [`Data Provider`](/core/providers/data-provider.md) |
+| Data Provider | [`Data Provider`](/api-reference/core/providers/data-provider.md) |
 
-[Refine]: /core/components/refine-config.md
-[Data Provider]: /core/providers/data-provider.md
+[Refine]: /api-reference/core/components/refine-config.md
+[Data Provider]: /api-reference/core/providers/data-provider.md

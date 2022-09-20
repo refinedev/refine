@@ -195,7 +195,7 @@ Now, parsed data is mapped to conform our APIs requirements.
 | onFinish            | Called with errors and successful responses when all requests are sent.                                                                                                                                                                              | `(results: { succeeded: ImportSuccessResult<TVariables, TData>[]; errored: ImportErrorResult<TVariables>[]; }) => void` |
 | successNotification | Successful Mutation notification                                                                                                                                                                                                                     | [`SuccessErrorNotification`][SuccessErrorNotification]                                                                  | "Successfully created `resource`"                                                                                                          |
 | errorNotification   | Unsuccessful Mutation notification                                                                                                                                                                                                                   | [`SuccessErrorNotification`][SuccessErrorNotification]                                                                  | "There was an error while creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
-| metaData            | Metadata query for `dataProvider`                                                                                                                                                                                                                    | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                                                                    | {}                                                                                                                                         |
+| metaData            | Metadata query for `dataProvider`                                                                                                                                                                                                                    | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                                                                    | {}                                                                                                                                         |
 | dataProviderName    | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.                                                                                                                                                   | `string`                                                                                                                | `default`                                                                                                                                  |
 
 ### Return Values
@@ -216,16 +216,16 @@ Now, parsed data is mapped to conform our APIs requirements.
 | TError     | Custom error object that extends [`HttpError`][HttpError]                  | [`HttpError`][HttpError]   |
 | TVariables | Values for mutation function                                               | `any`                      |
 
-[useCreate]: /core/hooks/data/useCreate.md
-[useCreateMany]: /core/hooks/data/useCreateMany.md
-[DataProvider]: /core/providers/data-provider.md
-[BaseRecord]: /core/interfaces.md#baserecord
-[HttpError]: /core/interfaces.md#httperror
+[useCreate]: /api-reference/core/hooks/data/useCreate.md
+[useCreateMany]: /api-reference/core/hooks/data/useCreateMany.md
+[DataProvider]: /api-reference/core/providers/data-provider.md
+[BaseRecord]: /api-reference/core/interfaces.md#baserecord
+[HttpError]: /api-reference/core/interfaces.md#httperror
 [papaparse]: https://www.papaparse.com/docs
 [useMutation]: https://react-query.tanstack.com/reference/useMutation
 [Number.MAX_SAFE_INTEGER]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER
-[SuccessErrorNotification]: /core/interfaces.md#successerrornotification
-[UseImportInputPropsType]: /core/interfaces.md#useimportinputpropstype
+[SuccessErrorNotification]: /api-reference/core/interfaces.md#successerrornotification
+[UseImportInputPropsType]: /api-reference/core/interfaces.md#useimportinputpropstype
 
 ## Live StackBlitz Example
 

@@ -23,7 +23,7 @@ Let's create our `<PostList>` to redirect to create and edit pages.
   <summary>PostList</summary>
   <div>
 
-In this component we will use [`useNavigation`](/core/hooks/navigation/useNavigation.md) to redirect to the `<PostCreate>` and `<PostEdit>` components.
+In this component we will use [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) to redirect to the `<PostCreate>` and `<PostEdit>` components.
 
 ```tsx title="src/pages/posts/list.tsx"
 //highlight-next-line
@@ -269,7 +269,7 @@ You can change the `id` as you want with the `setId` that comes out of `refineCo
 
 Another part that is different from `<PostCreate>` and `<PostEdit>` is the `defaultValue` value passed to the `useSelect` hook and the `<select>` element.
 
-[Refer to the `useSelect` documentation for detailed information. &#8594](/core/hooks/useSelect.md)
+[Refer to the `useSelect` documentation for detailed information. &#8594](/api-reference/core/hooks/useSelect.md)
 
 ```tsx title="src/pages/posts/edit.tsx"
 //highlight-next-line
@@ -430,7 +430,7 @@ export const PostEdit: React.FC = () => {
 | Property                   | Description                                                         | Type                                                |
 | -------------------------- | ------------------------------------------------------------------- | --------------------------------------------------- |
 | stepsProps                 | Configuration object for the steps                                  | [`StepsPropsType`](#stepspropstype)                 |
-| refineCoreProps            | Configuration object for the core of the [`useForm`][use-form-core] | [`UseFormProps`](/core/hooks/useForm.md#properties) |
+| refineCoreProps            | Configuration object for the core of the [`useForm`][use-form-core] | [`UseFormProps`](/api-reference/core/hooks/useForm.md#properties) |
 | React Hook Form Properties | See [React Hook Form][react-hook-form-use-form] documentation       |
 
 <br />
@@ -447,7 +447,7 @@ export const PostEdit: React.FC = () => {
 | Property                      | Description                                                     | Type                                                          |
 | ----------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------- |
 | steps                         | Relevant state and method to control the steps                  | [`StepsReturnValues`](#stepsreturnvalues)                     |
-| refineCore                    | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/core/hooks/useForm.md#return-values) |
+| refineCore                    | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/api-reference/core/hooks/useForm.md#return-values) |
 | React Hook Form Return Values | See [React Hook Form][react-hook-form-use-form] documentation   |
 
 <br />
@@ -467,6 +467,6 @@ export const PostEdit: React.FC = () => {
 ></iframe>
 
 [@pankod/refine-react-hook-form]: https://github.com/pankod/refine/tree/master/packages/react-hook-form
-[refine-react-hook-form-use-form]: /packages/react-hook-form/useForm.md
+[refine-react-hook-form-use-form]: /packages/documentation/react-hook-form/useForm.md
 [react-hook-form-use-form]: https://react-hook-form.com/api/useform
-[use-form-core]: /core/hooks/useForm.md
+[use-form-core]: /api-reference/core/hooks/useForm.md

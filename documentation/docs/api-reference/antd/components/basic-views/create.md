@@ -169,7 +169,7 @@ render(
 
 `<Create>` component has a default button that submits the form. If you want to customize this button you can use the `saveButtonProps` property like the code below.
 
-[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/ui-frameworks/antd/components/buttons/save.md)
+[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-reference/antd/components/buttons/save.md)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 const { Create, Form, Input, Select, useForm, useSelect, CreateButton } =
@@ -211,7 +211,7 @@ render(
 
 The `<Create>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Create>` component in a custom page, you can use the `resource` prop.
 
-[Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
+[Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
 const { Create } = RefineAntd;
@@ -340,7 +340,7 @@ render(
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-antd` package.
 
-[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/ui-frameworks/antd/components/breadcrumb.md)
+[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/antd/components/breadcrumb.md)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
 const { Create, CreateButton, Breadcrumb } = RefineAntd;
@@ -811,4 +811,4 @@ export const CreatePage: React.FC = () => {
 | <div className="required-block"><div>actionButtons</div> <div className=" required">deprecated</div></div>   | Passes the props for `<PageHeader>`       | `React.ReactNode`                                                               | `<SaveButton>` and depending on your resource configuration (`canDelete` prop)                                                 |
 | <div className="required-block"><div>pageHeaderProps</div> <div className=" required">deprecated</div></div> | Passes the props for `<PageHeader>`       | [PageHeaderProps](https://ant.design/components/page-header/#API)               | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>`, breadcrumb: [Breadcrumb][breadcrumb-component] } |
 
-[breadcrumb-component]: /ui-frameworks/antd/components/breadcrumb.md
+[breadcrumb-component]: /api-reference/antd/components/breadcrumb.md

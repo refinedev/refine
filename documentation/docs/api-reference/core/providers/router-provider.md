@@ -28,7 +28,7 @@ const routerProvider = {
 };
 ```
 
-> `*`: Too see &#8594 [`<PromptProps>`](/core/interfaces.md#promptprops)
+> `*`: Too see &#8594 [`<PromptProps>`](/api-reference/core/interfaces.md#promptprops)
 
 :::info
 
@@ -551,7 +551,7 @@ const routerProvider: IRouterProvider = {
 
 ### `Prompt`
 
-**refine** uses `<Prompt>` to display the alert when [warnWhenUnsavedChanges](/core/components/refine-config.md#warnwhenunsavedchanges) is `true`.
+**refine** uses `<Prompt>` to display the alert when [warnWhenUnsavedChanges](/api-reference/core/components/refine-config.md#warnwhenunsavedchanges) is `true`.
 
 <Tabs
 defaultValue="react--router-v6-prompt"
@@ -920,7 +920,7 @@ const routerProvider: IRouterProvider = {
 
 `routes` allow us to create custom pages in your **react** apps that have different paths than those defined by `resources`.
 
-[Refer to the Custom Pages documentation for detailed information. &#8594](guides-and-concepts/custom-pages.md)
+[Refer to the Custom Pages documentation for detailed information. &#8594](/advanced-tutorials/custom-pages.md)
 
 :::info
 

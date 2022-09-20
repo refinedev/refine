@@ -28,7 +28,7 @@ export const ShowPage: React.FC = () => {
 
 The `<Show>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Show>` component in a custom page, you can use the `resource` property.
 
-[Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
+[Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
 
 ```tsx title="src/app.tsx"
 import { Refine } from "@pankod/refine-core";
@@ -71,9 +71,9 @@ export const App: React.FC = () => {
 
 `canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component. If the resource has `canDelete` or `canEdit` property refine adds the buttons by default.
 
-When clicked on, delete button executes the [`useDelete`](/core/hooks/data/useDelete.md) method provided by the [`dataProvider`](/core/providers/data-provider.md) and the edit button redirects the user to the record edit page.
+When clicked on, delete button executes the [`useDelete`](/api-reference/core/hooks/data/useDelete.md) method provided by the [`dataProvider`](/api-reference/core/providers/data-provider.md) and the edit button redirects the user to the record edit page.
 
-Refer to the [`<DeleteButton>`](/ui-frameworks/mui/components/buttons/delete.md) and the [`<EditButton>`](/ui-frameworks/mui/components/buttons/edit.md) documentation for detailed usage.
+Refer to the [`<DeleteButton>`](/api-reference/mui/components/buttons/delete.md) and the [`<EditButton>`](/api-reference/mui/components/buttons/edit.md) documentation for detailed usage.
 
 ```tsx title="src/pages/posts/show.tsx"
 import { usePermissions } from "@pankod/refine-core";
@@ -96,7 +96,7 @@ export const ShowPage: React.FC = () => {
 };
 ```
 
-[Refer to the `usePermission` documentation for detailed usage. &#8594](/core/hooks/auth/usePermissions.md)
+[Refer to the `usePermission` documentation for detailed usage. &#8594](/api-reference/core/hooks/auth/usePermissions.md)
 
 ### `recordItemId`
 
@@ -136,7 +136,7 @@ export const ShowPage: React.FC = () => {
 ```
 
 :::note
-`<Show>` component needs the `id` information for [`<RefreshButton>`](/ui-frameworks/mui/components/buttons/refresh.md) to work properly.
+`<Show>` component needs the `id` information for [`<RefreshButton>`](/api-reference/mui/components/buttons/refresh.md) to work properly.
 :::
 
 :::caution
@@ -225,7 +225,7 @@ export const ShowPage: React.FC = () => {
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-mui` package.
 
-[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/ui-frameworks/mui/components/breadcrumb.md)
+[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/mui/components/breadcrumb.md)
 
 ```tsx
 import { Show } from "@pankod/refine-mui";
@@ -550,7 +550,7 @@ Use `headerButtonProps` and `footerButtonProps` instead.
 | resource                                                                                                      | Resource name for API data interactions                           | `string`                                                                        | Resource name that it reads from the URL.                                      |
 | canDelete                                                                                                     | Adds a `<DeleteButton>`                                           | `boolean`                                                                       | If the resource has `canDelete` prop it is `true` else `false`                 |
 | canEdit                                                                                                       | Adds an `<EditButton>`                                            | `boolean`                                                                       | If the resource has `canEdit` prop it is `true` else `false`                   |
-| recordItemId                                                                                                  | The record id for `<RefreshButton>`                               | [`BaseKey`](/core/interfaces.md#basekey)                                        |                                                                                |
+| recordItemId                                                                                                  | The record id for `<RefreshButton>`                               | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                        |                                                                                |
 | dataProviderName                                                                                              | To specify a data provider other than `default` use this property | `string`                                                                        |                                                                                |
 | goBack                                                                                                        | Custom back button element                                        | `React.ReactNode`                                                               | `<ArrowBackIcon />`                                                            |
 | isLoading                                                                                                     | Passes the props for `<RefreshButton>`                            | `boolean`                                                                       | false                                                                          |

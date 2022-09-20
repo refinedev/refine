@@ -5,7 +5,7 @@ title: List
 
 import listButton from '@site/static/img/guides-and-concepts/components/buttons/list/list-mui.png';
 
-`<ListButton>` is using Material UI [`<Button>`](https://ant.design/components/button/) component. It uses the `list` method from [`useNavigation`](/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
+`<ListButton>` is using Material UI [`<Button>`](https://ant.design/components/button/) component. It uses the `list` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
 
 ## Usage
 
@@ -76,7 +76,7 @@ export const MyListComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `list` method of [`useNavigation`](/core/hooks/navigation/useNavigation.md) and then redirect to `/categories`.
+Clicking the button will trigger the `list` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/categories`.
 
 ### `hideText`
 
@@ -92,7 +92,7 @@ export const MyListComponent = () => {
 
 ### `ignoreAccessControlProvider`
 
-It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/core/components/refine-config.md)
+It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
 import { ListButton } from "@pankod/refine-mui";

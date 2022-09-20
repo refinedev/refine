@@ -5,7 +5,7 @@ title: Show
 
 import showButton from '@site/static/img/guides-and-concepts/components/buttons/show/show.png';
 
-`<ShowButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `show` method from [`useNavigation`](/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the show page with the record id route of resource.
+`<ShowButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `show` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the show page with the record id route of resource.
 
 ## Usage
 
@@ -70,7 +70,7 @@ export const MyShowComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `show` method of [`useNavigation`](/core/hooks/navigation/useNavigation.md) and then redirect the app to `/posts/show/1`.
+Clicking the button will trigger the `show` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/posts/show/1`.
 
 :::note
 `<ShowButton>` component reads the id information from the route by default.
@@ -88,7 +88,7 @@ export const MyShowComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `show` method of [`useNavigation`](/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/show/2`.
+Clicking the button will trigger the `show` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/categories/show/2`.
 
 ### `hideText`
 
@@ -104,7 +104,7 @@ export const MyShowComponent = () => {
 
 ### `ignoreAccessControlProvider`
 
-It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/core/components/refine-config.md)
+It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx 
 import { ListButton } from "@pankod/refine-antd";
@@ -123,7 +123,7 @@ export const MyListComponent = () => {
 | props                                                                                                     | Ant Design button properties                     | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; recordItemId?: BaseKey; hideText?: boolean; }` |                                                                  |
 | resourceNameOrRouteName                                                                                   | Determines which resource to use for redirection | `string`                                                                                                                              | Resource name that it reads from route                           |
 | <div className="required-block"><div>resourceName</div> <div className=" required">deprecated</div></div> | Determines which resource to use for redirection | `string`                                                                                                                              | Resource name that it reads from route                           |
-| recordItemId                                                                                              | Adds `id` to the end of the URL                  | [`BaseKey`](/core/interfaces.md#basekey)                                                                                              | Record id that it reads from route                               |
+| recordItemId                                                                                              | Adds `id` to the end of the URL                  | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                                                                              | Record id that it reads from route                               |
 | hideText                                                                                                  | Allows to hide button text                       | `boolean`                                                                                                                             | `false`                                                          |
 | ignoreAccessControlProvider                                                                               | Skip access control                              | `boolean`                                                                                                                             | `false`                                                          |
 | children                                                                                                  | Sets the button text                             | `ReactNode`                                                                                                                           | `"Show"`                                                         |

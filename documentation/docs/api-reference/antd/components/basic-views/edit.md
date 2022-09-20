@@ -188,7 +188,7 @@ The `<Edit>` component has a save button by default. If you want to customize th
 
 Clicking on the save button will submit your form.
 
-[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/ui-frameworks/antd/components/buttons/save.md)
+[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-reference/antd/components/buttons/save.md)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
 const { Edit, Form, Input, Select, useForm, useSelect, EditButton } =
@@ -232,7 +232,7 @@ render(
 
 When clicked on, the delete button executes the `useDelete` method provided by the `dataProvider`.
 
-[Refer to the `<DeleteButton>` documentation for detailed usage. &#8594](/ui-frameworks/antd/components/buttons/delete.md)
+[Refer to the `<DeleteButton>` documentation for detailed usage. &#8594](/api-reference/antd/components/buttons/delete.md)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
 const { Edit, Form, Input, Select, useForm, useSelect, EditButton } =
@@ -302,13 +302,13 @@ render(
 );
 ```
 
-[Refer to the `usePermission` documentation for detailed usage. &#8594](/core/hooks/auth/usePermissions.md)
+[Refer to the `usePermission` documentation for detailed usage. &#8594](/api-reference/core/hooks/auth/usePermissions.md)
 
 ### `resource`
 
 `<Edit>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Edit>` component in a custom page, you can use the `resource` property.
 
-[Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
+[Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom/2
 const { Edit } = RefineAntd;
@@ -422,7 +422,7 @@ The `<Edit>` component needs the `id` information for the `<RefreshButton>` to w
 
 Determines which mode mutation will have while executing `<DeleteButton>` .
 
-[Refer to the mutation mode docs for further information. &#8594](guides-and-concepts/mutation-mode.md)
+[Refer to the mutation mode docs for further information. &#8594](/advanced-tutorials/mutation-mode.md)
 
 ```tsx live hideCode url=http://localhost:3000/posts/edit/2
 const { Edit, Form, Input, Select, useForm, useSelect, EditButton } =
@@ -660,7 +660,7 @@ render(
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-antd` package.
 
-[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/ui-frameworks/antd/components/breadcrumb.md)
+[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/antd/components/breadcrumb.md)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
 const { Edit, EditButton, Breadcrumb } = RefineAntd;
@@ -1141,10 +1141,10 @@ export const EditPage: React.FC = () => {
 | title                                                                                                        | Adds the title                                                                  | `React.ReactNode`                                                               | `"Edit"` prefix and singular of `resource.name`                                                                                |
 | saveButtonProps                                                                                              | Adds properties for save button                                                 | `{ disabled: boolean; onClick: () => void; loading: boolean; }`                 | `<SaveButton>`                                                                                                                 |
 | canDelete                                                                                                    | Adds a delete button                                                            | `boolean`                                                                       | If the resource has `canDelete` prop it is `true` else `false` `false`                                                         |
-| deleteButtonProps                                                                                            | Adds properties for delete button                                               | [`DeleteButtonProps`](/core/interfaces.md#delete-button-props)                  | `<DeleteButton>`                                                                                                               |
+| deleteButtonProps                                                                                            | Adds properties for delete button                                               | [`DeleteButtonProps`](/api-reference/core/interfaces.md#delete-button-props)                  | `<DeleteButton>`                                                                                                               |
 | resource                                                                                                     | Resource name for API data interactions                                         | `string`                                                                        | Resource name that it reads from the URL.                                                                                      |
-| recordItemId                                                                                                 | The record id for `<RefreshButton>`                                             | [`BaseKey`](/core/interfaces.md#basekey)                                        |                                                                                                                                |
-| mutationMode\*                                                                                               | [Determines when mutations are executed](/guides-and-concepts/mutation-mode.md) | ` "pessimistic` \| `"optimistic` \| `"undoable"`                                | `"pessimistic"`\*                                                                                                              |
+| recordItemId                                                                                                 | The record id for `<RefreshButton>`                                             | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                        |                                                                                                                                |
+| mutationMode\*                                                                                               | [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md) | ` "pessimistic` \| `"optimistic` \| `"undoable"`                                | `"pessimistic"`\*                                                                                                              |
 | dataProviderName                                                                                             | To specify a data provider other than `default` use this property               | `string`                                                                        |                                                                                                                                |
 | goBack                                                                                                       | Custom back icon element                                                        | `React.ReactNode`                                                               | `<ArrowLeft />`                                                                                                                |
 | isLoading                                                                                                    | Loading state of the component                                                  | `boolean`                                                                       | `false`                                                                                                                        |
@@ -1159,6 +1159,6 @@ export const EditPage: React.FC = () => {
 | <div className="required-block"><div>actionButtons</div> <div className=" required">deprecated</div></div>   | Passes properties for `<PageHeader>`                                            | `React.ReactNode`                                                               | `<SaveButton>` and depending on your resource configuration (`canDelete` prop)                                                 |
 | <div className="required-block"><div>pageHeaderProps</div> <div className=" required">deprecated</div></div> | Passes properties for `<PageHeader>`                                            | [PageHeaderProps](https://ant.design/components/page-header/#API)               | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>`, breadcrumb: [Breadcrumb][breadcrumb-component] } |
 
-> `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/core/components/refine-config.md)>** component.
+> `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/api-reference/core/components/refine-config.md)>** component.
 
-[breadcrumb-component]: /ui-frameworks/antd/components/breadcrumb.md
+[breadcrumb-component]: /api-reference/antd/components/breadcrumb.md

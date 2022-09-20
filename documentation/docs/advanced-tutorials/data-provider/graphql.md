@@ -24,18 +24,18 @@ Hooks and components that support `MetaDataQuery`:
 
 | Supported data hooks                                        | Supported other hooks                                                            | Supported components                                                        |
 | ----------------------------------------------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| [`useUpdate` &#8594](/core/hooks/data/useUpdate.md)         | [`useForm` &#8594](/core/hooks/useForm.md)                                       | [`DeleteButton` &#8594](/ui-frameworks/antd/components/buttons/delete.md)   |
-| [`useUpdateMany` &#8594](/core/hooks/data/useUpdateMany.md) | [`useModalForm` &#8594](/ui-frameworks/antd/hooks/form/useModalForm.md)          | [`RefreshButton` &#8594](/ui-frameworks/antd/components/buttons/refresh.md) |
-| [`useDelete` &#8594](/core/hooks/data/useDelete.md)         | [`useDrawerForm` &#8594](/ui-frameworks/antd/hooks/form/useDrawerForm.md)        |                                                                             |
-| [`useDeleteMany` &#8594](/core/hooks/data/useDeleteMany.md) | [`useStepsForm` &#8594](/ui-frameworks/antd/hooks/form/useStepsForm.md)          |                                                                             |
-| [`useCreate` &#8594](/core/hooks/data/useCreate.md)         | [`useTable` &#8594](/core/hooks/useTable.md)                                     |                                                                             |
-| [`useCreateMany` &#8594](/core/hooks/data/useCreateMany.md) | [`useEditableTable` &#8594](/ui-frameworks/antd/hooks/table/useEditableTable.md) |                                                                             |
-| [`useList` &#8594](/core/hooks/data/useList.md)             | [`useSimpleList` &#8594](/ui-frameworks/antd/hooks/list/useSimpleList.md)        |                                                                             |
-| [`useOne` &#8594](/core/hooks/data/useOne.md)               | [`useShow` &#8594](/core/hooks/show/useShow.md)                                  |                                                                             |
-| [`useMany` &#8594](/core/hooks/data/useMany.md)             | [`useExport` &#8594](/core/hooks/import-export/useExport.md)                     |                                                                             |
-| [`useCustom` &#8594](/core/hooks/data/useCustom.md)         | [`useCheckboxGroup` &#8594](/ui-frameworks/antd/hooks/field/useCheckboxGroup.md) |                                                                             |
-|                                                             | [`useSelect` &#8594](/core/hooks/useSelect.md)                                   |                                                                             |
-|                                                             | [`useRadioGroup` &#8594](/ui-frameworks/antd/hooks/field/useRadioGroup.md)       |                                                                             |
+| [`useUpdate` &#8594](/api-reference/core/hooks/data/useUpdate.md)         | [`useForm` &#8594](/api-reference/core/hooks/useForm.md)                                       | [`DeleteButton` &#8594](/api-reference/antd/components/buttons/delete.md)   |
+| [`useUpdateMany` &#8594](/api-reference/core/hooks/data/useUpdateMany.md) | [`useModalForm` &#8594](/api-reference/antd/hooks/form/useModalForm.md)          | [`RefreshButton` &#8594](/api-reference/antd/components/buttons/refresh.md) |
+| [`useDelete` &#8594](/api-reference/core/hooks/data/useDelete.md)         | [`useDrawerForm` &#8594](/api-reference/antd/hooks/form/useDrawerForm.md)        |                                                                             |
+| [`useDeleteMany` &#8594](/api-reference/core/hooks/data/useDeleteMany.md) | [`useStepsForm` &#8594](/api-reference/antd/hooks/form/useStepsForm.md)          |                                                                             |
+| [`useCreate` &#8594](/api-reference/core/hooks/data/useCreate.md)         | [`useTable` &#8594](/api-reference/core/hooks/useTable.md)                                     |                                                                             |
+| [`useCreateMany` &#8594](/api-reference/core/hooks/data/useCreateMany.md) | [`useEditableTable` &#8594](/api-reference/antd/hooks/table/useEditableTable.md) |                                                                             |
+| [`useList` &#8594](/api-reference/core/hooks/data/useList.md)             | [`useSimpleList` &#8594](/api-reference/antd/hooks/list/useSimpleList.md)        |                                                                             |
+| [`useOne` &#8594](/api-reference/core/hooks/data/useOne.md)               | [`useShow` &#8594](/api-reference/core/hooks/show/useShow.md)                                  |                                                                             |
+| [`useMany` &#8594](/api-reference/core/hooks/data/useMany.md)             | [`useExport` &#8594](/api-reference/core/hooks/import-export/useExport.md)                     |                                                                             |
+| [`useCustom` &#8594](/api-reference/core/hooks/data/useCustom.md)         | [`useCheckboxGroup` &#8594](/api-reference/antd/hooks/field/useCheckboxGroup.md) |                                                                             |
+|                                                             | [`useSelect` &#8594](/api-reference/core/hooks/useSelect.md)                                   |                                                                             |
+|                                                             | [`useRadioGroup` &#8594](/api-reference/antd/hooks/field/useRadioGroup.md)       |                                                                             |
 
 ## Setup
 
@@ -238,7 +238,7 @@ query ($sort: String, $where: JSON, $start: Int, $limit: Int) {
 
 ## Edit Page
 
-On the edit page [`useForm`](/core/hooks/useForm.md) sends a request with the record id to fill the form. `fields` must be sent in `metaData` to determine which fields will come in this request.
+On the edit page [`useForm`](/api-reference/core/hooks/useForm.md) sends a request with the record id to fill the form. `fields` must be sent in `metaData` to determine which fields will come in this request.
 
 <Tabs
 defaultValue="usage"
@@ -343,7 +343,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
 ```
 
 :::info
-The create page is largely the same as the edit page, there is no need to pass `metaData` to [`useForm`](/core/hooks/useForm.md) on the create page. If you want to use the created record as a response after the request, you can pass the `fields` with `metaData`.
+The create page is largely the same as the edit page, there is no need to pass `metaData` to [`useForm`](/api-reference/core/hooks/useForm.md) on the create page. If you want to use the created record as a response after the request, you can pass the `fields` with `metaData`.
 :::
 
 </TabItem>
@@ -373,7 +373,7 @@ mutation ($input: updatePostInput) {
 
 ## Show Page
 
-Show component includes the [`<RefreshButton>`](/ui-frameworks/antd/components/buttons/refresh.md) by default. We can pass `refetch` method of `queryResult` to it's `onClick`. This method repeats the last request made by the query. So it refreshes the data that is shown in page.
+Show component includes the [`<RefreshButton>`](/api-reference/antd/components/buttons/refresh.md) by default. We can pass `refetch` method of `queryResult` to it's `onClick`. This method repeats the last request made by the query. So it refreshes the data that is shown in page.
 
 <Tabs
 defaultValue="usage"

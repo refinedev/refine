@@ -28,7 +28,7 @@ export const CreatePage: React.FC = () => {
 
 The `<Create>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Create>` component in a custom page, you can use the `resource` prop.
 
-[Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
+[Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
 
 ```tsx
 import { Refine } from "@pankod/refine-core";
@@ -67,7 +67,7 @@ export const App: React.FC = () => {
 
 `<Create>` component has a default button that submits the form. If you want to customize this button you can use the `saveButtonProps` property like the code below.
 
-[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/ui-frameworks/mui/components/buttons/save.md)
+[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-reference/mui/components/buttons/save.md)
 
 ```tsx
 import { Create } from "@pankod/refine-mui";
@@ -127,7 +127,7 @@ export const CreatePage: React.FC = () => {
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-mui` package.
 
-[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/ui-frameworks/mui/components/breadcrumb.md)
+[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/mui/components/breadcrumb.md)
 
 ```tsx
 import { Create } from "@pankod/refine-mui";
@@ -331,7 +331,7 @@ export const CreatePage: React.FC = () => {
 Use `headerButtons` or `footerButtons` instead.
 :::
 
-`<Create>` uses the Material UI [`<CardActions>`](https://mui.com/material-ui/api/card-actions/#main-content) component. The children of the [`<CardActions>`](https://mui.com/material-ui/api/card-actions/#main-content) component shows [`<SaveButton>`](/ui-frameworks/mui/components/buttons/save.md) and [`<DeleteButton>`](/ui-frameworks/mui/components/buttons/delete.md) based on your resource definition in the`resources` property you pass to `<Refine>`. If you want to use other things instead of these buttons, you can use the `actionButton` property like the code below.
+`<Create>` uses the Material UI [`<CardActions>`](https://mui.com/material-ui/api/card-actions/#main-content) component. The children of the [`<CardActions>`](https://mui.com/material-ui/api/card-actions/#main-content) component shows [`<SaveButton>`](/api-reference/mui/components/buttons/save.md) and [`<DeleteButton>`](/api-reference/mui/components/buttons/delete.md) based on your resource definition in the`resources` property you pass to `<Refine>`. If you want to use other things instead of these buttons, you can use the `actionButton` property like the code below.
 
 ```tsx title="src/pages/posts/create.tsx"
 // highlight-next-line

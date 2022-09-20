@@ -102,16 +102,16 @@ After this, `<Refine/>` will use the `CustomLayout` instead of it's default `Lay
 This example demonstrated how to configure a global layout. To learn how to use global layout in custom pages and make local modifications per page, [refer to the `<LayoutWrapper>` docs. &#8594][layoutwrapper]
 :::
 
-[refine]: /core/components/refine-config.md
-[layout]: /core/components/refine-config.md#layout
-[sider]: /core/components/refine-config.md#sider
-[footer]: /core/components/refine-config.md#footer
-[header]: /core/components/refine-config.md#header
-[offlayoutarea]: /core/components/refine-config.md#offlayoutarea
-[title]: /core/components/refine-config.md#title
-[layoutwrapper]: /core/components/layout-wrapper.md
-[custom page example]: /guides-and-concepts/custom-pages.md
+[refine]: /api-reference/core/components/refine-config.md
+[layout]: /api-reference/core/components/refine-config.md#layout
+[sider]: /api-reference/core/components/refine-config.md#sider
+[footer]: /api-reference/core/components/refine-config.md#footer
+[header]: /api-reference/core/components/refine-config.md#header
+[offlayoutarea]: /api-reference/core/components/refine-config.md#offlayoutarea
+[title]: /api-reference/core/components/refine-config.md#title
+[layoutwrapper]: /api-reference/core/components/layout-wrapper.md
+[custom page example]: /advanced-tutorials/custom-pages.md
 [custom page example code]: /examples/customization/topMenuLayout.md
 [antdlayout]: https://ant.design/components/layout/
-[usemenu]: /core/hooks/ui/useMenu.md
-[usetitle]: /core/hooks/refine/useTitle.md
+[usemenu]: /api-reference/core/hooks/ui/useMenu.md
+[usetitle]: /api-reference/core/hooks/refine/useTitle.md

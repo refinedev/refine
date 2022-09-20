@@ -111,4 +111,4 @@ export const MyRefreshComponent = () => {
 | svgIconProps | Allows to set icon props              | [`SvgIconProps`](https://mui.com/material-ui/api/svg-icon/#props)                    |                                                                                                                                                |
 
 [button]: https://mui.com/material-ui/api/loading-button/#main-content
-[useexport]: /core/hooks/import-export/useExport.md
+[useexport]: /api-reference/core/hooks/import-export/useExport.md

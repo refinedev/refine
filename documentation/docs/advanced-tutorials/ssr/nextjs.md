@@ -376,17 +376,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 [Nextjs]: https://nextjs.org/docs/getting-started
 [NextjsRouter]: https://www.npmjs.com/package/@pankod/refine-nextjs-router
-[routerProvider]: /core/providers/router-provider.md
+[routerProvider]: /api-reference/core/providers/router-provider.md
 [superplate]: https://github.com/pankod/superplate
 [NextjsCustomApp]: https://nextjs.org/docs/advanced-features/custom-app
-[refine]: /core/components/refine-config.md
+[refine]: /api-reference/core/components/refine-config.md
 [NextjsPages]: https://nextjs.org/docs/basic-features/pages
-[useTable]: /core/hooks/useTable.md
+[useTable]: /api-reference/core/hooks/useTable.md
 [ReactQuerySSR]: https://react-query.tanstack.com/guides/ssr#using-initialdata
 [ReactQuery]: https://react-query.tanstack.com/
-[getList]: /core/providers/data-provider.md#getlist
-[dataProvider]: /core/providers/data-provider.md
-[useTable]: /core/hooks/useTable.md
-[interfaces]: /core/interfaces.md/#crudfilters
+[getList]: /api-reference/core/providers/data-provider.md#getlist
+[dataProvider]: /api-reference/core/providers/data-provider.md
+[useTable]: /api-reference/core/hooks/useTable.md
+[interfaces]: /api-reference/core/interfaces.md/#crudfilters
 [autoStaticOpt]: https://nextjs.org/docs/advanced-features/automatic-static-optimization
 [dataFetching]: https://nextjs.org/docs/basic-features/data-fetching

@@ -97,13 +97,13 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 };
 ```
 
-We created a header with a logo and a list of links to all menu items (resources). The links are clickable and will navigate to the corresponding resource. To do this, we used the [`useMenu`](/core/hooks/ui/useMenu.md) hook to get the menu items from the `<Refine/>` and the `useRouterContext` hook to get the `<Link/>` component from the router provider. Also [`useNavigation`](/core/hooks/navigation/useNavigation.md) hook can be used to navigate between routes.
+We created a header with a logo and a list of links to all menu items (resources). The links are clickable and will navigate to the corresponding resource. To do this, we used the [`useMenu`](/api-reference/core/hooks/ui/useMenu.md) hook to get the menu items from the `<Refine/>` and the `useRouterContext` hook to get the `<Link/>` component from the router provider. Also [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) hook can be used to navigate between routes.
 
 `children` is the content of the layout. In our case, it is the content of the **Page** components.
 
 :::tip
 
-[Refer to Custom Layout guide for more detailed information on layout customization. &#8594](/guides-and-concepts/custom-layout.md)  
+[Refer to Custom Layout guide for more detailed information on layout customization. &#8594](/advanced-tutorials/custom-layout.md)  
 :::
 
 Now, we can use the `<Layout/>` in our application.

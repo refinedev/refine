@@ -6,7 +6,7 @@ title: List Search
 import basicList from '@site/static/img/guides-and-concepts/list-search/basic-list.png';
 import formList from '@site/static/img/guides-and-concepts/list-search/form-list.png';
 
-We will examine how to make an extensive search and filtering with the [`useSimpleList`](/ui-frameworks/antd/hooks/list/useSimpleList.md) hook that works with the Ant Design's [`<List>`](https://ant.design/components/list) component.
+We will examine how to make an extensive search and filtering with the [`useSimpleList`](/api-reference/antd/hooks/list/useSimpleList.md) hook that works with the Ant Design's [`<List>`](https://ant.design/components/list) component.
 
 To do this, let's list posts using the posts resource.
 
@@ -140,7 +140,7 @@ export default App;
 </div>
 <br />
 
-We will create a form by extracting `searchFormProps` from [`useSimpleList`](/ui-frameworks/antd/hooks/list/useSimpleList.md). We will use this form for search/filtering. We will also create an interface to determine the types of values from the form.
+We will create a form by extracting `searchFormProps` from [`useSimpleList`](/api-reference/antd/hooks/list/useSimpleList.md). We will use this form for search/filtering. We will also create an interface to determine the types of values from the form.
 
 ```tsx title="pages/posts/list.tsx"
 ...
@@ -237,7 +237,7 @@ When the form is submitted, the `onSearch` method runs and we get the search for
 <br />
 
 :::important
-[`CrudFilters`](/core/interfaces.md#crudfilters) type object has `field`, `operator` and `value` properties. These properties help us to filter in which field, with which operator, and with which data.
+[`CrudFilters`](/api-reference/core/interfaces.md#crudfilters) type object has `field`, `operator` and `value` properties. These properties help us to filter in which field, with which operator, and with which data.
 :::
 
 ## Live StackBlitz Example

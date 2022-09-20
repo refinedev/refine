@@ -421,15 +421,15 @@ render(
 <br />
 
 :::tip
-If you want to create a multi-level menu, you can take a look at this [`multi-level menu`](/docs/examples/multi-level-menu/multi-level-menu.md) example and also [`here`](/docs/guides-and-concepts/multi-level-menu/multi-level-menu.md) is the guide.
+If you want to create a multi-level menu, you can take a look at this [`multi-level menu`](/docs/examples/multi-level-menu/multi-level-menu.md) example and also [`here`](/docs/advanced-tutorials/multi-level-menu/multi-level-menu.md) is the guide.
 :::
 
 `useLogout` provides the logout functionality.
 
 :::caution
 `useLogout` hook can only be used if the `authProvider` is provided.  
-[Refer to authProvider docs for more detailed information. &#8594](/core/providers/auth-provider.md)  
-[Refer to useLogout docs for more detailed information. &#8594](/core/hooks/auth/useLogout.md)
+[Refer to authProvider docs for more detailed information. &#8594](/api-reference/core/providers/auth-provider.md)  
+[Refer to useLogout docs for more detailed information. &#8594](/api-reference/core/hooks/auth/useLogout.md)
 :::
 
 :::tip
@@ -437,5 +437,5 @@ You can further customize the Sider and its appearance.
 [Refer to Ant Design docs for more detailed information about Sider. &#8594](https://ant.design/components/layout/#Layout.Sider)
 :::
 
-[refine]: /core/components/refine-config.md
-[antdcustomlayout]: /ui-frameworks/antd/customization/layout.md
+[refine]: /api-reference/core/components/refine-config.md
+[antdcustomlayout]: /api-reference/antd/customization/layout.md

@@ -61,7 +61,7 @@ interface ICategory {
 }
 ```
 
-`useSelect` uses the `useList` hook for fetching data. [Refer to `useList` hook for details. &#8594](/core/hooks/data/useList.md)
+`useSelect` uses the `useList` hook for fetching data. [Refer to `useList` hook for details. &#8594](/api-reference/core/hooks/data/useList.md)
 
 ## Options
 
@@ -73,7 +73,7 @@ const { options } = useSelect({
 });
 ```
 
-`resource` property determines API resource endpoint to fetch records from [`dataProvider`](/core/providers/data-provider.md). It returns properly configured `options` values for select options.
+`resource` property determines API resource endpoint to fetch records from [`dataProvider`](/api-reference/core/providers/data-provider.md). It returns properly configured `options` values for select options.
 
 ### `defaultValue`
 
@@ -91,7 +91,7 @@ Adds extra `options` to `<select>` component. It uses `useMany` so `defaultValue
 defaultValue: ["1", "2"],
 ```
 
-[Refer to the `useMany` documentation for detailed usage. &#8594](/core/hooks/data/useMany.md)
+[Refer to the `useMany` documentation for detailed usage. &#8594](/api-reference/core/hooks/data/useMany.md)
 
 :::tip
 Can use `defaultValue` property when edit a record in `Edit` page.
@@ -198,7 +198,7 @@ const { options } = useSelect({
 The HTML select tag does not natively support AutoComplete. If AutoComplete is desired, it can be used with [React Select](https://react-select.com/async) or [use-select](https://github.com/tannerlinsley/use-select).
 :::
 
-If defined, it allows us to override the filters to use when fetching list of records. Thus, it . It should return [`CrudFilters`](/core/interfaces.md#crudfilters).
+If defined, it allows us to override the filters to use when fetching list of records. Thus, it . It should return [`CrudFilters`](/api-reference/core/interfaces.md#crudfilters).
 
 ### `queryOptions`
 
@@ -243,21 +243,21 @@ const { options } = useSelect({
 | Property                                                     | Description                                                                                                                                                        | Type                                                                           | Default     |
 | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ----------- |
 | resource <div className="required">Required</div>            | Resource name for API data interactions                                                                                                                            | `string`                                                                       |             |
-| defaultValue                                                 | Adds extra `options`                                                                                                                                               | [`BaseKey`](/core/interfaces.md#basekey)  \| [`BaseKey[]`](/core/interfaces.md#basekey)                                                    |             |
+| defaultValue                                                 | Adds extra `options`                                                                                                                                               | [`BaseKey`](/api-reference/core/interfaces.md#basekey)  \| [`BaseKey[]`](/api-reference/core/interfaces.md#basekey)                                                    |             |
 | optionValue                                                  | Set the option's value                                                                                                                                             | `string`                                                                       | `"id"`      |
 | optionLabel                                                  | Set the option's label value                                                                                                                                       | `string`                                                                       | `"title"`   |
-| filters                                                      | Add filters while fetching the data                                                                                                                                | [`CrudFilters`](/core/interfaces.md#crudfilters)                               |             |
-| sort                                                         | Allow us to sort the options                                                                                                                                       | [`CrudSorting`](/core/interfaces.md#crudsorting)                               |             |
+| filters                                                      | Add filters while fetching the data                                                                                                                                | [`CrudFilters`](/api-reference/core/interfaces.md#crudfilters)                               |             |
+| sort                                                         | Allow us to sort the options                                                                                                                                       | [`CrudSorting`](/api-reference/core/interfaces.md#crudsorting)                               |             |
 | debounce                                                     | The number of milliseconds to delay                                                                                                                                | `number`                                                                       | 300         |
 | queryOptions                                                 | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options                                                                                | ` UseQueryOptions<GetListResponse<TData>, TError>`                             |             |
 | defaultValueQueryOptions                                     | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options                                                                                | ` UseQueryOptions<GetManyResponse<TData>, TError>`                             |             |
 | fetchSize                                                    | Amount of records to fetch in select box list.                                                                                                                     | `number`                                                                       | `undefined` |
 | onSearch                                                     | If defined, this callback allows us to override all filters for every search request.                                                                              | `(value: string) => CrudFilters `\|` Promise<CrudFilters>`                     | `undefined` |
-| metaData                                                     | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                           | {}          |
+| metaData                                                     | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                           | {}          |
 | dataProviderName                                             | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.                                                                 | `string`                                                                       | `default`   |
-| [liveMode](/core/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/core/interfaces.md#livemodeprops)         | `"off"`     |
-| liveParams                                                   | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: BaseKey[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | `undefined` |
-| onLiveEvent                                                  | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)              | `undefined` |
+| [liveMode](/api-reference/core/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/api-reference/core/interfaces.md#livemodeprops)         | `"off"`     |
+| liveParams                                                   | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: BaseKey[]; [key: string]: any; }`](/api-reference/core/interfaces.md#livemodeprops) | `undefined` |
+| onLiveEvent                                                  | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/api-reference/core/interfaces.md#livemodeprops)              | `undefined` |
 
 ### Return values
 

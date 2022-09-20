@@ -5,7 +5,7 @@ siderbar_label: useUpdatePassword
 description: useUpdatePassword data hook from refine is a modified version of react-query's useMutation for registration.
 ---
 
-`useUpdatePassword` calls `updatePassword` method from [`authProvider`](/core/providers/auth-provider.md) under the hood. It update passwords the user if `updatePassword` method from `authProvider` resolves and if it rejects shows an error notification.
+`useUpdatePassword` calls `updatePassword` method from [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood. It update passwords the user if `updatePassword` method from `authProvider` resolves and if it rejects shows an error notification.
 
 It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation).
 
@@ -74,7 +74,7 @@ const authProvider: AuthProvider = {
 
 We have 2 options for redirecting the app after updatePassword successfully.
 
--   A custom url can be resolved from the promise returned from the `updatePassword` method of the [authProvider](/core/providers/auth-provider.md).
+-   A custom url can be resolved from the promise returned from the `updatePassword` method of the [authProvider](/api-reference/core/providers/auth-provider.md).
 
 ```tsx
 const authProvider: AuthProvider = {

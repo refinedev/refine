@@ -399,10 +399,10 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 | syncWithLocation                                             | Sortings, filters, page index and records shown per page are tracked by browser history                                                                            | `boolean`                                                                      | Value set in [Refine][refine swl]. If a custom resource is given, it will be `false` |
 | onSearch                                                     | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][table search] to learn how to create a search form                  | `Function`                                                                     |
 | queryOptions                                                 | `react-query`'s `useQuery` options                                                                                                                                 | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                    |
-| metaData                                                     | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                           | {}                                                                                   |
-| [liveMode](/core/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/core/interfaces.md#livemodeprops)         | `"off"`                                                                              |
-| liveParams                                                   | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: string[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | `undefined`                                                                          |
-| onLiveEvent                                                  | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)              | `undefined`                                                                          |
+| metaData                                                     | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                           | {}                                                                                   |
+| [liveMode](/api-reference/core/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/api-reference/core/interfaces.md#livemodeprops)         | `"off"`                                                                              |
+| liveParams                                                   | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: string[]; [key: string]: any; }`](/api-reference/core/interfaces.md#livemodeprops) | `undefined`                                                                          |
+| onLiveEvent                                                  | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/api-reference/core/interfaces.md#livemodeprops)              | `undefined`                                                                          |
 
 ### Type Parameters
 
@@ -438,9 +438,9 @@ Filters we give to `initialFilter` are default filters. In order to prevent filt
 [table]: https://ant.design/components/table/#API
 [form]: https://ant.design/components/form/#API
 [usequery]: https://react-query.tanstack.com/reference/useQuery
-[baserecord]: /core/interfaces.md#baserecord
-[crudsorting]: /core/interfaces.md#crudsorting
-[crudfilters]: /core/interfaces.md#crudfilters
-[httperror]: /core/interfaces.md#httperror
-[table search]: /guides-and-concepts/search/table-search.md
-[refine swl]: /core/components/refine-config.md#syncwithlocation
+[baserecord]: /api-reference/core/interfaces.md#baserecord
+[crudsorting]: /api-reference/core/interfaces.md#crudsorting
+[crudfilters]: /api-reference/core/interfaces.md#crudfilters
+[httperror]: /api-reference/core/interfaces.md#httperror
+[table search]: /advanced-tutorials/search/table-search.md
+[refine swl]: /api-reference/core/components/refine-config.md#syncwithlocation

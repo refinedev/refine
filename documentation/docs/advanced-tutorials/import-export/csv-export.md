@@ -87,5 +87,5 @@ Manually running the `triggerExport` function is another option.
    ></iframe>
 
 [button]: https://ant.design/components/button/
-[useexport]: /core/hooks/import-export/useExport.md
-[exportbutton]: /ui-frameworks/antd/components/buttons/export.md
+[useexport]: /api-reference/core/hooks/import-export/useExport.md
+[exportbutton]: /api-reference/antd/components/buttons/export.md

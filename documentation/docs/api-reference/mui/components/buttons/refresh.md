@@ -5,7 +5,7 @@ title: Refresh
 
 import refreshButton from '@site/static/img/guides-and-concepts/components/buttons/refresh/refresh-mui.png';
 
-`<RefreshButton>` uses Material UI [`<Button>`](https://mui.com/material-ui/react-button/) component to update the data shown on the page via the [`useOne`](/core/hooks/data/useOne.md) method provided by your [`dataProvider`](/core/providers/data-provider.md).
+`<RefreshButton>` uses Material UI [`<Button>`](https://mui.com/material-ui/react-button/) component to update the data shown on the page via the [`useOne`](/api-reference/core/hooks/data/useOne.md) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
 ## Usage
 
@@ -69,7 +69,7 @@ export const MyRefreshComponent = () => {
 };
 ```
 
-Clicking the button will trigger the [`useOne`](/core/hooks/data/useOne.md) method and then fetches the record whose resource is "post" and whose id is "1".
+Clicking the button will trigger the [`useOne`](/api-reference/core/hooks/data/useOne.md) method and then fetches the record whose resource is "post" and whose id is "1".
 
 :::note
 `<RefreshButton>` component reads the id information from the route by default.
@@ -89,7 +89,7 @@ export const MyRefreshComponent = () => {
 };
 ```
 
-Clicking the button will trigger the [`useOne`](/core/hooks/data/useOne.md) method and then fetches the record whose resource is "categories" and whose id is "2".
+Clicking the button will trigger the [`useOne`](/api-reference/core/hooks/data/useOne.md) method and then fetches the record whose resource is "categories" and whose id is "2".
 
 :::note
 `<RefreshButton>` component reads the resource name from the route by default.
@@ -116,9 +116,9 @@ export const MyRefreshComponent = () => {
 | props                   | [`ButtonProps`](https://mui.com/material-ui/api/button/)                                           |                                                                   |
 | resourceNameOrRouteName | Determines which resource to use for redirection                                                   | `string`                                                          | Resource name that it reads from route                                                                                         |
 | hideText                | Allows to hide button text                                                                         | `boolean`                                                         | `false`                                                                                                                        |
-| recordItemId            | Determines which id to use for refresh                                                             | [`BaseKey`](/core/interfaces.md#basekey)                          | Record id that it reads from route                                                                                             |
+| recordItemId            | Determines which id to use for refresh                                                             | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                          | Record id that it reads from route                                                                                             |
 | dataProviderName        | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use. | `string`                                                          | `default`                                                                                                                      |
-| metaData                | Metadata query for `dataProvider`                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)              | {}                                                                                                                             |
+| metaData                | Metadata query for `dataProvider`                                                                  | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)              | {}                                                                                                                             |
 | children                | Sets the button text                                                                               | `ReactNode`                                                       | Humanized resource name that it reads from route                                                                               |
 | startIcon               | Sets the icon component of button                                                                  | `ReactNode`                                                       | [`<RefreshOutlinedIcon />`](https://mui.com/material-ui/material-icons/?theme=Outlined&query=Refresh&selected=RefreshOutlined) |
 | svgIconProps            | Allows to set icon props                                                                           | [`SvgIconProps`](https://mui.com/material-ui/api/svg-icon/#props) |                                                                                                                                |

@@ -7,7 +7,7 @@ import deleteButton from '@site/static/img/guides-and-concepts/components/button
 import confirmation from '@site/static/img/guides-and-concepts/components/buttons/delete/confirmation-mui.gif';
 
 `<DeleteButton>` uses Material UI [`<LoadingButton>`](https://mui.com/material-ui/api/loading-button/#main-content) and [`<Dialog>`](https://mui.com/material-ui/react-dialog/) components.
-When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/core/hooks/data/useDelete.md) method provided by your [`dataProvider`](/core/providers/data-provider.md).
+When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/api-reference/core/hooks/data/useDelete.md) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
 ## Usage
 
@@ -105,7 +105,7 @@ export const MyDeleteComponent = () => {
 };
 ```
 
-Clicking the button will trigger the [`useDelete`](/core/hooks/data/useDelete.md) method and then the record whose resource is `post` and whose id is `1` gets deleted.
+Clicking the button will trigger the [`useDelete`](/api-reference/core/hooks/data/useDelete.md) method and then the record whose resource is `post` and whose id is `1` gets deleted.
 
 :::note
 **`<DeleteButton>`** component reads the id information from the route by default.
@@ -181,7 +181,7 @@ interface IPost {
 
 Determines which mode mutation will have while executing `<DeleteButton>`.
 
-[Refer to the mutation mode docs for further information. &#8594](guides-and-concepts/mutation-mode.md)
+[Refer to the mutation mode docs for further information. &#8594](/advanced-tutorials/mutation-mode.md)
 
 ```tsx
 import { useTable } from "@pankod/refine-core";
@@ -254,7 +254,7 @@ export const MyDeleteComponent = () => {
 
 ### `ignoreAccessControlProvider`
 
-It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/core/components/refine-config.md)
+It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
 import { DeleteButton } from "@pankod/refine-mui";
@@ -288,9 +288,9 @@ export const MyDeleteComponent = () => {
 
 | Property                    | Description                                                                                  | Type                                                                                                                      | Default                                                                                                                           |
 | --------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| props                       | Material UI button properties                                                                | [`ButtonProps`](https://mui.com/material-ui/api/button/) & [`DeleteButtonProps`](/core/interfaces.md#delete-button-props) |                                                                                                                                   |
+| props                       | Material UI button properties                                                                | [`ButtonProps`](https://mui.com/material-ui/api/button/) & [`DeleteButtonProps`](/api-reference/core/interfaces.md#delete-button-props) |                                                                                                                                   |
 | resourceNameOrRouteName     | Determines which resource to use for redirection                                             | `string`                                                                                                                  | Resource name that it reads from route                                                                                            |
-| recordItemId                | Determines which id to use for deletion                                                      | [`BaseKey`](/core/interfaces.md#basekey)                                                                                  | Record id that it reads from route                                                                                                |
+| recordItemId                | Determines which id to use for deletion                                                      | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                                                                  | Record id that it reads from route                                                                                                |
 | onSuccess                   | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) is successful | `(value: DeleteOneResponse) => void`                                                                                      |                                                                                                                                   |
 | mutationMode                | Determines when mutations are executed.                                                      | `"pessimistic"` \| `"optimistic"` \| `"undoable"`                                                                         |                                                                                                                                   |
 | hideText                    | Allows to hide button text                                                                   | `boolean`                                                                                                                 | `false`                                                                                                                           |
@@ -301,4 +301,4 @@ export const MyDeleteComponent = () => {
 | ignoreAccessControlProvider | Skip access control                                                                          | `boolean`                                                                                                                 | `false`                                                                                                                           |
 | startIcon                   | Sets the icon component of button                                                            | `ReactNode`                                                                                                               | [`<DeleteOutlineIcon />`](https://mui.com/material-ui/material-icons/?query=delete&theme=Outlined&selected=DeleteOutlineOutlined) |
 | svgIconProps                | Allows to set icon props                                                                     | [`SvgIconProps`](https://mui.com/material-ui/api/svg-icon/#props)                                                         |                                                                                                                                   |
-| metaData                    | Metadata query for `dataProvider`                                                            | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                                                                      | {}                                                                                                                                |
+| metaData                    | Metadata query for `dataProvider`                                                            | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                                                                      | {}                                                                                                                                |

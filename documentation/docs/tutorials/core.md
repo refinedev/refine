@@ -154,7 +154,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 -   [Firebase](https://github.com/rturan29/refine-firebase) - a fully featured [Firebase](https://firebase.google.com/) Data Provider by [rturan29](https://github.com/rturan29)
 -   [Directus](https://github.com/tspvivek/refine-directus) - a fully featured [Directus](https://directus.io/) Data Provider by [tspvivek](https://github.com/tspvivek)
 
-[Refer to the `dataProvider` documentation for detailed usage. &#8594](/core/providers/data-provider.md)
+[Refer to the `dataProvider` documentation for detailed usage. &#8594](/api-reference/core/providers/data-provider.md)
 :::
 
 ## Bootstrapping the Application
@@ -180,7 +180,7 @@ export default App;
 
 <br/>
 
-`<Refine/>` is the root component of a **refine** application. Using the [`dataProvider`](/core/providers/data-provider.md) prop, we made our **Simple REST Dataprovider** available to the entire application.
+`<Refine/>` is the root component of a **refine** application. Using the [`dataProvider`](/api-reference/core/providers/data-provider.md) prop, we made our **Simple REST Dataprovider** available to the entire application.
 
 Run the following command to launch the app in development mode:
 
@@ -220,7 +220,7 @@ Point your browser to [http://localhost:3000](http://localhost:3000) to access i
 <br/>
 
 :::info
-The ready page is displayed when there are no resources in the **refine** app. You can change it with the [`ReadyPage`](/core/components/refine-config.md#readypage) prop.
+The ready page is displayed when there are no resources in the **refine** app. You can change it with the [`ReadyPage`](/api-reference/core/components/refine-config.md#readypage) prop.
 :::
 
 ## Adding Resources
@@ -329,7 +329,7 @@ Instead of showing the welcome page, the application should redirect now to an U
 <br/>
 
 :::info
-You can change the **404** error page with the [`catchAll`](/core/components/refine-config.md#catchall) prop.
+You can change the **404** error page with the [`catchAll`](/api-reference/core/components/refine-config.md#catchall) prop.
 :::
 
 You'll still see a **404** error page because no **Page** component is assigned to our resource yet.
@@ -434,7 +434,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 };
 ```
 
-We created a header with a logo and a list of links to all menu items (resources). The links are clickable and will navigate to the corresponding resource. To do this, we used the [`useMenu`](/core/hooks/ui/useMenu.md) hook to get the menu items from the `<Refine/>` and the [`useNavigation`](/core/hooks/navigation/useNavigation.md) hook to used to navigate between resources.
+We created a header with a logo and a list of links to all menu items (resources). The links are clickable and will navigate to the corresponding resource. To do this, we used the [`useMenu`](/api-reference/core/hooks/ui/useMenu.md) hook to get the menu items from the `<Refine/>` and the [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) hook to used to navigate between resources.
 
 `children` is the content of the layout. In our case, it is the content of the **Page** components.
 
@@ -581,7 +581,7 @@ export const PostList: React.FC = () => {
 
 `@pankod/refine-react-table` hook uses `useTable()` fetches data from API. Normally, **TanStack-table**'s `useReactTable` expects a `data` prop but `@pankod/refine-react-table`'s `useTable` doesn't expect a `data` prop.
 
-[Refer to the **@pankod/refine-react-table** for more information. →](/packages/react-table.md)
+[Refer to the **@pankod/refine-react-table** for more information. →](/packages/documentation/react-table.md)
 
 Finally, we are ready to add `<PostList>` to our resource. Add the highlighted line to your `App.tsx`
 
@@ -818,7 +818,7 @@ export const PostList: React.FC = () => {
 
 Try the result on your browser and you'll notice that the category column is filled correctly with the matching category titles for the each record's category id's.
 
-[Refer to the `useMany` documentation for detailed usage information. &#8594](/core/hooks/data/useMany.md)
+[Refer to the `useMany` documentation for detailed usage information. &#8594](/api-reference/core/hooks/data/useMany.md)
 
 <div class="img-container">
     <div class="window">
@@ -1597,11 +1597,11 @@ export const ShowIcon = (
 
 ✳️ `useShow()` is a **refine** hook used to fetch a single record of data. The `queryResult` has the response and also `isLoading` state.
 
-[Refer to the `useShow` documentation for detailed usage information. &#8594](/core/hooks/show/useShow.md)
+[Refer to the `useShow` documentation for detailed usage information. &#8594](/api-reference/core/hooks/show/useShow.md)
 
 ✳️ To retrieve the category title, again we need to make a call to `/categories` endpoint. This time we used `useOne()` hook to get a single record from another resource.
 
-[Refer to the `useOne` documentation for detailed usage information. &#8594](/core/hooks/data/useOne.md)
+[Refer to the `useOne` documentation for detailed usage information. &#8594](/api-reference/core/hooks/data/useOne.md)
 
 :::caution attention
 `useShow()` is the preferred hook for fetching data from the current resource. To query foreign resources you may use the low-level `useOne()` hook.
@@ -1628,7 +1628,7 @@ npm i @pankod/refine-react-hook-form
 
 Until this point, we were basically working with reading operations such as fetching and displaying data from resources. From now on, we are going to start creating and updating records by using `@pankod/refine-react-hook-form`.
 
-[Refer to the `@pankod/refine-react-hook-form` documentation for detailed usage information. &#8594](/packages/react-hook-form/useForm.md)
+[Refer to the `@pankod/refine-react-hook-form` documentation for detailed usage information. &#8594](/packages/documentation/react-hook-form/useForm.md)
 
 Let's start by creating a new `<PostEdit>` page responsible for editing a single record:
 
@@ -2201,7 +2201,7 @@ We should notice some minor differences from the edit example:
 
 Deleting a record can be done with `useDelete` hook.
 
-[Refer to the `useDelete` documentation for detailed usage information. &#8594](/core/hooks/data/useDelete.md)
+[Refer to the `useDelete` documentation for detailed usage information. &#8594](/api-reference/core/hooks/data/useDelete.md)
 
 We are adding an _delete_ button on each row since _refine_ doesn't automatically add one, so we have to update our `<PostList>` component to add a _delete_ button for each record. Add the following highlighted lines to the existing list component.
 
@@ -2304,12 +2304,12 @@ Our tutorial is complete. Below you'll find a Live StackBlitz Example displaying
 
 ## Next Steps
 
--   [Read about the authProvider to implement authentication for your refine application. &#8594](/core/providers/auth-provider.md)
+-   [Read about the authProvider to implement authentication for your refine application. &#8594](/api-reference/core/providers/auth-provider.md)
 
--   [Read about the dataProvider to consume custom API's &#8594](/core/providers/data-provider.md)
+-   [Read about the dataProvider to consume custom API's &#8594](/api-reference/core/providers/data-provider.md)
 
--   [Read about the i18nProvider to add language support. &#8594](/core/providers/i18n-provider.md)
+-   [Read about the i18nProvider to add language support. &#8594](/api-reference/core/providers/i18n-provider.md)
 
--   [Check the Guides & Concept section to learn generic solutions to common problems &#8594](/guides-and-concepts/upload/multipart-upload.md)
+-   [Check the Guides & Concept section to learn generic solutions to common problems &#8594](/advanced-tutorials/upload/multipart-upload.md)
 
 -   [Check example section for code snippets &#8594](/examples/customization/topMenuLayout.md)

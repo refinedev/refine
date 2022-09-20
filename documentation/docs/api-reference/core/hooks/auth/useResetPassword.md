@@ -5,7 +5,7 @@ siderbar_label: useResetPassword
 description: useResetPassword data hook from refine is a modified version of react-query's useMutation for registration.
 ---
 
-`useResetPassword` calls `resetPassword` method from [`authProvider`](/core/providers/auth-provider.md) under the hood. It reset passwords the user if `resetPassword` method from `authProvider` resolves and if it rejects shows an error notification.
+`useResetPassword` calls `resetPassword` method from [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood. It reset passwords the user if `resetPassword` method from `authProvider` resolves and if it rejects shows an error notification.
 
 It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation).
 
@@ -55,7 +55,7 @@ const { mutate: resetPassword } = useResetPassword<{ email: string }>();
 
 We have 2 options for redirecting the app after resetPassword successfully .
 
--   A custom url can be resolved from the promise returned from the `resetPassword` method of the [authProvider](/core/providers/auth-provider.md).
+-   A custom url can be resolved from the promise returned from the `resetPassword` method of the [authProvider](/api-reference/core/providers/auth-provider.md).
 
 ```tsx
 const authProvider: AuthProvider = {

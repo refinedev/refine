@@ -4,11 +4,11 @@ title: General Concepts
 ---
 
 -   **refine** core is fully independent of UI. So you can use core components and hooks without any UI dependency.
--   All the **data** related hooks([`useTable`](/core/hooks/useTable.md), [`useForm`](/core/hooks/useForm.md), [`useList`](/core/hooks/data/useList.md) etc.) of **refine** can be given some common properties like `resource`, `metaData`, `queryOptions` etc.
+-   All the **data** related hooks([`useTable`](/api-reference/core/hooks/useTable.md), [`useForm`](/api-reference/core/hooks/useForm.md), [`useList`](/api-reference/core/hooks/data/useList.md) etc.) of **refine** can be given some common properties like `resource`, `metaData`, `queryOptions` etc.
 
 ### `resource`
 
-**refine** passes the `resource` to the `dataProvider` as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your `dataProvider`. See the [`creating a data provider`](/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
+**refine** passes the `resource` to the `dataProvider` as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your `dataProvider`. See the [`creating a data provider`](/api-reference/core/providers/data-provider.md#creating-a-data-provider) section for an example of how `resource` are handled.
 
 How does refine know what the resource value is?
 
@@ -106,4 +106,4 @@ In the above example, we pass the `headers` property in the `metaData` object to
 
 [Refer to the how to pass `metaData` to your existing `dataProvider` methods. &#8594](/faq.md#how-i-can-override-specific-function-of-data-providers)
 
-[Refer to the `GraphQL` guide to learn how to use `metaData` to create GraphQL queries. &#8594](/guides-and-concepts/data-provider/graphql.md)
+[Refer to the `GraphQL` guide to learn how to use `metaData` to create GraphQL queries. &#8594](/advanced-tutorials/data-provider/graphql.md)

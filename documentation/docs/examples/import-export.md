@@ -5,9 +5,9 @@ title: Import-Export
 
 **refine** allows you to export and import your data as CSV files. You can quickly do CSV import and export operation with **refine** by creating model operations on the CSV data.
 
-[Refer to the **refine** CSV Import guide for more information. →](/docs/guides-and-concepts/import-export/csv-import/)
+[Refer to the **refine** CSV Import guide for more information. →](/docs/advanced-tutorials/import-export/csv-import/)
 
-[Refer to the **refine** CSV Export guide for more information. →](/docs/guides-and-concepts/import-export/csv-export/)
+[Refer to the **refine** CSV Export guide for more information. →](/docs/advanced-tutorials/import-export/csv-export/)
 
 [View Import-Export CSV Example Source](https://github.com/pankod/refine/tree/master/examples/importExport/antd)
 

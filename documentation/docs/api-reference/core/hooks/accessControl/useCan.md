@@ -52,7 +52,7 @@ const { data } = useCan({
 
 | Property                                                     | Desription                                                            |
 | ------------------------------------------------------------ | --------------------------------------------------------------------- |
-| [CanReturnType](/core/interfaces.md#canreturntype) | Result data of the query [`HttpError`](/core/interfaces.md#httperror) |
+| [CanReturnType](/api-reference/core/interfaces.md#canreturntype) | Result data of the query [`HttpError`](/api-reference/core/interfaces.md#httperror) |
 
 ### Return values
 

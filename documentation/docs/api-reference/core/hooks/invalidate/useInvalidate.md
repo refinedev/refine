@@ -5,7 +5,7 @@ title: useInvalidate
 
 `useInvalidate` can be used to invalidate the state of a particular `resource` or `dataProvider` (with dataProviderName). 
 
-For example, creating a `Posts` with [useCreate](/core/hooks/data/useCreate.md) hook will invalidate the `list` ([useList](/core/hooks/data/useList.md)) and `many` ([useMany](/core/hooks/data/useMany.md)) state of the `Posts` resource.
+For example, creating a `Posts` with [useCreate](/api-reference/core/hooks/data/useCreate.md) hook will invalidate the `list` ([useList](/api-reference/core/hooks/data/useList.md)) and `many` ([useMany](/api-reference/core/hooks/data/useMany.md)) state of the `Posts` resource.
 
 The hook is used internal in **refine**. Normally you don't need this hook, but we export it as it may be useful for some use-cases.
 
@@ -49,5 +49,5 @@ invalidate({
 | ---------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------- | --------- |
 | <div className="required-block"><div>invalidates</div> <div className="required">Required</div></div>      | The states you want to invalidate.                                                                  | `all`, `resourceAll`, `list`, `many`, `detail`, `false` |           |
 | resource         | Resource name for State invalidation.                                                               | `string`                                                |           |
-| id               | The `id` to use when invalidating the "detail" state.                                               | [`BaseKey`](/core/interfaces.md#basekey)                |           |
+| id               | The `id` to use when invalidating the "detail" state.                                               | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                |           |
 | dataProviderName | The name of the data provider whose state you want to invalidate. | `string`                                                | `default` |

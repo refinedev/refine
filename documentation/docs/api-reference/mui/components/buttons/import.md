@@ -101,7 +101,7 @@ export const MyImportComponent = () => {
 | Property     | Description                           | Type                                                                                 | Default                                                                                                                                        |
 | ------------ | ------------------------------------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | props        | Material UI loading button properties | [`LoadingButtonProps`](https://mui.com/material-ui/api/loading-button/#main-content) |                                                                                                                                                |
-| inputProps   | Allows to set input props             | [`UseImportInputPropsType`](/core/interfaces.md#useimportinputpropstype)             |
+| inputProps   | Allows to set input props             | [`UseImportInputPropsType`](/api-reference/core/interfaces.md#useimportinputpropstype)             |
 | hideText     | Allows to hide button text            | `boolean`                                                                            | `false`                                                                                                                                        |
 | loading      | Sets the loading status of the button | `boolean`                                                                            | When the request is not completed, loading is `true`, when it completes it's `false`                                                           |
 | children     | Sets the button text                  | `ReactNode`                                                                          | `"Import"`                                                                                                                                     |
@@ -109,4 +109,4 @@ export const MyImportComponent = () => {
 | svgIconProps | Allows to set icon props              | [`SvgIconProps`](https://mui.com/material-ui/api/svg-icon/#props)                    |                                                                                                                                                |
 
 [button]: https://mui.com/material-ui/api/loading-button/#main-content
-[useimport]: /core/hooks/import-export/useImport.md
+[useimport]: /api-reference/core/hooks/import-export/useImport.md

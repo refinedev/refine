@@ -202,7 +202,7 @@ You can pass more options to further customize the exporting process.
 | sorter           | Sorts  records                                                                                                             | [`CrudSorting`][CrudSorting] \| `undefined`                                      |           |
 | filter           | Filters records                                                                                                            | [`CrudFilters`][CrudFilters] \| `undefined`                                      |           |
 | exportOptions    | Used for exporting options                                                                                                 | [`Options`][export-to-csv#api] \| `undefined`                                    |           |
-| metaData         | Metadata query for `dataProvider`                                                                                          | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                             | {}        |
+| metaData         | Metadata query for `dataProvider`                                                                                          | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                             | {}        |
 | dataProviderName | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.                         | `string`                                                                         | `default` |
 | onError          | Callback to handle error events of this hook                                                                               | `(error: any) => void`                                                           |  |
 
@@ -221,11 +221,11 @@ You can pass more options to further customize the exporting process.
 | TVariables | Values for params                                                          | `any`                      |
 
 [Button]: https://ant.design/components/button/
-[ExportButton]: /ui-frameworks/antd/components/buttons/export.md
-[useImport]: /core/hooks/import-export/useImport.md
-[useImport#handling-relational-data]: /core/hooks/import-export/useImport.md#handling-relational-data
+[ExportButton]: /api-reference/antd/components/buttons/export.md
+[useImport]: /api-reference/core/hooks/import-export/useImport.md
+[useImport#handling-relational-data]: /api-reference/core/hooks/import-export/useImport.md#handling-relational-data
 [export-to-csv]: https://github.com/alexcaza/export-to-csv
 [export-to-csv#api]: https://github.com/alexcaza/export-to-csv#api
-[BaseRecord]: /core/interfaces.md#baserecord
-[CrudSorting]: /core/interfaces.md#crudsorting
-[CrudFilters]: /core/interfaces.md#crudfilters
+[BaseRecord]: /api-reference/core/interfaces.md#baserecord
+[CrudSorting]: /api-reference/core/interfaces.md#crudsorting
+[CrudFilters]: /api-reference/core/interfaces.md#crudfilters

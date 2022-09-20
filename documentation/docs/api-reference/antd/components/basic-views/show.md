@@ -130,7 +130,7 @@ render(
 
 The `<Show>` component reads the `resource` information from the route by default. This default behavior will not work on custom pages. If you want to use the `<Show>` component in a custom page, you can use the `resource` property.
 
-[Refer to the custom pages documentation for detailed usage. &#8594](/guides-and-concepts/custom-pages.md)
+[Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom/2
 const { Show } = RefineAntd;
@@ -181,9 +181,9 @@ render(<App />);
 
 `canDelete` and `canEdit` allows us to add the delete and edit buttons inside the `<Show>` component. If the resource has `canDelete` or `canEdit` property refine adds the buttons by default.
 
-When clicked on, delete button executes the `useDelete` method provided by the [`dataProvider`](/core/providers/data-provider.md) and the edit button redirects the user to the record edit page.
+When clicked on, delete button executes the `useDelete` method provided by the [`dataProvider`](/api-reference/core/providers/data-provider.md) and the edit button redirects the user to the record edit page.
 
-Refer to the [`<DeleteButton>`](/ui-frameworks/antd/components/buttons/delete.md) and the [`<EditButton>`](/ui-frameworks/antd/components/buttons/edit.md) documentation for detailed usage.
+Refer to the [`<DeleteButton>`](/api-reference/antd/components/buttons/delete.md) and the [`<EditButton>`](/api-reference/antd/components/buttons/edit.md) documentation for detailed usage.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/2
 const { Show, Form, Input, Select, useForm, useSelect, ShowButton, Edit } =
@@ -255,7 +255,7 @@ render(
 );
 ```
 
-[Refer to the `usePermission` documentation for detailed usage. &#8594](/core/hooks/auth/usePermissions.md)
+[Refer to the `usePermission` documentation for detailed usage. &#8594](/api-reference/core/hooks/auth/usePermissions.md)
 
 ### `recordItemId`
 
@@ -434,7 +434,7 @@ render(
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-antd` package.
 
-[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/ui-frameworks/antd/components/breadcrumb.md)
+[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/antd/components/breadcrumb.md)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/2
 const { Show, ShowButton, Breadcrumb } = RefineAntd;
@@ -920,7 +920,7 @@ The `<Show>` component needs the `id` information for work properly, so if you u
 | resource                                                                                                     | Resource name for API data interactions                           | `string`                                                                        | Resource name that it reads from the URL.                                                                                      |
 | canDelete                                                                                                    | Adds a delete button                                              | `boolean`                                                                       | If the resource has `canDelete` prop it is `true` else `false`                                                                 |
 | canEdit                                                                                                      | Adds an edit button                                               | `boolean`                                                                       | If the resource has `canEdit` prop it is `true` else `false`                                                                   |
-| recordItemId                                                                                                 | The record id for `<RefreshButton>`                               | [`BaseKey`](/core/interfaces.md#basekey)                                        |                                                                                                                                |
+| recordItemId                                                                                                 | The record id for `<RefreshButton>`                               | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                        |                                                                                                                                |
 | dataProviderName                                                                                             | To specify a data provider other than `default` use this property | `string`                                                                        |                                                                                                                                |
 | goBack                                                                                                       | Custom back icon element                                          | `React.ReactNode`                                                               | `<ArrowLeft />`                                                                                                                |
 | isLoading                                                                                                    | Gets passed to the `loading` prop of the `<Card>`                 | `boolean`                                                                       | `false`                                                                                                                        |
@@ -935,4 +935,4 @@ The `<Show>` component needs the `id` information for work properly, so if you u
 | <div className="required-block"><div>actionButtons</div> <div className=" required">deprecated</div></div>   | Gets passed to the `extra` prop of the `<Card>`                   | `React.ReactNode`                                                               | `<SaveButton>` and depending on your resource configuration (`canDelete` prop)                                                 |
 | <div className="required-block"><div>pageHeaderProps</div> <div className=" required">deprecated</div></div> | Passes props for `<PageHeader>`                                   | [PageHeaderProps](https://ant.design/components/page-header/#API)               | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>`, breadcrumb: [Breadcrumb][breadcrumb-component] } |
 
-[breadcrumb-component]: /ui-frameworks/antd/components/breadcrumb.md
+[breadcrumb-component]: /api-reference/antd/components/breadcrumb.md

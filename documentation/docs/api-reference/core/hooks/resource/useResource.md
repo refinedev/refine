@@ -24,7 +24,7 @@ const { resource } = useResource({
 | Key                   | Description                                                                                                                                                        | Type                                                        | Default                                                                              |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- | ------------------------------------------------------------------------------------ |
 | resourceNameOrRouteName                                                                                   | Determines which resource to use for redirection | `string`                                                                                                                              | Resource name that it reads from route                           |
-| recordItemId                                                                                              | Adds `id` to the end of the URL                  | [`BaseKey`](/core/interfaces.md#basekey)                                                                                              | Record id that it reads from route                               |
+| recordItemId                                                                                              | Adds `id` to the end of the URL                  | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                                                                              | Record id that it reads from route                               |
 
 ### Return value
 
@@ -33,7 +33,7 @@ const { resource } = useResource({
 | resources   | [`IResourceItem[]`](#interfaces) |
 | resource   | [`IResourceItem`](#interfaces) |
 | resourceName   | `string` |
-| id   | [`BaseKey`](/core/interfaces.md#basekey) |
+| id   | [`BaseKey`](/api-reference/core/interfaces.md#basekey) |
 
 
 #### Interfaces

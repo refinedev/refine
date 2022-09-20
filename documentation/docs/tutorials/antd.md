@@ -152,7 +152,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 -   [Firebase](https://github.com/rturan29/refine-firebase) by [rturan29](https://github.com/rturan29)
 -   [Directus](https://github.com/tspvivek/refine-directus) by [tspvivek](https://github.com/tspvivek)
 
-[Refer to the `dataProvider` documentation for detailed usage. &#8594](/core/providers/data-provider.md)
+[Refer to the `dataProvider` documentation for detailed usage. &#8594](/api-reference/core/providers/data-provider.md)
 :::
 
 ## Bootstrapping the Application
@@ -190,7 +190,7 @@ export default App;
 
 <br/>
 
-`<Refine/>` is the root component of a **refine** application. Using the [`dataProvider`](/core/providers/data-provider.md) prop, we made our **Simple REST Dataprovider** available to the entire application.
+`<Refine/>` is the root component of a **refine** application. Using the [`dataProvider`](/api-reference/core/providers/data-provider.md) prop, we made our **Simple REST Dataprovider** available to the entire application.
 
 Run the following command to launch the app in development mode:
 
@@ -403,13 +403,13 @@ This is the point where the ✨real magic✨ happens!
 
 :::note
 **refine** depends heavily on hooks and `useTable()` is only one among many others.
-On [useTable() Documentation](/core/hooks/useTable.md) you may find more information about the usage of this hook.
+On [useTable() Documentation](/api-reference/core/hooks/useTable.md) you may find more information about the usage of this hook.
 :::
 
 ✳️ `<Table.Column>` components are used for mapping and formatting each field shown on the `<Table/>`. `dataIndex` prop maps the field to a matching key from the API response. `render` prop is used to choose the appropriate **Field** component for the given data type.
 
 :::note
-The example uses `<TagField>` and `<DateField>` components. To get the full list of available components, you may refer to the [Field Components Documentation](/ui-frameworks/antd/components/fields/boolean.md).
+The example uses `<TagField>` and `<DateField>` components. To get the full list of available components, you may refer to the [Field Components Documentation](/api-reference/antd/components/fields/boolean.md).
 :::
 
 ✳️ `<List>` is a **refine** component. It acts as a wrapper to `<Table>` to add some extras like _Create Button_ and _title_.
@@ -631,7 +631,7 @@ enabled: categoryIds.length > 0;
 Here, we set a condition to start fetching only when data is available.
 :::
 
-To get more detailed information about this hook, please refer the [useMany Documentation](/core/hooks/data/useMany.md).
+To get more detailed information about this hook, please refer the [useMany Documentation](/api-reference/core/hooks/data/useMany.md).
 
 ## Adding search and filters
 
@@ -728,13 +728,13 @@ export const PostList: React.FC = () => {
 
 ✳️ `<FilterDropdown>` component serves as a bridge between its child input and **refine**'s `useTable` hook. It passes childs input value to `useTable` using `filterDropdown`'s embedded props and provides a filter button.
 
-[Refer to the `<FilterDropdown>` documentation for detailed usage. &#8594](/ui-frameworks/antd/components/filter-dropdown.md)
+[Refer to the `<FilterDropdown>` documentation for detailed usage. &#8594](/api-reference/antd/components/filter-dropdown.md)
 
 ✳️ `useSelect` hook populates props for `<Select>` component from a given resource.
 
 [Refer to the `Select` documentation for detailed usage information. &#8594](https://ant.design/components/select/)
 
-[Refer to the `useSelect` documentation for detailed usage information. &#8594](/ui-frameworks/antd/hooks/field/useSelect.md)
+[Refer to the `useSelect` documentation for detailed usage information. &#8594](/api-reference/antd/hooks/field/useSelect.md)
 
 :::note
 `defaultValue` is used to get the value for the current item. It's not affected by search, sort and filter parameters.
@@ -942,11 +942,11 @@ export const PostList: React.FC = () => {
 
 ✳️ `useShow()` is a **refine** hook used to fetch a single record of data. The `queryResult` has the response and also `isLoading` state.
 
-[Refer to the `useShow` documentation for detailed usage information. &#8594](/core/hooks/show/useShow.md)
+[Refer to the `useShow` documentation for detailed usage information. &#8594](/api-reference/core/hooks/show/useShow.md)
 
 ✳️ To retrieve the category title, again we need to make a call to `/categories` endpoint. This time we used `useOne()` hook to get a single record from another resource.
 
-[Refer to the `useOne` documentation for detailed usage information. &#8594](/core/hooks/data/useOne.md)
+[Refer to the `useOne` documentation for detailed usage information. &#8594](/api-reference/core/hooks/data/useOne.md)
 
 :::caution attention
 `useShow()` is the preferred hook for fetching data from the current resource. To query foreign resources you may use the low-level `useOne()` hook.
@@ -955,7 +955,7 @@ export const PostList: React.FC = () => {
 Since we've got access to raw data returning from `useShow()`, there is no restriction on how it's displayed on your components. If you prefer presenting your content with a nicer wrapper, **refine** provides you
 the `<Show>` component which has extra features like `list` and `refresh` buttons.
 
-[Refer to the `<Show>` documentation for detailed usage information. &#8594](/ui-frameworks/antd/components/basic-views/show.md)
+[Refer to the `<Show>` documentation for detailed usage information. &#8594](/api-reference/antd/components/basic-views/show.md)
 
 <br />
 
@@ -1206,7 +1206,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-[Refer to the `<EditButton>` documentation for detailed usage information. &#8594](/ui-frameworks/antd/components/buttons/edit.md)
+[Refer to the `<EditButton>` documentation for detailed usage information. &#8594](/api-reference/antd/components/buttons/edit.md)
 
 You can try using edit buttons which will trigger the edit forms for each record, allowing you to update the record data.
 
@@ -1218,7 +1218,7 @@ In the example, it returns `formProps` and `saveButtonProps`, where the former i
 :::caution Attention
 In edit page, `useForm` hook initializes the form with current record values.
 
-[Refer to the `useForm` documentation for detailed usage information . &#8594](/ui-frameworks/antd/hooks/form/useForm.md)
+[Refer to the `useForm` documentation for detailed usage information . &#8594](/api-reference/antd/hooks/form/useForm.md)
 
 ✳️ `<Form>` and `<Form.Item>` are Ant Design components to build form inputs.
 
@@ -1226,7 +1226,7 @@ In edit page, `useForm` hook initializes the form with current record values.
 
 ✳️ Form data is set automatically, whenever children inputs `<Form.Item>`'s are edited.
 
-✳️ Save button submits the form by executing the `useUpdate` method provided by the [`dataProvider`](/core/providers/data-provider.md). After a successfull response, the application will be redirected to the listing page.
+✳️ Save button submits the form by executing the `useUpdate` method provided by the [`dataProvider`](/api-reference/core/providers/data-provider.md). After a successfull response, the application will be redirected to the listing page.
 
 <br />
 
@@ -1380,7 +1380,7 @@ We should notice some minor differences from the edit example:
 
 ✳️ `<Form>` is wrapped with `<Create>` component.
 
-✳️ Save button submits the form by executing the `useCreate` method provided by the [`dataProvider`](/core/providers/data-provider.md).
+✳️ Save button submits the form by executing the `useCreate` method provided by the [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
 ✳️ No `defaultValue` is passed to `useSelect`.
 
@@ -1517,7 +1517,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-[Refer to the `<DeleteButton>` documentation for detailed usage information. &#8594](/ui-frameworks/antd/components/buttons/delete.md)
+[Refer to the `<DeleteButton>` documentation for detailed usage information. &#8594](/api-reference/antd/components/buttons/delete.md)
 
 Now you can try deleting records yourself. Just click on the delete button of the record you want to delete and confirm.
 
@@ -1576,12 +1576,12 @@ Our tutorial is complete. Below you'll find a Live StackBlitz Example displaying
 
 ## Next Steps
 
--   [Read about the authProvider to implement authentication for your refine application. &#8594](/core/providers/auth-provider.md)
+-   [Read about the authProvider to implement authentication for your refine application. &#8594](/api-reference/core/providers/auth-provider.md)
 
--   [Read about the dataProvider to consume custom API's &#8594](/core/providers/data-provider.md)
+-   [Read about the dataProvider to consume custom API's &#8594](/api-reference/core/providers/data-provider.md)
 
--   [Read about the i18nProvider to add language support. &#8594](/core/providers/i18n-provider.md)
+-   [Read about the i18nProvider to add language support. &#8594](/api-reference/core/providers/i18n-provider.md)
 
--   [Check the Guides & Concept section to learn generic solutions to common problems &#8594](/guides-and-concepts/upload/multipart-upload.md)
+-   [Check the Guides & Concept section to learn generic solutions to common problems &#8594](/advanced-tutorials/upload/multipart-upload.md)
 
 -   [Check example section for code snippets &#8594](/examples/customization/topMenuLayout.md)

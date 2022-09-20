@@ -547,7 +547,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
 <br />
 
 :::tip
-If you want to create a multi-level menu, you can take a look at this [`multi-level menu`](/docs/examples/multi-level-menu/multi-level-menu.md) example and also [`here`](/docs/guides-and-concepts/multi-level-menu/multi-level-menu.md) is the guide.
+If you want to create a multi-level menu, you can take a look at this [`multi-level menu`](/docs/examples/multi-level-menu/multi-level-menu.md) example and also [`here`](/docs/advanced-tutorials/multi-level-menu/multi-level-menu.md) is the guide.
 :::
 
 We can override the default sider and show the custom menu we implemented in its place by passing a custom component to `<Refine>`s `Sider` prop:
@@ -586,5 +586,5 @@ export default App;
     <img src={customMenu} alt="Custom Menu" />
 </div>
 
-[refine]: /core/components/refine-config.md
-[antdcustomlayout]: /ui-frameworks/mui/customization/layout.md
+[refine]: /api-reference/core/components/refine-config.md
+[antdcustomlayout]: /api-reference/mui/customization/layout.md

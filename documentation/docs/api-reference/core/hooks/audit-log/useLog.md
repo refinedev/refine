@@ -15,7 +15,7 @@ const { log, rename } = useLog();
 
 ## `log`
 
-`log` is used to create an audit log event. The mutation uses `create` method from [`auditLogProvider`](/core/providers/audit-log-provider.md#create) under the hood.
+`log` is used to create an audit log event. The mutation uses `create` method from [`auditLogProvider`](/api-reference/core/providers/audit-log-provider.md#create) under the hood.
 
 ```tsx
 import { useLog } from "@pankod/refine-core";
@@ -58,8 +58,8 @@ This hook can only be used if `auditLogProvider`'s `create` method is provided.
 
 | Property   | Desription                                                                          | Type                                           | Default                                        |
 | ---------- | ----------------------------------------------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| TData      | Result data of the mutation. Extends [`BaseRecord`](/core/interfaces.md#baserecord) | [`BaseRecord`](/core/interfaces.md#baserecord) | [`BaseRecord`](/core/interfaces.md#baserecord) |
-| TError     | Custom error object that extends [`HttpError`](/core/interfaces.md#httperror)       | [`HttpError`](/core/interfaces.md#httperror)   | [`HttpError`](/core/interfaces.md#httperror)   |
+| TData      | Result data of the mutation. Extends [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) |
+| TError     | Custom error object that extends [`HttpError`](/api-reference/core/interfaces.md#httperror)       | [`HttpError`](/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/api-reference/core/interfaces.md#httperror)   |
 | TVariables | Values for mutation function                                                        | `{}`                                           | `{}`                                           |
 
 ### Return value
@@ -70,7 +70,7 @@ This hook can only be used if `auditLogProvider`'s `create` method is provided.
 
 ## `rename`
 
-`log` is used to update an audit log event. The mutation uses `update` method from [`auditLogProvider`](/core/providers/audit-log-provider.md#update) under the hood.
+`log` is used to update an audit log event. The mutation uses `update` method from [`auditLogProvider`](/api-reference/core/providers/audit-log-provider.md#update) under the hood.
 
 ```tsx
 import { useLog } from "@pankod/refine-core";
@@ -99,8 +99,8 @@ This hook can only be used if `auditLogProvider`'s `update` method is provided.
 
 | Property   | Desription                                                                          | Type                                           | Default                                        |
 | ---------- | ----------------------------------------------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| TData      | Result data of the mutation. Extends [`BaseRecord`](/core/interfaces.md#baserecord) | [`BaseRecord`](/core/interfaces.md#baserecord) | [`BaseRecord`](/core/interfaces.md#baserecord) |
-| TError     | Custom error object that extends [`HttpError`](/core/interfaces.md#httperror)       | [`HttpError`](/core/interfaces.md#httperror)   | [`HttpError`](/core/interfaces.md#httperror)   |
+| TData      | Result data of the mutation. Extends [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) |
+| TError     | Custom error object that extends [`HttpError`](/api-reference/core/interfaces.md#httperror)       | [`HttpError`](/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/api-reference/core/interfaces.md#httperror)   |
 | TVariables | Values for mutation function                                                        | `{}`                                           | `{}`                                           |
 
 ### Return value
@@ -112,5 +112,5 @@ This hook can only be used if `auditLogProvider`'s `update` method is provided.
 <br />
 
 :::info
-You can get audit logs with [`useLogList`](/core/hooks/audit-log/useLogList.md).
+You can get audit logs with [`useLogList`](/api-reference/core/hooks/audit-log/useLogList.md).
 :::

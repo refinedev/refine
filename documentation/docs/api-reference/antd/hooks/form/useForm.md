@@ -87,13 +87,13 @@ const { formProps, saveButtonProps } = useForm({ action: "edit" });
 
 `action: "edit"` is used for editing an existing record. Form will initially be filled with the data of the record. By default, it uses the `id` from the route. It can be changed with the `setId` function or `id` property.
 
-`useForm` uses [`useUpdate`](/core/hooks/data/useUpdate.md) under the hood for mutations on edit mode.
+`useForm` uses [`useUpdate`](/api-reference/core/hooks/data/useUpdate.md) under the hood for mutations on edit mode.
 
 ### `action: "create"`
 
 `action: "create"`is used for creating a new record that didn't exist before.
 
-`useForm` uses [`useCreate`](/core/hooks/data/useCreate.md) under the hood for mutations on create mode.
+`useForm` uses [`useCreate`](/api-reference/core/hooks/data/useCreate.md) under the hood for mutations on create mode.
 
 ### Clone mode
 
@@ -109,7 +109,7 @@ const { setId, id } = useForm({
 ```
 
 :::tip
-If you want to show a form in a modal or drawer where necessary route params might not be there you can use the [useModalForm](/ui-frameworks/antd/hooks/form/useModalForm.md) or the [useDrawerForm](/ui-frameworks/antd/hooks/form/useDrawerForm.md) hook.
+If you want to show a form in a modal or drawer where necessary route params might not be there you can use the [useModalForm](/api-reference/antd/hooks/form/useModalForm.md) or the [useDrawerForm](/api-reference/antd/hooks/form/useDrawerForm.md) hook.
 :::
 
 :::tip
@@ -119,7 +119,7 @@ If you want to show a form in a modal or drawer where necessary route params mig
 <CloneButton recordItemId={record.id} />
 ```
 
-Also the `clone` method from the [`useNavigation`](/core/hooks/navigation/useNavigation.md) hook can be used as well.
+Also the `clone` method from the [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) hook can be used as well.
 
 ```tsx
 const { clone } = useNavigation();
@@ -137,24 +137,24 @@ const { clone } = useNavigation();
 | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | action                                                       | Type of the form mode                                                                                                                                              | `"edit"` \| `"create"` \| `"clone"`                                             |                                                                                                                                      |
 | resource                                                     | Resource name for API data interactions                                                                                                                            | `string`                                                                        |                                                                                                                                      |
-| id                                                           | Record id for fetching                                                                                                                                             | [`BaseKey`](/core/interfaces.md#basekey)                                        | Id that it reads from the URL                                                                                                        |
+| id                                                           | Record id for fetching                                                                                                                                             | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                        | Id that it reads from the URL                                                                                                        |
 | onMutationSuccess                                            | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) is successful                                                                     | `(data: UpdateResponse<M>, variables: any, context: any) => void`               |                                                                                                                                      |
 | onMutationError                                              | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error                                                               | `(error: any, variables: any, context: any) => void`                            |                                                                                                                                      |
-| mutationMode                                                 | [Determines when mutations are executed](guides-and-concepts/mutation-mode.md)                                                                                     | ` "pessimistic` \| `"optimistic` \| `"undoable"`                                | `"pessimistic"`\*                                                                                                                    |
+| mutationMode                                                 | [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)                                                                                     | ` "pessimistic` \| `"optimistic` \| `"undoable"`                                | `"pessimistic"`\*                                                                                                                    |
 | submitOnEnter                                                | Listens `Enter` key press to submit form                                                                                                                           | `boolean`                                                                       | `false`                                                                                                                              |
 | warnWhenUnsavedChanges                                       | Shows notification when unsaved changes exist                                                                                                                      | `boolean`                                                                       | `false`\*                                                                                                                            |
 | redirect                                                     | Page to redirect after a succesfull mutation                                                                                                                       | ` "show"` \| `"edit"` \| `"list"` \| `"create"` \| `false`                      | `"list"`                                                                                                                             |
 | undoableTimeout                                              | Duration to wait before executing mutations when `mutationMode = "undoable"`                                                                                       | `number`                                                                        | `5000`\*                                                                                                                             |
-| successNotification                                          | Successful Mutation notification                                                                                                                                   | [`SuccessErrorNotification`](/core/interfaces.md#successerrornotification)      | "Successfully created `resource`" or "Successfully updated `resource`"                                                               |
-| errorNotification                                            | Unsuccessful Mutation notification                                                                                                                                 | [`SuccessErrorNotification`](/core/interfaces.md#successerrornotification)      | "There was an error creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
-| metaData                                                     | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                            | {}                                                                                                                                   |
-| [liveMode](/core/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/core/interfaces.md#livemodeprops)          | `"off"`                                                                                                                              |
-| liveParams                                                   | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: BaseKey[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | `undefined`                                                                                                                          |
-| onLiveEvent                                                  | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)               | `undefined`                                                                                                                          |
+| successNotification                                          | Successful Mutation notification                                                                                                                                   | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification)      | "Successfully created `resource`" or "Successfully updated `resource`"                                                               |
+| errorNotification                                            | Unsuccessful Mutation notification                                                                                                                                 | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification)      | "There was an error creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
+| metaData                                                     | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                            | {}                                                                                                                                   |
+| [liveMode](/api-reference/core/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/api-reference/core/interfaces.md#livemodeprops)          | `"off"`                                                                                                                              |
+| liveParams                                                   | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: BaseKey[]; [key: string]: any; }`](/api-reference/core/interfaces.md#livemodeprops) | `undefined`                                                                                                                          |
+| onLiveEvent                                                  | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/api-reference/core/interfaces.md#livemodeprops)               | `undefined`                                                                                                                          |
 | invalidates                                                  | You can use it to manage the invalidations that will occur at the end of the mutation.                                                                             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                         | `["list", "many", "detail"]`                                                                                                         |
 | queryOptions                                                 | `react-query` `queryOptions` of `useOne` hook used while in edit mode.                                                                                             | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                     |
 
-> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/core/components/refine-config.md)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
+> `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/api-reference/core/components/refine-config.md)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
 <br/>
 
@@ -166,11 +166,11 @@ const { clone } = useNavigation();
 | form            | Ant Design form instance                                | [`FormInstance`](https://ant.design/components/form/#FormInstance)                                                                                   |
 | formProps       | Ant Design form props                                   | [`FormProps`](https://ant.design/components/form/#Form)                                                                                              |
 | saveButtonProps | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; loading?:boolean; }`                                                                                      |
-| redirect        | Redirect function for custom redirections               | `(redirect:` `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,`idFromFunction?:` [`BaseKey`](/core/interfaces.md#basekey)\|`undefined`) => `data` |
+| redirect        | Redirect function for custom redirections               | `(redirect:` `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,`idFromFunction?:` [`BaseKey`](/api-reference/core/interfaces.md#basekey)\|`undefined`) => `data` |
 | queryResult     | Result of the query of a record                         | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)                                                                      |
 | mutationResult  | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation)                                                                     |
 | formLoading     | Loading state of form request                           | `boolean`                                                                                                                                            |
-| id              | Record id for `clone` and `create` action               | [`BaseKey`](/core/interfaces.md#basekey)                                                                                                             |
+| id              | Record id for `clone` and `create` action               | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                                                                                             |
 | setId           | `id` setter                                             | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                     |
 
 ### Type Parameters
@@ -188,5 +188,5 @@ const { clone } = useNavigation();
     title="refine-use-form-example"
 ></iframe>
 
-[baserecord]: /core/interfaces.md#baserecord
-[httperror]: /core/interfaces.md#httperror
+[baserecord]: /api-reference/core/interfaces.md#baserecord
+[httperror]: /api-reference/core/interfaces.md#httperror

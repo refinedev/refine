@@ -221,7 +221,7 @@ When a record is deleted, refine automatically sends an event to `create` method
 </Tabs>
 
 :::tip
-If [`getUserIdentity`](/core/providers/auth-provider.md) is defined in your auth provider, the `author` object is added to the event with the value returned by `getUserIdentity`.
+If [`getUserIdentity`](/api-reference/core/providers/auth-provider.md) is defined in your auth provider, the `author` object is added to the event with the value returned by `getUserIdentity`.
 
 :::
 
@@ -261,9 +261,9 @@ This method can take the following parameters.
 <br/>
 
 :::info
-**refine** will use this `create` method in the [`useLog`](/core/hooks/audit-log/useLog.md) hook.
+**refine** will use this `create` method in the [`useLog`](/api-reference/core/hooks/audit-log/useLog.md) hook.
 
-[Refer to the `useLog` documentation for more information. &#8594](/core/hooks/audit-log/useLog.md)
+[Refer to the `useLog` documentation for more information. &#8594](/api-reference/core/hooks/audit-log/useLog.md)
 
 :::
 
@@ -316,9 +316,9 @@ This method can take the following parameters.
 
 :::info
 
-**refine** will use this `update` method in the [`useLog`](/core/hooks/audit-log/useLog.md) hook.
+**refine** will use this `update` method in the [`useLog`](/api-reference/core/hooks/audit-log/useLog.md) hook.
 
-[Refer to the `useLog` documentation for more information. &#8594](/core/hooks/audit-log/useLog.md)
+[Refer to the `useLog` documentation for more information. &#8594](/api-reference/core/hooks/audit-log/useLog.md)
 
 :::
 

@@ -5,7 +5,7 @@ title: Create
 
 import createButton from '@site/static/img/guides-and-concepts/components/buttons/create/create.png';
 
-`<CreateButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `create` method from [`useNavigation`](/core/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the create page route of resource.
+`<CreateButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `create` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the create page route of resource.
 
 ## Usage
 
@@ -63,7 +63,7 @@ export const MyCreateComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `create` method of [`useNavigation`](/core/hooks/navigation/useNavigation.md) and then redirect to `/posts/create`.
+Clicking the button will trigger the `create` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/posts/create`.
 
 ### `hideText`
 
@@ -79,7 +79,7 @@ export const MyCreateComponent = () => {
 
 ### `ignoreAccessControlProvider`
 
-It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/core/components/refine-config.md)
+It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx 
 import { CreateButton } from "@pankod/refine-antd";

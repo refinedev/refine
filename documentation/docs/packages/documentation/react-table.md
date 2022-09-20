@@ -481,7 +481,7 @@ export const PostList: React.FC = () => {
 
 TanStack Table provides a bunch of methods that we can use to control the filtering. For example, we can use the `setColumnFilters` method to set the current `columnFilters` value. Every change in the `filter` will trigger a new request to the data provider.
 
-You can specify which field will be filtered with which filter operator with the `filterOperator` property in the `meta` object. `filterOperator` must be a [`CrudOperators`](/core/interfaces.md#crudoperators) type.
+You can specify which field will be filtered with which filter operator with the `filterOperator` property in the `meta` object. `filterOperator` must be a [`CrudOperators`](/api-reference/core/interfaces.md#crudoperators) type.
 
 ```tsx title="src/posts/list.tsx"
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
@@ -628,7 +628,7 @@ export const PostList: React.FC = () => {
 
 | Property                  | Description                                                                                   | Type                                                  |
 | ------------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| refineCoreProps           | Configuration object for the core of the [`useTable`][use-table-core]                         | [`UseTableProps`](/core/hooks/useTable.md#properties) |
+| refineCoreProps           | Configuration object for the core of the [`useTable`][use-table-core]                         | [`UseTableProps`](/api-reference/core/hooks/useTable.md#properties) |
 | Tanstack Table Properties | See [TanStack Table](https://tanstack.com/table/v8/docs/api/core/table#options) documentation |
 
 ### Type Parameters
@@ -642,7 +642,7 @@ export const PostList: React.FC = () => {
 
 | Property                     | Description                                                                                     | Type                                                            |
 | ---------------------------- | ----------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| refineCore                   | The return values of the [`useTable`][use-table-core] in the core                               | [`UseTableReturnValues`](/core/hooks/useTable.md#return-values) |
+| refineCore                   | The return values of the [`useTable`][use-table-core] in the core                               | [`UseTableReturnValues`](/api-reference/core/hooks/useTable.md#return-values) |
 | Tanstack Table Return Values | See [TanStack Table](https://tanstack.com/table/v8/docs/api/core/table#table-api) documentation |
 
 
@@ -655,6 +655,6 @@ export const PostList: React.FC = () => {
 
 [tanstack-table]: https://tanstack.com/table/v8
 [refine-react-table]: https://github.com/pankod/refine/tree/master/packages/react-table
-[use-table-core]: /core/hooks/useTable.md
-[baserecord]: /core/interfaces.md#baserecord
-[httperror]: /core/interfaces.md#httperror
+[use-table-core]: /api-reference/core/hooks/useTable.md
+[baserecord]: /api-reference/core/interfaces.md#baserecord
+[httperror]: /api-reference/core/interfaces.md#httperror

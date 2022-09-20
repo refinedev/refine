@@ -207,7 +207,7 @@ Now, parsed data is mapped to conform our APIs requirements.
 | onFinish            | Called with errors and successful responses when all requests are sent.                                                                                                                                                                              | `(results: { succeeded: ImportSuccessResult<TVariables, TData>[]; errored: ImportErrorResult<TVariables>[]; }) => void` |
 | successNotification | Successful Mutation notification                                                                                                                                                                                                                     | [`SuccessErrorNotification`][SuccessErrorNotification]                                                                  | "Successfully created `resource`"                                                                                                          |
 | errorNotification   | Unsuccessful Mutation notification                                                                                                                                                                                                                   | [`SuccessErrorNotification`][SuccessErrorNotification]                                                                  | "There was an error while creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
-| metaData            | Metadata query for `dataProvider`                                                                                                                                                                                                                    | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                                                        | {}                                                                                                                                         |
+| metaData            | Metadata query for `dataProvider`                                                                                                                                                                                                                    | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                                                        | {}                                                                                                                                         |
 
 ### Return Values
 
@@ -228,13 +228,13 @@ Now, parsed data is mapped to conform our APIs requirements.
 
 [Button]: https://ant.design/components/button/
 [Upload]: https://ant.design/components/upload/
-[ImportButton]: /ui-frameworks/antd/components/buttons/import.md
-[useCreate]: /core/hooks/data/useCreate.md
-[useCreateMany]: /core/hooks/data/useCreateMany.md
-[DataProvider]: /core/providers/data-provider.md
-[BaseRecord]: /core/interfaces.md#baserecord
-[HttpError]: /core/interfaces.md#httperror
+[ImportButton]: /api-reference/antd/components/buttons/import.md
+[useCreate]: /api-reference/core/hooks/data/useCreate.md
+[useCreateMany]: /api-reference/core/hooks/data/useCreateMany.md
+[DataProvider]: /api-reference/core/providers/data-provider.md
+[BaseRecord]: /api-reference/core/interfaces.md#baserecord
+[HttpError]: /api-reference/core/interfaces.md#httperror
 [papaparse]: https://www.papaparse.com/docs
 [useMutation]: https://react-query.tanstack.com/reference/useMutation
 [Number.MAX_SAFE_INTEGER]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER
-[SuccessErrorNotification]: /core/interfaces.md#successerrornotification
+[SuccessErrorNotification]: /api-reference/core/interfaces.md#successerrornotification

@@ -78,7 +78,7 @@ Selecting categories from dropdown will send the id's of categories as filtering
 <br/>
 
 :::tip
-We added category options for `<Select>` manually for the sake of simplicity but [useSelect](/ui-frameworks/antd/hooks/field/useSelect.md) hook can be used to populate the props of `<Select>`
+We added category options for `<Select>` manually for the sake of simplicity but [useSelect](/api-reference/antd/hooks/field/useSelect.md) hook can be used to populate the props of `<Select>`
 
 ```tsx 
 const { selectProps: categorySelectProps } = useSelect<ICategory>({
@@ -158,7 +158,7 @@ const { selectProps: categorySelectProps } = useSelect<ICategory>({
 ```
 
 :::important
-If [syncWithLocation](/core/components/refine-config.md#syncwithlocation) is enabled, on page refresh filter values will be type of `string` since they will be parsed from URL. This might produce some incompatibility if data for filter input comes from an API and it's not type of `string`.  
+If [syncWithLocation](/api-reference/core/components/refine-config.md#syncwithlocation) is enabled, on page refresh filter values will be type of `string` since they will be parsed from URL. This might produce some incompatibility if data for filter input comes from an API and it's not type of `string`.  
 
 
 > `getDefaultFilter` finds filter values for a given column from the given filters. In the example, `filters` passed to `getDefaultFilter` includes filter values from the URL since it comes from `useTable`.

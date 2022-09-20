@@ -216,7 +216,7 @@ ButtonProps
 | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | resource | `string`                                                                                                                                               |
 | action   | `string`                                                                                                                                               |
-| params?  | { `resource`?: [IResourceItem](/docs/core/interfaces.md#resourceitemprops), `id`?: [BaseKey](/docs/core/interfaces.md#basekey), `[key: string]: any` } |
+| params?  | { `resource`?: [IResourceItem](/docs/api-reference/core/interfaces.md#resourceitemprops), `id`?: [BaseKey](/docs/api-reference/core/interfaces.md#basekey), `[key: string]: any` } |
 
 ## CanReturnType
 

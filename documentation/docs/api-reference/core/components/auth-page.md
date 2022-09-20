@@ -7,7 +7,7 @@ description: <AuthPage> component from refine is a authentication page that can 
 
 `<AuthPage>` component from **refine** contains authentication pages that can be used to login, register, reset password and update password.
 
-Before using `<AuthPage>` component you need to add [authProvider](/core/providers/auth-provider.md) that will be used to handle authentication.
+Before using `<AuthPage>` component you need to add [authProvider](/api-reference/core/providers/auth-provider.md) that will be used to handle authentication.
 
 ## Usage
 
@@ -725,7 +725,7 @@ render(
 ```
 
 :::info
-If you want to use providers then you need to handle your provider name to use social authentication in the`login` method from [authProvider](/core/providers/auth-provider.md) that will be used to handle authentication.
+If you want to use providers then you need to handle your provider name to use social authentication in the`login` method from [authProvider](/api-reference/core/providers/auth-provider.md) that will be used to handle authentication.
 `providerName` is the name of the selected provider from your list of providers.
 
 ```tsx

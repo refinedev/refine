@@ -9,7 +9,7 @@ By using `useDataGrid`, you are able to get properties that are compatible with 
 The `useDataGrid` hook works in compatible with both the `<DataGrid>` and the `<DataGridPro>` component.
 :::
 
-This hook is extended from [`useTable`](/core/hooks/useTable.md) from the [`@pankod/refine-core`](https://github.com/pankod/refine/tree/master/packages/core) package.
+This hook is extended from [`useTable`](/api-reference/core/hooks/useTable.md) from the [`@pankod/refine-core`](https://github.com/pankod/refine/tree/master/packages/core) package.
 
 ## Basic usage
 
@@ -384,10 +384,10 @@ When `filterModel` is not passed, it supports more than one criteria at a time, 
 | syncWithLocation                                                                                   | Sortings, filters, page index and records shown per page are tracked by browser history                                                                            | `boolean`                                                                      | Value set in [Refine][refine swl]. If a custom resource is given, it will be `false` |
 | onSearch                                                                                           | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][table search] to learn how to create a search form                  | `Function`                                                                     |
 | queryOptions                                                                                       | `react-query`'s `useQuery` options                                                                                                                                 | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                    |
-| metaData                                                                                           | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                           | {}                                                                                   |
-| [liveMode](/core/providers/live-provider.md#usage-in-a-hook)                                       | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/core/interfaces.md#livemodeprops)         | `"off"`                                                                              |
-| liveParams                                                                                         | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled                                                                                     | [`{ ids?: string[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | `undefined`                                                                          |
-| onLiveEvent                                                                                        | Callback to handle all related live events of this hook                                                                                                            | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)              | `undefined`                                                                          |
+| metaData                                                                                           | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                           | {}                                                                                   |
+| [liveMode](/api-reference/core/providers/live-provider.md#usage-in-a-hook)                                       | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/api-reference/core/interfaces.md#livemodeprops)         | `"off"`                                                                              |
+| liveParams                                                                                         | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled                                                                                     | [`{ ids?: string[]; [key: string]: any; }`](/api-reference/core/interfaces.md#livemodeprops) | `undefined`                                                                          |
+| onLiveEvent                                                                                        | Callback to handle all related live events of this hook                                                                                                            | [`(event: LiveEvent) => void`](/api-reference/core/interfaces.md#livemodeprops)              | `undefined`                                                                          |
 
 ### Type Parameters
 
@@ -466,12 +466,12 @@ export const PostsList: React.FC = () => {
 ></iframe>
 
 [source-code]: https://github.com/pankod/refine/blob/master/packages/master/src/hooks/useDataGrid/index.ts
-[syncwithlocationparams]: /core/interfaces.md#syncwithlocationparams
-[crudsorting]: /core/interfaces.md#crudsorting
-[crudfilters]: /core/interfaces.md#crudfilters
+[syncwithlocationparams]: /api-reference/core/interfaces.md#syncwithlocationparams
+[crudsorting]: /api-reference/core/interfaces.md#crudsorting
+[crudfilters]: /api-reference/core/interfaces.md#crudfilters
 [usequery]: https://react-query.tanstack.com/reference/useQuery
-[baserecord]: /core/interfaces.md#baserecord
-[httperror]: /core/interfaces.md#httperror
-[refine swl]: /core/components/refine-config.md#syncwithlocation
-[table search]: /guides-and-concepts/search/table-search.md
+[baserecord]: /api-reference/core/interfaces.md#baserecord
+[httperror]: /api-reference/core/interfaces.md#httperror
+[refine swl]: /api-reference/core/components/refine-config.md#syncwithlocation
+[table search]: /advanced-tutorials/search/table-search.md
 [data-grid]: https://mui.com/x/react-data-grid/

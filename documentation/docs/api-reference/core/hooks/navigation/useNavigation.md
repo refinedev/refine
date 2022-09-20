@@ -250,4 +250,4 @@ export const MyHistoryButtons = () => {
 export type HistoryType = "push" | "replace";
 ```
 
-[routerProvider]: /core/providers/router-provider.md
+[routerProvider]: /api-reference/core/providers/router-provider.md

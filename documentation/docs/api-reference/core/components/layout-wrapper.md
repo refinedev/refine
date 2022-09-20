@@ -80,10 +80,10 @@ In this example, we hide the left sider only for this page. The rest should look
 
 > `*`: These props have default values in `RefineContext` and can also be set on **<[Refine][refine]>** component.
 
-[refine]: /core/components/refine-config.md
-[custom pages]: guides-and-concepts/custom-pages.md
-[refine#sider]: /core/components/refine-config.md#sider
-[refine#header]: /core/components/refine-config.md#header
-[refine#title]: /core/components/refine-config.md#title
-[refine#footer]: /core/components/refine-config.md#footer
-[refine#offlayoutarea]: /core/components/refine-config.md#offlayoutarea
+[refine]: /api-reference/core/components/refine-config.md
+[custom pages]: /advanced-tutorials/custom-pages.md
+[refine#sider]: /api-reference/core/components/refine-config.md#sider
+[refine#header]: /api-reference/core/components/refine-config.md#header
+[refine#title]: /api-reference/core/components/refine-config.md#title
+[refine#footer]: /api-reference/core/components/refine-config.md#footer
+[refine#offlayoutarea]: /api-reference/core/components/refine-config.md#offlayoutarea

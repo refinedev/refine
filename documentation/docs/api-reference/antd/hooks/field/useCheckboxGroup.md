@@ -59,7 +59,7 @@ interface ITag {
 <br/>
 
 All we have to do is pass the `checkboxGroupProps` it returns to the `<Checkbox.Group>` component.
-`useCheckboxGroup` uses the `useList` hook for fetching data. [Refer to `useList` hook for details. &#8594](/core/hooks/data/useList.md)
+`useCheckboxGroup` uses the `useList` hook for fetching data. [Refer to `useList` hook for details. &#8594](/api-reference/core/hooks/data/useList.md)
 
 <div class="img-container">
     <div class="window">
@@ -80,7 +80,7 @@ const { checkboxGroupProps } = useCheckboxGroup({
 });
 ```
 
-`resource` property determines which? API resource endpoint to fetch records from [`dataProvider`](/core/providers/data-provider.md). It returns properly configured `options` values for checkboxes.
+`resource` property determines which? API resource endpoint to fetch records from [`dataProvider`](/api-reference/core/providers/data-provider.md). It returns properly configured `options` values for checkboxes.
 
 [Refer to Ant Design Checkbox.Group component documentation for detailed info for `options`. &#8594](https://ant.design/components/checkbox)
 
@@ -195,16 +195,16 @@ const { checkboxGroupProps } = useCheckboxGroup({
 | Property                                                                                            | Description                                                                         | Type                                                           | Default   |
 | --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------- | --------- |
 | <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                             | `string`                                                       |           |
-| defaultValue                                                                                        | Sets the default value                                                              | [`BaseKey[]`](/core/interfaces.md#basekey)                       |           |
+| defaultValue                                                                                        | Sets the default value                                                              | [`BaseKey[]`](/api-reference/core/interfaces.md#basekey)                       |           |
 | optionValue                                                                                         | Sets the option's value                                                             | `string`                                                       | `"id"`    |
 | optionLabel                                                                                         | Sets the option's label value                                                       | `string`                                                       | `"title"` |
-| filters                                                                                             | Adds filters while fetching the data                                                | [`CrudFilters`](/core/interfaces.md#crudfilters)               |           |
-| sort                                                                                                | Allows us to sort the options                                                       | [`CrudSorting`](/core/interfaces.md#crudsorting)               |           |
+| filters                                                                                             | Adds filters while fetching the data                                                | [`CrudFilters`](/api-reference/core/interfaces.md#crudfilters)               |           |
+| sort                                                                                                | Allows us to sort the options                                                       | [`CrudSorting`](/api-reference/core/interfaces.md#crudsorting)               |           |
 | queryOptions                                                                                        | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetListResponse<TData>, TError>`             |           |
-| metaData                                                                                            | Metadata query for `dataProvider`                                                   | [`MetaDataQuery`](/core/interfaces.md#metadataquery) | {}        |
-| [liveMode](/core/providers/live-provider.md#usage-in-a-hook)                                                                                            | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/core/interfaces.md#livemodeprops)       | `"off"`                             |
-| liveParams                                                                                          | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                     | [`{ ids?: string[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | `undefined`                         |
-| onLiveEvent                                                                                         | Callback to handle all related live events of this hook.                                                                                                                                   | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)                           | `undefined`                                  |
+| metaData                                                                                            | Metadata query for `dataProvider`                                                   | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery) | {}        |
+| [liveMode](/api-reference/core/providers/live-provider.md#usage-in-a-hook)                                                                                            | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/api-reference/core/interfaces.md#livemodeprops)       | `"off"`                             |
+| liveParams                                                                                          | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                     | [`{ ids?: string[]; [key: string]: any; }`](/api-reference/core/interfaces.md#livemodeprops) | `undefined`                         |
+| onLiveEvent                                                                                         | Callback to handle all related live events of this hook.                                                                                                                                   | [`(event: LiveEvent) => void`](/api-reference/core/interfaces.md#livemodeprops)                           | `undefined`                                  |
 
 ### Return values
 

@@ -7,7 +7,7 @@ import deleteButton from '@site/static/img/guides-and-concepts/components/button
 import confirmation from '@site/static/img/guides-and-concepts/components/buttons/delete/confirmation.gif';
 
 `<DeleteButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) and [`<Popconfirm>`](https://ant.design/components/popconfirm/) components.
-When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/core/hooks/data/useDelete.md) method provided by your [`dataProvider`](/core/providers/data-provider.md).
+When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/api-reference/core/hooks/data/useDelete.md) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
 ## Usage
 
@@ -84,7 +84,7 @@ export const MyDeleteComponent = () => {
 };
 ```
 
-Clicking the button will trigger the [`useDelete`](/core/hooks/data/useDelete.md) method and then the record whose resource is "post" and whose id is "1" gets deleted.
+Clicking the button will trigger the [`useDelete`](/api-reference/core/hooks/data/useDelete.md) method and then the record whose resource is "post" and whose id is "1" gets deleted.
 
 :::note
 **`<DeleteButton>`** component reads the id information from the route by default.
@@ -102,7 +102,7 @@ export const MyDeleteComponent = () => {
 };
 ```
 
-Clicking the button will trigger the [`useDelete`](/core/hooks/data/useDelete.md) method and then the record whose resource is "categories" and whose id is "2" gets deleted.
+Clicking the button will trigger the [`useDelete`](/api-reference/core/hooks/data/useDelete.md) method and then the record whose resource is "categories" and whose id is "2" gets deleted.
 
 :::note
 **`<DeleteButton>`** component reads the resource name from the route by default.
@@ -150,7 +150,7 @@ export const PostList: React.FC = () => {
 
 Determines which mode mutation will have while executing `<DeleteButton>`.
 
-[Refer to the mutation mode docs for further information. &#8594](guides-and-concepts/mutation-mode.md)
+[Refer to the mutation mode docs for further information. &#8594](/advanced-tutorials/mutation-mode.md)
 
 ```tsx
 import { List, Table, DeleteButton, useTable } from "@pankod/refine-antd";
@@ -196,7 +196,7 @@ export const MyDeleteComponent = () => {
 
 ### `ignoreAccessControlProvider`
 
-It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/core/components/refine-config.md)
+It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx 
 import { DeleteButton } from "@pankod/refine-antd";
@@ -229,10 +229,10 @@ export const MyDeleteComponent = () => {
 
 | Property                    | Description                                                                                  | Type                                                                                                                        | Default                                                                              |
 | --------------------------- | -------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| props                       | Ant Design button properties                                                                 | [`ButtonProps`](https://ant.design/components/button/#API) & [`DeleteButtonProps`](/core/interfaces.md#delete-button-props) |                                                                                      |
+| props                       | Ant Design button properties                                                                 | [`ButtonProps`](https://ant.design/components/button/#API) & [`DeleteButtonProps`](/api-reference/core/interfaces.md#delete-button-props) |                                                                                      |
 | resourceNameOrRouteName                                                                                   | Determines which resource to use for redirection | `string`                                                                                                      | Resource name that it reads from route                           |
 | <div className="required-block"><div>resourceName</div> <div className=" required">deprecated</div></div> | Determines which resource to use for redirection | `string`                                                                                                      | Resource name that it reads from route                           |
-| recordItemId                | Determines which id to use for deletion                                                      | [`BaseKey`](/core/interfaces.md#basekey)                                                                                                                  | Record id that it reads from route                                                   |
+| recordItemId                | Determines which id to use for deletion                                                      | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                                                                                                  | Record id that it reads from route                                                   |
 | onSuccess                   | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) is successful | `(value: DeleteOneResponse) => void`                                                                                        |                                                                                      |
 | mutationMode                | Determines when mutations are executed.                                                      | `"pessimistic"` \| `"optimistic"` \| `"undoable"`                                                                           |                                                                                      |
 | hideText                    | Allows to hide button text                                                                   | `boolean`                                                                                                                   | `false`                                                                              |
@@ -244,5 +244,5 @@ export const MyDeleteComponent = () => {
 | icon                        | Sets the icon component of the button                                                        | `ReactNode`                                                                                                                 | [`<DeleteOutlined />`](https://ant.design/components/icon/)                          |
 | danger                      | Sets the danger status of the button                                                         | `boolean`                                                                                                                   | `true`                                                                               |
 | loading                     | Sets the loading status of the button                                                        | `boolean`                                                                                                                   | When the request is not completed, loading is `true`, when it completes it's `false` |
-| metaData                    | Metadata query for `dataProvider`                                                            | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                                                              | {}                                                                                   |
+| metaData                    | Metadata query for `dataProvider`                                                            | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                                                              | {}                                                                                   |
 | invalidates                                                                                        | You can use it to manage the invalidations that will occur at the end of the mutation.           | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                    | `["list", "many"]`                                                   |

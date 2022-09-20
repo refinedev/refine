@@ -809,17 +809,17 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 
 [Remix]: https://remix.run/
 [RemixRouter]: https://www.npmjs.com/package/@pankod/remix-router
-[routerProvider]: /core/providers/router-provider.md
+[routerProvider]: /api-reference/core/providers/router-provider.md
 [superplate]: https://github.com/pankod/superplate
-[refine]: /core/components/refine-config.md
+[refine]: /api-reference/core/components/refine-config.md
 [RemixRoutes]: https://remix.run/docs/en/v1/api/conventions#routes
-[useTable]: /core/hooks/useTable.md
+[useTable]: /api-reference/core/hooks/useTable.md
 [ReactQuerySSR]: https://react-query.tanstack.com/guides/ssr#using-initialdata
 [ReactQuery]: https://react-query.tanstack.com/
-[getList]: /core/providers/data-provider.md#getlist
-[dataProvider]: /core/providers/data-provider.md
-[useTable]: /core/hooks/useTable.md
-[interfaces]: /core/interfaces.md/#crudfilters
+[getList]: /api-reference/core/providers/data-provider.md#getlist
+[dataProvider]: /api-reference/core/providers/data-provider.md
+[useTable]: /api-reference/core/hooks/useTable.md
+[interfaces]: /api-reference/core/interfaces.md/#crudfilters
 [loader function]: https://remix.run/docs/en/v1/api/conventions#loader
 [JokesApp]: https://remix.run/docs/en/v1/tutorials/jokes#authentication
-[AuthProvider]: /core/providers/auth-provider.md
+[AuthProvider]: /api-reference/core/providers/auth-provider.md

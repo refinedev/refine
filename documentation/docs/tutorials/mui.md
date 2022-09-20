@@ -154,7 +154,7 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 -   [Firebase](https://github.com/rturan29/refine-firebase) by [rturan29](https://github.com/rturan29)
 -   [Directus](https://github.com/tspvivek/refine-directus) by [tspvivek](https://github.com/tspvivek)
 
-[Refer to the `dataProvider` documentation for detailed usage. &#8594](/core/providers/data-provider.md)
+[Refer to the `dataProvider` documentation for detailed usage. &#8594](/api-reference/core/providers/data-provider.md)
 :::
 
 ## Bootstrapping the Application
@@ -209,7 +209,7 @@ export default App;
 
 :::info
 Refine application uses [`Montserrat`](https://fonts.google.com/specimen/Montserrat) font by default as it is defined in the [`typography`](https://github.com/pankod/refine/blob/next/packages/mui/src/theme/typography.ts) property of the theme. But to use [`Montserrat`](https://fonts.google.com/specimen/Montserrat), you need to embed it to your `index.html` file.
-For more information about adding font family in your Refine application, you can look at [`Material UI Theme Customization`](/ui-frameworks/mui/customization/theme.md#overriding-variables).
+For more information about adding font family in your Refine application, you can look at [`Material UI Theme Customization`](/api-reference/mui/customization/theme.md#overriding-variables).
 
 ```html title="index.html"
 <!DOCTYPE html>
@@ -233,12 +233,12 @@ For more information about adding font family in your Refine application, you ca
 :::
 
 :::tip
-**refine** comes native with Light/Dark theme support. Check out the [`theme`](/ui-frameworks/mui/customization/theme.md) documentation for more information.
+**refine** comes native with Light/Dark theme support. Check out the [`theme`](/api-reference/mui/customization/theme.md) documentation for more information.
 :::
 
 <br/>
 
-`<Refine/>` is the root component of a **refine** application. Using the [`dataProvider`](/core/providers/data-provider.md) prop, we made our **Simple REST Dataprovider** available to the entire application.
+`<Refine/>` is the root component of a **refine** application. Using the [`dataProvider`](/api-reference/core/providers/data-provider.md) prop, we made our **Simple REST Dataprovider** available to the entire application.
 
 Run the following command to launch the app in development mode:
 
@@ -487,15 +487,15 @@ This is the point where the ✨real magic✨ happens!
 
 :::note
 **refine** depends heavily on hooks and `useDataGrid()` is only one among many others.
-On [useDataGrid() documentation](/ui-frameworks/mui/hooks/useDataGrid.md) you may find more information about the usage of this hook.
+On [useDataGrid() documentation](/api-reference/mui/hooks/useDataGrid.md) you may find more information about the usage of this hook.
 :::
 
 ✳️ `columns` array are used for mapping and formatting each field shown on the `<DataGrid/>`. `field` prop maps the field to a matching key from the API response. `renderCell` prop is used to choose the appropriate **Field** component for the given data type and also you can use `valueGetter` prop is used to format the data.
 
 :::note
-The example uses [`<TagField>`](/ui-frameworks/mui/components/fields/tag.md) and [`<DateField>`](/ui-frameworks/mui/components/fields/date.md) components.
+The example uses [`<TagField>`](/api-reference/mui/components/fields/tag.md) and [`<DateField>`](/api-reference/mui/components/fields/date.md) components.
 
-<!-- [Field Components Documentation](/ui-frameworks/mui/components/fields/boolean.md). -->
+<!-- [Field Components Documentation](/api-reference/mui/components/fields/boolean.md). -->
 
 :::
 
@@ -727,16 +727,16 @@ We construct an array of `categoryId`'s from `/posts` endpoint and pass it to th
 
 Try the result on your browser and you'll notice that the category column is filled correctly with the matching category titles for the each record's category id's. Even the loading state is managed by **refine**.
 
-To get more detailed information about this hook, please refer the [useMany Documentation](/core/hooks/data/useMany.md).
+To get more detailed information about this hook, please refer the [useMany Documentation](/api-reference/core/hooks/data/useMany.md).
 
 ## Adding search and filters
 
 We're done with displaying `post` records on our `<DataGrid>`. Let's see search and filtering capabilities to the component, so that the user can have more control over the data.
 
-Thanks [`<DataGrid>`](https://mui.com/x/react-data-grid/components/#main-content) for the default `filtering` and `sorting` UI. The [`useDataGrid`](/ui-frameworks/mui/hooks/useDataGrid.md) hook works in harmony with the `<DataGrid>` component, and you have `filtering` and `sorting` without additional code. Our way to handle these is to use the `useDataGrid` hook and pass the props to the `<DataGrid>` component.
+Thanks [`<DataGrid>`](https://mui.com/x/react-data-grid/components/#main-content) for the default `filtering` and `sorting` UI. The [`useDataGrid`](/api-reference/mui/hooks/useDataGrid.md) hook works in harmony with the `<DataGrid>` component, and you have `filtering` and `sorting` without additional code. Our way to handle these is to use the `useDataGrid` hook and pass the props to the `<DataGrid>` component.
 
 :::tip
-To see how the filtering works and more detail, you can look at the [`useDataGrid`](/ui-frameworks/mui/hooks/useDataGrid.md#sorting) hook.
+To see how the filtering works and more detail, you can look at the [`useDataGrid`](/api-reference/mui/hooks/useDataGrid.md#sorting) hook.
 :::
 
 <div class="img-container">
@@ -802,11 +802,11 @@ export const PostShow: React.FC = () => {
 
 ✳️ `useShow()` is a **refine** hook used to fetch a single record of data. The `queryResult` has the response and also `isLoading` state.
 
-[Refer to the `useShow` documentation for detailed usage information. &#8594](/core/hooks/show/useShow.md)
+[Refer to the `useShow` documentation for detailed usage information. &#8594](/api-reference/core/hooks/show/useShow.md)
 
 ✳️ To retrieve the category title, again we need to make a call to `/categories` endpoint. This time we used `useOne()` hook to get a single record from another resource.
 
-[Refer to the `useOne` documentation for detailed usage information. &#8594](/core/hooks/data/useOne.md)
+[Refer to the `useOne` documentation for detailed usage information. &#8594](/api-reference/core/hooks/data/useOne.md)
 
 :::caution attention
 `useShow()` is the preferred hook for fetching data from the current resource. To query foreign resources you may use the low-level `useOne()` hook.
@@ -815,7 +815,7 @@ export const PostShow: React.FC = () => {
 Since we've got access to raw data returning from `useShow()`, there is no restriction on how it's displayed on your components. If you prefer presenting your content with a nicer wrapper, **refine** provides you
 the `<Show>` component which has extra features like `list` and `refresh` buttons.
 
-[Refer to the `<Show>` documentation for detailed usage information. &#8594](/ui-frameworks/mui/components/basic-views/show.md)
+[Refer to the `<Show>` documentation for detailed usage information. &#8594](/api-reference/mui/components/basic-views/show.md)
 
 <br />
 
@@ -1114,20 +1114,20 @@ In the example, it returns `formProps` and `saveButtonProps`, where the former i
 :::caution Attention
 In edit page, `useForm` hook initializes the form with current record values.
 
-[Refer to the `useForm` documentation for detailed usage information . &#8594](/packages/react-hook-form/useForm.md)
+[Refer to the `useForm` documentation for detailed usage information . &#8594](/packages/documentation/react-hook-form/useForm.md)
 
 ✳️ You can give form property to `<Box>` component and it will render the form.
 
-✳️ [`<TextField>`](ui-frameworks/mui/components/fields/text.md) is Material UI components to build form inputs.
+✳️ [`<TextField>`](/api-reference/mui/components/fields/text.md) is Material UI components to build form inputs.
 
 ✳️ `<Autocomplete>` is a text input that helps you find what you're looking for by suggesting options. useAutocomplete is a refine hook for handling `<Autocomplete>` data. It returns `autocompleteProps` which includes all necessary props to build the autocomplete.
-You may refer to the [`useAutocomplete`](/ui-frameworks/mui/hooks/useAutocomplete.md) to get the full information about the hook.
+You may refer to the [`useAutocomplete`](/api-reference/mui/hooks/useAutocomplete.md) to get the full information about the hook.
 
 ✳️ `<Edit>` is a wrapper **refine** component for `<form>`. It provides save, delete and refresh buttons that can be used for form actions.
 
 ✳️ Form data is set automatically with `register` coming out of the`useForm` hook, whenever children inputs `<TextField>`'s are edited.
 
-✳️ Save button submits the form by executing the `useUpdate` method provided by the [`dataProvider`](/core/providers/data-provider.md). After a successful response, the application will be redirected to the listing page.
+✳️ Save button submits the form by executing the `useUpdate` method provided by the [`dataProvider`](/api-reference/core/providers/data-provider.md). After a successful response, the application will be redirected to the listing page.
 :::
 
 <br />
@@ -1284,7 +1284,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-[Refer to the `<EditButton>` documentation for detailed usage information. &#8594](/ui-frameworks/mui/components/buttons/edit.md)
+[Refer to the `<EditButton>` documentation for detailed usage information. &#8594](/api-reference/mui/components/buttons/edit.md)
 
 You can try using edit buttons which will trigger the edit forms for each record, allowing you to update the record data.
 
@@ -1416,7 +1416,7 @@ We should notice some minor differences from the edit example:
 
 ✳️ `<Form>` is wrapped with `<Create>` component.
 
-✳️ Save button submits the form by executing the `useCreate` method provided by the [`dataProvider`](/core/providers/data-provider.md).
+✳️ Save button submits the form by executing the `useCreate` method provided by the [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
 ✳️ No `defaultValue` is passed to `useAutocomplete`.
 
@@ -1598,7 +1598,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-[Refer to the `<DeleteButton>` documentation for detailed usage information. &#8594](/ui-frameworks/mui/components/buttons/delete.md)
+[Refer to the `<DeleteButton>` documentation for detailed usage information. &#8594](/api-reference/mui/components/buttons/delete.md)
 
 Now you can try deleting records yourself. Just click on the delete button of the record you want to delete and confirm.
 
@@ -1670,12 +1670,12 @@ Our tutorial is complete. Below you'll find a Live StackBlitz Example displaying
 
 ## Next Steps
 
--   [Read about the authProvider to implement authentication for your refine application. &#8594](/core/providers/auth-provider.md)
+-   [Read about the authProvider to implement authentication for your refine application. &#8594](/api-reference/core/providers/auth-provider.md)
 
--   [Read about the dataProvider to consume custom API's &#8594](/core/providers/data-provider.md)
+-   [Read about the dataProvider to consume custom API's &#8594](/api-reference/core/providers/data-provider.md)
 
--   [Read about the i18nProvider to add language support. &#8594](/core/providers/i18n-provider.md)
+-   [Read about the i18nProvider to add language support. &#8594](/api-reference/core/providers/i18n-provider.md)
 
--   [Check the Guides & Concept section to learn generic solutions to common problems &#8594](/guides-and-concepts/upload/multipart-upload.md)
+-   [Check the Guides & Concept section to learn generic solutions to common problems &#8594](/advanced-tutorials/upload/multipart-upload.md)
 
 -   [Check example section for code snippets &#8594](/examples/customization/topMenuLayout.md)

@@ -7,7 +7,7 @@ description: <AuthPage> component from refine is a authentication page that can 
 
 `<AuthPage>` component from **refine** for **ant design** contains authentication pages that can be used to login, register, reset password and update password.
 
-Before using `<AuthPage>` component you need to add [authProvider](/core/providers/auth-provider.md) that will be used to handle authentication.
+Before using `<AuthPage>` component you need to add [authProvider](/api-reference/core/providers/auth-provider.md) that will be used to handle authentication.
 
 ## Usage
 

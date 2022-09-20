@@ -209,7 +209,7 @@ We will use `handleSubmit` function to manage submit event when clicking the but
 :::info
 `onFinish` function resolves to respect the `mutationMode` property. In `pessimistic` mode it will resolve after the response is returned from the request, in `optimistic` and `undoable` modes it will resolve immediately. Only real await will happen in pessimistic mode and this will resolve with the response data, others will resolve immediately with undefined data.
 
-[Refer to the `mutationMode` documentation for more details. &#8594](/guides-and-concepts/mutation-mode.md)
+[Refer to the `mutationMode` documentation for more details. &#8594](/advanced-tutorials/mutation-mode.md)
 :::
 
 ```tsx title="src/pages/create.tsx"

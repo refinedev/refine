@@ -140,7 +140,7 @@ const App: React.FC = () => {
 :::tip Live/Realtime 🚀
 `@pankod/refine-appwrite` package supports Live/Realtime Provider natively 🚀
 
-[Refer to the Live/Realtime Provider docs for detailed usage. →](/docs/core/providers/live-provider.md)
+[Refer to the Live/Realtime Provider docs for detailed usage. →](/docs/api-reference/core/providers/live-provider.md)
 :::
 
 ## Create Collections

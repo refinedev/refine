@@ -73,7 +73,7 @@ const dataProvider = {
 <br/>
 
 :::important
-**refine** consumes this methods using [data hooks](/core/hooks/data/useCreate.md).
+**refine** consumes this methods using [data hooks](/api-reference/core/hooks/data/useCreate.md).
 
 Data hooks are used to operate CRUD actions like creating a new record, listing a resource or deleting a record etc..
 
@@ -237,7 +237,7 @@ mutate({
 });
 ```
 
-> [Refer to the useCreate documentation for more information. &#8594](/core/hooks/data/useCreate.md)
+> [Refer to the useCreate documentation for more information. &#8594](/api-reference/core/hooks/data/useCreate.md)
 
 <br />
 
@@ -277,7 +277,7 @@ const SimpleRestDataProvider = (
 | resource  | `string`       |         |
 | variables | `TVariables[]` | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useCreateMany`](/core/hooks/data/useCreateMany.md) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useCreateMany`](/api-reference/core/hooks/data/useCreateMany.md) to type `variables`
 
 <br/>
 
@@ -301,7 +301,7 @@ mutate({
 });
 ```
 
-> [Refer to the useCreateMany documentation for more information. &#8594](/core/hooks/data/useCreateMany.md)
+> [Refer to the useCreateMany documentation for more information. &#8594](/api-reference/core/hooks/data/useCreateMany.md)
 
 <br />
 
@@ -338,7 +338,7 @@ const SimpleRestDataProvider = (
 | id        | [BaseKey][basekey] |         |
 | variables | `TVariables[]`     | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useDelete`](/core/hooks/data/useDelete.md) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useDelete`](/api-reference/core/hooks/data/useDelete.md) to type `variables`
 
 <br/>
 
@@ -352,7 +352,7 @@ const { mutate } = useDelete();
 mutate({ resource: "categories", id: "2" });
 ```
 
-> [Refer to the useDelete documentation for more information. &#8594](/core/hooks/data/useDelete.md)
+> [Refer to the useDelete documentation for more information. &#8594](/api-reference/core/hooks/data/useDelete.md)
 
 <br />
 
@@ -391,7 +391,7 @@ const SimpleRestDataProvider = (
 | ids       | [BaseKey[]][basekey] |         |
 | variables | `TVariables[]`       | `{}`    |
 
-> `TVariables` is a user defined type which can be passed to [`useDeleteMany`](/core/hooks/data/useDeleteMany.md) to type `variables`
+> `TVariables` is a user defined type which can be passed to [`useDeleteMany`](/api-reference/core/hooks/data/useDeleteMany.md) to type `variables`
 
 <br/>
 
@@ -408,7 +408,7 @@ mutate({
 });
 ```
 
-> [Refer to the useDeleteMany documentation for more information. &#8594](/core/hooks/data/useDeleteMany.md)
+> [Refer to the useDeleteMany documentation for more information. &#8594](/api-reference/core/hooks/data/useDeleteMany.md)
 
 <br />
 
@@ -463,7 +463,7 @@ mutate({
 });
 ```
 
-> [Refer to the useUpdate documentation for more information. &#8594](/core/hooks/data/useUpdate.md)
+> [Refer to the useUpdate documentation for more information. &#8594](/api-reference/core/hooks/data/useUpdate.md)
 
 <br />
 
@@ -522,7 +522,7 @@ mutate({
 });
 ```
 
-> [Refer to the useUpdateMany documentation for more information. &#8594](/core/hooks/data/useUpdateMany.md)
+> [Refer to the useUpdateMany documentation for more information. &#8594](/api-reference/core/hooks/data/useUpdateMany.md)
 
 <br />
 
@@ -568,7 +568,7 @@ import { useOne } from "@pankod/refine-core";
 const { data } = useOne<ICategory>({ resource: "categories", id: "1" });
 ```
 
-> [Refer to the useOne documentation for more information. &#8594](/core/hooks/data/useOne.md)
+> [Refer to the useOne documentation for more information. &#8594](/api-reference/core/hooks/data/useOne.md)
 
 <br/>
 
@@ -620,7 +620,7 @@ import { useMany } from "@pankod/refine-core";
 const { data } = useMany({ resource: "categories", ids: ["1", "2"] });
 ```
 
-> [Refer to the useMany documentation for more information. &#8594](/core/hooks/data/useMany.md)
+> [Refer to the useMany documentation for more information. &#8594](/api-reference/core/hooks/data/useMany.md)
 
 <br />
 
@@ -658,9 +658,9 @@ const SimpleRestDataProvider = (
 | -------------- | ------------------------------------------------- |
 | resource       | `string`                                          |
 | hasPagination? | `boolean` _(defaults to `true`)_                  |
-| pagination?    | [`Pagination`](/core/interfaces.md#pagination);   |
-| sort?          | [`CrudSorting`](/core/interfaces.md#crudsorting); |
-| filters?       | [`CrudFilters`](/core/interfaces.md#crudfilters); |
+| pagination?    | [`Pagination`](/api-reference/core/interfaces.md#pagination);   |
+| sort?          | [`CrudSorting`](/api-reference/core/interfaces.md#crudsorting); |
+| filters?       | [`CrudFilters`](/api-reference/core/interfaces.md#crudfilters); |
 
 <br/>
 
@@ -672,7 +672,7 @@ import { useList } from "@pankod/refine-core";
 const { data } = useList({ resource: "posts" });
 ```
 
-> [Refer to the useList documentation for more information. &#8594](/core/hooks/data/useList.md)
+> [Refer to the useList documentation for more information. &#8594](/api-reference/core/hooks/data/useList.md)
 
 <br />
 
@@ -742,7 +742,7 @@ const { data } = useList({
 
 We'll sort records by speficified order and field.
 
-> [CrudSorting](/core/interfaces.md#crudoperators) ?
+> [CrudSorting](/api-reference/core/interfaces.md#crudoperators) ?
 
 ```tsx title="dataProvider.ts"
 // highlight-start
@@ -833,7 +833,7 @@ const { data } = useList({
 
 **Adding filtering**
 
-Filters allow you to filter queries using [refine's filter operators](/core/interfaces.md#crudoperators). It is configured via field, operator and value properites.
+Filters allow you to filter queries using [refine's filter operators](/api-reference/core/interfaces.md#crudoperators). It is configured via field, operator and value properites.
 
 ```tsx title="dataProvider.ts"
 const generateSort = (sort?: CrudSorting) => {
@@ -928,7 +928,7 @@ Since our API accepts only certain parameter formats to filter the data, we may 
 
 So we added the `generateFilter` and `mapOperator` methods to the transform filter parameters.
 
-[Refer to the list of all filter operators &#8594](/core/interfaces.md#crudoperators)
+[Refer to the list of all filter operators &#8594](/api-reference/core/interfaces.md#crudoperators)
 
 ```ts
 import { useList } from "@pankod/refine-core";
@@ -1023,8 +1023,8 @@ const SimpleRestDataProvider = (
 | -------- | ---------------------------------------------------------- |
 | url      | `string`                                                   |
 | method   | `get`, `delete`, `head`, `options`, `post`, `put`, `patch` |
-| sort?    | [`CrudSorting`](/core/interfaces.md#crudsorting);          |
-| filters? | [`CrudFilters`](/core/interfaces.md#crudfilters);          |
+| sort?    | [`CrudSorting`](/api-reference/core/interfaces.md#crudsorting);          |
+| filters? | [`CrudFilters`](/api-reference/core/interfaces.md#crudfilters);          |
 | payload? | `{}`                                                       |
 | query?   | `{}`                                                       |
 | headers? | `{}`                                                       |
@@ -1047,11 +1047,11 @@ const { data, isLoading } = useCustom({
 });
 ```
 
-> [Refer to the useCustom documentation for more information. &#8594](/core/hooks/data/useCustom.md)
+> [Refer to the useCustom documentation for more information. &#8594](/api-reference/core/hooks/data/useCustom.md)
 
 ### Error Format
 
-**refine** expects errors to be extended from [`HttpError`](/core/interfaces.md#httperror).  
+**refine** expects errors to be extended from [`HttpError`](/api-reference/core/interfaces.md#httperror).  
 Axios interceptor can be used to transform the error from response before Axios returns the response to your code. Interceptors are methods which are triggered before the main method.
 
 ```ts title="dataProvider.ts"
@@ -1073,4 +1073,4 @@ axiosInstance.interceptors.response.use(
 ...
 ```
 
-[basekey]: /core/interfaces.md#basekey
+[basekey]: /api-reference/core/interfaces.md#basekey

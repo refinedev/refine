@@ -130,7 +130,7 @@ Firts, we need to import the `useForm` hook from the `@pankod/refine-react-hook-
 
 We also use `useSelect` to fetch category options.
 
-[Refer to the `useSelect` documentation for detailed information. &#8594](/core/hooks/useSelect.md)
+[Refer to the `useSelect` documentation for detailed information. &#8594](/api-reference/core/hooks/useSelect.md)
 
 ```tsx title="src/posts/create.tsx"
 // highlight-next-line
@@ -420,7 +420,7 @@ export const PostCreate: React.FC = () => {
 
 Supports all the properties supported by the `useForm` hook are available in the [React Hook Form][react-hook-form] documentation. Also, we added the following property:
 
-`refineCoreProps`: You can define all properties provided by [`useForm`][use-form-core] here. You can see all of them in [here](/core/hooks/useForm.md#properties).
+`refineCoreProps`: You can define all properties provided by [`useForm`][use-form-core] here. You can see all of them in [here](/api-reference/core/hooks/useForm.md#properties).
 
 > For example, we can define the `refineCoreProps` property in the `useForm` hook as:
 
@@ -441,7 +441,7 @@ const { ... } = useForm({
 
 Returns all the properties returned by [React Hook Form][react-hook-form] of the `useForm` hook. Also, we added the following return values:
 
-`refineCore`: Returns all values returned by [`useForm`][use-form-core]. You can see all of them in [here](/core/hooks/useForm.md##return-values).
+`refineCore`: Returns all values returned by [`useForm`][use-form-core]. You can see all of them in [here](/api-reference/core/hooks/useForm.md##return-values).
 
 > For example, we can access the `refineCore` return value in the `useForm` hook as:
 
@@ -476,6 +476,6 @@ const {
 
 [react-hook-form]: https://react-hook-form.com
 [refine-react-hook-form]: https://github.com/pankod/refine/tree/master/packages/react-hook-form
-[use-form-core]: /core/hooks/useForm.md
-[baserecord]: /core/interfaces.md#baserecord
-[httperror]: /core/interfaces.md#httperror
+[use-form-core]: /api-reference/core/hooks/useForm.md
+[baserecord]: /api-reference/core/interfaces.md#baserecord
+[httperror]: /api-reference/core/interfaces.md#httperror

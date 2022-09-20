@@ -118,7 +118,7 @@ export interface IPost {
 
 ```
 
-The use of `useAutocomplete` with [`useForm`](/packages/react-hook-form/useForm.md) is demonstrated in the code above. You can use the `useAutocomplete` hook independently of the `useForm`hook.
+The use of `useAutocomplete` with [`useForm`](/packages/documentation/react-hook-form/useForm.md) is demonstrated in the code above. You can use the `useAutocomplete` hook independently of the `useForm`hook.
 
 <div class="img-container" style={{"max-width": "500px"}}>
     <div class="window">
@@ -141,7 +141,7 @@ The use of `useAutocomplete` with [`useForm`](/packages/react-hook-form/useForm.
 <br/>
 
 :::info
-By default, refine does the search using the [`useList`](/core/hooks/data/useDelete.md) hook and passes it to the search parameter. If you get a problem you should check your `getList` function in your Data Provider. If you want to change this behavior to make client-side filtering, you can examine [this](https://mui.com/material-ui/react-autocomplete/#search-as-you-type) documentation.
+By default, refine does the search using the [`useList`](/api-reference/core/hooks/data/useDelete.md) hook and passes it to the search parameter. If you get a problem you should check your `getList` function in your Data Provider. If you want to change this behavior to make client-side filtering, you can examine [this](https://mui.com/material-ui/react-autocomplete/#search-as-you-type) documentation.
 :::
 
 ## Options
@@ -154,7 +154,7 @@ const { autocompleteProps } = useAutocomplete({
 });
 ```
 
-`resource` property determines API resource endpoint to fetch records from [`dataProvider`](/core/providers/data-provider.md). It returns properly configured `options` values for [`<Autocomplete>`](https://mui.com/material-ui/react-autocomplete/#main-content) options.
+`resource` property determines API resource endpoint to fetch records from [`dataProvider`](/api-reference/core/providers/data-provider.md). It returns properly configured `options` values for [`<Autocomplete>`](https://mui.com/material-ui/react-autocomplete/#main-content) options.
 
 [Refer to Material UI `Autocomplete` component documentation for detailed info for `options`. &#8594](https://mui.com/material-ui/react-autocomplete/#options-structure)
 
@@ -168,13 +168,13 @@ const { autocompleteProps } = useAutocomplete({
 });
 ```
 
-Adds extra `options` to [`<Autocomplete>`](https://mui.com/material-ui/react-autocomplete/#main-content) component. It uses [`useMany`](/core/hooks/data/useMany.md) so `defaultValue` can be an array of strings like follows.
+Adds extra `options` to [`<Autocomplete>`](https://mui.com/material-ui/react-autocomplete/#main-content) component. It uses [`useMany`](/api-reference/core/hooks/data/useMany.md) so `defaultValue` can be an array of strings like follows.
 
 ```ts
 defaultValue: ["1", "2"],
 ```
 
-[Refer to the `useMany` documentation for detailed usage. &#8594](/core/hooks/data/useMany.md)
+[Refer to the `useMany` documentation for detailed usage. &#8594](/api-reference/core/hooks/data/useMany.md)
 
 :::tip
 Can use `defaultValue` property when edit a record in `<Edit>` component.
@@ -246,7 +246,7 @@ const { autocompleteProps } = useAutocomplete({
 });
 ```
 
-If defined, it allows us to override the filters to use when fetching the list of records. Thus, it. It should return [`CrudFilters`](/core/interfaces.md#crudfilters).
+If defined, it allows us to override the filters to use when fetching the list of records. Thus, it. It should return [`CrudFilters`](/api-reference/core/interfaces.md#crudfilters).
 
 ### `queryOptions`
 
@@ -267,7 +267,7 @@ const { autocompleteProps } = useAutocomplete({
 
 ### `defaultValueQueryOptions`
 
-When the `defaultValue` property is given, the [`useMany`](/core/hooks/data/useMany.md) data hook is called for the selected records. With this property, you can change the options of this query. If not given, the values given in `queryOptions` will be used.
+When the `defaultValue` property is given, the [`useMany`](/api-reference/core/hooks/data/useMany.md) data hook is called for the selected records. With this property, you can change the options of this query. If not given, the values given in `queryOptions` will be used.
 
 ```tsx
 const { autocompleteProps } = useAutocomplete({
@@ -294,17 +294,17 @@ const { autocompleteProps } = useAutocomplete({
 | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ----------- |
 | resource <div className="required">Required</div>            | Resource name for API data interactions                                                                                                                            | `string`                                                                       |             |
 | defaultValue                                                 | Adds extra `options`                                                                                                                                               | `string` \| `Array<string>`                                                    |             |
-| filters                                                      | Add filters while fetching the data                                                                                                                                | [`CrudFilters`](/core/interfaces.md#crudfilters)                               |             |
-| sort                                                         | Allow us to sort the options                                                                                                                                       | [`CrudSorting`](/core/interfaces.md#crudsorting)                               |             |
+| filters                                                      | Add filters while fetching the data                                                                                                                                | [`CrudFilters`](/api-reference/core/interfaces.md#crudfilters)                               |             |
+| sort                                                         | Allow us to sort the options                                                                                                                                       | [`CrudSorting`](/api-reference/core/interfaces.md#crudsorting)                               |             |
 | debounce                                                     | The number of milliseconds to delay                                                                                                                                | `number`                                                                       | 300         |
 | queryOptions                                                 | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options                                                                                | ` UseQueryOptions<GetListResponse<TData>, TError>`                             |             |
 | defaultValueQueryOptions                                     | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options                                                                                | ` UseQueryOptions<GetManyResponse<TData>, TError>`                             |             |
 | fetchSize                                                    | Amount of records to fetch in select box list.                                                                                                                     | `number`                                                                       | `undefined` |
 | onSearch                                                     | If defined, this callback allows us to override all filters for every search request.                                                                              | `(value: string) => CrudFilters `\|` Promise<CrudFilters>`                     | `undefined` |
-| metaData                                                     | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                           | {}          |
-| [liveMode](/core/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/core/interfaces.md#livemodeprops)         | `"off"`     |
-| liveParams                                                   | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: string[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | `undefined` |
-| onLiveEvent                                                  | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)              | `undefined` |
+| metaData                                                     | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                           | {}          |
+| [liveMode](/api-reference/core/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/api-reference/core/interfaces.md#livemodeprops)         | `"off"`     |
+| liveParams                                                   | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: string[]; [key: string]: any; }`](/api-reference/core/interfaces.md#livemodeprops) | `undefined` |
+| onLiveEvent                                                  | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/api-reference/core/interfaces.md#livemodeprops)              | `undefined` |
 
 ### Return values
 

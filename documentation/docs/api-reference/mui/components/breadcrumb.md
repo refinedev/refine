@@ -3,7 +3,7 @@ id: mui-breadcrumb
 title: Breadcrumb
 ---
 
-A breadcrumb displays the current location within a hierarchy. It allows going back to states higher up in the hierarchy. `<Breadcrumb>` component built with Material UI [Breadcrumb][mui-breadcrumb] components using the [`useBreadcrumb`](/core/hooks/useBreadcrumb.md) hook.
+A breadcrumb displays the current location within a hierarchy. It allows going back to states higher up in the hierarchy. `<Breadcrumb>` component built with Material UI [Breadcrumb][mui-breadcrumb] components using the [`useBreadcrumb`](/api-reference/core/hooks/useBreadcrumb.md) hook.
 
 :::info
 You can refer to the [source-code][source-code] of the `<Breadcrumb>` component to see how it is built. You can also create your custom breadcrumb component inspired by the source code.
@@ -29,7 +29,7 @@ export const PostList: React.FC = () => {
 
 ### `showHome`
 
-If your application has a [DashboardPage](/core/components/refine-config.md#dashboardpage), the home button is shown to the top of the hierarchy by default. If you don't want to show the home button, you can set `showHome` to `false`.
+If your application has a [DashboardPage](/api-reference/core/components/refine-config.md#dashboardpage), the home button is shown to the top of the hierarchy by default. If you don't want to show the home button, you can set `showHome` to `false`.
 
 ```tsx
 import { List, Breadcrumb } from "@pankod/refine-mui";

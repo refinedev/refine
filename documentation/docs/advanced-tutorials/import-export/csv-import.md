@@ -174,7 +174,7 @@ Depending on the [`batchSize`][batchsize] option, posts can get sent one by one 
    ></iframe>
 
 [papa parse]: https://www.papaparse.com/
-[batchsize]: /core/hooks/import-export/useImport.md#api-reference
-[dataprovider]: /core/providers/data-provider.md
-[create]: /core/providers/data-provider.md#create
-[createmany]: /core/providers/data-provider.md#createmany
+[batchsize]: /api-reference/core/hooks/import-export/useImport.md#api-reference
+[dataprovider]: /api-reference/core/providers/data-provider.md
+[create]: /api-reference/core/providers/data-provider.md#create
+[createmany]: /api-reference/core/providers/data-provider.md#createmany

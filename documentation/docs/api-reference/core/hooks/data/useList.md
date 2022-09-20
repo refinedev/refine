@@ -7,7 +7,7 @@ description: useList data hook from refine is a modified version of react-query'
 
 `useList` is a modified version of `react-query`'s [`useQuery`](https://react-query.tanstack.com/guides/queries) used for retrieving items from a `resource` with pagination, sort, and filter configurations.
 
-It uses the `getList` method as the query function from the [`dataProvider`](/core/providers/data-provider.md) which is passed to `<Refine>`.
+It uses the `getList` method as the query function from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
 ## Usage
 
@@ -37,7 +37,7 @@ Let's say that we have a resource named `posts`
 
 <br />
 
-`useList` passes the query configuration to `getList` method from the [`dataProvider`](/core/providers/data-provider.md). We will be using the [`dataProvider`](/core/providers/data-provider.md) from [`@pankod/refine-simple-rest`](https://www.npmjs.com/package/@pankod/refine-simple-rest)
+`useList` passes the query configuration to `getList` method from the [`dataProvider`](/api-reference/core/providers/data-provider.md). We will be using the [`dataProvider`](/api-reference/core/providers/data-provider.md) from [`@pankod/refine-simple-rest`](https://www.npmjs.com/package/@pankod/refine-simple-rest)
 
 First of all, we will use `useList` without passing any query configurations.
 
@@ -260,13 +260,13 @@ const postListQueryResult = useList<IPost>({
 | <div className="required-block"><div>resource</div> <div className="required">Required</div></div> | Resource name for API data interactions                                                                                                                            | `string`                                                                        |
 | config                                                                                             | Configuration for pagination, sorting and filtering                                                                                                                | [`UseListConfig`](#config-parameters)                                           |                                     |
 | queryOptions                                                                                       | `react-query`'s `useQuery` options                                                                                                                                 | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                     |
-| successNotification                                                                                | Successful Query notification                                                                                                                                      | [`SuccessErrorNotification`](/core/interfaces.md#successerrornotification)      | `false`                             |
-| errorNotification                                                                                  | Unsuccessful Query notification                                                                                                                                    | [`SuccessErrorNotification`](/core/interfaces.md#successerrornotification)      | "Error (status code: `statusCode`)" |
-| metaData                                                                                           | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)                            | {}                                  |
+| successNotification                                                                                | Successful Query notification                                                                                                                                      | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification)      | `false`                             |
+| errorNotification                                                                                  | Unsuccessful Query notification                                                                                                                                    | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification)      | "Error (status code: `statusCode`)" |
+| metaData                                                                                           | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                            | {}                                  |
 | dataProviderName                                                                                   | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.                                                                 | `string`                                                                        | `default`                           |
-| [liveMode](/core/providers/live-provider.md#usage-in-a-hook)                                       | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/core/interfaces.md#livemodeprops)          | `"off"`                             |
-| liveParams                                                                                         | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: BaseKey[]; [key: string]: any; }`](/core/interfaces.md#livemodeprops) | `undefined`                         |
-| onLiveEvent                                                                                        | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/core/interfaces.md#livemodeprops)               | `undefined`                         |
+| [liveMode](/api-reference/core/providers/live-provider.md#usage-in-a-hook)                                       | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/api-reference/core/interfaces.md#livemodeprops)          | `"off"`                             |
+| liveParams                                                                                         | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: BaseKey[]; [key: string]: any; }`](/api-reference/core/interfaces.md#livemodeprops) | `undefined`                         |
+| onLiveEvent                                                                                        | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/api-reference/core/interfaces.md#livemodeprops)               | `undefined`                         |
 
 ### Config parameters
 
@@ -293,8 +293,8 @@ interface UseListConfig {
 
 | Property | Desription                                                                       | Type                                           | Default                                        |
 | -------- | -------------------------------------------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| TData    | Result data of the query. Extends [`BaseRecord`](/core/interfaces.md#baserecord) | [`BaseRecord`](/core/interfaces.md#baserecord) | [`BaseRecord`](/core/interfaces.md#baserecord) |
-| TError   | Custom error object that extends [`HttpError`](/core/interfaces.md#httperror)    | [`HttpError`](/core/interfaces.md#httperror)   | [`HttpError`](/core/interfaces.md#httperror)   |
+| TData    | Result data of the query. Extends [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) |
+| TError   | Custom error object that extends [`HttpError`](/api-reference/core/interfaces.md#httperror)    | [`HttpError`](/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/api-reference/core/interfaces.md#httperror)   |
 
 ### Return values
 

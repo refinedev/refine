@@ -8,8 +8,8 @@ title: useTable
 :::info
 If you're looking for a complete table library, Refine supports two table libraries out-of-the-box.
 
--   [React Table](https://react-table.tanstack.com/) (for Headless users) - [Documentation](/packages/react-table.md) - [Example](/examples/table/react-table/basic.md)
--   [Ant Design Table](https://ant.design/components/table/#header) (for Ant Design users) - [Documentation](/ui-frameworks/antd/hooks/table/useTable.md) - [Example](/examples/table/antd/useTable.md)
+-   [React Table](https://react-table.tanstack.com/) (for Headless users) - [Documentation](/packages/documentation/react-table.md) - [Example](/examples/table/react-table/basic.md)
+-   [Ant Design Table](https://ant.design/components/table/#header) (for Ant Design users) - [Documentation](/api-reference/antd/hooks/table/useTable.md) - [Example](/examples/table/antd/useTable.md)
 
 :::
 
@@ -232,7 +232,7 @@ console.log(filters);
 | permanentFilter          | Default and unchangeable filter state                                                                                                                              | [`CrudFilters`][crudfilters]                                 | `[]`                                                                                 |
 | syncWithLocation         | Sortings, filters, page index and records shown per page are tracked by browser history                                                                            | `boolean`                                                    | Value set in [Refine][refine swl]. If a custom resource is given, it will be `false` |
 | queryOptions             | `react-query`'s `useQuery` options                                                                                                                                 | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`  |
-| metaData                 | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/core/interfaces.md#metadataquery)         | {}                                                                                   |
+| metaData                 | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)         | {}                                                                                   |
 | dataProviderName         | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.                                                                 | `string`                                                     | `default`                                                                            |
 | [liveMode][live mode]    | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`][live mod props]          | `"off"`                                                                              |
 | liveParams               | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: BaseKey[]; [key: string]: any; }`][live mod props] | `undefined`                                                                          |
@@ -266,12 +266,12 @@ console.log(filters);
 [table]: https://ant.design/components/table/#API
 [form]: https://ant.design/components/form/#API
 [usequery]: https://react-query.tanstack.com/reference/useQuery
-[baserecord]: /core/interfaces.md#baserecord
-[crudsorting]: /core/interfaces.md#crudsorting
-[crudfilters]: /core/interfaces.md#crudfilters
-[httperror]: /core/interfaces.md#httperror
-[table search]: /guides-and-concepts/search/table-search.md
-[refine swl]: /core/components/refine-config.md#syncwithlocation
-[live mode]: /core/providers/live-provider.md#usage-in-a-hook
-[live mod props]: /core/interfaces.md#livemodeprops
-[syncwithlocationparams]: /core/interfaces.md#syncwithlocationparams
+[baserecord]: /api-reference/core/interfaces.md#baserecord
+[crudsorting]: /api-reference/core/interfaces.md#crudsorting
+[crudfilters]: /api-reference/core/interfaces.md#crudfilters
+[httperror]: /api-reference/core/interfaces.md#httperror
+[table search]: /advanced-tutorials/search/table-search.md
+[refine swl]: /api-reference/core/components/refine-config.md#syncwithlocation
+[live mode]: /api-reference/core/providers/live-provider.md#usage-in-a-hook
+[live mod props]: /api-reference/core/interfaces.md#livemodeprops
+[syncwithlocationparams]: /api-reference/core/interfaces.md#syncwithlocationparams

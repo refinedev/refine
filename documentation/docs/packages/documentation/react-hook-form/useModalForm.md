@@ -391,7 +391,7 @@ export const EditPost: React.FC<UseModalFormReturnType> = ({
 | Property                   | Description                                                         | Type                                                |
 | -------------------------- | ------------------------------------------------------------------- | --------------------------------------------------- |
 | modalProps                 | Configuration object for the modal                                  | [`ModalPropsType`](#modalpropstype)                 |
-| refineCoreProps            | Configuration object for the core of the [`useForm`][use-form-core] | [`UseFormProps`](/core/hooks/useForm.md#properties) |
+| refineCoreProps            | Configuration object for the core of the [`useForm`][use-form-core] | [`UseFormProps`](/api-reference/core/hooks/useForm.md#properties) |
 | React Hook Form Properties | See [React Hook Form][react-hook-form-use-form] documentation       |
 
 <br />
@@ -409,7 +409,7 @@ export const EditPost: React.FC<UseModalFormReturnType> = ({
 | Property                      | Description                                                     | Type                                                          |
 | ----------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------- |
 | modal                         | Relevant states and methods to control the modal                | [`ModalReturnValues`](#modalreturnvalues)                     |
-| refineCore                    | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/core/hooks/useForm.md#return-values) |
+| refineCore                    | The return values of the [`useForm`][use-form-core] in the core | [`UseFormReturnValues`](/api-reference/core/hooks/useForm.md#return-values) |
 | React Hook Form Return Values | See [React Hook Form][react-hook-form-use-form] documentation   |
 
 <br />
@@ -433,6 +433,6 @@ export const EditPost: React.FC<UseModalFormReturnType> = ({
 ></iframe>
 
 [@pankod/refine-react-hook-form]: https://github.com/pankod/refine/tree/master/packages/react-hook-form
-[refine-react-hook-form-use-form]: /packages/react-hook-form/useForm.md
+[refine-react-hook-form-use-form]: /packages/documentation/react-hook-form/useForm.md
 [react-hook-form-use-form]: https://react-hook-form.com/api/useform
-[use-form-core]: /core/hooks/useForm.md
+[use-form-core]: /api-reference/core/hooks/useForm.md

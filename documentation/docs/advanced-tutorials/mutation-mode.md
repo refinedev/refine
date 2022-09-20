@@ -79,7 +79,7 @@ The mutation is applied locally, redirection and UI updates are executed immedia
 
 ## Usage
 
-Mutation mode can be set application-wide in [`<Refine>`](/core/components/refine-config.md#mutationmode) component.
+Mutation mode can be set application-wide in [`<Refine>`](/api-reference/core/components/refine-config.md#mutationmode) component.
 
 ```tsx title="App.tsx"
 <Refine
@@ -112,10 +112,10 @@ mutate({
 
 ### Supported data hooks
 
--   [`useUpdate` &#8594](/core/hooks/data/useUpdate.md)
--   [`useUpdateMany` &#8594](/core/hooks/data/useUpdateMany.md)
--   [`useDelete` &#8594](/core/hooks/data/useDelete.md)
--   [`useDeleteMany` &#8594](/core/hooks/data/useDeleteMany.md)
+-   [`useUpdate` &#8594](/api-reference/core/hooks/data/useUpdate.md)
+-   [`useUpdateMany` &#8594](/api-reference/core/hooks/data/useUpdateMany.md)
+-   [`useDelete` &#8594](/api-reference/core/hooks/data/useDelete.md)
+-   [`useDeleteMany` &#8594](/api-reference/core/hooks/data/useDeleteMany.md)
 
 <br />
 

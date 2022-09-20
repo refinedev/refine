@@ -5,7 +5,7 @@ siderbar_label: useLogin
 description: useLogin data hook from refine is a modified version of react-query's useMutation for authentication.
 ---
 
-`useLogin` calls `login` method from [`authProvider`](/core/providers/auth-provider.md) under the hood.  
+`useLogin` calls `login` method from [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.  
 It authenticates the app if `login` method from `authProvider` resolves and if it rejects shows an error notification. After successful authentication it redirects the app to root.
 
 It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation).
@@ -53,7 +53,7 @@ We have 3 options for redirecting the app after login successfully .
 
 -   If promise returned from `login` is resolved with nothing, app will be redirected to the `/` route by default.
 
--   A custom url can be resolved from the promise returned from the `login` method of the [authProvider](/core/providers/auth-provider.md).
+-   A custom url can be resolved from the promise returned from the `login` method of the [authProvider](/api-reference/core/providers/auth-provider.md).
 
 ```tsx
 const authProvider: AuthProvider = {

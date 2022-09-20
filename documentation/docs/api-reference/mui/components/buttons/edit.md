@@ -5,7 +5,7 @@ title: Edit
 
 import editButton from '@site/static/img/guides-and-concepts/components/buttons/edit/edit-mui.png';
 
-`<EditButton>` uses Material UI [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses the `edit` method from [`useNavigation`](/core/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the edit page route of resource.
+`<EditButton>` uses Material UI [`<Button>`](https://mui.com/material-ui/react-button/) component. It uses the `edit` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the edit page route of resource.
 
 ## Usage
 
@@ -88,7 +88,7 @@ export const MyEditComponent = () => {
 };
 ```
 
-Clicking the button will trigger the `edit` method of [`useNavigation`](/core/hooks/navigation/useNavigation.md) and then redirect to `/posts/edit/2`.
+Clicking the button will trigger the `edit` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect to `/posts/edit/2`.
 
 ### `hideText`
 
@@ -104,7 +104,7 @@ export const MyEditComponent = () => {
 
 ### `ignoreAccessControlProvider`
 
-It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/core/components/refine-config.md)
+It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
 import { EditButton } from "@pankod/refine-mui";

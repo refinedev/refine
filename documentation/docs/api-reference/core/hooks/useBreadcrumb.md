@@ -129,7 +129,7 @@ If you have a nested resource definition as below:
 If resource definition has `label` property, `useBreadcrumbs` uses the `label` property. Otherwise, the `name` property of the resource is used. Likewise, if resource definition has `route` property, `useBreadcrumbs` uses the `route` property. Otherwise, the `name` property of the resource is used.
 
 :::info
-If label is not provided in your `posts` resource `useBreadcrumb` uses the [`useTranslate`](/core/hooks/translate/useTranslate.md) hook to translate the names.
+If label is not provided in your `posts` resource `useBreadcrumb` uses the [`useTranslate`](/api-reference/core/hooks/translate/useTranslate.md) hook to translate the names.
 
 For CRUD operations (`list`,`create`,`edit`,`show`) the `useBreadcrumb` uses the `actions` key to translate key `` translate(`actions.${action}`) ``.
 

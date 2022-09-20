@@ -29,7 +29,7 @@ const authProvider = {
 ```
 
 :::important
-**refine** consumes these methods using [authorization hooks](/core/hooks/auth/useLogin.md).
+**refine** consumes these methods using [authorization hooks](/api-reference/core/hooks/auth/useLogin.md).
 Authorization hooks are used to manage authentication and authorization operations like login, logout and catching **HTTP** errors etc.
 :::
 
@@ -158,7 +158,7 @@ login: ({ username, password, remember }) => {
 
 :::
 
-> [Refer to useLogin documentation for more information. &#8594](/core/hooks/auth/useLogin.md)
+> [Refer to useLogin documentation for more information. &#8594](/api-reference/core/hooks/auth/useLogin.md)
 
 <br />
 
@@ -219,7 +219,7 @@ const authProvider = {
 
 <br />
 
-`register` method will be accessible via [`useRegister`](/core/hooks/auth/useRegister.md) auth hook.
+`register` method will be accessible via [`useRegister`](/api-reference/core/hooks/auth/useRegister.md) auth hook.
 
 ```tsx
 import { useRegister } from "@pankod/refine-core";
@@ -259,7 +259,7 @@ register: ({ email, password }) => {
 
 :::
 
-> [Refer to useRegister documentation for more information. &#8594](/core/hooks/auth/useRegister.md)
+> [Refer to useRegister documentation for more information. &#8594](/api-reference/core/hooks/auth/useRegister.md)
 
 ### `resetPassword`
 
@@ -288,7 +288,7 @@ const authProvider = {
 
 <br />
 
-`resetPassword` method will be accessible via [`useResetPassword`](/core/hooks/auth/useResetPassword.md) auth hook.
+`resetPassword` method will be accessible via [`useResetPassword`](/api-reference/core/hooks/auth/useResetPassword.md) auth hook.
 
 ```tsx
 import { useResetPassword } from "@pankod/refine-core";
@@ -331,7 +331,7 @@ resetPassword: ({ email }) => {
 
 :::
 
-> [Refer to useResetPassword documentation for more information. &#8594](/core/hooks/auth/useResetPassword.md)
+> [Refer to useResetPassword documentation for more information. &#8594](/api-reference/core/hooks/auth/useResetPassword.md)
 
 ### `updatePassword`
 
@@ -362,7 +362,7 @@ const authProvider = {
 
 <br />
 
-`updatePassword` method will be accessible via [`useUpdatePassword`](/core/hooks/auth/useUpdatePassword.md) auth hook.
+`updatePassword` method will be accessible via [`useUpdatePassword`](/api-reference/core/hooks/auth/useUpdatePassword.md) auth hook.
 
 ```tsx
 import { useUpdatePassword } from "@pankod/refine-core";
@@ -405,7 +405,7 @@ resetPassword: ({ email }) => {
 
 :::
 
-> [Refer to useUpdatePassword documentation for more information. &#8594](/core/hooks/auth/useUpdatePassword.md)
+> [Refer to useUpdatePassword documentation for more information. &#8594](/api-reference/core/hooks/auth/useUpdatePassword.md)
 
 ### `logout`
 
@@ -446,7 +446,7 @@ logout();
 `mutate` acquired from `useLogout` can accept any kind of object for values since `logout` method from `authProvider` doesn't have a restriction on its parameters.  
 :::
 
-> [Refer to useLogout documentation for more information. &#8594](/core/hooks/auth/useLogout.md)
+> [Refer to useLogout documentation for more information. &#8594](/api-reference/core/hooks/auth/useLogout.md)
 
 <br />
 
@@ -490,7 +490,7 @@ Current authentication data needs to be cleaned by the `logout` method. For exam
 
 ### `checkError`
 
-When a [`dataProvider`](/core/providers/data-provider.md) method returns an error, `checkError` is called with the error object.  
+When a [`dataProvider`](/api-reference/core/providers/data-provider.md) method returns an error, `checkError` is called with the error object.  
 If `checkError` returns a rejected promise, the `logout` method is called and user becomes unauthorized and gets redirected to `/login` page by default.
 
 In this example, we log the user out when **HTTP** error status code is `401`.  
@@ -531,7 +531,7 @@ checkError(error);
 `mutate` acquired from `useLogout` can accept any kind of object for values since `logout` method from `authProvider` doesn't have a restriction on its parameters.  
 :::
 
-> [Refer to useCheckError documentation for more information. &#8594](/core/hooks/auth/useCheckError.md)
+> [Refer to useCheckError documentation for more information. &#8594](/api-reference/core/hooks/auth/useCheckError.md)
 
 <br />
 
@@ -602,7 +602,7 @@ const {
 } = useAuthenticated();
 ```
 
-> [Refer to useAuthenticated documentation for more information. &#8594](/core/hooks/auth/useAuthenticated.md)
+> [Refer to useAuthenticated documentation for more information. &#8594](/api-reference/core/hooks/auth/useAuthenticated.md)
 
 <br />
 
@@ -644,7 +644,7 @@ const authProvider = {
 
 <br/>
 
-Data that `getPermissions` resolves with is accesible by the [`usePermissions`](/core/hooks/auth/usePermissions.md) hook.
+Data that `getPermissions` resolves with is accesible by the [`usePermissions`](/api-reference/core/hooks/auth/usePermissions.md) hook.
 
 For example let's say that only the admins must be able to create new posts from the list page.
 `<List>` can show a button for creating new posts. If it's required that only admins can create new posts, this button must be only accessible to users who has the `"admin"` role.
@@ -660,7 +660,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-> [Refer to usePermissions documentation for more information. &#8594](/core/hooks/auth/usePermissions.md)
+> [Refer to usePermissions documentation for more information. &#8594](/api-reference/core/hooks/auth/usePermissions.md)
 
 <br/>
 
@@ -685,7 +685,7 @@ const authProvider = {
 
 <br />
 
-The resolved data can be acquired using the [`useGetIdentity`](/core/hooks/auth/useGetIdentity.md) hook.
+The resolved data can be acquired using the [`useGetIdentity`](/api-reference/core/hooks/auth/useGetIdentity.md) hook.
 
 ```tsx
 import { useGetIdentity } from "@pankod/refine-core";
@@ -694,7 +694,7 @@ const { data: userIdentity } = useGetIdentity<string>();
 // userIdentity: "admin"
 ```
 
-> [Refer to useGetIdentity documentation for more information. &#8594](/core/hooks/auth/useGetIdentity.md)
+> [Refer to useGetIdentity documentation for more information. &#8594](/api-reference/core/hooks/auth/useGetIdentity.md)
 
 <br />
 
@@ -734,7 +734,7 @@ If the resolved data has a `name` property, a name text appears; if it has an `a
 
 ## Setting Authorization Credentials
 
-After user logs in, their credentials can be sent along with the API request by configuring the [`dataProvider`](/core/providers/data-provider.md). A custom `httpClient` can be passed to [`dataProvider`](/core/providers/data-provider.md) to include configurations like cookies and request headers.
+After user logs in, their credentials can be sent along with the API request by configuring the [`dataProvider`](/api-reference/core/providers/data-provider.md). A custom `httpClient` can be passed to [`dataProvider`](/api-reference/core/providers/data-provider.md) to include configurations like cookies and request headers.
 
 We'll show how to add a token acquired from the `login` method to the **Authorization** header of the **HTTP** requests. We will leverage the default headers configuration of Axios. See the [Config Default](https://axios-http.com/docs/config_defaults) of Axios docs for more information on how this works.
 
@@ -785,7 +785,7 @@ const App = () => {
 ```
 
 :::note
-We recommend using **axios** as the **HTTP** client with the **@pankod/refine-simple-rest** [`dataProvider`](/core/providers/data-provider.md). Other **HTTP** clients can also be preferred.
+We recommend using **axios** as the **HTTP** client with the **@pankod/refine-simple-rest** [`dataProvider`](/api-reference/core/providers/data-provider.md). Other **HTTP** clients can also be preferred.
 :::
 
 Since default headers are per Axios instance it is important that you create a single Axios instance that will be re-used throughout your Refine project. There are a few methods to accomplish this, as shown one could create a variable that you import in other parts of your project and use as necessary. Another option would be to use a `Singleton` model which may work better depending on your code structure.
@@ -866,13 +866,13 @@ Interceptors are also a great way for refreshing tokens when they expire.
 
 These hooks can be used with the `authProvider` authentication and authorization operations.
 
--   [useAuthenticated](/core/hooks/auth/useAuthenticated.md)
--   [useCheckError](/core/hooks/auth/useCheckError.md)
--   [useGetIdentity](/core/hooks/auth/useGetIdentity.md)
--   [useLogin](/core/hooks/auth/useLogin.md)
--   [useLogout](/core/hooks/auth/useLogout.md)
--   [usePermissions](/core/hooks/auth/usePermissions.md)
--   [`<Authenticated />`](/core/components/auth/authenticated.md)
+-   [useAuthenticated](/api-reference/core/hooks/auth/useAuthenticated.md)
+-   [useCheckError](/api-reference/core/hooks/auth/useCheckError.md)
+-   [useGetIdentity](/api-reference/core/hooks/auth/useGetIdentity.md)
+-   [useLogin](/api-reference/core/hooks/auth/useLogin.md)
+-   [useLogout](/api-reference/core/hooks/auth/useLogout.md)
+-   [usePermissions](/api-reference/core/hooks/auth/usePermissions.md)
+-   [`<Authenticated />`](/api-reference/core/components/auth/authenticated.md)
 
 <br />
 

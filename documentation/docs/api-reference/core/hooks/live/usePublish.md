@@ -3,7 +3,7 @@ id: usePublish
 title: usePublish
 ---
 
-If you need to publish a custom events **refine** provides the `usePublish` hook for it, It returns the `publish` method from [`liveProvider`](/core/providers/live-provider.md#publish) under the hood.
+If you need to publish a custom events **refine** provides the `usePublish` hook for it, It returns the `publish` method from [`liveProvider`](/api-reference/core/providers/live-provider.md#publish) under the hood.
 
 ## Usage
 
@@ -28,5 +28,5 @@ publish({
 
 :::info
 
-You can subscribe to event with [`useSubscription`](/core/hooks/live/useSubscription.md).
+You can subscribe to event with [`useSubscription`](/api-reference/core/hooks/live/useSubscription.md).
 :::

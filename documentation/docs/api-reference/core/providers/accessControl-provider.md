@@ -110,7 +110,7 @@ const useCan: ({
 }) => UseQueryResult<CanReturnType*>
 ```
 
-> `*`: Too see &#8594 [`CanParams`](/core/interfaces.md#canparams), [`CanReturnType`](/core/interfaces.md#canreturntype)
+> `*`: Too see &#8594 [`CanParams`](/api-reference/core/interfaces.md#canparams), [`CanReturnType`](/api-reference/core/interfaces.md#canreturntype)
 
 ### `<CanAccess />`
 
@@ -178,12 +178,12 @@ For example if your app has resource `posts` it will be checked with `{ resource
 These buttons will check for access control.
 Let's say these buttons are rendered where `resource` is `posts` and `id` is `1` where applicable.
 
--   [**List**](/ui-frameworks/antd/components/buttons/list.md): `{ resource: "posts", action: "list", params: { *resource } }`
--   [**Create**](/ui-frameworks/antd/components/buttons/create.md): `{ resource: "posts", action: "create", params: { *resource } }`
--   [**Clone**](/ui-frameworks/antd/components/buttons/clone.md): `{ resource: "posts", action: "create", params: { id: 1, *resource } }`
--   [**Edit**](/ui-frameworks/antd/components/buttons/edit.md): `{ resource: "posts", action: "edit", params: { id: 1, *resource } }`
--   [**Delete**](/ui-frameworks/antd/components/buttons/delete.md): `{ resource: "posts, action: "delete", params: { id: 1, *resource } }`
--   [**Show**](/ui-frameworks/antd/components/buttons/show.md): `{ resource: "posts", action: "show", params: { id: 1, *resource } }`
+-   [**List**](/api-reference/antd/components/buttons/list.md): `{ resource: "posts", action: "list", params: { *resource } }`
+-   [**Create**](/api-reference/antd/components/buttons/create.md): `{ resource: "posts", action: "create", params: { *resource } }`
+-   [**Clone**](/api-reference/antd/components/buttons/clone.md): `{ resource: "posts", action: "create", params: { id: 1, *resource } }`
+-   [**Edit**](/api-reference/antd/components/buttons/edit.md): `{ resource: "posts", action: "edit", params: { id: 1, *resource } }`
+-   [**Delete**](/api-reference/antd/components/buttons/delete.md): `{ resource: "posts, action: "delete", params: { id: 1, *resource } }`
+-   [**Show**](/api-reference/antd/components/buttons/show.md): `{ resource: "posts", action: "show", params: { id: 1, *resource } }`
 
 > `*resource`:  &#8594 It returns the resource ([ResourceItemProps][iresourceitem]) object you gave to `<Refine />` component. This will enable Attribute Based Access Control (ABAC), for example granting permissions based on the value of a field in the resource object.
 
@@ -202,9 +202,9 @@ These buttons will be disabled if access control returns `{ can: false }`
 [nextjsrouter]: https://www.npmjs.com/package/@pankod/refine-nextjs-router
 [reactrouter]: https://www.npmjs.com/package/@pankod/refine-react-router
 [reactlocation]: https://www.npmjs.com/package/@pankod/refine-react-location
-[catchall]: /core/components/refine-config.md#catchall
-[listbtn]: /ui-frameworks/antd/components/buttons/list.md
-[iresourceitem]: /core/interfaces.md#resourceitemprops
-[basekey]: /core/interfaces.md#basekey
-[canparams]: /core/interfaces.md#canparams
-[canreturntype]: /core/interfaces.md#canreturntype
+[catchall]: /api-reference/core/components/refine-config.md#catchall
+[listbtn]: /api-reference/antd/components/buttons/list.md
+[iresourceitem]: /api-reference/core/interfaces.md#resourceitemprops
+[basekey]: /api-reference/core/interfaces.md#basekey
+[canparams]: /api-reference/core/interfaces.md#canparams
+[canreturntype]: /api-reference/core/interfaces.md#canreturntype
