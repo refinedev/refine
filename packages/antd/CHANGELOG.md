@@ -1,5 +1,15 @@
 # @pankod/refine-antd
 
+## 3.46.3
+
+### Patch Changes
+
+-   [#2524](https://github.com/pankod/refine/pull/2524) [`27bf81bebb`](https://github.com/pankod/refine/commit/27bf81bebb217d2944e20e79a8f7618eda0e9db7) Thanks [@biskuvit](https://github.com/biskuvit)! - - Auth pages background color fixed.
+    -   Removed unused `updatePasswordLink` prop from auth pages.
+    -   Removed `onSubmit` prop from auth pages. use `formProps` instead.
+-   Updated dependencies [[`27bf81bebb`](https://github.com/pankod/refine/commit/27bf81bebb217d2944e20e79a8f7618eda0e9db7)]:
+    -   @pankod/refine-ui-types@0.9.1
+
 ## 3.46.2
 
 ### Patch Changes
