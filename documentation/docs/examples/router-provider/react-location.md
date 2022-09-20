@@ -7,9 +7,9 @@ title: React Location
 
 [Refer to the refine Router Provider documentation for more information. →](/docs/core/providers/router-provider/)
 
-[View React Location Example Source](https://github.com/pankod/refine/tree/master/examples/routerProvider/react-location)
+[View React Location Example Source](https://github.com/pankod/refine/tree/master/examples/react-location)
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/routerProvider/react-location?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/react-location?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-auth0-example"
 ></iframe>
