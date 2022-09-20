@@ -62,11 +62,6 @@ export type RefineAuthPageProps<
            * @optional
            */
           rememberMe?: React.ReactNode;
-          /**
-           * @description Custom submit function for the form. Trigger after submitting the form.
-           * @optional
-           */
-          onSubmit?: (formValues: RefineLoginFormTypes) => void;
       }>
     | PropsWithChildren<{
           /**
@@ -79,11 +74,6 @@ export type RefineAuthPageProps<
            * @optional
            */
           loginLink?: React.ReactNode;
-          /**
-           * @description render a redirect to update password page button node. If set to false, update password button will not be rendered.
-           * @optional
-           */
-          onSubmit?: (formValues: RefineRegisterFormTypes) => void;
       }>
     | PropsWithChildren<{
           /**
@@ -96,11 +86,6 @@ export type RefineAuthPageProps<
            * @optional
            */
           loginLink?: React.ReactNode;
-          /**
-           * @description Custom submit function for the form. Trigger after submitting the form.
-           * @optional
-           */
-          onSubmit?: (formValues: RefineForgotPasswordFormTypes) => void;
       }>
     | PropsWithChildren<{
           /**
@@ -108,11 +93,6 @@ export type RefineAuthPageProps<
            * @optional
            */
           type: "updatePassword";
-          /**
-           * @description Custom submit function for the form. Trigger after submitting the form.
-           * @optional
-           */
-          onSubmit?: (formValues: RefineUpdatePasswordFormTypes) => void;
       }>
 ) & {
     /**
