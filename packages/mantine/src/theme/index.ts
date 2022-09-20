@@ -28,8 +28,33 @@ const commonThemeProperties: Partial<MantineTheme> = {
             "#172B08",
         ],
     },
+    black: "#626262",
     primaryColor: "primary",
     defaultRadius: 6,
+    headings: {
+        fontFamily: [
+            "Montserrat",
+            "-apple-system",
+            "BlinkMacSystemFont",
+            '"Segoe UI"',
+            "Roboto",
+            '"Helvetica Neue"',
+            "Arial",
+            "sans-serif",
+            '"Apple Color Emoji"',
+            '"Segoe UI Emoji"',
+            '"Segoe UI Symbol"',
+        ].join(","),
+        fontWeight: 700,
+        sizes: {
+            h1: { fontSize: 34, lineHeight: 1.3, fontWeight: undefined },
+            h2: { fontSize: 26, lineHeight: 1.35, fontWeight: undefined },
+            h3: { fontSize: 22, lineHeight: 1.4, fontWeight: undefined },
+            h4: { fontSize: 18, lineHeight: 1.45, fontWeight: undefined },
+            h5: { fontSize: 16, lineHeight: 1.5, fontWeight: undefined },
+            h6: { fontSize: 14, lineHeight: 1.5, fontWeight: undefined },
+        },
+    },
 };
 
 export const LightTheme: Partial<MantineTheme> = {
