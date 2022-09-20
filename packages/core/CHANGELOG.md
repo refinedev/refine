@@ -1,5 +1,12 @@
 # @pankod/refine-core
 
+## 3.70.0
+
+### Minor Changes
+
+-   [#2524](https://github.com/pankod/refine/pull/2524) [`27bf81bebb`](https://github.com/pankod/refine/commit/27bf81bebb217d2944e20e79a8f7618eda0e9db7) Thanks [@biskuvit](https://github.com/biskuvit)! - - Renamed `resetPassword` in AuthProvider to `forgotPassword`
+    -   Renamed `useResetPassword` hook to `useForgotPassword`
+
 ## 3.69.9
 
 ### Patch Changes
