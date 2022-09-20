@@ -671,6 +671,14 @@
         {
             "from": "/docs/benchmarks/",
             "to": "/docs/further-readings/benchmarks/"
+        },
+        {
+            "from": "/docs/general-concepts/",
+            "to": "/docs/api-reference/general-concepts/"
+        },
+        {
+            "from": "/docs/getting-started/components/",
+            "to": "/docs/api-reference/core/"
         }
     ]
 }
