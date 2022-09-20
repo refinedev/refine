@@ -2,4 +2,4 @@
 "@pankod/refine-remix-router": minor
 ---
 
-Add splat rotue support to remix with `handleRefineParams` helper.
+Add splat route support to remix with `handleRefineParams` helper.
