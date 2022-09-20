@@ -12,11 +12,6 @@ module.exports = {
             collapsed: false,
         },
         {
-            type: "doc",
-            id: "comparison",
-            label: "Comparison",
-        },
-        {
             type: "category",
             label: "Basic Tutorials",
             link: {
@@ -24,9 +19,9 @@ module.exports = {
                 id: "tutorials",
             },
             items: [
-                "tutorials/headless-tutorial",
                 "tutorials/ant-design-tutorial",
                 "tutorials/material-ui-tutorial",
+                "tutorials/headless-tutorial",
             ],
             collapsed: true,
         },
@@ -835,6 +830,11 @@ module.exports = {
                     items: ["advanced-tutorials/web3/ethereum-signin"],
                 },
             ],
+        },
+        {
+            type: "doc",
+            id: "comparison",
+            label: "Comparison",
         },
         {
             type: "doc",
