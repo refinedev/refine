@@ -57,7 +57,7 @@ export const PostList: React.FC = () => {
 
 ### Disable `useForm` redirection after successfull mutation
 
-When we create our Create Page, we pass `redirect` false to the [`useForm`](/docs/core/hooks/useForm) hook that we will use to manage the form. Thus, we will be able to do the redirection we want in our buttons.
+When we create our Create Page, we pass `redirect` false to the [`useForm`](/docs/api-reference/core/hooks/useForm) hook that we will use to manage the form. Thus, we will be able to do the redirection we want in our buttons.
 
 ```tsx title="src/pages/create.tsx"
 // highlight-next-line
@@ -354,7 +354,7 @@ export const PostCreate: React.FC = () => {
 ```
 
 :::tip
-We used the `redirect` method to perform the redirection, which returns from [`useForm`](/docs/core/hooks/useForm) instead of [`useNavigation`](/docs/core/hooks/navigation/useNavigation) Thus, we can do our routing without dealing with managing resources.
+We used the `redirect` method to perform the redirection, which returns from [`useForm`](/docs/api-reference/core/hooks/useForm) instead of [`useNavigation`](/docs/api-reference/core/hooks/navigation/useNavigation) Thus, we can do our routing without dealing with managing resources.
 :::
 
 ## Live StackBlitz Example

@@ -9,7 +9,7 @@ import saveButton from '@site/static/img/guides-and-concepts/components/buttons/
 
 ## Usage
 
-For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/docs/core/hooks/useForm) hook.
+For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/docs/api-reference/core/hooks/useForm) hook.
 
 ```tsx title="src/pages/posts/edit.tsx"
 // highlight-next-line

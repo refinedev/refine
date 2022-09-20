@@ -5,7 +5,7 @@ title: useModalForm
 
 `useModalForm` hook allows you to manage a form within a modal. It provides some useful methods to handle the form modal. For more information, you can view the live example or review the source code.
 
-[Refer to the useModalForm documentation for more information. →](/docs/packages/react-hook-form/useModalForm)
+[Refer to the useModalForm documentation for more information. →](/docs/packages/documentation/react-hook-form/useModalForm)
 
 [View useModalForm Example Source](https://github.com/pankod/refine/tree/master/examples/form/reactHookForm/useModalForm)
 

@@ -834,5 +834,5 @@ export const PostReview = () => {
     title="custom-pages-example"
 ></iframe>
 
-[ssrNextjs]: /docs/guides-and-concepts/ssr/nextjs
-[ssrRemix]: /docs/guides-and-concepts/ssr/remix
+[ssrNextjs]: /docs/advanced-tutorials/ssr/nextjs
+[ssrRemix]: /docs/advanced-tutorials/ssr/remix

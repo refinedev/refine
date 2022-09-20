@@ -4,7 +4,7 @@ title: useMenu
 ---
 
 `useMenu` is used to get menu items derived from the resources. These items include a link to dashboard page (if it exists) and links to the user defined resources (passed as children to `<Refine>`).
-This hook can also be used to build custom menus, including multi-level support. `<Sider/>` components inside [`@pankod/refine-antd`](/docs/ui-frameworks/antd/tutorial/) and [`@pankod/refine-mui`](/docs/ui-frameworks/mui/tutorial/) packages are using this hook as a base for their menus.
+This hook can also be used to build custom menus, including multi-level support. `<Sider/>` components inside [`@pankod/refine-antd`](/docs/tutorials/ant-design-tutorial/) and [`@pankod/refine-mui`](/docs/tutorials/material-ui-tutorial/) packages are using this hook as a base for their menus.
 
 ```ts
 const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
@@ -25,11 +25,11 @@ const { selectedKey, menuItems, defaultOpenKeys } = useMenu();
 
 :::tip
 
-If you are using [`@pankod/refine-antd`](/docs/ui-frameworks/antd/tutorial/) or [`@pankod/refine-mui`](/docs/ui-frameworks/mui/tutorial/) as a UI framework integration, you can find out more info about how their `<Sider/>` components are created and how to create a custom one by following their guides.
+If you are using [`@pankod/refine-antd`](/docs/tutorials/ant-design-tutorial/) or [`@pankod/refine-mui`](/docs/tutorials/material-ui-tutorial/) as a UI framework integration, you can find out more info about how their `<Sider/>` components are created and how to create a custom one by following their guides.
 
-[Ant Design > Customization > Custom Sider &#8594](/docs/ui-frameworks/antd/customization/antd-custom-sider/)
+[Ant Design > Customization > Custom Sider &#8594](/docs/api-reference/antd/customization/antd-custom-sider/)
 
-[Material UI > Customization > Custom Sider &#8594](/docs/ui-frameworks/mui/customization/mui-custom-sider/)
+[Material UI > Customization > Custom Sider &#8594](/docs/api-reference/mui/customization/mui-custom-sider/)
 
 :::
 
