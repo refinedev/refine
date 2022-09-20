@@ -10,7 +10,7 @@ import {
     RefineCloneButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
-import { Button, ButtonProps } from "@mantine/core";
+import { Anchor, Button, ButtonProps } from "@mantine/core";
 import { SquarePlus, IconProps } from "tabler-icons-react";
 
 export type CloneButtonProps = RefineCloneButtonProps<
@@ -69,10 +69,9 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
 
     const cloneUrl = generateCloneUrl(resource.route!, id!);
 
-    const { sx, ...restProps } = rest;
-
     return (
-        <Link
+        <Anchor
+            component={Link}
             to={cloneUrl}
             replace={false}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
@@ -81,16 +80,14 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
                     onClick(e);
                 }
             }}
-            style={{ textDecoration: "none" }}
         >
             <Button
                 disabled={data?.can === false}
-                variant="subtle"
+                variant="default"
                 leftIcon={!hideText && <SquarePlus {...svgIconProps} />}
                 title={disabledTitle()}
-                sx={{ minWidth: 0, ...sx }}
                 data-testid={RefineButtonTestIds.CloneButton}
-                {...restProps}
+                {...rest}
             >
                 {hideText ? (
                     <SquarePlus fontSize="small" {...svgIconProps} />
@@ -98,6 +95,6 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
                     children ?? translate("buttons.clone", "Clone")
                 )}
             </Button>
-        </Link>
+        </Anchor>
     );
 };

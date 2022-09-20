@@ -10,7 +10,7 @@ import {
     RefineEditButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
-import { Button, ButtonProps, Center } from "@mantine/core";
+import { Anchor, Button, ButtonProps, Center } from "@mantine/core";
 import { Pencil, IconProps } from "tabler-icons-react";
 
 export type EditButtonProps = RefineEditButtonProps<
@@ -68,10 +68,9 @@ export const EditButton: React.FC<EditButtonProps> = ({
 
     const editUrl = generateEditUrl(resource.route!, id!);
 
-    const { sx, ...restProps } = rest;
-
     return (
-        <Link
+        <Anchor
+            component={Link}
             to={editUrl}
             replace={false}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
@@ -80,22 +79,14 @@ export const EditButton: React.FC<EditButtonProps> = ({
                     onClick(e);
                 }
             }}
-            style={{ textDecoration: "none" }}
         >
             <Button
-                variant="subtle"
+                variant="default"
                 disabled={data?.can === false}
-                leftIcon={
-                    !hideText && (
-                        <Center>
-                            <Pencil {...svgIconProps} />
-                        </Center>
-                    )
-                }
+                leftIcon={!hideText && <Pencil {...svgIconProps} />}
                 title={disabledTitle()}
-                sx={{ minWidth: 0, ...sx }}
                 data-testid={RefineButtonTestIds.EditButton}
-                {...restProps}
+                {...rest}
             >
                 {hideText ? (
                     <Pencil fontSize="small" {...svgIconProps} />
@@ -103,6 +94,6 @@ export const EditButton: React.FC<EditButtonProps> = ({
                     children ?? translate("buttons.edit", "Edit")
                 )}
             </Button>
-        </Link>
+        </Anchor>
     );
 };

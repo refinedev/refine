@@ -11,7 +11,7 @@ import {
     RefineButtonTestIds,
     RefineListButtonProps,
 } from "@pankod/refine-ui-types";
-import { Button, ButtonProps } from "@mantine/core";
+import { Anchor, Button, ButtonProps } from "@mantine/core";
 import { List, IconProps } from "tabler-icons-react";
 
 export type ListButtonProps = RefineListButtonProps<
@@ -69,10 +69,9 @@ export const ListButton: React.FC<ListButtonProps> = ({
 
     const listUrl = generateListUrl(resource.route!);
 
-    const { sx, ...restProps } = rest;
-
     return (
-        <Link
+        <Anchor
+            component={Link}
             to={listUrl}
             replace={false}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
@@ -81,16 +80,14 @@ export const ListButton: React.FC<ListButtonProps> = ({
                     onClick(e);
                 }
             }}
-            style={{ textDecoration: "none" }}
         >
             <Button
-                variant="subtle"
+                variant="default"
                 disabled={data?.can === false}
                 leftIcon={!hideText && <List {...svgIconProps} />}
                 title={disabledTitle()}
-                sx={{ minWidth: 0, ...sx }}
                 data-testid={RefineButtonTestIds.ListButton}
-                {...restProps}
+                {...rest}
             >
                 {hideText ? (
                     <List fontSize="small" {...svgIconProps} />
@@ -105,6 +102,6 @@ export const ListButton: React.FC<ListButtonProps> = ({
                     )
                 )}
             </Button>
-        </Link>
+        </Anchor>
     );
 };

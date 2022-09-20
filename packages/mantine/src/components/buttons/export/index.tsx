@@ -29,17 +29,13 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
-    const { sx, ...restProps } = rest;
-
     return (
         <Button
-            {...rest}
-            variant="subtle"
+            variant="default"
             loading={loading}
             leftIcon={!hideText && <ArrowsUpDown {...svgIconProps} />}
-            sx={{ minWidth: 0, ...sx }}
             data-testid={RefineButtonTestIds.ExportButton}
-            {...restProps}
+            {...rest}
         >
             {hideText ? (
                 <ArrowsUpDown fontSize="small" {...svgIconProps} />

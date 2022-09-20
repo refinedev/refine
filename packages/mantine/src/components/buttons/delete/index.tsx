@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     useDelete,
     useTranslate,
@@ -10,7 +10,7 @@ import {
     RefineDeleteButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
-import { Group, Modal, Button, ButtonProps } from "@mantine/core";
+import { Group, Text, Button, ButtonProps, Popover } from "@mantine/core";
 import { Trash, IconProps } from "tabler-icons-react";
 
 export type DeleteButtonProps = RefineDeleteButtonProps<
@@ -66,18 +66,9 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
         },
     });
 
-    const [open, setOpen] = React.useState(false);
+    const [opened, setOpened] = useState(false);
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-    const handleCloseOnConfirm = () => {
-        setOpen(false);
+    const onConfirm = () => {
         mutate(
             {
                 id: id ?? "",
@@ -92,57 +83,52 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                 onSuccess: (value) => {
                     onSuccess && onSuccess(value);
                 },
+                onSettled: () => {
+                    setOpened(false);
+                },
             },
         );
     };
 
-    const { sx, ...restProps } = rest;
-
     return (
-        <div>
-            <Button
-                variant="subtle"
-                color="red"
-                onClick={handleClickOpen}
-                disabled={isLoading || data?.can === false}
-                loading={id === variables?.id && isLoading}
-                leftIcon={!hideText && <Trash {...svgIconProps} />}
-                sx={{ minWidth: 0, ...sx }}
-                data-testid={RefineButtonTestIds.DeleteButton}
-                {...restProps}
-            >
-                {hideText ? (
-                    <Trash fontSize="small" {...svgIconProps} />
-                ) : (
-                    children ?? translate("buttons.delete", "Delete")
-                )}
-            </Button>
-            <Modal
-                withCloseButton={false}
-                opened={open}
-                onClose={handleClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-                title={
-                    confirmTitle ??
-                    translate("buttons.confirm", "Are you sure?")
-                }
-            >
-                <Group position="center">
-                    <Button onClick={handleClose} variant="subtle">
+        <Popover opened={opened} onChange={setOpened} withArrow>
+            <Popover.Target>
+                <Button
+                    color="red"
+                    variant="outline"
+                    onClick={() => setOpened((o) => !o)}
+                    disabled={isLoading || data?.can === false}
+                    loading={id === variables?.id && isLoading}
+                    leftIcon={!hideText && <Trash {...svgIconProps} />}
+                    data-testid={RefineButtonTestIds.DeleteButton}
+                    {...rest}
+                >
+                    {hideText ? (
+                        <Trash fontSize="small" {...svgIconProps} />
+                    ) : (
+                        children ?? translate("buttons.delete", "Delete")
+                    )}
+                </Button>
+            </Popover.Target>
+            <Popover.Dropdown py="xs">
+                <Text size="sm" weight="bold">
+                    {confirmTitle ??
+                        translate("buttons.confirm", "Are you sure?")}
+                </Text>
+                <Group position="center" noWrap spacing="xs" mt="xs">
+                    <Button
+                        onClick={() => setOpened(false)}
+                        variant="default"
+                        size="xs"
+                    >
                         {confirmCancelText ??
                             translate("buttons.cancel", "Cancel")}
                     </Button>
-                    <Button
-                        variant="subtle"
-                        color="red"
-                        onClick={handleCloseOnConfirm}
-                        autoFocus
-                    >
+                    <Button color="red" onClick={onConfirm} autoFocus size="xs">
                         {confirmOkText ?? translate("buttons.delete", "Delete")}
                     </Button>
                 </Group>
-            </Modal>
-        </div>
+            </Popover.Dropdown>
+        </Popover>
     );
 };
