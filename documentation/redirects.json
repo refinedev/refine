@@ -667,6 +667,10 @@
         {
             "from": "/docs/guides-and-concepts/telemetry/",
             "to": "/docs/further-readings/telemetry/"
+        },        
+        {
+            "from": "docs/benchmarks/",
+            "to": "/docs/further-readings/benchmarks/"
         }
     ]
 }
