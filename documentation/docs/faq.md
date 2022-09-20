@@ -187,7 +187,7 @@ invalidate({
 
 ```
 
-[Refer to the **refine** useInvalidate hook documentation for more information. →](/docs/core/hooks/invalidate/useInvalidate)
+[Refer to the **refine** useInvalidate hook documentation for more information. →](/docs/api-reference/core/hooks/invalidate/useInvalidate)
 
 </TabItem>
 </Tabs>
