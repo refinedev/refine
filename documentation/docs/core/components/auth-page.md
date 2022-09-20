@@ -733,10 +733,8 @@ const authProvider: AuthProvider = {
     ...
     login: ({ providerName }) => {
         if (providerName === "github") {
-            // handle Github Auth flow
-        }
-        if (providerName === "google") {
-            // handle Google Auth flow
+            window.location.href = "https://example.com/auth/github"; // your github auth url 
+            return Promise.resolve(false);
         }
     }
 }
