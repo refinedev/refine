@@ -1,6 +1,6 @@
 ---
-id: tutorial
-title: Tutorial
+id: material-ui-tutorial
+title: Your First App using Material UI 
 ---
 
 import readyPage from '@site/static/img/tutorial/mui/ready-page.png';
@@ -1118,7 +1118,7 @@ In edit page, `useForm` hook initializes the form with current record values.
 
 ✳️ You can give form property to `<Box>` component and it will render the form.
 
-✳️ [`<TextField>`](components/fields/text.md) is Material UI components to build form inputs.
+✳️ [`<TextField>`](ui-frameworks/mui/components/fields/text.md) is Material UI components to build form inputs.
 
 ✳️ `<Autocomplete>` is a text input that helps you find what you're looking for by suggesting options. useAutocomplete is a refine hook for handling `<Autocomplete>` data. It returns `autocompleteProps` which includes all necessary props to build the autocomplete.
 You may refer to the [`useAutocomplete`](/ui-frameworks/mui/hooks/useAutocomplete.md) to get the full information about the hook.

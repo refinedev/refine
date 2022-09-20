@@ -3,6 +3,11 @@ module.exports = {
         {
             type: "category",
             label: "Getting Started",
+            link: {
+                type: "generated-index",
+                title: "Getting Started",
+                slug: "/getting-started",
+            },
             items: ["getting-started/overview", "getting-started/quickstart"],
             collapsed: false,
         },
@@ -12,8 +17,13 @@ module.exports = {
             label: "Comparison",
         },
         {
-            type: "doc",
-            id: "tutorials",
+            type: "category",
+            label: "Basic Tutorials",
+            items: [
+                "tutorials/headless-tutorial",
+                "tutorials/ant-design-tutorial",
+                "tutorials/material-ui-tutorial",
+            ],
         },
         {
             type: "doc",
@@ -23,7 +33,6 @@ module.exports = {
             type: "category",
             label: "Core",
             items: [
-                "core/tutorial",
                 {
                     type: "category",
                     label: "Providers",
@@ -208,7 +217,6 @@ module.exports = {
                     label: "Ant Design",
                     collapsed: false,
                     items: [
-                        "ui-frameworks/antd/tutorial",
                         {
                             type: "category",
                             label: "Hooks",
@@ -331,7 +339,6 @@ module.exports = {
                     label: "Material UI",
                     collapsed: false,
                     items: [
-                        "ui-frameworks/mui/tutorial",
                         {
                             type: "category",
                             label: "Hooks",
@@ -793,6 +800,6 @@ module.exports = {
         {
             type: "doc",
             id: "benchmarks",
-        }
+        },
     ],
 };

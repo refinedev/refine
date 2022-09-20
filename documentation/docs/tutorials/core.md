@@ -1,6 +1,6 @@
 ---
-id: tutorial
-title: Tutorial
+id: headless-tutorial
+title: Your First Headless App using Tailwind.css
 ---
 
 import readyPage from '@site/static/img/core/tutorial/ready-page.png';

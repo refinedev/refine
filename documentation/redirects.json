@@ -18,7 +18,7 @@
         },
         {
             "from": "/docs/api-references/providers/router-provider",
-            "to": "/docs/core/providers/router-provider"    
+            "to": "/docs/core/providers/router-provider"
         },
         {
             "from": "/docs/api-references/providers/data-provider",
@@ -1047,6 +1047,18 @@
         {
             "from": "/headset/",
             "to": "/"
+        },
+        {
+            "from": "/docs/ui-frameworks/antd/tutorial/",
+            "to": "/docs/tutorials/ant-design-tutorial/"
+        },
+        {
+            "from": "/docs/core/tutorial/",
+            "to": "/docs/tutorials/headless-tutorial/"
+        },
+        {
+            "from": "/docs/ui-frameworks/mui/tutorial/",
+            "to": "/docs/tutorials/material-ui-tutorial/"
         }
     ]
 }

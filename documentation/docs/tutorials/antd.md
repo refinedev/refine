@@ -1,6 +1,6 @@
 ---
-id: tutorial
-title: Tutorial
+id: ant-design-tutorial
+title: Your First App using Ant Design
 ---
 
 import readyPage from '@site/static/img/tutorial/ready-page.png';
