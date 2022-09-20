@@ -325,10 +325,6 @@
             "to": "/docs/advanced-tutorials/ssr/remix/"
         },
         {
-            "from": "/docs/guides-and-concepts/telemetry/",
-            "to": "/docs/advanced-tutorials/telemetry/"
-        },
-        {
             "from": "/docs/guides-and-concepts/upload/base64-upload/",
             "to": "/docs/advanced-tutorials/upload/base64-upload/"
         },
@@ -346,15 +342,15 @@
         },
         {
             "from": "/docs/packages/react-hook-form/useForm/",
-            "to": "/docs/packages/documentation/react-hook-formuseForm/"
+            "to": "/docs/packages/documentation/react-hook-form/useForm/"
         },
         {
             "from": "/docs/packages/react-hook-form/useModalForm/",
-            "to": "/docs/packages/documentation/react-hook-formuseModalForm/"
+            "to": "/docs/packages/documentation/react-hook-form/useModalForm/"
         },
         {
             "from": "/docs/packages/react-hook-form/useStepsForm/",
-            "to": "/docs/packages/documentation/react-hook-formuseStepsForm/"
+            "to": "/docs/packages/documentation/react-hook-form/useStepsForm/"
         },
         {
             "from": "/docs/packages/react-table/",
