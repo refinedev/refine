@@ -5,7 +5,7 @@ siderbar_label: useForgotPassword
 description: useForgotPassword data hook from refine is a modified version of react-query's useMutation for registration.
 ---
 
-`useForgotPassword` calls `forgotPassword` method from [`authProvider`](/core/providers/auth-provider.md) under the hood. It reset passwords the user if `forgotPassword` method from `authProvider` resolves and if it rejects shows an error notification.
+`useForgotPassword` calls `forgotPassword` method from [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood. It reset passwords the user if `forgotPassword` method from `authProvider` resolves and if it rejects shows an error notification.
 
 It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation).
 
@@ -55,7 +55,7 @@ const { mutate: forgotPassword } = useForgotPassword<{ email: string }>();
 
 We have 2 options for redirecting the app after forgotPassword successfully .
 
--   A custom url can be resolved from the promise returned from the `forgotPassword` method of the [authProvider](/core/providers/auth-provider.md).
+-   A custom url can be resolved from the promise returned from the `forgotPassword` method of the [authProvider](/api-reference/core/providers/auth-provider.md).
 
 ```tsx
 const authProvider: AuthProvider = {

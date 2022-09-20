@@ -61,10 +61,6 @@
             "to": "/docs/api-reference/core/hooks/auth/useRegister/"
         },
         {
-            "from": "/docs/core/hooks/auth/useResetPassword/",
-            "to": "/docs/api-reference/core/hooks/auth/useResetPassword/"
-        },
-        {
             "from": "/docs/core/hooks/auth/useUpdatePassword/",
             "to": "/docs/api-reference/core/hooks/auth/useUpdatePassword/"
         },
@@ -682,7 +678,7 @@
         },
         {
             "from": "/docs/core/hooks/auth/useResetPassword/",
-            "to": "/docs/core/hooks/auth/useForgotPassword/"
+            "to": "/docs/api-reference/core/hooks/auth/useForgotPassword/"
         }
     ]
 }
