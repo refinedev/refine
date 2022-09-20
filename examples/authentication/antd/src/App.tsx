@@ -49,7 +49,7 @@ const App: React.FC = () => {
             }
             return Promise.reject();
         },
-        resetPassword: (params: any) => {
+        forgotPassword: (params: any) => {
             if (params.email) {
                 //we can send email with reset password link here
                 return Promise.resolve();
@@ -87,7 +87,7 @@ const App: React.FC = () => {
                     },
                     {
                         path: "/reset-password",
-                        element: <AuthPage type="resetPassword" />,
+                        element: <AuthPage type="forgotPassword" />,
                     },
                     {
                         path: "/update-password",

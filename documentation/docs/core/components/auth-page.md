@@ -18,7 +18,7 @@ const { AuthPage, Refine, useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -81,7 +81,7 @@ render(
 
 -   `"login"` - a type of the login page and default type.
 -   `"register"` - type of the registration page.
--   `"resetPassword"` - type of the reset password page.
+-   `"forgotPassword"` - type of the reset password page.
 -   `"updatePassword"` - type of the update password page.
 
 ## Login
@@ -97,7 +97,7 @@ const { AuthPage, Refine, useNavigation, useRouterContext } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -205,16 +205,16 @@ render(
 );
 ```
 
-### `resetPasswordLink`
+### `forgotPasswordLink`
 
-`resetPasswordLink` property defines the link to the reset password page and also you can a give node to render.
+`forgotPasswordLink` property defines the link to the reset password page and also you can a give node to render.
 
 ```tsx live disableScroll hideCode url=http://localhost:3000/login previewHeight=350px
 const { AuthPage, Refine, useNavigation, useRouterContext } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -255,7 +255,7 @@ const LoginPage = () => {
     return Wrapper(
         <AuthPage
             type="login"
-            resetPasswordLink={
+            forgotPasswordLink={
                 <div
                     style={{
                         border: "1px dashed cornflowerblue",
@@ -270,8 +270,8 @@ const LoginPage = () => {
 };
 const RegisterPage = () =>
     Wrapper(<AuthPage type="register" loginLink="/login" />);
-const ResetPasswordPage = () =>
-    Wrapper(<AuthPage type="resetPassword" backLink="/login" />);
+const ForgotPasswordPage = () =>
+    Wrapper(<AuthPage type="forgotPassword" backLink="/login" />);
 
 const App = () => {
     return (
@@ -282,7 +282,7 @@ const App = () => {
                 // highlight-start
                 routes: [
                     { path: "/register", element: <RegisterPage /> },
-                    { path: "/reset-password", element: <ResetPasswordPage /> },
+                    { path: "/reset-password", element: <ForgotPasswordPage /> },
                 ],
                 // highlight-end
             }}
@@ -299,7 +299,7 @@ render(
             routes: [
                 { path: "/login", element: <LoginPage /> },
                 { path: "/register", element: <RegisterPage /> },
-                { path: "/reset-password", element: <ResetPasswordPage /> },
+                { path: "/reset-password", element: <ForgotPasswordPage /> },
             ],
         }}
         LoginPage={AuthPage}
@@ -339,7 +339,7 @@ const { AuthPage, Refine, useNavigation, useRouterContext } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -462,7 +462,7 @@ const { AuthPage, Refine, useNavigation, useLogin } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -579,7 +579,7 @@ const { AuthPage, Refine, useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -755,7 +755,7 @@ const { AuthPage, Refine, useNavigation, useRouterContext } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -871,7 +871,7 @@ const { AuthPage, Refine, useNavigation, useRouterContext } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -988,7 +988,7 @@ const { AuthPage, Refine, useNavigation, useRegister } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -1119,7 +1119,7 @@ render(
 
 ## Reset Password
 
-You can use the following props for the `<AuthPage>` component when the type is `"resetPassword"`:
+You can use the following props for the `<AuthPage>` component when the type is `"forgotPassword"`:
 
 ### `backLink`
 
@@ -1130,7 +1130,7 @@ const { AuthPage, Refine, useNavigation, useRouterContext } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -1164,12 +1164,12 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import { Wrapper } from "./Wrapper";
 import { authProvider } from "./authProvider";
 
-const ResetPasswordPage = () => {
+const ForgotPasswordPage = () => {
     const { Link } = useRouterContext();
 
     return Wrapper(
         <AuthPage
-            type="resetPassword"
+            type="forgotPassword"
             backLink={
                 <div
                     style={{
@@ -1185,7 +1185,7 @@ const ResetPasswordPage = () => {
 };
 
 const LoginPage = () =>
-    Wrapper(<AuthPage type="login" resetPasswordLink="/reset-password" />);
+    Wrapper(<AuthPage type="login" forgotPasswordLink="/reset-password" />);
 
 const App = () => {
     return (
@@ -1195,7 +1195,7 @@ const App = () => {
                 ...routerProvider,
                 // highlight-start
                 routes: [
-                    { path: "/reset-password", element: <ResetPasswordPage /> },
+                    { path: "/reset-password", element: <ForgotPasswordPage /> },
                 ],
                 // highlight-end
             }}
@@ -1211,7 +1211,7 @@ render(
             ...RefineDemoReactRouterV6(["/reset-password"]),
             routes: [
                 { path: "/login", element: <LoginPage /> },
-                { path: "/reset-password", element: <ResetPasswordPage /> },
+                { path: "/reset-password", element: <ForgotPasswordPage /> },
             ],
         }}
         LoginPage={AuthPage}
@@ -1247,11 +1247,11 @@ render(
 `submitButton` render your custom ReactNode to submit the form. Also, you can reach form values with the `onClick` property and use your own logic to submit the form.
 
 ```tsx live disableScroll hideCode url=http://localhost:3000/reset-password
-const { AuthPage, Refine, useNavigation, useResetPassword } = RefineCore;
+const { AuthPage, Refine, useNavigation, useForgotPassword } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -1260,13 +1260,13 @@ const authProvider = {
     getUserIdentity: () => Promise.resolve(),
 };
 // visible-block-start
-import { Refine, AuthPage, useResetPassword } from "@pankod/refine-core";
+import { Refine, AuthPage, useForgotPassword } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
 
-const ResetPasswordPage = () => {
-    const { mutate: resetPassword } = useResetPassword();
+const ForgotPasswordPage = () => {
+    const { mutate: forgotPassword } = useForgotPassword();
     const { replace } = useNavigation();
 
     return (
@@ -1282,7 +1282,7 @@ const ResetPasswordPage = () => {
                 }}
             >
                 <AuthPage
-                    type="resetPassword"
+                    type="forgotPassword"
                     backLink="/login"
                     submitButton={
                         <div
@@ -1306,7 +1306,7 @@ const ResetPasswordPage = () => {
                                     // you can access reset password form data from `event.target`
                                     console.log(event.target.form);
                                     // run your custom reset password logic(validation, etc.)
-                                    resetPassword();
+                                    forgotPassword();
                                     replace("/login");
                                 }}
                             >
@@ -1320,7 +1320,7 @@ const ResetPasswordPage = () => {
     );
 };
 const LoginPage = () => (
-    <AuthPage type="login" resetPasswordLink="/reset-password" />
+    <AuthPage type="login" forgotPasswordLink="/reset-password" />
 );
 
 const App = () => {
@@ -1331,7 +1331,7 @@ const App = () => {
                 ...routerProvider,
                 // highlight-start
                 routes: [
-                    { path: "/reset-password", element: <ResetPasswordPage /> },
+                    { path: "/reset-password", element: <ForgotPasswordPage /> },
                 ],
                 // highlight-end
             }}
@@ -1347,7 +1347,7 @@ render(
             ...RefineDemoReactRouterV6(["/reset-password"]),
             routes: [
                 { path: "/login", element: <LoginPage /> },
-                { path: "/reset-password", element: <ResetPasswordPage /> },
+                { path: "/reset-password", element: <ForgotPasswordPage /> },
             ],
         }}
         LoginPage={AuthPage}
@@ -1375,7 +1375,7 @@ const { AuthPage, Refine, useNavigation, useRouterContext } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -1483,7 +1483,7 @@ const { AuthPage, Refine, useNavigation, useUpdatePassword } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -1604,16 +1604,16 @@ render(
 
 ### Properties
 
-| Property           | Description                                                                      | Type                                                         |
-| ------------------ | -------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| type               | Render `<AuthPage>` forms by `type` property.                                    | `login` \| `register` \| `resetPassword` \| `updatePassword` |
-| registerLink       | Custom node that will be rendered as a register link to the `<AuthPage>`.        | `React.ReactNode`                                            |
-| loginLink          | Custom node that will be rendered as a link to the `<AuthPage>`.                 | `React.ReactNode`                                            |
-| resetPasswordLink  | Custom node that will be rendered as a reset password link to the `<AuthPage>`.  | `React.ReactNode`                                            |
-| updatePasswordLink | Custom node that will be rendered as a update password link to the `<AuthPage>`. | `React.ReactNode`                                            |
-| submitButton       | Custom node that will be used to submit form.                                    | `React.ReactNode`                                            |
-| backLink           | Custom node that will be displayed as a back link.                               | `React.ReactNode`                                            |
-| providers          | Render social logins if `type` is `"login"`.                                     | [`IProvider[]`](#interface)                                  |
+| Property           | Description                                                                      | Type                                                          |
+| ------------------ | -------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| type               | Render `<AuthPage>` forms by `type` property.                                    | `login` \| `register` \| `forgotPassword` \| `updatePassword` |
+| registerLink       | Custom node that will be rendered as a register link to the `<AuthPage>`.        | `React.ReactNode`                                             |
+| loginLink          | Custom node that will be rendered as a link to the `<AuthPage>`.                 | `React.ReactNode`                                             |
+| forgotPasswordLink | Custom node that will be rendered as a reset password link to the `<AuthPage>`.  | `React.ReactNode`                                             |
+| updatePasswordLink | Custom node that will be rendered as a update password link to the `<AuthPage>`. | `React.ReactNode`                                             |
+| submitButton       | Custom node that will be used to submit form.                                    | `React.ReactNode`                                             |
+| backLink           | Custom node that will be displayed as a back link.                               | `React.ReactNode`                                             |
+| providers          | Render social logins if `type` is `"login"`.                                     | [`IProvider[]`](#interface)                                   |
 
 ### Interface
 

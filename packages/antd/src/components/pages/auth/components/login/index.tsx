@@ -34,7 +34,7 @@ type LoginProps = RefineLoginPageProps<LayoutProps, CardProps, FormProps>;
 export const LoginPage: React.FC<LoginProps> = ({
     providers,
     registerLink,
-    resetPasswordLink,
+    forgotPasswordLink,
     rememberMe,
     contentProps,
     wrapperProps,
@@ -165,7 +165,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                             </Checkbox>
                         </Form.Item>
                     )}
-                    {resetPasswordLink ?? (
+                    {forgotPasswordLink ?? (
                         <Link
                             style={{
                                 fontSize: "12px",
@@ -174,7 +174,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                             to="/reset-password"
                         >
                             {translate(
-                                "pages.login.buttons.resetPassword",
+                                "pages.login.buttons.forgotPassword",
                                 "Forgot password?",
                             )}
                         </Link>

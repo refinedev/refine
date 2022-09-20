@@ -41,7 +41,7 @@ const App: React.FC = () => {
             }
             return Promise.reject();
         },
-        resetPassword: (params: any) => {
+        forgotPassword: (params: any) => {
             if (params.email) {
                 //we can send email with reset password link here
                 return Promise.resolve();

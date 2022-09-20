@@ -20,7 +20,7 @@ const { AuthPage } = RefineAntd;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -106,7 +106,7 @@ render(
 
 -   `login` - a type of login page and default type.
 -   `register` - a type of registration page.
--   `resetPassword` - a type of reset password page.
+-   `forgotPassword` - a type of reset password page.
 -   `updatePassword` - type of update password page.
 
 ## Login
@@ -124,7 +124,7 @@ const { AuthPage } = RefineAntd;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -215,7 +215,7 @@ const { useRouterContext, useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -344,7 +344,7 @@ const { useRouterContext, useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -471,7 +471,7 @@ const { useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -605,7 +605,7 @@ const { useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -717,7 +717,7 @@ const { useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -839,7 +839,7 @@ const { useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -957,7 +957,7 @@ const { useRouterContext, useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -1103,7 +1103,7 @@ const { AuthPage } = RefineAntd;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -1206,7 +1206,7 @@ const { useRouterContext, useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -1337,7 +1337,7 @@ const { useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -1466,7 +1466,7 @@ const { useRouterContext, useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -1600,7 +1600,7 @@ const { useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -1720,7 +1720,7 @@ const { useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -1888,7 +1888,7 @@ const { AuthPage } = RefineAntd;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -1913,7 +1913,7 @@ const App = () => {
                 routes: [
                     {
                         path: "/reset-password",
-                        element: <AuthPage type="resetPassword" />,
+                        element: <AuthPage type="forgotPassword" />,
                     },
                 ],
             }}
@@ -1952,7 +1952,7 @@ render(
                 { path: "/login", element: <AuthPage /> },
                 {
                     path: "/reset-password",
-                    element: <AuthPage type="resetPassword" />,
+                    element: <AuthPage type="forgotPassword" />,
                 },
             ],
         }}
@@ -1994,7 +1994,7 @@ const { useRouterContext, useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -2042,7 +2042,7 @@ const App = () => {
                 routes: [
                     {
                         path: "/reset-password",
-                        element: <Auth type="resetPassword" />,
+                        element: <Auth type="forgotPassword" />,
                     },
                 ],
             }}
@@ -2084,7 +2084,7 @@ render(
                 },
                 {
                     path: "/reset-password",
-                    element: <Auth type="resetPassword" />,
+                    element: <Auth type="forgotPassword" />,
                 },
             ],
         }}
@@ -2125,7 +2125,7 @@ const { useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -2153,7 +2153,7 @@ const App = () => {
                         path: "/reset-password",
                         element: (
                             <AuthPage
-                                type="resetPassword"
+                                type="forgotPassword"
                                 wrapperProps={{
                                     style: {
                                         background: "#331049",
@@ -2201,7 +2201,7 @@ render(
                     path: "/reset-password",
                     element: (
                         <AuthPage
-                            type="resetPassword"
+                            type="forgotPassword"
                             wrapperProps={{
                                 style: {
                                     background: "#331049",
@@ -2250,7 +2250,7 @@ const { useRouterContext, useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -2278,7 +2278,7 @@ const App = () => {
                         path: "/reset-password",
                         element: (
                             <AuthPage
-                                type="resetPassword"
+                                type="forgotPassword"
                                 loginLink={false}
                                 contentProps={{
                                     title: "Reset Password",
@@ -2309,7 +2309,7 @@ render(
                     path: "/reset-password",
                     element: (
                         <AuthPage
-                            type="resetPassword"
+                            type="forgotPassword"
                             loginLink={false}
                             contentProps={{
                                 title: "Reset Password",
@@ -2350,7 +2350,7 @@ const { useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -2372,7 +2372,7 @@ const App = () => {
             authProvider={authProvider}
             LoginPage={() => (
                 <AuthPage
-                    type="resetPassword"
+                    type="forgotPassword"
                     // highlight-start
                     formProps={{
                         initialValues: {
@@ -2406,7 +2406,7 @@ render(
                     path: "/reset-password",
                     element: (
                         <AuthPage
-                            type="resetPassword"
+                            type="forgotPassword"
                             formProps={{
                                 initialValues: {
                                     email: "demo@refine.dev",
@@ -2444,7 +2444,7 @@ const { useRouterContext, useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -2471,7 +2471,7 @@ const App = () => {
                         path: "/reset-password",
                         element: (
                             <AuthPage
-                                type="resetPassword"
+                                type="forgotPassword"
                                 loginLink={false}
                                 formProps={{
                                     onFinish: (formValues) =>
@@ -2527,7 +2527,7 @@ render(
                     path: "/reset-password",
                     element: (
                         <AuthPage
-                            type="resetPassword"
+                            type="forgotPassword"
                             loginLink={false}
                             formProps={{
                                 onFinish: (formValues) =>
@@ -2586,7 +2586,7 @@ const { AuthPage } = RefineAntd;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -2694,7 +2694,7 @@ const { AuthPage } = RefineAntd;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -2783,7 +2783,7 @@ const { useRouterContext, useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -2882,7 +2882,7 @@ const { useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -3002,7 +3002,7 @@ const { useRouterContext, useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -3115,17 +3115,17 @@ render(
 
 ### Properties
 
-| Property          | Description                                                                         | Type                                                         |
-| ----------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| type              | Render `<AuthPage>` forms by `type` property.                                       | `login` \| `register` \| `resetPassword` \| `updatePassword` |
-| providers         | Render auth logins if `type` is `"login"`.                                          | [`IProvider[]`](#interface)                                  |
-| registerLink      | A custom node that will be rendered as a register link to the `<AuthPage>`.         | `React.ReactNode`                                            |
-| loginLink         | A custom node that will be rendered as a link to the `<AuthPage>`.                  | `React.ReactNode`                                            |
-| resetPasswordLink | A custom node that will be rendered as a reset password link to the `<AuthPage>`.   | `React.ReactNode`                                            |
-| wrapperProps      | Wrapper element props.                                                              | [`WrapperProps`](https://ant.design/components/layout/#API)  |
-| contentProps      | Content wrapper element props.                                                      | [`CardProps`](https://ant.design/components/card/#API)       |
-| formProps         | Props for the form component.                                                       | [`FormProps`](https://ant.design/components/form/#API)       |
-| renderContent     | Gives you default content you can use it to add some extra elements to the content. | `function(content: React.ReactNode) => React.ReactNode`      |
+| Property           | Description                                                                         | Type                                                          |
+| ------------------ | ----------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| type               | Render `<AuthPage>` forms by `type` property.                                       | `login` \| `register` \| `forgotPassword` \| `updatePassword` |
+| providers          | Render auth logins if `type` is `"login"`.                                          | [`IProvider[]`](#interface)                                   |
+| registerLink       | A custom node that will be rendered as a register link to the `<AuthPage>`.         | `React.ReactNode`                                             |
+| loginLink          | A custom node that will be rendered as a link to the `<AuthPage>`.                  | `React.ReactNode`                                             |
+| forgotPasswordLink | A custom node that will be rendered as a reset password link to the `<AuthPage>`.   | `React.ReactNode`                                             |
+| wrapperProps       | Wrapper element props.                                                              | [`WrapperProps`](https://ant.design/components/layout/#API)   |
+| contentProps       | Content wrapper element props.                                                      | [`CardProps`](https://ant.design/components/card/#API)        |
+| formProps          | Props for the form component.                                                       | [`FormProps`](https://ant.design/components/form/#API)        |
+| renderContent      | Gives you default content you can use it to add some extra elements to the content. | `function(content: React.ReactNode) => React.ReactNode`       |
 
 ### Interface
 

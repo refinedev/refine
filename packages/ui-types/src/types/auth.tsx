@@ -18,7 +18,7 @@ export interface RefineRegisterFormTypes {
     password?: string;
 }
 
-export interface RefineResetPasswordFormTypes {
+export interface RefineForgotPasswordFormTypes {
     email: string;
 }
 
@@ -56,7 +56,7 @@ export type RefineAuthPageProps<
            * @description Render a redirect to reset password page button node. If set to false, reset password button will not be rendered.
            * @optional
            */
-          resetPasswordLink?: React.ReactNode;
+          forgotPasswordLink?: React.ReactNode;
           /**
            * @description Render a remember me button node. If set to false, remember me button will not be rendered.
            * @optional
@@ -90,7 +90,7 @@ export type RefineAuthPageProps<
            * @description The type of the auth page.
            * @optional
            */
-          type: "resetPassword";
+          type: "forgotPassword";
           /**
            * @description render a redirect to login page button node. If set to false, login button will not be rendered.
            * @optional
@@ -100,7 +100,7 @@ export type RefineAuthPageProps<
            * @description Custom submit function for the form. Trigger after submitting the form.
            * @optional
            */
-          onSubmit?: (formValues: RefineResetPasswordFormTypes) => void;
+          onSubmit?: (formValues: RefineForgotPasswordFormTypes) => void;
       }>
     | PropsWithChildren<{
           /**
@@ -147,7 +147,7 @@ export type RefineLoginPageProps<
 > = PropsWithChildren<{
     providers?: IProvider[];
     registerLink?: React.ReactNode;
-    resetPasswordLink?: React.ReactNode;
+    forgotPasswordLink?: React.ReactNode;
     rememberMe?: React.ReactNode;
     wrapperProps?: TWrapperProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;
@@ -173,7 +173,7 @@ export type RefineRegisterPageProps<
 /**
  * This should be the base type for `AuthPage` `Reset Password` component implementations in UI integrations.
  */
-export type RefineResetPasswordPageProps<
+export type RefineForgotPasswordPageProps<
     TWrapperProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
     TFormProps extends {} = Record<keyof any, unknown>,

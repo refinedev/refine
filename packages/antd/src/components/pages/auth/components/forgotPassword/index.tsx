@@ -1,7 +1,7 @@
 import React from "react";
 import {
-    RefineResetPasswordPageProps,
-    RefineResetPasswordFormTypes,
+    RefineForgotPasswordPageProps,
+    RefineForgotPasswordFormTypes,
 } from "@pankod/refine-ui-types";
 import {
     Row,
@@ -19,12 +19,12 @@ import {
 import {
     useTranslate,
     useRouterContext,
-    useResetPassword,
+    useForgotPassword,
 } from "@pankod/refine-core";
 
 import { layoutStyles, containerStyles, titleStyles } from "../styles";
 
-type ResetPassworProps = RefineResetPasswordPageProps<
+type ResetPassworProps = RefineForgotPasswordPageProps<
     LayoutProps,
     CardProps,
     FormProps
@@ -37,23 +37,23 @@ const { Text, Title } = Typography;
  *
  * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/antd-auth-page/#reset-password} for more details.
  */
-export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
+export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
     loginLink,
     wrapperProps,
     contentProps,
     renderContent,
     formProps,
 }) => {
-    const [form] = Form.useForm<RefineResetPasswordFormTypes>();
+    const [form] = Form.useForm<RefineForgotPasswordFormTypes>();
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
-    const { mutate: resetPassword, isLoading } =
-        useResetPassword<RefineResetPasswordFormTypes>();
+    const { mutate: forgotPassword, isLoading } =
+        useForgotPassword<RefineForgotPasswordFormTypes>();
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>
-            {translate("pages.resetPassword.title", "Forgot your password?")}
+            {translate("pages.forgotPassword.title", "Forgot your password?")}
         </Title>
     );
     const CardContent = (
@@ -63,17 +63,17 @@ export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
             style={containerStyles}
             {...(contentProps ?? {})}
         >
-            <Form<RefineResetPasswordFormTypes>
+            <Form<RefineForgotPasswordFormTypes>
                 layout="vertical"
                 form={form}
-                onFinish={(values) => resetPassword(values)}
+                onFinish={(values) => forgotPassword(values)}
                 requiredMark={false}
                 {...formProps}
             >
                 <Form.Item
                     name="email"
                     label={translate(
-                        "pages.resetPassword.fields.email",
+                        "pages.forgotPassword.fields.email",
                         "Email",
                     )}
                     rules={[
@@ -81,7 +81,7 @@ export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
                         {
                             type: "email",
                             message: translate(
-                                "pages.resetPassword.errors.validEmail",
+                                "pages.forgotPassword.errors.validEmail",
                                 "Invalid email address",
                             ),
                         },
@@ -91,7 +91,7 @@ export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
                         type="email"
                         size="large"
                         placeholder={translate(
-                            "pages.resetPassword.fields.email",
+                            "pages.forgotPassword.fields.email",
                             "Email",
                         )}
                     />
@@ -133,7 +133,7 @@ export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
                     block
                 >
                     {translate(
-                        "pages.resetPassword.buttons.submit",
+                        "pages.forgotPassword.buttons.submit",
                         "Send reset instructions",
                     )}
                 </Button>

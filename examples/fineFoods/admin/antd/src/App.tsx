@@ -80,7 +80,7 @@ const App: React.FC = () => {
                             },
                             {
                                 path: "/reset-password",
-                                element: <AuthPage type="resetPassword" />,
+                                element: <AuthPage type="forgotPassword" />,
                             },
                             {
                                 path: "/update-password",

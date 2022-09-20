@@ -18,7 +18,7 @@ An auth provider must include following methods:
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -261,7 +261,7 @@ register: ({ email, password }) => {
 
 > [Refer to useRegister documentation for more information. &#8594](/core/hooks/auth/useRegister.md)
 
-### `resetPassword`
+### `forgotPassword`
 
 **refine** expects this method to return a resolved Promise if the reset password is successful, and a rejected Promise if it is not.
 
@@ -271,11 +271,11 @@ register: ({ email, password }) => {
 
 <br />
 
-Here we show an example `resetPassword` method.
+Here we show an example `forgotPassword` method.
 
 ```tsx title="auth-provider.ts"
 const authProvider = {
-    resetPassword: ({ email }) => {
+    forgotPassword: ({ email }) => {
         // We suppose we actually send a request to the back end here.
         if (email) {
             //we can send an email to the user with a link to reset the password.
@@ -288,23 +288,23 @@ const authProvider = {
 
 <br />
 
-`resetPassword` method will be accessible via [`useResetPassword`](/core/hooks/auth/useResetPassword.md) auth hook.
+`forgotPassword` method will be accessible via [`useForgotPassword`](/core/hooks/auth/useForgotPassword.md) auth hook.
 
 ```tsx
-import { useResetPassword } from "@pankod/refine-core";
+import { useForgotPassword } from "@pankod/refine-core";
 
-const { mutate: resetPassword } = useResetPassword();
+const { mutate: forgotPassword } = useForgotPassword();
 
-resetPassword(values);
+forgotPassword(values);
 ```
 
 :::tip
-`mutate` acquired from `useResetPassword` can accept any kind of object for values since `resetPassword` method from `authProvider` does not have a restriction on its parameters.  
-A type parameter for the values can be provided to `useResetPassword`.
+`mutate` acquired from `useForgotPassword` can accept any kind of object for values since `forgotPassword` method from `authProvider` does not have a restriction on its parameters.  
+A type parameter for the values can be provided to `useForgotPassword`.
 
 ```tsx
-const { mutate: resetPassword } =
-    useResetPassword<{
+const { mutate: forgotPassword } =
+    useForgotPassword<{
         email: string;
     }>();
 ```
@@ -315,7 +315,7 @@ const { mutate: resetPassword } =
 **refine** automatically displays an error notification if the reset password fails. You can customize the default error message.
 
 ```tsx
-resetPassword: ({ email }) => {
+forgotPassword: ({ email }) => {
      if (email) {
             return Promise.resolve();
         }
@@ -331,7 +331,7 @@ resetPassword: ({ email }) => {
 
 :::
 
-> [Refer to useResetPassword documentation for more information. &#8594](/core/hooks/auth/useResetPassword.md)
+> [Refer to useForgotPassword documentation for more information. &#8594](/core/hooks/auth/useForgotPassword.md)
 
 ### `updatePassword`
 
@@ -345,7 +345,7 @@ resetPassword: ({ email }) => {
 
 <br />
 
-Here we show an example `resetPassword` method.
+Here we show an example `forgotPassword` method.
 
 ```tsx title="auth-provider.ts"
 const authProvider = {
@@ -389,7 +389,7 @@ const { mutate: updatePassword } =
 **refine** automatically displays an error notification if the update password fails. You can customize the default error message.
 
 ```tsx
-resetPassword: ({ email }) => {
+forgotPassword: ({ email }) => {
      if (email) {
             return Promise.resolve();
         }
@@ -873,7 +873,7 @@ These hooks can be used with the `authProvider` authentication and authorization
 -   [useLogout](/core/hooks/auth/useLogout.md)
 -   [usePermissions](/core/hooks/auth/usePermissions.md)
 -   [useRegister](/core/hooks/auth/useRegister.md)
--   [useResetPassword](/core/hooks/auth/useResetPassword.md)
+-   [useForgotPassword](/core/hooks/auth/useForgotPassword.md)
 -   [useUpdatePassword](/core/hooks/auth/useUpdatePassword.md)
 -   [`<Authenticated />`](/core/components/auth/authenticated.md)
 
@@ -892,7 +892,7 @@ These hooks can be used with the `authProvider` authentication and authorization
 | getPermissions <div className="required">Required</div> | Can be use to get user credentials        | Authorization roles accepted          |
 | getUserIdentity                                         | Can be use to get user identity           | User identity avaliable to return     |
 | register                                                | Register user                             | Auth confirms register                |
-| resetPassword                                           | Can be use to get password reset          | Auth confirms reset password          |
+| forgotPassword                                          | Can be use to get password reset          | Auth confirms reset password          |
 | updatePassword                                          | Can be use to get update password         | Auth confirms update password         |
 <br />
 

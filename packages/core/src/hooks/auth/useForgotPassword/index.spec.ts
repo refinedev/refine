@@ -3,7 +3,7 @@ import ReactRouterDom from "react-router-dom";
 
 import { TestWrapper, act } from "@test";
 
-import { useResetPassword } from "./";
+import { useForgotPassword } from ".";
 
 const mHistory = jest.fn();
 
@@ -12,7 +12,7 @@ jest.mock("react-router-dom", () => ({
     useNavigate: () => mHistory,
 }));
 
-describe("useResetPassword Hook", () => {
+describe("useForgotPassword Hook", () => {
     beforeEach(() => {
         mHistory.mockReset();
         jest.spyOn(console, "error").mockImplementation((message) => {
@@ -23,11 +23,11 @@ describe("useResetPassword Hook", () => {
     });
 
     it("succeed reset password", async () => {
-        const { result } = renderHook(() => useResetPassword(), {
+        const { result } = renderHook(() => useForgotPassword(), {
             wrapper: TestWrapper({
                 authProvider: {
                     login: () => Promise.resolve(),
-                    resetPassword: ({ email }) => {
+                    forgotPassword: ({ email }) => {
                         if (email) {
                             return Promise.resolve();
                         }
@@ -42,10 +42,12 @@ describe("useResetPassword Hook", () => {
             }),
         });
 
-        const { mutate: resetPassword } = result.current ?? { mutate: () => 0 };
+        const { mutate: forgotPassword } = result.current ?? {
+            mutate: () => 0,
+        };
 
         await act(async () => {
-            resetPassword({ email: "test@test.com" });
+            forgotPassword({ email: "test@test.com" });
         });
 
         await waitFor(() => {
@@ -56,11 +58,11 @@ describe("useResetPassword Hook", () => {
     });
 
     it("fail reset password", async () => {
-        const { result } = renderHook(() => useResetPassword(), {
+        const { result } = renderHook(() => useForgotPassword(), {
             wrapper: TestWrapper({
                 authProvider: {
                     login: () => Promise.resolve(),
-                    resetPassword: () =>
+                    forgotPassword: () =>
                         Promise.reject(new Error("Missing email")),
                     checkAuth: () => Promise.resolve(),
                     checkError: () => Promise.resolve(),
@@ -71,10 +73,12 @@ describe("useResetPassword Hook", () => {
             }),
         });
 
-        const { mutate: resetPassword } = result.current ?? { mutate: () => 0 };
+        const { mutate: forgotPassword } = result.current ?? {
+            mutate: () => 0,
+        };
 
         await act(async () => {
-            resetPassword({});
+            forgotPassword({});
         });
 
         await waitFor(() => {

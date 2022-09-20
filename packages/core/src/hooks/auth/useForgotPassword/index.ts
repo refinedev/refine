@@ -3,36 +3,36 @@ import { useMutation, UseMutationResult } from "@tanstack/react-query";
 
 import { AuthContext } from "@contexts/auth";
 
-import { IAuthContext, TResetPasswordData } from "../../../interfaces";
+import { IAuthContext, TForgotPasswordData } from "../../../interfaces";
 import { useNavigation, useNotification } from "@hooks";
 
 /**
- * `useResetPassword` calls `resetPassword` method from {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
+ * `useForgotPassword` calls `forgotPassword` method from {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
  *
- * @see {@link https://refine.dev/docs/core/hooks/auth/useResetPassword} for more details.
+ * @see {@link https://refine.dev/docs/core/hooks/auth/useForgotPassword} for more details.
  *
  * @typeParam TData - Result data of the query
  * @typeParam TVariables - Values for mutation function. default `{}`
  *
  */
-export const useResetPassword = <TVariables = {}>(): UseMutationResult<
-    TResetPasswordData,
+export const useForgotPassword = <TVariables = {}>(): UseMutationResult<
+    TForgotPasswordData,
     Error,
     TVariables,
     unknown
 > => {
     const { replace } = useNavigation();
-    const { resetPassword: resetPasswordFromContext } =
+    const { forgotPassword: forgotPasswordFromContext } =
         React.useContext<IAuthContext>(AuthContext);
 
     const { close, open } = useNotification();
 
     const queryResponse = useMutation<
-        TResetPasswordData,
+        TForgotPasswordData,
         Error,
         TVariables,
         unknown
-    >(["useResetPassword"], resetPasswordFromContext, {
+    >(["useForgotPassword"], forgotPasswordFromContext, {
         onSuccess: (redirectPathFromAuth) => {
             if (redirectPathFromAuth !== false) {
                 if (redirectPathFromAuth) {
