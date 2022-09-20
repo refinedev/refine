@@ -4,13 +4,12 @@ description: We'll looking The Advantages and Disadvantages of Working on Open S
 slug: open-source-advantages-disadvantages
 authors: ozkalai
 tags: [refine, react, framework, webdev, opensource, ant-design, material-ui, react-bootstrap, opensource]
-image: /img/placeholder.png
+image: /img/blog/2022-04-29-open-source-adv-disadv/social.jpg
 hide_table_of_contents: false
 ---
 
 Working on open source projects can be both an advantage and disadvantage. There are many reasons for doing so, but it's important to know the risks involved before getting started with your own contribution!
 
-<!--truncate-->
 
 ### 💻 Shortly My Tech Career
 

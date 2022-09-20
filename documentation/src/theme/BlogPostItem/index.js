@@ -23,11 +23,11 @@ export default function BlogPostItem({ className }) {
         <BlogPostItemContainer className={className}>
             <div className="blog-post-item-shadow flex h-full flex-col overflow-hidden rounded-[10px]">
                 <Link itemProp="url" to={permalink}>
-                    <div className="relative m-0 h-40 overflow-hidden pt-[56.25%]">
+                    <div className="relative m-0 h-40 overflow-hidden pt-[56.25%] hover:brightness-90">
                         <img
-                            src={frontMatter.image}
+                            src={`https://refine-web.imgix.net${frontMatter.image}?w=500`}
                             alt="Post image"
-                            className="absolute inset-0 h-full w-full object-cover transition duration-150 hover:brightness-90"
+                            className="absolute inset-0 h-full w-full object-cover transition duration-150 rounded-tl-[10px] rounded-tr-[10px]"
                             loading="lazy"
                         />
                     </div>

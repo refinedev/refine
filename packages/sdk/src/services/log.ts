@@ -26,7 +26,10 @@ class Log {
         return await this.client.call({
             method: "post",
             url: "/log/client",
-            data,
+            data: {
+                ...data,
+                applicationClientId: this.client.getClientId(),
+            },
         });
     }
 
@@ -58,7 +61,10 @@ class Log {
         return await this.client.call({
             method: "patch",
             url: `/log/client/${id}`,
-            data,
+            data: {
+                ...data,
+                applicationClientId: this.client.getClientId(),
+            },
         });
     }
 }

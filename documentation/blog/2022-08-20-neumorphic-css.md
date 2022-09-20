@@ -4,7 +4,7 @@ description: Overview and examples for Neumorphic CSS implementations.
 slug: neumorphic-css
 authors: joel_adewole
 tags: [neumorphism, css, UI, neumorphic, design]
-image: /img/placeholder.png
+image: /img/blog/2022-08-20-neumorphic-css/social.png
 hide_table_of_contents: false
 ---
 
@@ -23,7 +23,6 @@ import unchecked from '@site/static/img/blog/2022-08-20-neumorphic-css/unchecked
 Many developers are still unaware of some design trends even after practicing web design for many years. 
 In a bid to maximize the aesthetic value of web page layouts, designers and developers have adopted various design trends.
 The Parallax Effect, 3D graphics, Memphis design, Neo-brutalism, Visible boundaries, and Retro Revolutions are a few of these trends. 
-<!--truncate-->
 
 "How do you know which to use?" is the question.
 

@@ -40,20 +40,20 @@ const Integrations: React.FC = () => {
 
     return (
         <Layout>
-            <Head>
+            <Head title="Integrations | refine">
                 <html data-page="integrations" data-customized="true" />
             </Head>
             <div className={styles.integrations_container}>
                 <div className={styles.header}>
                     <div className={styles.headerTitle}>
-                        <span>ADD 3rd PARTY MODULES</span>
+                        <span>SEAMLESS INTEGRATION WITH YOUR</span>
                         <span className={styles.headerTitleBold}>
-                            AND SOLUTIONS
+                            EXISTING ECOSYSTEM.
                         </span>
                     </div>
                     <p className={styles.headerText}>
-                        USE YOUR SOURCE CONTROL & CI/CD PIPELINE. DEPLOY TO
-                        ANYWHERE, INCLUDING SERVERLESS, EDGE, CLOUD WORKERS ETC.
+                        LIST OF PACKAGES TO EXTEND YOUR REFINE PROJECT WITH UI
+                        FRAMEWORKS, BACKEND CONNECTORS AND OTHER POWERFUL TOOLS.
                     </p>
                 </div>
                 <div className={styles.integrationsWrapper}>

@@ -106,7 +106,9 @@ export const DemoSidebar: React.FC<DemoSidebarProps> = ({
                                     min={0}
                                     step={1000}
                                     value={undoableTimeout}
-                                    onChange={onUndoableTimeoutChange}
+                                    onChange={(value) =>
+                                        onUndoableTimeoutChange(value ?? 0)
+                                    }
                                 />
                             </Form.Item>
                         )}

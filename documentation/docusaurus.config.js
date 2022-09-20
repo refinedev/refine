@@ -70,7 +70,7 @@ const siteConfig = {
         [
             "./plugins/blog-plugin.js",
             {
-                blogTitle: "refine blog!",
+                blogTitle: "Blog",
                 blogDescription: "A Docusaurus powered blog!",
                 routeBasePath: "/blog",
                 postsPerPage: 12,
@@ -142,7 +142,6 @@ const siteConfig = {
                     position: "left",
                 },
                 { to: "blog", label: "Blog", position: "left" },
-                // { to: "about", label: "About", position: "left" },
                 {
                     to: "https://store.refine.dev",
                     label: "Store 🎁",
@@ -211,7 +210,7 @@ const siteConfig = {
                     items: [
                         {
                             label: "About",
-                            to: "/",
+                            to: "about",
                         },
                         {
                             label: "Store 🎁",

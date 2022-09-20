@@ -4,7 +4,7 @@ description: The most essential skills to have as a modern Node.js developer
 slug: node-js-developer-skills
 authors: david_herbert
 tags: [nodejs, javascript]
-image: https://refine.dev/img/blog/2022-09-06-nodejs-developer/social.png
+image: /img/blog/2022-09-06-nodejs-developer/social.png
 hide_table_of_contents: false
 ---
 

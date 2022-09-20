@@ -71,7 +71,7 @@ export const BlogPostPageView = ({ children }) => {
                 </div>
                 <img
                     className="mb-2 rounded-xl"
-                    src={frontMatter.image}
+                    src={`https://refine-web.imgix.net${frontMatter.image}?w=800`}
                     alt="Post image"
                 />
             </div>
