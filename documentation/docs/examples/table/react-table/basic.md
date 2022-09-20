@@ -5,7 +5,7 @@ title: Basic
 
 **refine** allows you to use all the features of [React Table](https://react-table.tanstack.com/) with `@pankod/refine-react-table` adapter. In this way, you can manage your server-side data operations. By using this adapter, you can directly use all the features of React Table in your **refine** project.
 
-[Refer to the **refine** React Table documentation for more information. →](/docs/packages/react-table/)
+[Refer to the **refine** React Table documentation for more information. →](/docs/packages/documentation/react-table/)
 
 [View React Table Example Source](https://github.com/pankod/refine/tree/master/examples/table/reactTable/basic)
 

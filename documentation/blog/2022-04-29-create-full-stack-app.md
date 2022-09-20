@@ -70,7 +70,7 @@ To learn more about **refine** features, we recommend that you read the [Overvie
 
 ## Create Full Stack App
 
-As we mentioned above, you can easily handle any API and GraphQL queries without writing extra code thanks to the **refine** [Data Provider](/docs/core/providers/data-provider/) hooks. If you do not have a custom backend, you can choose one of the following backend providers that work in harmony with **refine**.
+As we mentioned above, you can easily handle any API and GraphQL queries without writing extra code thanks to the **refine** [Data Provider](/docs/api-reference/core/providers/data-provider/) hooks. If you do not have a custom backend, you can choose one of the following backend providers that work in harmony with **refine**.
 
 **refine** includes many out-of-the-box data providers to use in your projects like:
 
@@ -88,7 +88,7 @@ As we mentioned above, you can easily handle any API and GraphQL queries without
 -   [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
 -   [Medusa](https://github.com/pankod/refine/tree/master/packages/medusa)
 
-[Refer to the `dataProvider` documentation for detailed usage. &#8594](/docs/core/providers/data-provider/)
+[Refer to the `dataProvider` documentation for detailed usage. &#8594](/docs/api-reference/core/providers/data-provider/)
 
 You can develop a full-featured web application by using any your custom backend or the above backend providers with **refine**.
 

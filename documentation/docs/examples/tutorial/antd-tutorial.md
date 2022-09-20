@@ -4,7 +4,7 @@ id: antd-tutorial-example
 title: Ant Design
 ---
 
-This [tutorial](/docs/ui-frameworks/antd/tutorial/) will go through process of building a simple admin panel for a CMS-like application.
+This [tutorial](/docs/tutorials/ant-design-tutorial/) will go through process of building a simple admin panel for a CMS-like application.
 <br/>
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/tutorial)

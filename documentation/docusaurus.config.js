@@ -121,7 +121,7 @@ const siteConfig = {
             },
             items: [
                 {
-                    to: "docs/getting-started/overview",
+                    to: "docs/getting-started/",
                     label: "Docs",
                     position: "left",
                 },

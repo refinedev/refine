@@ -4,7 +4,7 @@ id: mui-tutorial-example
 title: Material UI
 ---
 
-This [tutorial](/docs/ui-frameworks/mui/tutorial/) will go through process of building a simple admin panel for a CMS-like application.
+This [tutorial](/docs/tutorials/material-ui-tutorial/) will go through process of building a simple admin panel for a CMS-like application.
 <br/>
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/tutorial)
