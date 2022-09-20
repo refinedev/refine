@@ -63,6 +63,6 @@ export const LightTheme: Partial<MantineTheme> = {
 };
 
 export const DarkTheme: Partial<MantineTheme> = {
-    colorScheme: "light",
+    colorScheme: "dark",
     ...commonThemeProperties,
 };
