@@ -26,18 +26,18 @@ import {
     Styles,
 } from "@mantine/core";
 import {
-    IconBoxMultiple,
-    IconLayoutSidebarLeftExpand,
-    IconChevronRight,
-    IconChevronLeft,
-    IconLogout,
-    IconHome,
-} from "@tabler/icons";
+    BoxMultiple,
+    LayoutSidebarLeftExpand,
+    ChevronRight,
+    ChevronLeft,
+    Logout,
+    Home,
+} from "tabler-icons-react";
 import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
 
 import { Title as DefaultTitle } from "../title";
 
-const defaultNavIcon = <IconBoxMultiple color="white" size={18} stroke={1.5} />;
+const defaultNavIcon = <BoxMultiple color="white" size={16} />;
 
 export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const [collapsed, setCollapsed] = useState(false);
@@ -151,7 +151,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                             ? null
                             : t("dashboard.title", "Dashboard")
                     }
-                    icon={<IconHome />}
+                    icon={<Home size={16} />}
                     component={Link}
                     to="/"
                     active={selectedKey === "/"}
@@ -168,7 +168,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 label={
                     collapsed && !opened ? null : t("buttons.logout", "Logout")
                 }
-                icon={<IconLogout />}
+                icon={<Logout />}
                 onClick={() => mutateLogout()}
                 styles={commonNavLinkStyles}
             />
@@ -210,7 +210,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                         }}
                         onClick={() => setOpened((prev) => !prev)}
                     >
-                        <IconLayoutSidebarLeftExpand />
+                        <LayoutSidebarLeftExpand />
                     </ActionIcon>
                 </Box>
             </MediaQuery>
@@ -286,11 +286,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                             fullWidth
                             onClick={() => setCollapsed((prev) => !prev)}
                         >
-                            {collapsed ? (
-                                <IconChevronRight />
-                            ) : (
-                                <IconChevronLeft />
-                            )}
+                            {collapsed ? <ChevronRight /> : <ChevronLeft />}
                         </Button>
                     </Navbar.Section>
                 </Navbar>
