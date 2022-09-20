@@ -107,7 +107,7 @@ export const useForm = <
 
     const saveButtonProps = {
         disabled: formLoading,
-        onClick: (e: any) => {
+        onClick: (e: React.FormEvent<HTMLFormElement>) => {
             onSubmit(onFinish, () => false)(e);
         },
     };
