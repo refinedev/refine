@@ -52,7 +52,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     return (
         <Button
             variant="default"
-            leftIcon={!hideText && <Refresh {...svgIconProps} />}
+            leftIcon={!hideText && <Refresh size={16} {...svgIconProps} />}
             loading={isFetching}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) =>
                 onClick ? onClick(e) : refetch()
@@ -62,7 +62,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
             {...rest}
         >
             {hideText ? (
-                <Refresh fontSize="small" {...svgIconProps} />
+                <Refresh size={16} {...svgIconProps} />
             ) : (
                 children ?? translate("buttons.refresh", "Refresh")
             )}

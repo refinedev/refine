@@ -84,13 +84,13 @@ export const ListButton: React.FC<ListButtonProps> = ({
             <Button
                 variant="default"
                 disabled={data?.can === false}
-                leftIcon={!hideText && <List {...svgIconProps} />}
+                leftIcon={!hideText && <List size={16} {...svgIconProps} />}
                 title={disabledTitle()}
                 data-testid={RefineButtonTestIds.ListButton}
                 {...rest}
             >
                 {hideText ? (
-                    <List fontSize="small" {...svgIconProps} />
+                    <List size={16} {...svgIconProps} />
                 ) : (
                     children ??
                     translate(

@@ -99,12 +99,14 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                     onClick={() => setOpened((o) => !o)}
                     disabled={isLoading || data?.can === false}
                     loading={id === variables?.id && isLoading}
-                    leftIcon={!hideText && <Trash {...svgIconProps} />}
+                    leftIcon={
+                        !hideText && <Trash size={16} {...svgIconProps} />
+                    }
                     data-testid={RefineButtonTestIds.DeleteButton}
                     {...rest}
                 >
                     {hideText ? (
-                        <Trash fontSize="small" {...svgIconProps} />
+                        <Trash size={16} {...svgIconProps} />
                     ) : (
                         children ?? translate("buttons.delete", "Delete")
                     )}

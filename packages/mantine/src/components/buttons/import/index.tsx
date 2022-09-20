@@ -37,13 +37,15 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
             <Button
                 variant="default"
                 component="span"
-                leftIcon={!hideText && <ArrowsUpDown {...svgIconProps} />}
+                leftIcon={
+                    !hideText && <ArrowsUpDown size={16} {...svgIconProps} />
+                }
                 loading={loading}
                 data-testid={RefineButtonTestIds.ImportButton}
                 {...rest}
             >
                 {hideText ? (
-                    <ArrowsUpDown fontSize="small" {...svgIconProps} />
+                    <ArrowsUpDown size={16} {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.import", "Import")
                 )}

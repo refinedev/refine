@@ -83,13 +83,13 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
             <Button
                 variant="default"
                 disabled={data?.can === false}
-                leftIcon={!hideText && <Eye {...svgIconProps} />}
+                leftIcon={!hideText && <Eye size={16} {...svgIconProps} />}
                 title={disabledTitle()}
                 data-testid={RefineButtonTestIds.ShowButton}
                 {...rest}
             >
                 {hideText ? (
-                    <Eye fontSize="small" {...svgIconProps} />
+                    <Eye size={16} {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.show", "Show")
                 )}

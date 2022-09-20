@@ -84,13 +84,15 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
             <Button
                 disabled={data?.can === false}
                 variant="default"
-                leftIcon={!hideText && <SquarePlus {...svgIconProps} />}
+                leftIcon={
+                    !hideText && <SquarePlus size={16} {...svgIconProps} />
+                }
                 title={disabledTitle()}
                 data-testid={RefineButtonTestIds.CloneButton}
                 {...rest}
             >
                 {hideText ? (
-                    <SquarePlus fontSize="small" {...svgIconProps} />
+                    <SquarePlus size={16} {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.clone", "Clone")
                 )}

@@ -33,12 +33,12 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
         <Button
             variant="default"
             loading={loading}
-            leftIcon={!hideText && <ArrowsUpDown {...svgIconProps} />}
+            leftIcon={!hideText && <ArrowsUpDown size={16} {...svgIconProps} />}
             data-testid={RefineButtonTestIds.ExportButton}
             {...rest}
         >
             {hideText ? (
-                <ArrowsUpDown fontSize="small" {...svgIconProps} />
+                <ArrowsUpDown size={16} {...svgIconProps} />
             ) : (
                 children ?? translate("buttons.export", "Export")
             )}

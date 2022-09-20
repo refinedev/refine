@@ -31,12 +31,12 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
     return (
         <Button
             variant="filled"
-            leftIcon={!hideText && <FileCheck {...svgIconProps} />}
+            leftIcon={!hideText && <FileCheck size={16} {...svgIconProps} />}
             data-testid={RefineButtonTestIds.SaveButton}
             {...rest}
         >
             {hideText ? (
-                <FileCheck fontSize="small" {...svgIconProps} />
+                <FileCheck size={16} {...svgIconProps} />
             ) : (
                 children ?? translate("buttons.save", "Save")
             )}
