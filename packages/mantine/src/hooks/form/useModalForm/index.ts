@@ -116,7 +116,6 @@ export const useModalForm = <
 
     const handleShow = useCallback((id?: BaseKey) => {
         setId?.(id);
-
         show();
     }, []);
 

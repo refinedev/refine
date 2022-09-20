@@ -5,10 +5,7 @@ import { IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
     const { tableQueryResult, current, setCurrent, pageCount } =
-        useTable<IPost>({
-            resource: "posts",
-            initialPageSize: 100,
-        });
+        useTable<IPost>();
 
     return (
         <List>

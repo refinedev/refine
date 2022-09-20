@@ -1,4 +1,4 @@
-import { AuthPage as AntdAuthPage } from "@pankod/refine-antd";
+import { AuthPage as AntdAuthPage, FormProps } from "@pankod/refine-antd";
 import { useRouterContext } from "@pankod/refine-core";
 
 const authWrapperProps = {
@@ -34,12 +34,14 @@ const renderAuthContent = (content: React.ReactNode) => {
 
 export const AuthPage: React.FC<{
     type?: "login" | "register" | "resetPassword" | "updatePassword";
-}> = ({ type }) => {
+    formProps?: FormProps;
+}> = ({ type, formProps }) => {
     return (
         <AntdAuthPage
             type={type}
             wrapperProps={authWrapperProps}
             renderContent={renderAuthContent}
+            formProps={formProps}
         />
     );
 };

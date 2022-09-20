@@ -4,12 +4,11 @@ description: In this brief guide, we compare some concept of the two most popula
 slug: css-grid-vs-flexbox
 authors: muhammed_arslan
 tags: [css, html, grid, flexbox, comparison]
-image: https://refine.dev/img/blog/2022-08-30-flex-vs-grid/social2.png
+image: /img/blog/2022-08-30-flex-vs-grid/social.png
 hide_table_of_contents: false
 ---
 
 
-import social2 from '@site/static/img/blog/2022-08-30-flex-vs-grid/social2.png';
 import pic1 from '@site/static/img/blog/2022-08-30-flex-vs-grid/pic-1.png';
 import pic2 from '@site/static/img/blog/2022-08-30-flex-vs-grid/pic-2.png';
 import pic3 from '@site/static/img/blog/2022-08-30-flex-vs-grid/pic-3.png';
@@ -19,22 +18,17 @@ import pic6 from '@site/static/img/blog/2022-08-30-flex-vs-grid/pic-6.png';
 import grid from '@site/static/img/blog/2022-08-30-flex-vs-grid/grid.png';
 import flex from '@site/static/img/blog/2022-08-30-flex-vs-grid/flex.png';
 
-<br />
-
-<div class="img-container">
-    <img src={social2} alt="social2" />
-</div>
 
 ## Introduction
 Flexbox helps in creating one-dimensional layouts through space distribution and alignment capabilities. Flexbox makes it easier to design responsive layouts without using float or positioning. It has made life much easier for people that use CSS.
 
 Grid is a two-dimensional layout model that helps in creating a layout and aligning items in it. It offers a layout system with rows and columns, making it easier to design web pages without using floats and positioning.  
 
-<!--truncate-->
 
 Creating layouts with CSS can be tricky, and it's complicated by the fact that both flexbox and grid are used for designing the page layouts. This guide includes the some differences between flexbox and grid. We'll see how to decide which one of these to use while designing a layout.    
 
 In this guide, we'll cover:
+
 - [Control of Child Elements](#control-of-child-elements)
 - [Intrinsic and Extrinsic Sizing](#intrinsic-and-extrinsic-sizing)
 - [Box Alignment](#box-alignment)

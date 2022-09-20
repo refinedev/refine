@@ -14,6 +14,7 @@ import {
     Button,
     LayoutProps,
     CardProps,
+    FormProps,
 } from "antd";
 import { useTranslate, useUpdatePassword } from "@pankod/refine-core";
 
@@ -21,7 +22,11 @@ import { layoutStyles, containerStyles, titleStyles } from "../styles";
 
 const { Title } = Typography;
 
-type UpdatePassworProps = RefineUpdatePasswordPageProps<LayoutProps, CardProps>;
+type UpdatePassworProps = RefineUpdatePasswordPageProps<
+    LayoutProps,
+    CardProps,
+    FormProps
+>;
 
 /**
  * **refine** has update password page form which is served on `/update-password` route when the `authProvider` configuration is provided.
@@ -33,6 +38,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
     wrapperProps,
     contentProps,
     renderContent,
+    formProps,
 }) => {
     const [form] = Form.useForm<RefineUpdatePasswordFormTypes>();
     const translate = useTranslate();
@@ -57,6 +63,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
                 form={form}
                 onFinish={(values) => (onSubmit ?? updatePassword)(values)}
                 requiredMark={false}
+                {...formProps}
             >
                 <Form.Item
                     name="password"

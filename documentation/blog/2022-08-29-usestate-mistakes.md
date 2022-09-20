@@ -4,7 +4,7 @@ description: Find out what the five most common mistakes React developers make w
 slug: common-usestate-mistakes-and-how-to-avoid
 authors: david_herbert
 tags: [react, usestate, best-practices ]
-image: https://refine.dev/img/blog/2022-08-29-usestate-mistakes/usestate-mistakes-social.png
+image: /img/blog/2022-08-29-usestate-mistakes/usestate-mistakes-social.png
 hide_table_of_contents: false
 ---
 
@@ -21,11 +21,7 @@ import objectAssign from '@site/static/img/blog/2022-08-29-usestate-mistakes/obj
 import objectStateError from '@site/static/img/blog/2022-08-29-usestate-mistakes/object-property-state-error.png';
 import objectState from '@site/static/img/blog/2022-08-29-usestate-mistakes/object-property-state.png';
 
-<br />
 
-<div class="img-container">
-    <img src={social} alt="social" />
-</div>
 
 ## Introduction
 

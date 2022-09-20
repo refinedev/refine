@@ -4,7 +4,7 @@ description: The refine swag store is now open for those who enjoy this open sou
 slug: refine-swag-store
 authors: eren_erkalkan
 tags: [store, refine]
-image: https://refine.dev/img/blog/2022-09-08-swag-store/social.png
+image: /img/blog/2022-09-08-swag-store/social.png
 hide_table_of_contents: false
 ---
 
@@ -19,14 +19,7 @@ import twitter from '@site/static/img/blog/2022-09-08-swag-store/twitter.png';
 import products from '@site/static/img/blog/2022-09-08-swag-store/products.png';
 
 
- <div class="img-container">
-  <a href="https://store.refine.dev/">
-    <img src={social} alt="social" />
-  </a>
-</div>
 
- <br />
- <br />
 
 
 

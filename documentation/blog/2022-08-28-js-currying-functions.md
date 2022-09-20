@@ -4,32 +4,25 @@ description: Deep dive into variadic currying in JavaScript with examples
 slug: javascript-variadic-currying
 authors: abdullah_numan
 tags: [javascript, currying ]
-image: https://refine.dev/img/blog/2022-08-28-js-currying-functions/currying-social-image.png
+image: /img/blog/2022-08-28-js-currying-functions/social.png
+featured_image: /img/blog/2022-08-28-js-currying-functions/featured.png
+is_featured: true
 hide_table_of_contents: false
 ---
 
-
-import social from '@site/static/img/blog/2022-08-28-js-currying-functions/currying-social-image.png';
-
-<br />
-
-<div class="img-container">
-    <img src={social} alt="social" />
-</div>
 
 ## Introduction
 
 
 In this post, we first look at the confusion around currying in JavaScript, especially with respect to polyadic partial application. We find out that we're not really doing currying in the real sense that it is implemented in Haskell, rather in a much limited capacity.
 
-<!--truncate-->
 
 In the later part, we delve into variadic currying in a stricter sense with an example that returns unary accumulators.
 
 Steps we'll cover:
 
-  - [Variadic Partial Application](#variadic-partial-application)
-  - [Using `Function.prototype` Methods](#using-functionprototype-methods)
+- [Variadic Partial Application](#variadic-partial-application)
+- [Using `Function.prototype` Methods](#using-functionprototype-methods)
 - [Variadic Currying with Termination](#variadic-currying-with-termination)
 
 This post is about variadic currying in JavaScript. It is the fifth part of the series titled [Curry Functions in JavaScript](https://dev.to/anewman15/curry-functions-in-javascript-4jpa).

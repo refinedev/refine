@@ -4,7 +4,7 @@ description: Framer Motion tutorial - Create text and image animations in React 
 slug: framer-motion-react-animations
 authors: joel_ezimorah
 tags: [css, react, animation, framer-motion]
-image: https://refine.dev/img/blog/2022-09-01-framer-text-animations/social.png
+image: /img/blog/2022-09-01-framer-text-animations/social.png
 hide_table_of_contents: false
 ---
 
@@ -17,12 +17,7 @@ import scale1 from '@site/static/img/blog/2022-09-01-framer-text-animations/scal
 import scale2 from '@site/static/img/blog/2022-09-01-framer-text-animations/scale2.gif';
 import social from '@site/static/img/blog/2022-09-01-framer-text-animations/social.png';
 
-<br />
 
-<div class="img-container">
-    <img src={social} alt="social" />
-</div>
- 
 
 
 ## Introduction
@@ -41,6 +36,7 @@ Steps we'll cover:
 - [Getting started with Framer Motion in React](#getting-started-with-framer-motion-in-react)
 - [Getting started with text animation](#getting-started-with-text-animation)
 - [Getting started with image animation](#getting-started-with-image-animation)
+
 
 ## Prerequisites
 To follow along with this tutorial, you need to have:

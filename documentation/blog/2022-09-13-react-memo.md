@@ -4,7 +4,7 @@ description: Improve the app performance with React.memo()
 slug: react-memo-guide
 authors: abdullah_numan
 tags: [react, memoization, react-memo, performance]
-image: img/blog/2022-09-13-react-memo/social.png
+image: /img/blog/2022-09-13-react-memo/social.png
 hide_table_of_contents: false
 ---
 
@@ -53,6 +53,14 @@ The app is based on the idea of a list of posts on a blog. There are several com
 The focus of this article will be the `<Post />` component, but `<App />`, `<Blog />` and `<LatestPost />` are also involved. Below, we'll delve into what memoizing the `<Post />` component with `React.memo()` does.
 
 `React.memo()` is a **HOC** that memoizes the passed in component. Doing so helps in optimizing its performance by preventing unnecessary re-renders due to state changes it does not depend on, e.g. those coming from ancestor components.
+
+<br/>
+<div>
+<a href="https://github.com/pankod/refine">
+  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
+</a>
+</div>
+
 
 ## Memoizing a Functional Component using `React.memo()`
 To begin the example, we have an `<App />` component that houses `<Blog />`.

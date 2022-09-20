@@ -4,7 +4,7 @@ description: Why you should be using low-code app Refine to build internal tools
 slug: build-internal-tools-using-low-code-with-refine
 authors: salih
 tags: [refine, fundamentals, react, javascript, low-code, internal-tools]
-image: https://refine.dev/img/refine_social.png
+image: /img/placeholder.png
 hide_table_of_contents: false
 ---
 
