@@ -134,15 +134,17 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     )}
                 </div>
 
-                <Button
-                    type="primary"
-                    size="large"
-                    htmlType="submit"
-                    loading={isLoading}
-                    block
-                >
-                    {translate("pages.register.buttons.submit", "Sign up")}
-                </Button>
+                <Form.Item>
+                    <Button
+                        type="primary"
+                        size="large"
+                        htmlType="submit"
+                        loading={isLoading}
+                        block
+                    >
+                        {translate("pages.register.buttons.submit", "Sign up")}
+                    </Button>
+                </Form.Item>
             </Form>
         </Card>
     );

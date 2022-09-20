@@ -180,15 +180,17 @@ export const LoginPage: React.FC<LoginProps> = ({
                         </Link>
                     )}
                 </div>
-                <Button
-                    type="primary"
-                    size="large"
-                    htmlType="submit"
-                    loading={isLoading}
-                    block
-                >
-                    {translate("pages.login.signin", "Sign in")}
-                </Button>
+                <Form.Item>
+                    <Button
+                        type="primary"
+                        size="large"
+                        htmlType="submit"
+                        loading={isLoading}
+                        block
+                    >
+                        {translate("pages.login.signin", "Sign in")}
+                    </Button>
+                </Form.Item>
             </Form>
             <div style={{ marginTop: 8 }}>
                 {registerLink ?? (

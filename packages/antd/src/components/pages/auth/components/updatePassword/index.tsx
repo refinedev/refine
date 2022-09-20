@@ -118,15 +118,20 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                         size="large"
                     />
                 </Form.Item>
-                <Button
-                    type="primary"
-                    size="large"
-                    htmlType="submit"
-                    loading={isLoading}
-                    block
-                >
-                    {translate("pages.updatePassword.buttons.submit", "Update")}
-                </Button>
+                <Form.Item>
+                    <Button
+                        type="primary"
+                        size="large"
+                        htmlType="submit"
+                        loading={isLoading}
+                        block
+                    >
+                        {translate(
+                            "pages.updatePassword.buttons.submit",
+                            "Update",
+                        )}
+                    </Button>
+                </Form.Item>
             </Form>
         </Card>
     );

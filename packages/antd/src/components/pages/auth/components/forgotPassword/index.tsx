@@ -125,18 +125,20 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
                         </Text>
                     )}
                 </div>
-                <Button
-                    type="primary"
-                    size="large"
-                    htmlType="submit"
-                    loading={isLoading}
-                    block
-                >
-                    {translate(
-                        "pages.forgotPassword.buttons.submit",
-                        "Send reset instructions",
-                    )}
-                </Button>
+                <Form.Item>
+                    <Button
+                        type="primary"
+                        size="large"
+                        htmlType="submit"
+                        loading={isLoading}
+                        block
+                    >
+                        {translate(
+                            "pages.forgotPassword.buttons.submit",
+                            "Send reset instructions",
+                        )}
+                    </Button>
+                </Form.Item>
             </Form>
         </Card>
     );
