@@ -34,12 +34,12 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
         <MantineBreadcrumbs
             aria-label="breadcrumb"
             styles={{
-                separator: { marginRight: 8, marginLeft: 8, color: "gray" },
+                separator: { marginRight: 8, marginLeft: 8, color: "dimgray" },
             }}
             {...breadcrumbProps}
         >
             {showHome && hasDashboard && (
-                <Anchor component={Link} color="gray" to="/">
+                <Anchor component={Link} color="dimmed" to="/">
                     <Home size={16} />
                 </Anchor>
             )}
@@ -50,14 +50,16 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
                         {href ? (
                             <Anchor
                                 component={Link}
-                                color="gray"
+                                color="dimmed"
                                 to={href}
                                 size="sm"
                             >
                                 {label}
                             </Anchor>
                         ) : (
-                            <Text size="sm">{label}</Text>
+                            <Text color="dimmed" size="sm">
+                                {label}
+                            </Text>
                         )}
                     </Group>
                 );
