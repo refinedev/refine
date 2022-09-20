@@ -66,7 +66,11 @@ export const useForm = <
         ...rest,
     });
 
-    const { setValues, onSubmit: onMantineSubmit } = useMantineFormResult;
+    const {
+        setValues,
+        onSubmit: onMantineSubmit,
+        isDirty,
+    } = useMantineFormResult;
 
     useEffect(() => {
         if (typeof queryResult?.data !== "undefined") {
@@ -84,13 +88,13 @@ export const useForm = <
         }
     }, [queryResult?.data]);
 
-    // const isValuesChanged = isDirty();
+    const isValuesChanged = isDirty();
 
-    // useEffect(() => {
-    //     if (warnWhenUnsavedChanges && isValuesChanged) {
-    //         setWarnWhen(true);
-    //     }
-    // }, [isValuesChanged]);
+    useEffect(() => {
+        if (warnWhenUnsavedChanges && isValuesChanged) {
+            setWarnWhen(true);
+        }
+    }, [isValuesChanged]);
 
     const onSubmit: OnSubmit<TVariables> =
         (handleSubmit, handleValidationFailure) => async (e) => {
@@ -103,7 +107,7 @@ export const useForm = <
 
     const saveButtonProps = {
         disabled: formLoading,
-        onClick: (e: any) => {
+        onClick: (e: React.FormEvent<HTMLFormElement>) => {
             onSubmit(onFinish, () => false)(e);
         },
     };

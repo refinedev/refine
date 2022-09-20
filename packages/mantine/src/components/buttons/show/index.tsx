@@ -68,8 +68,6 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
 
     const showUrl = generateShowUrl(resource.route!, id!);
 
-    const { sx, ...restProps } = rest;
-
     return (
         <Link
             to={showUrl}
@@ -83,13 +81,12 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
             style={{ textDecoration: "none" }}
         >
             <Button
-                variant="subtle"
+                variant="default"
                 disabled={data?.can === false}
                 leftIcon={!hideText && <Eye {...svgIconProps} />}
                 title={disabledTitle()}
-                sx={{ minWidth: 0, ...sx }}
                 data-testid={RefineButtonTestIds.ShowButton}
-                {...restProps}
+                {...rest}
             >
                 {hideText ? (
                     <Eye fontSize="small" {...svgIconProps} />

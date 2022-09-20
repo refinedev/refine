@@ -8,8 +8,7 @@ import {
     Group,
     GroupProps,
     ActionIcon,
-    Center,
-    CenterProps,
+    Stack,
 } from "@mantine/core";
 import {
     ResourceRouterParams,
@@ -33,7 +32,7 @@ import { IconArrowLeft } from "@tabler/icons";
 export type EditProps = RefineCrudEditProps<
     SaveButtonProps,
     DeleteButtonProps,
-    CenterProps,
+    GroupProps,
     GroupProps,
     CardProps,
     GroupProps,
@@ -138,14 +137,20 @@ export const Edit: FC<EditProps> = (props) => {
         : defaultFooterButtons;
 
     return (
-        <Card p="lg" {...wrapperProps}>
-            {breadcrumb}
+        <Card p="md" {...wrapperProps}>
             <Group position="apart" {...headerProps}>
-                {title ?? <PageTitle type="edit" buttonBack={buttonBack} />}
-                <Center {...headerButtonProps}>{headerButtons}</Center>
+                <Stack spacing="xs">
+                    {breadcrumb}
+                    {title ?? <PageTitle type="edit" buttonBack={buttonBack} />}
+                </Stack>
+                <Group spacing="xs" {...headerButtonProps}>
+                    {headerButtons}
+                </Group>
             </Group>
-            <Box {...contentProps}>{children}</Box>
-            <Group position="right" spacing="md" mt="xl" {...footerButtonProps}>
+            <Box pt="sm" {...contentProps}>
+                {children}
+            </Box>
+            <Group position="right" spacing="xs" mt="md" {...footerButtonProps}>
                 {footerButtons}
             </Group>
         </Card>

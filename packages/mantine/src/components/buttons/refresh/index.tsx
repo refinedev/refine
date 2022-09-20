@@ -29,7 +29,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     svgIconProps,
     children,
     onClick,
-    ...restProps
+    ...rest
 }) => {
     const { resourceName, id } = useResource({
         resourceNameOrRouteName,
@@ -51,7 +51,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
 
     return (
         <Button
-            variant="subtle"
+            variant="default"
             leftIcon={!hideText && <Refresh {...svgIconProps} />}
             loading={isFetching}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) =>
@@ -59,7 +59,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
             }
             data-testid={RefineButtonTestIds.RefreshButton}
             loaderProps={{ size: 24 }}
-            {...restProps}
+            {...rest}
         >
             {hideText ? (
                 <Refresh fontSize="small" {...svgIconProps} />

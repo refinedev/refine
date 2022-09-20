@@ -28,14 +28,12 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
-    const { sx, ...restProps } = rest;
-
     return (
         <Button
+            variant="filled"
             leftIcon={!hideText && <FileCheck {...svgIconProps} />}
-            sx={{ minWidth: 0, ...sx }}
             data-testid={RefineButtonTestIds.SaveButton}
-            {...restProps}
+            {...rest}
         >
             {hideText ? (
                 <FileCheck fontSize="small" {...svgIconProps} />

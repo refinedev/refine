@@ -8,8 +8,7 @@ import {
     Group,
     GroupProps,
     ActionIcon,
-    Center,
-    CenterProps,
+    Stack,
 } from "@mantine/core";
 import {
     ResourceRouterParams,
@@ -28,8 +27,8 @@ import {
 import { ArrowLeft } from "tabler-icons-react";
 
 export type ShowProps = RefineCrudShowProps<
-    CenterProps,
-    BoxProps,
+    GroupProps,
+    GroupProps,
     CardProps,
     GroupProps,
     BoxProps
@@ -130,14 +129,22 @@ export const Show: FC<ShowProps> = (props) => {
         : null;
 
     return (
-        <Card p="lg" {...wrapperProps}>
-            {breadcrumb}
-            <Group position="apart" {...headerProps}>
-                {title ?? <PageTitle type="show" buttonBack={buttonBack} />}
-                <Center {...headerButtonProps}>{headerButtons}</Center>
+        <Card p="md" {...wrapperProps}>
+            <Group position="apart" align="center" {...headerProps}>
+                <Stack spacing="xs">
+                    {breadcrumb}
+                    {title ?? <PageTitle type="show" buttonBack={buttonBack} />}
+                </Stack>
+                <Group spacing="xs" {...headerButtonProps}>
+                    {headerButtons}
+                </Group>
             </Group>
-            <Box {...contentProps}>{children}</Box>
-            <Box {...footerButtonProps}>{footerButtons}</Box>
+            <Box pt="sm" {...contentProps}>
+                {children}
+            </Box>
+            <Group position="right" spacing="xs" mt="md" {...footerButtonProps}>
+                {footerButtons}
+            </Group>
         </Card>
     );
 };

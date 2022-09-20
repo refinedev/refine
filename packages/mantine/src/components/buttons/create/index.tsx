@@ -10,7 +10,7 @@ import {
     RefineCreateButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
-import { Button, ButtonProps } from "@mantine/core";
+import { Anchor, Button, ButtonProps } from "@mantine/core";
 import { SquarePlus, IconProps } from "tabler-icons-react";
 
 export type CreateButtonProps = RefineCreateButtonProps<
@@ -20,13 +20,6 @@ export type CreateButtonProps = RefineCreateButtonProps<
     }
 >;
 
-/**
- * <CreateButton> uses Material UI {@link https://mantine.dev/core/button/  `<Button> component`}.
- * It uses the {@link https://refine.dev/docs/core/hooks/navigation/useNavigation#create `create`} method from {@link https://refine.dev/docs/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
- * It can be useful to redirect the app to the create page route of resource}.
- *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/create-button} for more details.
- */
 export const CreateButton: React.FC<CreateButtonProps> = ({
     resourceNameOrRouteName,
     hideText = false,
@@ -68,10 +61,9 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
 
     const createUrl = generateCreateUrl(resource.route!);
 
-    const { sx, ...restProps } = rest;
-
     return (
-        <Link
+        <Anchor
+            component={Link}
             to={createUrl}
             replace={false}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
@@ -80,15 +72,14 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                     onClick(e);
                 }
             }}
-            style={{ textDecoration: "none" }}
         >
             <Button
                 disabled={data?.can === false}
                 leftIcon={!hideText && <SquarePlus {...svgIconProps} />}
                 title={disabledTitle()}
-                sx={{ minWidth: 0, ...sx }}
                 data-testid={RefineButtonTestIds.CreateButton}
-                {...restProps}
+                variant="default"
+                {...rest}
             >
                 {hideText ? (
                     <SquarePlus fontSize="small" {...svgIconProps} />
@@ -96,6 +87,6 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                     children ?? translate("buttons.create", "Create")
                 )}
             </Button>
-        </Link>
+        </Anchor>
     );
 };

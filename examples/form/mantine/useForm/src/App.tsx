@@ -1,5 +1,9 @@
 import { Refine } from "@pankod/refine-core";
-import { notificationProvider, MantineProvider } from "@pankod/refine-mantine";
+import {
+    notificationProvider,
+    MantineProvider,
+    Layout,
+} from "@pankod/refine-mantine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
@@ -15,6 +19,7 @@ const App: React.FC = () => {
                 routerProvider={routerProvider}
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 notificationProvider={notificationProvider}
+                Layout={Layout}
                 resources={[
                     {
                         name: "posts",

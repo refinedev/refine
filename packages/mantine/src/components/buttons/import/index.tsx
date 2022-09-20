@@ -31,19 +31,16 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
-    const { sx, ...restProps } = rest;
-
     return (
         <label htmlFor="contained-button-file">
             <input {...inputProps} id="contained-button-file" multiple hidden />
             <Button
-                variant="subtle"
+                variant="default"
                 component="span"
                 leftIcon={!hideText && <ArrowsUpDown {...svgIconProps} />}
                 loading={loading}
-                sx={{ minWidth: 0, ...sx }}
                 data-testid={RefineButtonTestIds.ImportButton}
-                {...restProps}
+                {...rest}
             >
                 {hideText ? (
                     <ArrowsUpDown fontSize="small" {...svgIconProps} />

@@ -5,6 +5,7 @@ import {
     ErrorComponent,
     ReadyPage,
     AuthPage,
+    LightTheme,
 } from "@pankod/refine-mantine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -70,10 +71,7 @@ const App: React.FC = () => {
     };
 
     return (
-        <MantineProvider
-            withNormalizeCSS
-            notificationProps={{ position: "top-right" }}
-        >
+        <MantineProvider theme={LightTheme} withNormalizeCSS>
             <Refine
                 routerProvider={{
                     ...routerProvider,
@@ -116,6 +114,47 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "posts",
+                        list: PostList,
+                        edit: PostEdit,
+                        create: PostCreate,
+                    },
+                    {
+                        name: "categories",
+                        list: PostList,
+                        edit: PostEdit,
+                        create: PostCreate,
+                    },
+                    {
+                        parentName: "posts",
+                        name: "Step_1",
+                        list: PostList,
+                        edit: PostEdit,
+                        create: PostCreate,
+                    },
+                    {
+                        parentName: "posts",
+                        name: "Step_2",
+                        list: PostList,
+                        edit: PostEdit,
+                        create: PostCreate,
+                    },
+                    {
+                        parentName: "posts",
+                        name: "Step_3",
+                        list: PostList,
+                        edit: PostEdit,
+                        create: PostCreate,
+                    },
+                    {
+                        parentName: "Step_3",
+                        name: "Step_1",
+                        list: PostList,
+                        edit: PostEdit,
+                        create: PostCreate,
+                    },
+                    {
+                        parentName: "Step_3",
+                        name: "Step_",
                         list: PostList,
                         edit: PostEdit,
                         create: PostCreate,
