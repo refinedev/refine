@@ -669,7 +669,7 @@
             "to": "/docs/further-readings/telemetry/"
         },        
         {
-            "from": "docs/benchmarks/",
+            "from": "/docs/benchmarks/",
             "to": "/docs/further-readings/benchmarks/"
         }
     ]
