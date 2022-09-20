@@ -2,4 +2,5 @@
 "@pankod/refine-core": minor
 ---
 
-Renamed `resetPassword` in Auth Provider to `forgotPassword`.
+- Renamed `resetPassword` in AuthProvider to `forgotPassword`
+- Renamed `useResetPassword` hook to `useForgotPassword`
