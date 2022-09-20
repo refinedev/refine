@@ -63,8 +63,8 @@ export const PageTitle: FC<PageTitleProps> = ({
     }, [translate, title, userFriendlyResourceName]);
 
     return (
-        <Title order={5} size="h2" transform="capitalize" {...props}>
-            <Group spacing="md">
+        <Title order={2} transform="capitalize" {...props}>
+            <Group spacing="xs">
                 {buttonBack}
                 {text}
             </Group>
