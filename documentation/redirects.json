@@ -18,7 +18,7 @@
         },
         {
             "from": "/docs/api-references/providers/router-provider",
-            "to": "/docs/core/providers/router-provider"    
+            "to": "/docs/core/providers/router-provider"
         },
         {
             "from": "/docs/api-references/providers/data-provider",
@@ -1047,6 +1047,10 @@
         {
             "from": "/headset/",
             "to": "/"
+        },
+        {
+            "from": "/docs/core/hooks/auth/useResetPassword/",
+            "to": "/docs/core/hooks/auth/useForgotPassword/"
         }
     ]
 }
