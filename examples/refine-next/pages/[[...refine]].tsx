@@ -1,5 +1,8 @@
-import { NextRouteComponent } from "@pankod/refine-nextjs-router";
-import { checkAuthentication } from "@pankod/refine-nextjs-router";
+import {
+    NextRouteComponent,
+    checkAuthentication,
+    handleRefineParams,
+} from "@pankod/refine-nextjs-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import { GetServerSideProps } from "next";
@@ -13,7 +16,7 @@ export const getServerSideProps: GetServerSideProps<
         refine: [resource: string, action: string, id: string];
     }
 > = async (context) => {
-    const [resource, action, id] = context.params?.refine ?? [];
+    const { resource, action, id } = handleRefineParams(context.params?.refine);
 
     const { isAuthenticated, ...props } = await checkAuthentication(
         authProvider,
@@ -27,7 +30,7 @@ export const getServerSideProps: GetServerSideProps<
     try {
         if (resource && action === "show" && id) {
             const data = await dataProvider(API_URL).getOne({
-                resource,
+                resource: resource.slice(resource.lastIndexOf("/") + 1),
                 id,
             });
 
@@ -38,7 +41,7 @@ export const getServerSideProps: GetServerSideProps<
             };
         } else if (resource && !action && !id) {
             const data = await dataProvider(API_URL).getList({
-                resource,
+                resource: resource.slice(resource.lastIndexOf("/") + 1),
             });
 
             return {
