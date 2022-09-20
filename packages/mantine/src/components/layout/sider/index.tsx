@@ -63,6 +63,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
             root: {
                 display: "flex",
                 color: "white",
+                fontWeight: 500,
                 "&:hover": {
                     backgroundColor: "unset",
                 },
