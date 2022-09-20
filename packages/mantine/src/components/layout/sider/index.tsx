@@ -260,6 +260,8 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                         transition: "width 1000ms ease, min-width 1000ms ease",
                         backgroundColor: "#2A132E",
                         position: "fixed",
+                        top: 0,
+                        height: "100vh",
                     }}
                 >
                     <Navbar.Section px="xs">
