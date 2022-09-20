@@ -20,7 +20,6 @@ We will begin with a progressive example that involves memoizing a functional co
 
 In this post, we'll demonstrate the use of `React.memo()`, which is a Higher Order Function, or HOC that adds caching logic to the passed in component. In the upcoming articles, we'll discuss about how to use `useCallback()` and `useMemo()`.
 
-<!--truncate-->
 
 Steps we'll cover:
 - [What is Memoization?](#what-is-memoization)
@@ -221,7 +220,7 @@ As you can see `<Post />` does not depend on `likesCount` but is re-rendered by 
 If we check our Chrome's console we have `<Post />` rendering again and again following an interval:
 
  <div class="img-container">
-    <img src={memo1} alt="memo1" />
+    <img style={{alignSelf:"center", width:"400px"}} src={memo1}  alt="memo1" />
 </div>
 
 <br/>
@@ -252,7 +251,7 @@ Looking at the console, we can see that `Post` is no longer re-rendered at 3s in
 
 
  <div class="img-container">
-    <img src={memo2} alt="memo2" />
+     <img style={{alignSelf:"center", width:"400px"}} src={memo2} alt="memo2" />
 </div>
 
 <br/>
@@ -281,7 +280,7 @@ When we click on the `Sign Out` button in the navbar, we can see in the console 
 
 
 <div class="img-container">
-    <img src={memo3} alt="memo3" />
+    <img width="400px" src={memo3} style={{alignSelf:"center"}} alt="memo3" />
 </div>
 
 <br/>
@@ -334,7 +333,7 @@ Here, we are omiting `signedIn` from being compared by comparing only `post` 's 
 
 
 <div class="img-container">
-    <img src={memo4} alt="memo4" />
+     <img style={{alignSelf:"center", width:"400px"}} src={memo4} alt="memo4" />
 </div>
 
 <br/>
