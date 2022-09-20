@@ -33,7 +33,7 @@ const App: React.FC = () => {
             }
 
             localStorage.setItem("email", email);
-            return Promise.reject();
+            return Promise.resolve();
         },
         register: (params: any) => {
             if (params.email && params.password) {
