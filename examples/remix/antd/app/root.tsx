@@ -8,7 +8,12 @@ import {
     ScrollRestoration,
 } from "@remix-run/react";
 import { Refine } from "@pankod/refine-core";
-import { Layout, LoginPage, ReadyPage } from "@pankod/refine-antd";
+import {
+    ErrorComponent,
+    Layout,
+    LoginPage,
+    ReadyPage,
+} from "@pankod/refine-antd";
 
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-remix-router";
@@ -26,7 +31,7 @@ export const meta: MetaFunction = () => ({
 });
 
 const API_URL = "https://api.fake-rest.refine.dev";
-export default function App() {
+export default function App(): JSX.Element {
     return (
         <html lang="en">
             <head>
@@ -41,6 +46,7 @@ export default function App() {
                     Layout={Layout}
                     LoginPage={LoginPage}
                     ReadyPage={ReadyPage}
+                    catchAll={<ErrorComponent />}
                     resources={[
                         {
                             name: "posts",
