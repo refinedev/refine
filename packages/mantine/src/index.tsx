@@ -71,8 +71,7 @@ export {
     LoadingOverlay,
     MANTINE_COLORS,
     MANTINE_SIZES,
-    //TODO
-    // MantineProvider,
+    MantineProvider,
     Mark,
     MediaQuery,
     Menu,
@@ -287,8 +286,7 @@ export type {
     MantineColor,
     MantineGradient,
     MantineNumberSize,
-    //TODO
-    // MantineProviderProps,
+    MantineProviderProps,
     MantineShadow,
     MantineSize,
     MantineSizes,
@@ -440,11 +438,6 @@ export type {
 } from "@mantine/core";
 
 export * from "./components";
-export {
-    NotificationsProvider,
-    notificationProvider,
-    MantineProvider,
-    MantineProviderProps,
-} from "./providers";
+export * from "./providers";
 export * from "./hooks";
 export * from "./theme";
