@@ -40,7 +40,7 @@ import { Title as DefaultTitle } from "../title";
 const defaultNavIcon = <IconBoxMultiple color="white" size={18} stroke={1.5} />;
 
 export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
-    const [collapsed, setCollapsed] = useState(true);
+    const [collapsed, setCollapsed] = useState(false);
     const [opened, setOpened] = useState(false);
 
     const { Link } = useRouterContext();
