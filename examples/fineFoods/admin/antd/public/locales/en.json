@@ -14,12 +14,12 @@
             },
             "buttons": {
                 "submit": "Login",
-                "resetPassword": "Forgot password?",
+                "forgotPassword": "Forgot password?",
                 "noAccount": "Don’t have an account?",
                 "rememberMe": "Remember me"
             }
         },
-        "resetPassword": {
+        "forgotPassword": {
             "title": "Forgot your password?",
             "fields": {
                 "email": "Email"

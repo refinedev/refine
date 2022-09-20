@@ -20,7 +20,7 @@ const { AuthPage } = RefineAntd;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -106,7 +106,7 @@ render(
 
 -   `login` - a type of login page and default type.
 -   `register` - a type of registration page.
--   `resetPassword` - a type of reset password page.
+-   `forgotPassword` - a type of reset password page.
 -   `updatePassword` - type of update password page.
 
 ## Login
@@ -124,7 +124,7 @@ const { AuthPage } = RefineAntd;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -215,7 +215,7 @@ const { useRouterContext, useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -344,7 +344,7 @@ const { useRouterContext, useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -456,119 +456,12 @@ render(
 );
 ```
 
-### `onSubmit`
-
-`onSubmit` is a function that will be triggered after submitting the form and verifying data successfully.
-
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/login
-const { useNavigation } = RefineCore;
-const { AuthPage } = RefineAntd;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
-
-import { authProvider } from "./authProvider";
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            LoginPage={() => (
-                <AuthPage
-                    // highlight-start
-                    onSubmit={(formValues) =>
-                        alert(JSON.stringify(formValues, null, 2))
-                    }
-                    // highlight-end
-                />
-            )}
-            resources={[
-                {
-                    name: "posts",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
-                    },
-                },
-            ]}
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/login"]),
-            routes: [
-                {
-                    path: "/login",
-                    element: (
-                        <AuthPage
-                            onSubmit={(formValues) =>
-                                alert(JSON.stringify(formValues, null, 2))
-                            }
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "posts",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
-);
-```
-
 ### `rememberMe`
 
 `rememberMe` property defines to render your own remember me component or you can pass `false` to don't render it.
 
 :::info
-You have to wrap your remember me component with `Form.Item` component from **antd** and pass the `name` prop to it then you can access its value from the `onSubmit` function with `formValues`.
+You have to wrap your remember me component with `Form.Item` component from **antd** and pass the `name` prop to it then you can access its value from the `formProps` `onFinish` function with `formValues`.
 :::
 
 ```tsx live previewHeight=500px hideCode url=http://localhost:3000/login
@@ -578,7 +471,7 @@ const { useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -712,7 +605,7 @@ const { useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -824,7 +717,7 @@ const { useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -937,7 +830,7 @@ render(
 
 ### `formProps`
 
-`formProps` uses for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps`.
+`formProps` uses for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps` and also the `onFinish` function is changed.
 
 ```tsx live previewHeight=500px hideCode url=http://localhost:3000/login
 const { AuthPage } = RefineAntd;
@@ -946,7 +839,7 @@ const { useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -974,6 +867,8 @@ const App = () => {
                             email: "demo@refine.dev",
                             password: "demo",
                         },
+                        onFinish: (formValues) =>
+                            alert(JSON.stringify(formValues, null, 2)),
                     }}
                     // highlight-end
                 />
@@ -1017,6 +912,8 @@ render(
                                     email: "demo@refine.dev",
                                     password: "demo",
                                 },
+                                onFinish: (formValues) =>
+                                    alert(JSON.stringify(formValues, null, 2)),
                             }}
                         />
                     ),
@@ -1060,7 +957,7 @@ const { useRouterContext, useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -1206,7 +1103,7 @@ const { AuthPage } = RefineAntd;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -1309,7 +1206,7 @@ const { useRouterContext, useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -1429,126 +1326,6 @@ render(
 );
 ```
 
-### `onSubmit`
-
-`onSubmit` is a function that will be triggered after submitting the form and verifying data successfully.
-
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/register
-const { AuthPage } = RefineAntd;
-const { useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/register",
-                        element: (
-                            <Auth
-                                type="register"
-                                // highlight-start
-                                onSubmit={(formValues) =>
-                                    alert(JSON.stringify(formValues, null, 2))
-                                }
-                                // highlight-end
-                                loginLink={false}
-                            />
-                        ),
-                    },
-                ],
-            }}
-            resources={[
-                {
-                    name: "home",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
-                    },
-                },
-            ]}
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/register"]),
-            routes: [
-                {
-                    path: "/register",
-                    element: (
-                        <AuthPage
-                            type="register"
-                            onSubmit={(formValues) =>
-                                alert(JSON.stringify(formValues, null, 2))
-                            }
-                            loginLink={false}
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
-);
-```
-
 ### `wrapperProps`
 
 `wrapperProps` uses for passing props to the wrapper component. In the example below you can see that the background color is changed with `wrapperProps`
@@ -1560,7 +1337,7 @@ const { useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -1689,7 +1466,7 @@ const { useRouterContext, useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -1814,7 +1591,7 @@ render(
 
 ### `formProps`
 
-`formProps` uses for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps`.
+`formProps` uses for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps` and also the `onFinish` function is changed.
 
 ```tsx live previewHeight=500px hideCode url=http://localhost:3000/register
 const { AuthPage } = RefineAntd;
@@ -1823,7 +1600,7 @@ const { useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -1852,6 +1629,8 @@ const App = () => {
                             email: "demo@refine.dev",
                             password: "demo",
                         },
+                        onFinish: (formValues) =>
+                            alert(JSON.stringify(formValues, null, 2)),
                     }}
                     // highlight-end
                 />
@@ -1896,6 +1675,8 @@ render(
                                     email: "demo@refine.dev",
                                     password: "demo",
                                 },
+                                onFinish: (formValues) =>
+                                    alert(JSON.stringify(formValues, null, 2)),
                             }}
                         />
                     ),
@@ -1939,7 +1720,7 @@ const { useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -1968,9 +1749,12 @@ const App = () => {
                             <AuthPage
                                 type="register"
                                 loginLink={false}
-                                onSubmit={(formValues) =>
-                                    alert(JSON.stringify(formValues, null, 2))
-                                }
+                                formProps={{
+                                    onFinish: (formValues) =>
+                                        alert(
+                                            JSON.stringify(formValues, null, 2),
+                                        ),
+                                }}
                                 contentProps={{
                                     style: {
                                         width: "400px",
@@ -2034,9 +1818,10 @@ render(
                         <AuthPage
                             type="register"
                             loginLink={false}
-                            onSubmit={(formValues) =>
-                                alert(JSON.stringify(formValues, null, 2))
-                            }
+                            formProps={{
+                                onFinish: (formValues) =>
+                                    alert(JSON.stringify(formValues, null, 2)),
+                            }}
                             contentProps={{
                                 style: {
                                     width: "400px",
@@ -2103,7 +1888,7 @@ const { AuthPage } = RefineAntd;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -2128,7 +1913,7 @@ const App = () => {
                 routes: [
                     {
                         path: "/reset-password",
-                        element: <AuthPage type="resetPassword" />,
+                        element: <AuthPage type="forgotPassword" />,
                     },
                 ],
             }}
@@ -2167,7 +1952,7 @@ render(
                 { path: "/login", element: <AuthPage /> },
                 {
                     path: "/reset-password",
-                    element: <AuthPage type="resetPassword" />,
+                    element: <AuthPage type="forgotPassword" />,
                 },
             ],
         }}
@@ -2209,7 +1994,7 @@ const { useRouterContext, useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -2257,7 +2042,7 @@ const App = () => {
                 routes: [
                     {
                         path: "/reset-password",
-                        element: <Auth type="resetPassword" />,
+                        element: <Auth type="forgotPassword" />,
                     },
                 ],
             }}
@@ -2299,7 +2084,7 @@ render(
                 },
                 {
                     path: "/reset-password",
-                    element: <Auth type="resetPassword" />,
+                    element: <Auth type="forgotPassword" />,
                 },
             ],
         }}
@@ -2329,104 +2114,6 @@ render(
 );
 ```
 
-### `onSubmit`
-
-`onSubmit` is a function that will be triggered after submitting the form and verifying data successfully.
-
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/reset-password
-const { AuthPage } = RefineAntd;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/reset-password",
-                        element: (
-                            <AuthPage
-                                type="resetPassword"
-                                // highlight-start
-                                onSubmit={(formValues) =>
-                                    alert(JSON.stringify(formValues, null, 2))
-                                }
-                                // highlight-end
-                                loginLink={false}
-                            />
-                        ),
-                    },
-                ],
-            }}
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/reset-password"]),
-            routes: [
-                {
-                    path: "/reset-password",
-                    element: (
-                        <AuthPage
-                            type="resetPassword"
-                            onSubmit={(formValues) =>
-                                alert(JSON.stringify(formValues, null, 2))
-                            }
-                            loginLink={false}
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <button
-                                onClick={() => {
-                                    replace("/reset-password");
-                                }}
-                            >
-                                Reset Password
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
-);
-```
-
 ### `wrapperProps`
 
 `wrapperProps` uses for passing props to the wrapper component. In the example below you can see that the background color is changed with `wrapperProps`
@@ -2438,7 +2125,7 @@ const { useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -2466,7 +2153,7 @@ const App = () => {
                         path: "/reset-password",
                         element: (
                             <AuthPage
-                                type="resetPassword"
+                                type="forgotPassword"
                                 wrapperProps={{
                                     style: {
                                         background: "#331049",
@@ -2514,7 +2201,7 @@ render(
                     path: "/reset-password",
                     element: (
                         <AuthPage
-                            type="resetPassword"
+                            type="forgotPassword"
                             wrapperProps={{
                                 style: {
                                     background: "#331049",
@@ -2563,7 +2250,7 @@ const { useRouterContext, useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -2591,7 +2278,7 @@ const App = () => {
                         path: "/reset-password",
                         element: (
                             <AuthPage
-                                type="resetPassword"
+                                type="forgotPassword"
                                 loginLink={false}
                                 contentProps={{
                                     title: "Reset Password",
@@ -2622,7 +2309,7 @@ render(
                     path: "/reset-password",
                     element: (
                         <AuthPage
-                            type="resetPassword"
+                            type="forgotPassword"
                             loginLink={false}
                             contentProps={{
                                 title: "Reset Password",
@@ -2654,7 +2341,7 @@ render(
 
 ### `formProps`
 
-`formProps` uses for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps`.
+`formProps` uses for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps` and also the `onFinish` function is changed.
 
 ```tsx live previewHeight=500px hideCode url=http://localhost:3000/reset-password
 const { AuthPage } = RefineAntd;
@@ -2663,7 +2350,7 @@ const { useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -2685,13 +2372,15 @@ const App = () => {
             authProvider={authProvider}
             LoginPage={() => (
                 <AuthPage
-                    type="resetPassword"
+                    type="forgotPassword"
                     // highlight-start
                     formProps={{
                         initialValues: {
                             email: "demo@refine.dev",
                             password: "demo",
                         },
+                        onFinish: (formValues) =>
+                            alert(JSON.stringify(formValues, null, 2)),
                     }}
                     // highlight-end
                 />
@@ -2717,12 +2406,14 @@ render(
                     path: "/reset-password",
                     element: (
                         <AuthPage
-                            type="resetPassword"
+                            type="forgotPassword"
                             formProps={{
                                 initialValues: {
                                     email: "demo@refine.dev",
                                     password: "demo",
                                 },
+                                onFinish: (formValues) =>
+                                    alert(JSON.stringify(formValues, null, 2)),
                             }}
                         />
                     ),
@@ -2753,7 +2444,7 @@ const { useRouterContext, useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -2780,11 +2471,14 @@ const App = () => {
                         path: "/reset-password",
                         element: (
                             <AuthPage
-                                type="resetPassword"
+                                type="forgotPassword"
                                 loginLink={false}
-                                onSubmit={(formValues) =>
-                                    alert(JSON.stringify(formValues, null, 2))
-                                }
+                                formProps={{
+                                    onFinish: (formValues) =>
+                                        alert(
+                                            JSON.stringify(formValues, null, 2),
+                                        ),
+                                }}
                                 contentProps={{
                                     style: {
                                         width: "400px",
@@ -2833,11 +2527,12 @@ render(
                     path: "/reset-password",
                     element: (
                         <AuthPage
-                            type="resetPassword"
+                            type="forgotPassword"
                             loginLink={false}
-                            onSubmit={(formValues) =>
-                                alert(JSON.stringify(formValues, null, 2))
-                            }
+                            formProps={{
+                                onFinish: (formValues) =>
+                                    alert(JSON.stringify(formValues, null, 2)),
+                            }}
                             contentProps={{
                                 style: {
                                     width: "400px",
@@ -2891,7 +2586,7 @@ const { AuthPage } = RefineAntd;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -2989,89 +2684,6 @@ render(
 );
 ```
 
-### `onSubmit`
-
-`onSubmit` is a function that will be triggered after submitting the form and verifying data successfully.
-
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/update-password
-const { AuthPage } = RefineAntd;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/update-password",
-                        element: (
-                            <AuthPage
-                                type="updatePassword"
-                                // highlight-start
-                                onSubmit={(formValues) =>
-                                    alert(JSON.stringify(formValues, null, 2))
-                                }
-                                // highlight-end
-                            />
-                        ),
-                    },
-                ],
-            }}
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/update-password"]),
-            routes: [
-                {
-                    path: "/update-password",
-                    element: (
-                        <AuthPage
-                            type="updatePassword"
-                            onSubmit={(formValues) =>
-                                alert(JSON.stringify(formValues, null, 2))
-                            }
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "posts",
-                list: () => {
-                    return <div>Empty Page</div>;
-                },
-            },
-        ]}
-    />,
-);
-```
-
 ### `wrapperProps`
 
 `wrapperProps` uses for passing props to the wrapper component. In the example below you can see that the background color is changed with `wrapperProps`
@@ -3082,7 +2694,7 @@ const { AuthPage } = RefineAntd;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -3171,7 +2783,7 @@ const { useRouterContext, useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -3261,7 +2873,7 @@ render(
 
 ### `formProps`
 
-`formProps` uses for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps`.
+`formProps` uses for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps` and also the `onFinish` function is changed.
 
 ```tsx live previewHeight=500px hideCode url=http://localhost:3000/update-password
 const { AuthPage } = RefineAntd;
@@ -3270,7 +2882,7 @@ const { useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -3299,6 +2911,8 @@ const App = () => {
                             email: "demo@refine.dev",
                             password: "demo",
                         },
+                        onFinish: (formValues) =>
+                            alert(JSON.stringify(formValues, null, 2)),
                     }}
                     // highlight-end
                 />
@@ -3343,6 +2957,8 @@ render(
                                     email: "demo@refine.dev",
                                     password: "demo",
                                 },
+                                onFinish: (formValues) =>
+                                    alert(JSON.stringify(formValues, null, 2)),
                             }}
                         />
                     ),
@@ -3386,7 +3002,7 @@ const { useRouterContext, useNavigation } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
     register: () => Promise.resolve(),
-    resetPassword: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
     logout: () => Promise.resolve(),
     checkAuth: () => Promise.resolve(),
@@ -3499,18 +3115,17 @@ render(
 
 ### Properties
 
-| Property          | Description                                                                         | Type                                                         |
-| ----------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| type              | Render `<AuthPage>` forms by `type` property.                                       | `login` \| `register` \| `resetPassword` \| `updatePassword` |
-| providers         | Render auth logins if `type` is `"login"`.                                          | [`IProvider[]`](#interface)                                  |
-| registerLink      | A custom node that will be rendered as a register link to the `<AuthPage>`.         | `React.ReactNode`                                            |
-| loginLink         | A custom node that will be rendered as a link to the `<AuthPage>`.                  | `React.ReactNode`                                            |
-| resetPasswordLink | A custom node that will be rendered as a reset password link to the `<AuthPage>`.   | `React.ReactNode`                                            |
-| onSubmit          | Trigger after submitting the form and verifying data successfully.                  | `function(formValues)`                                       |
-| wrapperProps      | Wrapper element props.                                                              | [`WrapperProps`](https://ant.design/components/layout/#API)  |
-| contentProps      | Content wrapper element props.                                                      | [`CardProps`](https://ant.design/components/card/#API)       |
-| formProps         | Props for the form component.                                                       | [`FormProps`](https://ant.design/components/form/#API)       |
-| renderContent     | Gives you default content you can use it to add some extra elements to the content. | `function(content: React.ReactNode) => React.ReactNode`      |
+| Property           | Description                                                                         | Type                                                          |
+| ------------------ | ----------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| type               | Render `<AuthPage>` forms by `type` property.                                       | `login` \| `register` \| `forgotPassword` \| `updatePassword` |
+| providers          | Render auth logins if `type` is `"login"`.                                          | [`IProvider[]`](#interface)                                   |
+| registerLink       | A custom node that will be rendered as a register link to the `<AuthPage>`.         | `React.ReactNode`                                             |
+| loginLink          | A custom node that will be rendered as a link to the `<AuthPage>`.                  | `React.ReactNode`                                             |
+| forgotPasswordLink | A custom node that will be rendered as a reset password link to the `<AuthPage>`.   | `React.ReactNode`                                             |
+| wrapperProps       | Wrapper element props.                                                              | [`WrapperProps`](https://ant.design/components/layout/#API)   |
+| contentProps       | Content wrapper element props.                                                      | [`CardProps`](https://ant.design/components/card/#API)        |
+| formProps          | Props for the form component.                                                       | [`FormProps`](https://ant.design/components/form/#API)        |
+| renderContent      | Gives you default content you can use it to add some extra elements to the content. | `function(content: React.ReactNode) => React.ReactNode`       |
 
 ### Interface
 

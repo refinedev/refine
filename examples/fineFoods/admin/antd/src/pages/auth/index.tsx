@@ -33,7 +33,7 @@ const renderAuthContent = (content: React.ReactNode) => {
 };
 
 export const AuthPage: React.FC<{
-    type?: "login" | "register" | "resetPassword" | "updatePassword";
+    type?: "login" | "register" | "forgotPassword" | "updatePassword";
     formProps?: FormProps;
 }> = ({ type, formProps }) => {
     return (
