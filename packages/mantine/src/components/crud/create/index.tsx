@@ -8,8 +8,7 @@ import {
     Group,
     GroupProps,
     ActionIcon,
-    CenterProps,
-    Center,
+    Stack,
 } from "@mantine/core";
 import {
     ResourceRouterParams,
@@ -23,7 +22,7 @@ import { ArrowLeft } from "tabler-icons-react";
 
 export type CreateProps = RefineCrudCreateProps<
     SaveButtonProps,
-    CenterProps,
+    GroupProps,
     GroupProps,
     CardProps,
     GroupProps,
@@ -83,16 +82,22 @@ export const Create: FC<CreateProps> = (props) => {
         : defaultFooterButtons;
 
     return (
-        <Card p="lg" {...wrapperProps}>
-            {breadcrumb}
-            <Group position="apart" {...headerProps}>
-                {title ?? <PageTitle type="create" buttonBack={buttonBack} />}
-                {headerButtons && (
-                    <Center {...headerButtonProps}>{headerButtons}</Center>
-                )}
+        <Card p="md" {...wrapperProps}>
+            <Group position="apart" align="center" {...headerProps}>
+                <Stack spacing="xs">
+                    {breadcrumb}
+                    {title ?? (
+                        <PageTitle type="create" buttonBack={buttonBack} />
+                    )}
+                </Stack>
+                <Group spacing="xs" {...headerButtonProps}>
+                    {headerButtons}
+                </Group>
             </Group>
-            <Box {...contentProps}>{children}</Box>
-            <Group position="right" spacing="md" mt="xl" {...footerButtonProps}>
+            <Box pt="sm" {...contentProps}>
+                {children}
+            </Box>
+            <Group position="right" spacing="xs" mt="md" {...footerButtonProps}>
                 {footerButtons}
             </Group>
         </Card>
