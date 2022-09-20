@@ -30,7 +30,6 @@ type UpdatePassworProps = RefineUpdatePasswordPageProps<
 /**
  * **refine** has update password page form which is served on `/update-password` route when the `authProvider` configuration is provided.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/antd-auth-page/#updatepassword} for more details.
  */
 export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
     contentProps,

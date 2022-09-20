@@ -33,7 +33,6 @@ type ResetPassworProps = RefineResetPasswordPageProps<
 /**
  * **refine** has reset password page form which is served on `/reset-password` route when the `authProvider` configuration is provided.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/antd-auth-page/#resetpassword} for more details.
  */
 export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
     loginLink,
