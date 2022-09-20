@@ -80,7 +80,7 @@ module.exports = {
                                         "api-reference/core/hooks/auth/useLogout",
                                         "api-reference/core/hooks/auth/usePermissions",
                                         "api-reference/core/hooks/auth/useRegister",
-                                        "api-reference/core/hooks/auth/useResetPassword",
+                                        "api-reference/core/hooks/auth/useForgotPassword",
                                         "api-reference/core/hooks/auth/useUpdatePassword",
                                     ],
                                 },

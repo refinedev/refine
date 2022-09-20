@@ -679,6 +679,10 @@
         {
             "from": "/docs/getting-started/components/",
             "to": "/docs/api-reference/core/"
+        },
+        {
+            "from": "/docs/core/hooks/auth/useResetPassword/",
+            "to": "/docs/core/hooks/auth/useForgotPassword/"
         }
     ]
 }

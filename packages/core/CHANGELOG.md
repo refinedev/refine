@@ -138,7 +138,7 @@
 
     📌 Added `useRegister` hook. This hook is used to register new user. `useRegister` falls into register function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
 
-    📌 Added `useResetPassword` hook. This hook is used to reset password. `useResetPassword` falls into `resetPassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
+    📌 Added `useForgotPassword` hook. This hook is used to reset password. `useForgotPassword` falls into `forgotPassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
 
     📌 Added `useUpdatePassword` hook. This hook is used to update password. `useUpdatePassword` falls into `updatePassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
 
@@ -151,14 +151,14 @@
 
     ```info
     interface IAuthPageProps extends IAuthCommonProps {
-        type?: "login" | "register" | "resetPassword" | "updatePassword";
+        type?: "login" | "register" | "forgotPassword" | "updatePassword";
     }
 
     interface IAuthCommonProps {
         submitButton?: React.ReactNode;
         registerLink?: React.ReactNode;
         loginLink?: React.ReactNode;
-        resetPasswordLink?: React.ReactNode;
+        forgotPasswordLink?: React.ReactNode;
         updatePasswordLink?: React.ReactNode;
         backLink?: React.ReactNode;
         providers?: IProvider[];
@@ -195,7 +195,7 @@
 
     📌 Added `useRegister` hook. This hook is used to register new user. `useRegister` falls into register function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
 
-    📌 Added `useResetPassword` hook. This hook is used to reset password. `useResetPassword` falls into `resetPassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
+    📌 Added `useForgotPassword` hook. This hook is used to reset password. `useForgotPassword` falls into `forgotPassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
 
     📌 Added `useUpdatePassword` hook. This hook is used to update password. `useUpdatePassword` falls into `updatePassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
 
@@ -208,13 +208,13 @@
 
     ```info
     interface IAuthPageProps extends IAuthCommonProps {
-        type?: "login" | "register" | "resetPassword" | "updatePassword";
+        type?: "login" | "register" | "forgotPassword" | "updatePassword";
     }
 
     interface IAuthCommonProps {
         registerLink?: React.ReactNode;
         loginLink?: React.ReactNode;
-        resetPasswordLink?: React.ReactNode;
+        forgotPasswordLink?: React.ReactNode;
         updatePasswordLink?: React.ReactNode;
         backLink?: React.ReactNode;
         providers?: IProvider[];

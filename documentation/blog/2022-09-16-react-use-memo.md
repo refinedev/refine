@@ -23,16 +23,17 @@ This post is about how to use the `useMemo()` hook in React.
 In this post, we dive into the details of the **useMemo** hook with an extension of the example demonstrated in the previous post titled [Memoization using React memo](https://refine.dev/blog/react-memo-guide/).
 
 Steps we'll cover:
-- [Introduction](#introduction)
 - [Resource Intensive Functions](#resource-intensive-functions)
 - [Enter `useMemo()`](#enter-usememo)
 - [useMemo Dependencies](#usememo-dependencies)
-- [Live StackBlitz Example](#live-stackblitz-example)
+- [Conclusion](#conclusion)
 
 
 ### Project Content Overview
 
 The example app is based on the idea of a list of posts on a blog. There are several components involving a user seeing the latest posts and a list of the user's posts. Allow yourself some time to understand the components individually, their relationships, their state changes, and how props are passed through. It is crucial to pay close attention to how the change of a parent's state triggers the re-render of its descendants.
+
+[Here you can find the example app's live code](#live-stackblitz-example)
 
 The discussion of this article is focused on optimizing performance by memoizing the value of resource-intensive functions, such as a sorting function. In React, we do this with the `useMemo()` hook.
 
@@ -110,7 +111,7 @@ export default sortPosts;
 If we look at the console, we see that `Sorting posts...` is being looged at 1000ms intervals, i.e. with the tick of our clock:
 
 <div  class="img-container" align-items="center" >
-    <img width="400px" src={usememo1} alt="usememo1" />
+     <img style={{alignSelf:"center", width:"400px"}} src={usememo1}  alt="usememo1" />
 </div>
 
 <br/>
@@ -130,7 +131,7 @@ Checking our console, we can see that `Sorting posts...` has been logged only on
 
 
 <div  class="img-container" align-items="center" >
-    <img width="400px" src={usememo2} alt="usememo2" />
+     <img style={{alignSelf:"center", width:"400px"}} src={usememo2}  alt="usememo2" />
 </div>
 
 <br/>
@@ -156,7 +157,7 @@ If we check our console while clicking the button, we can clearly see `Sorting p
 <br/>
 
 <div class="img-container" align-items="center" >
-    <img width="400px" src={usememo3} alt="usememo3" />
+    <img style={{alignSelf:"center", width:"400px"}} src={usememo3} alt="usememo3" />
 </div>
 
 <br/>
@@ -173,7 +174,7 @@ It is important to notice that, if we remove the dependency from `useMemo()`, `s
 There is no sorting going on when we need it:
 
 <div class="img-container" align-items="center" >
-    <img width="400px" src={usememo4} alt="usememo4" />
+     <img style={{alignSelf:"center", width:"400px"}} src={usememo4} alt="usememo4" />
 </div>
 
 <br/>

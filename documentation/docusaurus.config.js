@@ -10,7 +10,7 @@ const redirectJson = require("./redirects.json");
 /** @type {import('@docusaurus/types/src/index').DocusaurusConfig} */
 const siteConfig = {
     title: "refine",
-    tagline: "A React-based framework for building internal tools, rapidly.",
+    tagline: "Build your React-based CRUD applications, without constraints",
     url: "https://refine.dev",
     baseUrl: "/",
     projectName: "refine",
