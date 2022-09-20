@@ -100,7 +100,7 @@ export const ExamplePage: React.FC = () => {
                     <tr>
                         <td>
                             <Box>
-                                <AuthPage type="resetPassword" />
+                                <AuthPage type="forgotPassword" />
                             </Box>
                         </td>
                     </tr>

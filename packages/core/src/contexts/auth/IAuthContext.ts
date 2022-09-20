@@ -1,13 +1,13 @@
 export type TLogoutData = void | false | string;
 export type TLoginData = void | false | string | object;
 export type TRegisterData = void | false | string;
-export type TResetPasswordData = void | false | string;
+export type TForgotPasswordData = void | false | string;
 export type TUpdatePasswordData = void | false | string;
 
 export interface AuthProvider {
     login: (params: any) => Promise<TLoginData>;
     register?: (params: any) => Promise<TRegisterData>;
-    resetPassword?: (params: any) => Promise<TResetPasswordData>;
+    forgotPassword?: (params: any) => Promise<TForgotPasswordData>;
     updatePassword?: (params: any) => Promise<TUpdatePasswordData>;
     logout: (params: any) => Promise<TLogoutData>;
     checkAuth: (params?: any) => Promise<any>;

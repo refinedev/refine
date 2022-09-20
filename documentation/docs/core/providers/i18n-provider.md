@@ -184,12 +184,12 @@ Before we get started, let's look at the translations that refine uses in compon
             },
             "buttons": {
                 "submit": "Login",
-                "resetPassword": "Forgot password?",
+                "forgotPassword": "Forgot password?",
                 "noAccount": "Don’t have an account?",
                 "rememberMe": "Remember me"
             }
         },
-        "resetPassword": {
+        "forgotPassword": {
             "title": "Forgot your password?",
             "fields": {
                 "email": "Email"
@@ -319,12 +319,12 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
             },
             "buttons": {
                 "submit": "Login",
-                "resetPassword": "Forgot password?",
+                "forgotPassword": "Forgot password?",
                 "noAccount": "Don’t have an account?",
                 "rememberMe": "Remember me"
             }
         },
-        "resetPassword": {
+        "forgotPassword": {
             "title": "Forgot your password?",
             "fields": {
                 "email": "Email"
@@ -461,12 +461,12 @@ values={[{ label: "English", value: "en" }, { label: "German", value: "de" }]}>
             },
             "buttons": {
                 "submit": "Anmeldung",
-                "resetPassword": "Passwort vergessen?",
+                "forgotPassword": "Passwort vergessen?",
                 "noAccount": "Sie haben kein Konto?",
                 "rememberMe": "Erinnere dich an mich"
             }
         },
-        "resetPassword": {
+        "forgotPassword": {
             "title": "Haben Sie Ihr Passwort vergessen?",
             "fields": {
                 "email": "Email"

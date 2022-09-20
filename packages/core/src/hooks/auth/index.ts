@@ -3,7 +3,7 @@ export { useGetIdentity } from "./useGetIdentity";
 export { useLogout } from "./useLogout";
 export { useLogin } from "./useLogin";
 export { useRegister } from "./useRegister";
-export { useResetPassword } from "./useResetPassword";
+export { useForgotPassword } from "./useForgotPassword";
 export { useUpdatePassword } from "./useUpdatePassword";
 export { useAuthenticated } from "./useAuthenticated";
 export { useCheckError } from "./useCheckError";

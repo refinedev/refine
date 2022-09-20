@@ -1,8 +1,8 @@
-import { useTranslate, useRouterContext, useResetPassword } from "@hooks";
+import { useTranslate, useRouterContext, useForgotPassword } from "@hooks";
 import React, { useState } from "react";
-import { IAuthCommonProps, IResetPasswordForm } from "../..";
+import { IAuthCommonProps, IForgotPasswordForm } from "../..";
 
-export const ResetPassword: React.FC<IAuthCommonProps> = ({
+export const ForgotPassword: React.FC<IAuthCommonProps> = ({
     backLink,
     submitButton,
 }) => {
@@ -11,7 +11,7 @@ export const ResetPassword: React.FC<IAuthCommonProps> = ({
 
     const [email, setEmail] = useState("");
 
-    const { mutate: resetPassword } = useResetPassword<IResetPasswordForm>();
+    const { mutate: forgotPassword } = useForgotPassword<IForgotPasswordForm>();
 
     const renderLink = (link: React.ReactNode, text?: string) => {
         if (link) {
@@ -25,13 +25,13 @@ export const ResetPassword: React.FC<IAuthCommonProps> = ({
     return (
         <div>
             <h1 style={{ textAlign: "center" }}>
-                {translate("pages.resetPassword.title", "Forgot Password")}
+                {translate("pages.forgotPassword.title", "Forgot Password")}
             </h1>
             <hr />
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
-                    resetPassword({ email });
+                    forgotPassword({ email });
                 }}
             >
                 <div
@@ -42,7 +42,7 @@ export const ResetPassword: React.FC<IAuthCommonProps> = ({
                     }}
                 >
                     <label>
-                        {translate("pages.resetPassword.email", "Email")}
+                        {translate("pages.forgotPassword.email", "Email")}
                     </label>
                     <input
                         type="mail"
@@ -58,7 +58,7 @@ export const ResetPassword: React.FC<IAuthCommonProps> = ({
                         <input
                             type="submit"
                             value={translate(
-                                "pages.resetPassword.button",
+                                "pages.forgotPassword.button",
                                 "Reset Password",
                             )}
                         />
@@ -67,7 +67,7 @@ export const ResetPassword: React.FC<IAuthCommonProps> = ({
                         renderLink(
                             backLink,
                             translate(
-                                "pages.resetPassword.backLink",
+                                "pages.forgotPassword.backLink",
                                 "Go Back",
                             ),
                         )}
