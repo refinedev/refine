@@ -872,6 +872,9 @@ These hooks can be used with the `authProvider` authentication and authorization
 -   [useLogin](/core/hooks/auth/useLogin.md)
 -   [useLogout](/core/hooks/auth/useLogout.md)
 -   [usePermissions](/core/hooks/auth/usePermissions.md)
+-   [useRegister](/core/hooks/auth/useRegister.md)
+-   [useResetPassword](/core/hooks/auth/useResetPassword.md)
+-   [useUpdatePassword](/core/hooks/auth/useUpdatePassword.md)
 -   [`<Authenticated />`](/core/components/auth/authenticated.md)
 
 <br />
@@ -880,15 +883,17 @@ These hooks can be used with the `authProvider` authentication and authorization
 
 ### Properties
 
-| Property                                                                                                 | Description                               | Resolve condition                     |
-| -------------------------------------------------------------------------------------------------------- | ----------------------------------------- | ------------------------------------- |
-| login <div className=" required">Required</div>                                                          | Logs user in                              | Auth confirms login                   |
-| logout <div className=" required">Required</div>                                                         | Logs user out                             | Auth confirms logout                  |
-| checkAuth <div className=" required">Required</div>                                                      | Checks credentials on each route changes  | Authentication still persist          |
-| checkError <div className=" required">Required</div>                                                     | Checks if a dataProvider returns an error | Data provider doesn't return an error |
-| <div className="required-block"><div>getPermissions</div> <div className="required">Required</div></div> | Can be use to get user credentials        | Authorization roles accepted          |
-| getUserIdentity                                                                                          | Can be use to get user identity           | User identity avaliable to return     |
-
+| Property                                                | Description                               | Resolve condition                     |
+| ------------------------------------------------------- | ----------------------------------------- | ------------------------------------- |
+| login <div className=" required">Required</div>         | Logs user in                              | Auth confirms login                   |
+| logout <div className=" required">Required</div>        | Logs user out                             | Auth confirms logout                  |
+| checkAuth <div className=" required">Required</div>     | Checks credentials on each route changes  | Authentication still persist          |
+| checkError <div className=" required">Required</div>    | Checks if a dataProvider returns an error | Data provider doesn't return an error |
+| getPermissions <div className="required">Required</div> | Can be use to get user credentials        | Authorization roles accepted          |
+| getUserIdentity                                         | Can be use to get user identity           | User identity avaliable to return     |
+| register                                                | Register user                             | Auth confirms register                |
+| resetPassword                                           | Can be use to get password reset          | Auth confirms reset password          |
+| updatePassword                                          | Can be use to get update password         | Auth confirms update password         |
 <br />
 
 ## Live StackBlitz Example
