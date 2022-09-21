@@ -4,7 +4,7 @@ id: headless-tutorial-example
 title: Headless
 ---
 
-This [tutorial](/docs/core/tutorial/) will go through process of building a simple admin panel for a CMS-like application.
+This [tutorial](/docs/tutorials/headless-tutorial/) will go through process of building a simple admin panel for a CMS-like application.
 <br/>
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/tutorial)

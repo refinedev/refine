@@ -1,5 +1,37 @@
 # @pankod/refine-antd
 
+## 3.46.4
+
+### Patch Changes
+
+-   -   Auth pages background color fixed.
+    -   Removed unused `updatePasswordLink` prop from auth pages.
+    -   Removed `onSubmit` prop from auth pages. use `formProps` instead.
+-   Updated dependencies []:
+    -   @pankod/refine-ui-types@0.9.2
+
+## 3.46.3
+
+### Patch Changes
+
+-   [#2524](https://github.com/pankod/refine/pull/2524) [`27bf81bebb`](https://github.com/pankod/refine/commit/27bf81bebb217d2944e20e79a8f7618eda0e9db7) Thanks [@biskuvit](https://github.com/biskuvit)! - - Auth pages background color fixed.
+    -   Removed unused `updatePasswordLink` prop from auth pages.
+    -   Removed `onSubmit` prop from auth pages. use `formProps` instead.
+-   Updated dependencies [[`27bf81bebb`](https://github.com/pankod/refine/commit/27bf81bebb217d2944e20e79a8f7618eda0e9db7)]:
+    -   @pankod/refine-ui-types@0.9.1
+
+## 3.46.2
+
+### Patch Changes
+
+-   Fixed the spacing between `icon` and `breadcrumb label` in `Breadcrumb` component.
+
+## 3.46.1
+
+### Patch Changes
+
+-   [#2534](https://github.com/pankod/refine/pull/2534) [`a9676932cc`](https://github.com/pankod/refine/commit/a9676932ccae00f364918f163e44e73032ffa029) Thanks [@ozkalai](https://github.com/ozkalai)! - Fixed the spacing between `icon` and `breadcrumb label` in `Breadcrumb` component.
+
 ## 3.46.0
 
 ### Minor Changes

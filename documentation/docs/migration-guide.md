@@ -714,7 +714,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 ```
 
 [refine-codemod]: https://github.com/pankod/refine/tree/master/packages/codemod
-[refine]: /core/components/refine-config.md
-[resources]: /core/components/refine-config.md#resources
-[routerProvider]: /core/providers/router-provider.md
-[customPages]: /guides-and-concepts/custom-pages.md
+[refine]: /api-reference/core/components/refine-config.md
+[resources]: /api-reference/core/components/refine-config.md#resources
+[routerProvider]: /api-reference/core/providers/router-provider.md
+[customPages]: /advanced-tutorials/custom-pages.md

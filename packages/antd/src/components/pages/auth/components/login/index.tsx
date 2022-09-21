@@ -34,11 +34,10 @@ type LoginProps = RefineLoginPageProps<LayoutProps, CardProps, FormProps>;
 export const LoginPage: React.FC<LoginProps> = ({
     providers,
     registerLink,
-    resetPasswordLink,
+    forgotPasswordLink,
     rememberMe,
     contentProps,
     wrapperProps,
-    onSubmit,
     renderContent,
     formProps,
 }) => {
@@ -100,7 +99,7 @@ export const LoginPage: React.FC<LoginProps> = ({
             <Form<RefineLoginFormTypes>
                 layout="vertical"
                 form={form}
-                onFinish={(values) => (onSubmit ?? login)(values)}
+                onFinish={(values) => login(values)}
                 requiredMark={false}
                 initialValues={{
                     remember: false,
@@ -166,7 +165,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                             </Checkbox>
                         </Form.Item>
                     )}
-                    {resetPasswordLink ?? (
+                    {forgotPasswordLink ?? (
                         <Link
                             style={{
                                 fontSize: "12px",
@@ -175,21 +174,23 @@ export const LoginPage: React.FC<LoginProps> = ({
                             to="/reset-password"
                         >
                             {translate(
-                                "pages.login.buttons.resetPassword",
+                                "pages.login.buttons.forgotPassword",
                                 "Forgot password?",
                             )}
                         </Link>
                     )}
                 </div>
-                <Button
-                    type="primary"
-                    size="large"
-                    htmlType="submit"
-                    loading={isLoading}
-                    block
-                >
-                    {translate("pages.login.signin", "Sign in")}
-                </Button>
+                <Form.Item>
+                    <Button
+                        type="primary"
+                        size="large"
+                        htmlType="submit"
+                        loading={isLoading}
+                        block
+                    >
+                        {translate("pages.login.signin", "Sign in")}
+                    </Button>
+                </Form.Item>
             </Form>
             <div style={{ marginTop: 8 }}>
                 {registerLink ?? (

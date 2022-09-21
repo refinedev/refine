@@ -2,51 +2,83 @@ import { dataProvider } from "../../src/index";
 import { client } from "../appwriteClient";
 import "./index.mock";
 
-xdescribe("getList", () => {
+describe("getList", () => {
     it("correct response", async () => {
-        const { data, total } = await dataProvider(client).getList({
-            resource: "6180e4315f3e7",
+        const { data, total } = await dataProvider(client, {
+            databaseId: "632455a0b8d017403ce9",
+        }).getList({
+            resource: "632455a55dc72e1aa016",
         });
 
-        expect(data[0].id).toBe("61c300118b05b");
-        expect(data[0].title).toBe("Test");
-        expect(total).toBe(2);
+        expect(data[0].id).toBe("632456bf1eeb69a71a78");
+        expect(data[0].title).toBe("test");
+        expect(total).toBe(3);
     });
 
     it("correct sorting response", async () => {
-        const { data, total } = await dataProvider(client).getList({
-            resource: "6180e4315f3e7",
+        const { data, total } = await dataProvider(client, {
+            databaseId: "632455a0b8d017403ce9",
+        }).getList({
+            resource: "632455a55dc72e1aa016",
             sort: [
                 {
-                    field: "id",
-                    order: "desc",
+                    field: "title",
+                    order: "asc",
                 },
             ],
         });
 
-        expect(data[0].id).toBe("61c301bca8edf");
-        expect(data[0].title).toBe("Test 2");
+        expect(data[0].id).toBe("632456ccc833a161e740");
+        expect(data[0].title).toBe("1");
 
-        expect(data[1].id).toBe("61c300118b05b");
-        expect(data[1].title).toBe("Test");
+        expect(data[1].id).toBe("632456bf1eeb69a71a78");
+        expect(data[1].title).toBe("test");
 
-        expect(total).toBe(2);
+        expect(total).toBe(3);
+    });
+
+    it("correct multiple sorting response", async () => {
+        const { data, total } = await dataProvider(client, {
+            databaseId: "632455a0b8d017403ce9",
+        }).getList({
+            resource: "632455a55dc72e1aa016",
+            sort: [
+                {
+                    field: "id",
+                    order: "asc",
+                },
+                {
+                    field: "title",
+                    order: "asc",
+                },
+            ],
+        });
+
+        expect(data[0].id).toBe("632456bf1eeb69a71a78");
+        expect(data[0].title).toBe("test");
+
+        expect(data[1].id).toBe("632456c5998583bcb6d3");
+        expect(data[1].title).toBe("test 2");
+
+        expect(total).toBe(3);
     });
 
     it("correct filter response", async () => {
-        const { data, total } = await dataProvider(client).getList({
-            resource: "6180e4315f3e7",
+        const { data, total } = await dataProvider(client, {
+            databaseId: "632455a0b8d017403ce9",
+        }).getList({
+            resource: "632455a55dc72e1aa016",
             filters: [
                 {
                     field: "id",
                     operator: "eq",
-                    value: "61c300118b05b",
+                    value: "632456c5998583bcb6d3",
                 },
             ],
         });
 
-        expect(data[0].id).toBe("61c300118b05b");
-        expect(data[0].title).toBe("Test");
+        expect(data[0].id).toBe("632456c5998583bcb6d3");
+        expect(data[0].title).toBe("test 2");
         expect(total).toBe(1);
     });
 
@@ -54,13 +86,15 @@ xdescribe("getList", () => {
         expect.assertions(2);
 
         try {
-            await dataProvider(client).getList({
-                resource: "6180e4315f3e7",
+            await dataProvider(client, {
+                databaseId: "632455a0b8d017403ce9",
+            }).getList({
+                resource: "632455a55dc72e1aa016",
                 filters: [
                     {
                         field: "id",
                         operator: "in",
-                        value: "61c300118b05b",
+                        value: "632456c5998583bcb6d3",
                     },
                 ],
             });
@@ -69,32 +103,6 @@ xdescribe("getList", () => {
             expect(err).toHaveProperty(
                 "message",
                 "Operator in is not supported",
-            );
-        }
-    });
-
-    it("throws when given more than one sorter", async () => {
-        expect.assertions(2);
-
-        try {
-            await dataProvider(client).getList({
-                resource: "6180e4315f3e7",
-                sort: [
-                    {
-                        field: "id",
-                        order: "desc",
-                    },
-                    {
-                        field: "content",
-                        order: "asc",
-                    },
-                ],
-            });
-        } catch (err) {
-            expect(err).toBeInstanceOf(Error);
-            expect(err).toHaveProperty(
-                "message",
-                "Appwrite data provider does not support multiple sortings",
             );
         }
     });

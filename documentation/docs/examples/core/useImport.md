@@ -6,7 +6,7 @@ description: useImport example of @pankod/refine-core
 
 The `useImport` hook was created by **refine** to help you import CSV files. You can use this hook to import your CSV data. This example shows how to use the `useImport` hook.
 
-[Refer to the **refine** useImport hook documentation for more information. →](/docs/core/hooks/import-export/useImport/)
+[Refer to the **refine** useImport hook documentation for more information. →](/docs/api-reference/core/hooks/import-export/useImport/)
 
 [View useImport Example Source](https://github.com/pankod/refine/tree/master/examples/core/useImport)
 

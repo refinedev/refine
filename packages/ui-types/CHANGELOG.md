@@ -1,16 +1,42 @@
 # @pankod/refine-ui-types
 
+## 0.9.2
+
+### Patch Changes
+
+-   Removed unused `updatePasswordLink` and `onSubmit` props from auth pages.
+
+    Renamed `RefineResetPasswordFormTypes` to `RefineForgotPasswordFormTypes`.
+
+    Renamed `resetPasswordLink` to `forgotPasswordLink`.
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.71.0
+
+## 0.9.1
+
+### Patch Changes
+
+-   [#2524](https://github.com/pankod/refine/pull/2524) [`27bf81bebb`](https://github.com/pankod/refine/commit/27bf81bebb217d2944e20e79a8f7618eda0e9db7) Thanks [@biskuvit](https://github.com/biskuvit)! - Removed unused `updatePasswordLink` and `onSubmit` props from auth pages.
+
+    Renamed `RefineResetPasswordFormTypes` to `RefineForgotPasswordFormTypes`.
+
+    Renamed `resetPasswordLink` to `forgotPasswordLink`.
+
+-   Updated dependencies [[`27bf81bebb`](https://github.com/pankod/refine/commit/27bf81bebb217d2944e20e79a8f7618eda0e9db7)]:
+    -   @pankod/refine-core@3.70.0
+
 ## 0.9.0
 
 ### Minor Changes
 
--   Added `formProps` property to `RefineAuthPageProps`, `RefineResetPasswordPageProps`, `RefineRegisterPageProps`, and `RefineUpdatePasswordPageProps`
+-   Added `formProps` property to `RefineAuthPageProps`, `RefineForgotPasswordPageProps`, `RefineRegisterPageProps`, and `RefineUpdatePasswordPageProps`
 
 ## 0.8.0
 
 ### Minor Changes
 
--   [#2516](https://github.com/pankod/refine/pull/2516) [`ad99916d6d`](https://github.com/pankod/refine/commit/ad99916d6dbd181b857fd7df7b9619d8cac5e3e0) Thanks [@omeraplak](https://github.com/omeraplak)! - Added `formProps` property to `RefineAuthPageProps`, `RefineResetPasswordPageProps`, `RefineRegisterPageProps`, and `RefineUpdatePasswordPageProps`
+-   [#2516](https://github.com/pankod/refine/pull/2516) [`ad99916d6d`](https://github.com/pankod/refine/commit/ad99916d6dbd181b857fd7df7b9619d8cac5e3e0) Thanks [@omeraplak](https://github.com/omeraplak)! - Added `formProps` property to `RefineAuthPageProps`, `RefineForgotPasswordPageProps`, `RefineRegisterPageProps`, and `RefineUpdatePasswordPageProps`
 
 ## 0.7.0
 
@@ -35,7 +61,7 @@
               type?: "login";
               providers?: IProvider[];
               registerLink?: React.ReactNode;
-              resetPasswordLink?: React.ReactNode;
+              forgotPasswordLink?: React.ReactNode;
               rememberMe?: React.ReactNode;
               onSubmit?: (formValues: RefineLoginFormTypes) => void;
           }>
@@ -46,9 +72,9 @@
               onSubmit?: (formValues: RefineRegisterFormTypes) => void;
           }>
         | PropsWithChildren<{
-              type: "resetPassword";
+              type: "forgotPassword";
               loginLink?: React.ReactNode;
-              onSubmit?: (formValues: RefineResetPasswordFormTypes) => void;
+              onSubmit?: (formValues: RefineForgotPasswordFormTypes) => void;
           }>
         | PropsWithChildren<{
               type: "updatePassword";
@@ -81,7 +107,7 @@
               type?: "login";
               providers?: IProvider[];
               registerLink?: React.ReactNode;
-              resetPasswordLink?: React.ReactNode;
+              forgotPasswordLink?: React.ReactNode;
               rememberMe?: React.ReactNode;
               onSubmit?: (formValues: RefineLoginFormTypes) => void;
           }>
@@ -92,9 +118,9 @@
               onSubmit?: (formValues: RefineRegisterFormTypes) => void;
           }>
         | PropsWithChildren<{
-              type: "resetPassword";
+              type: "forgotPassword";
               loginLink?: React.ReactNode;
-              onSubmit?: (formValues: RefineResetPasswordFormTypes) => void;
+              onSubmit?: (formValues: RefineForgotPasswordFormTypes) => void;
           }>
         | PropsWithChildren<{
               type: "updatePassword";

@@ -4,7 +4,7 @@ title: Advanced
 ---
 
 
-Advanced table examples with [`useDataGrid`](/ui-frameworks/mui/hooks/useDataGrid.md) and [`useTable`](https://react-table.tanstack.com/) created with **refine**'s [@pankod/refine-react-table](https://github.com/pankod/refine/tree/master/packages/react-table) adapter. 
+Advanced table examples with [`useDataGrid`](/api-reference/mui/hooks/useDataGrid.md) and [`useTable`](https://react-table.tanstack.com/) created with **refine**'s [@pankod/refine-react-table](https://github.com/pankod/refine/tree/master/packages/react-table) adapter. 
 
 [View advanced example source](https://github.com/pankod/refine/tree/master/examples/table/mui/advancedTable)
 

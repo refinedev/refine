@@ -1194,7 +1194,7 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                                 It has a very strong community
                                                 of maintainers, contributers and
                                                 and users providing{" "}
-                                                <strong>7/24</strong> support on
+                                                <strong>24/7</strong> support on
                                                 our Github, Twitter and Discord
                                                 channels.
                                             </p>

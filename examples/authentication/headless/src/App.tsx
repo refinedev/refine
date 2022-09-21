@@ -11,20 +11,20 @@ import { UpdatePasswordPage } from "./pages/auth/updatePassword";
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
-        login: (params: any) => {
-            if (params.providerName === "google") {
-                return Promise.resolve(
-                    "https://accounts.google.com/o/oauth2/v2/auth",
-                );
-            }
-            if (params.providerName === "github") {
-                return Promise.resolve("https://github.com/login");
-            }
-            if (params.email === "admin@refine.com") {
-                localStorage.setItem("email", params.username);
-                return Promise.resolve();
+        login: async ({ providerName, email }) => {
+            if (providerName === "google") {
+                window.location.href =
+                    "https://accounts.google.com/o/oauth2/v2/auth";
+                return Promise.resolve(false);
             }
 
+            if (providerName === "github") {
+                window.location.href =
+                    "https://github.com/login/oauth/authorize";
+                return Promise.resolve(false);
+            }
+
+            localStorage.setItem("email", email);
             return Promise.reject();
         },
         register: (params: any) => {
@@ -41,7 +41,7 @@ const App: React.FC = () => {
             }
             return Promise.reject();
         },
-        resetPassword: (params: any) => {
+        forgotPassword: (params: any) => {
             if (params.email) {
                 //we can send email with reset password link here
                 return Promise.resolve();

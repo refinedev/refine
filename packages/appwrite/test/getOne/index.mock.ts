@@ -1,33 +1,84 @@
 import nock from "nock";
 
-nock("http://localhost:80", { encodedQueryParams: true })
-    .get(
-        "/v1/databases/default/collections/6180e4315f3e7/documents/61b9dd4a6261d",
-    )
+nock("https://matej10qa.appwrite.org:443", { encodedQueryParams: true })
+    .post("/v1/account/sessions/anonymous", {})
     .reply(
-        200,
+        201,
         [
-            "1f8b08000000000000035dce3d0ec2300c05e0aba0a74e2843437fe90dd8d91043da982a52db5489114255ef8e29b030fa7d4fb61724cea241a9dba3b5b9290fa5b650483a3f0cd4b1f3d3a6754a79a68b5b46d55b670aa38b5134a25910c8c8920bf662fd9d22e3aaf0088ee92f5d15d8f12031ce12e4229d61ea7d789e3e6fd45a578536599b6ee827a689bff5dd6f5470a3e9496e03eb0b65502ba4c3000000",
+            "1f8b0800000000000003758f4b4fc3301084ff0a8a7a83467ea449935b4145e2400f287077e22db59adad1daa98810ff1db7097954e2647b66f79bf177b05032c88298b32811842429279cb1754a280d1e824589201cc88df3338c30b624e992c639e5195b679c852b42ef09c908f1c38d057c99c1927d2c8a82b284a7de87af5a2174207e0b8ad27800d568ce4a02fa51a18d6e4fa6b113f9fdda78226cca12accdcd11f4bfc6f612deceed37d823d8c36451d5fea4ab34a4511c463464973ac63e1909dd80b13b711aee1f8056997eb7ac146897b7f5c5ae5481c2e7fdc923a17bf7949d97ef9ec19587c11999342483bad59f4acf089d326b20e1ac4a180b76ef47145a4e85571f5af528d368876ddfcee128f594bcc1235cbfd120fad42073d8c0cf2f53a2796a37020000",
         ],
         [
             "Access-Control-Allow-Credentials",
             "true",
             "Access-Control-Allow-Headers",
-            "Origin, Cookie, Set-Cookie, X-Requested-With, Content-Type, Access-Control-Allow-Origin, Access-Control-Request-Headers, Accept, X-Appwrite-Project, X-Appwrite-Key, X-Appwrite-Locale, X-Appwrite-Mode, X-Appwrite-JWT, X-Appwrite-Response-Format, X-SDK-Version, Cache-Control, Expires, Pragma",
+            "Origin, Cookie, Set-Cookie, X-Requested-With, Content-Type, Access-Control-Allow-Origin, Access-Control-Request-Headers, Accept, X-Appwrite-Project, X-Appwrite-Key, X-Appwrite-Locale, X-Appwrite-Mode, X-Appwrite-JWT, X-Appwrite-Response-Format, X-SDK-Version, X-SDK-Name, X-SDK-Language, X-SDK-Platform, X-Appwrite-ID, Content-Range, Range, Cache-Control, Expires, Pragma",
             "Access-Control-Allow-Methods",
             "GET, POST, PUT, PATCH, DELETE",
             "Access-Control-Allow-Origin",
-            "http://localhost",
+            "https://localhost",
             "Access-Control-Expose-Headers",
             "X-Fallback-Cookies",
             "Content-Encoding",
             "gzip",
             "Content-Length",
-            "161",
+            "301",
             "Content-Type",
             "application/json; charset=UTF-8",
             "Date",
-            "Tue, 21 Dec 2021 12:01:00 GMT",
+            "Fri, 16 Sep 2022 13:28:32 GMT",
+            "Server",
+            "Appwrite",
+            "Set-Cookie",
+            "a_session_6324555073b9706cb1f5_legacy=eyJpZCI6IjYzMjQ3YTAwNzdmNmFiYjEyNzM5Iiwic2VjcmV0IjoiYjIzZmJhMzEzZDM0YTQ3NDgzMDVhMTU0YWJmZWQzZWNiYmEwYWMyOGQ5MzZlMmJjNTNlYTFhMjgxMjcyOWE0OWY2YzcwNzJhZTI5NzhlZGQzMTEwMTkzYzM4ZDRjMjIxOTQ5ZmUwM2M0YTlmNDgwZGIxMzVlM2I5ODA4ZjMxYjgzODEzYzBjNGYyZTQxZjVkODEwMzVmZDY1MmU4ZDc4MmEwYTc2YjA0OTI4NzdhNWEyMmI2NjFmY2JlMDZlNDkyMzJkNmYzNzcyNjkyNjI1MWU1MDM4NDMxMGNiMmMyNjY2MjUwOGMwYzVjNzQwZGU4NDdkN2M3ZWZmMTZlOGU3OSJ9; expires=Sat, 16-Sep-2023 13:28:32 GMT; path=/; domain=.matej10qa.appwrite.org; secure; httponly",
+            "Set-Cookie",
+            "a_session_6324555073b9706cb1f5=eyJpZCI6IjYzMjQ3YTAwNzdmNmFiYjEyNzM5Iiwic2VjcmV0IjoiYjIzZmJhMzEzZDM0YTQ3NDgzMDVhMTU0YWJmZWQzZWNiYmEwYWMyOGQ5MzZlMmJjNTNlYTFhMjgxMjcyOWE0OWY2YzcwNzJhZTI5NzhlZGQzMTEwMTkzYzM4ZDRjMjIxOTQ5ZmUwM2M0YTlmNDgwZGIxMzVlM2I5ODA4ZjMxYjgzODEzYzBjNGYyZTQxZjVkODEwMzVmZDY1MmU4ZDc4MmEwYTc2YjA0OTI4NzdhNWEyMmI2NjFmY2JlMDZlNDkyMzJkNmYzNzcyNjkyNjI1MWU1MDM4NDMxMGNiMmMyNjY2MjUwOGMwYzVjNzQwZGU4NDdkN2M3ZWZmMTZlOGU3OSJ9; expires=Sat, 16-Sep-2023 13:28:32 GMT; path=/; domain=.matej10qa.appwrite.org; secure; httponly; samesite=None",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-Debug-Fallback",
+            "true",
+            "X-Debug-Speed",
+            "0.023688077926636",
+            "X-Fallback-Cookies",
+            '{"a_session_6324555073b9706cb1f5":"eyJpZCI6IjYzMjQ3YTAwNzdmNmFiYjEyNzM5Iiwic2VjcmV0IjoiYjIzZmJhMzEzZDM0YTQ3NDgzMDVhMTU0YWJmZWQzZWNiYmEwYWMyOGQ5MzZlMmJjNTNlYTFhMjgxMjcyOWE0OWY2YzcwNzJhZTI5NzhlZGQzMTEwMTkzYzM4ZDRjMjIxOTQ5ZmUwM2M0YTlmNDgwZGIxMzVlM2I5ODA4ZjMxYjgzODEzYzBjNGYyZTQxZjVkODEwMzVmZDY1MmU4ZDc4MmEwYTc2YjA0OTI4NzdhNWEyMmI2NjFmY2JlMDZlNDkyMzJkNmYzNzcyNjkyNjI1MWU1MDM4NDMxMGNiMmMyNjY2MjUwOGMwYzVjNzQwZGU4NDdkN2M3ZWZmMTZlOGU3OSJ9"}',
+            "X-Ratelimit-Limit",
+            "50",
+            "X-Ratelimit-Remaining",
+            "33",
+            "X-Ratelimit-Reset",
+            "1663336800",
+            "Connection",
+            "close",
+        ],
+    );
+
+nock("https://matej10qa.appwrite.org:443", { encodedQueryParams: true })
+    .get(
+        "/v1/databases/632455a0b8d017403ce9/collections/632455a55dc72e1aa016/documents/632456bf1eeb69a71a78",
+    )
+    .reply(
+        200,
+        [
+            "1f8b08000000000000038d8eb10ac23014457f45829b56de4b9ba4cde6e8ee260e2fc91302ad2d4d9cc47f37011147d773cfe5dea7c8318f2cacc89cb2d88bc0c9af71c971be7fe0a6a2926c632844b7b253dadd90d9e9810c92e96be857a6cce1988b2341ca068606f519c1aade8239a0d43b000b50e5c712fe97175ea79852399484bd5cebd63c8eecebc5d3f79222a5823792910850d762d92047897f25707d00341db49e07f17a03e557b535ff000000",
+        ],
+        [
+            "Access-Control-Allow-Credentials",
+            "true",
+            "Access-Control-Allow-Headers",
+            "Origin, Cookie, Set-Cookie, X-Requested-With, Content-Type, Access-Control-Allow-Origin, Access-Control-Request-Headers, Accept, X-Appwrite-Project, X-Appwrite-Key, X-Appwrite-Locale, X-Appwrite-Mode, X-Appwrite-JWT, X-Appwrite-Response-Format, X-SDK-Version, X-SDK-Name, X-SDK-Language, X-SDK-Platform, X-Appwrite-ID, Content-Range, Range, Cache-Control, Expires, Pragma",
+            "Access-Control-Allow-Methods",
+            "GET, POST, PUT, PATCH, DELETE",
+            "Access-Control-Allow-Origin",
+            "https://localhost",
+            "Access-Control-Expose-Headers",
+            "X-Fallback-Cookies",
+            "Content-Encoding",
+            "gzip",
+            "Content-Length",
+            "178",
+            "Content-Type",
+            "application/json; charset=UTF-8",
+            "Date",
+            "Fri, 16 Sep 2022 13:28:32 GMT",
             "Server",
             "Appwrite",
             "X-Content-Type-Options",
@@ -35,7 +86,7 @@ nock("http://localhost:80", { encodedQueryParams: true })
             "X-Debug-Fallback",
             "true",
             "X-Debug-Speed",
-            "0.0033769607543945",
+            "0.0025720596313477",
             "Connection",
             "close",
         ],
