@@ -76,7 +76,7 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
                 marginTop: "-150px",
             }}
         >
-            <Title variant="gradient" order={1} sx={{ fontSize: "6rem" }}>
+            <Title color="dimmed" order={1} sx={{ fontSize: "6rem" }}>
                 404
             </Title>
             <Group spacing={4}>
