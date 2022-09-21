@@ -6,6 +6,7 @@ function DefaultNavbarItemDesktop({
     isDropdownItem = false,
     ...props
 }) {
+    const isGitHubLink = props?.href?.includes?.("github.com/pankod/refine");
     const element = (
         <NavbarNavLink
             className={clsx(
@@ -14,6 +15,7 @@ function DefaultNavbarItemDesktop({
             )}
             isDropdownLink={isDropdownItem}
             {...props}
+            rel={isGitHubLink ? "noopener" : "noopener noreferrer"}
         />
     );
     if (isDropdownItem) {
