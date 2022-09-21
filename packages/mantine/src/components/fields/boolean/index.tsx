@@ -1,5 +1,4 @@
 import React from "react";
-
 import { RefineFieldBooleanProps } from "@pankod/refine-ui-types";
 import { Tooltip, TooltipProps } from "@mantine/core";
 import { Minus, Check, IconProps } from "tabler-icons-react";
@@ -26,11 +25,9 @@ export const BooleanField: React.FC<BooleanFieldProps> = ({
 }) => {
     return (
         <Tooltip label={value ? valueLabelTrue : valueLabelFalse} {...rest}>
-            {value ? (
-                <span>{trueIcon ?? <Check {...svgIconProps} />}</span>
-            ) : (
-                <span>{falseIcon ?? <Minus {...svgIconProps} />}</span>
-            )}
+            {value
+                ? trueIcon ?? <Check size={18} {...svgIconProps} />
+                : falseIcon ?? <Minus size={18} {...svgIconProps} />}
         </Tooltip>
     );
 };

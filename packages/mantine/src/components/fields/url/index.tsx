@@ -1,7 +1,7 @@
 import React from "react";
 
 import { RefineFieldUrlProps } from "@pankod/refine-ui-types";
-import { Text, TextProps, Anchor, AnchorProps } from "@mantine/core";
+import { TextProps, Anchor, AnchorProps } from "@mantine/core";
 
 export type UrlFieldProps = RefineFieldUrlProps<
     string | undefined,
@@ -25,10 +25,8 @@ export const UrlField: React.FC<UrlFieldProps> = ({
     ...rest
 }) => {
     return (
-        <Text variant="text">
-            <Anchor href={value} title={title} {...rest}>
-                {children ?? value}
-            </Anchor>
-        </Text>
+        <Anchor href={value} title={title} {...rest}>
+            {children ?? value}
+        </Anchor>
     );
 };
