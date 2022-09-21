@@ -1,5 +1,11 @@
 # @pankod/refine-ui-types
 
+## 0.11.0
+
+### Minor Changes
+
+-   Add `providers` support on AuthPage register page.
+
 ## 0.10.0
 
 ### Minor Changes
