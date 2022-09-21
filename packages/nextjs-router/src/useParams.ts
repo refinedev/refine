@@ -47,7 +47,7 @@ export const composeParams = (params: string[]): ResourceRouterParams => {
 
 export const handleRefineParams = (
     refineParams?: string | string[],
-): ResourceRouterParams | {} =>
+): ResourceRouterParams | Record<string, string> =>
     Array.isArray(refineParams) ? composeParams(refineParams) : {};
 
 export const useParams: IRouterProvider["useParams"] = <Params>() => {

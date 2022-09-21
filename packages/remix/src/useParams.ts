@@ -47,7 +47,7 @@ export const composeParams = (params: string[]): ResourceRouterParams => {
 
 export const handleRefineParams = (
     refineSplat?: string,
-): ResourceRouterParams | {} => {
+): ResourceRouterParams | Record<string, string> => {
     if (refineSplat) {
         const params = refineSplat.split("/").filter(Boolean);
         return composeParams(params);
