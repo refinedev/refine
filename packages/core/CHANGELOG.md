@@ -1,5 +1,12 @@
 # @pankod/refine-core
 
+## 3.71.0
+
+### Minor Changes
+
+-   -   Renamed `resetPassword` in AuthProvider to `forgotPassword`
+    -   Renamed `useResetPassword` hook to `useForgotPassword`
+
 ## 3.70.0
 
 ### Minor Changes
