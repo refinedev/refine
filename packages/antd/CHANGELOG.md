@@ -1,5 +1,11 @@
 # @pankod/refine-antd
 
+## 3.48.1
+
+### Patch Changes
+
+-   [#2552](https://github.com/pankod/refine/pull/2552) [`52cd8d633e`](https://github.com/pankod/refine/commit/52cd8d633e57f925bb51c875aab0406e3358ec45) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed `useModalForm` & `useStepsForm` return type
+
 ## 3.48.0
 
 ### Minor Changes

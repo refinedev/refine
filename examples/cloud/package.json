@@ -3,7 +3,7 @@
     "version": "3.20.1",
     "private": true,
     "dependencies": {
-        "@pankod/refine-antd": "^3.48.0",
+        "@pankod/refine-antd": "^3.48.1",
         "@pankod/refine-core": "^3.71.0",
         "@pankod/refine-react-router-v6": "^3.33.2",
         "@pankod/refine-simple-rest": "^3.31.0",
