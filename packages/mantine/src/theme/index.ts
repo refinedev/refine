@@ -1,6 +1,6 @@
-import { MantineTheme } from "@mantine/core";
+import { MantineThemeOverride } from "@mantine/core";
 
-const commonThemeProperties: Partial<MantineTheme> = {
+const commonThemeProperties: Partial<MantineThemeOverride> = {
     fontFamily: [
         "Montserrat",
         "-apple-system",
@@ -57,12 +57,12 @@ const commonThemeProperties: Partial<MantineTheme> = {
     },
 };
 
-export const LightTheme: Partial<MantineTheme> = {
+export const LightTheme: Partial<MantineThemeOverride> = {
     colorScheme: "light",
     ...commonThemeProperties,
 };
 
-export const DarkTheme: Partial<MantineTheme> = {
+export const DarkTheme: Partial<MantineThemeOverride> = {
     colorScheme: "dark",
     ...commonThemeProperties,
 };

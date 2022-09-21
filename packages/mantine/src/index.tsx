@@ -1,3 +1,5 @@
+import "./types/theme";
+
 export * from "@mantine/hooks";
 export * from "@mantine/utils";
 export * from "@mantine/styles";
