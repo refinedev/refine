@@ -1,5 +1,11 @@
 # @pankod/refine-antd
 
+## 3.48.2
+
+### Patch Changes
+
+-   Fixed `useModalForm` & `useStepsForm` return type
+
 ## 3.48.1
 
 ### Patch Changes
