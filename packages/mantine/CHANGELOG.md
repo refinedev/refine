@@ -1,5 +1,12 @@
 # @pankod/refine-mantine
 
+## 1.0.6
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-ui-types@0.11.0
+
 ## 1.0.5
 
 ### Patch Changes

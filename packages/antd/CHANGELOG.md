@@ -1,5 +1,16 @@
 # @pankod/refine-antd
 
+## 3.48.0
+
+### Minor Changes
+
+-   Add `providers` support on AuthPage register page.
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-ui-types@0.11.0
+
 ## 3.47.0
 
 ### Minor Changes
