@@ -16,6 +16,7 @@ export interface RefineLoginFormTypes {
 export interface RefineRegisterFormTypes {
     email?: string;
     password?: string;
+    providerName?: string;
 }
 
 export interface RefineForgotPasswordFormTypes {
@@ -74,6 +75,11 @@ export type RefineAuthPageProps<
            * @optional
            */
           loginLink?: React.ReactNode;
+          /**
+           * @description Providers array for login with third party auth services.
+           * @optional
+           */
+          providers?: IProvider[];
       }>
     | PropsWithChildren<{
           /**
@@ -143,6 +149,7 @@ export type RefineRegisterPageProps<
     TContentProps extends {} = Record<keyof any, unknown>,
     TFormProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
+    providers?: IProvider[];
     loginLink?: React.ReactNode;
     wrapperProps?: TWrapperProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;

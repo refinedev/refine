@@ -15,6 +15,7 @@ import {
     LayoutProps,
     CardProps,
     FormProps,
+    Divider,
 } from "antd";
 import {
     useTranslate,
@@ -34,6 +35,7 @@ type RegisterProps = RefineRegisterPageProps<LayoutProps, CardProps, FormProps>;
  * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/antd-auth-page/#register} for more details.
  */
 export const RegisterPage: React.FC<RegisterProps> = ({
+    providers,
     loginLink,
     wrapperProps,
     contentProps,
@@ -53,6 +55,41 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         </Title>
     );
 
+    const renderProviders = () => {
+        if (providers) {
+            return (
+                <>
+                    {providers.map((provider) => {
+                        return (
+                            <Button
+                                key={provider.name}
+                                type="ghost"
+                                block
+                                icon={provider.icon}
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    width: "100%",
+                                    marginBottom: "8px",
+                                }}
+                                onClick={() =>
+                                    register({
+                                        providerName: provider.name,
+                                    })
+                                }
+                            >
+                                {provider.label}
+                            </Button>
+                        );
+                    })}
+                    <Divider>{translate("pages.login.divider", "or")}</Divider>
+                </>
+            );
+        }
+        return null;
+    };
+
     const CardContent = (
         <Card
             title={CardTitle}
@@ -60,6 +97,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             style={containerStyles}
             {...(contentProps ?? {})}
         >
+            {renderProviders()}
             <Form<RefineRegisterFormTypes>
                 layout="vertical"
                 form={form}

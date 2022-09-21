@@ -83,7 +83,31 @@ const App: React.FC = () => {
                 routes: [
                     {
                         path: "/register",
-                        element: <AuthPage type="register" />,
+                        element: (
+                            <AuthPage
+                                type="register"
+                                providers={[
+                                    {
+                                        name: "google",
+                                        label: "Sign in with Google",
+                                        icon: (
+                                            <GoogleOutlined
+                                                style={{ fontSize: 24 }}
+                                            />
+                                        ),
+                                    },
+                                    {
+                                        name: "github",
+                                        label: "Sign in with GitHub",
+                                        icon: (
+                                            <GithubOutlined
+                                                style={{ fontSize: 24 }}
+                                            />
+                                        ),
+                                    },
+                                ]}
+                            />
+                        ),
                     },
                     {
                         path: "/reset-password",
