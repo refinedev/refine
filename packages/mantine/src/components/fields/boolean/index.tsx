@@ -25,9 +25,11 @@ export const BooleanField: React.FC<BooleanFieldProps> = ({
 }) => {
     return (
         <Tooltip label={value ? valueLabelTrue : valueLabelFalse} {...rest}>
-            {value
-                ? trueIcon ?? <Check size={18} {...svgIconProps} />
-                : falseIcon ?? <Minus size={18} {...svgIconProps} />}
+            <span>
+                {value
+                    ? trueIcon ?? <Check size={18} {...svgIconProps} />
+                    : falseIcon ?? <Minus size={18} {...svgIconProps} />}
+            </span>
         </Tooltip>
     );
 };
