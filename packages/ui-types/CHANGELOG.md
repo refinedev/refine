@@ -1,5 +1,18 @@
 # @pankod/refine-ui-types
 
+## 0.9.2
+
+### Patch Changes
+
+-   Removed unused `updatePasswordLink` and `onSubmit` props from auth pages.
+
+    Renamed `RefineResetPasswordFormTypes` to `RefineForgotPasswordFormTypes`.
+
+    Renamed `resetPasswordLink` to `forgotPasswordLink`.
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.71.0
+
 ## 0.9.1
 
 ### Patch Changes
