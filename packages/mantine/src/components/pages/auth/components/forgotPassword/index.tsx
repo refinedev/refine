@@ -1,7 +1,7 @@
 import React from "react";
 import {
-    RefineResetPasswordPageProps,
-    RefineResetPasswordFormTypes,
+    RefineForgotPasswordPageProps,
+    RefineForgotPasswordFormTypes,
 } from "@pankod/refine-ui-types";
 import { useLogin, useTranslate, useRouterContext } from "@pankod/refine-core";
 import {
@@ -21,7 +21,7 @@ import {
 import { useForm } from "@hooks/form";
 import { layoutStyles, cardStyles, titleStyles } from "../styles";
 
-type ResetPassworProps = RefineResetPasswordPageProps<
+type ResetPassworProps = RefineForgotPasswordPageProps<
     BoxProps,
     CardProps,
     React.DetailedHTMLProps<
@@ -34,18 +34,17 @@ type ResetPassworProps = RefineResetPasswordPageProps<
  * **refine** has reset password page form which is served on `/reset-password` route when the `authProvider` configuration is provided.
  *
  */
-export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
+export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
     loginLink,
     contentProps,
     wrapperProps,
-    onSubmit,
     renderContent,
     formProps,
 }) => {
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
-    const { getInputProps, onSubmit: onFormSubmit } = useForm({
+    const { getInputProps, onSubmit } = useForm({
         initialValues: {
             email: "",
         },
@@ -60,8 +59,8 @@ export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
         },
     });
 
-    const { mutate: login, isLoading } =
-        useLogin<RefineResetPasswordFormTypes>();
+    const { mutate: forgotPassword, isLoading } =
+        useLogin<RefineForgotPasswordFormTypes>();
 
     const CardContent = (
         <Card style={cardStyles} {...(contentProps ?? {})}>
@@ -73,7 +72,7 @@ export const ResetPasswordPage: React.FC<ResetPassworProps> = ({
             </Title>
             <Space h="lg" />
             <form
-                onSubmit={onFormSubmit((values) => (onSubmit ?? login)(values))}
+                onSubmit={onSubmit((values) => forgotPassword(values))}
                 {...formProps}
             >
                 <TextInput

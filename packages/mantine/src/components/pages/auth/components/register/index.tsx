@@ -39,14 +39,13 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     loginLink,
     contentProps,
     wrapperProps,
-    onSubmit,
     renderContent,
     formProps,
 }) => {
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
-    const { getInputProps, onSubmit: onFormSubmit } = useForm({
+    const { getInputProps, onSubmit } = useForm({
         initialValues: {
             email: "",
             password: "",
@@ -63,7 +62,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         },
     });
 
-    const { mutate: login, isLoading } = useLogin<RefineRegisterFormTypes>();
+    const { mutate: register, isLoading } = useLogin<RefineRegisterFormTypes>();
 
     const CardContent = (
         <Card style={cardStyles} {...(contentProps ?? {})}>
@@ -72,7 +71,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             </Title>
             <Space h="lg" />
             <form
-                onSubmit={onFormSubmit((values) => (onSubmit ?? login)(values))}
+                onSubmit={onSubmit((values) => register(values))}
                 {...formProps}
             >
                 <TextInput

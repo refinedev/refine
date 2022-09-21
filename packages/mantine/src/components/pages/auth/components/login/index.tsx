@@ -40,18 +40,17 @@ type LoginProps = RefineLoginPageProps<
 export const LoginPage: React.FC<LoginProps> = ({
     providers,
     registerLink,
-    resetPasswordLink,
+    forgotPasswordLink,
     rememberMe,
     contentProps,
     wrapperProps,
-    onSubmit,
     renderContent,
     formProps,
 }) => {
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
-    const { getInputProps, onSubmit: onFormSubmit } = useForm({
+    const { getInputProps, onSubmit } = useForm({
         initialValues: {
             email: "",
             password: "",
@@ -111,10 +110,7 @@ export const LoginPage: React.FC<LoginProps> = ({
             </Title>
             <Space h="lg" />
             {renderProviders()}
-            <form
-                onSubmit={onFormSubmit((values) => (onSubmit ?? login)(values))}
-                {...formProps}
-            >
+            <form onSubmit={onSubmit((values) => login(values))} {...formProps}>
                 <TextInput
                     label={translate("pages.login.fields.email", "Email")}
                     placeholder={translate("pages.login.fields.email", "Email")}
@@ -146,7 +142,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                             })}
                         />
                     )}
-                    {resetPasswordLink ?? (
+                    {forgotPasswordLink ?? (
                         <Anchor component={Link} to="/reset-password" size="xs">
                             {translate(
                                 "pages.login.buttons.resetPassword",

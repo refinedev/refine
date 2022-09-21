@@ -5,7 +5,7 @@ import { BoxProps, CardProps } from "@mantine/core";
 import {
     LoginPage,
     RegisterPage,
-    ResetPasswordPage,
+    ForgotPasswordPage,
     UpdatePasswordPage,
 } from "./components";
 
@@ -30,8 +30,8 @@ export const AuthPage: React.FC<AuthProps> = (props) => {
         switch (type) {
             case "register":
                 return <RegisterPage {...props} />;
-            case "resetPassword":
-                return <ResetPasswordPage {...props} />;
+            case "forgotPassword":
+                return <ForgotPasswordPage {...props} />;
             case "updatePassword":
                 return <UpdatePasswordPage {...props} />;
             default:

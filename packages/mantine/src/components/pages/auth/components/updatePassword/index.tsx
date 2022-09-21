@@ -34,13 +34,12 @@ type UpdatePassworProps = RefineUpdatePasswordPageProps<
 export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
     contentProps,
     wrapperProps,
-    onSubmit,
     renderContent,
     formProps,
 }) => {
     const translate = useTranslate();
 
-    const { getInputProps, onSubmit: onFormSubmit } = useForm({
+    const { getInputProps, onSubmit } = useForm({
         initialValues: {
             password: "",
             confirmPassword: "",
@@ -56,7 +55,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
         },
     });
 
-    const { mutate: login, isLoading } =
+    const { mutate: updatePassword, isLoading } =
         useLogin<RefineUpdatePasswordFormTypes>();
 
     const CardContent = (
@@ -66,7 +65,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
             </Title>
             <Space h="lg" />
             <form
-                onSubmit={onFormSubmit((values) => (onSubmit ?? login)(values))}
+                onSubmit={onSubmit((values) => updatePassword(values))}
                 {...formProps}
             >
                 <TextInput
