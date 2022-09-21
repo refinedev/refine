@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-antd": patch
+"@pankod/refine-core": patch
 ---
 
-Removed children property from `SubMenu`s `CanAccess` params for type consistency and `react-query` compatibility with stringify
+Removed `children` property from `useCan`s `params.resource` since it can be in `ITreeMenu` type and `React.ReactNode` breaks the `react-query`s key stringify function.
