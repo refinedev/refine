@@ -5,7 +5,6 @@
         "rootDir": "./src",
         "baseUrl": ".",
         "importHelpers": false,
-        "downlevelIteration": true,
         "paths": {
             "@components/*": ["src/components/*"],
             "@components": ["src/components"],
