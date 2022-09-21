@@ -16,9 +16,10 @@ export interface RefineLoginFormTypes {
 export interface RefineRegisterFormTypes {
     email?: string;
     password?: string;
+    providerName?: string;
 }
 
-export interface RefineResetPasswordFormTypes {
+export interface RefineForgotPasswordFormTypes {
     email: string;
 }
 
@@ -56,17 +57,12 @@ export type RefineAuthPageProps<
            * @description Render a redirect to reset password page button node. If set to false, reset password button will not be rendered.
            * @optional
            */
-          resetPasswordLink?: React.ReactNode;
+          forgotPasswordLink?: React.ReactNode;
           /**
            * @description Render a remember me button node. If set to false, remember me button will not be rendered.
            * @optional
            */
           rememberMe?: React.ReactNode;
-          /**
-           * @description Custom submit function for the form. Trigger after submitting the form.
-           * @optional
-           */
-          onSubmit?: (formValues: RefineLoginFormTypes) => void;
       }>
     | PropsWithChildren<{
           /**
@@ -80,32 +76,22 @@ export type RefineAuthPageProps<
            */
           loginLink?: React.ReactNode;
           /**
-           * @description render a redirect to update password page button node. If set to false, update password button will not be rendered.
+           * @description Providers array for login with third party auth services.
            * @optional
            */
-          updatePasswordLink?: React.ReactNode;
-          /**
-           * @description Custom submit function for the form. Trigger after submitting the form.
-           * @optional
-           */
-          onSubmit?: (formValues: RefineRegisterFormTypes) => void;
+          providers?: IProvider[];
       }>
     | PropsWithChildren<{
           /**
            * @description The type of the auth page.
            * @optional
            */
-          type: "resetPassword";
+          type: "forgotPassword";
           /**
            * @description render a redirect to login page button node. If set to false, login button will not be rendered.
            * @optional
            */
           loginLink?: React.ReactNode;
-          /**
-           * @description Custom submit function for the form. Trigger after submitting the form.
-           * @optional
-           */
-          onSubmit?: (formValues: RefineResetPasswordFormTypes) => void;
       }>
     | PropsWithChildren<{
           /**
@@ -113,11 +99,6 @@ export type RefineAuthPageProps<
            * @optional
            */
           type: "updatePassword";
-          /**
-           * @description Custom submit function for the form. Trigger after submitting the form.
-           * @optional
-           */
-          onSubmit?: (formValues: RefineUpdatePasswordFormTypes) => void;
       }>
 ) & {
     /**
@@ -151,9 +132,8 @@ export type RefineLoginPageProps<
     TFormProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
     providers?: IProvider[];
-    onSubmit?: (formValues: RefineLoginFormTypes) => void;
     registerLink?: React.ReactNode;
-    resetPasswordLink?: React.ReactNode;
+    forgotPasswordLink?: React.ReactNode;
     rememberMe?: React.ReactNode;
     wrapperProps?: TWrapperProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;
@@ -169,7 +149,7 @@ export type RefineRegisterPageProps<
     TContentProps extends {} = Record<keyof any, unknown>,
     TFormProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
-    onSubmit?: (formValues: RefineRegisterFormTypes) => void;
+    providers?: IProvider[];
     loginLink?: React.ReactNode;
     wrapperProps?: TWrapperProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;
@@ -180,12 +160,11 @@ export type RefineRegisterPageProps<
 /**
  * This should be the base type for `AuthPage` `Reset Password` component implementations in UI integrations.
  */
-export type RefineResetPasswordPageProps<
+export type RefineForgotPasswordPageProps<
     TWrapperProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
     TFormProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
-    onSubmit?: (formValues: RefineResetPasswordFormTypes) => void;
     loginLink?: React.ReactNode;
     wrapperProps?: TWrapperProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;
@@ -201,7 +180,6 @@ export type RefineUpdatePasswordPageProps<
     TContentProps extends {} = Record<keyof any, unknown>,
     TFormProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
-    onSubmit?: (formValues: RefineUpdatePasswordFormTypes) => void;
     wrapperProps?: TWrapperProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;
     contentProps?: TContentProps;

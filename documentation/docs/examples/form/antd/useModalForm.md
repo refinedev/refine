@@ -5,7 +5,7 @@ title: useModalForm
 
 With the `useModalForm` hook, you can manage a form inside of your modal component. It returns [Ant Design Form](https://ant.design/components/form/) and [Modal](https://ant.design/components/modal/) props. You may examine the code below to learn how to create and manage forms within a modal.
 
-[Refer to the **refine** useModalForm hook documentation for more information. →](/docs/ui-frameworks/antd/hooks/form/useModalForm/)
+[Refer to the **refine** useModalForm hook documentation for more information. →](/docs/api-reference/antd/hooks/form/useModalForm/)
 
 [View useModalForm Example Source](https://github.com/pankod/refine/tree/master/examples/form/antd/useModalForm)
 

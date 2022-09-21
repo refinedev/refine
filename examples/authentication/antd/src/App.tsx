@@ -19,21 +19,21 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
-        login: (params: any) => {
-            if (params.providerName === "google") {
-                return Promise.resolve(
-                    "https://accounts.google.com/o/oauth2/v2/auth",
-                );
-            }
-            if (params.providerName === "github") {
-                return Promise.resolve("https://github.com/login");
-            }
-            if (params.email === "admin@refine.com") {
-                localStorage.setItem("email", params.email);
-                return Promise.resolve();
+        login: async ({ providerName, email }) => {
+            if (providerName === "google") {
+                window.location.href =
+                    "https://accounts.google.com/o/oauth2/v2/auth";
+                return Promise.resolve(false);
             }
 
-            return Promise.reject();
+            if (providerName === "github") {
+                window.location.href =
+                    "https://github.com/login/oauth/authorize";
+                return Promise.resolve(false);
+            }
+
+            localStorage.setItem("email", email);
+            return Promise.resolve();
         },
         register: (params: any) => {
             if (params.email && params.password) {
@@ -49,7 +49,7 @@ const App: React.FC = () => {
             }
             return Promise.reject();
         },
-        resetPassword: (params: any) => {
+        forgotPassword: (params: any) => {
             if (params.email) {
                 //we can send email with reset password link here
                 return Promise.resolve();
@@ -83,11 +83,35 @@ const App: React.FC = () => {
                 routes: [
                     {
                         path: "/register",
-                        element: <AuthPage type="register" />,
+                        element: (
+                            <AuthPage
+                                type="register"
+                                providers={[
+                                    {
+                                        name: "google",
+                                        label: "Sign in with Google",
+                                        icon: (
+                                            <GoogleOutlined
+                                                style={{ fontSize: 24 }}
+                                            />
+                                        ),
+                                    },
+                                    {
+                                        name: "github",
+                                        label: "Sign in with GitHub",
+                                        icon: (
+                                            <GithubOutlined
+                                                style={{ fontSize: 24 }}
+                                            />
+                                        ),
+                                    },
+                                ]}
+                            />
+                        ),
                     },
                     {
                         path: "/reset-password",
-                        element: <AuthPage type="resetPassword" />,
+                        element: <AuthPage type="forgotPassword" />,
                     },
                     {
                         path: "/update-password",

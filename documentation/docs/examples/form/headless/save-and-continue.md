@@ -7,7 +7,7 @@ refine provides you with the necessary methods to add this feature. This feature
 
 We have three save options: `Save`, `Save and continue editing` and `Save and add another`.
 
-[Refer to the **refine** Save and Continue documentation for more information. →](/docs/guides-and-concepts/forms/save-and-continue/)
+[Refer to the **refine** Save and Continue documentation for more information. →](/docs/advanced-tutorials/forms/save-and-continue/)
 
 [View Save and Continue Example Source](https://github.com/pankod/refine/tree/master/examples/form/headless/saveAndContinue)
 

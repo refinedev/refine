@@ -3,212 +3,253 @@ module.exports = {
         {
             type: "category",
             label: "Getting Started",
+            link: {
+                type: "generated-index",
+                title: "Getting Started",
+                slug: "/getting-started",
+            },
             items: ["getting-started/overview", "getting-started/quickstart"],
             collapsed: false,
         },
         {
-            type: "doc",
-            id: "comparison",
-            label: "Comparison",
-        },
-        {
-            type: "doc",
-            id: "tutorials",
-        },
-        {
-            type: "doc",
-            id: "general-concepts",
-        },
-        {
             type: "category",
-            label: "Core",
+            label: "Basic Tutorials",
+            link: {
+                type: "doc",
+                id: "tutorials",
+            },
             items: [
-                "core/tutorial",
-                {
-                    type: "category",
-                    label: "Providers",
-                    items: [
-                        "core/providers/accessControl-provider",
-                        "core/providers/auth-provider",
-                        "core/providers/audit-log-provider",
-                        "core/providers/data-provider",
-                        "core/providers/i18n-provider",
-                        "core/providers/live-provider",
-                        "core/providers/notification-provider",
-                        "core/providers/router-provider",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Hooks",
-                    items: [
-                        {
-                            type: "category",
-                            label: "Access Control",
-                            items: ["core/hooks/accessControl/useCan"],
-                        },
-                        {
-                            type: "category",
-                            label: "Authorization",
-                            items: [
-                                "core/hooks/auth/useAuthenticated",
-                                "core/hooks/auth/useCheckError",
-                                "core/hooks/auth/useGetIdentity",
-                                "core/hooks/auth/useLogin",
-                                "core/hooks/auth/useLogout",
-                                "core/hooks/auth/usePermissions",
-                                "core/hooks/auth/useRegister",
-                                "core/hooks/auth/useResetPassword",
-                                "core/hooks/auth/useUpdatePassword",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "Audit Log",
-                            items: [
-                                "core/hooks/audit-log/useLog",
-                                "core/hooks/audit-log/useLogList",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "Breadcrumb",
-                            items: ["core/hooks/useBreadcrumb"],
-                        },
-                        {
-                            type: "category",
-                            label: "Data",
-                            items: [
-                                "core/hooks/data/useApiUrl",
-                                "core/hooks/data/useCreate",
-                                "core/hooks/data/useCreateMany",
-                                "core/hooks/data/useCustom",
-                                "core/hooks/data/useCustomMutation",
-                                "core/hooks/data/useDataProvider",
-                                "core/hooks/data/useDelete",
-                                "core/hooks/data/useDeleteMany",
-                                "core/hooks/data/useList",
-                                "core/hooks/data/useMany",
-                                "core/hooks/data/useOne",
-                                "core/hooks/data/useUpdate",
-                                "core/hooks/data/useUpdateMany",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "Field",
-                            items: ["core/hooks/useSelect"],
-                        },
-                        {
-                            type: "category",
-                            label: "Form",
-                            items: ["core/hooks/useForm"],
-                        },
-                        {
-                            type: "category",
-                            label: "Import-Export",
-                            items: [
-                                "core/hooks/import-export/useExport",
-                                "core/hooks/import-export/useImport",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "Invalidate",
-                            items: ["core/hooks/invalidate/useInvalidate"],
-                        },
-                        {
-                            type: "category",
-                            label: "Live",
-                            items: [
-                                "core/hooks/live/usePublish",
-                                "core/hooks/live/useSubscription",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "Navigation",
-                            items: ["core/hooks/navigation/useNavigation"],
-                        },
-                        {
-                            type: "category",
-                            label: "Notification",
-                            items: ["core/hooks/useNotification"],
-                        },
-                        {
-                            type: "category",
-                            label: "Refine",
-                            items: ["core/hooks/refine/useTitle"],
-                        },
-                        {
-                            type: "category",
-                            label: "Resource",
-                            items: [
-                                "core/hooks/resource/useResource",
-                                "core/hooks/resource/useResourceWithRoute",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "Show",
-                            items: ["core/hooks/show/useShow"],
-                        },
-                        {
-                            type: "category",
-                            label: "Table",
-                            items: ["core/hooks/useTable"],
-                        },
-                        {
-                            type: "category",
-                            label: "Translate",
-                            items: [
-                                "core/hooks/translate/useGetLocale",
-                                "core/hooks/translate/useSetLocale",
-                                "core/hooks/translate/useTranslate",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "UI",
-                            items: [
-                                "core/hooks/ui/useModal",
-                                "core/hooks/ui/useMenu",
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Components",
-                    items: [
-                        "core/components/auth-page",
-                        "core/components/refine-config",
-                        "core/components/layout-wrapper",
-                        {
-                            type: "category",
-                            label: "Authorization",
-                            items: ["core/components/auth/authenticated"],
-                        },
-                        {
-                            type: "category",
-                            label: "Access Control",
-                            items: ["core/components/accessControl/can-access"],
-                        },
-                    ],
-                },
-                "core/interfaceReferences",
+                "tutorials/ant-design-tutorial",
+                "tutorials/material-ui-tutorial",
+                "tutorials/headless-tutorial",
             ],
+            collapsed: true,
         },
         {
             type: "category",
-            label: "UI Frameworks",
+            label: "API Reference",
+            link: {
+                type: "generated-index",
+                title: "API Reference",
+                slug: "/api-reference",
+            },
             items: [
+                "api-reference/general-concepts",
                 {
                     type: "category",
-                    label: "Ant Design",
-                    collapsed: false,
+                    label: "Core API",
+                    link: {
+                        type: "generated-index",
+                        title: "Core API",
+                        slug: "/api-reference/core",
+                    },
                     items: [
-                        "ui-frameworks/antd/tutorial",
+                        {
+                            type: "category",
+                            label: "Providers",
+                            items: [
+                                "api-reference/core/providers/accessControl-provider",
+                                "api-reference/core/providers/auth-provider",
+                                "api-reference/core/providers/audit-log-provider",
+                                "api-reference/core/providers/data-provider",
+                                "api-reference/core/providers/i18n-provider",
+                                "api-reference/core/providers/live-provider",
+                                "api-reference/core/providers/notification-provider",
+                                "api-reference/core/providers/router-provider",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Hooks",
+                            items: [
+                                {
+                                    type: "category",
+                                    label: "Access Control",
+                                    items: [
+                                        "api-reference/core/hooks/accessControl/useCan",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Authorization",
+                                    items: [
+                                        "api-reference/core/hooks/auth/useAuthenticated",
+                                        "api-reference/core/hooks/auth/useCheckError",
+                                        "api-reference/core/hooks/auth/useGetIdentity",
+                                        "api-reference/core/hooks/auth/useLogin",
+                                        "api-reference/core/hooks/auth/useLogout",
+                                        "api-reference/core/hooks/auth/usePermissions",
+                                        "api-reference/core/hooks/auth/useRegister",
+                                        "api-reference/core/hooks/auth/useForgotPassword",
+                                        "api-reference/core/hooks/auth/useUpdatePassword",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Audit Log",
+                                    items: [
+                                        "api-reference/core/hooks/audit-log/useLog",
+                                        "api-reference/core/hooks/audit-log/useLogList",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Breadcrumb",
+                                    items: [
+                                        "api-reference/core/hooks/useBreadcrumb",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Data",
+                                    items: [
+                                        "api-reference/core/hooks/data/useApiUrl",
+                                        "api-reference/core/hooks/data/useCreate",
+                                        "api-reference/core/hooks/data/useCreateMany",
+                                        "api-reference/core/hooks/data/useCustom",
+                                        "api-reference/core/hooks/data/useCustomMutation",
+                                        "api-reference/core/hooks/data/useDataProvider",
+                                        "api-reference/core/hooks/data/useDelete",
+                                        "api-reference/core/hooks/data/useDeleteMany",
+                                        "api-reference/core/hooks/data/useList",
+                                        "api-reference/core/hooks/data/useMany",
+                                        "api-reference/core/hooks/data/useOne",
+                                        "api-reference/core/hooks/data/useUpdate",
+                                        "api-reference/core/hooks/data/useUpdateMany",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Field",
+                                    items: [
+                                        "api-reference/core/hooks/useSelect",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Form",
+                                    items: ["api-reference/core/hooks/useForm"],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Import-Export",
+                                    items: [
+                                        "api-reference/core/hooks/import-export/useExport",
+                                        "api-reference/core/hooks/import-export/useImport",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Invalidate",
+                                    items: [
+                                        "api-reference/core/hooks/invalidate/useInvalidate",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Live",
+                                    items: [
+                                        "api-reference/core/hooks/live/usePublish",
+                                        "api-reference/core/hooks/live/useSubscription",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Navigation",
+                                    items: [
+                                        "api-reference/core/hooks/navigation/useNavigation",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Notification",
+                                    items: [
+                                        "api-reference/core/hooks/useNotification",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Refine",
+                                    items: [
+                                        "api-reference/core/hooks/refine/useTitle",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Resource",
+                                    items: [
+                                        "api-reference/core/hooks/resource/useResource",
+                                        "api-reference/core/hooks/resource/useResourceWithRoute",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Show",
+                                    items: [
+                                        "api-reference/core/hooks/show/useShow",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Table",
+                                    items: [
+                                        "api-reference/core/hooks/useTable",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Translate",
+                                    items: [
+                                        "api-reference/core/hooks/translate/useGetLocale",
+                                        "api-reference/core/hooks/translate/useSetLocale",
+                                        "api-reference/core/hooks/translate/useTranslate",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "UI",
+                                    items: [
+                                        "api-reference/core/hooks/ui/useModal",
+                                        "api-reference/core/hooks/ui/useMenu",
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Components",
+                            items: [
+                                "api-reference/core/components/auth-page",
+                                "api-reference/core/components/refine-config",
+                                "api-reference/core/components/layout-wrapper",
+                                {
+                                    type: "category",
+                                    label: "Authorization",
+                                    items: [
+                                        "api-reference/core/components/auth/authenticated",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Access Control",
+                                    items: [
+                                        "api-reference/core/components/accessControl/can-access",
+                                    ],
+                                },
+                            ],
+                        },
+                        "api-reference/core/interfaceReferences",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Ant Design API",
+                    link: {
+                        type: "generated-index",
+                        title: "Ant Design API",
+                        slug: "/api-reference/antd",
+                    },
+                    items: [
                         {
                             type: "category",
                             label: "Hooks",
@@ -217,41 +258,41 @@ module.exports = {
                                     type: "category",
                                     label: "Field",
                                     items: [
-                                        "ui-frameworks/antd/hooks/field/useCheckboxGroup",
-                                        "ui-frameworks/antd/hooks/field/useRadioGroup",
-                                        "ui-frameworks/antd/hooks/field/useSelect",
+                                        "api-reference/antd/hooks/field/useCheckboxGroup",
+                                        "api-reference/antd/hooks/field/useRadioGroup",
+                                        "api-reference/antd/hooks/field/useSelect",
                                     ],
                                 },
                                 {
                                     type: "category",
                                     label: "Form",
                                     items: [
-                                        "ui-frameworks/antd/hooks/form/useDrawerForm",
-                                        "ui-frameworks/antd/hooks/form/useForm",
-                                        "ui-frameworks/antd/hooks/form/useModalForm",
-                                        "ui-frameworks/antd/hooks/form/useStepsForm",
+                                        "api-reference/antd/hooks/form/useDrawerForm",
+                                        "api-reference/antd/hooks/form/useForm",
+                                        "api-reference/antd/hooks/form/useModalForm",
+                                        "api-reference/antd/hooks/form/useStepsForm",
                                     ],
                                 },
                                 {
                                     type: "category",
                                     label: "Import",
                                     items: [
-                                        "ui-frameworks/antd/hooks/import/useImport",
+                                        "api-reference/antd/hooks/import/useImport",
                                     ],
                                 },
                                 {
                                     type: "category",
                                     label: "List",
                                     items: [
-                                        "ui-frameworks/antd/hooks/list/useSimpleList",
+                                        "api-reference/antd/hooks/list/useSimpleList",
                                     ],
                                 },
                                 {
                                     type: "category",
                                     label: "Table",
                                     items: [
-                                        "ui-frameworks/antd/hooks/table/useEditableTable",
-                                        "ui-frameworks/antd/hooks/table/useTable",
+                                        "api-reference/antd/hooks/table/useEditableTable",
+                                        "api-reference/antd/hooks/table/useTable",
                                     ],
                                 },
                             ],
@@ -260,57 +301,57 @@ module.exports = {
                             type: "category",
                             label: "Components",
                             items: [
-                                "ui-frameworks/antd/components/antd-auth-page",
+                                "api-reference/antd/components/antd-auth-page",
 
                                 {
                                     type: "category",
                                     label: "Basic Views",
                                     items: [
-                                        "ui-frameworks/antd/components/basic-views/create",
-                                        "ui-frameworks/antd/components/basic-views/edit",
-                                        "ui-frameworks/antd/components/basic-views/list",
-                                        "ui-frameworks/antd/components/basic-views/show",
+                                        "api-reference/antd/components/basic-views/create",
+                                        "api-reference/antd/components/basic-views/edit",
+                                        "api-reference/antd/components/basic-views/list",
+                                        "api-reference/antd/components/basic-views/show",
                                     ],
                                 },
-                                "ui-frameworks/antd/components/breadcrumb",
+                                "api-reference/antd/components/breadcrumb",
                                 {
                                     type: "category",
                                     label: "Buttons",
                                     items: [
-                                        "ui-frameworks/antd/components/buttons/clone-button",
-                                        "ui-frameworks/antd/components/buttons/create-button",
-                                        "ui-frameworks/antd/components/buttons/delete-button",
-                                        "ui-frameworks/antd/components/buttons/edit-button",
-                                        "ui-frameworks/antd/components/buttons/export-button",
-                                        "ui-frameworks/antd/components/buttons/import-button",
-                                        "ui-frameworks/antd/components/buttons/list-button",
-                                        "ui-frameworks/antd/components/buttons/refresh-button",
-                                        "ui-frameworks/antd/components/buttons/save-button",
-                                        "ui-frameworks/antd/components/buttons/show-button",
+                                        "api-reference/antd/components/buttons/clone-button",
+                                        "api-reference/antd/components/buttons/create-button",
+                                        "api-reference/antd/components/buttons/delete-button",
+                                        "api-reference/antd/components/buttons/edit-button",
+                                        "api-reference/antd/components/buttons/export-button",
+                                        "api-reference/antd/components/buttons/import-button",
+                                        "api-reference/antd/components/buttons/list-button",
+                                        "api-reference/antd/components/buttons/refresh-button",
+                                        "api-reference/antd/components/buttons/save-button",
+                                        "api-reference/antd/components/buttons/show-button",
                                     ],
                                 },
                                 {
                                     type: "category",
                                     label: "Fields",
                                     items: [
-                                        "ui-frameworks/antd/components/fields/boolean",
-                                        "ui-frameworks/antd/components/fields/date",
-                                        "ui-frameworks/antd/components/fields/email",
-                                        "ui-frameworks/antd/components/fields/file",
-                                        "ui-frameworks/antd/components/fields/image",
-                                        "ui-frameworks/antd/components/fields/markdown",
-                                        "ui-frameworks/antd/components/fields/number",
-                                        "ui-frameworks/antd/components/fields/tag",
-                                        "ui-frameworks/antd/components/fields/text",
-                                        "ui-frameworks/antd/components/fields/url",
+                                        "api-reference/antd/components/fields/boolean",
+                                        "api-reference/antd/components/fields/date",
+                                        "api-reference/antd/components/fields/email",
+                                        "api-reference/antd/components/fields/file",
+                                        "api-reference/antd/components/fields/image",
+                                        "api-reference/antd/components/fields/markdown",
+                                        "api-reference/antd/components/fields/number",
+                                        "api-reference/antd/components/fields/tag",
+                                        "api-reference/antd/components/fields/text",
+                                        "api-reference/antd/components/fields/url",
                                     ],
                                 },
-                                "ui-frameworks/antd/components/filter-dropdown",
+                                "api-reference/antd/components/filter-dropdown",
                                 {
                                     type: "category",
                                     label: "Inputs",
                                     items: [
-                                        "ui-frameworks/antd/components/inputs/custom-inputs",
+                                        "api-reference/antd/components/inputs/custom-inputs",
                                     ],
                                 },
                             ],
@@ -319,25 +360,29 @@ module.exports = {
                             type: "category",
                             label: "Customization",
                             items: [
-                                "ui-frameworks/antd/customization/antd-custom-theme",
-                                "ui-frameworks/antd/customization/antd-custom-layout",
-                                "ui-frameworks/antd/customization/antd-custom-sider",
+                                "api-reference/antd/customization/antd-custom-theme",
+                                "api-reference/antd/customization/antd-custom-layout",
+                                "api-reference/antd/customization/antd-custom-sider",
                             ],
                         },
                     ],
                 },
+
                 {
                     type: "category",
-                    label: "Material UI",
-                    collapsed: false,
+                    label: "Material UI API",
+                    link: {
+                        type: "generated-index",
+                        title: "Material UI API",
+                        slug: "/api-reference/mui",
+                    },
                     items: [
-                        "ui-frameworks/mui/tutorial",
                         {
                             type: "category",
                             label: "Hooks",
                             items: [
-                                "ui-frameworks/mui/hooks/useAutocomplete",
-                                "ui-frameworks/mui/hooks/useDataGrid",
+                                "api-reference/mui/hooks/useAutocomplete",
+                                "api-reference/mui/hooks/useDataGrid",
                             ],
                         },
                         {
@@ -348,42 +393,42 @@ module.exports = {
                                     type: "category",
                                     label: "Basic Views",
                                     items: [
-                                        "ui-frameworks/mui/components/basic-views/create",
-                                        "ui-frameworks/mui/components/basic-views/edit",
-                                        "ui-frameworks/mui/components/basic-views/list",
-                                        "ui-frameworks/mui/components/basic-views/show",
+                                        "api-reference/mui/components/basic-views/create",
+                                        "api-reference/mui/components/basic-views/edit",
+                                        "api-reference/mui/components/basic-views/list",
+                                        "api-reference/mui/components/basic-views/show",
                                     ],
                                 },
-                                "ui-frameworks/mui/components/mui-breadcrumb",
+                                "api-reference/mui/components/mui-breadcrumb",
                                 {
                                     type: "category",
                                     label: "Buttons",
                                     items: [
-                                        "ui-frameworks/mui/components/buttons/clone-button",
-                                        "ui-frameworks/mui/components/buttons/create-button",
-                                        "ui-frameworks/mui/components/buttons/delete-button",
-                                        "ui-frameworks/mui/components/buttons/edit-button",
-                                        "ui-frameworks/mui/components/buttons/export-button",
-                                        "ui-frameworks/mui/components/buttons/import-button",
-                                        "ui-frameworks/mui/components/buttons/list-button",
-                                        "ui-frameworks/mui/components/buttons/refresh-button",
-                                        "ui-frameworks/mui/components/buttons/save-button",
-                                        "ui-frameworks/mui/components/buttons/show-button",
+                                        "api-reference/mui/components/buttons/clone-button",
+                                        "api-reference/mui/components/buttons/create-button",
+                                        "api-reference/mui/components/buttons/delete-button",
+                                        "api-reference/mui/components/buttons/edit-button",
+                                        "api-reference/mui/components/buttons/export-button",
+                                        "api-reference/mui/components/buttons/import-button",
+                                        "api-reference/mui/components/buttons/list-button",
+                                        "api-reference/mui/components/buttons/refresh-button",
+                                        "api-reference/mui/components/buttons/save-button",
+                                        "api-reference/mui/components/buttons/show-button",
                                     ],
                                 },
                                 {
                                     type: "category",
                                     label: "Fields",
                                     items: [
-                                        "ui-frameworks/mui/components/fields/boolean",
-                                        "ui-frameworks/mui/components/fields/date",
-                                        "ui-frameworks/mui/components/fields/email",
-                                        "ui-frameworks/mui/components/fields/file",
-                                        "ui-frameworks/mui/components/fields/markdown",
-                                        "ui-frameworks/mui/components/fields/number",
-                                        "ui-frameworks/mui/components/fields/tag",
-                                        "ui-frameworks/mui/components/fields/text",
-                                        "ui-frameworks/mui/components/fields/url",
+                                        "api-reference/mui/components/fields/boolean",
+                                        "api-reference/mui/components/fields/date",
+                                        "api-reference/mui/components/fields/email",
+                                        "api-reference/mui/components/fields/file",
+                                        "api-reference/mui/components/fields/markdown",
+                                        "api-reference/mui/components/fields/number",
+                                        "api-reference/mui/components/fields/tag",
+                                        "api-reference/mui/components/fields/text",
+                                        "api-reference/mui/components/fields/url",
                                     ],
                                 },
                             ],
@@ -392,9 +437,9 @@ module.exports = {
                             type: "category",
                             label: "Customization",
                             items: [
-                                "ui-frameworks/mui/customization/mui-custom-theme",
-                                "ui-frameworks/mui/customization/mui-custom-layout",
-                                "ui-frameworks/mui/customization/mui-custom-sider",
+                                "api-reference/mui/customization/mui-custom-theme",
+                                "api-reference/mui/customization/mui-custom-layout",
+                                "api-reference/mui/customization/mui-custom-sider",
                             ],
                         },
                     ],
@@ -404,116 +449,46 @@ module.exports = {
         {
             type: "category",
             label: "Packages",
+            link: {
+                type: "generated-index",
+                title: "Packages",
+                slug: "/packages",
+            },
             items: [
                 "packages/list-of-packages",
-                "packages/command-palette",
-                "packages/react-table",
                 {
                     type: "category",
-                    label: "React Hook Form",
+                    label: "Documentation",
+                    link: {
+                        type: "generated-index",
+                        title: "Documentation",
+                        slug: "/packages/documentation",
+                    },
                     items: [
-                        "packages/react-hook-form/useForm",
-                        "packages/react-hook-form/useModalForm",
-                        "packages/react-hook-form/useStepsForm",
+                        "packages/documentation/command-palette",
+                        "packages/documentation/react-table",
+                        {
+                            type: "category",
+                            label: "React Hook Form",
+                            items: [
+                                "packages/documentation/react-hook-form/useForm",
+                                "packages/documentation/react-hook-form/useModalForm",
+                                "packages/documentation/react-hook-form/useStepsForm",
+                            ],
+                        },
                     ],
                 },
-            ],
-        },
-        {
-            type: "category",
-            label: "Guides & Concepts",
-            items: [
-                "guides-and-concepts/access-control",
-                {
-                    type: "category",
-                    label: "Auth",
-                    items: ["guides-and-concepts/auth/auth0"],
-                },
-                "guides-and-concepts/custom-layout",
-                "guides-and-concepts/custom-pages",
-                {
-                    type: "category",
-                    label: "Data Provider",
-                    items: [
-                        "guides-and-concepts/data-provider/appwrite",
-                        "guides-and-concepts/data-provider/graphql",
-                        "guides-and-concepts/data-provider/handling-filters",
-                        "guides-and-concepts/data-provider/strapi-v4",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Form",
-                    items: [
-                        "guides-and-concepts/forms/custom-form-validation",
-                        "guides-and-concepts/forms/save-and-continue",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Import - Export",
-                    items: [
-                        "guides-and-concepts/import-export/csv-export",
-                        "guides-and-concepts/import-export/csv-import",
-                    ],
-                },
-                "guides-and-concepts/real-time",
-                "guides-and-concepts/multi-level-menu/multi-level-menu",
-                {
-                    type: "category",
-                    label: "Multitenancy",
-                    items: [
-                        "guides-and-concepts/multi-tenancy/appwrite",
-                        "guides-and-concepts/multi-tenancy/strapi-v4",
-                    ],
-                },
-                "guides-and-concepts/mutation-mode",
-                {
-                    type: "category",
-                    label: "Search",
-                    items: [
-                        "guides-and-concepts/search/list-search",
-                        "guides-and-concepts/search/search",
-                        "guides-and-concepts/search/table-search",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "SSR",
-                    items: [
-                        "guides-and-concepts/ssr/remix",
-                        "guides-and-concepts/ssr/nextjs",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Upload",
-                    items: [
-                        "guides-and-concepts/upload/base64-upload",
-                        "guides-and-concepts/upload/multipart-upload",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "Web3",
-                    items: ["guides-and-concepts/web3/ethereum-signin"],
-                },
-                "guides-and-concepts/telemetry/telemetry",
             ],
         },
         {
             type: "category",
             label: "Examples",
+            link: {
+                type: "generated-index",
+                title: "Examples",
+                slug: "/examples",
+            },
             items: [
-                {
-                    type: "category",
-                    label: "Tutorial",
-                    items: [
-                        "examples/tutorial/antd-tutorial-example",
-                        "examples/tutorial/mui-tutorial-example",
-                        "examples/tutorial/headless-tutorial-example",
-                    ],
-                },
                 "examples/real-world-example",
                 {
                     type: "category",
@@ -771,16 +746,95 @@ module.exports = {
             ],
         },
         {
-            type: "doc",
-            id: "migration-guide",
+            type: "category",
+            label: "Advanced Tutorials",
+            link: {
+                type: "generated-index",
+                title: "Advanced Tutorials",
+                slug: "/advanced-tutorials",
+            },
+            items: [
+                "advanced-tutorials/access-control",
+                {
+                    type: "category",
+                    label: "Auth",
+                    items: ["advanced-tutorials/auth/auth0"],
+                },
+                "advanced-tutorials/custom-layout",
+                "advanced-tutorials/custom-pages",
+                {
+                    type: "category",
+                    label: "Data Provider",
+                    items: [
+                        "advanced-tutorials/data-provider/appwrite",
+                        "advanced-tutorials/data-provider/graphql",
+                        "advanced-tutorials/data-provider/handling-filters",
+                        "advanced-tutorials/data-provider/strapi-v4",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Form",
+                    items: [
+                        "advanced-tutorials/forms/custom-form-validation",
+                        "advanced-tutorials/forms/save-and-continue",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Import - Export",
+                    items: [
+                        "advanced-tutorials/import-export/csv-export",
+                        "advanced-tutorials/import-export/csv-import",
+                    ],
+                },
+                "advanced-tutorials/real-time",
+                "advanced-tutorials/multi-level-menu/multi-level-menu",
+                {
+                    type: "category",
+                    label: "Multitenancy",
+                    items: [
+                        "advanced-tutorials/multi-tenancy/appwrite",
+                        "advanced-tutorials/multi-tenancy/strapi-v4",
+                    ],
+                },
+                "advanced-tutorials/mutation-mode",
+                {
+                    type: "category",
+                    label: "Search",
+                    items: [
+                        "advanced-tutorials/search/list-search",
+                        "advanced-tutorials/search/search",
+                        "advanced-tutorials/search/table-search",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "SSR",
+                    items: [
+                        "advanced-tutorials/ssr/remix",
+                        "advanced-tutorials/ssr/nextjs",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Upload",
+                    items: [
+                        "advanced-tutorials/upload/base64-upload",
+                        "advanced-tutorials/upload/multipart-upload",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "Web3",
+                    items: ["advanced-tutorials/web3/ethereum-signin"],
+                },
+            ],
         },
         {
             type: "doc",
-            id: "testing",
-        },
-        {
-            type: "doc",
-            id: "contributing",
+            id: "comparison",
+            label: "Comparison",
         },
         {
             type: "doc",
@@ -788,11 +842,32 @@ module.exports = {
         },
         {
             type: "doc",
-            id: "licence",
+            id: "contributing",
         },
         {
             type: "doc",
-            id: "benchmarks",
-        }
+            id: "testing",
+        },
+        {
+            type: "doc",
+            id: "migration-guide",
+        },
+        {
+            type: "doc",
+            id: "licence",
+        },
+        {
+            type: "category",
+            label: "Further Readings",
+            link: {
+                type: "generated-index",
+                title: "Further Readings",
+                slug: "/further-readings",
+            },
+            items: [
+                "further-readings/benchmarks",
+                "further-readings/telemetry",
+            ],
+        },
     ],
 };

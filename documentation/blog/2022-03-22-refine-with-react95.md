@@ -5,7 +5,7 @@ slug: awesome-react-windows95-ui-with-refine
 authors: melih
 tags:
     [refine, react, admin-panel, Windows95, React95, Supabase, B2B, open-source]
-image: /img/placeholder.png
+image: /img/blog/2022-03-22-refine-with-react95/social.jpg
 hide_table_of_contents: false
 ---
 
@@ -30,7 +30,6 @@ import overview from '@site/static/img/blog/2022-03-22-refine-with-react95/overv
 
 With **refine**'s **headless** feature, you can include any UI in your project and take full advantage of all its features without worrying about compatibility. To build a project with a vintage `Windows95` style using [React95](https://react95.io/) UI components, we'll use the **refine** headless feature.
 
-<!--truncate-->
 
 ## Introduction
 
@@ -331,7 +330,7 @@ export const LoginPage = () => {
 </div>
 <br />
 
-We used React95 components to construct our Login page design. Then, using the **refine** [`<AuthProvider>`](/docs/core/providers/auth-provider/) [`<useLogin>`](/docs/core/hooks/auth/useLogin/) hook, we carried out the database sign-in operation. We can now access our database and fetch our Posts and Categories, as well as create our pages.
+We used React95 components to construct our Login page design. Then, using the **refine** [`<AuthProvider>`](/docs/api-reference/core/providers/auth-provider/) [`<useLogin>`](/docs/api-reference/core/hooks/auth/useLogin/) hook, we carried out the database sign-in operation. We can now access our database and fetch our Posts and Categories, as well as create our pages.
 
 ## Refine Post Page
 
@@ -339,7 +338,7 @@ After our login process, we'll get the posts from our Supabase Database and disp
 
 In this step, we'll show how to use the `@pankod/refine-react-table` package to create a data table. We will begin by examining this page in two parts. In the first step, we'll utilize our `@pankod/refine-react-table` package and React95 UI components to only use our data. Then, in the following stage, we'll arrange the sorting, pagination processes and our UI part. Let's start!
 
-[Refer to the **refine** TanStack Table packages documentation for detailed information. →](/docs/packages/react-table/)
+[Refer to the **refine** TanStack Table packages documentation for detailed information. →](/docs/packages/documentation/react-table/)
 
 <details>
 <summary>Show Part I Code</summary>
@@ -682,7 +681,7 @@ You may quickly handle sorting and paging operations by simply adding a few line
 
 ## Refine Create and Edit Page
 
-We have created our post page. Now we will create pages where we can create and edit posts. **refine** provides a [`refine-react-hook-form`](/docs/packages/react-hook-form/useForm/) adapter that you can use with the headless feature. All the features of [React Hook Form](https://react-hook-form.com/) work in harmony with **refine** and the form you will create.
+We have created our post page. Now we will create pages where we can create and edit posts. **refine** provides a [`refine-react-hook-form`](/docs/packages/documentation/react-hook-form/useForm/) adapter that you can use with the headless feature. All the features of [React Hook Form](https://react-hook-form.com/) work in harmony with **refine** and the form you will create.
 
 -   `Create Page`
 
@@ -902,7 +901,7 @@ We can manage our forms and generate Posts thanks to the `refine-react-hook-form
 
 Our app is almost ready. As a final step, let's edit our Layout to make our application more like Window95. Let's create a footer component first and then define it as a **refine** Layout.
 
-[Refer to the refine Custom Layout docs for detailed usage. →](/docs/guides-and-concepts/custom-layout/)
+[Refer to the refine Custom Layout docs for detailed usage. →](/docs/advanced-tutorials/custom-layout/)
 
 -   `Footer`
 

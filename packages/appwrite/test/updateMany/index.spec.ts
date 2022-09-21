@@ -4,20 +4,20 @@ import "./index.mock";
 
 describe("updateMany", () => {
     it("correct response with metaData", async () => {
-        const { data } = await dataProvider(client).updateMany({
-            resource: "6180e4315f3e7",
-            ids: ["61b9dd4a6261d", "61b886fbd9398"],
+        const { data } = await dataProvider(client, {
+            databaseId: "632455a0b8d017403ce9",
+        }).updateMany({
+            resource: "632455a55dc72e1aa016",
+            ids: ["63245b0e9c8ea5620b4a", "632456c5998583bcb6d3	"],
             variables: {
-                content: "Batch updated content",
+                title: "Batch",
             },
         });
 
-        expect(data[0].id).toEqual("61b9dd4a6261d");
-        expect(data[0].title).toEqual("Updated Title");
-        expect(data[0].content).toEqual("Batch updated content");
+        expect(data[0].id).toEqual("63245b0e9c8ea5620b4a");
+        expect(data[0].title).toEqual("Batch");
 
-        expect(data[1].id).toEqual("61b886fbd9398");
-        expect(data[1].title).toEqual("test");
-        expect(data[1].content).toEqual("Batch updated content");
+        expect(data[1].id).toEqual("632456c5998583bcb6d3");
+        expect(data[1].title).toEqual("Batch");
     });
 });

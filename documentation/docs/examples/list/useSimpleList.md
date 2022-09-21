@@ -5,7 +5,7 @@ title: useSimpleList
 
 **refine**'s `useSimpleList` hook allows you to get your data straight from the API. This data is compatible with Ant Design [List](https://ant.design/components/list/) and can be used in it. Furthermore, this hook includes out-of-the-box features such as pagination, sorting, and filtering. In this example, how to use `useSimpleList` is explained in detail.
 
-[Refer to the **refine** useSimpleList hook documentation for more information. →](/docs/ui-frameworks/antd/hooks/list/useSimpleList/)
+[Refer to the **refine** useSimpleList hook documentation for more information. →](/docs/api-reference/antd/hooks/list/useSimpleList/)
 
 [View useSimpleList Example Source](https://github.com/pankod/refine/tree/master/examples/list/useSimpleList)
 
