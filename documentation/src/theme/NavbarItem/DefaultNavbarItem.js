@@ -6,7 +6,7 @@ function DefaultNavbarItemDesktop({
     isDropdownItem = false,
     ...props
 }) {
-    const isGitHubLink = props?.href?.includes?.("github.com/pankod/refine");
+    const isGitHubLink = props?.href?.includes("github.com/pankod/refine");
     const element = (
         <NavbarNavLink
             className={clsx(
