@@ -3,7 +3,7 @@ id: customPages
 title: Custom Pages
 ---
 
-The feature to modify your project in detail is a major benefit of using **refine**. In this example, you learn how to include and manage your own [Custom Pages](/docs/guides-and-concepts/custom-pages/) in your project.
+The feature to modify your project in detail is a major benefit of using **refine**. In this example, you learn how to include and manage your own [Custom Pages](/docs/advanced-tutorials/custom-pages/) in your project.
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/customPages)
 

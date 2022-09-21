@@ -1,9 +1,7 @@
 ---
 id: quickstart
-title: Quickstart
+title: Quick Start Guide
 ---
-
-## Quick Start
 
 The fastest way to get started with **refine** is using the [superplate](https://github.com/pankod/superplate) project starter tool.
 Run the following command to create a new **refine** project configured with  [Ant Design System](https://ant.design/) as the default UI framework:

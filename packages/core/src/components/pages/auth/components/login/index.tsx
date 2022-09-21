@@ -6,7 +6,7 @@ import { ILoginForm, IAuthCommonProps } from "../..";
 export const Login: React.FC<IAuthCommonProps> = ({
     registerLink,
     submitButton,
-    resetPasswordLink,
+    forgotPasswordLink,
     backLink,
     providers,
 }) => {
@@ -122,11 +122,11 @@ export const Login: React.FC<IAuthCommonProps> = ({
                             value={translate("pages.login.button", "Login")}
                         />
                     )}
-                    {resetPasswordLink &&
+                    {forgotPasswordLink &&
                         renderLink(
-                            resetPasswordLink,
+                            forgotPasswordLink,
                             translate(
-                                "pages.login.resetPassword",
+                                "pages.login.forgotPassword",
                                 "Forgot your password?",
                             ),
                         )}

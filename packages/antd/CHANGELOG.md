@@ -1,5 +1,59 @@
 # @pankod/refine-antd
 
+## 3.48.2
+
+### Patch Changes
+
+-   Fixed `useModalForm` & `useStepsForm` return type
+
+## 3.48.1
+
+### Patch Changes
+
+-   [#2552](https://github.com/pankod/refine/pull/2552) [`52cd8d633e`](https://github.com/pankod/refine/commit/52cd8d633e57f925bb51c875aab0406e3358ec45) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed `useModalForm` & `useStepsForm` return type
+
+## 3.48.0
+
+### Minor Changes
+
+-   Add `providers` support on AuthPage register page.
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-ui-types@0.11.0
+
+## 3.47.0
+
+### Minor Changes
+
+-   [#2551](https://github.com/pankod/refine/pull/2551) [`a65525de6f`](https://github.com/pankod/refine/commit/a65525de6f995babfca1058e933cdbea67d6032e) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Add `providers` support on AuthPage register page.
+
+### Patch Changes
+
+-   Updated dependencies [[`a65525de6f`](https://github.com/pankod/refine/commit/a65525de6f995babfca1058e933cdbea67d6032e)]:
+    -   @pankod/refine-ui-types@0.10.0
+
+## 3.46.4
+
+### Patch Changes
+
+-   -   Auth pages background color fixed.
+    -   Removed unused `updatePasswordLink` prop from auth pages.
+    -   Removed `onSubmit` prop from auth pages. use `formProps` instead.
+-   Updated dependencies []:
+    -   @pankod/refine-ui-types@0.9.2
+
+## 3.46.3
+
+### Patch Changes
+
+-   [#2524](https://github.com/pankod/refine/pull/2524) [`27bf81bebb`](https://github.com/pankod/refine/commit/27bf81bebb217d2944e20e79a8f7618eda0e9db7) Thanks [@biskuvit](https://github.com/biskuvit)! - - Auth pages background color fixed.
+    -   Removed unused `updatePasswordLink` prop from auth pages.
+    -   Removed `onSubmit` prop from auth pages. use `formProps` instead.
+-   Updated dependencies [[`27bf81bebb`](https://github.com/pankod/refine/commit/27bf81bebb217d2944e20e79a8f7618eda0e9db7)]:
+    -   @pankod/refine-ui-types@0.9.1
+
 ## 3.46.2
 
 ### Patch Changes

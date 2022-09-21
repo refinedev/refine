@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from "react";
+import { FormInstance, FormProps, ModalProps } from "antd";
 import {
     useModalForm as useModalFormSF,
     UseModalFormConfig as UseModalFormConfigSF,
@@ -19,7 +20,21 @@ import {
     userFriendlyResourceName,
 } from "@pankod/refine-core";
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
-import { useModalFormFromSFReturnType } from "../../../types/sunflower";
+
+export type useModalFormFromSFReturnType<TData, TVariables> = {
+    form: FormInstance<TVariables>;
+    visible: boolean;
+    show: (id?: BaseKey) => void;
+    close: () => void;
+    modalProps: ModalProps;
+    formProps: FormProps<TVariables>;
+    formLoading: boolean;
+    defaultFormValuesLoading: boolean;
+    formValues: {};
+    initialValues: {};
+    formResult: undefined;
+    submit: (values?: TVariables) => Promise<TData>;
+};
 
 type useModalFormConfig = {
     action: "show" | "edit" | "create" | "clone";

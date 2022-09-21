@@ -2,6 +2,7 @@ import {
     useStepsForm as useStepsFormSF,
     UseStepsFormConfig,
 } from "sunflower-antd";
+import { FormInstance, FormProps } from "antd";
 
 import {
     HttpError,
@@ -10,7 +11,23 @@ import {
 } from "@pankod/refine-core";
 
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
-import { useStepsFormFromSFReturnType } from "../../../types/sunflower";
+
+export type useStepsFormFromSFReturnType<TData, TVariables> = {
+    current: number;
+    gotoStep: (step: number) => void;
+    stepsProps: {
+        current: number;
+        onChange: (currentStep: number) => void;
+    };
+    formProps: FormProps<TVariables>;
+    formLoading: boolean;
+    defaultFormValuesLoading: boolean;
+    formValues: {};
+    initialValues: {};
+    formResult: undefined;
+    form: FormInstance<TVariables>;
+    submit: (values?: TVariables) => Promise<TData>;
+};
 
 export type useStepsFormReturnType<
     TData extends BaseRecord = BaseRecord,

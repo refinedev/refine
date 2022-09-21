@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Login, Register, ResetPassword, UpdatePassword } from "./components";
+import { Login, Register, ForgotPassword, UpdatePassword } from "./components";
 
 export interface ILoginForm {
     username?: string;
@@ -13,7 +13,7 @@ export interface IRegisterForm {
     email?: string;
     password: string;
 }
-export interface IResetPasswordForm {
+export interface IForgotPasswordForm {
     email: string;
 }
 export interface IUpdatePasswordForm {
@@ -31,14 +31,14 @@ export interface IAuthCommonProps {
     submitButton?: React.ReactNode;
     registerLink?: React.ReactNode;
     loginLink?: React.ReactNode;
-    resetPasswordLink?: React.ReactNode;
+    forgotPasswordLink?: React.ReactNode;
     updatePasswordLink?: React.ReactNode;
     backLink?: React.ReactNode;
     providers?: IProvider[];
 }
 
 export interface IAuthPageProps extends IAuthCommonProps {
-    type?: "login" | "register" | "resetPassword" | "updatePassword";
+    type?: "login" | "register" | "forgotPassword" | "updatePassword";
 }
 
 /**
@@ -51,7 +51,7 @@ export const AuthPage: React.FC<IAuthPageProps> = ({
     providers,
     loginLink,
     registerLink,
-    resetPasswordLink,
+    forgotPasswordLink,
     submitButton,
     backLink,
 }) => {
@@ -63,7 +63,7 @@ export const AuthPage: React.FC<IAuthPageProps> = ({
                         providers={providers}
                         submitButton={submitButton}
                         registerLink={registerLink}
-                        resetPasswordLink={resetPasswordLink}
+                        forgotPasswordLink={forgotPasswordLink}
                         backLink={backLink}
                     />
                 );
@@ -75,9 +75,9 @@ export const AuthPage: React.FC<IAuthPageProps> = ({
                         backLink={backLink}
                     />
                 );
-            case "resetPassword":
+            case "forgotPassword":
                 return (
-                    <ResetPassword
+                    <ForgotPassword
                         submitButton={submitButton}
                         backLink={backLink}
                     />
@@ -96,7 +96,7 @@ export const AuthPage: React.FC<IAuthPageProps> = ({
                         providers={providers}
                         submitButton={submitButton}
                         registerLink={registerLink}
-                        resetPasswordLink={resetPasswordLink}
+                        forgotPasswordLink={forgotPasswordLink}
                         backLink={backLink}
                     />
                 );
