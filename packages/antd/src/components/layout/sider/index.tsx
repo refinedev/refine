@@ -44,14 +44,13 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
             const { icon, label, route, name, children, parentName } = item;
 
             if (children.length > 0) {
-                const { children, ...restItem } = item;
                 return (
                     <CanAccess
                         key={route}
                         resource={name.toLowerCase()}
                         action="list"
                         params={{
-                            resource: restItem,
+                            resource: item,
                         }}
                     >
                         <SubMenu
