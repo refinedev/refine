@@ -1,5 +1,12 @@
 # @pankod/refine-mui
 
+## 3.45.4
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-ui-types@0.11.0
+
 ## 3.45.3
 
 ### Patch Changes
