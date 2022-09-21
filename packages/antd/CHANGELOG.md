@@ -1,5 +1,16 @@
 # @pankod/refine-antd
 
+## 3.47.0
+
+### Minor Changes
+
+-   [#2551](https://github.com/pankod/refine/pull/2551) [`a65525de6f`](https://github.com/pankod/refine/commit/a65525de6f995babfca1058e933cdbea67d6032e) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Add `providers` support on AuthPage register page.
+
+### Patch Changes
+
+-   Updated dependencies [[`a65525de6f`](https://github.com/pankod/refine/commit/a65525de6f995babfca1058e933cdbea67d6032e)]:
+    -   @pankod/refine-ui-types@0.10.0
+
 ## 3.46.4
 
 ### Patch Changes

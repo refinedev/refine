@@ -1,5 +1,12 @@
 # @pankod/refine-ui-tests
 
+## 0.7.3
+
+### Patch Changes
+
+-   Updated dependencies [[`a65525de6f`](https://github.com/pankod/refine/commit/a65525de6f995babfca1058e933cdbea67d6032e)]:
+    -   @pankod/refine-ui-types@0.10.0
+
 ## 0.7.2
 
 ### Patch Changes
