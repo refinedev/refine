@@ -1,5 +1,25 @@
 # @pankod/refine-core
 
+## 3.71.2
+
+### Patch Changes
+
+-   Fix `useImport` hook requests with properly invoking requests sequentially and manage progress state.
+
+-   Removed `children` property from `useCan`s `params.resource` since it can be in `ITreeMenu` type and `React.ReactNode` breaks the `react-query`s key stringify function.
+
+-   Fixed undoable mutation is called many times - #2556
+
+## 3.71.1
+
+### Patch Changes
+
+-   [#2560](https://github.com/pankod/refine/pull/2560) [`373cee23ba`](https://github.com/pankod/refine/commit/373cee23ba921f86fc4305e170c12e643ceb681b) Thanks [@aliemir](https://github.com/aliemir)! - Fix `useImport` hook requests with properly invoking requests sequentially and manage progress state.
+
+-   [#2537](https://github.com/pankod/refine/pull/2537) [`4407bf8825`](https://github.com/pankod/refine/commit/4407bf88252475a6d3b41a624fe33570d2a2f674) Thanks [@ozkalai](https://github.com/ozkalai)! - Removed `children` property from `useCan`s `params.resource` since it can be in `ITreeMenu` type and `React.ReactNode` breaks the `react-query`s key stringify function.
+
+-   [#2559](https://github.com/pankod/refine/pull/2559) [`75b699cd6c`](https://github.com/pankod/refine/commit/75b699cd6c73b6c00c5c62f8f28a79d877d82cbc) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed undoable mutation is called many times - #2556
+
 ## 3.71.0
 
 ### Minor Changes

@@ -41,6 +41,7 @@ export const useCan = ({
         edit: _edit,
         create: _create,
         show: _show,
+        children: _children,
         ...restResource
     } = _resource ?? {};
     /* eslint-enable @typescript-eslint/no-unused-vars */
