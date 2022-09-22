@@ -6,7 +6,7 @@ import {
     useResourceWithRoute,
     useRouterContext,
 } from "@hooks";
-import { ResourceErrorRouterParams } from "../../../interfaces";
+import { ResourceErrorRouterParams, ActionWithPage } from "../../../interfaces";
 
 /**
  * When the app is navigated to a non-existent route, refine shows a default error page.
@@ -18,7 +18,7 @@ export const ErrorComponent: React.FC = () => {
     const [errorMessage, setErrorMessage] = useState<string>();
     const { push } = useNavigation();
     const translate = useTranslate();
-    const actionTypes = ["edit", "create", "show"];
+    const actionTypes: ActionWithPage[] = ["edit", "create", "show"];
 
     const { useParams } = useRouterContext();
 

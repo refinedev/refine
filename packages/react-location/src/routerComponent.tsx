@@ -9,7 +9,7 @@ import {
     CanAccess,
     ErrorComponent,
 } from "@pankod/refine-core";
-import { rankRoutes } from "react-location-rank-routes";
+import { rankRoutes } from "@tanstack/react-location-rank-routes";
 
 import {
     Router,
@@ -19,18 +19,17 @@ import {
     useRouter,
     RouterProps,
     Outlet,
-} from "react-location";
+} from "@tanstack/react-location";
 
 import { ResourceComponentWrapper } from "./resourceComponent";
 import { RefineRouteProps } from "./index";
 
 export const location = new ReactLocation();
 
-export const RouterComponent: React.FC<RouterProps> = ({
-    children,
-    location: locationFromProps,
-    ...rest
-}) => {
+export function RouterComponent(
+    this: { initialRoute?: string },
+    { children: _children, location: locationFromProps, ...rest }: RouterProps,
+): JSX.Element | null {
     const { resources } = useResource();
     const { DashboardPage, catchAll, LoginPage } = useRefineContext();
 
@@ -72,7 +71,7 @@ export const RouterComponent: React.FC<RouterProps> = ({
             <Router
                 location={locationFromProps ?? location}
                 {...rest}
-                filterRoutes={rankRoutes as any}
+                filterRoutes={rankRoutes}
                 routes={routes}
             />
         );
@@ -87,19 +86,19 @@ export const RouterComponent: React.FC<RouterProps> = ({
                 {
                     path: "/",
                     element: (
-                        <ResourceComponentWrapper route={resource.route!} />
+                        <ResourceComponentWrapper route={`${resource.route}`} />
                     ),
                 },
                 {
                     path: `:action`,
                     element: (
-                        <ResourceComponentWrapper route={resource.route!} />
+                        <ResourceComponentWrapper route={`${resource.route}`} />
                     ),
                 },
                 {
                     path: `:action/:id`,
                     element: (
-                        <ResourceComponentWrapper route={resource.route!} />
+                        <ResourceComponentWrapper route={`${resource.route}`} />
                     ),
                 },
             ],
@@ -121,7 +120,15 @@ export const RouterComponent: React.FC<RouterProps> = ({
                 ...[...(customRoutes || [])].filter(
                     (p: RefineRouteProps) => p.layout,
                 ),
+                ...[...(resourceRoutes || [])],
                 {
+                    path: "*",
+                    id: "catch-all",
+                    element: catchAll ?? <ErrorComponent />,
+                },
+                {
+                    path: "/",
+                    id: "index",
                     element: DashboardPage ? (
                         <CanAccess
                             resource="dashboard"
@@ -132,14 +139,14 @@ export const RouterComponent: React.FC<RouterProps> = ({
                         </CanAccess>
                     ) : (
                         <Navigate
-                            to={`/${
-                                resources.find((p) => p.list !== undefined)
-                                    ?.route
-                            }`}
+                            to={
+                                typeof this !== "undefined" && this.initialRoute
+                                    ? this.initialRoute
+                                    : `/${resources.find((p) => p.list)?.route}`
+                            }
                         />
                     ),
                 },
-                ...[...(resourceRoutes || [])],
             ],
         },
     ];
@@ -148,11 +155,11 @@ export const RouterComponent: React.FC<RouterProps> = ({
         <Router
             location={locationFromProps ?? location}
             {...rest}
-            filterRoutes={rankRoutes as any}
+            filterRoutes={rankRoutes}
             routes={routes}
         />
     );
-};
+}
 
 const LoginNavigateWithToParam: React.FC = () => {
     const { state } = useRouter();

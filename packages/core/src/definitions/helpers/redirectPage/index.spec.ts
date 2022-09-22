@@ -1,11 +1,11 @@
 import {
     IRefineContextOptions,
-    RedirectionTypes,
+    RedirectAction,
 } from "../../../../src/interfaces";
 import { redirectPage } from ".";
 
 describe("redirectPath", () => {
-    it.each(["edit", "list", "show", false] as RedirectionTypes[])(
+    it.each(["edit", "list", "show", false] as RedirectAction[])(
         "should return redirectFromProps if it is provided %s",
         (redirectFromProps) => {
             const action = "create";

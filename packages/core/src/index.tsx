@@ -4,6 +4,8 @@ export * from "./components";
 export * from "./hooks";
 
 export {
+    Action,
+    ActionWithPage,
     AccessControlProvider,
     AuditLogProvider,
     AuthProvider,
@@ -22,6 +24,7 @@ export {
     CustomResponse,
     DeleteManyResponse,
     DeleteOneResponse,
+    FormAction,
     GetListResponse,
     GetManyResponse,
     GetOneResponse,
@@ -40,9 +43,11 @@ export {
     Pagination,
     PromptProps,
     RedirectionTypes,
+    RedirectAction,
     ResourceErrorRouterParams,
     ResourceProps,
     ResourceRouterParams,
+    RouteAction,
     SortOrder,
     SuccessErrorNotification,
     TitleProps,

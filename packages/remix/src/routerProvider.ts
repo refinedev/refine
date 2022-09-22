@@ -1,7 +1,8 @@
-import { handleUseParams, IRouterProvider } from "@pankod/refine-core";
+import { IRouterProvider } from "@pankod/refine-core";
+import { Link, useLocation, useNavigate } from "@remix-run/react";
 
 import { Prompt } from "./prompt";
-import { Link, useLocation, useNavigate, useParams } from "@remix-run/react";
+import { useParams } from "./useParams";
 
 export const RouterProvider: IRouterProvider = {
     useHistory: () => {
@@ -22,10 +23,7 @@ export const RouterProvider: IRouterProvider = {
 
         return location;
     },
-    useParams: () => {
-        const params = useParams();
-        return handleUseParams(params);
-    },
+    useParams,
     Prompt,
     Link,
 };

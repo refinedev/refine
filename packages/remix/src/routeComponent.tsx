@@ -18,9 +18,13 @@ type RemixRouteComponentProps = {
     initialData?: any;
 };
 
-export const RemixRouteComponent: React.FC<
-    PropsWithChildren<RemixRouteComponentProps>
-> = ({ children, ...rest }) => {
+export function RemixRouteComponent(
+    this: { initialRoute?: string },
+    {
+        children: _children,
+        ...rest
+    }: PropsWithChildren<RemixRouteComponentProps>,
+): React.ReactNode {
     const loaderData = useLoaderData();
     const { resources } = useResource();
     const { push } = useHistory();
@@ -41,7 +45,25 @@ export const RemixRouteComponent: React.FC<
 
     useEffect(() => {
         if (pathname === "/" && !DashboardPage) {
-            push(`/${resources.find((p) => p.list !== undefined)?.route}`);
+            if (typeof this !== "undefined" && this.initialRoute) {
+                push(
+                    this.initialRoute.startsWith("/")
+                        ? this.initialRoute
+                        : `/${this.initialRoute}`,
+                );
+            } else {
+                // push(`/${resources.find((p) => p.list)?.route}`);
+
+                /*
+                 * the above line is a better solution for the initial route
+                 * but in Remix, users can have custom pages through file system
+                 * which makes `list` component of the resource redundant.
+                 * for these cases, we need to redirect to the first resource
+                 * in the resources array, no matter if it has a list component or not.
+                 */
+
+                push(`/${resources[0].route}`);
+            }
         }
     }, [pathname]);
 
@@ -191,4 +213,4 @@ export const RemixRouteComponent: React.FC<
             <ErrorComponent />
         </LayoutWrapper>
     );
-};
+}

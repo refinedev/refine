@@ -143,9 +143,7 @@ export default function App() {
                 <Links />
             </head>
             <body>
-                <Refine
-                    routerProvider={routerProvider}
-                >
+                <Refine routerProvider={routerProvider}>
                     <Outlet />
                 </Refine>
                 <ScrollRestoration />
@@ -1139,6 +1137,165 @@ module.exports = {
 Now you can access our application at `www.domain.com/admin`.
 
   </TabItem>
+</Tabs>
+
+## Changing the initial route of your application
+
+**refine** initially shows the `DashboardPage` component from `<Refine/>` props, if there are no `DashboardPage` component is present, **refine** redirects to the first `list` page in the `resources` array. You can change this behavior by passing `initialRoute` value to the `RouterComponent`s of the router providers.
+
+<Tabs
+defaultValue="react-router-v6-initial-route"
+values={[
+{label: 'React Router V6', value: 'react-router-v6-initial-route'},
+{label: 'React Location', value: 'react-location-initial-route'},
+{label: 'Next.js', value: 'nextjs-initial-route'},
+{label: 'Remix', value: 'remix-initial-route'}
+]}>
+<TabItem value="react-router-v6-initial-route">
+
+`RouterComponent` property in the `routerProvider` from `@pankod/refine-react-router-v6` checks for the `initialRoute` property in its context. If it is present, it will redirect to the given route. By default `routerProvider` is using `BrowserRouterComponent` but both `HashRouterComponent` and `MemoryRouterComponent` also supports `initialRoute` property.
+
+In the example below, `BrowserRouterComponent` is used and the initial route is set to `/users`.
+
+```tsx title="src/App.tsx"
+import { Refine } from "@pankod/refine-core";
+// highlight-start
+import routerProvider, {
+    BrowserRouterComponent,
+} from "@pankod/refine-react-router-v6";
+// highlight-end
+import dataProvider from "@pankod/refine-simple-rest";
+import "@pankod/refine/dist/styles.min.css";
+
+import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+import { UserList, UserShow } from "pages/users";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const App: React.FC = () => {
+    return (
+        <Refine
+            routerProvider={{
+                ...routerProvider,
+                // highlight-start
+                RouterComponent: BrowserRouterComponent.bind({
+                    initialRoute: "/users",
+                }),
+                // highlight-end
+            }}
+            dataProvider={dataProvider(API_URL)}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+                {
+                    name: "users",
+                    list: UserList,
+                    show: UserShow,
+                },
+            ]}
+        />
+    );
+};
+
+export default App;
+```
+
+</TabItem>
+<TabItem value="react-location-initial-route">
+
+`RouterComponent` property in the `routerProvider` from `@pankod/refine-location` checks for the `initialRoute` property in its context. If it is present, it will redirect to the given route.
+
+In the example below, you can see how the initial route is set to `/users`.
+
+```tsx title="src/App.tsx"
+import { Refine } from "@pankod/refine-core";
+// highlight-next-line
+import routerProvider from "@pankod/refine-react-location";
+import dataProvider from "@pankod/refine-simple-rest";
+import "@pankod/refine/dist/styles.min.css";
+
+import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+import { UserList, UserShow } from "pages/users";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const App: React.FC = () => {
+    return (
+        <Refine
+            routerProvider={{
+                ...routerProvider,
+                // highlight-start
+                RouterComponent: routerProvider.RouterComponent.bind({
+                    initialRoute: "/users",
+                }),
+                // highlight-end
+            }}
+            dataProvider={dataProvider(API_URL)}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+                {
+                    name: "users",
+                    list: UserList,
+                    show: UserShow,
+                },
+            ]}
+        />
+    );
+};
+
+export default App;
+```
+
+</TabItem>
+<TabItem value="nextjs-initial-route">
+
+Since Next.js uses file system based routing, instead of the `routerProvider` prop of `<Refine/>`, you should pass the `initialRoute` property to the context of the `NextRouteComponent` from `@pankod/refine-nextjs-router`.
+
+In the example below, the initial route is set to `/users`.
+
+```tsx title="pages/[[...refine]].tsx"
+import { NextRouteComponent } from "@pankod/refine-nextjs-router";
+
+export default NextRouteComponent.bind({ initialRoute: "/users" });
+```
+
+:::info
+There is also a way to redirect to a custom page by using file system based routing. If you want to take the advantage of the file system based routing, you can create an `index.tsx` file in the `pages` directory and redirect to the route you want.
+:::
+
+</TabItem>
+<TabItem value="remix-initial-route">
+
+Since Remix uses file system based routing, instead of the `routerProvider` prop of `<Refine/>`, you should pass the `initialRoute` property to the context of the `RemixRouteComponent` from `@pankod/refine-remix-router`.
+
+In the example below, the initial route is set to `/users`.
+
+```tsx title="app/routes/index.tsx"
+import { RemixRouteComponent } from "@pankod/refine-remix-router";
+
+export default RemixRouteComponent.bind({ initialRoute: "/users" });
+```
+
+:::tip
+Splat routes are the recommended way to handle **refine** routing in Remix apps. All you need to do is to create a `$.tsx` file in the `app/routes` directory and export the `RemixRouteComponent` in it.
+:::
+
+:::info
+Splat routes in Remix, does not catch the `index` route. So if you want to redirect to a custom page by using file system based routing, you should create a `index.tsx` file. Inside the `index.tsx` file, you can export the `RemixRouteComponent` by binding the `initialRoute` property or you can have a redirect in the `loader` function of the route by using `redirect` function from `@remix-run/node`.
+:::
+
+</TabItem>
 </Tabs>
 
 [browserrouter]: https://github.com/pankod/refine/blob/master/packages/react-router-v6/src/routerComponent.tsx

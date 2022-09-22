@@ -20,20 +20,21 @@ import {
     HttpError,
     LiveModeProps,
     ResourceRouterParams,
-    RedirectionTypes,
+    RedirectAction,
     SuccessErrorNotification,
     MetaDataQuery,
     UpdateResponse,
     MutationMode,
     BaseKey,
     IQueryKeys,
+    FormAction,
 } from "../../interfaces";
 import { UpdateParams, UseUpdateReturnType } from "../data/useUpdate";
 import { UseCreateReturnType } from "../data/useCreate";
 import { redirectPage } from "@definitions/helpers";
 
 export type ActionParams = {
-    action?: "edit" | "create" | "clone";
+    action?: FormAction;
 };
 
 type ActionFormProps<
@@ -51,7 +52,7 @@ type ActionFormProps<
         variables: TVariables,
         context: any,
     ) => void;
-    redirect?: RedirectionTypes;
+    redirect?: RedirectAction;
     resource?: string;
     id?: BaseKey;
     metaData?: MetaDataQuery;
@@ -87,7 +88,7 @@ export type UseFormReturnType<
         values: TVariables,
     ) => Promise<CreateResponse<TData> | UpdateResponse<TData> | void>;
     redirect: (
-        redirect: "show" | "list" | "edit" | "create" | false,
+        redirect: RedirectAction,
         idFromFunction?: BaseKey | undefined,
     ) => void;
 };
