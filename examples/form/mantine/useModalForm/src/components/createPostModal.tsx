@@ -8,6 +8,7 @@ import {
     useSelect,
     Box,
     SaveButton,
+    Text,
 } from "@pankod/refine-mantine";
 
 interface FormValues {
@@ -19,13 +20,13 @@ interface FormValues {
 
 export const CreatePostModal: React.FC<
     UseModalFormReturnType<BaseRecord, HttpError, FormValues>
-> = ({ getInputProps, modal: { visible, close }, saveButtonProps }) => {
+> = ({ getInputProps, modal: { visible, close, title }, saveButtonProps }) => {
     const { selectProps } = useSelect({
         resource: "categories",
     });
 
     return (
-        <Modal opened={visible} onClose={close}>
+        <Modal opened={visible} onClose={close} title={title}>
             <TextInput
                 mt={8}
                 label="Title"
@@ -50,9 +51,11 @@ export const CreatePostModal: React.FC<
                 {...getInputProps("category.id")}
                 {...selectProps}
             />
+            <Text mt={8} weight={500} size="sm" color="#212529">
+                Content
+            </Text>
             <RichTextEditor
-                mt={8}
-                sx={{ height: 300 }}
+                sx={{ minHeight: 300 }}
                 {...getInputProps("content")}
             />
             <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
