@@ -5,7 +5,7 @@ import {
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
 import { Button, ButtonProps } from "@mantine/core";
-import { ArrowsUpDown, IconProps } from "tabler-icons-react";
+import { TableImport, IconProps } from "tabler-icons-react";
 
 export type ImportButtonProps = RefineImportButtonProps<
     ButtonProps,
@@ -38,14 +38,14 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
                 variant="default"
                 component="span"
                 leftIcon={
-                    !hideText && <ArrowsUpDown size={16} {...svgIconProps} />
+                    !hideText && <TableImport size={16} {...svgIconProps} />
                 }
                 loading={loading}
                 data-testid={RefineButtonTestIds.ImportButton}
                 {...rest}
             >
                 {hideText ? (
-                    <ArrowsUpDown size={16} {...svgIconProps} />
+                    <TableImport size={16} {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.import", "Import")
                 )}
