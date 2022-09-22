@@ -1,5 +1,13 @@
 # @pankod/refine-react-location
 
+## 3.36.0
+
+### Minor Changes
+
+-   Added ability to manage the initial route of **refine** by binding `initialRoute` variable to `RouterComponent` component.
+
+-   Added support for fallback/404 with `catchAll` and `ErrorComponent`.
+
 ## 3.35.0
 
 ### Minor Changes
