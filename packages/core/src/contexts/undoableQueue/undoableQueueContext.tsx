@@ -1,5 +1,5 @@
 import React, { ReactNode, useReducer } from "react";
-import { createPortal } from "react-dom";
+import isEqual from "lodash/isEqual";
 
 import { UndoableQueue } from "@components";
 
@@ -16,12 +16,17 @@ const initialState: IUndoableQueue[] = [];
 export const undoableQueueReducer = (state: IUndoableQueue[], action: any) => {
     switch (action.type) {
         case ActionTypes.ADD:
+            const newState = state.filter(
+                (notificationItem: IUndoableQueue) => {
+                    return !(
+                        isEqual(notificationItem.id, action.payload.id) &&
+                        notificationItem.resource == action.payload.resource
+                    );
+                },
+            );
+
             return [
-                ...state.filter(
-                    (notificationItem: IUndoableQueue) =>
-                        notificationItem.id != action.payload.id &&
-                        notificationItem.resource == action.payload.resource,
-                ),
+                ...newState,
                 {
                     ...action.payload,
                     isRunning: true,
@@ -30,13 +35,15 @@ export const undoableQueueReducer = (state: IUndoableQueue[], action: any) => {
         case ActionTypes.REMOVE:
             return state.filter(
                 (notificationItem: IUndoableQueue) =>
-                    notificationItem.id != action.payload.id &&
-                    notificationItem.resource == action.payload.resource,
+                    !(
+                        isEqual(notificationItem.id, action.payload.id) &&
+                        notificationItem.resource == action.payload.resource
+                    ),
             );
         case ActionTypes.DECREASE_NOTIFICATION_SECOND:
             return state.map((notificationItem: IUndoableQueue) => {
                 if (
-                    notificationItem.id == action.payload.id &&
+                    isEqual(notificationItem.id, action.payload.id) &&
                     notificationItem.resource == action.payload.resource
                 ) {
                     return {
@@ -64,10 +71,12 @@ export const UndoableQueueContextProvider: React.FC<{ children: ReactNode }> =
             <UndoableQueueContext.Provider value={notificationData}>
                 {children}
                 {typeof window !== "undefined" &&
-                    createPortal(
-                        <UndoableQueue notifications={notifications} />,
-                        document.body,
-                    )}
+                    notifications.map((notification) => (
+                        <UndoableQueue
+                            key={`${notification.id}-${notification.resource}-queue`}
+                            notification={notification}
+                        />
+                    ))}
             </UndoableQueueContext.Provider>
         );
     };

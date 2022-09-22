@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { ActionTypes } from "@contexts/undoableQueue";
 import { useCancelNotification, useNotification, useTranslate } from "@hooks";
@@ -7,60 +7,62 @@ import { IUndoableQueue } from "../../interfaces";
 import { userFriendlySecond } from "@definitions/helpers";
 
 export const UndoableQueue: React.FC<{
-    notifications: IUndoableQueue[];
-}> = ({ notifications }) => {
+    notification: IUndoableQueue;
+}> = ({ notification }) => {
     const translate = useTranslate();
 
     const { notificationDispatch } = useCancelNotification();
     const { open } = useNotification();
 
+    const [timeoutId, setTimeoutId] = useState<number | undefined>();
+
     const cancelNotification = () => {
-        notifications.forEach((notificationItem: IUndoableQueue) => {
-            if (notificationItem.isRunning === true) {
-                if (notificationItem.seconds === 0) {
-                    notificationItem.doMutation();
-                }
-                if (!notificationItem.isSilent) {
-                    open?.({
-                        key: `${notificationItem.id}-${notificationItem.resource}-notification`,
-                        type: "progress",
-                        message: translate(
-                            "notifications.undoable",
-                            {
-                                seconds: userFriendlySecond(
-                                    notificationItem.seconds,
-                                ),
-                            },
-                            `You have ${userFriendlySecond(
-                                notificationItem.seconds,
-                            )} seconds to undo`,
-                        ),
-                        cancelMutation: notificationItem.cancelMutation,
-                        undoableTimeout: userFriendlySecond(
-                            notificationItem.seconds,
-                        ),
-                    });
+        if (notification.isRunning === true) {
+            if (notification.seconds === 0) {
+                notification.doMutation();
+            }
+            if (!notification.isSilent) {
+                open?.({
+                    key: `${notification.id}-${notification.resource}-notification`,
+                    type: "progress",
+                    message: translate(
+                        "notifications.undoable",
+                        {
+                            seconds: userFriendlySecond(notification.seconds),
+                        },
+                        `You have ${userFriendlySecond(
+                            notification.seconds,
+                        )} seconds to undo`,
+                    ),
+                    cancelMutation: notification.cancelMutation,
+                    undoableTimeout: userFriendlySecond(notification.seconds),
+                });
+            }
+
+            if (notification.seconds > 0) {
+                if (timeoutId) {
+                    clearTimeout(timeoutId);
                 }
 
-                if (notificationItem.seconds > 0) {
-                    setTimeout(() => {
-                        notificationDispatch({
-                            type: ActionTypes.DECREASE_NOTIFICATION_SECOND,
-                            payload: {
-                                id: notificationItem.id,
-                                seconds: notificationItem.seconds,
-                                resource: notificationItem.resource,
-                            },
-                        });
-                    }, 1000);
-                }
+                const newTimeoutId = setTimeout(() => {
+                    notificationDispatch({
+                        type: ActionTypes.DECREASE_NOTIFICATION_SECOND,
+                        payload: {
+                            id: notification.id,
+                            seconds: notification.seconds,
+                            resource: notification.resource,
+                        },
+                    });
+                }, 1000) as unknown as number;
+
+                setTimeoutId(newTimeoutId);
             }
-        });
+        }
     };
 
     useEffect(() => {
         cancelNotification();
-    }, [notifications]);
+    }, [notification]);
 
     return null;
 };

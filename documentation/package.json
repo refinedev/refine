@@ -12,10 +12,10 @@
         "clear": "docusaurus clear"
     },
     "dependencies": {
-        "@docusaurus/core": "^2.0.1",
-        "@docusaurus/plugin-client-redirects": "^2.0.1",
-        "@docusaurus/preset-classic": "^2.0.1",
-        "@docusaurus/theme-live-codeblock": "^2.0.1",
+        "@docusaurus/core": "^2.1.0",
+        "@docusaurus/plugin-client-redirects": "^2.1.0",
+        "@docusaurus/preset-classic": "^2.1.0",
+        "@docusaurus/theme-live-codeblock": "^2.1.0",
         "@mdx-js/react": "^1.6.21",
         "@pankod/refine-antd": "^3.42.1",
         "@pankod/refine-core": "^3.65.1",
@@ -24,10 +24,13 @@
         "@pankod/refine-react-router-v6": "^3.32.0",
         "@pankod/refine-react-table": "latest",
         "@pankod/refine-simple-rest": "latest",
+        "@tailwindcss/line-clamp": "^0.4.2",
         "@types/react-dom": "^17.0.11",
+        "autoprefixer": "^10.4.8",
         "axios": "^0.24.0",
         "clsx": "^1.1.1",
         "framer-motion": "^6.5.1",
+        "postcss": "^8.4.16",
         "react": "^17.0.2",
         "react-archer": "^4.1.0",
         "react-dom": "^17.0.2",
@@ -37,10 +40,7 @@
         "react-rewards": "^2.0.4",
         "react-share": "^4.4.0",
         "sucrase": "^3.25.0",
-        "autoprefixer": "^10.4.8",
-        "postcss": "^8.4.16",
-        "tailwindcss": "^3.1.8",
-        "@tailwindcss/line-clamp": "^0.4.2"
+        "tailwindcss": "^3.1.8"
     },
     "browserslist": {
         "production": [
@@ -55,7 +55,7 @@
         ]
     },
     "devDependencies": {
-        "@docusaurus/module-type-aliases": "^2.0.0-beta.9",
+        "@docusaurus/module-type-aliases": "^2.1.0",
         "@tsconfig/docusaurus": "^1.0.4",
         "@types/react": "^17.0.19",
         "@types/react-helmet": "^6.1.2",

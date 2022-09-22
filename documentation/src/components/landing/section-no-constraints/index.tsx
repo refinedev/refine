@@ -1195,7 +1195,7 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                                 of maintainers, contributers and
                                                 and users providing{" "}
                                                 <strong>24/7</strong> support on
-                                                our Github, Twitter and Discord
+                                                our GitHub, Twitter and Discord
                                                 channels.
                                             </p>
                                         </div>

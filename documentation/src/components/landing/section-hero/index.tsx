@@ -457,10 +457,11 @@ export const SectionHero: React.FC<{ starCount?: number }> = ({
                             </a>
                         </div>
                         <div>
+                            {/* eslint-disable react/jsx-no-target-blank */}
                             <a
                                 href="https://github.com/pankod/refine"
                                 target="_blank"
-                                rel="noopener noreferrer"
+                                rel="noopener"
                                 className="bg-[#211d21] no-underline rounded-tr-xl rounded-br-xl h-[54px] flex gap-2 pl-3.5 py-2.5 pr-2.5 items-center justify-center lg:justify-start"
                             >
                                 <GithubIcon />
