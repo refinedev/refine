@@ -54,7 +54,7 @@ export type RefineAuthPageProps<
            */
           registerLink?: React.ReactNode;
           /**
-           * @description Render a redirect to reset password page button node. If set to false, reset password button will not be rendered.
+           * @description Render a redirect to forgot password page button node. If set to false, forgot password button will not be rendered.
            * @optional
            */
           forgotPasswordLink?: React.ReactNode;

@@ -2,10 +2,10 @@
 id: auth-page
 title: <AuthPage>
 sidebar_label: <AuthPage>
-description: <AuthPage> component from refine is a authentication page that can be used to login, register, reset password and update password.
+description: <AuthPage> component from refine is a authentication page that can be used to login, register, forgot password and update password.
 ---
 
-`<AuthPage>` component from **refine** contains authentication pages that can be used to login, register, reset password and update password.
+`<AuthPage>` component from **refine** contains authentication pages that can be used to login, register, forgot password and update password.
 
 Before using `<AuthPage>` component you need to add [authProvider](/api-reference/core/providers/auth-provider.md) that will be used to handle authentication.
 
@@ -81,7 +81,7 @@ render(
 
 -   `"login"` - a type of the login page and default type.
 -   `"register"` - type of the registration page.
--   `"forgotPassword"` - type of the reset password page.
+-   `"forgotPassword"` - type of the forgot password page.
 -   `"updatePassword"` - type of the update password page.
 
 ## Login
@@ -207,7 +207,7 @@ render(
 
 ### `forgotPasswordLink`
 
-`forgotPasswordLink` property defines the link to the reset password page and also you can a give node to render.
+`forgotPasswordLink` property defines the link to the forgot password page and also you can a give node to render.
 
 ```tsx live disableScroll hideCode url=http://localhost:3000/login previewHeight=350px
 const { AuthPage, Refine, useNavigation, useRouterContext } = RefineCore;
@@ -262,7 +262,7 @@ const LoginPage = () => {
                         marginTop: 5,
                     }}
                 >
-                    <Link to="/reset-password">Forgot your password?</Link>
+                    <Link to="/forgot-password">Forgot your password?</Link>
                 </div>
             }
         />,
@@ -282,7 +282,7 @@ const App = () => {
                 // highlight-start
                 routes: [
                     { path: "/register", element: <RegisterPage /> },
-                    { path: "/reset-password", element: <ForgotPasswordPage /> },
+                    { path: "/forgot-password", element: <ForgotPasswordPage /> },
                 ],
                 // highlight-end
             }}
@@ -299,7 +299,7 @@ render(
             routes: [
                 { path: "/login", element: <LoginPage /> },
                 { path: "/register", element: <RegisterPage /> },
-                { path: "/reset-password", element: <ForgotPasswordPage /> },
+                { path: "/forgot-password", element: <ForgotPasswordPage /> },
             ],
         }}
         LoginPage={AuthPage}
@@ -1125,7 +1125,7 @@ You can use the following props for the `<AuthPage>` component when the type is 
 
 `backLink` property defines the render ReactNode that will be used as a back link and also you can give a node to render.
 
-```tsx live disableScroll hideCode url=http://localhost:3000/reset-password
+```tsx live disableScroll hideCode url=http://localhost:3000/forgot-password
 const { AuthPage, Refine, useNavigation, useRouterContext } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
@@ -1185,7 +1185,7 @@ const ForgotPasswordPage = () => {
 };
 
 const LoginPage = () =>
-    Wrapper(<AuthPage type="login" forgotPasswordLink="/reset-password" />);
+    Wrapper(<AuthPage type="login" forgotPasswordLink="/forgot-password" />);
 
 const App = () => {
     return (
@@ -1195,7 +1195,7 @@ const App = () => {
                 ...routerProvider,
                 // highlight-start
                 routes: [
-                    { path: "/reset-password", element: <ForgotPasswordPage /> },
+                    { path: "/forgot-password", element: <ForgotPasswordPage /> },
                 ],
                 // highlight-end
             }}
@@ -1208,10 +1208,10 @@ const App = () => {
 render(
     <Refine
         routerProvider={{
-            ...RefineDemoReactRouterV6(["/reset-password"]),
+            ...RefineDemoReactRouterV6(["/forgot-password"]),
             routes: [
                 { path: "/login", element: <LoginPage /> },
-                { path: "/reset-password", element: <ForgotPasswordPage /> },
+                { path: "/forgot-password", element: <ForgotPasswordPage /> },
             ],
         }}
         LoginPage={AuthPage}
@@ -1246,7 +1246,7 @@ render(
 
 `submitButton` render your custom ReactNode to submit the form. Also, you can reach form values with the `onClick` property and use your own logic to submit the form.
 
-```tsx live disableScroll hideCode url=http://localhost:3000/reset-password
+```tsx live disableScroll hideCode url=http://localhost:3000/forgot-password
 const { AuthPage, Refine, useNavigation, useForgotPassword } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
@@ -1303,9 +1303,9 @@ const ForgotPasswordPage = () => {
                                 }}
                                 onClick={(event) => {
                                     event.preventDefault();
-                                    // you can access reset password form data from `event.target`
+                                    // you can access forgot password form data from `event.target`
                                     console.log(event.target.form);
-                                    // run your custom reset password logic(validation, etc.)
+                                    // run your custom forgot password logic(validation, etc.)
                                     forgotPassword();
                                     replace("/login");
                                 }}
@@ -1320,7 +1320,7 @@ const ForgotPasswordPage = () => {
     );
 };
 const LoginPage = () => (
-    <AuthPage type="login" forgotPasswordLink="/reset-password" />
+    <AuthPage type="login" forgotPasswordLink="/forgot-password" />
 );
 
 const App = () => {
@@ -1331,7 +1331,7 @@ const App = () => {
                 ...routerProvider,
                 // highlight-start
                 routes: [
-                    { path: "/reset-password", element: <ForgotPasswordPage /> },
+                    { path: "/forgot-password", element: <ForgotPasswordPage /> },
                 ],
                 // highlight-end
             }}
@@ -1344,10 +1344,10 @@ const App = () => {
 render(
     <Refine
         routerProvider={{
-            ...RefineDemoReactRouterV6(["/reset-password"]),
+            ...RefineDemoReactRouterV6(["/forgot-password"]),
             routes: [
                 { path: "/login", element: <LoginPage /> },
-                { path: "/reset-password", element: <ForgotPasswordPage /> },
+                { path: "/forgot-password", element: <ForgotPasswordPage /> },
             ],
         }}
         LoginPage={AuthPage}
@@ -1478,7 +1478,7 @@ render(
 
 `submitButton` render your custom ReactNode to submit the form. Also, you can reach form values with the `onClick` property and use your own logic to submit the form.
 
-```tsx live disableScroll hideCode url=http://localhost:3000/reset-password
+```tsx live disableScroll hideCode url=http://localhost:3000/forgot-password
 const { AuthPage, Refine, useNavigation, useUpdatePassword } = RefineCore;
 const authProvider = {
     login: () => Promise.resolve(),
@@ -1609,7 +1609,7 @@ render(
 | type               | Render `<AuthPage>` forms by `type` property.                                    | `login` \| `register` \| `forgotPassword` \| `updatePassword` |
 | registerLink       | Custom node that will be rendered as a register link to the `<AuthPage>`.        | `React.ReactNode`                                             |
 | loginLink          | Custom node that will be rendered as a link to the `<AuthPage>`.                 | `React.ReactNode`                                             |
-| forgotPasswordLink | Custom node that will be rendered as a reset password link to the `<AuthPage>`.  | `React.ReactNode`                                             |
+| forgotPasswordLink | Custom node that will be rendered as a forgot password link to the `<AuthPage>`. | `React.ReactNode`                                             |
 | updatePasswordLink | Custom node that will be rendered as a update password link to the `<AuthPage>`. | `React.ReactNode`                                             |
 | submitButton       | Custom node that will be used to submit form.                                    | `React.ReactNode`                                             |
 | backLink           | Custom node that will be displayed as a back link.                               | `React.ReactNode`                                             |
