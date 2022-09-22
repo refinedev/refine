@@ -2,10 +2,10 @@
 id: antd-auth-page
 title: <AuthPage>
 sidebar_label: <AuthPage>
-description: <AuthPage> component from refine is a authentication page that can be used to login, register, reset password and update password.
+description: <AuthPage> component from refine is a authentication page that can be used to login, register, forgot password and update password.
 ---
 
-`<AuthPage>` component from **refine** for **ant design** contains authentication pages that can be used to login, register, reset password and update password.
+`<AuthPage>` component from **refine** for **ant design** contains authentication pages that can be used to login, register, forgot password and update password.
 
 Before using `<AuthPage>` component you need to add [authProvider](/api-reference/core/providers/auth-provider.md) that will be used to handle authentication.
 
@@ -106,7 +106,7 @@ render(
 
 -   `login` - a type of login page and default type.
 -   `register` - a type of registration page.
--   `forgotPassword` - a type of reset password page.
+-   `forgotPassword` - a type of forgot password page.
 -   `updatePassword` - type of update password page.
 
 ## Login
@@ -1875,13 +1875,13 @@ render(
 );
 ```
 
-## Reset Password
+## Forgot Password
 
-The reset Password Page is a page that allows users to reset their passwords. You can use this page to reset your password.
+The forgot Password Page is a page that allows users to reset their passwords. You can use this page to reset your password.
 
 ### Default
 
-```tsx live url=http://localhost:3000/reset-password
+```tsx live url=http://localhost:3000/forgot-password
 const { useNavigation } = RefineCore;
 const { AuthPage } = RefineAntd;
 
@@ -1912,7 +1912,7 @@ const App = () => {
                 ...routerProvider,
                 routes: [
                     {
-                        path: "/reset-password",
+                        path: "/forgot-password",
                         element: <AuthPage type="forgotPassword" />,
                     },
                 ],
@@ -1947,11 +1947,11 @@ const App = () => {
 render(
     <RefineAntdDemo
         routerProvider={{
-            ...RefineDemoReactRouterV6(["/reset-password"]),
+            ...RefineDemoReactRouterV6(["/forgot-password"]),
             routes: [
                 { path: "/login", element: <AuthPage /> },
                 {
-                    path: "/reset-password",
+                    path: "/forgot-password",
                     element: <AuthPage type="forgotPassword" />,
                 },
             ],
@@ -1987,7 +1987,7 @@ render(
 
 `loginLink` property defines the link to the login page and also you can give a node to render. Default value is `"/login"`.
 
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/reset-password
+```tsx live previewHeight=500px hideCode url=http://localhost:3000/forgot-password
 const { AuthPage } = RefineAntd;
 const { useRouterContext, useNavigation } = RefineCore;
 
@@ -2041,7 +2041,7 @@ const App = () => {
                 ...routerProvider,
                 routes: [
                     {
-                        path: "/reset-password",
+                        path: "/forgot-password",
                         element: <Auth type="forgotPassword" />,
                     },
                 ],
@@ -2076,14 +2076,14 @@ const App = () => {
 render(
     <RefineAntdDemo
         routerProvider={{
-            ...RefineDemoReactRouterV6(["/reset-password"]),
+            ...RefineDemoReactRouterV6(["/forgot-password"]),
             routes: [
                 {
                     path: "/login",
                     element: <Auth type="login" />,
                 },
                 {
-                    path: "/reset-password",
+                    path: "/forgot-password",
                     element: <Auth type="forgotPassword" />,
                 },
             ],
@@ -2118,7 +2118,7 @@ render(
 
 `wrapperProps` uses for passing props to the wrapper component. In the example below you can see that the background color is changed with `wrapperProps`
 
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/reset-password
+```tsx live previewHeight=500px hideCode url=http://localhost:3000/forgot-password
 const { AuthPage } = RefineAntd;
 const { useNavigation } = RefineCore;
 
@@ -2150,7 +2150,7 @@ const App = () => {
                 ...routerProvider,
                 routes: [
                     {
-                        path: "/reset-password",
+                        path: "/forgot-password",
                         element: (
                             <AuthPage
                                 type="forgotPassword"
@@ -2195,10 +2195,10 @@ const App = () => {
 render(
     <RefineAntdDemo
         routerProvider={{
-            ...RefineDemoReactRouterV6(["/reset-password"]),
+            ...RefineDemoReactRouterV6(["/forgot-password"]),
             routes: [
                 {
-                    path: "/reset-password",
+                    path: "/forgot-password",
                     element: (
                         <AuthPage
                             type="forgotPassword"
@@ -2243,7 +2243,7 @@ render(
 
 `contentProps` uses for passing props to the content component which is the form component. In the example below you can see that the title, header and content styles are changed with `contentProps`.
 
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/reset-password
+```tsx live previewHeight=500px hideCode url=http://localhost:3000/forgot-password
 const { AuthPage } = RefineAntd;
 const { useRouterContext, useNavigation } = RefineCore;
 
@@ -2275,13 +2275,13 @@ const App = () => {
                 ...routerProvider,
                 routes: [
                     {
-                        path: "/reset-password",
+                        path: "/forgot-password",
                         element: (
                             <AuthPage
                                 type="forgotPassword"
                                 loginLink={false}
                                 contentProps={{
-                                    title: "Reset Password",
+                                    title: "Forgot Password",
                                     headStyle: {
                                         background: "cornflowerblue",
                                         color: "white",
@@ -2303,16 +2303,16 @@ const App = () => {
 render(
     <RefineAntdDemo
         routerProvider={{
-            ...RefineDemoReactRouterV6(["/reset-password"]),
+            ...RefineDemoReactRouterV6(["/forgot-password"]),
             routes: [
                 {
-                    path: "/reset-password",
+                    path: "/forgot-password",
                     element: (
                         <AuthPage
                             type="forgotPassword"
                             loginLink={false}
                             contentProps={{
-                                title: "Reset Password",
+                                title: "Forgot Password",
                                 headStyle: {
                                     background: "cornflowerblue",
                                     color: "white",
@@ -2343,7 +2343,7 @@ render(
 
 `formProps` uses for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps` and also the `onFinish` function is changed.
 
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/reset-password
+```tsx live previewHeight=500px hideCode url=http://localhost:3000/forgot-password
 const { AuthPage } = RefineAntd;
 const { useNavigation } = RefineCore;
 
@@ -2400,10 +2400,10 @@ const App = () => {
 render(
     <RefineAntdDemo
         routerProvider={{
-            ...RefineDemoReactRouterV6(["/reset-password"]),
+            ...RefineDemoReactRouterV6(["/forgot-password"]),
             routes: [
                 {
-                    path: "/reset-password",
+                    path: "/forgot-password",
                     element: (
                         <AuthPage
                             type="forgotPassword"
@@ -2437,7 +2437,7 @@ render(
 
 `renderContent` uses to render the form content. You can use this property to render your own content or `renderContent` gives you default content you can use to add some extra elements to the content.
 
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/reset-password
+```tsx live previewHeight=500px hideCode url=http://localhost:3000/forgot-password
 const { AuthPage } = RefineAntd;
 const { useRouterContext, useNavigation } = RefineCore;
 
@@ -2468,7 +2468,7 @@ const App = () => {
                 ...routerProvider,
                 routes: [
                     {
-                        path: "/reset-password",
+                        path: "/forgot-password",
                         element: (
                             <AuthPage
                                 type="forgotPassword"
@@ -2521,10 +2521,10 @@ const App = () => {
 render(
     <RefineAntdDemo
         routerProvider={{
-            ...RefineDemoReactRouterV6(["/reset-password"]),
+            ...RefineDemoReactRouterV6(["/forgot-password"]),
             routes: [
                 {
-                    path: "/reset-password",
+                    path: "/forgot-password",
                     element: (
                         <AuthPage
                             type="forgotPassword"
@@ -3121,7 +3121,7 @@ render(
 | providers          | Render auth logins if `type` is `"login"`.                                          | [`IProvider[]`](#interface)                                   |
 | registerLink       | A custom node that will be rendered as a register link to the `<AuthPage>`.         | `React.ReactNode`                                             |
 | loginLink          | A custom node that will be rendered as a link to the `<AuthPage>`.                  | `React.ReactNode`                                             |
-| forgotPasswordLink | A custom node that will be rendered as a reset password link to the `<AuthPage>`.   | `React.ReactNode`                                             |
+| forgotPasswordLink | A custom node that will be rendered as a forgot password link to the `<AuthPage>`.  | `React.ReactNode`                                             |
 | wrapperProps       | Wrapper element props.                                                              | [`WrapperProps`](https://ant.design/components/layout/#API)   |
 | contentProps       | Content wrapper element props.                                                      | [`CardProps`](https://ant.design/components/card/#API)        |
 | formProps          | Props for the form component.                                                       | [`FormProps`](https://ant.design/components/form/#API)        |

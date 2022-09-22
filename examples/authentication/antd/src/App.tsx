@@ -51,7 +51,7 @@ const App: React.FC = () => {
         },
         forgotPassword: (params: any) => {
             if (params.email) {
-                //we can send email with reset password link here
+                //we can send email with forgot password link here
                 return Promise.resolve();
             }
             return Promise.reject();
@@ -110,7 +110,7 @@ const App: React.FC = () => {
                         ),
                     },
                     {
-                        path: "/reset-password",
+                        path: "/forgot-password",
                         element: <AuthPage type="forgotPassword" />,
                     },
                     {

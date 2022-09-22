@@ -39,13 +39,13 @@ export const useForgotPassword = <TVariables = {}>(): UseMutationResult<
                     replace(redirectPathFromAuth);
                 }
             }
-            close?.("reset-password-error");
+            close?.("forgot-password-error");
         },
         onError: (error: any) => {
             open?.({
-                message: error?.name || "Reset Password Error",
+                message: error?.name || "Forgot Password Error",
                 description: error?.message || "Error while resetting password",
-                key: "reset-password-error",
+                key: "forgot-password-error",
                 type: "error",
             });
         },

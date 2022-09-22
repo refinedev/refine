@@ -122,7 +122,7 @@
 
 -   Added `render` prop to `Sider` component. You can get `dashboard`, `logout` and `items` from `render` props to customize the `Sider` component.
 
--   Added `<AuthPage>` for Ant Design. `<AuthPage>` is a component that provides a login, register, reset password and update password pages.
+-   Added `<AuthPage>` for Ant Design. `<AuthPage>` is a component that provides a login, register, forgot password and update password pages.
 
 ### Patch Changes
 
@@ -143,7 +143,7 @@
 
 ### Minor Changes
 
--   [#2447](https://github.com/pankod/refine/pull/2447) [`628a37a675`](https://github.com/pankod/refine/commit/628a37a6753a778cbec5c29b698981e0157caa42) Thanks [@biskuvit](https://github.com/biskuvit)! - Added `<AuthPage>` for Ant Design. `<AuthPage>` is a component that provides a login, register, reset password and update password pages.
+-   [#2447](https://github.com/pankod/refine/pull/2447) [`628a37a675`](https://github.com/pankod/refine/commit/628a37a6753a778cbec5c29b698981e0157caa42) Thanks [@biskuvit](https://github.com/biskuvit)! - Added `<AuthPage>` for Ant Design. `<AuthPage>` is a component that provides a login, register, forgot password and update password pages.
 
 ### Patch Changes
 

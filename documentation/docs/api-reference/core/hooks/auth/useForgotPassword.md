@@ -5,7 +5,7 @@ siderbar_label: useForgotPassword
 description: useForgotPassword data hook from refine is a modified version of react-query's useMutation for registration.
 ---
 
-`useForgotPassword` calls `forgotPassword` method from [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood. It reset passwords the user if `forgotPassword` method from `authProvider` resolves and if it rejects shows an error notification.
+`useForgotPassword` calls `forgotPassword` method from [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood. It forgot passwords the user if `forgotPassword` method from `authProvider` resolves and if it rejects shows an error notification.
 
 It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation).
 
@@ -13,7 +13,7 @@ Data that is resolved from `forgotPassword` will be returned as the `data` in th
 
 ## Usage
 
-Normally refine provides a default reset password page. If you prefer to use this default reset password page, there is no need to handle reset password flow manually.  
+Normally refine provides a default forgot password page. If you prefer to use this default forgot password page, there is no need to handle forgot password flow manually.  
 If we want to build a custom forgotPassword page instead of default one that comes with refine, `useForgotPassword` can be used like this:
 
 ```tsx title="pages/customForgotPasswordPage"
