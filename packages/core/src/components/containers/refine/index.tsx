@@ -209,9 +209,7 @@ export const Refine: React.FC<RefineProps> = ({
                 name: resource.name,
                 label: resource.options?.label,
                 icon: resource.icon,
-                route:
-                    resource.options?.route ??
-                    routeGenerator(resource, resourcesFromProps),
+                route: routeGenerator(resource, resourcesFromProps),
                 canCreate: !!resource.create,
                 canEdit: !!resource.edit,
                 canShow: !!resource.show,

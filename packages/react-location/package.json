@@ -30,13 +30,13 @@
     "tsup": "^5.11.13"
   },
   "dependencies": {
-    "react-location": "^3.1.10",
-    "react-location-rank-routes": "^3.1.10"
+    "@tanstack/react-location": "^3.7.4",
+    "@tanstack/react-location-rank-routes": "^3.4.4"
   },
   "peerDependencies": {
     "@pankod/refine-core": "^3.23.2",
-    "react-location": "^3.1.10",
-    "react-location-rank-routes": "^3.1.10",
+    "@tanstack/react-location": "^3.7.4",
+    "@tanstack/react-location-rank-routes": "^3.4.4",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0",
     "@types/react": "^17.0.0 || ^18.0.0",

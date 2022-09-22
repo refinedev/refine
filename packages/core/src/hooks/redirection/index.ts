@@ -1,10 +1,10 @@
 import { useCallback } from "react";
 
-import { BaseKey, IResourceItem } from "../../interfaces";
+import { BaseKey, IResourceItem, RedirectAction } from "../../interfaces";
 import { useNavigation } from "@hooks";
 
 export type UseRedirectionAfterSubmissionType = () => (options: {
-    redirect: "show" | "list" | "edit" | "create" | false;
+    redirect: RedirectAction;
     resource: IResourceItem;
     id?: BaseKey;
 }) => void;
@@ -19,7 +19,7 @@ export const useRedirectionAfterSubmission: UseRedirectionAfterSubmissionType =
                 resource,
                 id,
             }: {
-                redirect: "show" | "list" | "edit" | "create" | false;
+                redirect: RedirectAction;
                 resource: IResourceItem;
                 id?: BaseKey;
             }) => {

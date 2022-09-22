@@ -1,4 +1,6 @@
+import { ActionWithPage } from "./actions";
+
 export type ResourceErrorRouterParams = {
     resource: string;
-    action: "show" | "edit" | "create" | undefined;
+    action: ActionWithPage | undefined;
 };

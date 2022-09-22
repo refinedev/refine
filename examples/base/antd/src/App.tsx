@@ -15,7 +15,19 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            routerProvider={{
+                ...routerProvider,
+                /**
+                 * By default refine uses the first route with `list` property as the initial route.
+                 * If you want to change the initial route, you can bind the `initialRoute` property to the `RouterComponent` property.
+                 *
+                 * Example:
+                 *
+                 *  RouterComponent: routerProvider.RouterComponent.bind({
+                 *     initialRoute: "/posts",
+                 *  }),
+                 */
+            }}
             dataProvider={dataProvider(API_URL)}
             resources={[
                 {
