@@ -10,6 +10,7 @@ import {
     DatePicker,
     RichTextEditor,
     SaveButton,
+    Text,
 } from "@pankod/refine-mantine";
 
 export const PostCreate: React.FC = () => {
@@ -106,7 +107,13 @@ export const PostCreate: React.FC = () => {
                 </Stepper.Step>
 
                 <Stepper.Step label="Final Step">
-                    <RichTextEditor mt="md" {...getInputProps("content")} />
+                    <Text mt={8} weight={500} size="sm" color="#212529">
+                        Content
+                    </Text>
+                    <RichTextEditor
+                        sx={{ minHeight: 300 }}
+                        {...getInputProps("content")}
+                    />
                 </Stepper.Step>
                 <Stepper.Completed>
                     Completed! Form values:
