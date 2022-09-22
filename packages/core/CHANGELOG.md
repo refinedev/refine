@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.72.1
+
+### Patch Changes
+
+-   [#2568](https://github.com/pankod/refine/pull/2568) [`efe99f7843`](https://github.com/pankod/refine/commit/efe99f78433c46433f137fd9581f33f4d75778e0) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Rename `reset-password` -> `forgot-password` on docs.
+
 ## 3.72.0
 
 ### Minor Changes
