@@ -1,5 +1,11 @@
 # @pankod/refine-antd
 
+## 3.48.5
+
+### Patch Changes
+
+-   Rename `reset-password` -> `forgot-password` on docs.
+
 ## 3.48.4
 
 ### Patch Changes
