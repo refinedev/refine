@@ -13,30 +13,30 @@ export const Footer: React.FC = () => {
                 </div>
                 <div className="flex flex-col gap-4 text-lg font-semibold text-white md:flex-row">
                     <div>
-                        <Link href="/">
+                        <Link href="https://refine.dev/docs/getting-started/overview/">
                             <a className="transition-all hover:underline hover:underline-offset-2">
-                                Home
+                                Quickstart
                             </a>
                         </Link>
                     </div>
                     <div>
-                        <Link href="/">
-                            <a className="transition-all hover:underline hover:underline-offset-2">
-                                Contact
-                            </a>
-                        </Link>
-                    </div>
-                    <div>
-                        <Link href="/">
-                            <a className="transition-all hover:underline hover:underline-offset-2">
-                                Getting Started
-                            </a>
-                        </Link>
-                    </div>
-                    <div>
-                        <Link href="/">
+                        <Link href="https://refine.dev/docs/">
                             <a className="transition-all hover:underline hover:underline-offset-2">
                                 Tutorials
+                            </a>
+                        </Link>
+                    </div>
+                    <div>
+                        <Link href="https://refine.dev/docs/examples/tutorial/headless-tutorial/">
+                            <a className="transition-all hover:underline hover:underline-offset-2">
+                                Examples
+                            </a>
+                        </Link>
+                    </div>
+                    <div>
+                        <Link href="https://refine.dev/blog/">
+                            <a className="transition-all hover:underline hover:underline-offset-2">
+                                Blog
                             </a>
                         </Link>
                     </div>
