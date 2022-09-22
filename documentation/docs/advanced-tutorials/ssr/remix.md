@@ -210,7 +210,7 @@ We used `getList` from `dataProvider` but data can be fetched in any way you des
 
 ## Standard CRUD Page
 
-**@pankod/refine-remix-router** package provides `RemixRouteComponent` for routing in **refine** resources. Simply export the component from the page and add a [loader function](loaderfunction). While you can create pages with defined params like `$resource/$action/$id.tsx`, we recommend using a splat route to handle all refine routing in a single file. You can start by creating a `$.tsx` file under `app/routes` in your Remix app:
+**@pankod/refine-remix-router** package provides `RemixRouteComponent` for routing in **refine** resources. Simply export the component from the page and add a [loader function][loaderfunction]. While you can create pages with defined params like `$resource/$action/$id.tsx`, we recommend using a splat route to handle all refine routing in a single file. You can start by creating a `$.tsx` file under `app/routes` in your Remix app:
 
 ```tsx title="app/routes/$.tsx"
 export { RemixRouteComponent as default } from "@pankod/refine-remix-router";
