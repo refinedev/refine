@@ -1,5 +1,15 @@
 # @pankod/refine-nextjs-router
 
+## 3.37.0
+
+### Minor Changes
+
+-   Added `handleRefineParams` helper function to handle catch-all refine params.
+
+-   Added ability to parse catch-all refine route in Next.js router. This way, instead of creating multiple pages, users can only create one page at the root `[[...refine]].tsx` and handle all params for the app.
+
+-   Added ability to manage the initial route of **refine** by binding `initialRoute` variable to `NextRouteComponent` component.
+
 ## 3.36.0
 
 ### Minor Changes
