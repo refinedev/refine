@@ -13,18 +13,15 @@ const closeMock = jest.fn();
 
 const notificationDispatch = jest.fn();
 
-const mockNotification = [
-    {
-        id: "1",
-        resource: "posts",
-        cancelMutation,
-        doMutation,
-        seconds: 5000,
-        isRunning: true,
-        isSilent: false,
-    },
-];
-
+const mockNotification = {
+    id: "1",
+    resource: "posts",
+    cancelMutation,
+    doMutation,
+    seconds: 5000,
+    isRunning: true,
+    isSilent: false,
+};
 describe("Cancel Notification", () => {
     beforeEach(() => {
         jest.useFakeTimers();
@@ -34,10 +31,10 @@ describe("Cancel Notification", () => {
             <UndoableQueueContext.Provider
                 value={{
                     notificationDispatch,
-                    notifications: mockNotification,
+                    notifications: [mockNotification],
                 }}
             >
-                <UndoableQueue notifications={mockNotification} />
+                <UndoableQueue notification={mockNotification} />
             </UndoableQueueContext.Provider>,
             {
                 wrapper: TestWrapper({
@@ -72,8 +69,8 @@ describe("Cancel Notification", () => {
     });
 
     it("should call doMutation on seconds zero", async () => {
-        mockNotification[0].seconds = 0;
-        render(<UndoableQueue notifications={mockNotification} />);
+        mockNotification.seconds = 0;
+        render(<UndoableQueue notification={mockNotification} />);
 
         expect(doMutation).toBeCalledTimes(1);
     });
