@@ -1,8 +1,12 @@
 import { Refine } from "@pankod/refine-core";
 import {
-    notificationProvider,
     MantineProvider,
+    NotificationsProvider,
     Layout,
+    ErrorComponent,
+    ReadyPage,
+    notificationProvider,
+    LightTheme,
 } from "@pankod/refine-mantine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -11,22 +15,25 @@ import { PostList } from "./pages";
 
 const App: React.FC = () => {
     return (
-        <MantineProvider
-            withNormalizeCSS
-            notificationProps={{ position: "top-right" }}
-        >
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                notificationProvider={notificationProvider}
-                Layout={Layout}
-                resources={[
-                    {
-                        name: "posts",
-                        list: PostList,
-                    },
-                ]}
-            />
+        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+            <NotificationsProvider position="top-right">
+                <Refine
+                    routerProvider={routerProvider}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev",
+                    )}
+                    notificationProvider={notificationProvider}
+                    ReadyPage={ReadyPage}
+                    catchAll={<ErrorComponent />}
+                    Layout={Layout}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: PostList,
+                        },
+                    ]}
+                />
+            </NotificationsProvider>
         </MantineProvider>
     );
 };

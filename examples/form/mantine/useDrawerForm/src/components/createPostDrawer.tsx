@@ -8,6 +8,7 @@ import {
     useSelect,
     SaveButton,
     Box,
+    Text,
 } from "@pankod/refine-mantine";
 
 interface FormValues {
@@ -57,9 +58,11 @@ export const CreatePostDrawer: React.FC<
                 {...getInputProps("category.id")}
                 {...selectProps}
             />
+            <Text mt={8} weight={500} size="sm" color="#212529">
+                Content
+            </Text>
             <RichTextEditor
-                mt={8}
-                sx={{ height: 300 }}
+                sx={{ minHeight: 300 }}
                 {...getInputProps("content")}
             />
             <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
