@@ -1,5 +1,21 @@
 # @pankod/refine-core
 
+## 3.73.0
+
+### Minor Changes
+
+-   Combine action related types into a single file and derive types from it to avoid future inconsistencies.
+
+    Renamed `RedirectionTypes` type to `RedirectAction`.
+
+    Updated every type definition of actions to use the new `Action` type or derivations of it.
+
+### Patch Changes
+
+-   Fixed the issue in resource routes not taking `options.route` of parent resource into account.
+
+-   Rename `reset-password` -> `forgot-password` on docs.
+
 ## 3.72.1
 
 ### Patch Changes
