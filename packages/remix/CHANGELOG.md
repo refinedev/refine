@@ -1,5 +1,13 @@
 # @pankod/refine-remix-router
 
+## 1.5.0
+
+### Minor Changes
+
+-   [#2486](https://github.com/pankod/refine/pull/2486) [`ee4d0d112a`](https://github.com/pankod/refine/commit/ee4d0d112a7742fc799cd11ffe2eb3c5165d7bcb) Thanks [@aliemir](https://github.com/aliemir)! - Added ability to manage the initial route of **refine** by binding `initialRoute` variable to `RemixRouteComponent` component.
+
+-   [#2486](https://github.com/pankod/refine/pull/2486) [`ee4d0d112a`](https://github.com/pankod/refine/commit/ee4d0d112a7742fc799cd11ffe2eb3c5165d7bcb) Thanks [@aliemir](https://github.com/aliemir)! - Add splat route support to remix with `handleRefineParams` helper.
+
 ## 1.4.0
 
 ### Minor Changes
