@@ -1,10 +1,10 @@
-import { BaseKey, IResourceItem } from "../../interfaces";
+import { BaseKey, IResourceItem, ITreeMenu } from "../../interfaces";
 
 export type CanParams = {
     resource: string;
     action: string;
     params?: {
-        resource?: IResourceItem;
+        resource?: IResourceItem & { children?: ITreeMenu[] };
         id?: BaseKey;
         [key: string]: any;
     };
