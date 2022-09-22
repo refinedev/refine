@@ -1,5 +1,15 @@
 # @pankod/refine-core
 
+## 3.71.2
+
+### Patch Changes
+
+-   Fix `useImport` hook requests with properly invoking requests sequentially and manage progress state.
+
+-   Removed `children` property from `useCan`s `params.resource` since it can be in `ITreeMenu` type and `React.ReactNode` breaks the `react-query`s key stringify function.
+
+-   Fixed undoable mutation is called many times - #2556
+
 ## 3.71.1
 
 ### Patch Changes
