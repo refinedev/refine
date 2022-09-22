@@ -1,5 +1,11 @@
 # @pankod/refine-react-router-v6
 
+## 3.36.0
+
+### Minor Changes
+
+-   Added ability to manage the initial route of **refine** by binding `initialRoute` variable to `RouterComponent` component.
+
 ## 3.35.0
 
 ### Minor Changes
