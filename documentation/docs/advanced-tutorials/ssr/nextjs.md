@@ -3,12 +3,11 @@ id: nextjs
 title: Next.js
 ---
 
-**refine** can be used with [**Next.js**][Nextjs] to SSR your pages. It doesn't get in the way and follows Next.js conventions and also provides helper modules when necessary.
-
+**refine** can be used with [**Next.js**][nextjs] to SSR your pages. It doesn't get in the way and follows Next.js conventions and also provides helper modules when necessary.
 
 ## Setup
 
-[**nextjs-router**][NextjsRouter] package provided by **refine** must be used for the [`routerProvider`][routerProvider]
+[**nextjs-router**][nextjsrouter] package provided by **refine** must be used for the [`routerProvider`][routerprovider]
 
 ```bash
 npm i @pankod/refine-core @pankod/refine-antd @pankod/refine-nextjs-router
@@ -20,6 +19,7 @@ We recommend [**superplate**][superplate] to initialize your refine projects. It
 ```
 npx superplate-cli -o refine-nextjs my-refine-nextjs-app
 ```
+
 :::
 
 :::caution
@@ -28,16 +28,24 @@ To make this example more visual, we used the [`@pankod/refine-antd`](https://gi
 
 ## Usage
 
-[`<Refine>`][refine] must wrap your pages in a [custom App][NextjsCustomApp] component. This way your [pages][NextjsPages] are integrated to refine.
+[`<Refine>`][refine] must wrap your pages in a [custom App][nextjscustomapp] component. This way your [pages][nextjspages] are integrated to refine.
 
 ```tsx title="pages/_app.tsx"
 import { AppProps } from "next/app";
 
 import { Refine } from "@pankod/refine-core";
-import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
+import {
+    Layout,
+    ReadyPage,
+    notificationProvider,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-nextjs-router";
+
+import { PostList, PostEdit, PostCreate, PostShow } from "pages/posts";
+import { UserList, UserShow } from "pages/users";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -51,6 +59,20 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             ReadyPage={ReadyPage}
             notificationProvider={notificationProvider}
             catchAll={<ErrorComponent />}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                    create: PostCreate,
+                    edit: PostEdit,
+                    show: PostShow,
+                },
+                {
+                    name: "users",
+                    list: UserList,
+                    show: UserShow,
+                },
+            ]}
         >
             <Component {...pageProps} />
         </Refine>
@@ -67,17 +89,13 @@ Let's say we want to show a list of users in `/users`. After creating `users.tsx
 
 ```tsx title="pages/users.tsx"
 import { LayoutWrapper } from "@pankod/refine-core";
-import {
-    useTable,
-    List,
-    Table,
-} from "@pankod/refine-antd";
+import { useTable, List, Table } from "@pankod/refine-antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 // highlight-start
 export const UserList: React.FC = () => {
     const { tableProps } = useTable<IPost>({
-        resource: "users"
+        resource: "users",
     });
 
     return (
@@ -101,7 +119,7 @@ export default UserList;
 ```
 
 :::important
-Notice how we passed `resource` prop to [`useTable`][useTable]. This is necessary since for `useTable` to be able to get `resource` name from route, it needs to be a route parameter in a dynamic route. [Refer here](#standard-crud-page) where standard CRUD pages can be built with dynamic routing.
+Notice how we passed `resource` prop to [`useTable`][usetable]. This is necessary since for `useTable` to be able to get `resource` name from route, it needs to be a route parameter in a dynamic route. [Refer here](#standard-crud-page) where standard CRUD pages can be built with dynamic routing.
 :::
 
 :::important
@@ -110,7 +128,7 @@ We also used `<LayoutWrapper>` to show the page in the layout provided to [`<Ref
 
 ### SSR
 
-**refine** uses [react-query][ReactQuery] in its hooks for data management. [Following react-query's guide][ReactQuerySSR], SSR can be achieved like this:
+**refine** uses [react-query][reactquery] in its hooks for data management. [Following react-query's guide][reactqueryssr], SSR can be achieved like this:
 
 ```tsx title="pages/users.tsx"
 // highlight-next-line
@@ -118,28 +136,24 @@ import { GetServerSideProps } from "next";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
     LayoutWrapper,
-// highlight-next-line
+    // highlight-next-line
     GetListResponse,
 } from "@pankod/refine-core";
-import {
-    useTable,
-    List,
-    Table,
-} from "@pankod/refine-antd";
+import { useTable, List, Table } from "@pankod/refine-antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 // highlight-start
 export const UserList: React.FC<{ users: GetListResponse<IPost> }> = ({
-    users
+    users,
 }) => {
-// highlight-end
+    // highlight-end
     const { tableProps } = useTable<IPost>({
         resource: "users",
-// highlight-start
+        // highlight-start
         queryOptions: {
             initialData: users,
         },
-// highlight-end
+        // highlight-end
     });
 
     return (
@@ -174,7 +188,7 @@ interface IPost {
 export default UserList;
 ```
 
-We use the [`getList`][getList] method from our [`dataProvider`][dataProvider] to fetch `users` data and pass through `props` as conventionally done in Next.js. Then `users` data is available in the props of our `/users` page. [`useTable`][useTable] can take options for underlying react-query queries with `queryOptions`. Passing `users` data to its `initialData` loads the data on server side.
+We use the [`getList`][getlist] method from our [`dataProvider`][dataprovider] to fetch `users` data and pass through `props` as conventionally done in Next.js. Then `users` data is available in the props of our `/users` page. [`useTable`][usetable] can take options for underlying react-query queries with `queryOptions`. Passing `users` data to its `initialData` loads the data on server side.
 
 :::tip
 We used `getList` from `dataProvider` but data can be fetched in any way you desire.
@@ -182,31 +196,30 @@ We used `getList` from `dataProvider` but data can be fetched in any way you des
 
 ## Standard CRUD Page
 
-**nextjs-router** package provides `NextRouteComponent` for pages with the dynamic route `/[resource]/[action]/[id]` and root `/`. Simply export the component from the page and add a [data fetching function][dataFetching]
+**nextjs-router** package provides `NextRouteComponent` for routing in **refine** resources. Simply export the component from the page and add a [data fetching function][datafetching]. While you can create pages with defined params like `[resource]/[action]/[id].tsx`, we recommend using a catch-all route to handle all **refine** routing in a single file. You can start by creating a `[[...refine]].tsx` file under `pages` in your Nextjs app:
 
-```tsx title="pages/[resource]/index.tsx"
+```tsx title="pages/[[...refine]].tsx"
 export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
-
-export const getServerSideProps: GetServerSideProps = async () => {
-    return { props: {} };
-};
 ```
 
-:::warning
-`NextRouteComponent` doesn't support [automatic static optimization][autoStaticOpt] currently, since it requires route parameters thus a data fetching function must be defined.
-:::
+:::info
 
-`NextRouteComponent` can be used in the following pages:
-- `pages/[resource].tsx`
-- `pages/[resource]/[action].tsx`
-- `pages/[resource]/[action]/[id].tsx`
-- `pages/index.tsx`
+You can also define routes without using `[[...refine]].tsx` file like below, but a catch-all route is an easier approach with nested route support.
+
+Export `NextRouteComponent` as default in the following pages:
+
+-   `pages/[resource].tsx`
+-   `pages/[resource]/[action].tsx`
+-   `pages/[resource]/[action]/[id].tsx`
+-   `pages/index.tsx`
 
 `NextRouteComponent` will use route parameters `resource` and `action` and render the associated component defined in [`resources`][refine].
 
-- `list` component will be rendered for `/[resource]` route
-- `create`, `edit` and `show` will be rendered for `/[resource]/[action]` and `/[resource]/[action]/[id]` routes
-- For the root `/` route, it will render `DashboardPage` if it's defined and if not will navigate to the first resource in `resources`.
+-   `list` component will be rendered for `/[resource]` route
+-   `create`, `edit` and `show` will be rendered for `/[resource]/[action]` and `/[resource]/[action]/[id]` routes
+-   For the root `/` route, it will render `DashboardPage` if it's defined and if not will navigate to the first resource in `resources`.
+
+:::
 
 :::important
 `NextRouteComponent` will wrap the page with `Layout` provided to [`<Refine>`][refine]
@@ -221,12 +234,14 @@ type NextRouteComponentProps = {
     initialData?: any;
 };
 ```
+
 `initialData` must be passed as props from `getServerSideProps`. `NextRouteComponent` will pass this data as `initialData` to the `list`, `create`, `edit` and `show` components.
 
 For example, for a `list` component that will be rendered for `/[resource]`, the page can use SSR like this:
 
-```tsx title="pages/[resource]/index.tsx"
+```tsx title="pages/[[...refine]].tsx"
 export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
+import { handleRefineParams } from "@pankod/refine-nextjs-router";
 import dataProvider from "@pankod/refine-simple-rest";
 
 import { GetServerSideProps } from "next";
@@ -234,39 +249,50 @@ import { GetServerSideProps } from "next";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+    const { resource, action, id } = handleRefineParams(context.params?.refine);
 
-    const { query } = context;
+    try {
+        if (resource && action === "show" && id) {
+            const data = await dataProvider(API_URL).getOne({
+                // we're slicing the resource param to get the resource name from the last part
+                resource: resource.slice(resource.lastIndexOf("/") + 1),
+                id,
+            });
 
-   try {
-        const data = await dataProvider(API_URL).getList({
-            resource: query["resource"] as string,
-        });
+            return {
+                props: {
+                    initialData: data,
+                },
+            };
+        } else if (resource && !action && !id) {
+            const data = await dataProvider(API_URL).getList({
+                // we're slicing the resource param to get the resource name from the last part
+                resource: resource.slice(resource.lastIndexOf("/") + 1),
+            });
 
-        return {
-            props: {
-                initialData: data,
-            },
-        };
+            return {
+                props: {
+                    initialData: data,
+                },
+            };
+        }
     } catch (error) {
         return { props: {} };
     }
-};
 
+    return { props: {} };
+};
 ```
 
 And in the `list` component for a `resource` e.g. "posts":
 
 ```tsx title="src/components/posts/list.tsx"
 import { GetListResponse, IResourceComponentsProps } from "@pankod/refine-core";
-import {
-    useTable,
-    List,
-    Table,
-} from "@pankod/refine-antd";
+import { useTable, List, Table } from "@pankod/refine-antd";
 
 export const PostList: React.FC<
     IResourceComponentsProps<GetListResponse<IPost>>
-// highlight-next-line
+    // highlight-next-line
 > = ({ initialData }) => {
     const { tableProps } = useTable<IPost>({
         // highlight-start
@@ -292,23 +318,28 @@ interface IPost {
 }
 ```
 
+:::tip
+
+You can also achieve SSR with `getStaticProps` and `getStaticPaths` for static generation. All you need to do is to add the paths you want to statically generate to `getStaticPaths` and pass the data as `initialData` from `getStaticProps`.
+
+:::
+
 ## Server Side Authentication
 
 **nextjs-router** package provides `checkAuthentication` to easily handle server side authentication.
 
-```tsx title="pages/[resource]/index.tsx"
+```tsx title="pages/[[...refine]].tsx"
 export { NextRouteComponent as default } from "@pankod/refine-nextjs-router";
 // highlight-next-line
 import { checkAuthentication } from "@pankod/refine-nextjs-router";
- 
+
 import { GetServerSideProps } from "next";
 
-import {authProvider} from "../../src/authProvider";
- 
+import { authProvider } from "../../src/authProvider";
+
 const API_URL = "https://api.fake-rest.refine.dev";
- 
+
 export const getServerSideProps: GetServerSideProps = async (context) => {
- 
     // highlight-start
     const { isAuthenticated, ...props } = await checkAuthentication(
         authProvider,
@@ -319,7 +350,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         return props;
     }
     // highlight-end
- 
+
     return {
         props: {},
     };
@@ -341,7 +372,6 @@ import dataProvider from "@pankod/refine-simple-rest";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-
     // highlight-start
     const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
         parseTableParamsFromQuery(context.query);
@@ -362,7 +392,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         props: { users: data },
     };
 };
-
 ```
 
 `parseTableParams` parses the query string and returns query parameters([refer here for their interfaces][interfaces]). They can be directly used for `dataProvider` methods that accepts them.
@@ -374,19 +403,19 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     title="refine-next"
 ></iframe>
 
-[Nextjs]: https://nextjs.org/docs/getting-started
-[NextjsRouter]: https://www.npmjs.com/package/@pankod/refine-nextjs-router
-[routerProvider]: /api-reference/core/providers/router-provider.md
+[nextjs]: https://nextjs.org/docs/getting-started
+[nextjsrouter]: https://www.npmjs.com/package/@pankod/refine-nextjs-router
+[routerprovider]: /api-reference/core/providers/router-provider.md
 [superplate]: https://github.com/pankod/superplate
-[NextjsCustomApp]: https://nextjs.org/docs/advanced-features/custom-app
+[nextjscustomapp]: https://nextjs.org/docs/advanced-features/custom-app
 [refine]: /api-reference/core/components/refine-config.md
-[NextjsPages]: https://nextjs.org/docs/basic-features/pages
-[useTable]: /api-reference/core/hooks/useTable.md
-[ReactQuerySSR]: https://react-query.tanstack.com/guides/ssr#using-initialdata
-[ReactQuery]: https://react-query.tanstack.com/
-[getList]: /api-reference/core/providers/data-provider.md#getlist
-[dataProvider]: /api-reference/core/providers/data-provider.md
-[useTable]: /api-reference/core/hooks/useTable.md
+[nextjspages]: https://nextjs.org/docs/basic-features/pages
+[usetable]: /api-reference/core/hooks/useTable.md
+[reactqueryssr]: https://react-query.tanstack.com/guides/ssr#using-initialdata
+[reactquery]: https://react-query.tanstack.com/
+[getlist]: /api-reference/core/providers/data-provider.md#getlist
+[dataprovider]: /api-reference/core/providers/data-provider.md
+[usetable]: /api-reference/core/hooks/useTable.md
 [interfaces]: /api-reference/core/interfaces.md/#crudfilters
-[autoStaticOpt]: https://nextjs.org/docs/advanced-features/automatic-static-optimization
-[dataFetching]: https://nextjs.org/docs/basic-features/data-fetching
+[autostaticopt]: https://nextjs.org/docs/advanced-features/automatic-static-optimization
+[datafetching]: https://nextjs.org/docs/basic-features/data-fetching
