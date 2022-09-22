@@ -1,11 +1,11 @@
-import { useList } from '@pankod/refine-core';
-import { Table } from 'react-daisyui';
+import { useList } from "@pankod/refine-core";
+import { Table } from "react-daisyui";
 
-const columns = ['ID', 'Name', 'ISO Code', 'Local Name', 'Continent'];
+const columns = ["ID", "Name", "ISO Code", "Local Name", "Continent"];
 
 export const Countries = () => {
     const { data: countries } = useList({
-        resource: 'countries',
+        resource: "countries",
         config: { hasPagination: false },
     });
     return (

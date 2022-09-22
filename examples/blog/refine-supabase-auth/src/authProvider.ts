@@ -1,6 +1,6 @@
-import { AuthProvider } from '@pankod/refine-core';
+import { AuthProvider } from "@pankod/refine-core";
 
-import { supabaseClient } from 'utility';
+import { supabaseClient } from "utility";
 
 const authProvider: AuthProvider = {
     login: async ({ mobileNo, otp }) => {
@@ -24,7 +24,7 @@ const authProvider: AuthProvider = {
             return Promise.reject(error);
         }
 
-        return Promise.resolve('/');
+        return Promise.resolve("/");
     },
     checkError: () => Promise.resolve(),
     checkAuth: () => {

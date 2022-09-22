@@ -1,22 +1,21 @@
-import { useLogin } from '@pankod/refine-core';
-import { useRef, useState } from 'react';
-import { Alert, Button, Card, Input } from 'react-daisyui';
-import { supabaseClient } from 'utility';
+import { useLogin } from "@pankod/refine-core";
+import { useRef, useState } from "react";
+import { Alert, Button, Card, Input } from "react-daisyui";
+import { supabaseClient } from "utility";
 
 export const LoginPage = () => {
     const mobileNoRef = useRef<string>();
     const otpRef = useRef<string>();
     const [error, setError] = useState<string>();
-    const [formState, setFormState] = useState<'SEND_OTP' | 'LOGIN'>(
-        'SEND_OTP'
-    );
+    const [formState, setFormState] =
+        useState<"SEND_OTP" | "LOGIN">("SEND_OTP");
 
     const { mutate: login } = useLogin();
 
     const onLogin = () => {
         login(
             { mobileNo: mobileNoRef.current, otp: otpRef.current },
-            { onError: (error: any) => setError(error.message) }
+            { onError: (error: any) => setError(error.message) },
         );
     };
 
@@ -28,9 +27,9 @@ export const LoginPage = () => {
             <Input
                 className="mb-4 border-gray bg-gray text-dark text-lg font-medium"
                 onChange={(e) => (mobileNoRef.current = e.target.value)}
-                onFocus={() => setError('')}
+                onFocus={() => setError("")}
                 name="mobile"
-                type={'tel'}
+                type={"tel"}
                 defaultValue={mobileNoRef.current}
             />
             <Button color="accent" className="shadow" onClick={onSendOtp}>
@@ -45,7 +44,7 @@ export const LoginPage = () => {
             <Input
                 className="mb-4 border-gray bg-gray text-dark text-lg font-medium"
                 onChange={(e) => (otpRef.current = e.target.value)}
-                onFocus={() => setError('')}
+                onFocus={() => setError("")}
                 name="otp"
                 value={otpRef.current}
             />
@@ -56,9 +55,9 @@ export const LoginPage = () => {
     );
 
     const onSendOtp = async () => {
-        const mobileNo = mobileNoRef.current || '';
+        const mobileNo = mobileNoRef.current || "";
         if (!/^\+[1-9]{1}[0-9]{3,14}$/.test(mobileNo)) {
-            setError('Please enter a valid mobile number');
+            setError("Please enter a valid mobile number");
             return;
         }
         const { error } = await supabaseClient.auth.signIn({
@@ -68,7 +67,7 @@ export const LoginPage = () => {
             setError(error.message);
             return;
         }
-        setFormState('LOGIN');
+        setFormState("LOGIN");
     };
 
     return (
@@ -83,8 +82,8 @@ export const LoginPage = () => {
                     <h2 className="text-dark text-xl  font-bold mb-3">
                         Sign In
                     </h2>
-                    {formState === 'SEND_OTP' && mobileFormRender()}
-                    {formState === 'LOGIN' && otpFormRender()}
+                    {formState === "SEND_OTP" && mobileFormRender()}
+                    {formState === "LOGIN" && otpFormRender()}
                 </Card.Body>
             </Card>
         </div>

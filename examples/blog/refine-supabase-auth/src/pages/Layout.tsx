@@ -1,5 +1,5 @@
-import { LayoutProps, useLogout } from '@pankod/refine-core';
-import { Button } from 'react-daisyui';
+import { LayoutProps, useLogout } from "@pankod/refine-core";
+import { Button } from "react-daisyui";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
     const { mutate: logout } = useLogout();
