@@ -1,5 +1,19 @@
 # @pankod/refine-core
 
+## 3.72.0
+
+### Minor Changes
+
+-   [#2486](https://github.com/pankod/refine/pull/2486) [`ee4d0d112a`](https://github.com/pankod/refine/commit/ee4d0d112a7742fc799cd11ffe2eb3c5165d7bcb) Thanks [@aliemir](https://github.com/aliemir)! - Combine action related types into a single file and derive types from it to avoid future inconsistencies.
+
+    Renamed `RedirectionTypes` type to `RedirectAction`.
+
+    Updated every type definition of actions to use the new `Action` type or derivations of it.
+
+### Patch Changes
+
+-   [#2486](https://github.com/pankod/refine/pull/2486) [`ee4d0d112a`](https://github.com/pankod/refine/commit/ee4d0d112a7742fc799cd11ffe2eb3c5165d7bcb) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the issue in resource routes not taking `options.route` of parent resource into account.
+
 ## 3.71.2
 
 ### Patch Changes
