@@ -18,8 +18,16 @@ export const buttonDeleteTests = function (
     DeleteButton: React.ComponentType<RefineDeleteButtonProps<any, any>>,
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / Delete Button", () => {
+        afterAll(() => {
+            jest.clearAllTimers();
+            jest.useRealTimers();
+        });
+
         beforeAll(() => {
             jest.spyOn(console, "error").mockImplementation(jest.fn());
+            jest.clearAllTimers();
+            jest.useFakeTimers();
+            jest.clearAllTimers();
         });
         it("should render button successfuly", async () => {
             const { container } = render(<DeleteButton />, {
@@ -83,8 +91,12 @@ export const buttonDeleteTests = function (
 
             expect(container).toBeTruthy();
 
-            waitFor(() =>
-                expect(getByText("Delete").closest("button")).toBeDisabled(),
+            waitFor(
+                () =>
+                    expect(
+                        getByText("Delete").closest("button"),
+                    ).toBeDisabled(),
+                { timeout: 2000 },
             );
         });
 
@@ -98,7 +110,6 @@ export const buttonDeleteTests = function (
                                 if (params?.id === "1") {
                                     return Promise.resolve({ can: false });
                                 }
-                                console.log("ff");
                                 return Promise.resolve({ can: true });
                             },
                         },
@@ -108,8 +119,12 @@ export const buttonDeleteTests = function (
 
             expect(container).toBeTruthy();
 
-            waitFor(() =>
-                expect(getByText("Delete").closest("button")).toBeDisabled(),
+            waitFor(
+                () =>
+                    expect(
+                        getByText("Delete").closest("button"),
+                    ).toBeDisabled(),
+                { timeout: 2000 },
             );
         });
 
