@@ -186,7 +186,6 @@ interface ICategory {
   id: number;
   title: string;
 }
-
 ```
 
 Now, you should see the output as a table populated with `post` & `category` data:
