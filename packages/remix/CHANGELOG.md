@@ -1,5 +1,13 @@
 # @pankod/refine-remix-router
 
+## 1.6.0
+
+### Minor Changes
+
+-   Added ability to manage the initial route of **refine** by binding `initialRoute` variable to `RemixRouteComponent` component.
+
+-   Add splat route support to remix with `handleRefineParams` helper.
+
 ## 1.5.0
 
 ### Minor Changes
