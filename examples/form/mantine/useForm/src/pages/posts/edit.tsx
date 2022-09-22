@@ -5,6 +5,7 @@ import {
     useForm,
     useSelect,
     RichTextEditor,
+    Text,
 } from "@pankod/refine-mantine";
 
 import { ICategory } from "../../interfaces";
@@ -57,7 +58,10 @@ export const PostEdit: React.FC = () => {
                     {...getInputProps("category.id")}
                     {...selectProps}
                 />
-                <RichTextEditor mt={8} {...getInputProps("content")} />
+                <Text mt={8} weight={500} size="sm" color="#212529">
+                    Content
+                </Text>
+                <RichTextEditor {...getInputProps("content")} />
             </form>
         </Edit>
     );
