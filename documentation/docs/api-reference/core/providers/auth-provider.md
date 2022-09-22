@@ -263,11 +263,11 @@ register: ({ email, password }) => {
 
 ### `forgotPassword`
 
-**refine** expects this method to return a resolved Promise if the reset password is successful, and a rejected Promise if it is not.
+**refine** expects this method to return a resolved Promise if the forgot password is successful, and a rejected Promise if it is not.
 
--   If the reset password is successful you can send an email to the user with a link to reset the password.
+-   If the forgot password is successful you can send an email to the user with a link to reset the password.
 
--   If the reset password fails, **refine** displays an error notification to the user.
+-   If the forgot password fails, **refine** displays an error notification to the user.
 
 <br />
 
@@ -312,7 +312,7 @@ const { mutate: forgotPassword } =
 :::
 
 :::tip
-**refine** automatically displays an error notification if the reset password fails. You can customize the default error message.
+**refine** automatically displays an error notification if the forgot password fails. You can customize the default error message.
 
 ```tsx
 forgotPassword: ({ email }) => {
@@ -892,7 +892,7 @@ These hooks can be used with the `authProvider` authentication and authorization
 | getPermissions <div className="required">Required</div> | Can be use to get user credentials        | Authorization roles accepted          |
 | getUserIdentity                                         | Can be use to get user identity           | User identity avaliable to return     |
 | register                                                | Register user                             | Auth confirms register                |
-| forgotPassword                                          | Can be use to get password reset          | Auth confirms reset password          |
+| forgotPassword                                          | Can be use to get password reset          | Auth confirms forgot password         |
 | updatePassword                                          | Can be use to get update password         | Auth confirms update password         |
 <br />
 

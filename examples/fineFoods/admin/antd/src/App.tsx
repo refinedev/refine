@@ -79,7 +79,7 @@ const App: React.FC = () => {
                                 ),
                             },
                             {
-                                path: "/reset-password",
+                                path: "/forgot-password",
                                 element: <AuthPage type="forgotPassword" />,
                             },
                             {

@@ -22,7 +22,7 @@ describe("useForgotPassword Hook", () => {
         });
     });
 
-    it("succeed reset password", async () => {
+    it("succeed forgot password", async () => {
         const { result } = renderHook(() => useForgotPassword(), {
             wrapper: TestWrapper({
                 authProvider: {
@@ -57,7 +57,7 @@ describe("useForgotPassword Hook", () => {
         expect(mHistory).not.toBeCalledWith();
     });
 
-    it("fail reset password", async () => {
+    it("fail forgot password", async () => {
         const { result } = renderHook(() => useForgotPassword(), {
             wrapper: TestWrapper({
                 authProvider: {
