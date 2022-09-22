@@ -1,9 +1,9 @@
 ---
-title: Memoization in React - How useCallback Works
-description: Improve the APP performance with React useCallback() hook
-slug: supabase
-authors: abdullah_numan
-tags: [react, memoization, usecallback, performance]
+title: OTP Authentication with Supabase and Twilio in React
+description: We'll implement OTP(SMS) authorization using Twilio and Supabase in React app. 
+slug: supabase-twilio-otp-authentication-in-react
+authors: vijit_ail
+tags: [react, supabase, refine, authentication,otp,login]
 image: /img/blog/2022-09-22-refine-supabase-auth/social.png
 hide_table_of_contents: false
 ---
@@ -23,7 +23,6 @@ import final from '@site/static/img/blog/2022-09-22-refine-supabase-auth/final.p
 
 
 
-Add OTP-Based Authentication in Refine with Supabase Auth
 
 ## Introduction
 
@@ -32,6 +31,17 @@ Passwords are one of the most popular ways to authenticate a user. However, pass
 Another significant problem with password-based login is that keeping track of different passwords can become challenging. This is where the term 'OTP' (One Time Password) can be helpful.
 
 When we talk about OTP-based authentication, users need to enter a six-digit OTP number sent to them through an automated call or SMS when they want to access the application.
+
+You can see the example app we'll build in the article from [here](https://github.com/pankod/refine/tree/next/examples/refine-supabase-auth)
+
+Steps we'll cover:
+- [What is Supabase?](#what-is-supabase)
+- [What is refine?](#what-is-refine)
+- [Installing Tailwind CSS for refine project](#installing-tailwind-css-for-refine-project)
+- [Set up the Supabase Project](#set-up-the-supabase-project)
+- [Create the Login Page](#create-the-login-page)
+- [Data Provider](#data-provider)
+- [Auth Provider](#auth-provider)
 
 ## What is Supabase?
 
@@ -220,6 +230,12 @@ Add your Twilio API credentials to complete the integration. You can also edit t
 
 The backend setup is now complete. In the next section, you will start building the app's frontend.
 
+<br/>
+<div>
+<a href="https://github.com/pankod/refine">
+  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
+</a>
+</div>
 
 ## Create the Login Page
 
@@ -594,3 +610,38 @@ function App() {
 OTP authentication adds an extra layer of security to your application and helps ensure that only authorized users can access it. In this article, we've gone over how to add OTP-based authentication in refine using Supabase Auth. We've also looked at how to set up the phone auth provider in Supabase using Twilio so that users can receive their OTP tokens. 
 
 Following this article's steps, you should now have a refine application with OTP-based authentication enabled.
+
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
+</a>
+</div>
+
+
+
+---
+
+## Build your React-based CRUD applications without constraints
+
+Low-code React frameworks are great for gaining development speed but they often fall short of flexibility if you need extensive styling and customization for your project.
+
+Check out [refine](https://github.com/pankod/refine),if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
+
+
+<div>
+<a href="https://github.com/pankod/refine">
+    <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
+</a>
+</div>
+
+<br/>
+
+**refine** is an open-source React-based framework for building CRUD applications **without constraints.**
+It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
+
+**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
+
+Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials, and example projects.
+
