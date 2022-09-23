@@ -16,7 +16,7 @@ export const Header: React.FC<RefineLayoutHeaderProps> = () => {
     return shouldRenderHeader ? (
         <MantineHeader height={50} py={6} px="sm">
             <Group position="right">
-                <MantineTitle order={6}>Salih{user?.name}</MantineTitle>
+                <MantineTitle order={6}>{user?.name}</MantineTitle>
                 <Avatar src={user?.avatar} alt={user?.name} />
             </Group>
         </MantineHeader>
