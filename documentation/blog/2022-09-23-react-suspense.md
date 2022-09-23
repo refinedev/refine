@@ -1,7 +1,7 @@
 ---
-title: A Quick Guide to React Suspense
+title: A Quick Start Guide to React Suspense
 description: We will discuss how React Suspense works and common use cases
-slug: react-suspense-usage
+slug: react-suspense-guide
 authors: joel_adewole
 tags: [react, react-suspense]
 image: /img/blog/2022-09-23-react-suspense/social.png
