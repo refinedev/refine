@@ -15,15 +15,7 @@
         "@docusaurus/core": "^2.1.0",
         "@docusaurus/plugin-client-redirects": "^2.1.0",
         "@docusaurus/preset-classic": "^2.1.0",
-        "@docusaurus/theme-live-codeblock": "^2.1.0",
         "@mdx-js/react": "^1.6.21",
-        "@pankod/refine-antd": "^3.42.1",
-        "@pankod/refine-core": "^3.65.1",
-        "@pankod/refine-mui": "^3.44.1",
-        "@pankod/refine-react-hook-form": "latest",
-        "@pankod/refine-react-router-v6": "^3.32.0",
-        "@pankod/refine-react-table": "latest",
-        "@pankod/refine-simple-rest": "latest",
         "@tailwindcss/line-clamp": "^0.4.2",
         "@types/react-dom": "^17.0.11",
         "autoprefixer": "^10.4.8",
@@ -41,7 +33,6 @@
         "react-player": "^2.10.1",
         "react-rewards": "^2.0.4",
         "react-share": "^4.4.0",
-        "sucrase": "^3.25.0",
         "tailwindcss": "^3.1.8"
     },
     "browserslist": {

@@ -85,7 +85,6 @@ const siteConfig = {
             },
         ],
     ],
-    themes: ["@docusaurus/theme-live-codeblock"],
     themeConfig: {
         prism: {
             magicComments: [
