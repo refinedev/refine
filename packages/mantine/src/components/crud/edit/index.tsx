@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { RefineCrudEditProps } from "@pankod/refine-ui-types";
 import {
     Box,
@@ -9,16 +9,19 @@ import {
     GroupProps,
     ActionIcon,
     Stack,
+    Title,
 } from "@mantine/core";
 import {
     ResourceRouterParams,
     useMutationMode,
     useNavigation,
     useResourceWithRoute,
+    userFriendlyResourceName,
     useRouterContext,
+    useTranslate,
 } from "@pankod/refine-core";
-import { PageTitle } from "@components/page-title";
-import { Breadcrumb } from "@components/breadcrumb";
+import { IconArrowLeft } from "@tabler/icons";
+
 import {
     DeleteButton,
     DeleteButtonProps,
@@ -27,7 +30,7 @@ import {
     SaveButton,
     SaveButtonProps,
 } from "@components/buttons";
-import { IconArrowLeft } from "@tabler/icons";
+import { Breadcrumb } from "@components/breadcrumb";
 
 export type EditProps = RefineCrudEditProps<
     SaveButtonProps,
@@ -39,7 +42,7 @@ export type EditProps = RefineCrudEditProps<
     BoxProps
 >;
 
-export const Edit: FC<EditProps> = (props) => {
+export const Edit: React.FC<EditProps> = (props) => {
     const {
         children,
         resource: resourceFromProps,
@@ -61,6 +64,7 @@ export const Edit: FC<EditProps> = (props) => {
         breadcrumb = <Breadcrumb />,
         title,
     } = props;
+    const translate = useTranslate();
 
     const { goBack, list } = useNavigation();
 
@@ -80,7 +84,8 @@ export const Edit: FC<EditProps> = (props) => {
 
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
 
-    const isDeleteButtonVisible = canDelete ?? resource.canDelete;
+    const isDeleteButtonVisible =
+        canDelete ?? (resource.canDelete || deleteButtonProps);
 
     const id = recordItemId ?? idFromRoute;
 
@@ -141,7 +146,20 @@ export const Edit: FC<EditProps> = (props) => {
             <Group position="apart" {...headerProps}>
                 <Stack spacing="xs">
                     {breadcrumb}
-                    {title ?? <PageTitle type="edit" buttonBack={buttonBack} />}
+                    {title ?? (
+                        <Group spacing="xs">
+                            {buttonBack}
+                            <Title order={2} transform="capitalize">
+                                {translate(
+                                    `${resource.name}.titles.edit`,
+                                    `Edit ${userFriendlyResourceName(
+                                        resource.label ?? resource.name,
+                                        "singular",
+                                    )}`,
+                                )}
+                            </Title>
+                        </Group>
+                    )}
                 </Stack>
                 <Group spacing="xs" {...headerButtonProps}>
                     {headerButtons}

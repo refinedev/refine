@@ -62,13 +62,7 @@ export const crudListTests = function (
         it("should render optional title with title prop", async () => {
             jest.useFakeTimers();
 
-            const { getByText } = renderList(
-                <List
-                    headerProps={{
-                        title: "New Title",
-                    }}
-                ></List>,
-            );
+            const { getByText } = renderList(<List title="New Title"></List>);
 
             await act(async () => {
                 jest.advanceTimersToNextTimer(1);
@@ -143,7 +137,7 @@ export const crudListTests = function (
             jest.useFakeTimers();
 
             const { getByText, queryByTestId } = renderList(
-                <List createButtonProps={{ size: "large" }} />,
+                <List createButtonProps={{ "aria-label": "Create Button" }} />,
                 undefined,
                 { routerInitialEntries: ["/posts"] },
             );

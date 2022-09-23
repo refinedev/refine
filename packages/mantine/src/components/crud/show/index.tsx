@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { RefineCrudShowProps } from "@pankod/refine-ui-types";
 import {
     Box,
@@ -9,22 +9,25 @@ import {
     GroupProps,
     ActionIcon,
     Stack,
+    Title,
 } from "@mantine/core";
 import {
     ResourceRouterParams,
     useNavigation,
     useResourceWithRoute,
+    userFriendlyResourceName,
     useRouterContext,
+    useTranslate,
 } from "@pankod/refine-core";
-import { PageTitle } from "@components/page-title";
-import { Breadcrumb } from "@components/breadcrumb";
+import { ArrowLeft } from "tabler-icons-react";
+
 import {
     DeleteButton,
     EditButton,
     ListButton,
     RefreshButton,
 } from "@components/buttons";
-import { ArrowLeft } from "tabler-icons-react";
+import { Breadcrumb } from "@components/breadcrumb";
 
 export type ShowProps = RefineCrudShowProps<
     GroupProps,
@@ -34,7 +37,7 @@ export type ShowProps = RefineCrudShowProps<
     BoxProps
 >;
 
-export const Show: FC<ShowProps> = (props) => {
+export const Show: React.FC<ShowProps> = (props) => {
     const {
         children,
         resource: resourceFromProps,
@@ -54,6 +57,7 @@ export const Show: FC<ShowProps> = (props) => {
         breadcrumb = <Breadcrumb />,
         title,
     } = props;
+    const translate = useTranslate();
 
     const { goBack, list } = useNavigation();
 
@@ -133,7 +137,20 @@ export const Show: FC<ShowProps> = (props) => {
             <Group position="apart" align="center" {...headerProps}>
                 <Stack spacing="xs">
                     {breadcrumb}
-                    {title ?? <PageTitle type="show" buttonBack={buttonBack} />}
+                    {title ?? (
+                        <Group spacing="xs">
+                            {buttonBack}
+                            <Title order={2} transform="capitalize">
+                                {translate(
+                                    `${resource.name}.titles.show`,
+                                    `Show ${userFriendlyResourceName(
+                                        resource.label ?? resource.name,
+                                        "singular",
+                                    )}`,
+                                )}
+                            </Title>
+                        </Group>
+                    )}
                 </Stack>
                 <Group spacing="xs" {...headerButtonProps}>
                     {headerButtons}

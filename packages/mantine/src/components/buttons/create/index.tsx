@@ -10,7 +10,7 @@ import {
     RefineCreateButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
-import { Anchor, Button, ButtonProps, Sx } from "@mantine/core";
+import { Anchor, Button, ButtonProps } from "@mantine/core";
 import { SquarePlus, IconProps } from "tabler-icons-react";
 
 export type CreateButtonProps = RefineCreateButtonProps<

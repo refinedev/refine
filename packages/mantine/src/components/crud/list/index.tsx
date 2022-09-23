@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { RefineCrudListProps } from "@pankod/refine-ui-types";
 import {
     Box,
@@ -8,25 +8,28 @@ import {
     Group,
     GroupProps,
     Stack,
+    Title,
 } from "@mantine/core";
-import { CreateButton, CreateButtonProps } from "@components/buttons";
 import {
     ResourceRouterParams,
     useResourceWithRoute,
+    userFriendlyResourceName,
     useRouterContext,
+    useTranslate,
 } from "@pankod/refine-core";
-import { PageTitle } from "@components/page-title";
+
+import { CreateButton, CreateButtonProps } from "@components/buttons";
 import { Breadcrumb } from "@components/breadcrumb";
 
 export type ListProps = RefineCrudListProps<
     CreateButtonProps,
     GroupProps,
     CardProps,
-    BoxProps,
+    GroupProps,
     BoxProps
 >;
 
-export const List: FC<ListProps> = (props) => {
+export const List: React.FC<ListProps> = (props) => {
     const {
         canCreate,
         children,
@@ -38,8 +41,9 @@ export const List: FC<ListProps> = (props) => {
         headerButtonProps,
         headerButtons: headerButtonsFromProps,
         breadcrumb = <Breadcrumb />,
-        title = <PageTitle />,
+        title,
     } = props;
+    const translate = useTranslate();
 
     const { useParams } = useRouterContext();
 
@@ -73,7 +77,17 @@ export const List: FC<ListProps> = (props) => {
             <Group position="apart" align="center" {...headerProps}>
                 <Stack spacing="xs">
                     {breadcrumb}
-                    {title}
+                    {title ?? (
+                        <Title order={2} transform="capitalize">
+                            {translate(
+                                `${resource.name}.titles.list`,
+                                userFriendlyResourceName(
+                                    resource.label ?? resource.name,
+                                    "plural",
+                                ),
+                            )}
+                        </Title>
+                    )}
                 </Stack>
                 <Group spacing="xs" {...headerButtonProps}>
                     {headerButtons}
