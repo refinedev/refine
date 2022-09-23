@@ -1,29 +1,13 @@
 import React from "react";
-import ReactLiveScope from "@theme/ReactLiveScope";
-import CodeBlock from "@theme-init/CodeBlock";
-import BrowserOnly from "@docusaurus/BrowserOnly";
+import CodeBlock from "@theme-original/CodeBlock";
+import { LivePreview } from "../../components/live-preview";
 
-const Playground = React.lazy(() => import("@theme/Playground"));
-
-const withLiveEditor = (Component) => {
-    function WrappedComponent(props) {
-        if (props.live) {
-            const previewHeight = props.previewHeight ?? "400px";
-            return (
-                <BrowserOnly>
-                    {() => (
-                        <React.Suspense
-                            fallback={<div style={{ height: previewHeight }} />}
-                        >
-                            <Playground scope={ReactLiveScope} {...props} />
-                        </React.Suspense>
-                    )}
-                </BrowserOnly>
-            );
-        }
-        return <Component {...props} />;
+export default function CodeBlockWrapper(
+    props: JSX.IntrinsicAttributes & { live?: boolean },
+): JSX.Element {
+    if (props.live) {
+        return <LivePreview {...props} />;
     }
-    return WrappedComponent;
-};
 
-export default withLiveEditor(CodeBlock);
+    return <CodeBlock {...props} />;
+}
