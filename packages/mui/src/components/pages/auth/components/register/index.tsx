@@ -14,6 +14,7 @@ import {
     CardContent as MuiCardContent,
     BoxProps,
     CardContentProps,
+    Divider,
 } from "@mui/material";
 
 import {
@@ -41,9 +42,8 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     loginLink,
     wrapperProps,
     contentProps,
-    formProps,
     renderContent,
-    onSubmit,
+    providers,
 }) => {
     const {
         register,
@@ -55,6 +55,41 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         useRegister<RefineRegisterFormTypes>();
     const translate = useTranslate();
     const { Link } = useRouterContext();
+
+    const renderProviders = () => {
+        if (providers) {
+            return (
+                <>
+                    {providers.map((provider: any) => {
+                        return (
+                            <Button
+                                key={provider.name}
+                                fullWidth
+                                variant="outlined"
+                                sx={{
+                                    my: "8px",
+                                    textTransform: "none",
+                                }}
+                                onClick={() =>
+                                    registerMutate({
+                                        providerName: provider.name,
+                                    })
+                                }
+                                startIcon={provider.icon}
+                            >
+                                {provider.label}
+                            </Button>
+                        );
+                    })}
+                    <Divider style={{ fontSize: 12 }}>
+                        {translate("pages.login.divider", "or")}
+                    </Divider>
+                </>
+            );
+        }
+        return null;
+    };
+
     const CardContent = (
         <Card {...(contentProps ?? {})}>
             <MuiCardContent>
@@ -69,11 +104,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         "Sign up for your account",
                     )}
                 </Typography>
+                {renderProviders()}
                 <Box
                     component="form"
-                    onSubmit={handleSubmit((data) =>
-                        (onSubmit ?? registerMutate)(data),
-                    )}
+                    onSubmit={handleSubmit((data) => registerMutate(data))}
                     gap="16px"
                 >
                     <TextField

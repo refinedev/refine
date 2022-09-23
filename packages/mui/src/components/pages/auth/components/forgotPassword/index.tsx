@@ -1,7 +1,7 @@
 import * as React from "react";
 import {
-    RefineResetPasswordPageProps,
-    RefineResetPasswordFormTypes,
+    RefineForgotPasswordPageProps,
+    RefineForgotPasswordFormTypes,
 } from "@pankod/refine-ui-types";
 import { useForm } from "@pankod/refine-react-hook-form";
 import {
@@ -21,24 +21,23 @@ import {
     HttpError,
     useTranslate,
     useRouterContext,
-    useResetPassword,
+    useForgotPassword,
 } from "@pankod/refine-core";
 
 import { layoutStyles, titleStyles } from "../styles";
 
-type ResetPasswordProps = RefineResetPasswordPageProps<
+type ForgotPasswordProps = RefineForgotPasswordPageProps<
     BoxProps,
     CardContentProps
 >;
 
 /**
- * **refine** has reset password page form which is served on `/register` route when the `authProvider` configuration is provided.
+ * **refine** has forgot password page form which is served on `/register` route when the `authProvider` configuration is provided.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/mui-auth-page/#reset-password} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/mui-auth-page/#forgot-password} for more details.
  */
 
-export const ResetPasswordPage: React.FC<ResetPasswordProps> = ({
-    onSubmit,
+export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
     loginLink,
     wrapperProps,
     contentProps,
@@ -48,10 +47,10 @@ export const ResetPasswordPage: React.FC<ResetPasswordProps> = ({
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<BaseRecord, HttpError, RefineResetPasswordFormTypes>();
+    } = useForm<BaseRecord, HttpError, RefineForgotPasswordFormTypes>();
 
-    const { mutate: reset, isLoading } =
-        useResetPassword<RefineResetPasswordFormTypes>();
+    const { mutate, isLoading } =
+        useForgotPassword<RefineForgotPasswordFormTypes>();
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
@@ -65,13 +64,13 @@ export const ResetPasswordPage: React.FC<ResetPasswordProps> = ({
                     style={titleStyles}
                 >
                     {translate(
-                        "pages.resetPassword.title",
+                        "pages.forgotPassword.title",
                         "Forgot your password?",
                     )}
                 </Typography>
                 <Box
                     component="form"
-                    onSubmit={handleSubmit((data) => (onSubmit ?? reset)(data))}
+                    onSubmit={handleSubmit((data) => mutate(data))}
                     gap="16px"
                 >
                     <TextField
@@ -90,7 +89,7 @@ export const ResetPasswordPage: React.FC<ResetPasswordProps> = ({
                         size="small"
                         fullWidth
                         label={translate(
-                            "pages.resetPassword.fields.email",
+                            "pages.forgotPassword.fields.email",
                             "Email",
                         )}
                         name="email"
@@ -143,7 +142,7 @@ export const ResetPasswordPage: React.FC<ResetPasswordProps> = ({
                         disabled={isLoading}
                     >
                         {translate(
-                            "pages.resetPassword.buttons.submit",
+                            "pages.forgotPassword.buttons.submit",
                             "Send reset instructions",
                         )}
                     </Button>
