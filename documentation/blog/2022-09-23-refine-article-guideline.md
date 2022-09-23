@@ -31,7 +31,7 @@ To create a project called my-app, run this command:
 npx superplate-cli my-app
 ```
 
-## Adding table of contents.
+## Adding table of contents
 
 Covered sections need to be shown at the beginning of the article. 
 
