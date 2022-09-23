@@ -14,6 +14,9 @@ export * from "../contexts/auditLog/IAuditLogContext";
 
 export * from "../components/pages/login";
 
+// actions
+export * from "./actions";
+
 // notification
 export * from "./notification";
 
@@ -31,9 +34,6 @@ export * from "./resourceRouterParams";
 
 // resourceErrorRouterParams
 export * from "./resourceErrorRouterParams";
-
-// redirection
-export * from "./redirectionTypes";
 
 // mapData
 export * from "./mapDataFn";

@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             resources={[{ name: "users" }]}
         >
             <Head>
-                <title>finefoods client example - refine</title>
+                <title>Finefoods headless storefront example - refine</title>
                 <meta
                     name="viewport"
                     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"

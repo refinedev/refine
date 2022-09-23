@@ -4,3 +4,5 @@ export { RefineLink as Link } from "./refineLink";
 
 export * from "./nextRouteComponent";
 export * from "./checkAuthentication";
+
+export { handleRefineParams } from "./useParams";

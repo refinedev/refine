@@ -1,5 +1,23 @@
 # @pankod/refine-antd
 
+## 3.48.5
+
+### Patch Changes
+
+-   Rename `reset-password` -> `forgot-password` on docs.
+
+## 3.48.4
+
+### Patch Changes
+
+-   Rename `reset-password` -> `forgot-password` on docs.
+
+## 3.48.3
+
+### Patch Changes
+
+-   [#2568](https://github.com/pankod/refine/pull/2568) [`efe99f7843`](https://github.com/pankod/refine/commit/efe99f78433c46433f137fd9581f33f4d75778e0) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Rename `reset-password` -> `forgot-password` on docs.
+
 ## 3.48.2
 
 ### Patch Changes
@@ -122,7 +140,7 @@
 
 -   Added `render` prop to `Sider` component. You can get `dashboard`, `logout` and `items` from `render` props to customize the `Sider` component.
 
--   Added `<AuthPage>` for Ant Design. `<AuthPage>` is a component that provides a login, register, reset password and update password pages.
+-   Added `<AuthPage>` for Ant Design. `<AuthPage>` is a component that provides a login, register, forgot password and update password pages.
 
 ### Patch Changes
 
@@ -143,7 +161,7 @@
 
 ### Minor Changes
 
--   [#2447](https://github.com/pankod/refine/pull/2447) [`628a37a675`](https://github.com/pankod/refine/commit/628a37a6753a778cbec5c29b698981e0157caa42) Thanks [@biskuvit](https://github.com/biskuvit)! - Added `<AuthPage>` for Ant Design. `<AuthPage>` is a component that provides a login, register, reset password and update password pages.
+-   [#2447](https://github.com/pankod/refine/pull/2447) [`628a37a675`](https://github.com/pankod/refine/commit/628a37a6753a778cbec5c29b698981e0157caa42) Thanks [@biskuvit](https://github.com/biskuvit)! - Added `<AuthPage>` for Ant Design. `<AuthPage>` is a component that provides a login, register, forgot password and update password pages.
 
 ### Patch Changes
 

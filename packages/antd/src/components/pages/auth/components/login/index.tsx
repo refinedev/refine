@@ -171,7 +171,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                                 fontSize: "12px",
                                 marginLeft: "auto",
                             }}
-                            to="/reset-password"
+                            to="/forgot-password"
                         >
                             {translate(
                                 "pages.login.buttons.forgotPassword",

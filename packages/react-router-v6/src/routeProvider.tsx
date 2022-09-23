@@ -157,7 +157,13 @@ const ResourceComponent: React.FC<{ route: string }> = ({ route }) => {
     return <>{catchAll ?? <ErrorComponent />}</>;
 };
 
-export const RouteProvider = () => {
+type RouteProviderProps = {
+    initialRoute?: string;
+};
+
+export const RouteProvider = ({
+    initialRoute,
+}: RouteProviderProps): JSX.Element => {
     const { resources } = useResource();
     const { catchAll, DashboardPage, LoginPage } = useRefineContext();
 
@@ -246,10 +252,10 @@ export const RouteProvider = () => {
                             </CanAccess>
                         ) : (
                             <Navigate
-                                to={`/${
-                                    resources.find((p) => p.list !== undefined)
-                                        ?.route
-                                }`}
+                                to={
+                                    initialRoute ??
+                                    `/${resources.find((p) => p.list)?.route}`
+                                }
                             />
                         )
                     }

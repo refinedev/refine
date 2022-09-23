@@ -1,5 +1,4 @@
 import React from "react";
-import {} from "react-router-dom";
 import {
     BrowserRouter,
     BrowserRouterProps,
@@ -11,38 +10,50 @@ import {
 
 import { RouteProvider } from "./routeProvider";
 
-export const BrowserRouterComponent: React.FC<BrowserRouterProps> = ({
-    children,
-    ...props
-}) => {
+export function BrowserRouterComponent(
+    this: { initialRoute?: string },
+    { children, ...props }: BrowserRouterProps,
+): JSX.Element {
     return (
         <BrowserRouter {...props}>
-            <RouteProvider />
+            <RouteProvider
+                initialRoute={
+                    typeof this !== "undefined" ? this.initialRoute : undefined
+                }
+            />
             {children}
         </BrowserRouter>
     );
-};
+}
 
-export const MemoryRouterComponent: React.FC<MemoryRouterProps> = ({
-    children,
-    ...props
-}) => {
+export function MemoryRouterComponent(
+    this: { initialRoute?: string },
+    { children, ...props }: MemoryRouterProps,
+): JSX.Element {
     return (
         <MemoryRouter {...props}>
-            <RouteProvider />
+            <RouteProvider
+                initialRoute={
+                    typeof this !== "undefined" ? this.initialRoute : undefined
+                }
+            />
             {children}
         </MemoryRouter>
     );
-};
+}
 
-export const HashRouterComponent: React.FC<HashRouterProps> = ({
-    children,
-    ...props
-}) => {
+export function HashRouterComponent(
+    this: { initialRoute?: string },
+    { children, ...props }: HashRouterProps,
+): JSX.Element {
     return (
         <HashRouter {...props}>
-            <RouteProvider />
+            <RouteProvider
+                initialRoute={
+                    typeof this !== "undefined" ? this.initialRoute : undefined
+                }
+            />
             {children}
         </HashRouter>
     );
-};
+}

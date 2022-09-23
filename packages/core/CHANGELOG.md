@@ -1,5 +1,67 @@
 # @pankod/refine-core
 
+## 3.74.0
+
+### Minor Changes
+
+-   Combine action related types into a single file and derive types from it to avoid future inconsistencies.
+
+    Renamed `RedirectionTypes` type to `RedirectAction`.
+
+    Updated every type definition of actions to use the new `Action` type or derivations of it.
+
+### Patch Changes
+
+-   Fixed the issue in resource routes not taking `options.route` of parent resource into account.
+
+-   Rename `reset-password` -> `forgot-password` on docs.
+
+## 3.73.0
+
+### Minor Changes
+
+-   Combine action related types into a single file and derive types from it to avoid future inconsistencies.
+
+    Renamed `RedirectionTypes` type to `RedirectAction`.
+
+    Updated every type definition of actions to use the new `Action` type or derivations of it.
+
+### Patch Changes
+
+-   Fixed the issue in resource routes not taking `options.route` of parent resource into account.
+
+-   Rename `reset-password` -> `forgot-password` on docs.
+
+## 3.72.1
+
+### Patch Changes
+
+-   [#2568](https://github.com/pankod/refine/pull/2568) [`efe99f7843`](https://github.com/pankod/refine/commit/efe99f78433c46433f137fd9581f33f4d75778e0) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Rename `reset-password` -> `forgot-password` on docs.
+
+## 3.72.0
+
+### Minor Changes
+
+-   [#2486](https://github.com/pankod/refine/pull/2486) [`ee4d0d112a`](https://github.com/pankod/refine/commit/ee4d0d112a7742fc799cd11ffe2eb3c5165d7bcb) Thanks [@aliemir](https://github.com/aliemir)! - Combine action related types into a single file and derive types from it to avoid future inconsistencies.
+
+    Renamed `RedirectionTypes` type to `RedirectAction`.
+
+    Updated every type definition of actions to use the new `Action` type or derivations of it.
+
+### Patch Changes
+
+-   [#2486](https://github.com/pankod/refine/pull/2486) [`ee4d0d112a`](https://github.com/pankod/refine/commit/ee4d0d112a7742fc799cd11ffe2eb3c5165d7bcb) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the issue in resource routes not taking `options.route` of parent resource into account.
+
+## 3.71.2
+
+### Patch Changes
+
+-   Fix `useImport` hook requests with properly invoking requests sequentially and manage progress state.
+
+-   Removed `children` property from `useCan`s `params.resource` since it can be in `ITreeMenu` type and `React.ReactNode` breaks the `react-query`s key stringify function.
+
+-   Fixed undoable mutation is called many times - #2556
+
 ## 3.71.1
 
 ### Patch Changes
@@ -156,13 +218,13 @@
 
 ### Minor Changes
 
--   🎉 Added `AuthPage` component to the `refine` app. This page is used to login, register, reset password and update password. Login page is default page and old `LoginPage` component is deprecated.
+-   🎉 Added `AuthPage` component to the `refine` app. This page is used to login, register, forgot password and update password. Login page is default page and old `LoginPage` component is deprecated.
 
     # New Auth Hooks
 
     📌 Added `useRegister` hook. This hook is used to register new user. `useRegister` falls into register function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
 
-    📌 Added `useForgotPassword` hook. This hook is used to reset password. `useForgotPassword` falls into `forgotPassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
+    📌 Added `useForgotPassword` hook. This hook is used to forgot password. `useForgotPassword` falls into `forgotPassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
 
     📌 Added `useUpdatePassword` hook. This hook is used to update password. `useUpdatePassword` falls into `updatePassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
 
@@ -213,13 +275,13 @@
 
 ### Patch Changes
 
--   [#2299](https://github.com/pankod/refine/pull/2299) [`a02cb9e8ef`](https://github.com/pankod/refine/commit/a02cb9e8ef20f14194d772720442208930e3aa40) Thanks [@biskuvit](https://github.com/biskuvit)! - 🎉 Added `AuthPage` to the `refine` app. This page is used to login, register, reset password and update password. Login page is default page and old `LoginPage` component is deprecated.
+-   [#2299](https://github.com/pankod/refine/pull/2299) [`a02cb9e8ef`](https://github.com/pankod/refine/commit/a02cb9e8ef20f14194d772720442208930e3aa40) Thanks [@biskuvit](https://github.com/biskuvit)! - 🎉 Added `AuthPage` to the `refine` app. This page is used to login, register, forgot password and update password. Login page is default page and old `LoginPage` component is deprecated.
 
     # New Auth Hooks
 
     📌 Added `useRegister` hook. This hook is used to register new user. `useRegister` falls into register function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
 
-    📌 Added `useForgotPassword` hook. This hook is used to reset password. `useForgotPassword` falls into `forgotPassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
+    📌 Added `useForgotPassword` hook. This hook is used to forgot password. `useForgotPassword` falls into `forgotPassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
 
     📌 Added `useUpdatePassword` hook. This hook is used to update password. `useUpdatePassword` falls into `updatePassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
 

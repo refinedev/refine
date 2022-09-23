@@ -1,5 +1,35 @@
 # @pankod/refine-nextjs-router
 
+## 3.38.0
+
+### Minor Changes
+
+-   Added `handleRefineParams` helper function to handle catch-all refine params.
+
+-   Added ability to parse catch-all refine route in Next.js router. This way, instead of creating multiple pages, users can only create one page at the root `[[...refine]].tsx` and handle all params for the app.
+
+-   Added ability to manage the initial route of **refine** by binding `initialRoute` variable to `NextRouteComponent` component.
+
+## 3.37.0
+
+### Minor Changes
+
+-   Added `handleRefineParams` helper function to handle catch-all refine params.
+
+-   Added ability to parse catch-all refine route in Next.js router. This way, instead of creating multiple pages, users can only create one page at the root `[[...refine]].tsx` and handle all params for the app.
+
+-   Added ability to manage the initial route of **refine** by binding `initialRoute` variable to `NextRouteComponent` component.
+
+## 3.36.0
+
+### Minor Changes
+
+-   [#2486](https://github.com/pankod/refine/pull/2486) [`ee4d0d112a`](https://github.com/pankod/refine/commit/ee4d0d112a7742fc799cd11ffe2eb3c5165d7bcb) Thanks [@aliemir](https://github.com/aliemir)! - Added `handleRefineParams` helper function to handle catch-all refine params.
+
+-   [#2486](https://github.com/pankod/refine/pull/2486) [`ee4d0d112a`](https://github.com/pankod/refine/commit/ee4d0d112a7742fc799cd11ffe2eb3c5165d7bcb) Thanks [@aliemir](https://github.com/aliemir)! - Added ability to parse catch-all refine route in Next.js router. This way, instead of creating multiple pages, users can only create one page at the root `[[...refine]].tsx` and handle all params for the app.
+
+-   [#2486](https://github.com/pankod/refine/pull/2486) [`ee4d0d112a`](https://github.com/pankod/refine/commit/ee4d0d112a7742fc799cd11ffe2eb3c5165d7bcb) Thanks [@aliemir](https://github.com/aliemir)! - Added ability to manage the initial route of **refine** by binding `initialRoute` variable to `NextRouteComponent` component.
+
 ## 3.35.0
 
 ### Minor Changes
@@ -30,13 +60,13 @@
 
 -   Fixed default login page is `<LoginPage>`.
 
-*   🎉 Added `AuthPage` component to the `refine` app. This page is used to login, register, reset password and update password. Login page is default page and old `LoginPage` component is deprecated.
+*   🎉 Added `AuthPage` component to the `refine` app. This page is used to login, register, forgot password and update password. Login page is default page and old `LoginPage` component is deprecated.
 
     # New Auth Hooks
 
     📌 Added `useRegister` hook. This hook is used to register new user. `useRegister` falls into register function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
 
-    📌 Added `useForgotPassword` hook. This hook is used to reset password. `useForgotPassword` falls into `forgotPassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
+    📌 Added `useForgotPassword` hook. This hook is used to forgot password. `useForgotPassword` falls into `forgotPassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
 
     📌 Added `useUpdatePassword` hook. This hook is used to update password. `useUpdatePassword` falls into `updatePassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
 
@@ -79,13 +109,13 @@
 
 ### Patch Changes
 
--   [#2299](https://github.com/pankod/refine/pull/2299) [`a02cb9e8ef`](https://github.com/pankod/refine/commit/a02cb9e8ef20f14194d772720442208930e3aa40) Thanks [@biskuvit](https://github.com/biskuvit)! - 🎉 Added `AuthPage` to the `refine` app. This page is used to login, register, reset password and update password. Login page is default page and old `LoginPage` component is deprecated.
+-   [#2299](https://github.com/pankod/refine/pull/2299) [`a02cb9e8ef`](https://github.com/pankod/refine/commit/a02cb9e8ef20f14194d772720442208930e3aa40) Thanks [@biskuvit](https://github.com/biskuvit)! - 🎉 Added `AuthPage` to the `refine` app. This page is used to login, register, forgot password and update password. Login page is default page and old `LoginPage` component is deprecated.
 
     # New Auth Hooks
 
     📌 Added `useRegister` hook. This hook is used to register new user. `useRegister` falls into register function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
 
-    📌 Added `useForgotPassword` hook. This hook is used to reset password. `useForgotPassword` falls into `forgotPassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
+    📌 Added `useForgotPassword` hook. This hook is used to forgot password. `useForgotPassword` falls into `forgotPassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
 
     📌 Added `useUpdatePassword` hook. This hook is used to update password. `useUpdatePassword` falls into `updatePassword` function of [`AuthProvider`](https://refine.dev/docs/core/providers/auth-provider/).
 

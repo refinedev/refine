@@ -18,11 +18,10 @@ type NextRouteComponentProps = {
     children: ReactNode;
 };
 
-export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
-    initialData,
-    children,
-    ...rest
-}) => {
+export function NextRouteComponent(
+    this: { initialRoute?: string },
+    { initialData, children: _children, ...rest }: NextRouteComponentProps,
+): React.ReactNode {
     const { resources } = useResource();
     const { push } = useHistory();
     const {
@@ -67,7 +66,23 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
                 </LayoutWrapper>
             );
         } else {
-            if (isServer) push(`/${resources[0].route}`);
+            if (isServer) {
+                if (typeof this !== "undefined" && this.initialRoute) {
+                    push(this.initialRoute);
+                } else {
+                    // push(`${resources.find((el) => el.list).route}`);
+
+                    /*
+                     * the above line is a better solution for the initial route
+                     * but in next.js, users can have custom pages through file system
+                     * which makes `list` component of the resource redundant.
+                     * for these cases, we need to redirect to the first resource
+                     * in the resources array, no matter if it has a list component or not.
+                     */
+
+                    push(`/${resources[0].route}`);
+                }
+            }
             return null;
         }
     }
@@ -197,4 +212,4 @@ export const NextRouteComponent: React.FC<NextRouteComponentProps> = ({
             <ErrorComponent />
         </LayoutWrapper>
     );
-};
+}
