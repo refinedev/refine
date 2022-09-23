@@ -1,35 +1,14 @@
 import React from "react";
 import clsx from "clsx";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 // @ts-expect-error Docusaurus components has an issue with TypeScript
 import CodeBlock from "@theme/CodeBlock";
 import styles from "./styles.module.css";
 import BrowserWindow from "../../components/browser-window";
 import { compressToEncodedURIComponent } from "lz-string";
 import { useInView } from "../../hooks/use-in-view";
-
-/**
- * This function will split code by the visible-block-start and visible-block-end comments and returns the visible block and join function.
- * @param {string} code code to be splitted by `// visible-block-start` and `// visible-block-end`
- */
-const splitCode = (code?: string) => {
-    const beginningComment = "// visible-block-start";
-    const endingComment = "// visible-block-end";
-
-    let beginning = code.indexOf(beginningComment);
-    beginning = beginning > 0 ? beginning + beginningComment.length : 0;
-
-    let ending = code.indexOf(endingComment);
-    ending = ending > 0 ? ending : code.length;
-
-    const aboveHidden = code.slice(0, beginning);
-    const visible = code.slice(beginning, ending).trimEnd().trimStart();
-    const belowHidden = code.slice(ending);
-
-    return {
-        visible,
-        join: (code: string) => `${aboveHidden}\n${code}\n${belowHidden}`,
-    };
-};
+import { Conditional } from "../conditional";
+import { splitCode } from "../../utils/split-code";
 
 /**
  * Editor with header
@@ -84,15 +63,15 @@ const LivePreviewBase = ({
     hideCode = false,
     url = "http://localhost:3000",
 }: PlaygroundProps): JSX.Element => {
-    const code = String(children).replace(/\n$/, "");
-    const { visible } = splitCode(code);
+    const code = String(children);
+    const { visible } = splitCode(code.replace(/\n$/, ""));
     const ref = React.useRef(null);
 
     const inView = useInView(ref);
 
-    const previewUrl = `http://localhost:3001/preview/${compressToEncodedURIComponent(
-        code,
-    )}`;
+    const {
+        siteConfig: { customFields },
+    } = useDocusaurusContext();
 
     return (
         <div className={styles.playgroundContainer}>
@@ -111,23 +90,30 @@ const LivePreviewBase = ({
                         }}
                         ref={ref}
                     >
-                        {inView && (
-                            <iframe
-                                src={previewUrl}
-                                width="100%"
-                                height="100%"
-                                style={{
-                                    position: "absolute",
-                                    left: 0,
-                                    top: 0,
-                                    width: "100%",
-                                    height: "100%",
-                                    overflow: disableScroll
-                                        ? "hidden"
-                                        : undefined,
-                                }}
-                            />
-                        )}
+                        <Conditional if={inView}>
+                            {() => {
+                                const previewUrl = `${
+                                    customFields?.LIVE_PREVIEW_URL ?? ""
+                                }/${compressToEncodedURIComponent(code)}`;
+                                return (
+                                    <iframe
+                                        src={previewUrl}
+                                        width="100%"
+                                        height="100%"
+                                        style={{
+                                            position: "absolute",
+                                            left: 0,
+                                            top: 0,
+                                            width: "100%",
+                                            height: "100%",
+                                            overflow: disableScroll
+                                                ? "hidden"
+                                                : undefined,
+                                        }}
+                                    />
+                                );
+                            }}
+                        </Conditional>
                     </div>
                 </BrowserWindow>
                 <Editor hidden={hideCode} code={visible} />
