@@ -86,6 +86,7 @@ First, run the **superplate** with the following command:
 ```
 npx superplate-cli -o refine-headless tutorial
 ```
+
 </TabItem>
 </Tabs>
 
@@ -285,7 +286,15 @@ export const App: React.FC = () => {
 
 The `icon` property of every single resource is can be used to display the resource in whatever way you want. For example in the sidebar or header. We'll use it when we'll create layout component.
 
-<details><summary>Show PostIcon</summary>
+<details>
+<summary>
+<strong>Show PostIcon</strong>
+<p style={{ marginBottom: 0 }}>
+<small>
+If you want to show the icon for your <code>posts</code> resource; you need to create an <code>icons.ts</code> file at <code>src</code> folder and add the following code to it. Its fully optional and you can just comment out the import and the <code>icon</code> property if you want to.
+</small>
+</p>
+</summary>
 <p>
 
 ```tsx title="icons.tsx"
