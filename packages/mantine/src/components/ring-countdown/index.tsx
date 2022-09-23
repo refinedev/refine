@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { RingProgress, Text } from "@mantine/core";
 
-type RingCountdownProps = {
+export type RingCountdownProps = {
     undoableTimeout: number;
 };
 
