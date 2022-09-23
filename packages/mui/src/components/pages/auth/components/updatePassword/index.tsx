@@ -31,7 +31,6 @@ type UpdatePasswordProps = RefineUpdatePasswordPageProps<
 >;
 
 export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
-    onSubmit,
     wrapperProps,
     contentProps,
     renderContent,
@@ -63,9 +62,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                 </Typography>
                 <Box
                     component="form"
-                    onSubmit={handleSubmit((data) =>
-                        (onSubmit ?? update)(data),
-                    )}
+                    onSubmit={handleSubmit((data) => update(data))}
                     gap="16px"
                 >
                     <TextField

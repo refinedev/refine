@@ -13,33 +13,49 @@ import {
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import GoogleIcon from "@mui/icons-material/Google";
 
 import { PostsList, PostCreate, PostEdit } from "pages/posts";
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
-        login: (params: any) => {
-            if (params.providerName === "google") {
-                return Promise.resolve(
-                    "https://accounts.google.com/o/oauth2/v2/auth",
-                );
-            }
-            if (params.providerName === "github") {
-                return Promise.resolve("https://github.com/login");
+        login: async ({ providerName, email }) => {
+            if (providerName === "google") {
+                window.location.href =
+                    "https://accounts.google.com/o/oauth2/v2/auth";
+                return Promise.resolve(false);
             }
 
-            localStorage.setItem("email", params.email);
+            if (providerName === "github") {
+                window.location.href =
+                    "https://github.com/login/oauth/authorize";
+                return Promise.resolve(false);
+            }
+
+            localStorage.setItem("email", email);
             return Promise.resolve();
         },
         register: (params: any) => {
-            localStorage.setItem("email", params.email);
-            return Promise.resolve();
+            if (params.email && params.password) {
+                localStorage.setItem("email", params.email);
+                return Promise.resolve();
+            }
+            return Promise.reject();
         },
-        updatePassword: () => {
-            return Promise.resolve();
+        updatePassword: (params: any) => {
+            if (params.newPassword) {
+                //we can update password here
+                return Promise.resolve();
+            }
+            return Promise.reject();
         },
-        resetPassword: () => {
-            return Promise.resolve();
+        forgotPassword: (params: any) => {
+            if (params.email) {
+                //we can send email with forgot password link here
+                return Promise.resolve();
+            }
+            return Promise.reject();
         },
         logout: () => {
             localStorage.removeItem("email");
@@ -74,11 +90,35 @@ const App: React.FC = () => {
                         routes: [
                             {
                                 path: "/register",
-                                element: <AuthPage type="register" />,
+                                element: (
+                                    <AuthPage
+                                        type="register"
+                                        providers={[
+                                            {
+                                                name: "google",
+                                                label: "Sign in with Google",
+                                                icon: (
+                                                    <GoogleIcon
+                                                        style={{ fontSize: 24 }}
+                                                    />
+                                                ),
+                                            },
+                                            {
+                                                name: "github",
+                                                label: "Sign in with GitHub",
+                                                icon: (
+                                                    <GitHubIcon
+                                                        style={{ fontSize: 24 }}
+                                                    />
+                                                ),
+                                            },
+                                        ]}
+                                    />
+                                ),
                             },
                             {
-                                path: "/reset-password",
-                                element: <AuthPage type="resetPassword" />,
+                                path: "/forgot-password",
+                                element: <AuthPage type="forgotPassword" />,
                             },
                             {
                                 path: "/update-password",
@@ -89,7 +129,26 @@ const App: React.FC = () => {
                     notificationProvider={notificationProvider}
                     ReadyPage={ReadyPage}
                     Layout={Layout}
-                    LoginPage={AuthPage}
+                    LoginPage={() => (
+                        <AuthPage
+                            providers={[
+                                {
+                                    name: "google",
+                                    label: "Sign in with Google",
+                                    icon: (
+                                        <GoogleIcon style={{ fontSize: 24 }} />
+                                    ),
+                                },
+                                {
+                                    name: "github",
+                                    label: "Sign in with GitHub",
+                                    icon: (
+                                        <GitHubIcon style={{ fontSize: 24 }} />
+                                    ),
+                                },
+                            ]}
+                        />
+                    )}
                     catchAll={<ErrorComponent />}
                     resources={[
                         {

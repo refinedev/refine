@@ -33,13 +33,11 @@ type LoginProps = RefineLoginPageProps<BoxProps, CardContentProps>;
 export const LoginPage: React.FC<LoginProps> = ({
     providers,
     registerLink,
-    resetPasswordLink,
+    forgotPasswordLink,
     rememberMe,
     contentProps,
     wrapperProps,
-    onSubmit,
     renderContent,
-    formProps,
 }) => {
     const {
         register,
@@ -60,20 +58,23 @@ export const LoginPage: React.FC<LoginProps> = ({
                             <Button
                                 key={provider.name}
                                 fullWidth
-                                variant="contained"
+                                variant="outlined"
                                 sx={{
                                     my: "8px",
-                                    color: "white",
+                                    textTransform: "none",
                                 }}
                                 onClick={() =>
                                     login({ providerName: provider.name })
                                 }
+                                startIcon={provider.icon}
                             >
                                 {provider.label}
                             </Button>
                         );
                     })}
-                    <Divider>{translate("pages.login.divider", "or")}</Divider>
+                    <Divider style={{ fontSize: 12 }}>
+                        {translate("pages.login.divider", "or")}
+                    </Divider>
                 </>
             );
         }
@@ -82,7 +83,6 @@ export const LoginPage: React.FC<LoginProps> = ({
 
     const CardContent = (
         <Card {...(contentProps ?? {})}>
-            {renderProviders()}
             <MuiCardContent sx={{ paddingX: "32px" }}>
                 <Typography
                     component="h1"
@@ -94,9 +94,10 @@ export const LoginPage: React.FC<LoginProps> = ({
                 </Typography>
                 <Box
                     component="form"
-                    onSubmit={handleSubmit((data) => (onSubmit ?? login)(data))}
+                    onSubmit={handleSubmit((data) => login(data))}
                     gap="16px"
                 >
+                    {renderProviders()}
                     <TextField
                         {...register("email", {
                             required: true,
@@ -161,9 +162,9 @@ export const LoginPage: React.FC<LoginProps> = ({
                                 )}
                             />
                         )}
-                        {resetPasswordLink ?? (
+                        {forgotPasswordLink ?? (
                             <Link
-                                to="/reset-password"
+                                to="/forgot-password"
                                 sx={{
                                     fontSize: "12px",
                                     textDecoration: "none",
@@ -175,7 +176,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                                     }}
                                 >
                                     {translate(
-                                        "pages.login.buttons.resetPassword",
+                                        "pages.login.buttons.forgotPassword",
                                         "Forgot password?",
                                     )}
                                 </Typography>
