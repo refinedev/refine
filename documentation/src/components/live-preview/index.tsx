@@ -92,14 +92,18 @@ const LivePreviewBase = ({
                     >
                         <Conditional if={inView}>
                             {() => {
-                                const previewUrl = `${
-                                    customFields?.LIVE_PREVIEW_URL ?? ""
-                                }/${compressToEncodedURIComponent(code)}`;
+                                const previewUrl = `http://localhost:3030/preview?code=${compressToEncodedURIComponent(
+                                    code,
+                                )}${
+                                    disableScroll ? "&disableScroll=true" : ""
+                                }`;
                                 return (
                                     <iframe
                                         src={previewUrl}
                                         width="100%"
                                         height="100%"
+                                        // scroll={disableScroll ? "no" : "yes"}
+                                        scrolling={disableScroll ? "no" : "yes"}
                                         style={{
                                             position: "absolute",
                                             left: 0,
