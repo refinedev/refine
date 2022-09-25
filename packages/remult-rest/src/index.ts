@@ -37,7 +37,7 @@ const mapOperator = (operator: CrudOperators): string => {
             return "_lte";
         case "contains":
             return "_contains";
-        case "st":
+        case "startswith":
             return "_st";
         case "gt":
             return "_gt";

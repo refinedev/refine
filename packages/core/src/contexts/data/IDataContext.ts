@@ -17,7 +17,6 @@ export interface Pagination {
 // | gte                 | Greater than or equal to          |
 // | in                  | Included in an array              |
 // | nin                 | Not included in an array          |
-// | st                  | Start with                        |
 // | contains            | Contains                          |
 // | ncontains           | Doesn't contain                   |
 // | containss           | Contains, case sensitive          |
@@ -41,7 +40,6 @@ export type CrudOperators =
     | "gte"
     | "in"
     | "nin"
-    | "st"
     | "contains"
     | "ncontains"
     | "containss"
