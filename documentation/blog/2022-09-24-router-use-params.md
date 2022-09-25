@@ -24,9 +24,13 @@ Steps we'll cover:
 
 ## Prerequisites
 
-To try out the examples in this article, you need to have some or all of the following.
+To try out the examples in this article, you need to have a React project.
 
-- React project. Quickly create a React project using [superplate](https://github.com/pankod/superplate) or [vite](https://vitejs.dev/).
+Quickly create a React project using [superplate](https://github.com/pankod/superplate) CLI.
+
+``` 
+npx superplate-cli useparams-example-app
+```
 
 ## Setting up React Router
 
