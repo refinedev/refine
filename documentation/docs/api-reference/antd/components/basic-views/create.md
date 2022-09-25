@@ -209,7 +209,8 @@ The `<Create>` component reads the `resource` information from the route by defa
 [Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
-const demoRouterProvider = RefineDemoReactRouterV6(["/custom"]);
+// handle initial routes in new way
+setInitialRoutes(["/custom"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
@@ -247,21 +248,7 @@ const App: React.FC = () => {
 };
 // visible-block-end
 
-render(
-    <Refine
-        routerProvider={{
-            ...demoRouterProvider,
-            routes: [
-                {
-                    element: <CustomPage />,
-                    path: "/custom",
-                },
-            ],
-        }}
-        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        resources={[{ name: "posts" }]}
-    />,
-);
+render(<App />);
 ```
 
 ### `goBack`
