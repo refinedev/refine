@@ -280,7 +280,8 @@ const siteConfig = {
         contactEmail: "info@refine.dev",
         /** ---- */
         /** Live Preview */
-        LIVE_PREVIEW_URL: process.env.LIVE_PREVIEW_URL,
+        LIVE_PREVIEW_URL:
+            process.env.LIVE_PREVIEW_URL ?? "http://localhost:3030/preview",
     },
 };
 

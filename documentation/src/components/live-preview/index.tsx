@@ -92,9 +92,9 @@ const LivePreviewBase = ({
                     >
                         <Conditional if={inView}>
                             {() => {
-                                const previewUrl = `http://localhost:3030/preview?code=${compressToEncodedURIComponent(
-                                    code,
-                                )}${
+                                const previewUrl = `${
+                                    customFields.LIVE_PREVIEW_URL
+                                }?code=${compressToEncodedURIComponent(code)}${
                                     disableScroll ? "&disableScroll=true" : ""
                                 }`;
                                 return (
