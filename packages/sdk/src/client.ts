@@ -108,20 +108,20 @@ class Client {
         return typeof window !== "undefined";
     }
 
-    private setLocalStorage(key: string, value: string) {
+    setLocalStorage(key: string, value: string): void {
         if (this.isBrowser()) {
             return window.localStorage.setItem(key, value);
         }
 
-        return false;
+        return;
     }
 
-    private getLocalStorage(key: string) {
+    getLocalStorage(key: string): void | string | null {
         if (this.isBrowser()) {
             return window.localStorage.getItem(key);
         }
 
-        return false;
+        return;
     }
 
     get auth(): Auth {

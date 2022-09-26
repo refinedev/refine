@@ -63,6 +63,18 @@ class Auth {
         });
     }
 
+    async isAuthenticated(): Promise<boolean> {
+        const accessToken = this.client.getLocalStorage(
+            "refine-sdk-access-token",
+        );
+
+        if (accessToken) {
+            return true;
+        }
+
+        return false;
+    }
+
     async session(): Promise<IUser> {
         return await this.client.call({
             method: "get",
