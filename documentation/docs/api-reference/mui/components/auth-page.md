@@ -481,10 +481,6 @@ render(
 
 `rememberMe` property defines to render your own remember me component or you can pass `false` to don't render it.
 
-:::info
-You have to wrap your remember me component with `Form.Item` component from **antd** and pass the `name` prop to it then you can access its value from the `formProps` `onFinish` function with `formValues`.
-:::
-
 ```tsx previewHeight=500px hideCode url=http://localhost:3000/login
 const { AuthPage, Form, Checkbox } = RefineMui;
 const { useNavigation } = RefineCore;
@@ -515,21 +511,7 @@ const App = () => {
             // highlight-start
             LoginPage={
                 <AuthPage
-                    rememberMe={
-                        <FormControlLabel
-                            sx={{
-                                span: {
-                                    fontSize: "12px",
-                                    color: "text.secondary",
-                                },
-                            }}
-                            color="secondary"
-                            control={
-                                <Checkbox size="small" id="remember" />
-                            }
-                            label="Remember me"
-                        />
-                    }
+                    rememberMe={false}
                 />
             }
             // highlight-end
@@ -567,21 +549,7 @@ render(
                     path: "/login",
                     element: (
                         <AuthPage
-                            rememberMe={
-                                <FormControlLabel
-                                    sx={{
-                                        span: {
-                                            fontSize: "12px",
-                                            color: "text.secondary",
-                                        },
-                                    }}
-                                    color="secondary"
-                                    control={
-                                        <Checkbox size="small" id="remember" />
-                                    }
-                                    label="Remember me"
-                                />
-                            }
+                            rememberMe={false}
                         />
                     ),
                 },
@@ -849,121 +817,8 @@ render(
 
 ### `formProps`
 
-`formProps` uses for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps` and also the `onFinish` function is changed.
+`formProps` uses for passing props to the form component.
 
-```tsx previewHeight=500px hideCode url=http://localhost:3000/login
-const { AuthPage } = RefineMui;
-const { useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-mui";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            LoginPage={() => (
-                <AuthPage
-                    // highlight-start
-                    formProps={{
-                        initialValues: {
-                            email: "demo@refine.dev",
-                            password: "demo",
-                        },
-                        onFinish: (formValues) =>
-                            alert(JSON.stringify(formValues, null, 2)),
-                    }}
-                    // highlight-end
-                />
-            )}
-            resources={[
-                {
-                    name: "home",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
-                    },
-                },
-            ]}
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineMuiDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/login"]),
-            routes: [
-                {
-                    path: "/login",
-                    element: (
-                        <AuthPage
-                            formProps={{
-                                initialValues: {
-                                    email: "demo@refine.dev",
-                                    password: "demo",
-                                },
-                                onFinish: (formValues) =>
-                                    alert(JSON.stringify(formValues, null, 2)),
-                            }}
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
-);
-```
 
 ### `renderContent`
 
@@ -1610,123 +1465,7 @@ render(
 
 ### `formProps`
 
-`formProps` uses for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps` and also the `onFinish` function is changed.
-
-```tsx previewHeight=500px hideCode url=http://localhost:3000/register
-const { AuthPage } = RefineMui;
-const { useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-mui";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            LoginPage={() => (
-                <AuthPage
-                    type="register"
-                    // highlight-start
-                    formProps={{
-                        initialValues: {
-                            email: "demo@refine.dev",
-                            password: "demo",
-                        },
-                        onFinish: (formValues) =>
-                            alert(JSON.stringify(formValues, null, 2)),
-                    }}
-                    // highlight-end
-                />
-            )}
-            resources={[
-                {
-                    name: "home",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
-                    },
-                },
-            ]}
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineMuiDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/register"]),
-            routes: [
-                {
-                    path: "/register",
-                    element: (
-                        <AuthPage
-                            type="register"
-                            formProps={{
-                                initialValues: {
-                                    email: "demo@refine.dev",
-                                    password: "demo",
-                                },
-                                onFinish: (formValues) =>
-                                    alert(JSON.stringify(formValues, null, 2)),
-                            }}
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
-);
-```
+`formProps` uses for passing props to the form component. 
 
 ### `renderContent`
 
@@ -2360,97 +2099,7 @@ render(
 
 ### `formProps`
 
-`formProps` uses for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps` and also the `onFinish` function is changed.
-
-```tsx previewHeight=500px hideCode url=http://localhost:3000/forgot-password
-const { AuthPage } = RefineMui;
-const { useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-mui";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            LoginPage={() => (
-                <AuthPage
-                    type="forgotPassword"
-                    // highlight-start
-                    formProps={{
-                        initialValues: {
-                            email: "demo@refine.dev",
-                            password: "demo",
-                        },
-                        onFinish: (formValues) =>
-                            alert(JSON.stringify(formValues, null, 2)),
-                    }}
-                    // highlight-end
-                />
-            )}
-            resources={[
-                {
-                    name: "Home",
-                    list: () => {
-                        return <div>Home</div>;
-                    },
-                },
-            ]}
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineMuiDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/forgot-password"]),
-            routes: [
-                {
-                    path: "/forgot-password",
-                    element: (
-                        <AuthPage
-                            type="forgotPassword"
-                            formProps={{
-                                initialValues: {
-                                    email: "demo@refine.dev",
-                                    password: "demo",
-                                },
-                                onFinish: (formValues) =>
-                                    alert(JSON.stringify(formValues, null, 2)),
-                            }}
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "Home",
-                list: () => {
-                    return <div>Home</div>;
-                },
-            },
-        ]}
-    />,
-);
-```
+`formProps` uses for passing props to the form component. 
 
 ### `renderContent`
 
@@ -2892,123 +2541,7 @@ render(
 
 ### `formProps`
 
-`formProps` uses for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps` and also the `onFinish` function is changed.
-
-```tsx previewHeight=500px hideCode url=http://localhost:3000/update-password
-const { AuthPage } = RefineMui;
-const { useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-mui";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            LoginPage={() => (
-                <AuthPage
-                    type="updatePassword"
-                    // highlight-start
-                    formProps={{
-                        initialValues: {
-                            email: "demo@refine.dev",
-                            password: "demo",
-                        },
-                        onFinish: (formValues) =>
-                            alert(JSON.stringify(formValues, null, 2)),
-                    }}
-                    // highlight-end
-                />
-            )}
-            resources={[
-                {
-                    name: "home",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
-                    },
-                },
-            ]}
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineMuiDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/update-password"]),
-            routes: [
-                {
-                    path: "/update-password",
-                    element: (
-                        <AuthPage
-                            type="updatePassword"
-                            formProps={{
-                                initialValues: {
-                                    email: "demo@refine.dev",
-                                    password: "demo",
-                                },
-                                onFinish: (formValues) =>
-                                    alert(JSON.stringify(formValues, null, 2)),
-                            }}
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
-);
-```
+`formProps` uses for passing props to the form component.
 
 ### `renderContent`
 
@@ -3143,7 +2676,7 @@ render(
 | forgotPasswordLink | A custom node that will be rendered as a forgot password link to the `<AuthPage>`.  | `React.ReactNode`                                             |
 | wrapperProps       | Wrapper element props.                                                              | [`WrapperProps`](https://ant.design/components/layout/#API)   |
 | contentProps       | Content wrapper element props.                                                      | [`CardProps`](https://ant.design/components/card/#API)        |
-| formProps          | Props for the form component.                                                       | [`FormProps`](https://ant.design/components/form/#API)        |
+| formProps          | Props for the form component.                                                       | [`BoxProps<"form">`](https://mui.com/material-ui/api/box/)    |
 | renderContent      | Gives you default content you can use it to add some extra elements to the content. | `function(content: React.ReactNode) => React.ReactNode`       |
 
 ### Interface
