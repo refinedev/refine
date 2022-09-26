@@ -1,5 +1,5 @@
 {
-  "name": "mantine-advanced-table-example",
+  "name": "mantine-basic-react-table-example",
   "private": true,
   "scripts": {
     "start": "vite",
