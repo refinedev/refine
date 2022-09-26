@@ -1,10 +1,26 @@
 import { AuthProvider } from "@pankod/refine-core";
-import { IUser } from "@pankod/refine-sdk";
+import { IUser, Client } from "@pankod/refine-sdk";
 
 import { useSdk } from "../useSdk";
 
 type UseAuthProviderWithCloudConfigReturn = {
     generateCloudAuthProvider: () => AuthProvider;
+};
+
+const redirectOAuth = (payload: {
+    sdk: Client;
+    providerName?: string;
+}): void | Promise<boolean> => {
+    const { sdk, providerName } = payload;
+    if (providerName) {
+        const baseUrl = sdk.getBaseUrl();
+        const applicationClientId = sdk.getClientId();
+        const redirectUrl = `${baseUrl}/oauth/${providerName}?applicationClientId=${applicationClientId}`;
+        console.log("--redirectUrl", redirectUrl);
+        window.location.href = redirectUrl;
+
+        return Promise.resolve(false);
+    }
 };
 
 // TODO: Add hook docs
@@ -14,16 +30,23 @@ export const useAuthProviderWithCloudConfig =
 
         const generateCloudAuthProvider = (): AuthProvider => {
             return {
-                login: async ({ email, password, providerName }) => {
-                    if (providerName) {
-                        const baseUrl = sdk.getBaseUrl();
-                        const applicationClientId = sdk.getClientId();
-                        const redirectUrl = `${baseUrl}/oauth/${providerName}?applicationClientId=${applicationClientId}`;
-                        console.log("--redirectUrl", redirectUrl);
-                        window.location.href = redirectUrl;
+                register: async ({ email, password, providerName }) => {
+                    // handle oauth register
+                    redirectOAuth({ sdk, providerName });
 
-                        return Promise.resolve(false);
-                    }
+                    return sdk.auth
+                        .register({
+                            // TODO: Add name field
+                            name: `${email}`.split("@")[0],
+                            email,
+                            password,
+                        })
+                        .then(() => Promise.resolve())
+                        .catch(() => Promise.reject());
+                },
+                login: async ({ email, password, providerName }) => {
+                    // handle oauth login
+                    redirectOAuth({ sdk, providerName });
 
                     return sdk.auth
                         .login({

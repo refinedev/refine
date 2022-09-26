@@ -4,10 +4,11 @@ import {
     RefineProps,
     ResourceProps,
     AuditLogProvider,
+    IRouterProvider,
 } from "@pankod/refine-core";
 import merge from "lodash/merge";
 
-import { Cloud, LoginPage } from "../../components";
+import { Cloud, LoginPage, RegisterPage } from "../../components";
 import { CloudContextProvider } from "../../contexts";
 import { useAuthProviderWithCloudConfig, useSdk } from "../../hooks";
 import { ICloudContext } from "../../interfaces";
@@ -28,10 +29,23 @@ export function withCloud(
             authProvider = generateCloudAuthProvider();
         }
 
-        let Login: React.FC<{}> | undefined;
         // if authPages (login, register, etc) does not exist
+        let Login: React.FC<{}> | undefined;
+        let routerProvider: IRouterProvider | undefined;
         if (!otherProps.LoginPage) {
             Login = LoginPage;
+
+            // routerProvider
+            routerProvider = {
+                ...otherProps.routerProvider,
+                routes: [
+                    ...(otherProps.routerProvider.routes || []),
+                    {
+                        element: <RegisterPage />,
+                        path: "/register",
+                    },
+                ],
+            };
         }
 
         useEffect(() => {
@@ -74,6 +88,7 @@ export function withCloud(
         return (
             <Refine
                 {...otherProps}
+                routerProvider={routerProvider || otherProps.routerProvider}
                 resources={resources || otherProps.resources}
                 authProvider={authProvider || otherProps.authProvider}
                 LoginPage={Login || otherProps.LoginPage}
