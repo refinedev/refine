@@ -22,6 +22,7 @@ export const EditPostDrawer: React.FC<
     UseDrawerFormReturnType<BaseRecord, HttpError, FormValues>
 > = ({
     getInputProps,
+    errors,
     modal: { visible, close, title },
     refineCore: { queryResult },
     saveButtonProps,
@@ -68,6 +69,11 @@ export const EditPostDrawer: React.FC<
                 Content
             </Text>
             <RichTextEditor {...getInputProps("content")} />
+            {errors.content && (
+                <Text mt={2} weight={500} size="xs" color="red">
+                    {errors.content}
+                </Text>
+            )}
             <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
                 <SaveButton {...saveButtonProps} />
             </Box>

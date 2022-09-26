@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { BaseKey, HttpError, useApiUrl } from "@pankod/refine-core";
+import { HttpError, useApiUrl } from "@pankod/refine-core";
 import {
     Edit,
     Select,
@@ -20,7 +20,7 @@ interface FormValues {
     title: string;
     status: string;
     category: {
-        id: BaseKey;
+        id: string;
     };
     content: string;
     images: FileWithURL[];
@@ -39,6 +39,7 @@ export const PostEdit: React.FC = () => {
         getInputProps,
         setFieldValue,
         values,
+        errors,
         refineCore: { queryResult },
     } = useForm<IPost, HttpError, FormValues>({
         initialValues: {
@@ -49,6 +50,17 @@ export const PostEdit: React.FC = () => {
             },
             content: "",
             images: [],
+        },
+        validate: {
+            title: (value) => (value.length < 2 ? "Too short title" : null),
+            status: (value) =>
+                value.length <= 0 ? "Status is required" : null,
+            category: {
+                id: (value) =>
+                    value.length <= 0 ? "Category is required" : null,
+            },
+            content: (value) =>
+                value.length < 10 ? "Too short content" : null,
         },
     });
 
@@ -126,6 +138,11 @@ export const PostEdit: React.FC = () => {
                     Content
                 </Text>
                 <RichTextEditor {...getInputProps("content")} />
+                {errors.content && (
+                    <Text mt={2} weight={500} size="xs" color="red">
+                        {errors.content}
+                    </Text>
+                )}
 
                 <Text mt={8} weight={500} size="sm" color="#212529">
                     Images

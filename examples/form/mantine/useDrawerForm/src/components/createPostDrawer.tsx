@@ -20,7 +20,12 @@ interface FormValues {
 
 export const CreatePostDrawer: React.FC<
     UseDrawerFormReturnType<BaseRecord, HttpError, FormValues>
-> = ({ getInputProps, modal: { visible, close, title }, saveButtonProps }) => {
+> = ({
+    getInputProps,
+    errors,
+    modal: { visible, close, title },
+    saveButtonProps,
+}) => {
     const { selectProps } = useSelect({
         resource: "categories",
     });
@@ -65,6 +70,11 @@ export const CreatePostDrawer: React.FC<
                 sx={{ minHeight: 300 }}
                 {...getInputProps("content")}
             />
+            {errors.content && (
+                <Text mt={2} weight={500} size="xs" color="red">
+                    {errors.content}
+                </Text>
+            )}
             <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
                 <SaveButton {...saveButtonProps} />
             </Box>

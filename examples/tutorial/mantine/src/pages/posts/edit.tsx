@@ -14,6 +14,7 @@ export const PostEdit: React.FC = () => {
     const {
         saveButtonProps,
         getInputProps,
+        errors,
         refineCore: { queryResult },
     } = useForm({
         initialValues: {
@@ -23,6 +24,17 @@ export const PostEdit: React.FC = () => {
                 id: "",
             },
             content: "",
+        },
+        validate: {
+            title: (value) => (value.length < 2 ? "Too short title" : null),
+            status: (value) =>
+                value.length <= 0 ? "Status is required" : null,
+            category: {
+                id: (value) =>
+                    value.length <= 0 ? "Category is required" : null,
+            },
+            content: (value) =>
+                value.length < 10 ? "Too short content" : null,
         },
     });
 
@@ -62,6 +74,11 @@ export const PostEdit: React.FC = () => {
                     Content
                 </Text>
                 <RichTextEditor {...getInputProps("content")} />
+                {errors.content && (
+                    <Text mt={2} weight={500} size="xs" color="red">
+                        {errors.content}
+                    </Text>
+                )}
             </form>
         </Edit>
     );

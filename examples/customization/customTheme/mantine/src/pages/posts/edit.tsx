@@ -5,6 +5,7 @@ import {
     useForm,
     useSelect,
     RichTextEditor,
+    Text,
 } from "@pankod/refine-mantine";
 
 import { ICategory } from "../../interfaces";
@@ -13,6 +14,7 @@ export const PostEdit: React.FC = () => {
     const {
         saveButtonProps,
         getInputProps,
+        errors,
         refineCore: { queryResult },
     } = useForm({
         initialValues: {
@@ -22,6 +24,17 @@ export const PostEdit: React.FC = () => {
                 id: "",
             },
             content: "",
+        },
+        validate: {
+            title: (value) => (value.length < 2 ? "Too short title" : null),
+            status: (value) =>
+                value.length <= 0 ? "Status is required" : null,
+            category: {
+                id: (value) =>
+                    value.length <= 0 ? "Category is required" : null,
+            },
+            content: (value) =>
+                value.length < 10 ? "Too short content" : null,
         },
     });
 
@@ -57,7 +70,15 @@ export const PostEdit: React.FC = () => {
                     {...getInputProps("category.id")}
                     {...selectProps}
                 />
+                <Text mt={8} weight={500} size="sm" color="#212529">
+                    Content
+                </Text>
                 <RichTextEditor mt={8} {...getInputProps("content")} />
+                {errors.content && (
+                    <Text mt={2} weight={500} size="xs" color="red">
+                        {errors.content}
+                    </Text>
+                )}
             </form>
         </Edit>
     );

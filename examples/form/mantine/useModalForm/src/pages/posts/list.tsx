@@ -164,6 +164,17 @@ export const PostList: React.FC = () => {
     const createModalForm = useModalForm({
         refineCoreProps: { action: "create" },
         initialValues,
+        validate: {
+            title: (value) => (value.length < 2 ? "Too short title" : null),
+            status: (value) =>
+                value.length <= 0 ? "Status is required" : null,
+            category: {
+                id: (value) =>
+                    value.length <= 0 ? "Category is required" : null,
+            },
+            content: (value) =>
+                value.length < 10 ? "Too short content" : null,
+        },
     });
     const {
         modal: { show: showCreateModal },
@@ -172,6 +183,17 @@ export const PostList: React.FC = () => {
     const editModalForm = useModalForm({
         refineCoreProps: { action: "edit" },
         initialValues,
+        validate: {
+            title: (value) => (value.length < 2 ? "Too short title" : null),
+            status: (value) =>
+                value.length <= 0 ? "Status is required" : null,
+            category: {
+                id: (value) =>
+                    value.length <= 0 ? "Category is required" : null,
+            },
+            content: (value) =>
+                value.length < 10 ? "Too short content" : null,
+        },
     });
     const {
         modal: { show: showEditModal },

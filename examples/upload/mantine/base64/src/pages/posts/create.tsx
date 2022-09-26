@@ -1,4 +1,4 @@
-import { BaseKey, HttpError } from "@pankod/refine-core";
+import { HttpError } from "@pankod/refine-core";
 import { useState } from "react";
 import {
     Create,
@@ -20,7 +20,7 @@ interface FormValues {
     title: string;
     status: string;
     category: {
-        id: BaseKey;
+        id: string;
     };
     content: string;
     images: string[];
@@ -29,21 +29,29 @@ interface FormValues {
 export const PostCreate: React.FC = () => {
     const [isUploadLoading, setIsUploadLoading] = useState(false);
 
-    const { saveButtonProps, getInputProps, setFieldValue, values } = useForm<
-        IPost,
-        HttpError,
-        FormValues
-    >({
-        initialValues: {
-            title: "",
-            status: "",
-            category: {
-                id: "",
+    const { saveButtonProps, getInputProps, setFieldValue, values, errors } =
+        useForm<IPost, HttpError, FormValues>({
+            initialValues: {
+                title: "",
+                status: "",
+                category: {
+                    id: "",
+                },
+                content: "",
+                images: [],
             },
-            content: "",
-            images: [],
-        },
-    });
+            validate: {
+                title: (value) => (value.length < 2 ? "Too short title" : null),
+                status: (value) =>
+                    value.length <= 0 ? "Status is required" : null,
+                category: {
+                    id: (value) =>
+                        value.length <= 0 ? "Category is required" : null,
+                },
+                content: (value) =>
+                    value.length < 10 ? "Too short content" : null,
+            },
+        });
 
     const { selectProps } = useSelect({
         resource: "categories",
@@ -104,6 +112,11 @@ export const PostCreate: React.FC = () => {
                     Content
                 </Text>
                 <RichTextEditor {...getInputProps("content")} />
+                {errors.content && (
+                    <Text mt={2} weight={500} size="xs" color="red">
+                        {errors.content}
+                    </Text>
+                )}
 
                 <Text mt={8} weight={500} size="sm" color="#212529">
                     Images
