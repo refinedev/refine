@@ -59,6 +59,15 @@ const siteConfig = {
                 redirects: redirectJson.redirects,
             },
         ],
+        [
+            "docusaurus-plugin-copy",
+            {
+                id: "Copy Workers",
+                path: "static/workers",
+                context: "workers",
+                include: ["**/*.{js}"],
+            },
+        ],
         async function tailwindcss() {
             return {
                 name: "docusaurus-tailwindcss",
