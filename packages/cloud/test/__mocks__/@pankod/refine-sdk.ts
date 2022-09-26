@@ -56,6 +56,9 @@ class Auth {
     getSessionFromUrl(): void {
         return;
     }
+    isAuthenticated(): boolean {
+        return true;
+    }
 }
 
 class Config {

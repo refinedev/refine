@@ -46,7 +46,8 @@ describe("useAuthProviderWithCloudConfig Hook", () => {
         const { checkAuth } = generateCloudAuthProvider();
 
         const response = await checkAuth();
-        expect(response).toBeUndefined();
+        expect(response.id).toBe("1");
+        expect(response.email).toBe("test@mail.com");
     });
 
     it("get permission", async () => {
