@@ -27,13 +27,15 @@ import { layoutStyles, titleStyles } from "../styles";
 
 type UpdatePasswordProps = RefineUpdatePasswordPageProps<
     BoxProps,
-    CardContentProps
+    CardContentProps,
+    BoxProps<"form">
 >;
 
 export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
     wrapperProps,
     contentProps,
     renderContent,
+    formProps,
 }) => {
     const {
         register,
@@ -64,6 +66,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                     component="form"
                     onSubmit={handleSubmit((data) => update(data))}
                     gap="16px"
+                    {...formProps}
                 >
                     <TextField
                         {...register("password", {

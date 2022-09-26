@@ -28,7 +28,11 @@ import {
 } from "@pankod/refine-core";
 import { layoutStyles, titleStyles } from "../styles";
 
-type LoginProps = RefineLoginPageProps<BoxProps, CardContentProps>;
+type LoginProps = RefineLoginPageProps<
+    BoxProps,
+    CardContentProps,
+    BoxProps<"form">
+>;
 
 export const LoginPage: React.FC<LoginProps> = ({
     providers,
@@ -38,6 +42,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     contentProps,
     wrapperProps,
     renderContent,
+    formProps,
 }) => {
     const {
         register,
@@ -96,6 +101,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                     component="form"
                     onSubmit={handleSubmit((data) => login(data))}
                     gap="16px"
+                    {...formProps}
                 >
                     {renderProviders()}
                     <TextField
