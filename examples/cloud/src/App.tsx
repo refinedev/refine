@@ -22,7 +22,6 @@ import {
     CategoryCreate,
     CategoryEdit,
 } from "pages/categories";
-import { Login } from "pages/login";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -41,7 +40,6 @@ const RefineWithCloud = withCloud(Refine, {
 const App: React.FC = () => {
     return (
         <RefineWithCloud
-            LoginPage={Login}
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
             resources={[
