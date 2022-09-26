@@ -3,7 +3,8 @@ import {
     RefineRegisterFormTypes,
     RefineRegisterPageProps,
 } from "@pankod/refine-ui-types";
-import { useForm, UseFormReturnType } from "@pankod/refine-react-hook-form";
+import { useForm } from "@pankod/refine-react-hook-form";
+
 import {
     Button,
     TextField,
@@ -30,7 +31,7 @@ import { layoutStyles, titleStyles } from "../styles";
 type RegisterProps = RefineRegisterPageProps<
     BoxProps,
     CardContentProps,
-    UseFormReturnType
+    BoxProps<"form">
 >;
 
 /**
@@ -44,6 +45,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     contentProps,
     renderContent,
     providers,
+    formProps,
 }) => {
     const {
         register,
@@ -109,6 +111,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     component="form"
                     onSubmit={handleSubmit((data) => registerMutate(data))}
                     gap="16px"
+                    {...formProps}
                 >
                     <TextField
                         {...register("email", {

@@ -8,12 +8,11 @@ import {
     ForgotPasswordPage,
     UpdatePasswordPage,
 } from "./components";
-import { UseFormReturnType } from "@pankod/refine-react-hook-form";
 
 export type AuthProps = RefineAuthPageProps<
     BoxProps,
     CardProps,
-    UseFormReturnType
+    BoxProps<"form">
 >;
 
 /**

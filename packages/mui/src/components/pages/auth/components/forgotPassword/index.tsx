@@ -28,7 +28,8 @@ import { layoutStyles, titleStyles } from "../styles";
 
 type ForgotPasswordProps = RefineForgotPasswordPageProps<
     BoxProps,
-    CardContentProps
+    CardContentProps,
+    BoxProps<"form">
 >;
 
 /**
@@ -42,6 +43,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
     wrapperProps,
     contentProps,
     renderContent,
+    formProps,
 }) => {
     const {
         register,
@@ -72,6 +74,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
                     component="form"
                     onSubmit={handleSubmit((data) => mutate(data))}
                     gap="16px"
+                    {...formProps}
                 >
                     <TextField
                         {...register("email", {
