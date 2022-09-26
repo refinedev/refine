@@ -7,10 +7,6 @@ export const layoutLayoutTests = function (
     LayoutElement: React.ComponentType<RefineLayoutLayoutProps>,
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / Layout Element", () => {
-        beforeAll(() => {
-            jest.useFakeTimers();
-        });
-
         it("Layout renders sider, header, footer, title, offLayoutArea if given props", async () => {
             const customTitleContent = "customTitleContent";
             const CustomTitle = () => <p>{customTitleContent}</p>;
@@ -39,10 +35,6 @@ export const layoutLayoutTests = function (
                 />,
                 { wrapper: TestWrapper({}) },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(getByText(customSiderContent));
             expect(getByText(customHeaderContent));

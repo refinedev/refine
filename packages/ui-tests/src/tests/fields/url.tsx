@@ -9,10 +9,6 @@ export const fieldUrlTests = function (
     >,
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / Url Field", () => {
-        beforeAll(() => {
-            jest.useFakeTimers();
-        });
-
         const url = "https://www.google.com/";
 
         it("renders urlField with given value", () => {

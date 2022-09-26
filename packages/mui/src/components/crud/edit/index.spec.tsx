@@ -28,20 +28,12 @@ describe("Edit", () => {
     crudEditTests.bind(this)(Edit);
 
     it("should render optional mutationMode with mutationModeProp prop", async () => {
-        jest.useFakeTimers();
-
         const container = renderEdit(<Edit mutationMode="undoable" />);
-
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
 
         expect(container).toBeTruthy();
     });
 
     it("should render optional resource with resource prop", async () => {
-        jest.useFakeTimers();
-
         const { getByText } = render(
             <Routes>
                 <Route
@@ -56,17 +48,11 @@ describe("Edit", () => {
             },
         );
 
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
-
         getByText("Edit Post");
     });
 
     describe("render delete button", () => {
         it("should render delete button ", async () => {
-            jest.useFakeTimers();
-
             const { getByText, queryByTestId } = render(
                 <Routes>
                     <Route path="/:resource/edit/:id" element={<Edit />} />
@@ -79,10 +65,6 @@ describe("Edit", () => {
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(
                 queryByTestId(RefineButtonTestIds.DeleteButton),
             ).not.toBeNull();
@@ -91,8 +73,6 @@ describe("Edit", () => {
         });
 
         it("should not render delete button on resource canDelete false", async () => {
-            jest.useFakeTimers();
-
             const { getByText, queryByTestId } = render(
                 <Routes>
                     <Route
@@ -108,18 +88,12 @@ describe("Edit", () => {
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(queryByTestId(RefineButtonTestIds.DeleteButton)).toBeNull();
 
             getByText("Edit Post");
         });
 
         it("should not render delete button on resource canDelete true & canDelete props false on component", async () => {
-            jest.useFakeTimers();
-
             const { queryByTestId } = render(
                 <Routes>
                     <Route
@@ -136,16 +110,10 @@ describe("Edit", () => {
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(queryByTestId(RefineButtonTestIds.DeleteButton)).toBeNull();
         });
 
         it("should render delete button on resource canDelete false & canDelete props true on component", async () => {
-            jest.useFakeTimers();
-
             const { queryByTestId } = render(
                 <Routes>
                     <Route
@@ -161,18 +129,12 @@ describe("Edit", () => {
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(
                 queryByTestId(RefineButtonTestIds.DeleteButton),
             ).not.toBeNull();
         });
 
         it("should render delete button on resource canDelete false & deleteButtonProps props not null on component", async () => {
-            jest.useFakeTimers();
-
             const { queryByTestId } = render(
                 <Routes>
                     <Route
@@ -188,10 +150,6 @@ describe("Edit", () => {
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(
                 queryByTestId(RefineButtonTestIds.DeleteButton),
             ).not.toBeNull();
@@ -200,8 +158,6 @@ describe("Edit", () => {
 
     describe("accessibility of buttons by accessControlProvider", () => {
         it("should render disabled list button and not disabled delete button", async () => {
-            jest.useRealTimers();
-
             const { queryByTestId } = renderEdit(<Edit canDelete />, {
                 can: ({ action }) => {
                     switch (action) {
@@ -227,8 +183,6 @@ describe("Edit", () => {
         });
 
         it("should render disabled list button and delete button", async () => {
-            jest.useRealTimers();
-
             const { queryByTestId } = renderEdit(<Edit canDelete />, {
                 can: ({ action }) => {
                     switch (action) {
@@ -256,8 +210,6 @@ describe("Edit", () => {
 
     describe("Breadcrumb ", () => {
         it("should render breadcrumb", async () => {
-            jest.useFakeTimers();
-
             const { getAllByLabelText } = render(
                 <Routes>
                     <Route
@@ -273,15 +225,9 @@ describe("Edit", () => {
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(getAllByLabelText("breadcrumb")).not.toBeNull();
         });
         it("should not render breadcrumb", async () => {
-            jest.useFakeTimers();
-
             const { queryByLabelText } = render(
                 <Routes>
                     <Route
@@ -296,10 +242,6 @@ describe("Edit", () => {
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(queryByLabelText("breadcrumb")).not.toBeInTheDocument();
         });

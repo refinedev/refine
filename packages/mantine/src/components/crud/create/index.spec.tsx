@@ -10,8 +10,6 @@ describe("Create", () => {
     crudCreateTests.bind(this)(Create);
 
     it("should render breadcrumb", async () => {
-        jest.useFakeTimers();
-
         const { getAllByLabelText } = render(
             <Routes>
                 <Route
@@ -26,15 +24,9 @@ describe("Create", () => {
             },
         );
 
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
-
         expect(getAllByLabelText("breadcrumb")).not.toBeNull();
     });
     it("should not render breadcrumb", async () => {
-        jest.useFakeTimers();
-
         const { queryByLabelText } = render(
             <Routes>
                 <Route
@@ -48,10 +40,6 @@ describe("Create", () => {
                 }),
             },
         );
-
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
 
         expect(queryByLabelText("breadcrumb")).not.toBeInTheDocument();
     });

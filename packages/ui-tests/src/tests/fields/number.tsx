@@ -7,10 +7,6 @@ export const fieldNumberTests = function (
     NumberField: React.ComponentType<RefineFieldNumberProps<ReactChild, any>>,
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / Number Field", () => {
-        beforeAll(() => {
-            jest.useFakeTimers();
-        });
-
         it("renders numbers with given formatting", () => {
             const testPrice = 12345.6789;
             const options = {

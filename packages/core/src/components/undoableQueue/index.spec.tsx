@@ -23,10 +23,9 @@ const mockNotification = {
     isSilent: false,
 };
 describe("Cancel Notification", () => {
-    beforeEach(() => {
-        jest.useFakeTimers();
-    });
     it("should trigger notification open function", async () => {
+        jest.useFakeTimers();
+
         render(
             <UndoableQueueContext.Provider
                 value={{
@@ -66,6 +65,9 @@ describe("Cancel Notification", () => {
             },
             type: "DECREASE_NOTIFICATION_SECOND",
         });
+
+        jest.clearAllTimers();
+        jest.useRealTimers();
     });
 
     it("should call doMutation on seconds zero", async () => {

@@ -7,10 +7,6 @@ export const fieldEmailTests = function (
     EmailField: React.ComponentType<RefineFieldEmailProps<ReactNode, any, any>>,
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / Email Field", () => {
-        beforeAll(() => {
-            jest.useFakeTimers();
-        });
-
         it("renders email with mailto href", () => {
             const { getByText } = render(<EmailField value="test@test.com" />);
 

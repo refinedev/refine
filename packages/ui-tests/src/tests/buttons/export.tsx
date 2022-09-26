@@ -12,16 +12,11 @@ export const buttonExportTests = function (
     describe("[@pankod/refine-ui-tests] Common Tests / Export Button", () => {
         beforeAll(() => {
             jest.spyOn(console, "warn").mockImplementation(jest.fn());
-            jest.useFakeTimers();
         });
 
         it("should render button successfuly", async () => {
             const { container, getByText } = render(<ExportButton />, {
                 wrapper: TestWrapper({}),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             expect(container).toBeTruthy();
@@ -31,10 +26,6 @@ export const buttonExportTests = function (
         it("should have the correct test-id", async () => {
             const { queryByTestId } = render(<ExportButton />, {
                 wrapper: TestWrapper({}),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             expect(
@@ -50,10 +41,6 @@ export const buttonExportTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
             getByText("refine");
@@ -63,10 +50,6 @@ export const buttonExportTests = function (
             const { container, queryByText } = render(
                 <ExportButton hideText />,
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(container).toBeTruthy();
 

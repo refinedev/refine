@@ -8,10 +8,6 @@ const mockClient: Appwrite = {
 const testDate = new Date().getTime();
 
 describe("liveProvider", () => {
-    afterEach(() => {
-        jest.useRealTimers();
-    });
-
     it("calls appwriteClient.subscribe with correct channel", () => {
         const provider = liveProvider(mockClient);
         const dummyCallback = () => undefined;
@@ -85,6 +81,9 @@ describe("liveProvider", () => {
             date: new Date(testDate),
             payload: "test",
         });
+
+        jest.clearAllTimers();
+        jest.useRealTimers();
     });
 
     it("runs given function to unsubscribe", () => {

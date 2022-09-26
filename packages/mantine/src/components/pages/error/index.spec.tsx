@@ -1,9 +1,10 @@
 import React from "react";
 import { pageErrorTests } from "@pankod/refine-ui-tests";
 import ReactRouterDom, { Route, Routes } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
 
 import { ErrorComponent } from ".";
-import { render, fireEvent, TestWrapper, act } from "@test";
+import { render, fireEvent, TestWrapper } from "@test";
 
 const mHistory = jest.fn();
 
@@ -14,29 +15,18 @@ jest.mock("react-router-dom", () => ({
 
 describe("ErrorComponent", () => {
     pageErrorTests.bind(this)(ErrorComponent);
-    it("renders subtitle successfully", async () => {
-        jest.useFakeTimers();
 
+    it("renders subtitle successfully", async () => {
         const { getByText } = render(<ErrorComponent />, {
             wrapper: TestWrapper({}),
-        });
-
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
         });
 
         getByText("Sorry, the page you visited does not exist.");
     });
 
     it("renders button successfully", async () => {
-        jest.useFakeTimers();
-
         const { container, getByText } = render(<ErrorComponent />, {
             wrapper: TestWrapper({}),
-        });
-
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
         });
 
         expect(container.querySelector("button")).toBeTruthy();
@@ -44,26 +34,16 @@ describe("ErrorComponent", () => {
     });
 
     it("renders called function successfully if click the button", async () => {
-        jest.useFakeTimers();
-
         const { getByText } = render(<ErrorComponent />, {
             wrapper: TestWrapper({}),
         });
 
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
-
-        await act(async () => {
-            fireEvent.click(getByText("Back Home"));
-        });
+        fireEvent.click(getByText("Back Home"));
 
         expect(mHistory).toBeCalledWith("/");
     });
 
     it("renders error messages if resources action's not found", async () => {
-        jest.useFakeTimers();
-
         const { getByTestId, findByText } = render(
             <Routes>
                 <Route path="/:resource/:action" element={<ErrorComponent />} />
@@ -75,28 +55,16 @@ describe("ErrorComponent", () => {
             },
         );
 
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
+        userEvent.hover(getByTestId("error-component-tooltip"));
 
-        await act(async () => {
-            fireEvent.mouseOver(getByTestId("error-component-tooltip"));
-        });
-
-        await act(async () => {
-            jest.runAllTimers();
-        });
-
-        const element = await findByText(
-            `You may have forgotten to add the "create" component to "posts" resource.`,
-        );
-
-        expect(element).toBeInTheDocument();
+        expect(
+            await findByText(
+                `You may have forgotten to add the "create" component to "posts" resource.`,
+            ),
+        ).toBeInTheDocument();
     });
 
     it("renders error messages if resource action's is different from 'create, edit, show'", async () => {
-        jest.useFakeTimers();
-
         const { getByText } = render(
             <Routes>
                 <Route path="/:resource/:action" element={<ErrorComponent />} />
@@ -107,10 +75,6 @@ describe("ErrorComponent", () => {
                 }),
             },
         );
-
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
 
         getByText("Sorry, the page you visited does not exist.");
     });

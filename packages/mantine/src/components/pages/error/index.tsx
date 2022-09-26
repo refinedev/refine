@@ -87,9 +87,9 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
                     )}
                 </Text>
                 {errorMessage && (
-                    <Tooltip label={errorMessage}>
-                        <ActionIcon>
-                            <InfoCircle data-testid="error-component-tooltip" />
+                    <Tooltip openDelay={0} label={errorMessage}>
+                        <ActionIcon data-testid="error-component-tooltip">
+                            <InfoCircle />
                         </ActionIcon>
                     </Tooltip>
                 )}

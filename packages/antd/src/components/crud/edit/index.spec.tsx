@@ -25,18 +25,10 @@ const renderEdit = (
 };
 
 describe("Edit", () => {
-    beforeAll(() => {
-        jest.useFakeTimers();
-    });
-
     crudEditTests.bind(this)(Edit);
 
     it("should render optional mutationMode with mutationModeProp prop", async () => {
         const container = renderEdit(<Edit mutationMode="undoable" />);
-
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
 
         expect(container).toBeTruthy();
     });
@@ -54,10 +46,6 @@ describe("Edit", () => {
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(
                 queryByTestId(RefineButtonTestIds.DeleteButton),
@@ -82,10 +70,6 @@ describe("Edit", () => {
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(queryByTestId(RefineButtonTestIds.DeleteButton)).toBeNull();
 
             getByText("Edit Post");
@@ -108,10 +92,6 @@ describe("Edit", () => {
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(queryByTestId(RefineButtonTestIds.DeleteButton)).toBeNull();
         });
 
@@ -130,10 +110,6 @@ describe("Edit", () => {
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(
                 queryByTestId(RefineButtonTestIds.DeleteButton),
@@ -156,10 +132,6 @@ describe("Edit", () => {
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(
                 queryByTestId(RefineButtonTestIds.DeleteButton),
             ).not.toBeNull();
@@ -168,8 +140,6 @@ describe("Edit", () => {
 
     describe("accessibility of buttons by accessControlProvider", () => {
         it("should render disabled list button and not disabled delete button", async () => {
-            jest.useRealTimers();
-
             const { queryByTestId } = renderEdit(<Edit canDelete />, {
                 can: ({ action }) => {
                     switch (action) {
@@ -195,8 +165,6 @@ describe("Edit", () => {
         });
 
         it("should render disabled list button and delete button", async () => {
-            jest.useRealTimers();
-
             const { queryByTestId } = renderEdit(<Edit canDelete />, {
                 can: ({ action }) => {
                     switch (action) {

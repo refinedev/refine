@@ -24,16 +24,8 @@ export const breadcrumbTests = function (
     Breadcrumb: React.ComponentType<RefineBreadcrumbProps<any>>,
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / CRUD Create", () => {
-        beforeAll(() => {
-            jest.useFakeTimers();
-        });
-
         it("should render successfuly", async () => {
             const { container } = renderBreadcrumb(<Breadcrumb />);
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(container).toBeTruthy();
         });
@@ -44,10 +36,6 @@ export const breadcrumbTests = function (
                 routerInitialEntries: ["/posts/create"],
             });
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             getByText("Posts");
             getByText("Create");
         });
@@ -56,10 +44,6 @@ export const breadcrumbTests = function (
             const { container } = renderBreadcrumb(<Breadcrumb />, {
                 resources: [{ name: "posts", list: DummyResourcePage }],
                 routerInitialEntries: ["/posts/create"],
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             expect(container.querySelector("a")?.getAttribute("href")).toBe(
@@ -79,10 +63,6 @@ export const breadcrumbTests = function (
                 routerInitialEntries: ["/posts/create"],
             });
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             getByTestId("resource-icon");
         });
 
@@ -99,10 +79,6 @@ export const breadcrumbTests = function (
                     routerInitialEntries: ["/posts/create"],
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(queryByTestId("resource-icon")).not.toBeInTheDocument();
         });

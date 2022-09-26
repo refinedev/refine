@@ -5,7 +5,7 @@ import {
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
 
-import { act, ITestWrapperProps, render, TestWrapper } from "@test";
+import { ITestWrapperProps, render, TestWrapper } from "@test";
 
 const renderCreate = (
     create: React.ReactNode,
@@ -35,21 +35,10 @@ export const crudCreateTests = function (
     describe("[@pankod/refine-ui-tests] Common Tests / CRUD Create", () => {
         beforeAll(() => {
             jest.spyOn(console, "warn").mockImplementation(jest.fn());
-            jest.useFakeTimers();
-        });
-
-        afterAll(() => {
-            jest.useRealTimers();
         });
 
         it("should render children", async () => {
-            jest.useFakeTimers();
-
             const { getByText } = renderCreate(<Create>Something</Create>);
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             getByText("Something");
         });
@@ -57,23 +46,15 @@ export const crudCreateTests = function (
         it("should render default save button successfuly", async () => {
             const { queryByTestId } = renderCreate(<Create></Create>);
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(
                 queryByTestId(RefineButtonTestIds.SaveButton),
             ).not.toBeNull();
         });
 
         it("should render optional button with actionButtons prop", async () => {
-            const { container, getByText, debug } = renderCreate(
+            const { container, getByText } = renderCreate(
                 <Create footerButtons={<button>Optional Button</button>} />,
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(container.querySelector("button")).toBeTruthy();
             getByText("Optional Button");
@@ -81,10 +62,6 @@ export const crudCreateTests = function (
 
         it("should render default title successfuly", async () => {
             const { getByText } = renderCreate(<Create />);
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             getByText("Create Post");
         });
@@ -100,33 +77,18 @@ export const crudCreateTests = function (
                 routerInitialEntries: ["/posts/create"],
             });
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             getByText("Create Test label");
         });
 
         it("should render optional title with title prop", async () => {
             const { getByText } = renderCreate(<Create title="New Title" />);
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             getByText("New Title");
         });
 
         it("should render optional resource with resource prop", async () => {
-            const { queryByText, debug } = renderCreate(
-                <Create resource="posts" />,
-                {
-                    routerInitialEntries: ["/custom"],
-                },
-            );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(2);
+            const { queryByText } = renderCreate(<Create resource="posts" />, {
+                routerInitialEntries: ["/custom"],
             });
 
             queryByText("Create Post");
@@ -146,10 +108,6 @@ export const crudCreateTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             getByText("Create Post");
         });

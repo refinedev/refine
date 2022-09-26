@@ -200,7 +200,6 @@ describe("useSelect Hook", () => {
     });
 
     it("onSearch debounce with default value (300ms)", async () => {
-        jest.useFakeTimers();
         const getListMock = jest.fn(() =>
             Promise.resolve({ data: [], total: 0 }),
         );
@@ -232,21 +231,14 @@ describe("useSelect Hook", () => {
         const { onSearch } = result.current;
 
         onSearch("1");
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
 
         onSearch("1");
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
 
         onSearch("1");
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
 
-        expect(getListMock).toBeCalledTimes(2);
+        await waitFor(() => {
+            expect(getListMock).toBeCalledTimes(2);
+        });
 
         await waitFor(() => {
             expect(result.current.queryResult.isSuccess).toBeTruthy();
@@ -254,7 +246,6 @@ describe("useSelect Hook", () => {
     });
 
     it("onSearch disabled debounce (0ms)", async () => {
-        jest.useFakeTimers();
         const getListMock = jest.fn(() => {
             return Promise.resolve({ data: [], total: 0 });
         });
@@ -286,22 +277,19 @@ describe("useSelect Hook", () => {
         const { onSearch } = result.current;
 
         onSearch("1");
-
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
+        await waitFor(() => {
+            expect(getListMock).toBeCalledTimes(2);
         });
 
         onSearch("2");
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
+        await waitFor(() => {
+            expect(getListMock).toBeCalledTimes(3);
         });
 
         onSearch("3");
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
+        await waitFor(() => {
+            expect(getListMock).toBeCalledTimes(4);
         });
-
-        expect(getListMock).toBeCalledTimes(4);
 
         await waitFor(() => {
             expect(result.current.queryResult.isSuccess).toBeTruthy();
@@ -491,7 +479,6 @@ describe("useSelect Hook", () => {
     });
 
     it("should use onSearch option to get filters", async () => {
-        jest.useFakeTimers();
         const posts = [
             {
                 id: "1",
@@ -559,10 +546,6 @@ describe("useSelect Hook", () => {
 
         await act(async () => {
             onSearch("1");
-        });
-
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
         });
 
         await waitFor(() => {

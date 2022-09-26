@@ -147,8 +147,6 @@ describe("useTable Hook", () => {
     });
 
     it("should set filters manually with `setFilters`", async () => {
-        jest.useFakeTimers();
-
         const initialFilter: CrudFilters = [
             {
                 field: "name",
@@ -189,10 +187,6 @@ describe("useTable Hook", () => {
             result.current.setFilters(nextFilters);
         });
 
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
-
         // TODO: update tests
         await waitFor(() => {
             return isEqual(result.current.filters, [...nextFilters]);
@@ -200,8 +194,6 @@ describe("useTable Hook", () => {
     });
 
     it('should change behavior to `replace` when `defaultSetFilterBehavior="replace"`', async () => {
-        jest.useFakeTimers();
-
         const { result } = renderHook(
             () =>
                 useTable({
@@ -240,10 +232,6 @@ describe("useTable Hook", () => {
 
         await act(async () => {
             result.current.setFilters(newFilters);
-        });
-
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
         });
 
         await waitFor(() => {
