@@ -5,10 +5,78 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import CodeBlock from "@theme/CodeBlock";
 import styles from "./styles.module.css";
 import BrowserWindow from "../../components/browser-window";
-import { compressToEncodedURIComponent } from "lz-string";
 import { useInView } from "../../hooks/use-in-view";
 import { Conditional } from "../conditional";
 import { splitCode } from "../../utils/split-code";
+
+/**
+ * Live Preview Frame
+ */
+const LivePreviewFrameBase = ({
+    query,
+    code,
+}: {
+    code: string;
+    query?: string;
+}) => {
+    const {
+        siteConfig: { customFields },
+    } = useDocusaurusContext();
+
+    const [url, setUrl] = React.useState<string | undefined>(undefined);
+
+    const compressCode = React.useCallback(
+        async (uncompressed: string) => {
+            if (typeof window !== "undefined" && window.Worker) {
+                const worker = new Worker(
+                    `${location.protocol}//${location.host}/workers/lz-worker.js`,
+                );
+                worker.onmessage = function ({
+                    data,
+                }: MessageEvent<{ compressed: string | null }>) {
+                    if (data.compressed) {
+                        setUrl(
+                            `${customFields.LIVE_PREVIEW_URL}?code=${
+                                data.compressed
+                            }${query ? `&query=${query}` : ""}`,
+                        );
+                    }
+                    worker.terminate();
+                };
+                worker.postMessage({ code: uncompressed });
+            }
+        },
+        [query],
+    );
+
+    React.useEffect(() => {
+        compressCode(code);
+    }, [code, compressCode]);
+
+    if (url) {
+        return (
+            <iframe
+                loading="lazy"
+                src={url}
+                width="100%"
+                height="100%"
+                style={{
+                    position: "absolute",
+                    left: 0,
+                    top: 0,
+                    width: "100%",
+                    height: "100%",
+                }}
+            />
+        );
+    }
+
+    return null;
+};
+
+const LivePreviewFrame = React.memo(LivePreviewFrameBase, (prev, next) => {
+    return prev.code === next.code && prev.query === next.query;
+});
 
 /**
  * Editor with header
@@ -92,28 +160,14 @@ const LivePreviewBase = ({
                     >
                         <Conditional if={inView}>
                             {() => {
-                                const previewUrl = `${
-                                    customFields.LIVE_PREVIEW_URL
-                                }?code=${compressToEncodedURIComponent(code)}${
-                                    disableScroll ? "&disableScroll=true" : ""
-                                }`;
                                 return (
-                                    <iframe
-                                        src={previewUrl}
-                                        width="100%"
-                                        height="100%"
-                                        // scroll={disableScroll ? "no" : "yes"}
-                                        scrolling={disableScroll ? "no" : "yes"}
-                                        style={{
-                                            position: "absolute",
-                                            left: 0,
-                                            top: 0,
-                                            width: "100%",
-                                            height: "100%",
-                                            overflow: disableScroll
-                                                ? "hidden"
-                                                : undefined,
-                                        }}
+                                    <LivePreviewFrame
+                                        code={code}
+                                        query={
+                                            disableScroll
+                                                ? "&disableScroll=true"
+                                                : undefined
+                                        }
                                     />
                                 );
                             }}
