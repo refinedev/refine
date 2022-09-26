@@ -24,6 +24,7 @@
     "peerDependencies": {
         "@pankod/refine-core": "^3.23.2",
         "@pankod/refine-sdk": "^0.6.0",
+        "@pankod/refine-antd": "^3.48.5",
         "react": "^17.0.0 || ^18.0.0",
         "react-dom": "^17.0.0 || ^18.0.0",
         "@types/react": "^17.0.0 || ^18.0.0",
@@ -31,6 +32,7 @@
     },
     "devDependencies": {
         "@pankod/refine-core": "^3.69.9",
+        "@pankod/refine-antd": "^3.48.5",
         "@pankod/refine-sdk": "^0.6.0",
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@types/lodash": "^4.14.171",

@@ -14,7 +14,17 @@ export const useAuthProviderWithCloudConfig =
 
         const generateCloudAuthProvider = (): AuthProvider => {
             return {
-                login: async ({ email, password }) => {
+                login: async ({ email, password, providerName }) => {
+                    if (providerName) {
+                        const baseUrl = sdk.getBaseUrl();
+                        const applicationClientId = sdk.getClientId();
+                        const redirectUrl = `${baseUrl}/oauth/${providerName}?applicationClientId=${applicationClientId}`;
+                        console.log("--redirectUrl", redirectUrl);
+                        window.location.href = redirectUrl;
+
+                        return Promise.resolve(false);
+                    }
+
                     return sdk.auth
                         .login({
                             email,
@@ -27,12 +37,16 @@ export const useAuthProviderWithCloudConfig =
                 checkError: () => {
                     return Promise.resolve();
                 },
-                checkAuth: () => {
+                checkAuth: async () => {
                     sdk.auth.getSessionFromUrl();
-                    return sdk.auth
-                        .session()
-                        .then(() => Promise.resolve())
-                        .catch(() => Promise.reject());
+
+                    const isAuthenticated = await sdk.auth.isAuthenticated();
+
+                    if (!isAuthenticated) {
+                        return Promise.reject();
+                    }
+
+                    return await sdk.auth.session();
                 },
                 getPermissions: () =>
                     sdk.auth

@@ -7,7 +7,7 @@ import {
 } from "@pankod/refine-core";
 import merge from "lodash/merge";
 
-import { Cloud } from "../../components";
+import { Cloud, LoginPage } from "../../components";
 import { CloudContextProvider } from "../../contexts";
 import { useAuthProviderWithCloudConfig, useSdk } from "../../hooks";
 import { ICloudContext } from "../../interfaces";
@@ -23,8 +23,15 @@ export function withCloud(
         const { sdk } = useSdk();
         const { generateCloudAuthProvider } = useAuthProviderWithCloudConfig();
 
+        // if authProvider does not exist
         if (!otherProps.authProvider) {
             authProvider = generateCloudAuthProvider();
+        }
+
+        let Login: React.FC<{}> | undefined;
+        // if authPages (login, register, etc) does not exist
+        if (!otherProps.LoginPage) {
+            Login = LoginPage;
         }
 
         useEffect(() => {
@@ -69,6 +76,7 @@ export function withCloud(
                 {...otherProps}
                 resources={resources || otherProps.resources}
                 authProvider={authProvider || otherProps.authProvider}
+                LoginPage={Login || otherProps.LoginPage}
                 auditLogProvider={
                     auditLogProvider || otherProps.auditLogProvider
                 }
