@@ -1,5 +1,11 @@
 # @pankod/refine-antd
 
+## 3.48.6
+
+### Patch Changes
+
+-   [#2585](https://github.com/pankod/refine/pull/2585) [`e7ab42a73b`](https://github.com/pankod/refine/commit/e7ab42a73b87625b2646864118ad25cbe31295ad) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Updated `disabled` attribute of buttons in CRUD components according to `isLoading` prop.
+
 ## 3.48.5
 
 ### Patch Changes
