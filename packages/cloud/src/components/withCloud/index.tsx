@@ -8,7 +8,13 @@ import {
 } from "@pankod/refine-core";
 import merge from "lodash/merge";
 
-import { Cloud, LoginPage, RegisterPage } from "../../components";
+import {
+    Cloud,
+    LoginPage,
+    RegisterPage,
+    ForgotPasswordPage,
+    UpdatePasswordPage,
+} from "../../components";
 import { CloudContextProvider } from "../../contexts";
 import { useAuthProviderWithCloudConfig, useSdk } from "../../hooks";
 import { ICloudContext } from "../../interfaces";
@@ -43,6 +49,14 @@ export function withCloud(
                     {
                         element: <RegisterPage />,
                         path: "/register",
+                    },
+                    {
+                        element: <ForgotPasswordPage />,
+                        path: "/forgot-password",
+                    },
+                    {
+                        element: <UpdatePasswordPage />,
+                        path: "/update-password",
                     },
                 ],
             };

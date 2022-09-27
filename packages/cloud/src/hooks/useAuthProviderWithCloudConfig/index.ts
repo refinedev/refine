@@ -1,3 +1,4 @@
+import { notification } from "@pankod/refine-antd";
 import { AuthProvider } from "@pankod/refine-core";
 import { IUser, Client } from "@pankod/refine-sdk";
 
@@ -30,6 +31,52 @@ export const useAuthProviderWithCloudConfig =
 
         const generateCloudAuthProvider = (): AuthProvider => {
             return {
+                updatePassword: async ({
+                    token,
+                    password,
+                    confirmPassword,
+                }) => {
+                    return await sdk.auth
+                        .resetPassword({
+                            token,
+                            password,
+                            confirmPassword,
+                        })
+                        .then(() => {
+                            notification.open({
+                                type: "success",
+                                message: "Success",
+                                description:
+                                    "Your password has been updated. You can now log in with your new password.",
+                            });
+                            return Promise.resolve("/login");
+                        })
+                        .catch((err) => {
+                            return Promise.reject({
+                                message: "Error",
+                                name: err.message,
+                            });
+                        });
+                },
+                forgotPassword: async ({ email }) => {
+                    return await sdk.auth
+                        .forgotPassword({ email })
+                        .then(() => {
+                            notification.open({
+                                type: "success",
+                                message: "Success",
+                                description:
+                                    "Please check your email for a link to reset your password. If it doesn't appear within a few minutes, check your spam folder.",
+                            });
+                            return Promise.resolve();
+                        })
+                        .catch((err) => {
+                            return Promise.reject({
+                                message: "Error",
+                                name: err.message,
+                            });
+                        });
+                },
                 register: async ({ email, password, providerName }) => {
                     // handle oauth register
                     redirectOAuth({ sdk, providerName });

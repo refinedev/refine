@@ -41,15 +41,6 @@ const App: React.FC = () => {
     return (
         <RefineWithCloud
             routerProvider={routerProvider}
-            // routerProvider={{
-            //     ...routerProvider,
-            //     routes: [
-            //         {
-            //             element: <span>xx</span>,
-            //             path: "/register",
-            //         },
-            //     ],
-            // }}
             dataProvider={dataProvider(API_URL)}
             resources={[
                 {
