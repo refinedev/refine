@@ -1,8 +1,8 @@
 import axios, {
     AxiosRequestConfig,
     AxiosResponse,
-    AxiosError,
     AxiosRequestHeaders,
+    AxiosError,
 } from "axios";
 import createAuthRefreshInterceptor, {
     AxiosAuthRefreshRequestConfig,

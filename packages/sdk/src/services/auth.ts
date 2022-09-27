@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { ISession, IUser } from "../interfaces";
 
@@ -79,6 +80,32 @@ class Auth {
         return await this.client.call({
             method: "get",
             url: "/auth/me",
+        });
+    }
+
+    async forgotPassword(data: { email: string }): Promise<boolean> {
+        return await this.client.call<boolean>({
+            method: "post",
+            url: "/auth/forgot-password",
+            data: {
+                ...data,
+                applicationClientId: this.client.getClientId(),
+            },
+        });
+    }
+
+    async resetPassword(data: {
+        token: string;
+        password: string;
+        confirmPassword: string;
+    }): Promise<boolean> {
+        return await this.client.call<boolean>({
+            method: "post",
+            url: "/auth/reset-password",
+            data: {
+                ...data,
+                applicationClientId: this.client.getClientId(),
+            },
         });
     }
 
