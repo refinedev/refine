@@ -25,7 +25,7 @@ export const PostEdit: React.FC = () => {
             title: "",
             status: "",
             slug: "",
-            createdAt: "",
+            createdAt: new Date(),
             content: "",
         },
         validate: (values) => {
