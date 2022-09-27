@@ -22,11 +22,11 @@ export const LoginPage = () => {
 
     const mobileFormRender = () => (
         <>
-            <label className="font-medium text-dark">
+            <label className="text-dark font-medium">
                 Enter your mobile mumber
             </label>
             <Input
-                className="mb-4 border-gray bg-gray text-dark text-lg font-medium"
+                className="border-gray bg-gray text-dark mb-4 text-lg font-medium"
                 onChange={(e) => (mobileNoRef.current = e.target.value)}
                 onFocus={() => setError("")}
                 name="mobile"
@@ -41,9 +41,9 @@ export const LoginPage = () => {
 
     const otpFormRender = () => (
         <>
-            <label className="font-medium text-dark">Enter OTP</label>
+            <label className="text-dark font-medium">Enter OTP</label>
             <Input
-                className="mb-4 border-gray bg-gray text-dark text-lg font-medium"
+                className="border-gray bg-gray text-dark mb-4 text-lg font-medium"
                 onChange={(e) => (otpRef.current = e.target.value)}
                 onFocus={() => setError("")}
                 name="otp"
@@ -72,15 +72,15 @@ export const LoginPage = () => {
     };
 
     return (
-        <div className="min-h-screen bg-primary flex items-center justify-center">
-            <Card className="bg-white w-1/2 shadow-lg " bordered={false}>
+        <div className="bg-primary flex min-h-screen items-center justify-center">
+            <Card className="w-1/2 bg-white shadow-lg " bordered={false}>
                 <Card.Body>
                     {error && (
                         <Alert status="error" className="mb-2">
                             {error}
                         </Alert>
                     )}
-                    <h2 className="text-dark text-xl  font-bold mb-3">
+                    <h2 className="text-dark mb-3  text-xl font-bold">
                         Sign In
                     </h2>
                     {formState === "SEND_OTP" && mobileFormRender()}
