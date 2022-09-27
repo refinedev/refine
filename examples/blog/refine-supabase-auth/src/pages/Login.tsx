@@ -7,8 +7,9 @@ export const LoginPage = () => {
     const mobileNoRef = useRef<string>();
     const otpRef = useRef<string>();
     const [error, setError] = useState<string>();
-    const [formState, setFormState] =
-        useState<"SEND_OTP" | "LOGIN">("SEND_OTP");
+    const [formState, setFormState] = useState<"SEND_OTP" | "LOGIN">(
+        "SEND_OTP",
+    );
 
     const { mutate: login } = useLogin();
 
