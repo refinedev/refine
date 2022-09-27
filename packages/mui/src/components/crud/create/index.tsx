@@ -100,7 +100,10 @@ export const Create: React.FC<CreateProps> = ({
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
 
     const defaultFooterButtons = (
-        <SaveButton loading={isLoading} {...saveButtonProps} />
+        <SaveButton
+            {...(isLoading ? { disabled: true } : {})}
+            {...saveButtonProps}
+        />
     );
 
     return (
