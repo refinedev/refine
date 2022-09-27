@@ -1,5 +1,14 @@
 # @pankod/refine-ui-types
 
+## 0.11.1
+
+### Patch Changes
+
+-   [#2586](https://github.com/pankod/refine/pull/2586) [`d7c8b7642b`](https://github.com/pankod/refine/commit/d7c8b7642b7ed41a2063798e779c3cfaa09b0e7b) Thanks [@necatiozmen](https://github.com/necatiozmen)! - Removed redundant type inheritance and type casting
+
+-   Updated dependencies [[`d7c8b7642b`](https://github.com/pankod/refine/commit/d7c8b7642b7ed41a2063798e779c3cfaa09b0e7b)]:
+    -   @pankod/refine-core@3.74.1
+
 ## 0.11.0
 
 ### Minor Changes
