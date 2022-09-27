@@ -3,6 +3,7 @@ import {
     notificationProvider,
     Layout,
     ErrorComponent,
+    AuthPage,
 } from "@pankod/refine-antd";
 import { dataProvider, liveProvider } from "@pankod/refine-supabase";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -72,9 +73,25 @@ const App: React.FC = () => {
         <Refine
             dataProvider={dataProvider(supabaseClient)}
             liveProvider={liveProvider(supabaseClient)}
-            routerProvider={routerProvider}
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                    {
+                        path: "/register",
+                        element: <AuthPage type="register" />,
+                    },
+                    {
+                        path: "/forgot-password",
+                        element: <AuthPage type="forgotPassword" />,
+                    },
+                    {
+                        path: "/update-password",
+                        element: <AuthPage type="updatePassword" />,
+                    },
+                ],
+            }}
             authProvider={authProvider}
-            LoginPage={Login}
+            LoginPage={() => <AuthPage type="register" />}
             resources={[
                 {
                     name: "posts",
