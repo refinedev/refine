@@ -18,8 +18,9 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { ICompany } from "interfaces";
 
 export const JobCreate: React.FC<IResourceComponentsProps> = () => {
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
+        "write",
+    );
     const { formProps, saveButtonProps } = useForm<ICompany>();
 
     const { selectProps: companySelectProps } = useSelect<ICompany>({

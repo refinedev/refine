@@ -96,6 +96,7 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
                     }
                     return (
                         <Button
+                            key={i}
                             colorScheme={"teal"}
                             onClick={() => setCurrent(i + 1)}
                         >

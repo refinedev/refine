@@ -58,25 +58,26 @@ export const undoableQueueReducer = (state: IUndoableQueue[], action: any) => {
     }
 };
 
-export const UndoableQueueContextProvider: React.FC<{ children: ReactNode }> =
-    ({ children }) => {
-        const [notifications, notificationDispatch] = useReducer(
-            undoableQueueReducer,
-            initialState,
-        );
+export const UndoableQueueContextProvider: React.FC<{
+    children: ReactNode;
+}> = ({ children }) => {
+    const [notifications, notificationDispatch] = useReducer(
+        undoableQueueReducer,
+        initialState,
+    );
 
-        const notificationData = { notifications, notificationDispatch };
+    const notificationData = { notifications, notificationDispatch };
 
-        return (
-            <UndoableQueueContext.Provider value={notificationData}>
-                {children}
-                {typeof window !== "undefined" &&
-                    notifications.map((notification) => (
-                        <UndoableQueue
-                            key={`${notification.id}-${notification.resource}-queue`}
-                            notification={notification}
-                        />
-                    ))}
-            </UndoableQueueContext.Provider>
-        );
-    };
+    return (
+        <UndoableQueueContext.Provider value={notificationData}>
+            {children}
+            {typeof window !== "undefined" &&
+                notifications.map((notification) => (
+                    <UndoableQueue
+                        key={`${notification.id}-${notification.resource}-queue`}
+                        notification={notification}
+                    />
+                ))}
+        </UndoableQueueContext.Provider>
+    );
+};

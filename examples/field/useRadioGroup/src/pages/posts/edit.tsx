@@ -25,8 +25,9 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
             resource: "languages",
         });
 
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
+        "write",
+    );
 
     return (
         <Edit saveButtonProps={saveButtonProps}>

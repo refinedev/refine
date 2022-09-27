@@ -25,7 +25,7 @@ const ProductList: React.FC<ItemProp> = ({ products }) => {
 
     return (
         <LayoutWrapper>
-            <div className="grid grid-cols-4 gap-6 px-24 my-8">
+            <div className="my-8 grid grid-cols-4 gap-6 px-24">
                 {tableQueryResult.data?.data.map((product) => {
                     return (
                         <ProductCards

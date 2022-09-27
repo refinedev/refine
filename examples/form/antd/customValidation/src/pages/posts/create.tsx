@@ -37,8 +37,9 @@ export const PostCreate: React.FC<IResourceComponentsProps> = (props) => {
         resource: "categories",
     });
 
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
+        "write",
+    );
 
     const apiUrl = useApiUrl();
     const url = `${apiUrl}/posts-unique-check`;

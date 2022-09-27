@@ -14,8 +14,9 @@ type UpdateCustomerEmailFormData = {
 };
 
 export const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
-    const [errorMessage, setErrorMessage] =
-        React.useState<string | undefined>(undefined);
+    const [errorMessage, setErrorMessage] = React.useState<string | undefined>(
+        undefined,
+    );
 
     const {
         register,

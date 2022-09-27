@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { ConfigType } from "dayjs";
 
-export type RefineFieldCommonProps<T extends any = unknown> = {
+export type RefineFieldCommonProps<T = unknown> = {
     value: T;
 };
 
@@ -11,7 +11,7 @@ export type RefineFieldTooltipProps = {
 };
 
 export type RefineFieldBooleanProps<
-    TValueType extends any = boolean,
+    TValueType = boolean,
     TComponentProps extends {} = {},
     TExtraProps extends {} = {},
 > = RefineFieldCommonProps<TValueType> &
@@ -25,7 +25,7 @@ export type RefineFieldBooleanProps<
     };
 
 export type RefineFieldDateProps<
-    TValueType extends any = ConfigType,
+    TValueType = ConfigType,
     TComponentProps extends {} = {},
     TExtraProps extends {} = {},
 > = RefineFieldCommonProps<TValueType> &
@@ -36,7 +36,7 @@ export type RefineFieldDateProps<
     };
 
 export type RefineFieldEmailProps<
-    TValueType extends any = React.ReactNode,
+    TValueType = React.ReactNode,
     TComponentProps extends {} = {},
     TExtraProps extends {} = {},
 > = RefineFieldCommonProps<TValueType> & TComponentProps & TExtraProps & {};
@@ -51,19 +51,19 @@ export type RefineFieldFileProps<
     };
 
 export type RefineFieldImageProps<
-    TValueType extends any = string | undefined,
+    TValueType = string | undefined,
     TComponentProps extends {} = {},
     TExtraProps extends {} = {},
 > = RefineFieldCommonProps<TValueType> & TComponentProps & TExtraProps & {};
 
 export type RefineFieldMarkdownProps<
-    TValueType extends any = string | undefined,
+    TValueType = string | undefined,
     TComponentProps extends {} = {},
     TExtraProps extends {} = {},
 > = RefineFieldCommonProps<TValueType> & TComponentProps & TExtraProps & {};
 
 export type RefineFieldNumberProps<
-    TValueType extends any = React.ReactNode,
+    TValueType = React.ReactNode,
     TComponentProps extends {} = {},
     TExtraProps extends {} = {},
 > = RefineFieldCommonProps<TValueType> &
@@ -74,19 +74,19 @@ export type RefineFieldNumberProps<
     };
 
 export type RefineFieldTagProps<
-    TValueType extends any = React.ReactNode,
+    TValueType = React.ReactNode,
     TComponentProps extends {} = {},
     TExtraProps extends {} = {},
 > = RefineFieldCommonProps<TValueType> & TComponentProps & TExtraProps & {};
 
 export type RefineFieldTextProps<
-    TValueType extends any = React.ReactNode,
+    TValueType = React.ReactNode,
     TComponentProps extends {} = {},
     TExtraProps extends {} = {},
 > = RefineFieldCommonProps<TValueType> & TComponentProps & TExtraProps & {};
 
 export type RefineFieldUrlProps<
-    TValueType extends any = string | undefined,
+    TValueType = string | undefined,
     TComponentProps extends {} = {},
     TExtraProps extends {} = {},
 > = RefineFieldCommonProps<TValueType> & TComponentProps & TExtraProps & {};

@@ -24,8 +24,9 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
         resource: "category",
     });
 
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
+        "write",
+    );
 
     return (
         <Create saveButtonProps={saveButtonProps}>

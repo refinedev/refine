@@ -21,8 +21,11 @@ import { IPost, IPostVariables, ICategory } from "interfaces";
 import { normalizeFile, storage } from "utility";
 
 export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps } =
-        useForm<IPost, HttpError, IPostVariables>();
+    const { formProps, saveButtonProps } = useForm<
+        IPost,
+        HttpError,
+        IPostVariables
+    >();
 
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "61c43adc284ac",
@@ -30,8 +33,9 @@ export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
         optionValue: "id",
     });
 
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
+        "write",
+    );
 
     return (
         <Create saveButtonProps={saveButtonProps}>
