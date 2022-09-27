@@ -95,7 +95,7 @@ export type UseImportReturnType<
  *
  */
 export const useImport = <
-    TItem extends unknown = any,
+    TItem = any,
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = any,
