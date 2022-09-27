@@ -1,9 +1,9 @@
 ---
-title: When to use dangerouslySetInnerHTML in React?
-description: Find out when to use dangerouslySetInnerHTML in React and how it can help avoid XSS attacks.
-slug: react-hook-form-validation
-authors: clara_ekekenta
-tags: [technical-articles]
+title: React Hook Form Validation with Complete Examples 
+description: We'll implement React Hook Form custom validations and schema validations using yup. 
+slug: react-hook-form-validation-examples
+authors: david_omotayo
+tags: [react, react-hook-form, refine, form-validation, yup, schema-validation]
 image: /img/blog/2022-09-27-react-hook-form-validation/social.png
 hide_table_of_contents: false
 ---
