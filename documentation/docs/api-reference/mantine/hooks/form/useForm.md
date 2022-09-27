@@ -114,6 +114,14 @@ const {
 | TError     | Custom error object that extends [`HttpError`][httperror]    | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
 | TVariables | Form values for mutation function                            | `{}`                       | `Record<string, unknown>`  |
 
+## Live StackBlitz Example
+
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/form/mantine/useForm?embed=1&view=preview&theme=dark&preset=node"
+    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+    title="mantine-use-form-example"
+></iframe>
+
+
 [use-form-core]: /api-reference/core/hooks/useForm.md
 [use-form-mantine]: https://mantine.dev/form/use-form
 [baserecord]: /api-reference/core/interfaces.md#baserecord
