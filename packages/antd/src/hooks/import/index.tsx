@@ -24,7 +24,7 @@ import {
  *
  */
 export const useImport = <
-    TItem extends unknown = any,
+    TItem = unknown,
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = any,
