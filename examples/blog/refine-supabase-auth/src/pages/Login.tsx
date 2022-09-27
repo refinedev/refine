@@ -16,7 +16,7 @@ export const LoginPage = () => {
     const onLogin = () => {
         login(
             { mobileNo: mobileNoRef.current, otp: otpRef.current },
-            { onError: (error: any) => setError(error.message) },
+            { onError: (error) => setError(error.message) },
         );
     };
 
