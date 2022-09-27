@@ -33,11 +33,11 @@
     "@types/jest": "^26.0.24",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.25.0",
-    "@typescript-eslint/parser": "^4.25.0",
-    "eslint": "7.27.0",
-    "eslint-plugin-prettier": "3.4.0",
-    "eslint-plugin-react": "7.23.2",
+    "@typescript-eslint/eslint-plugin": "^5.38.1",
+    "@typescript-eslint/parser": "^5.38.1",
+    "eslint": "^8.24.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.8",
     "husky": "^8.0.1",
     "jest": "^27.5.1",
     "lerna": "^4.0.0",
@@ -52,6 +52,6 @@
   "dependencies": {
     "@changesets/changelog-github": "^0.4.6",
     "@changesets/cli": "^2.24.3",
-    "prettier": "2.3.0"
+    "prettier": "^2.7.1"
   }
 }
