@@ -82,7 +82,10 @@ export const Show: React.FC<ShowProps> = (props) => {
     const defaultHeaderButtons = (
         <>
             {!recordItemId && (
-                <ListButton resourceNameOrRouteName={resource.route} />
+                <ListButton
+                    {...(isLoading ? { disabled: true } : {})}
+                    resourceNameOrRouteName={resource.route}
+                />
             )}
             {isEditButtonVisible && (
                 <EditButton

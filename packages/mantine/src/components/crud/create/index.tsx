@@ -64,9 +64,10 @@ export const Create: React.FC<CreateProps> = (props) => {
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
 
     const defaultFooterButtons = (
-        <>
-            <SaveButton loading={isLoading} {...saveButtonProps} />
-        </>
+        <SaveButton
+            {...(isLoading ? { disabled: true } : {})}
+            {...saveButtonProps}
+        />
     );
 
     const buttonBack =

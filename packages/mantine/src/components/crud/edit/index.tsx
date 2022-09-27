@@ -92,9 +92,13 @@ export const Edit: React.FC<EditProps> = (props) => {
     const defaultHeaderButtons = (
         <>
             {!recordItemId && (
-                <ListButton resourceNameOrRouteName={resource.route} />
+                <ListButton
+                    {...(isLoading ? { disabled: true } : {})}
+                    resourceNameOrRouteName={resource.route}
+                />
             )}
             <RefreshButton
+                {...(isLoading ? { disabled: true } : {})}
                 resourceNameOrRouteName={resource.route}
                 recordItemId={id}
                 dataProviderName={dataProviderName}
@@ -106,6 +110,7 @@ export const Edit: React.FC<EditProps> = (props) => {
         <>
             {isDeleteButtonVisible && (
                 <DeleteButton
+                    {...(isLoading ? { disabled: true } : {})}
                     mutationMode={mutationMode}
                     onSuccess={() => {
                         list(resource.route ?? resource.name);
@@ -114,7 +119,10 @@ export const Edit: React.FC<EditProps> = (props) => {
                     {...deleteButtonProps}
                 />
             )}
-            <SaveButton loading={isLoading} {...saveButtonProps} />
+            <SaveButton
+                {...(isLoading ? { disabled: true } : {})}
+                {...saveButtonProps}
+            />
         </>
     );
 
