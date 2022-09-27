@@ -8,7 +8,7 @@ title: useStepsForm
 <!-- TODO: When you create useModalForm hook documentation, change the link below. -->
 <!-- [Refer to the useStepsForm hook documentation for more information. →](/docs/api-reference/mantine/hooks/form/useStepsForm/) -->
 
-[View useStepsForm Example Source](https://github.com/pankod/refine/tree/master/examples/form/mui/useStepsForm)
+[View useStepsForm Example Source](https://github.com/pankod/refine/tree/master/examples/form/mantine/useStepsForm)
 
 <iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/form/mantine/useStepsForm?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
