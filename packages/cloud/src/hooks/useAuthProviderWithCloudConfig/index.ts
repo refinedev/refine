@@ -51,12 +51,12 @@ export const useAuthProviderWithCloudConfig =
                             });
                             return Promise.resolve("/login");
                         })
-                        .catch((err) => {
-                            return Promise.reject({
+                        .catch((err) =>
+                            Promise.reject({
                                 message: "Error",
                                 name: err.message,
-                            });
-                        });
+                            }),
+                        );
                 },
                 forgotPassword: async ({ email }) => {
                     return await sdk.auth
@@ -70,12 +70,12 @@ export const useAuthProviderWithCloudConfig =
                             });
                             return Promise.resolve();
                         })
-                        .catch((err) => {
-                            return Promise.reject({
+                        .catch((err) =>
+                            Promise.reject({
                                 message: "Error",
                                 name: err.message,
-                            });
-                        });
+                            }),
+                        );
                 },
                 register: async ({ email, password, providerName }) => {
                     // handle oauth register
@@ -89,7 +89,12 @@ export const useAuthProviderWithCloudConfig =
                             password,
                         })
                         .then(() => Promise.resolve())
-                        .catch(() => Promise.reject());
+                        .catch((err) =>
+                            Promise.reject({
+                                message: "Error",
+                                name: err.message,
+                            }),
+                        );
                 },
                 login: async ({ email, password, providerName }) => {
                     // handle oauth login
@@ -101,7 +106,12 @@ export const useAuthProviderWithCloudConfig =
                             password,
                         })
                         .then(() => Promise.resolve())
-                        .catch(() => Promise.reject());
+                        .catch((err) =>
+                            Promise.reject({
+                                message: "Error",
+                                name: err.message,
+                            }),
+                        );
                 },
                 logout: () => sdk.auth.logout(),
                 checkError: () => {
