@@ -11,5 +11,5 @@ title: useForm
 
 <iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/form/mui/useForm?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-mui-use-form-example"
+    title="mui-use-form"
 ></iframe>

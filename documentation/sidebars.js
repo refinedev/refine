@@ -581,9 +581,19 @@ module.exports = {
                         },
                         {
                             type: "category",
+                            label: "Mantine",
+                            items: [
+                                "examples/form/mantine/useDrawerForm",
+                                "examples/form/mantine/useForm",
+                                "examples/form/mantine/useModalForm",
+                                "examples/form/mantine/useStepsForm",
+                            ],
+                        },
+                        {
+                            type: "category",
                             label: "Material UI",
                             items: [
-                                "examples/form/mui/drawerForm",
+                                "examples/form/mui/useDrawerForm",
                                 "examples/form/mui/useForm",
                                 "examples/form/mui/useModalForm",
                                 "examples/form/mui/useStepsForm",
@@ -686,6 +696,14 @@ module.exports = {
                         },
                         {
                             type: "category",
+                            label: "Mantine",
+                            items: [
+                                "examples/table/mantine/advanced-react-table",
+                                "examples/table/mantine/basic",
+                            ],
+                        },
+                        {
+                            type: "category",
                             label: "Material UI",
                             items: [
                                 "examples/table/mui/advanced",
@@ -726,6 +744,14 @@ module.exports = {
                             items: [
                                 "examples/upload/antd/base64",
                                 "examples/upload/antd/multipart",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Mantine",
+                            items: [
+                                "examples/upload/mantine/base64",
+                                "examples/upload/mantine/multipart",
                             ],
                         },
                         {
