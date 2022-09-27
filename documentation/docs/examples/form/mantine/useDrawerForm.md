@@ -5,8 +5,7 @@ title: useDrawerForm
 
 `useModalForm` hook allows you to manage a form within a modal as well as a drawer. It provides some useful methods to handle the form modal or form drawer. You can view the live example or review the source code to see how it's used with Material UI.
 
-<!-- TODO: When you create useModalForm hook documentation, change the link below. -->
-<!-- [Refer to the useModalForm hook documentation for more information. →](#) -->
+[Refer to the useModalForm hook documentation for more information. →](/api-reference/mantine/hooks/form/useModalForm.md)
 
 [View Drawer Form Example Source](https://github.com/pankod/refine/tree/master/examples/form/mantine/useDrawerForm)
 
