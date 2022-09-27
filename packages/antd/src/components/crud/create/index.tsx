@@ -81,7 +81,11 @@ export const Create: React.FC<CreateProps> = ({
     const defaultFooterButtons = (
         <>
             {actionButtons ?? (
-                <SaveButton {...saveButtonProps} htmlType="submit" />
+                <SaveButton
+                    {...(isLoading ? { disabled: true } : {})}
+                    {...saveButtonProps}
+                    htmlType="submit"
+                />
             )}
         </>
     );
