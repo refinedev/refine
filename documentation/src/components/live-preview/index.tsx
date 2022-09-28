@@ -8,6 +8,7 @@ import BrowserWindow from "../../components/browser-window";
 import { useInView } from "../../hooks/use-in-view";
 import { Conditional } from "../conditional";
 import { splitCode } from "../../utils/split-code";
+import { useLivePreviewContext } from "../live-preview-context";
 
 /**
  * Live Preview Frame
@@ -132,7 +133,13 @@ const LivePreviewBase = ({
     url = "http://localhost:3000",
 }: PlaygroundProps): JSX.Element => {
     const code = String(children);
-    const { visible } = splitCode(code.replace(/\n$/, ""));
+    const { shared } = useLivePreviewContext();
+    const { visible } = splitCode(
+        `
+    ${shared ?? ""}
+    ${code}
+    `.replace(/\n$/, ""),
+    );
     const ref = React.useRef(null);
 
     const inView = useInView(ref);
@@ -162,7 +169,10 @@ const LivePreviewBase = ({
                             {() => {
                                 return (
                                     <LivePreviewFrame
-                                        code={code}
+                                        code={`
+${shared}
+${code}
+                                        `}
                                         query={
                                             disableScroll
                                                 ? "&disableScroll=true"
