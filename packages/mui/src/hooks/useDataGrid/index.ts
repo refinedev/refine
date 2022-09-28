@@ -53,18 +53,17 @@ type DataGridPropsType = Pick<DataGridProps, "filterModel"> &
         | "onPageSizeChange"
     >;
 
-export type UseDataGridProps<
-    TData,
-    TError,
-    TSearchVariables = unknown,
-> = useTablePropsCore<TData, TError> & {
-    onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
-} & {
-    /**
-     * @deprecated columns is deprecated and will be removed in the next major version. # https://github.com/pankod/refine/pull/2072
-     */
-    columns?: DataGridProps<TData>["columns"];
-};
+export type UseDataGridProps<TData, TError, TSearchVariables = unknown> =
+    useTablePropsCore<TData, TError> & {
+        onSearch?: (
+            data: TSearchVariables,
+        ) => CrudFilters | Promise<CrudFilters>;
+    } & {
+        /**
+         * @deprecated columns is deprecated and will be removed in the next major version. # https://github.com/pankod/refine/pull/2072
+         */
+        columns?: DataGridProps<TData>["columns"];
+    };
 
 export type UseDataGridReturnType<
     TData extends BaseRecord = BaseRecord,

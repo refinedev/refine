@@ -23,7 +23,7 @@ const Preview: NextPage = () => {
         return <Error statusCode={400} />;
     }
 
-    if (isReady && code && typeof window !== "undefined") {
+    if (isReady && code && typeof window !== "undefined" && !ready) {
         if (
             code?.includes("@pankod/refine-antd") ||
             code?.includes("RefineAntd")
