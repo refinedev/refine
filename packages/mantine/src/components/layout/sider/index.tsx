@@ -26,7 +26,7 @@ import {
     Styles,
 } from "@mantine/core";
 import {
-    IconBoxMultiple,
+    IconPoint,
     IconLayoutSidebarLeftExpand,
     IconChevronRight,
     IconChevronLeft,
@@ -37,7 +37,7 @@ import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
 
 import { Title as DefaultTitle } from "../title";
 
-const defaultNavIcon = <IconBoxMultiple color="white" size={16} />;
+const defaultNavIcon = <IconPoint color="white" size={18} />;
 
 export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const [collapsed, setCollapsed] = useState(false);
@@ -151,7 +151,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                             ? null
                             : t("dashboard.title", "Dashboard")
                     }
-                    icon={<IconHome size={16} />}
+                    icon={<IconHome size={18} />}
                     component={Link}
                     to="/"
                     active={selectedKey === "/"}

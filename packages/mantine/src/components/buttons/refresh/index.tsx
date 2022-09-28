@@ -71,7 +71,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     ) : (
         <Button
             variant="default"
-            leftIcon={<IconRefresh size={16} {...svgIconProps} />}
+            leftIcon={<IconRefresh size={18} {...svgIconProps} />}
             loading={isFetching}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) =>
                 onClick ? onClick(e) : refetch()

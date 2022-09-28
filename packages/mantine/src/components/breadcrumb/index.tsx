@@ -40,7 +40,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
         >
             {showHome && hasDashboard && (
                 <Anchor component={Link} color="dimmed" to="/">
-                    <IconHome size={16} />
+                    <IconHome size={18} />
                 </Anchor>
             )}
             {breadcrumbs.map(({ label, icon, href }) => {
