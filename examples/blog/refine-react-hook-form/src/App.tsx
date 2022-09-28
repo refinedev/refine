@@ -12,6 +12,7 @@ import {
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
+import Create from "pages/create";
 
 function App() {
     return (
@@ -24,6 +25,12 @@ function App() {
                     Layout={Layout}
                     ReadyPage={ReadyPage}
                     catchAll={<ErrorComponent />}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: Create,
+                        },
+                    ]}
                     routerProvider={routerProvider}
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",

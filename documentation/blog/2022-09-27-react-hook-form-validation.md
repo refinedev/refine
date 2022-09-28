@@ -133,150 +133,162 @@ Ideally, we’d create a List page where we will display the submitted data from
 To do so, open the `App.tsx` file and import the `create.tsx` file, then add it to the resources object:
 
 
-```tsx title="src/App.tsx"
+```tsx title="App.tsx"
 import { Refine } from "@pankod/refine-core";
 import {
-  notificationProvider,
-  RefineSnackbarProvider,
-  CssBaseline,
-  GlobalStyles,
-  Layout,
-  ThemeProvider,
-  LightTheme,
-  ReadyPage,
-  ErrorComponent,
+    notificationProvider,
+    RefineSnackbarProvider,
+    CssBaseline,
+    GlobalStyles,
+    Layout,
+    ThemeProvider,
+    LightTheme,
+    ReadyPage,
+    ErrorComponent,
 } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
-import Create from "resources/create";
- 
+import Create from "pages/create";
+
 function App() {
-  return (
-    <ThemeProvider theme={LightTheme}>
-      <CssBaseline />
-      <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-      <RefineSnackbarProvider>
-        <Refine
-          notificationProvider={notificationProvider}
-          Layout={Layout}
-          ReadyPage={ReadyPage}
-          catchAll={<ErrorComponent />}
-          routerProvider={routerProvider}
-          resources={[
-            {
-              name: "posts",
-              list: Create,
-            },
-          ]}
-          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        />
-      </RefineSnackbarProvider>
-    </ThemeProvider>
-  );
+    return (
+        <ThemeProvider theme={LightTheme}>
+            <CssBaseline />
+            <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+            <RefineSnackbarProvider>
+                <Refine
+                    notificationProvider={notificationProvider}
+                    Layout={Layout}
+                    ReadyPage={ReadyPage}
+                    catchAll={<ErrorComponent />}
+                    routerProvider={routerProvider}
+                    resources={[
+                        {
+                            name: "posts",
+                            list: Create,
+                        },
+                    ]}
+                    dataProvider={dataProvider(
+                        "https://api.fake-rest.refine.dev"
+                    )}
+                />
+            </RefineSnackbarProvider>
+        </ThemeProvider>
+    );
 }
- 
+
 export default App;
 ```
-
-
 Next, open the `create.tsx` file and add the following code:
 
-```tsx title="src/resources/create.tsx"
+<details><summary>Show create.tsx code</summary>
+<p>
+
+```tsx title="create.tsx"
 import React from "react";
 import {
-  TextField,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  Button,
+    TextField,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Select,
+    Button,
 } from "@pankod/refine-mui";
 
+interface iformValue {
+    firstname: string;
+    lastname: string;
+    address: string;
+    number: number;
+    work: string;
+    company: string;
+    role: string;
+}
+
 const Create: React.FC = (props) => {
-  return (
-    <form style={{ display: "flex", flexDirection: "column" }}>
-      <TextField
-        fullWidth
-        sx={{ maxWidth: 600 }}
-        label="First Name"
-        margin="dense"
-        required
-      />
-      <TextField
-        fullWidth
-        sx={{ maxWidth: 600 }}
-        label="Last Name"
-        margin="dense"
-        required
-      />
-
-      <TextField
-        fullWidth
-        sx={{ maxWidth: 600 }}
-        label="Address"
-        margin="dense"
-        required
-      />
-
-      <TextField
-        fullWidth
-        sx={{ maxWidth: 600 }}
-        label="Number"
-        margin="dense"
-        required
-        type="number"
-      />
-
-      <FormControl sx={{ marginTop: 1, marginBottom: 0.7 }} required>
-        <InputLabel id="type-label">Work</InputLabel>
-        <Select
-          sx={{ maxWidth: 600 }}
-          margin="dense"
-          type="select"
-          labelId="type-label"
-          label="Work"
-        >
-          <MenuItem value="employed">Employed</MenuItem>
-          <MenuItem value="unemployed">Unemployed</MenuItem>
-        </Select>
-      </FormControl>
-
-      <TextField
-        fullWidth
-        sx={{ maxWidth: 600 }}
-        label="Company"
-        margin="dense"
-        required
-      />
-
-      <TextField
-        fullWidth
-        sx={{ maxWidth: 600 }}
-        label="Role"
-        margin="dense"
-        required
-      />
-
-      <Button
-        type="submit"
-        variant="contained"
-        fullWidth
-        sx={{
-          maxWidth: "600px",
-          padding: "10px",
-          backgroundColor: "#67BE23",
-          color: "white",
-          marginTop: "5px",
-        }}
-      >
-        Submit
-      </Button>
-    </form>
-  );
+    return (
+        <form style={{ display: "flex", flexDirection: "column" }}>
+            <TextField
+                fullWidth
+                sx={{ maxWidth: 600 }}
+                label="First Name"
+                margin="dense"
+                required
+            />
+            <TextField
+                fullWidth
+                sx={{ maxWidth: 600 }}
+                label="Last Name"
+                margin="dense"
+                required
+            />
+            <TextField
+                fullWidth
+                sx={{ maxWidth: 600 }}
+                label="Address"
+                margin="dense"
+                required
+            />
+            <TextField
+                fullWidth
+                sx={{ maxWidth: 600 }}
+                label="Number"
+                margin="dense"
+                required
+                type="number"
+            />
+            )} />
+            <FormControl sx={{ marginTop: 1, marginBottom: 0.7 }} required>
+                <InputLabel id="type-label">Work</InputLabel>
+                <Select
+                    sx={{ maxWidth: 600 }}
+                    margin="dense"
+                    type="select"
+                    labelId="type-label"
+                    label="Work"
+                >
+                    <MenuItem value="employed">Employed</MenuItem>
+                    <MenuItem value="unemployed">Unemployed</MenuItem>
+                </Select>
+            </FormControl>
+            <TextField
+                fullWidth
+                sx={{ maxWidth: 600 }}
+                label="Company"
+                margin="dense"
+                required
+            />
+            <TextField
+                fullWidth
+                sx={{ maxWidth: 600 }}
+                label="Role"
+                margin="dense"
+                required
+            />
+            )}
+            <Button
+                type="submit"
+                variant="contained"
+                fullWidth
+                sx={{
+                    maxWidth: "600px",
+                    padding: "10px",
+                    backgroundColor: "#67BE23",
+                    color: "white",
+                    marginTop: "5px",
+                }}
+            >
+                Submit
+            </Button>
+        </form>
+    );
 };
 
 export default Create;
 ```
+
+ </p>
+</details>
 
 Here, we created a regular HTML form using a form element and the MUI TextField form control components.  
 Each `<TextField>` will be used for getting the first name, last name, address, employment status, place of work, role, and phone number values. We also created an interface object of the form, we’ll be using this later in the article.
@@ -345,20 +357,20 @@ Here's a basic usage of the controller component:
 
 ```tsx
 <Controller
-  control={control}
-  name="firstname"
-  render={({ field }) => (
-    <TextField
-      {...field}
-      fullWidth
-      sx={{ maxWidth: 600 }}
-      label="First Name"
-      margin="dense"
-      required
-      error={!!errors.firstname}
-      helperText={errors.firstname && `${errors.firstname.message}`}
-    />
-  )}
+    control={control}
+    name="firstname"
+    render={({ field }) => (
+        <TextField
+            {...field}
+            fullWidth
+            sx={{ maxWidth: 600 }}
+            label="First Name"
+            margin="dense"
+            required
+            error={!!errors.firstname}
+            helperText={errors.firstname && `${errors.firstname.message}`}
+        />
+    )}
 />;
 ```
 
@@ -375,150 +387,152 @@ import { Controller, useForm } from "@pankod/refine-react-hook-form";
 
 Next, we'll wrap the `<TextField>` components with the Controller component:
 
+<details><summary>Show create.tsx code</summary>
+<p>
+
 ```tsx title="src/resources/create.tsx"
 import React from "react";
 import {
-  TextField,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  Button,
+    TextField,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Select,
+    Button,
 } from "@pankod/refine-mui";
 import { Controller } from "@pankod/refine-react-hook-form";
- 
+
 const Create: React.FC = (props) => {
- 
-  return (
-    <form
-      style={{ display: "flex", flexDirection: "column" }}
-    >
-      <Controller
-        control={control}
-        name="firstname"
-        render={({ field }) => (
-          <TextField
-            {...field}
-            fullWidth
-            sx={{ maxWidth: 600 }}
-            label="First Name"
-            margin="dense"
-            required
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        name="lastname"
-        render={({ field }) => (
-          <TextField
-            {...field}
-            fullWidth
-            sx={{ maxWidth: 600 }}
-            label="Last Name"
-            margin="dense"
-            required
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        name="address"
-        render={({ field }) => (
-          <TextField
-            {...field}
-            fullWidth
-            sx={{ maxWidth: 600 }}
-            label="Address"
-            margin="dense"
-            required
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        name="number"
-        render={({ field }) => (
-          <TextField
-            {...field}
-            fullWidth
-            sx={{ maxWidth: 600 }}
-            label="Number"
-            margin="dense"
-            required
-            type="number"
-          />
-        )}
-      />
-      <FormControl sx={{ marginTop: 1, marginBottom: 0.7 }} required>
-        <InputLabel id="type-label">Work</InputLabel>
-        <Controller
-          control={control}
-          name="work"
-          render={({ field }) => (
-            <Select
-              sx={{ maxWidth: 600 }}
-              margin="dense"
-              {...field}
-              type="select"
-              labelId="type-label"
-              label="Work"
+    return (
+        <form style={{ display: "flex", flexDirection: "column" }}>
+            <Controller
+                control={control}
+                name="firstname"
+                render={({ field }) => (
+                    <TextField
+                        {...field}
+                        fullWidth
+                        sx={{ maxWidth: 600 }}
+                        label="First Name"
+                        margin="dense"
+                        required
+                    />
+                )}
+            />
+            <Controller
+                control={control}
+                name="lastname"
+                render={({ field }) => (
+                    <TextField
+                        {...field}
+                        fullWidth
+                        sx={{ maxWidth: 600 }}
+                        label="Last Name"
+                        margin="dense"
+                        required
+                    />
+                )}
+            />
+            <Controller
+                control={control}
+                name="address"
+                render={({ field }) => (
+                    <TextField
+                        {...field}
+                        fullWidth
+                        sx={{ maxWidth: 600 }}
+                        label="Address"
+                        margin="dense"
+                        required
+                    />
+                )}
+            />
+            <Controller
+                control={control}
+                name="number"
+                render={({ field }) => (
+                    <TextField
+                        {...field}
+                        fullWidth
+                        sx={{ maxWidth: 600 }}
+                        label="Number"
+                        margin="dense"
+                        required
+                        type="number"
+                    />
+                )}
+            />
+            <FormControl sx={{ marginTop: 1, marginBottom: 0.7 }} required>
+                <InputLabel id="type-label">Work</InputLabel>
+                <Controller
+                    control={control}
+                    name="work"
+                    render={({ field }) => (
+                        <Select
+                            sx={{ maxWidth: 600 }}
+                            margin="dense"
+                            {...field}
+                            type="select"
+                            labelId="type-label"
+                            label="Work"
+                        >
+                            <MenuItem value="employed">Employed</MenuItem>
+                            <MenuItem value="unemployed">Unemployed</MenuItem>
+                        </Select>
+                    )}
+                />
+            </FormControl>
+            <Controller
+                control={control}
+                name="company"
+                render={({ field }) => (
+                    <TextField
+                        {...field}
+                        fullWidth
+                        sx={{ maxWidth: 600 }}
+                        label="Company"
+                        margin="dense"
+                        required
+                    />
+                )}
+            />
+            <Controller
+                control={control}
+                name="role"
+                render={({ field }) => (
+                    <TextField
+                        {...field}
+                        fullWidth
+                        sx={{ maxWidth: 600 }}
+                        label="Role"
+                        margin="dense"
+                        required
+                    />
+                )}
+            />
+            <Button
+                type="submit"
+                variant="contained"
+                fullWidth
+                sx={{
+                    maxWidth: "600px",
+                    padding: "10px",
+                    backgroundColor: "#67BE23",
+                    color: "white",
+                    marginTop: "5px",
+                }}
             >
-              <MenuItem value="employed">Employed</MenuItem>
-              <MenuItem value="unemployed">Unemployed</MenuItem>
-            </Select>
-          )}
-        />
-      </FormControl>
-          <Controller
-            control={control}
-            name="company"
-            render={({ field }) => (
-              <TextField
-                {...field}
-                fullWidth
-                sx={{ maxWidth: 600 }}
-                label="Company"
-                margin="dense"
-                required
-              />
-            )}
-          />
-          <Controller
-            control={control}
-            name="role"
-            render={({ field }) => (
-              <TextField
-                {...field}
-                fullWidth
-                sx={{ maxWidth: 600 }}
-                label="Role"
-                margin="dense"
-                required
-              />
-            )}
-          />
-      <Button
-        type="submit"
-        variant="contained"
-        fullWidth
-        sx={{
-          maxWidth: "600px",
-          padding: "10px",
-          backgroundColor: "#67BE23",
-          color: "white",
-          marginTop: "5px",
-        }}
-      >
-        Submit
-      </Button>
-    </form>
-  );
+                Submit
+            </Button>
+        </form>
+    );
 };
- 
+
 export default Create;
- ```
- 
+```
+ </p>
+</details>
+
  Here, we are passing the name keys (firstname, lastname, number…), control method, and `<TextField>` component to the name, control, and render properties of the `<Controller>` component respectively.
 
 We’re also using the `field` prop to integrate the controller’s data with our `<TextField>` components, by dynamically spreading it on each component.
@@ -527,78 +541,50 @@ For the next step, destructure the control method from the `useForm` hook:
 
 
 ```tsx title="src/resources/create.tsx"
-//highlight-start
-import { Controller, useForm } from "@pankod/refine-react-hook-form";
-
-... 
-
-interface IFormValue {
-  firstname: string;
-  lastname: string;
-  address: string;
-  number: number;
-  work: string;
-  company: string;
-  role: string;
-}
-
-  const { control } = useForm<IFormValue>();
-//highlight-end
-
-...
-```
-
-Then, create a `defaultValues` object outside the component function and pass it to the `useForm` hook option’s object alongside a mode key with an `onChange` value.
-
-
-```tsx title="src/resources/create.tsx"
 import React from "react";
 import {
-  TextField,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  Button,
+    TextField,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Select,
+    Button,
 } from "@pankod/refine-mui";
- 
+
 interface IFormValue {
-  firstname: string;
-  lastname: string;
-  address: string;
-  number: number;
-  work: string;
-  company: string;
-  role: string;
+    firstname: string;
+    lastname: string;
+    address: string;
+    number: number;
+    work: string;
+    company: string;
+    role: string;
 }
 const defaultValues = {
-  firstname: "",
-  lastname: "",
-  address: "",
-  number: 0,
-  work: "unemployed",
-  company: "",
-  role: "",
+    firstname: "",
+    lastname: "",
+    address: "",
+    number: 0,
+    work: "unemployed",
+    company: "",
+    role: "",
+};
+
+const Create: React.FC = (props) => {
+    const { control } =
+        useForm <
+        IFormValue >
+        {
+            //highlight-start
+            mode: "onChange",
+            defaultValues,
+            //highlight-end
+        };
+
+    return (...);
 };
  
-const Create: React.FC = (props) => {
- 
-  const {
-    control,
-  } = useForm<IFormValue>({
-    //highlight-start
-    mode: "onChange",
-    defaultValues,
-    //highlight-end
-  });
- 
-    return (
-	...
-);
-  };
- 
 export default Create;
- 
 ```
 
 The `defaultValue` object properties will serve as the default value for our form's TextFields. The mode property specifies how React Hook Form should watch the TextField for errors.
@@ -613,14 +599,14 @@ We can do this by adding a maxLength property to the `<TextField>` component and
 
 ```tsx
 <TextField
-  fullWidth
-  inputProps={{
-    maxLength: 5,
-  }}
-  sx={{ maxWidth: 600 }}
-  label="First Name"
-  margin="dense"
-  required
+    fullWidth
+    inputProps={{
+        maxLength: 5,
+    }}
+    sx={{ maxWidth: 600 }}
+    label="First Name"
+    margin="dense"
+    required
 />;
 ```
 
@@ -679,7 +665,7 @@ Schemas are object-based approaches for defining validation rules for form input
 The first step is to install the yup and the hook form resolver library with the following commands:
 
 ```
-npm i @hook/resolvers yup
+npm i @hookform/resolvers yup
 ```
 
 The hook form resolver library is a resolver for **yup**. The library aids in integrating yup to the React Hook Form library.
@@ -690,12 +676,12 @@ Once the installation is done, import `yup` and `yupResolver` and create a schem
 ```tsx title="src/resources/create.tsx"
 import React from "react";
 import {
-  TextField,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  Button,
+    TextField,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Select,
+    Button,
 } from "@pankod/refine-mui";
 import { Controller, useForm } from "@pankod/refine-react-hook-form";
 
@@ -704,29 +690,30 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const schema = Yup.object().shape({
-  firstname: Yup.string().label("First Name").trim().required().min(3).max(64),
-  lastname: Yup.string().label("Last Name").trim().required().min(3).max(64),
-  address: Yup.string().label("Address").trim().required().min(3),
-  number: Yup.number().label("Number").required().max(255),
-  work: Yup.string().label("Work").oneOf(["unemployed", "employed"]),
-  company: Yup.string().when("work", {
-    is: (val: any) => val === "employed",
-    then: Yup.string().label("Company").required().min(3).max(64),
-  }),
-  role: Yup.string().when("work", {
-    is: (val: any) => val === "employed",
-    then: Yup.string().label("Role").required().min(3).max(64),
-  }),
+    firstname: Yup.string()
+        .label("First Name")
+        .trim()
+        .required()
+        .min(3)
+        .max(64),
+    lastname: Yup.string().label("Last Name").trim().required().min(3).max(64),
+    address: Yup.string().label("Address").trim().required().min(3),
+    number: Yup.number().label("Number").required().max(255),
+    work: Yup.string().label("Work").oneOf(["unemployed", "employed"]),
+    company: Yup.string().when("work", {
+        is: (val: any) => val === "employed",
+        then: Yup.string().label("Company").required().min(3).max(64),
+    }),
+    role: Yup.string().when("work", {
+        is: (val: any) => val === "employed",
+        then: Yup.string().label("Role").required().min(3).max(64),
+    }),
 });
 //highlight-end
 
 const Create: React.FC = (props) => {
-	...
- 
-  return (
-      ...
-   )
-}
+    return (...);
+};
 ```
 
 You'll notice that the schema for the select (work) component is different from the rest because we're conditionally validating the company and role fields. This is being done by the when, is and then methods. 
@@ -754,35 +741,33 @@ That’s all we have to do to set up our schema, next we’ll look at a new way 
 Handling errors with MUI's TextField component is fairly straightforward, all we have to do is destructure the errors property from the useForm’s formState method:
 
 ```tsx
-  const {
-    control,
-    formState: { errors },
-  } = useForm<IFormValue>({
-    mode: "onChange",
-    defaultValues,
-    //highlight-next-line
-    resolver: yupResolver(schema),
-  });
+const { control, formState: { errors }} = useForm<IFormValue>
+({
+  mode: "onChange",
+  defaultValues,
+  //highlight-next-line
+  resolver: yupResolver(schema),
+});
 ```
 
 Then, pass the error object and message to the `error` and `helperText` props like so:
 
 ```tsx
 <Controller
-  control={control}
-  name="firstname"
-  render={({ field }) => (
-    <TextField
-      fullWidth
-      {...field}
-      sx={{ maxWidth: 600 }}
-      label="First Name"
-      margin="dense"
-      required
-      error={!!errors.firstname}
-      helperText={errors.firstname && `${errors.firstname.message}`}
-    />
-  )}
+    control={control}
+    name="firstname"
+    render={({ field }) => (
+        <TextField
+            fullWidth
+            {...field}
+            sx={{ maxWidth: 600 }}
+            label="First Name"
+            margin="dense"
+            required
+            error={!!errors.firstname}
+            helperText={errors.firstname && `${errors.firstname.message}`}
+        />
+    )}
 />;
 ```
 
@@ -812,18 +797,18 @@ The watch function does exactly what its name implies. It watches and tracks the
 First, destructure the watch function from the `useForm` hook, then declare a work variable and pass the `watch` method to it, with the `"work"` string passed to it as a parameter:
 
 ```tsx
-  const {
+const {
     control,
     watch,
     formState: { errors },
-  } = useForm<IFormValue>({
+} = useForm <IFormValue>
+{
     mode: "onChange",
     defaultValues,
     resolver: yupResolver(schema),
-  });
-  
-  ... 
-  const work = watch("work");
+};
+
+const work = watch("work");
 ```
 
 This way, the watch function will be able to track the selected option in the work select component.
@@ -902,14 +887,14 @@ First off, destructure the handleSubmit method from the `useForm` hook and creat
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<IFormValue>({
+} = useForm <IFormValue>
+{
     mode: "onChange",
     defaultValues,
     resolver: yupResolver(schema),
-  });
- 
-  const handleSubmission = (data: any) => console.log(data);
- 
+};
+
+const handleSubmission = (data: any) => console.log(data);
 ```
 
 Lastly, add an `onSubmit` event handler to the form and pass the `handleSubmit` method and `formSubmission` function to it:
