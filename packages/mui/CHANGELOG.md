@@ -1,5 +1,16 @@
 # @pankod/refine-mui
 
+## 3.45.7
+
+### Patch Changes
+
+-   Updated `disabled` attribute of buttons in CRUD components according to `isLoading` prop.
+
+-   Removed redundant type inheritance
+
+-   Updated dependencies []:
+    -   @pankod/refine-ui-types@0.11.2
+
 ## 3.45.6
 
 ### Patch Changes

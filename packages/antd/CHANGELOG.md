@@ -1,5 +1,16 @@
 # @pankod/refine-antd
 
+## 3.48.8
+
+### Patch Changes
+
+-   Updated `disabled` attribute of buttons in CRUD components according to `isLoading` prop.
+
+-   Removed redundant type inheritance
+
+-   Updated dependencies []:
+    -   @pankod/refine-ui-types@0.11.2
+
 ## 3.48.7
 
 ### Patch Changes
