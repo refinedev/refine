@@ -247,7 +247,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 <Box
                     sx={{
                         width: drawerWidth(),
-                        transition: "width 1000ms ease, min-width 1000ms ease",
+                        transition: "width 200ms ease, min-width 200ms ease",
                     }}
                 />
             </MediaQuery>
@@ -257,7 +257,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                     width={{ base: drawerWidth() }}
                     sx={{
                         overflow: "hidden",
-                        transition: "width 1000ms ease, min-width 1000ms ease",
+                        transition: "width 200ms ease, min-width 200ms ease",
                         backgroundColor: "#2A132E",
                         position: "fixed",
                         top: 0,
