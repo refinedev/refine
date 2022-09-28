@@ -43,6 +43,7 @@
     "dependencies": {
         "@emotion/react": "^11.8.2",
         "@mantine/core": "^5.2.3",
+        "@mantine/hooks": "^5.2.3",
         "@mantine/form": "^5.2.3",
         "@mantine/notifications": "^5.2.3",
         "@pankod/refine-ui-types": "^0.11.0",
