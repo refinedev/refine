@@ -12,6 +12,8 @@ RUN npm install
 
 COPY . /opt/app
 
+ENV LIVE_PREVIEW_URL=next.live-previews.refine.dev
+
 RUN npm run build
 
 FROM node:16-alpine
