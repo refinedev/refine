@@ -12,7 +12,7 @@ RUN npm install
 
 COPY . /opt/app
 
-ENV LIVE_PREVIEW_URL=next.live-previews.refine.dev
+ENV LIVE_PREVIEW_URL=https://next.live-previews.refine.dev/preview
 
 RUN npm run build
 

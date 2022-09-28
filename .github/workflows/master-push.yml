@@ -341,4 +341,4 @@ jobs:
           git config --global user.email "bot@pankod.com"
           git config --global user.name "pankod-bot"
           npm install
-          LIVE_PREVIEW_URL=live-preview.refine.dev npm run deploy
+          LIVE_PREVIEW_URL=https://live-preview.refine.dev/preview npm run deploy

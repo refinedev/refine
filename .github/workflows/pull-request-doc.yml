@@ -52,7 +52,7 @@ jobs:
         run: |
           cd documentation
           npm install
-          LIVE_PREVIEW_URL=${{ steps.waitForDeployment.outputs.url }} npm run build
+          LIVE_PREVIEW_URL=${{ steps.waitForDeployment.outputs.url }}/preview npm run build
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
