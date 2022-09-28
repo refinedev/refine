@@ -1,5 +1,11 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import { GetManyResponse, useDeleteMany, useMany } from "@pankod/refine-core";
+import {
+    useTable,
+    ColumnDef,
+    flexRender,
+    Row,
+} from "@pankod/refine-react-table";
 import {
     useForm,
     Button,
@@ -17,141 +23,13 @@ import {
     ScrollArea,
     Pagination,
     Space,
-    Menu,
     Box,
-    Stack,
 } from "@pankod/refine-mantine";
-import {
-    useTable,
-    ColumnDef,
-    flexRender,
-    Row,
-    Column,
-} from "@pankod/refine-react-table";
 import { RichTextEditor } from "@mantine/rte";
-import {
-    IconChevronDown,
-    IconChevronRight,
-    IconSelector,
-    IconFilter,
-    IconX,
-    IconCheck,
-} from "@tabler/icons";
+import { IconChevronDown, IconChevronRight } from "@tabler/icons";
 
-import { IPost, ICategory } from "../../interfaces";
-
-interface ColumnButtonProps {
-    column: Column<any, any>;
-}
-
-const ColumnFilter: React.FC<ColumnButtonProps> = ({ column }) => {
-    if (!column.getCanFilter()) {
-        return null;
-    }
-
-    const [state, setState] = useState(null as null | { value: any });
-
-    const open = () =>
-        setState({
-            value: column.getFilterValue(),
-        });
-
-    const close = () => setState(null);
-
-    const change = (value: any) => setState({ value });
-
-    const clear = () => {
-        column.setFilterValue(undefined);
-        close();
-    };
-
-    const save = () => {
-        if (!state) return;
-        column.setFilterValue(state.value);
-        close();
-    };
-
-    return (
-        <Menu
-            opened={!!state}
-            position="bottom"
-            withArrow
-            transition="scale-y"
-            shadow="xl"
-            onClose={close}
-            width="256px"
-            withinPortal
-        >
-            <Menu.Target>
-                <ActionIcon
-                    size="xs"
-                    onClick={open}
-                    variant={column.getIsFiltered() ? "light" : "transparent"}
-                    color={column.getIsFiltered() ? "primary" : "gray"}
-                >
-                    <IconFilter size={16} />
-                </ActionIcon>
-            </Menu.Target>
-            <Menu.Dropdown>
-                {!!state && (
-                    <Stack p="xs" spacing="xs">
-                        <TextInput
-                            autoComplete="off"
-                            value={state.value}
-                            onChange={(e) => change(e.target.value)}
-                        />
-
-                        <Group position="right" spacing="xs" noWrap>
-                            <ActionIcon
-                                size="sm"
-                                color="gray"
-                                variant="outline"
-                                onClick={clear}
-                            >
-                                <IconX />
-                            </ActionIcon>
-                            <ActionIcon
-                                size="sm"
-                                onClick={save}
-                                color="primary"
-                                variant="outline"
-                            >
-                                <IconCheck />
-                            </ActionIcon>
-                        </Group>
-                    </Stack>
-                )}
-            </Menu.Dropdown>
-        </Menu>
-    );
-};
-
-const ColumnSorter: React.FC<ColumnButtonProps> = ({ column }) => {
-    if (!column.getCanSort()) {
-        return null;
-    }
-
-    const sorted = column.getIsSorted();
-
-    return (
-        <ActionIcon
-            size="xs"
-            onClick={column.getToggleSortingHandler()}
-            style={{
-                transition: "transform 0.25s",
-                transform: `rotate(${sorted === "asc" ? "180" : "0"}deg)`,
-            }}
-            variant={sorted ? "light" : "transparent"}
-            color={sorted ? "primary" : "gray"}
-        >
-            {sorted ? (
-                <IconChevronDown size={16} />
-            ) : (
-                <IconSelector size={16} />
-            )}
-        </ActionIcon>
-    );
-};
+// import { ColumnFilter, ColumnSorter } from "../../components/table";
+import { IPost, ICategory, FilterElementProps } from "../../interfaces";
 
 export const PostList: React.FC = () => {
     const {
@@ -280,7 +158,7 @@ export const PostList: React.FC = () => {
                     return category?.title ?? "Loading...";
                 },
                 meta: {
-                    filterElement: function render(props: any) {
+                    filterElement: function render(props: FilterElementProps) {
                         return <Select {...filterSelectProps} {...props} />;
                     },
                     filterOperator: "eq",
@@ -436,12 +314,12 @@ export const PostList: React.FC = () => {
                                                     )}
                                                 </Box>
                                                 <Group spacing="xs" noWrap>
-                                                    <ColumnSorter
+                                                    {/* <ColumnSorter
                                                         column={header.column}
                                                     />
                                                     <ColumnFilter
                                                         column={header.column}
-                                                    />
+                                                    /> */}
                                                 </Group>
                                             </Group>
                                         )}
