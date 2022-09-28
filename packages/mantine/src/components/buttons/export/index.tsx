@@ -4,8 +4,10 @@ import {
     RefineExportButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
-import { Button, ButtonProps } from "@mantine/core";
+import { ActionIcon, Button, ButtonProps } from "@mantine/core";
 import { IconTableExport, TablerIconProps } from "@tabler/icons";
+
+import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 
 export type ExportButtonProps = RefineExportButtonProps<
     ButtonProps,
@@ -29,21 +31,30 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
-    return (
+    const { variant, styles, ...commonProps } = rest;
+
+    return hideText ? (
+        <ActionIcon
+            {...(variant
+                ? {
+                      variant: mapButtonVariantToActionIconVariant(variant),
+                  }
+                : { variant: "default" })}
+            loading={loading}
+            data-testid={RefineButtonTestIds.ExportButton}
+            {...commonProps}
+        >
+            <IconTableExport size={18} {...svgIconProps} />
+        </ActionIcon>
+    ) : (
         <Button
             variant="default"
             loading={loading}
-            leftIcon={
-                !hideText && <IconTableExport size={16} {...svgIconProps} />
-            }
+            leftIcon={<IconTableExport size={18} {...svgIconProps} />}
             data-testid={RefineButtonTestIds.ExportButton}
             {...rest}
         >
-            {hideText ? (
-                <IconTableExport size={16} {...svgIconProps} />
-            ) : (
-                children ?? translate("buttons.export", "Export")
-            )}
+            {children ?? translate("buttons.export", "Export")}
         </Button>
     );
 };

@@ -11,8 +11,10 @@ import {
     RefineButtonTestIds,
     RefineListButtonProps,
 } from "@pankod/refine-ui-types";
-import { Anchor, Button, ButtonProps } from "@mantine/core";
+import { ActionIcon, Anchor, Button, ButtonProps } from "@mantine/core";
 import { IconList, TablerIconProps } from "@tabler/icons";
+
+import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 
 export type ListButtonProps = RefineListButtonProps<
     ButtonProps,
@@ -69,6 +71,8 @@ export const ListButton: React.FC<ListButtonProps> = ({
 
     const listUrl = generateListUrl(resource.route!);
 
+    const { variant, styles, ...commonProps } = rest;
+
     return (
         <Anchor
             component={Link}
@@ -81,27 +85,40 @@ export const ListButton: React.FC<ListButtonProps> = ({
                 }
             }}
         >
-            <Button
-                variant="default"
-                disabled={data?.can === false}
-                leftIcon={!hideText && <IconList size={16} {...svgIconProps} />}
-                title={disabledTitle()}
-                data-testid={RefineButtonTestIds.ListButton}
-                {...rest}
-            >
-                {hideText ? (
-                    <IconList size={16} {...svgIconProps} />
-                ) : (
-                    children ??
-                    translate(
-                        `${resourceName}.titles.list`,
-                        userFriendlyResourceName(
-                            resource.label ?? resourceName,
-                            "plural",
-                        ),
-                    )
-                )}
-            </Button>
+            {hideText ? (
+                <ActionIcon
+                    {...(variant
+                        ? {
+                              variant:
+                                  mapButtonVariantToActionIconVariant(variant),
+                          }
+                        : { variant: "default" })}
+                    disabled={data?.can === false}
+                    title={disabledTitle()}
+                    data-testid={RefineButtonTestIds.ListButton}
+                    {...commonProps}
+                >
+                    <IconList size={18} {...svgIconProps} />
+                </ActionIcon>
+            ) : (
+                <Button
+                    variant="default"
+                    disabled={data?.can === false}
+                    leftIcon={<IconList size={18} {...svgIconProps} />}
+                    title={disabledTitle()}
+                    data-testid={RefineButtonTestIds.ListButton}
+                    {...rest}
+                >
+                    {children ??
+                        translate(
+                            `${resourceName}.titles.list`,
+                            userFriendlyResourceName(
+                                resource.label ?? resourceName,
+                                "plural",
+                            ),
+                        )}
+                </Button>
+            )}
         </Anchor>
     );
 };

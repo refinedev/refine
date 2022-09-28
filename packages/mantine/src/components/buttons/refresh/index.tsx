@@ -4,8 +4,9 @@ import {
     RefineButtonTestIds,
     RefineRefreshButtonProps,
 } from "@pankod/refine-ui-types";
-import { Button, ButtonProps } from "@mantine/core";
+import { ActionIcon, Button, ButtonProps } from "@mantine/core";
 import { IconRefresh, TablerIconProps } from "@tabler/icons";
+import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 
 export type RefreshButtonProps = RefineRefreshButtonProps<
     ButtonProps,
@@ -49,23 +50,36 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
         dataProviderName,
     });
 
-    return (
+    const { variant, styles, ...commonProps } = rest;
+
+    return hideText ? (
+        <ActionIcon
+            onClick={(e: React.PointerEvent<HTMLButtonElement>) =>
+                onClick ? onClick(e) : refetch()
+            }
+            loading={isFetching}
+            data-testid={RefineButtonTestIds.RefreshButton}
+            {...(variant
+                ? {
+                      variant: mapButtonVariantToActionIconVariant(variant),
+                  }
+                : { variant: "default" })}
+            {...commonProps}
+        >
+            <IconRefresh size={18} {...svgIconProps} />
+        </ActionIcon>
+    ) : (
         <Button
             variant="default"
-            leftIcon={!hideText && <IconRefresh size={16} {...svgIconProps} />}
+            leftIcon={<IconRefresh size={16} {...svgIconProps} />}
             loading={isFetching}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) =>
                 onClick ? onClick(e) : refetch()
             }
             data-testid={RefineButtonTestIds.RefreshButton}
-            loaderProps={{ size: 24 }}
             {...rest}
         >
-            {hideText ? (
-                <IconRefresh size={16} {...svgIconProps} />
-            ) : (
-                children ?? translate("buttons.refresh", "Refresh")
-            )}
+            {children ?? translate("buttons.refresh", "Refresh")}
         </Button>
     );
 };

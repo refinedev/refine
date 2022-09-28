@@ -10,8 +10,10 @@ import {
     RefineCloneButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
-import { Anchor, Button, ButtonProps } from "@mantine/core";
+import { ActionIcon, Anchor, Button, ButtonProps } from "@mantine/core";
 import { IconSquarePlus, TablerIconProps } from "@tabler/icons";
+
+import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 
 export type CloneButtonProps = RefineCloneButtonProps<
     ButtonProps,
@@ -69,6 +71,8 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
 
     const cloneUrl = generateCloneUrl(resource.route!, id!);
 
+    const { variant, styles, ...commonProps } = rest;
+
     return (
         <Anchor
             component={Link}
@@ -81,22 +85,33 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
                 }
             }}
         >
-            <Button
-                disabled={data?.can === false}
-                variant="default"
-                leftIcon={
-                    !hideText && <IconSquarePlus size={16} {...svgIconProps} />
-                }
-                title={disabledTitle()}
-                data-testid={RefineButtonTestIds.CloneButton}
-                {...rest}
-            >
-                {hideText ? (
-                    <IconSquarePlus size={16} {...svgIconProps} />
-                ) : (
-                    children ?? translate("buttons.clone", "Clone")
-                )}
-            </Button>
+            {hideText ? (
+                <ActionIcon
+                    disabled={data?.can === false}
+                    title={disabledTitle()}
+                    {...(variant
+                        ? {
+                              variant:
+                                  mapButtonVariantToActionIconVariant(variant),
+                          }
+                        : { variant: "default" })}
+                    data-testid={RefineButtonTestIds.CloneButton}
+                    {...commonProps}
+                >
+                    <IconSquarePlus size={18} {...svgIconProps} />
+                </ActionIcon>
+            ) : (
+                <Button
+                    disabled={data?.can === false}
+                    variant="default"
+                    leftIcon={<IconSquarePlus size={18} {...svgIconProps} />}
+                    title={disabledTitle()}
+                    data-testid={RefineButtonTestIds.CloneButton}
+                    {...rest}
+                >
+                    {children ?? translate("buttons.clone", "Clone")}
+                </Button>
+            )}
         </Anchor>
     );
 };

@@ -10,8 +10,10 @@ import {
     RefineButtonTestIds,
     RefineShowButtonProps,
 } from "@pankod/refine-ui-types";
-import { Button, ButtonProps } from "@mantine/core";
+import { ActionIcon, Anchor, Button, ButtonProps } from "@mantine/core";
 import { IconEye, TablerIconProps } from "@tabler/icons";
+
+import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 
 export type ShowButtonProps = RefineShowButtonProps<
     ButtonProps,
@@ -68,8 +70,11 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
 
     const showUrl = generateShowUrl(resource.route!, id!);
 
+    const { variant, styles, ...commonProps } = rest;
+
     return (
-        <Link
+        <Anchor
+            component={Link}
             to={showUrl}
             replace={false}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
@@ -78,22 +83,34 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
                     onClick(e);
                 }
             }}
-            style={{ textDecoration: "none" }}
         >
-            <Button
-                variant="default"
-                disabled={data?.can === false}
-                leftIcon={!hideText && <IconEye size={16} {...svgIconProps} />}
-                title={disabledTitle()}
-                data-testid={RefineButtonTestIds.ShowButton}
-                {...rest}
-            >
-                {hideText ? (
-                    <IconEye size={16} {...svgIconProps} />
-                ) : (
-                    children ?? translate("buttons.show", "Show")
-                )}
-            </Button>
-        </Link>
+            {hideText ? (
+                <ActionIcon
+                    {...(variant
+                        ? {
+                              variant:
+                                  mapButtonVariantToActionIconVariant(variant),
+                          }
+                        : { variant: "default" })}
+                    disabled={data?.can === false}
+                    title={disabledTitle()}
+                    data-testid={RefineButtonTestIds.ShowButton}
+                    {...commonProps}
+                >
+                    <IconEye size={18} {...svgIconProps} />
+                </ActionIcon>
+            ) : (
+                <Button
+                    variant="default"
+                    disabled={data?.can === false}
+                    leftIcon={<IconEye size={18} {...svgIconProps} />}
+                    title={disabledTitle()}
+                    data-testid={RefineButtonTestIds.ShowButton}
+                    {...rest}
+                >
+                    {children ?? translate("buttons.show", "Show")}
+                </Button>
+            )}
+        </Anchor>
     );
 };

@@ -10,8 +10,10 @@ import {
     RefineEditButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
-import { Anchor, Button, ButtonProps } from "@mantine/core";
+import { ActionIcon, Anchor, Button, ButtonProps } from "@mantine/core";
 import { IconPencil, TablerIconProps } from "@tabler/icons";
+
+import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 
 export type EditButtonProps = RefineEditButtonProps<
     ButtonProps,
@@ -68,6 +70,8 @@ export const EditButton: React.FC<EditButtonProps> = ({
 
     const editUrl = generateEditUrl(resource.route!, id!);
 
+    const { variant, styles, ...commonProps } = rest;
+
     return (
         <Anchor
             component={Link}
@@ -80,22 +84,33 @@ export const EditButton: React.FC<EditButtonProps> = ({
                 }
             }}
         >
-            <Button
-                variant="default"
-                disabled={data?.can === false}
-                leftIcon={
-                    !hideText && <IconPencil size={16} {...svgIconProps} />
-                }
-                title={disabledTitle()}
-                data-testid={RefineButtonTestIds.EditButton}
-                {...rest}
-            >
-                {hideText ? (
-                    <IconPencil size={16} {...svgIconProps} />
-                ) : (
-                    children ?? translate("buttons.edit", "Edit")
-                )}
-            </Button>
+            {hideText ? (
+                <ActionIcon
+                    title={disabledTitle()}
+                    disabled={data?.can === false}
+                    data-testid={RefineButtonTestIds.EditButton}
+                    {...(variant
+                        ? {
+                              variant:
+                                  mapButtonVariantToActionIconVariant(variant),
+                          }
+                        : { variant: "default" })}
+                    {...commonProps}
+                >
+                    <IconPencil size={18} {...svgIconProps} />
+                </ActionIcon>
+            ) : (
+                <Button
+                    variant="default"
+                    disabled={data?.can === false}
+                    leftIcon={<IconPencil size={18} {...svgIconProps} />}
+                    title={disabledTitle()}
+                    data-testid={RefineButtonTestIds.EditButton}
+                    {...rest}
+                >
+                    {children ?? translate("buttons.edit", "Edit")}
+                </Button>
+            )}
         </Anchor>
     );
 };

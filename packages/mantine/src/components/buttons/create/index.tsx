@@ -10,8 +10,10 @@ import {
     RefineCreateButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
-import { Anchor, Button, ButtonProps } from "@mantine/core";
+import { ActionIcon, Anchor, Button, ButtonProps } from "@mantine/core";
 import { IconSquarePlus, TablerIconProps } from "@tabler/icons";
+
+import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 
 export type CreateButtonProps = RefineCreateButtonProps<
     ButtonProps,
@@ -61,6 +63,8 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
 
     const createUrl = generateCreateUrl(resource.route!);
 
+    const { variant, styles, ...commonProps } = rest;
+
     return (
         <Anchor
             component={Link}
@@ -73,22 +77,33 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                 }
             }}
         >
-            <Button
-                disabled={data?.can === false}
-                leftIcon={
-                    !hideText && <IconSquarePlus size={16} {...svgIconProps} />
-                }
-                title={disabledTitle()}
-                data-testid={RefineButtonTestIds.CreateButton}
-                variant="default"
-                {...rest}
-            >
-                {hideText ? (
-                    <IconSquarePlus size={16} {...svgIconProps} />
-                ) : (
-                    children ?? translate("buttons.create", "Create")
-                )}
-            </Button>
+            {hideText ? (
+                <ActionIcon
+                    title={disabledTitle()}
+                    disabled={data?.can === false}
+                    {...(variant
+                        ? {
+                              variant:
+                                  mapButtonVariantToActionIconVariant(variant),
+                          }
+                        : { variant: "default" })}
+                    data-testid={RefineButtonTestIds.CreateButton}
+                    {...commonProps}
+                >
+                    <IconSquarePlus size={18} {...svgIconProps} />
+                </ActionIcon>
+            ) : (
+                <Button
+                    disabled={data?.can === false}
+                    leftIcon={<IconSquarePlus size={18} {...svgIconProps} />}
+                    title={disabledTitle()}
+                    data-testid={RefineButtonTestIds.CreateButton}
+                    variant="default"
+                    {...rest}
+                >
+                    {children ?? translate("buttons.create", "Create")}
+                </Button>
+            )}
         </Anchor>
     );
 };

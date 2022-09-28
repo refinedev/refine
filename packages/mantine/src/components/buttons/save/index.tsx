@@ -4,8 +4,10 @@ import {
     RefineSaveButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
-import { Button, ButtonProps } from "@mantine/core";
-import { IconFileCheck, TablerIconProps } from "@tabler/icons";
+import { ActionIcon, Button, ButtonProps } from "@mantine/core";
+import { IconDeviceFloppy, TablerIconProps } from "@tabler/icons";
+
+import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 
 export type SaveButtonProps = RefineSaveButtonProps<
     ButtonProps,
@@ -28,20 +30,28 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
-    return (
+    const { variant, styles, ...commonProps } = rest;
+
+    return hideText ? (
+        <ActionIcon
+            {...(variant
+                ? {
+                      variant: mapButtonVariantToActionIconVariant(variant),
+                  }
+                : { variant: "filled" })}
+            data-testid={RefineButtonTestIds.SaveButton}
+            {...commonProps}
+        >
+            <IconDeviceFloppy size={18} {...svgIconProps} />
+        </ActionIcon>
+    ) : (
         <Button
             variant="filled"
-            leftIcon={
-                !hideText && <IconFileCheck size={16} {...svgIconProps} />
-            }
+            leftIcon={<IconDeviceFloppy size={18} {...svgIconProps} />}
             data-testid={RefineButtonTestIds.SaveButton}
             {...rest}
         >
-            {hideText ? (
-                <IconFileCheck size={16} {...svgIconProps} />
-            ) : (
-                children ?? translate("buttons.save", "Save")
-            )}
+            {children ?? translate("buttons.save", "Save")}
         </Button>
     );
 };

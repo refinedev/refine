@@ -10,8 +10,17 @@ import {
     RefineDeleteButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
-import { Group, Text, Button, ButtonProps, Popover } from "@mantine/core";
+import {
+    Group,
+    Text,
+    Button,
+    ButtonProps,
+    Popover,
+    ActionIcon,
+} from "@mantine/core";
 import { IconTrash, TablerIconProps } from "@tabler/icons";
+
+import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 
 export type DeleteButtonProps = RefineDeleteButtonProps<
     ButtonProps,
@@ -90,27 +99,44 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
         );
     };
 
+    const { variant, styles, ...commonProps } = rest;
+
     return (
         <Popover opened={opened} onChange={setOpened} withArrow>
             <Popover.Target>
-                <Button
-                    color="red"
-                    variant="outline"
-                    onClick={() => setOpened((o) => !o)}
-                    disabled={isLoading || data?.can === false}
-                    loading={id === variables?.id && isLoading}
-                    leftIcon={
-                        !hideText && <IconTrash size={16} {...svgIconProps} />
-                    }
-                    data-testid={RefineButtonTestIds.DeleteButton}
-                    {...rest}
-                >
-                    {hideText ? (
-                        <IconTrash size={16} {...svgIconProps} />
-                    ) : (
-                        children ?? translate("buttons.delete", "Delete")
-                    )}
-                </Button>
+                {hideText ? (
+                    <ActionIcon
+                        color="red"
+                        onClick={() => setOpened((o) => !o)}
+                        disabled={isLoading || data?.can === false}
+                        loading={id === variables?.id && isLoading}
+                        data-testid={RefineButtonTestIds.DeleteButton}
+                        {...(variant
+                            ? {
+                                  variant:
+                                      mapButtonVariantToActionIconVariant(
+                                          variant,
+                                      ),
+                              }
+                            : { variant: "outline" })}
+                        {...commonProps}
+                    >
+                        <IconTrash size={18} {...svgIconProps} />
+                    </ActionIcon>
+                ) : (
+                    <Button
+                        color="red"
+                        variant="outline"
+                        onClick={() => setOpened((o) => !o)}
+                        disabled={isLoading || data?.can === false}
+                        loading={id === variables?.id && isLoading}
+                        leftIcon={<IconTrash size={18} {...svgIconProps} />}
+                        data-testid={RefineButtonTestIds.DeleteButton}
+                        {...rest}
+                    >
+                        {children ?? translate("buttons.delete", "Delete")}
+                    </Button>
+                )}
             </Popover.Target>
             <Popover.Dropdown py="xs">
                 <Text size="sm" weight="bold">
