@@ -45,14 +45,28 @@ const commonThemeProperties: Partial<MantineThemeOverride> = {
             '"Segoe UI Emoji"',
             '"Segoe UI Symbol"',
         ].join(","),
-        fontWeight: 700,
-        sizes: {
-            h1: { fontSize: 34, lineHeight: 1.3, fontWeight: undefined },
-            h2: { fontSize: 26, lineHeight: 1.35, fontWeight: undefined },
-            h3: { fontSize: 22, lineHeight: 1.4, fontWeight: undefined },
-            h4: { fontSize: 18, lineHeight: 1.45, fontWeight: undefined },
-            h5: { fontSize: 16, lineHeight: 1.5, fontWeight: undefined },
-            h6: { fontSize: 14, lineHeight: 1.5, fontWeight: undefined },
+    },
+    components: {
+        Table: {
+            styles: (theme) =>
+                theme.colorScheme === "light"
+                    ? {
+                          root: {
+                              "thead>tr>th": {
+                                  backgroundColor: "#fafafa",
+                              },
+                              "thead>tr>th:first-child": {
+                                  borderTopLeftRadius: theme.defaultRadius,
+                              },
+                              "thead>tr>th:last-child": {
+                                  borderTopRightRadius: theme.defaultRadius,
+                              },
+                              "tbody>tr>td": {
+                                  borderBottom: "1px solid #f0f0f0",
+                              },
+                          },
+                      }
+                    : { root: {} },
         },
     },
 };
