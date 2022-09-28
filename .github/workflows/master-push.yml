@@ -261,7 +261,6 @@ jobs:
           domain: "example.refine.dev"
   documentation-live-preview:
     runs-on: ubuntu-latest
-    if: ${{ needs.publish.outputs.published == 'true' }}
     strategy:
       matrix:
         node-version: [16.x]
