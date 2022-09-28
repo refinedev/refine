@@ -47,7 +47,7 @@ jobs:
         uses: nwtgck/actions-netlify@v1.2
         id: live-preview-site-deploy
         with:
-          publish-dir: './packages/live-previews/.next'
+          publish-dir: './packages/live-previews'
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
           enable-pull-request-comment: false
