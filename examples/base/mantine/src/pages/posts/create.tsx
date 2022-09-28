@@ -4,9 +4,9 @@ import {
     TextInput,
     useForm,
     useSelect,
-    RichTextEditor,
     Text,
 } from "@pankod/refine-mantine";
+import { RichTextEditor } from "@mantine/rte";
 
 export const PostCreate: React.FC = () => {
     const { saveButtonProps, getInputProps, errors } = useForm({

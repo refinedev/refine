@@ -2,7 +2,6 @@ import React, { useCallback, useState } from "react";
 import { GetManyResponse, useDeleteMany, useMany } from "@pankod/refine-core";
 import {
     useForm,
-    RichTextEditor,
     Button,
     Table,
     SaveButton,
@@ -29,14 +28,15 @@ import {
     Row,
     Column,
 } from "@pankod/refine-react-table";
+import { RichTextEditor } from "@mantine/rte";
 import {
-    ChevronDown,
-    ChevronRight,
-    Selector,
-    Filter,
-    X,
-    Check,
-} from "tabler-icons-react";
+    IconChevronDown,
+    IconChevronRight,
+    IconSelector,
+    IconFilter,
+    IconX,
+    IconCheck,
+} from "@tabler/icons";
 
 import { IPost, ICategory } from "../../interfaces";
 
@@ -89,7 +89,7 @@ const ColumnFilter: React.FC<ColumnButtonProps> = ({ column }) => {
                     variant={column.getIsFiltered() ? "light" : "transparent"}
                     color={column.getIsFiltered() ? "primary" : "gray"}
                 >
-                    <Filter size={16} />
+                    <IconFilter size={16} />
                 </ActionIcon>
             </Menu.Target>
             <Menu.Dropdown>
@@ -108,7 +108,7 @@ const ColumnFilter: React.FC<ColumnButtonProps> = ({ column }) => {
                                 variant="outline"
                                 onClick={clear}
                             >
-                                <X />
+                                <IconX />
                             </ActionIcon>
                             <ActionIcon
                                 size="sm"
@@ -116,7 +116,7 @@ const ColumnFilter: React.FC<ColumnButtonProps> = ({ column }) => {
                                 color="primary"
                                 variant="outline"
                             >
-                                <Check />
+                                <IconCheck />
                             </ActionIcon>
                         </Group>
                     </Stack>
@@ -144,7 +144,11 @@ const ColumnSorter: React.FC<ColumnButtonProps> = ({ column }) => {
             variant={sorted ? "light" : "transparent"}
             color={sorted ? "primary" : "gray"}
         >
-            {sorted ? <ChevronDown size={16} /> : <Selector size={16} />}
+            {sorted ? (
+                <IconChevronDown size={16} />
+            ) : (
+                <IconSelector size={16} />
+            )}
         </ActionIcon>
     );
 };
@@ -239,9 +243,9 @@ export const PostList: React.FC = () => {
                                 onClick={() => row.toggleExpanded()}
                             >
                                 {row.getIsExpanded() ? (
-                                    <ChevronDown />
+                                    <IconChevronDown />
                                 ) : (
-                                    <ChevronRight />
+                                    <IconChevronRight />
                                 )}
                             </ActionIcon>
                         </Group>
@@ -366,9 +370,9 @@ export const PostList: React.FC = () => {
                         <td>
                             <ActionIcon onClick={() => row.toggleExpanded()}>
                                 {row.getIsExpanded() ? (
-                                    <ChevronDown />
+                                    <IconChevronDown />
                                 ) : (
-                                    <ChevronRight />
+                                    <IconChevronRight />
                                 )}
                             </ActionIcon>
                         </td>

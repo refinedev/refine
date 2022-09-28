@@ -5,12 +5,12 @@ import {
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
 import { Button, ButtonProps } from "@mantine/core";
-import { TableExport, IconProps } from "tabler-icons-react";
+import { IconTableExport, TablerIconProps } from "@tabler/icons";
 
 export type ExportButtonProps = RefineExportButtonProps<
     ButtonProps,
     {
-        svgIconProps?: IconProps;
+        svgIconProps?: TablerIconProps;
     }
 >;
 
@@ -33,12 +33,14 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
         <Button
             variant="default"
             loading={loading}
-            leftIcon={!hideText && <TableExport size={16} {...svgIconProps} />}
+            leftIcon={
+                !hideText && <IconTableExport size={16} {...svgIconProps} />
+            }
             data-testid={RefineButtonTestIds.ExportButton}
             {...rest}
         >
             {hideText ? (
-                <TableExport size={16} {...svgIconProps} />
+                <IconTableExport size={16} {...svgIconProps} />
             ) : (
                 children ?? translate("buttons.export", "Export")
             )}

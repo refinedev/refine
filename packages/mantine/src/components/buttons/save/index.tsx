@@ -5,12 +5,12 @@ import {
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
 import { Button, ButtonProps } from "@mantine/core";
-import { FileCheck, IconProps } from "tabler-icons-react";
+import { IconFileCheck, TablerIconProps } from "@tabler/icons";
 
 export type SaveButtonProps = RefineSaveButtonProps<
     ButtonProps,
     {
-        svgIconProps?: IconProps;
+        svgIconProps?: TablerIconProps;
     }
 >;
 
@@ -31,12 +31,14 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
     return (
         <Button
             variant="filled"
-            leftIcon={!hideText && <FileCheck size={16} {...svgIconProps} />}
+            leftIcon={
+                !hideText && <IconFileCheck size={16} {...svgIconProps} />
+            }
             data-testid={RefineButtonTestIds.SaveButton}
             {...rest}
         >
             {hideText ? (
-                <FileCheck size={16} {...svgIconProps} />
+                <IconFileCheck size={16} {...svgIconProps} />
             ) : (
                 children ?? translate("buttons.save", "Save")
             )}

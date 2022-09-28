@@ -11,12 +11,12 @@ import {
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
 import { Anchor, Button, ButtonProps } from "@mantine/core";
-import { SquarePlus, IconProps } from "tabler-icons-react";
+import { IconSquarePlus, TablerIconProps } from "@tabler/icons";
 
 export type CloneButtonProps = RefineCloneButtonProps<
     ButtonProps,
     {
-        svgIconProps?: IconProps;
+        svgIconProps?: TablerIconProps;
     }
 >;
 
@@ -85,14 +85,14 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
                 disabled={data?.can === false}
                 variant="default"
                 leftIcon={
-                    !hideText && <SquarePlus size={16} {...svgIconProps} />
+                    !hideText && <IconSquarePlus size={16} {...svgIconProps} />
                 }
                 title={disabledTitle()}
                 data-testid={RefineButtonTestIds.CloneButton}
                 {...rest}
             >
                 {hideText ? (
-                    <SquarePlus size={16} {...svgIconProps} />
+                    <IconSquarePlus size={16} {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.clone", "Clone")
                 )}

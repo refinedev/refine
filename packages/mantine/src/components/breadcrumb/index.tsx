@@ -13,7 +13,7 @@ import {
     Anchor,
     Group,
 } from "@mantine/core";
-import { Home } from "tabler-icons-react";
+import { IconHome } from "@tabler/icons";
 
 export type BreadcrumbProps = RefineBreadcrumbProps<MantineBreadcrumbProps>;
 
@@ -40,7 +40,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
         >
             {showHome && hasDashboard && (
                 <Anchor component={Link} color="dimmed" to="/">
-                    <Home size={16} />
+                    <IconHome size={16} />
                 </Anchor>
             )}
             {breadcrumbs.map(({ label, icon, href }) => {

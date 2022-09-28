@@ -11,12 +11,12 @@ import {
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
 import { Group, Text, Button, ButtonProps, Popover } from "@mantine/core";
-import { Trash, IconProps } from "tabler-icons-react";
+import { IconTrash, TablerIconProps } from "@tabler/icons";
 
 export type DeleteButtonProps = RefineDeleteButtonProps<
     ButtonProps,
     {
-        svgIconProps?: IconProps;
+        svgIconProps?: TablerIconProps;
     }
 >;
 
@@ -100,13 +100,13 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                     disabled={isLoading || data?.can === false}
                     loading={id === variables?.id && isLoading}
                     leftIcon={
-                        !hideText && <Trash size={16} {...svgIconProps} />
+                        !hideText && <IconTrash size={16} {...svgIconProps} />
                     }
                     data-testid={RefineButtonTestIds.DeleteButton}
                     {...rest}
                 >
                     {hideText ? (
-                        <Trash size={16} {...svgIconProps} />
+                        <IconTrash size={16} {...svgIconProps} />
                     ) : (
                         children ?? translate("buttons.delete", "Delete")
                     )}

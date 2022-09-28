@@ -4,9 +4,9 @@ import {
     TextInput,
     useForm,
     useSelect,
-    RichTextEditor,
     Text,
 } from "@pankod/refine-mantine";
+import { RichTextEditor } from "@mantine/rte";
 
 import { ICategory } from "../../interfaces";
 

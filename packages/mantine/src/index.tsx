@@ -1,10 +1,7 @@
 import "./types/theme";
 
-export * from "@mantine/hooks";
 export * from "@mantine/utils";
 export * from "@mantine/styles";
-export * from "@mantine/rte";
-export * from "@mantine/dates";
 export {
     AVAILABLE_TRANSITIONS,
     Accordion,

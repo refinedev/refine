@@ -17,7 +17,7 @@ import {
     Button,
     Space,
 } from "@mantine/core";
-import { InfoCircle } from "tabler-icons-react";
+import { IconInfoCircle } from "@tabler/icons";
 
 export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
     const [errorMessage, setErrorMessage] = useState<string>();
@@ -89,7 +89,7 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
                 {errorMessage && (
                     <Tooltip openDelay={0} label={errorMessage}>
                         <ActionIcon data-testid="error-component-tooltip">
-                            <InfoCircle />
+                            <IconInfoCircle />
                         </ActionIcon>
                     </Tooltip>
                 )}

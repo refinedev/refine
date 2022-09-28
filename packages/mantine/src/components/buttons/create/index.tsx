@@ -11,12 +11,12 @@ import {
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
 import { Anchor, Button, ButtonProps } from "@mantine/core";
-import { SquarePlus, IconProps } from "tabler-icons-react";
+import { IconSquarePlus, TablerIconProps } from "@tabler/icons";
 
 export type CreateButtonProps = RefineCreateButtonProps<
     ButtonProps,
     {
-        svgIconProps?: IconProps;
+        svgIconProps?: TablerIconProps;
     }
 >;
 
@@ -76,7 +76,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
             <Button
                 disabled={data?.can === false}
                 leftIcon={
-                    !hideText && <SquarePlus size={16} {...svgIconProps} />
+                    !hideText && <IconSquarePlus size={16} {...svgIconProps} />
                 }
                 title={disabledTitle()}
                 data-testid={RefineButtonTestIds.CreateButton}
@@ -84,7 +84,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                 {...rest}
             >
                 {hideText ? (
-                    <SquarePlus size={16} {...svgIconProps} />
+                    <IconSquarePlus size={16} {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.create", "Create")
                 )}

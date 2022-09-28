@@ -3,13 +3,13 @@ import {
     UseModalFormReturnType,
     Modal,
     TextInput,
-    RichTextEditor,
     Select,
     useSelect,
     Box,
     SaveButton,
     Text,
 } from "@pankod/refine-mantine";
+import { RichTextEditor } from "@mantine/rte";
 
 interface FormValues {
     title: string;

@@ -11,12 +11,12 @@ import {
     RefineShowButtonProps,
 } from "@pankod/refine-ui-types";
 import { Button, ButtonProps } from "@mantine/core";
-import { Eye, IconProps } from "tabler-icons-react";
+import { IconEye, TablerIconProps } from "@tabler/icons";
 
 export type ShowButtonProps = RefineShowButtonProps<
     ButtonProps,
     {
-        svgIconProps?: IconProps;
+        svgIconProps?: TablerIconProps;
     }
 >;
 
@@ -83,13 +83,13 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
             <Button
                 variant="default"
                 disabled={data?.can === false}
-                leftIcon={!hideText && <Eye size={16} {...svgIconProps} />}
+                leftIcon={!hideText && <IconEye size={16} {...svgIconProps} />}
                 title={disabledTitle()}
                 data-testid={RefineButtonTestIds.ShowButton}
                 {...rest}
             >
                 {hideText ? (
-                    <Eye size={16} {...svgIconProps} />
+                    <IconEye size={16} {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.show", "Show")
                 )}

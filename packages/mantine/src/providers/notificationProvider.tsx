@@ -7,7 +7,7 @@ import {
     hideNotification,
     NotificationsProvider,
 } from "@mantine/notifications";
-import { ArrowBackUp, Check, ExclamationMark } from "tabler-icons-react";
+import { IconArrowBackUp, IconCheck, IconExclamationMark } from "@tabler/icons";
 import { RingCountdown } from "@components";
 
 export const notificationProvider = (): NotificationProvider => {
@@ -28,7 +28,7 @@ export const notificationProvider = (): NotificationProvider => {
                                     }
                                 }}
                             >
-                                <ArrowBackUp color="dark" />
+                                <IconArrowBackUp color="dark" />
                             </ActionIcon>
                         </div>
                     ),
@@ -41,7 +41,12 @@ export const notificationProvider = (): NotificationProvider => {
             } else {
                 showNotification({
                     color: type === "success" ? "green" : "red",
-                    icon: type === "success" ? <Check /> : <ExclamationMark />,
+                    icon:
+                        type === "success" ? (
+                            <IconCheck />
+                        ) : (
+                            <IconExclamationMark />
+                        ),
                     message,
                     autoClose: 5000,
                 });

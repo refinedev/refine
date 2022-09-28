@@ -6,11 +6,11 @@ import {
     TextInput,
     useForm,
     useSelect,
-    RichTextEditor,
     Text,
     SimpleGrid,
     Image,
 } from "@pankod/refine-mantine";
+import { RichTextEditor } from "@mantine/rte";
 import { Dropzone, IMAGE_MIME_TYPE, FileWithPath } from "@mantine/dropzone";
 
 import { convertBase64 } from "../../utils";

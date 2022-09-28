@@ -7,11 +7,11 @@ import {
     Stepper,
     TextInput,
     useStepsForm,
-    DatePicker,
-    RichTextEditor,
     SaveButton,
     Text,
 } from "@pankod/refine-mantine";
+import { RichTextEditor } from "@mantine/rte";
+import { DatePicker } from "@mantine/dates";
 
 export const PostCreate: React.FC = () => {
     const {

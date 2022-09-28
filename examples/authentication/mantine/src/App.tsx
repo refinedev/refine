@@ -11,7 +11,7 @@ import {
 } from "@pankod/refine-mantine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
-import { BrandGoogle, BrandGithub } from "tabler-icons-react";
+import { IconBrandGoogle, IconBrandGithub } from "@tabler/icons";
 
 import { PostCreate, PostEdit, PostList } from "./pages";
 
@@ -92,12 +92,12 @@ const App: React.FC = () => {
                                             {
                                                 name: "google",
                                                 label: "Sign in with Google",
-                                                icon: <BrandGoogle />,
+                                                icon: <IconBrandGoogle />,
                                             },
                                             {
                                                 name: "github",
                                                 label: "Sign in with GitHub",
-                                                icon: <BrandGithub />,
+                                                icon: <IconBrandGithub />,
                                             },
                                         ]}
                                     />
@@ -120,12 +120,12 @@ const App: React.FC = () => {
                                 {
                                     name: "google",
                                     label: "Sign in with Google",
-                                    icon: <BrandGoogle />,
+                                    icon: <IconBrandGoogle />,
                                 },
                                 {
                                     name: "github",
                                     label: "Sign in with GitHub",
-                                    icon: <BrandGithub />,
+                                    icon: <IconBrandGithub />,
                                 },
                             ]}
                         />

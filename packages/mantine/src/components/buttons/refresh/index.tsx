@@ -5,12 +5,12 @@ import {
     RefineRefreshButtonProps,
 } from "@pankod/refine-ui-types";
 import { Button, ButtonProps } from "@mantine/core";
-import { Refresh, IconProps } from "tabler-icons-react";
+import { IconRefresh, TablerIconProps } from "@tabler/icons";
 
 export type RefreshButtonProps = RefineRefreshButtonProps<
     ButtonProps,
     {
-        svgIconProps?: IconProps;
+        svgIconProps?: TablerIconProps;
     }
 >;
 
@@ -52,7 +52,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     return (
         <Button
             variant="default"
-            leftIcon={!hideText && <Refresh size={16} {...svgIconProps} />}
+            leftIcon={!hideText && <IconRefresh size={16} {...svgIconProps} />}
             loading={isFetching}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) =>
                 onClick ? onClick(e) : refetch()
@@ -62,7 +62,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
             {...rest}
         >
             {hideText ? (
-                <Refresh size={16} {...svgIconProps} />
+                <IconRefresh size={16} {...svgIconProps} />
             ) : (
                 children ?? translate("buttons.refresh", "Refresh")
             )}

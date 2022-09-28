@@ -19,7 +19,7 @@ import {
     useRouterContext,
     useTranslate,
 } from "@pankod/refine-core";
-import { ArrowLeft } from "tabler-icons-react";
+import { IconArrowLeft } from "@tabler/icons";
 
 import {
     DeleteButton,
@@ -117,7 +117,7 @@ export const Show: React.FC<ShowProps> = (props) => {
             goBackFromProps
         ) : (
             <ActionIcon onClick={routeFromAction ? goBack : undefined}>
-                <ArrowLeft />
+                <IconArrowLeft />
             </ActionIcon>
         );
 

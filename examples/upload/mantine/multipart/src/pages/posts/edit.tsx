@@ -7,11 +7,11 @@ import {
     TextInput,
     useForm,
     useSelect,
-    RichTextEditor,
     Text,
     Image,
     SimpleGrid,
 } from "@pankod/refine-mantine";
+import { RichTextEditor } from "@mantine/rte";
 import { Dropzone, IMAGE_MIME_TYPE, FileWithPath } from "@mantine/dropzone";
 
 import { ICategory, IPost } from "../../interfaces";

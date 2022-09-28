@@ -11,12 +11,12 @@ import {
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
 import { Anchor, Button, ButtonProps } from "@mantine/core";
-import { Pencil, IconProps } from "tabler-icons-react";
+import { IconPencil, TablerIconProps } from "@tabler/icons";
 
 export type EditButtonProps = RefineEditButtonProps<
     ButtonProps,
     {
-        svgIconProps?: IconProps;
+        svgIconProps?: TablerIconProps;
     }
 >;
 
@@ -83,13 +83,15 @@ export const EditButton: React.FC<EditButtonProps> = ({
             <Button
                 variant="default"
                 disabled={data?.can === false}
-                leftIcon={!hideText && <Pencil size={16} {...svgIconProps} />}
+                leftIcon={
+                    !hideText && <IconPencil size={16} {...svgIconProps} />
+                }
                 title={disabledTitle()}
                 data-testid={RefineButtonTestIds.EditButton}
                 {...rest}
             >
                 {hideText ? (
-                    <Pencil size={16} {...svgIconProps} />
+                    <IconPencil size={16} {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.edit", "Edit")
                 )}

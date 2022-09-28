@@ -19,7 +19,7 @@ import {
     useRouterContext,
     useTranslate,
 } from "@pankod/refine-core";
-import { ArrowLeft } from "tabler-icons-react";
+import { IconArrowLeft } from "@tabler/icons";
 
 import { SaveButton, SaveButtonProps } from "@components/buttons";
 import { Breadcrumb } from "@components/breadcrumb";
@@ -75,7 +75,7 @@ export const Create: React.FC<CreateProps> = (props) => {
             goBackFromProps
         ) : (
             <ActionIcon onClick={routeFromAction ? goBack : undefined}>
-                <ArrowLeft />
+                <IconArrowLeft />
             </ActionIcon>
         );
 

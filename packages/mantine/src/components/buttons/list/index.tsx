@@ -12,12 +12,12 @@ import {
     RefineListButtonProps,
 } from "@pankod/refine-ui-types";
 import { Anchor, Button, ButtonProps } from "@mantine/core";
-import { List, IconProps } from "tabler-icons-react";
+import { IconList, TablerIconProps } from "@tabler/icons";
 
 export type ListButtonProps = RefineListButtonProps<
     ButtonProps,
     {
-        svgIconProps?: IconProps;
+        svgIconProps?: TablerIconProps;
     }
 >;
 
@@ -84,13 +84,13 @@ export const ListButton: React.FC<ListButtonProps> = ({
             <Button
                 variant="default"
                 disabled={data?.can === false}
-                leftIcon={!hideText && <List size={16} {...svgIconProps} />}
+                leftIcon={!hideText && <IconList size={16} {...svgIconProps} />}
                 title={disabledTitle()}
                 data-testid={RefineButtonTestIds.ListButton}
                 {...rest}
             >
                 {hideText ? (
-                    <List size={16} {...svgIconProps} />
+                    <IconList size={16} {...svgIconProps} />
                 ) : (
                     children ??
                     translate(
