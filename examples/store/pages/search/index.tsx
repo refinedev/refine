@@ -15,40 +15,41 @@ import { getSearchStaticProps } from "@lib/search-props";
 import { CART_KEY, useCartContext } from "@lib/context";
 import { API_URL } from "@lib/constants";
 
-const SearchPage: React.FC<IResourceComponentsProps<GetListResponse<Product>>> =
-    ({ initialData }) => {
-        const router = useRouter();
-        const { q } = router.query;
-        const { cartId } = useCartContext();
+const SearchPage: React.FC<
+    IResourceComponentsProps<GetListResponse<Product>>
+> = ({ initialData }) => {
+    const router = useRouter();
+    const { q } = router.query;
+    const { cartId } = useCartContext();
 
-        const { tableQueryResult } = useTable<Product>({
-            resource: "products",
-            queryOptions: {
-                initialData,
+    const { tableQueryResult } = useTable<Product>({
+        resource: "products",
+        queryOptions: {
+            initialData,
+        },
+        initialFilter: [
+            {
+                field: "cart_id",
+                value: cartId,
+                operator: "eq",
             },
-            initialFilter: [
-                {
-                    field: "cart_id",
-                    value: cartId,
-                    operator: "eq",
-                },
-            ],
-            permanentFilter: [
-                {
-                    field: "q",
-                    operator: "eq",
-                    value: q,
-                },
-            ],
-            hasPagination: false,
-        });
+        ],
+        permanentFilter: [
+            {
+                field: "q",
+                operator: "eq",
+                value: q,
+            },
+        ],
+        hasPagination: false,
+    });
 
-        return (
-            <LayoutWrapper>
-                <Search products={tableQueryResult?.data?.data} />
-            </LayoutWrapper>
-        );
-    };
+    return (
+        <LayoutWrapper>
+            <Search products={tableQueryResult?.data?.data} />
+        </LayoutWrapper>
+    );
+};
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const cookies = nookies.get(context);

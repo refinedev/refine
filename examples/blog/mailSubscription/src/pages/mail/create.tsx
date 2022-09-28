@@ -10,8 +10,9 @@ import { IMail } from "interfaces";
 
 export const MailCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<IMail>();
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
+        "write",
+    );
 
     return (
         <Create saveButtonProps={saveButtonProps}>

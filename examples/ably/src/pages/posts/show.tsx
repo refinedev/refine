@@ -17,8 +17,9 @@ import { useState } from "react";
 const { Title, Text } = Typography;
 
 export const PostShow: React.FC<IResourceComponentsProps> = () => {
-    const [deprecated, setDeprecated] =
-        useState<"deleted" | "updated" | undefined>();
+    const [deprecated, setDeprecated] = useState<
+        "deleted" | "updated" | undefined
+    >();
 
     const { queryResult } = useShow<IPost>({
         liveMode: "manual",

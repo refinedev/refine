@@ -48,8 +48,9 @@ export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
         optionValue: "id",
     });
 
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
+        "write",
+    );
 
     return (
         <Edit saveButtonProps={saveButtonProps}>

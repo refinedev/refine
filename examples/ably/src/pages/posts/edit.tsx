@@ -21,8 +21,9 @@ import "react-mde/lib/styles/css/react-mde-all.css";
 import { IPost, ICategory } from "interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
-    const [deprecated, setDeprecated] =
-        useState<"deleted" | "updated" | undefined>();
+    const [deprecated, setDeprecated] = useState<
+        "deleted" | "updated" | undefined
+    >();
 
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
         liveMode: "manual",
@@ -39,8 +40,9 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         defaultValue: postData?.category.id,
     });
 
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
+        "write",
+    );
 
     const handleRefresh = () => {
         queryResult?.refetch();

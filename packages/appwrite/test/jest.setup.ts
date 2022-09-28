@@ -1,7 +1,9 @@
+import { Models } from "appwrite";
 import nock from "nock";
 import { account } from "./appwriteClient";
 
-nock("http://localhost:80", { encodedQueryParams: true })
+nock("https://matej10qa.appwrite.org", { encodedQueryParams: true })
+    .persist()
     .post("/v1/account/sessions/anonymous", {})
     .reply(
         201,
@@ -56,7 +58,7 @@ beforeAll(async () => {
     return await account.createAnonymousSession();
 });
 
-afterAll(() => {
+afterAll(async () => {
     nock.cleanAll();
     nock.restore();
 });

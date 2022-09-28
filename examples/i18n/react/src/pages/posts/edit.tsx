@@ -27,8 +27,9 @@ export const PostEdit: React.FC<IResourceComponentsProps> = (props) => {
         defaultValue: postData?.category.id,
     });
 
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
+        "write",
+    );
 
     return (
         <Edit {...props} saveButtonProps={saveButtonProps}>

@@ -102,13 +102,14 @@ export const Show: React.FC<ShowProps> = ({
             )}
             {isEditButtonVisible && (
                 <EditButton
-                    disabled={isLoading}
+                    {...(isLoading ? { disabled: true } : {})}
                     resourceNameOrRouteName={resource.route}
                     recordItemId={id}
                 />
             )}
             {isDeleteButtonVisible && (
                 <DeleteButton
+                    {...(isLoading ? { disabled: true } : {})}
                     resourceNameOrRouteName={resource.route}
                     recordItemId={id}
                     onSuccess={() => list(resource.route ?? resource.name)}
@@ -116,6 +117,7 @@ export const Show: React.FC<ShowProps> = ({
                 />
             )}
             <RefreshButton
+                {...(isLoading ? { disabled: true } : {})}
                 resourceNameOrRouteName={resource.route}
                 recordItemId={id}
                 dataProviderName={dataProviderName}

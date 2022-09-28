@@ -8,10 +8,10 @@ type EachReject<TReject, Response> = (
 ) => Response;
 
 export const sequentialPromises = async <
-    TResolve extends unknown = unknown,
-    TReject extends unknown = unknown,
-    TResolveResponse extends unknown = unknown,
-    TRejectResponse extends unknown = unknown,
+    TResolve = unknown,
+    TReject = unknown,
+    TResolveResponse = unknown,
+    TRejectResponse = unknown,
 >(
     promises: (() => Promise<TResolve>)[],
     onEachResolve: EachResolve<TResolve, TResolveResponse>,
