@@ -40,6 +40,7 @@ const Preview: NextPage = () => {
 
     return (
         <>
+            {/* eslint-disable-next-line react/no-unknown-property */}
             <style jsx global>
                 {`
                     body {

@@ -16,26 +16,26 @@ const ProductCards: React.FC<Props> = ({
     cardImage,
 }) => {
     return (
-        <div className="max-w-xs pb-2 outline outline-[#042940] relative">
-            <div className="bg-[#fff] flex justify-center items-center py-4 relative">
+        <div className="relative max-w-xs pb-2 outline outline-[#042940]">
+            <div className="relative flex items-center justify-center bg-[#fff] py-4">
                 <img
                     src={cardImage}
                     alt={`${title}`}
-                    className="max-w-xs h-56 transition ease-in-out delay-150 duration-300 hover:-translate-y-1 hover:scale-110 z-30"
+                    className="z-30 h-56 max-w-xs transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
                 />
             </div>
             <div className="px-4">
-                <p className="text-lg text-black font-semibold mb-1">{title}</p>
+                <p className="mb-1 text-lg font-semibold text-black">{title}</p>
                 <div className="flex justify-between">
-                    <p className="outline outline-[#D6D58E] outline-offset-2 p-1 bg-[#042940] w-fit text-white rounded mt-2 mb-2">
+                    <p className="mt-2 mb-2 w-fit rounded bg-[#042940] p-1 text-white outline outline-offset-2 outline-[#D6D58E]">
                         ${price}
                     </p>
-                    <button className="outline outline-[#D6D58E] outline-offset-2 p-1 bg-[#042940] w-fit text-white rounded mt-2 mb-2">
+                    <button className="mt-2 mb-2 w-fit rounded bg-[#042940] p-1 text-white outline outline-offset-2 outline-[#D6D58E]">
                         Add to cart
                     </button>
                 </div>
                 <p>{`${(description || []).slice(0, 100)}`}...</p>
-                <p className=" px-2 py-0.5 py text-sm bg-[#D6D58E] w-fit text-gray-600 rounded-3xl mt-2">
+                <p className=" py mt-2 w-fit rounded-3xl bg-[#D6D58E] px-2 py-0.5 text-sm text-gray-600">
                     {category}
                 </p>
             </div>

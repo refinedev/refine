@@ -19,19 +19,19 @@ export const Countries = () => {
                 <Table.Body>
                     {countries?.data.map((country: Record<string, string>) => (
                         <Table.Row key={country.id}>
-                            <span className="text-dark opacity-50 font-medium">
+                            <span className="text-dark font-medium opacity-50">
                                 {country.id}
                             </span>
-                            <span className="text-dark opacity-50 font-medium">
+                            <span className="text-dark font-medium opacity-50">
                                 {country.name}
                             </span>
-                            <span className="text-dark opacity-50 font-medium">
+                            <span className="text-dark font-medium opacity-50">
                                 {country.iso2}
                             </span>
-                            <span className="text-dark opacity-50 font-medium">
+                            <span className="text-dark font-medium opacity-50">
                                 {country.local_name}
                             </span>
-                            <span className="text-dark opacity-50 font-medium">
+                            <span className="text-dark font-medium opacity-50">
                                 {country.continent}
                             </span>
                         </Table.Row>

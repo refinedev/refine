@@ -20,8 +20,10 @@ import { sendEthereum } from "../utility";
 const { Text } = Typography;
 
 export const DashboardPage: React.FC = () => {
-    const { data, isLoading } =
-        useGetIdentity<{ address: string; balance: string }>();
+    const { data, isLoading } = useGetIdentity<{
+        address: string;
+        balance: string;
+    }>();
     const { modalProps, show, close } = useModal();
     const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);

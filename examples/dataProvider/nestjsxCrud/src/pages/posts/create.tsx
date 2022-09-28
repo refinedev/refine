@@ -34,8 +34,9 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
 
     const { isLoading, onChange } = useFileUploadState();
 
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
+        "write",
+    );
 
     return (
         <Create saveButtonProps={{ ...saveButtonProps, disabled: isLoading }}>

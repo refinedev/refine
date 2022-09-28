@@ -25,14 +25,17 @@ import {
 } from "../../../definitions/table";
 import { PaginationLink } from "./paginationLink";
 
-export type useTableProps<TData, TError, TSearchVariables = unknown> =
-    useTablePropsCore<TData, TError> &
-        SuccessErrorNotification &
-        LiveModeProps & {
-            onSearch?: (
-                data: TSearchVariables,
-            ) => CrudFilters | Promise<CrudFilters>;
-        };
+export type useTableProps<
+    TData,
+    TError,
+    TSearchVariables = unknown,
+> = useTablePropsCore<TData, TError> &
+    SuccessErrorNotification &
+    LiveModeProps & {
+        onSearch?: (
+            data: TSearchVariables,
+        ) => CrudFilters | Promise<CrudFilters>;
+    };
 
 export type useTableReturnType<
     TData extends BaseRecord = BaseRecord,
