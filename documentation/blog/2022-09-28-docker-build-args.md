@@ -1,6 +1,6 @@
 ---
 title: How to use Docker Build Args and Environment Variables
-description: A guideline for writing articles
+description: A guide for using Docker Build Args to Configure Image Builds
 slug: docker-build-args-and-env-vars
 authors: muhammad_khabbab
 tags: [docker, environment variables]
