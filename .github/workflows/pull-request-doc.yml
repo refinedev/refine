@@ -38,11 +38,16 @@ jobs:
           HostName github.com
           IdentityFile ~/.ssh/id_rsa
           EOT
-      - uses: voorhoede/get-netlify-url@v2
-        id: get-netlify-url
+      - name: Wait for Netlify Deploy
+        uses: probablyup/wait-for-netlify-action@3.2.0
+        id: waitForDeployment
+        with:
+          site_id: ${{ secrets.NETLIFY_PREVIEW_SITE_ID }}
+        env:
+          NETLIFY_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
       - name: output test
         run: |
-          echo ${{ steps.get-netlify-url.outputs.url }}
+          echo ${{ steps.waitForDeployment.outputs.url }}
       - name: Install Dependencies
         run: |
           cd documentation
