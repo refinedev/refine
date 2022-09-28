@@ -174,14 +174,12 @@ export const PostList: React.FC = () => {
                     return (
                         <Group spacing="xs" noWrap>
                             <EditButton
-                                size="xs"
                                 hideText
                                 onClick={() => {
                                     handleEditButtonClick(getValue() as number);
                                 }}
                             />
                             <DeleteButton
-                                size="xs"
                                 hideText
                                 recordItemId={getValue() as number}
                             >

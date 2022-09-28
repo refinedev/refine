@@ -63,12 +63,10 @@ export const PostList: React.FC = () => {
                         <Group spacing="xs" noWrap>
                             <EditButton
                                 hideText
-                                size="xs"
                                 recordItemId={getValue() as number}
                             />
                             <DeleteButton
                                 hideText
-                                size="xs"
                                 recordItemId={getValue() as number}
                             />
                         </Group>
