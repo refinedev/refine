@@ -38,33 +38,21 @@ jobs:
           HostName github.com
           IdentityFile ~/.ssh/id_rsa
           EOT
-      - name: Install Preview Site Dependencies
-        run: |
-          npm ci
-          npm run bootstrap
-          npm run build 
-      - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.2
-        id: live-preview-site-deploy
+      - name: Wait for Netlify Deploy
+        uses: probablyup/wait-for-netlify-action@3.2.0
+        id: waitForDeployment
         with:
-          publish-dir: ''
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
-          enable-pull-request-comment: false
-          overwrites-pull-request-comment: false
-          github-deployment-environment: "deploy-live-preview-website-${{ github.event.number }}"
+          site_id: ${{ secrets.NETLIFY_PREVIEW_SITE_ID }}
         env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_PREVIEW_SITE_ID }}
-        timeout-minutes: 10
+          NETLIFY_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
       - name: output test
         run: |
-          echo ${{ steps.live-preview-site-deploy.outputs.deploy-url }}
+          echo ${{ steps.waitForDeployment.outputs.url }}
       - name: Install Dependencies
         run: |
           cd documentation
           npm install
-          npm run build
+          LIVE_PREVIEW_URL=${{ steps.waitForDeployment.outputs.url }}/preview npm run build
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
