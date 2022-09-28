@@ -12,6 +12,7 @@ import { replaceImports } from "@/src/utils/replace-imports";
 import { useCode } from "@/src/utils/use-code";
 
 const Preview: NextPage = () => {
+    const [ready, setReady] = React.useState(false);
     const { code: code, hasQuery, isReady, disableScroll } = useCode();
 
     if (isReady && !hasQuery) {
@@ -22,19 +23,23 @@ const Preview: NextPage = () => {
         return <Error statusCode={400} />;
     }
 
-    if (
-        isReady &&
-        code &&
-        (code?.includes("@pankod/refine-antd") || code?.includes("RefineAntd"))
-    ) {
-        if (typeof window !== "undefined") {
+    if (isReady && code && typeof window !== "undefined") {
+        if (
+            code?.includes("@pankod/refine-antd") ||
+            code?.includes("RefineAntd")
+        ) {
             const element = document.createElement("link");
             element.setAttribute("rel", "stylesheet");
+            element.onload = () => {
+                setReady(true);
+            };
             element.setAttribute(
                 "href",
                 "https://unpkg.com/@pankod/refine-antd/dist/styles.min.css",
             );
             document.head.appendChild(element);
+        } else {
+            setReady(true);
         }
     }
 
@@ -49,7 +54,7 @@ const Preview: NextPage = () => {
                     }
                 `}
             </style>
-            <Loading loading={!isReady} />
+            <Loading loading={!ready} />
             <LiveProvider
                 scope={RefineScope}
                 noInline
