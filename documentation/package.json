@@ -23,7 +23,7 @@
         "@pankod/refine-react-hook-form": "latest",
         "@pankod/refine-react-router-v6": "^3.32.0",
         "@pankod/refine-react-table": "latest",
-        "@pankod/refine-simple-rest": "latest",
+        "@pankod/refine-simple-rest": "3.28.0",
         "@tailwindcss/line-clamp": "^0.4.2",
         "@types/react-dom": "^17.0.11",
         "autoprefixer": "^10.4.8",
