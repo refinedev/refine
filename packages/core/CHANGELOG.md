@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.74.2
+
+### Patch Changes
+
+-   Removed redundant type inheritance
+
 ## 3.74.1
 
 ### Patch Changes
