@@ -11,6 +11,7 @@ import {
     ColorScheme,
     ColorSchemeProvider,
     useLocalStorage,
+    Global,
 } from "@pankod/refine-mantine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -38,6 +39,9 @@ const App: React.FC = () => {
                 withNormalizeCSS
                 withGlobalStyles
             >
+                <Global
+                    styles={{ body: { "-webkit-font-smoothing": "auto" } }}
+                />
                 <NotificationsProvider position="top-right">
                     <Refine
                         routerProvider={routerProvider}

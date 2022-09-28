@@ -8,6 +8,7 @@ import {
     ReadyPage,
     notificationProvider,
     LightTheme,
+    Global,
 } from "@pankod/refine-mantine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -74,6 +75,7 @@ const App: React.FC = () => {
 
     return (
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+            <Global styles={{ body: { "-webkit-font-smoothing": "auto" } }} />
             <NotificationsProvider position="top-right">
                 <Refine
                     dataProvider={dataProvider(
