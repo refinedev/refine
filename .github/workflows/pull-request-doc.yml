@@ -42,12 +42,12 @@ jobs:
         run: |
           npm ci
           npm run bootstrap
-          npm run build 
+          npm run build
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         id: live-preview-site-deploy
         with:
-          publish-dir: './packages/live-previews'
+          publish-dir: './packages/live-previews/.next'
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
           enable-pull-request-comment: false
