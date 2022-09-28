@@ -160,3 +160,7 @@ html, body {
     box-shadow: 0 0 10px 0 rgb(0 0 0 / 15%);
     animation: float 8s ease-in-out infinite;
 }
+
+section.ant-layout > main.ant-layout-content > div {
+    padding: 16px 12px !important;
+}
