@@ -3,12 +3,12 @@ import { prettySpaces } from "./pretty-spaces";
 
 const packageRegex =
     /import(?:(?:(?:[ \n\t]+([^ *\n\t\{\},]+)[ \n\t]*(?:,|[ \n\t]+))?([ \n\t]*\{(?:[ \n\t]*[^ \n\t"'\{\}]+[ \n\t]*,?)+\})?[ \n\t]*)|[ \n\t]*\*[ \n\t]*as[ \n\t]+([^ \n\t\{\}]+)[ \n\t]+)from[ \n\t]*(?:['"])([^'"\n]+)(?:['"])(?:;?)/g;
-
+//
 const sideEffectRegex = /import[ \n\t](?:['"])([^'"\n]+)(?:['"])(?:;?)/g;
 
 const nameChangeRegex = /((?:\w|\s|_)*)( as )((?:\w|\s|_)*)( |,)?/g;
 
-export const replaceImports = (content: string) => {
+export const replaceImports = (content: string): string => {
     const matches = content.matchAll(packageRegex);
 
     const imports = new Set();
@@ -16,7 +16,7 @@ export const replaceImports = (content: string) => {
     for (const match of matches) {
         const [, defaultImport, namedImports, namespaceImport, packageName] =
             match;
-
+        //
         if (packageName in packageMap) {
             const importName = packageMap[packageName];
 
