@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "PORT=3030 next dev",
+    "start": "PORT=3030 nodemon --watch ./node_modules --watch ./src --watch ./pages --ext ts,tsx,js,jsx --exec \"next build --no-lint && next start\"",
+    "dev": "PORT=3030 next dev",
     "build": "next build",
     "start:prod": "next start",
     "lint": "next lint",
@@ -30,6 +31,7 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "jest": "^27.5.1",
+    "nodemon": "^2.0.20",
     "ts-jest": "^27.1.3",
     "typescript": "^4.7.4"
   },

@@ -10,7 +10,9 @@ import * as RefineReactTable from "@pankod/refine-react-table";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
-const Refine = (props: any) => (
+const Refine = (
+    props: React.ComponentProps<typeof RefineCore.Refine>,
+): JSX.Element => (
     <RefineCore.Refine
         {...props}
         options={{
@@ -36,7 +38,9 @@ const setInitialRoutes = (initialEntries: string[]): void => {
     }
 };
 
-const DemoMemoryRouterComponent = (props: any): JSX.Element => {
+const DemoMemoryRouterComponent = (
+    props: React.ComponentProps<typeof MemoryRouterComponent>,
+): JSX.Element => {
     return (
         <MemoryRouterComponent
             {...props}

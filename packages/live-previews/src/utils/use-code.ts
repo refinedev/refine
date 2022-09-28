@@ -2,7 +2,14 @@ import React from "react";
 import { useRouter } from "next/router";
 import { decompressFromEncodedURIComponent } from "lz-string";
 
-export const useCode = () => {
+type UseCodeReturn = {
+    code: string | null;
+    isReady: boolean;
+    hasQuery: boolean;
+    disableScroll: boolean;
+};
+
+export const useCode = (): UseCodeReturn => {
     const { query, isReady } = useRouter();
     const { code: compressed, disableScroll } = query ?? {};
 
