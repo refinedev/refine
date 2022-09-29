@@ -76,11 +76,31 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
                 marginTop: "-150px",
             }}
         >
-            <Title color="dimmed" order={1} sx={{ fontSize: "6rem" }}>
+            <Title
+                sx={(theme) => ({
+                    textAlign: "center",
+                    fontWeight: 900,
+                    fontSize: 220,
+                    lineHeight: 1,
+                    color:
+                        theme.colorScheme === "dark"
+                            ? theme.colors.dark[4]
+                            : theme.colors.gray[2],
+
+                    [theme.fn.smallerThan("sm")]: {
+                        fontSize: 120,
+                    },
+                })}
+            >
                 404
             </Title>
-            <Group spacing={4}>
-                <Text>
+            <Group spacing={4} align="center" sx={{ justifyContent: "center" }}>
+                <Text
+                    color="dimmed"
+                    size="lg"
+                    align="center"
+                    sx={{ maxWidth: 500 }}
+                >
                     {translate(
                         "pages.error.404",
                         "Sorry, the page you visited does not exist.",
@@ -95,7 +115,7 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
                 )}
             </Group>
             <Space h="md" />
-            <Button onClick={() => push("/")}>
+            <Button variant="subtle" size="md" onClick={() => push("/")}>
                 {translate("pages.error.backHome", "Back Home")}
             </Button>
         </Box>
