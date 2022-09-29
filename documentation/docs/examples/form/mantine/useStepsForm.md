@@ -5,8 +5,7 @@ title: useStepsForm
 
 `useStepsForm` allows you to manage a form with multiple steps. It provides features such as which step is currently active, the ability to go to a specific step and validation when changing steps etc. You can view the live example or review the source code to see how it's used with Mantine.
 
-<!-- TODO: When you create useModalForm hook documentation, change the link below. -->
-<!-- [Refer to the useStepsForm hook documentation for more information. →](/docs/api-reference/mantine/hooks/form/useStepsForm/) -->
+[Refer to the useStepsForm hook documentation for more information. →](/api-reference/mantine/hooks/form/useStepsForm.md)
 
 [View useStepsForm Example Source](https://github.com/pankod/refine/tree/master/examples/form/mantine/useStepsForm)
 
