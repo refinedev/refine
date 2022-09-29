@@ -2,13 +2,10 @@ FROM node:16-alpine
 
 WORKDIR /opt/app
 
+COPY . /opt/app
 ENV NODE_ENV development
 
-COPY package*.json ./
-
-RUN npm install --force
-
-COPY . /opt/app
+RUN npm ci
 
 RUN npm run bootstrap
 RUN npm run build
