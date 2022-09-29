@@ -49,7 +49,7 @@ const Examples: React.FC = () => {
                 <br />
                 <div className="flex justify-end">
                     <Link
-                        to="/docs/examples/tutorial/headless-tutorial"
+                        to="/docs/examples/"
                         className="flex items-center text-xl font-bold uppercase text-[#2A2A42]"
                         target="_blank"
                     >

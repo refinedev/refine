@@ -52,8 +52,9 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
         useUpdate<StoreCartsRes>();
     const { mutate: deleteMutate } = useDelete<StoreCartsRes>();
 
-    const [countryCode, setCountryCode] =
-        useState<string | undefined>(undefined);
+    const [countryCode, setCountryCode] = useState<string | undefined>(
+        undefined,
+    );
 
     const getCart = () => {
         if (!IS_SERVER) {

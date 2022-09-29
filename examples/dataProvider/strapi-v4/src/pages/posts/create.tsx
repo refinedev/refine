@@ -29,8 +29,9 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const API_URL = useApiUrl();
     const [locale, setLocale] = useState("en");
 
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
+        "write",
+    );
 
     const { formProps, saveButtonProps } = useForm<IPost>();
 

@@ -5,12 +5,11 @@ import { Row, Col, Card, Avatar, Typography, Space } from "@pankod/refine-antd";
 const { Text } = Typography;
 
 export const DashboardPage: React.FC = () => {
-    const { data: identity } =
-        useGetIdentity<{
-            id: string;
-            name: string;
-            avatar: string;
-        }>();
+    const { data: identity } = useGetIdentity<{
+        id: string;
+        name: string;
+        avatar: string;
+    }>();
     const permissions = usePermissions();
 
     return (

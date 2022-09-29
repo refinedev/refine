@@ -17,8 +17,11 @@ import {
 import { IUser, IUserVariable } from "interfaces";
 
 export const UserCreate: React.FC<IResourceComponentsProps> = () => {
-    const { formProps, saveButtonProps } =
-        useForm<IUser, HttpError, IUserVariable>();
+    const { formProps, saveButtonProps } = useForm<
+        IUser,
+        HttpError,
+        IUserVariable
+    >();
 
     return (
         <Create saveButtonProps={saveButtonProps}>
