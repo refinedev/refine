@@ -17,7 +17,7 @@ import { PostCreate, PostEdit, PostList } from "./pages";
 const App: React.FC = () => {
     return (
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
-            <Global styles={{ body: { "-webkit-font-smoothing": "auto" } }} />
+            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">
                 <Refine
                     routerProvider={routerProvider}

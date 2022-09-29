@@ -27,7 +27,7 @@ import {
 import { RichTextEditor } from "@mantine/rte";
 import { IconChevronDown, IconChevronRight } from "@tabler/icons";
 
-// import { ColumnFilter, ColumnSorter } from "../../components/table";
+import { ColumnFilter, ColumnSorter } from "../../components/table";
 import { IPost, ICategory, FilterElementProps } from "../../interfaces";
 
 export const PostList: React.FC = () => {
@@ -223,10 +223,6 @@ export const PostList: React.FC = () => {
         },
     }));
 
-    const handleEditButtonClick = (editId: number) => {
-        setId(editId);
-    };
-
     const renderEditRow = useCallback(
         (row: Row<IPost>) => {
             const { id, title, content } = row.original;
@@ -303,12 +299,12 @@ export const PostList: React.FC = () => {
                                                     )}
                                                 </Box>
                                                 <Group spacing="xs" noWrap>
-                                                    {/* <ColumnSorter
+                                                    <ColumnSorter
                                                         column={header.column}
                                                     />
                                                     <ColumnFilter
                                                         column={header.column}
-                                                    /> */}
+                                                    />
                                                 </Group>
                                             </Group>
                                         )}

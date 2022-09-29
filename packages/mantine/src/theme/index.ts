@@ -54,11 +54,12 @@ const commonThemeProperties: Partial<MantineThemeOverride> = {
                           root: {
                               "thead>tr>th": {
                                   backgroundColor: "#fafafa",
+                                  padding: "16px 4px",
                               },
-                              "thead>tr>th:first-child": {
+                              "thead>tr>th:first-of-type": {
                                   borderTopLeftRadius: theme.defaultRadius,
                               },
-                              "thead>tr>th:last-child": {
+                              "thead>tr>th:last-of-type": {
                                   borderTopRightRadius: theme.defaultRadius,
                               },
                               "tbody>tr>td": {
