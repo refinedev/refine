@@ -10,31 +10,49 @@ import * as RefineReactTable from "@pankod/refine-react-table";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
-const Refine = (
-    props: React.ComponentProps<typeof RefineCore.Refine>,
-): JSX.Element => (
-    <RefineCore.Refine
-        {...props}
-        options={{
-            disableTelemetry: true,
-            reactQuery: {
-                devtoolConfig: false,
-            },
-        }}
-    />
-);
-
 declare global {
     interface Window {
         routerSettings?: { initialEntries?: string[] };
+        refineProps?: Partial<React.ComponentProps<typeof RefineCore.Refine>>;
     }
 }
+
+const Refine = (
+    props: React.ComponentProps<typeof RefineCore.Refine>,
+): JSX.Element => {
+    const { options: hiddenRefineOptions, ...hiddenRefineProps } =
+        window.refineProps ?? {};
+    return (
+        <RefineCore.Refine
+            {...props}
+            options={{
+                disableTelemetry: true,
+                ...(props?.options || {}),
+                ...(hiddenRefineOptions || {}),
+                reactQuery: {
+                    devtoolConfig: false,
+                    ...(props?.options?.reactQuery || {}),
+                    ...(hiddenRefineOptions?.reactQuery || {}),
+                },
+            }}
+            {...hiddenRefineProps}
+        />
+    );
+};
 
 const setInitialRoutes = (initialEntries: string[]): void => {
     if (typeof window !== "undefined") {
         window.routerSettings = {
             initialEntries,
         };
+    }
+};
+
+const setRefineProps = (
+    props: Partial<React.ComponentProps<typeof RefineCore.Refine>>,
+) => {
+    if (typeof window !== "undefined") {
+        window.refineProps = props;
     }
 };
 
@@ -81,7 +99,7 @@ const RefineAntdDemo: React.FC<
     }
 
     return (
-        <RefineCore.Refine
+        <Refine
             routerProvider={RefineReactRouterV6.default}
             dataProvider={RefineSimpleRest.default(SIMPLE_REST_API_URL)}
             notificationProvider={RefineAntd.notificationProvider}
@@ -109,7 +127,7 @@ const RefineHeadlessDemo: React.FC<
     }
 
     return (
-        <RefineCore.Refine
+        <Refine
             routerProvider={RefineReactRouterV6.default}
             dataProvider={RefineSimpleRest.default(SIMPLE_REST_API_URL)}
             options={{
@@ -139,7 +157,7 @@ const RefineMuiDemo: React.FC<
                 styles={{ html: { WebkitFontSmoothing: "auto" } }}
             />
             <RefineMui.RefineSnackbarProvider>
-                <RefineCore.Refine
+                <Refine
                     routerProvider={RefineReactRouterV6.default}
                     dataProvider={RefineSimpleRest.default(SIMPLE_REST_API_URL)}
                     notificationProvider={RefineMui.notificationProvider}
@@ -182,6 +200,7 @@ export const RefineScope = {
     RefineSimpleRest,
     // Utilities
     setInitialRoutes,
+    setRefineProps,
     RefineReactRouterV6,
     RefineDemoReactRouterV6,
     // UI
