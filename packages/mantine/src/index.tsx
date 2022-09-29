@@ -1,5 +1,6 @@
 import "./types/theme";
 
+export * from "@mantine/notifications";
 export * from "@mantine/hooks";
 export * from "@mantine/utils";
 export * from "@mantine/styles";
