@@ -403,6 +403,7 @@ render(
 | `RefineMuiDemo`       | Predefined `<Refine/>` component with Material UI, simple-rest and react-router-v6 props for easier use                                   |
 | `RefineAntdDemo`      | Predefined `<Refine/>` component with Ant Design, simple-rest and react-router-v6 props for easier use                                    |
 | `setInitialRoutes`    | For live previews, we use `MemoryRouter` from `react-router-v6` and to set the initial entries of the history, you can use this function. |
+| `setRefineProps` | For live previews, you may need to set some props to `<Refine />` component that are unrelated to the code block you're writing. In those cases, you can use `setRefinProps` outside of the visible code block to set props or override the existing props. |
 
 :::tip
 Demo components are recommended to be used whenever possible to avoid unnecessary configuration at every code block. They are equipped with the `refine-react-router-v6` setup with `MemoryRouter`, `refine-simple-rest` data provider and the preferred UI Integration.
@@ -418,6 +419,10 @@ Demo components are recommended to be used whenever possible to avoid unnecessar
 
 :::tip
 Make sure you use `setInitialRoutes` function before rendering the `<Refine/>` component. Otherwise, `MemoryRouter` will not be able to set the initial routes. For some cases, you might find setting `initialRoutes` prop of demo `<Refine/>` (`RefineHeadlessDemo`, `RefineMuiDemo` and `RefineAntdDemo`) components easier. There's no difference between the two approaches.
+:::
+
+:::tip
+`setRefineProps` is a function to set additional props to `<Refine />` or override existing props of `<Refine />`. Make sure you don't conflict with the props you set in the visible block while overriding; which may cause unwanted results.
 :::
 
 [lerna]: https://github.com/lerna/lerna
