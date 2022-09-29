@@ -373,7 +373,7 @@ module.exports = {
                     label: "Mantine API",
                     link: {
                         type: "generated-index",
-                        title: "Matine API",
+                        title: "Mantine API",
                         slug: "/api-reference/mantine",
                     },
                     items: [
