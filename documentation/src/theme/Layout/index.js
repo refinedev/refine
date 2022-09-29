@@ -10,6 +10,8 @@ import Footer from "@theme/Footer";
 import LayoutProvider from "@theme/Layout/Provider";
 import ErrorPageContent from "@theme/ErrorPageContent";
 import styles from "./styles.module.css";
+import { LivePreviewProvider } from "../../components/live-preview-context";
+
 export default function Layout(props) {
     const {
         children,
@@ -40,7 +42,7 @@ export default function Layout(props) {
                 <ErrorBoundary
                     fallback={(params) => <ErrorPageContent {...params} />}
                 >
-                    {children}
+                    <LivePreviewProvider>{children}</LivePreviewProvider>
                 </ErrorBoundary>
             </div>
 
