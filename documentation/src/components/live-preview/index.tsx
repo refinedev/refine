@@ -165,7 +165,7 @@ const LivePreviewBase = ({
                         }}
                         ref={ref}
                     >
-                        <Conditional if={inView}>
+                        <Conditional if={inView} maxWait={3000}>
                             {() => {
                                 return (
                                     <LivePreviewFrame
