@@ -31,7 +31,9 @@ const Preview: NextPage = () => {
             const element = document.createElement("link");
             element.setAttribute("rel", "stylesheet");
             element.onload = () => {
-                setReady(true);
+                setTimeout(() => {
+                    setReady(true);
+                }, 300);
             };
             element.setAttribute(
                 "href",
