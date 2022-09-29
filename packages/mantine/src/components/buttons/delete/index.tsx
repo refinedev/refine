@@ -78,6 +78,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     const [opened, setOpened] = useState(false);
 
     const onConfirm = () => {
+        setOpened(false);
         mutate(
             {
                 id: id ?? "",
@@ -92,9 +93,6 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                 onSuccess: (value) => {
                     onSuccess && onSuccess(value);
                 },
-                onSettled: () => {
-                    setOpened(false);
-                },
             },
         );
     };
@@ -102,7 +100,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     const { variant, styles, ...commonProps } = rest;
 
     return (
-        <Popover opened={opened} onChange={setOpened} withArrow>
+        <Popover opened={opened} onChange={setOpened} withArrow withinPortal>
             <Popover.Target>
                 {hideText ? (
                     <ActionIcon
