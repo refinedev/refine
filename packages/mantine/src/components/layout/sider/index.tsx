@@ -26,18 +26,18 @@ import {
     Styles,
 } from "@mantine/core";
 import {
-    IconPoint,
-    IconLayoutSidebarLeftExpand,
+    IconList,
+    IconMenu2,
     IconChevronRight,
     IconChevronLeft,
     IconLogout,
-    IconHome,
+    IconDashboard,
 } from "@tabler/icons";
 import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
 
 import { Title as DefaultTitle } from "../title";
 
-const defaultNavIcon = <IconPoint color="white" size={18} />;
+const defaultNavIcon = <IconList size={18} />;
 
 export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const [collapsed, setCollapsed] = useState(false);
@@ -151,7 +151,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                             ? null
                             : t("dashboard.title", "Dashboard")
                     }
-                    icon={<IconHome size={18} />}
+                    icon={<IconDashboard size={18} />}
                     component={Link}
                     to="/"
                     active={selectedKey === "/"}
@@ -168,7 +168,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 label={
                     collapsed && !opened ? null : t("buttons.logout", "Logout")
                 }
-                icon={<IconLogout />}
+                icon={<IconLogout size={18} />}
                 onClick={() => mutateLogout()}
                 styles={commonNavLinkStyles}
             />
@@ -210,7 +210,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                         }}
                         onClick={() => setOpened((prev) => !prev)}
                     >
-                        <IconLayoutSidebarLeftExpand />
+                        <IconMenu2 />
                     </ActionIcon>
                 </Box>
             </MediaQuery>

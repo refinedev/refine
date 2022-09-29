@@ -5,7 +5,7 @@ import {
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
 import { ActionIcon, Button, ButtonProps } from "@mantine/core";
-import { IconTableExport, TablerIconProps } from "@tabler/icons";
+import { IconFileExport, TablerIconProps } from "@tabler/icons";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 
@@ -44,13 +44,13 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
             data-testid={RefineButtonTestIds.ExportButton}
             {...commonProps}
         >
-            <IconTableExport size={18} {...svgIconProps} />
+            <IconFileExport size={18} {...svgIconProps} />
         </ActionIcon>
     ) : (
         <Button
             variant="default"
             loading={loading}
-            leftIcon={<IconTableExport size={18} {...svgIconProps} />}
+            leftIcon={<IconFileExport size={18} {...svgIconProps} />}
             data-testid={RefineButtonTestIds.ExportButton}
             {...rest}
         >
