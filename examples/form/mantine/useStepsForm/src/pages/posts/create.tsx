@@ -9,6 +9,7 @@ import {
     useStepsForm,
     SaveButton,
     Text,
+    Space,
 } from "@pankod/refine-mantine";
 import { RichTextEditor } from "@mantine/rte";
 import { DatePicker } from "@mantine/dates";
@@ -69,8 +70,16 @@ export const PostCreate: React.FC = () => {
                 </Group>
             }
         >
-            <Stepper active={currentStep} breakpoint="sm">
-                <Stepper.Step label="First Step">
+            <Stepper
+                active={currentStep}
+                onStepClick={gotoStep}
+                breakpoint="sm"
+            >
+                <Stepper.Step
+                    label="First Step"
+                    description="Title and Slug"
+                    allowStepSelect={currentStep > 0}
+                >
                     <TextInput
                         mt="md"
                         label="Title"
@@ -85,7 +94,11 @@ export const PostCreate: React.FC = () => {
                     />
                 </Stepper.Step>
 
-                <Stepper.Step label="Second Step">
+                <Stepper.Step
+                    label="Second Step"
+                    description="Status and Date"
+                    allowStepSelect={currentStep > 1}
+                >
                     <Select
                         mt="md"
                         label="Status"
@@ -102,11 +115,16 @@ export const PostCreate: React.FC = () => {
                         mt="md"
                         label="CreatedAt"
                         placeholder="CreatedAt"
+                        withinPortal
                         {...getInputProps("createdAt")}
                     />
                 </Stepper.Step>
 
-                <Stepper.Step label="Final Step">
+                <Stepper.Step
+                    label="Final Step"
+                    description="Content"
+                    allowStepSelect={currentStep > 2}
+                >
                     <Text mt={8} weight={500} size="sm" color="#212529">
                         Content
                     </Text>
@@ -117,9 +135,8 @@ export const PostCreate: React.FC = () => {
                 </Stepper.Step>
                 <Stepper.Completed>
                     Completed! Form values:
-                    <Code block mt="xl">
-                        {JSON.stringify(values, null, 2)}
-                    </Code>
+                    <Space />
+                    <Code mt="xl">{JSON.stringify(values, null, 2)}</Code>
                 </Stepper.Completed>
             </Stepper>
         </Create>
