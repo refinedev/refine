@@ -1,6 +1,9 @@
 import React from "react";
 import { BoxProps, CardProps } from "@mui/material";
-import { RefineAuthPageProps } from "@pankod/refine-ui-types";
+import {
+    RefineAuthPageProps,
+    RefineRegisterFormTypes,
+} from "@pankod/refine-ui-types";
 
 import {
     LoginPage,
@@ -9,11 +12,11 @@ import {
     UpdatePasswordPage,
 } from "./components";
 
-export type AuthProps = RefineAuthPageProps<
-    BoxProps,
-    CardProps,
-    BoxProps<"form">
->;
+export interface FormPropsType extends Omit<BoxProps<"form">, "onSubmit"> {
+    onSubmit: (values: RefineRegisterFormTypes) => void;
+}
+
+export type AuthProps = RefineAuthPageProps<BoxProps, CardProps, FormPropsType>;
 
 /**
  * **refine** has a default auth page form served on the `/login` route when the `authProvider` configuration is provided.

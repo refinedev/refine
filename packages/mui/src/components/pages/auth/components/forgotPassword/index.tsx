@@ -25,11 +25,12 @@ import {
 } from "@pankod/refine-core";
 
 import { layoutStyles, titleStyles } from "../styles";
+import { FormPropsType } from "../../index";
 
 type ForgotPasswordProps = RefineForgotPasswordPageProps<
     BoxProps,
     CardContentProps,
-    BoxProps<"form">
+    FormPropsType
 >;
 
 /**
@@ -72,7 +73,14 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
                 </Typography>
                 <Box
                     component="form"
-                    onSubmit={handleSubmit((data) => mutate(data))}
+                    {...formProps}
+                    onSubmit={handleSubmit((data) => {
+                        if (formProps?.onSubmit) {
+                            return formProps.onSubmit(data);
+                        }
+
+                        return mutate(data);
+                    })}
                     gap="16px"
                     {...formProps}
                 >

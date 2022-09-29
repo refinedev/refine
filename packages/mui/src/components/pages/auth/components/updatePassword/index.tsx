@@ -24,11 +24,12 @@ import {
 } from "@pankod/refine-core";
 
 import { layoutStyles, titleStyles } from "../styles";
+import { FormPropsType } from "../../index";
 
 type UpdatePasswordProps = RefineUpdatePasswordPageProps<
     BoxProps,
     CardContentProps,
-    BoxProps<"form">
+    FormPropsType
 >;
 
 export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
@@ -64,7 +65,14 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                 </Typography>
                 <Box
                     component="form"
-                    onSubmit={handleSubmit((data) => update(data))}
+                    {...formProps}
+                    onSubmit={handleSubmit((data) => {
+                        if (formProps?.onSubmit) {
+                            return formProps.onSubmit(data);
+                        }
+
+                        return update(data);
+                    })}
                     gap="16px"
                     {...formProps}
                 >

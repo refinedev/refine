@@ -27,11 +27,12 @@ import {
 } from "@pankod/refine-core";
 
 import { layoutStyles, titleStyles } from "../styles";
+import { FormPropsType } from "../../index";
 
 type RegisterProps = RefineRegisterPageProps<
     BoxProps,
     CardContentProps,
-    BoxProps<"form">
+    FormPropsType
 >;
 
 /**
@@ -109,9 +110,15 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                 {renderProviders()}
                 <Box
                     component="form"
-                    onSubmit={handleSubmit((data) => registerMutate(data))}
-                    gap="16px"
                     {...formProps}
+                    onSubmit={handleSubmit((data) => {
+                        if (formProps?.onSubmit) {
+                            return formProps.onSubmit(data);
+                        }
+
+                        return registerMutate(data);
+                    })}
+                    gap="16px"
                 >
                     <TextField
                         {...register("email", {
