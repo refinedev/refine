@@ -92,7 +92,10 @@ const App: React.FC = () => {
                                         label: "Sign in with Google",
                                         icon: (
                                             <GoogleOutlined
-                                                style={{ fontSize: 24 }}
+                                                style={{
+                                                    fontSize: 24,
+                                                    lineHeight: 0,
+                                                }}
                                             />
                                         ),
                                     },
@@ -101,7 +104,10 @@ const App: React.FC = () => {
                                         label: "Sign in with GitHub",
                                         icon: (
                                             <GithubOutlined
-                                                style={{ fontSize: 24 }}
+                                                style={{
+                                                    fontSize: 24,
+                                                    lineHeight: 0,
+                                                }}
                                             />
                                         ),
                                     },
@@ -135,12 +141,20 @@ const App: React.FC = () => {
                         {
                             name: "google",
                             label: "Sign in with Google",
-                            icon: <GoogleOutlined style={{ fontSize: 24 }} />,
+                            icon: (
+                                <GoogleOutlined
+                                    style={{ fontSize: 24, lineHeight: 0 }}
+                                />
+                            ),
                         },
                         {
                             name: "github",
                             label: "Sign in with GitHub",
-                            icon: <GithubOutlined style={{ fontSize: 24 }} />,
+                            icon: (
+                                <GithubOutlined
+                                    style={{ fontSize: 24, lineHeight: 0 }}
+                                />
+                            ),
                         },
                     ]}
                 />
