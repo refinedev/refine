@@ -370,6 +370,34 @@ module.exports = {
 
                 {
                     type: "category",
+                    label: "Mantine API",
+                    link: {
+                        type: "generated-index",
+                        title: "Mantine API",
+                        slug: "/api-reference/mantine",
+                    },
+                    items: [
+                        {
+                            type: "category",
+                            label: "Hooks",
+                            items: [
+                                {
+                                    type: "category",
+                                    label: "Form",
+                                    items: [
+                                        "api-reference/mantine/hooks/form/useDrawerForm",
+                                        "api-reference/mantine/hooks/form/useForm",
+                                        "api-reference/mantine/hooks/form/useModalForm",
+                                        "api-reference/mantine/hooks/form/useStepsForm",
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+
+                {
+                    type: "category",
                     label: "Material UI API",
                     link: {
                         type: "generated-index",

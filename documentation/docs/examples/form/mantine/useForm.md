@@ -5,8 +5,7 @@ title: useForm
 
 **refine** works integrated with `useForm` of `@mantine/form` library. Using this package, you can use all the features provided by Mantine in your **refine** project in a compatible way. You can view the live example or review the source code to see how it's used with Mantine.
 
-<!-- TODO: When you create useForm hook documentation, change the link below. -->
-<!-- [Refer to the useForm hook documentation for more information. →](#) -->
+[Refer to the useForm hook documentation for more information. →](/api-reference/mantine/hooks/form/useForm.md)
 
 [View useForm Example Source](https://github.com/pankod/refine/tree/master/examples/form/mantine/useForm)
 
