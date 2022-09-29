@@ -1,4 +1,3 @@
-import { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { ISession, IUser } from "../interfaces";
 

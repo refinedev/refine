@@ -1,4 +1,4 @@
-import { Client } from "./client";
+import { Client, RefineCloudException } from "./client";
 export * from "./interfaces";
 
 const createClient = (payload: {
@@ -15,4 +15,4 @@ const createClient = (payload: {
     });
 };
 
-export { createClient, Client };
+export { createClient, Client, RefineCloudException };

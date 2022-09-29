@@ -17,6 +17,18 @@ import {
     Storage,
 } from "./services";
 
+class RefineCloudException extends Error {
+    status: number;
+    statusText: string;
+    constructor(message: string, status = 0, statusText = "") {
+        super(message);
+        this.name = "RefineCloudException";
+        this.message = message;
+        this.status = status;
+        this.statusText = statusText;
+    }
+}
+
 class Client {
     private baseUrl: string;
     private clientId: string;
@@ -162,7 +174,7 @@ class Client {
         data?: any;
         skipAuthRefresh?: boolean;
         headers?: AxiosRequestHeaders;
-    }): Promise<D> {
+    }): Promise<any> {
         const { params, method, url, skipAuthRefresh, headers, data } = payload;
 
         const config: AxiosAuthRefreshRequestConfig = {
@@ -179,14 +191,16 @@ class Client {
             ...config,
         })
             .then((response) => response.data)
-            .catch((error: AxiosError) => {
-                if (error.response) {
-                    throw new Error(error.response.data.message);
-                }
+            .catch((err: AxiosError) => {
+                const { response } = err;
 
-                throw new Error("An unknown error occurred");
+                throw new RefineCloudException(
+                    response?.data?.message,
+                    response?.status,
+                    response?.statusText,
+                );
             });
     }
 }
 
-export { Client };
+export { Client, RefineCloudException };
