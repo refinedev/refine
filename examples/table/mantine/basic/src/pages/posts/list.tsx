@@ -7,7 +7,6 @@ import {
     ScrollArea,
     Table,
     Pagination,
-    EditButton,
     DeleteButton,
     Select,
 } from "@pankod/refine-mantine";
@@ -61,10 +60,6 @@ export const PostList: React.FC = () => {
                 cell: function render({ getValue }) {
                     return (
                         <Group spacing="xs" noWrap>
-                            <EditButton
-                                hideText
-                                recordItemId={getValue() as number}
-                            />
                             <DeleteButton
                                 hideText
                                 recordItemId={getValue() as number}

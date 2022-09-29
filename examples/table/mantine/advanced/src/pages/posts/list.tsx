@@ -17,7 +17,6 @@ import {
     TextInput,
     ActionIcon,
     Checkbox,
-    EditButton,
     DeleteButton,
     List,
     ScrollArea,
@@ -173,18 +172,10 @@ export const PostList: React.FC = () => {
                 cell: function render({ getValue }) {
                     return (
                         <Group spacing="xs" noWrap>
-                            <EditButton
-                                hideText
-                                onClick={() => {
-                                    handleEditButtonClick(getValue() as number);
-                                }}
-                            />
                             <DeleteButton
                                 hideText
                                 recordItemId={getValue() as number}
-                            >
-                                Delete
-                            </DeleteButton>
+                            />
                         </Group>
                     );
                 },
