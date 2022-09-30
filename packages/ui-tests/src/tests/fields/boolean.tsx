@@ -9,14 +9,6 @@ export const fieldBooleanTests = function (
     >,
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / Boolean Field", () => {
-        beforeAll(() => {
-            jest.useFakeTimers();
-        });
-
-        afterAll(() => {
-            jest.useRealTimers();
-        });
-
         xit("should use prop for custom text", async () => {
             const baseDom = render(
                 <BooleanField value={true} valueLabelTrue="test" />,

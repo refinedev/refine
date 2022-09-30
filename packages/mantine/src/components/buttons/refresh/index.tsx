@@ -4,13 +4,14 @@ import {
     RefineButtonTestIds,
     RefineRefreshButtonProps,
 } from "@pankod/refine-ui-types";
-import { Button, ButtonProps } from "@mantine/core";
-import { Refresh, IconProps } from "tabler-icons-react";
+import { ActionIcon, Button, ButtonProps } from "@mantine/core";
+import { IconRefresh, TablerIconProps } from "@tabler/icons";
+import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 
 export type RefreshButtonProps = RefineRefreshButtonProps<
     ButtonProps,
     {
-        svgIconProps?: IconProps;
+        svgIconProps?: TablerIconProps;
     }
 >;
 
@@ -29,7 +30,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     svgIconProps,
     children,
     onClick,
-    ...restProps
+    ...rest
 }) => {
     const { resourceName, id } = useResource({
         resourceNameOrRouteName,
@@ -49,23 +50,36 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
         dataProviderName,
     });
 
-    return (
+    const { variant, styles, ...commonProps } = rest;
+
+    return hideText ? (
+        <ActionIcon
+            onClick={(e: React.PointerEvent<HTMLButtonElement>) =>
+                onClick ? onClick(e) : refetch()
+            }
+            loading={isFetching}
+            data-testid={RefineButtonTestIds.RefreshButton}
+            {...(variant
+                ? {
+                      variant: mapButtonVariantToActionIconVariant(variant),
+                  }
+                : { variant: "default" })}
+            {...commonProps}
+        >
+            <IconRefresh size={18} {...svgIconProps} />
+        </ActionIcon>
+    ) : (
         <Button
-            variant="subtle"
-            leftIcon={!hideText && <Refresh {...svgIconProps} />}
+            variant="default"
+            leftIcon={<IconRefresh size={18} {...svgIconProps} />}
             loading={isFetching}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) =>
                 onClick ? onClick(e) : refetch()
             }
             data-testid={RefineButtonTestIds.RefreshButton}
-            loaderProps={{ size: 24 }}
-            {...restProps}
+            {...rest}
         >
-            {hideText ? (
-                <Refresh fontSize="small" {...svgIconProps} />
-            ) : (
-                children ?? translate("buttons.refresh", "Refresh")
-            )}
+            {children ?? translate("buttons.refresh", "Refresh")}
         </Button>
     );
 };

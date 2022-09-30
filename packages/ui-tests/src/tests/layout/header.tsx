@@ -1,7 +1,7 @@
 import React from "react";
 import { RefineLayoutHeaderProps } from "@pankod/refine-ui-types";
 
-import { act, render, TestWrapper } from "@test";
+import { render, TestWrapper } from "@test";
 
 const mockAuthProvider = {
     login: () => Promise.resolve(),
@@ -17,19 +17,11 @@ export const layoutHeaderTests = function (
     HeaderElement: React.ComponentType<RefineLayoutHeaderProps>,
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / Header Element", () => {
-        beforeAll(() => {
-            jest.useFakeTimers();
-        });
-
         it("should render successfull user name and avatar in header", async () => {
             const { findByText, getByRole } = render(<HeaderElement />, {
                 wrapper: TestWrapper({
                     authProvider: mockAuthProvider,
                 }),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             await findByText("username");

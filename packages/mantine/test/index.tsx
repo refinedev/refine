@@ -13,18 +13,6 @@ import {
 
 import { MockRouterProvider, MockJSONServer } from "@test";
 
-/* interface ITestWrapperProps {
-    authProvider?: IAuthContext;
-    dataProvider?: IDataContext;
-    i18nProvider?: I18nProvider;
-    accessControlProvider?: IAccessControlContext;
-    liveProvider?: ILiveContext;
-    resources?: IResourceItem[];
-    children?: React.ReactNode;
-    routerInitialEntries?: string[];
-    refineProvider?: IRefineContextProvider;
-} */
-
 const List = () => {
     return <div>hede</div>;
 };
@@ -76,7 +64,20 @@ export const TestWrapper: (
                     resources={resources ?? [{ name: "posts", list: List }]}
                     accessControlProvider={accessControlProvider}
                     DashboardPage={DashboardPage ?? undefined}
-                    options={{ disableTelemetry: true }}
+                    options={{
+                        disableTelemetry: true,
+                        reactQuery: {
+                            clientConfig: {
+                                defaultOptions: {
+                                    queries: {
+                                        cacheTime: 0,
+                                        staleTime: 0,
+                                        networkMode: "always",
+                                    },
+                                },
+                            },
+                        },
+                    }}
                 >
                     {children}
                 </Refine>

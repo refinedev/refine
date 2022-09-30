@@ -18,6 +18,11 @@ describe("useRefineKbar Hook", () => {
         jest.useFakeTimers();
     });
 
+    afterAll(async () => {
+        jest.clearAllTimers();
+        jest.useRealTimers();
+    });
+
     const createRenderHook = async (
         resources: IResourceItem[],
         path?: string,

@@ -1,77 +1,47 @@
-import React, { FC, PropsWithChildren, useState } from "react";
-import {
-    AppShell,
-    Box,
-    Avatar,
-    Burger,
+import React from "react";
+import { RefineLayoutLayoutProps } from "@pankod/refine-ui-types";
+import { Box } from "@mantine/core";
+
+import { Sider as DefaultSider } from "./sider";
+import { Header as DefaultHeader } from "./header";
+
+export const Layout: React.FC<RefineLayoutLayoutProps> = ({
+    Sider,
     Header,
-    MediaQuery,
-    Text,
-    useMantineTheme,
-} from "@mantine/core";
-import { LayoutProps, useGetIdentity } from "@pankod/refine-core";
-import { Sider } from "./Sider";
-
-export const Layout: FC<PropsWithChildren<LayoutProps>> = ({ children }) => {
-    const theme = useMantineTheme();
-
-    const [opened, setOpened] = useState(false);
-
-    const { data: user } = useGetIdentity();
-
-    const shouldRenderHeader = user && (user.name || user.avatar);
+    Footer,
+    OffLayoutArea,
+    children,
+}) => {
+    const SiderToRender = Sider ?? DefaultSider;
+    const HeaderToRender = Header ?? DefaultHeader;
 
     return (
-        <AppShell
-            navbarOffsetBreakpoint="sm"
-            navbar={<Sider opened={opened} />}
-            header={
-                shouldRenderHeader && (
-                    <Header height={70} p="md">
-                        <div
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                                height: "100%",
-                            }}
-                        >
-                            <MediaQuery
-                                largerThan="sm"
-                                styles={{ display: "none" }}
-                            >
-                                <Burger
-                                    opened={opened}
-                                    onClick={() => setOpened((o) => !o)}
-                                    size="sm"
-                                    color={theme.colors.gray[6]}
-                                    mr="xl"
-                                />
-                            </MediaQuery>
-                            <Box
-                                sx={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    width: "100%",
-                                }}
-                            >
-                                <Box
-                                    sx={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        gap: "16px",
-                                        marginLeft: "auto",
-                                    }}
-                                >
-                                    <Text>{user.name}</Text>
-                                    <Avatar src={user.avatar} alt={user.name} />
-                                </Box>
-                            </Box>
-                        </div>
-                    </Header>
-                )
-            }
-        >
-            {children}
-        </AppShell>
+        <Box sx={{ display: "flex" }}>
+            <SiderToRender />
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    flex: 1,
+                }}
+            >
+                <HeaderToRender />
+                <Box
+                    component="main"
+                    sx={(theme) => ({
+                        padding: theme.spacing.sm,
+                        backgroundColor:
+                            theme.colorScheme === "dark"
+                                ? theme.colors.dark[8]
+                                : theme.colors.gray[0],
+                        minHeight: "100vh",
+                    })}
+                >
+                    {children}
+                </Box>
+                {Footer && <Footer />}
+            </Box>
+            {OffLayoutArea && <OffLayoutArea />}
+        </Box>
     );
 };

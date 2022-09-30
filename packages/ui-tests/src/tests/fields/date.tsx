@@ -9,10 +9,6 @@ export const fieldDateTests = function (
     DateField: React.ComponentType<RefineFieldDateProps<ConfigType, any, any>>,
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / Date Field", () => {
-        beforeAll(() => {
-            jest.useFakeTimers();
-        });
-
         it("renders date with default format", () => {
             const { getByText } = render(
                 <DateField value={new Date("2021-05-20")} />,

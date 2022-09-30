@@ -4,14 +4,16 @@ import {
     RefineImportButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
-import { Button, ButtonProps } from "@mantine/core";
-import { ArrowsUpDown, IconProps } from "tabler-icons-react";
+import { ActionIcon, Button, ButtonProps } from "@mantine/core";
+import { IconFileImport, TablerIconProps } from "@tabler/icons";
+
+import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 
 export type ImportButtonProps = RefineImportButtonProps<
     ButtonProps,
     {
         inputProps: UseImportInputPropsType;
-        svgIconProps?: IconProps;
+        svgIconProps?: TablerIconProps;
     }
 >;
 
@@ -31,26 +33,38 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
-    const { sx, ...restProps } = rest;
+    const { variant, styles, ...commonProps } = rest;
 
     return (
         <label htmlFor="contained-button-file">
             <input {...inputProps} id="contained-button-file" multiple hidden />
-            <Button
-                variant="subtle"
-                component="span"
-                leftIcon={!hideText && <ArrowsUpDown {...svgIconProps} />}
-                loading={loading}
-                sx={{ minWidth: 0, ...sx }}
-                data-testid={RefineButtonTestIds.ImportButton}
-                {...restProps}
-            >
-                {hideText ? (
-                    <ArrowsUpDown fontSize="small" {...svgIconProps} />
-                ) : (
-                    children ?? translate("buttons.import", "Import")
-                )}
-            </Button>
+            {hideText ? (
+                <ActionIcon
+                    {...(variant
+                        ? {
+                              variant:
+                                  mapButtonVariantToActionIconVariant(variant),
+                          }
+                        : { variant: "default" })}
+                    component="span"
+                    loading={loading}
+                    data-testid={RefineButtonTestIds.ImportButton}
+                    {...commonProps}
+                >
+                    <IconFileImport size={18} {...svgIconProps} />
+                </ActionIcon>
+            ) : (
+                <Button
+                    variant="default"
+                    component="span"
+                    leftIcon={<IconFileImport size={18} {...svgIconProps} />}
+                    loading={loading}
+                    data-testid={RefineButtonTestIds.ImportButton}
+                    {...rest}
+                >
+                    {children ?? translate("buttons.import", "Import")}
+                </Button>
+            )}
         </label>
     );
 };

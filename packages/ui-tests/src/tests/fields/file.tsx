@@ -7,10 +7,6 @@ export const fieldFileTests = function (
     FileField: React.ComponentType<RefineFieldFileProps<any, any>>,
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / File Field", () => {
-        beforeAll(() => {
-            jest.useFakeTimers();
-        });
-
         it("renders an anchor with file link", () => {
             const value = {
                 title: "Test",

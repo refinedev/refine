@@ -11,10 +11,9 @@ import {
     Breadcrumbs as MantineBreadcrumbs,
     BreadcrumbsProps as MantineBreadcrumbProps,
     Anchor,
-    AnchorProps,
-    Box,
+    Group,
 } from "@mantine/core";
-import { Home } from "tabler-icons-react";
+import { IconHome } from "@tabler/icons";
 
 export type BreadcrumbProps = RefineBreadcrumbProps<MantineBreadcrumbProps>;
 
@@ -24,66 +23,45 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     hideIcons = false,
 }) => {
     const { breadcrumbs } = useBreadcrumb();
-    const { Link: RouterLink } = useRouterContext();
+    const { Link } = useRouterContext();
     const { hasDashboard } = useRefineContext();
 
     if (breadcrumbs.length === 1) {
         return null;
     }
 
-    const LinkRouter = (props: AnchorProps & { to?: string }) => (
-        <Anchor {...props} component={RouterLink} />
-    );
-
     return (
         <MantineBreadcrumbs
             aria-label="breadcrumb"
-            sx={{
-                paddingY: 2,
-                paddingX: 2,
-                ...(breadcrumbProps?.sx ?? {}),
+            styles={{
+                separator: { marginRight: 8, marginLeft: 8, color: "dimgray" },
             }}
             {...breadcrumbProps}
         >
             {showHome && hasDashboard && (
-                <LinkRouter
-                    sx={{
-                        display: "flex",
-                        alignItems: "center",
-                    }}
-                    color="inherit"
-                    to="/"
-                >
-                    <Home size={18} />
-                </LinkRouter>
+                <Anchor component={Link} color="dimmed" to="/">
+                    <IconHome size={18} />
+                </Anchor>
             )}
             {breadcrumbs.map(({ label, icon, href }) => {
                 return (
-                    <Box
-                        key={label}
-                        sx={{
-                            display: "flex",
-                            alignItems: "center",
-                        }}
-                    >
+                    <Group key={label} spacing={4} align="center" noWrap>
                         {!hideIcons && icon}
                         {href ? (
-                            <LinkRouter
-                                sx={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                }}
-                                color="inherit"
+                            <Anchor
+                                component={Link}
+                                color="dimmed"
                                 to={href}
-                                ml={0.5}
                                 size="sm"
                             >
                                 {label}
-                            </LinkRouter>
+                            </Anchor>
                         ) : (
-                            <Text size="sm">{label}</Text>
+                            <Text color="dimmed" size="sm">
+                                {label}
+                            </Text>
                         )}
-                    </Box>
+                    </Group>
                 );
             })}
         </MantineBreadcrumbs>

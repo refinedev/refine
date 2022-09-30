@@ -11,13 +11,15 @@ import {
     RefineButtonTestIds,
     RefineListButtonProps,
 } from "@pankod/refine-ui-types";
-import { Button, ButtonProps } from "@mantine/core";
-import { List, IconProps } from "tabler-icons-react";
+import { ActionIcon, Anchor, Button, ButtonProps } from "@mantine/core";
+import { IconList, TablerIconProps } from "@tabler/icons";
+
+import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 
 export type ListButtonProps = RefineListButtonProps<
     ButtonProps,
     {
-        svgIconProps?: IconProps;
+        svgIconProps?: TablerIconProps;
     }
 >;
 
@@ -69,10 +71,11 @@ export const ListButton: React.FC<ListButtonProps> = ({
 
     const listUrl = generateListUrl(resource.route!);
 
-    const { sx, ...restProps } = rest;
+    const { variant, styles, ...commonProps } = rest;
 
     return (
-        <Link
+        <Anchor
+            component={Link}
             to={listUrl}
             replace={false}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
@@ -81,30 +84,41 @@ export const ListButton: React.FC<ListButtonProps> = ({
                     onClick(e);
                 }
             }}
-            style={{ textDecoration: "none" }}
         >
-            <Button
-                variant="subtle"
-                disabled={data?.can === false}
-                leftIcon={!hideText && <List {...svgIconProps} />}
-                title={disabledTitle()}
-                sx={{ minWidth: 0, ...sx }}
-                data-testid={RefineButtonTestIds.ListButton}
-                {...restProps}
-            >
-                {hideText ? (
-                    <List fontSize="small" {...svgIconProps} />
-                ) : (
-                    children ??
-                    translate(
-                        `${resourceName}.titles.list`,
-                        userFriendlyResourceName(
-                            resource.label ?? resourceName,
-                            "plural",
-                        ),
-                    )
-                )}
-            </Button>
-        </Link>
+            {hideText ? (
+                <ActionIcon
+                    {...(variant
+                        ? {
+                              variant:
+                                  mapButtonVariantToActionIconVariant(variant),
+                          }
+                        : { variant: "default" })}
+                    disabled={data?.can === false}
+                    title={disabledTitle()}
+                    data-testid={RefineButtonTestIds.ListButton}
+                    {...commonProps}
+                >
+                    <IconList size={18} {...svgIconProps} />
+                </ActionIcon>
+            ) : (
+                <Button
+                    variant="default"
+                    disabled={data?.can === false}
+                    leftIcon={<IconList size={18} {...svgIconProps} />}
+                    title={disabledTitle()}
+                    data-testid={RefineButtonTestIds.ListButton}
+                    {...rest}
+                >
+                    {children ??
+                        translate(
+                            `${resourceName}.titles.list`,
+                            userFriendlyResourceName(
+                                resource.label ?? resourceName,
+                                "plural",
+                            ),
+                        )}
+                </Button>
+            )}
+        </Anchor>
     );
 };

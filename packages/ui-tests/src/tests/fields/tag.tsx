@@ -7,10 +7,6 @@ export const fieldTagTests = function (
     TagField: React.ComponentType<RefineFieldTagProps<ReactNode, any>>,
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / Tag Field", () => {
-        beforeAll(() => {
-            jest.useFakeTimers();
-        });
-
         it("renders boolean values correctly", () => {
             const { getByText } = render(<TagField value={true} />);
 

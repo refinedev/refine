@@ -47,7 +47,6 @@ const parsedData = [
 describe("useImport hook", () => {
     afterEach(() => {
         jest.clearAllMocks();
-        jest.useRealTimers();
     });
 
     it("should render hook without crashing", () => {
@@ -106,13 +105,9 @@ describe("useImport hook", () => {
         );
 
         await act(async () => {
-            jest.useFakeTimers();
-
             await result.current.handleChange?.({
                 file: file,
             });
-
-            jest.runAllTimers();
         });
     });
 
@@ -161,13 +156,9 @@ describe("useImport hook", () => {
         );
 
         await act(async () => {
-            jest.useFakeTimers();
-
             await result.current.handleChange({
                 file: file,
             });
-
-            jest.runAllTimers();
         });
     });
 
@@ -207,13 +198,9 @@ describe("useImport hook", () => {
         );
 
         await act(async () => {
-            jest.useFakeTimers();
-
             await result.current.handleChange({
                 file: file,
             });
-
-            jest.runAllTimers();
         });
     });
 
@@ -249,13 +236,9 @@ describe("useImport hook", () => {
         );
 
         await act(async () => {
-            jest.useFakeTimers();
-
             await result.current.handleChange({
                 file: file,
             });
-
-            jest.runAllTimers();
         });
     });
 
@@ -275,8 +258,6 @@ describe("useImport hook", () => {
                 },
             } as IDataMultipleContextProvider;
 
-            jest.useFakeTimers();
-
             const { result } = renderHook(
                 () =>
                     useImport({
@@ -294,8 +275,6 @@ describe("useImport hook", () => {
                 await result.current.handleChange({
                     file: file,
                 });
-
-                jest.runAllTimers();
             });
         });
 
@@ -328,13 +307,9 @@ describe("useImport hook", () => {
             );
 
             await act(async () => {
-                jest.useFakeTimers();
-
                 await result.current.handleChange({
                     file: file,
                 });
-
-                jest.runAllTimers();
             });
         });
 
@@ -373,13 +348,9 @@ describe("useImport hook", () => {
             );
 
             await act(async () => {
-                jest.useFakeTimers();
-
                 await result.current.handleChange({
                     file: file,
                 });
-
-                jest.runAllTimers();
             });
         });
     });

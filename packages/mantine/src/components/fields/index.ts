@@ -1,8 +1,9 @@
-export { TextFieldComponent } from "./text";
-export { TagField } from "./tag";
-export { EmailField } from "./email";
-export { BooleanField } from "./boolean";
-export { DateField } from "./date";
-export { FileField } from "./file";
-export { UrlField } from "./url";
-export { NumberField } from "./number";
+export * from "./text";
+export * from "./tag";
+export * from "./email";
+export * from "./boolean";
+export * from "./date";
+export * from "./file";
+export * from "./url";
+export * from "./number";
+export * from "./markdown";

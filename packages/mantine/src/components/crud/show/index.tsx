@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { RefineCrudShowProps } from "@pankod/refine-ui-types";
 import {
     Box,
@@ -8,34 +8,36 @@ import {
     Group,
     GroupProps,
     ActionIcon,
-    Center,
-    CenterProps,
+    Stack,
+    Title,
 } from "@mantine/core";
 import {
     ResourceRouterParams,
     useNavigation,
     useResourceWithRoute,
+    userFriendlyResourceName,
     useRouterContext,
+    useTranslate,
 } from "@pankod/refine-core";
-import { PageTitle } from "@components/page-title";
-import { Breadcrumb } from "@components/breadcrumb";
+import { IconArrowLeft } from "@tabler/icons";
+
 import {
     DeleteButton,
     EditButton,
     ListButton,
     RefreshButton,
 } from "@components/buttons";
-import { ArrowLeft } from "tabler-icons-react";
+import { Breadcrumb } from "@components/breadcrumb";
 
 export type ShowProps = RefineCrudShowProps<
-    CenterProps,
-    BoxProps,
+    GroupProps,
+    GroupProps,
     CardProps,
     GroupProps,
     BoxProps
 >;
 
-export const Show: FC<ShowProps> = (props) => {
+export const Show: React.FC<ShowProps> = (props) => {
     const {
         children,
         resource: resourceFromProps,
@@ -55,6 +57,7 @@ export const Show: FC<ShowProps> = (props) => {
         breadcrumb = <Breadcrumb />,
         title,
     } = props;
+    const translate = useTranslate();
 
     const { goBack, list } = useNavigation();
 
@@ -79,18 +82,21 @@ export const Show: FC<ShowProps> = (props) => {
     const defaultHeaderButtons = (
         <>
             {!recordItemId && (
-                <ListButton resourceNameOrRouteName={resource.route} />
+                <ListButton
+                    {...(isLoading ? { disabled: true } : {})}
+                    resourceNameOrRouteName={resource.route}
+                />
             )}
             {isEditButtonVisible && (
                 <EditButton
-                    disabled={isLoading}
+                    {...(isLoading ? { disabled: true } : {})}
                     resourceNameOrRouteName={resource.route}
                     recordItemId={id}
                 />
             )}
             {isDeleteButtonVisible && (
                 <DeleteButton
-                    disabled={isLoading}
+                    {...(isLoading ? { disabled: true } : {})}
                     resourceNameOrRouteName={resource.route}
                     recordItemId={id}
                     onSuccess={() => list(resource.route ?? resource.name)}
@@ -98,7 +104,7 @@ export const Show: FC<ShowProps> = (props) => {
                 />
             )}
             <RefreshButton
-                disabled={isLoading}
+                {...(isLoading ? { disabled: true } : {})}
                 resourceNameOrRouteName={resource.route}
                 recordItemId={id}
                 dataProviderName={dataProviderName}
@@ -111,7 +117,7 @@ export const Show: FC<ShowProps> = (props) => {
             goBackFromProps
         ) : (
             <ActionIcon onClick={routeFromAction ? goBack : undefined}>
-                <ArrowLeft />
+                <IconArrowLeft />
             </ActionIcon>
         );
 
@@ -130,14 +136,35 @@ export const Show: FC<ShowProps> = (props) => {
         : null;
 
     return (
-        <Card p="lg" {...wrapperProps}>
-            {breadcrumb}
-            <Group position="apart" {...headerProps}>
-                {title ?? <PageTitle type="show" buttonBack={buttonBack} />}
-                <Center {...headerButtonProps}>{headerButtons}</Center>
+        <Card p="md" {...wrapperProps}>
+            <Group position="apart" align="center" {...headerProps}>
+                <Stack spacing="xs">
+                    {breadcrumb}
+                    {title ?? (
+                        <Group spacing="xs">
+                            {buttonBack}
+                            <Title order={2} transform="capitalize">
+                                {translate(
+                                    `${resource.name}.titles.show`,
+                                    `Show ${userFriendlyResourceName(
+                                        resource.label ?? resource.name,
+                                        "singular",
+                                    )}`,
+                                )}
+                            </Title>
+                        </Group>
+                    )}
+                </Stack>
+                <Group spacing="xs" {...headerButtonProps}>
+                    {headerButtons}
+                </Group>
             </Group>
-            <Box {...contentProps}>{children}</Box>
-            <Box {...footerButtonProps}>{footerButtons}</Box>
+            <Box pt="sm" {...contentProps}>
+                {children}
+            </Box>
+            <Group position="right" spacing="xs" mt="md" {...footerButtonProps}>
+                {footerButtons}
+            </Group>
         </Card>
     );
 };

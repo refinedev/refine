@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { RefineCrudCreateProps } from "@pankod/refine-ui-types";
 import {
     Box,
@@ -8,33 +8,37 @@ import {
     Group,
     GroupProps,
     ActionIcon,
-    CenterProps,
-    Center,
+    Stack,
+    Title,
 } from "@mantine/core";
 import {
     ResourceRouterParams,
     useNavigation,
+    useResourceWithRoute,
+    userFriendlyResourceName,
     useRouterContext,
+    useTranslate,
 } from "@pankod/refine-core";
-import { PageTitle } from "@components/page-title";
-import { Breadcrumb } from "@components/breadcrumb";
+import { IconArrowLeft } from "@tabler/icons";
+
 import { SaveButton, SaveButtonProps } from "@components/buttons";
-import { ArrowLeft } from "tabler-icons-react";
+import { Breadcrumb } from "@components/breadcrumb";
 
 export type CreateProps = RefineCrudCreateProps<
     SaveButtonProps,
-    CenterProps,
+    GroupProps,
     GroupProps,
     CardProps,
     GroupProps,
     BoxProps
 >;
 
-export const Create: FC<CreateProps> = (props) => {
+export const Create: React.FC<CreateProps> = (props) => {
     const {
         children,
         saveButtonProps,
         isLoading,
+        resource: resourceFromProps,
         footerButtons: footerButtonsFromProps,
         footerButtonProps,
         headerButtons: headerButtonsFromProps,
@@ -46,17 +50,24 @@ export const Create: FC<CreateProps> = (props) => {
         breadcrumb = <Breadcrumb />,
         title,
     } = props;
+    const translate = useTranslate();
 
     const { goBack } = useNavigation();
 
     const { useParams } = useRouterContext();
 
-    const { action: routeFromAction } = useParams<ResourceRouterParams>();
+    const { resource: routeResourceName, action: routeFromAction } =
+        useParams<ResourceRouterParams>();
+
+    const resourceWithRoute = useResourceWithRoute();
+
+    const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
 
     const defaultFooterButtons = (
-        <>
-            <SaveButton loading={isLoading} {...saveButtonProps} />
-        </>
+        <SaveButton
+            {...(isLoading ? { disabled: true } : {})}
+            {...saveButtonProps}
+        />
     );
 
     const buttonBack =
@@ -64,7 +75,7 @@ export const Create: FC<CreateProps> = (props) => {
             goBackFromProps
         ) : (
             <ActionIcon onClick={routeFromAction ? goBack : undefined}>
-                <ArrowLeft />
+                <IconArrowLeft />
             </ActionIcon>
         );
 
@@ -83,16 +94,33 @@ export const Create: FC<CreateProps> = (props) => {
         : defaultFooterButtons;
 
     return (
-        <Card p="lg" {...wrapperProps}>
-            {breadcrumb}
-            <Group position="apart" {...headerProps}>
-                {title ?? <PageTitle type="create" buttonBack={buttonBack} />}
-                {headerButtons && (
-                    <Center {...headerButtonProps}>{headerButtons}</Center>
-                )}
+        <Card p="md" {...wrapperProps}>
+            <Group position="apart" align="center" {...headerProps}>
+                <Stack spacing="xs">
+                    {breadcrumb}
+                    {title ?? (
+                        <Group spacing="xs">
+                            {buttonBack}
+                            <Title order={2} transform="capitalize">
+                                {translate(
+                                    `${resource.name}.titles.create`,
+                                    `Create ${userFriendlyResourceName(
+                                        resource.label ?? resource.name,
+                                        "singular",
+                                    )}`,
+                                )}
+                            </Title>
+                        </Group>
+                    )}
+                </Stack>
+                <Group spacing="xs" {...headerButtonProps}>
+                    {headerButtons}
+                </Group>
             </Group>
-            <Box {...contentProps}>{children}</Box>
-            <Group position="right" spacing="md" mt="xl" {...footerButtonProps}>
+            <Box pt="sm" {...contentProps}>
+                {children}
+            </Box>
+            <Group position="right" spacing="xs" mt="md" {...footerButtonProps}>
                 {footerButtons}
             </Group>
         </Card>

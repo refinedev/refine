@@ -10,13 +10,15 @@ import {
     RefineEditButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
-import { Button, ButtonProps, Center } from "@mantine/core";
-import { Pencil, IconProps } from "tabler-icons-react";
+import { ActionIcon, Anchor, Button, ButtonProps } from "@mantine/core";
+import { IconPencil, TablerIconProps } from "@tabler/icons";
+
+import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 
 export type EditButtonProps = RefineEditButtonProps<
     ButtonProps,
     {
-        svgIconProps?: IconProps;
+        svgIconProps?: TablerIconProps;
     }
 >;
 
@@ -68,10 +70,11 @@ export const EditButton: React.FC<EditButtonProps> = ({
 
     const editUrl = generateEditUrl(resource.route!, id!);
 
-    const { sx, ...restProps } = rest;
+    const { variant, styles, ...commonProps } = rest;
 
     return (
-        <Link
+        <Anchor
+            component={Link}
             to={editUrl}
             replace={false}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
@@ -80,29 +83,34 @@ export const EditButton: React.FC<EditButtonProps> = ({
                     onClick(e);
                 }
             }}
-            style={{ textDecoration: "none" }}
         >
-            <Button
-                variant="subtle"
-                disabled={data?.can === false}
-                leftIcon={
-                    !hideText && (
-                        <Center>
-                            <Pencil {...svgIconProps} />
-                        </Center>
-                    )
-                }
-                title={disabledTitle()}
-                sx={{ minWidth: 0, ...sx }}
-                data-testid={RefineButtonTestIds.EditButton}
-                {...restProps}
-            >
-                {hideText ? (
-                    <Pencil fontSize="small" {...svgIconProps} />
-                ) : (
-                    children ?? translate("buttons.edit", "Edit")
-                )}
-            </Button>
-        </Link>
+            {hideText ? (
+                <ActionIcon
+                    title={disabledTitle()}
+                    disabled={data?.can === false}
+                    data-testid={RefineButtonTestIds.EditButton}
+                    {...(variant
+                        ? {
+                              variant:
+                                  mapButtonVariantToActionIconVariant(variant),
+                          }
+                        : { variant: "default" })}
+                    {...commonProps}
+                >
+                    <IconPencil size={18} {...svgIconProps} />
+                </ActionIcon>
+            ) : (
+                <Button
+                    variant="default"
+                    disabled={data?.can === false}
+                    leftIcon={<IconPencil size={18} {...svgIconProps} />}
+                    title={disabledTitle()}
+                    data-testid={RefineButtonTestIds.EditButton}
+                    {...rest}
+                >
+                    {children ?? translate("buttons.edit", "Edit")}
+                </Button>
+            )}
+        </Anchor>
     );
 };

@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 
 import { RefineFieldEmailProps } from "@pankod/refine-ui-types";
-import { Text, Anchor, AnchorProps } from "@mantine/core";
+import { Anchor, AnchorProps } from "@mantine/core";
 
 export type EmailFieldProps = RefineFieldEmailProps<ReactNode, AnchorProps>;
 
@@ -13,10 +13,8 @@ export type EmailFieldProps = RefineFieldEmailProps<ReactNode, AnchorProps>;
  */
 export const EmailField: React.FC<EmailFieldProps> = ({ value, ...rest }) => {
     return (
-        <Text variant="text">
-            <Anchor href={`mailto:${value}`} {...rest}>
-                {value}
-            </Anchor>
-        </Text>
+        <Anchor href={`mailto:${value}`} {...rest}>
+            {value}
+        </Anchor>
     );
 };

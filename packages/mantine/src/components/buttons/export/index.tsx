@@ -4,13 +4,15 @@ import {
     RefineExportButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
-import { Button, ButtonProps } from "@mantine/core";
-import { ArrowsUpDown, IconProps } from "tabler-icons-react";
+import { ActionIcon, Button, ButtonProps } from "@mantine/core";
+import { IconFileExport, TablerIconProps } from "@tabler/icons";
+
+import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 
 export type ExportButtonProps = RefineExportButtonProps<
     ButtonProps,
     {
-        svgIconProps?: IconProps;
+        svgIconProps?: TablerIconProps;
     }
 >;
 
@@ -29,23 +31,30 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
-    const { sx, ...restProps } = rest;
+    const { variant, styles, ...commonProps } = rest;
 
-    return (
-        <Button
-            {...rest}
-            variant="subtle"
+    return hideText ? (
+        <ActionIcon
+            {...(variant
+                ? {
+                      variant: mapButtonVariantToActionIconVariant(variant),
+                  }
+                : { variant: "default" })}
             loading={loading}
-            leftIcon={!hideText && <ArrowsUpDown {...svgIconProps} />}
-            sx={{ minWidth: 0, ...sx }}
             data-testid={RefineButtonTestIds.ExportButton}
-            {...restProps}
+            {...commonProps}
         >
-            {hideText ? (
-                <ArrowsUpDown fontSize="small" {...svgIconProps} />
-            ) : (
-                children ?? translate("buttons.export", "Export")
-            )}
+            <IconFileExport size={18} {...svgIconProps} />
+        </ActionIcon>
+    ) : (
+        <Button
+            variant="default"
+            loading={loading}
+            leftIcon={<IconFileExport size={18} {...svgIconProps} />}
+            data-testid={RefineButtonTestIds.ExportButton}
+            {...rest}
+        >
+            {children ?? translate("buttons.export", "Export")}
         </Button>
     );
 };

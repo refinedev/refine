@@ -4,13 +4,15 @@ import {
     RefineSaveButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
-import { Button, ButtonProps } from "@mantine/core";
-import { FileCheck, IconProps } from "tabler-icons-react";
+import { ActionIcon, Button, ButtonProps } from "@mantine/core";
+import { IconDeviceFloppy, TablerIconProps } from "@tabler/icons";
+
+import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 
 export type SaveButtonProps = RefineSaveButtonProps<
     ButtonProps,
     {
-        svgIconProps?: IconProps;
+        svgIconProps?: TablerIconProps;
     }
 >;
 
@@ -28,20 +30,28 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
-    const { sx, ...restProps } = rest;
+    const { variant, styles, ...commonProps } = rest;
 
-    return (
-        <Button
-            leftIcon={!hideText && <FileCheck {...svgIconProps} />}
-            sx={{ minWidth: 0, ...sx }}
+    return hideText ? (
+        <ActionIcon
+            {...(variant
+                ? {
+                      variant: mapButtonVariantToActionIconVariant(variant),
+                  }
+                : { variant: "filled" })}
             data-testid={RefineButtonTestIds.SaveButton}
-            {...restProps}
+            {...commonProps}
         >
-            {hideText ? (
-                <FileCheck fontSize="small" {...svgIconProps} />
-            ) : (
-                children ?? translate("buttons.save", "Save")
-            )}
+            <IconDeviceFloppy size={18} {...svgIconProps} />
+        </ActionIcon>
+    ) : (
+        <Button
+            variant="filled"
+            leftIcon={<IconDeviceFloppy size={18} {...svgIconProps} />}
+            data-testid={RefineButtonTestIds.SaveButton}
+            {...rest}
+        >
+            {children ?? translate("buttons.save", "Save")}
         </Button>
     );
 };

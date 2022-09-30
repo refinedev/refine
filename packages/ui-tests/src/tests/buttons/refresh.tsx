@@ -12,17 +12,9 @@ export const buttonRefreshTests = function (
     describe("[@pankod/refine-ui-tests] Common Tests / Refresh Button", () => {
         const refresh = jest.fn();
 
-        beforeAll(() => {
-            jest.useFakeTimers();
-        });
-
         it("should render button successfuly", async () => {
             const { container } = render(<RefreshButton />, {
                 wrapper: TestWrapper({}),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             expect(container).toBeTruthy();
@@ -31,10 +23,6 @@ export const buttonRefreshTests = function (
         it("should have the correct test-id", async () => {
             const { queryByTestId } = render(<RefreshButton />, {
                 wrapper: TestWrapper({}),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             expect(
@@ -50,10 +38,6 @@ export const buttonRefreshTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
             getByText("refine");
@@ -67,10 +51,6 @@ export const buttonRefreshTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
             expect(queryByText("Refresh")).not.toBeInTheDocument();
@@ -83,10 +63,6 @@ export const buttonRefreshTests = function (
                     wrapper: TestWrapper({}),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             await act(async () => {
                 fireEvent.click(getByText("Refresh"));
