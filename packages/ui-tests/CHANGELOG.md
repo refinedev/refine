@@ -1,5 +1,16 @@
 # @pankod/refine-ui-tests
 
+## 0.9.0
+
+### Minor Changes
+
+-   Removed timers from all of the tests.
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.74.6
+
 ## 0.8.0
 
 ### Minor Changes
