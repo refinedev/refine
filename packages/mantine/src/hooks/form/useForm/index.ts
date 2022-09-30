@@ -21,7 +21,7 @@ export type UseFormReturnType<
     refineCore: UseFormReturnTypeCore<TData, TError, TVariables>;
     saveButtonProps: {
         disabled: boolean;
-        onClick: (e: any) => void;
+        onClick: (e: React.FormEvent<HTMLFormElement>) => void;
     };
 };
 
