@@ -28,7 +28,7 @@ describe("ReadyPage", () => {
         );
         expect(getByText("Examples").closest("a")).toHaveAttribute(
             "href",
-            "https://refine.dev/docs/examples/tutorial",
+            "https://refine.dev/examples",
         );
         expect(getByText("Community").closest("a")).toHaveAttribute(
             "href",

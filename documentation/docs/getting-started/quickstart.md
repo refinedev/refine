@@ -121,4 +121,4 @@ Now, you should see the output as a table populated with `post` & `category` dat
 
 👉 See the real-life [Finefoods Demo](https://refine.dev/demo/) project.
 
-👉 Play with interactive [Examples](https://refine.dev/docs/examples/tutorial/headless-tutorial/)
+👉 Play with interactive [Examples](https://refine.dev/docs/examples/)

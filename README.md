@@ -11,7 +11,7 @@
     <a href="https://refine.dev/blog/">Blog</a> | 
     <a href="https://refine.dev/docs/">Documentation</a> | 
     <a href="https://github.com/pankod/refine/projects/1">Roadmap</a> | 
-    <a href="https://refine.dev/docs/examples/tutorial/">Examples</a> | 
+    <a href="https://refine.dev/examples/">Examples</a> | 
     <a href="https://refine.dev/enterprise/">Enterprise</a> | 
     <a href="https://discord.gg/refine">Discord</a>
 </div>
@@ -202,7 +202,7 @@ Now, you should see the output as a table populated with `post` & `category` dat
 
 👉 See the real-life [Finefoods Demo](https://refine.dev/demo/) project.
 
-👉 Play with interactive [Examples](https://refine.dev/docs/examples/tutorial/headless-tutorial/)
+👉 Play with interactive [Examples](https://refine.dev/docs/examples/)
 
 ## Roadmap
 You can find refine's <a href="https://github.com/pankod/refine/projects/1">Public Roadmap here!</a> 
