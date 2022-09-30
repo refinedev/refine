@@ -11,9 +11,6 @@ import actionButtonsUsage from '@site/static/img/guides-and-concepts/basic-views
 We'll show what `<Create>` does using properties with examples.
 
 ```tsx live hideCode url=http://localhost:3000/posts/create
-const { Create, Form, Input, Select, useForm, useSelect, CreateButton } =
-    RefineAntd;
-
 interface ICategory {
     id: number;
     title: string;
@@ -130,8 +127,7 @@ render(
 It allows adding title inside the `<Create>` component. if you don't pass title props it uses "Create" prefix and singular resource name by default. For example, for the `/posts/create` resource, it will be "Create post".
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
-const { Create, Form, Input, Select, useForm, useSelect, CreateButton } =
-    RefineAntd;
+const { Form, Input, Select, useForm, useSelect, CreateButton } = RefineAntd;
 
 // visible-block-start
 import { Create } from "@pankod/refine-antd";
@@ -172,8 +168,7 @@ render(
 [Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-reference/antd/components/buttons/save.md)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
-const { Create, Form, Input, Select, useForm, useSelect, CreateButton } =
-    RefineAntd;
+const { Form, Input, Select, useForm, useSelect, CreateButton } = RefineAntd;
 
 // visible-block-start
 import { Create } from "@pankod/refine-antd";
@@ -214,10 +209,8 @@ The `<Create>` component reads the `resource` information from the route by defa
 [Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
-const { Create } = RefineAntd;
-const { Refine } = RefineCore;
-const routerProvider = RefineDemoReactRouterV6(["/custom"]);
-const dataProvider = RefineSimpleRest.default;
+// handle initial routes in new way
+setInitialRoutes(["/custom"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
@@ -263,7 +256,7 @@ render(<App />);
 To customize the back button or to disable it, you can use the `goBack` property.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
-const { Create, Icons, CreateButton } = RefineAntd;
+const { CreateButton } = RefineAntd;
 
 // visible-block-start
 import { Create, Icons } from "@pankod/refine-antd";
@@ -302,7 +295,7 @@ render(
 To toggle the loading state of the `<Create/>` component, you can use the `isLoading` property.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
-const { Create, CreateButton } = RefineAntd;
+const { CreateButton } = RefineAntd;
 
 // visible-block-start
 import { Create } from "@pankod/refine-antd";
@@ -343,7 +336,7 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/antd/components/breadcrumb.md)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
-const { Create, CreateButton, Breadcrumb } = RefineAntd;
+const { CreateButton } = RefineAntd;
 
 // visible-block-start
 import { Create, Breadcrumb } from "@pankod/refine-antd";
@@ -394,7 +387,7 @@ render(
 If you want to customize the wrapper of the `<Create/>` component, you can use the `wrapperProps` property. For `@pankod/refine-antd` wrapper elements are simple `<div/>`s and `wrapperProps` can get every attribute that `<div/>` can get.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
-const { Create, CreateButton } = RefineAntd;
+const { CreateButton } = RefineAntd;
 
 // visible-block-start
 import { Create } from "@pankod/refine-antd";
@@ -443,7 +436,7 @@ If you want to customize the header of the `<Create/>` component, you can use th
 [Refer to the `PageHeader` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/page-header/)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
-const { Create, CreateButton } = RefineAntd;
+const { CreateButton } = RefineAntd;
 
 // visible-block-start
 import { Create } from "@pankod/refine-antd";
@@ -493,7 +486,7 @@ If you want to customize the content of the `<Create/>` component, you can use t
 [Refer to the `Card` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/card/)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
-const { Create, CreateButton } = RefineAntd;
+const { CreateButton } = RefineAntd;
 
 // visible-block-start
 import { Create } from "@pankod/refine-antd";
@@ -540,7 +533,7 @@ render(
 You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
-const { Create, CreateButton, Button } = RefineAntd;
+const { CreateButton } = RefineAntd;
 
 // visible-block-start
 import { Create, Button } from "@pankod/refine-antd";
@@ -589,7 +582,7 @@ You can customize the wrapper element of the buttons at the header by using the 
 [Refer to the `Space` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/space/)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
-const { Create, CreateButton, Button } = RefineAntd;
+const { CreateButton } = RefineAntd;
 
 // visible-block-start
 import { Create, Button } from "@pankod/refine-antd";
@@ -637,7 +630,7 @@ render(
 You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
-const { Create, CreateButton, Button } = RefineAntd;
+const { CreateButton } = RefineAntd;
 
 // visible-block-start
 import { Create, Button } from "@pankod/refine-antd";
@@ -686,7 +679,7 @@ You can customize the wrapper element of the buttons at the footer by using the 
 [Refer to the `Space` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/space/)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
-const { Create, CreateButton, Button } = RefineAntd;
+const { CreateButton } = RefineAntd;
 
 // visible-block-start
 import { Create, Button } from "@pankod/refine-antd";

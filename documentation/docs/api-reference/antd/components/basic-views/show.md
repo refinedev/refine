@@ -12,10 +12,9 @@ import isLoading from '@site/static/img/guides-and-concepts/basic-views/show/isL
 We will show what `<Show>` does using properties with examples.
 
 ```tsx live hideCode url=http://localhost:3000/posts/show/2
-const { Show, Typography, MarkdownField } = RefineAntd;
-const { useShow, IResourceComponentsProps, useOne } = RefineCore;
 // visible-block-start
 import { Show, Typography, MarkdownField } from "@pankod/refine-antd";
+import { useShow, IResourceComponentsProps, useOne } from "@pankod/refine";
 
 const { Title, Text } = Typography;
 
@@ -79,8 +78,7 @@ render(
 It allows adding a title for the `<Show>` component. if you don't pass title props it uses the "Show" prefix and the singular resource name by default. For example, for the "posts" resource, it will be "Show post".
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/2
-const { Show, Form, Input, Select, useForm, useSelect, ShowButton } =
-    RefineAntd;
+const { ShowButton } = RefineAntd;
 const { default: simpleRest } = RefineSimpleRest;
 
 const dataProvider = simpleRest("https://api.fake-rest.refine.dev");
@@ -133,10 +131,7 @@ The `<Show>` component reads the `resource` information from the route by defaul
 [Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom/2
-const { Show } = RefineAntd;
-const { Refine } = RefineCore;
-const routerProvider = RefineDemoReactRouterV6(["/custom/2"]);
-const dataProvider = RefineSimpleRest.default;
+setInitialRoutes(["/custom/2"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
@@ -186,8 +181,7 @@ When clicked on, delete button executes the `useDelete` method provided by the [
 Refer to the [`<DeleteButton>`](/api-reference/antd/components/buttons/delete.md) and the [`<EditButton>`](/api-reference/antd/components/buttons/edit.md) documentation for detailed usage.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/2
-const { Show, Form, Input, Select, useForm, useSelect, ShowButton, Edit } =
-    RefineAntd;
+const { ShowButton, Edit } = RefineAntd;
 const { usePermissions } = RefineCore;
 
 const { default: simpleRest } = RefineSimpleRest;
@@ -262,18 +256,7 @@ render(
 `<Show>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL (when used on a custom page, modal or drawer).
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/2
-const {
-    Show,
-    Form,
-    Input,
-    Select,
-    useForm,
-    useSelect,
-    ShowButton,
-    useModalForm,
-    Modal,
-    Button,
-} = RefineAntd;
+const { ShowButton } = RefineAntd;
 
 // visible-block-start
 import { Show, useModalForm, Modal, Button } from "@pankod/refine-antd";
@@ -357,7 +340,7 @@ export const App: React.FC = () => {
 To customize the back button or to disable it, you can use the `goBack` property.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/2
-const { Show, Icons, ShowButton } = RefineAntd;
+const { ShowButton } = RefineAntd;
 
 // visible-block-start
 import { Show, Icons } from "@pankod/refine-antd";
@@ -396,7 +379,7 @@ render(
 Since `<Show>` uses the Ant Design [`<Card>`](https://ant.design/components/card/) component, the `isLoading` property can be set like the below.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/2
-const { Show, ShowButton } = RefineAntd;
+const { ShowButton } = RefineAntd;
 
 // visible-block-start
 import { Show } from "@pankod/refine-antd";
@@ -437,7 +420,7 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/antd/components/breadcrumb.md)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/2
-const { Show, ShowButton, Breadcrumb } = RefineAntd;
+const { ShowButton } = RefineAntd;
 
 // visible-block-start
 import { Show, Breadcrumb } from "@pankod/refine-antd";
@@ -488,7 +471,7 @@ render(
 If you want to customize the wrapper of the `<Show/>` component, you can use the `wrapperProps` property. For `@pankod/refine-antd` wrapper elements are simple `<div/>`s and `wrapperProps` can get every attribute that `<div/>` can get.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/2
-const { Show, ShowButton } = RefineAntd;
+const { ShowButton } = RefineAntd;
 
 // visible-block-start
 import { Show } from "@pankod/refine-antd";
@@ -537,7 +520,7 @@ If you want to customize the header of the `<Show/>` component, you can use the 
 [Refer to the `PageHeader` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/page-header/)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/2
-const { Show, ShowButton } = RefineAntd;
+const { ShowButton } = RefineAntd;
 
 // visible-block-start
 import { Show } from "@pankod/refine-antd";
@@ -587,7 +570,7 @@ If you want to customize the content of the `<Show/>` component, you can use the
 [Refer to the `Card` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/card/)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/2
-const { Show, ShowButton } = RefineAntd;
+const { ShowButton } = RefineAntd;
 
 // visible-block-start
 import { Show } from "@pankod/refine-antd";
@@ -634,7 +617,7 @@ render(
 You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/2
-const { Show, ShowButton, Button } = RefineAntd;
+const { ShowButton } = RefineAntd;
 
 // visible-block-start
 import { Show, Button } from "@pankod/refine-antd";
@@ -683,7 +666,7 @@ You can customize the wrapper element of the buttons at the header by using the 
 [Refer to the `Space` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/space/)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
-const { Show, ShowButton, Button } = RefineAntd;
+const { ShowButton } = RefineAntd;
 
 // visible-block-start
 import { Show, Button } from "@pankod/refine-antd";
@@ -731,7 +714,7 @@ render(
 You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/2
-const { Show, ShowButton, Button } = RefineAntd;
+const { ShowButton } = RefineAntd;
 
 // visible-block-start
 import { Show, Button } from "@pankod/refine-antd";
@@ -780,7 +763,7 @@ You can customize the wrapper element of the buttons at the footer by using the 
 [Refer to the `Space` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/space/)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/2
-const { Show, ShowButton, Button } = RefineAntd;
+const { ShowButton } = RefineAntd;
 
 // visible-block-start
 import { Show, Button } from "@pankod/refine-antd";
@@ -920,7 +903,7 @@ The `<Show>` component needs the `id` information for work properly, so if you u
 | resource                                                                                                     | Resource name for API data interactions                           | `string`                                                                        | Resource name that it reads from the URL.                                                                                      |
 | canDelete                                                                                                    | Adds a delete button                                              | `boolean`                                                                       | If the resource has `canDelete` prop it is `true` else `false`                                                                 |
 | canEdit                                                                                                      | Adds an edit button                                               | `boolean`                                                                       | If the resource has `canEdit` prop it is `true` else `false`                                                                   |
-| recordItemId                                                                                                 | The record id for `<RefreshButton>`                               | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                        |                                                                                                                                |
+| recordItemId                                                                                                 | The record id for `<RefreshButton>`                               | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                          |                                                                                                                                |
 | dataProviderName                                                                                             | To specify a data provider other than `default` use this property | `string`                                                                        |                                                                                                                                |
 | goBack                                                                                                       | Custom back icon element                                          | `React.ReactNode`                                                               | `<ArrowLeft />`                                                                                                                |
 | isLoading                                                                                                    | Gets passed to the `loading` prop of the `<Card>`                 | `boolean`                                                                       | `false`                                                                                                                        |
