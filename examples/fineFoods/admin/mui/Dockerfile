@@ -2,6 +2,8 @@ FROM node:16-alpine
 
 WORKDIR /opt/app
 
+RUN apk add git openssh-client
+
 ENV NODE_ENV development
 
 COPY package*.json ./
