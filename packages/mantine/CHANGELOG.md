@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 1.1.0
+
+### Minor Changes
+
+-   [#2505](https://github.com/pankod/refine/pull/2505) [`a4dbb63c88`](https://github.com/pankod/refine/commit/a4dbb63c881a83e5146829130b1377e791b44469) Thanks [@salihozdemir](https://github.com/salihozdemir)! - First release of `@pankod/refine-mantine` 🎉
+
 ## 1.0.6
 
 ### Patch Changes

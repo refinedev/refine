@@ -1,5 +1,16 @@
 # @pankod/refine-ui-tests
 
+## 0.8.0
+
+### Minor Changes
+
+-   [#2505](https://github.com/pankod/refine/pull/2505) [`a4dbb63c88`](https://github.com/pankod/refine/commit/a4dbb63c881a83e5146829130b1377e791b44469) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Removed timers from all of the tests.
+
+### Patch Changes
+
+-   Updated dependencies [[`a4dbb63c88`](https://github.com/pankod/refine/commit/a4dbb63c881a83e5146829130b1377e791b44469)]:
+    -   @pankod/refine-core@3.74.5
+
 ## 0.7.4
 
 ### Patch Changes

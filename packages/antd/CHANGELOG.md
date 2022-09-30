@@ -1,5 +1,11 @@
 # @pankod/refine-antd
 
+## 3.48.9
+
+### Patch Changes
+
+-   [#2505](https://github.com/pankod/refine/pull/2505) [`a4dbb63c88`](https://github.com/pankod/refine/commit/a4dbb63c881a83e5146829130b1377e791b44469) Thanks [@salihozdemir](https://github.com/salihozdemir)! - ReadyPage examples link fixed.
+
 ## 3.48.8
 
 ### Patch Changes
