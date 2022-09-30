@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 3.45.9
+
+### Patch Changes
+
+-   ReadyPage examples link fixed.
+
 ## 3.45.8
 
 ### Patch Changes

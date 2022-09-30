@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 1.2.0
+
+### Minor Changes
+
+-   First release of `@pankod/refine-mantine` 🎉
+
 ## 1.1.0
 
 ### Minor Changes
