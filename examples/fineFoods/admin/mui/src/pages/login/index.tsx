@@ -96,17 +96,8 @@ export const LoginPage: React.FC = () => {
                                             color="primary.main"
                                         >
                                             {translate(
-                                                "pages.login.title",
-                                                "Sign in ",
-                                            )}
-                                        </Box>
-                                        <Box
-                                            component="span"
-                                            sx={{ color: "text.secondary" }}
-                                        >
-                                            {translate(
-                                                "pages.login.title",
-                                                "your account",
+                                                "pages.login.signin",
+                                                "Sign in",
                                             )}
                                         </Box>
                                     </Typography>

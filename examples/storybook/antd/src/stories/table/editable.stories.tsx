@@ -32,8 +32,9 @@ export default {
 } as ComponentMeta<typeof List>;
 
 export const TableEditable = () => {
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
+        "write",
+    );
     const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>(
         [],
     );

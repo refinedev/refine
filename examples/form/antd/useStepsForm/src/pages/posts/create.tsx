@@ -30,8 +30,9 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
         resource: "categories",
     });
 
-    const [selectedTab, setSelectedTab] =
-        React.useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">(
+        "write",
+    );
 
     const formList = [
         <>

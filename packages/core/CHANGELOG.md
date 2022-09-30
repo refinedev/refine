@@ -1,5 +1,23 @@
 # @pankod/refine-core
 
+## 3.74.3
+
+### Patch Changes
+
+-   [#2600](https://github.com/pankod/refine/pull/2600) [`3ed69bba17`](https://github.com/pankod/refine/commit/3ed69bba17741be00f513ebede684d1af6932c4e) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed useMenu hook is not reacting to locale change - #2598
+
+## 3.74.2
+
+### Patch Changes
+
+-   Removed redundant type inheritance
+
+## 3.74.1
+
+### Patch Changes
+
+-   [#2586](https://github.com/pankod/refine/pull/2586) [`d7c8b7642b`](https://github.com/pankod/refine/commit/d7c8b7642b7ed41a2063798e779c3cfaa09b0e7b) Thanks [@necatiozmen](https://github.com/necatiozmen)! - Removed redundant type inheritance
+
 ## 3.74.0
 
 ### Minor Changes

@@ -3,7 +3,7 @@
   "version": "3.25.0",
   "private": true,
   "dependencies": {
-    "@pankod/refine-core": "^3.74.0",
+    "@pankod/refine-core": "^3.74.3",
     "@pankod/refine-react-hook-form": "^3.33.2",
     "@pankod/refine-react-router-v6": "^3.36.0",
     "@pankod/refine-react-table": "^4.7.2",
@@ -38,7 +38,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.1",
     "postcss": "^8.1.4",
-    "prettier": "2.3.0",
+    "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.4",
     "tailwindcss": "^3.0.11"
   }

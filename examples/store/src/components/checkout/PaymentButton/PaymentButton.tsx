@@ -73,8 +73,9 @@ const StripePaymentButton = ({
 }) => {
     const [disabled, setDisabled] = useState(false);
     const [submitting, setSubmitting] = useState(false);
-    const [errorMessage, setErrorMessage] =
-        useState<string | undefined>(undefined);
+    const [errorMessage, setErrorMessage] = useState<string | undefined>(
+        undefined,
+    );
 
     const { cart } = useCartContext();
     const { onPaymentCompleted } = useCheckout();

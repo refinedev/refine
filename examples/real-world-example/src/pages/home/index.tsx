@@ -19,8 +19,9 @@ import { Pagination } from "components/Pagination";
 const { Link } = routerProvider;
 
 export const HomePage: React.FC = () => {
-    const [activeTab, setActiveTab] =
-        useState<"global" | "yourFeed" | "tags">("global");
+    const [activeTab, setActiveTab] = useState<"global" | "yourFeed" | "tags">(
+        "global",
+    );
 
     const { isSuccess: isLoggedIn, isLoading: isFetching } = useGetIdentity();
     const { mutate: updateMutation, isLoading: updateMutationIsLoading } =

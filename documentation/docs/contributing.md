@@ -101,10 +101,14 @@ Please make sure you contribute well tested code.
 
 ## Creating Live Previews in Documentation
 
-We're using live previews powered with [`react-live`](https://github.com/FormidableLabs/react-live) to demonstrate our components and logic with `refine` running at full functionality. To do this, we're defining `refine` packages as global variables since `react-live` doesn't support using `import` statements. To create a live preview, you should add `live` property to your code blocks in markdown files.
+We're using live previews powered with [`react-live`](https://github.com/FormidableLabs/react-live) to demonstrate our components and logic with `refine` running at full functionality. To create a live preview, you should add `live` property to your code blocks in markdown files.
 
 :::tip
-You can use `import` statements to show them in the code block but they will be ignored when running the code. Check out [Defined Scope](#defined-scope) section to learn more about the available packages and variables.
+You can use `import` statements to show them in the code block but they will be ignored when running the code. Instead all import statements related to **refine** will be converted into object destructures and prependend into code. This will allow you to do the import in the visible part of the code and also use them before the import statements. Check out [Defined Scope](#defined-scope) section to learn more about the available packages and variables.
+:::
+
+:::info
+Refine Live Previews has an independent package apart from the documentation and the previews are rendered through this package via iframe. `@pankod/refine-live-previews` runs on `3030` port by default and the fallback value for `LIVE_PREVIEW_URL` is set to `http://localhost:3030` for development purposes. If you want to run both the previews package and the documentation at the same time, use `npm run start:doc` command.
 :::
 
 ### Properties
@@ -138,17 +142,9 @@ To render the live preview you should call the `render` function with your compo
 
 ````ts
 ```tsx live hideCode url=http://localhost:3000/posts/create
-// This is the part we're using the packages from the scope instead of import statements.
+// You can use object destructuring to import the necessary functions and components which you don't want to show in the code block.
 // highlight-start
-const {
-    Create,
-    Form,
-    Input,
-    Select,
-    useForm,
-    useSelect,
-    CreateButton
-} = RefineAntd;
+const { CreateButton } = RefineAntd;
 // highlight-end
 
 interface ICategory {
@@ -165,7 +161,7 @@ category: { id: number };
 }
 
 // visible-block-start
-// Import statements will be ignored in the runtime.
+// Import statements will be replaced with the object destructuring but visible code block will not be affected.
 // highlight-start
 import {
     Create,
@@ -271,10 +267,9 @@ render(
 ** Result **
 
 ```tsx live hideCode disableScroll url=http://localhost:3000/posts/create
-// This is the part we're using the packages from the scope instead of import statements.
+// You can use object destructuring to import the necessary functions and components which you don't want to show in the code block.
 // highlight-start
-const { Create, Form, Input, Select, useForm, useSelect, CreateButton } =
-    RefineAntd;
+const { CreateButton } = RefineAntd;
 // highlight-end
 
 interface ICategory {
@@ -291,7 +286,7 @@ interface IPost {
 }
 
 // visible-block-start
-// Import statements will be ignored in the runtime.
+// Import statements will be replaced with the object destructuring but visible code block will not be affected.
 // highlight-start
 import {
     Create,
@@ -394,20 +389,21 @@ render(
 
 ### Defined Scope
 
-| Variable                  | Description                                                                                                             |
-| ------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `React`                   | React 17                                                                                                                |
-| `RefineCore`              | `@pankod/refine-core`                                                                                                   |
-| `RefineSimpleRest`        | `@pankod/refine-simple-rest`                                                                                            |
-| `RefineAntd`              | `@pankod/refine-antd`                                                                                                   |
-| `RefineMui`               | `@pankod/refine-mui`                                                                                                    |
-| `RefineReactRouterV6`     | `@pankod/refine-react-router-v6`                                                                                        |
-| `RefineReactHookForm`     | `@pankod/refine-react-hook-form`                                                                                        |
-| `RefineReactTable`        | `@pankod/refine-react-table`                                                                                            |
-| `RefineHeadlessDemo`      | Predefined `<Refine/>` component with simple-rest and react-router-v6 props for easier use                              |
-| `RefineMuiDemo`           | Predefined `<Refine/>` component with Material UI, simple-rest and react-router-v6 props for easier use                 |
-| `RefineAntdDemo`          | Predefined `<Refine/>` component with Ant Design, simple-rest and react-router-v6 props for easier use                  |
-| `RefineDemoReactRouterV6` | Predefined `routerProvider` generator function with `react-router-v6` with `MemoryRouter` and `initialRoutes` parameter |
+| Variable              | Description                                                                                                                               |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `React`               | React 17                                                                                                                                  |
+| `RefineCore`          | `@pankod/refine-core`                                                                                                                     |
+| `RefineSimpleRest`    | `@pankod/refine-simple-rest`                                                                                                              |
+| `RefineAntd`          | `@pankod/refine-antd`                                                                                                                     |
+| `RefineMui`           | `@pankod/refine-mui`                                                                                                                      |
+| `RefineReactRouterV6` | `@pankod/refine-react-router-v6`                                                                                                          |
+| `RefineReactHookForm` | `@pankod/refine-react-hook-form`                                                                                                          |
+| `RefineReactTable`    | `@pankod/refine-react-table`                                                                                                              |
+| `RefineHeadlessDemo`  | Predefined `<Refine/>` component with simple-rest and react-router-v6 props for easier use                                                |
+| `RefineMuiDemo`       | Predefined `<Refine/>` component with Material UI, simple-rest and react-router-v6 props for easier use                                   |
+| `RefineAntdDemo`      | Predefined `<Refine/>` component with Ant Design, simple-rest and react-router-v6 props for easier use                                    |
+| `setInitialRoutes`    | For live previews, we use `MemoryRouter` from `react-router-v6` and to set the initial entries of the history, you can use this function. |
+| `setRefineProps` | For live previews, you may need to set some props to `<Refine />` component that are unrelated to the code block you're writing. In those cases, you can use `setRefinProps` outside of the visible code block to set props or override the existing props. |
 
 :::tip
 Demo components are recommended to be used whenever possible to avoid unnecessary configuration at every code block. They are equipped with the `refine-react-router-v6` setup with `MemoryRouter`, `refine-simple-rest` data provider and the preferred UI Integration.
@@ -418,7 +414,15 @@ Demo components are recommended to be used whenever possible to avoid unnecessar
 :::
 
 :::info
-`RefineDemoReactRouterV6` is a function to create a `routerProvider` with `@pankod/refine-react-router-v6` using `MemoryRouter`. This function takes one argument `initialRoutes` which is an array of routes to be rendered initially. For example, if your component is rendered at `/posts/create`, you can pass `["/posts/create"]` as the argument.
+`setInitialRoutes` is a function to set the initial routes of the preview for `@pankod/refine-react-router-v6` using `MemoryRouter`. This function takes one argument `initialRoutes` which is an array of routes to be rendered initially. For example, if your component is rendered at `/posts/create`, you can pass `["/posts/create"]` as the argument.
+:::
+
+:::tip
+Make sure you use `setInitialRoutes` function before rendering the `<Refine/>` component. Otherwise, `MemoryRouter` will not be able to set the initial routes. For some cases, you might find setting `initialRoutes` prop of demo `<Refine/>` (`RefineHeadlessDemo`, `RefineMuiDemo` and `RefineAntdDemo`) components easier. There's no difference between the two approaches.
+:::
+
+:::tip
+`setRefineProps` is a function to set additional props to `<Refine />` or override existing props of `<Refine />`. Make sure you don't conflict with the props you set in the visible block while overriding; which may cause unwanted results.
 :::
 
 [lerna]: https://github.com/lerna/lerna

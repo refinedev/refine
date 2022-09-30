@@ -37,8 +37,9 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
 
     const { isLoading, onChange } = useFileUploadState();
 
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
+        "write",
+    );
 
     return (
         <Edit saveButtonProps={{ ...saveButtonProps, disabled: isLoading }}>

@@ -39,8 +39,9 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         defaultValue: postData?.categoryId,
     });
 
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
+        "write",
+    );
 
     const handleRefresh = () => {
         queryResult?.refetch();

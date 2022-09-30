@@ -17,8 +17,9 @@ type UpdateCustomerPasswordFormData = {
 };
 
 export const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
-    const [errorMessage, setErrorMessage] =
-        React.useState<string | undefined>(undefined);
+    const [errorMessage, setErrorMessage] = React.useState<string | undefined>(
+        undefined,
+    );
 
     const [isValid, setIsValid] = React.useState(false);
 
