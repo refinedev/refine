@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.74.6
+
+### Patch Changes
+
+-   Updated `devtoolConfig` type.
+
 ## 3.74.5
 
 ### Patch Changes

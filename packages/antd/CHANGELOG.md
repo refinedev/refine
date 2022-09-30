@@ -1,5 +1,11 @@
 # @pankod/refine-antd
 
+## 3.48.10
+
+### Patch Changes
+
+-   ReadyPage examples link fixed.
+
 ## 3.48.9
 
 ### Patch Changes
