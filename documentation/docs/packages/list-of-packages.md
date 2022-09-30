@@ -10,9 +10,9 @@ title: List of Packages
 
 - `@pankod/refine-antd` -  [Ant Design](https://ant.design/) System UI Framework support.  **20+** *framework-specific*  `hooks` and  `components`  incl. *Table, Form, Select, Menu, Layout, Notification and CRUD components.*
 
-- `@pankod/refine-mui` -[Material UI](https://mui.com/) Framework support. **20+** *framework-specific*  `hooks` and  `components`  incl. *DataGrid (+ Pro), AutoComplete, Menu, Layout, Notification and CRUD components.*
+- `@pankod/refine-mui` - [Material UI](https://mui.com/) Framework support. **20+** *framework-specific*  `hooks` and  `components`  incl. *DataGrid (+ Pro), AutoComplete, Menu, Layout, Notification and CRUD components.*
 
-- `@pankod/refine-mantine` - *(Coming soon!)* - [Mantine](https://mantine.dev/) UI Framework support.  
+- `@pankod/refine-mantine` - [Mantine](https://mantine.dev/) UI Framework support. **20+** framework-specific **hooks** and **components** incl. *Table, Form, AutoComplete, Menu, Layout, Notification and CRUD components.*
 
 **[Data Provider](https://refine.dev/docs/core/providers/data-provider/) Packages:**
 

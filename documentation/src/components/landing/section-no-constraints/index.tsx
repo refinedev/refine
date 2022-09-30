@@ -610,7 +610,7 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                                     <strong className="font-bold">
                                                         refine
                                                     </strong>{" "}
-                                                    supports two powerful
+                                                    supports three powerful
                                                 </p>
                                                 <p className="text-[#2A2A42]">
                                                     <strong className="font-bold">
@@ -828,7 +828,7 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                                     <strong className="font-bold">
                                                         refine
                                                     </strong>{" "}
-                                                    supports two powerful
+                                                    supports three powerful
                                                 </p>
                                                 <p className="text-[#2A2A42]">
                                                     <strong className="font-bold">

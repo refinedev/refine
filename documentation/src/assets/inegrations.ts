@@ -46,9 +46,10 @@ export const integrations: IntegrationsType = {
         {
             name: "Mantine UI",
             icon: Mantine,
-            description: " <strong>Mantine UI</strong> Framework support.",
-            url: "https://mantine.dev",
-            status: "soon",
+            description:
+                " <strong>Mantine UI</strong> Framework support. 20+ framework-specific hooks and components incl. Table, Form, AutoComplete, Menu, Layout, Notification and CRUD components.",
+            url: "https://www.npmjs.com/package/@pankod/refine-mantine",
+            status: "stable",
         },
     ],
     "data-provider-packages": [
