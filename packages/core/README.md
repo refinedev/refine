@@ -197,7 +197,7 @@ Now, you should see the output as a table populated with `post` & `category` dat
 
 👉 Check out the [Refine<>Tailwind Tutorial](https://refine.dev/docs/ui-frameworks/antd/tutorial/) to learn how to use **refine** in a pure *headless* way.
 
-👉 Visit [Learn the Basics Page](https://refine.dev/docs/getting-started/basics/) to get informed about the fundemental concepts.
+👉 Visit [Learn the Basics Page](https://refine.dev/docs/getting-started/overview/) to get informed about the fundemental concepts.
 
 👉 Read more on [Guides & Concepts](https://refine.dev/docs/guides-and-concepts/access-control/) for different usage scenarios.
 

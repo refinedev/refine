@@ -197,7 +197,7 @@ export const PostList: React.FC = () => {
                         if (isLoading) {
                             return "loading...";
                         }
-
+docs/getting-started/overview/
                         return data?.data.find(
                             (item: ICategory) => item.id === value,
                         )?.title;
