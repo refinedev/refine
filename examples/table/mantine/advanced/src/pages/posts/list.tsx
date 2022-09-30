@@ -23,6 +23,7 @@ import {
     Pagination,
     Space,
     Box,
+    DateField,
 } from "@pankod/refine-mantine";
 import { RichTextEditor } from "@mantine/rte";
 import { IconChevronDown, IconChevronRight } from "@tabler/icons";
@@ -162,6 +163,17 @@ export const PostList: React.FC = () => {
                     },
                     filterOperator: "eq",
                 },
+            },
+            {
+                id: "createdAt",
+                header: "Created At",
+                accessorKey: "createdAt",
+                cell: function render({ getValue }) {
+                    return (
+                        <DateField value={getValue() as string} format="LLL" />
+                    );
+                },
+                enableColumnFilter: false,
             },
             {
                 id: "actions",

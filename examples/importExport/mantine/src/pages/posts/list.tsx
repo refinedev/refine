@@ -12,6 +12,7 @@ import {
     ImportButton,
     ExportButton,
     Select,
+    DateField,
 } from "@pankod/refine-mantine";
 
 import { ColumnFilter, ColumnSorter } from "../../components/table";
@@ -53,6 +54,17 @@ export const PostList: React.FC = () => {
                     },
                     filterOperator: "eq",
                 },
+            },
+            {
+                id: "createdAt",
+                header: "Created At",
+                accessorKey: "createdAt",
+                cell: function render({ getValue }) {
+                    return (
+                        <DateField value={getValue() as string} format="LLL" />
+                    );
+                },
+                enableColumnFilter: false,
             },
             {
                 id: "actions",

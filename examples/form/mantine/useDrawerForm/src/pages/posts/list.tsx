@@ -11,6 +11,7 @@ import {
     DeleteButton,
     useModalForm as useDrawerForm,
     Select,
+    DateField,
 } from "@pankod/refine-mantine";
 
 import { CreatePostDrawer, EditPostDrawer } from "../../components";
@@ -100,6 +101,17 @@ export const PostList: React.FC = () => {
                     },
                     filterOperator: "eq",
                 },
+            },
+            {
+                id: "createdAt",
+                header: "Created At",
+                accessorKey: "createdAt",
+                cell: function render({ getValue }) {
+                    return (
+                        <DateField value={getValue() as string} format="LLL" />
+                    );
+                },
+                enableColumnFilter: false,
             },
             {
                 id: "actions",
