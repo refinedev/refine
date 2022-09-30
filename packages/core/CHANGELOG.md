@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.74.4
+
+### Patch Changes
+
+-   Fixed useMenu hook is not reacting to locale change - #2598
+
 ## 3.74.3
 
 ### Patch Changes
