@@ -6,6 +6,7 @@
         "docusaurus": "docusaurus",
         "start": "docusaurus start",
         "build": "NODE_OPTIONS=\"--max-old-space-size=6144\" docusaurus build",
+        "build:plugins": "sucrase ./plugins -d ./plugins --transforms typescript,imports && npx prettier --write ./plugins/docgen.js",
         "swizzle": "docusaurus swizzle",
         "deploy": "docusaurus deploy",
         "serve": "docusaurus serve",
@@ -50,9 +51,14 @@
     "devDependencies": {
         "@docusaurus/module-type-aliases": "^2.1.0",
         "@tsconfig/docusaurus": "^1.0.4",
+        "@types/fs-extra": "^9.0.13",
         "@types/react": "^17.0.19",
         "@types/react-helmet": "^6.1.2",
         "@types/react-router-dom": "^5.1.8",
+        "esno": "^0.16.3",
+        "fs-extra": "^10.1.0",
+        "react-docgen-typescript": "^2.2.2",
+        "sucrase": "^3.27.0",
         "typescript": "^4.4.2"
     }
 }
