@@ -117,7 +117,7 @@
     margin-left: 5px;
 }
 
-.deprecated {
+/* .deprecated {
     font-size: 13px;
     border-radius: 3px;
     border-style: solid;
@@ -144,14 +144,14 @@
     display: inline-block;
     margin: 0 0 10px 0;
     word-break: keep-all;
-}
+} */
 
-.deprecated::before,
+/* .deprecated::before,
 .deprecated--block::before {
     content: "⚠️ deprecated";
     color: orange;
     margin-right: 4px;
-}
+} */
 
 .required-block {
     display: flex;
@@ -778,4 +778,35 @@ html[data-theme="dark"]:not([data-customized="true"])
 
 #__docusaurus .footer__item {
     line-height: 18px;
+}
+
+.prop--tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: -0.1px;
+    padding: 0 4px;
+    user-select: none;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    margin-right: 0;
+    display: inline-block;
+    margin-left: 5px;
+    border-color: #9e9e9e;
+    color: #9e9e9e;
+}
+
+.prop--tag__deprecated {
+    border-color: #d97706;
+    color: #d97706;
+}
+
+.prop--tag__required {
+    border-color: #1890ff;
+    color: #1890ff;
+}
+
+.prop--tag__featured {
+    border-color: #059669;
+    color: #059669;
 }
