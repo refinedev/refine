@@ -31,6 +31,7 @@
         "react-dom": "^17.0.2",
         "react-icons": "^4.2.0",
         "react-lazyload": "^3.2.0",
+        "react-markdown": "^8.0.3",
         "react-player": "^2.10.1",
         "react-rewards": "^2.0.4",
         "react-share": "^4.4.0",
