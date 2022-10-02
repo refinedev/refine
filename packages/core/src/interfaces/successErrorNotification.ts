@@ -5,6 +5,9 @@ export type SuccessErrorNotification<
     TError = unknown,
     TVariables = unknown,
 > = {
+    /**
+     * Success notification configuration to be displayed when the mutation is successful.
+     */
     successNotification?:
         | OpenNotificationParams
         | false
@@ -13,6 +16,9 @@ export type SuccessErrorNotification<
               values?: TVariables,
               resource?: string,
           ) => OpenNotificationParams);
+    /**
+     * Error notification configuration to be displayed when the mutation fails.
+     */
     errorNotification?:
         | OpenNotificationParams
         | false
