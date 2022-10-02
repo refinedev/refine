@@ -831,8 +831,13 @@ html[data-theme="dark"]:not([data-customized="true"])
     line-height: 1.5;
 }
 
+.props-table--name {
+    vertical-align: middle;
+}
+
 .props-table__type-cell *,
 .props-table__description-cell *,
-.props-table__default-value-cell * {
+.props-table__default-value-cell *,
+.props-list__info-item * {
     margin-bottom: 0;
 }
