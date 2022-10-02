@@ -5,6 +5,7 @@ type Props = {
     deprecated?: boolean;
     required?: boolean;
     featured?: boolean;
+    alt?: string;
 };
 
 const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
@@ -13,10 +14,11 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
     deprecated,
     required,
     featured,
+    alt,
 }) => {
     if (deprecated) {
         return (
-            <div className="prop--tag prop--tag__deprecated">
+            <div className="prop--tag prop--tag__deprecated" title={alt}>
                 {children ?? "deprecated"}
             </div>
         );
@@ -24,7 +26,7 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
 
     if (asterisk) {
         return (
-            <div className="prop--tag prop--tag__required">
+            <div className="prop--tag prop--tag__required" title={alt}>
                 {children ?? "✱"}
             </div>
         );
@@ -32,7 +34,7 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
 
     if (required) {
         return (
-            <div className="prop--tag prop--tag__required">
+            <div className="prop--tag prop--tag__required" title={alt}>
                 {children ?? "required"}
             </div>
         );
@@ -40,14 +42,18 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
 
     if (featured) {
         return (
-            <div className="prop--tag prop--tag__featured">
+            <div className="prop--tag prop--tag__featured" title={alt}>
                 {children ?? "featured"}
             </div>
         );
     }
 
     if (children) {
-        return <div className="prop--tag">{children}</div>;
+        return (
+            <div className="prop--tag" title={alt}>
+                {children}
+            </div>
+        );
     }
 
     return null;
