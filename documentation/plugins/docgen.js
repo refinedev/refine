@@ -88,18 +88,15 @@ const excludedProps = [
 ];
 
 const replacementProps = {
-    MantineNumberSize: 'number | "xs" | "sm" | "md" | "lg" | "xl"',
-    MantineSize: '"xs" | "sm" | "md" | "lg" | "xl"',
-    GroupPosition: '"right" | "center" | "left" | "apart"',
-    DefaultMantineColor: "MantineColor",
-    ReactText: "string | number",
     // "null | string | number | false | true | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal": "ReactNode",
     ReactElement:
         "ReactElement<any, string | ((props: any) => ReactElement<any, any>) | (new (props: any) => Component<any, any, any>)>",
     "ReactNode | (value: number) => ReactNode":
         "string | number | boolean | {} | ReactElement<any, string | ((props: any) => ReactElement<any, any>) | (new (props: any) => Component<any, any, any>)> | ReactNodeArray | ReactPortal | ((value: number) => ReactNode)",
     ActionButtonRenderer:
-        "React.ReactNode | (context: { defaultButtons: React.ReactNode }) => React.ReactNode",
+        "ReactNode | ({ defaultButtons: ReactNode }) => ReactNode",
+    "DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>":
+        "DetailedHTMLProps<HTMLDivElement>",
 };
 
 /** HELPERS */
