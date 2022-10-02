@@ -8,8 +8,6 @@ image: /img/blog/2022-10-02-react-fragments/social.png
 hide_table_of_contents: false
 ---
 
-
-
 ## Introduction
 
 Returning multiple elements from a component has always been problematic for React developers.  
@@ -20,6 +18,7 @@ React Fragment fixed this problem in version 16.2 of the library.
 
 
 Steps we'll cover:
+- [Introduction](#introduction)
 - [What is React Fragment?](#what-is-react-fragment)
 - [React Fragment vs Div Element](#react-fragment-vs-div-element)
 - [Problem with using div](#problem-with-using-div)
@@ -27,6 +26,7 @@ Steps we'll cover:
 - [Using the key prop with React fragments](#using-the-key-prop-with-react-fragments)
 - [Using shortcut version](#using-shortcut-version)
 - [Fragment in Action](#fragment-in-action)
+- [Conclusion](#conclusion)
 
 
 ## What is React Fragment?
@@ -114,8 +114,8 @@ function TableData () {
 ```
 
 
-## Using shortcut version <> </>
-Aside from using React Fragment, React also provides a shorthand notation <></> to wrap multiple elements together that works similarly to React Fragment but with a lower memory load. In a react application, the shorthand notation <></> is implemented as follows.
+## Using shortcut version
+Aside from using React Fragment, React also provides a shorthand notation `<></>` to wrap multiple elements together that works similarly to React Fragment but with a lower memory load. In a react application, the shorthand notation `<></>` is implemented as follows.
 
 ```tsx
 <function TableData () {
@@ -142,7 +142,8 @@ The above code will produce the expected HTML equivalent below.
   </tr>
 </table>
 ```
-However, there are some drawbacks to this approach. For example, implementing the key props is impossible because the shorthand notation <></> will not work here. After all, it cannot take an attribute.
+
+However, there are some drawbacks to this approach. For example, implementing the key props is impossible because the shorthand notation `<></>` will not work here. After all, it cannot take an attribute.
 
 ## Fragment in Action
 Now let's see how fragments are used in a React application. In the example below, we'll use the React Fragment to render a list of items in a table.
@@ -180,6 +181,7 @@ function App() {
 }
 export default App;
 ```
+
 In the above code snippet, we created two components that we to be rendered in our application. In the render method, we used React Fragment instead of wrapping the elements in the TableData components in a div. This way, our table data will be rendered as expected.
 
 
