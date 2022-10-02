@@ -25,7 +25,7 @@ Steps we'll cover:
 - [Problem with using div](#problem-with-using-div)
 - [Advantages of Fragment](#advantages-of-fragment)
 - [Using the key prop with React fragments](#using-the-key-prop-with-react-fragments)
-- [Using shortcut version <> </>](#using-shortcut-version--)
+- [Using shortcut version](#using-shortcut-version)
 - [Fragment in Action](#fragment-in-action)
 
 
