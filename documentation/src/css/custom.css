@@ -810,3 +810,29 @@ html[data-theme="dark"]:not([data-customized="true"])
     border-color: #059669;
     color: #059669;
 }
+
+.props-table {
+    font-size: 14px;
+}
+
+.props-table td, .props-table th {
+    padding: 6px 8px;
+}
+
+.props-table th {
+    text-align: left;
+}
+
+.props-table .props-table__type-cell code {
+    font-size: 12px;
+}
+
+.props-table {
+    line-height: 1.5;
+}
+
+.props-table__type-cell *,
+.props-table__description-cell *,
+.props-table__default-value-cell * {
+    margin-bottom: 0;
+}
