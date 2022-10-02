@@ -191,7 +191,6 @@ const PropsTable: React.FC<React.PropsWithChildren<Props>> = ({
     ...overrides
 }) => {
     const data = useDynamicImport(module);
-    console.log("DATA", data);
 
     if (!data) {
         return null;
