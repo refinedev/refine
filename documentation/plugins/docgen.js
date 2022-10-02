@@ -97,6 +97,13 @@ const replacementProps = {
         "ReactNode | ({ defaultButtons: ReactNode }) => ReactNode",
     "DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>":
         "DetailedHTMLProps<HTMLDivElement>",
+    "false | OpenNotificationParams | ((data?: unknown, values?: unknown, resource?: string) => OpenNotificationParams)":
+        "false | OpenNotificationParams | (data, values, resource) => OpenNotificationParams",
+    "false | OpenNotificationParams | ((error?: unknown, values?: unknown, resource?: string) => OpenNotificationParams)":
+        "false | OpenNotificationParams | (error, values, resource) => OpenNotificationParams",
+    'SvgIconProps<"svg", {}>': "SvgIconProps",
+    "((value: DeleteOneResponse<BaseRecord>) => void)":
+        "(value: DeleteOneResponse) => void",
 };
 
 /** HELPERS */
