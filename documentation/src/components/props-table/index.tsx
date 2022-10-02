@@ -136,11 +136,12 @@ const RowDefault = ({
     );
 };
 
-const PropsTable = ({
+const PropsTable: React.FC<React.PropsWithChildren<Props>> = ({
     module,
     hideDefaults,
+    children,
     ...overrides
-}: Props): JSX.Element => {
+}) => {
     const data = useDynamicImport(module);
     console.log("DATA", data);
 
@@ -149,33 +150,42 @@ const PropsTable = ({
     }
 
     return (
-        <table className="props-table">
-            <thead>
-                <tr>
-                    <th>Property</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                    {hideDefaults ? null : <th>Default</th>}
-                </tr>
-            </thead>
-            <tbody>
-                {Object.values(data.props).map((prop) => {
-                    if (overrides[`${prop.name}-hidden`]) {
-                        return null;
-                    }
-                    return (
-                        <tr key={prop.name}>
-                            <RowName prop={prop} overrides={overrides} />
-                            <RowType prop={prop} overrides={overrides} />
-                            <RowDescription prop={prop} overrides={overrides} />
-                            {hideDefaults ? null : (
-                                <RowDefault prop={prop} overrides={overrides} />
-                            )}
-                        </tr>
-                    );
-                })}
-            </tbody>
-        </table>
+        <>
+            <table className="props-table">
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        {hideDefaults ? null : <th>Default</th>}
+                    </tr>
+                </thead>
+                <tbody>
+                    {Object.values(data.props).map((prop) => {
+                        if (overrides[`${prop.name}-hidden`]) {
+                            return null;
+                        }
+                        return (
+                            <tr key={prop.name}>
+                                <RowName prop={prop} overrides={overrides} />
+                                <RowType prop={prop} overrides={overrides} />
+                                <RowDescription
+                                    prop={prop}
+                                    overrides={overrides}
+                                />
+                                {hideDefaults ? null : (
+                                    <RowDefault
+                                        prop={prop}
+                                        overrides={overrides}
+                                    />
+                                )}
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+            {children}
+        </>
     );
 };
 
