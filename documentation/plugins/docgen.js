@@ -251,7 +251,7 @@ const prepareDeclaration = (declaration) => {
     });
 
     const ordered = Object.keys(data.props)
-        .sort()
+        // .sort()
         .reduce((obj, key) => {
             obj[key] = data.props[key];
             return obj;

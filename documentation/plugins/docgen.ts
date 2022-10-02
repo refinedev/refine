@@ -224,7 +224,7 @@ const prepareDeclaration = (declaration: ComponentDoc) => {
     });
 
     const ordered = Object.keys(data.props)
-        .sort()
+        // .sort()
         .reduce((obj, key) => {
             obj[key] = data.props[key];
             return obj;
