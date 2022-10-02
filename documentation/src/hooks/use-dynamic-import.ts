@@ -1,8 +1,22 @@
 import { useEffect, useState } from "react";
-import { ComponentDoc } from "react-docgen-typescript";
+import { ComponentDoc, PropItem } from "react-docgen-typescript";
 
-type DeclarationType = Omit<ComponentDoc, "methods"> &
-    Partial<Pick<ComponentDoc, "methods">>;
+export interface StringIndexedObject<T> {
+    [key: string]: T;
+}
+
+export type DeclarationType = Omit<ComponentDoc, "methods"> &
+    Partial<Pick<ComponentDoc, "methods">> & {
+        props?: StringIndexedObject<
+            Omit<PropItem, "tags"> & {
+                tags?: {
+                    description?: string | null;
+                    deprecated?: string | null;
+                    default?: string | null;
+                };
+            }
+        >;
+    };
 
 export const useDynamicImport = (
     name: string,
