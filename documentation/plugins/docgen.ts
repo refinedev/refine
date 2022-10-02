@@ -81,6 +81,8 @@ const replacementProps: Record<string, string> = {
     'SvgIconProps<"svg", {}>': "SvgIconProps",
     "((value: DeleteOneResponse<BaseRecord>) => void)":
         "(value: DeleteOneResponse) => void",
+    "{ [key: string]: any; ids?: BaseKey[]; }":
+        "{ [key]: any; ids?: BaseKey[]; }",
 };
 
 /** HELPERS */
