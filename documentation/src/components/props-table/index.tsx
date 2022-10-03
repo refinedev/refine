@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import {
     DeclarationType,
@@ -196,6 +196,22 @@ const PropsTable: React.FC<React.PropsWithChildren<Props>> = ({
 }) => {
     const data = useDynamicImport(module);
 
+    const hideRowDefault = useMemo(() => {
+        if (hideDefaults) return false;
+
+        const keys = Object.keys(overrides);
+        const hasDefaultKey = keys.some((key) => key.endsWith("-default"));
+        if (hasDefaultKey) {
+            return false;
+        }
+
+        const hasDefaultValue = Object.values(data?.props ?? {}).some(
+            (prop) => prop.defaultValue?.value,
+        );
+
+        return !hasDefaultValue;
+    }, [overrides]);
+
     if (!data) {
         return null;
     }
@@ -208,7 +224,7 @@ const PropsTable: React.FC<React.PropsWithChildren<Props>> = ({
                         <th>Property</th>
                         <th>Type</th>
                         <th>Description</th>
-                        {hideDefaults ? null : <th>Default</th>}
+                        {hideRowDefault ? null : <th>Default</th>}
                     </tr>
                 </thead>
                 <tbody>
@@ -224,7 +240,7 @@ const PropsTable: React.FC<React.PropsWithChildren<Props>> = ({
                                     prop={prop}
                                     overrides={overrides}
                                 />
-                                {hideDefaults ? null : (
+                                {hideRowDefault ? null : (
                                     <RowDefault
                                         prop={prop}
                                         overrides={overrides}
