@@ -10,9 +10,12 @@ import {
     CssBaseline,
     GlobalStyles,
     AuthPage,
+    FormControlLabel,
+    Checkbox,
 } from "@pankod/refine-mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
+import { useFormContext } from "@pankod/refine-react-hook-form";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
 
@@ -75,6 +78,30 @@ const App: React.FC = () => {
             }),
     };
 
+    const RememeberMe = () => {
+        const { register } = useFormContext();
+
+        return (
+            <FormControlLabel
+                sx={{
+                    span: {
+                        fontSize: "12px",
+                        color: "text.secondary",
+                    },
+                }}
+                color="secondary"
+                control={
+                    <Checkbox
+                        size="small"
+                        id="rememberMe"
+                        {...register("rememberMe")}
+                    />
+                }
+                label="Remember me"
+            />
+        );
+    };
+
     return (
         <ThemeProvider theme={LightTheme}>
             <CssBaseline />
@@ -93,6 +120,20 @@ const App: React.FC = () => {
                                 element: (
                                     <AuthPage
                                         type="register"
+                                        formProps={{
+                                            onSubmit: (formValues) => {
+                                                console.log(
+                                                    JSON.stringify(
+                                                        formValues,
+                                                        null,
+                                                        2,
+                                                    ),
+                                                );
+                                            },
+                                            defaultValues: {
+                                                email: "test@mail.com",
+                                            },
+                                        }}
                                         providers={[
                                             {
                                                 name: "google",
@@ -147,6 +188,7 @@ const App: React.FC = () => {
                                     ),
                                 },
                             ]}
+                            rememberMe={<RememeberMe />}
                         />
                     )}
                     catchAll={<ErrorComponent />}
