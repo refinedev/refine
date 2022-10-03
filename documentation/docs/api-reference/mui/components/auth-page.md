@@ -365,7 +365,7 @@ setInitialRoutes(["/login"]);
 
 // visible-block-start
 import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout, Form, Checkbox } from "@pankod/refine-antd";
+import { AuthPage, Layout, Form, FormControlLabel, Checkbox } from "@pankod/refine-mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import { useFormContext } from "@pankod/refine-react-hook-form";
 
