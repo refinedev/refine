@@ -337,8 +337,10 @@ jobs:
           GIT_USER: pankod-bot
           NODE_ENV: production
         run: |
+          npm ci
+          npm run bootstrap
           cd documentation
           git config --global user.email "bot@pankod.com"
           git config --global user.name "pankod-bot"
-          npm install
+          npm ci --include=dev
           LIVE_PREVIEW_URL=https://live-preview.refine.dev/preview npm run deploy

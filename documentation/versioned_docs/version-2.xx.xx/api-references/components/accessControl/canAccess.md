@@ -27,3 +27,4 @@ siderbar_label: <CanAccess>
 | action <div className="required">Required</div>                                                     | Intenden action on resource                     | `string`    |         |
 | params                                                                                              | Parameters associated with the resource         | `any`       |         |
 | fallback                                                                                            | Content to show if access control returns false | `ReactNode` |         |
+
