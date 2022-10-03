@@ -9,6 +9,7 @@ hide_table_of_contents: false
 ---
 
 
+import visualize from '@site/static/img/blog/2022-09-30-typescript-pick/ts-pick-visualize.png';
 
 ## Introduction
 This is a series on Object Type Transformations in TypeScript. In this series, we will first look into what object type transformations are, the situations that necessitate a transformation and how they are different from object interface extensions. Then we will closely examine various utilities that TypeScript provides to facilitate object type transformations, such as  `Pick<>`, `Omit<>` and `Partial<>`.
@@ -19,6 +20,7 @@ But first let's understand what transforming an object type means and under what
 
 Steps we'll cover:
 - [What is Object Type Transformation?](#what-is-object-type-transformation)
+  - [The Scenario](#the-scenario)
 - [What is TypeScript Pick?](#what-is-typescript-pick)
   - [Picking Items with `Pick<Type, Keys>`](#picking-items-with-picktype-keys)
   - [For Types Only](#for-types-only)
@@ -37,7 +39,15 @@ Object type transformations are different from object interface extensions that 
 We'll build the examples in this series based on the following scenario that involves a few different types of users. While the focus will be on object types, we will also bring interfaces into the discussion.
 
 ### The Scenario
-Let's say we have a bunch of user entities that differ in terms of how they interact with a blog. Basically, whether they are a `GuestUser`, a `Subscriber`, an `Editor` or an `Admin`, etc. 
+Let's say we have a bunch of user entities that differ in terms of how they interact with a blog. Basically, whether they are a `GuestUser`, a `Subscriber`, an `Editor` or an `Admin`, etc.  The following ERD shows how their shapes may differ in the backend:
+
+<div class="img-container" align-items="center" >
+   <img   src={visualize}  alt="TypeScript Omit Type" />
+
+</div>
+
+<br/>
+
 
 
 Now, if we want to model these types for our frontend API calls, we can manually write a TypeScript type for each user type - which obviously violates the DRY (Don't Repeat Yourself) principle because we are repeating several common properties for each user type. We can also use interface extensions but that's not the scope of this series.
