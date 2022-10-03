@@ -117,14 +117,23 @@ export type RefineCrudEditProps<
     TContentProps extends {} = Record<keyof any, unknown>,
     TExtraProps extends {} = {},
 > = PropsWithChildren<{
-    // Common Props
+    /**
+     * Title of the edit view
+     * @default `"Edit {resource.name}"`
+     */
     title?: React.ReactNode;
+    /**
+     * Resource name for API data interactions
+     * @default Reads `:resource` from the URL
+     */
     resource?: string;
     wrapperProps?: TWrapperProps;
     headerProps?: THeaderProps;
     contentProps?: TContentProps;
     breadcrumb?: React.ReactNode;
-    // Back Props
+    /**
+     * Back button element at the top left of the page
+     */
     goBack?: React.ReactNode;
     // Header Action Buttons Props
     headerButtons?: ActionButtonRenderer;

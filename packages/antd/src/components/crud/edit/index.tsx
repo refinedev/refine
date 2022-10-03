@@ -43,10 +43,15 @@ export type EditProps = RefineCrudEditProps<
     CardProps,
     {
         /**
+         * Action buttons node at the bottom of the view
+         * @default `<DeleteButton />` and `<SaveButton />`
+         *
          * @deprecated use `headerButtons` or `footerButtons` instead.
          */
         actionButtons?: React.ReactNode;
         /**
+         * Additional props to be passed to the `PageHeader` component
+         *
          * @deprecated use `headerProps`, `wrapperProps` and `contentProps` instead.
          */
         pageHeaderProps?: PageHeaderProps;
