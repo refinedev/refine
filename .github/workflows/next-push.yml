@@ -137,7 +137,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           registry: ghcr.io
           repository: pankod/refine/refine-documentation
-          path: documentation
+          dockerfile: documentation/Dockerfile
           tag_with_sha: true
       - name: Set up kubectl
         uses: matootie/dokube@v1.3.4
