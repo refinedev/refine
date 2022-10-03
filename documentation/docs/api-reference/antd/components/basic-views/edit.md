@@ -1113,6 +1113,10 @@ export const EditPage: React.FC = () => {
 
 ## API Reference
 
+### Props
+
+<PropsTable module="@pankod/refine-antd/Edit" goBack-default="`<ArrowLeft />`"  />
+
 ### Properties
 
 | Property                                                                                                     | Description                                                                    | Type                                                                            | Default                                                                                                                        |
