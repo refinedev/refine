@@ -79,6 +79,7 @@ const replacementProps: Record<string, string> = {
     "false | OpenNotificationParams | ((error?: unknown, values?: unknown, resource?: string) => OpenNotificationParams)":
         "false | OpenNotificationParams | (error, values, resource) => OpenNotificationParams",
     'SvgIconProps<"svg", {}>': "SvgIconProps",
+    SpaceProps: "[`SpaceProps`](https://styled-system.com/api#space)",
     "((value: DeleteOneResponse<BaseRecord>) => void)":
         "(value: DeleteOneResponse) => void",
     "{ [key: string]: any; ids?: BaseKey[]; }":
