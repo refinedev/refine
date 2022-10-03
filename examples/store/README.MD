@@ -26,8 +26,8 @@ We had two options when it came to building this shop.
 The first option was to deploy a ready-made solution like Shopify, and the second was to create a custom solution.
 
 Since refine can be used to build eCommerce storefronts with SSR support, we started looking for Headless eCommerce solutions.
-During this process, we met with the Medusajs, and we decided that the solution offered by Medusajs fit us quite well. 
-Starting from this, we decided to use the Medusa.js commerce server and built the storefront app with refine and Next.js. 
+During this process, we met with the Medusa, and we decided that the solution offered by Medusajs fit us quite well. 
+Starting from this, we decided to use the Medusa commerce API and built the storefront app with refine and Next.js. 
  
 In that way, we could share complete eCommerce store solutions with the open source community. Also, it helps us to test our framework with a real-world use case.
 
@@ -93,3 +93,4 @@ npm run start -- --scope refine-store
 - [Data provider](https://refine.dev/docs/api-reference/core/providers/data-provider/)
   - [@pankod/refine-medusa](https://www.npmjs.com/package/@pankod/refine-medusa)
 - [Auth Provider](https://refine.dev/docs/api-reference/core/providers/auth-provider/)
+  - [@pankod/refine-medusa](https://www.npmjs.com/package/@pankod/refine-medusa)
