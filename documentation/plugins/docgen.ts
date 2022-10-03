@@ -346,18 +346,24 @@ export default function plugin(): Plugin<DocgenContent> {
 
             const { createData } = actions;
 
+            const data: Promise<string>[] = [];
+
             Object.entries(content).forEach(
                 ([packageName, packageDeclarations]) => {
                     Object.entries(packageDeclarations).forEach(
                         ([componentName, declaration]) => {
-                            createData(
-                                `${packageName}/${componentName}.json`,
-                                JSON.stringify(declaration),
+                            data.push(
+                                createData(
+                                    `${packageName}/${componentName}.json`,
+                                    JSON.stringify(declaration),
+                                ),
                             );
                         },
                     );
                 },
             );
+
+            await Promise.all(data);
         },
     };
 }

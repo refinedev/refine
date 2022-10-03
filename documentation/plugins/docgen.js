@@ -381,18 +381,24 @@ function plugin() {
 
             const { createData } = actions;
 
+            const data = [];
+
             Object.entries(content).forEach(
                 ([packageName, packageDeclarations]) => {
                     Object.entries(packageDeclarations).forEach(
                         ([componentName, declaration]) => {
-                            createData(
-                                `${packageName}/${componentName}.json`,
-                                JSON.stringify(declaration),
+                            data.push(
+                                createData(
+                                    `${packageName}/${componentName}.json`,
+                                    JSON.stringify(declaration),
+                                ),
                             );
                         },
                     );
                 },
             );
+
+            await Promise.all(data);
         },
     };
 }
