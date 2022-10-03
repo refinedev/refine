@@ -38,12 +38,15 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
     renderContent,
     formProps,
 }) => {
+    const { onSubmit, ...useFormProps } = formProps || {};
     const {
         register,
         watch,
         handleSubmit,
         formState: { errors },
-    } = useForm<BaseRecord, HttpError, RefineUpdatePasswordFormTypes>();
+    } = useForm<BaseRecord, HttpError, RefineUpdatePasswordFormTypes>({
+        ...useFormProps,
+    });
 
     const { mutate: update, isLoading } =
         useUpdatePassword<RefineUpdatePasswordFormTypes>();
@@ -65,16 +68,14 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                 </Typography>
                 <Box
                     component="form"
-                    {...formProps}
                     onSubmit={handleSubmit((data) => {
-                        if (formProps?.onSubmit) {
-                            return formProps.onSubmit(data);
+                        if (onSubmit) {
+                            return onSubmit(data);
                         }
 
                         return update(data);
                     })}
                     gap="16px"
-                    {...formProps}
                 >
                     <TextField
                         {...register("password", {

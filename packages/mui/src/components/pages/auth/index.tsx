@@ -4,6 +4,7 @@ import {
     RefineAuthPageProps,
     RefineRegisterFormTypes,
 } from "@pankod/refine-ui-types";
+import { UseFormProps } from "@pankod/refine-react-hook-form";
 
 import {
     LoginPage,
@@ -12,8 +13,8 @@ import {
     UpdatePasswordPage,
 } from "./components";
 
-export interface FormPropsType extends Omit<BoxProps<"form">, "onSubmit"> {
-    onSubmit: (values: RefineRegisterFormTypes) => void;
+export interface FormPropsType extends UseFormProps {
+    onSubmit?: (values: RefineRegisterFormTypes) => void;
 }
 
 export type AuthProps = RefineAuthPageProps<BoxProps, CardProps, FormPropsType>;

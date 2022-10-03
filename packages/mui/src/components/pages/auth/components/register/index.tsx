@@ -48,11 +48,14 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     providers,
     formProps,
 }) => {
+    const { onSubmit, ...useFormProps } = formProps || {};
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<BaseRecord, HttpError, RefineRegisterFormTypes>();
+    } = useForm<BaseRecord, HttpError, RefineRegisterFormTypes>({
+        ...useFormProps,
+    });
 
     const { mutate: registerMutate, isLoading } =
         useRegister<RefineRegisterFormTypes>();
@@ -110,10 +113,9 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                 {renderProviders()}
                 <Box
                     component="form"
-                    {...formProps}
                     onSubmit={handleSubmit((data) => {
-                        if (formProps?.onSubmit) {
-                            return formProps.onSubmit(data);
+                        if (onSubmit) {
+                            return onSubmit(data);
                         }
 
                         return registerMutate(data);

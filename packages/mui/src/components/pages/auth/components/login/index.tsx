@@ -3,7 +3,7 @@ import {
     RefineLoginPageProps,
     RefineLoginFormTypes,
 } from "@pankod/refine-ui-types";
-import { useForm } from "@pankod/refine-react-hook-form";
+import { FormProvider, useForm } from "@pankod/refine-react-hook-form";
 import {
     Button,
     BoxProps,
@@ -45,11 +45,15 @@ export const LoginPage: React.FC<LoginProps> = ({
     renderContent,
     formProps,
 }) => {
+    const { onSubmit, ...useFormProps } = formProps || {};
+    const methods = useForm<BaseRecord, HttpError, RefineLoginFormTypes>({
+        ...useFormProps,
+    });
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<BaseRecord, HttpError, RefineLoginFormTypes>();
+    } = methods;
 
     const { mutate: login, isLoading } = useLogin<RefineLoginFormTypes>();
     const translate = useTranslate();
@@ -100,10 +104,9 @@ export const LoginPage: React.FC<LoginProps> = ({
                 </Typography>
                 <Box
                     component="form"
-                    {...formProps}
                     onSubmit={handleSubmit((data) => {
-                        if (formProps?.onSubmit) {
-                            return formProps.onSubmit(data);
+                        if (onSubmit) {
+                            return onSubmit(data);
                         }
 
                         return login(data);
@@ -233,7 +236,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     );
 
     return (
-        <>
+        <FormProvider {...methods}>
             <Box component="div" style={layoutStyles} {...(wrapperProps ?? {})}>
                 <Container
                     component="main"
@@ -259,6 +262,6 @@ export const LoginPage: React.FC<LoginProps> = ({
                     </Box>
                 </Container>
             </Box>
-        </>
+        </FormProvider>
     );
 };

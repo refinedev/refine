@@ -46,11 +46,14 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
     renderContent,
     formProps,
 }) => {
+    const { onSubmit, ...useFormProps } = formProps || {};
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<BaseRecord, HttpError, RefineForgotPasswordFormTypes>();
+    } = useForm<BaseRecord, HttpError, RefineForgotPasswordFormTypes>({
+        ...useFormProps,
+    });
 
     const { mutate, isLoading } =
         useForgotPassword<RefineForgotPasswordFormTypes>();
@@ -73,16 +76,14 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
                 </Typography>
                 <Box
                     component="form"
-                    {...formProps}
                     onSubmit={handleSubmit((data) => {
-                        if (formProps?.onSubmit) {
-                            return formProps.onSubmit(data);
+                        if (onSubmit) {
+                            return onSubmit(data);
                         }
 
                         return mutate(data);
                     })}
                     gap="16px"
-                    {...formProps}
                 >
                     <TextField
                         {...register("email", {
