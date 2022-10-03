@@ -330,16 +330,18 @@ jobs:
           HostName github.com
           IdentityFile ~/.ssh/id_rsa
           EOT
+      - name: Build packages
+        run: |
+          npm ci
+          npm run bootstrap
+          cd documentation
+          npm ci
       - name: Release to GitHub Pages
         env:
           USE_SSH: true
           GIT_USER: pankod-bot
           NODE_ENV: production
         run: |
-          npm ci --include=dev
-          npm run bootstrap
-          cd documentation
           git config --global user.email "bot@pankod.com"
           git config --global user.name "pankod-bot"
-          npm ci --include=dev
           LIVE_PREVIEW_URL=https://live-preview.refine.dev/preview npm run deploy
