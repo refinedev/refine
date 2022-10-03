@@ -1,9 +1,9 @@
 ---
-title: A Detailed Guide on TypeScript Omit Type
-description: We'll deep dive into the TypeScript Pick utility type with examples and use cases.
+title: A Guide on TypeScript Omit Type
+description: We'll dive into the TypeScript Omit utility type with examples
 slug: typescript-omit-utility-type
 authors: abdullah_numan
-tags: [typescript, typescript-pick, typescript-utility-types]
+tags: [typescript, typescript-omit, typescript-utility-types]
 image: /img/blog/2022-10-03-typescript-omit/social.png
 hide_table_of_contents: false
 ---
