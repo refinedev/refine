@@ -39,6 +39,7 @@
     --color-text-black: #1c1e21;
     --color-bg-white: white;
     --ifm-navbar-sidebar-width: 100%;
+    --ifm-table-cell-padding: 6px 8px;
 }
 
 .img-container {
@@ -841,3 +842,9 @@ html[data-theme="dark"]:not([data-customized="true"])
 .props-list__info-item * {
     margin-bottom: 0;
 }
+
+.docs-wrapper table {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
