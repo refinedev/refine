@@ -26,8 +26,8 @@ const PropTag: React.FC<React.PropsWithChildren<Props>> = ({
 
     if (asterisk) {
         return (
-            <div className="prop--tag prop--tag__required" title={alt}>
-                {children ?? "✱"}
+            <div className="prop--tag__required" title={alt}>
+                {children ?? "﹡"}
             </div>
         );
     }

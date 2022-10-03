@@ -42,7 +42,7 @@ const Name = ({
             <span className="props-table--name">
                 {overrides[`${prop.name}-name`] ?? prop.name}
             </span>
-            {required && <PropTag required />}
+            {required && <PropTag asterisk />}
             {deprecated && <PropTag deprecated alt={deprecation} />}
         </>
     );
@@ -67,7 +67,7 @@ const Type = ({
             {hasLongTypeInUnion && isUnion ? (
                 <>
                     {splitted.map((t, i) => (
-                        <code className="h-min max-w-xs" key={i}>
+                        <code className="max-w-xs h-min" key={i}>
                             <ReactMarkdown>{t}</ReactMarkdown>
                         </code>
                     ))}
