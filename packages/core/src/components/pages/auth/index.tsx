@@ -32,7 +32,6 @@ export interface IAuthCommonProps {
     registerLink?: React.ReactNode;
     loginLink?: React.ReactNode;
     forgotPasswordLink?: React.ReactNode;
-    updatePasswordLink?: React.ReactNode;
     backLink?: React.ReactNode;
     providers?: IProvider[];
 }
