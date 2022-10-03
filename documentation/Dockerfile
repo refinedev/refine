@@ -11,10 +11,10 @@ COPY .npmrc ./
 
 RUN npm ci
 
+COPY . /opt/app
+
 RUN npm run bootstrap
 RUN npm run build
-
-COPY . /opt/app
 
 WORKDIR /opt/app/documentation
 
