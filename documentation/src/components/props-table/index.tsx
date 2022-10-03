@@ -60,6 +60,8 @@ const Type = ({
     const isUnion = splitted.length > 1;
     const hasLongTypeInUnion = splitted.some((t) => t.length > 20);
 
+    const hasBackticks = /`/.test(typeDef);
+
     return (
         <>
             {hasLongTypeInUnion && isUnion ? (
@@ -70,6 +72,8 @@ const Type = ({
                         </code>
                     ))}
                 </>
+            ) : hasBackticks ? (
+                <ReactMarkdown>{typeDef}</ReactMarkdown>
             ) : (
                 <code className="max-w-xs h-min">
                     <ReactMarkdown>{typeDef}</ReactMarkdown>
