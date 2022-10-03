@@ -22,7 +22,7 @@ import { LoginPage } from "@pankod/refine-antd";
 import { AuthPage } from "@pankod/refine-antd";
 
 <Refine
-  LoginPage={<AuthPage />}
+  LoginPage={AuthPage}
   ...
 />
 ```

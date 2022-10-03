@@ -2,7 +2,9 @@
 "@pankod/refine-mui": minor
 ---
 
-Deprecated `LoginPage`.
+- Added `<AuthPage>` for Material UI package of **refine**. `<AuthPage>` is a component that provides a login, register, forgot password and update password pages.
+
+- Deprecated `LoginPage`.
 
 **Before**
 
@@ -21,7 +23,7 @@ import { LoginPage } from "@pankod/refine-mui";
 import { AuthPage } from "@pankod/refine-mui";
 
 <Refine
-  LoginPage={<AuthPage />}
+  LoginPage={AuthPage}
   ...
 />
 ```
