@@ -33,10 +33,15 @@ export type CreateProps = RefineCrudCreateProps<
     CardProps,
     {
         /**
+         * Action buttons node at the top of the view
+         * @default `<SaveButton />`
+         *
          * @deprecated use `headerButtons` or `footerButtons` instead.
          */
         actionButtons?: React.ReactNode;
         /**
+         * Additional props to be passed to the `PageHeader` component
+         *
          * @deprecated use `headerProps`, `wrapperProps` and `contentProps` instead.
          */
         pageHeaderProps?: PageHeaderProps;

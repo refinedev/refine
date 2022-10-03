@@ -22,9 +22,11 @@ export const Conditional = ({
 
     React.useEffect(() => {
         if (maxWait) {
-            setTimeout(() => {
+            const timeout = setTimeout(() => {
                 setShow(true);
             }, maxWait);
+
+            return () => clearTimeout(timeout);
         }
     }, [maxWait]);
 

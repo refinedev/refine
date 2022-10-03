@@ -78,6 +78,7 @@ const siteConfig = {
                 },
             };
         },
+        "./plugins/docgen.js",
         [
             "./plugins/blog-plugin.js",
             {
