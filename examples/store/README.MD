@@ -1,11 +1,11 @@
-## refine Swag Store
+# refine Swag Store
 
 
-![Screenshot](./cover-image.png)
+![Screenshot](./cover-image.jpg)
 
 
 ## Live App Link
-Here is the deployed version.
+Here is the deployed version  
 https://store.refine.dev/
 
 
@@ -31,7 +31,7 @@ Starting from this, we decided to use the Medusa.js commerce server and built th
  
 In that way, we could share complete eCommerce store solutions with the open source community. Also, it helps us to test our framework with a real-world use case.
 
-We deployed our Medusa commerce server fastly without pain. First, we deployed our admin interface and created products, collections, and other stuff. 
+We deployed our Medusa commerce API fastly without pain. First, we deployed our admin interface and created products, collections, and other stuff. 
 For the UI, we used [Vercel's eCommerce template](https://demo.vercel.store/). Since there is no payment step involved in Vercel's eCommerce template, we took advantage of the (nextjs-starter-medusa)[https://github.com/medusajs/nextjs-starter-medusa] for checkout and account features.
 
 So basically, we built a complete eCommerce storefront by combining Vercel's eCommerce template with nextjs-starter-medusa.
@@ -46,6 +46,7 @@ Currently, we are using this store and have already processed real shopping tran
 - Shopping cart
 - Payment with Stripe
 - Gift Code feature
+- Email send and verification
 
 ### Preview
 
@@ -57,9 +58,9 @@ Currently, we are using this store and have already processed real shopping tran
 ## Set up Project   
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/en/download/)
+- Minimum Node v16.0.0 
 - [Stripe Account](https://stripe.com/)
-- [Medusa Account](https://medusa-commerce.com/)
+- [Medusa API](https://docs.medusajs.com/quickstart/quick-start)
 
 ### Install Project
 
@@ -87,5 +88,8 @@ npm run start -- --scope refine-store
 
 
 ## Resources
-- [refine documentation](https://refine.dev/docs/tutorials/headless-tutorial/)
-- [Medusa documentation](https://docs.medusajs.com/advanced/backend/endpoints/add-storefront)
+- [refine documentation](https://refine.dev/docs/getting-started/overview/)
+- [Medusa documentation](https://docs.medusajs.com/quickstart/quick-start)
+- [Data provider](https://refine.dev/docs/api-reference/core/providers/data-provider/)
+  - [@pankod/refine-medusa](https://www.npmjs.com/package/@pankod/refine-medusa)
+- [Auth Provider](https://refine.dev/docs/api-reference/core/providers/auth-provider/)
