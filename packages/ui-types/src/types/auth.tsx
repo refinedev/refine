@@ -20,7 +20,7 @@ export interface RefineRegisterFormTypes {
 }
 
 export interface RefineForgotPasswordFormTypes {
-    email: string;
+    email?: string;
 }
 
 export interface RefineUpdatePasswordFormTypes {
