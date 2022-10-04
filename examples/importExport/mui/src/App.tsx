@@ -29,7 +29,6 @@ const App: React.FC = () => {
                     dataProvider={dataProvider(API_URL)}
                     ReadyPage={ReadyPage}
                     Layout={Layout}
-                    LoginPage={LoginPage}
                     catchAll={<ErrorComponent />}
                     resources={[
                         {
