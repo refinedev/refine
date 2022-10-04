@@ -79,6 +79,7 @@ const siteConfig = {
             };
         },
         "./plugins/docgen.js",
+        "./plugins/examples.js",
         [
             "./plugins/blog-plugin.js",
             {
