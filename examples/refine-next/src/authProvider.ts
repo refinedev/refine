@@ -3,19 +3,19 @@ import nookies from "nookies";
 
 const mockUsers = [
     {
-        username: "admin",
+        email: "admin@refine.dev",
         roles: ["admin"],
     },
     {
-        username: "editor",
+        email: "editor@refine.dev",
         roles: ["editor"],
     },
 ];
 
 export const authProvider: AuthProvider = {
-    login: ({ username, password, remember }) => {
+    login: ({ email, password, remember }) => {
         // Suppose we actually send a request to the back end here.
-        const user = mockUsers.find((item) => item.username === username);
+        const user = mockUsers.find((item) => item.email === email);
 
         if (user) {
             nookies.set(null, "auth", JSON.stringify(user), {

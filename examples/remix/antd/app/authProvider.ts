@@ -4,11 +4,11 @@ import * as cookie from "cookie";
 
 const mockUsers = [
     {
-        username: "admin",
+        email: "admin@refine.dev",
         roles: ["admin"],
     },
     {
-        username: "editor",
+        email: "editor@refine.dev",
         roles: ["editor"],
     },
 ];
@@ -16,9 +16,9 @@ const mockUsers = [
 const COOKIE_NAME = "user";
 
 export const authProvider: AuthProvider = {
-    login: ({ username, password, remember }) => {
+    login: ({ email, password, remember }) => {
         // Suppose we actually send a request to the back end here.
-        const user = mockUsers.find((item) => item.username === username);
+        const user = mockUsers.find((item) => item.email === email);
 
         if (user) {
             Cookies.set(COOKIE_NAME, JSON.stringify(user));
