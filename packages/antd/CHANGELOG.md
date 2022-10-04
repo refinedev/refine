@@ -1,5 +1,33 @@
 # @pankod/refine-antd
 
+## 3.50.0
+
+### Minor Changes
+
+-   Deprecated `LoginPage`.
+
+    **Before**
+
+    ```tsx
+    import { LoginPage } from "@pankod/refine-antd";
+
+    <Refine
+      LoginPage={LoginPage}
+      ...
+    />
+    ```
+
+    **After**
+
+    ```tsx
+    import { AuthPage } from "@pankod/refine-antd";
+
+    <Refine
+      LoginPage={AuthPage}
+      ...
+    />
+    ```
+
 ## 3.49.0
 
 ### Minor Changes
