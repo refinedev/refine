@@ -361,6 +361,124 @@ render(
 );
 ```
 
+### `rememberMe`
+
+:::info
+`rememberMe` property is only available for type `login`.
+:::
+
+`rememberMe` property defines to render your own remember me component or you can pass `false` to don't render it.
+
+```tsx live previewHeight=500px url=http://localhost:3000/login
+setInitialRoutes(["/login"]);
+setRefineProps({ Sider: () => null });
+
+// visible-block-start
+import { Refine, useNavigation, AuthPage } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+import { authProvider } from "./authProvider";
+import { DashboardPage } from "./pages/dashboard";
+
+const App = () => {
+    return (
+        <Refine
+            routerProvider={routerProvider}
+            authProvider={authProvider}
+            // highlight-start
+            LoginPage={() => (
+                <AuthPage
+                    rememberMe={
+                        <div
+                            style={{
+                                border: "1px dashed cornflowerblue",
+                                padding: 3,
+                            }}
+                        >
+                            <input name="CustomRememberMe" type="checkbox" /> Custom remember me
+                        </div>
+                    }
+                />
+            )}
+            // highlight-end
+            DashboardPage={DashboardPage}
+            resources={[{ name: "posts" }]}
+        />
+    );
+};
+// visible-block-end
+render(
+    <App />,
+);
+```
+
+
+### `loginLink`
+
+:::info
+`loginLink` property is only available for types `register` and `forgotPassword`.
+:::
+
+`loginLink` property defines the link to the login page and also you can give a node to render. Default value is `"/login"`.
+
+```tsx live previewHeight=500px url=http://localhost:3000/register
+setInitialRoutes(["/register"]);
+setRefineProps({ Sider: () => null });
+
+// visible-block-start
+import { Refine, useRouterContext, AuthPage } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+import { authProvider } from "./authProvider";
+import { DashboardPage } from "./pages/dashboard";
+
+const Auth = (props) => {
+    const { Link } = useRouterContext();
+
+    return (
+        <AuthPage
+            {...props}
+            // highlight-start
+            loginLink={
+                <div
+                    style={{
+                        border: "1px dashed cornflowerblue",
+                        padding: 3,
+                    }}
+                >
+                    <Link to="/login">Login</Link>
+                </div>
+            }
+            // highlight-end
+        />
+    );
+};
+
+const App = () => {
+    return (
+        <Refine
+            authProvider={authProvider}
+            // highlight-start
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                    {
+                        path: "/register",
+                        element: <Auth type="register" />,
+                    },
+                ],
+            }}
+            // highlight-end
+            LoginPage={Auth}
+            DashboardPage={DashboardPage}
+            resources={[{ name: "posts" }]}
+        />
+    );
+};
+// visible-block-end
+render(<App />);
+```
+
 ### `registerLink`
 
 :::info
@@ -371,6 +489,7 @@ render(
 
 ```tsx live previewHeight=500px url=http://localhost:3000/login
 setInitialRoutes(["/login"]);
+setRefineProps({ Sider: () => null });
 
 // visible-block-start
 import { Refine, useRouterContext, AuthPage } from "@pankod/refine-core";
@@ -423,70 +542,17 @@ const App = () => {
 render(<App />);
 ```
 
-### `loginLink`
-
-`loginLink` property defines the link to the login page and also you can give a node to render.
-
-```tsx live previewHeight=500px url=http://localhost:3000/register
-setInitialRoutes(["/register"]);
-
-// visible-block-start
-import { Refine, useRouterContext, AuthPage } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-import { DashboardPage } from "./pages/dashboard";
-
-const RegisterPage = () => {
-    const { Link } = useRouterContext();
-
-    return (
-        <AuthPage
-            type="register"
-            // highlight-start
-            loginLink={
-                <div
-                    style={{
-                        border: "1px dashed cornflowerblue",
-                        marginTop: 5,
-                        padding: 5,
-                    }}
-                >
-                    <Link to="/login">Login</Link>
-                </div>
-            }
-            // highlight-end
-        />
-    );
-};
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    { path: "/register", element: <RegisterPage /> },
-                ]
-            }}
-            // highlight-next-line
-            LoginPage={AuthPage}
-            DashboardPage={DashboardPage}
-            resources={[{ name: "posts" }]}
-        />
-    );
-};
-// visible-block-end
-render(<App />);
-```
-
 ### `forgotPasswordLink`
 
-`forgotPasswordLink` property defines the link to the forgot password page and also you can a give node to render.
+:::info
+`forgotPasswordLink` property is only available for type `login`.
+:::
 
-```tsx live previewHeight=500px url=http://localhost:3000/register
+`forgotPasswordLink` property defines the link to the forgot password page and also you can give a node to render. Default value is `"/forgot-password"`.
+
+```tsx live previewHeight=500px url=http://localhost:3000/login
 setInitialRoutes(["/login"]);
+setRefineProps({ Sider: () => null });
 
 // visible-block-start
 import { Refine, useRouterContext, AuthPage } from "@pankod/refine-core";
@@ -495,12 +561,12 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
-const LoginPage = () => {
+const Auth = (props) => {
     const { Link } = useRouterContext();
 
     return (
         <AuthPage
-            type="login"
+            {...props}
             // highlight-start
             forgotPasswordLink={
                 <div
@@ -525,11 +591,11 @@ const App = () => {
             routerProvider={{
                 ...routerProvider,
                 routes: [
-                    { path: "/forgot-password", element: <AuthPage type="forgotPassword" /> },
+                    { path: "/forgot-password", element: <Auth type="forgotPassword" /> },
                 ]
             }}
             // highlight-next-line
-            LoginPage={LoginPage}
+            LoginPage={Auth}
             DashboardPage={DashboardPage}
             resources={[{ name: "posts" }]}
         />
@@ -539,71 +605,42 @@ const App = () => {
 render(<App />);
 ```
 
+### `wrapperProps`
 
-
-### `submitButton`
-
-`submitButton` render your custom ReactNode to submit the form. Also, you can reach form values with the `onClick` property and use your own logic to submit the form.
+`wrapperProps` uses for passing props to the wrapper component. In the example below you can see that the background color is changed with `wrapperProps`
 
 ```tsx live previewHeight=500px url=http://localhost:3000/login
 setInitialRoutes(["/login"]);
+setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useRouterContext, AuthPage, useRegister } from "@pankod/refine-core";
+import { Refine, useNavigation, AuthPage } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
-
-const LoginPage = () => {
-    const { Link } = useRouterContext();
-    const { mutate: register } = useRegister();
-
-    return (
-        <AuthPage
-            type="login"
-            // highlight-start
-            submitButton={
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        padding: 5,
-                        border: "1px dashed cornflowerblue",
-                        marginTop: 5,
-                    }}
-                >
-                    <button
-                        type="submit"
-                        style={{
-                            display: "flex",
-                            flex: 1,
-                            justifyContent: "center",
-                        }}
-                        onClick={(e) => {
-                            event.preventDefault();
-                            // you can access register form data from `event.target`
-                            console.log(e.target.form);
-                            // run your custom register logic(validation, etc.)
-                            register();
-                        }}
-                    >
-                        Login
-                    </button>
-                </div>
-            }
-            // highlight-end
-        />
-    );
-};
 
 const App = () => {
     return (
         <Refine
             authProvider={authProvider}
             routerProvider={routerProvider}
-            // highlight-next-line
-            LoginPage={LoginPage}
+            LoginPage={() => (
+                <AuthPage
+                    // highlight-start
+                    wrapperProps={{
+                        style: {
+                            background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+                            position: "absolute",
+                            top: "0px",
+                            right: "0px",
+                            bottom: "0px",
+                            left: "0px",
+                        },
+                    }}
+                    // highlight-end
+                />
+            )}
             DashboardPage={DashboardPage}
             resources={[{ name: "posts" }]}
         />
@@ -613,61 +650,143 @@ const App = () => {
 render(<App />);
 ```
 
-### `backLink`
+### `contentProps`
 
-`backLink` property defines the render ReactNode that will be used as a back link and also you can give a node to render.
+`contentProps` uses for passing props to the content component which is the card component. In the example below you can see that the title, header and content styles are changed with `contentProps`.
 
-
-```tsx live previewHeight=500px url=http://localhost:3000/register
-setInitialRoutes(["/register"]);
+```tsx live previewHeight=500px url=http://localhost:3000/login
+setInitialRoutes(["/login"]);
+setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useRouterContext, AuthPage, useRegister } from "@pankod/refine-core";
+import { Refine, useNavigation, AuthPage } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
-const RegisterPage = () => {
-    const { Link } = useRouterContext();
-
+const App = () => {
     return (
-        <AuthPage
-            type="register"
-            // highlight-start
-            backLink={
-                <div
-                    style={{
-                        border: "1px dashed cornflowerblue",
-                        marginTop: 5,
-                        padding: 5,
+        <Refine
+            routerProvider={routerProvider}
+            authProvider={authProvider}
+            LoginPage={() => (
+                <AuthPage
+                    // highlight-start
+                    contentProps={{
+                        style: {
+                            background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+                        },
                     }}
-                >
-                    <Link to="/login">Go Back</Link>
-                </div>
-            }
-            // highlight-end
+                    // highlight-end
+                />
+            )}
+            DashboardPage={DashboardPage}
+            resources={[{ name: "posts" }]}
         />
     );
 };
+// visible-block-end
+render(<App />);
+```
+
+### `formProps`
+
+`formProps` uses for passing props to the form component.
+
+```tsx live previewHeight=500px url=http://localhost:3000/login
+setInitialRoutes(["/login"]);
+setRefineProps({ Sider: () => null });
+
+// visible-block-start
+import { Refine, useNavigation, AuthPage } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+import { authProvider } from "./authProvider";
+import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
     return (
         <Refine
+            routerProvider={routerProvider}
             authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
+            LoginPage={() => (
+                <AuthPage
                     // highlight-start
-                    {
-                        path: "/register",
-                        element: <RegisterPage />,
-                    },
+                    formProps={{
+                        onSubmit: (e: any) => {
+                            e.preventDefault();
+
+                            const email = e.target.email.value;
+                            const password = e.target.password.value;
+
+                            alert(
+                                JSON.stringify({
+                                    email,
+                                    password,
+                                }),
+                            );
+                        },
+                    }}
                     // highlight-end
-                ],
-            }}
-            // highlight-next-line
-            LoginPage={AuthPage}
+                />
+            )}
+            DashboardPage={DashboardPage}
+            resources={[{ name: "posts" }]}
+        />
+    );
+};
+// visible-block-end
+render(<App />);
+```
+
+### `renderContent`
+
+`renderContent` uses to render the form content. You can use this property to render your own content or `renderContent` gives you default content you can use to add some extra elements to the content.
+
+```tsx live previewHeight=500px url=http://localhost:3000/login
+setInitialRoutes(["/login"]);
+setRefineProps({ Sider: () => null });
+
+// visible-block-start
+import { Refine, useRouterContext, AuthPage } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+import { authProvider } from "./authProvider";
+import { DashboardPage } from "./pages/dashboard";
+
+const App = () => {
+    return (
+        <Refine
+            routerProvider={routerProvider}
+            authProvider={authProvider}
+            // highlight-start
+            LoginPage={() => (
+                <AuthPage
+                    contentProps={{
+                        style: {
+                            width: "400px",
+                        },
+                    }}
+                    renderContent={(content: React.ReactNode) => {
+                        return (
+                            <div
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                }}
+                            >
+                                <h1>Extra Header</h1>
+                                {content}
+                                <h2>Extra Footer</h2>
+                            </div>
+                        );
+                    }}
+                />
+            )}
+            // highlight-end
             DashboardPage={DashboardPage}
             resources={[{ name: "posts" }]}
         />
@@ -678,17 +797,20 @@ render(<App />);
 ```
 
 ## API Reference
+
 ### Properties
 
-| Property           | Description                                                                      | Type                                                          |
-| ------------------ | -------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| type               | Render `<AuthPage>` forms by `type` property.                                    | `login` \| `register` \| `forgotPassword` \| `updatePassword` |
-| providers          | Render social logins if `type` is `"login"`.                                     | [`IProvider[]`](#interface)                                   |
-| registerLink       | Custom node that will be rendered as a register link to the `<AuthPage>`.        | `React.ReactNode`                                             |
-| loginLink          | Custom node that will be rendered as a link to the `<AuthPage>`.                 | `React.ReactNode`                                             |
-| forgotPasswordLink | Custom node that will be rendered as a forgot password link to the `<AuthPage>`. | `React.ReactNode`                                             |
-| submitButton       | Custom node that will be used to submit form.                                    | `React.ReactNode`                                             |
-| backLink           | Custom node that will be displayed as a back link.                               | `React.ReactNode`                                             |
+| Property           | Description                                                                         | Type                                                          |
+| ------------------ | ----------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| type               | Render `<AuthPage>` forms by `type` property.                                       | `login` \| `register` \| `forgotPassword` \| `updatePassword` |
+| providers          | Render auth logins if `type` is `"login"`.                                          | [`IProvider[]`](#interface)                                   |
+| registerLink       | A custom node that will be rendered as a register link to the `<AuthPage>`.         | `React.ReactNode`                                             |
+| loginLink          | A custom node that will be rendered as a link to the `<AuthPage>`.                  | `React.ReactNode`                                             |
+| forgotPasswordLink | A custom node that will be rendered as a forgot password link to the `<AuthPage>`.  | `React.ReactNode`                                             |
+| wrapperProps       | Wrapper element props.                                                              | [`HTMLDivElement`]                                            |
+| contentProps       | Content wrapper element props.                                                      | [`HTMLDivElement`]                                            |
+| formProps          | Props for the form component.                                                       | [`HTMLFormElement`]                                           |
+| renderContent      | Gives you default content you can use it to add some extra elements to the content. | `function(content: React.ReactNode) => React.ReactNode`       |
 
 ### Interface
 
