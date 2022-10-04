@@ -1,17 +1,22 @@
-import { useTranslate, useRouterContext, useForgotPassword } from "@hooks";
 import React, { useState } from "react";
-import { IAuthCommonProps, IForgotPasswordForm } from "../..";
+import { RefineLoginPageProps } from "@pankod/refine-ui-types";
 
-export const ForgotPassword: React.FC<IAuthCommonProps> = ({
-    backLink,
-    submitButton,
-}) => {
+import { useTranslate, useRouterContext, useForgotPassword } from "@hooks";
+
+import { DivPropsType, FormPropsType } from "../..";
+type ForgotPasswordProps = RefineLoginPageProps<
+    DivPropsType,
+    DivPropsType,
+    FormPropsType
+>;
+
+export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = () => {
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
     const [email, setEmail] = useState("");
 
-    const { mutate: forgotPassword } = useForgotPassword<IForgotPasswordForm>();
+    const { mutate: forgotPassword } = useForgotPassword();
 
     const renderLink = (link: React.ReactNode, text?: string) => {
         if (link) {
@@ -22,6 +27,7 @@ export const ForgotPassword: React.FC<IAuthCommonProps> = ({
         }
         return null;
     };
+
     return (
         <div>
             <h1 style={{ textAlign: "center" }}>
@@ -54,23 +60,6 @@ export const ForgotPassword: React.FC<IAuthCommonProps> = ({
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     <br />
-                    {submitButton ?? (
-                        <input
-                            type="submit"
-                            value={translate(
-                                "pages.forgotPassword.button",
-                                "Reset Password",
-                            )}
-                        />
-                    )}
-                    {backLink &&
-                        renderLink(
-                            backLink,
-                            translate(
-                                "pages.forgotPassword.backLink",
-                                "Go Back",
-                            ),
-                        )}
                 </div>
             </form>
         </div>

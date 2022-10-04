@@ -1,22 +1,37 @@
+import React, { useState } from "react";
+import {
+    RefineLoginPageProps,
+    RefineLoginFormTypes,
+} from "@pankod/refine-ui-types";
+
 import { useRouterContext, useLogin } from "@hooks";
 import { useTranslate } from "@hooks/translate";
-import React, { useState } from "react";
-import { ILoginForm, IAuthCommonProps } from "../..";
 
-export const Login: React.FC<IAuthCommonProps> = ({
-    registerLink,
-    submitButton,
-    forgotPasswordLink,
-    backLink,
+import { DivPropsType, FormPropsType } from "../..";
+type LoginProps = RefineLoginPageProps<
+    DivPropsType,
+    DivPropsType,
+    FormPropsType
+>;
+
+export const LoginPage: React.FC<LoginProps> = ({
     providers,
+    registerLink,
+    forgotPasswordLink,
+    rememberMe,
+    contentProps,
+    wrapperProps,
+    renderContent,
+    formProps,
 }) => {
     const { Link } = useRouterContext();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [remember, setRemember] = useState(false);
 
     const translate = useTranslate();
 
-    const { mutate: login } = useLogin<ILoginForm>();
+    const { mutate: login } = useLogin<RefineLoginFormTypes>();
 
     const renderLink = (link: React.ReactNode, text?: string) => {
         if (link) {
@@ -67,8 +82,8 @@ export const Login: React.FC<IAuthCommonProps> = ({
         return null;
     };
 
-    return (
-        <>
+    const content = (
+        <div {...contentProps}>
             <h1 style={{ textAlign: "center" }}>
                 {translate("pages.login.title", "Login")}
             </h1>
@@ -77,8 +92,9 @@ export const Login: React.FC<IAuthCommonProps> = ({
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
-                    login({ email, password });
+                    login({ email, password, remember });
                 }}
+                {...formProps}
             >
                 <div
                     style={{
@@ -115,13 +131,26 @@ export const Login: React.FC<IAuthCommonProps> = ({
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <br />
-                    {submitButton ?? (
-                        <input
-                            type="submit"
-                            value={translate("pages.login.button", "Login")}
-                        />
+                    {rememberMe ?? (
+                        <>
+                            <label>
+                                {translate(
+                                    "pages.login.rememberMe",
+                                    undefined,
+                                    "Remember me",
+                                )}
+                                <input
+                                    type="checkbox"
+                                    size={20}
+                                    checked={remember}
+                                    onChange={() => {
+                                        setRemember(!remember);
+                                    }}
+                                />
+                            </label>
+                        </>
                     )}
+                    <br />
                     {forgotPasswordLink &&
                         renderLink(
                             forgotPasswordLink,
@@ -130,6 +159,10 @@ export const Login: React.FC<IAuthCommonProps> = ({
                                 "Forgot your password?",
                             ),
                         )}
+                    <input
+                        type="submit"
+                        value={translate("pages.login.button", "Login")}
+                    />
                     {registerLink &&
                         renderLink(
                             registerLink,
@@ -138,13 +171,14 @@ export const Login: React.FC<IAuthCommonProps> = ({
                                 "Don't have an account? Register",
                             ),
                         )}
-                    {backLink &&
-                        renderLink(
-                            backLink,
-                            translate("pages.login.backLink", "Back"),
-                        )}
                 </div>
             </form>
-        </>
+        </div>
+    );
+
+    return (
+        <div {...wrapperProps}>
+            {renderContent ? renderContent(content) : content}
+        </div>
     );
 };

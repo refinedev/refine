@@ -1,16 +1,20 @@
 import React, { useState } from "react";
+import { RefineUpdatePasswordPageProps } from "@pankod/refine-ui-types";
 
 import { useTranslate, useRouterContext, useUpdatePassword } from "@hooks";
-import { IAuthCommonProps, IUpdatePasswordForm } from "../..";
 
-export const UpdatePassword: React.FC<IAuthCommonProps> = ({
-    backLink,
-    submitButton,
-}) => {
+import { DivPropsType, FormPropsType } from "../..";
+type UpdatePasswordProps = RefineUpdatePasswordPageProps<
+    DivPropsType,
+    DivPropsType,
+    FormPropsType
+>;
+
+export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = () => {
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
-    const { mutate: updatePassword } = useUpdatePassword<IUpdatePasswordForm>();
+    const { mutate: updatePassword } = useUpdatePassword();
 
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -74,23 +78,6 @@ export const UpdatePassword: React.FC<IAuthCommonProps> = ({
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                     <br />
-                    {submitButton ?? (
-                        <input
-                            type="submit"
-                            value={translate(
-                                "pages.updatePassword.button",
-                                "Update Password",
-                            )}
-                        />
-                    )}
-                    {backLink &&
-                        renderLink(
-                            backLink,
-                            translate(
-                                "pages.updatePassword.backLink",
-                                "Go Back",
-                            ),
-                        )}
                 </div>
             </form>
         </div>

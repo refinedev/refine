@@ -1,12 +1,16 @@
-import { useTranslate, useRouterContext, useRegister } from "@hooks";
 import React, { useState } from "react";
-import { IAuthCommonProps, IRegisterForm } from "../..";
+import { RefineRegisterPageProps } from "@pankod/refine-ui-types";
 
-export const Register: React.FC<IAuthCommonProps> = ({
-    submitButton,
-    backLink,
-    loginLink,
-}) => {
+import { useTranslate, useRouterContext, useRegister } from "@hooks";
+
+import { DivPropsType, FormPropsType } from "../..";
+type RegisterProps = RefineRegisterPageProps<
+    DivPropsType,
+    DivPropsType,
+    FormPropsType
+>;
+
+export const RegisterPage: React.FC<RegisterProps> = () => {
     const { Link } = useRouterContext();
 
     const [email, setEmail] = useState("");
@@ -15,7 +19,7 @@ export const Register: React.FC<IAuthCommonProps> = ({
 
     const translate = useTranslate();
 
-    const { mutate: register } = useRegister<IRegisterForm>();
+    const { mutate: register } = useRegister();
 
     const renderLink = (link: React.ReactNode, text?: string) => {
         if (link) {
@@ -90,29 +94,6 @@ export const Register: React.FC<IAuthCommonProps> = ({
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                     <br />
-                    {submitButton ?? (
-                        <input
-                            type="submit"
-                            value={translate(
-                                "pages.register.button",
-                                "Register",
-                            )}
-                        />
-                    )}
-                    <br />
-                    {loginLink &&
-                        renderLink(
-                            loginLink,
-                            translate(
-                                "pages.register.loginLink",
-                                "Have an account? Login",
-                            ),
-                        )}
-                    {backLink &&
-                        renderLink(
-                            backLink,
-                            translate("pages.register.backLink", "Go Back"),
-                        )}
                 </div>
             </form>
         </>
