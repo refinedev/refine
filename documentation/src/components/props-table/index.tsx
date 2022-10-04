@@ -82,7 +82,9 @@ const Type = ({
 
     return (
         <>
-            {hasLongTypeInUnion && isUnion ? (
+            {hasBackticks ? (
+                <ReactMarkdown>{typeDef}</ReactMarkdown>
+            ) : hasLongTypeInUnion && isUnion ? (
                 <>
                     {splitted.map((t, i) => (
                         <code className="max-w-xs h-min" key={i}>
@@ -90,8 +92,6 @@ const Type = ({
                         </code>
                     ))}
                 </>
-            ) : hasBackticks ? (
-                <ReactMarkdown>{typeDef}</ReactMarkdown>
             ) : (
                 <code className="max-w-xs h-min">
                     <ReactMarkdown>{typeDef}</ReactMarkdown>
