@@ -5,15 +5,15 @@ import dataProvider from "@pankod/refine-simple-rest";
 import {
     RemixRouteComponent,
     handleRefineParams,
+    checkAuthentication,
 } from "@pankod/refine-remix-router";
 
-import { requireUserId } from "~/session.server";
+import { authProvider } from "~/authProvider";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
 export const loader: LoaderFunction = async ({ params, request }) => {
-    await requireUserId(request);
-
+    await checkAuthentication(authProvider, request);
     const refineSplatParams = handleRefineParams(params["*"]);
 
     const {
