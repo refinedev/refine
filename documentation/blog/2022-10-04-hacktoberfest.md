@@ -14,6 +14,8 @@ import prize from '@site/static/img/blog/2022-10-04-hacktoberfest/prize.png';
 
 
 
+<br/>
+<br/>
 
 
 <div style={{display:"flex", alignItems:"center"}}>
