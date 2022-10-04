@@ -7,7 +7,7 @@ import {
     Scripts,
     ScrollRestoration,
 } from "@remix-run/react";
-import { Refine } from "@pankod/refine-core";
+import { AuthPage, Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-remix-router";
 
@@ -42,6 +42,7 @@ export default function App() {
                             edit: PostEdit,
                         },
                     ]}
+                    LoginPage={AuthPage}
                     options={{ syncWithLocation: true }}
                 >
                     <Outlet />
