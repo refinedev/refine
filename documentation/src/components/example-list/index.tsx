@@ -176,7 +176,7 @@ const ExampleList: React.FC = () => {
                 <div className="cursor-pointer text-xs tracking-tight line-clamp-3 h-12 mb-0 no-underline text-[color:var(--ifm-font-color-base)]">
                     {description}
                 </div>
-                <div className="flex flex-wrap gap-1.5 pt-1 pb-1">
+                <div className="flex flex-wrap gap-1.5 pt-1 pb-1 mt-auto">
                     {example.tags.map((tag) => (
                         <span
                             key={tag}
