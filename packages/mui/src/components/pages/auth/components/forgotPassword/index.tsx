@@ -34,11 +34,9 @@ type ForgotPasswordProps = RefineForgotPasswordPageProps<
 >;
 
 /**
- * **refine** has forgot password page form which is served on `/register` route when the `authProvider` configuration is provided.
- *
- * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/mui-auth-page/#forgot-password} for more details.
+ * The forgotPassword type is a page that allows users to reset their passwords. You can use this page to reset your password.
+ * @see {@link https://refine.dev/docs/api-reference/mui/components/mui-auth-page/#forgot-password} for more details.
  */
-
 export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
     loginLink,
     wrapperProps,

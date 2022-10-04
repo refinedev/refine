@@ -32,6 +32,10 @@ type UpdatePasswordProps = RefineUpdatePasswordPageProps<
     FormPropsType
 >;
 
+/**
+ * The updatePassword type is the page used to update the password of the user.
+ * @see {@link https://refine.dev/docs/api-reference/mui/components/mui-auth-page/#update-password} for more details.
+ */
 export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
     wrapperProps,
     contentProps,

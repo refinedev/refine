@@ -36,9 +36,8 @@ type RegisterProps = RefineRegisterPageProps<
 >;
 
 /**
- * **refine** has register page form which is served on `/register` route when the `authProvider` configuration is provided.
- *
- * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/mui-auth-page/#register} for more details.
+ * The register page will be used to register new users. You can use the following props for the <AuthPage> component when the type is "register".
+ * @see {@link https://refine.dev/docs/api-reference/mui/components/mui-auth-page/#register} for more details.
  */
 export const RegisterPage: React.FC<RegisterProps> = ({
     loginLink,

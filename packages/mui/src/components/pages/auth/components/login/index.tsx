@@ -35,6 +35,10 @@ type LoginProps = RefineLoginPageProps<
     FormPropsType
 >;
 
+/**
+ * login will be used as the default type of the <AuthPage> component. The login page will be used to log in to the system.
+ * @see {@link https://refine.dev/docs/api-reference/mui/components/mui-auth-page/#login} for more details.
+ */
 export const LoginPage: React.FC<LoginProps> = ({
     providers,
     registerLink,
