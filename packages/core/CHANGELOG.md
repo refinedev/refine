@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.74.8
+
+### Patch Changes
+
+-   add props table to useCan documentation
+
 ## 3.74.7
 
 ### Patch Changes
