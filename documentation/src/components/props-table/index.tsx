@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import {
     DeclarationType,
     useDynamicImport,
 } from "../../hooks/use-dynamic-import";
 import PropTag from "../prop-tag";
+import Tooltip from "../tooltip";
 
 type Overrides = `${string}-${
     | "hidden"
@@ -37,14 +38,31 @@ const Name = ({
     const deprecation =
         overrides[`${prop.name}-deprecated`] || prop.tags?.deprecated || "";
 
+    const variant = useMemo(() => {
+        const className = "props-table--name";
+
+        if (deprecated) {
+            return `${className} props-table--name__deprecated`;
+        }
+
+        return className;
+    }, [prop, overrides]);
+
+    const tooltipLabel = useMemo(() => {
+        if (deprecation) return <ReactMarkdown>{deprecation}</ReactMarkdown>;
+
+        return null;
+    }, [prop, overrides]);
+
     return (
-        <>
-            <span className="props-table--name">
-                {overrides[`${prop.name}-name`] ?? prop.name}
-            </span>
-            {required && <PropTag required />}
-            {deprecated && <PropTag deprecated alt={deprecation} />}
-        </>
+        <Tooltip label={tooltipLabel}>
+            <>
+                <span className={variant}>
+                    {overrides[`${prop.name}-name`] ?? prop.name}
+                </span>
+                {required && <PropTag asterisk />}
+            </>
+        </Tooltip>
     );
 };
 
@@ -67,7 +85,7 @@ const Type = ({
             {hasLongTypeInUnion && isUnion ? (
                 <>
                     {splitted.map((t, i) => (
-                        <code className="h-min max-w-xs" key={i}>
+                        <code className="max-w-xs h-min" key={i}>
                             <ReactMarkdown>{t}</ReactMarkdown>
                         </code>
                     ))}
@@ -196,6 +214,22 @@ const PropsTable: React.FC<React.PropsWithChildren<Props>> = ({
 }) => {
     const data = useDynamicImport(module);
 
+    const hideRowDefault = useMemo(() => {
+        if (hideDefaults) return false;
+
+        const keys = Object.keys(overrides);
+        const hasDefaultKey = keys.some((key) => key.endsWith("-default"));
+        if (hasDefaultKey) {
+            return false;
+        }
+
+        const hasDefaultValue = Object.values(data?.props ?? {}).some(
+            (prop) => prop.defaultValue?.value,
+        );
+
+        return !hasDefaultValue;
+    }, [overrides]);
+
     if (!data) {
         return null;
     }
@@ -208,7 +242,7 @@ const PropsTable: React.FC<React.PropsWithChildren<Props>> = ({
                         <th>Property</th>
                         <th>Type</th>
                         <th>Description</th>
-                        {hideDefaults ? null : <th>Default</th>}
+                        {hideRowDefault ? null : <th>Default</th>}
                     </tr>
                 </thead>
                 <tbody>
@@ -224,7 +258,7 @@ const PropsTable: React.FC<React.PropsWithChildren<Props>> = ({
                                     prop={prop}
                                     overrides={overrides}
                                 />
-                                {hideDefaults ? null : (
+                                {hideRowDefault ? null : (
                                     <RowDefault
                                         prop={prop}
                                         overrides={overrides}
