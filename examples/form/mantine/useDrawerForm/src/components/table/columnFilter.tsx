@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
     TextInput,
     Menu,
@@ -11,11 +11,11 @@ import { IconFilter, IconX, IconCheck } from "@tabler/icons";
 import { ColumnButtonProps } from "../../interfaces";
 
 export const ColumnFilter: React.FC<ColumnButtonProps> = ({ column }) => {
+    const [state, setState] = useState(null as null | { value: any });
+
     if (!column.getCanFilter()) {
         return null;
     }
-
-    const [state, setState] = useState(null as null | { value: any });
 
     const open = () =>
         setState({
