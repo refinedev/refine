@@ -50,6 +50,8 @@ jobs:
           echo ${{ steps.waitForDeployment.outputs.url }}
       - name: Install Dependencies
         run: |
+          npm ci
+          npm run bootstrap
           cd documentation
           npm install
           LIVE_PREVIEW_URL=${{ steps.waitForDeployment.outputs.url }}/preview npm run build

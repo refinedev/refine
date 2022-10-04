@@ -14,7 +14,7 @@ export interface IPost {
 export interface ILoginDto {
     email?: string;
     password?: string;
-    provider?: "google" | "github";
+    providerName?: "google" | "github";
 }
 
 export interface IRegisterDto {

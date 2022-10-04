@@ -41,17 +41,12 @@ const { data } = useCan({
 
 ### Properties
 
-| Property                                                                                            | Description                             | Type                                                              | Default |
-| --------------------------------------------------------------------------------------------------- | --------------------------------------- | ----------------------------------------------------------------- | ------- |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions | `string`                                                          |         |
-| action <div className="required">Required</div>                                                     | Intenden action on resource             | `string`                                                          |         |
-| params                                                                                              | Parameters associated with the resource | `any`                                                             |         |
-| queryOptions                                                                                        | `react-query`'s `useQuery` options      | ` UseQueryOptions<`<br/>`{ data: CanReturnType; },`<br/>`TError>` |         |
+<PropsTable module="@pankod/refine-core/useCan"  />
 
 ### Type Parameters
 
-| Property                                                     | Desription                                                            |
-| ------------------------------------------------------------ | --------------------------------------------------------------------- |
+| Property                                                         | Desription                                                                          |
+| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | [CanReturnType](/api-reference/core/interfaces.md#canreturntype) | Result data of the query [`HttpError`](/api-reference/core/interfaces.md#httperror) |
 
 ### Return values

@@ -1,7 +1,7 @@
 import { Refine, AuthProvider } from "@pankod/refine-core";
 import {
     notificationProvider,
-    LoginPage,
+    AuthPage,
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
@@ -16,20 +16,20 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const mockUsers = [
     {
-        username: "admin",
+        email: "admin@refine.dev",
         roles: ["admin"],
     },
     {
-        username: "editor",
+        email: "editor@refine.dev",
         roles: ["editor"],
     },
 ];
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
-        login: ({ username, password, remember }) => {
+        login: ({ email, password, remember }) => {
             // Suppose we actually send a request to the back end here.
-            const user = mockUsers.find((item) => item.username === username);
+            const user = mockUsers.find((item) => item.email === email);
 
             if (user) {
                 localStorage.setItem("auth", JSON.stringify(user));
@@ -84,7 +84,16 @@ const App: React.FC = () => {
                 },
             ]}
             notificationProvider={notificationProvider}
-            LoginPage={LoginPage}
+            LoginPage={() => (
+                <AuthPage
+                    formProps={{
+                        initialValues: {
+                            email: "admin@refine.dev",
+                            password: "password",
+                        },
+                    }}
+                />
+            )}
             Layout={Layout}
             catchAll={<ErrorComponent />}
         />

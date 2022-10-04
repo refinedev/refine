@@ -3,6 +3,7 @@ import {
     notificationProvider,
     Layout,
     ErrorComponent,
+    AuthPage,
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -15,7 +16,6 @@ import {
     CategoryEdit,
     CategoryShow,
 } from "pages/categories";
-import { LoginPage } from "pages/login";
 import { DashboardPage } from "pages/dashboard";
 import { ILoginDto } from "interfaces";
 
@@ -25,12 +25,12 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const authProvider: AuthProvider = {
     login: async (payload: ILoginDto) => {
-        const { email, password, provider } = payload;
+        const { email, password, providerName } = payload;
 
         await refineSDK.auth.login({
             email,
             password,
-            provider,
+            provider: providerName,
         });
 
         return Promise.resolve();
@@ -90,7 +90,7 @@ const App: React.FC = () => {
             Layout={Layout}
             catchAll={<ErrorComponent />}
             Header={() => null}
-            LoginPage={LoginPage}
+            LoginPage={AuthPage}
             DashboardPage={DashboardPage}
             auditLogProvider={{
                 create: async ({ author, ...params }) => {

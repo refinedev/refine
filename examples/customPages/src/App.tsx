@@ -1,7 +1,7 @@
 import { Refine, AuthProvider, Authenticated } from "@pankod/refine-core";
 import {
     notificationProvider,
-    LoginPage,
+    AuthPage,
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
@@ -25,21 +25,21 @@ const AuthenticatedPostReview = () => {
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
-        login: ({ username, password, remember }) => {
-            if (username === "admin") {
-                localStorage.setItem("username", username);
+        login: ({ email, password, remember }) => {
+            if (email) {
+                localStorage.setItem("email", email);
                 return Promise.resolve();
             }
 
             return Promise.reject();
         },
         logout: () => {
-            localStorage.removeItem("username");
+            localStorage.removeItem("email");
             return Promise.resolve();
         },
         checkError: () => Promise.resolve(),
         checkAuth: () =>
-            localStorage.getItem("username")
+            localStorage.getItem("email")
                 ? Promise.resolve()
                 : Promise.reject(),
         getPermissions: () => Promise.resolve(["admin"]),
@@ -73,7 +73,16 @@ const App: React.FC = () => {
                 },
             ]}
             notificationProvider={notificationProvider}
-            LoginPage={LoginPage}
+            LoginPage={() => (
+                <AuthPage
+                    formProps={{
+                        initialValues: {
+                            email: "admin@refine.dev",
+                            password: "password",
+                        },
+                    }}
+                />
+            )}
             Layout={Layout}
             catchAll={<ErrorComponent />}
         />

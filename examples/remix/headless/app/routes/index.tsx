@@ -1,11 +1,14 @@
 import { LoaderFunction } from "@remix-run/node";
-import { requireUserId } from "~/session.server";
 
-import { RemixRouteComponent } from "@pankod/refine-remix-router";
+import {
+    RemixRouteComponent,
+    checkAuthentication,
+} from "@pankod/refine-remix-router";
+
+import { authProvider } from "~/authProvider";
 
 export const loader: LoaderFunction = async ({ params, request, context }) => {
-    await requireUserId(request);
-
+    await checkAuthentication(authProvider, request);
     return null;
 };
 
