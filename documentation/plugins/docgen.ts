@@ -206,6 +206,12 @@ const createParser = (configPath: string) => {
     return docgenParser;
 };
 
+const normalizeMarkdownLinks = (value: string) => {
+    return value.replace(/\[(.*?)\]\s{1}\((.*?)\)/g, (_, p1, p2) => {
+        return `[${p1}](${p2})`;
+    });
+};
+
 const prepareDeclaration = (declaration: ComponentDoc) => {
     const data: DeclarationType = { ...declaration };
     delete data.methods;
@@ -214,6 +220,10 @@ const prepareDeclaration = (declaration: ComponentDoc) => {
     data.generatedAt = Date.now();
 
     Object.keys(data.props).forEach((prop) => {
+        data.props[prop].type.name = normalizeMarkdownLinks(
+            data.props[prop].type.name,
+        );
+
         delete data.props[prop].parent;
         delete data.props[prop].declarations;
 
