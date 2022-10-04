@@ -1,6 +1,7 @@
 ---
 id: useModalForm
 title: useModalForm
+example-tags: [form,headless,react-hook-form,refine-hooks,rest,react-router]
 ---
 
 `useModalForm` hook allows you to manage a form within a modal. It provides some useful methods to handle the form modal. For more information, you can view the live example or review the source code.

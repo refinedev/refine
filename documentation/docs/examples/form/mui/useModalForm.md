@@ -1,6 +1,7 @@
 ---
 id: useModalForm
 title: useModalForm
+example-tags: [form,mui,react-hook-form,refine-hooks,rest,react-router]
 ---
 
 `useModalForm` hook allows you to manage a form within a modal. It provides some useful methods to handle the form modal. You can view the live example or review the source code to see how it's used with Material UI.
