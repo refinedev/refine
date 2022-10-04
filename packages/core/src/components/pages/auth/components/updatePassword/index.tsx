@@ -22,7 +22,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
 }) => {
     const translate = useTranslate();
 
-    const { mutate: updatePassword } =
+    const { mutate: updatePassword, isLoading } =
         useUpdatePassword<RefineUpdatePasswordFormTypes>();
 
     const [newPassword, setNewPassword] = useState("");
@@ -79,7 +79,14 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
-                    <br />
+                    <input
+                        type="submit"
+                        disabled={isLoading}
+                        value={translate(
+                            "pages.updatePassword.buttons.submit",
+                            "Update",
+                        )}
+                    />
                 </div>
             </form>
         </div>
