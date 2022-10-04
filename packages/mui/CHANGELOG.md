@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 3.48.1
+
+### Patch Changes
+
+-   [#2635](https://github.com/pankod/refine/pull/2635) [`c24fb19264`](https://github.com/pankod/refine/commit/c24fb192649abb3f1806095ce7ed69b7197b4486) Thanks [@Coinio](https://github.com/Coinio)! - fix(material-ui): fix missing `<Header />` component export
+
 ## 3.48.0
 
 ### Minor Changes
