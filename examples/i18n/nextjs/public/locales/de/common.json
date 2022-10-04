@@ -65,6 +65,12 @@
             "backHome": "Zurück"
         }
     },
+    "actions": {
+        "list": "Aufführen",
+        "create": "Erstellen",
+        "edit": "Bearbeiten",
+        "show": "Zeigen"
+    },
     "buttons": {
         "create": "Erstellen",
         "save": "Speichern",
