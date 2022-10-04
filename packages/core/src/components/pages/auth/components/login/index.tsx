@@ -107,6 +107,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         {translate("pages.login.email", undefined, "Email")}:
                     </label>
                     <input
+                        name="email"
                         type="text"
                         size={20}
                         autoCorrect="off"
@@ -126,6 +127,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                     </label>
                     <input
                         type="password"
+                        name="password"
                         required
                         size={20}
                         value={password}
@@ -140,9 +142,11 @@ export const LoginPage: React.FC<LoginProps> = ({
                                     "Remember me",
                                 )}
                                 <input
+                                    name="remember"
                                     type="checkbox"
                                     size={20}
                                     checked={remember}
+                                    value={remember.toString()}
                                     onChange={() => {
                                         setRemember(!remember);
                                     }}
@@ -151,9 +155,9 @@ export const LoginPage: React.FC<LoginProps> = ({
                         </>
                     )}
                     <br />
-                    {forgotPasswordLink &&
+                    {forgotPasswordLink ??
                         renderLink(
-                            forgotPasswordLink,
+                            "/forgot-password",
                             translate(
                                 "pages.login.forgotPassword",
                                 "Forgot your password?",
@@ -163,9 +167,9 @@ export const LoginPage: React.FC<LoginProps> = ({
                         type="submit"
                         value={translate("pages.login.button", "Login")}
                     />
-                    {registerLink &&
+                    {registerLink ??
                         renderLink(
-                            registerLink,
+                            "register",
                             translate(
                                 "pages.login.register",
                                 "Don't have an account? Register",

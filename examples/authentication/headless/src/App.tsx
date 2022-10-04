@@ -72,40 +72,22 @@ const App: React.FC = () => {
                 routes: [
                     { path: "/example", element: <ExamplePage /> },
                     {
-                        path: "/auth/register",
-                        element: (
-                            <AuthPage type="register" loginLink="/auth/login" />
-                        ),
+                        path: "/register",
+                        element: <AuthPage type="register" />,
                     },
                     {
-                        path: "/auth/forgot-password",
-                        element: (
-                            <AuthPage
-                                type="forgotPassword"
-                                backLink="/auth/login"
-                            />
-                        ),
+                        path: "/forgot-password",
+                        element: <AuthPage type="forgotPassword" />,
                     },
                     {
-                        path: "/auth/update-password",
-                        element: (
-                            <AuthPage
-                                type="updatePassword"
-                                backLink="/auth/login"
-                            />
-                        ),
+                        path: "/update-password",
+                        element: <AuthPage type="updatePassword" />,
                     },
                 ],
             }}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             authProvider={authProvider}
-            LoginPage={() => (
-                <AuthPage
-                    type="login"
-                    registerLink="/auth/register"
-                    forgotPasswordLink="/auth/forgot-password"
-                />
-            )}
+            LoginPage={() => <AuthPage />}
             resources={[
                 {
                     name: "posts",
