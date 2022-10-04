@@ -5,6 +5,7 @@ import {
     useDynamicImport,
 } from "../../hooks/use-dynamic-import";
 import PropTag from "../prop-tag";
+import Tooltip from "../tooltip";
 
 type Overrides = `${string}-${
     | "hidden"
@@ -37,14 +38,31 @@ const Name = ({
     const deprecation =
         overrides[`${prop.name}-deprecated`] || prop.tags?.deprecated || "";
 
+    const variant = useMemo(() => {
+        const className = "props-table--name";
+
+        if (deprecated) {
+            return `${className} props-table--name__deprecated`;
+        }
+
+        return className;
+    }, [prop, overrides]);
+
+    const tooltipLabel = useMemo(() => {
+        if (deprecation) return <ReactMarkdown>{deprecation}</ReactMarkdown>;
+
+        return null;
+    }, [prop, overrides]);
+
     return (
-        <>
-            <span className="props-table--name">
-                {overrides[`${prop.name}-name`] ?? prop.name}
-            </span>
-            {required && <PropTag asterisk />}
-            {deprecated && <PropTag deprecated alt={deprecation} />}
-        </>
+        <Tooltip label={tooltipLabel}>
+            <>
+                <span className={variant}>
+                    {overrides[`${prop.name}-name`] ?? prop.name}
+                </span>
+                {required && <PropTag asterisk />}
+            </>
+        </Tooltip>
     );
 };
 
