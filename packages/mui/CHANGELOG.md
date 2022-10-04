@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 3.48.2
+
+### Patch Changes
+
+-   fix(material-ui): fix missing `<Header />` component export
+
 ## 3.48.1
 
 ### Patch Changes
