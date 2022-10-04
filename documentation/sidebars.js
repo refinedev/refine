@@ -526,7 +526,15 @@ module.exports = {
                         "examples/access-control/cerbos",
                     ],
                 },
-                "examples/authorization",
+                {
+                    type: "category",
+                    label: "Authentication",
+                    items: [
+                        "examples/authentication/headless",
+                        "examples/authentication/antd",
+                        "examples/authentication/mantine",
+                    ],
+                },
                 {
                     type: "category",
                     label: "Auth Provider",

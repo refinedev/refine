@@ -898,7 +898,7 @@ These hooks can be used with the `authProvider` authentication and authorization
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/authorization?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/authentication/antd?embed=1&view=preview&theme=dark&preset=node"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-    title="refine-authorization-example"
+    title="refine-authentication-example"
 ></iframe>
