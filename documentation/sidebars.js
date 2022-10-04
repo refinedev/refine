@@ -512,9 +512,8 @@ module.exports = {
             type: "category",
             label: "Examples",
             link: {
-                type: "generated-index",
-                title: "Examples",
-                slug: "/examples",
+                type: "doc",
+                id: "examples/examples",
             },
             items: [
                 "examples/real-world-example",
