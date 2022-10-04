@@ -107,6 +107,15 @@ const replacementProps = {
         "(value: DeleteOneResponse) => void",
     "{ [key: string]: any; ids?: BaseKey[]; }":
         "{ [key]: any; ids?: BaseKey[]; }",
+    "BaseKey | BaseKey[]":
+        "[BaseKey](/docs/api-reference/core/interfaceReferences/#basekey) | [BaseKey[]](/docs/api-reference/core/interfaceReferences/#basekey)",
+    BaseKey: "[BaseKey](/docs/api-reference/core/interfaceReferences/#basekey)",
+    MetaDataQuery:
+        "[MetaDataQuery](/docs/api-reference/core/interfaceReferences/#metadataquery)",
+    CrudFilters:
+        "[CrudFilters](/docs/api-reference/core/interfaceReferences/#crudfilters)",
+    CrudSorting:
+        "[CrudSorting](/docs/api-reference/core/interfaceReferences/#crudsorting)",
 };
 
 /** HELPERS */
@@ -233,6 +242,12 @@ const createParser = (configPath) => {
     return docgenParser;
 };
 
+const normalizeMarkdownLinks = (value) => {
+    return value.replace(/\[(.*?)\]\s{1}\((.*?)\)/g, (_, p1, p2) => {
+        return `[${p1}](${p2})`;
+    });
+};
+
 const prepareDeclaration = (declaration) => {
     const data = { ...declaration };
     delete data.methods;
@@ -241,6 +256,10 @@ const prepareDeclaration = (declaration) => {
     data.generatedAt = Date.now();
 
     Object.keys(data.props).forEach((prop) => {
+        data.props[prop].type.name = normalizeMarkdownLinks(
+            data.props[prop].type.name,
+        );
+
         delete data.props[prop].parent;
         delete data.props[prop].declarations;
 
@@ -367,11 +386,11 @@ function plugin() {
                             _optionalChain([
                                 config,
                                 "access",
-                                (_) => _.resolve,
+                                (_2) => _2.resolve,
                                 "optionalAccess",
-                                (_2) => _2.alias,
+                                (_3) => _3.alias,
                                 "optionalAccess",
-                                (_3) => _3["@generated"],
+                                (_4) => _4["@generated"],
                             ]),
                             "docusaurus-plugin-refine-docgen",
                             "default",

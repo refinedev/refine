@@ -84,6 +84,15 @@ const replacementProps: Record<string, string> = {
         "(value: DeleteOneResponse) => void",
     "{ [key: string]: any; ids?: BaseKey[]; }":
         "{ [key]: any; ids?: BaseKey[]; }",
+    "BaseKey | BaseKey[]":
+        "[BaseKey](/docs/api-reference/core/interfaceReferences/#basekey) | [BaseKey[]](/docs/api-reference/core/interfaceReferences/#basekey)",
+    BaseKey: "[BaseKey](/docs/api-reference/core/interfaceReferences/#basekey)",
+    MetaDataQuery:
+        "[MetaDataQuery](/docs/api-reference/core/interfaceReferences/#metadataquery)",
+    CrudFilters:
+        "[CrudFilters](/docs/api-reference/core/interfaceReferences/#crudfilters)",
+    CrudSorting:
+        "[CrudSorting](/docs/api-reference/core/interfaceReferences/#crudsorting)",
 };
 
 /** HELPERS */
