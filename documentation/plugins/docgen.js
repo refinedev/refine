@@ -352,8 +352,12 @@ function plugin() {
             return [packagesDir];
         },
         async loadContent() {
-            console.log("Generating Refine declarations...");
-            return await handleDocgen();
+            if (!process.env.DISABLE_DOCGEN) {
+                console.log("Generating Refine declarations...");
+                return await handleDocgen();
+            }
+
+            return {};
         },
         configureWebpack(config) {
             return {
@@ -377,28 +381,30 @@ function plugin() {
             };
         },
         async contentLoaded({ content, actions }) {
-            console.log("Creating Refine declaration files...");
+            if (!process.env.DISABLE_DOCGEN) {
+                console.log("Creating Refine declaration files...");
 
-            const { createData } = actions;
+                const { createData } = actions;
 
-            const data = [];
+                const data = [];
 
-            Object.entries(content).forEach(
-                ([packageName, packageDeclarations]) => {
-                    Object.entries(packageDeclarations).forEach(
-                        ([componentName, declaration]) => {
-                            data.push(
-                                createData(
-                                    `${packageName}/${componentName}.json`,
-                                    JSON.stringify(declaration),
-                                ),
-                            );
-                        },
-                    );
-                },
-            );
+                Object.entries(content).forEach(
+                    ([packageName, packageDeclarations]) => {
+                        Object.entries(packageDeclarations).forEach(
+                            ([componentName, declaration]) => {
+                                data.push(
+                                    createData(
+                                        `${packageName}/${componentName}.json`,
+                                        JSON.stringify(declaration),
+                                    ),
+                                );
+                            },
+                        );
+                    },
+                );
 
-            await Promise.all(data);
+                await Promise.all(data);
+            }
         },
     };
 }

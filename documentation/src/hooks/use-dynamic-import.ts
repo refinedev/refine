@@ -38,7 +38,7 @@ export const useDynamicImport = (
                     setProps(props.default);
                 }
             })
-            .catch(console.error);
+            .catch(console.warn);
 
         return () => {
             resolved = true;
