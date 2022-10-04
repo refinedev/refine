@@ -14,9 +14,15 @@ import prize from '@site/static/img/blog/2022-10-04-hacktoberfest/prize.png';
 
 
 
-## refine  <img src={pixel} style={{ width:"24px" , marginLeft:"5px", marginRight:"5px"}} alt="cover" />  HacktoberFest
 
 
+<div style={{display:"flex", alignItems:"center"}}>
+ <span style={{fontSize: "29px", fontWeight:"700"}}>refine</span>
+ <img src={pixel} style={{alignSelf:"center", width:"28px" , marginLeft:"10px", marginRight:"10px"}} /> 
+ <span style={{fontSize: "29px", fontWeight:"700"}}>HacktoberFest</span>
+</div>
+
+<br/>
 
 This year, for the first time, refine is excited to participate in Hacktoberfest! If you're not familiar with it, Hacktoberfest is a month-long event that encourages developers from all backgrounds to contribute to open source projects. It's a great opportunity for beginners to get started in coding and for experienced developers to share their knowledge. If you're interested in participating, check out the [Hacktoberfest](https://hacktoberfest.com) website for more information.
 
