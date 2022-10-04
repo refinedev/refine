@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.74.7
+
+### Patch Changes
+
+-   [#2615](https://github.com/pankod/refine/pull/2615) [`ad3947d847`](https://github.com/pankod/refine/commit/ad3947d847ffa30f8edb4845a88f462ea1c5f5c3) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - add props table to useCan documentation
+
 ## 3.74.6
 
 ### Patch Changes
