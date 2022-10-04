@@ -417,6 +417,7 @@ module.exports = {
                             type: "category",
                             label: "Components",
                             items: [
+                                "api-reference/mui/components/mui-auth-page",
                                 {
                                     type: "category",
                                     label: "Basic Views",
