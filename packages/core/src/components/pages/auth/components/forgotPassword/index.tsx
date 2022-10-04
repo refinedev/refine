@@ -1,22 +1,33 @@
 import React, { useState } from "react";
-import { RefineLoginPageProps } from "@pankod/refine-ui-types";
+import {
+    RefineForgotPasswordFormTypes,
+    RefineForgotPasswordPageProps,
+} from "@pankod/refine-ui-types";
 
 import { useTranslate, useRouterContext, useForgotPassword } from "@hooks";
 
 import { DivPropsType, FormPropsType } from "../..";
-type ForgotPasswordProps = RefineLoginPageProps<
+
+type ForgotPasswordProps = RefineForgotPasswordPageProps<
     DivPropsType,
     DivPropsType,
     FormPropsType
 >;
 
-export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = () => {
+export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
+    loginLink,
+    wrapperProps,
+    contentProps,
+    renderContent,
+    formProps,
+}) => {
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
     const [email, setEmail] = useState("");
 
-    const { mutate: forgotPassword } = useForgotPassword();
+    const { mutate: forgotPassword, isLoading } =
+        useForgotPassword<RefineForgotPasswordFormTypes>();
 
     const renderLink = (link: React.ReactNode, text?: string) => {
         if (link) {
@@ -28,10 +39,13 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = () => {
         return null;
     };
 
-    return (
-        <div>
+    const content = (
+        <div {...contentProps}>
             <h1 style={{ textAlign: "center" }}>
-                {translate("pages.forgotPassword.title", "Forgot Password")}
+                {translate(
+                    "pages.forgotPassword.title",
+                    "Forgot your password?",
+                )}
             </h1>
             <hr />
             <form
@@ -39,6 +53,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = () => {
                     e.preventDefault();
                     forgotPassword({ email });
                 }}
+                {...formProps}
             >
                 <div
                     style={{
@@ -48,9 +63,13 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = () => {
                     }}
                 >
                     <label>
-                        {translate("pages.forgotPassword.email", "Email")}
+                        {translate(
+                            "pages.forgotPassword.fields.email",
+                            "Email",
+                        )}
                     </label>
                     <input
+                        name="email"
                         type="mail"
                         autoCorrect="off"
                         spellCheck={false}
@@ -59,9 +78,35 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
+                    <input
+                        type="submit"
+                        disabled={isLoading}
+                        value={translate(
+                            "pages.forgotPassword.buttons.submit",
+                            "Send reset instructions",
+                        )}
+                    />
                     <br />
+                    {loginLink ?? (
+                        <span>
+                            {translate(
+                                "pages.register.buttons.haveAccount",
+                                "Have an account? ",
+                            )}{" "}
+                            {renderLink(
+                                "/login",
+                                translate("pages.login.signin", "Sign in"),
+                            )}
+                        </span>
+                    )}
                 </div>
             </form>
+        </div>
+    );
+
+    return (
+        <div {...wrapperProps}>
+            {renderContent ? renderContent(content) : content}
         </div>
     );
 };

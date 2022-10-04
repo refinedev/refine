@@ -1,35 +1,35 @@
 import React, { useState } from "react";
-import { RefineUpdatePasswordPageProps } from "@pankod/refine-ui-types";
+import {
+    RefineUpdatePasswordFormTypes,
+    RefineUpdatePasswordPageProps,
+} from "@pankod/refine-ui-types";
 
-import { useTranslate, useRouterContext, useUpdatePassword } from "@hooks";
+import { useTranslate, useUpdatePassword } from "@hooks";
 
 import { DivPropsType, FormPropsType } from "../..";
+
 type UpdatePasswordProps = RefineUpdatePasswordPageProps<
     DivPropsType,
     DivPropsType,
     FormPropsType
 >;
 
-export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = () => {
+export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
+    wrapperProps,
+    contentProps,
+    renderContent,
+    formProps,
+}) => {
     const translate = useTranslate();
-    const { Link } = useRouterContext();
 
-    const { mutate: updatePassword } = useUpdatePassword();
+    const { mutate: updatePassword } =
+        useUpdatePassword<RefineUpdatePasswordFormTypes>();
 
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    const renderLink = (link: React.ReactNode, text?: string) => {
-        if (link) {
-            if (typeof link === "string") {
-                return <Link to={link}>{text}</Link>;
-            }
-            return link;
-        }
-        return null;
-    };
-    return (
-        <div>
+    const content = (
+        <div {...contentProps}>
             <h1 style={{ textAlign: "center" }}>
                 {translate("pages.updatePassword.title", "Update Password")}
             </h1>
@@ -37,12 +37,12 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = () => {
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
-                    if (newPassword === confirmPassword) {
-                        updatePassword({
-                            newPassword,
-                        });
-                    }
+                    updatePassword({
+                        password: newPassword,
+                        confirmPassword,
+                    });
                 }}
+                {...formProps}
             >
                 <div
                     style={{
@@ -53,11 +53,12 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = () => {
                 >
                     <label>
                         {translate(
-                            "pages.updatePassword.newPassword",
+                            "pages.updatePassword.fields.password",
                             "New Password",
                         )}
                     </label>
                     <input
+                        name="password"
                         type="password"
                         required
                         size={20}
@@ -66,11 +67,12 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = () => {
                     />
                     <label>
                         {translate(
-                            "pages.updatePassword.confirmNewPassword",
+                            "pages.updatePassword.fields.confirmPassword",
                             "Confirm New Password",
                         )}
                     </label>
                     <input
+                        name="confirmPassword"
                         type="password"
                         required
                         size={20}
@@ -80,6 +82,12 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = () => {
                     <br />
                 </div>
             </form>
+        </div>
+    );
+
+    return (
+        <div {...wrapperProps}>
+            {renderContent ? renderContent(content) : content}
         </div>
     );
 };

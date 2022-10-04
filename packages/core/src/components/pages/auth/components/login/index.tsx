@@ -8,6 +8,7 @@ import { useRouterContext, useLogin } from "@hooks";
 import { useTranslate } from "@hooks/translate";
 
 import { DivPropsType, FormPropsType } from "../..";
+
 type LoginProps = RefineLoginPageProps<
     DivPropsType,
     DivPropsType,
@@ -67,14 +68,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         }}
                     >
                         {provider?.icon}
-                        {provider.label ?? (
-                            <label>
-                                {translate(
-                                    "pages.login.button",
-                                    `login with ${provider.name}`,
-                                )}
-                            </label>
-                        )}
+                        {provider.label ?? <label>{provider.label}</label>}
                     </button>
                 </div>
             ));
@@ -85,7 +79,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     const content = (
         <div {...contentProps}>
             <h1 style={{ textAlign: "center" }}>
-                {translate("pages.login.title", "Login")}
+                {translate("pages.login.title", "Sign in to your account")}
             </h1>
             {renderProviders()}
             <hr />
@@ -104,7 +98,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                     }}
                 >
                     <label>
-                        {translate("pages.login.email", undefined, "Email")}:
+                        {translate("pages.login.fields.email", "Email")}
                     </label>
                     <input
                         name="email"
@@ -118,12 +112,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     <label>
-                        {translate(
-                            "pages.login.password",
-                            undefined,
-                            "Password",
-                        )}
-                        :
+                        {translate("pages.login.fields.password", "Password")}
                     </label>
                     <input
                         type="password"
@@ -137,8 +126,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         <>
                             <label>
                                 {translate(
-                                    "pages.login.rememberMe",
-                                    undefined,
+                                    "pages.login.buttons.rememberMe",
                                     "Remember me",
                                 )}
                                 <input
@@ -159,22 +147,26 @@ export const LoginPage: React.FC<LoginProps> = ({
                         renderLink(
                             "/forgot-password",
                             translate(
-                                "pages.login.forgotPassword",
-                                "Forgot your password?",
+                                "pages.login.buttons.forgotPassword",
+                                "Forgot password?",
                             ),
                         )}
                     <input
                         type="submit"
-                        value={translate("pages.login.button", "Login")}
+                        value={translate("pages.login.signin", "Sign in")}
                     />
-                    {registerLink ??
-                        renderLink(
-                            "register",
-                            translate(
-                                "pages.login.register",
-                                "Don't have an account? Register",
-                            ),
-                        )}
+                    {registerLink ?? (
+                        <span>
+                            {translate(
+                                "pages.login.buttons.noAccount",
+                                "Don’t have an account?",
+                            )}{" "}
+                            {renderLink(
+                                "/register",
+                                translate("pages.login.register", "Sign up"),
+                            )}
+                        </span>
+                    )}
                 </div>
             </form>
         </div>
