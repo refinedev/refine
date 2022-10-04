@@ -100,6 +100,8 @@ const getPackageNamePathMap = async (directory: string) => {
     const packages = await fs.readdir(directory);
     const packageNamePathMap: Record<string, string> = {};
 
+    const includedPackages = process.env.INCLUDED_PACKAGES?.split(",") || [];
+
     await Promise.all(
         packages.map(async (packageName) => {
             const packagePath = path.join(
@@ -111,10 +113,15 @@ const getPackageNamePathMap = async (directory: string) => {
             if (fs.existsSync(packagePath)) {
                 const packageJson = await fs.readJSON(packagePath);
 
-                packageNamePathMap[packageJson.name] = path.join(
-                    packagePath,
-                    "..",
-                );
+                if (
+                    includedPackages.length == 0 ||
+                    includedPackages.some((p) => packageName.includes(p))
+                ) {
+                    packageNamePathMap[packageJson.name] = path.join(
+                        packagePath,
+                        "..",
+                    );
+                }
             }
 
             return packageName;

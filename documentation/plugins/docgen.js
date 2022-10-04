@@ -123,6 +123,19 @@ const getPackageNamePathMap = async (directory) => {
     const packages = await _fsextra2.default.readdir(directory);
     const packageNamePathMap = {};
 
+    const includedPackages =
+        _optionalChain([
+            process,
+            "access",
+            (_2) => _2.env,
+            "access",
+            (_3) => _3.INCLUDED_PACKAGES,
+            "optionalAccess",
+            (_4) => _4.split,
+            "call",
+            (_5) => _5(","),
+        ]) || [];
+
     await Promise.all(
         packages.map(async (packageName) => {
             const packagePath = _path2.default.join(
@@ -136,10 +149,15 @@ const getPackageNamePathMap = async (directory) => {
                     packagePath,
                 );
 
-                packageNamePathMap[packageJson.name] = _path2.default.join(
-                    packagePath,
-                    "..",
-                );
+                if (
+                    includedPackages.length == 0 ||
+                    includedPackages.some((p) => packageName.includes(p))
+                ) {
+                    packageNamePathMap[packageJson.name] = _path2.default.join(
+                        packagePath,
+                        "..",
+                    );
+                }
             }
 
             return packageName;
@@ -386,11 +404,11 @@ function plugin() {
                             _optionalChain([
                                 config,
                                 "access",
-                                (_2) => _2.resolve,
+                                (_6) => _6.resolve,
                                 "optionalAccess",
-                                (_3) => _3.alias,
+                                (_7) => _7.alias,
                                 "optionalAccess",
-                                (_4) => _4["@generated"],
+                                (_8) => _8["@generated"],
                             ]),
                             "docusaurus-plugin-refine-docgen",
                             "default",
