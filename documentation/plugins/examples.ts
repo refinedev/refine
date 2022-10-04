@@ -106,16 +106,23 @@ export default function plugin(): Plugin {
                                 .slice(0, -1)
                                 .join("-") +
                             " " +
-                            doc.title;
+                            doc.title
+                                .replace("antd", "Ant Design")
+                                .replace("mui", "Material UI");
 
                         return {
                             // ...doc,
                             id: doc.id,
-                            title: doc.title,
+                            baseTitle: doc.title,
+                            title: doc.title
+                                .replace("antd", "Ant Design")
+                                .replace("mui", "Material UI"),
                             displayTitle:
                                 doc.frontMatter["example-title"] ??
                                 titleFromId ??
-                                doc.title,
+                                doc.title
+                                    .replace("antd", "Ant Design")
+                                    .replace("mui", "Material UI"),
                             description: doc.description,
                             permalink: doc.permalink,
                             tags: doc.frontMatter["example-tags"] || [],
