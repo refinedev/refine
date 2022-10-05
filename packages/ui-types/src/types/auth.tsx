@@ -12,21 +12,25 @@ export interface RefineLoginFormTypes {
     remember?: boolean;
     providerName?: string;
     redirectPath?: string;
+    [key: string]: any;
 }
 
 export interface RefineRegisterFormTypes {
     email?: string;
     password?: string;
     providerName?: string;
+    [key: string]: any;
 }
 
 export interface RefineForgotPasswordFormTypes {
     email?: string;
+    [key: string]: any;
 }
 
 export interface RefineUpdatePasswordFormTypes {
     password?: string;
     confirmPassword?: string;
+    [key: string]: any;
 }
 
 /**
