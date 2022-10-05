@@ -20,18 +20,64 @@ import {
 } from "../../interfaces";
 
 export type UseSelectProps<TData, TError> = {
+    /**
+     * Resource name for API data interactions
+     */
     resource: string;
+    /**
+     * Set the option's value
+     * @default `"title"`
+     */
     optionLabel?: string;
+    /**
+     * Set the option's label value
+     * @default `"id"`
+     */
     optionValue?: string;
+    /**
+     * Allow us to sort the options
+     */
     sort?: CrudSorting;
+    /**
+     * Resource name for API data interactions
+     */
     filters?: CrudFilters;
+    /**
+     * Adds extra `options`
+     */
     defaultValue?: BaseKey | BaseKey[];
+    /**
+     * The number of milliseconds to delay
+     * @default `300`
+     */
     debounce?: number;
+    /**
+     * react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options
+     */
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
+    /**
+     * Amount of records to fetch in select box list.
+     * @default `undefined`
+     */
     fetchSize?: number;
+    /**
+     * react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options
+     */
     defaultValueQueryOptions?: UseQueryOptions<GetManyResponse<TData>, TError>;
+    /**
+     * If defined, this callback allows us to override all filters for every search request.
+     * @default `undefined`
+     */
     onSearch?: (value: string) => CrudFilters;
+    /**
+     * Metadata query for `dataProvider`
+     * @default `{}`
+     */
     metaData?: MetaDataQuery;
+    /**
+     * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
+     * @default `default`
+     */
     dataProviderName?: string;
 } & SuccessErrorNotification &
     LiveModeProps;
