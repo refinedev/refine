@@ -5,8 +5,11 @@ import axios, { AxiosInstance } from "axios";
 
 export const authProvider = (axiosInstance: AxiosInstance): AuthProvider => {
     return {
-        login: async (params) => {
-            const { user } = params;
+        login: async ({
+            user,
+        }: {
+            user: { email: string; password: string };
+        }) => {
             try {
                 const { data } = await axios.post(`${API_URL}/users/login`, {
                     user,
