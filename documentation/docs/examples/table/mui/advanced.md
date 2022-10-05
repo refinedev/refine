@@ -2,7 +2,7 @@
 id: advanced
 title: Advanced
 example-title: Advanced Material UI Table
-example-tags: [table,mui,advanced,react-router]
+example-tags: [table,muireact-router]
 ---
 
 
