@@ -532,6 +532,7 @@ module.exports = {
                     items: [
                         "examples/authentication/headless",
                         "examples/authentication/antd",
+                        "examples/authentication/mui",
                         "examples/authentication/mantine",
                     ],
                 },
