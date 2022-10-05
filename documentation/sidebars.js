@@ -686,10 +686,7 @@ module.exports = {
                 {
                     type: "category",
                     label: "Next.js",
-                    items: [
-                        "examples/next-js/nextjs",
-                        "examples/next-js/i18n-nextjs",
-                    ],
+                    items: ["examples/next-js/nextjs"],
                 },
                 {
                     type: "category",

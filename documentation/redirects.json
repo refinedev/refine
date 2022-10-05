@@ -683,6 +683,10 @@
         {
             "from": "/docs/examples/authorization/",
             "to": "/docs/examples/authentication/antd"
+        },
+        {
+            "from": "/docs/examples/next-js/i18n-nextjs",
+            "to": "examples/i18n/i18n-nextjs"
         }
     ]
 }
