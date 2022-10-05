@@ -1,5 +1,5 @@
 import * as React from "react";
-import { RegisterFormTypes, RegisterPageProps } from "@pankod/refine-ui-types";
+import { RegisterFormTypes, RegisterPageProps } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 
 import {
