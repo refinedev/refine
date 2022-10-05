@@ -22,11 +22,15 @@ Next.js has a page-based routing system, and an API route feature which allows y
 In this article, you'll learn how to set up Next.js API Routes and we'll explain some of their core features and how you can leverage them in your applications along the way. You'll also learn how to submit form data to an API route.  
 
 Steps we'll cover:
+- [Introduction](#introduction)
 - [What are Next.js API Routes?](#what-are-nextjs-api-routes)
 - [How to create API Routes in Next.js](#how-to-create-api-routes-in-nextjs)
 - [Dynamic API Routes](#dynamic-api-routes)
 - [API Routes custom configuration](#api-routes-custom-configuration)
 - [Typing API Routes with TypeScript](#typing-api-routes-with-typescript)
+    - [Typing `request` and `response` objects](#typing-request-and-response-objects)
+    - [Typing response data](#typing-response-data)
+- [Conclusion](#conclusion)
 
 ## What are Next.js API Routes?
 Before you dive into Next.js API Routes let's provide a little background first. 
@@ -48,7 +52,7 @@ Let's go through an example:
 
 If you open the `pages` folder in your project root directory, you should see an `api` folder in it (assuming your project was bootstrapped with `create-next-app`. If not, you'll need to create this folder yourself). The `api` folder contains an example API route named `hello.js` with the following content:
 
-```tsx title= pages/api/hello.js"
+```tsx title="pages/api/hello.js"
 export default function handler(req, res) {
   res.status(200).json({ name: 'John Doe' })
 }
@@ -78,7 +82,7 @@ In our example, we're exporting a default function named `handler` - of course t
   
 By default, every HTTP request to the endpoint using any of the HTTP request methods (GET, PUT, DELETE, and so on) will return the same response. To handle different methods in an API route we can write the handler function with `switch` statement (you can also use methods like `if/else`- whichever works for you, no hard rules!), like so:
 
-```tsx title= pages/api/hello.js"
+```tsx title="pages/api/hello.js"
 export default function handler(req, res) {
   const requestMethod = req.method;
   const body = JSON.parse(req.body);
@@ -97,7 +101,7 @@ Here's another example showing how you can submit data from a form in your appli
 
 The form in `pages/post.js` below sends a post data to an API route `api/post`.
 
-```tsx title= pages/post.js"
+```tsx title="pages/post.js"
 import { useState } from "react";
 
 const Post = () => {
@@ -153,7 +157,7 @@ export default Post;
 
 With the following code in `pages/api/post.js`:
 
-```tsx title= pages/api/post.js"
+```tsx title="pages/api/post.js"
 export default function handler(req, res) {
   const { title, post } = JSON.parse(req.body);
 
@@ -179,7 +183,7 @@ npm install superagent
 
 Next, add the following code to `[number].js`:
 
-```tsx title= pages/api/trivia/[number].js"
+```tsx title="pages/api/trivia/[number].js"
 const superagent = require("superagent");
 
 export default function handler(req, res) {
@@ -209,7 +213,7 @@ Here's a GIF showing an example:
 
 In addition to the powerful features of API Routes, Next.js also allows for customization of their default configuration. The default configuration in every API route in Next.js can be customized by exporting a `config` object in the same file. `api` in the `config` object contains all configuration options that are specific to every API route.
 
-```tsx title=pages/api/hello.js"
+```tsx title="pages/api/hello.js"
 export default function handler(req, res) {
   res.status(200).json({ name: 'John Doe' })
 }
@@ -235,7 +239,7 @@ NOTE: You need to have integrated TypeScript in your Next.js project before usin
 
 Here's how to provide types for the request and response objects with `NextApiRequest` and `NextApiResponse` respectively:
 
-```tsx  title=pages/api/hello.ts"
+```tsx  title=pages/api/hello.ts
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -249,7 +253,7 @@ We can also type the response data returned from an API endpoint by adding types
 
 Using the example from dynamic routes section above, we can add types to the response from the API endpoint like below: 
 
-```tsx title=pages/api/trivia/[number].ts"
+```tsx title="pages/api/trivia/[number].ts"
 import type { NextApiRequest, NextApiResponse } from 'next'
 const superagent = require("superagent");
 
