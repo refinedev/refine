@@ -1,8 +1,8 @@
 import * as React from "react";
 import {
-    RefineForgotPasswordPageProps,
-    RefineForgotPasswordFormTypes,
-} from "@pankod/refine-ui-types";
+    ForgotPasswordPageProps,
+    ForgotPasswordFormTypes,
+} from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 import {
     Button,
@@ -27,7 +27,7 @@ import {
 import { layoutStyles, titleStyles } from "../styles";
 import { FormPropsType } from "../../index";
 
-type ForgotPasswordProps = RefineForgotPasswordPageProps<
+type ForgotPasswordProps = ForgotPasswordPageProps<
     BoxProps,
     CardContentProps,
     FormPropsType
@@ -49,12 +49,11 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<BaseRecord, HttpError, RefineForgotPasswordFormTypes>({
+    } = useForm<BaseRecord, HttpError, ForgotPasswordFormTypes>({
         ...useFormProps,
     });
 
-    const { mutate, isLoading } =
-        useForgotPassword<RefineForgotPasswordFormTypes>();
+    const { mutate, isLoading } = useForgotPassword<ForgotPasswordFormTypes>();
     const translate = useTranslate();
     const { Link } = useRouterContext();
 

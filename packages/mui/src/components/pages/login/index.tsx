@@ -1,5 +1,5 @@
 import * as React from "react";
-import { RefineLoginPageProps } from "@pankod/refine-ui-types";
+import { LoginPageProps } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 import {
     Button,
@@ -35,7 +35,7 @@ type ILoginForm = {
  *
  * @see {@link https://refine.dev/docs/api-references/components/refine-config#loginpage} for more details.
  */
-export const LoginPage: React.FC<RefineLoginPageProps> = () => {
+export const LoginPage: React.FC<LoginPageProps> = () => {
     const {
         register,
         handleSubmit,

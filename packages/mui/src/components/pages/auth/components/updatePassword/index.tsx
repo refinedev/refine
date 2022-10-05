@@ -1,8 +1,8 @@
 import * as React from "react";
 import {
-    RefineUpdatePasswordFormTypes,
-    RefineUpdatePasswordPageProps,
-} from "@pankod/refine-ui-types";
+    UpdatePasswordFormTypes,
+    UpdatePasswordPageProps,
+} from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 import {
     Button,
@@ -26,7 +26,7 @@ import {
 import { layoutStyles, titleStyles } from "../styles";
 import { FormPropsType } from "../../index";
 
-type UpdatePasswordProps = RefineUpdatePasswordPageProps<
+type UpdatePasswordProps = UpdatePasswordPageProps<
     BoxProps,
     CardContentProps,
     FormPropsType
@@ -48,12 +48,12 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
         watch,
         handleSubmit,
         formState: { errors },
-    } = useForm<BaseRecord, HttpError, RefineUpdatePasswordFormTypes>({
+    } = useForm<BaseRecord, HttpError, UpdatePasswordFormTypes>({
         ...useFormProps,
     });
 
     const { mutate: update, isLoading } =
-        useUpdatePassword<RefineUpdatePasswordFormTypes>();
+        useUpdatePassword<UpdatePasswordFormTypes>();
     const translate = useTranslate();
 
     const CardContent = (
