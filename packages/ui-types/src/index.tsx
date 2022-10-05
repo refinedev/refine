@@ -51,16 +51,4 @@ export type {
     RefineLayoutTitleProps,
 } from "./types";
 
-export type {
-    RefineAuthPageProps,
-    RefineRegisterPageProps,
-    RefineLoginPageProps,
-    RefineForgotPasswordPageProps,
-    RefineUpdatePasswordPageProps,
-    RefineUpdatePasswordFormTypes,
-    RefineLoginFormTypes,
-    RefineRegisterFormTypes,
-    RefineForgotPasswordFormTypes,
-} from "./types";
-
 export { RefineButtonTestIds } from "./ids";
