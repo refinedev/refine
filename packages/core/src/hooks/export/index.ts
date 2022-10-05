@@ -19,15 +19,43 @@ type UseExportOptionsType<
     TData extends BaseRecord = BaseRecord,
     TVariables = any,
 > = {
+    /**
+     * Resource name for API data interactions
+     * @default Resource name that it reads from route
+     */
     resourceName?: string;
+    /**
+     * A mapping function that runs for every record. Mapped data will be included in the file contents
+     */
     mapData?: MapDataFn<TData, TVariables>;
+    /**
+     *  Sorts records
+     */
     sorter?: CrudSorting;
+    /**
+     *  Filters records
+     */
     filters?: CrudFilters;
     maxItemCount?: number;
+    /**
+     *  Requests to fetch data are made as batches by page size. By default, it is 20. Used for `getList` method of `DataProvider`
+     */
     pageSize?: number;
+    /**
+     *  Used for exporting options
+     */
     exportOptions?: Options;
+    /**
+     *  Metadata query for `dataProvider`
+     */
     metaData?: MetaDataQuery;
+    /**
+     * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
+     */
     dataProviderName?: string;
+    /**
+     *  Callback to handle error events of this hook
+     */
     onError?: (error: any) => void;
 };
 

@@ -11,8 +11,7 @@ If you're looking for a complete form library, Refine supports two form librarie
 -   [React Hook Form](https://react-hook-form.com/) (for Headless users) - [Documentation](/packages/documentation/react-hook-form/useForm.md) - [Example](/examples/form/react-hook-form/useForm.md)
 -   [Ant Design Form](https://ant.design/components/form/#header) (for Ant Design users) - [Documentation](/api-reference/antd/hooks/form/useForm.md) - [Example](/examples/form/antd/useForm.md)
 -   [Mantine Form](https://mantine.dev/form/use-form) (for Mantine users) - [Documentation](/api-reference/mantine/hooks/form/useForm.md) - [Example](/examples/form/mantine/useForm.md)
-:::
-
+    :::
 
 ## Basic Usage
 
@@ -41,8 +40,10 @@ export const PostCreate = () => {
     );
 };
 ```
+
 -   Returns the `mutationResult` after called the `onFinish` callback.
 -   Accepts generic type parameters. It is used to define response type of the mutation and query.
+
 ## Actions
 
 `useForm` can handle edit, create and clone actions.
@@ -79,25 +80,7 @@ It fetches the record data according to the `id` and returns the `queryResult` f
 
 ### Properties
 
-| Property                                                     | Description                                                                                                                                                        | Type                                                                             | Default                                                                                                                              |
-| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| action                                                       | Type of the form mode                                                                                                                                              | `"edit"` \| `"create"` \| `"clone"`                                              | Action that it reads from route otherwise "create" is used                                                                           |
-| resource                                                     | Resource name for API data interactions                                                                                                                            | Resource name that it reads from route `string`                                  | Resource name that it reads from route                                                                                               |
-| id                                                           | Record id for fetching                                                                                                                                             | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                         | Id that it reads from the URL                                                                                                        |
-| mutationMode                                                 | [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)                                                                                     | ` "pessimistic` \| `"optimistic` \| `"undoable"`                                 | `"pessimistic"`\*                                                                                                                    |
-| onMutationSuccess                                            | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) is successful                                                                     | `(data: UpdateResponse<M>, variables: any, context: any) => void`                |                                                                                                                                      |
-| onMutationError                                              | Called when a [mutation](https://react-query.tanstack.com/reference/useMutation) encounters an error                                                               | `(error: any, variables: any, context: any) => void`                             |                                                                                                                                      |
-| redirect                                                     | Page to redirect after a succesfull mutation                                                                                                                       | ` "show"` \| `"edit"` \| `"list"` \| `"create"` \| `false`                       | `"list"`                                                                                                                             |
-| undoableTimeout                                              | Duration to wait before executing mutations when `mutationMode = "undoable"`                                                                                       | `number`                                                                         | `5000`\*                                                                                                                             |
-| successNotification                                          | Successful Mutation notification                                                                                                                                   | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification)       | "Successfully created `resource`" or "Successfully updated `resource`"                                                               |
-| errorNotification                                            | Unsuccessful Mutation notification                                                                                                                                 | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification)       | "There was an error creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
-| metaData                                                     | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                            | {}                                                                                                                                   |
-| dataProviderName                                             | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.                                                                 | `string`                                                                         | {}                                                                                                                                   |
-| [liveMode](/api-reference/core/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/api-reference/core/interfaces.md#livemodeprops)          | `"off"`                                                                                                                              |
-| liveParams                                                   | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: BaseKey[]; [key: string]: any; }`](/api-reference/core/interfaces.md#livemodeprops) | `undefined`                                                                                                                          |
-| onLiveEvent                                                  | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/api-reference/core/interfaces.md#livemodeprops)               | `undefined`                                                                                                                          |
-| invalidates                                                  | You can use it to manage the invalidations that will occur at the end of the mutation.                                                                             | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                          | `["list", "many", "detail"]`                                                                                                         |
-| queryOptions                                                 | `react-query` `queryOptions` of `useOne` hook used while in edit mode.                                                                                             | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                      |
+<PropsTable module="@pankod/refine-core/useForm" />
 
 > `*`: These props have default values in `RefineContext` and can also be set on **<[Refine](/api-reference/core/components/refine-config.md)>** component. `useForm` will use what is passed to `<Refine>` as default but a local value will override it.
 
@@ -111,14 +94,14 @@ It fetches the record data according to the `id` and returns the `queryResult` f
 
 ### Return values
 
-| Property       | Description                                            | Type                                                                                                                                             |
-| -------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| onFinish       | Triggers the mutation                                  | `(values: TVariables) => Promise<CreateResponse<TData>` \| `UpdateResponse<TData>` \| `void`>                                                    |
-| queryResult    | Result of the query of a record                        | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)                                                                  |
-| mutationResult | Result of the mutation triggered by calling `onFinish` | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation)                                                                 |
-| formLoading    | Loading state of form request                          | `boolean`                                                                                                                                        |
+| Property       | Description                                            | Type                                                                                                                                                           |
+| -------------- | ------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| onFinish       | Triggers the mutation                                  | `(values: TVariables) => Promise<CreateResponse<TData>` \| `UpdateResponse<TData>` \| `void`>                                                                  |
+| queryResult    | Result of the query of a record                        | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)                                                                                |
+| mutationResult | Result of the mutation triggered by calling `onFinish` | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation)                                                                               |
+| formLoading    | Loading state of form request                          | `boolean`                                                                                                                                                      |
 | id             | Record id for `clone` and `create` action              | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                                                                                         |
-| setId          | `id` setter                                            | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                 |
+| setId          | `id` setter                                            | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                               |
 | redirect       | Redirect function for custom redirections              | (redirect: `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,idFromFunction?: [`BaseKey`](/api-reference/core/interfaces.md#basekey)\|`undefined`) => `data` |
 
 [baserecord]: /api-reference/core/interfaces.md#baserecord

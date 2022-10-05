@@ -116,6 +116,9 @@ const replacementProps = {
         "[CrudFilters](/docs/api-reference/core/interfaceReferences/#crudfilters)",
     CrudSorting:
         "[CrudSorting](/docs/api-reference/core/interfaceReferences/#crudsorting)",
+    queryOptions:
+        "react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options",
+    paparseOptions: "https://www.papaparse.com/docs",
 };
 
 /** HELPERS */
