@@ -1,5 +1,11 @@
 # @pankod/refine-react-table
 
+## 4.7.3
+
+### Patch Changes
+
+-   [#2645](https://github.com/pankod/refine/pull/2645) [`430c7a3d56`](https://github.com/pankod/refine/commit/430c7a3d565e7fe9aab981625e7e18f7a1584f75) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed type exports for `UseTableProps` and `UseTableReturnType`.
+
 ## 4.7.2
 
 ### Patch Changes
