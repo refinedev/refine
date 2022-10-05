@@ -1,5 +1,5 @@
 import React from "react";
-import { RefineAuthPageProps } from "@pankod/refine-ui-types";
+import { AuthPageProps } from "@pankod/refine-core";
 import { BoxProps, CardProps } from "@mantine/core";
 
 import {
@@ -9,7 +9,7 @@ import {
     UpdatePasswordPage,
 } from "./components";
 
-export type AuthProps = RefineAuthPageProps<
+export type AuthProps = AuthPageProps<
     BoxProps,
     CardProps,
     React.DetailedHTMLProps<

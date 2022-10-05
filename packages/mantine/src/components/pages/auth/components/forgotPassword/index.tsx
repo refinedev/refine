@@ -1,8 +1,8 @@
 import React from "react";
 import {
-    RefineForgotPasswordPageProps,
-    RefineForgotPasswordFormTypes,
-} from "@pankod/refine-ui-types";
+    ForgotPasswordPageProps,
+    ForgotPasswordFormTypes,
+} from "@pankod/refine-core";
 import { useLogin, useTranslate, useRouterContext } from "@pankod/refine-core";
 import {
     Box,
@@ -21,7 +21,7 @@ import {
 import { useForm } from "@hooks/form";
 import { layoutStyles, cardStyles, titleStyles } from "../styles";
 
-type ResetPassworProps = RefineForgotPasswordPageProps<
+type ResetPassworProps = ForgotPasswordPageProps<
     BoxProps,
     CardProps,
     React.DetailedHTMLProps<
@@ -60,7 +60,7 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
     });
 
     const { mutate: forgotPassword, isLoading } =
-        useLogin<RefineForgotPasswordFormTypes>();
+        useLogin<ForgotPasswordFormTypes>();
 
     const CardContent = (
         <Card style={cardStyles} {...(contentProps ?? {})}>

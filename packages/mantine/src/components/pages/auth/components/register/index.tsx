@@ -1,8 +1,5 @@
 import React from "react";
-import {
-    RefineRegisterPageProps,
-    RefineRegisterFormTypes,
-} from "@pankod/refine-ui-types";
+import { RegisterPageProps, RegisterFormTypes } from "@pankod/refine-core";
 import { useLogin, useTranslate, useRouterContext } from "@pankod/refine-core";
 import {
     Box,
@@ -22,7 +19,7 @@ import {
 import { useForm } from "@hooks/form";
 import { layoutStyles, cardStyles, titleStyles } from "../styles";
 
-type RegisterProps = RefineRegisterPageProps<
+type RegisterProps = RegisterPageProps<
     BoxProps,
     CardProps,
     React.DetailedHTMLProps<
@@ -62,7 +59,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         },
     });
 
-    const { mutate: register, isLoading } = useLogin<RefineRegisterFormTypes>();
+    const { mutate: register, isLoading } = useLogin<RegisterFormTypes>();
 
     const CardContent = (
         <Card style={cardStyles} {...(contentProps ?? {})}>

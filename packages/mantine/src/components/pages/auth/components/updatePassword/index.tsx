@@ -1,8 +1,8 @@
 import React from "react";
 import {
-    RefineUpdatePasswordPageProps,
-    RefineUpdatePasswordFormTypes,
-} from "@pankod/refine-ui-types";
+    UpdatePasswordPageProps,
+    UpdatePasswordFormTypes,
+} from "@pankod/refine-core";
 import { useLogin, useTranslate } from "@pankod/refine-core";
 import {
     Box,
@@ -18,7 +18,7 @@ import {
 import { useForm } from "@hooks/form";
 import { layoutStyles, cardStyles, titleStyles } from "../styles";
 
-type UpdatePassworProps = RefineUpdatePasswordPageProps<
+type UpdatePassworProps = UpdatePasswordPageProps<
     BoxProps,
     CardProps,
     React.DetailedHTMLProps<
@@ -56,7 +56,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
     });
 
     const { mutate: updatePassword, isLoading } =
-        useLogin<RefineUpdatePasswordFormTypes>();
+        useLogin<UpdatePasswordFormTypes>();
 
     const CardContent = (
         <Card style={cardStyles} {...(contentProps ?? {})}>
