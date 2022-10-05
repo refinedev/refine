@@ -8,13 +8,39 @@ type ExampleDoc = Record<
     string
 > & { tags: string[] };
 
-const { examples, tags } = data as {
+const { examples, tags: allTags } = data as {
     examples: ExampleDoc[];
     tags: {
         name: string;
         color: string;
     }[];
 };
+
+const staticTags = [
+    "headless",
+    "antd",
+    "mui",
+    "mantine",
+    "data-provider",
+    "live-provider",
+    "auth-provider",
+    "router-provider",
+    "access-control",
+    "i18n",
+    "form",
+    "table",
+    "refine-hooks",
+    "customization",
+    "upload",
+    "tutorial",
+    "vite",
+    "testing",
+];
+
+const visibleTags = staticTags.map((tag) => ({
+    name: tag,
+    color: allTags.find((aTag) => aTag.name === tag).color,
+}));
 
 const PREDEFINED_COLORS = {
     react: "#61dafb",
@@ -45,7 +71,7 @@ const PREDEFINED_NAMES = {
 const ExampleList: React.FC = () => {
     const [query, setQuery] = React.useState("");
     const [filters, setFilters] = React.useState<Set<string>>(
-        new Set(tags.map(({ name }) => name)),
+        new Set(visibleTags.map(({ name }) => name)),
     );
 
     const filteredExamples = examples.filter((example) => {
@@ -57,7 +83,7 @@ const ExampleList: React.FC = () => {
             .toLowerCase()
             .includes((query ?? "").toLowerCase());
         // if all tags are selected, do not filter
-        if (filters.size === tags.length) {
+        if (filters.size === visibleTags.length) {
             return queryMatch;
         }
 
@@ -73,6 +99,8 @@ const ExampleList: React.FC = () => {
         return str
             .replace("antd", "Ant Design")
             .replace("mui", "Material UI")
+            .replace("next.js", "Next.js")
+            .replace("next-js", "Next.js")
             .split("-")
             .map((word) => word[0].toUpperCase() + word.slice(1))
             .join(" ")
@@ -90,7 +118,7 @@ const ExampleList: React.FC = () => {
     const updateFilters = (tag: string) => {
         const newFilters = new Set(filters);
         // if all tags are selected, unselect all and select the clicked tag
-        if (filters.size === tags.length) {
+        if (filters.size === visibleTags.length) {
             newFilters.clear();
             newFilters.add(tag);
         } else {
@@ -102,7 +130,7 @@ const ExampleList: React.FC = () => {
         }
 
         if (newFilters.size === 0) {
-            setFilters(new Set(tags.map(({ name }) => name)));
+            setFilters(new Set(visibleTags.map(({ name }) => name)));
         } else {
             setFilters(newFilters);
         }
@@ -118,9 +146,9 @@ const ExampleList: React.FC = () => {
                     </span>
                 </div>
                 <div className="flex justify-start gap-2 flex-wrap">
-                    {tags.map(({ name, color }) => {
+                    {visibleTags.map(({ name, color }) => {
                         const isActive = filters.has(name);
-                        const allSelected = filters.size === tags.length;
+                        const allSelected = filters.size === visibleTags.length;
                         return (
                             <button
                                 key={name}
@@ -187,7 +215,7 @@ const ExampleList: React.FC = () => {
                                 style={{
                                     backgroundColor:
                                         getTagColor(tag) ??
-                                        tags.find(({ name }) => name === tag)
+                                        allTags.find(({ name }) => name === tag)
                                             ?.color,
                                 }}
                             />
