@@ -1,19 +1,15 @@
 import React from "react";
-import clsx from "clsx";
+import { useReward } from "react-rewards";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useThemeConfig } from "@docusaurus/theme-common";
-import {
-    useHideableNavbar,
-    useNavbarMobileSidebar,
-} from "@docusaurus/theme-common/internal";
+import { useNavbarMobileSidebar } from "@docusaurus/theme-common/internal";
 import NavbarMobileSidebar from "@theme/Navbar/MobileSidebar";
-import styles from "./styles.module.css";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 const ProductHuntIcon = (props) => (
     <svg
         width={16}
         height={16}
+        viewBox="0 0 16 16"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         {...props}
@@ -33,21 +29,75 @@ const ProductHuntIcon = (props) => (
     </svg>
 );
 
+const productHuntSvgString = `<svg
+width="24"
+height="24"
+viewBox="0 0 16 16"
+fill="none"
+xmlns="http://www.w3.org/2000/svg"
+>
+<path
+    fill-rule="evenodd"
+    clip-rule="evenodd"
+    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Z"
+    fill="#EA532A"
+/>
+<path
+    fill-rule="evenodd"
+    clip-rule="evenodd"
+    d="M8.998 8.235h-2.24v-2.4h2.24c.655 0 1.186.538 1.186 1.2 0 .663-.531 1.2-1.186 1.2Zm0-4H5.177v8h1.58v-2.4h2.24c1.529 0 2.768-1.253 2.768-2.8 0-1.546-1.24-2.8-2.767-2.8Z"
+    fill="#fff"
+/>
+</svg>`;
+
 const LaunchTomorrow = () => {
     return (
-        <div className="bg-[#6813CB] bg-opacity-70 backdrop-blur h-8 font-montserrat flex items-center justify-center text-sm font-medium text-white uppercase gap-1">
+        <div className="bg-[#6813CB] bg-opacity-70 backdrop-blur h-8 font-montserrat flex items-center justify-center text-[10px] sm:text-sm font-medium text-white uppercase gap-1">
             <span>WE’LL BE LAUNCHING ON</span>
             <ProductHuntIcon />
             <span className="font-bold">PRODUCT HUNT</span>
             <span className="pr-0.5">😺</span>
-            <span>TOMORROW</span>
+            <span>
+                <a
+                    className="text-white underline"
+                    href="https://www.producthunt.com/upcoming/refine-2"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    TOMORROW
+                </a>
+            </span>
         </div>
     );
 };
 
 const LaunchToday = () => {
+    const { reward } = useReward("navbar__confetti", "emoji", {
+        emoji: ["⭐", "❤️", productHuntSvgString],
+        angle: -90,
+        spread: 180,
+        position: "absolute",
+        elementCount: 100,
+        startVelocity: 30,
+        decay: 0.93,
+        lifetime: 500,
+        onAnimationComplete: () => {
+            if (typeof window !== "undefined") {
+                localStorage.setItem("ph-launch-announcement", "true");
+            }
+        },
+    });
+
+    React.useEffect(() => {
+        if (localStorage.getItem("ph-launch-announcement") !== "true") {
+            setTimeout(() => {
+                reward();
+            }, 500);
+        }
+    }, []);
+
     return (
-        <div className="bg-[#6813CB] bg-opacity-70 backdrop-blur h-8 font-montserrat flex items-center justify-center text-sm font-medium text-white uppercase gap-1">
+        <div className="bg-[#6813CB] bg-opacity-70 backdrop-blur h-8 font-montserrat flex items-center justify-center text-[10px] sm:text-sm font-medium text-white uppercase gap-1">
             <span>IT’S THE LAUNCH DAY ON</span>
             <ProductHuntIcon />
             <span className="font-bold">PRODUCT HUNT</span>
@@ -56,7 +106,7 @@ const LaunchToday = () => {
                 JOIN US{" "}
                 <a
                     className="text-white underline"
-                    href="https://github.com"
+                    href="https://www.producthunt.com/products/refine-3"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
@@ -115,6 +165,7 @@ export default function NavbarLayout({ children }) {
                 <NavbarMobileSidebar />
             </motion.nav>
             <motion.nav
+                id="navbar-customized"
                 className={`navbar navbar--customized p-0 flex flex-col fixed w-full h-24 z-[2] ease-out transition-transform duration-200 shadow-none ${
                     mobileSidebar.shown
                         ? "navbar-sidebar--show"
@@ -132,6 +183,15 @@ export default function NavbarLayout({ children }) {
                 {/* <NavbarBackdrop onClick={mobileSidebar.toggle} /> */}
                 <NavbarMobileSidebar />
             </motion.nav>
+            <div
+                id="navbar__confetti"
+                style={{
+                    position: "absolute",
+                    left: "50vh",
+                    top: 0,
+                    zIndex: 999,
+                }}
+            />
         </>
     );
 }
