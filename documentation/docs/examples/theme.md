@@ -2,7 +2,7 @@
 id: customTheme
 title: Theme
 example-title: Theming
-example-tags: [antd,customization,theme,rest,react-router]
+example-tags: [antd,customization,theme,react-router]
 ---
 
 You can customize design and theme in your project with **refine**. In this example, we have created an example application by customizing the default theme of **refine**. You can easily customize your theme as you wish in your refine project.

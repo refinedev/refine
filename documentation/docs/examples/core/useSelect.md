@@ -3,7 +3,7 @@ id: useSelect
 title: useSelect
 description: useSelect example of @pankod/refine-core
 example-title: Refine's useSelect hook
-example-tags: [headless,refine-hooks,rest,react-router]
+example-tags: [headless,refine-hooks,react-router]
 ---
 
 [View Source](https://github.com/pankod/refine/tree/master/examples/core/useSelect)

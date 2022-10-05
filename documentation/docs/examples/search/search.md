@@ -1,7 +1,7 @@
 ---
 id: search
 title: Search
-example-tags: [antd,customization,rest,react-router]
+example-tags: [antd,customization,react-router]
 ---
 
 This example explains in detail how to create a `Search` component using Ant Design [`<AutoComplete>`](https://ant.design/components/auto-complete/) in your **refine** project.
