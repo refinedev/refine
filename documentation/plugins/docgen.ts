@@ -84,12 +84,23 @@ const replacementProps: Record<string, string> = {
         "(value: DeleteOneResponse) => void",
     "{ [key: string]: any; ids?: BaseKey[]; }":
         "{ [key]: any; ids?: BaseKey[]; }",
+    "BaseKey | BaseKey[]":
+        "[BaseKey](/docs/api-reference/core/interfaceReferences/#basekey) | [BaseKey[]](/docs/api-reference/core/interfaceReferences/#basekey)",
+    BaseKey: "[BaseKey](/docs/api-reference/core/interfaceReferences/#basekey)",
+    MetaDataQuery:
+        "[MetaDataQuery](/docs/api-reference/core/interfaceReferences/#metadataquery)",
+    CrudFilters:
+        "[CrudFilters](/docs/api-reference/core/interfaceReferences/#crudfilters)",
+    CrudSorting:
+        "[CrudSorting](/docs/api-reference/core/interfaceReferences/#crudsorting)",
 };
 
 /** HELPERS */
 const getPackageNamePathMap = async (directory: string) => {
     const packages = await fs.readdir(directory);
     const packageNamePathMap: Record<string, string> = {};
+
+    const includedPackages = process.env.INCLUDED_PACKAGES?.split(",") || [];
 
     await Promise.all(
         packages.map(async (packageName) => {
@@ -102,10 +113,15 @@ const getPackageNamePathMap = async (directory: string) => {
             if (fs.existsSync(packagePath)) {
                 const packageJson = await fs.readJSON(packagePath);
 
-                packageNamePathMap[packageJson.name] = path.join(
-                    packagePath,
-                    "..",
-                );
+                if (
+                    includedPackages.length == 0 ||
+                    includedPackages.some((p) => packageName.includes(p))
+                ) {
+                    packageNamePathMap[packageJson.name] = path.join(
+                        packagePath,
+                        "..",
+                    );
+                }
             }
 
             return packageName;
@@ -206,6 +222,12 @@ const createParser = (configPath: string) => {
     return docgenParser;
 };
 
+const normalizeMarkdownLinks = (value: string) => {
+    return value.replace(/\[(.*?)\]\s{1}\((.*?)\)/g, (_, p1, p2) => {
+        return `[${p1}](${p2})`;
+    });
+};
+
 const prepareDeclaration = (declaration: ComponentDoc) => {
     const data: DeclarationType = { ...declaration };
     delete data.methods;
@@ -214,6 +236,10 @@ const prepareDeclaration = (declaration: ComponentDoc) => {
     data.generatedAt = Date.now();
 
     Object.keys(data.props).forEach((prop) => {
+        data.props[prop].type.name = normalizeMarkdownLinks(
+            data.props[prop].type.name,
+        );
+
         delete data.props[prop].parent;
         delete data.props[prop].declarations;
 

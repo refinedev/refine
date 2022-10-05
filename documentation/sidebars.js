@@ -417,6 +417,7 @@ module.exports = {
                             type: "category",
                             label: "Components",
                             items: [
+                                "api-reference/mui/components/mui-auth-page",
                                 {
                                     type: "category",
                                     label: "Basic Views",
@@ -526,7 +527,15 @@ module.exports = {
                         "examples/access-control/cerbos",
                     ],
                 },
-                "examples/authorization",
+                {
+                    type: "category",
+                    label: "Authentication",
+                    items: [
+                        "examples/authentication/headless",
+                        "examples/authentication/antd",
+                        "examples/authentication/mantine",
+                    ],
+                },
                 {
                     type: "category",
                     label: "Auth Provider",

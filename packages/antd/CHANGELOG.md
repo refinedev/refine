@@ -1,5 +1,89 @@
 # @pankod/refine-antd
 
+## 3.51.0
+
+### Minor Changes
+
+-   Deprecated `LoginPage`.
+
+    **Before**
+
+    ```tsx
+    import { LoginPage } from "@pankod/refine-antd";
+
+    <Refine
+      LoginPage={LoginPage}
+      ...
+    />
+    ```
+
+    **After**
+
+    ```tsx
+    import { AuthPage } from "@pankod/refine-antd";
+
+    <Refine
+      LoginPage={AuthPage}
+      ...
+    />
+    ```
+
+## 3.50.0
+
+### Minor Changes
+
+-   Deprecated `LoginPage`.
+
+    **Before**
+
+    ```tsx
+    import { LoginPage } from "@pankod/refine-antd";
+
+    <Refine
+      LoginPage={LoginPage}
+      ...
+    />
+    ```
+
+    **After**
+
+    ```tsx
+    import { AuthPage } from "@pankod/refine-antd";
+
+    <Refine
+      LoginPage={AuthPage}
+      ...
+    />
+    ```
+
+## 3.49.0
+
+### Minor Changes
+
+-   [#2580](https://github.com/pankod/refine/pull/2580) [`e1ab7da6b3`](https://github.com/pankod/refine/commit/e1ab7da6b335bad62b15a537a3ed63c9f113bd01) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Deprecated `LoginPage`.
+
+    **Before**
+
+    ```tsx
+    import { LoginPage } from "@pankod/refine-antd";
+
+    <Refine
+      LoginPage={LoginPage}
+      ...
+    />
+    ```
+
+    **After**
+
+    ```tsx
+    import { AuthPage } from "@pankod/refine-antd";
+
+    <Refine
+      LoginPage={AuthPage}
+      ...
+    />
+    ```
+
 ## 3.48.10
 
 ### Patch Changes

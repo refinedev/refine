@@ -3,15 +3,21 @@ import { BaseKey } from "..";
 
 export type LiveModeProps = {
     /**
-     * Live interaction mode to be used when `liveProvider` is set in `Refine` component
+     * Whether to update data automatically ("auto") or not ("manual") if a related live event is received. The "off" value is used to avoid creating a subscription.
+     * @type  [`"auto" | "manual" | "off"`](/docs/api-reference/core/interfaceReferences/#crudsorting)
+     * @default `"off"`
      */
     liveMode?: "auto" | "manual" | "off";
     /**
-     * Callback function to be called when a related subscription is triggered
+     * Callback to handle all related live events of this hook.
+     * @type [`(event: LiveEvent) => void`](/docs/api-reference/core/interfaceReferences/#livemodeprops)
+     * @default `undefined`
      */
     onLiveEvent?: (event: LiveEvent) => void;
     /**
-     * Additional props to be passed to the live provider subscription
+     * Params to pass to liveProvider's subscribe method if liveMode is enabled.
+     * @type [`{ ids?: BaseKey[]; [key: string]: any; }`](/docs/api-reference/core/interfaceReferences/#livemodeprops)
+     * @default `undefined`
      */
     liveParams?: {
         ids?: BaseKey[];

@@ -679,6 +679,10 @@
         {
             "from": "/docs/core/hooks/auth/useResetPassword/",
             "to": "/docs/api-reference/core/hooks/auth/useForgotPassword/"
+        },
+        {
+            "from": "/docs/examples/authorization/",
+            "to": "/docs/examples/authentication/antd"
         }
     ]
 }
