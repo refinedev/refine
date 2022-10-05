@@ -1,10 +1,11 @@
 import React from "react";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import { RefineForgotPasswordFormTypes } from "@pankod/refine-ui-types";
 
 import { AuthContext } from "@contexts/auth";
+import { useNavigation, useNotification } from "@hooks";
 
 import { IAuthContext, TForgotPasswordData } from "../../../interfaces";
-import { useNavigation, useNotification } from "@hooks";
 
 /**
  * `useForgotPassword` calls `forgotPassword` method from {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
@@ -15,12 +16,9 @@ import { useNavigation, useNotification } from "@hooks";
  * @typeParam TVariables - Values for mutation function. default `{}`
  *
  */
-export const useForgotPassword = <TVariables = {}>(): UseMutationResult<
-    TForgotPasswordData,
-    Error,
-    TVariables,
-    unknown
-> => {
+export const useForgotPassword = <
+    TVariables extends RefineForgotPasswordFormTypes = {},
+>(): UseMutationResult<TForgotPasswordData, Error, TVariables, unknown> => {
     const { replace } = useNavigation();
     const { forgotPassword: forgotPasswordFromContext } =
         React.useContext<IAuthContext>(AuthContext);

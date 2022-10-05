@@ -1,6 +1,7 @@
 import React from "react";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import qs from "qs";
+import { RefineUpdatePasswordFormTypes } from "@pankod/refine-ui-types";
 
 import { AuthContext } from "@contexts/auth";
 import { useNavigation, useNotification, useRouterContext } from "@hooks";
@@ -15,12 +16,9 @@ import { IAuthContext, TUpdatePasswordData } from "../../../interfaces";
  * @typeParam TVariables - Values for mutation function. default `{}`
  *
  */
-export const useUpdatePassword = <TVariables = {}>(): UseMutationResult<
-    TUpdatePasswordData,
-    Error,
-    TVariables,
-    unknown
-> => {
+export const useUpdatePassword = <
+    TVariables extends RefineUpdatePasswordFormTypes = {},
+>(): UseMutationResult<TUpdatePasswordData, Error, TVariables, unknown> => {
     const { replace } = useNavigation();
     const { updatePassword: updatePasswordFromContext } =
         React.useContext<IAuthContext>(AuthContext);

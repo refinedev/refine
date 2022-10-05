@@ -1,10 +1,11 @@
 import React from "react";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import { RefineRegisterFormTypes } from "@pankod/refine-ui-types";
 
 import { AuthContext } from "@contexts/auth";
+import { useNavigation, useNotification } from "@hooks";
 
 import { IAuthContext, TRegisterData } from "../../../interfaces";
-import { useNavigation, useNotification } from "@hooks";
 
 /**
  * `useRegister` calls `register` method from {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
@@ -15,12 +16,9 @@ import { useNavigation, useNotification } from "@hooks";
  * @typeParam TVariables - Values for mutation function. default `{}`
  *
  */
-export const useRegister = <TVariables = {}>(): UseMutationResult<
-    TRegisterData,
-    Error,
-    TVariables,
-    unknown
-> => {
+export const useRegister = <
+    TVariables extends RefineRegisterFormTypes = {},
+>(): UseMutationResult<TRegisterData, Error, TVariables, unknown> => {
     const { replace } = useNavigation();
     const { register: registerFromContext } =
         React.useContext<IAuthContext>(AuthContext);
