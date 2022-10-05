@@ -507,8 +507,28 @@ html[data-page="index"] {
     scroll-behavior: smooth;
 }
 
+html #__docusaurus .navbar.navbar--customized {
+    display: none;
+}
+
+html #__docusaurus .navbar.navbar--rest {
+    display: flex;
+}
+
+html[data-page="index"] #__docusaurus .navbar.navbar--customized {
+    display: flex;
+}
+
+html[data-page="index"] #__docusaurus .navbar.navbar--rest {
+    display: none;
+}
+
 #__docusaurus .main-wrapper {
     padding-top: 64px;
+}
+
+body.has-announcement #__docusaurus .main-wrapper {
+    padding-top: 96px;
 }
 
 #__docusaurus .text-color-base {
