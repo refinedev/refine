@@ -1,6 +1,7 @@
 ---
 id: i18n-nextjs
 title: Next.js
+example-tags: [next.js,i18n,antd]
 ---
 
 **refine** i18n Provider allows you to add mutiple language choices to your web application. The default language of **refine** is English. You can include and use your own translation in the project for different language preferences. This example shows how to use different language options and translations in practice.

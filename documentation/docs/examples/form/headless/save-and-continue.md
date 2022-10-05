@@ -1,6 +1,8 @@
 ---
 id: save-and-continue
 title: Save and Continue
+example-title: Save and Continue in Forms
+example-tags: [form,headless,customization]
 ---
 
 refine provides you with the necessary methods to add this feature. This feature is familiar to [Django](https://www.djangoproject.com/) users.

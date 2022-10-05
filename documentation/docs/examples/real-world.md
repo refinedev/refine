@@ -2,6 +2,7 @@
 slug: real-world-refine-example
 id: real-world-example
 title: RealWorld Example
+example-tags: [large,headless,react-hook-form,customization,data-provider,auth-provider]
 ---
 
 "The mother of all demo apps" — Exemplary fullstack [Medium.com](https://medium.com/) clone powered by Refine!

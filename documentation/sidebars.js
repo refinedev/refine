@@ -513,9 +513,8 @@ module.exports = {
             type: "category",
             label: "Examples",
             link: {
-                type: "generated-index",
-                title: "Examples",
-                slug: "/examples",
+                type: "doc",
+                id: "examples/examples",
             },
             items: [
                 "examples/real-world-example",
@@ -687,10 +686,7 @@ module.exports = {
                 {
                     type: "category",
                     label: "Next.js",
-                    items: [
-                        "examples/next-js/nextjs",
-                        "examples/next-js/i18n-nextjs",
-                    ],
+                    items: ["examples/next-js/nextjs"],
                 },
                 {
                     type: "category",
