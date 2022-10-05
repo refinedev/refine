@@ -507,20 +507,18 @@ html[data-page="index"] {
     scroll-behavior: smooth;
 }
 
-html #__docusaurus .navbar.navbar--customized {
-    display: none;
+@media screen and (min-width: 1024px) {
+    html[data-page="index"] body {
+        scroll-snap-align: start;
+    }
+
+html[data-page="index"] #__docusaurus .main-wrapper {
+    margin-top: -64px;
 }
 
-html #__docusaurus .navbar.navbar--rest {
-    display: flex;
+html[data-page="index"] body.has-announcement #__docusaurus .main-wrapper {
+    margin-top: -96px;
 }
-
-html[data-page="index"] #__docusaurus .navbar.navbar--customized {
-    display: flex;
-}
-
-html[data-page="index"] #__docusaurus .navbar.navbar--rest {
-    display: none;
 }
 
 #__docusaurus .main-wrapper {
@@ -749,7 +747,7 @@ html[data-theme="dark"]:not([data-customized="true"])
 }
 
 #__docusaurus .navbar .navbar__items .navbar__item {
-    @apply text-xs;
+    @apply text-sm;
 }
 
 #__docusaurus .navbar__items--right > :last-child {

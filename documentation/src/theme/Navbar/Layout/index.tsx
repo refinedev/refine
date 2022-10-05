@@ -171,7 +171,7 @@ export default function NavbarLayout({ children }) {
                 {hasAnnouncement ? <body className="has-announcement" /> : null}
             </Head>
             <motion.nav
-                className={`navbar navbar--rest p-0 flex flex-col fixed w-full ${
+                className={`navbar p-0 flex flex-col fixed w-full ${
                     hasAnnouncement ? "h-24" : "h-16"
                 } z-[2] ease-out transition-transform duration-200 shadow-none ${
                     mobileSidebar.shown
@@ -180,27 +180,6 @@ export default function NavbarLayout({ children }) {
                 }`}
                 style={{
                     y: yRest,
-                }}
-            >
-                {announcementStatus === "tomorrow" ? <LaunchTomorrow /> : null}
-                {announcementStatus === "today" ? <LaunchToday /> : null}
-                <div className="sticky top-0 flex w-full h-16 py-2 px-3 lg:px-9">
-                    {children}
-                </div>
-                {/* <NavbarBackdrop onClick={mobileSidebar.toggle} /> */}
-                <NavbarMobileSidebar />
-            </motion.nav>
-            <motion.nav
-                id="navbar-customized"
-                className={`navbar navbar--customized p-0 flex flex-col fixed w-full ${
-                    hasAnnouncement ? "h-24" : "h-16"
-                } z-[2] ease-out transition-transform duration-200 shadow-none ${
-                    mobileSidebar.shown
-                        ? "navbar-sidebar--show"
-                        : "backdrop-blur-[8px]"
-                }`}
-                style={{
-                    y: yCustomized,
                 }}
             >
                 {announcementStatus === "tomorrow" ? <LaunchTomorrow /> : null}
