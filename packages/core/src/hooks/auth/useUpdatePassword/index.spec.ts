@@ -47,7 +47,7 @@ describe("useUpdatePassword Hook", () => {
         };
 
         await act(async () => {
-            updatePassword({ password: "123", newPassword: "321" });
+            updatePassword({ password: "123", confirmPassword: "321" });
         });
 
         await waitFor(() => {
