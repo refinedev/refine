@@ -1,8 +1,8 @@
 import React from "react";
 import {
-    RefineForgotPasswordPageProps,
-    RefineForgotPasswordFormTypes,
-} from "@pankod/refine-ui-types";
+    ForgotPasswordPageProps,
+    ForgotPasswordFormTypes,
+} from "@pankod/refine-core";
 import {
     Row,
     Col,
@@ -24,7 +24,7 @@ import {
 
 import { layoutStyles, containerStyles, titleStyles } from "../styles";
 
-type ResetPassworProps = RefineForgotPasswordPageProps<
+type ResetPassworProps = ForgotPasswordPageProps<
     LayoutProps,
     CardProps,
     FormProps
@@ -44,12 +44,12 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
     renderContent,
     formProps,
 }) => {
-    const [form] = Form.useForm<RefineForgotPasswordFormTypes>();
+    const [form] = Form.useForm<ForgotPasswordFormTypes>();
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
     const { mutate: forgotPassword, isLoading } =
-        useForgotPassword<RefineForgotPasswordFormTypes>();
+        useForgotPassword<ForgotPasswordFormTypes>();
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>
@@ -63,7 +63,7 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
             style={containerStyles}
             {...(contentProps ?? {})}
         >
-            <Form<RefineForgotPasswordFormTypes>
+            <Form<ForgotPasswordFormTypes>
                 layout="vertical"
                 form={form}
                 onFinish={(values) => forgotPassword(values)}

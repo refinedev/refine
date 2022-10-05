@@ -1,8 +1,5 @@
 import React from "react";
-import {
-    RefineLoginPageProps,
-    RefineLoginFormTypes,
-} from "@pankod/refine-ui-types";
+import { LoginPageProps, LoginFormTypes } from "@pankod/refine-core";
 import {
     Row,
     Col,
@@ -24,7 +21,7 @@ import { layoutStyles, containerStyles, titleStyles } from "../styles";
 
 const { Text, Title } = Typography;
 
-type LoginProps = RefineLoginPageProps<LayoutProps, CardProps, FormProps>;
+type LoginProps = LoginPageProps<LayoutProps, CardProps, FormProps>;
 
 /**
  * **refine** has a default login page form which is served on `/login` route when the `authProvider` configuration is provided.
@@ -41,11 +38,11 @@ export const LoginPage: React.FC<LoginProps> = ({
     renderContent,
     formProps,
 }) => {
-    const [form] = Form.useForm<RefineLoginFormTypes>();
+    const [form] = Form.useForm<LoginFormTypes>();
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
-    const { mutate: login, isLoading } = useLogin<RefineLoginFormTypes>();
+    const { mutate: login, isLoading } = useLogin<LoginFormTypes>();
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>
@@ -96,7 +93,7 @@ export const LoginPage: React.FC<LoginProps> = ({
             {...(contentProps ?? {})}
         >
             {renderProviders()}
-            <Form<RefineLoginFormTypes>
+            <Form<LoginFormTypes>
                 layout="vertical"
                 form={form}
                 onFinish={(values) => login(values)}
