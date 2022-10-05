@@ -749,7 +749,7 @@ html[data-theme="dark"]:not([data-customized="true"])
 }
 
 #__docusaurus .navbar .navbar__items .navbar__item {
-    @apply text-sm;
+    @apply text-xs;
 }
 
 #__docusaurus .navbar__items--right > :last-child {
