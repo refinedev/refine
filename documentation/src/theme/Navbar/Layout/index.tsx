@@ -1,9 +1,10 @@
 import React from "react";
 import { useReward } from "react-rewards";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useMotionValue, useScroll, useTransform } from "framer-motion";
 import { useNavbarMobileSidebar } from "@docusaurus/theme-common/internal";
 import NavbarMobileSidebar from "@theme/Navbar/MobileSidebar";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import Head from "@docusaurus/Head";
 
 const ProductHuntIcon = (props) => (
     <svg
@@ -119,7 +120,7 @@ const LaunchToday = () => {
 
 export default function NavbarLayout({ children }) {
     const mobileSidebar = useNavbarMobileSidebar();
-    const { scrollY } = useScroll({
+    const { scrollY: _scrollY } = useScroll({
         smooth: 0,
     });
 
@@ -129,33 +130,50 @@ export default function NavbarLayout({ children }) {
 
     const { announcementStatus } = customFields;
 
+    const animatedAnnouncementStatus = useMotionValue(
+        announcementStatus === "tomorrow" || announcementStatus === "today"
+            ? 1
+            : 0,
+    );
+
+    React.useEffect(() => {
+        if (
+            announcementStatus === "today" ||
+            announcementStatus === "tomorrow"
+        ) {
+            animatedAnnouncementStatus.set(1);
+        } else {
+            animatedAnnouncementStatus.set(0);
+        }
+    }, []);
+
+    const scrollY = useTransform<number, number>(
+        [animatedAnnouncementStatus, _scrollY],
+        ([status, scroll]) => {
+            if (status === 1) {
+                return scroll;
+            } else {
+                return 0;
+            }
+        },
+    );
+
     const yCustomized = useTransform(scrollY, [96, 128], [0, -32]);
 
     const yRest = useTransform(scrollY, [0, 32], [0, -32]);
 
-    React.useEffect(() => {
-        const listener = () => {
-            if (
-                announcementStatus === "tomorrow" ||
-                announcementStatus === "today"
-            ) {
-                if (typeof document !== "undefined") {
-                    document.body.classList.add("has-announcement");
-                }
-            }
-        };
-        listener();
-        window.addEventListener("popstate", listener);
-
-        return () => {
-            window.removeEventListener("popstate", listener);
-        };
-    }, [announcementStatus]);
+    const hasAnnouncement =
+        announcementStatus === "tomorrow" || announcementStatus === "today";
 
     return (
         <>
+            <Head>
+                {hasAnnouncement ? <body className="has-announcement" /> : null}
+            </Head>
             <motion.nav
-                className={`navbar navbar--rest p-0 flex flex-col fixed w-full h-24 z-[2] ease-out transition-transform duration-200 shadow-none ${
+                className={`navbar navbar--rest p-0 flex flex-col fixed w-full ${
+                    hasAnnouncement ? "h-24" : "h-16"
+                } z-[2] ease-out transition-transform duration-200 shadow-none ${
                     mobileSidebar.shown
                         ? "navbar-sidebar--show"
                         : "backdrop-blur-[8px]"
@@ -174,7 +192,9 @@ export default function NavbarLayout({ children }) {
             </motion.nav>
             <motion.nav
                 id="navbar-customized"
-                className={`navbar navbar--customized p-0 flex flex-col fixed w-full h-24 z-[2] ease-out transition-transform duration-200 shadow-none ${
+                className={`navbar navbar--customized p-0 flex flex-col fixed w-full ${
+                    hasAnnouncement ? "h-24" : "h-16"
+                } z-[2] ease-out transition-transform duration-200 shadow-none ${
                     mobileSidebar.shown
                         ? "navbar-sidebar--show"
                         : "backdrop-blur-[8px]"
