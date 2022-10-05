@@ -43,7 +43,7 @@
     "eslint-plugin-react": "^7.31.8",
     "husky": "^8.0.1",
     "jest": "^27.5.1",
-    "lerna": "^4.0.0",
+    "lerna": "^5.5.4",
     "lint-staged": "^10.5.4",
     "patch-package": "^6.4.7",
     "react": "^18.0.0",
