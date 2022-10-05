@@ -152,7 +152,7 @@ const ExampleList: React.FC = () => {
                         return (
                             <button
                                 key={name}
-                                className={`appearance-none rounded border border-slate-300 border-solid flex items-center justify-center gap-2 py-1.5 pl-2 pr-2.5 cursor-pointer shadow-sm hover:shadow ${
+                                className={`appearance-none select-none rounded border border-slate-300 border-solid flex items-center justify-center gap-2 py-1.5 pl-2 pr-2.5 cursor-pointer shadow-sm hover:shadow ${
                                     isActive && !allSelected
                                         ? ""
                                         : "hover:!bg-slate-200 hover:!bg-opacity-30"
