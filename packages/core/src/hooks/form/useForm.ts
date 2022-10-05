@@ -34,6 +34,10 @@ import { UseCreateReturnType } from "../data/useCreate";
 import { redirectPage } from "@definitions/helpers";
 
 export type ActionParams = {
+    /**
+     * Type of the form mode
+     * @default Action that it reads from route otherwise "create" is used
+     */
     action?: FormAction;
 };
 
@@ -42,24 +46,65 @@ type ActionFormProps<
     TError extends HttpError = HttpError,
     TVariables = {},
 > = {
+    /**
+     * Called when a mutation is successful
+     */
     onMutationSuccess?: (
         data: CreateResponse<TData> | UpdateResponse<TData>,
         variables: TVariables,
         context: any,
     ) => void;
+    /**
+     * Called when a mutation encounters an error
+     */
     onMutationError?: (
         error: TError,
         variables: TVariables,
         context: any,
     ) => void;
+    /**
+     * Page to redirect after a succesfull mutation
+     * @type `"show" | "edit" | "list" | "create" | false`
+     * @default `"list"`
+     */
     redirect?: RedirectAction;
+    /**
+     * Resource name for API data interactions
+     * @default Resource name that it reads from route
+     */
     resource?: string;
+    /**
+     * Record id for fetching
+     * @default Id that it reads from the URL
+     */
     id?: BaseKey;
+    /**
+     * Metadata query for dataProvider
+     */
     metaData?: MetaDataQuery;
+    /**
+     * [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)
+     * @default `"pessimistic"*`
+     */
     mutationMode?: MutationMode;
+    /**
+     * Duration to wait before executing mutations when `mutationMode = "undoable"`
+     * @default `5000*`
+     */
     undoableTimeout?: number;
+    /**
+     * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
+     */
     dataProviderName?: string;
+    /**
+     * You can use it to manage the invalidations that will occur at the end of the mutation.
+     * @type  `all`, `resourceAll`, `list`, `many`, `detail`, `false`
+     * @default `["list", "many", "detail"]`
+     */
     invalidates?: Array<keyof IQueryKeys>;
+    /**
+     * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options of useOne hook used while in edit mode.
+     */
     queryOptions?: UseQueryOptions<GetOneResponse<TData>, HttpError>;
 } & SuccessErrorNotification &
     ActionParams &
