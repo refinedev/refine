@@ -27,8 +27,8 @@ describe("useUpdatePassword Hook", () => {
             wrapper: TestWrapper({
                 authProvider: {
                     login: () => Promise.resolve(),
-                    updatePassword: ({ password, newPassword }) => {
-                        if (password && newPassword) {
+                    updatePassword: ({ password, confirmPassword }) => {
+                        if (password && confirmPassword) {
                             return Promise.resolve();
                         }
                         return Promise.reject(new Error("Missing fields"));

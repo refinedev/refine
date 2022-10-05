@@ -11,6 +11,7 @@ export interface RefineLoginFormTypes {
     password?: string;
     remember?: boolean;
     providerName?: string;
+    redirectPath?: string;
 }
 
 export interface RefineRegisterFormTypes {
