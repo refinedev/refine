@@ -3,7 +3,6 @@ import React, {
     HTMLAttributes,
     FormHTMLAttributes,
 } from "react";
-import { RefineAuthPageProps } from "@pankod/refine-ui-types";
 
 import {
     LoginPage,
@@ -11,6 +10,8 @@ import {
     ForgotPasswordPage,
     UpdatePasswordPage,
 } from "./components";
+
+import { AuthPageProps } from "../../../interfaces";
 
 export type DivPropsType = DetailedHTMLProps<
     HTMLAttributes<HTMLDivElement>,
@@ -21,7 +22,7 @@ export type FormPropsType = DetailedHTMLProps<
     HTMLFormElement
 >;
 
-export type AuthProps = RefineAuthPageProps<
+export type AuthProps = AuthPageProps<
     DivPropsType,
     DivPropsType,
     FormPropsType

@@ -1,10 +1,3 @@
-import {
-    RefineForgotPasswordFormTypes,
-    RefineLoginFormTypes,
-    RefineRegisterFormTypes,
-    RefineUpdatePasswordFormTypes,
-} from "@pankod/refine-ui-types";
-
 export type TLogoutData = void | false | string;
 export type TLoginData = void | false | string | object;
 export type TRegisterData = void | false | string;
@@ -12,14 +5,10 @@ export type TForgotPasswordData = void | false | string;
 export type TUpdatePasswordData = void | false | string;
 
 export interface AuthProvider {
-    login: (params: RefineLoginFormTypes) => Promise<TLoginData>;
-    register?: (params: RefineRegisterFormTypes) => Promise<TRegisterData>;
-    forgotPassword?: (
-        params: RefineForgotPasswordFormTypes,
-    ) => Promise<TForgotPasswordData>;
-    updatePassword?: (
-        params: RefineUpdatePasswordFormTypes,
-    ) => Promise<TUpdatePasswordData>;
+    login: (params: any) => Promise<TLoginData>;
+    register?: (params: any) => Promise<TRegisterData>;
+    forgotPassword?: (params: any) => Promise<TForgotPasswordData>;
+    updatePassword?: (params: any) => Promise<TUpdatePasswordData>;
     logout: (params: any) => Promise<TLogoutData>;
     checkAuth: (params?: any) => Promise<any>;
     checkError: (error: any) => Promise<void>;

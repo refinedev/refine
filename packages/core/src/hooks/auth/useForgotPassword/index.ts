@@ -1,6 +1,6 @@
 import React from "react";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
-import { RefineForgotPasswordFormTypes } from "@pankod/refine-ui-types";
+import { ForgotPasswordFormTypes } from "../../../interfaces";
 
 import { AuthContext } from "@contexts/auth";
 import { useNavigation, useNotification } from "@hooks";
@@ -17,7 +17,7 @@ import { IAuthContext, TForgotPasswordData } from "../../../interfaces";
  *
  */
 export const useForgotPassword = <
-    TVariables extends RefineForgotPasswordFormTypes = {},
+    TVariables extends ForgotPasswordFormTypes = {},
 >(): UseMutationResult<TForgotPasswordData, Error, TVariables, unknown> => {
     const { replace } = useNavigation();
     const { forgotPassword: forgotPasswordFromContext } =

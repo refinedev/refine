@@ -1,6 +1,6 @@
 import React from "react";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
-import { RefineLoginFormTypes } from "@pankod/refine-ui-types";
+import { LoginFormTypes } from "../../../interfaces";
 import qs from "qs";
 
 import { useNavigation, useRouterContext, useNotification } from "@hooks";
@@ -18,7 +18,7 @@ import { IAuthContext, TLoginData } from "../../../interfaces";
  *
  */
 export const useLogin = <
-    TVariables extends RefineLoginFormTypes = {},
+    TVariables extends LoginFormTypes = {},
 >(): UseMutationResult<TLoginData, Error, TVariables, unknown> => {
     const { replace } = useNavigation();
     const { login: loginFromContext } =

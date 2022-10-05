@@ -1,6 +1,6 @@
 import React from "react";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
-import { RefineRegisterFormTypes } from "@pankod/refine-ui-types";
+import { RegisterFormTypes } from "../../../interfaces";
 
 import { AuthContext } from "@contexts/auth";
 import { useNavigation, useNotification } from "@hooks";
@@ -17,7 +17,7 @@ import { IAuthContext, TRegisterData } from "../../../interfaces";
  *
  */
 export const useRegister = <
-    TVariables extends RefineRegisterFormTypes = {},
+    TVariables extends RegisterFormTypes = {},
 >(): UseMutationResult<TRegisterData, Error, TVariables, unknown> => {
     const { replace } = useNavigation();
     const { register: registerFromContext } =

@@ -1,11 +1,14 @@
 import React from "react";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import qs from "qs";
-import { RefineUpdatePasswordFormTypes } from "@pankod/refine-ui-types";
 
 import { AuthContext } from "@contexts/auth";
 import { useNavigation, useNotification, useRouterContext } from "@hooks";
-import { IAuthContext, TUpdatePasswordData } from "../../../interfaces";
+import {
+    IAuthContext,
+    TUpdatePasswordData,
+    UpdatePasswordFormTypes,
+} from "../../../interfaces";
 
 /**
  * `useUpdatePassword` calls `updatePassword` method from {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.
@@ -17,7 +20,7 @@ import { IAuthContext, TUpdatePasswordData } from "../../../interfaces";
  *
  */
 export const useUpdatePassword = <
-    TVariables extends RefineUpdatePasswordFormTypes = {},
+    TVariables extends UpdatePasswordFormTypes = {},
 >(): UseMutationResult<TUpdatePasswordData, Error, TVariables, unknown> => {
     const { replace } = useNavigation();
     const { updatePassword: updatePasswordFromContext } =

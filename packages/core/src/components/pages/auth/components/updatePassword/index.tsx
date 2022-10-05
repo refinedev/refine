@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import {
-    RefineUpdatePasswordFormTypes,
-    RefineUpdatePasswordPageProps,
-} from "@pankod/refine-ui-types";
+    UpdatePasswordFormTypes,
+    UpdatePasswordPageProps,
+} from "../../../../../interfaces";
 
 import { useTranslate, useUpdatePassword } from "@hooks";
 
 import { DivPropsType, FormPropsType } from "../..";
 
-type UpdatePasswordProps = RefineUpdatePasswordPageProps<
+type UpdatePasswordProps = UpdatePasswordPageProps<
     DivPropsType,
     DivPropsType,
     FormPropsType
@@ -23,7 +23,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
     const translate = useTranslate();
 
     const { mutate: updatePassword, isLoading } =
-        useUpdatePassword<RefineUpdatePasswordFormTypes>();
+        useUpdatePassword<UpdatePasswordFormTypes>();
 
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");

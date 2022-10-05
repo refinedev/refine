@@ -1,19 +1,12 @@
 import React, { useState } from "react";
-import {
-    RefineLoginPageProps,
-    RefineLoginFormTypes,
-} from "@pankod/refine-ui-types";
+import { LoginPageProps, LoginFormTypes } from "../../../../../interfaces";
 
 import { useRouterContext, useLogin } from "@hooks";
 import { useTranslate } from "@hooks/translate";
 
 import { DivPropsType, FormPropsType } from "../..";
 
-type LoginProps = RefineLoginPageProps<
-    DivPropsType,
-    DivPropsType,
-    FormPropsType
->;
+type LoginProps = LoginPageProps<DivPropsType, DivPropsType, FormPropsType>;
 
 export const LoginPage: React.FC<LoginProps> = ({
     providers,
@@ -32,7 +25,7 @@ export const LoginPage: React.FC<LoginProps> = ({
 
     const translate = useTranslate();
 
-    const { mutate: login } = useLogin<RefineLoginFormTypes>();
+    const { mutate: login } = useLogin<LoginFormTypes>();
 
     const renderLink = (link: React.ReactNode, text?: string) => {
         if (link) {

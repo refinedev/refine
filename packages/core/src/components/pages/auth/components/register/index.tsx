@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { RefineRegisterPageProps } from "@pankod/refine-ui-types";
+import { RegisterPageProps } from "../../../../../interfaces";
 
 import { useTranslate, useRouterContext, useRegister } from "@hooks";
 
 import { DivPropsType, FormPropsType } from "../..";
 
-type RegisterProps = RefineRegisterPageProps<
+type RegisterProps = RegisterPageProps<
     DivPropsType,
     DivPropsType,
     FormPropsType

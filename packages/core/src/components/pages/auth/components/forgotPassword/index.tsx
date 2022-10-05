@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import {
-    RefineForgotPasswordFormTypes,
-    RefineForgotPasswordPageProps,
-} from "@pankod/refine-ui-types";
 
 import { useTranslate, useRouterContext, useForgotPassword } from "@hooks";
 
 import { DivPropsType, FormPropsType } from "../..";
+import {
+    ForgotPasswordFormTypes,
+    ForgotPasswordPageProps,
+} from "../../../../../interfaces";
 
-type ForgotPasswordProps = RefineForgotPasswordPageProps<
+type ForgotPasswordProps = ForgotPasswordPageProps<
     DivPropsType,
     DivPropsType,
     FormPropsType
@@ -27,7 +27,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
     const [email, setEmail] = useState("");
 
     const { mutate: forgotPassword, isLoading } =
-        useForgotPassword<RefineForgotPasswordFormTypes>();
+        useForgotPassword<ForgotPasswordFormTypes>();
 
     const renderLink = (link: React.ReactNode, text?: string) => {
         if (link) {
