@@ -134,14 +134,22 @@ export default function NavbarLayout({ children }) {
     const yRest = useTransform(scrollY, [0, 32], [0, -32]);
 
     React.useEffect(() => {
-        if (
-            announcementStatus === "tomorrow" ||
-            announcementStatus === "today"
-        ) {
-            if (typeof document !== "undefined") {
-                document.body.classList.add("has-announcement");
+        const listener = () => {
+            if (
+                announcementStatus === "tomorrow" ||
+                announcementStatus === "today"
+            ) {
+                if (typeof document !== "undefined") {
+                    document.body.classList.add("has-announcement");
+                }
             }
-        }
+        };
+        listener();
+        window.addEventListener("popstate", listener);
+
+        return () => {
+            window.removeEventListener("popstate", listener);
+        };
     }, [announcementStatus]);
 
     return (
