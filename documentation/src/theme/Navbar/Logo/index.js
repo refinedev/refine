@@ -7,6 +7,15 @@ export default function NavbarLogo({ className, ...props }) {
     return (
         <Link to="/" className="mx-auto lg:mx-0">
             <RefineIcon
+                onContextMenu={(event) => {
+                    event.preventDefault();
+                    window
+                        .open(
+                            "https://www.figma.com/file/y8lhTyumAN0zYI5nKKLoLN/refine.dev-brand-assets",
+                            "_blank",
+                        )
+                        .focus();
+                }}
                 className={
                     className
                         ? className
