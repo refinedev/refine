@@ -33,8 +33,8 @@ const App: React.FC = () => {
             }
             return Promise.reject();
         },
-        updatePassword: ({ newPassword }) => {
-            if (newPassword) {
+        updatePassword: ({ password }) => {
+            if (password) {
                 //we can update password here
                 return Promise.resolve();
             }

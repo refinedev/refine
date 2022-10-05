@@ -18,7 +18,7 @@ import { PostCreate, PostEdit, PostList } from "./pages";
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
-        login: async ({ providerName, email }) => {
+        login: async ({ email, providerName }) => {
             if (providerName === "google") {
                 window.location.href =
                     "https://accounts.google.com/o/oauth2/v2/auth";
@@ -31,8 +31,12 @@ const App: React.FC = () => {
                 return Promise.resolve(false);
             }
 
-            localStorage.setItem("email", email);
-            return Promise.resolve();
+            if (email) {
+                localStorage.setItem("email", email);
+                return Promise.resolve();
+            }
+
+            return Promise.reject();
         },
         register: (params: any) => {
             if (params.email && params.password) {
