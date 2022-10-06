@@ -17,6 +17,7 @@ import {
     MetaDataQuery,
     LiveModeProps,
     BaseKey,
+    Pagination,
 } from "../../interfaces";
 
 export type UseSelectProps<TData, TError> = {
@@ -60,6 +61,11 @@ export type UseSelectProps<TData, TError> = {
      * @default `undefined`
      */
     fetchSize?: number;
+    /**
+     * Pagination option from useList.
+     * @default `undefined`
+     */
+    pagination?: Pagination;
     /**
      * react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options
      */
@@ -111,6 +117,7 @@ export const useSelect = <
         defaultValueQueryOptions: defaultValueQueryOptionsFromProps,
         queryOptions,
         fetchSize,
+        pagination,
         liveMode,
         defaultValue = [],
         onLiveEvent,
@@ -166,11 +173,14 @@ export const useSelect = <
         config: {
             sort,
             filters: filters.concat(search),
-            pagination: fetchSize
-                ? {
-                      pageSize: fetchSize,
-                  }
-                : undefined,
+            pagination: {
+                ...pagination,
+                ...(fetchSize
+                    ? {
+                          pageSize: fetchSize,
+                      }
+                    : undefined),
+            },
         },
         queryOptions: {
             ...queryOptions,
