@@ -154,7 +154,7 @@ export function useTable<
     TError extends HttpError = HttpError,
 >(
     props?: useTableProps<TData, TError> & {
-        hasPagination: true;
+        hasPagination: false;
     },
 ): useTableNoPaginationReturnType<TData>;
 // implementation
