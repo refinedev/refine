@@ -11,12 +11,17 @@ import {
     FilterDropdown,
     Select,
     useSelect,
+    SelectProps,
 } from "@pankod/refine-antd";
 
 import { IPost, ICategory } from "interfaces";
+import { useEffect, useState } from "react";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps } = useTable<IPost>();
+    const [page, setPage] = useState<number>(1);
+    const [options, setOptions] = useState<SelectProps["options"]>();
+    const [search, setSearch] = useState<string>("");
 
     const categoryIds =
         tableProps?.dataSource?.map((item) => item.category.id) ?? [];
@@ -32,7 +37,40 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
         fetchSize: 20,
+        pagination: { current: page },
+        queryOptions: { keepPreviousData: true },
+        onSearch: (value) => {
+            setPage(1);
+            setSearch(value);
+            return [
+                {
+                    field: "title",
+                    operator: "contains",
+                    value,
+                },
+            ];
+        },
     });
+
+    useEffect(() => {
+        // query pagination (infinite loading)
+        if (page === 1 && search && search.length) {
+            setOptions(categorySelectProps.options);
+        } else if (page === 1 && (!search || (search && !search.length))) {
+            setOptions(categorySelectProps.options);
+        } else if (page > 1) {
+            setOptions((prevOptions) => {
+                const prevOptionsChecked =
+                    (Array.isArray(prevOptions) && prevOptions) || [];
+                const newOptionsChecked =
+                    (Array.isArray(categorySelectProps.options) &&
+                        categorySelectProps.options) ||
+                    [];
+
+                return [...prevOptionsChecked, ...newOptionsChecked];
+            });
+        }
+    }, [page, categorySelectProps.options, search]);
 
     return (
         <List>
@@ -62,6 +100,24 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                 mode="multiple"
                                 style={{ minWidth: 200 }}
                                 {...categorySelectProps}
+                                // need to add options with searchValue and onPopupScroll
+                                options={options}
+                                onPopupScroll={(event) => {
+                                    if (
+                                        event.target instanceof HTMLDivElement
+                                    ) {
+                                        const target = event.target;
+                                        if (
+                                            target.scrollTop +
+                                                target.offsetHeight ===
+                                            target.scrollHeight
+                                        ) {
+                                            if (categorySelectProps.options) {
+                                                setPage((curr) => curr + 1);
+                                            }
+                                        }
+                                    }
+                                }}
                             />
                         </FilterDropdown>
                     )}
