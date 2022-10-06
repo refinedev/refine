@@ -61,11 +61,11 @@ export type SortOrder = "desc" | "asc" | null;
 
 type ConditionalOperators = "or" | "and";
 
-type Operators = LogicalOperators & ConditionalOperators;
+type Operators = CrudOperators & ConditionalOperators;
 
 export type LogicalFilter = {
     field: string;
-    operator: LogicalOperators;
+    operator: CrudOperators;
     value: any;
 };
 
