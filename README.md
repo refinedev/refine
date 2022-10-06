@@ -40,9 +40,7 @@
 </div>
 
 <div align="center" style="margin: 30px;">
-  <a href="https://refine.dev/">
-      <img src="https://raw.githubusercontent.com/pankod/refine/master/documentation/static/img/refine-promo-gif-v2.gif" style="width:688px;"/>
-  </a>
+  <a href="https://refine.dev/">https://user-images.githubusercontent.com/1110414/194275641-26705021-1aa7-445e-8448-400e3a2dce2c.mp4</a>
 </div>
 
 
