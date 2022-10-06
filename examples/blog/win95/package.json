@@ -6,7 +6,7 @@
         "@pankod/refine-core": "^3.74.8",
         "@pankod/refine-react-hook-form": "^3.33.2",
         "@pankod/refine-react-router-v6": "^3.36.0",
-        "@pankod/refine-react-table": "^4.7.4",
+        "@pankod/refine-react-table": "^4.7.5",
         "@pankod/refine-supabase": "^3.31.0",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
