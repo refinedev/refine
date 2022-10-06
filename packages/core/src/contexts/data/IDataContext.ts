@@ -48,7 +48,6 @@ export type CrudOperators =
     | "nbetween"
     | "null"
     | "nnull"
-    | "or"
     | "startswith"
     | "nstartswith"
     | "startswiths"
@@ -60,16 +59,22 @@ export type CrudOperators =
 
 export type SortOrder = "desc" | "asc" | null;
 
+type ConditionalOperators = "or" | "and";
+
+type Operators = LogicalOperators & ConditionalOperators;
+
 export type LogicalFilter = {
     field: string;
-    operator: Exclude<CrudOperators, "or">;
+    operator: LogicalOperators;
     value: any;
 };
 
 export type ConditionalFilter = {
-    operator: "or";
-    value: LogicalFilter[];
+    operator: ConditionalOperators;
+    value: Filters;
 };
+
+type Filters = (LogicalFilter | ConditionalFilter)[];
 
 export type CrudFilter = LogicalFilter | ConditionalFilter;
 export type CrudSort = {
