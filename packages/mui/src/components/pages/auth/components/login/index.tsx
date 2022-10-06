@@ -1,8 +1,5 @@
 import * as React from "react";
-import {
-    RefineLoginPageProps,
-    RefineLoginFormTypes,
-} from "@pankod/refine-ui-types";
+import { LoginPageProps, LoginFormTypes } from "@pankod/refine-core";
 import { FormProvider, useForm } from "@pankod/refine-react-hook-form";
 import {
     Button,
@@ -29,11 +26,7 @@ import {
 import { layoutStyles, titleStyles } from "../styles";
 
 import { FormPropsType } from "../../index";
-type LoginProps = RefineLoginPageProps<
-    BoxProps,
-    CardContentProps,
-    FormPropsType
->;
+type LoginProps = LoginPageProps<BoxProps, CardContentProps, FormPropsType>;
 
 /**
  * login will be used as the default type of the <AuthPage> component. The login page will be used to log in to the system.
@@ -50,7 +43,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     formProps,
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
-    const methods = useForm<BaseRecord, HttpError, RefineLoginFormTypes>({
+    const methods = useForm<BaseRecord, HttpError, LoginFormTypes>({
         ...useFormProps,
     });
     const {
@@ -59,7 +52,7 @@ export const LoginPage: React.FC<LoginProps> = ({
         formState: { errors },
     } = methods;
 
-    const { mutate: login, isLoading } = useLogin<RefineLoginFormTypes>();
+    const { mutate: login, isLoading } = useLogin<LoginFormTypes>();
     const translate = useTranslate();
     const { Link } = useRouterContext();
 

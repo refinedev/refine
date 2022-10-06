@@ -1,29 +1,30 @@
 import React, { PropsWithChildren } from "react";
 
-export type IProvider = {
+export type OAuthProvider = {
     name: string;
     icon?: React.ReactNode;
     label?: string;
 };
 
-export interface RefineLoginFormTypes {
+export interface LoginFormTypes {
     email?: string;
     password?: string;
     remember?: boolean;
     providerName?: string;
+    redirectPath?: string;
 }
 
-export interface RefineRegisterFormTypes {
+export interface RegisterFormTypes {
     email?: string;
     password?: string;
     providerName?: string;
 }
 
-export interface RefineForgotPasswordFormTypes {
+export interface ForgotPasswordFormTypes {
     email?: string;
 }
 
-export interface RefineUpdatePasswordFormTypes {
+export interface UpdatePasswordFormTypes {
     password?: string;
     confirmPassword?: string;
 }
@@ -31,7 +32,7 @@ export interface RefineUpdatePasswordFormTypes {
 /**
  * This should be the base type for `AuthPage` component implementations in UI integrations.
  */
-export type RefineAuthPageProps<
+export type AuthPageProps<
     TWrapperProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
     TFormProps extends {} = Record<keyof any, unknown>,
@@ -47,7 +48,7 @@ export type RefineAuthPageProps<
            * @description Providers array for login with third party auth services.
            * @optional
            */
-          providers?: IProvider[];
+          providers?: OAuthProvider[];
           /**
            * @description Render a redirect to register page button node. If set to false, register button will not be rendered.
            * @optional
@@ -79,7 +80,7 @@ export type RefineAuthPageProps<
            * @description Providers array for login with third party auth services.
            * @optional
            */
-          providers?: IProvider[];
+          providers?: OAuthProvider[];
       }>
     | PropsWithChildren<{
           /**
@@ -126,12 +127,12 @@ export type RefineAuthPageProps<
 /**
  * This should be the base type for `AuthPage` `Login` component implementations in UI integrations.
  */
-export type RefineLoginPageProps<
+export type LoginPageProps<
     TWrapperProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
     TFormProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
-    providers?: IProvider[];
+    providers?: OAuthProvider[];
     registerLink?: React.ReactNode;
     forgotPasswordLink?: React.ReactNode;
     rememberMe?: React.ReactNode;
@@ -144,12 +145,12 @@ export type RefineLoginPageProps<
 /**
  * This should be the base type for `AuthPage` `Register` component implementations in UI integrations.
  */
-export type RefineRegisterPageProps<
+export type RegisterPageProps<
     TWrapperProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
     TFormProps extends {} = Record<keyof any, unknown>,
 > = PropsWithChildren<{
-    providers?: IProvider[];
+    providers?: OAuthProvider[];
     loginLink?: React.ReactNode;
     wrapperProps?: TWrapperProps;
     renderContent?: (content: React.ReactNode) => React.ReactNode;
@@ -160,7 +161,7 @@ export type RefineRegisterPageProps<
 /**
  * This should be the base type for `AuthPage` `Reset Password` component implementations in UI integrations.
  */
-export type RefineForgotPasswordPageProps<
+export type ForgotPasswordPageProps<
     TWrapperProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
     TFormProps extends {} = Record<keyof any, unknown>,
@@ -175,7 +176,7 @@ export type RefineForgotPasswordPageProps<
 /**
  * This should be the base type for `AuthPage` `Update Password` component implementations in UI integrations.
  */
-export type RefineUpdatePasswordPageProps<
+export type UpdatePasswordPageProps<
     TWrapperProps extends {} = Record<keyof any, unknown>,
     TContentProps extends {} = Record<keyof any, unknown>,
     TFormProps extends {} = Record<keyof any, unknown>,

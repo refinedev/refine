@@ -1,8 +1,5 @@
 import React from "react";
-import {
-    RefineLoginPageProps,
-    RefineLoginFormTypes,
-} from "@pankod/refine-ui-types";
+import { LoginPageProps, LoginFormTypes } from "@pankod/refine-core";
 import { useLogin, useTranslate, useRouterContext } from "@pankod/refine-core";
 import {
     Box,
@@ -24,7 +21,7 @@ import {
 import { useForm } from "@hooks/form";
 import { layoutStyles, cardStyles, titleStyles } from "../styles";
 
-type LoginProps = RefineLoginPageProps<
+type LoginProps = LoginPageProps<
     BoxProps,
     CardProps,
     React.DetailedHTMLProps<
@@ -68,7 +65,7 @@ export const LoginPage: React.FC<LoginProps> = ({
         },
     });
 
-    const { mutate: login, isLoading } = useLogin<RefineLoginFormTypes>();
+    const { mutate: login, isLoading } = useLogin<LoginFormTypes>();
 
     const renderProviders = () => {
         if (providers) {
