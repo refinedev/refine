@@ -103,7 +103,7 @@ const LaunchToday = () => {
                 JOIN US{" "}
                 <a
                     className="text-white underline"
-                    href="https://www.producthunt.com/products/refine-3"
+                    href="https://www.producthunt.com/posts/refine-3"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
