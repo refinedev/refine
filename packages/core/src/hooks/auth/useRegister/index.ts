@@ -1,6 +1,5 @@
 import React from "react";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
-import { RegisterFormTypes } from "../../../interfaces";
 
 import { AuthContext } from "@contexts/auth";
 import { useNavigation, useNotification } from "@hooks";
@@ -16,9 +15,12 @@ import { IAuthContext, TRegisterData } from "../../../interfaces";
  * @typeParam TVariables - Values for mutation function. default `{}`
  *
  */
-export const useRegister = <
-    TVariables extends RegisterFormTypes = {},
->(): UseMutationResult<TRegisterData, Error, TVariables, unknown> => {
+export const useRegister = <TVariables = {}>(): UseMutationResult<
+    TRegisterData,
+    Error,
+    TVariables,
+    unknown
+> => {
     const { replace } = useNavigation();
     const { register: registerFromContext } =
         React.useContext<IAuthContext>(AuthContext);
