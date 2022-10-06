@@ -63,16 +63,16 @@ type ActionFormProps<
         context: any,
     ) => void;
     /**
+     * Resource name for API data interactions
+     * @default Resource name that it reads from route
+     */
+    resource?: string;
+    /**
      * Page to redirect after a succesfull mutation
      * @type `"show" | "edit" | "list" | "create" | false`
      * @default `"list"`
      */
     redirect?: RedirectAction;
-    /**
-     * Resource name for API data interactions
-     * @default Resource name that it reads from route
-     */
-    resource?: string;
     /**
      * Record id for fetching
      * @default Id that it reads from the URL
