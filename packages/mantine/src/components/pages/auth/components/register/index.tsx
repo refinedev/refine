@@ -18,19 +18,13 @@ import {
 
 import { useForm } from "@hooks/form";
 import { layoutStyles, cardStyles, titleStyles } from "../styles";
+import { FormPropsType } from "../..";
 
-type RegisterProps = RegisterPageProps<
-    BoxProps,
-    CardProps,
-    React.DetailedHTMLProps<
-        React.FormHTMLAttributes<HTMLFormElement>,
-        HTMLFormElement
-    >
->;
+type RegisterProps = RegisterPageProps<BoxProps, CardProps, FormPropsType>;
 
 /**
- * **refine** has register page form which is served on `/register` route when the `authProvider` configuration is provided.
- *
+ * The register page will be used to register new users. You can use the following props for the <AuthPage> component when the type is "register".
+ * @see {@link https://refine.dev/docs/api-reference/mantine/components/mantine-auth-page/#register} for more details.
  */
 export const RegisterPage: React.FC<RegisterProps> = ({
     loginLink,
@@ -39,6 +33,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     renderContent,
     formProps,
 }) => {
+    const { onSubmit: onSubmitProp, ...useFormProps } = formProps || {};
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
@@ -48,7 +43,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             password: "",
         },
         validate: {
-            email: (value) =>
+            email: (value: any) =>
                 /^\S+@\S+$/.test(value)
                     ? null
                     : translate(
@@ -57,6 +52,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                       ),
             password: (value) => value === "",
         },
+        ...useFormProps,
     });
 
     const { mutate: register, isLoading } = useLogin<RegisterFormTypes>();
@@ -68,7 +64,12 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             </Title>
             <Space h="lg" />
             <form
-                onSubmit={onSubmit((values) => register(values))}
+                onSubmit={onSubmit((values) => {
+                    if (onSubmitProp) {
+                        return onSubmitProp(values);
+                    }
+                    return register(values);
+                })}
                 {...formProps}
             >
                 <TextInput

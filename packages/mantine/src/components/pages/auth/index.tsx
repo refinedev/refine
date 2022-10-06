@@ -8,20 +8,21 @@ import {
     ForgotPasswordPage,
     UpdatePasswordPage,
 } from "./components";
+import { UseFormProps } from "../../../hooks/form";
 
-export type AuthProps = AuthPageProps<
-    BoxProps,
-    CardProps,
-    React.DetailedHTMLProps<
-        React.FormHTMLAttributes<HTMLFormElement>,
-        HTMLFormElement
-    >
->;
+export type FormPropsType = React.DetailedHTMLProps<
+    React.FormHTMLAttributes<HTMLFormElement>,
+    HTMLFormElement
+> &
+    UseFormProps & {
+        onSubmit: (values: any) => void;
+    };
+
+export type AuthProps = AuthPageProps<BoxProps, CardProps, FormPropsType>;
 
 /**
  * **refine** has a default auth page form served on the `/login` route when the `authProvider` configuration is provided.
- *
- * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/authpage/} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/mantine/components/mantine-auth-page/} for more details.
  */
 export const AuthPage: React.FC<AuthProps> = (props) => {
     const { type } = props;

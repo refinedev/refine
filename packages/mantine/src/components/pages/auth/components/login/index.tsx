@@ -20,19 +20,13 @@ import {
 
 import { useForm } from "@hooks/form";
 import { layoutStyles, cardStyles, titleStyles } from "../styles";
+import { FormPropsType } from "../..";
 
-type LoginProps = LoginPageProps<
-    BoxProps,
-    CardProps,
-    React.DetailedHTMLProps<
-        React.FormHTMLAttributes<HTMLFormElement>,
-        HTMLFormElement
-    >
->;
+type LoginProps = LoginPageProps<BoxProps, CardProps, FormPropsType>;
 
 /**
  * **refine** has a default login page form which is served on `/login` route when the `authProvider` configuration is provided.
- *
+ * @see {@link https://refine.dev/docs/api-reference/mantine/components/mantine-auth-page/#login} for more details.
  */
 export const LoginPage: React.FC<LoginProps> = ({
     providers,
@@ -44,6 +38,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     renderContent,
     formProps,
 }) => {
+    const { onSubmit: onSubmitProp, ...useFormProps } = formProps || {};
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
@@ -54,7 +49,7 @@ export const LoginPage: React.FC<LoginProps> = ({
             remember: false,
         },
         validate: {
-            email: (value) =>
+            email: (value: any) =>
                 /^\S+@\S+$/.test(value)
                     ? null
                     : translate(
@@ -63,6 +58,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                       ),
             password: (value) => value === "",
         },
+        ...useFormProps,
     });
 
     const { mutate: login, isLoading } = useLogin<LoginFormTypes>();
@@ -107,7 +103,15 @@ export const LoginPage: React.FC<LoginProps> = ({
             </Title>
             <Space h="lg" />
             {renderProviders()}
-            <form onSubmit={onSubmit((values) => login(values))} {...formProps}>
+            <form
+                onSubmit={onSubmit((values) => {
+                    if (onSubmitProp) {
+                        return onSubmitProp(values);
+                    }
+                    return login(values);
+                })}
+                {...formProps}
+            >
                 <TextInput
                     label={translate("pages.login.fields.email", "Email")}
                     placeholder={translate("pages.login.fields.email", "Email")}

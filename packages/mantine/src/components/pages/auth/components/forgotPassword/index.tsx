@@ -20,19 +20,17 @@ import {
 
 import { useForm } from "@hooks/form";
 import { layoutStyles, cardStyles, titleStyles } from "../styles";
+import { FormPropsType } from "../..";
 
 type ResetPassworProps = ForgotPasswordPageProps<
     BoxProps,
     CardProps,
-    React.DetailedHTMLProps<
-        React.FormHTMLAttributes<HTMLFormElement>,
-        HTMLFormElement
-    >
+    FormPropsType
 >;
 
 /**
- * **refine** has reset password page form which is served on `/reset-password` route when the `authProvider` configuration is provided.
- *
+ * The forgotPassword type is a page that allows users to reset their passwords. You can use this page to reset your password.
+ * @see {@link https://refine.dev/docs/api-reference/mantine/components/mantine-auth-page/#forgot-password} for more details.
  */
 export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
     loginLink,
@@ -41,6 +39,7 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
     renderContent,
     formProps,
 }) => {
+    const { onSubmit: onSubmitProp, ...useFormProps } = formProps || {};
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
@@ -49,7 +48,7 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
             email: "",
         },
         validate: {
-            email: (value) =>
+            email: (value: any) =>
                 /^\S+@\S+$/.test(value)
                     ? null
                     : translate(
@@ -57,6 +56,7 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
                           "Invalid email address",
                       ),
         },
+        ...useFormProps,
     });
 
     const { mutate: forgotPassword, isLoading } =
@@ -72,7 +72,12 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
             </Title>
             <Space h="lg" />
             <form
-                onSubmit={onSubmit((values) => forgotPassword(values))}
+                onSubmit={onSubmit((values) => {
+                    if (onSubmitProp) {
+                        return onSubmitProp(values);
+                    }
+                    return forgotPassword(values);
+                })}
                 {...formProps}
             >
                 <TextInput

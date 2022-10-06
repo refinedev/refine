@@ -17,19 +17,17 @@ import {
 
 import { useForm } from "@hooks/form";
 import { layoutStyles, cardStyles, titleStyles } from "../styles";
+import { FormPropsType } from "../..";
 
 type UpdatePassworProps = UpdatePasswordPageProps<
     BoxProps,
     CardProps,
-    React.DetailedHTMLProps<
-        React.FormHTMLAttributes<HTMLFormElement>,
-        HTMLFormElement
-    >
+    FormPropsType
 >;
 
 /**
- * **refine** has update password page form which is served on `/update-password` route when the `authProvider` configuration is provided.
- *
+ * The updatePassword type is the page used to update the password of the user.
+ * @see {@link https://refine.dev/docs/api-reference/mantine/components/mantine-auth-page/#update-password} for more details.
  */
 export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
     contentProps,
@@ -37,6 +35,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
     renderContent,
     formProps,
 }) => {
+    const { onSubmit: onSubmitProp, ...useFormProps } = formProps || {};
     const translate = useTranslate();
 
     const { getInputProps, onSubmit } = useForm({
@@ -53,6 +52,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
                       )
                     : null,
         },
+        ...useFormProps,
     });
 
     const { mutate: updatePassword, isLoading } =
@@ -65,7 +65,12 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
             </Title>
             <Space h="lg" />
             <form
-                onSubmit={onSubmit((values) => updatePassword(values))}
+                onSubmit={onSubmit((values) => {
+                    if (onSubmitProp) {
+                        return onSubmitProp(values);
+                    }
+                    return updatePassword(values);
+                })}
                 {...formProps}
             >
                 <TextInput
