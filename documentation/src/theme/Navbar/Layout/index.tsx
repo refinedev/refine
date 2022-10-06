@@ -82,17 +82,13 @@ const LaunchToday = () => {
         startVelocity: 30,
         decay: 0.93,
         lifetime: 500,
-        onAnimationComplete: () => {
-            if (typeof window !== "undefined") {
-                localStorage.setItem("ph-launch-announcement", "true");
-            }
-        },
     });
 
     React.useEffect(() => {
         if (localStorage.getItem("ph-launch-announcement") !== "true") {
             setTimeout(() => {
                 reward();
+                localStorage.setItem("ph-launch-announcement", "true");
             }, 500);
         }
     }, []);
