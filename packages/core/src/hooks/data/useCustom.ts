@@ -30,7 +30,7 @@ interface UseCustomConfig<TQuery, TPayload> {
 
 export type UseCustomProps<TData, TError, TQuery, TPayload> = {
     /**
-     * URL
+     * request's URL
      */
     url: string;
     /**
