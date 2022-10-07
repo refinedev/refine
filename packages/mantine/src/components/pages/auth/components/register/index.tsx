@@ -14,6 +14,8 @@ import {
     BoxProps,
     CardProps,
     Group,
+    Stack,
+    Divider,
 } from "@mantine/core";
 
 import { useForm } from "@hooks/form";
@@ -32,6 +34,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     wrapperProps,
     renderContent,
     formProps,
+    providers,
 }) => {
     const { onSubmit: onSubmitProp, ...useFormProps } = formProps || {};
     const translate = useTranslate();
@@ -57,12 +60,46 @@ export const RegisterPage: React.FC<RegisterProps> = ({
 
     const { mutate: register, isLoading } = useLogin<RegisterFormTypes>();
 
+    const renderProviders = () => {
+        if (providers) {
+            return (
+                <>
+                    <Stack spacing={8}>
+                        {providers.map((provider) => {
+                            return (
+                                <Button
+                                    key={provider.name}
+                                    fullWidth
+                                    leftIcon={provider.icon}
+                                    onClick={() =>
+                                        register({
+                                            providerName: provider.name,
+                                        })
+                                    }
+                                >
+                                    {provider.label}
+                                </Button>
+                            );
+                        })}
+                    </Stack>
+                    <Divider
+                        my="md"
+                        labelPosition="center"
+                        label={translate("pages.login.divider", "or")}
+                    />
+                </>
+            );
+        }
+        return null;
+    };
+
     const CardContent = (
         <Card style={cardStyles} {...(contentProps ?? {})}>
             <Title style={titleStyles}>
                 {translate("pages.register.title", "Sign up for your account")}
             </Title>
             <Space h="lg" />
+            {renderProviders()}
             <form
                 onSubmit={onSubmit((values) => {
                     if (onSubmitProp) {
