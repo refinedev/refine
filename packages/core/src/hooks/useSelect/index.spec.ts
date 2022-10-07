@@ -528,20 +528,26 @@ describe("useSelect Hook", () => {
 
         expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
             filters: [],
+            hasPagination: undefined,
             resource: "posts",
             metaData: {
                 queryContext: {
+                    pageParam: undefined,
                     queryKey: [
                         "default",
                         "posts",
                         "list",
                         {
                             filters: [],
+                            pagination: {},
+                            sort: undefined,
                         },
                     ],
                     signal: new AbortController().signal,
                 },
             },
+            pagination: {},
+            sort: undefined,
         });
 
         await act(async () => {
@@ -551,20 +557,26 @@ describe("useSelect Hook", () => {
         await waitFor(() => {
             expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
                 filters,
+                hasPagination: undefined,
                 resource: "posts",
                 metaData: {
                     queryContext: {
+                        pageParam: undefined,
                         queryKey: [
                             "default",
                             "posts",
                             "list",
                             {
                                 filters,
+                                pagination: {},
+                                sort: undefined,
                             },
                         ],
                         signal: new AbortController().signal,
                     },
                 },
+                pagination: {},
+                sort: undefined,
             });
         });
     });
