@@ -130,6 +130,7 @@ These components will receive some properties.
 type OptionsProps<TExtends = { [key: string]: any }> = TExtends & {
     label?: string;
     route?: string;
+    dataProviderName?: string;
     hide?: boolean;
 }
 
@@ -250,6 +251,10 @@ Name to show in the menu. Plural form of the resource name is shown by default.
 #### `route`
 
 Custom route name
+
+#### `dataProviderName`
+
+Default data provider name to use for the resource. If not specified, the default data provider will be used.
 
 #### `hide`
 
