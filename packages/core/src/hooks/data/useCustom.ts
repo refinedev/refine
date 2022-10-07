@@ -69,7 +69,7 @@ export type UseCustomProps<TData, TError, TQuery, TPayload> = {
  *
  */
 export const useCustom = <
-    TData = BaseRecord,
+    TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TQuery = unknown,
     TPayload = unknown,
