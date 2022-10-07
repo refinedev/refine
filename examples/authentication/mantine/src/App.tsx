@@ -9,6 +9,8 @@ import {
     notificationProvider,
     LightTheme,
     Global,
+    Checkbox,
+    FormContext,
 } from "@pankod/refine-mantine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -18,23 +20,25 @@ import { PostCreate, PostEdit, PostList } from "./pages";
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
-        login: async ({ email, providerName }) => {
-            if (providerName === "google") {
-                window.location.href =
-                    "https://accounts.google.com/o/oauth2/v2/auth";
-                return Promise.resolve(false);
-            }
+        login: async (params) => {
+            console.log("params", params);
 
-            if (providerName === "github") {
-                window.location.href =
-                    "https://github.com/login/oauth/authorize";
-                return Promise.resolve(false);
-            }
+            // if (providerName === "google") {
+            //     window.location.href =
+            //         "https://accounts.google.com/o/oauth2/v2/auth";
+            //     return Promise.resolve(false);
+            // }
 
-            if (email) {
-                localStorage.setItem("email", email);
-                return Promise.resolve();
-            }
+            // if (providerName === "github") {
+            //     window.location.href =
+            //         "https://github.com/login/oauth/authorize";
+            //     return Promise.resolve(false);
+            // }
+
+            // if (email) {
+            //     localStorage.setItem("email", email);
+            //     return Promise.resolve();
+            // }
 
             return Promise.reject();
         },
@@ -77,6 +81,14 @@ const App: React.FC = () => {
             }),
     };
 
+    const RememberMe = () => {
+        const { getInputProps } = FormContext.useFormContext();
+
+        return (
+            <Checkbox label="Remember Me" {...getInputProps("rememberMe")} />
+        );
+    };
+
     return (
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
@@ -110,7 +122,7 @@ const App: React.FC = () => {
                                 ),
                             },
                             {
-                                path: "/reset-password",
+                                path: "/forgot-password",
                                 element: <AuthPage type="forgotPassword" />,
                             },
                             {
@@ -134,6 +146,23 @@ const App: React.FC = () => {
                                     icon: <IconBrandGithub />,
                                 },
                             ]}
+                            rememberMe={<RememberMe />}
+                            formProps={{
+                                onSubmit: (e: any) => {
+                                    e.preventDefault();
+                                    console.log("e", e.target.email.value);
+
+                                    const email = e.target.email.value;
+                                    const password = e.target.password.value;
+
+                                    alert(
+                                        JSON.stringify({
+                                            email,
+                                            password,
+                                        }),
+                                    );
+                                },
+                            }}
                         />
                     )}
                     ReadyPage={ReadyPage}
