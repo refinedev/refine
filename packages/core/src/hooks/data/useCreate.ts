@@ -20,10 +20,25 @@ import {
 } from "@hooks";
 
 type useCreateParams<TVariables> = {
+    /**
+     * Resource name for API data interactions
+     */
     resource: string;
+    /**
+     * Values for mutation function
+     */
     values: TVariables;
+    /**
+     *  Metadata query for `dataProvider`
+     */
     metaData?: MetaDataQuery;
+    /**
+     * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
+     */
     dataProviderName?: string;
+    /**
+     * You can use it to manage the invalidations that will occur at the end of the mutation.
+     */
     invalidates?: Array<keyof IQueryKeys>;
 } & SuccessErrorNotification;
 

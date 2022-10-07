@@ -219,7 +219,9 @@ console.log(filters);
 
 ### Properties
 
-<PropsTable module="@pankod/refine-core/useTable" />
+<PropsTable module="@pankod/refine-core/useTable" 
+successNotification-default='"Successfully created `resource`" or "Successfully updated `resource`"'
+errorNotification-default='"There was an error creating resource (status code: `statusCode`)" or "Error when updating resource (status code:statusCode)"'      />
 
 ### Type Parameters
 

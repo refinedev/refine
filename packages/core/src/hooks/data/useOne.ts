@@ -23,10 +23,27 @@ import {
 import { queryKeys } from "@definitions";
 
 export type UseOneProps<TData, TError> = {
+    /**
+     * Resource name for API data interactions
+     */
     resource: string;
+    /**
+     * id of the item in the resource
+     * @type [`BaseKey`](/docs/api-reference/core/interfaceReferences/#basekey)
+     */
     id: BaseKey;
+    /**
+     * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
+     */
     queryOptions?: UseQueryOptions<GetOneResponse<TData>, TError>;
+    /**
+     * Metadata query for `dataProvider`,
+     */
     metaData?: MetaDataQuery;
+    /**
+     * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
+     * @default `"default"``
+     */
     dataProviderName?: string;
 } & SuccessErrorNotification &
     LiveModeProps;

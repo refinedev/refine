@@ -3,7 +3,7 @@ id: useDataProvider
 title: useDataProvider
 ---
 
-`useDataProvider` lets you access the `dataProvider` that was configured in [`<Refine>`][Refine] component.
+`useDataProvider` lets you access the `dataProvider` that was configured in [`<Refine>`][refine] component.
 
 This hook is useful when you need to access the `dataProvider` [Data Provider] from a child component.
 
@@ -36,20 +36,20 @@ export default App;
 ```
 
 Now we can access the `default` data provider from a child component:
+
 ```tsx
 import {
     // highlight-next-line
-    useDataProvider
+    useDataProvider,
 } from "@pankod/refine-core";
 
 // highlight-start
 const dataProvider = useDataProvider();
 
-const defaultDataProvider= dataProvider(); // return default data provider
-const secondDataProvider= dataProvider("second"); // return second data provider
+const defaultDataProvider = dataProvider(); // return default data provider
+const secondDataProvider = dataProvider("second"); // return second data provider
 // highlight-end
 ```
-
 
 ## API
 
@@ -61,9 +61,9 @@ const secondDataProvider= dataProvider("second"); // return second data provider
 
 ### Return value
 
-| Description   | Type                                                |
-| ------------- | --------------------------------------------------- |
+| Description   | Type                                                              |
+| ------------- | ----------------------------------------------------------------- |
 | Data Provider | [`Data Provider`](/api-reference/core/providers/data-provider.md) |
 
-[Refine]: /api-reference/core/components/refine-config.md
-[Data Provider]: /api-reference/core/providers/data-provider.md
+[refine]: /api-reference/core/components/refine-config.md
+[data provider]: /api-reference/core/providers/data-provider.md
