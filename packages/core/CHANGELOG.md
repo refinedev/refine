@@ -1,5 +1,16 @@
 # @pankod/refine-core
 
+## 3.76.0
+
+### Minor Changes
+
+-   -   Added new <AuthPage /> component core and mantine support.
+    -   Move Auth types `@pankod/refine-ui-types` to `@pankod/refine-core`
+
+### Patch Changes
+
+-   fix core data hooks type errors
+
 ## 3.75.1
 
 ### Patch Changes
