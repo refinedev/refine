@@ -1,5 +1,28 @@
 # @pankod/refine-core
 
+## 3.78.0
+
+### Minor Changes
+
+-   `clientConfig` property now accepts `QueryClient` instance - #2665
+
+    # Usage
+
+    ```tsx
+    import { QueryClient } from "@tanstack/react-query";
+    const queryClient = new QueryClient();
+    const App: React.FC = () => (
+        <Refine
+            ...
+            options={{
+                reactQuery: {
+                    clientConfig: queryClient
+                },
+            }}
+        />
+    );
+    ```
+
 ## 3.77.0
 
 ### Minor Changes
