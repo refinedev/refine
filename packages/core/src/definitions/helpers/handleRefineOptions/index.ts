@@ -1,4 +1,4 @@
-import { QueryClientConfig } from "@tanstack/react-query";
+import { QueryClient, QueryClientConfig } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import { defaultRefineOptions } from "@contexts/refine";
@@ -27,7 +27,7 @@ type HandleRefineOptionsReturnValues = {
     optionsWithDefaults: IRefineContextOptions;
     disableTelemetryWithDefault: boolean;
     reactQueryWithDefaults: {
-        clientConfig: QueryClientConfig;
+        clientConfig: QueryClientConfig | InstanceType<typeof QueryClient>;
         devtoolConfig: false | React.ComponentProps<typeof ReactQueryDevtools>;
     };
 };

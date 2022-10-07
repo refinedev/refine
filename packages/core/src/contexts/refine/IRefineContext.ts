@@ -1,6 +1,6 @@
 import { RefineProps } from "@components/containers";
 import React, { ReactNode } from "react";
-import { QueryClientConfig } from "@tanstack/react-query";
+import { QueryClientConfig, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import {
@@ -24,7 +24,7 @@ export interface IRefineOptions {
         afterEdit?: RedirectAction;
     };
     reactQuery?: {
-        clientConfig?: QueryClientConfig;
+        clientConfig?: QueryClientConfig | InstanceType<typeof QueryClient>;
         devtoolConfig?: React.ComponentProps<typeof ReactQueryDevtools> | false;
     };
 }
