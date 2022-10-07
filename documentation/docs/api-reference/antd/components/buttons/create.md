@@ -3,7 +3,6 @@ id: create-button
 title: Create
 ---
 
-import createButton from '@site/static/img/guides-and-concepts/components/buttons/create/create.png';
 
 `<CreateButton>` uses Ant Design's [`<Button>`](https://ant.design/components/button/) component. It uses the `create` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the create page route of resource.
 
@@ -46,7 +45,7 @@ Will look like this:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={createButton} alt="Default create button" />
+    <img src="https://github.com/pankod/refine/blob/master/documentation/static/img/guides-and-concepts/components/buttons/create/create.png" alt="Default create button" />
 </div>
 
 ## Properties
