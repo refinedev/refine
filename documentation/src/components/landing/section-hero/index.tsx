@@ -445,13 +445,13 @@ export const SectionHero: React.FC<{ starCount?: number }> = ({
                     <div className="flex flex-row flex-1 gap-1 justify-end -mx-4 px-0 md:px-8 lg:px-12">
                         <div>
                             <a
-                                href="https://www.producthunt.com/posts/refine-3?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-refine&#0045;3"
+                                href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
                                 <img
-                                    src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=362220&theme=dark"
-                                    alt="refine - Open&#0032;Source&#0032;React&#0032;Framework | Product Hunt"
+                                    src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=362220&theme=dark&period=daily"
+                                    alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0032;to&#0032;build&#0032;web&#0032;apps&#0032;3x&#0032;faster | Product Hunt"
                                     className="w-full lg:w-[250px] h-[54px] bg-[#211d21] rounded-tl-xl rounded-bl-xl"
                                 />
                             </a>
