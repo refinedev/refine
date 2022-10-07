@@ -73,6 +73,9 @@ export {
     IQueryKeys,
 } from "./interfaces";
 
+// all auth types
+export * from "./interfaces/auth";
+
 export {
     getDefaultFilter,
     getDefaultSortOrder,

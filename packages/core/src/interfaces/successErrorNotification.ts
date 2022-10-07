@@ -7,6 +7,8 @@ export type SuccessErrorNotification<
 > = {
     /**
      * Success notification configuration to be displayed when the mutation is successful.
+     * @default '"There was an error creating resource (status code: `statusCode`)" or "Error when updating resource (status code: statusCode)"' 
+
      */
     successNotification?:
         | OpenNotificationParams
@@ -18,6 +20,7 @@ export type SuccessErrorNotification<
           ) => OpenNotificationParams);
     /**
      * Error notification configuration to be displayed when the mutation fails.
+     * @default '"There was an error creating resource (status code: `statusCode`)" or "Error when updating resource (status code: statusCode)"'
      */
     errorNotification?:
         | OpenNotificationParams

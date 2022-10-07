@@ -291,7 +291,7 @@ const siteConfig = {
         contactTitle: "Contact",
         contactDescription: [
             "Refine Dev Corporation",
-            "256 Chapman Road STE 105-4 Newark, New Castle 19702",
+            "256 Chapman Road STE 105-4 Newark, DE 19702",
         ],
         contactEmail: "info@refine.dev",
         /** ---- */

@@ -28,7 +28,7 @@
 [![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/refine)
 [![Twitter Follow](https://img.shields.io/twitter/follow/refine_dev?style=social)](https://twitter.com/refine_dev)
 
-<a href="https://www.producthunt.com/posts/refine-open-source-react-framework?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-refine-open-source-react-framework" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=319164&theme=light" alt="refine: Open Source React Framework - Focus your business logic. refine will do the rest. | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+<a href="https://www.producthunt.com/posts/refine-3?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-refine&#0045;3" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=362220&theme=light" alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0046;&#0032;Build&#0032;web&#0032;apps&#0032;3x&#0032;faster&#0046; | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
 [![Meercode CI Score](https://meercode.io/badge/pankod/refine?type=ci-score&branch=master&token=2ZiT8YsoJgt57JB23NYwXrFY3rJHZboT&lastDay=31)](https://meercode.io/)
 [![Meercode CI Success Rate](https://meercode.io/badge/pankod/refine?type=ci-success-rate&branch=master&token=2ZiT8YsoJgt57JB23NYwXrFY3rJHZboT&lastDay=31)](https://meercode.io/)
@@ -40,7 +40,16 @@
 </div>
 
 <div align="center" style="margin: 30px;">
-  <img src="https://github.com/pankod/refine/blob/master/documentation/static/img/refine-promo-gif.gif?raw=true" style="width:688px;"/>
+  <a href="https://refine.dev/">
+  
+
+
+
+https://user-images.githubusercontent.com/1110414/194276098-d56d75c3-ee6e-42a1-843b-11a8552b2181.mp4
+
+
+
+  </a>
 </div>
 
 

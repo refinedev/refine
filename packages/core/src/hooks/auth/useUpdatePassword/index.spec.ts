@@ -27,8 +27,8 @@ describe("useUpdatePassword Hook", () => {
             wrapper: TestWrapper({
                 authProvider: {
                     login: () => Promise.resolve(),
-                    updatePassword: ({ password, newPassword }) => {
-                        if (password && newPassword) {
+                    updatePassword: ({ password, confirmPassword }) => {
+                        if (password && confirmPassword) {
                             return Promise.resolve();
                         }
                         return Promise.reject(new Error("Missing fields"));
@@ -47,7 +47,7 @@ describe("useUpdatePassword Hook", () => {
         };
 
         await act(async () => {
-            updatePassword({ password: "123", newPassword: "321" });
+            updatePassword({ password: "123", confirmPassword: "321" });
         });
 
         await waitFor(() => {

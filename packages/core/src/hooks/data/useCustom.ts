@@ -29,11 +29,29 @@ interface UseCustomConfig<TQuery, TPayload> {
 }
 
 export type UseCustomProps<TData, TError, TQuery, TPayload> = {
+    /**
+     * request's URL
+     */
     url: string;
+    /**
+     * request's method (`GET`, `POST`, etc.)
+     */
     method: "get" | "delete" | "head" | "options" | "post" | "put" | "patch";
+    /**
+     * The config of your request. You can send headers, payload, query, filters and sort using this field
+     */
     config?: UseCustomConfig<TQuery, TPayload>;
+    /**
+     * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options"
+     */
     queryOptions?: UseQueryOptions<CustomResponse<TData>, TError>;
+    /**
+     * Metadata query for `dataProvider`
+     */
     metaData?: MetaDataQuery;
+    /**
+     * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
+     */
     dataProviderName?: string;
 } & SuccessErrorNotification;
 

@@ -33,14 +33,42 @@ import {
 import { queryKeys } from "@definitions/helpers";
 
 export type UpdateParams<TVariables> = {
-    id: BaseKey;
+    /**
+     * Resource name for API data interactions
+     */
     resource: string;
+    /**
+     * id for mutation function
+     */
+    id: BaseKey;
+    /**
+     * [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)
+     */
     mutationMode?: MutationMode;
+    /**
+     * Duration to wait before executing the mutation when `mutationMode = "undoable"`
+     */
     undoableTimeout?: number;
+    /**
+     * Callback that runs when undo button is clicked on `mutationMode = "undoable"`
+     */
     onCancel?: (cancelMutation: () => void) => void;
+    /**
+     * Values for mutation function
+     */
     values: TVariables;
+    /**
+     * Metadata query for `dataProvider`,
+     */
     metaData?: MetaDataQuery;
+    /**
+     * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
+     * @default "default"
+     */
     dataProviderName?: string;
+    /**
+     *  You can use it to manage the invalidations that will occur at the end of the mutation.
+     */
     invalidates?: Array<keyof IQueryKeys>;
 } & SuccessErrorNotification;
 

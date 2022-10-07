@@ -1,8 +1,5 @@
 import * as React from "react";
-import {
-    RefineRegisterFormTypes,
-    RefineRegisterPageProps,
-} from "@pankod/refine-ui-types";
+import { RegisterFormTypes, RegisterPageProps } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 
 import {
@@ -29,7 +26,7 @@ import {
 import { layoutStyles, titleStyles } from "../styles";
 import { FormPropsType } from "../../index";
 
-type RegisterProps = RefineRegisterPageProps<
+type RegisterProps = RegisterPageProps<
     BoxProps,
     CardContentProps,
     FormPropsType
@@ -52,12 +49,12 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<BaseRecord, HttpError, RefineRegisterFormTypes>({
+    } = useForm<BaseRecord, HttpError, RegisterFormTypes>({
         ...useFormProps,
     });
 
     const { mutate: registerMutate, isLoading } =
-        useRegister<RefineRegisterFormTypes>();
+        useRegister<RegisterFormTypes>();
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
