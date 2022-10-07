@@ -67,7 +67,7 @@ export type UseListProps<TData, TError> = {
  *
  */
 export const useList = <
-    TData = BaseRecord,
+    TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
 >({
     resource,

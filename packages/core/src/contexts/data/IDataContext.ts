@@ -265,7 +265,11 @@ export interface IDataContextProvider {
         metaData?: MetaDataQuery;
     }) => Promise<DeleteManyResponse<TData>>;
     getApiUrl: () => string;
-    custom?: <TData extends BaseRecord = BaseRecord>(params: {
+    custom?: <
+        TData extends BaseRecord = BaseRecord,
+        TQuery = unknown,
+        TPayload = unknown,
+    >(params: {
         url: string;
         method:
             | "get"
@@ -277,8 +281,8 @@ export interface IDataContextProvider {
             | "patch";
         sort?: CrudSorting;
         filters?: CrudFilter[];
-        payload?: {};
-        query?: {};
+        payload?: TPayload;
+        query?: TQuery;
         headers?: {};
         metaData?: MetaDataQuery;
     }) => Promise<CustomResponse<TData>>;
