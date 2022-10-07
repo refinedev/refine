@@ -285,7 +285,6 @@ const siteConfig = {
         },
     },
     customFields: {
-        announcementStatus: "today",
         /** Footer Fields */
         footerDescription:
             '<strong style="font-weight:700;">refine</strong> is a React-based framework for the rapid development of web applications. It eliminates the repetitive tasks demanded by <strong style="font-weight:700;">CRUD</strong> operations and provides industry standard solutions.',
