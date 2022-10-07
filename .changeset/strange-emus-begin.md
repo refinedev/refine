@@ -2,7 +2,7 @@
 "@pankod/refine-core": minor
 ---
 
-`clientConfig` property now accepts `QueryClient` instance - #2670
+`clientConfig` property now accepts `QueryClient` instance - #2665
 
 # Usage
 
