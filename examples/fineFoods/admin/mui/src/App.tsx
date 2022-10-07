@@ -32,7 +32,7 @@ import {
     CourierCreate,
     CourierEdit,
 } from "pages/couriers";
-import { AuthPage } from "pages/login";
+import { AuthPage } from "pages/auth";
 import { StoreList, StoreEdit, StoreCreate } from "pages/stores";
 import { ProductList } from "pages/products";
 import { CategoryList } from "pages/categories";

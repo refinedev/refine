@@ -1,7 +1,7 @@
 import * as React from "react";
-import { AuthPage as MUIAuthPage } from "@pankod/refine-mui";
+import { AuthPage as MUIAuthPage, AuthProps } from "@pankod/refine-mui";
 
-import { AuthPageProps, useRouterContext } from "@pankod/refine-core";
+import { useRouterContext } from "@pankod/refine-core";
 
 const authWrapperProps = {
     style: {
@@ -32,7 +32,7 @@ const renderAuthContent = (content: React.ReactNode) => {
     );
 };
 
-export const AuthPage: React.FC<AuthPageProps> = ({ type, formProps }) => {
+export const AuthPage: React.FC<AuthProps> = ({ type, formProps }) => {
     return (
         <MUIAuthPage
             type={type}
