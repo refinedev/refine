@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.75.1
+
+### Patch Changes
+
+-   [#2667](https://github.com/pankod/refine/pull/2667) [`6e6a9e98e5`](https://github.com/pankod/refine/commit/6e6a9e98e5fab3fd424286496fd1adbc231ea803) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix core data hooks type errors
+
 ## 3.75.0
 
 ### Minor Changes
