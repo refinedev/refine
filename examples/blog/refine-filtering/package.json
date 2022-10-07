@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@pankod/refine-core": "^3.76.0",
+    "@pankod/refine-core": "^3.77.0",
     "@pankod/refine-react-router-v6": "^3.36.0",
     "@pankod/refine-simple-rest": "^3.31.0",
     "@testing-library/jest-dom": "^5.16.4",

@@ -5,7 +5,7 @@
   "dependencies": {
     "@pankod/refine": "2.0.12",
     "@pankod/refine-antd": "^3.53.0",
-    "@pankod/refine-core": "^3.76.0",
+    "@pankod/refine-core": "^3.77.0",
     "@pankod/refine-react-router-v6": "^3.36.0",
     "@pankod/refine-supabase": "^3.31.0",
     "@testing-library/jest-dom": "^5.16.4",
