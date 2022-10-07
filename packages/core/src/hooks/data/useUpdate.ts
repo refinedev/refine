@@ -20,6 +20,7 @@ import {
 } from "../../interfaces";
 import pluralize from "pluralize";
 import {
+    useResource,
     useMutationMode,
     useCancelNotification,
     useTranslate,
@@ -30,7 +31,7 @@ import {
     useLog,
     useInvalidate,
 } from "@hooks";
-import { queryKeys } from "@definitions/helpers";
+import { queryKeys, pickDataProvider } from "@definitions/helpers";
 
 export type UpdateParams<TVariables> = {
     /**
@@ -100,6 +101,7 @@ export const useUpdate = <
     TError extends HttpError = HttpError,
     TVariables = {},
 >(): UseUpdateReturnType<TData, TError, TVariables> => {
+    const { resources } = useResource();
     const queryClient = useQueryClient();
     const dataProvider = useDataProvider();
 
@@ -138,19 +140,25 @@ export const useUpdate = <
                 undoableTimeout ?? undoableTimeoutContext;
 
             if (!(mutationModePropOrContext === "undoable")) {
-                return dataProvider(dataProviderName).update<TData, TVariables>(
-                    {
-                        resource,
-                        id,
-                        variables: values,
-                        metaData,
-                    },
-                );
+                return dataProvider(
+                    pickDataProvider(resource, dataProviderName, resources),
+                ).update<TData, TVariables>({
+                    resource,
+                    id,
+                    variables: values,
+                    metaData,
+                });
             }
             const updatePromise = new Promise<UpdateResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        dataProvider(dataProviderName)
+                        dataProvider(
+                            pickDataProvider(
+                                resource,
+                                dataProviderName,
+                                resources,
+                            ),
+                        )
                             .update<TData, TVariables>({
                                 resource,
                                 id,
@@ -192,7 +200,10 @@ export const useUpdate = <
                 values,
                 dataProviderName,
             }) => {
-                const queryKey = queryKeys(resource, dataProviderName);
+                const queryKey = queryKeys(
+                    resource,
+                    pickDataProvider(resource, dataProviderName, resources),
+                );
 
                 const previousQueries: PreviousQuery<TData>[] =
                     queryClient.getQueriesData(queryKey.resourceAll);
@@ -291,7 +302,11 @@ export const useUpdate = <
             ) => {
                 invalidateStore({
                     resource,
-                    dataProviderName,
+                    dataProviderName: pickDataProvider(
+                        resource,
+                        dataProviderName,
+                        resources,
+                    ),
                     invalidates,
                     id,
                 });
@@ -373,7 +388,11 @@ export const useUpdate = <
                     previousData,
                     meta: {
                         id,
-                        dataProviderName,
+                        dataProviderName: pickDataProvider(
+                            resource,
+                            dataProviderName,
+                            resources,
+                        ),
                         ...rest,
                     },
                 });

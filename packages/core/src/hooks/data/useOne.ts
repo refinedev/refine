@@ -14,13 +14,14 @@ import {
     SuccessErrorNotification,
 } from "../../interfaces";
 import {
+    useResource,
     useCheckError,
     useTranslate,
     useResourceSubscription,
     useHandleNotification,
     useDataProvider,
 } from "@hooks";
-import { queryKeys } from "@definitions";
+import { queryKeys, pickDataProvider } from "@definitions";
 
 export type UseOneProps<TData, TError> = {
     /**
@@ -74,10 +75,17 @@ export const useOne = <
     liveParams,
     dataProviderName,
 }: UseOneProps<TData, TError>): QueryObserverResult<GetOneResponse<TData>> => {
+    const { resources } = useResource();
     const dataProvider = useDataProvider();
-    const queryKey = queryKeys(resource, dataProviderName, metaData);
+    const queryKey = queryKeys(
+        resource,
+        pickDataProvider(resource, dataProviderName, resources),
+        metaData,
+    );
 
-    const { getOne } = dataProvider(dataProviderName);
+    const { getOne } = dataProvider(
+        pickDataProvider(resource, dataProviderName, resources),
+    );
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
     const handleNotification = useHandleNotification();
