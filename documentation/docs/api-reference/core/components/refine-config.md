@@ -476,6 +476,27 @@ const App: React.FC = () => (
 );
 ```
 
+Also, you can implement your own [QueryClient](https://react-query.tanstack.com/reference/QueryClient#queryclient).
+
+```tsx
+import { QueryClient } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
+
+const App: React.FC = () => (
+    <Refine
+        ...
+        // highlight-start
+        options={{
+            reactQuery: {
+                clientConfig: queryClient
+            },
+        }}
+        // highlight-end
+    />
+);
+```
+
 #### `devtoolConfig`
 
 Config for customize React Query Devtools. If you want to disable the Devtools, set `devtoolConfig` to `false`.
@@ -749,3 +770,7 @@ const App: React.FC = () => (
 ```
 
 [routerprovider]: /api-reference/core/providers/router-provider.md
+
+```
+
+```
