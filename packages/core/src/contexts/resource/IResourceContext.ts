@@ -12,6 +12,7 @@ export interface IResourceContext {
 type OptionsProps<TExtends = { [key: string]: any }> = TExtends & {
     label?: string;
     route?: string;
+    dataProviderName?: string;
     auditLog?: {
         permissions?: AuditLogPermissions[number][] | string[];
     };
