@@ -15,7 +15,7 @@ import {
     CardProps,
 } from "@mantine/core";
 
-import { useForm } from "@hooks/form";
+import { FormContext } from "@contexts/form-context";
 import { layoutStyles, cardStyles, titleStyles } from "../styles";
 import { FormPropsType } from "../..";
 
@@ -35,16 +35,17 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
     renderContent,
     formProps,
 }) => {
+    const { useForm, FormProvider } = FormContext;
     const { onSubmit: onSubmitProp, ...useFormProps } = formProps || {};
     const translate = useTranslate();
 
-    const { getInputProps, onSubmit } = useForm({
+    const form = useForm({
         initialValues: {
             password: "",
             confirmPassword: "",
         },
         validate: {
-            confirmPassword: (value, values) =>
+            confirmPassword: (value: any, values: any) =>
                 value !== values.password
                     ? translate(
                           "pages.updatePassword.errors.confirmPasswordNotMatch",
@@ -54,6 +55,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
         },
         ...useFormProps,
     });
+    const { getInputProps, onSubmit } = form;
 
     const { mutate: updatePassword, isLoading } =
         useLogin<UpdatePasswordFormTypes>();
@@ -64,44 +66,49 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
                 {translate("pages.updatePassword.title", "Set New Password")}
             </Title>
             <Space h="lg" />
-            <form
-                onSubmit={onSubmit((values) => {
-                    if (onSubmitProp) {
-                        return onSubmitProp(values);
-                    }
-                    return updatePassword(values);
-                })}
-                {...formProps}
-            >
-                <TextInput
-                    type="password"
-                    label={translate(
-                        "pages.updatePassword.fields.password",
-                        "New Password",
-                    )}
-                    placeholder="●●●●●●●●"
-                    {...getInputProps("password")}
-                />
-                <TextInput
-                    mt="md"
-                    type="password"
-                    label={translate(
-                        "pages.updatePassword.fields.confirmPassword",
-                        "Confirm New Password",
-                    )}
-                    placeholder="●●●●●●●●"
-                    {...getInputProps("confirmPassword")}
-                />
-                <Button
-                    mt="lg"
-                    fullWidth
-                    size="md"
-                    type="submit"
-                    loading={isLoading}
+            <FormProvider form={form}>
+                <form
+                    onSubmit={onSubmit((values: any) => {
+                        if (onSubmitProp) {
+                            return onSubmitProp(values);
+                        }
+                        return updatePassword(values);
+                    })}
+                    {...formProps}
                 >
-                    {translate("pages.updatePassword.buttons.submit", "Update")}
-                </Button>
-            </form>
+                    <TextInput
+                        type="password"
+                        label={translate(
+                            "pages.updatePassword.fields.password",
+                            "New Password",
+                        )}
+                        placeholder="●●●●●●●●"
+                        {...getInputProps("password")}
+                    />
+                    <TextInput
+                        mt="md"
+                        type="password"
+                        label={translate(
+                            "pages.updatePassword.fields.confirmPassword",
+                            "Confirm New Password",
+                        )}
+                        placeholder="●●●●●●●●"
+                        {...getInputProps("confirmPassword")}
+                    />
+                    <Button
+                        mt="lg"
+                        fullWidth
+                        size="md"
+                        type="submit"
+                        loading={isLoading}
+                    >
+                        {translate(
+                            "pages.updatePassword.buttons.submit",
+                            "Update",
+                        )}
+                    </Button>
+                </form>
+            </FormProvider>
         </Card>
     );
 

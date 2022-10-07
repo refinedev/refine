@@ -18,7 +18,7 @@ import {
     CardProps,
 } from "@mantine/core";
 
-import { useForm } from "@hooks/form";
+import { FormContext } from "@contexts/form-context";
 import { layoutStyles, cardStyles, titleStyles } from "../styles";
 import { FormPropsType } from "../..";
 
@@ -38,11 +38,12 @@ export const LoginPage: React.FC<LoginProps> = ({
     renderContent,
     formProps,
 }) => {
+    const { useForm, FormProvider } = FormContext;
     const { onSubmit: onSubmitProp, ...useFormProps } = formProps || {};
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
-    const { getInputProps, onSubmit } = useForm({
+    const form = useForm({
         initialValues: {
             email: "",
             password: "",
@@ -56,10 +57,11 @@ export const LoginPage: React.FC<LoginProps> = ({
                           "pages.login.errors.validEmail",
                           "Invalid email address",
                       ),
-            password: (value) => value === "",
+            password: (value: any) => value === "",
         },
         ...useFormProps,
     });
+    const { onSubmit, getInputProps } = form;
 
     const { mutate: login, isLoading } = useLogin<LoginFormTypes>();
 
@@ -103,65 +105,80 @@ export const LoginPage: React.FC<LoginProps> = ({
             </Title>
             <Space h="lg" />
             {renderProviders()}
-            <form
-                onSubmit={onSubmit((values) => {
-                    if (onSubmitProp) {
-                        return onSubmitProp(values);
-                    }
-                    return login(values);
-                })}
-                {...formProps}
-            >
-                <TextInput
-                    label={translate("pages.login.fields.email", "Email")}
-                    placeholder={translate("pages.login.fields.email", "Email")}
-                    {...getInputProps("email")}
-                />
-                <PasswordInput
-                    mt="md"
-                    label={translate("pages.login.fields.password", "Password")}
-                    placeholder="●●●●●●●●"
-                    {...getInputProps("password")}
-                />
-                <Box
-                    mt="md"
-                    sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                    }}
+            <FormProvider form={form}>
+                <form
+                    onSubmit={onSubmit((values: any) => {
+                        if (onSubmitProp) {
+                            return onSubmitProp(values);
+                        }
+                        return login(values);
+                    })}
+                    {...formProps}
                 >
-                    {rememberMe ?? (
-                        <Checkbox
-                            label={translate(
-                                "pages.login.buttons.rememberMe",
-                                "Remember me",
-                            )}
-                            size="xs"
-                            {...getInputProps("remember", {
-                                type: "checkbox",
-                            })}
-                        />
-                    )}
-                    {forgotPasswordLink ?? (
-                        <Anchor component={Link} to="/reset-password" size="xs">
-                            {translate(
-                                "pages.login.buttons.resetPassword",
-                                "Forgot password?",
-                            )}
-                        </Anchor>
-                    )}
-                </Box>
-                <Button
-                    mt="lg"
-                    fullWidth
-                    size="md"
-                    type="submit"
-                    loading={isLoading}
-                >
-                    {translate("pages.login.signin", "Sign in")}
-                </Button>
-            </form>
+                    <TextInput
+                        name="email"
+                        label={translate("pages.login.fields.email", "Email")}
+                        placeholder={translate(
+                            "pages.login.fields.email",
+                            "Email",
+                        )}
+                        {...getInputProps("email")}
+                    />
+                    <PasswordInput
+                        name="password"
+                        mt="md"
+                        label={translate(
+                            "pages.login.fields.password",
+                            "Password",
+                        )}
+                        placeholder="●●●●●●●●"
+                        {...getInputProps("password")}
+                    />
+                    <Box
+                        mt="md"
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                        }}
+                    >
+                        {rememberMe ?? (
+                            <Checkbox
+                                label={translate(
+                                    "pages.login.buttons.rememberMe",
+                                    "Remember me",
+                                )}
+                                size="xs"
+                                {...getInputProps("remember", {
+                                    type: "checkbox",
+                                })}
+                            />
+                        )}
+                        {forgotPasswordLink ?? (
+                            <Anchor
+                                component={Link}
+                                to="/forgot-password"
+                                size="xs"
+                            >
+                                {translate(
+                                    "pages.login.buttons.forgotPassword",
+                                    "Forgot password?",
+                                )}
+                            </Anchor>
+                        )}
+                    </Box>
+                    <Button
+                        mt="lg"
+                        fullWidth
+                        size="md"
+                        type="submit"
+                        loading={isLoading}
+                    >
+                        {translate("pages.login.signin", "Sign in")}
+                    </Button>
+                </form>
+            </FormProvider>
+
             {registerLink ?? (
                 <Text mt="xs" size="xs">
                     {translate(

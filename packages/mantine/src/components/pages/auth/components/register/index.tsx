@@ -18,7 +18,7 @@ import {
     Divider,
 } from "@mantine/core";
 
-import { useForm } from "@hooks/form";
+import { FormContext } from "@contexts/form-context";
 import { layoutStyles, cardStyles, titleStyles } from "../styles";
 import { FormPropsType } from "../..";
 
@@ -36,11 +36,12 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     formProps,
     providers,
 }) => {
+    const { useForm, FormProvider } = FormContext;
     const { onSubmit: onSubmitProp, ...useFormProps } = formProps || {};
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
-    const { getInputProps, onSubmit } = useForm({
+    const form = useForm({
         initialValues: {
             email: "",
             password: "",
@@ -53,10 +54,11 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                           "pages.register.errors.validEmail",
                           "Invalid email address",
                       ),
-            password: (value) => value === "",
+            password: (value: any) => value === "",
         },
         ...useFormProps,
     });
+    const { onSubmit, getInputProps } = form;
 
     const { mutate: register, isLoading } = useLogin<RegisterFormTypes>();
 
@@ -100,55 +102,67 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             </Title>
             <Space h="lg" />
             {renderProviders()}
-            <form
-                onSubmit={onSubmit((values) => {
-                    if (onSubmitProp) {
-                        return onSubmitProp(values);
-                    }
-                    return register(values);
-                })}
-                {...formProps}
-            >
-                <TextInput
-                    label={translate("pages.register.fields.email", "Email")}
-                    placeholder={translate(
-                        "pages.register.fields.email",
-                        "Email",
-                    )}
-                    {...getInputProps("email")}
-                />
-                <PasswordInput
-                    mt="md"
-                    label={translate(
-                        "pages.register.fields.password",
-                        "Password",
-                    )}
-                    placeholder="●●●●●●●●"
-                    {...getInputProps("password")}
-                />
-                {loginLink ?? (
-                    <Group mt="md" position={loginLink ? "left" : "right"}>
-                        <Text size="xs">
-                            {translate(
-                                "pages.register.buttons.haveAccount",
-                                "Have an account? ",
-                            )}{" "}
-                            <Anchor component={Link} to="/login" weight={700}>
-                                {translate("pages.register.signin", "Sign in")}
-                            </Anchor>
-                        </Text>
-                    </Group>
-                )}
-                <Button
-                    mt="lg"
-                    fullWidth
-                    size="md"
-                    type="submit"
-                    loading={isLoading}
+            <FormProvider form={form}>
+                <form
+                    onSubmit={onSubmit((values: any) => {
+                        if (onSubmitProp) {
+                            return onSubmitProp(values);
+                        }
+                        return register(values);
+                    })}
+                    {...formProps}
                 >
-                    {translate("pages.register.buttons.submit", "Sign up")}
-                </Button>
-            </form>
+                    <TextInput
+                        label={translate(
+                            "pages.register.fields.email",
+                            "Email",
+                        )}
+                        placeholder={translate(
+                            "pages.register.fields.email",
+                            "Email",
+                        )}
+                        {...getInputProps("email")}
+                    />
+                    <PasswordInput
+                        mt="md"
+                        label={translate(
+                            "pages.register.fields.password",
+                            "Password",
+                        )}
+                        placeholder="●●●●●●●●"
+                        {...getInputProps("password")}
+                    />
+                    {loginLink ?? (
+                        <Group mt="md" position={loginLink ? "left" : "right"}>
+                            <Text size="xs">
+                                {translate(
+                                    "pages.register.buttons.haveAccount",
+                                    "Have an account? ",
+                                )}{" "}
+                                <Anchor
+                                    component={Link}
+                                    to="/login"
+                                    weight={700}
+                                >
+                                    {translate(
+                                        "pages.register.signin",
+                                        "Sign in",
+                                    )}
+                                </Anchor>
+                            </Text>
+                        </Group>
+                    )}
+                    <Button
+                        mt="lg"
+                        fullWidth
+                        size="md"
+                        type="submit"
+                        loading={isLoading}
+                    >
+                        {translate("pages.register.buttons.submit", "Sign up")}
+                    </Button>
+                </form>
+            </FormProvider>
         </Card>
     );
 

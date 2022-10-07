@@ -18,7 +18,7 @@ import {
     Group,
 } from "@mantine/core";
 
-import { useForm } from "@hooks/form";
+import { FormContext } from "@contexts/form-context";
 import { layoutStyles, cardStyles, titleStyles } from "../styles";
 import { FormPropsType } from "../..";
 
@@ -39,11 +39,12 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
     renderContent,
     formProps,
 }) => {
+    const { useForm, FormProvider } = FormContext;
     const { onSubmit: onSubmitProp, ...useFormProps } = formProps || {};
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
-    const { getInputProps, onSubmit } = useForm({
+    const form = useForm({
         initialValues: {
             email: "",
         },
@@ -52,12 +53,13 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
                 /^\S+@\S+$/.test(value)
                     ? null
                     : translate(
-                          "pages.resetPassword.errors.validEmail",
+                          "pages.forgotPassword.errors.validEmail",
                           "Invalid email address",
                       ),
         },
         ...useFormProps,
     });
+    const { getInputProps, onSubmit } = form;
 
     const { mutate: forgotPassword, isLoading } =
         useLogin<ForgotPasswordFormTypes>();
@@ -66,61 +68,67 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
         <Card style={cardStyles} {...(contentProps ?? {})}>
             <Title style={titleStyles}>
                 {translate(
-                    "pages.resetPassword.title",
+                    "pages.forgotPassword.title",
                     "Forgot your password?",
                 )}
             </Title>
             <Space h="lg" />
-            <form
-                onSubmit={onSubmit((values) => {
-                    if (onSubmitProp) {
-                        return onSubmitProp(values);
-                    }
-                    return forgotPassword(values);
-                })}
-                {...formProps}
-            >
-                <TextInput
-                    label={translate(
-                        "pages.resetPassword.fields.email",
-                        "Email",
-                    )}
-                    placeholder={translate(
-                        "pages.resetPassword.fields.email",
-                        "Email",
-                    )}
-                    {...getInputProps("email")}
-                />
-
-                {loginLink ?? (
-                    <Group mt="md" position={loginLink ? "left" : "right"}>
-                        <Text size="xs">
-                            {translate(
-                                "pages.login.resetPassword.haveAccount",
-                                "Have an account? ",
-                            )}{" "}
-                            <Anchor component={Link} to="/login" weight={700}>
-                                {translate(
-                                    "pages.resetPassword.signin",
-                                    "Sign in",
-                                )}
-                            </Anchor>
-                        </Text>
-                    </Group>
-                )}
-                <Button
-                    mt="lg"
-                    fullWidth
-                    size="md"
-                    type="submit"
-                    loading={isLoading}
+            <FormProvider form={form}>
+                <form
+                    onSubmit={onSubmit((values: any) => {
+                        if (onSubmitProp) {
+                            return onSubmitProp(values);
+                        }
+                        return forgotPassword(values);
+                    })}
+                    {...formProps}
                 >
-                    {translate(
-                        "pages.resetPassword.buttons.submit",
-                        "Send reset instructions",
+                    <TextInput
+                        label={translate(
+                            "pages.forgotPassword.fields.email",
+                            "Email",
+                        )}
+                        placeholder={translate(
+                            "pages.forgotPassword.fields.email",
+                            "Email",
+                        )}
+                        {...getInputProps("email")}
+                    />
+
+                    {loginLink ?? (
+                        <Group mt="md" position={loginLink ? "left" : "right"}>
+                            <Text size="xs">
+                                {translate(
+                                    "pages.login.forgotPassword.haveAccount",
+                                    "Have an account? ",
+                                )}{" "}
+                                <Anchor
+                                    component={Link}
+                                    to="/login"
+                                    weight={700}
+                                >
+                                    {translate(
+                                        "pages.forgotPassword.signin",
+                                        "Sign in",
+                                    )}
+                                </Anchor>
+                            </Text>
+                        </Group>
                     )}
-                </Button>
-            </form>
+                    <Button
+                        mt="lg"
+                        fullWidth
+                        size="md"
+                        type="submit"
+                        loading={isLoading}
+                    >
+                        {translate(
+                            "pages.forgotPassword.buttons.submit",
+                            "Send reset instructions",
+                        )}
+                    </Button>
+                </form>
+            </FormProvider>
         </Card>
     );
 

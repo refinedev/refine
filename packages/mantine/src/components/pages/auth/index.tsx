@@ -1,6 +1,7 @@
 import React from "react";
 import { AuthPageProps } from "@pankod/refine-core";
 import { BoxProps, CardProps } from "@mantine/core";
+import { UseFormInput } from "@mantine/form/lib/types";
 
 import {
     LoginPage,
@@ -8,13 +9,12 @@ import {
     ForgotPasswordPage,
     UpdatePasswordPage,
 } from "./components";
-import { UseFormProps } from "../../../hooks/form";
 
 export type FormPropsType = React.DetailedHTMLProps<
     React.FormHTMLAttributes<HTMLFormElement>,
     HTMLFormElement
 > &
-    UseFormProps & {
+    UseFormInput<{}> & {
         onSubmit: (values: any) => void;
     };
 
