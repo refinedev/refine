@@ -49,36 +49,3 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         </div>
     );
 };
-
-// Responsive Navbar using Bootstrap
-// import { useMenu, LayoutProps } from "@pankod/refine-core";
-// import routerProvider from "@pankod/refine-react-router-v6";
-// import React from "react";
-// import "bootstrap/dist/css/bootstrap.min.css"
-// import { Navbar, Nav } from 'react-bootstrap'
-
-// export const Layout: React.FC<LayoutProps> = ({ children }) => {
-
-//     const { menuItems } = useMenu();
-
-//     const { Link } = routerProvider;
-
-//     return (
-//         <div>
-//             <Navbar className="navbar-border" expand="lg" >
-//                 <img className="brand-image" src={"https://refine.dev/img/refine_logo.png"} width="100px" height="100px" />
-//                 <Navbar.Toggle />
-//                 <Navbar.Collapse>
-//                     <Nav>
-//                         {menuItems.map(({ name, label, icon, route }) => (
-//                             <Link className="nav-link" to={name}>
-//                                 <span>{name}</span>
-//                             </Link>
-//                         ))}
-//                     </Nav>
-//                 </Navbar.Collapse>
-//             </Navbar>
-//             <div>{children}</div>
-//         </div>
-//     );
-// };

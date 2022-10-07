@@ -31,13 +31,11 @@ refine is a React-based framework for building internal tools using helper hooks
 
 
 Steps we'll cover:
-- [Introduction](#introduction)
 - [Setting Up a refine App](#setting-up-a-refine-app)
 - [Responsive Navbar with Tailwind](#responsive-navbar-with-tailwind)
 - [Add navigation functionality to the navbar](#add-navigation-functionality-to-the-navbar)
 - [Responsive Navbar with Bootstrap](#responsive-navbar-with-bootstrap)
 - [Add React Router to Bootstrap Navbar](#add-react-router-to-bootstrap-navbar)
-- [Conclusion](#conclusion)
  
 ## Setting Up a refine App
 We'll use [superplate](https://github.com/pankod/superplate) tool to create an empty React-based **refine** application.
@@ -532,4 +530,14 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
 ## Conclusion
 **Refine**  works with any custom design or UI framework. Every UI framework helps in creating layouts by providing utility classes or pre-designed components. In this article we implemented responsive navbar using Tailwind and Bootstrap.  You can choose any framework and design components according to your needs.
+
+## Live StackBlitz Example
+
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/blog/responsive-navbar/?embed=1&view=preview&theme=dark&preset=node"
+     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+     title="responsive-navbar"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
+
 
