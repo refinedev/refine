@@ -770,7 +770,3 @@ const App: React.FC = () => (
 ```
 
 [routerprovider]: /api-reference/core/providers/router-provider.md
-
-```
-
-```
