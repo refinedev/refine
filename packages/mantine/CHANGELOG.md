@@ -1,5 +1,12 @@
 # @pankod/refine-mantine
 
+## 1.4.0
+
+### Minor Changes
+
+-   -   Added new <AuthPage /> component core and mantine support.
+    -   Move Auth types `@pankod/refine-ui-types` to `@pankod/refine-core`
+
 ## 1.3.0
 
 ### Minor Changes

@@ -1,5 +1,12 @@
 # @pankod/refine-mui
 
+## 3.50.0
+
+### Minor Changes
+
+-   -   Added new <AuthPage /> component core and mantine support.
+    -   Move Auth types `@pankod/refine-ui-types` to `@pankod/refine-core`
+
 ## 3.49.0
 
 ### Minor Changes

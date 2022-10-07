@@ -1,6 +1,6 @@
 {
     "name": "@pankod/refine-mui",
-    "version": "3.49.0",
+    "version": "3.50.0",
     "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
     "private": false,
     "main": "dist/index.js",
@@ -19,7 +19,7 @@
     },
     "devDependencies": {
         "@pankod/refine-ui-tests": "^0.9.0",
-        "@pankod/refine-core": "^3.75.0",
+        "@pankod/refine-core": "^3.76.0",
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
