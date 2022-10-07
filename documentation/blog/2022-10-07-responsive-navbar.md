@@ -1,9 +1,9 @@
 ---
-title: Responsive Navbar
-description: In this brief guide, we compare some concept of the two most popular CSS layout methods - Grid and Flexbox.
-slug: responsive-navbar
+title: Creating a Responsive React Navbar with Tailwind CSS
+description: In this brief guide, we'll create a responsive navbar with Tailwind CSS and Bootstrap in React.
+slug: react-navbar-responsive-tailwind
 authors: muhammed_arslan
-tags: [css, html, grid, flexbox, comparison]
+tags: [css, navbar, tailwind, react]
 image: /img/blog/2022-10-07-responsive-navbar/social.png
 hide_table_of_contents: false
 ---
