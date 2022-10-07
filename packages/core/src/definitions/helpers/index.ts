@@ -10,3 +10,4 @@ export { humanizeString } from "./humanizeString";
 export { handleRefineOptions } from "./handleRefineOptions";
 export { redirectPage } from "./redirectPage";
 export { sequentialPromises } from "./sequentialPromises";
+export { pickDataProvider } from "./pickDataProvider";
