@@ -4,6 +4,8 @@ title: Supabase
 ---
 import login from '@site/static/img/guides-and-concepts/data-provider/supabase/login-screen.png';
 import welcome from '@site/static/img/guides-and-concepts/data-provider/supabase/welcome.png';
+import flow from '@site/static/img/guides-and-concepts/data-provider/supabase/flow.png';
+import flow3 from '@site/static/img/guides-and-concepts/data-provider/supabase/flow3.png';
 
 Supabase is an open-source Firebase alternative that provides backend features. This tutorial steps will be focus specifically on database and authentication features.  We'll see how to use Supabase as a data provider and implement authentication to refine app.
 
@@ -111,124 +113,125 @@ With this configuration, refine can now communicate with Supabase API and perfor
 
 Auth provider is a concept that allows us to use any authentication service with refine. 
 
-You'll see a file called `src/authProvider.ts` created by CLI. This auto-generated file contains functions that using Supabase Auth API methods to perform authentication and authorization operations.So basically, this is where we set authentication logic for the app.
+You'll see a file called `src/authProvider.ts` created by CLI. This auto-generated file contains pre-defined functions that using Supabase Auth API methods internally to perform authentication and authorization operations. 
 
-[Refer to refine Auth Provider docs more information &#8594](https://refine.dev/docs/api-reference/core/providers/auth-provider/)
+So basically, this is where we set complete authentication logic for the app.
+
+Since we preferred refine-supabase as the data provider during the CLI project initialization,  all required Supabase authentication methods are already implemented for us. This shows us how easy it is to bootstrap a refine app with CLI
+
+[Refer to docs for more information about Auth Provider methods and custom Auth Providers  &#8594](https://refine.dev/docs/api-reference/core/providers/auth-provider/)
 
 
-<details><summary>Take a look the `authProvider.ts` file </summary>
+<details><summary>Take a look the auto-generated <b>authProvider.ts</b> file </summary>
 <p>
 
 
 ```ts title="src/authProvider.ts"
-import { AuthProvider } from '@pankod/refine-core';
-import { notification } from '@pankod/refine-antd';
-import { supabaseClient } from 'utility';
+import { AuthProvider } from "@pankod/refine-core";
+
+import { supabaseClient } from "utility";
 
 const authProvider: AuthProvider = {
-    login: async ({ email, password, providerName }) => {
-        const { user, error } = await supabaseClient.auth.signIn({
-            email,
-            password,
-            provider: providerName,
-        });
+  login: async ({ email, password, providerName }) => {
+    const { user, error } = await supabaseClient.auth.signIn({
+      email,
+      password,
+      provider: providerName,
+    });
 
-        if (error) {
-            return Promise.reject(error);
-        }
+    if (error) {
+      return Promise.reject(error);
+    }
 
-        if (user) {
-            return Promise.resolve();
-        }
+    if (user) {
+      return Promise.resolve();
+    }
 
-        // for third-party login
-        return Promise.resolve(false);
-    },
-    register: async ({ email, password }) => {
-        const { user, error } = await supabaseClient.auth.signUp({
-            email,
-            password,
-        });
+    // for third-party login
+    return Promise.resolve(false);
+  },
+  register: async ({ email, password }) => {
+    const { user, error } = await supabaseClient.auth.signUp({
+      email,
+      password,
+    });
 
-        if (error) {
-            return Promise.reject(error);
-        }
+    if (error) {
+      return Promise.reject(error);
+    }
 
-        if (user) {
-            return Promise.resolve();
-        }
-    },
-    forgotPassword: async ({ email }) => {
-        const { data, error } =
-            await supabaseClient.auth.api.resetPasswordForEmail(email, {
-                redirectTo: `${window.location.origin}/update-password`,
-            });
+    if (user) {
+      return Promise.resolve();
+    }
+  },
+  forgotPassword: async ({ email }) => {
+    const { data, error } = await supabaseClient.auth.api.resetPasswordForEmail(
+      email,
+      {
+        redirectTo: `${window.location.origin}/update-password`,
+      }
+    );
 
-        if (error) {
-            return Promise.reject(error);
-        }
+    if (error) {
+      return Promise.reject(error);
+    }
 
-        if (data) {
-            notification.open({
-                type: 'success',
-                message: 'Success',
-                description:
-                    "Please check your email for a link to reset your password. If it doesn't appear within a few minutes, check your spam folder.",
-            });
-            return Promise.resolve();
-        }
-    },
-    updatePassword: async ({ password }) => {
-        const { data, error } = await supabaseClient.auth.update({ password });
+    if (data) {
+      return Promise.resolve();
+    }
+  },
+  updatePassword: async ({ password }) => {
+    const { data, error } = await supabaseClient.auth.update({ password });
 
-        if (error) {
-            return Promise.reject(error);
-        }
+    if (error) {
+      return Promise.reject(error);
+    }
 
-        if (data) {
-            return Promise.resolve('/');
-        }
-    },
-    logout: async () => {
-        const { error } = await supabaseClient.auth.signOut();
+    if (data) {
+      return Promise.resolve("/");
+    }
+  },
+  logout: async () => {
+    const { error } = await supabaseClient.auth.signOut();
 
-        if (error) {
-            return Promise.reject(error);
-        }
+    if (error) {
+      return Promise.reject(error);
+    }
 
-        return Promise.resolve('/');
-    },
-    checkError: () => Promise.resolve(),
-    checkAuth: async () => {
-        const session = supabaseClient.auth.session();
-        const sessionFromURL = await supabaseClient.auth.getSessionFromUrl();
+    return Promise.resolve("/");
+  },
+  checkError: () => Promise.resolve(),
+  checkAuth: async () => {
+    const session = supabaseClient.auth.session();
+    const sessionFromURL = await supabaseClient.auth.getSessionFromUrl();
 
-        if (session || sessionFromURL?.data?.user) {
-            return Promise.resolve();
-        }
+    if (session || sessionFromURL?.data?.user) {
+      return Promise.resolve();
+    }
 
-        return Promise.reject();
-    },
-    getPermissions: async () => {
-        const user = supabaseClient.auth.user();
+    return Promise.reject();
+  },
+  getPermissions: async () => {
+    const user = supabaseClient.auth.user();
 
-        if (user) {
-            return Promise.resolve(user.role);
-        }
-    },
-    getUserIdentity: async () => {
-        const user = supabaseClient.auth.user();
+    if (user) {
+      return Promise.resolve(user.role);
+    }
+  },
+  getUserIdentity: async () => {
+    const user = supabaseClient.auth.user();
 
-        if (user) {
-            return Promise.resolve({
-                ...user,
-                name: user.email,
-            });
-        }
-    },
+    if (user) {
+      return Promise.resolve({
+        ...user,
+        name: user.email,
+      });
+    }
+  },
 };
 
 export default authProvider;
+
 ```
 
  </p>
@@ -237,14 +240,12 @@ export default authProvider;
 
 
 :::tip 
-Auth provider functions are also consumed by [refine authorization hooks](https://refine.dev/docs/api-reference/core/hooks/auth/useLogin/) under the hood. Since this is out of scope of this tutorial, we'll not cover them. 
+Auth provider functions are also consumed by [refine authorization hooks](https://refine.dev/docs/api-reference/core/hooks/auth/useLogin/) under the hood. Since this is out of scope of this tutorial, we'll not cover them for now
 :::
 
+<br/>
 
-To activate auth provider, we need to register it to `authProvider` property of `<Refine>` component. 
-We'll be using this provider to implement authentication and authorization features to our app. 
-
-
+Auth provider needed to be registered in `<Refine>` component to activate auth features in our app
 
 
 ```tsx title="App.tsx"
@@ -269,10 +270,10 @@ export default App;
 ```
 
 
-Also, we'll see `authprovider` methods in action when using `LoginPage` in the next sections.
+Also, we'll see the `Auth provider` methods in action when using `LoginPage` in the next sections.
 
  
-At this point, our refine app is configured to communicate with Supabase API and perform authentication operations using Supabase Auth methods.
+At this point, our refine app is configured to communicate with Supabase API and ready to perform authentication operations using Supabase Auth methods.
 
 If you head over to localhost:3000, you'll see a welcome page.
 
@@ -291,17 +292,21 @@ Now it's time to add some resources to our app.
 
 
 ## Adding CRUD pages   
-Before we dive into Supabase features, we'll add simple CRUD pages to make out app interactive.
+Before we dive into Supabase features, we'll add simple CRUD pages to make out app more interactive.
 
-### Adding List post page
+:::note
+Since this post focusing on Supabase implementation, we'll not go into details of how to create CRUD page and how it works. You can refer to [Tutorial](https://refine.dev/docs/tutorials/ant-design-tutorial/#creating-a-list-page) to learn more about creating CRUD pages.
+:::
 
-Let's add a list page to show data retrived from Supabase API. Copy and paste following code to `src/pages` folder and name it `posts.tsx`.
+### Adding a List page
+
+Let's add a listing page to show data retrieved from Supabase API in the table. Copy and paste following code to `src/pages/posts` folder and name it `list.tsx`.
 
 
-<details><summary>Show the code</summary>
+<details><summary>Show the List page code</summary>
 <p>
 
-```tsx title="src/pages/posts/index.tsx"
+```tsx title="src/pages/posts/list.tsx"
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
@@ -399,15 +404,12 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 </details>
 
 
-:::info
-Since this post focusing on Supase features, we'll not go into details of how to create a list page and how it works. You can refer to this [Tutorial section](https://refine.dev/docs/tutorials/ant-design-tutorial/#creating-a-list-page) to learn more about how to create a list page.
-:::
 
-### Adding Create post page
+### Adding a Create page
 
-We'll add a create page to create new posts. Copy and paste following code to `src/pages` folder and name it `posts/create.tsx`.
+We'll need a page for creating new record in Supabase API. Copy and paste following code to `src/pages/posts` folder and name it `create.tsx`.
 
-<details><summary>Show the code</summary>
+<details><summary>Show the Create page code</summary>
 <p>
 
 ```tsx title="src/pages/posts/create.tsx"
@@ -551,7 +553,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
 
 We need to add interfaces for `Post` and `Create` pages to `src/interfaces/index.d.ts` file.
 
-<details><summary>Show the code</summary>
+<details><summary>Show the interface code </summary>
 <p>
 
 ```tsx title="src/interfaces/index.d.ts"
@@ -581,9 +583,9 @@ export interface IPost {
  </p>
 </details>
 
-Also add `normalizeFile` function to `src/utility/normalize.ts` file.
+Also, `normalizeFile` function needed to add into `src/utility/normalize.ts` file to perform file upload operations specifically for Supabase API.
 
-<details><summary>Show the code</summary>
+<details><summary>Show the Normalize file code</summary>
 <p>
 
 ```tsx title="src/utility/normalize.ts"
@@ -620,7 +622,7 @@ export const normalizeFile = (event: EventArgs) => {
 </details>
 
 ### Adding Resources
-One last thing we need to do is to add newly created pages to the `resources` prop of `Refine` component. 
+One last thing we need to do is to add newly created CRUD pages to the `resources` property of `<Refine>` component. 
 
 ```tsx title="src/App.tsx"
 import { dataProvider } from '@pankod/refine-supabase';
@@ -650,40 +652,105 @@ export default App;
 ```
 
 
+The resources property activates the connection between CRUD pages and Supabase API. 
+
+refine is automatically matches the Supabase API endpoint with CRUD pages for us. In this way, the pages can interact with data from the API.
 
 - The `name` property refers to the name of the table in the Supabase database.
 
 - The `list` property registers `/posts` endpoint to the `PostList` component.
 
-- The `create` property registers `/posts/create` endpoint to the `PostCreate` component. Thereby, when you head over to `yourdomain.com/posts/create`, we should see the `PostCreate` page we just assigned.
+- The `create` property registers `/posts/create` endpoint to the `PostCreate` component. Thereby, when you head over to `yourdomain.com/posts/create`, you will see the `PostCreate` page you just created.
 
 
 [Refer to resources docs for more information &#8594](https://refine.dev/docs/api-reference/core/components/refine-config/#resources)
 
 
-At this point our app will look like:
+
+## Understanding the Login screen logic
+After adding the resources, the app will look like:
+
+
 
 
 
 <div class="img-container">
-    <div class="window">
+    <div class="window" style={{alignSelf:"center", width:"700px"}} >
         <div class="control red"></div>
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={login} alt="login" />
+    <img style={{alignSelf:"center", width:"700px"}} src={login} alt="login" />
+</div>
+
+
+<br/>
+
+Normally, refine shows a default login page when `authProvider` and `resources` properties are registered to `<Refine />` component. However, the login screen we see is slightly different from the default one.
+
+#### This premade and ready to use Login screen consist `LoginPage` and `authProvider` concepts behind the scenes:
+
+A custom login page can be setted to the `LoginPage` property to override the default login page.
+
+Let's check out the `LoginPage` property automatically defined by CLI.
+
+  ```tsx title="src/App.tsx"
+import { Refine } from '@pankod/refine-core';
+//highlight-start
+import { AuthPage } from '@pankod/refine-antd';
+import routerProvider from "@pankod/refine-react-router-v6";
+  //highlight-end
+import authProvider from './authProvider';
+...
+
+function App() {
+    return (
+        <Refine
+            ...
+            //highlight-start
+             routerProvider={{
+                ...routerProvider,
+                routes: [
+                    {
+                        path: '/register',
+                        element: <AuthPage type="register" />,
+                    },
+                    {
+                        path: '/forgot-password',
+                        element: <AuthPage type="forgotPassword" />,
+                    },
+                    {
+                        path: '/update-password',
+                        element: <AuthPage type="updatePassword" />,
+                    },
+                ],
+            }}
+            //highlight-end
+            authProvider={authProvider}
+            //highlight-start
+            LoginPage={AuthPage}
+            //highlight-end
+        />
+    );
+}
+```
+`LoginPage` is setted to `AuthPage` component that returns ready to use authentication components can be used for login, register, update and forgot passwords. 
+
+**This is where `authProvider` comes into play.** 
+
+Remember, at the [Understanding the Auth Provider](#understanding-auth-provider) section, there were methods like "login", "register" and "forgotPassword" in the `authProvider.ts` file. Behind the scenes, these methods are binded to `<AuthPage>` components to perform authentication operations.
+
+
+
+
+<div class="img-container">
+     <img style={{alignSelf:"center", width:"700px"}} src={flow3} alt="flow3" />
 </div>
 
 <br/>
 
 
-This is refine's default login screen is activated by giving `Loginpage` property to `Refine` component.
-
-This is also where `authProvider` comes into play. At the [Auth Provider](#understanding-auth-provider) section, we added methods like "login",  "register" and "forgotPassword" methods to `authProvider`. 
-
-These methods are linked to `LoginPage` component to perform authentication operations.
-
-
+We also setted `routes` array into `routerProvider` property to `<Refine>` component to add custom routes to the app.
 
 
 Sign in the app with followings credentials:
