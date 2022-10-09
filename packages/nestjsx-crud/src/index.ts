@@ -14,6 +14,7 @@ import {
     HttpError,
     CrudFilters as RefineCrudFilter,
     CrudOperators,
+    ConditionalOperators,
     CrudSorting,
 } from "@pankod/refine-core";
 import { stringify } from "query-string";
@@ -104,18 +105,18 @@ const generateFilter = (
                     value: filter.value,
                 });
             } else {
-                filter.value.map((orFilter) => {
-                    orFilters.push({
-                        field: orFilter.field,
-                        operator: mapOperator(orFilter.operator),
-                        value: orFilter.value,
+                filter.value.map((ConditionalFilter) => {
+                    conditionalFilters.push({
+                        field: conditionalFilter.field,
+                        operator: mapOperator(conditionalFilter.operator),
+                        value: conditionalfilter.value,
                     });
                 });
             }
         });
     }
 
-    return { crudFilters, orFilters };
+    return { crudFilters, ConditionalFilters };
 };
 
 const NestsxCrud = (
