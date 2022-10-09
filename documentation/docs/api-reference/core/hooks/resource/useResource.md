@@ -13,28 +13,24 @@ const { resources } = useResource();
 // it also returns the resource with the props you provide as resourceNameOrRouteName.
 
 const { resource } = useResource({
-         resourceNameOrRouteName
-     });
+    resourceNameOrRouteName,
+});
 ```
 
 ## API Reference
 
 ### Properties
 
-| Key                   | Description                                                                                                                                                        | Type                                                        | Default                                                                              |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| resourceNameOrRouteName                                                                                   | Determines which resource to use for redirection | `string`                                                                                                                              | Resource name that it reads from route                           |
-| recordItemId                                                                                              | Adds `id` to the end of the URL                  | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                                                                              | Record id that it reads from route                               |
+<PropsTable module="@pankod/refine-core/useResource"  />
 
 ### Return value
 
-| Description | Type                             |
-| ----------- | -------------------------------- |
-| resources   | [`IResourceItem[]`](#interfaces) |
-| resource   | [`IResourceItem`](#interfaces) |
-| resourceName   | `string` |
-| id   | [`BaseKey`](/api-reference/core/interfaces.md#basekey) |
-
+| Description  | Type                                                   |
+| ------------ | ------------------------------------------------------ |
+| resources    | [`IResourceItem[]`](#interfaces)                       |
+| resource     | [`IResourceItem`](#interfaces)                         |
+| resourceName | `string`                                               |
+| id           | [`BaseKey`](/api-reference/core/interfaces.md#basekey) |
 
 #### Interfaces
 
@@ -46,9 +42,12 @@ type OptionsProps<TExtends = { [key: string]: any }> = TExtends & {
     auditLog?: {
         permissions?: AuditLogPermissions[number][] | string[];
     };
-}
+};
 
-interface IResourceComponentsProps<TCrudData = any, TOptionsPropsExtends = { [key: string]: any }> {
+interface IResourceComponentsProps<
+    TCrudData = any,
+    TOptionsPropsExtends = { [key: string]: any },
+> {
     canCreate?: boolean;
     canEdit?: boolean;
     canDelete?: boolean;

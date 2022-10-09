@@ -25,3 +25,9 @@ useSubscription({
 
 You can publish events with [`usePublish`](/api-reference/core/hooks/live/usePublish.md).
 :::
+
+## API Reference
+
+### Properties
+
+<PropsTable module="@pankod/refine-core/useSubscription"  />
