@@ -289,6 +289,6 @@ export interface IDataContextProvider {
 }
 
 export interface IDataMultipleContextProvider {
-    default?: IDataContextProvider;
+    default: IDataContextProvider;
     [key: string]: IDataContextProvider | any;
 }
