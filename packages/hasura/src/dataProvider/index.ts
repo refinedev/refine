@@ -1,5 +1,6 @@
 import { GraphQLClient } from "graphql-request";
 import * as gql from "gql-query-builder";
+import * as uuid from "uuid";
 import {
     CrudOperators,
     CrudFilters,
@@ -130,7 +131,7 @@ const dataProvider = (client: GraphQLClient): DataProvider => {
             const { query, variables } = gql.query({
                 operation,
                 variables: {
-                    id: { value: id, type: "uuid", required: true },
+                    const id: string = uuid.v4(),
                     ...metaData?.variables,
                 },
                 fields: metaData?.fields,
