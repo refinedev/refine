@@ -1,6 +1,6 @@
 ---
 id: supabase
-title: Supabase Data Provider Tutorial
+title: Supabase Tutorial
 ---
 import login from '@site/static/img/guides-and-concepts/data-provider/supabase/login-screen.png';
 import welcome from '@site/static/img/guides-and-concepts/data-provider/supabase/welcome.png';
@@ -10,7 +10,8 @@ import create from '@site/static/img/guides-and-concepts/data-provider/supabase/
 import realTime from '@site/static/img/guides-and-concepts/data-provider/supabase/real-time.gif';
 import socialLogin from '@site/static/img/guides-and-concepts/data-provider/supabase/social-login.gif';
 import supabaseConfig from '@site/static/img/guides-and-concepts/data-provider/supabase/supabase-config.png';
-
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 ## Introduction
 
@@ -28,7 +29,16 @@ We are assuming that you have already know how refine works. If not, please chec
 
 ## Project Setup
 
-We'll be using superplate CLI to bootstrap our example project with a special preset defined to supabase example
+We'll be using [superplate](https://github.com/pankod/superplate) CLI to bootstrap our example project with a special preset defined to Supabase example
+
+
+<Tabs
+defaultValue="preset"
+values={[
+{label: 'Quick setup with CLI preset', value: 'preset'},
+{label: 'Without preset', value: 'nopreset'}
+]}>
+<TabItem value="preset">
 
 ```
 npx superplate-cli --preset refine-antd-supabase my-supabase-app
@@ -40,21 +50,39 @@ Also, we need to install npm packages to use markdown editor:
 npm i react-markdown react-mde
 ```
 
-This will create a new refine app with supabase data provider and Ant Desing as a UI framework. We'll be using this project as a base to implement our example.
+This will create a new refine app with Supabase data provider and Ant Desing as a UI framework. We'll be using this project as a base to implement our example.
 
-You are free to bootstrap a refine app with any other features you want. To do so, you can run the following command and choose any data provider or feature you want.
+  </TabItem>
+    <TabItem value="nopreset">
+
+You are free to bootstrap a **refine** app with any other features you want. To do so, you can run the following command and choose any data provider or feature you want.
 
 ```
 npx superplate-cli example-app
 ```
 
+Then choose the following options:
+
+```npm
+? Select your project type: refine-react
+ > refine-react
+? Do you want to use a UI Framework?:
+ > Ant Design
+? Data Provider
+ > Supabase
+```
+
 :::tip
-If you want to add Supabase data provider to existed refine app, you add it by running:
+If you want to add Supabase data provider to existed **refine** app, you add it by running:
 
 ```
 npm i @pankod/refine-supabase
 ```
 :::
+
+  </TabItem>
+</Tabs>
+
 
 
 
@@ -1003,7 +1031,7 @@ So far, we have implemented the followings:
 
 ## Supabase Real Time Support
 
-refine has a built-in support for [Supabase Real Time](https://supabase.com/docs/guides/realtime). It means that when you create, update, or delete a record, the changes will be reflected in the app in real-time.  
+**refine** has a built-in support for [Supabase Real Time](https://supabase.com/docs/guides/realtime). It means that when you create, update, or delete a record, the changes will be reflected in the app in real-time.  
 Required Supabase Real Time setup is already done in the [`@pankod/refine-supabase`](https://github.com/pankod/refine/tree/master/packages/supabase)` data provider. 
 
  [You can check the Supabase Real Time integration in the data provider source code  &#8594](https://github.com/pankod/refine/blob/master/packages/supabase/src/index.ts#L325)
