@@ -79,14 +79,6 @@ const App: React.FC = () => {
             }),
     };
 
-    const RememberMe = () => {
-        const { getInputProps } = FormContext.useFormContext();
-
-        return (
-            <Checkbox label="Remember Me" {...getInputProps("rememberMe")} />
-        );
-    };
-
     return (
         <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
@@ -144,22 +136,6 @@ const App: React.FC = () => {
                                     icon: <IconBrandGithub />,
                                 },
                             ]}
-                            rememberMe={<RememberMe />}
-                            formProps={{
-                                onSubmit: (e: any) => {
-                                    e.preventDefault();
-
-                                    const email = e.target.email.value;
-                                    const password = e.target.password.value;
-
-                                    alert(
-                                        JSON.stringify({
-                                            email,
-                                            password,
-                                        }),
-                                    );
-                                },
-                            }}
                         />
                     )}
                     ReadyPage={ReadyPage}
