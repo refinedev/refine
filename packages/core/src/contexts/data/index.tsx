@@ -35,10 +35,7 @@ export const DataContextProvider: React.FC<
       })
 > = ({ children, ...rest }) => {
     let dataProviders;
-    if (
-        !rest.hasOwnProperty("updateMany") ||
-        !rest.hasOwnProperty("createMany")
-    ) {
+    if (!rest.getList || !rest.getOne) {
         dataProviders = rest as IDataMultipleContextProvider;
     } else {
         dataProviders = {
