@@ -20,25 +20,23 @@ import { PostCreate, PostEdit, PostList } from "./pages";
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
-        login: async (params) => {
-            console.log("params", params);
+        login: async ({ providerName, email }) => {
+            if (providerName === "google") {
+                window.location.href =
+                    "https://accounts.google.com/o/oauth2/v2/auth";
+                return Promise.resolve(false);
+            }
 
-            // if (providerName === "google") {
-            //     window.location.href =
-            //         "https://accounts.google.com/o/oauth2/v2/auth";
-            //     return Promise.resolve(false);
-            // }
+            if (providerName === "github") {
+                window.location.href =
+                    "https://github.com/login/oauth/authorize";
+                return Promise.resolve(false);
+            }
 
-            // if (providerName === "github") {
-            //     window.location.href =
-            //         "https://github.com/login/oauth/authorize";
-            //     return Promise.resolve(false);
-            // }
-
-            // if (email) {
-            //     localStorage.setItem("email", email);
-            //     return Promise.resolve();
-            // }
+            if (email) {
+                localStorage.setItem("email", email);
+                return Promise.resolve();
+            }
 
             return Promise.reject();
         },
