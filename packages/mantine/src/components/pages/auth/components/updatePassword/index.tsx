@@ -45,6 +45,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
             confirmPassword: "",
         },
         validate: {
+            password: (value: any) => value === "",
             confirmPassword: (value: any, values: any) =>
                 value !== values.password
                     ? translate(
