@@ -1,10 +1,10 @@
 ---
 id: supabase
-title: Supabase Tutorial
+title: Supabase 
 ---
 import login from '@site/static/img/guides-and-concepts/data-provider/supabase/login-screen.png';
 import welcome from '@site/static/img/guides-and-concepts/data-provider/supabase/welcome.png';
-import flow3 from '@site/static/img/guides-and-concepts/data-provider/supabase/flow3.png';
+import flow from '@site/static/img/guides-and-concepts/data-provider/supabase/flow.png';
 import list from '@site/static/img/guides-and-concepts/data-provider/supabase/list.png';
 import create from '@site/static/img/guides-and-concepts/data-provider/supabase/create.png';
 import realTime from '@site/static/img/guides-and-concepts/data-provider/supabase/real-time.gif';
@@ -15,7 +15,7 @@ import TabItem from '@theme/TabItem';
 
 ## Introduction
 
-Supabase is an open-source Firebase alternative that provides backend features. This tutorial steps will focus specifically on database and authentication features. We'll see how to use Supabase as a data provider and implement authentication to refine app.
+[Supabase](https://supabase.com/) is an open-source Firebase alternative that provides backend features. This tutorial steps will focus specifically on database and authentication features. We'll see how to use Supabase as a data provider and implement authentication to refine app.
 
 refine offers built-in data provider support for Supabase and handles all required data service methods out-of-the-box. Therefore, we will not need to use complex boilerplate codes to make it work. refine handles all the complex works for us by internal hooks and implementations.
 
@@ -898,7 +898,7 @@ The resources property activates the connection between CRUD pages and Supabase 
 After adding the resources, the app will look like:
 
 
-<div class="img-container">
+<div  style={{display:"flex", flexDirection:"column"}}>
     <div class="window" style={{alignSelf:"center", width:"700px"}} >
         <div class="control red"></div>
         <div class="control orange"></div>
@@ -962,13 +962,13 @@ The `AuthPage` component returns ready-to-use authentication pages for login, re
 
 **This is where `authProvider` comes into play.** 
 
-Remember the [Understanding the Auth Provider](#understanding-auth-provider) section? We mentioned "login", "register," and "forgotPassword"  functions that use Supabase Auth API methods internally in the `authProvider.ts` file. These methods automatically bind to `<AuthPage>` components by **refine** to perform authentication operations.
+Remember the [Understanding the Auth Provider](#understanding-auth-provider) section? We mentioned `login`, `register,`, `forgotPassword`, and `updatePassword`  functions that use [Supabase Auth API](https://supabase.com/docs/guides/auth) methods internally in the `authProvider.ts` file. These methods automatically bind to `<AuthPage>` components by **refine** to perform authentication operations.
+
+<br/>
 
 
-
-
-<div class="img-container">
-     <img style={{alignSelf:"center", width:"700px"}} src={flow3} alt="flow3" />
+<div style={{display:"flex", flexDirection:"column"}}>
+     <img style={{alignSelf:"center", width:"800px"}} src={flow} alt="flow" />
 </div>
 
 <br/>
@@ -979,6 +979,7 @@ Remember the [Understanding the Auth Provider](#understanding-auth-provider) sec
 We'll show how to implement third party logins in the next sections.
 
 [Refer to AuthPage docs for more information &#8594](https://refine.dev/docs/api-reference/antd/components/auth-page) 
+
 
 
 
@@ -1017,81 +1018,7 @@ Thanks to `refine-supabase` data provider, we can now start creating new records
 
 <br/>
 
-## Let's recap what we have done so far
-
-So far, we have implemented the followings:
-- We have reviewed Supabase Client and data provider concepts. We've seen benefits of using **refine** and how it can handle complex setups for us.
-- We have talked about the `authProvider` concept and how it works with Supabase Auth API. We also see the advantages of **refine**'s built-in authentication support.
-- We have added CRUD pages to make the app interact with Supabase API. We've seen how the `resources` property works and how it connects the pages with the API.
-- We have seen how the `LoginPage` property works and how it overrides the default login page with the `AuthPage` component. We also saw how the `authProvider` property works with the `AuthPage` component.
-- We have seen how authorization handling in **refine** app by understanding the logic behind of  `LoginPage` property, `authProvider`, and `<AuthPage>` component. 
-
-
-**refine provides solutions for critical parts of the complete CRUD app requirements. It saves development time and effort by providing ready-to-use components and features.**
-
-## Supabase Real Time Support
-
-**refine** has a built-in support for [Supabase Real Time](https://supabase.com/docs/guides/realtime). It means that when you create, update, or delete a record, the changes will be reflected in the app in real-time.  
-Required Supabase Real Time setup is already done in the [`@pankod/refine-supabase`](https://github.com/pankod/refine/tree/master/packages/supabase)` data provider. 
-
- [You can check the Supabase Real Time integration in the data provider source code  &#8594](https://github.com/pankod/refine/blob/master/packages/supabase/src/index.ts#L325)
-
-We only need to register refine's Supabase Live Provider to the `liveProvider` property to enable real-time support.
-
-```tsx title="src/App.tsx"
-import { Refine } from '@pankod/refine-core';
-//highlight-start
-import { liveProvider } from "@pankod/refine-supabase";
-import { supabaseClient } from 'utility';
-//highlight-end
-...
-
-function App() {
-    return (
-        <Refine
-            ...
-            //highlight-start
-             liveProvider={liveProvider(supabaseClient)}
-             options={{ liveMode: "auto" }}
-            //highlight-end
-            ...
-        />
-    );
-}
-```
-:::note
-For live features to work automatically, we setted `liveMode: "auto"` in the options prop.
-
-[Refer to Live Provider docs for more information &#8594](https://refine.dev/docs/api-reference/core/providers/live-provider/#livemode)
-:::
-
-<br/>
-
-### Let see how Real Time works in the app
-
-<br/>
-
-<div class="img-container">
-    <img  src={realTime} alt="realTime" />
-</div>
-
-
-<br/>
-
-
-
-:::tip
-**refine** offers out-of-the-box live provider support:
-
--   **Ably** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://stackblitz.com/github/pankod/refine/tree/master/examples/ably/?preset=node)
--   **Supabase** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/supabase/src/index.ts#L187)
--   **Appwrite** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/appwrite/src/index.ts#L252)
--   **Hasura** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/hasura/src/liveProvider/index.ts#L16)
--   **Nhost** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/nhost/src/liveProvider/index.ts#L16)
-:::
-
-
-## Bonus Section: Login with Google
+### Social Logins
 
 We'll show how to add Google Login option to the app. 
 
@@ -1171,3 +1098,177 @@ Here is the result:
 </div>
 
 <br/>
+
+## Let's recap what we have done so far
+
+So far, we have implemented the followings:
+- We have reviewed Supabase Client and data provider concepts. We've seen benefits of using **refine** and how it can handle complex setups for us.
+- We have talked about the `authProvider` concept and how it works with Supabase Auth API. We also see the advantages of **refine**'s built-in authentication support.
+- We have added CRUD pages to make the app interact with Supabase API. We've seen how the `resources` property works and how it connects the pages with the API.
+- We have seen how the `LoginPage` property works and how it overrides the default login page with the `AuthPage` component. We've seen how `AuthPage` component uses `authProvider` methods internally.
+- We have seen how authorization handling in **refine** app by understanding the logic behind of  `LoginPage` property, `authProvider`, and `<AuthPage>` component. 
+
+
+**refine provides solutions for critical parts of the complete CRUD app requirements. It saves development time and effort by providing ready-to-use components and features.**
+
+## Supabase Real Time Support
+
+**refine** has a built-in support for [Supabase Real Time](https://supabase.com/docs/guides/realtime). It means that when you create, update, or delete a record, the changes will be reflected in the app in real-time.  
+Required Supabase Real Time setup is already done in the [`@pankod/refine-supabase`](https://github.com/pankod/refine/tree/master/packages/supabase)` data provider. 
+
+ [You can check the Supabase Real Time integration in the data provider source code  &#8594](https://github.com/pankod/refine/blob/master/packages/supabase/src/index.ts#L325)
+
+We only need to register refine's Supabase Live Provider to the `liveProvider` property to enable real-time support.
+
+```tsx title="src/App.tsx"
+import { Refine } from '@pankod/refine-core';
+//highlight-start
+import { liveProvider } from "@pankod/refine-supabase";
+import { supabaseClient } from 'utility';
+//highlight-end
+...
+
+function App() {
+    return (
+        <Refine
+            ...
+            //highlight-start
+             liveProvider={liveProvider(supabaseClient)}
+             options={{ liveMode: "auto" }}
+            //highlight-end
+            ...
+        />
+    );
+}
+```
+:::note
+For live features to work automatically, we setted `liveMode: "auto"` in the options prop.
+
+[Refer to Live Provider docs for more information &#8594](https://refine.dev/docs/api-reference/core/providers/live-provider/#livemode)
+:::
+
+<br/>
+
+### Let see how real-time feature works in the app
+
+<br/>
+
+<div class="img-container">
+    <img  src={realTime} alt="realTime" />
+</div>
+
+
+<br/>
+
+
+
+:::tip
+**refine** offers out-of-the-box live provider support:
+
+-   **Ably** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://stackblitz.com/github/pankod/refine/tree/master/examples/ably/?preset=node)
+-   **Supabase** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/supabase/src/index.ts#L187)
+-   **Appwrite** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/appwrite/src/index.ts#L252)
+-   **Hasura** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/hasura/src/liveProvider/index.ts#L16)
+-   **Nhost** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/nhost/src/liveProvider/index.ts#L16)
+:::
+
+[Refer to `metaData` documentation for more information &#8594](https://refine.dev/docs/api-reference/general-concepts/#metadata)
+
+## Using `metaData` to pass values to data provider
+
+The `metaData` property is used to pass additional information that can be read by data provider methods.
+
+We'll show an example of getting relational data from different tables on Supabase API using `metaData` property. 
+
+Take a look at the useTable hook in List page we created on the [previous sections](http://localhost:3000/docs/advanced-tutorials/data-provider/supabase/#adding-a-list-page).
+    
+ ```tsx title="src/pages/posts/list.tsx"
+const { tableProps, sorter } = useTable<IPost>({
+    //highlight-start
+    metaData: {
+        select: "*, categories(title)",
+    },
+    // highlight-end
+});
+```
+### `select` 
+
+We pass a `select` value in `metaData` object to perform relational database operation in [Supabase data provider](https://github.com/pankod/refine/blob/master/packages/supabase/src/index.ts). The data provider methods are using Supabase [`select`](https://supabase.io/docs/reference/javascript/select) method internally.
+
+
+In this way, we can get the `title` data from the `categories` table and display it on the List page.
+
+
+useList, useOne, useMany hooks are using Supabase [`select`](https://supabase.io/docs/reference/javascript/select) method internally. So you can pass parameters to the Supbase select method using metaData property.
+
+:::tip
+Many to many işlemleri ve daha fazlası için refer to supabase select documantation.
+
+Detaylı bilgi için supabase select methodunu inceleyebilirsiniz.
+https://supabase.com/docs/reference/javascript/select
+
+:::
+
+
+### `id` 
+
+`metaData` `id` property is used to match the column name of the primary key(in case the column name is different than "id") in your Supabase data table to the column name you have assigned.
+
+
+refine's [useMany](https://refine.dev/docs/api-reference/core/hooks/data/useMany/) hook accepts `metaData` property and uses `getMany` method of data provider. 
+
+
+```tsx
+useMany({
+   resource: "posts",
+   ids: [1 , 2],
+});
+```
+By default, it searches for posts in the `id` column of the data table.
+
+With passing `id` parameter to the `metaData` property, we can change the column name to the `post_id` that will be searched for the ids.
+
+
+```tsx
+useMany({
+   resource: "posts",
+   ids: [1 , 2],
+   //highlight-start
+   metaData: {
+     id: "post_id",
+   },
+   // highlight-end
+});
+```
+Now it searches for posts in the `post_id` column of the data table instead of `id` column.
+
+
+
+### Deep Filtering
+
+Deep filtering is filtering on a relation's fields. 
+
+refine's [useTable](https://refine.dev/docs/api-reference/antd/hooks/table/useTable/#default-filter-value) hook accepts `initialFilterValue` and `metaData` properties.
+
+```tsx
+ const { tableProps, sorter } = useTable({
+    resource: "posts",
+    //highlight-start
+    initialFilter: [
+        { field: "categories.title", operator: "eq", value: "Beginning" },
+    ],
+    //highlight-end
+    metaData: {
+        select: "*, categories(title)",
+    },
+});
+```
+
+It gets the posts where the title of the categories is "Beginning". Also the inner fields of the categories can be reached with dot notation.
+
+
+:::caution
+Since "categories" is a different resource(table name), we need to pass `select` option to `metaData`  property to get the categories data.
+:::
+
+
