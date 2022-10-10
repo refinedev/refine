@@ -38,4 +38,4 @@ const App: React.FC = () => {
 
 export default App;
 
-const DashBoardPage = () => <div>Dashboard</div>;
+const DashBoardPage = () => <div>User Dashboard</div>;

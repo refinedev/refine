@@ -70,11 +70,11 @@
 }
 
 .window .control.red {
-    background: rgb(230, 54, 54);
+    background: rgb(243, 27, 27);
 }
 
 .window .control.orange {
-    background: rgb(217, 119, 6);
+    background: rgb(245, 134, 7);
 }
 
 .window .control.green {
@@ -118,7 +118,7 @@
     margin-left: 5px;
 }
 
-/* .deprecated {
+ .deprecated {
     font-size: 13px;
     border-radius: 3px;
     border-style: solid;
@@ -145,14 +145,14 @@
     display: inline-block;
     margin: 0 0 10px 0;
     word-break: keep-all;
-} */
+} 
 
-/* .deprecated::before,
+ .deprecated::before,
 .deprecated--block::before {
     content: "⚠️ deprecated";
     color: orange;
     margin-right: 4px;
-} */
+} 
 
 .required-block {
     display: flex;
