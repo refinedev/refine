@@ -30,7 +30,7 @@ export const useSelect = <
             data: options,
             onSearchChange: onSearch,
             searchable: true,
-            clearable: true,
+            filterDataOnExactSearchMatch: true,
         },
         queryResult,
         defaultValueQueryResult,
