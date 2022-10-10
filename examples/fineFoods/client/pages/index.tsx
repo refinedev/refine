@@ -107,10 +107,10 @@ export const Home: React.FC<HomePageProps> = ({ categories, products }) => {
 export default Home;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const { data: categoryData } = await dataProvider(API_URL).getMany({
+    const { data: categoryData } = (await dataProvider(API_URL).getMany?.({
         resource: "categories",
         ids: ["1", "2", "3"],
-    });
+    })) ?? { data: [] };
 
     const { data: productData } = await dataProvider(API_URL).getList({
         resource: "products",
