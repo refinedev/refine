@@ -76,7 +76,16 @@ const App: React.FC = () => {
                                 },
                                 {
                                     path: "/forgot-password",
-                                    element: <AuthPage type="forgotPassword" />,
+                                    element: (
+                                        <AuthPage
+                                            type="forgotPassword"
+                                            formProps={{
+                                                defaultValues: {
+                                                    email: "demo@refine.dev",
+                                                },
+                                            }}
+                                        />
+                                    ),
                                 },
                                 {
                                     path: "/update-password",
