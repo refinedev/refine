@@ -148,7 +148,6 @@ const App: React.FC = () => {
                             formProps={{
                                 onSubmit: (e: any) => {
                                     e.preventDefault();
-                                    console.log("e", e.target.email.value);
 
                                     const email = e.target.email.value;
                                     const password = e.target.password.value;
