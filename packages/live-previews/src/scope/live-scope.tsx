@@ -187,24 +187,31 @@ const RefineMantineDemo: React.FC<
         setInitialRoutes(initialRoutes);
     }
 
-    return <span>ok</span>;
-
     return (
-        <Refine
-            routerProvider={RefineReactRouterV6.default}
-            dataProvider={RefineSimpleRest.default(SIMPLE_REST_API_URL)}
-            notificationProvider={RefineMantine.notificationProvider}
-            Layout={RefineMantine.Layout}
-            Sider={() => null}
-            catchAll={<RefineMantine.ErrorComponent />}
-            options={{
-                disableTelemetry: true,
-                reactQuery: {
-                    devtoolConfig: false,
-                },
-            }}
-            {...rest}
-        />
+        <RefineMantine.MantineProvider
+            theme={RefineMantine.LightTheme}
+            withNormalizeCSS
+            withGlobalStyles
+        >
+            <RefineMantine.Global
+                styles={{ body: { WebkitFontSmoothing: "auto" } }}
+            />
+            <Refine
+                routerProvider={RefineReactRouterV6.default}
+                dataProvider={RefineSimpleRest.default(SIMPLE_REST_API_URL)}
+                notificationProvider={RefineMantine.notificationProvider}
+                Layout={RefineMantine.Layout}
+                Sider={() => null}
+                catchAll={<RefineMantine.ErrorComponent />}
+                options={{
+                    disableTelemetry: true,
+                    reactQuery: {
+                        devtoolConfig: false,
+                    },
+                }}
+                {...rest}
+            />
+        </RefineMantine.MantineProvider>
     );
 };
 
