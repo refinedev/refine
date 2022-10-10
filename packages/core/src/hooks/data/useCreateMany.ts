@@ -9,6 +9,7 @@ import {
     IQueryKeys,
 } from "../../interfaces";
 import {
+    useResource,
     useTranslate,
     usePublish,
     useHandleNotification,
@@ -16,6 +17,7 @@ import {
     useInvalidate,
 } from "@hooks";
 import pluralize from "pluralize";
+import { pickDataProvider } from "@definitions/helpers";
 
 type useCreateManyParams<TVariables> = {
     resource: string;
@@ -55,6 +57,7 @@ export const useCreateMany = <
 >(): UseCreateManyReturnType<TData, TError, TVariables> => {
     const dataProvider = useDataProvider();
 
+    const { resources } = useResource();
     const translate = useTranslate();
     const publish = usePublish();
     const handleNotification = useHandleNotification();
@@ -71,7 +74,9 @@ export const useCreateMany = <
             metaData,
             dataProviderName,
         }: useCreateManyParams<TVariables>) =>
-            dataProvider(dataProviderName).createMany<TData, TVariables>({
+            dataProvider(
+                pickDataProvider(resource, dataProviderName, resources),
+            ).createMany<TData, TVariables>({
                 resource,
                 variables: values,
                 metaData,
@@ -112,7 +117,11 @@ export const useCreateMany = <
 
                 invalidateStore({
                     resource,
-                    dataProviderName,
+                    dataProviderName: pickDataProvider(
+                        resource,
+                        dataProviderName,
+                        resources,
+                    ),
                     invalidates,
                 });
 

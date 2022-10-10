@@ -248,6 +248,7 @@ ButtonProps
 | ------------- | -------- |
 | label?        | `string` |
 | route?        | `string` |
+| dataProviderName? | `string` |
 | [key: string] | `any`    |
 
 ## ResourceItemProps

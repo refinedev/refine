@@ -6,6 +6,7 @@ import {
 import pluralize from "pluralize";
 
 import {
+    useResource,
     useCancelNotification,
     useCheckError,
     useMutationMode,
@@ -29,7 +30,7 @@ import {
     GetListResponse,
     IQueryKeys,
 } from "../../interfaces";
-import { queryKeys } from "@definitions/helpers";
+import { queryKeys, pickDataProvider } from "@definitions/helpers";
 
 type UpdateManyParams<TVariables> = {
     ids: BaseKey[];
@@ -71,6 +72,7 @@ export const useUpdateMany = <
     TError extends HttpError = HttpError,
     TVariables = {},
 >(): UseUpdateManyReturnType<TData, TError, TVariables> => {
+    const { resources } = useResource();
     const queryClient = useQueryClient();
     const dataProvider = useDataProvider();
     const translate = useTranslate();
@@ -108,10 +110,9 @@ export const useUpdateMany = <
                 undoableTimeout ?? undoableTimeoutContext;
 
             if (!(mutationModePropOrContext === "undoable")) {
-                return dataProvider(dataProviderName).updateMany<
-                    TData,
-                    TVariables
-                >({
+                return dataProvider(
+                    pickDataProvider(resource, dataProviderName, resources),
+                ).updateMany<TData, TVariables>({
                     resource,
                     ids,
                     variables: values,
@@ -122,7 +123,13 @@ export const useUpdateMany = <
             const updatePromise = new Promise<UpdateManyResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        dataProvider(dataProviderName)
+                        dataProvider(
+                            pickDataProvider(
+                                resource,
+                                dataProviderName,
+                                resources,
+                            ),
+                        )
                             .updateMany<TData, TVariables>({
                                 resource,
                                 ids,
@@ -168,7 +175,7 @@ export const useUpdateMany = <
             }) => {
                 const queryKey = queryKeys(
                     resource,
-                    dataProviderName,
+                    pickDataProvider(resource, dataProviderName, resources),
                     metaData,
                 );
 
@@ -279,14 +286,22 @@ export const useUpdateMany = <
                 invalidateStore({
                     resource,
                     invalidates: ["list", "many"],
-                    dataProviderName,
+                    dataProviderName: pickDataProvider(
+                        resource,
+                        dataProviderName,
+                        resources,
+                    ),
                 });
 
                 ids.forEach((id) =>
                     invalidateStore({
                         resource,
                         invalidates: ["detail"],
-                        dataProviderName,
+                        dataProviderName: pickDataProvider(
+                            resource,
+                            dataProviderName,
+                            resources,
+                        ),
                         id,
                     }),
                 );

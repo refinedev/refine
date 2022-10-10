@@ -180,6 +180,10 @@ export const Refine: React.FC<RefineProps> = ({
     });
 
     const queryClient = useDeepMemo(() => {
+        if (reactQueryWithDefaults.clientConfig instanceof QueryClient) {
+            return reactQueryWithDefaults.clientConfig;
+        }
+
         return new QueryClient({
             ...reactQueryWithDefaults.clientConfig,
             defaultOptions: {

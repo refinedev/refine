@@ -1,5 +1,62 @@
 # @pankod/refine-core
 
+## 3.78.0
+
+### Minor Changes
+
+-   `clientConfig` property now accepts `QueryClient` instance - #2665
+
+    # Usage
+
+    ```tsx
+    import { QueryClient } from "@tanstack/react-query";
+    const queryClient = new QueryClient();
+    const App: React.FC = () => (
+        <Refine
+            ...
+            options={{
+                reactQuery: {
+                    clientConfig: queryClient
+                },
+            }}
+        />
+    );
+    ```
+
+## 3.77.0
+
+### Minor Changes
+
+-   [#2670](https://github.com/pankod/refine/pull/2670) [`f260932051`](https://github.com/pankod/refine/commit/f2609320513292300903cd71e5e4753ff5fee697) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - `clientConfig` property now accepts `QueryClient` instance - #2665
+
+    # Usage
+
+    ```tsx
+    import { QueryClient } from "@tanstack/react-query";
+    const queryClient = new QueryClient();
+    const App: React.FC = () => (
+        <Refine
+            ...
+            options={{
+                reactQuery: {
+                    clientConfig: queryClient
+                },
+            }}
+        />
+    );
+    ```
+
+## 3.76.0
+
+### Minor Changes
+
+-   -   Added new <AuthPage /> component core and mantine support.
+    -   Move Auth types `@pankod/refine-ui-types` to `@pankod/refine-core`
+
+### Patch Changes
+
+-   fix core data hooks type errors
+
 ## 3.75.1
 
 ### Patch Changes
