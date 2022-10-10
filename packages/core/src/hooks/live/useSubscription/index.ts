@@ -12,8 +12,24 @@ import {
 } from "../../../interfaces";
 
 export type UseSubscriptionProps = {
+    /**
+     * Channel name to subscribe.
+     */
     channel: string;
+    /**
+     * Callback that is run when new events from subscription arrive.
+     */
     onLiveEvent: (event: LiveEvent) => void;
+    /**
+     * Type of events to subscribe. `"*"` means all events.
+     * @type Array<"deleted" | "updated" | "created" | "*" | string>
+     */
+    types?: LiveEvent["type"][];
+    /**
+     * Determines subscription should subscribe or not.
+     * @type Array<"deleted" | "updated" | "created" | "*" | string>
+     */
+    enabled?: boolean;
     params?: {
         ids?: BaseKey[];
         id?: BaseKey;
@@ -26,8 +42,6 @@ export type UseSubscriptionProps = {
         resource?: string;
         [key: string]: any;
     };
-    types?: LiveEvent["type"][];
-    enabled?: boolean;
 };
 
 export const useSubscription = ({
