@@ -10,7 +10,7 @@ describe("getMany", () => {
         const response = await JsonServer(
             "https://api.fake-rest.refine.dev",
             axios,
-        ).getMany({ resource: "posts", ids: ["1", "2", "3"] });
+        ).getMany!({ resource: "posts", ids: ["1", "2", "3"] });
 
         const { data } = response;
 

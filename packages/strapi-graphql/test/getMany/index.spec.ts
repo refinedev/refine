@@ -4,7 +4,7 @@ import "./index.mock";
 
 describe("getMany", () => {
     it("correct response with metaData", async () => {
-        const { data } = await dataProvider(client).getMany({
+        const { data } = await dataProvider(client).getMany!({
             resource: "posts",
             ids: ["45", "46"],
             metaData: {

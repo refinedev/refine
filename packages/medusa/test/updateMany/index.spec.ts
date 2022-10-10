@@ -10,7 +10,7 @@ describe("update", () => {
         const response = await DataProvider(
             "https://refine-example-storefront.herokuapp.com/store",
             axios,
-        ).updateMany({
+        ).updateMany!({
             resource: "customers",
             ids: ["me"],
             variables: {

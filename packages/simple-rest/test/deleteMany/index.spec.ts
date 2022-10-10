@@ -10,7 +10,7 @@ describe("deleteMany", () => {
         const response = await JsonServer(
             "https://api.fake-rest.refine.dev",
             axios,
-        ).deleteMany({ resource: "posts", ids: ["10"] });
+        ).deleteMany!({ resource: "posts", ids: ["10"] });
 
         const { data } = response;
 
