@@ -100,7 +100,7 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
                             <Text size="xs">
                                 {translate(
                                     "pages.login.forgotPassword.haveAccount",
-                                    "Have an account? ",
+                                    "Have an account?",
                                 )}{" "}
                                 <Anchor
                                     component={Link}
