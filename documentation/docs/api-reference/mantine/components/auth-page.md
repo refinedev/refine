@@ -36,6 +36,21 @@ const authProvider = {
 
 setRefineProps({ Sider: () => null, dataProvider: dataProvider('api') });
 
+const Wrapper = ({children}) => {
+    return (
+        <RefineMantine.MantineProvider
+            theme={RefineMantine.LightTheme}
+            withNormalizeCSS
+            withGlobalStyles
+        >
+            <RefineMantine.Global
+                styles={{ body: { WebkitFontSmoothing: "auto" } }}
+            />
+            {children}
+        </RefineMantine.MantineProvider>
+    );
+}
+
 const DashboardPage = () => {
     const { mutate } = useLogoutShared();
 
@@ -116,7 +131,7 @@ const App = () => {
     );
 };
 // visible-block-end
-render(<App />);
+render(<Wrapper><App /></Wrapper>);
 ```
 
 ## Types
@@ -157,7 +172,7 @@ const App = () => {
     );
 };
 // visible-block-end
-render(<App />);
+render(<Wrapper><App /></Wrapper>);
 ```
 
 ### Register
@@ -198,7 +213,7 @@ const App = () => {
     );
 };
 // visible-block-end
-render(<App />);
+render(<Wrapper><App /></Wrapper>);
 ```
 
 ### ForgotPassword
@@ -239,7 +254,7 @@ const App = () => {
     );
 };
 // visible-block-end
-render(<App />);
+render(<Wrapper><App /></Wrapper>);
 ```
 
 ### UpdatePassword
@@ -280,7 +295,7 @@ const App = () => {
     );
 };
 // visible-block-end
-render(<App />);
+render(<Wrapper><App /></Wrapper>);
 ```
 
 ## Props
@@ -334,9 +349,7 @@ const App = () => {
     );
 };
 // visible-block-end
-render(
-    <App />,
-);
+render(<Wrapper><App /></Wrapper>);
 ```
 
 ### `rememberMe`
@@ -385,9 +398,7 @@ const App = () => {
     );
 };
 // visible-block-end
-render(
-    <App />,
-);
+render(<Wrapper><App /></Wrapper>);
 ```
 
 ### `loginLink`
@@ -404,6 +415,7 @@ setInitialRoutes(["/register"]);
 // visible-block-start
 import { Refine, useRouterContext } from "@pankod/refine-core";
 import { AuthPage, Layout } from "@pankod/refine-mantine";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -453,7 +465,7 @@ const App = () => {
     );
 };
 // visible-block-end
-render(<App />);
+render(<Wrapper><App /></Wrapper>);
 ```
 
 ### `registerLink`
@@ -517,7 +529,7 @@ const App = () => {
     );
 };
 // visible-block-end
-render(<App />);
+render(<Wrapper><App /></Wrapper>);
 ```
 
 ### `forgotPasswordLink`
@@ -581,7 +593,7 @@ const App = () => {
     );
 };
 // visible-block-end
-render(<App />);
+render(<Wrapper><App /></Wrapper>);
 ```
 
 ### `wrapperProps`
@@ -627,7 +639,7 @@ const App = () => {
     );
 };
 // visible-block-end
-render(<App />);
+render(<Wrapper><App /></Wrapper>);
 ```
 
 ### `contentProps`
@@ -667,7 +679,7 @@ const App = () => {
     );
 };
 // visible-block-end
-render(<App />);
+render(<Wrapper><App /></Wrapper>);
 ```
 
 ### `formProps`
@@ -719,7 +731,7 @@ const App = () => {
     );
 };
 // visible-block-end
-render(<App />);
+render(<Wrapper><App /></Wrapper>);
 ```
 
 ### `renderContent`
@@ -776,7 +788,7 @@ const App = () => {
     );
 };
 // visible-block-end
-render(<App />);
+render(<Wrapper><App /></Wrapper>);
 ```
 
 ## API Reference
