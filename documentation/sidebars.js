@@ -830,6 +830,7 @@ module.exports = {
                         "advanced-tutorials/data-provider/graphql",
                         "advanced-tutorials/data-provider/handling-filters",
                         "advanced-tutorials/data-provider/strapi-v4",
+                        "advanced-tutorials/data-provider/supabase",
                     ],
                 },
                 {
