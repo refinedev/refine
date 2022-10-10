@@ -31,15 +31,11 @@ describe("routeChangeHandler", () => {
         };
 
         await act(async () => {
-            jest.useFakeTimers();
-
             render(<RouteChangeHandler />, {
                 wrapper: TestWrapper({
                     authProvider: checkAuthMockedAuthProvider,
                 }),
             });
-
-            jest.runAllTimers();
         });
 
         expect(checkAuthMockedAuthProvider.checkAuth).toBeCalledTimes(1);
@@ -52,15 +48,11 @@ describe("routeChangeHandler", () => {
         };
 
         await act(async () => {
-            jest.useFakeTimers();
-
             render(<RouteChangeHandler />, {
                 wrapper: TestWrapper({
                     authProvider: checkAuthMockedAuthProvider,
                 }),
             });
-
-            jest.runAllTimers();
         });
 
         expect(checkAuthMockedAuthProvider.checkAuth).toBeCalledTimes(1);

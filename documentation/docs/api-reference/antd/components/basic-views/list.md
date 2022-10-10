@@ -24,9 +24,6 @@ interface IPost {
     category: { id: number };
 }
 
-const { List, Table, TextField, TagField, useTable } = RefineAntd;
-const { useMany } = RefineCore;
-
 // visible-block-start
 import { useMany } from "@pankod/refine-core";
 
@@ -107,8 +104,6 @@ render(
 It allows adding a title for the `<List>` component. if you don't pass title props, it uses plural form of resource name by default.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
-const { List, Form, Input, Select, useForm, useSelect } = RefineAntd;
-
 // visible-block-start
 import { List } from "@pankod/refine-antd";
 
@@ -142,10 +137,7 @@ render(
 [Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
-const { List } = RefineAntd;
-const { Refine } = RefineCore;
-const routerProvider = RefineDemoReactRouterV6(["/custom"]);
-const dataProvider = RefineSimpleRest.default;
+setInitialRoutes(["/custom"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
@@ -193,9 +185,7 @@ render(<App />);
 Create button redirects to the create page of the resource according to the value it reads from the URL.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
-const { List, Form, Input, Select, useForm, useSelect, Create } = RefineAntd;
-const { usePermissions } = RefineCore;
-
+const { Create } = RefineAntd;
 const { default: simpleRest } = RefineSimpleRest;
 
 const dataProvider = simpleRest("https://api.fake-rest.refine.dev");
@@ -219,7 +209,7 @@ const authProvider = {
 };
 
 // visible-block-start
-import { List, Create } from "@pankod/refine-antd";
+import { List } from "@pankod/refine-antd";
 import { usePermissions } from "@pankod/refine-core";
 
 const PostList: React.FC = () => {
@@ -264,8 +254,6 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/antd/components/breadcrumb.md)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
-const { List, Breadcrumb } = RefineAntd;
-
 // visible-block-start
 import { List } from "@pankod/refine-antd";
 
@@ -313,8 +301,6 @@ render(
 If you want to customize the wrapper of the `<List/>` component, you can use the `wrapperProps` property. For `@pankod/refine-antd` wrapper elements are simple `<div/>`s and `wrapperProps` can get every attribute that `<div/>` can get.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
-const { List } = RefineAntd;
-
 // visible-block-start
 import { List } from "@pankod/refine-antd";
 
@@ -356,8 +342,6 @@ If you want to customize the header of the `<List/>` component, you can use the 
 [Refer to the `PageHeader` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/page-header/)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
-const { List } = RefineAntd;
-
 // visible-block-start
 import { List } from "@pankod/refine-antd";
 
@@ -398,8 +382,6 @@ render(
 If you want to customize the content of the `<List/>` component, you can use the `contentProps` property. `<List/>` components content is wrapped with a `<div/>` and `contentProps` can get every attribute that `<div/>` can get.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
-const { List } = RefineAntd;
-
 // visible-block-start
 import { List } from "@pankod/refine-antd";
 
@@ -439,8 +421,6 @@ render(
 You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
-const { List, Button } = RefineAntd;
-
 // visible-block-start
 import { List, Button } from "@pankod/refine-antd";
 
@@ -482,8 +462,6 @@ You can customize the wrapper element of the buttons at the header by using the 
 [Refer to the `Space` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/space/)
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts
-const { List, Button } = RefineAntd;
-
 // visible-block-start
 import { List, Button } from "@pankod/refine-antd";
 

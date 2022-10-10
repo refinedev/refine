@@ -38,21 +38,10 @@ export const crudEditTests = function (
     describe("[@pankod/refine-ui-tests] Common Tests / CRUD Edit", () => {
         beforeAll(() => {
             jest.spyOn(console, "warn").mockImplementation(jest.fn());
-            jest.useFakeTimers();
-        });
-
-        afterAll(() => {
-            jest.useRealTimers();
         });
 
         it("should render children", async () => {
-            jest.useFakeTimers();
-
             const { getByText } = renderEdit(<Edit>Something</Edit>);
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             getByText("Something");
         });
@@ -60,23 +49,13 @@ export const crudEditTests = function (
         it("should render default list button successfuly", async () => {
             const { queryByTestId } = renderEdit(<Edit />);
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(
                 queryByTestId(RefineButtonTestIds.ListButton),
             ).not.toBeNull();
         });
 
         it("should render default save and delete buttons successfuly", async () => {
-            jest.useFakeTimers();
-
             const { container, getByText } = renderEdit(<Edit canDelete />);
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(container.querySelector("button")).toBeTruthy();
             getByText("Save");
@@ -84,8 +63,6 @@ export const crudEditTests = function (
         });
 
         it("should render optional buttons with actionButtons prop", async () => {
-            jest.useFakeTimers();
-
             const { getByText } = renderEdit(
                 <Edit
                     footerButtons={
@@ -97,53 +74,29 @@ export const crudEditTests = function (
                 />,
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             getByText("New Save Button");
             getByText("New Delete Button");
         });
 
         it("should render default title successfuly", async () => {
-            jest.useFakeTimers();
-
             const { getByText } = renderEdit(<Edit />);
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             getByText("Edit Post");
         });
 
         it("should render custom title successfuly", async () => {
-            jest.useFakeTimers();
-
             const { getByText } = renderEdit(<Edit title="Custom Title" />);
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             getByText("Custom Title");
         });
 
         it("should render optional recordItemId with resource prop", async () => {
-            jest.useFakeTimers();
-
             const { getByText } = renderEdit(<Edit recordItemId="1" />);
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             getByText("Edit Post");
         });
 
         it("should render delete button ", async () => {
-            jest.useFakeTimers();
-
             const { getByText, queryByTestId } = renderEdit(
                 <Edit />,
                 undefined,
@@ -152,10 +105,6 @@ export const crudEditTests = function (
                     routerInitialEntries: ["/posts/edit/1"],
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(
                 queryByTestId(RefineButtonTestIds.DeleteButton),

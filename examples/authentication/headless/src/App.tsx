@@ -1,13 +1,9 @@
-import { AuthProvider, Refine } from "@pankod/refine-core";
+import { AuthPage, AuthProvider, Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { PostList, PostCreate, PostEdit } from "./pages/posts";
-import { LoginPage } from "./pages/auth/login";
-import { RegisterPage } from "./pages/auth";
-import { ForgotPasswordPage } from "./pages/auth/forgotPassword";
 import { ExamplePage } from "./pages/example";
-import { UpdatePasswordPage } from "./pages/auth/updatePassword";
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
@@ -24,25 +20,28 @@ const App: React.FC = () => {
                 return Promise.resolve(false);
             }
 
-            localStorage.setItem("email", email);
+            if (email) {
+                localStorage.setItem("email", email);
+                return Promise.resolve();
+            }
+
             return Promise.reject();
         },
-        register: (params: any) => {
-            if (params.email && params.password) {
-                localStorage.setItem("email", params.username);
+        register: ({ email, password }) => {
+            if (email && password) {
                 return Promise.resolve();
             }
             return Promise.reject();
         },
-        updatePassword: (params: any) => {
-            if (params.newPassword) {
+        updatePassword: ({ password }) => {
+            if (password) {
                 //we can update password here
                 return Promise.resolve();
             }
             return Promise.reject();
         },
-        forgotPassword: (params: any) => {
-            if (params.email) {
+        forgotPassword: ({ email }) => {
+            if (email) {
                 //we can send email with forgot password link here
                 return Promise.resolve();
             }
@@ -72,20 +71,23 @@ const App: React.FC = () => {
                 ...routerProvider,
                 routes: [
                     { path: "/example", element: <ExamplePage /> },
-                    { path: "/auth/register", element: <RegisterPage /> },
                     {
-                        path: "/auth/forgot-password",
-                        element: <ForgotPasswordPage />,
+                        path: "/register",
+                        element: <AuthPage type="register" />,
                     },
                     {
-                        path: "/auth/update-password",
-                        element: <UpdatePasswordPage />,
+                        path: "/forgot-password",
+                        element: <AuthPage type="forgotPassword" />,
+                    },
+                    {
+                        path: "/update-password",
+                        element: <AuthPage type="updatePassword" />,
                     },
                 ],
             }}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             authProvider={authProvider}
-            LoginPage={LoginPage}
+            LoginPage={() => <AuthPage />}
             resources={[
                 {
                     name: "posts",

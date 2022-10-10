@@ -1,5 +1,5 @@
 import * as React from "react";
-import { RefineLoginPageProps } from "@pankod/refine-ui-types";
+import { LoginPageProps } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 import {
     Button,
@@ -29,7 +29,13 @@ type ILoginForm = {
     remember?: boolean;
 };
 
-export const LoginPage: React.FC<RefineLoginPageProps> = () => {
+/**
+ * @deprecated LoginPage is deprecated. Use AuthPage instead. @see {@link https://refine.dev/docs/api-reference/mui/components/mui-auth-page} for more details.
+ * **refine** has a default login page form which is served on `/login` route when the `authProvider` configuration is provided.
+ *
+ * @see {@link https://refine.dev/docs/api-references/components/refine-config#loginpage} for more details.
+ */
+export const LoginPage: React.FC<LoginPageProps> = () => {
     const {
         register,
         handleSubmit,

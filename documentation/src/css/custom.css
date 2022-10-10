@@ -39,6 +39,7 @@
     --color-text-black: #1c1e21;
     --color-bg-white: white;
     --ifm-navbar-sidebar-width: 100%;
+    --ifm-table-cell-padding: 6px 8px;
 }
 
 .img-container {
@@ -117,7 +118,7 @@
     margin-left: 5px;
 }
 
-.deprecated {
+/* .deprecated {
     font-size: 13px;
     border-radius: 3px;
     border-style: solid;
@@ -144,14 +145,14 @@
     display: inline-block;
     margin: 0 0 10px 0;
     word-break: keep-all;
-}
+} */
 
-.deprecated::before,
+/* .deprecated::before,
 .deprecated--block::before {
     content: "⚠️ deprecated";
     color: orange;
     margin-right: 4px;
-}
+} */
 
 .required-block {
     display: flex;
@@ -524,7 +525,7 @@ html[data-page="index"] {
 }
 
 #__docusaurus .pagination-item.disabled {
-    @apply cursor-not-allowed text-gray-200 hover:border-gray-200 hover:text-gray-200;
+    @apply text-gray-200 cursor-not-allowed hover:border-gray-200 hover:text-gray-200;
 }
 
 #__docusaurus .pagination-item.active {
@@ -532,7 +533,7 @@ html[data-page="index"] {
 }
 
 #__docusaurus .dots {
-    @apply h-8 cursor-default border-none;
+    @apply h-8 border-none cursor-default;
 }
 
 #__docusaurus .custom-table-of-contents .table-of-contents {
@@ -671,7 +672,8 @@ html[data-customized="true"] #__docusaurus .navbar-theme-toggle {
     display: none;
 }
 
-html[data-customized="true"], html[data-theme="dark"][data-customized="true"] {
+html[data-customized="true"],
+html[data-theme="dark"][data-customized="true"] {
     background: white;
 }
 
@@ -683,7 +685,9 @@ html[data-theme="dark"]:not([data-customized="true"]) #__docusaurus .navbar {
     @apply border-0 border-b border-solid border-b-[#2A2A42] border-opacity-80 bg-[#272729] bg-opacity-80;
 }
 
-html:not([data-theme="dark"]):not([data-customized="true"]) #__docusaurus .navbar {
+html:not([data-theme="dark"]):not([data-customized="true"])
+    #__docusaurus
+    .navbar {
     @apply border-0 border-b border-solid border-b-[#F6F6F9] border-opacity-80 bg-white bg-opacity-80;
 }
 
@@ -732,13 +736,15 @@ html[data-theme="dark"]:not([data-customized="true"])
     @apply pl-0;
 }
 
-
 #__docusaurus .theme-doc-sidebar-menu.menu__list .menu__link--active {
-    color: #1890FF;
+    color: #1890ff;
     position: relative;
 }
 
-#__docusaurus .with-hoverline .navbar-sidebar__items.navbar-sidebar__items--show-secondary .menu__link.menu__link--active::before {
+#__docusaurus
+    .with-hoverline
+    .navbar-sidebar__items.navbar-sidebar__items--show-secondary
+    .menu__link.menu__link--active::before {
     display: none;
 }
 
@@ -752,11 +758,11 @@ html[data-theme="dark"]:not([data-customized="true"])
     width: 4px;
     height: 4px;
     border-radius: 4px;
-    background-color: #1890FF;
+    background-color: #1890ff;
 }
 
 #__docusaurus .theme-doc-sidebar-menu.menu__list .menu__link--active::after {
-	background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24"><path fill="rgba(24,144,255,1)" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>');
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24"><path fill="rgba(24,144,255,1)" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>');
     filter: none;
 }
 
@@ -778,4 +784,76 @@ html[data-theme="dark"]:not([data-customized="true"])
 
 #__docusaurus .footer__item {
     line-height: 18px;
+}
+
+.prop--tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: -0.1px;
+    padding: 0 4px;
+    user-select: none;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    margin-right: 0;
+    display: inline-block;
+    margin-left: 5px;
+    border-color: #9e9e9e;
+    color: #9e9e9e;
+}
+
+.prop--tag__deprecated {
+    border-color: #d97706;
+    color: #d97706;
+}
+
+.prop--tag__required {
+    border-color: #1890ff;
+    color: #1890ff;
+}
+
+.prop--tag__featured {
+    border-color: #059669;
+    color: #059669;
+}
+
+.props-table {
+    font-size: 14px;
+}
+
+.props-table td,
+.props-table th {
+    padding: 6px 8px;
+}
+
+.props-table th {
+    text-align: left;
+}
+
+.props-table .props-table__type-cell code {
+    font-size: 12px;
+}
+
+.props-table {
+    line-height: 1.5;
+}
+
+.props-table--name {
+    vertical-align: middle;
+}
+
+.props-table--name__deprecated {
+    text-decoration: line-through;
+}
+
+.props-table__type-cell *,
+.props-table__description-cell *,
+.props-table__default-value-cell *,
+.props-list__info-item * {
+    margin-bottom: 0;
+}
+
+.docs-wrapper table {
+    font-size: 14px;
+    line-height: 1.5;
 }

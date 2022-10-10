@@ -7,6 +7,7 @@ import {
     LoginPage,
     Layout,
     ErrorComponent,
+    AuthPage,
 } from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-nextjs-router";
@@ -38,7 +39,16 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
             ]}
             options={{ syncWithLocation: true }}
             notificationProvider={notificationProvider}
-            LoginPage={LoginPage}
+            LoginPage={() => (
+                <AuthPage
+                    formProps={{
+                        initialValues: {
+                            email: "admin@refine.dev",
+                            password: "password",
+                        },
+                    }}
+                />
+            )}
             Layout={Layout}
             catchAll={<ErrorComponent />}
         >

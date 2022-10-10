@@ -1,5 +1,111 @@
 # @pankod/refine-core
 
+## 3.78.0
+
+### Minor Changes
+
+-   `clientConfig` property now accepts `QueryClient` instance - #2665
+
+    # Usage
+
+    ```tsx
+    import { QueryClient } from "@tanstack/react-query";
+    const queryClient = new QueryClient();
+    const App: React.FC = () => (
+        <Refine
+            ...
+            options={{
+                reactQuery: {
+                    clientConfig: queryClient
+                },
+            }}
+        />
+    );
+    ```
+
+## 3.77.0
+
+### Minor Changes
+
+-   [#2670](https://github.com/pankod/refine/pull/2670) [`f260932051`](https://github.com/pankod/refine/commit/f2609320513292300903cd71e5e4753ff5fee697) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - `clientConfig` property now accepts `QueryClient` instance - #2665
+
+    # Usage
+
+    ```tsx
+    import { QueryClient } from "@tanstack/react-query";
+    const queryClient = new QueryClient();
+    const App: React.FC = () => (
+        <Refine
+            ...
+            options={{
+                reactQuery: {
+                    clientConfig: queryClient
+                },
+            }}
+        />
+    );
+    ```
+
+## 3.76.0
+
+### Minor Changes
+
+-   -   Added new <AuthPage /> component core and mantine support.
+    -   Move Auth types `@pankod/refine-ui-types` to `@pankod/refine-core`
+
+### Patch Changes
+
+-   fix core data hooks type errors
+
+## 3.75.1
+
+### Patch Changes
+
+-   [#2667](https://github.com/pankod/refine/pull/2667) [`6e6a9e98e5`](https://github.com/pankod/refine/commit/6e6a9e98e5fab3fd424286496fd1adbc231ea803) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix core data hooks type errors
+
+## 3.75.0
+
+### Minor Changes
+
+-   [#2627](https://github.com/pankod/refine/pull/2627) [`c5fb45d61f`](https://github.com/pankod/refine/commit/c5fb45d61fa7470a7a34762ad19d17e9f87e4421) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - - Added new <AuthPage /> component core and mantine support.
+    -   Move Auth types `@pankod/refine-ui-types` to `@pankod/refine-core`
+
+## 3.74.8
+
+### Patch Changes
+
+-   add props table to useCan documentation
+
+## 3.74.7
+
+### Patch Changes
+
+-   [#2615](https://github.com/pankod/refine/pull/2615) [`ad3947d847`](https://github.com/pankod/refine/commit/ad3947d847ffa30f8edb4845a88f462ea1c5f5c3) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - add props table to useCan documentation
+
+## 3.74.6
+
+### Patch Changes
+
+-   Updated `devtoolConfig` type.
+
+## 3.74.5
+
+### Patch Changes
+
+-   [#2505](https://github.com/pankod/refine/pull/2505) [`a4dbb63c88`](https://github.com/pankod/refine/commit/a4dbb63c881a83e5146829130b1377e791b44469) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Updated `devtoolConfig` type.
+
+## 3.74.4
+
+### Patch Changes
+
+-   Fixed useMenu hook is not reacting to locale change - #2598
+
+## 3.74.3
+
+### Patch Changes
+
+-   [#2600](https://github.com/pankod/refine/pull/2600) [`3ed69bba17`](https://github.com/pankod/refine/commit/3ed69bba17741be00f513ebede684d1af6932c4e) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed useMenu hook is not reacting to locale change - #2598
+
 ## 3.74.2
 
 ### Patch Changes

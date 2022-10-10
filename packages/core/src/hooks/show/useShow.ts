@@ -20,9 +20,24 @@ export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
 };
 
 export type useShowProps = {
+    /**
+     * Resource name for API data interactions
+     * @default Reads `:resource` from the URL
+     */
     resource?: string;
+    /**
+     * Data item ID for API data interactions
+     * @default Reads `:id` from the URL
+     */
     id?: BaseKey;
+    /**
+     * Additional meta data to pass to the data provider's `getOne`
+     */
     metaData?: MetaDataQuery;
+    /**
+     * Target data provider name for API call to be made
+     * @default `"default"`
+     */
     dataProviderName?: string;
 } & LiveModeProps &
     SuccessErrorNotification;

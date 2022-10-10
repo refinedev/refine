@@ -18,6 +18,7 @@ export const sequentialPromises = async <
     onEachReject: EachReject<TReject, TRejectResponse>,
 ): Promise<(TResolveResponse | TRejectResponse)[]> => {
     const results = [];
+    // @ts-expect-error Remove this when we enable `downLevelIterations`
     for (const [index, promise] of promises.entries()) {
         try {
             const result = await promise();

@@ -1,5 +1,133 @@
 # @pankod/refine-mui
 
+## 3.50.0
+
+### Minor Changes
+
+-   -   Added new <AuthPage /> component core and mantine support.
+    -   Move Auth types `@pankod/refine-ui-types` to `@pankod/refine-core`
+
+## 3.49.0
+
+### Minor Changes
+
+-   [#2627](https://github.com/pankod/refine/pull/2627) [`c5fb45d61f`](https://github.com/pankod/refine/commit/c5fb45d61fa7470a7a34762ad19d17e9f87e4421) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - - Added new <AuthPage /> component core and mantine support.
+    -   Move Auth types `@pankod/refine-ui-types` to `@pankod/refine-core`
+
+## 3.48.2
+
+### Patch Changes
+
+-   fix(material-ui): fix missing `<Header />` component export
+
+## 3.48.1
+
+### Patch Changes
+
+-   [#2635](https://github.com/pankod/refine/pull/2635) [`c24fb19264`](https://github.com/pankod/refine/commit/c24fb192649abb3f1806095ce7ed69b7197b4486) Thanks [@Coinio](https://github.com/Coinio)! - fix(material-ui): fix missing `<Header />` component export
+
+## 3.48.0
+
+### Minor Changes
+
+-   -   Added `<AuthPage>` for Material UI package of **refine**. `<AuthPage>` is a component that provides a login, register, forgot password and update password pages.
+
+    -   Deprecated `LoginPage`.
+
+    **Before**
+
+    ```tsx
+    import { LoginPage } from "@pankod/refine-mui";
+
+    <Refine
+      LoginPage={LoginPage}
+      ...
+    />
+    ```
+
+    **After**
+
+    ```tsx
+    import { AuthPage } from "@pankod/refine-mui";
+
+    <Refine
+      LoginPage={AuthPage}
+      ...
+    />
+    ```
+
+## 3.47.0
+
+### Minor Changes
+
+-   -   Added `<AuthPage>` for Material UI package of **refine**. `<AuthPage>` is a component that provides a login, register, forgot password and update password pages.
+
+    -   Deprecated `LoginPage`.
+
+    **Before**
+
+    ```tsx
+    import { LoginPage } from "@pankod/refine-mui";
+
+    <Refine
+      LoginPage={LoginPage}
+      ...
+    />
+    ```
+
+    **After**
+
+    ```tsx
+    import { AuthPage } from "@pankod/refine-mui";
+
+    <Refine
+      LoginPage={AuthPage}
+      ...
+    />
+    ```
+
+## 3.46.0
+
+### Minor Changes
+
+-   [#2580](https://github.com/pankod/refine/pull/2580) [`e1ab7da6b3`](https://github.com/pankod/refine/commit/e1ab7da6b335bad62b15a537a3ed63c9f113bd01) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - - Added `<AuthPage>` for Material UI package of **refine**. `<AuthPage>` is a component that provides a login, register, forgot password and update password pages.
+
+    -   Deprecated `LoginPage`.
+
+    **Before**
+
+    ```tsx
+    import { LoginPage } from "@pankod/refine-mui";
+
+    <Refine
+      LoginPage={LoginPage}
+      ...
+    />
+    ```
+
+    **After**
+
+    ```tsx
+    import { AuthPage } from "@pankod/refine-mui";
+
+    <Refine
+      LoginPage={AuthPage}
+      ...
+    />
+    ```
+
+## 3.45.9
+
+### Patch Changes
+
+-   ReadyPage examples link fixed.
+
+## 3.45.8
+
+### Patch Changes
+
+-   [#2505](https://github.com/pankod/refine/pull/2505) [`a4dbb63c88`](https://github.com/pankod/refine/commit/a4dbb63c881a83e5146829130b1377e791b44469) Thanks [@salihozdemir](https://github.com/salihozdemir)! - ReadyPage examples link fixed.
+
 ## 3.45.7
 
 ### Patch Changes

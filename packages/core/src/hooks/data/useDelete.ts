@@ -112,7 +112,10 @@ export const useDelete = <
                 undoableTimeout ?? undoableTimeoutContext;
 
             if (!(mutationModePropOrContext === "undoable")) {
-                return dataProvider(dataProviderName).deleteOne<TData>({
+                return dataProvider(dataProviderName).deleteOne<
+                    TData,
+                    TVariables
+                >({
                     resource,
                     id,
                     metaData,
@@ -124,7 +127,7 @@ export const useDelete = <
                 (resolve, reject) => {
                     const doMutation = () => {
                         dataProvider(dataProviderName)
-                            .deleteOne<TData>({
+                            .deleteOne<TData, TVariables>({
                                 resource,
                                 id,
                                 metaData,

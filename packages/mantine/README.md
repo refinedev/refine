@@ -19,16 +19,16 @@
 </div>
 <br/>
 
-<div align="center"><strong>refine</strong> is a <a href="https://reactjs.org/">React</a>-based framework for building internal tools, rapidly. ✨ It ships with <a href="https://ant.design/">Ant Design System</a>, an enterprise-level UI toolkit.</div>
+<div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>Open source, headless web application framework developed with flexibility in mind.</div>
 
 <br />
 
 <div align="center">
 
 [![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/refine)
-![Twitter Follow](https://img.shields.io/twitter/follow/refine_dev?style=social)
+[![Twitter Follow](https://img.shields.io/twitter/follow/refine_dev?style=social)](https://twitter.com/refine_dev)
 
-<a href="https://www.producthunt.com/posts/refine-open-source-react-framework?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-refine-open-source-react-framework" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=319164&theme=light" alt="refine: Open Source React Framework - Focus your business logic. refine will do the rest. | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+<a href="https://www.producthunt.com/posts/refine-3?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-refine&#0045;3" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=362220&theme=light" alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0046;&#0032;Build&#0032;web&#0032;apps&#0032;3x&#0032;faster&#0046; | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
 [![Meercode CI Score](https://meercode.io/badge/pankod/refine?type=ci-score&branch=master&token=2ZiT8YsoJgt57JB23NYwXrFY3rJHZboT&lastDay=31)](https://meercode.io/)
 [![Meercode CI Success Rate](https://meercode.io/badge/pankod/refine?type=ci-success-rate&branch=master&token=2ZiT8YsoJgt57JB23NYwXrFY3rJHZboT&lastDay=31)](https://meercode.io/)
@@ -37,125 +37,82 @@
 [![npm version](https://img.shields.io/npm/v/@pankod/refine-antd.svg)](https://www.npmjs.com/package/@pankod/refine-antd)
 [![npm](https://img.shields.io/npm/dm/@pankod/refine-antd)](https://www.npmjs.com/package/@pankod/refine-antd)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](code_of_conduct.md)
-
-
 </div>
 
-<div align="center">
-  <sub>Created by <a href="https://www.pankod.com">Pankod</a></sub>
+<div align="center" style="margin: 30px;">
+  <img src="https://github.com/pankod/refine/blob/master/documentation/static/img/refine-promo-gif.gif?raw=true" style="width:688px;"/>
 </div>
 
-## About
-
-[**refine**](https://refine.dev/) offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to _admin panels_, _B2B applications_ and _dashboards_.
-
-## Documentation
-
-For more detailed information and usage, refer to the [refine documentation](https://refine.dev/docs/).
 
 ## What is refine?
+**refine** is a React-based framework for rapid ✨ development of web applications. 
+It eliminates the repetitive tasks demanded by **CRUD** operations and provides industry standard solutions for critical parts like **authentication**, **access control**, **routing**, **networking**, **state management** and **i18n**.
 
-**refine** is a [React](https://reactjs.org/)-based framework for building internal tools, rapidly. :sparkles: It ships with [Ant Design System](https://ant.design/), an enterprise-level UI toolkit.
+**refine** is *headless by design* offering unlimited styling and customization options. 
 
-Refine offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to _admin panels_, _B2B applications_ and _dashboards_.
+## What do you mean by "headless" ?
+Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your *UI components* and *business logic*, so they never keep you from customizing your *UI* or coding your own flow.
 
-## What is a "headless" Framework?
-**refine** is a **headless** React framework, which means all out-of-the-box features(**Routing**, **Networking**, **Authentication**, **Authorization**, **State Management**, **Realtime**, **i18n**, etc.), it can be used without being tied to any UI elements or framework. Also, Ant Design as out-of-the-box is supported.
+**refine** seamlessly works with any **custom design** or **UI framework you favor**. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), and [Mantine](https://mantine.dev/).
 
-- Customization & Extensibility -  UI is a completely customizable area and each developer uses different solutions. **refine** features does not restrict or interfere with your UI structure. **refine** allows the you to design and customizable the UI based on their unique use case.
+## Use cases
+**refine** shines on *data-intensive* applications like *admin panels*, *dashboards* and *internal tools*. Thanks to built-in **SSR support**, **refine** can also power *customer-facing* applications like *storefronts*.
 
-- Separation of Concerns - **refine** as a framework, is not responsible for your UI and is independent.
+## Key Features
 
-- Maintenance - By removing the API surface to support every UI use case, **refine** easy to use and update/maintain is simple.
+⚙️ Zero-config, **one-minute setup** with a **single CLI command**
 
-###
+🔌 Connectors for **15+ backend services** including [REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest), [GraphQL](https://github.com/pankod/refine/tree/master/packages/graphql), [NestJs CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud), [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable), [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi), [Strapi v4](https://github.com/pankod/refine/tree/master/packages/strapi-v4), [Strapi GraphQL](https://github.com/pankod/refine/tree/master/packages/strapi-graphql), [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase), [Hasura](https://github.com/pankod/refine/tree/master/packages/hasura), [Nhost](https://github.com/pankod/refine/tree/master/packages/nhost), [Appwrite](https://github.com/pankod/refine/tree/master/packages/appwrite), [Firebase](https://firebase.google.com/), [Directus](https://directus.io/) and [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
 
-## Key features
+🌐 **SSR support** with **Next.js** or **Remix**
 
-🔥 **Headless** : Works with any UI framework
+⚛ Perfect **state management** & **mutations** with **React Query**
 
-⚙️ **Zero-configuration**: One-line setup with [superplate](https://github.com/pankod/superplate). It takes less than a minute to start a project.
+🔀 **Advanced routing** with any router library of your choice
 
-📦 **Out-of-the-box** : Routing, networking, authentication, state management, i18n and UI.
+🔐 Providers for seamless **authentication** and **access control** flows
 
-🔌 **Backend Agnostic** : Connects to any custom backend. Built-in support for [REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest), [GraphQL](https://github.com/pankod/refine/tree/master/packages/graphql), [NestJs CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud), [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable), [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi), [Strapi v4](https://github.com/pankod/refine/tree/master/packages/strapi-v4), [Strapi GraphQL](https://github.com/pankod/refine/tree/master/packages/strapi-graphql), [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase), [Hasura](https://github.com/pankod/refine/tree/master/packages/hasura), [Appwrite](https://github.com/pankod/refine/tree/master/packages/appwrite), [Firebase](https://firebase.google.com/), [Directus](https://directus.io/) and [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic).
+⚡ Out-of-the-box support for **live / real-time applications**
 
-📝 **Native Typescript Core** : You can always opt out for plain JavaScript.
+📄 Easy **audit logs** &** **document versioning**
 
-🐜 **Enterprise UI** : Works seamlessly with Ant Design System. (Support for multiple UI frameworks is on the Roadmap)
+💬 Support for any **i18n** framework
 
-📝 **Boilerplate-free Code** : Keeps your codebase clean and readable.
+💪 Future-proof, **robust architecture**
 
-## Motivation
-
-Higher-level frontend frameworks can save you a lot time, but they typically offer you a trade-off between speed and flexibility.
-
-After many years of experience in developing B2B frontend applications and working with popular frameworks, we came up with a new approach to tackle this dilemma. This is how **refine** is born.
-
-**refine** is a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your UI components and business logic, so they never keep you from customizing your UI or coding your own flow.
-
-As **refine** is totally _unopinionated_ about UI and logic, it's strongly _opinionated_ about three parts of your application:
-
-1. **API Networking**
-2. **State Management**
-3. **Authentication & Authorization**
-
-We believe, these are the most important components of a data-intensive frontend application and should be handled in a robust way by leveraging industry best practices.
-
-**refine** guarantees you a perfect implementation of these building blocks in your project, so you can focus on your development.
-
-## Architecture
-
-**refine** makes extensive use of [hooks](https://reactjs.org/docs/hooks-reference.html#gatsby-focus-wrapper) as a default way for interacting with your components.
-Under the hood, **refine** relies heavily to [React Query](https://react-query.tanstack.com/) for data handling, caching and state management.
-Access to external sources and API's happen via providers which are basically plug-in type components for extendibility.
-
-<br/>
-
-<div align="center">
-    <img src="https://raw.githubusercontent.com/pankod/refine/master/documentation/static/img/getting-started/refine_architecture.png" width="400px" />
-</div>
-
-## Benchmark
-
-After releasing the first internal versions, we had the chance to migrate some of our _React_ projects to **refine**.
-In addition to **shorter development** times and **overall performance gains**, we've measured significant reduction in project size.
-
-**refine** makes your codebase significantly smaller, by eliminating redundant code such as _reducers_, _actions_ and _unit tests_. Below is a size comparison for an example project:
-
-<br/>
-
-<div align="center">
-    <img src="https://raw.githubusercontent.com/pankod/refine/master/documentation/static/img/getting-started/benchmark.png" width="400px" align="center" />
-</div>
+✅ Full **test coverage**
 
 ## Quick Start
 
-Run the **superplate** tool with the following command:
+The fastest way to get started with **refine** is using the [superplate](https://github.com/pankod/superplate) project starter tool.
+Run the following command to create a new **refine** project configured with  [Ant Design System](https://ant.design/) as the default UI framework:
 
 ```
-npx superplate-cli -p refine-react tutorial
+npx superplate-cli --preset refine-antd my-project
 ```
 
-Follow the _CLI wizard_ to select options and start creating your project.
-
-After setup is complete, navigate to the project folder and start your project with:
+Once the setup is complete, navigate to the project folder and start your project with:
 
 ```
 npm run dev
 ```
 
-Your **refine** application will be accessible at [http://localhost:3000](http://localhost:3000).
+Your **refine** application will be accessible at [http://localhost:3000](http://localhost:3000):
+![Welcome on board](https://github.com/pankod/refine/blob/master/documentation/static/img/welcome-on-board.png?raw=true)
+Let's consume a public `fake REST API` and add two resources (*posts*, *categories*) to our project. Replace the contents of `src/App.tsx` with the following code:
 
-Replace the contents of `App.tsx` with the following code:
+```tsx title="src/App.tsx"
 
-```tsx title="App.tsx"
-mport { Refine, useMany } from "@pankod/refine-core";
+import { Refine, useMany } from "@pankod/refine-core";
 import {
     useTable,
     List,
     Table,
     DateField,
+    Layout,
+    ReadyPage,
+    notificationProvider,
+    ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -168,6 +125,10 @@ const App: React.FC = () => {
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[{ name: "posts", list: PostList }]}
+            Layout={Layout}
+            ReadyPage={ReadyPage}
+            notificationProvider={notificationProvider}
+            catchAll={<ErrorComponent />}
         />
     );
 };
@@ -214,23 +175,38 @@ export const PostList: React.FC = () => {
 };
 
 export default App;
-```
 
-```tsx title="interfaces.d.ts"
 interface IPost {
-    title: string;
-    createdAt: string;
-    category: { id: number };
+  title: string;
+  createdAt: string;
+  category: { id: number };
 }
 
 interface ICategory {
-    id: number;
-    title: string;
+  id: number;
+  title: string;
 }
+
 ```
 
+Now, you should see the output as a table populated with `post` & `category` data:
+![First example result](https://github.com/pankod/refine/blob/master/documentation/static/img/first-example-result.png?raw=true)
+## Next Steps
+
+👉 Jump to [Refine<>Ant Design Tutorial](https://refine.dev/docs/ui-frameworks/antd/tutorial/) to continue your work and turn the example into a full-blown CRUD application.
+
+👉 Check out the [Refine<>Tailwind Tutorial](https://refine.dev/docs/ui-frameworks/antd/tutorial/) to learn how to use **refine** in a pure *headless* way.
+
+👉 Visit [Learn the Basics Page](https://refine.dev/docs/getting-started/basics/) to get informed about the fundamental concepts.
+
+👉 Read more on [Guides & Concepts](https://refine.dev/docs/guides-and-concepts/access-control/) for different usage scenarios.
+
+👉 See the real-life [Finefoods Demo](https://refine.dev/demo/) project.
+
+👉 Play with interactive [Examples](https://refine.dev/docs/examples/)
+
 ## Roadmap
-You can find Refine's <a href="https://github.com/pankod/refine/projects/1">Public Roadmap here!</a> 
+You can find refine's <a href="https://github.com/pankod/refine/projects/1">Public Roadmap here!</a> 
 
 ## Stargazers
 

@@ -18,7 +18,7 @@ const links = [
     },
     {
         name: "Examples",
-        url: "https://refine.dev/docs/examples/tutorial/headless-tutorial/",
+        url: "https://refine.dev/docs/examples/",
     },
     {
         name: "Blog",

@@ -11,8 +11,6 @@ It can be useful when redirecting the app to the create page with the record id 
 ## Usage
 
 ```tsx live
-const { Table, List, useTable, CloneButton } = RefineAntd;
-
 // visible-block-start
 import { Table, List, useTable, CloneButton } from "@pankod/refine-antd";
 
@@ -63,7 +61,6 @@ render(
 `recordItemId` is used to append the record id to the end of the route path.
 
 ```tsx live disableScroll previewHeight=200px
-const { CloneButton } = RefineAntd;
 const { useRouterContext } = RefineCore;
 // visible-block-start
 import { CloneButton } from "@pankod/refine-antd";
@@ -104,7 +101,6 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/api-re
 It is used to redirect the app to the `/clone` endpoint of the given resource name. By default, the app redirects to a URL with `/clone` defined by the name property of the resource object.
 
 ```tsx live disableScroll previewHeight=200px
-const { CloneButton } = RefineAntd;
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
@@ -147,7 +143,6 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/api-re
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ```tsx live disableScroll previewHeight=200px
-const { CloneButton } = RefineAntd;
 const { useRouterContext } = RefineCore;
 
 // visible-block-start
@@ -204,7 +199,7 @@ export const MyListComponent = () => {
 | props                                                                                                     | Ant Design button props                          | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; recordItemId?: BaseKey; hideText?: boolean; }` |                                                                    |
 | resourceNameOrRouteName                                                                                   | Determines which resource to use for redirection | `string`                                                                                                                              | Resource name that it reads from route                             |
 | <div className="required-block"><div>resourceName</div> <div className=" required">deprecated</div></div> | Determines which resource to use for redirection | `string`                                                                                                                              | Resource name that it reads from route                             |
-| recordItemId                                                                                              | Adds `id` to the end of the URL                  | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                                                                              | Record id that it reads from route                                 |
+| recordItemId                                                                                              | Adds `id` to the end of the URL                  | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                                                                | Record id that it reads from route                                 |
 | hideText                                                                                                  | Allows to hide button text                       | `boolean`                                                                                                                             | `false`                                                            |
 | ignoreAccessControlProvider                                                                               | Skip access control                              | `boolean`                                                                                                                             | `false`                                                            |
 | children                                                                                                  | Sets the button text                             | `ReactNode`                                                                                                                           | `"Clone"`                                                          |

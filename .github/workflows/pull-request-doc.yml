@@ -40,9 +40,23 @@ jobs:
           EOT
       - name: Install Dependencies
         run: |
+          npm ci
+          npm run bootstrap
+      - name: Wait for Netlify Deploy
+        uses: probablyup/wait-for-netlify-action@3.2.0
+        id: waitForDeployment
+        with:
+          site_id: ${{ secrets.NETLIFY_PREVIEW_SITE_ID }}
+        env:
+          NETLIFY_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      - name: output test
+        run: |
+          echo ${{ steps.waitForDeployment.outputs.url }}
+      - name: Install Dependencies
+        run: |
           cd documentation
           npm install
-          npm run build
+          LIVE_PREVIEW_URL=${{ steps.waitForDeployment.outputs.url }}/preview npm run build
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:

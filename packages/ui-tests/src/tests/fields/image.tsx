@@ -15,10 +15,6 @@ export const fieldImageTests = function (
     >,
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / Image Field", () => {
-        beforeAll(() => {
-            jest.useFakeTimers();
-        });
-
         it("renders image with correct title", () => {
             const imageUrl = "http://placeimg.com/640/480/animals";
             const { getAllByRole } = render(

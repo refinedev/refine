@@ -34,7 +34,7 @@
         "@pankod/refine-sdk": "^0.6.0",
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@types/lodash": "^4.14.171",
-        "@tanstack/react-query": "^4.0.10",
+        "@tanstack/react-query": "^4.10.1",
         "jest": "^27.5.1",
         "react-router-dom": "6.3.0",
         "ts-jest": "^27.1.3",

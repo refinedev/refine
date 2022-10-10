@@ -679,6 +679,14 @@
         {
             "from": "/docs/core/hooks/auth/useResetPassword/",
             "to": "/docs/api-reference/core/hooks/auth/useForgotPassword/"
+        },
+        {
+            "from": "/docs/examples/authorization/",
+            "to": "/docs/examples/authentication/antd"
+        },
+        {
+            "from": "/docs/examples/next-js/i18n-nextjs",
+            "to": "/docs/examples/i18n/i18n-nextjs"
         }
     ]
 }

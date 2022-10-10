@@ -9,10 +9,6 @@ export const fieldMarkdownTests = function (
     >,
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / Markdown Field", () => {
-        beforeAll(() => {
-            jest.useFakeTimers();
-        });
-
         it("renders markDown text with correct value", () => {
             const { getByText, container } = render(
                 <div data-testid="custom-field">

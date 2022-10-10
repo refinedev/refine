@@ -73,10 +73,7 @@ export const ExamplePage: React.FC = () => {
                     <tr>
                         <td>
                             <Box>
-                                <AuthPage
-                                    type="login"
-                                    loginLink="/auth/login"
-                                />
+                                <AuthPage type="login" />
                             </Box>
                         </td>
                     </tr>
@@ -90,10 +87,7 @@ export const ExamplePage: React.FC = () => {
                     <tr>
                         <td>
                             <Box>
-                                <AuthPage
-                                    type="register"
-                                    loginLink="/auth/login"
-                                />
+                                <AuthPage type="register" />
                             </Box>
                         </td>
                     </tr>
@@ -107,10 +101,7 @@ export const ExamplePage: React.FC = () => {
                     <tr>
                         <td>
                             <Box>
-                                <AuthPage
-                                    type="updatePassword"
-                                    backLink="/auth/login"
-                                />
+                                <AuthPage type="updatePassword" />
                             </Box>
                         </td>
                     </tr>

@@ -2,7 +2,7 @@ import { AuthProvider, Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
     Layout,
-    LoginPage,
+    AuthPage,
     ErrorComponent,
 } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -20,9 +20,9 @@ import {
 } from "pages/categories";
 
 const authProvider: AuthProvider = {
-    login: async ({ username, password }) => {
+    login: async ({ email, password }) => {
         const { error } = await nhost.auth.signIn({
-            email: username,
+            email,
             password,
         });
 
@@ -72,7 +72,7 @@ const authProvider: AuthProvider = {
             });
         }
 
-        return Promise.resolve(null);
+        return Promise.resolve({});
     },
 };
 
@@ -103,7 +103,16 @@ const App: React.FC = () => {
                 ]}
                 notificationProvider={notificationProvider}
                 Layout={Layout}
-                LoginPage={LoginPage}
+                LoginPage={() => (
+                    <AuthPage
+                        formProps={{
+                            initialValues: {
+                                email: "info@refine.dev",
+                                password: "demodemo",
+                            },
+                        }}
+                    />
+                )}
                 catchAll={<ErrorComponent />}
             />
         </NhostAuthProvider>

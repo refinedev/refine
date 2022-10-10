@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+require("dotenv").config();
+
 const redirectJson = require("./redirects.json");
 
 /** @type {import('@docusaurus/types/src/index').DocusaurusConfig} */
@@ -57,6 +59,15 @@ const siteConfig = {
                 redirects: redirectJson.redirects,
             },
         ],
+        [
+            "docusaurus-plugin-copy",
+            {
+                id: "Copy Workers",
+                path: "static/workers",
+                context: "workers",
+                include: ["**/*.{js}"],
+            },
+        ],
         async function tailwindcss() {
             return {
                 name: "docusaurus-tailwindcss",
@@ -67,6 +78,8 @@ const siteConfig = {
                 },
             };
         },
+        "./plugins/docgen.js",
+        "./plugins/examples.js",
         [
             "./plugins/blog-plugin.js",
             {
@@ -83,7 +96,6 @@ const siteConfig = {
             },
         ],
     ],
-    themes: ["@docusaurus/theme-live-codeblock"],
     themeConfig: {
         prism: {
             magicComments: [
@@ -142,6 +154,11 @@ const siteConfig = {
                     position: "left",
                 },
                 { to: "blog", label: "Blog", position: "left" },
+                {
+                    to: "https://github.com/pankod/refine",
+                    label: "GitHub",
+                    position: "left",
+                },
                 {
                     to: "https://store.refine.dev",
                     label: "Store 🎁",
@@ -268,14 +285,19 @@ const siteConfig = {
         },
     },
     customFields: {
+        /** Footer Fields */
         footerDescription:
             '<strong style="font-weight:700;">refine</strong> is a React-based framework for the rapid development of web applications. It eliminates the repetitive tasks demanded by <strong style="font-weight:700;">CRUD</strong> operations and provides industry standard solutions.',
         contactTitle: "Contact",
         contactDescription: [
             "Refine Dev Corporation",
-            "256 Chapman Road STE 105-4 Newark, New Castle 19702",
+            "256 Chapman Road STE 105-4 Newark, DE 19702",
         ],
         contactEmail: "info@refine.dev",
+        /** ---- */
+        /** Live Preview */
+        LIVE_PREVIEW_URL:
+            process.env.LIVE_PREVIEW_URL ?? "http://localhost:3030/preview",
     },
 };
 

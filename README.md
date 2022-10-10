@@ -11,7 +11,7 @@
     <a href="https://refine.dev/blog/">Blog</a> | 
     <a href="https://refine.dev/docs/">Documentation</a> | 
     <a href="https://github.com/pankod/refine/projects/1">Roadmap</a> | 
-    <a href="https://refine.dev/docs/examples/tutorial/">Examples</a> | 
+    <a href="https://refine.dev/examples/">Examples</a> | 
     <a href="https://refine.dev/enterprise/">Enterprise</a> | 
     <a href="https://discord.gg/refine">Discord</a>
 </div>
@@ -28,10 +28,8 @@
 [![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/refine)
 [![Twitter Follow](https://img.shields.io/twitter/follow/refine_dev?style=social)](https://twitter.com/refine_dev)
 
-<a href="https://www.producthunt.com/posts/refine-open-source-react-framework?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-refine-open-source-react-framework" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=319164&theme=light" alt="refine: Open Source React Framework - Focus your business logic. refine will do the rest. | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+<a href="https://www.producthunt.com/posts/refine-3?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-refine&#0045;3" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=362220&theme=light" alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0046;&#0032;Build&#0032;web&#0032;apps&#0032;3x&#0032;faster&#0046; | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
-[![Meercode CI Score](https://meercode.io/badge/pankod/refine?type=ci-score&branch=master&token=2ZiT8YsoJgt57JB23NYwXrFY3rJHZboT&lastDay=31)](https://meercode.io/)
-[![Meercode CI Success Rate](https://meercode.io/badge/pankod/refine?type=ci-success-rate&branch=master&token=2ZiT8YsoJgt57JB23NYwXrFY3rJHZboT&lastDay=31)](https://meercode.io/)
 [![Maintainability](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/maintainability)](https://codeclimate.com/github/pankod/refine/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/test_coverage)](https://codeclimate.com/github/pankod/refine/test_coverage)
 [![npm version](https://img.shields.io/npm/v/@pankod/refine-core.svg)](https://www.npmjs.com/package/@pankod/refine-core)
@@ -40,7 +38,9 @@
 </div>
 
 <div align="center" style="margin: 30px;">
-  <img src="https://github.com/pankod/refine/blob/master/documentation/static/img/refine-promo-gif.gif?raw=true" style="width:688px;"/>
+  <a href="https://refine.dev/">
+      <img src="https://raw.githubusercontent.com/pankod/refine/master/documentation/static/img/refine-promo-gif-v2.gif" style="width:688px;"/>
+  </a>
 </div>
 
 
@@ -53,7 +53,7 @@ It eliminates the repetitive tasks demanded by **CRUD** operations and provides 
 ## What do you mean by "headless" ?
 Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your *UI components* and *business logic*, so they never keep you from customizing your *UI* or coding your own flow.
 
-**refine** seamlessly works with any **custom design** or **UI framework you favor**. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/) and [Material UI](https://mui.com/).
+**refine** seamlessly works with any **custom design** or **UI framework you favor**. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), and [Mantine](https://mantine.dev/).
 
 ## Use cases
 **refine** shines on *data-intensive* applications like *admin panels*, *dashboards* and *internal tools*. Thanks to built-in **SSR support**, **refine** can also power *customer-facing* applications like *storefronts*.
@@ -196,13 +196,13 @@ Now, you should see the output as a table populated with `post` & `category` dat
 
 👉 Check out the [Refine<>Tailwind Tutorial](https://refine.dev/docs/ui-frameworks/antd/tutorial/) to learn how to use **refine** in a pure *headless* way.
 
-👉 Visit [Learn the Basics Page](https://refine.dev/docs/getting-started/basics/) to get informed about the fundemental concepts.
+👉 Visit [Learn the Basics Page](https://refine.dev/docs/getting-started/overview/) to get informed about the fundemental concepts.
 
 👉 Read more on [Guides & Concepts](https://refine.dev/docs/guides-and-concepts/access-control/) for different usage scenarios.
 
 👉 See the real-life [Finefoods Demo](https://refine.dev/demo/) project.
 
-👉 Play with interactive [Examples](https://refine.dev/docs/examples/tutorial/headless-tutorial/)
+👉 Play with interactive [Examples](https://refine.dev/docs/examples/)
 
 ## Roadmap
 You can find refine's <a href="https://github.com/pankod/refine/projects/1">Public Roadmap here!</a> 

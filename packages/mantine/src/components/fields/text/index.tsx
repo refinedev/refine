@@ -11,11 +11,7 @@ export type TextFieldProps = RefineFieldTextProps<ReactNode, TextProps>;
  * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/fields/text} for more details.
  */
 const TextField: React.FC<TextFieldProps> = ({ value, ...rest }) => {
-    return (
-        <Text variant="text" {...rest}>
-            {value}
-        </Text>
-    );
+    return <Text {...rest}>{value}</Text>;
 };
 
 export { TextField as TextFieldComponent };

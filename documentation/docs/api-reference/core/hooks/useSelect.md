@@ -31,16 +31,16 @@ We'll demonstrate how to get data at `/categories` endpoint from `https://api.fa
 }
 ```
 
-```tsx  title="pages/posts/create.tsx"
+```tsx title="pages/posts/create.tsx"
 // highlight-next-line
 import { useSelect } from "@pankod/refine-core";
 
 export const DummyList = () => {
-// highlight-start
+    // highlight-start
     const { options } = useSelect<ICategory>({
         resource: "categories",
     });
-// highlight-end
+    // highlight-end
 
     return (
         <select>
@@ -80,7 +80,7 @@ const { options } = useSelect({
 ```tsx
 const { options } = useSelect({
     resource: "categories",
-// highlight-next-line
+    // highlight-next-line
     defaultValue: "1",
 });
 ```
@@ -102,10 +102,10 @@ Can use `defaultValue` property when edit a record in `Edit` page.
 ```tsx
 const { options } = useSelect({
     resource: "categories",
-// highlight-start
+    // highlight-start
     optionLabel: "title",
     optionValue: "id",
-// highlight-end
+    // highlight-end
 });
 ```
 
@@ -118,12 +118,13 @@ Supports use with `optionLabel` and `optionValue` [Object path](https://lodash.c
 ```tsx
 const { options } = useSelect({
     resource: "categories",
-// highlight-start
+    // highlight-start
     optionLabel: "nested.title",
     optionValue: "nested.id",
-// highlight-end
+    // highlight-end
 });
 ```
+
 :::
 
 ### `filters`
@@ -131,7 +132,7 @@ const { options } = useSelect({
 ```tsx
 const { options } = useSelect({
     resource: "categories",
-// highlight-start
+    // highlight-start
     filters: [
         {
             field: "isActive",
@@ -139,7 +140,7 @@ const { options } = useSelect({
             value: true,
         },
     ],
-// highlight-end
+    // highlight-end
 });
 ```
 
@@ -150,14 +151,14 @@ It allows us to add some filters while fetching the data. For example, if you wa
 ```tsx
 const { options } = useSelect({
     resource: "categories",
-// highlight-start
+    // highlight-start
     sort: [
         {
             field: "title",
             order: "asc",
         },
     ],
-// highlight-end
+    // highlight-end
 });
 ```
 
@@ -168,7 +169,7 @@ It allows us to sort the `options`. For example, if you want to sort your list a
 ```tsx
 const { options } = useSelect({
     resource: "categories",
-// highlight-next-line
+    // highlight-next-line
     fetchSize: 20,
 });
 ```
@@ -182,7 +183,7 @@ It allows us to `AutoComplete` the `options`.
 ```tsx
 const { options } = useSelect({
     resource: "categories",
-// highlight-start
+    // highlight-start
     onSearch: (value) => [
         {
             field: "title",
@@ -190,7 +191,7 @@ const { options } = useSelect({
             value,
         },
     ],
-// highlight-end
+    // highlight-end
 });
 ```
 
@@ -202,16 +203,16 @@ If defined, it allows us to override the filters to use when fetching list of re
 
 ### `queryOptions`
 
-```tsx 
+```tsx
 const { options } = useSelect({
     resource: "categories",
-// highlight-start
+    // highlight-start
     queryOptions: {
         onError: () => {
             console.log("triggers when on query return Error");
         },
     },
-// highlight-end
+    // highlight-end
 });
 ```
 
@@ -224,13 +225,13 @@ When the `defaultValue` property is given, the `useMany` data hook is called for
 ```tsx
 const { options } = useSelect({
     resource: "categories",
-// highlight-start
+    // highlight-start
     defaultValueQueryOptions: {
         onSuccess: (data) => {
             console.log("triggers when on query return on success");
         },
     },
-// highlight-end
+    // highlight-end
 });
 ```
 
@@ -240,24 +241,7 @@ const { options } = useSelect({
 
 ### Properties
 
-| Property                                                     | Description                                                                                                                                                        | Type                                                                           | Default     |
-| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ----------- |
-| resource <div className="required">Required</div>            | Resource name for API data interactions                                                                                                                            | `string`                                                                       |             |
-| defaultValue                                                 | Adds extra `options`                                                                                                                                               | [`BaseKey`](/api-reference/core/interfaces.md#basekey)  \| [`BaseKey[]`](/api-reference/core/interfaces.md#basekey)                                                    |             |
-| optionValue                                                  | Set the option's value                                                                                                                                             | `string`                                                                       | `"id"`      |
-| optionLabel                                                  | Set the option's label value                                                                                                                                       | `string`                                                                       | `"title"`   |
-| filters                                                      | Add filters while fetching the data                                                                                                                                | [`CrudFilters`](/api-reference/core/interfaces.md#crudfilters)                               |             |
-| sort                                                         | Allow us to sort the options                                                                                                                                       | [`CrudSorting`](/api-reference/core/interfaces.md#crudsorting)                               |             |
-| debounce                                                     | The number of milliseconds to delay                                                                                                                                | `number`                                                                       | 300         |
-| queryOptions                                                 | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options                                                                                | ` UseQueryOptions<GetListResponse<TData>, TError>`                             |             |
-| defaultValueQueryOptions                                     | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options                                                                                | ` UseQueryOptions<GetManyResponse<TData>, TError>`                             |             |
-| fetchSize                                                    | Amount of records to fetch in select box list.                                                                                                                     | `number`                                                                       | `undefined` |
-| onSearch                                                     | If defined, this callback allows us to override all filters for every search request.                                                                              | `(value: string) => CrudFilters `\|` Promise<CrudFilters>`                     | `undefined` |
-| metaData                                                     | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                           | {}          |
-| dataProviderName                                             | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.                                                                 | `string`                                                                       | `default`   |
-| [liveMode](/api-reference/core/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/api-reference/core/interfaces.md#livemodeprops)         | `"off"`     |
-| liveParams                                                   | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: BaseKey[]; [key: string]: any; }`](/api-reference/core/interfaces.md#livemodeprops) | `undefined` |
-| onLiveEvent                                                  | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/api-reference/core/interfaces.md#livemodeprops)              | `undefined` |
+<PropsTable module="@pankod/refine-core/useSelect"  />
 
 ### Return values
 

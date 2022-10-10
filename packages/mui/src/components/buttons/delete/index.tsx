@@ -24,6 +24,9 @@ import { LoadingButton } from "@mui/lab";
 export type DeleteButtonProps = RefineDeleteButtonProps<
     ButtonProps,
     {
+        /**
+         * SVG icon props for the delete button
+         */
         svgIconProps?: SvgIconProps;
     }
 >;
@@ -50,6 +53,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     confirmOkText,
     confirmCancelText,
     svgIconProps,
+    invalidates,
     ...rest
 }) => {
     const { resourceName, id, resource } = useResource({
@@ -95,6 +99,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                 errorNotification,
                 metaData,
                 dataProviderName,
+                invalidates,
             },
             {
                 onSuccess: (value) => {

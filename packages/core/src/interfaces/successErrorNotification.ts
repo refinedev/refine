@@ -5,6 +5,11 @@ export type SuccessErrorNotification<
     TError = unknown,
     TVariables = unknown,
 > = {
+    /**
+     * Success notification configuration to be displayed when the mutation is successful.
+     * @default '"There was an error creating resource (status code: `statusCode`)" or "Error when updating resource (status code: statusCode)"' 
+
+     */
     successNotification?:
         | OpenNotificationParams
         | false
@@ -13,6 +18,10 @@ export type SuccessErrorNotification<
               values?: TVariables,
               resource?: string,
           ) => OpenNotificationParams);
+    /**
+     * Error notification configuration to be displayed when the mutation fails.
+     * @default '"There was an error creating resource (status code: `statusCode`)" or "Error when updating resource (status code: statusCode)"'
+     */
     errorNotification?:
         | OpenNotificationParams
         | false

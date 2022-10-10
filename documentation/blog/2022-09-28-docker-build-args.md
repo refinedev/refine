@@ -187,7 +187,7 @@ The build arguments generally and ENV values especially contain sensitive inform
 
 If you are using docker swarms, you can also take advantage of [docker secrets](https://docs.docker.com/engine/swarm/secrets/) to secure your configuration parameters.
 
-## Conculusion
+## Conclusion
 Today, we discussed how to use docker ARG and ENV parameters. The ARG arguments are only available when building the image, while ENV parameters are available to the application containers during build and when the container is running.
 
  We presented the relevant examples for both dockerfile and docker compose. As docker caches the image layers, securing the secret configuration and ENV variables is also a must-do task. We presented the best way to integrate your .env files with docker in a secure manner.

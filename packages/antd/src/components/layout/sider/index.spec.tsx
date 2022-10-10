@@ -15,8 +15,8 @@ describe("Sider", () => {
                 return;
             }
         });
-        jest.useFakeTimers();
     });
+
     layoutSiderTests.bind(this)(Sider);
 
     it("should work sider collapse ", async () => {

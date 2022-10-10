@@ -72,7 +72,7 @@ export const useMenu: () => useMenuReturnType = () => {
                         ),
                 };
             }),
-        [resources, hasDashboard],
+        [resources, hasDashboard, translate],
     );
     const menuItems: ITreeMenu[] = React.useMemo(
         () => createTreeView(treeMenuItems),

@@ -6,7 +6,7 @@ import {
 } from "@pankod/refine-ui-types";
 import { AccessControlProvider } from "@pankod/refine-core";
 
-import { act, ITestWrapperProps, render, TestWrapper } from "@test";
+import { ITestWrapperProps, render, TestWrapper } from "@test";
 
 const renderShow = (
     show: React.ReactNode,
@@ -36,31 +36,16 @@ export const crudShowTests = function (
     describe("[@pankod/refine-ui-tests] Common Tests / CRUD Show", () => {
         beforeAll(() => {
             jest.spyOn(console, "warn").mockImplementation(jest.fn());
-            jest.useFakeTimers();
-        });
-
-        afterAll(() => {
-            jest.useRealTimers();
         });
 
         it("should render children", async () => {
-            jest.useFakeTimers();
-
             const { getByText } = renderShow(<Show>Something</Show>);
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             getByText("Something");
         });
 
         it("should render default edit and delete buttons successfuly", async () => {
             const { queryByTestId } = renderShow(<Show canEdit canDelete />);
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(
                 queryByTestId(RefineButtonTestIds.EditButton),
@@ -71,8 +56,6 @@ export const crudShowTests = function (
         });
 
         it("should render optional buttons with actionButtons prop", async () => {
-            jest.useFakeTimers();
-
             const { findByText } = renderShow(
                 <Show
                     headerButtons={
@@ -84,34 +67,18 @@ export const crudShowTests = function (
                 />,
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             await findByText("New Save Button");
             await findByText("New Delete Button");
         });
 
         it("should render default title successfuly", async () => {
-            jest.useFakeTimers();
-
             const { getByText } = renderShow(<Show />);
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             getByText("Show Post");
         });
 
         it("should render optional title with title prop", async () => {
-            jest.useFakeTimers();
-
             const { getByText } = renderShow(<Show title="Test Title" />);
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             getByText("Test Title");
         });
@@ -130,10 +97,6 @@ export const crudShowTests = function (
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             getByText("Show Post");
         });

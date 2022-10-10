@@ -85,6 +85,37 @@ describe("useMenu Hook", () => {
         );
     });
 
+    it("should work with i18nProvider", async () => {
+        const { result } = renderHook(() => useMenu(), {
+            wrapper: TestWrapper({
+                resources: [
+                    {
+                        name: "posts",
+                        key: "posts",
+                        list: function list() {
+                            return <div>render me!</div>;
+                        },
+                    },
+                ],
+                i18nProvider: {
+                    translate: (key) => {
+                        console.log("key", key);
+
+                        return `translated ${key}`;
+                    },
+                    changeLocale: () => Promise.resolve(),
+                    getLocale: () => "en",
+                },
+            }),
+        });
+
+        expect(result.current.menuItems).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({ label: "translated posts.posts" }),
+            ]),
+        );
+    });
+
     it("should have the selectedKey = `/posts/create`", async () => {
         const { result } = renderHook(() => useMenu(), {
             wrapper: TestWrapper({

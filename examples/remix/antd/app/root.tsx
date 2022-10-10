@@ -9,9 +9,10 @@ import {
 } from "@remix-run/react";
 import { Refine } from "@pankod/refine-core";
 import {
+    AuthPage,
     ErrorComponent,
     Layout,
-    LoginPage,
+    notificationProvider,
     ReadyPage,
 } from "@pankod/refine-antd";
 
@@ -43,8 +44,18 @@ export default function App(): JSX.Element {
                     dataProvider={dataProvider(API_URL)}
                     routerProvider={routerProvider}
                     authProvider={authProvider}
+                    notificationProvider={notificationProvider}
                     Layout={Layout}
-                    LoginPage={LoginPage}
+                    LoginPage={() => (
+                        <AuthPage
+                            formProps={{
+                                initialValues: {
+                                    email: "admin@refine.dev",
+                                    password: "password",
+                                },
+                            }}
+                        />
+                    )}
                     ReadyPage={ReadyPage}
                     catchAll={<ErrorComponent />}
                     resources={[

@@ -22,7 +22,7 @@ Let's start with creating a `<CustomLayout/>` component using `LayoutProps` from
 import React from "react";
 import { LayoutProps } from "@pankod/refine-core";
 // highlight-next-line
-import { Sider as DefaultSider, Box } from "@pankod/refine-mui";
+import { Sider as DefaultSider, Header as DefaultHeader, Box } from "@pankod/refine-mui";
 
 export const CustomLayout: React.FC<LayoutProps> = ({
     Sider,
@@ -32,6 +32,7 @@ export const CustomLayout: React.FC<LayoutProps> = ({
     children,
 }) => {
     const SiderToRender = Sider ?? DefaultSider;
+    const HeaderToRender = Header ?? DefaultHeader;
 
     return (
         <Box display="flex" flexDirection="row">
@@ -44,7 +45,7 @@ export const CustomLayout: React.FC<LayoutProps> = ({
                     minHeight: "100vh",
                 }}
             >
-                {Header && <Header />}
+                <HeaderToRender />
                 <Box
                     component="main"
                     sx={{

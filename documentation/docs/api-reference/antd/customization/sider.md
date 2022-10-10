@@ -10,61 +10,19 @@ You can access the `logout`, `dashboard`, `items` elements and `collapsed` state
 ## Customize Sider by Using `render` property
 
 ```tsx live previewHeight=360px hideCode disableScroll url=http://localhost:3000/posts
-const {
-    AntdLayout,
-    Grid,
-    Menu,
-    Icons,
-    Title: DefaultTitle,
-    Sider,
-    Header,
-} = RefineAntd;
-const {
-    useTranslate,
-    useLogout,
-    useTitle,
-    CanAccess,
-    ITreeMenu,
-    useIsExistAuthentication,
-    useRouterContext,
-    useMenu,
-    useRefineContext,
-} = RefineCore;
-import { Header } from "@pankod/refine-antd";
-
-// visible-block-start
-import {
-    useTranslate,
-    useLogout,
-    useTitle,
-    CanAccess,
-    ITreeMenu,
-    useIsExistAuthentication,
-    useRouterContext,
-    useMenu,
-    useRefineContext,
-} from "@pankod/refine-core";
-import {
-    AntdLayout,
-    Grid,
-    Icons,
-    Title as DefaultTitle,
-    Menu,
-    Sider,
-} from "@pankod/refine-antd";
-export type SiderRenderProps = {
-    items: JSX.Element[];
-    logout: React.ReactNode;
-    dashboard: React.ReactNode;
-};
-
-export type RefineLayoutSiderProps = {
-    render?: (props: SiderRenderProps) => React.ReactNode;
-};
+setInitialRoutes(["/posts"]);
 
 const PostList: React.FC = () => {
     return <div>Post List</div>;
 };
+
+// visible-block-start
+import { Refine } from "@pankod/refine-core";
+import { AntdLayout, Menu, Sider } from "@pankod/refine-antd";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
+
+import { PostList } from "./pages/posts";
 
 const App: React.FC = () => {
     const API_URL = "https://api.fake-rest.refine.dev";
@@ -85,6 +43,7 @@ const App: React.FC = () => {
                     <AntdLayout
                         style={{ minHeight: "100vh", flexDirection: "row" }}
                     >
+                        {/* highlight-start */}
                         <Sider
                             render={({ items }) => {
                                 return (
@@ -101,56 +60,8 @@ const App: React.FC = () => {
                                 );
                             }}
                         />
-                        <AntdLayout>
-                            {Header && <Header />}
-                            <AntdLayout.Content>
-                                <div
-                                    style={{
-                                        padding: 12,
-                                        minHeight: 360,
-                                    }}
-                                >
-                                    {children}
-                                </div>
-                                {OffLayoutArea && <OffLayoutArea />}
-                            </AntdLayout.Content>
-                            {Footer && <Footer />}
-                        </AntdLayout>
-                    </AntdLayout>
-                );
-            }}
-        />
-    );
-};
-
-// visible-block-end
-// Header and sider components import from antd package at the part of invisible code block to avoid getting render error
-// They are declared as null in ReactLiveScope
-render(
-    <RefineAntdDemo
-        Layout={({ children, Footer, OffLayoutArea }) => {
-            return (
-                <AntdLayout
-                    style={{ minHeight: "100vh", flexDirection: "row" }}
-                >
-                    <Sider
-                        render={({ items }) => {
-                            return (
-                                <>
-                                    <Menu.Item
-                                        style={{
-                                            fontWeight: 700,
-                                        }}
-                                    >
-                                        Custom Element
-                                    </Menu.Item>
-                                    {items}
-                                </>
-                            );
-                        }}
-                    />
-                    <AntdLayout>
-                        <Header />
+                        {/* highlight-end */}
+                        {Header && <Header />}
                         <AntdLayout.Content>
                             <div
                                 style={{
@@ -164,18 +75,14 @@ render(
                         </AntdLayout.Content>
                         {Footer && <Footer />}
                     </AntdLayout>
-                </AntdLayout>
-            );
-        }}
-        initialRoutes={["/posts"]}
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
-);
+                );
+            }}
+        />
+    );
+};
+
+// visible-block-end
+render(<App />);
 ```
 
 :::tip
@@ -189,21 +96,14 @@ You can also customize your Sider component by creating the `CustomSider` compon
 When you examine the code of the live-preview example below, you will see the same code that we used for the `default sider` component. You can create a customized `CustomSider` component for yourself by following this code.
 
 ```tsx live hideCode disableScroll url=http://localhost:3000/posts
-const { AntdLayout, Grid, Menu, Icons, Title: DefaultTitle } = RefineAntd;
-const {
-    useTranslate,
-    useLogout,
-    useTitle,
-    CanAccess,
-    ITreeMenu,
-    useIsExistAuthentication,
-    useRouterContext,
-    useMenu,
-    useRefineContext,
-} = RefineCore;
+setInitialRoutes(["/posts"]);
+const PostList: React.FC = () => {
+    return <div>Post List</div>;
+};
 
 // visible-block-start
 import {
+    Refine,
     useTranslate,
     useLogout,
     useTitle,
@@ -215,11 +115,20 @@ import {
     useRefineContext,
 } from "@pankod/refine-core";
 import {
+    Layout,
     AntdLayout,
     Grid,
     Icons,
+    Menu,
     Title as DefaultTitle,
 } from "@pankod/refine-antd";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
+
+import { PostList } from "./pages/posts";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
 export type SiderRenderProps = {
     items: JSX.Element[];
     logout: React.ReactNode;
@@ -228,10 +137,6 @@ export type SiderRenderProps = {
 
 export type RefineLayoutSiderProps = {
     render?: (props: SiderRenderProps) => React.ReactNode;
-};
-
-const PostList: React.FC = () => {
-    return <div>Post List</div>;
 };
 
 const { DashboardOutlined, LogoutOutlined, UnorderedListOutlined } = Icons;
@@ -386,10 +291,11 @@ const CustomSider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
 };
 
 const App: React.FC = () => {
-    const API_URL = "https://api.fake-rest.refine.dev";
-
     return (
         <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider(API_URL)}
+            Layout={Layout}
             // highlight-next-line
             Sider={CustomSider}
             resources={[
@@ -404,18 +310,7 @@ const App: React.FC = () => {
 
 // visible-block-end
 
-render(
-    <RefineAntdDemo
-        Sider={CustomSider}
-        initialRoutes={["/posts"]}
-        resources={[
-            {
-                name: "posts",
-                list: PostList,
-            },
-        ]}
-    />,
-);
+render(<App />);
 ```
 
 <br />

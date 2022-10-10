@@ -6,7 +6,7 @@ description: useImport hook API references of @pankod/refine-core
 
 import useImport from '@site/static/img/core/useImport/useImport.gif';
 
-`useImport` hook allows you to handle your `CSV` import logic easily. It uses [`papaparse`][papaparse] under the hood to parse `CSV` files. 
+`useImport` hook allows you to handle your `CSV` import logic easily. It uses [`papaparse`][papaparse] under the hood to parse `CSV` files.
 
 ```ts
 import { useImport } from "@pankod/refine-core";
@@ -35,8 +35,8 @@ This file should be parsed as:
     {
         title: "dummy title 2",
         categoryId: "44",
-    }
-]
+    },
+];
 ```
 
 ### With `input[type=file]`
@@ -44,7 +44,7 @@ This file should be parsed as:
 ```tsx
 import React from "react";
 import {
-// highlight-next-line
+    // highlight-next-line
     useImport,
 } from "@pankod/refine-core";
 
@@ -63,7 +63,6 @@ export const PostList: React.FC = () => {
         },
     });
     // highlight-end
-
 
     return (
         <>
@@ -90,10 +89,9 @@ interface IPostFile {
 }
 ```
 
-
 <br />
 
-:::tip 
+:::tip
 The `useImport` hook contains all the props that the HTML Input element needs (`type`, `accept`, `onChange`) so you can use directly `inputProps` in your HTML input elements like this
 
 ```tsx
@@ -114,6 +112,7 @@ export const PostList: React.FC = () => {
     );
 };
 ```
+
 :::
 
 <br />
@@ -131,11 +130,11 @@ export const PostList: React.FC = () => {
 
 When user clicks the `<input>` element and selects a `CSV` file, `useImport` parses the content with [papaparse][papaparse], creates the resources one by one or as batches (depending on the configuration). Which endpoint to create the given resource is inferred from the current route.
 
-Resources are added one by one ([`useCreate`][useCreate]) or as batches ([`useCreateMany`][useCreateMany]) if explicitly configured with [`batchSize`](#useimport-options) option. By default, `batchSize` is 1.
+Resources are added one by one ([`useCreate`][usecreate]) or as batches ([`useCreateMany`][usecreatemany]) if explicitly configured with [`batchSize`](#useimport-options) option. By default, `batchSize` is 1.
 
 :::caution
 If `batchSize` is more than 1, `createMany` method should be implemented in `DataProvider`.  
-[Refer to DataProvider documentation for further information about importing the default css. &#8594][DataProvider]
+[Refer to DataProvider documentation for further information about importing the default css. &#8594][dataprovider]
 :::
 
 ### Handling Relational Data
@@ -180,52 +179,43 @@ interface IPostFile {
     userId: string;
 }
 ```
+
 Now, parsed data is mapped to conform our APIs requirements.
 
 ## API Reference
 
 ### Properties
 
-| Key                 | Description                                                                                                                                                                                                                                          | Type                                                                                                                    | Default                                                                                                                                    |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| resourceName        | Default resource name this button imports to. Inferred from route by default.                                                                                                                                                                        | `string`                                                                                                                |
-| mapData             | A mapping function that runs for every record. Mapped data will be included in the request payload.                                                                                                                                                  | `(value: any, index?: number, array?: any[], data?: any[][]): any;`                                                     |
-| papaparseOptions    | Custom Papa Parse options.                                                                                                                                                                                                                           | [`ParseConfig`][papaparse]                                                                                              |
-| batchSize           | Requests batch size. If it is 1, all records are sent one by one. By default, it is [`Number.MAX_SAFE_INTEGER`][Number.MAX_SAFE_INTEGER] to send all records in one batch. If it is more than 1, `createMany` should be implemented on DataProvider. | `number`                                                                                                                |
-| onFinish            | Called with errors and successful responses when all requests are sent.                                                                                                                                                                              | `(results: { succeeded: ImportSuccessResult<TVariables, TData>[]; errored: ImportErrorResult<TVariables>[]; }) => void` |
-| successNotification | Successful Mutation notification                                                                                                                                                                                                                     | [`SuccessErrorNotification`][SuccessErrorNotification]                                                                  | "Successfully created `resource`"                                                                                                          |
-| errorNotification   | Unsuccessful Mutation notification                                                                                                                                                                                                                   | [`SuccessErrorNotification`][SuccessErrorNotification]                                                                  | "There was an error while creating `resource` (status code: `statusCode`)" or "Error when updating `resource` (status code: `statusCode`)" |
-| metaData            | Metadata query for `dataProvider`                                                                                                                                                                                                                    | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                                                                    | {}                                                                                                                                         |
-| dataProviderName    | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.                                                                                                                                                   | `string`                                                                                                                | `default`                                                                                                                                  |
+<PropsTable module="@pankod/refine-core/useImport" />
 
 ### Return Values
 
-| Property       | Description                                                            | Type                                                                                                                                                                                                                                                                                             |
-| -------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| inputProps   | Props to that you can pass `<input />` element props.              | [`UseImportInputPropsType`][UseImportInputPropsType]     
-| handleChange   | Props to handle `<input type="file">` element `onChange`               | `function`                                                                                                                                                                                                                                                                                      |
-| isLoading      | It can be used to handle the `loading` status for the Import operation | `boolean`                                                                                                                                                                                                                                                                                        |
-| mutationResult | Result of the mutation/mutations of creating imported resources        | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>`  { resource: string; values: TVariables; },`<br/>` unknown>`][useMutation])  \| [`UseMutationResult<`<br/>`{ data: TData[]},`<br/>`TError,`<br/>`  { resource: string; values: TVariables[]; },`<br/>` unknown>`][useMutation]) |
+| Property       | Description                                                            | Type                                                                                                                                                                                                                                                                                          |
+| -------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| inputProps     | Props to that you can pass `<input />` element props.                  | [`UseImportInputPropsType`][useimportinputpropstype]                                                                                                                                                                                                                                          |
+| handleChange   | Props to handle `<input type="file">` element `onChange`               | `function`                                                                                                                                                                                                                                                                                    |
+| isLoading      | It can be used to handle the `loading` status for the Import operation | `boolean`                                                                                                                                                                                                                                                                                     |
+| mutationResult | Result of the mutation/mutations of creating imported resources        | [`UseMutationResult<`<br/>`{ data: TData },`<br/>`TError,`<br/>` { resource: string; values: TVariables; },`<br/>` unknown>`][usemutation]) \| [`UseMutationResult<`<br/>`{ data: TData[]},`<br/>`TError,`<br/>` { resource: string; values: TVariables[]; },`<br/>` unknown>`][usemutation]) |
 
 ### Type Parameters
 
 | Property   | Desription                                                                 | Default                    |
 | ---------- | -------------------------------------------------------------------------- | -------------------------- |
 | TItem      | Interface of parsed csv data                                               | `any`                      |
-| TData      | Result type of the data query type that extends [`BaseRecord`][BaseRecord] | [`BaseRecord`][BaseRecord] |
-| TError     | Custom error object that extends [`HttpError`][HttpError]                  | [`HttpError`][HttpError]   |
+| TData      | Result type of the data query type that extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError     | Custom error object that extends [`HttpError`][httperror]                  | [`HttpError`][httperror]   |
 | TVariables | Values for mutation function                                               | `any`                      |
 
-[useCreate]: /api-reference/core/hooks/data/useCreate.md
-[useCreateMany]: /api-reference/core/hooks/data/useCreateMany.md
-[DataProvider]: /api-reference/core/providers/data-provider.md
-[BaseRecord]: /api-reference/core/interfaces.md#baserecord
-[HttpError]: /api-reference/core/interfaces.md#httperror
+[usecreate]: /api-reference/core/hooks/data/useCreate.md
+[usecreatemany]: /api-reference/core/hooks/data/useCreateMany.md
+[dataprovider]: /api-reference/core/providers/data-provider.md
+[baserecord]: /api-reference/core/interfaces.md#baserecord
+[httperror]: /api-reference/core/interfaces.md#httperror
 [papaparse]: https://www.papaparse.com/docs
-[useMutation]: https://react-query.tanstack.com/reference/useMutation
-[Number.MAX_SAFE_INTEGER]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER
-[SuccessErrorNotification]: /api-reference/core/interfaces.md#successerrornotification
-[UseImportInputPropsType]: /api-reference/core/interfaces.md#useimportinputpropstype
+[usemutation]: https://react-query.tanstack.com/reference/useMutation
+[number.max_safe_integer]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER
+[successerrornotification]: /api-reference/core/interfaces.md#successerrornotification
+[useimportinputpropstype]: /api-reference/core/interfaces.md#useimportinputpropstype
 
 ## Live StackBlitz Example
 

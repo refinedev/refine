@@ -24,7 +24,6 @@ const DummyDashboard = () => <div>Dashboard</div>;
 describe("Breadcrumb", () => {
     beforeAll(() => {
         jest.spyOn(console, "warn").mockImplementation(jest.fn());
-        jest.useFakeTimers();
     });
 
     breadcrumbTests.bind(this)(Breadcrumb);
@@ -34,10 +33,6 @@ describe("Breadcrumb", () => {
             resources: [{ name: "posts" }],
             routerInitialEntries: ["/posts/create"],
             DashboardPage: DummyDashboard,
-        });
-
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
         });
 
         expect(container.querySelector("svg")).toBeTruthy();
@@ -52,10 +47,6 @@ describe("Breadcrumb", () => {
                 DashboardPage: DummyDashboard,
             },
         );
-
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
 
         expect(container.querySelector("svg")).toBeFalsy();
     });

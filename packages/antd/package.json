@@ -1,6 +1,6 @@
 {
     "name": "@pankod/refine-antd",
-    "version": "3.48.8",
+    "version": "3.53.0",
     "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
     "private": false,
     "main": "dist/index.js",
@@ -23,8 +23,8 @@
         "@types/react-dom": "^17.0.0 || ^18.0.0"
     },
     "devDependencies": {
-        "@pankod/refine-ui-tests": "^0.7.4",
-        "@pankod/refine-core": "^3.74.2",
+        "@pankod/refine-ui-tests": "^0.9.0",
+        "@pankod/refine-core": "^3.76.0",
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
@@ -50,7 +50,7 @@
         "antd": "4.21.7",
         "dayjs": "^1.10.7",
         "react-markdown": "^6.0.1",
-        "@tanstack/react-query": "^4.0.10",
+        "@tanstack/react-query": "^4.10.1",
         "remark-gfm": "^1.0.0",
         "sunflower-antd": "1.0.0-beta.3",
         "tslib": "^2.3.1"

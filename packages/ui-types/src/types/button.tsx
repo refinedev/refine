@@ -9,11 +9,21 @@ import {
 } from "@pankod/refine-core";
 
 export type RefineButtonCommonProps = PropsWithChildren<{
+    /**
+     * Whether should hide the text and show only the icon or not.
+     */
     hideText?: boolean;
 }>;
 
 export type RefineButtonResourceProps = {
+    /**
+     * Resource name for API data interactions
+     * @default Reads `:resource` from the URL
+     */
     resourceNameOrRouteName?: string;
+    /**
+     * Whether to skip access control for the resource and the delete action or not
+     */
     ignoreAccessControlProvider?: boolean;
 };
 
@@ -22,6 +32,10 @@ export type RefineButtonLinkingProps = {
 };
 
 export type RefineButtonSingleProps = {
+    /**
+     * Data item identifier for the delete action with the API
+     * @default Reads `:id` from the URL
+     */
     recordItemId?: BaseKey;
 };
 
@@ -57,14 +71,43 @@ export type RefineDeleteButtonProps<
     SuccessErrorNotification &
     TComponentProps &
     TExtraProps & {
+        /**
+         * Callback function to be called after the delete action is successful
+         */
         onSuccess?: (value: DeleteOneResponse) => void;
+        /**
+         * Mutation mode for the delete action
+         * @default `mutationMode` setting from the `Refine` component
+         */
         mutationMode?: MutationMode;
-        hideText?: boolean;
+        /**
+         * Additional meta data to pass to the delete mutation from the data provider
+         */
         metaData?: MetaDataQuery;
+        /**
+         * Target data provider name for API call to be made
+         * @default `"default"`
+         */
         dataProviderName?: string;
+        /**
+         * Text to be displayed in the confirmation popup
+         * @default `"Are you sure?"` or `"buttons.confirm"` from the i18n provider
+         */
         confirmTitle?: string;
+        /**
+         * Confirmation button text to be displayed in the confirmation popup
+         * @default `"Delete"` or `"buttons.delete"` from the i18n provider
+         */
         confirmOkText?: string;
+        /**
+         * Cancel button text to be displayed in the confirmation popup
+         * @default `"Cancel"` or `"buttons.cancel"` from the i18n provider
+         */
         confirmCancelText?: string;
+        /**
+         * Query keys to be invalidated after the delete action is successful
+         * @default `["list", "many"]`
+         */
         invalidates?: Array<keyof IQueryKeys>;
     };
 

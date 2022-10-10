@@ -18,8 +18,7 @@ import { Login } from "pages/login";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
-    const { isLoading, isAuthenticated, user, logout, getIdTokenClaims } =
-        useAuth0();
+    const { isLoading, user, logout, getIdTokenClaims } = useAuth0();
 
     if (isLoading) {
         return <span>loading...</span>;
@@ -27,19 +26,27 @@ const App: React.FC = () => {
 
     const authProvider: AuthProvider = {
         login: () => {
-            return Promise.resolve();
+            return Promise.resolve(false);
         },
         logout: () => {
             logout({ returnTo: window.location.origin });
             return Promise.resolve("/");
         },
         checkError: () => Promise.resolve(),
-        checkAuth: () => {
-            if (isAuthenticated) {
-                return Promise.resolve();
+        checkAuth: async () => {
+            try {
+                const token = await getIdTokenClaims();
+                if (token) {
+                    axios.defaults.headers.common = {
+                        Authorization: `Bearer ${token.__raw}`,
+                    };
+                    return Promise.resolve();
+                } else {
+                    return Promise.reject();
+                }
+            } catch (error) {
+                return Promise.reject();
             }
-
-            return Promise.reject();
         },
         getPermissions: () => Promise.resolve(),
         getUserIdentity: async () => {
@@ -49,16 +56,9 @@ const App: React.FC = () => {
                     avatar: user.picture,
                 });
             }
+            return Promise.reject();
         },
     };
-
-    getIdTokenClaims().then((token) => {
-        if (token) {
-            axios.defaults.headers.common = {
-                Authorization: `Bearer ${token.__raw}`,
-            };
-        }
-    });
 
     return (
         <Refine

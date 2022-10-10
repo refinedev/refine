@@ -109,7 +109,10 @@ export const useDeleteMany = <
             const undoableTimeoutPropOrContext =
                 undoableTimeout ?? undoableTimeoutContext;
             if (!(mutationModePropOrContext === "undoable")) {
-                return dataProvider(dataProviderName).deleteMany<TData>({
+                return dataProvider(dataProviderName).deleteMany<
+                    TData,
+                    TVariables
+                >({
                     resource,
                     ids,
                     metaData,
@@ -121,7 +124,7 @@ export const useDeleteMany = <
                 (resolve, reject) => {
                     const doMutation = () => {
                         dataProvider(dataProviderName)
-                            .deleteMany<TData>({
+                            .deleteMany<TData, TVariables>({
                                 resource,
                                 ids,
                                 metaData,

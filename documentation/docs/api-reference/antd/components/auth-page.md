@@ -9,249 +9,142 @@ description: <AuthPage> component from refine is a authentication page that can 
 
 Before using `<AuthPage>` component you need to add [authProvider](/api-reference/core/providers/auth-provider.md) that will be used to handle authentication.
 
-## Usage
+```tsx live shared
+const { useNavigation: useNavigationShared, useLogout: useLogoutShared } = RefineCore;
+const {
+    Typography: { Title: SharedTitle },
+    Button,
+} = RefineAntd;
 
-`<AuthPage>` component can be used like below 👇🏻
-
-```tsx live url=http://localhost:3000/login
-const { useNavigation } = RefineCore;
-const { AuthPage } = RefineAntd;
+window.__refineAuthStatus = false;
 
 const authProvider = {
-    login: () => Promise.resolve(),
+    login: () => { window.__refineAuthStatus = true },
     register: () => Promise.resolve(),
     forgotPassword: () => Promise.resolve(),
     updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
+    logout: () => { window.__refineAuthStatus = false },
+    checkAuth: () => window.__refineAuthStatus ? Promise.resolve() : Promise.reject(),
     checkError: () => Promise.resolve(),
     getPermissions: () => Promise.resolve(),
     getUserIdentity: () => Promise.resolve(),
 };
 
+const DashboardPage = () => {
+    const { mutate } = useLogoutShared();
+
+    return (
+        <div
+            style={{
+                width: "100%",
+                maxWidth: "400px",
+                margin: "0 auto",
+                textAlign: "center",
+            }}
+        >
+            <SharedTitle level={2}>Home Page</SharedTitle>
+            <br />
+            <button
+                onClick={() => {
+                    mutate();
+                }}
+            >
+                Logout
+            </button>
+        </div>
+    );
+};
+```
+
+## Usage
+
+`<AuthPage>` component can be used like below 👇🏻
+
+```tsx live url=http://localhost:3000/login previewHeight=460px hideCode
+setInitialRoutes(["/login"]);
+setRefineProps({ Sider: () => null });
 // visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
+import { Refine } from "@pankod/refine-core";
+import { AuthPage, Layout } from "@pankod/refine-antd";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
+import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
     return (
         <Refine
+            routerProvider={routerProvider}
             authProvider={authProvider}
             // highlight-next-line
             LoginPage={AuthPage}
-            resources={[
-                {
-                    name: "home",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <br />
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
-                    },
-                },
-            ]}
+            DashboardPage={DashboardPage}
+            Layout={Layout}
+            resources={[{ name: "posts" }]}
         />
     );
 };
 // visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/login"]),
-            routes: [{ path: "/login", element: <AuthPage /> }],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <br />
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
-);
+render(<App />);
 ```
 
 ## Types
 
 `<AuthPage>` component has the following types:
 
--   `login` - a type of login page and default type.
--   `register` - a type of registration page.
--   `forgotPassword` - a type of forgot password page.
--   `updatePassword` - type of update password page.
+-   [`login`](#login) - a type of login page and default type.
+-   [`register`](#register) - a type of registration page.
+-   [`forgotPassword`](#forgotpassword) - a type of forgot password page.
+-   [`updatePassword`](#updatepassword) - type of update password page.
 
-## Login
+### Login
 
 `login` will be used as the default type of the `<AuthPage>` component. The login page will be used to log in to the system.
 
-You can use the following props for the `<AuthPage>` component when the type is `"login"`:
-
-### Default
-
-```tsx live url=http://localhost:3000/login
-const { useNavigation } = RefineCore;
-const { AuthPage } = RefineAntd;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
+```tsx live url=http://localhost:3000/login previewHeight=460px
+setInitialRoutes(["/login"]);
+setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
+import { Refine } from "@pankod/refine-core";
+import { AuthPage, Layout } from "@pankod/refine-antd";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
+import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
     return (
         <Refine
+            routerProvider={routerProvider}
             authProvider={authProvider}
             // highlight-next-line
             LoginPage={AuthPage}
-            resources={[
-                {
-                    name: "home",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <br />
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
-                    },
-                },
-            ]}
+            DashboardPage={DashboardPage}
+            Layout={Layout}
+            resources={[{ name: "posts" }]}
         />
     );
 };
 // visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/login"]),
-            routes: [{ path: "/login", element: <AuthPage /> }],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <br />
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
-);
+render(<App />);
 ```
 
-### `registerLink`
+### Register
 
-`registerLink` property defines the link to the registration page and also you can give a node to render. Default value is `"/register"`.
+The register page will be used to register new users. You can use the following props for the `<AuthPage>` component when the type is `"register"`:
 
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/login
-const { AuthPage } = RefineAntd;
-const { useRouterContext, useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
+```tsx live url=http://localhost:3000/register previewHeight=460px
+setInitialRoutes(["/register"]);
+setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useRouterContext, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
+import { Refine, useNavigation } from "@pankod/refine-core";
+import { AuthPage, Layout } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
-
-const Auth = (props) => {
-    const { Link } = useRouterContext();
-
-    return (
-        <AuthPage
-            {...props}
-            // highlight-start
-            registerLink={
-                <div
-                    style={{
-                        border: "1px dashed cornflowerblue",
-                        marginTop: 5,
-                    }}
-                >
-                    <Link to="/register">Register</Link>
-                </div>
-            }
-            // highlight-end
-        />
-    );
-};
+import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
     return (
@@ -260,203 +153,173 @@ const App = () => {
             routerProvider={{
                 ...routerProvider,
                 routes: [
+                    // highlight-start
                     {
                         path: "/register",
-                        element: <Auth type="register" />,
+                        element: <AuthPage type="register" />,
                     },
+                    // highlight-end
                 ],
             }}
-            resources={[
-                {
-                    name: "home",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
-                    },
-                },
-            ]}
-            LoginPage={Auth}
+            LoginPage={AuthPage}
+            DashboardPage={DashboardPage}
+            Layout={Layout}
+            resources={[{ name: "posts" }]}
         />
     );
 };
 // visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/login"]),
-            routes: [
-                {
-                    path: "/login",
-                    element: <Auth type="login" />,
-                },
-                {
-                    path: "/register",
-                    element: <Auth type="register" />,
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
-);
+render(<App />);
 ```
 
-### `providers`
+### ForgotPassword
 
-`providers` property defines the list of providers used to handle login authentication.
+The `forgotPassword` type is a page that allows users to reset their passwords. You can use this page to reset your password.
 
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/login
-const { AuthPage } = RefineAntd;
-const { useRouterContext, useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
+```tsx live url=http://localhost:3000/forgot-password
+setInitialRoutes(["/forgot-password"]);
+setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useRouterContext, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
+import { Refine, useNavigation } from "@pankod/refine-core";
+import { AuthPage, Layout } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
-import { GoogleOutlined, GithubOutlined } from "@ant-design/icons";
 
 import { authProvider } from "./authProvider";
+import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
     return (
         <Refine
             authProvider={authProvider}
-            resources={[
-                {
-                    name: "home",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                    // highlight-start
+                    {
+                        path: "/forgot-password",
+                        element: <AuthPage type="forgotPassword" />,
                     },
-                },
-            ]}
+                    // highlight-end
+                ],
+            }}
+            LoginPage={AuthPage}
+            DashboardPage={DashboardPage}
+            Layout={Layout}
+            resources={[{ name: "posts" }]}
+        />
+    );
+};
+// visible-block-end
+render(<App />);
+```
+
+### UpdatePassword
+
+The `updatePassword` type is the page used to update the password of the user.
+
+```tsx live url=http://localhost:3000/update-password
+setInitialRoutes(["/update-password"]);
+setRefineProps({ Sider: () => null });
+
+// visible-block-start
+import { Refine, useNavigation } from "@pankod/refine-core";
+import { AuthPage, Layout } from "@pankod/refine-antd";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+import { authProvider } from "./authProvider";
+import { DashboardPage } from "./pages/dashboard";
+
+const App = () => {
+    return (
+        <Refine
+            authProvider={authProvider}
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                    // highlight-start
+                    {
+                        path: "/update-password",
+                        element: <AuthPage type="updatePassword" />,
+                    },
+                    // highlight-end
+                ],
+            }}
+            LoginPage={AuthPage}
+            DashboardPage={DashboardPage}
+            Layout={Layout}
+            resources={[{ name: "posts" }]}
+        />
+    );
+};
+// visible-block-end
+render(<App />);
+```
+
+## Props
+
+### `providers`
+
+:::info
+`providers` property is only available for types `login` and `register`.
+:::
+
+`providers` property defines the list of providers used to handle login authentication. `providers` accepts an array of `Provider` type. Check out the [Interface](#interface) section for more information.
+
+```tsx live previewHeight=560px url=http://localhost:3000/login
+setInitialRoutes(["/login"]);
+setRefineProps({ Sider: () => null });
+
+// visible-block-start
+import { Refine, useRouterContext, useNavigation } from "@pankod/refine-core";
+import { AuthPage, Layout, Icons } from "@pankod/refine-antd";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+import { authProvider } from "./authProvider";
+import { DashboardPage } from "./pages/dashboard";
+
+const { GoogleOutlined, GithubOutlined } = Icons;
+
+const App = () => {
+    return (
+        <Refine
+            authProvider={authProvider}
+            routerProvider={routerProvider}
             // highlight-start
             LoginPage={() => (
                 <AuthPage
                     providers={[
                         {
                             name: "google",
+                            icon: <GoogleOutlined />,
                             label: "Sign in with Google",
                         },
                         {
                             name: "github",
+                            icon: <GithubOutlined />,
                             label: "Sign in with GitHub",
                         },
                     ]}
                 />
             )}
             // highlight-end
+            DashboardPage={DashboardPage}
+            Layout={Layout}
+            resources={[{ name: "posts" }]}
         />
     );
 };
 // visible-block-end
 render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/login"]),
-            routes: [
-                {
-                    path: "/login",
-                    element: (
-                        <AuthPage
-                            providers={[
-                                {
-                                    name: "google",
-                                    label: "Sign in with Google",
-                                },
-                                {
-                                    name: "github",
-                                    label: "Sign in with GitHub",
-                                },
-                            ]}
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
+    <App />,
 );
 ```
 
 ### `rememberMe`
+
+:::info
+`rememberMe` property is only available for type `login`.
+:::
 
 `rememberMe` property defines to render your own remember me component or you can pass `false` to don't render it.
 
@@ -464,35 +327,25 @@ render(
 You have to wrap your remember me component with `Form.Item` component from **antd** and pass the `name` prop to it then you can access its value from the `formProps` `onFinish` function with `formValues`.
 :::
 
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/login
-const { AuthPage, Form, Checkbox } = RefineAntd;
-const { useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
+```tsx live previewHeight=500px url=http://localhost:3000/login
+setInitialRoutes(["/login"]);
+setRefineProps({ Sider: () => null });
 
 // visible-block-start
-
 import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Form, Checkbox } from "@pankod/refine-antd";
+import { AuthPage, Layout, Form, Checkbox } from "@pankod/refine-antd";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
+import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
     return (
         <Refine
+            routerProvider={routerProvider}
             authProvider={authProvider}
             // highlight-start
-            LoginPage={
+            LoginPage={() => (
                 <AuthPage
                     rememberMe={
                         <div
@@ -511,120 +364,239 @@ const App = () => {
                         </div>
                     }
                 />
-            }
+            )}
             // highlight-end
-            resources={[
-                {
-                    name: "home",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
-                    },
-                },
-            ]}
+            DashboardPage={DashboardPage}
+            Layout={Layout}
+            resources={[{ name: "posts" }]}
         />
     );
 };
 // visible-block-end
 render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/login"]),
-            routes: [
-                {
-                    path: "/login",
-                    element: (
-                        <AuthPage
-                            rememberMe={
-                                <div
-                                    style={{
-                                        border: "1px dashed cornflowerblue",
-                                        padding: 3,
-                                    }}
-                                >
-                                    <Form.Item
-                                        name="remember"
-                                        valuePropName="checked"
-                                        noStyle
-                                    >
-                                        <Checkbox>Custom remember me</Checkbox>
-                                    </Form.Item>
-                                </div>
-                            }
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
+    <App />,
 );
+```
+
+### `loginLink`
+
+:::info
+`loginLink` property is only available for types `register` and `forgotPassword`.
+:::
+
+`loginLink` property defines the link to the login page and also you can give a node to render. Default value is `"/login"`.
+
+```tsx live previewHeight=500px url=http://localhost:3000/register
+setInitialRoutes(["/register"]);
+setRefineProps({ Sider: () => null });
+
+// visible-block-start
+import { Refine, useRouterContext } from "@pankod/refine-core";
+import { AuthPage, Layout } from "@pankod/refine-antd";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+import { authProvider } from "./authProvider";
+import { DashboardPage } from "./pages/dashboard";
+
+const Auth = (props) => {
+    const { Link } = useRouterContext();
+
+    return (
+        <AuthPage
+            {...props}
+            // highlight-start
+            loginLink={
+                <div
+                    style={{
+                        border: "1px dashed cornflowerblue",
+                        padding: 3,
+                    }}
+                >
+                    <Link to="/login">Login</Link>
+                </div>
+            }
+            // highlight-end
+        />
+    );
+};
+
+const App = () => {
+    return (
+        <Refine
+            authProvider={authProvider}
+            // highlight-start
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                    {
+                        path: "/register",
+                        element: <Auth type="register" />,
+                    },
+                ],
+            }}
+            // highlight-end
+            LoginPage={Auth}
+            DashboardPage={DashboardPage}
+            Layout={Layout}
+            resources={[{ name: "posts" }]}
+        />
+    );
+};
+// visible-block-end
+render(<App />);
+```
+
+### `registerLink`
+
+:::info
+`registerLink` property is only available for type `login`.
+:::
+
+`registerLink` property defines the link to the registration page and also you can give a node to render. Default value is `"/register"`.
+
+```tsx live previewHeight=500px url=http://localhost:3000/login
+setInitialRoutes(["/login"]);
+setRefineProps({ Sider: () => null });
+
+// visible-block-start
+import { Refine, useRouterContext } from "@pankod/refine-core";
+import { AuthPage, Layout } from "@pankod/refine-antd";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+import { authProvider } from "./authProvider";
+import { DashboardPage } from "./pages/dashboard";
+
+const Auth = (props) => {
+    const { Link } = useRouterContext();
+
+    return (
+        <AuthPage
+            {...props}
+            // highlight-start
+            registerLink={
+                <div
+                    style={{
+                        border: "1px dashed cornflowerblue",
+                        marginTop: 5,
+                        padding: 5,
+                    }}
+                >
+                    <Link to="/register">Register</Link>
+                </div>
+            }
+            // highlight-end
+        />
+    );
+};
+
+const App = () => {
+    return (
+        <Refine
+            authProvider={authProvider}
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                    { path: "/register", element: <Auth type="register" /> },
+                ]
+            }}
+            // highlight-next-line
+            LoginPage={Auth}
+            DashboardPage={DashboardPage}
+            Layout={Layout}
+            resources={[{ name: "posts" }]}
+        />
+    );
+};
+// visible-block-end
+render(<App />);
+```
+
+### `forgotPasswordLink`
+
+:::info
+`forgotPasswordLink` property is only available for type `login`.
+:::
+
+`forgotPasswordLink` property defines the link to the forgot password page and also you can give a node to render. Default value is `"/forgot-password"`.
+
+```tsx live previewHeight=500px url=http://localhost:3000/login
+setInitialRoutes(["/login"]);
+setRefineProps({ Sider: () => null });
+
+// visible-block-start
+import { Refine, useRouterContext } from "@pankod/refine-core";
+import { AuthPage, Layout } from "@pankod/refine-antd";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+import { authProvider } from "./authProvider";
+import { DashboardPage } from "./pages/dashboard";
+
+const Auth = (props) => {
+    const { Link } = useRouterContext();
+
+    return (
+        <AuthPage
+            {...props}
+            // highlight-start
+            forgotPasswordLink={
+                <div
+                    style={{
+                        border: "1px dashed cornflowerblue",
+                        marginTop: 5,
+                        padding: 5,
+                    }}
+                >
+                    <Link to="/register">Forgot Password</Link>
+                </div>
+            }
+            // highlight-end
+        />
+    );
+};
+
+const App = () => {
+    return (
+        <Refine
+            authProvider={authProvider}
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                    { path: "/forgot-password", element: <Auth type="forgotPassword" /> },
+                ]
+            }}
+            // highlight-next-line
+            LoginPage={Auth}
+            DashboardPage={DashboardPage}
+            Layout={Layout}
+            resources={[{ name: "posts" }]}
+        />
+    );
+};
+// visible-block-end
+render(<App />);
 ```
 
 ### `wrapperProps`
 
 `wrapperProps` uses for passing props to the wrapper component. In the example below you can see that the background color is changed with `wrapperProps`
 
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/login
-const { AuthPage } = RefineAntd;
-const { useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
+```tsx live previewHeight=500px url=http://localhost:3000/login
+setInitialRoutes(["/login"]);
+setRefineProps({ Sider: () => null });
 
 // visible-block-start
 import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
+import { AuthPage, Layout } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
+import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
     return (
         <Refine
             authProvider={authProvider}
+            routerProvider={routerProvider}
             LoginPage={() => (
                 <AuthPage
                     // highlight-start
@@ -636,106 +608,36 @@ const App = () => {
                     // highlight-end
                 />
             )}
-            resources={[
-                {
-                    name: "home",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
-                    },
-                },
-            ]}
+            DashboardPage={DashboardPage}
+            Layout={Layout}
+            resources={[{ name: "posts" }]}
         />
     );
 };
 // visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/login"]),
-            routes: [
-                {
-                    path: "/login",
-                    element: (
-                        <AuthPage
-                            wrapperProps={{
-                                style: {
-                                    background: "#331049",
-                                },
-                            }}
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
-);
+render(<App />);
 ```
 
 ### `contentProps`
 
 `contentProps` uses for passing props to the content component which is the card component. In the example below you can see that the title, header and content styles are changed with `contentProps`.
 
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/login
-const { AuthPage } = RefineAntd;
-const { useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
+```tsx live previewHeight=500px url=http://localhost:3000/login
+setInitialRoutes(["/login"]);
+setRefineProps({ Sider: () => null });
 
 // visible-block-start
 import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
+import { AuthPage, Layout } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
+import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
     return (
         <Refine
+            routerProvider={routerProvider}
             authProvider={authProvider}
             LoginPage={() => (
                 <AuthPage
@@ -753,111 +655,36 @@ const App = () => {
                     // highlight-end
                 />
             )}
-            resources={[
-                {
-                    name: "home",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
-                    },
-                },
-            ]}
+            DashboardPage={DashboardPage}
+            Layout={Layout}
+            resources={[{ name: "posts" }]}
         />
     );
 };
 // visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/login"]),
-            routes: [
-                {
-                    path: "/login",
-                    element: (
-                        <AuthPage
-                            contentProps={{
-                                title: "Login",
-                                headStyle: {
-                                    background: "cornflowerblue",
-                                    color: "white",
-                                },
-                                bodyStyle: {
-                                    background: "#673ab742",
-                                },
-                            }}
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
-);
+render(<App />);
 ```
 
 ### `formProps`
 
 `formProps` uses for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps` and also the `onFinish` function is changed.
 
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/login
-const { AuthPage } = RefineAntd;
-const { useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
+```tsx live previewHeight=500px url=http://localhost:3000/login
+setInitialRoutes(["/login"]);
+setRefineProps({ Sider: () => null });
 
 // visible-block-start
 import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
+import { AuthPage, Layout } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
+import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
     return (
         <Refine
+            routerProvider={routerProvider}
             authProvider={authProvider}
             LoginPage={() => (
                 <AuthPage
@@ -873,108 +700,36 @@ const App = () => {
                     // highlight-end
                 />
             )}
-            resources={[
-                {
-                    name: "home",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
-                    },
-                },
-            ]}
+            DashboardPage={DashboardPage}
+            Layout={Layout}
+            resources={[{ name: "posts" }]}
         />
     );
 };
 // visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/login"]),
-            routes: [
-                {
-                    path: "/login",
-                    element: (
-                        <AuthPage
-                            formProps={{
-                                initialValues: {
-                                    email: "demo@refine.dev",
-                                    password: "demo",
-                                },
-                                onFinish: (formValues) =>
-                                    alert(JSON.stringify(formValues, null, 2)),
-                            }}
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
-);
+render(<App />);
 ```
 
 ### `renderContent`
 
 `renderContent` uses to render the form content. You can use this property to render your own content or `renderContent` gives you default content you can use to add some extra elements to the content.
 
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/login
-const { AuthPage } = RefineAntd;
-const { useRouterContext, useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
+```tsx live previewHeight=500px url=http://localhost:3000/login
+setInitialRoutes(["/login"]);
+setRefineProps({ Sider: () => null });
 
 // visible-block-start
 import { Refine, useRouterContext } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
+import { AuthPage, Layout } from "@pankod/refine-antd";
+import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
+import { DashboardPage } from "./pages/dashboard";
 
 const App = () => {
     return (
         <Refine
+            routerProvider={routerProvider}
             authProvider={authProvider}
             // highlight-start
             LoginPage={() => (
@@ -994,2121 +749,23 @@ const App = () => {
                                     alignItems: "center",
                                 }}
                             >
-                                <h1>Extra Header</h1>
+                                <h1 style={{ color: "white" }}>Extra Header</h1>
                                 {content}
-                                <h1>Extra Footer</h1>
+                                <h1 style={{ color: "white" }}>Extra Footer</h1>
                             </div>
                         );
                     }}
                 />
             )}
             // highlight-end
-            resources={[
-                {
-                    name: "home",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
-                    },
-                },
-            ]}
+            DashboardPage={DashboardPage}
+            Layout={Layout}
+            resources={[{ name: "posts" }]}
         />
     );
 };
 // visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/login"]),
-            routes: [
-                {
-                    path: "/login",
-                    element: (
-                        <AuthPage
-                            contentProps={{
-                                style: {
-                                    width: "400px",
-                                },
-                            }}
-                            renderContent={(content: React.ReactNode) => {
-                                return (
-                                    <div
-                                        style={{
-                                            display: "flex",
-                                            flexDirection: "column",
-                                            justifyContent: "center",
-                                            alignItems: "center",
-                                            width: "100%",
-                                        }}
-                                    >
-                                        <h1>Extra Header</h1>
-                                        {content}
-                                        <h1>Extra Footer</h1>
-                                    </div>
-                                );
-                            }}
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
-);
-```
-
-## Register
-
-The register page will be used to register new users. You can use the following props for the `<AuthPage>` component when the type is `"register"`:
-
-### Default
-
-```tsx live url=http://localhost:3000/register
-const { useNavigation } = RefineCore;
-const { AuthPage } = RefineAntd;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/register",
-                        element: <Auth type="register" />,
-                    },
-                ],
-            }}
-            LoginPage={AuthPage}
-            resources={[
-                {
-                    name: "home",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <br />
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
-                    },
-                },
-            ]}
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/register"]),
-            routes: [
-                { path: "/login", element: <AuthPage /> },
-                { path: "/register", element: <AuthPage type="register" /> },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <br />
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
-);
-```
-
-### `loginLink`
-
-`loginLink` property defines the link to the login page and also you can give a node to render. Default value is `"/login"`.
-
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/register
-const { AuthPage } = RefineAntd;
-const { useRouterContext, useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine, useRouterContext, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-
-const Auth = (props) => {
-    const { Link } = useRouterContext();
-
-    return (
-        <AuthPage
-            {...props}
-            // highlight-start
-            loginLink={
-                <div
-                    style={{
-                        border: "1px dashed cornflowerblue",
-                        padding: 3,
-                    }}
-                >
-                    <Link to="/login">Login</Link>
-                </div>
-            }
-            // highlight-end
-        />
-    );
-};
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            // highlight-start
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/register",
-                        element: <Auth type="register" />,
-                    },
-                ],
-            }}
-            // highlight-end
-            LoginPage={Auth}
-            resources={[
-                {
-                    name: "home",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
-                    },
-                },
-            ]}
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/register"]),
-            routes: [
-                {
-                    path: "/login",
-                    element: <Auth />,
-                },
-                {
-                    path: "/register",
-                    element: <Auth type="register" />,
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
-);
-```
-
-### `wrapperProps`
-
-`wrapperProps` uses for passing props to the wrapper component. In the example below you can see that the background color is changed with `wrapperProps`
-
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/register
-const { AuthPage } = RefineAntd;
-const { useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/register",
-                        element: (
-                            // highlight-start
-                            <AuthPage
-                                type="register"
-                                wrapperProps={{
-                                    style: {
-                                        background: "#331049",
-                                    },
-                                }}
-                                loginLink={false}
-                            />
-                            // highlight-end
-                        ),
-                    },
-                ],
-            }}
-            LoginPage={AuthPage}
-            resources={[
-                {
-                    name: "home",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
-                    },
-                },
-            ]}
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/register"]),
-            routes: [
-                {
-                    path: "/login",
-                    element: <AuthPage />,
-                },
-                {
-                    path: "/register",
-                    element: (
-                        <AuthPage
-                            type="register"
-                            wrapperProps={{
-                                style: {
-                                    background: "#331049",
-                                },
-                            }}
-                            loginLink={false}
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
-);
-```
-
-### `contentProps`
-
-`contentProps` uses for passing props to the content component which is the form component. In the example below you can see that the title, header and content styles are changed with `contentProps`.
-
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/register
-const { AuthPage } = RefineAntd;
-const { useRouterContext, useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/register",
-                        element: (
-                            <AuthPage
-                                type="register"
-                                loginLink={false}
-                                // highlight-start
-                                contentProps={{
-                                    title: "Login",
-                                    headStyle: {
-                                        background: "cornflowerblue",
-                                        color: "white",
-                                    },
-                                    bodyStyle: {
-                                        background: "#673ab742",
-                                    },
-                                }}
-                                // highlight-end
-                            />
-                        ),
-                    },
-                ],
-            }}
-            resources={[
-                {
-                    name: "home",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
-                    },
-                },
-            ]}
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/register"]),
-            routes: [
-                {
-                    path: "/register",
-                    element: (
-                        <AuthPage
-                            type="register"
-                            loginLink={false}
-                            contentProps={{
-                                title: "Register",
-                                headStyle: {
-                                    background: "cornflowerblue",
-                                    color: "white",
-                                },
-                                bodyStyle: {
-                                    background: "#673ab742",
-                                },
-                            }}
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
-);
-```
-
-### `formProps`
-
-`formProps` uses for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps` and also the `onFinish` function is changed.
-
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/register
-const { AuthPage } = RefineAntd;
-const { useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            LoginPage={() => (
-                <AuthPage
-                    type="register"
-                    // highlight-start
-                    formProps={{
-                        initialValues: {
-                            email: "demo@refine.dev",
-                            password: "demo",
-                        },
-                        onFinish: (formValues) =>
-                            alert(JSON.stringify(formValues, null, 2)),
-                    }}
-                    // highlight-end
-                />
-            )}
-            resources={[
-                {
-                    name: "home",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
-                    },
-                },
-            ]}
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/register"]),
-            routes: [
-                {
-                    path: "/register",
-                    element: (
-                        <AuthPage
-                            type="register"
-                            formProps={{
-                                initialValues: {
-                                    email: "demo@refine.dev",
-                                    password: "demo",
-                                },
-                                onFinish: (formValues) =>
-                                    alert(JSON.stringify(formValues, null, 2)),
-                            }}
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
-);
-```
-
-### `renderContent`
-
-`renderContent` uses to render the form content. You can use this property to render your own content or `renderContent` gives you default content you can use to add some extra elements to the content.
-
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/register
-const { AuthPage } = RefineAntd;
-const { useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
-
-import { authProvider } from "./authProvider";
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/register",
-                        // highlight-start
-                        element: (
-                            <AuthPage
-                                type="register"
-                                loginLink={false}
-                                formProps={{
-                                    onFinish: (formValues) =>
-                                        alert(
-                                            JSON.stringify(formValues, null, 2),
-                                        ),
-                                }}
-                                contentProps={{
-                                    style: {
-                                        width: "400px",
-                                    },
-                                }}
-                                renderContent={(content: React.ReactNode) => {
-                                    return (
-                                        <div
-                                            style={{
-                                                display: "flex",
-                                                flexDirection: "column",
-                                                justifyContent: "center",
-                                                alignItems: "center",
-                                            }}
-                                        >
-                                            <h1>Extra Header</h1>
-                                            {content}
-                                            <h1>Extra Footer</h1>
-                                        </div>
-                                    );
-                                }}
-                            />
-                        ),
-                        // highlight-end
-                    },
-                ],
-            }}
-            resources={[
-                {
-                    name: "home",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
-                    },
-                },
-            ]}
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/register"]),
-            routes: [
-                {
-                    path: "/register",
-                    element: (
-                        <AuthPage
-                            type="register"
-                            loginLink={false}
-                            formProps={{
-                                onFinish: (formValues) =>
-                                    alert(JSON.stringify(formValues, null, 2)),
-                            }}
-                            contentProps={{
-                                style: {
-                                    width: "400px",
-                                },
-                            }}
-                            renderContent={(content: React.ReactNode) => {
-                                return (
-                                    <div
-                                        style={{
-                                            display: "flex",
-                                            flexDirection: "column",
-                                            justifyContent: "center",
-                                            alignItems: "center",
-                                            width: "100%",
-                                        }}
-                                    >
-                                        <h1>Extra Header</h1>
-                                        {content}
-                                        <h1>Extra Footer</h1>
-                                    </div>
-                                );
-                            }}
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
-);
-```
-
-## Forgot Password
-
-The forgot Password Page is a page that allows users to reset their passwords. You can use this page to reset your password.
-
-### Default
-
-```tsx live url=http://localhost:3000/forgot-password
-const { useNavigation } = RefineCore;
-const { AuthPage } = RefineAntd;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/forgot-password",
-                        element: <AuthPage type="forgotPassword" />,
-                    },
-                ],
-            }}
-            LoginPage={AuthPage}
-            resources={[
-                {
-                    name: "home",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <br />
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
-                    },
-                },
-            ]}
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/forgot-password"]),
-            routes: [
-                { path: "/login", element: <AuthPage /> },
-                {
-                    path: "/forgot-password",
-                    element: <AuthPage type="forgotPassword" />,
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <br />
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
-);
-```
-
-### `loginLink`
-
-`loginLink` property defines the link to the login page and also you can give a node to render. Default value is `"/login"`.
-
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/forgot-password
-const { AuthPage } = RefineAntd;
-const { useRouterContext, useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine, useRouterContext, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-
-const Auth = (props) => {
-    const { Link } = useRouterContext();
-
-    return (
-        <AuthPage
-            {...props}
-            // highlight-start
-            loginLink={
-                <div
-                    style={{
-                        border: "1px dashed cornflowerblue",
-                        padding: 3,
-                    }}
-                >
-                    <Link to="/login">Login</Link>
-                </div>
-            }
-            // highlight-end
-        />
-    );
-};
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            // highlight-start
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/forgot-password",
-                        element: <Auth type="forgotPassword" />,
-                    },
-                ],
-            }}
-            // highlight-end
-            LoginPage={Auth}
-            resources={[
-                {
-                    name: "home",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
-                    },
-                },
-            ]}
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/forgot-password"]),
-            routes: [
-                {
-                    path: "/login",
-                    element: <Auth type="login" />,
-                },
-                {
-                    path: "/forgot-password",
-                    element: <Auth type="forgotPassword" />,
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
-);
-```
-
-### `wrapperProps`
-
-`wrapperProps` uses for passing props to the wrapper component. In the example below you can see that the background color is changed with `wrapperProps`
-
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/forgot-password
-const { AuthPage } = RefineAntd;
-const { useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            // highlight-start
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/forgot-password",
-                        element: (
-                            <AuthPage
-                                type="forgotPassword"
-                                wrapperProps={{
-                                    style: {
-                                        background: "#331049",
-                                    },
-                                }}
-                                loginLink={false}
-                            />
-                        ),
-                    },
-                ],
-            }}
-            // highlight-end
-            LoginPage={AuthPage}
-            resources={[
-                {
-                    name: "home",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
-                    },
-                },
-            ]}
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/forgot-password"]),
-            routes: [
-                {
-                    path: "/forgot-password",
-                    element: (
-                        <AuthPage
-                            type="forgotPassword"
-                            wrapperProps={{
-                                style: {
-                                    background: "#331049",
-                                },
-                            }}
-                            loginLink={false}
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
-);
-```
-
-### `contentProps`
-
-`contentProps` uses for passing props to the content component which is the form component. In the example below you can see that the title, header and content styles are changed with `contentProps`.
-
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/forgot-password
-const { AuthPage } = RefineAntd;
-const { useRouterContext, useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            // highlight-start
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/forgot-password",
-                        element: (
-                            <AuthPage
-                                type="forgotPassword"
-                                loginLink={false}
-                                contentProps={{
-                                    title: "Forgot Password",
-                                    headStyle: {
-                                        background: "cornflowerblue",
-                                        color: "white",
-                                    },
-                                    bodyStyle: {
-                                        background: "#673ab742",
-                                    },
-                                }}
-                            />
-                        ),
-                    },
-                ],
-            }}
-            // highlight-end
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/forgot-password"]),
-            routes: [
-                {
-                    path: "/forgot-password",
-                    element: (
-                        <AuthPage
-                            type="forgotPassword"
-                            loginLink={false}
-                            contentProps={{
-                                title: "Forgot Password",
-                                headStyle: {
-                                    background: "cornflowerblue",
-                                    color: "white",
-                                },
-                                bodyStyle: {
-                                    background: "#673ab742",
-                                },
-                            }}
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "Home",
-                list: () => {
-                    return <div>Home</div>;
-                },
-            },
-        ]}
-    />,
-);
-```
-
-### `formProps`
-
-`formProps` uses for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps` and also the `onFinish` function is changed.
-
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/forgot-password
-const { AuthPage } = RefineAntd;
-const { useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            LoginPage={() => (
-                <AuthPage
-                    type="forgotPassword"
-                    // highlight-start
-                    formProps={{
-                        initialValues: {
-                            email: "demo@refine.dev",
-                            password: "demo",
-                        },
-                        onFinish: (formValues) =>
-                            alert(JSON.stringify(formValues, null, 2)),
-                    }}
-                    // highlight-end
-                />
-            )}
-            resources={[
-                {
-                    name: "Home",
-                    list: () => {
-                        return <div>Home</div>;
-                    },
-                },
-            ]}
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/forgot-password"]),
-            routes: [
-                {
-                    path: "/forgot-password",
-                    element: (
-                        <AuthPage
-                            type="forgotPassword"
-                            formProps={{
-                                initialValues: {
-                                    email: "demo@refine.dev",
-                                    password: "demo",
-                                },
-                                onFinish: (formValues) =>
-                                    alert(JSON.stringify(formValues, null, 2)),
-                            }}
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "Home",
-                list: () => {
-                    return <div>Home</div>;
-                },
-            },
-        ]}
-    />,
-);
-```
-
-### `renderContent`
-
-`renderContent` uses to render the form content. You can use this property to render your own content or `renderContent` gives you default content you can use to add some extra elements to the content.
-
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/forgot-password
-const { AuthPage } = RefineAntd;
-const { useRouterContext, useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine, useRouterContext } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
-
-import { authProvider } from "./authProvider";
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            // highlight-start
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/forgot-password",
-                        element: (
-                            <AuthPage
-                                type="forgotPassword"
-                                loginLink={false}
-                                formProps={{
-                                    onFinish: (formValues) =>
-                                        alert(
-                                            JSON.stringify(formValues, null, 2),
-                                        ),
-                                }}
-                                contentProps={{
-                                    style: {
-                                        width: "400px",
-                                    },
-                                }}
-                                renderContent={(content: React.ReactNode) => {
-                                    return (
-                                        <div
-                                            style={{
-                                                display: "flex",
-                                                flexDirection: "column",
-                                                justifyContent: "center",
-                                                alignItems: "center",
-                                            }}
-                                        >
-                                            <h1>Extra Header</h1>
-                                            {content}
-                                            <h1>Extra Footer</h1>
-                                        </div>
-                                    );
-                                }}
-                            />
-                        ),
-                    },
-                ],
-            }}
-            // highlight-end
-            resources={[
-                {
-                    name: "Home",
-                    list: () => {
-                        return <div>Home Page</div>;
-                    },
-                },
-            ]}
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/forgot-password"]),
-            routes: [
-                {
-                    path: "/forgot-password",
-                    element: (
-                        <AuthPage
-                            type="forgotPassword"
-                            loginLink={false}
-                            formProps={{
-                                onFinish: (formValues) =>
-                                    alert(JSON.stringify(formValues, null, 2)),
-                            }}
-                            contentProps={{
-                                style: {
-                                    width: "400px",
-                                },
-                            }}
-                            renderContent={(content: React.ReactNode) => {
-                                return (
-                                    <div
-                                        style={{
-                                            display: "flex",
-                                            flexDirection: "column",
-                                            justifyContent: "center",
-                                            alignItems: "center",
-                                            width: "100%",
-                                        }}
-                                    >
-                                        <h1>Extra Header</h1>
-                                        {content}
-                                        <h1>Extra Footer</h1>
-                                    </div>
-                                );
-                            }}
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "Home",
-                list: () => {
-                    return <div>Home Page</div>;
-                },
-            },
-        ]}
-    />,
-);
-```
-
-## Update Password
-
-The update Password page is used to update the password of the user.
-
-### Default
-
-```tsx live url=http://localhost:3000/update-password
-const { useNavigation } = RefineCore;
-const { AuthPage } = RefineAntd;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            // highlight-start
-
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/update-password",
-                        element: <AuthPage type="updatePassword" />,
-                    },
-                ],
-            }}
-            // highlight-end
-            LoginPage={AuthPage}
-            resources={[
-                {
-                    name: "home",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <br />
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
-                    },
-                },
-            ]}
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/update-password"]),
-            routes: [
-                { path: "/login", element: <AuthPage /> },
-                {
-                    path: "/update-password",
-                    element: <AuthPage type="updatePassword" />,
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <br />
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
-);
-```
-
-### `wrapperProps`
-
-`wrapperProps` uses for passing props to the wrapper component. In the example below you can see that the background color is changed with `wrapperProps`
-
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/update-password
-const { AuthPage } = RefineAntd;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/update-password",
-                        element: (
-                            <AuthPage
-                                type="updatePassword"
-                                // highlight-start
-                                wrapperProps={{
-                                    style: {
-                                        background: "#331049",
-                                    },
-                                }}
-                                // highlight-end
-                            />
-                        ),
-                    },
-                ],
-            }}
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/update-password"]),
-            routes: [
-                {
-                    path: "/update-password",
-                    element: (
-                        <AuthPage
-                            type="updatePassword"
-                            wrapperProps={{
-                                style: {
-                                    background: "#331049",
-                                },
-                            }}
-                            loginLink={false}
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "posts",
-                list: () => {
-                    return <div>Empty Page</div>;
-                },
-            },
-        ]}
-    />,
-);
-```
-
-### `contentProps`
-
-`contentProps` uses for passing props to the content component which is the form component. In the example below you can see that the title, header and content styles are changed with `contentProps`.
-
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/update-password
-const { AuthPage } = RefineAntd;
-const { useRouterContext, useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/update-password",
-
-                        element: (
-                            <AuthPage
-                                type="updatePassword"
-                                // highlight-start
-                                contentProps={{
-                                    title: "Update Password",
-                                    headStyle: {
-                                        background: "cornflowerblue",
-                                        color: "white",
-                                    },
-                                    bodyStyle: {
-                                        background: "#673ab742",
-                                    },
-                                }}
-                                // highlight-end
-                            />
-                        ),
-                    },
-                ],
-            }}
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/update-password"]),
-            routes: [
-                {
-                    path: "/update-password",
-                    element: (
-                        <AuthPage
-                            type="updatePassword"
-                            contentProps={{
-                                title: "Update Password",
-                                headStyle: {
-                                    background: "cornflowerblue",
-                                    color: "white",
-                                },
-                                bodyStyle: {
-                                    background: "#673ab742",
-                                },
-                            }}
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "posts",
-                list: () => {
-                    return <div>Empty Page</div>;
-                },
-            },
-        ]}
-    />,
-);
-```
-
-### `formProps`
-
-`formProps` uses for passing props to the form component. In the example below you can see that the `initialValues` are changed with `formProps` and also the `onFinish` function is changed.
-
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/update-password
-const { AuthPage } = RefineAntd;
-const { useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
-import routerProvider from "@pankod/refine-react-router-v6";
-
-import { authProvider } from "./authProvider";
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            LoginPage={() => (
-                <AuthPage
-                    type="updatePassword"
-                    // highlight-start
-                    formProps={{
-                        initialValues: {
-                            email: "demo@refine.dev",
-                            password: "demo",
-                        },
-                        onFinish: (formValues) =>
-                            alert(JSON.stringify(formValues, null, 2)),
-                    }}
-                    // highlight-end
-                />
-            )}
-            resources={[
-                {
-                    name: "home",
-                    list: () => {
-                        const { replace } = useNavigation();
-
-                        return (
-                            <div>
-                                Home Page
-                                <button
-                                    onClick={() => {
-                                        replace("/login");
-                                    }}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        );
-                    },
-                },
-            ]}
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/update-password"]),
-            routes: [
-                {
-                    path: "/update-password",
-                    element: (
-                        <AuthPage
-                            type="updatePassword"
-                            formProps={{
-                                initialValues: {
-                                    email: "demo@refine.dev",
-                                    password: "demo",
-                                },
-                                onFinish: (formValues) =>
-                                    alert(JSON.stringify(formValues, null, 2)),
-                            }}
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "home",
-                list: () => {
-                    const { replace } = useNavigation();
-
-                    return (
-                        <div>
-                            Home Page
-                            <button
-                                onClick={() => {
-                                    replace("/login");
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    );
-                },
-            },
-        ]}
-    />,
-);
-```
-
-### `renderContent`
-
-`renderContent` uses to render the form content. You can use this property to render your own content or `renderContent` gives you default content you can use to add some extra elements to the content.
-
-```tsx live previewHeight=500px hideCode url=http://localhost:3000/update-password
-const { AuthPage } = RefineAntd;
-const { useRouterContext, useNavigation } = RefineCore;
-
-const authProvider = {
-    login: () => Promise.resolve(),
-    register: () => Promise.resolve(),
-    forgotPassword: () => Promise.resolve(),
-    updatePassword: () => Promise.resolve(),
-    logout: () => Promise.resolve(),
-    checkAuth: () => Promise.resolve(),
-    checkError: () => Promise.resolve(),
-    getPermissions: () => Promise.resolve(),
-    getUserIdentity: () => Promise.resolve(),
-};
-
-// visible-block-start
-import { Refine, useRouterContext } from "@pankod/refine-core";
-import { AuthPage } from "@pankod/refine-antd";
-
-import { authProvider } from "./authProvider";
-
-const App = () => {
-    return (
-        <Refine
-            authProvider={authProvider}
-            routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: "/update-password",
-                        element: (
-                            <AuthPage
-                                type="updatePassword"
-                                contentProps={{
-                                    style: {
-                                        width: "400px",
-                                    },
-                                }}
-                                // highlight-start
-                                renderContent={(content: React.ReactNode) => {
-                                    return (
-                                        <div
-                                            style={{
-                                                display: "flex",
-                                                flexDirection: "column",
-                                                justifyContent: "center",
-                                                alignItems: "center",
-                                            }}
-                                        >
-                                            <h1>Extra Header</h1>
-                                            {content}
-                                            <h1>Extra Footer</h1>
-                                        </div>
-                                    );
-                                }}
-                                // highlight-end
-                            />
-                        ),
-                    },
-                ],
-            }}
-        />
-    );
-};
-// visible-block-end
-render(
-    <RefineAntdDemo
-        routerProvider={{
-            ...RefineDemoReactRouterV6(["/update-password"]),
-            routes: [
-                {
-                    path: "/update-password",
-                    element: (
-                        <AuthPage
-                            type="updatePassword"
-                            contentProps={{
-                                style: {
-                                    width: "400px",
-                                },
-                            }}
-                            renderContent={(content: React.ReactNode) => {
-                                return (
-                                    <div
-                                        style={{
-                                            display: "flex",
-                                            flexDirection: "column",
-                                            justifyContent: "center",
-                                            alignItems: "center",
-                                            width: "100%",
-                                        }}
-                                    >
-                                        <h1>Extra Header</h1>
-                                        {content}
-                                        <h1>Extra Footer</h1>
-                                    </div>
-                                );
-                            }}
-                        />
-                    ),
-                },
-            ],
-        }}
-        authProvider={authProvider}
-        resources={[
-            {
-                name: "posts",
-                list: () => {
-                    return <div>Empty Page</div>;
-                },
-            },
-        ]}
-    />,
-);
+render(<App />);
 ```
 
 ## API Reference

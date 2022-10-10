@@ -27,7 +27,7 @@ export const Footer: React.FC = () => {
                         </Link>
                     </div>
                     <div>
-                        <Link href="https://refine.dev/docs/examples/tutorial/headless-tutorial/">
+                        <Link href="https://refine.dev/docs/examples/">
                             <a className="transition-all hover:underline hover:underline-offset-2">
                                 Examples
                             </a>

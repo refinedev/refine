@@ -25,7 +25,6 @@ export const Landing: React.FC = () => {
 
     return (
         <main id="landing_main">
-            <div className="hidden lg:block snap-start" />
             <SectionHero starCount={githubStarCount} />
             <SectionFreeStart />
             <SectionBullets />

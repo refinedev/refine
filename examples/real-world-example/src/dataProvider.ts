@@ -93,7 +93,9 @@ export const dataProvider = (axios: AxiosInstance): DataProvider => {
                 ? `${API_URL}/${resource}/${id}/${metaData.URLSuffix}`
                 : `${API_URL}/${resource}/${id}`;
 
-            const { data } = await axios.delete(url, variables);
+            const { data } = await axios.delete(url, {
+                data: variables,
+            });
 
             return {
                 data,

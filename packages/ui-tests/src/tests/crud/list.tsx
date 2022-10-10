@@ -36,50 +36,25 @@ export const crudListTests = function (
     describe("[@pankod/refine-ui-tests] Common Tests / CRUD List", () => {
         beforeAll(() => {
             jest.spyOn(console, "warn").mockImplementation(jest.fn());
-            jest.useFakeTimers();
-        });
-
-        afterAll(() => {
-            jest.useRealTimers();
         });
 
         it("should render children", async () => {
-            jest.useFakeTimers();
-
             const { getByText } = renderList(
                 <List key="posts">
                     <div>No Data</div>
                 </List>,
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             getByText("No Data");
         });
 
         it("should render optional title with title prop", async () => {
-            jest.useFakeTimers();
-
-            const { getByText } = renderList(
-                <List
-                    headerProps={{
-                        title: "New Title",
-                    }}
-                ></List>,
-            );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
+            const { getByText } = renderList(<List title="New Title"></List>);
 
             getByText("New Title");
         });
 
         it("should render with label instead of resource name successfully", async () => {
-            jest.useFakeTimers();
-
             const { getByText } = renderList(<List />, undefined, {
                 resources: [
                     {
@@ -90,16 +65,10 @@ export const crudListTests = function (
                 routerInitialEntries: ["/posts"],
             });
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             getByText("Tests");
         });
 
         it("should render create button", async () => {
-            jest.useFakeTimers();
-
             const { queryByTestId } = renderList(<List />, undefined, {
                 resources: [
                     {
@@ -110,18 +79,12 @@ export const crudListTests = function (
                 routerInitialEntries: ["/posts"],
             });
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(
                 queryByTestId(RefineButtonTestIds.CreateButton),
             ).not.toBeNull();
         });
 
         it("should not render create button on resource#canCreate=false", async () => {
-            jest.useFakeTimers();
-
             const { queryByTestId } = renderList(<List />, undefined, {
                 resources: [
                     {
@@ -132,25 +95,15 @@ export const crudListTests = function (
                 routerInitialEntries: ["/posts"],
             });
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(queryByTestId(RefineButtonTestIds.CreateButton)).toBeNull();
         });
 
         it("should render create button on resource#canCreate=false & props#createButtonProps!=null", async () => {
-            jest.useFakeTimers();
-
             const { getByText, queryByTestId } = renderList(
-                <List createButtonProps={{ size: "large" }} />,
+                <List createButtonProps={{ "aria-label": "Create Button" }} />,
                 undefined,
                 { routerInitialEntries: ["/posts"] },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(
                 queryByTestId(RefineButtonTestIds.CreateButton),
@@ -160,8 +113,6 @@ export const crudListTests = function (
         });
 
         it("should not render create button on resource#canCreate=true & props#canCreate=false", async () => {
-            jest.useFakeTimers();
-
             const { queryByTestId } = renderList(
                 <List canCreate={false} />,
                 undefined,
@@ -176,16 +127,10 @@ export const crudListTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(queryByTestId(RefineButtonTestIds.CreateButton)).toBeNull();
         });
 
         it("should render create button on resource#canCreate=false & props#canCreate=true", async () => {
-            jest.useFakeTimers();
-
             const { queryByTestId } = renderList(
                 <List canCreate={true} />,
                 undefined,
@@ -199,18 +144,12 @@ export const crudListTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(
                 queryByTestId(RefineButtonTestIds.CreateButton),
             ).not.toBeNull();
         });
 
         it("should render disabled create button if user doesn't have permission", async () => {
-            jest.useRealTimers();
-
             const { queryByTestId } = renderList(<List canCreate={true} />, {
                 can: ({ action }) => {
                     switch (action) {

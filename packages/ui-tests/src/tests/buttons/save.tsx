@@ -12,17 +12,9 @@ export const buttonSaveTests = function (
     describe("[@pankod/refine-ui-tests] Common Tests / Save Button", () => {
         const save = jest.fn();
 
-        beforeAll(() => {
-            jest.useFakeTimers();
-        });
-
         it("should render button successfuly", async () => {
             const { container } = render(<SaveButton />, {
                 wrapper: TestWrapper({}),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             expect(container).toBeTruthy();
@@ -31,10 +23,6 @@ export const buttonSaveTests = function (
         it("should have the correct test-id", async () => {
             const { queryByTestId } = render(<SaveButton />, {
                 wrapper: TestWrapper({}),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             expect(queryByTestId(RefineButtonTestIds.SaveButton)).toBeTruthy();
@@ -48,10 +36,6 @@ export const buttonSaveTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
             getByText("refine");
@@ -60,10 +44,6 @@ export const buttonSaveTests = function (
         it("should render without text show only icon", async () => {
             const { container, queryByText } = render(<SaveButton hideText />, {
                 wrapper: TestWrapper({}),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             expect(container).toBeTruthy();
@@ -78,10 +58,6 @@ export const buttonSaveTests = function (
                     wrapper: TestWrapper({}),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             await act(async () => {
                 fireEvent.click(getByText("Save"));

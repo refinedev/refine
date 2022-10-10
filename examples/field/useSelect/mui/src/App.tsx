@@ -26,7 +26,6 @@ const App: React.FC = () => {
                     notificationProvider={notificationProvider}
                     ReadyPage={ReadyPage}
                     Layout={Layout}
-                    LoginPage={LoginPage}
                     catchAll={<ErrorComponent />}
                     resources={[
                         {

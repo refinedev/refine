@@ -7,10 +7,6 @@ export const pageLoginTests = function (
     LoginPage: React.ComponentType<RefineLoginPageProps>,
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / Login Page", () => {
-        beforeAll(() => {
-            jest.useFakeTimers();
-        });
-
         it("should render successfully", async () => {
             const { container } = render(<LoginPage />, {
                 wrapper: TestWrapper({}),

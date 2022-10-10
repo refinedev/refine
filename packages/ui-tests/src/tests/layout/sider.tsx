@@ -17,14 +17,6 @@ export const layoutSiderTests = function (
     SiderElement: React.ComponentType<RefineLayoutSiderProps>,
 ): void {
     describe("[@pankod/refine-ui-tests] Common Tests / Sider Element", () => {
-        beforeAll(() => {
-            jest.useFakeTimers();
-        });
-
-        afterAll(() => {
-            jest.useRealTimers();
-        });
-
         it("should render successful", async () => {
             const { container } = render(<SiderElement />, {
                 wrapper: TestWrapper({}),
@@ -106,10 +98,6 @@ export const layoutSiderTests = function (
                         },
                     },
                 }),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             await waitFor(() => getAllByText("Posts")[0]);

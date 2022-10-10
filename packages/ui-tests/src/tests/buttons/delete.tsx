@@ -20,14 +20,11 @@ export const buttonDeleteTests = function (
     describe("[@pankod/refine-ui-tests] Common Tests / Delete Button", () => {
         beforeAll(() => {
             jest.spyOn(console, "error").mockImplementation(jest.fn());
+            jest.clearAllTimers();
         });
         it("should render button successfuly", async () => {
             const { container } = render(<DeleteButton />, {
                 wrapper: TestWrapper({}),
-            });
-
-            await act(async () => {
-                // jest.advanceTimersToNextTimer(1);
             });
 
             expect(container).toBeTruthy();
@@ -70,7 +67,7 @@ export const buttonDeleteTests = function (
         });
 
         it("should be disabled when user not have access", async () => {
-            const { container, getByText } = render(
+            const { container, getByTestId } = render(
                 <DeleteButton>Delete</DeleteButton>,
                 {
                     wrapper: TestWrapper({
@@ -83,13 +80,15 @@ export const buttonDeleteTests = function (
 
             expect(container).toBeTruthy();
 
-            waitFor(() =>
-                expect(getByText("Delete").closest("button")).toBeDisabled(),
+            await waitFor(() =>
+                expect(
+                    getByTestId(RefineButtonTestIds.DeleteButton),
+                ).toBeDisabled(),
             );
         });
 
         it("should be disabled when recordId not allowed", async () => {
-            const { container, getByText } = render(
+            const { container, getByTestId } = render(
                 <DeleteButton recordItemId="1">Delete</DeleteButton>,
                 {
                     wrapper: TestWrapper({
@@ -98,7 +97,6 @@ export const buttonDeleteTests = function (
                                 if (params?.id === "1") {
                                     return Promise.resolve({ can: false });
                                 }
-                                console.log("ff");
                                 return Promise.resolve({ can: true });
                             },
                         },
@@ -108,13 +106,15 @@ export const buttonDeleteTests = function (
 
             expect(container).toBeTruthy();
 
-            waitFor(() =>
-                expect(getByText("Delete").closest("button")).toBeDisabled(),
+            await waitFor(() =>
+                expect(
+                    getByTestId(RefineButtonTestIds.DeleteButton),
+                ).toBeDisabled(),
             );
         });
 
         it("should skip access control", async () => {
-            const { container, getAllByText } = render(
+            const { container, getByTestId } = render(
                 <DeleteButton ignoreAccessControlProvider>Delete</DeleteButton>,
                 {
                     wrapper: TestWrapper({
@@ -129,7 +129,7 @@ export const buttonDeleteTests = function (
 
             await waitFor(() =>
                 expect(
-                    getAllByText("Delete")?.[0].closest("button"),
+                    getByTestId(RefineButtonTestIds.DeleteButton),
                 ).not.toBeDisabled(),
             );
         });

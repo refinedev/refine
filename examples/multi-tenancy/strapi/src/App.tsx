@@ -40,7 +40,7 @@ const App: React.FC = () => {
                 notificationProvider={notificationProvider}
                 LoginPage={LoginPage}
                 Layout={Layout}
-                catchAll={ErrorComponent}
+                catchAll={<ErrorComponent />}
             />
         </StoreProvider>
     );

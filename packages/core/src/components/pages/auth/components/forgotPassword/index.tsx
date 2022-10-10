@@ -1,17 +1,33 @@
-import { useTranslate, useRouterContext, useForgotPassword } from "@hooks";
 import React, { useState } from "react";
-import { IAuthCommonProps, IForgotPasswordForm } from "../..";
 
-export const ForgotPassword: React.FC<IAuthCommonProps> = ({
-    backLink,
-    submitButton,
+import { useTranslate, useRouterContext, useForgotPassword } from "@hooks";
+
+import { DivPropsType, FormPropsType } from "../..";
+import {
+    ForgotPasswordFormTypes,
+    ForgotPasswordPageProps,
+} from "../../../../../interfaces";
+
+type ForgotPasswordProps = ForgotPasswordPageProps<
+    DivPropsType,
+    DivPropsType,
+    FormPropsType
+>;
+
+export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
+    loginLink,
+    wrapperProps,
+    contentProps,
+    renderContent,
+    formProps,
 }) => {
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
     const [email, setEmail] = useState("");
 
-    const { mutate: forgotPassword } = useForgotPassword<IForgotPasswordForm>();
+    const { mutate: forgotPassword, isLoading } =
+        useForgotPassword<ForgotPasswordFormTypes>();
 
     const renderLink = (link: React.ReactNode, text?: string) => {
         if (link) {
@@ -22,10 +38,14 @@ export const ForgotPassword: React.FC<IAuthCommonProps> = ({
         }
         return null;
     };
-    return (
-        <div>
+
+    const content = (
+        <div {...contentProps}>
             <h1 style={{ textAlign: "center" }}>
-                {translate("pages.forgotPassword.title", "Forgot Password")}
+                {translate(
+                    "pages.forgotPassword.title",
+                    "Forgot your password?",
+                )}
             </h1>
             <hr />
             <form
@@ -33,6 +53,7 @@ export const ForgotPassword: React.FC<IAuthCommonProps> = ({
                     e.preventDefault();
                     forgotPassword({ email });
                 }}
+                {...formProps}
             >
                 <div
                     style={{
@@ -42,9 +63,13 @@ export const ForgotPassword: React.FC<IAuthCommonProps> = ({
                     }}
                 >
                     <label>
-                        {translate("pages.forgotPassword.email", "Email")}
+                        {translate(
+                            "pages.forgotPassword.fields.email",
+                            "Email",
+                        )}
                     </label>
                     <input
+                        name="email"
                         type="mail"
                         autoCorrect="off"
                         spellCheck={false}
@@ -53,26 +78,35 @@ export const ForgotPassword: React.FC<IAuthCommonProps> = ({
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
-                    <br />
-                    {submitButton ?? (
-                        <input
-                            type="submit"
-                            value={translate(
-                                "pages.forgotPassword.button",
-                                "Reset Password",
-                            )}
-                        />
-                    )}
-                    {backLink &&
-                        renderLink(
-                            backLink,
-                            translate(
-                                "pages.forgotPassword.backLink",
-                                "Go Back",
-                            ),
+                    <input
+                        type="submit"
+                        disabled={isLoading}
+                        value={translate(
+                            "pages.forgotPassword.buttons.submit",
+                            "Send reset instructions",
                         )}
+                    />
+                    <br />
+                    {loginLink ?? (
+                        <span>
+                            {translate(
+                                "pages.register.buttons.haveAccount",
+                                "Have an account? ",
+                            )}{" "}
+                            {renderLink(
+                                "/login",
+                                translate("pages.login.signin", "Sign in"),
+                            )}
+                        </span>
+                    )}
                 </div>
             </form>
+        </div>
+    );
+
+    return (
+        <div {...wrapperProps}>
+            {renderContent ? renderContent(content) : content}
         </div>
     );
 };

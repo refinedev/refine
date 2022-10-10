@@ -31,10 +31,26 @@ export interface UseListConfig {
 }
 
 export type UseListProps<TData, TError> = {
+    /**
+     * Resource name for API data interactions
+     */
     resource: string;
+    /**
+     * Configuration for pagination, sorting and filtering
+     * @type [`UseListConfig`](docs/api-reference/core/hooks/data/useList/#config-parameters)
+     */
     config?: UseListConfig;
+    /**
+     * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options,
+     */
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
+    /**
+     *  Metadata query for `dataProvider`
+     */
     metaData?: MetaDataQuery;
+    /**
+     * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
+     */
     dataProviderName?: string;
 } & SuccessErrorNotification &
     LiveModeProps;
@@ -51,7 +67,7 @@ export type UseListProps<TData, TError> = {
  *
  */
 export const useList = <
-    TData = BaseRecord,
+    TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
 >({
     resource,

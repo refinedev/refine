@@ -19,7 +19,7 @@ export const ReadyPage: React.FC = () => {
                     <button>Documentation</button>
                 </a>
                 <a
-                    href="https://refine.dev/docs/examples/tutorial"
+                    href="https://refine.dev/examples"
                     target="_blank"
                     rel="noreferrer"
                 >

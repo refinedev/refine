@@ -79,7 +79,7 @@ export const CustomSider: React.FC = () => {
         >
             {Title && <Title collapsed={collapsed} />}
             <Menu selectedKeys={[selectedKey]} mode="inline">
-                <Menu.Item key={route} icon={<Icons.AppstoreAddOutlined />}>
+                <Menu.Item key="store" icon={<Icons.AppstoreAddOutlined />}>
                     <StoreSelect
                         onSelect={() => {
                             setCollapsed(true);

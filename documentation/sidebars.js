@@ -370,6 +370,34 @@ module.exports = {
 
                 {
                     type: "category",
+                    label: "Mantine API",
+                    link: {
+                        type: "generated-index",
+                        title: "Mantine API",
+                        slug: "/api-reference/mantine",
+                    },
+                    items: [
+                        {
+                            type: "category",
+                            label: "Hooks",
+                            items: [
+                                {
+                                    type: "category",
+                                    label: "Form",
+                                    items: [
+                                        "api-reference/mantine/hooks/form/useDrawerForm",
+                                        "api-reference/mantine/hooks/form/useForm",
+                                        "api-reference/mantine/hooks/form/useModalForm",
+                                        "api-reference/mantine/hooks/form/useStepsForm",
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+
+                {
+                    type: "category",
                     label: "Material UI API",
                     link: {
                         type: "generated-index",
@@ -389,6 +417,7 @@ module.exports = {
                             type: "category",
                             label: "Components",
                             items: [
+                                "api-reference/mui/components/mui-auth-page",
                                 {
                                     type: "category",
                                     label: "Basic Views",
@@ -484,9 +513,8 @@ module.exports = {
             type: "category",
             label: "Examples",
             link: {
-                type: "generated-index",
-                title: "Examples",
-                slug: "/examples",
+                type: "doc",
+                id: "examples/examples",
             },
             items: [
                 "examples/real-world-example",
@@ -498,7 +526,16 @@ module.exports = {
                         "examples/access-control/cerbos",
                     ],
                 },
-                "examples/authorization",
+                {
+                    type: "category",
+                    label: "Authentication",
+                    items: [
+                        "examples/authentication/headless",
+                        "examples/authentication/antd",
+                        "examples/authentication/mui",
+                        "examples/authentication/mantine",
+                    ],
+                },
                 {
                     type: "category",
                     label: "Auth Provider",
@@ -581,9 +618,19 @@ module.exports = {
                         },
                         {
                             type: "category",
+                            label: "Mantine",
+                            items: [
+                                "examples/form/mantine/useDrawerForm",
+                                "examples/form/mantine/useForm",
+                                "examples/form/mantine/useModalForm",
+                                "examples/form/mantine/useStepsForm",
+                            ],
+                        },
+                        {
+                            type: "category",
                             label: "Material UI",
                             items: [
-                                "examples/form/mui/drawerForm",
+                                "examples/form/mui/useDrawerForm",
                                 "examples/form/mui/useForm",
                                 "examples/form/mui/useModalForm",
                                 "examples/form/mui/useStepsForm",
@@ -640,10 +687,7 @@ module.exports = {
                 {
                     type: "category",
                     label: "Next.js",
-                    items: [
-                        "examples/next-js/nextjs",
-                        "examples/next-js/i18n-nextjs",
-                    ],
+                    items: ["examples/next-js/nextjs"],
                 },
                 {
                     type: "category",
@@ -682,6 +726,14 @@ module.exports = {
                                 "examples/table/antd/useEditableTable",
                                 "examples/table/antd/useTable",
                                 "examples/table/antd/useUpdateMany",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Mantine",
+                            items: [
+                                "examples/table/mantine/advanced-react-table",
+                                "examples/table/mantine/basic",
                             ],
                         },
                         {
@@ -726,6 +778,14 @@ module.exports = {
                             items: [
                                 "examples/upload/antd/base64",
                                 "examples/upload/antd/multipart",
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Mantine",
+                            items: [
+                                "examples/upload/mantine/base64",
+                                "examples/upload/mantine/multipart",
                             ],
                         },
                         {

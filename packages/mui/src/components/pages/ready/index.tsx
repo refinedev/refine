@@ -88,7 +88,7 @@ export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
                                 </Button>
                             </Link>
                             <Link
-                                href="https://refine.dev/docs/examples/tutorial"
+                                href="https://refine.dev/examples"
                                 target="_blank"
                                 rel="noreferrer"
                                 style={{

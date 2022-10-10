@@ -1,6 +1,7 @@
 ---
 id: multipart
 title: Multipart Upload
+example-tags: [antd,upload]
 ---
 
 `Multipart Upload` is supported by the **refine**. With **refine**, you may upload any file using `Multipart Upload` logic. In this example we showed you how to upload images with Multipart Upload to a resource. Check out the live example for more information.

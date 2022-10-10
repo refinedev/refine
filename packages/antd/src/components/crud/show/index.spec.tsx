@@ -25,20 +25,12 @@ const renderShow = (
     );
 };
 describe("Show", () => {
-    beforeAll(() => {
-        jest.useFakeTimers();
-    });
-
     crudShowTests.bind(this)(Show);
 
     it("should render optional recordItemId with resource prop, not render list button", async () => {
         const { getByText, queryByTestId } = renderShow(
             <Show recordItemId="1" />,
         );
-
-        await act(async () => {
-            jest.advanceTimersToNextTimer(1);
-        });
 
         getByText("Show Post");
 
@@ -62,10 +54,6 @@ describe("Show", () => {
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(
                 queryByTestId(RefineButtonTestIds.EditButton),
             ).not.toBeNull();
@@ -85,10 +73,6 @@ describe("Show", () => {
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(queryByTestId(RefineButtonTestIds.EditButton)).toBeNull();
 
@@ -111,10 +95,6 @@ describe("Show", () => {
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(queryByTestId(RefineButtonTestIds.EditButton)).toBeNull();
         });
 
@@ -133,10 +113,6 @@ describe("Show", () => {
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(
                 queryByTestId(RefineButtonTestIds.EditButton),
@@ -158,10 +134,6 @@ describe("Show", () => {
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(
                 queryByTestId(RefineButtonTestIds.EditButton),
@@ -185,10 +157,6 @@ describe("Show", () => {
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(
                 queryByTestId(RefineButtonTestIds.DeleteButton),
             ).not.toBeNull();
@@ -207,10 +175,6 @@ describe("Show", () => {
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(queryByTestId(RefineButtonTestIds.DeleteButton)).toBeNull();
         });
@@ -231,10 +195,6 @@ describe("Show", () => {
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(queryByTestId(RefineButtonTestIds.DeleteButton)).toBeNull();
         });
 
@@ -253,10 +213,6 @@ describe("Show", () => {
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(
                 queryByTestId(RefineButtonTestIds.DeleteButton),
@@ -278,10 +234,6 @@ describe("Show", () => {
                     }),
                 },
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(
                 queryByTestId(RefineButtonTestIds.DeleteButton),

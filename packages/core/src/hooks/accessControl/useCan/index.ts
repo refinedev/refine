@@ -9,6 +9,9 @@ import { AccessControlContext } from "@contexts/accessControl";
 import { CanParams, CanReturnType } from "../../../interfaces";
 
 export type UseCanProps = CanParams & {
+    /**
+     * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
+     */
     queryOptions?: UseQueryOptions<CanReturnType>;
 };
 

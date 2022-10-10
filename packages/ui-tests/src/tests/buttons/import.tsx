@@ -13,8 +13,6 @@ export const buttonImportTests = function (
         const parseMock = jest.fn();
 
         beforeAll(() => {
-            jest.useFakeTimers();
-
             jest.mock("papaparse", () => {
                 return {
                     parse: jest.fn(() => parseMock()),
@@ -27,10 +25,6 @@ export const buttonImportTests = function (
                 wrapper: TestWrapper({}),
             });
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
             getByText("Import");
         });
@@ -38,10 +32,6 @@ export const buttonImportTests = function (
         it("should have the correct test-id", async () => {
             const { queryByTestId } = render(<ImportButton />, {
                 wrapper: TestWrapper({}),
-            });
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
             });
 
             expect(
@@ -57,10 +47,6 @@ export const buttonImportTests = function (
                 },
             );
 
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
-
             expect(container).toBeTruthy();
 
             getByText("refine");
@@ -70,10 +56,6 @@ export const buttonImportTests = function (
             const { container, queryByText } = render(
                 <ImportButton hideText />,
             );
-
-            await act(async () => {
-                jest.advanceTimersToNextTimer(1);
-            });
 
             expect(container).toBeTruthy();
             expect(queryByText("Import")).not.toBeInTheDocument();

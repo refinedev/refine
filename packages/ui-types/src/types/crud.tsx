@@ -44,23 +44,62 @@ export type RefineCrudCreateProps<
     TContentProps extends {} = Record<keyof any, unknown>,
     TExtraProps extends {} = {},
 > = PropsWithChildren<{
-    // Common Props
+    /**
+     * Title of the create view
+     * @default `"Create {resource.name}"`
+     */
     title?: React.ReactNode;
+    /**
+     * Resource name for API data interactions
+     * @default Reads `:resource` from the URL
+     */
     resource?: string;
+    /**
+     * Props for the wrapper component of the view
+     */
     wrapperProps?: TWrapperProps;
+    /**
+     * Props for the header component
+     */
     headerProps?: THeaderProps;
+    /**
+     * Props for the content wrapper component
+     */
     contentProps?: TContentProps;
+    /**
+     * Breadcrumb to be displayed in the header
+     * @default `<Breadcrumb />`
+     */
     breadcrumb?: React.ReactNode;
-    // Back Props
+    /**
+     * Back button element at the top left of the page
+     */
     goBack?: React.ReactNode;
-    // Header Action Buttons Props
+    /**
+     * Header action buttons to be displayed in the header
+     * @default `null`
+     */
     headerButtons?: ActionButtonRenderer;
+    /**
+     * Additional props to be passed to the wrapper of the header buttons
+     */
     headerButtonProps?: THeaderButtonProps;
-    // Footer Action Buttons Props
+    /**
+     * Footer action buttons to be displayed in the footer
+     * @default `<SaveButton />`
+     */
     footerButtons?: ActionButtonRenderer;
+    /**
+     * Additional props to be passed to the wrapper of the footer buttons
+     */
     footerButtonProps?: TFooterButtonProps;
-    // Crud Create Props
+    /**
+     * Loading state of the component
+     */
     isLoading?: boolean;
+    /**
+     * Additional props for the SaveButton component
+     */
     saveButtonProps?: TSaveButtonProps;
 }> &
     TExtraProps;
@@ -78,14 +117,23 @@ export type RefineCrudEditProps<
     TContentProps extends {} = Record<keyof any, unknown>,
     TExtraProps extends {} = {},
 > = PropsWithChildren<{
-    // Common Props
+    /**
+     * Title of the edit view
+     * @default `"Edit {resource.name}"`
+     */
     title?: React.ReactNode;
+    /**
+     * Resource name for API data interactions
+     * @default Reads `:resource` from the URL
+     */
     resource?: string;
     wrapperProps?: TWrapperProps;
     headerProps?: THeaderProps;
     contentProps?: TContentProps;
     breadcrumb?: React.ReactNode;
-    // Back Props
+    /**
+     * Back button element at the top left of the page
+     */
     goBack?: React.ReactNode;
     // Header Action Buttons Props
     headerButtons?: ActionButtonRenderer;
