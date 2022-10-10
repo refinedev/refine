@@ -13,6 +13,7 @@ import {
     BoxProps,
     CardContentProps,
     Divider,
+    Link as MuiLink,
 } from "@mui/material";
 
 import {
@@ -100,6 +101,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     variant="h5"
                     align="center"
                     style={titleStyles}
+                    color="primary"
                 >
                     {translate(
                         "pages.register.title",
@@ -131,7 +133,6 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         })}
                         id="email"
                         margin="normal"
-                        size="small"
                         fullWidth
                         label={translate("pages.register.email", "Email")}
                         error={!!errors.email}
@@ -146,7 +147,6 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                             required: true,
                         })}
                         id="password"
-                        size="small"
                         margin="normal"
                         fullWidth
                         name="password"
@@ -164,38 +164,23 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     />
 
                     {loginLink ?? (
-                        <div
-                            style={{
-                                display: "flex",
-                            }}
-                        >
-                            <Box
-                                sx={{
-                                    display: "flex",
-                                    marginTop: 1,
-                                    marginLeft: "auto",
-                                }}
+                        <Box>
+                            <Typography variant="body2" component="span">
+                                {translate(
+                                    "pages.login.buttons.haveAccount",
+                                    "Have an account?",
+                                )}
+                            </Typography>{" "}
+                            <MuiLink
+                                variant="body2"
+                                component={Link}
+                                underline="none"
+                                to="/login"
+                                fontWeight="bold"
                             >
-                                <Typography variant="subtitle2">
-                                    {translate(
-                                        "pages.login.buttons.haveAccount",
-                                        "Have an account?",
-                                    )}{" "}
-                                    <Link
-                                        underline="none"
-                                        to="/login"
-                                        style={{
-                                            fontWeight: "bold",
-                                        }}
-                                    >
-                                        {translate(
-                                            "pages.login.signin",
-                                            "Sign in",
-                                        )}
-                                    </Link>
-                                </Typography>
-                            </Box>
-                        </div>
+                                {translate("pages.login.signin", "Sign in")}
+                            </MuiLink>
+                        </Box>
                     )}
                     <Button
                         type="submit"

@@ -64,6 +64,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                     variant="h5"
                     align="center"
                     style={titleStyles}
+                    color="primary"
                 >
                     {translate(
                         "pages.updatePassword.title",
@@ -86,7 +87,6 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                             required: true,
                         })}
                         id="password"
-                        size="small"
                         margin="normal"
                         fullWidth
                         name="password"
@@ -115,7 +115,6 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                             },
                         })}
                         id="confirmPassword"
-                        size="small"
                         margin="normal"
                         fullWidth
                         name="confirmPassword"
@@ -135,8 +134,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                         fullWidth
                         variant="contained"
                         sx={{
-                            my: "8px",
-                            color: "white",
+                            mt: "8px",
                         }}
                         disabled={isLoading}
                     >
