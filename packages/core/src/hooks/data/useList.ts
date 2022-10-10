@@ -15,13 +15,14 @@ import {
     LiveModeProps,
 } from "../../interfaces";
 import {
+    useResource,
     useCheckError,
     useHandleNotification,
     useResourceSubscription,
     useTranslate,
     useDataProvider,
 } from "@hooks";
-import { queryKeys } from "@definitions/helpers";
+import { queryKeys, pickDataProvider } from "@definitions/helpers";
 
 export interface UseListConfig {
     pagination?: Pagination;
@@ -84,9 +85,16 @@ export const useList = <
     GetListResponse<TData>,
     TError
 > => {
+    const { resources } = useResource();
     const dataProvider = useDataProvider();
-    const queryKey = queryKeys(resource, dataProviderName, metaData);
-    const { getList } = dataProvider(dataProviderName);
+    const queryKey = queryKeys(
+        resource,
+        pickDataProvider(resource, dataProviderName, resources),
+        metaData,
+    );
+    const { getList } = dataProvider(
+        pickDataProvider(resource, dataProviderName, resources),
+    );
 
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();

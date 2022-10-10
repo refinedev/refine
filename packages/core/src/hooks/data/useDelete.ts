@@ -6,6 +6,7 @@ import {
 import pluralize from "pluralize";
 
 import {
+    useResource,
     useMutationMode,
     useCancelNotification,
     useTranslate,
@@ -30,7 +31,7 @@ import {
     PreviousQuery,
     IQueryKeys,
 } from "../../interfaces";
-import { queryKeys } from "@definitions/helpers";
+import { queryKeys, pickDataProvider } from "@definitions/helpers";
 
 export type DeleteParams<TVariables> = {
     id: BaseKey;
@@ -75,6 +76,7 @@ export const useDelete = <
     const { mutate: checkError } = useCheckError();
     const dataProvider = useDataProvider();
 
+    const { resources } = useResource();
     const queryClient = useQueryClient();
 
     const {
@@ -112,10 +114,9 @@ export const useDelete = <
                 undoableTimeout ?? undoableTimeoutContext;
 
             if (!(mutationModePropOrContext === "undoable")) {
-                return dataProvider(dataProviderName).deleteOne<
-                    TData,
-                    TVariables
-                >({
+                return dataProvider(
+                    pickDataProvider(resource, dataProviderName, resources),
+                ).deleteOne<TData, TVariables>({
                     resource,
                     id,
                     metaData,
@@ -126,7 +127,13 @@ export const useDelete = <
             const deletePromise = new Promise<DeleteOneResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        dataProvider(dataProviderName)
+                        dataProvider(
+                            pickDataProvider(
+                                resource,
+                                dataProviderName,
+                                resources,
+                            ),
+                        )
                             .deleteOne<TData, TVariables>({
                                 resource,
                                 id,
@@ -167,7 +174,10 @@ export const useDelete = <
                 mutationMode,
                 dataProviderName,
             }) => {
-                const queryKey = queryKeys(resource, dataProviderName);
+                const queryKey = queryKeys(
+                    resource,
+                    pickDataProvider(resource, dataProviderName, resources),
+                );
 
                 const mutationModePropOrContext =
                     mutationMode ?? mutationModeContext;
@@ -243,7 +253,11 @@ export const useDelete = <
                 // invalidate the cache for the list and many queries:
                 invalidateStore({
                     resource,
-                    dataProviderName,
+                    dataProviderName: pickDataProvider(
+                        resource,
+                        dataProviderName,
+                        resources,
+                    ),
                     invalidates,
                 });
 
@@ -306,7 +320,11 @@ export const useDelete = <
                     resource,
                     meta: {
                         id,
-                        dataProviderName,
+                        dataProviderName: pickDataProvider(
+                            resource,
+                            dataProviderName,
+                            resources,
+                        ),
                         ...rest,
                     },
                 });

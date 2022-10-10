@@ -14,13 +14,14 @@ import {
     SuccessErrorNotification,
 } from "../../interfaces";
 import {
+    useResource,
     useTranslate,
     useCheckError,
     useResourceSubscription,
     useHandleNotification,
     useDataProvider,
 } from "@hooks";
-import { queryKeys } from "@definitions/helpers";
+import { queryKeys, pickDataProvider } from "@definitions/helpers";
 
 export type UseManyProps<TData, TError> = {
     /**
@@ -76,10 +77,17 @@ export const useMany = <
 }: UseManyProps<TData, TError>): QueryObserverResult<
     GetManyResponse<TData>
 > => {
+    const { resources } = useResource();
     const dataProvider = useDataProvider();
-    const queryKey = queryKeys(resource, dataProviderName, metaData);
+    const queryKey = queryKeys(
+        resource,
+        pickDataProvider(resource, dataProviderName, resources),
+        metaData,
+    );
 
-    const { getMany } = dataProvider(dataProviderName);
+    const { getMany } = dataProvider(
+        pickDataProvider(resource, dataProviderName, resources),
+    );
 
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();

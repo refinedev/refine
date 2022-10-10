@@ -1,7 +1,8 @@
 import { useCallback } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 
-import { queryKeys } from "@definitions";
+import { useResource } from "@hooks/resource";
+import { queryKeys, pickDataProvider } from "@definitions";
 import { BaseKey, IQueryKeys } from "../../interfaces";
 
 export type UseInvalidateProp = {
@@ -12,6 +13,7 @@ export type UseInvalidateProp = {
 };
 
 export const useInvalidate = (): ((props: UseInvalidateProp) => void) => {
+    const { resources } = useResource();
     const queryClient = useQueryClient();
 
     const invalidate = useCallback(
@@ -24,7 +26,10 @@ export const useInvalidate = (): ((props: UseInvalidateProp) => void) => {
             if (invalidates === false) {
                 return;
             }
-            const queryKey = queryKeys(resource, dataProviderName);
+            const queryKey = queryKeys(
+                resource,
+                pickDataProvider(resource, dataProviderName, resources),
+            );
 
             invalidates.forEach((key) => {
                 switch (key) {
