@@ -379,6 +379,13 @@ module.exports = {
                     items: [
                         {
                             type: "category",
+                            label: "Components",
+                            items: [
+                                "api-reference/mantine/components/mantine-auth-page",
+                            ],
+                        },
+                        {
+                            type: "category",
                             label: "Hooks",
                             items: [
                                 {

@@ -18,7 +18,7 @@ import { PostCreate, PostEdit, PostList } from "./pages";
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
-        login: async ({ email, providerName }) => {
+        login: async ({ providerName, email }) => {
             if (providerName === "google") {
                 window.location.href =
                     "https://accounts.google.com/o/oauth2/v2/auth";
@@ -110,7 +110,7 @@ const App: React.FC = () => {
                                 ),
                             },
                             {
-                                path: "/reset-password",
+                                path: "/forgot-password",
                                 element: <AuthPage type="forgotPassword" />,
                             },
                             {
