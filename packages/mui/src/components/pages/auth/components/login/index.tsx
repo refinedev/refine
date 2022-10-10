@@ -206,9 +206,10 @@ export const LoginPage: React.FC<LoginProps> = ({
                                 {translate(
                                     "pages.login.buttons.noAccount",
                                     "Don’t have an account?",
-                                )}{" "}
+                                )}
                             </Typography>
                             <MuiLink
+                                ml="8px"
                                 variant="body2"
                                 component={Link}
                                 underline="none"

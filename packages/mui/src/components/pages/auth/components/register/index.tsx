@@ -95,7 +95,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
 
     const CardContent = (
         <Card {...(contentProps ?? {})}>
-            <MuiCardContent>
+            <MuiCardContent sx={{ paddingX: "32px" }}>
                 <Typography
                     component="h1"
                     variant="h5"
@@ -164,14 +164,15 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     />
 
                     {loginLink ?? (
-                        <Box>
+                        <Box display="flex" justifyContent="flex-end">
                             <Typography variant="body2" component="span">
                                 {translate(
                                     "pages.login.buttons.haveAccount",
                                     "Have an account?",
                                 )}
-                            </Typography>{" "}
+                            </Typography>
                             <MuiLink
+                                ml="6px"
                                 variant="body2"
                                 component={Link}
                                 underline="none"
