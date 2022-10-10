@@ -137,7 +137,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                             <Text size="xs">
                                 {translate(
                                     "pages.register.buttons.haveAccount",
-                                    "Have an account? ",
+                                    "Have an account?",
                                 )}{" "}
                                 <Anchor
                                     component={Link}
