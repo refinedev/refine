@@ -21,7 +21,11 @@ import {
     useHandleNotification,
     useDataProvider,
 } from "@hooks";
-import { queryKeys, pickDataProvider } from "@definitions/helpers";
+import {
+    queryKeys,
+    pickDataProvider,
+    handleMultiple,
+} from "@definitions/helpers";
 
 export type UseManyProps<TData, TError> = {
     /**
@@ -85,7 +89,7 @@ export const useMany = <
         metaData,
     );
 
-    const { getMany } = dataProvider(
+    const { getMany, getOne } = dataProvider(
         pickDataProvider(resource, dataProviderName, resources),
     );
 
@@ -113,19 +117,39 @@ export const useMany = <
 
     const queryResponse = useQuery<GetManyResponse<TData>, TError>(
         queryKey.many(ids),
-        ({ queryKey, pageParam, signal }) =>
-            getMany<TData>({
-                resource,
-                ids,
-                metaData: {
-                    ...metaData,
-                    queryContext: {
-                        queryKey,
-                        pageParam,
-                        signal,
+        ({ queryKey, pageParam, signal }) => {
+            if (getMany) {
+                return getMany({
+                    resource,
+                    ids,
+                    metaData: {
+                        ...metaData,
+                        queryContext: {
+                            queryKey,
+                            pageParam,
+                            signal,
+                        },
                     },
-                },
-            }),
+                });
+            } else {
+                return handleMultiple(
+                    ids.map((id) =>
+                        getOne<TData>({
+                            resource,
+                            id,
+                            metaData: {
+                                ...metaData,
+                                queryContext: {
+                                    queryKey,
+                                    pageParam,
+                                    signal,
+                                },
+                            },
+                        }),
+                    ),
+                );
+            }
+        },
         {
             ...queryOptions,
             onSuccess: (data) => {

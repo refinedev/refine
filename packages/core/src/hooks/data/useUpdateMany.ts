@@ -30,7 +30,11 @@ import {
     GetListResponse,
     IQueryKeys,
 } from "../../interfaces";
-import { queryKeys, pickDataProvider } from "@definitions/helpers";
+import {
+    queryKeys,
+    pickDataProvider,
+    handleMultiple,
+} from "@definitions/helpers";
 
 type UpdateManyParams<TVariables> = {
     ids: BaseKey[];
@@ -109,33 +113,40 @@ export const useUpdateMany = <
             const undoableTimeoutPropOrContext =
                 undoableTimeout ?? undoableTimeoutContext;
 
+            const selectedDataProvider = dataProvider(
+                pickDataProvider(resource, dataProviderName, resources),
+            );
+
+            const mutationFn = () => {
+                if (selectedDataProvider.updateMany) {
+                    return selectedDataProvider.updateMany<TData, TVariables>({
+                        resource,
+                        ids,
+                        variables: values,
+                        metaData,
+                    });
+                } else {
+                    return handleMultiple(
+                        ids.map((id) =>
+                            selectedDataProvider.update<TData, TVariables>({
+                                resource,
+                                id,
+                                variables: values,
+                                metaData,
+                            }),
+                        ),
+                    );
+                }
+            };
+
             if (!(mutationModePropOrContext === "undoable")) {
-                return dataProvider(
-                    pickDataProvider(resource, dataProviderName, resources),
-                ).updateMany<TData, TVariables>({
-                    resource,
-                    ids,
-                    variables: values,
-                    metaData,
-                });
+                return mutationFn();
             }
 
             const updatePromise = new Promise<UpdateManyResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        dataProvider(
-                            pickDataProvider(
-                                resource,
-                                dataProviderName,
-                                resources,
-                            ),
-                        )
-                            .updateMany<TData, TVariables>({
-                                resource,
-                                ids,
-                                variables: values,
-                                metaData,
-                            })
+                        mutationFn()
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
                     };
