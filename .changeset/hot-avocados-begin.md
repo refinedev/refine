@@ -2,4 +2,4 @@
 "@pankod/refine-mantine": minor
 ---
 
-Add formProps prop on AuthPages.
+Updated `formProps` property on `<AuthPage />` component
