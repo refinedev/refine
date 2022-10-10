@@ -110,7 +110,6 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         }
                         return register(values);
                     })}
-                    {...formProps}
                 >
                     <TextInput
                         label={translate(

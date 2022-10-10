@@ -81,7 +81,6 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
                         }
                         return forgotPassword(values);
                     })}
-                    {...formProps}
                 >
                     <TextInput
                         label={translate(

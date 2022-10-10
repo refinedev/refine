@@ -113,7 +113,6 @@ export const LoginPage: React.FC<LoginProps> = ({
                         }
                         return login(values);
                     })}
-                    {...formProps}
                 >
                     <TextInput
                         name="email"

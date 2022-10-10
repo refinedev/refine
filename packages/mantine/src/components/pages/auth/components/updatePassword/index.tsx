@@ -74,7 +74,6 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
                         }
                         return updatePassword(values);
                     })}
-                    {...formProps}
                 >
                     <TextInput
                         type="password"

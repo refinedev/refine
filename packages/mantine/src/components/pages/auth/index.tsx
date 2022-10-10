@@ -10,13 +10,9 @@ import {
     UpdatePasswordPage,
 } from "./components";
 
-export type FormPropsType = React.DetailedHTMLProps<
-    React.FormHTMLAttributes<HTMLFormElement>,
-    HTMLFormElement
-> &
-    UseFormInput<{}> & {
-        onSubmit: (values: any) => void;
-    };
+export type FormPropsType = UseFormInput<{}> & {
+    onSubmit: (values: any) => void;
+};
 
 export type AuthProps = AuthPageProps<BoxProps, CardProps, FormPropsType>;
 
