@@ -1,5 +1,17 @@
 # @pankod/refine-antd
 
+## 3.55.3
+
+### Patch Changes
+
+-   Fixed `providers` property empty array state in `<AuthPage />` component
+
+## 3.55.2
+
+### Patch Changes
+
+-   Fixed `providers` property empty array state in `<AuthPage />` component
+
 ## 3.55.1
 
 ### Patch Changes
