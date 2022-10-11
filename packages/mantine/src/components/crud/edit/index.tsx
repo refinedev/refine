@@ -154,10 +154,10 @@ export const Edit: React.FC<EditProps> = (props) => {
             <Group position="apart" {...headerProps}>
                 <Stack spacing="xs">
                     {breadcrumb}
-                    {title ?? (
-                        <Group spacing="xs">
-                            {buttonBack}
-                            <Title order={2} transform="capitalize">
+                    <Group spacing="xs">
+                        {buttonBack}
+                        {title ?? (
+                            <Title order={3} transform="capitalize">
                                 {translate(
                                     `${resource.name}.titles.edit`,
                                     `Edit ${userFriendlyResourceName(
@@ -166,8 +166,8 @@ export const Edit: React.FC<EditProps> = (props) => {
                                     )}`,
                                 )}
                             </Title>
-                        </Group>
-                    )}
+                        )}
+                    </Group>
                 </Stack>
                 <Group spacing="xs" {...headerButtonProps}>
                     {headerButtons}

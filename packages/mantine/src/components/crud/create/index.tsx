@@ -98,10 +98,10 @@ export const Create: React.FC<CreateProps> = (props) => {
             <Group position="apart" align="center" {...headerProps}>
                 <Stack spacing="xs">
                     {breadcrumb}
-                    {title ?? (
-                        <Group spacing="xs">
-                            {buttonBack}
-                            <Title order={2} transform="capitalize">
+                    <Group spacing="xs">
+                        {buttonBack}
+                        {title ?? (
+                            <Title order={3} transform="capitalize">
                                 {translate(
                                     `${resource.name}.titles.create`,
                                     `Create ${userFriendlyResourceName(
@@ -110,8 +110,8 @@ export const Create: React.FC<CreateProps> = (props) => {
                                     )}`,
                                 )}
                             </Title>
-                        </Group>
-                    )}
+                        )}
+                    </Group>
                 </Stack>
                 <Group spacing="xs" {...headerButtonProps}>
                     {headerButtons}
