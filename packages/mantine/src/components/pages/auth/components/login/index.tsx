@@ -66,7 +66,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     const { mutate: login, isLoading } = useLogin<LoginFormTypes>();
 
     const renderProviders = () => {
-        if (providers) {
+        if (providers && providers.length > 0) {
             return (
                 <>
                     <Stack spacing={8}>
