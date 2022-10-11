@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 3.50.2
+
+### Patch Changes
+
+-   Add AuthProps type export
+
 ## 3.50.1
 
 ### Patch Changes
