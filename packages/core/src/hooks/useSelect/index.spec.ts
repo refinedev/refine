@@ -296,6 +296,55 @@ describe("useSelect Hook", () => {
         });
     });
 
+    it("should onSearchFromProp work as expected", async () => {
+        const getListMock = jest.fn(() =>
+            Promise.resolve({ data: [], total: 0 }),
+        );
+
+        const { result } = renderHook(
+            () =>
+                useSelect({
+                    resource: "posts",
+                    onSearch: (value) => {
+                        return [
+                            {
+                                field: "title",
+                                operator: "contains",
+                                value,
+                            },
+                        ];
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default!,
+                            getList: getListMock,
+                        },
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        const { onSearch } = result.current;
+
+        onSearch("1");
+        await waitFor(() => {
+            expect(getListMock).toBeCalledTimes(2);
+        });
+
+        onSearch("");
+        await waitFor(() => {
+            expect(getListMock).toBeCalledTimes(3);
+        });
+
+        await waitFor(() => {
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
+        });
+    });
+
     it("should invoke queryOptions methods successfully", async () => {
         const mockFunc = jest.fn();
 

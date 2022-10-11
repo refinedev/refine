@@ -93,7 +93,7 @@ export type UseSelectProps<TData, TError> = {
 export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
     queryResult: QueryObserverResult<GetListResponse<TData>>;
     defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
-    onSearch: (value: string | undefined) => void;
+    onSearch: (value: string) => void;
     options: Option[];
 };
 
@@ -206,14 +206,15 @@ export const useSelect = <
         dataProviderName,
     });
 
-    const onSearch = (value: string | undefined) => {
-        if (!value) {
-            setSearch([]);
+    const onSearch = (value: string) => {
+        if (onSearchFromProp) {
+            setSearch(onSearchFromProp(value));
             return;
         }
 
-        if (onSearchFromProp) {
-            setSearch(onSearchFromProp(value));
+        if (!value) {
+            setSearch([]);
+            return;
         } else {
             setSearch([
                 {
