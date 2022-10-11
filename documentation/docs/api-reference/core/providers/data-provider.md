@@ -134,6 +134,153 @@ const App: React.FC = () => {
 
 :::
 
+### Using Multiple Data Providers
+
+**refine** gives you the ability to use multiple data providers in your app. All you need to do is to pass key, value pairs to the `dataProvider` prop of the `<Refine />` component in a form of value being the data provider and the key being the name of the data provider.
+
+:::tip
+`default` key is required for the default data provider and it will be used as the default data provider.
+:::
+
+```tsx title="App.tsx"
+const App = () => {
+    return (
+        <Refine
+            dataProvider={{
+                default: defaultDataProvider,
+                example: exampleDataProvider,
+            }}
+        />
+    );
+};
+```
+
+You can pick data providers in two ways:
+
+**Using `dataProviderName` prop in the data hooks and all data related components/functions.**
+
+```tsx title="posts/list.tsx"
+const { tableProps } = useTable<IPost>({
+    dataProviderName: "example",
+});
+```
+
+**Using `options.dataProviderName` property in your resource config**
+
+This will be the default data provider for the specified resource but you can still override it in the data hooks and components.
+
+```tsx title="App.tsx"
+const App = () => {
+    return (
+        <Refine
+            dataProvider={{
+                default: defaultDataProvider,
+                example: exampleDataProvider,
+            }}
+        />
+    );
+};
+```
+
+**Example usage of multiple data providers**
+
+```tsx live hideCode url=http://localhost:3000/posts previewHeight=420px
+setRefineProps({ Sider: () => null });
+// visible-block-start
+import { Refine, useList } from "@pankod/refine-core";
+import { Layout, Collapse, Tag } from "@pankod/refine-antd";
+import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+const FINE_FOODS_API_URL = "https://api.finefoods.refine.dev";
+
+interface IPost {
+    id: number;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+
+interface IProduct {
+    id: number;
+    name: string;
+    price: number;
+}
+
+const App: React.FC = () => {
+    return (
+        <Refine
+            routerProvider={routerProvider}
+            Layout={Layout}
+            // highlight-start
+            dataProvider={{
+                default: dataProvider(API_URL),
+                fineFoods: dataProvider(FINE_FOODS_API_URL),
+            }}
+            // highlight-end
+            resources={[
+                {
+                    // highlight-next-line
+                    // Refine will use the `default` data provider for this resource
+                    name: "posts",
+                    list: PostList,
+                },
+                {
+                    name: "products",
+                    options: {
+                        // highlight-next-line
+                        // Refine will use the `fineFoods` data provider for this resource
+                        dataProviderName: "fineFoods",
+                    }
+                }
+            ]}
+        />
+    )
+}
+
+const PostList: React.FC = () => {
+    const { data: posts } = useList<IPost>({
+        resource: "posts",
+        // highlight-start
+        // Data provider can be selected through props
+        dataProviderName: "default"
+        // highlight-end
+    });
+    // highlight-start
+    // We've defined the data provider for this resource as "fineFoods" in its config so we don't need to pass it here
+    const { data: products } = useList<IProduct>({ resource: "products" });
+    // highlight-end
+
+    console.log({
+        posts, products
+    })
+
+    return (
+        <Collapse defaultActiveKey={["products"]}>
+            <Collapse.Panel header="Posts" key="posts">
+                {posts?.data.map((post) => (
+                    <div key={post.title} style={{ display: "flex", flexDirection: "row", gap: "0.5rem", marginBottom: "0.25rem" }}>
+                        {post.title}
+                        <Tag>{post.status}</Tag>
+                    </div>
+                ))}
+            </Collapse.Panel>
+            <Collapse.Panel header="Products" key="products">
+                {products?.data.map((product) => (
+                    <div key={product.name} style={{ display: "flex", flexDirection: "row", gap: "0.5rem", marginBottom: "0.25rem" }}>
+                        {product.name}
+                        <Tag>{product.price / 10}</Tag>
+                    </div>
+                ))}
+            </Collapse.Panel>
+        </Collapse>
+    );
+};
+// visible-block-end
+
+render(<App/>);
+```
+
 ## Creating a data provider
 
 We will build **"Simple REST Dataprovider"** of `@pankod/refine-simple-rest` from scratch to show the logic of how data provider methods interact with the API.
