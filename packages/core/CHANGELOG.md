@@ -1,5 +1,39 @@
 # @pankod/refine-core
 
+## 3.79.0
+
+### Minor Changes
+
+-   [#2629](https://github.com/pankod/refine/pull/2629) [`bc89228e73`](https://github.com/pankod/refine/commit/bc89228e73dbf373cbbbd0fbf5e6e4721224a7c5) Thanks [@bungambohlah](https://github.com/bungambohlah)! - Added infinite loading example to antd `useSelect()`
+    `useSelect()` `fetchSize` prop is deprecated. From now [`pagination`](https://refine.dev/docs/api-reference/core/interfaceReferences/#pagination) should be used
+
+-   [#2674](https://github.com/pankod/refine/pull/2674) [`3bd6196056`](https://github.com/pankod/refine/commit/3bd61960564a524b5a4d18e1b3aaf0a313e28ca6) Thanks [@aliemir](https://github.com/aliemir)! - Added `dataProviderName` property to resource options. Now you can define default data provider per resource.
+
+    **Usage**
+
+    ```ts
+    <Refine
+        dataProvider={{
+            default: myProvider,
+            second: mySecondProvider,
+        }}
+        resources={[
+            {
+                name: "posts",
+                options: {
+                    dataProviderName: "second",
+                },
+            },
+        ]}
+    />
+    ```
+
+### Patch Changes
+
+-   [#2666](https://github.com/pankod/refine/pull/2666) [`8a562d2114`](https://github.com/pankod/refine/commit/8a562d2114b7145707070e363981a4e31e02547a) Thanks [@omeraplak](https://github.com/omeraplak)! - Add AuthProps type export
+
+-   [#2684](https://github.com/pankod/refine/pull/2684) [`38c3876af5`](https://github.com/pankod/refine/commit/38c3876af571a10aa58a35fab45ab7340e08ce5f) Thanks [@aliemir](https://github.com/aliemir)! - Mark `default` key as required for multiple data providers in `dataProvider` prop of `<Refine />` component.
+
 ## 3.78.0
 
 ### Minor Changes

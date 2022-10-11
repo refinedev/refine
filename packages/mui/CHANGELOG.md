@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 3.50.1
+
+### Patch Changes
+
+-   [#2666](https://github.com/pankod/refine/pull/2666) [`8a562d2114`](https://github.com/pankod/refine/commit/8a562d2114b7145707070e363981a4e31e02547a) Thanks [@omeraplak](https://github.com/omeraplak)! - Add AuthProps type export
+
 ## 3.50.0
 
 ### Minor Changes
