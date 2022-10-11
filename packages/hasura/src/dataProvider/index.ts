@@ -122,7 +122,7 @@ export const generateFilters: any = (filters?: CrudFilters) => {
     return resultFilter;
 };
 
-const dataProvider = (client: GraphQLClient): DataProvider => {
+const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
     return {
         getOne: async ({ resource, id, metaData }) => {
             const operation = `${metaData?.operation ?? resource}_by_pk`;

@@ -54,7 +54,7 @@ axiosInstance.interceptors.response.use(
 const DataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
-): DataProviderType => {
+): Required<DataProviderType> => {
     httpClient.defaults.baseURL = `${apiUrl}/store`;
 
     return {

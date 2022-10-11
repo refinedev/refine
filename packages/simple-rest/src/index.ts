@@ -82,7 +82,7 @@ const generateFilter = (filters?: CrudFilters) => {
 const JsonServer = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
-): DataProvider => ({
+): Required<DataProvider> => ({
     getList: async ({
         resource,
         hasPagination = true,

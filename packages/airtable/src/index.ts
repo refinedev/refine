@@ -111,7 +111,7 @@ const AirtableDataProvider = (
     apiKey: string,
     baseId: string,
     airtableClient?: AirtableBase,
-): DataProvider => {
+): Required<DataProvider> => {
     const base =
         airtableClient || new Airtable({ apiKey: apiKey }).base(baseId);
 
