@@ -1,5 +1,15 @@
 # @pankod/refine-mantine
 
+## 1.6.0
+
+### Minor Changes
+
+-   Updated `formProps` property on `<AuthPage />` component
+
+### Patch Changes
+
+-   Added `clearable` prop to `useSelect` hook that is `true` by default.
+
 ## 1.5.0
 
 ### Minor Changes

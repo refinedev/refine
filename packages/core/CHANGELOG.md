@@ -1,5 +1,39 @@
 # @pankod/refine-core
 
+## 3.80.0
+
+### Minor Changes
+
+-   Added infinite loading example to antd `useSelect()`
+    `useSelect()` `fetchSize` prop is deprecated. From now [`pagination`](https://refine.dev/docs/api-reference/core/interfaceReferences/#pagination) should be used
+
+-   Added `dataProviderName` property to resource options. Now you can define default data provider per resource.
+
+    **Usage**
+
+    ```ts
+    <Refine
+        dataProvider={{
+            default: myProvider,
+            second: mySecondProvider,
+        }}
+        resources={[
+            {
+                name: "posts",
+                options: {
+                    dataProviderName: "second",
+                },
+            },
+        ]}
+    />
+    ```
+
+### Patch Changes
+
+-   Add AuthProps type export
+
+-   Mark `default` key as required for multiple data providers in `dataProvider` prop of `<Refine />` component.
+
 ## 3.79.0
 
 ### Minor Changes

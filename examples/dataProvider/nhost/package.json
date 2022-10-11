@@ -5,8 +5,8 @@
   "dependencies": {
     "@nhost/nhost-js": "^0.3.9",
     "@nhost/react-auth": "^2.0.7",
-    "@pankod/refine-antd": "^3.54.0",
-    "@pankod/refine-core": "^3.79.0",
+    "@pankod/refine-antd": "^3.55.0",
+    "@pankod/refine-core": "^3.80.0",
     "@pankod/refine-nhost": "^3.35.2",
     "@pankod/refine-react-router-v6": "^3.36.0",
     "@types/node": "^12.20.11",
