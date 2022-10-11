@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
 import uniqBy from "lodash/uniqBy";
 import debounce from "lodash/debounce";
@@ -133,14 +133,17 @@ export const useSelect = <
         ? defaultValue
         : [defaultValue];
 
-    const defaultValueQueryOnSuccess = (data: GetManyResponse<TData>) => {
-        setSelectedOptions(
-            data.data.map((item) => ({
-                label: get(item, optionLabel),
-                value: get(item, optionValue),
-            })),
-        );
-    };
+    const defaultValueQueryOnSuccess = useCallback(
+        (data: GetManyResponse<TData>) => {
+            setSelectedOptions(
+                data.data.map((item) => ({
+                    label: get(item, optionLabel),
+                    value: get(item, optionValue),
+                })),
+            );
+        },
+        [optionLabel, optionValue],
+    );
 
     const defaultValueQueryOptions =
         defaultValueQueryOptionsFromProps ?? (queryOptions as any);
@@ -149,8 +152,10 @@ export const useSelect = <
         resource,
         ids: defaultValues,
         queryOptions: {
-            enabled: defaultValues.length > 0,
             ...defaultValueQueryOptions,
+            enabled:
+                defaultValues.length > 0 &&
+                (defaultValueQueryOptionsFromProps?.enabled ?? true),
             onSuccess: (data) => {
                 defaultValueQueryOnSuccess(data);
                 defaultValueQueryOptions?.onSuccess?.(data);
@@ -161,14 +166,19 @@ export const useSelect = <
         dataProviderName,
     });
 
-    const defaultQueryOnSuccess = (data: GetListResponse<TData>) => {
-        setOptions(
-            data.data.map((item) => ({
-                label: get(item, optionLabel),
-                value: get(item, optionValue),
-            })),
-        );
-    };
+    const defaultQueryOnSuccess = useCallback(
+        (data: GetListResponse<TData>) => {
+            {
+                setOptions(
+                    data.data.map((item) => ({
+                        label: get(item, optionLabel),
+                        value: get(item, optionValue),
+                    })),
+                );
+            }
+        },
+        [optionLabel, optionValue],
+    );
 
     const queryResult = useList<TData, TError>({
         resource,
