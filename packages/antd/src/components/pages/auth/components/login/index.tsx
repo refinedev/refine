@@ -51,7 +51,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     );
 
     const renderProviders = () => {
-        if (providers) {
+        if (providers && providers.length > 0) {
             return (
                 <>
                     {providers.map((provider) => {
