@@ -1,5 +1,16 @@
 # @pankod/refine-antd
 
+## 3.54.0
+
+### Minor Changes
+
+-   [#2629](https://github.com/pankod/refine/pull/2629) [`bc89228e73`](https://github.com/pankod/refine/commit/bc89228e73dbf373cbbbd0fbf5e6e4721224a7c5) Thanks [@bungambohlah](https://github.com/bungambohlah)! - Added infinite loading example to antd `useSelect()`
+    `useSelect()` `fetchSize` prop is deprecated. From now [`pagination`](https://refine.dev/docs/api-reference/core/interfaceReferences/#pagination) should be used
+
+### Patch Changes
+
+-   [#2666](https://github.com/pankod/refine/pull/2666) [`8a562d2114`](https://github.com/pankod/refine/commit/8a562d2114b7145707070e363981a4e31e02547a) Thanks [@omeraplak](https://github.com/omeraplak)! - Add AuthProps type export
+
 ## 3.53.0
 
 ### Minor Changes
