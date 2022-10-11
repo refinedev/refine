@@ -51,7 +51,7 @@ It eliminates the repetitive tasks demanded by **CRUD** operations and provides 
 **refine** is *headless by design* offering unlimited styling and customization options. 
 
 ## What do you mean by "headless" ?
-Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your *UI components* and *business logic*, so they never keep you from customizing your *UI* or coding your own flow.
+Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components`, and `providers`. They are all decoupled from your UI components and *business logic*, so they never keep you from customizing your UI or coding your flow.
 
 **refine** seamlessly works with any **custom design** or **UI framework you favor**. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), and [Mantine](https://mantine.dev/).
 
