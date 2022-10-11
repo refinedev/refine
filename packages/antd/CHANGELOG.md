@@ -1,5 +1,11 @@
 # @pankod/refine-antd
 
+## 3.55.1
+
+### Patch Changes
+
+-   [#2712](https://github.com/pankod/refine/pull/2712) [`c434055011`](https://github.com/pankod/refine/commit/c434055011cbdd846c9f228c23987607bb828a1b) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed `providers` property empty array state in `<AuthPage />` component
+
 ## 3.55.0
 
 ### Minor Changes
