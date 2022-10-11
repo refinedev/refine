@@ -31,6 +31,7 @@ export const useSelect = <
             onSearchChange: onSearch,
             searchable: true,
             filterDataOnExactSearchMatch: true,
+            clearable: true,
         },
         queryResult,
         defaultValueQueryResult,
