@@ -129,7 +129,7 @@ const { selectProps } = useSelect({
 Adds extra `options` to `<Select>` component. It uses `useMany` so `defaultValue` can be an array of strings like follows.
 
 ```ts
-defaultValue: ["1", "2"],
+defaultValue: [1, 2],
 ```
 
 [Refer to the `useMany` documentation for detailed usage. &#8594](/api-reference/core/hooks/data/useMany.md)
