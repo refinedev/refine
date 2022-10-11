@@ -1199,7 +1199,7 @@ const { tableProps, sorter } = useTable<IPost>({
 });
 ```
 
-`useList`, `useOne`, `useMany` hooks are using Supabase [`select`](https://supabase.io/docs/reference/javascript/select) property internally. So you can pass parameters to the Supbase select method using metaData property.
+`useList`, `useOne`, `useMany` hooks are using Supabase [`select`](https://supabase.io/docs/reference/javascript/select) property internally. So you can pass parameters to the Supbase select method using `metaData` property.
 
 ### `select` - Handling many-to-many relationships
 
