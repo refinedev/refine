@@ -21,11 +21,11 @@ refine offers built-in data provider support for Supabase and handles all requir
 
 We'll build a simple CRUD app with refine and use Supabase as a data provider. We'll also see how to use Supabase's authentication features on refine app.
 
-We are assuming that you have already know how refine works. If not, please check out the [Tutorial](https://refine.dev/docs/tutorials/ant-design-tutorial/) section first.
+We are assuming that you have already know how refine works. If not, please check out the [Tutorial](/docs/tutorials/antd.md) section first.
 
-[Refer to docs for more information about data provider &#8594](https://refine.dev/docs/api-reference/core/providers/data-provider/)
+[Refer to docs for more information about data provider &#8594](/docs/api-reference/core/providers/data-provider.md)
 
-[Discover the +15 most popular backend service data providers supported out-of-the-box by refine &#8594](https://refine.dev/integrations/)
+[Discover the +15 most popular backend service data providers supported out-of-the-box by refine &#8594](/integrations/)
 
 ## Project Setup
 
@@ -85,7 +85,6 @@ npm i @pankod/refine-supabase
 
 
 
-
 ## Establishing Supabase connection
 
 ### Initialize Supabase client
@@ -139,7 +138,7 @@ Highlighted lines are the ones the CLI generator automatically added to register
 
 With this configuration, refine can now communicate with Supabase API and perform all required data service CRUD methods using data hooks.
 
-[Refer to documentation to learn more about how to use data hooks &#8594](https://refine.dev/docs/api-reference/core/hooks/data-hooks/)
+[Refer to documentation to learn more about how to use data hooks &#8594](/docs/api-reference/core/hooks/data/useCreate.md)
 
 
 ## Understanding the Auth Provider 
@@ -152,7 +151,7 @@ So basically, this is where we set complete authentication logic for the app.
 
 Since we preferred refine-supabase as the data provider during the CLI project initialization,  all required Supabase authentication methods are already implemented for us. This shows us how easy it is to bootstrap a refine app with CLI
 
-[Refer to docs for more information about Auth Provider methods and custom Auth Providers  &#8594](https://refine.dev/docs/api-reference/core/providers/auth-provider/)
+[Refer to docs for more information about Auth Provider methods and custom Auth Providers  &#8594](/docs/api-reference/core/providers/auth-provider.md)
 
 
 <details><summary>Take a look the auto-generated <b>authProvider.ts</b> file </summary>
@@ -273,7 +272,7 @@ export default authProvider;
 
 
 :::tip 
-Auth provider functions are also consumed by [refine authorization hooks](https://refine.dev/docs/api-reference/core/hooks/auth/useLogin/). Since this is out of scope of this tutorial, we'll not cover them for now
+Auth provider functions are also consumed by [refine authorization hooks](/docs/api-reference/core/hooks/auth/useLogin.md). Since this is out of scope of this tutorial, we'll not cover them for now
 :::
 
 <br/>
@@ -329,7 +328,7 @@ Before diving into Supabase features, we'll add simple CRUD pages to make the ap
 
 
 :::note
-Since this post focuses on Supabase implementation, we'll not discuss how to create CRUD pages and how it works. You can refer to [Tutorial](https://refine.dev/docs/tutorials/ant-design-tutorial/#creating-a-list-page) to learn more about creating CRUD pages.
+Since this post focuses on Supabase implementation, we'll not discuss how to create CRUD pages and how it works. You can refer to [Tutorial](/docs/tutorials/antd.md/#creating-a-list-page) to learn more about creating CRUD pages.
 :::
 
 ### Adding a List page
@@ -890,7 +889,7 @@ The resources property activates the connection between CRUD pages and Supabase 
 - The `create` property registers `/posts/create` endpoint to the `PostCreate` component. Thereby, when you head over to `yourdomain.com/posts/create`, you will see the `PostCreate` page you just created.
 
 
-[Refer to resources docs for more information &#8594](https://refine.dev/docs/api-reference/core/components/refine-config/#resources)
+[Refer to resources docs for more information &#8594](/docs/api-reference/core/components/refine-config.md/#resources)
 
 
 
@@ -978,7 +977,7 @@ Remember the [Understanding the Auth Provider](#understanding-auth-provider) sec
 
 We'll show how to implement third party logins in the next sections.
 
-[Refer to AuthPage docs for more information &#8594](https://refine.dev/docs/api-reference/antd/components/auth-page) 
+[Refer to AuthPage docs for more information &#8594](/docs/api-reference/antd/components/auth-page.md) 
 
 
 
@@ -1144,7 +1143,7 @@ function App() {
 :::note
 For live features to work automatically, we setted `liveMode: "auto"` in the options prop.
 
-[Refer to Live Provider docs for more information &#8594](https://refine.dev/docs/api-reference/core/providers/live-provider/#livemode)
+[Refer to Live Provider docs for more information &#8594](/docs/api-reference/core/providers/live-provider.md/#livemode)
 :::
 
 <br/>
@@ -1172,50 +1171,58 @@ For live features to work automatically, we setted `liveMode: "auto"` in the opt
 -   **Nhost** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/nhost/src/liveProvider/index.ts#L16)
 :::
 
-[Refer to `metaData` documentation for more information &#8594](https://refine.dev/docs/api-reference/general-concepts/#metadata)
-
 ## Using `metaData` to pass values to data provider
 
-The `metaData` property is used to pass additional information that can be read by data provider methods.
+The [`metaData`](/docs/api-reference/general-concepts.md/#metadata) property is used to pass additional information that can be read by data provider methods.
 
 We'll show an example of getting relational data from different tables on Supabase API using `metaData` property. 
 
 Take a look at the useTable hook in List page we created on the [previous sections](http://localhost:3000/docs/advanced-tutorials/data-provider/supabase/#adding-a-list-page).
     
+
+### `select` - Handling one-to-many relationship
+
+We pass a `select` value in `metaData` object to perform relational database operation in [Supabase data provider](https://github.com/pankod/refine/blob/master/packages/supabase/src/index.ts). The data provider methods are using Supabase [`select`](https://supabase.io/docs/reference/javascript/select) property internally.
+
+
+In this way, we can get the `title` data from the `categories` table and display it on the List page.
+
+For example, for `posts -> categories` relationship, we can get the `title` data from the `categories` table and display it on the List page.
+
  ```tsx title="src/pages/posts/list.tsx"
 const { tableProps, sorter } = useTable<IPost>({
     //highlight-start
+    resource: "posts",
     metaData: {
         select: "*, categories(title)",
     },
     // highlight-end
 });
 ```
-### `select` 
 
-We pass a `select` value in `metaData` object to perform relational database operation in [Supabase data provider](https://github.com/pankod/refine/blob/master/packages/supabase/src/index.ts). The data provider methods are using Supabase [`select`](https://supabase.io/docs/reference/javascript/select) method internally.
+`useList`, `useOne`, `useMany` hooks are using Supabase [`select`](https://supabase.io/docs/reference/javascript/select) property internally. So you can pass parameters to the Supbase select method using metaData property.
 
+### `select` - Handling many-to-many relationships
 
-In this way, we can get the `title` data from the `categories` table and display it on the List page.
+For example, for `movies <-> categories_movies <-> categories` many-to-many relationship, we can get the `categories` data of a user using `metaData` property.
 
-
-useList, useOne, useMany hooks are using Supabase [`select`](https://supabase.io/docs/reference/javascript/select) method internally. So you can pass parameters to the Supbase select method using metaData property.
-
-:::tip
-Many to many işlemleri ve daha fazlası için refer to supabase select documantation.
-
-Detaylı bilgi için supabase select methodunu inceleyebilirsiniz.
-https://supabase.com/docs/reference/javascript/select
-
-:::
-
+```tsx title="src/pages/users/list.tsx"
+const { tableProps, sorter } = useTable<IUser>({
+    //highlight-start
+    resource: "movies",
+    metaData: {
+        select: "*, categories!inner(name)",
+    },
+    // highlight-end
+});
+```
 
 ### `id` 
 
 `metaData` `id` property is used to match the column name of the primary key(in case the column name is different than "id") in your Supabase data table to the column name you have assigned.
 
 
-refine's [useMany](https://refine.dev/docs/api-reference/core/hooks/data/useMany/) hook accepts `metaData` property and uses `getMany` method of data provider. 
+refine's [useMany](/docs/api-reference/core/hooks/data/useMany.md) hook accepts `metaData` property and uses `getMany` method of data provider. 
 
 
 ```tsx
@@ -1248,7 +1255,7 @@ Now it searches for posts in the `post_id` column of the data table instead of `
 
 Deep filtering is filtering on a relation's fields. 
 
-refine's [useTable](https://refine.dev/docs/api-reference/antd/hooks/table/useTable/#default-filter-value) hook accepts `initialFilterValue` and `metaData` properties.
+It gets the posts where the `title` of the `categories` is "Beginning". Also the inner fields of the categories can be reached with dot notation.
 
 ```tsx
  const { tableProps, sorter } = useTable({
@@ -1257,18 +1264,15 @@ refine's [useTable](https://refine.dev/docs/api-reference/antd/hooks/table/useTa
     initialFilter: [
         { field: "categories.title", operator: "eq", value: "Beginning" },
     ],
-    //highlight-end
     metaData: {
-        select: "*, categories(title)",
+        select: "*, categories!inner(title)",
     },
+    //highlight-end
 });
 ```
 
-It gets the posts where the title of the categories is "Beginning". Also the inner fields of the categories can be reached with dot notation.
-
-
 :::caution
-Since "categories" is a different resource(table name), we need to pass `select` option to `metaData`  property to get the categories data.
+If you filter based on a table from an inner join, you will need to use `.select('*, mytable!inner(*)')` within Supabase.
 :::
 
 
