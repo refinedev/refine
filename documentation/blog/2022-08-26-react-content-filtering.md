@@ -653,10 +653,10 @@ Try [refine](https://github.com/pankod/refine) to rapidly build your next **CRUD
 
 <br/>
 
-**refine** is an open-source React-based framework for building CRUD applications **without constraints.**
-It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
 
-**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
+**refine** is an open-source, React-based framework for building CRUD applications without constraints. It’s headless by design and seamlessly works with **any custom design** or **UI framework** you favor. For convenience, it ships with ready-made integrations for **Ant Design System, Material UI and Mantine UI**.
+
+It can **speed up your development time up to 3X** without compromising freedom on styling, customization and project workflow.
 
 Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials, and example projects.
 
