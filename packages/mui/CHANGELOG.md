@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 3.50.4
+
+### Patch Changes
+
+-   Fixed `providers` property empty array state in `<AuthPage />` component
+
 ## 3.50.3
 
 ### Patch Changes
