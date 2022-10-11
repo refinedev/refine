@@ -398,6 +398,7 @@ module.exports = {
                                         "api-reference/mantine/hooks/form/useStepsForm",
                                     ],
                                 },
+                                "api-reference/mantine/hooks/useSelect",
                             ],
                         },
                     ],
