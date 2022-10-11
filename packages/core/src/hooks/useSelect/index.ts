@@ -152,8 +152,10 @@ export const useSelect = <
         resource,
         ids: defaultValues,
         queryOptions: {
-            enabled: defaultValues.length > 0,
             ...defaultValueQueryOptions,
+            enabled:
+                defaultValues.length > 0 &&
+                (defaultValueQueryOptionsFromProps?.enabled ?? true),
             onSuccess: (data) => {
                 defaultValueQueryOnSuccess(data);
                 defaultValueQueryOptions?.onSuccess?.(data);
