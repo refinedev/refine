@@ -382,6 +382,13 @@ module.exports = {
                             label: "Components",
                             items: [
                                 "api-reference/mantine/components/mantine-auth-page",
+                                {
+                                    type: "category",
+                                    label: "Basic Views",
+                                    items: [
+                                        "api-reference/mantine/components/basic-views/create",
+                                    ],
+                                },
                             ],
                         },
                         {
