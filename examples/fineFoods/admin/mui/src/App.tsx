@@ -32,7 +32,7 @@ import {
     CourierCreate,
     CourierEdit,
 } from "pages/couriers";
-import { LoginPage } from "pages/login";
+import { AuthPage } from "pages/auth";
 import { StoreList, StoreEdit, StoreCreate } from "pages/stores";
 import { ProductList } from "pages/products";
 import { CategoryList } from "pages/categories";
@@ -57,7 +57,42 @@ const App: React.FC = () => {
                 />
                 <RefineSnackbarProvider>
                     <Refine
-                        routerProvider={routerProvider}
+                        routerProvider={{
+                            ...routerProvider,
+                            routes: [
+                                {
+                                    path: "/register",
+                                    element: (
+                                        <AuthPage
+                                            type="register"
+                                            formProps={{
+                                                defaultValues: {
+                                                    email: "demo@refine.dev",
+                                                    password: "demodemo",
+                                                },
+                                            }}
+                                        />
+                                    ),
+                                },
+                                {
+                                    path: "/forgot-password",
+                                    element: (
+                                        <AuthPage
+                                            type="forgotPassword"
+                                            formProps={{
+                                                defaultValues: {
+                                                    email: "demo@refine.dev",
+                                                },
+                                            }}
+                                        />
+                                    ),
+                                },
+                                {
+                                    path: "/update-password",
+                                    element: <AuthPage type="updatePassword" />,
+                                },
+                            ],
+                        }}
                         dataProvider={dataProvider(
                             "https://api.finefoods.refine.dev",
                         )}
@@ -68,7 +103,17 @@ const App: React.FC = () => {
                         ReadyPage={ReadyPage}
                         Layout={Layout}
                         Header={Header}
-                        LoginPage={LoginPage}
+                        LoginPage={() => (
+                            <AuthPage
+                                type="login"
+                                formProps={{
+                                    defaultValues: {
+                                        email: "demo@refine.dev",
+                                        password: "demodemo",
+                                    },
+                                }}
+                            />
+                        )}
                         catchAll={<ErrorComponent />}
                         options={{
                             syncWithLocation: true,

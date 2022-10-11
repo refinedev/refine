@@ -14,6 +14,7 @@ import {
     CardContent as MuiCardContent,
     BoxProps,
     CardContentProps,
+    Link as MuiLink,
 } from "@mui/material";
 
 import {
@@ -65,6 +66,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
                     variant="h5"
                     align="center"
                     style={titleStyles}
+                    color="primary"
                 >
                     {translate(
                         "pages.forgotPassword.title",
@@ -95,7 +97,6 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
                         })}
                         id="email"
                         margin="normal"
-                        size="small"
                         fullWidth
                         label={translate(
                             "pages.forgotPassword.fields.email",
@@ -107,46 +108,30 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
                         autoComplete="email"
                     />
                     {loginLink ?? (
-                        <div
-                            style={{
-                                display: "flex",
-                            }}
-                        >
-                            <Box
-                                sx={{
-                                    display: "flex",
-                                    marginTop: 1,
-                                    marginLeft: "auto",
-                                }}
+                        <Box>
+                            <Typography variant="body2" component="span">
+                                {translate(
+                                    "pages.register.buttons.haveAccount",
+                                    "Have an account?",
+                                )}
+                            </Typography>{" "}
+                            <MuiLink
+                                variant="body2"
+                                component={Link}
+                                underline="none"
+                                to="/register"
+                                fontWeight="bold"
                             >
-                                <Typography variant="subtitle2">
-                                    {translate(
-                                        "pages.register.buttons.haveAccount",
-                                        "Have an account? ",
-                                    )}{" "}
-                                    <Link
-                                        underline="none"
-                                        to="/login"
-                                        style={{
-                                            fontWeight: "bold",
-                                        }}
-                                    >
-                                        {translate(
-                                            "pages.login.signin",
-                                            "Sign in",
-                                        )}
-                                    </Link>
-                                </Typography>
-                            </Box>
-                        </div>
+                                {translate("pages.login.signin", "Sign in")}
+                            </MuiLink>
+                        </Box>
                     )}
                     <Button
                         type="submit"
                         fullWidth
                         variant="contained"
                         sx={{
-                            my: "8px",
-                            color: "white",
+                            mt: "8px",
                         }}
                         disabled={isLoading}
                     >

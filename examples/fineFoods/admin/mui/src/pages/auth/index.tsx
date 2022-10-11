@@ -1,4 +1,6 @@
-import { AuthPage as AntdAuthPage, AuthProps } from "@pankod/refine-antd";
+import * as React from "react";
+import { AuthPage as MUIAuthPage, AuthProps } from "@pankod/refine-mui";
+
 import { useRouterContext } from "@pankod/refine-core";
 
 const authWrapperProps = {
@@ -15,16 +17,14 @@ const renderAuthContent = (content: React.ReactNode) => {
     return (
         <div
             style={{
-                maxWidth: 408,
                 margin: "auto",
             }}
         >
             <Link to="/">
                 <img
-                    style={{ marginBottom: 26 }}
                     src="/images/fine-foods-login.svg"
-                    alt="Logo"
-                    width="100%"
+                    alt="fineFoods Logo"
+                    style={{ width: "100%", marginBottom: 26 }}
                 />
             </Link>
             {content}
@@ -34,7 +34,7 @@ const renderAuthContent = (content: React.ReactNode) => {
 
 export const AuthPage: React.FC<AuthProps> = ({ type, formProps }) => {
     return (
-        <AntdAuthPage
+        <MUIAuthPage
             type={type}
             wrapperProps={authWrapperProps}
             renderContent={renderAuthContent}
