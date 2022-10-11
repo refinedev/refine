@@ -307,14 +307,14 @@ const SimpleRestDataProvider = (
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     create: ({ resource, variables, metaData }) => Promise,
-    createMany: ({ resource, variables, metaData }) => Promise,
+    createMany?: ({ resource, variables, metaData }) => Promise,
     deleteOne: ({ resource, id, variables, metaData }) => Promise,
-    deleteMany: ({ resource, ids, variables, metaData }) => Promise,
+    deleteMany?: ({ resource, ids, variables, metaData }) => Promise,
     getList: ({ resource, pagination, sort, filters, metaData }) => Promise,
-    getMany: ({ resource, ids, metaData }) => Promise,
+    getMany?: ({ resource, ids, metaData }) => Promise,
     getOne: ({ resource, id, metaData }) => Promise,
     update: ({ resource, id, variables, metaData }) => Promise,
-    updateMany: ({ resource, ids, variables, metaData }) => Promise,
+    updateMany?: ({ resource, ids, variables, metaData }) => Promise,
     custom: ({
         url,
         method,
@@ -330,6 +330,10 @@ const SimpleRestDataProvider = (
 ```
 
 It will take the API URL as a parameter and an optional **HTTP** client. We will use **axios** as the default **HTTP** client.
+
+:::note
+    `getMany`, `createMany`, `updateMany` and `deleteMany` properties are optional. If you don't implement them, Refine will use `getOne`, `create`, `update` and `deleteOne` methods to handle multiple requests. If your API supports these methods, you can implement them to improve performance.
+:::
 
 <br/>
 
