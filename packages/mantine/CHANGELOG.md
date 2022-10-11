@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 1.6.2
+
+### Patch Changes
+
+-   Fixed `providers` property empty array state in `<AuthPage />` component
+
 ## 1.6.1
 
 ### Patch Changes
