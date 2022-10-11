@@ -1275,3 +1275,13 @@ If you filter based on a table from an inner join, you will need to use `.select
 :::
 
 
+## Live StackBlitz Example
+
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/dataProvider/supabase/?embed=1&view=preview&theme=dark&preset=node"
+     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+     title="refine-supabase-example"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
+
+---
