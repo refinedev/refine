@@ -82,7 +82,10 @@ const generateFilter = (filters?: CrudFilters) => {
 const JsonServer = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
-): Required<DataProvider> => ({
+): Omit<
+    Required<DataProvider>,
+    "createMany" | "updateMany" | "deleteMany"
+> => ({
     getList: async ({
         resource,
         hasPagination = true,
@@ -147,20 +150,6 @@ const JsonServer = (
         };
     },
 
-    createMany: async ({ resource, variables }) => {
-        const response = await Promise.all(
-            variables.map(async (param) => {
-                const { data } = await httpClient.post(
-                    `${apiUrl}/${resource}`,
-                    param,
-                );
-                return data;
-            }),
-        );
-
-        return { data: response };
-    },
-
     update: async ({ resource, id, variables }) => {
         const url = `${apiUrl}/${resource}/${id}`;
 
@@ -169,20 +158,6 @@ const JsonServer = (
         return {
             data,
         };
-    },
-
-    updateMany: async ({ resource, ids, variables }) => {
-        const response = await Promise.all(
-            ids.map(async (id) => {
-                const { data } = await httpClient.patch(
-                    `${apiUrl}/${resource}/${id}`,
-                    variables,
-                );
-                return data;
-            }),
-        );
-
-        return { data: response };
     },
 
     getOne: async ({ resource, id }) => {
@@ -203,19 +178,6 @@ const JsonServer = (
         return {
             data,
         };
-    },
-
-    deleteMany: async ({ resource, ids, variables }) => {
-        const response = await Promise.all(
-            ids.map(async (id) => {
-                const { data } = await httpClient.delete(
-                    `${apiUrl}/${resource}/${id}`,
-                    variables,
-                );
-                return data;
-            }),
-        );
-        return { data: response };
     },
 
     getApiUrl: () => {
