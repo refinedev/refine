@@ -1023,7 +1023,6 @@ We'll show how to add Google Login option to the app.
 
 Social login feature can be activated by setting `provider` property of the `<AuthPage>` component.
 
-?? avaiable providers?? 
 
 ```tsx title="src/App.tsx"
 import { Refine } from '@pankod/refine-core';
