@@ -58,7 +58,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     const { Link } = useRouterContext();
 
     const renderProviders = () => {
-        if (providers) {
+        if (providers && providers.length > 0) {
             return (
                 <>
                     {providers.map((provider: any) => {
