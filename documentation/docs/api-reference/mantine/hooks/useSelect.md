@@ -122,7 +122,7 @@ const { selectProps } = useSelect({
 const { selectProps } = useSelect({
     resource: "categories",
     // highlight-next-line
-    defaultValue: "1",
+    defaultValue: 1,
 });
 ```
 
