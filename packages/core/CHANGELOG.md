@@ -1,5 +1,17 @@
 # @pankod/refine-core
 
+## 3.81.0
+
+### Minor Changes
+
+-   [#2704](https://github.com/pankod/refine/pull/2704) [`e4d78052ef`](https://github.com/pankod/refine/commit/e4d78052efea85f6cc3097ca05cfa1d6537ac9bc) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Added `useSelect()`, setState handler functions are memoized
+
+    Fixed when `queryOptions.enabled = true` on `useSelect()`, fetches all data. #2691
+
+### Patch Changes
+
+-   [#2705](https://github.com/pankod/refine/pull/2705) [`031f67707c`](https://github.com/pankod/refine/commit/031f67707ce51b57668e61d4f75851b98f8e6b90) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: `useSelect()`'s overridden `onSearch` function is not calling when value is empty.
+
 ## 3.80.0
 
 ### Minor Changes
