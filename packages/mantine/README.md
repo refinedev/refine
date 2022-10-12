@@ -193,7 +193,7 @@ Now, you should see the output as a table populated with `post` & `category` dat
 
 👉 Jump to [Refine<>Ant Design Tutorial](https://refine.dev/docs/ui-frameworks/antd/tutorial/) to continue your work and turn the example into a full-blown CRUD application.
 
-👉 Check out the [Refine<>Tailwind Tutorial](https://refine.dev/docs/ui-frameworks/antd/tutorial/) to learn how to use **refine** in a pure *headless* way.
+👉 Check out the [Refine<>Tailwind Tutorial](https://refine.dev/docs/tutorials/headless-tutorial/) to learn how to use **refine** in a pure *headless* way.
 
 👉 Visit [Learn the Basics Page](https://refine.dev/docs/getting-started/basics/) to get informed about the fundamental concepts.
 
