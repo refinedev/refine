@@ -32,10 +32,8 @@ describe("dataProvider", () => {
     // deleteMany
     describe("deleteMany", () => {
         it("correct response", async () => {
-            const { data } = await DataProvider(
-                API_URL,
-                axiosInstance,
-            ).deleteMany({ resource: "posts", ids: ["20"] });
+            const { data } = await DataProvider(API_URL, axiosInstance)
+                .deleteMany!({ resource: "posts", ids: ["20"] });
 
             expect(data[0].data.id).toBe(20);
             expect(data[0].data.attributes.title).toBe("foo");
@@ -187,13 +185,12 @@ describe("dataProvider", () => {
     // getMany
     describe("getMany", () => {
         it("correct response", async () => {
-            const { data } = await DataProvider(API_URL, axiosInstance).getMany(
-                {
-                    resource: "posts",
-                    ids: ["30", "29"],
-                    metaData: { populate: ["category"] },
-                },
-            );
+            const { data } = await DataProvider(API_URL, axiosInstance)
+                .getMany!({
+                resource: "posts",
+                ids: ["30", "29"],
+                metaData: { populate: ["category"] },
+            });
 
             expect(data[0].id).toBe(29);
             expect(data[0].title).toBe("Hello");
@@ -236,10 +233,8 @@ describe("dataProvider", () => {
     // updateMany
     describe("updateMany", () => {
         it("correct response", async () => {
-            const { data } = await DataProvider(
-                API_URL,
-                axiosInstance,
-            ).updateMany({
+            const { data } = await DataProvider(API_URL, axiosInstance)
+                .updateMany!({
                 resource: "posts",
                 ids: ["8", "17"],
                 variables: {
@@ -258,10 +253,8 @@ describe("dataProvider", () => {
     // createMany
     describe("createMany", () => {
         it("correct response", async () => {
-            const { data } = await DataProvider(
-                API_URL,
-                axiosInstance,
-            ).createMany({
+            const { data } = await DataProvider(API_URL, axiosInstance)
+                .createMany!({
                 resource: "posts",
                 variables: [
                     {

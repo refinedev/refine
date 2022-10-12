@@ -121,7 +121,7 @@ const generateFilter = (
 const NestsxCrud = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
-): DataProvider => ({
+): Required<DataProvider> => ({
     getList: async ({
         resource,
         hasPagination = true,

@@ -6,7 +6,7 @@ describe("createMany", () => {
     it("correct response", async () => {
         const { data } = await dataProvider(client, {
             databaseId: "632455a0b8d017403ce9",
-        }).createMany({
+        }).createMany!({
             resource: "632455a55dc72e1aa016",
             variables: [
                 {

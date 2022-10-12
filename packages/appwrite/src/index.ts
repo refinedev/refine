@@ -102,7 +102,7 @@ export const getAppwritePagination = (pagination: Pagination) => {
 export const dataProvider = (
     appwriteClient: Appwrite,
     options: { databaseId: string } = { databaseId: "default" },
-): DataProvider => {
+): Required<DataProvider> => {
     const { databaseId } = options;
 
     const database = new Databases(appwriteClient);

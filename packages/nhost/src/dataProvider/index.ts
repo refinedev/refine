@@ -135,7 +135,7 @@ const handleError = (error: object | Error) => {
     return Promise.reject(customError);
 };
 
-const dataProvider = (client: NhostClient): DataProvider => {
+const dataProvider = (client: NhostClient): Required<DataProvider> => {
     return {
         getOne: async ({ resource, id, metaData }) => {
             const operation = `${metaData?.operation ?? resource}_by_pk`;
