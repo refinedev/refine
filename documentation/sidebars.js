@@ -387,6 +387,7 @@ module.exports = {
                                     label: "Basic Views",
                                     items: [
                                         "api-reference/mantine/components/basic-views/create",
+                                        "api-reference/mantine/components/basic-views/edit",
                                     ],
                                 },
                             ],
