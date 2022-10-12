@@ -51,6 +51,11 @@ interface QueryClientConfig {
 }
 export interface RefineProps {
     /**
+     * `resources` is the main building block of a refine app. A resource represents an entity in an endpoint in the API.
+     * @type [`ResourceProps[]`](/docs/api-reference/core/components/refine-config/#resources)
+     */
+    resources?: ResourceProps[];
+    /**
      * `authProvider` handles authentication logic like login, logout flow and checking user credentials. It is an object with methods that refine uses when necessary.
      * @type [`AuthProvider`](/docs/api-reference/core/providers/auth-provider/)
      */
@@ -85,11 +90,6 @@ export interface RefineProps {
      * @type [`AuditLogProvider`](/docs/api-reference/core/providers/audit-log-provider#overview)
      */
     auditLogProvider?: AuditLogProvider;
-    /**
-     * `resources` is the main building block of a refine app. A resource represents an entity in an endpoint in the API.
-     * @type [`ResourceProps[]`](/docs/api-reference/core/components/refine-config/#resources)
-     */
-    resources?: ResourceProps[];
     /**
      * `i18nProvider` property lets you add i18n support to your app. Making you able to use any i18n framework.
      * @type [`i18nProvider`](/docs/api-reference/core/providers/i18n-provider/)
