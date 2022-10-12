@@ -394,7 +394,7 @@ mutate({
 
 ### `createMany`
 
-This method allows us to create multiple items in a resource.
+This method allows us to create multiple items in a resource. Implementation of this method is optional. If you don't implement it, Refine will use `create` method to handle multiple requests.
 
 ```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
@@ -404,17 +404,12 @@ const SimpleRestDataProvider = (
     ...
 // highlight-start
     createMany: async ({ resource, variables }) => {
-        const response = await Promise.all(
-            variables.map(async (param) => {
-                const { data } = await httpClient.post(
-                    `${apiUrl}/${resource}`,
-                    param,
-                );
-                return data;
-            }),
+        const response = await httpClient.post(
+            `${apiUrl}/${resource}/bulk`,
+            { values: variables },
         );
 
-        return { data: response };
+        return response;
     },
 // highlight-end
     ...
@@ -509,7 +504,7 @@ mutate({ resource: "categories", id: "2" });
 
 ### `deleteMany`
 
-This method allows us to delete multiple items in a resource.
+This method allows us to delete multiple items in a resource. Implementation of this method is optional. If you don't implement it, Refine will use `deleteOne` method to handle multiple requests.
 
 ```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
@@ -519,15 +514,10 @@ const SimpleRestDataProvider = (
     ...
 // highlight-start
     deleteMany: async ({ resource, ids }) => {
-        const response = await Promise.all(
-            ids.map(async (id) => {
-                const { data } = await httpClient.delete(
-                    `${apiUrl}/${resource}/${id}`,
-                );
-                return data;
-            }),
+        const response = await httpClient.delete(
+            `${apiUrl}/${resource}/bulk?ids=${ids.join(",")}`,
         );
-        return { data: response };
+        return response;
     },
 // highlight-end
     ...
@@ -620,7 +610,7 @@ mutate({
 
 ### `updateMany`
 
-This method allows us to update multiple items in a resource.
+This method allows us to update multiple items in a resource. Implementation of this method is optional. If you don't implement it, Refine will use `update` method to handle multiple requests.
 
 ```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
@@ -630,17 +620,11 @@ const SimpleRestDataProvider = (
     ...
 // highlight-start
     updateMany: async ({ resource, ids, variables }) => {
-        const response = await Promise.all(
-            ids.map(async (id) => {
-                const { data } = await httpClient.patch(
-                    `${apiUrl}/${resource}/${id}`,
-                    variables,
-                );
-                return data;
-            }),
+        const response = await httpClient.patch(
+            `${apiUrl}/${resource}/bulk`,
+            { ids, variables },
         );
-
-        return { data: response };
+        return response;
     },
 // highlight-end
     ...
@@ -725,7 +709,7 @@ const { data } = useOne<ICategory>({ resource: "categories", id: "1" });
 
 ### `getMany`
 
-This method allows us to retrieve multiple items in a resource.
+This method allows us to retrieve multiple items in a resource. Implementation of this method is optional. If you don't implement it, Refine will use `getOne` method to handle multiple requests.
 
 ```ts title="dataProvider.ts"
 import { stringify } from "query-string";
