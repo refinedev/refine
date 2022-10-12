@@ -14,7 +14,7 @@ We will show what `<Show>` does using properties with examples.
 ```tsx live hideCode url=http://localhost:3000/posts/show/2
 // visible-block-start
 import { Show, Typography, MarkdownField } from "@pankod/refine-antd";
-import { useShow, IResourceComponentsProps, useOne } from "@pankod/refine";
+import { useShow, IResourceComponentsProps, useOne } from "@pankod/refine-core";
 
 const { Title, Text } = Typography;
 

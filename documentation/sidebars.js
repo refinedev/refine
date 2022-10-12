@@ -389,6 +389,7 @@ module.exports = {
                                         "api-reference/mantine/components/basic-views/create",
                                         "api-reference/mantine/components/basic-views/edit",
                                         "api-reference/mantine/components/basic-views/list",
+                                        "api-reference/mantine/components/basic-views/show",
                                     ],
                                 },
                             ],

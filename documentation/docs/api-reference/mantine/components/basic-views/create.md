@@ -260,8 +260,8 @@ The `<Create>` component reads the `resource` information from the route by defa
 
 [Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
 
-```tsx live url=http://localhost:3000/custom previewHeight=280px
-setInitialRoutes(["/custom"]);
+```tsx live url=http://localhost:3000/custom/12 previewHeight=280px
+setInitialRoutes(["/custom/12"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
@@ -860,7 +860,7 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Create, Button } from "@pankod/refine-mantine";
+import { Create } from "@pankod/refine-mantine";
 
 const PostCreate: React.FC = () => {
     return (
