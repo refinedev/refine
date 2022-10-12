@@ -214,9 +214,11 @@ You can find refine's <a href="https://github.com/pankod/refine/projects/1">Publ
 
 ## Contribution
 
-If you have a bug to report, do not hesitate to file an issue.
+If you have a bug to report, do not hesitate to file an [issue](https://github.com/pankod/refine/issues/new/choose).
 
-If you are willing to fix an issue or propose a feature; all PRs with clear explanations are welcome and encouraged.
+If you are willing to fix an issue or propose a feature, all PRs with clear explanations are welcome and encouraged.
+
+If you have any doubts related to the project or want to discuss something, then join our [Discord Server](https://discord.gg/refine).
 
 ## License
 
