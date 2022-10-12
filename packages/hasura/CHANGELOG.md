@@ -1,5 +1,11 @@
 # @pankod/refine-hasura
 
+## 4.13.0
+
+### Minor Changes
+
+-   Updated `dataProvider` types with `Required` utility to mark `getMany`, `createMany`, `updateMany` and `deleteMany` as implemented.
+
 ## 4.12.0
 
 ### Minor Changes

@@ -1,5 +1,5 @@
 {
-  "version": "5.2.0",
+  "version": "5.3.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -21,7 +21,7 @@
   "author": "Pankod",
   "module": "dist/esm/index.js",
   "devDependencies": {
-    "@pankod/refine-core": "^3.83.0",
+    "@pankod/refine-core": "^3.84.0",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "jest": "^27.5.1",
     "nock": "^13.1.3",
