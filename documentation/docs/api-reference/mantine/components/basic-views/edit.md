@@ -782,7 +782,7 @@ render(
 
 ### `wrapperProps`
 
-If you want to customize the wrapper of the `<Create/>` component, you can use the `wrapperProps` property. For `@pankod/refine-mantine` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Card>` can get.
+If you want to customize the wrapper of the `<Edit/>` component, you can use the `wrapperProps` property. For `@pankod/refine-mantine` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Card>` can get.
 
 [Refer to the `Card` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/card/)
 
@@ -846,7 +846,7 @@ render(
 
 ### `headerProps`
 
-If you want to customize the header of the `<Create/>` component, you can use the `headerProps` property.
+If you want to customize the header of the `<Edit/>` component, you can use the `headerProps` property.
 
 [Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group/)
 
@@ -910,7 +910,7 @@ render(
 
 ### `contentProps`
 
-If you want to customize the content of the `<Create/>` component, you can use the `contentProps` property.
+If you want to customize the content of the `<Edit/>` component, you can use the `contentProps` property.
 
 [Refer to the `Box` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/box/)
 
