@@ -15,7 +15,7 @@ import { CanAccess } from "@pankod/refine-core";
     fallback={<CustomFallback />}
 >
     <YourComponent />
-</CanAccess>;
+</CanAccess>
 ```
 
 ## API Reference
