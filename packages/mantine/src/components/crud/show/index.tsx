@@ -10,6 +10,7 @@ import {
     ActionIcon,
     Stack,
     Title,
+    LoadingOverlay,
 } from "@mantine/core";
 import {
     ResourceRouterParams,
@@ -79,6 +80,8 @@ export const Show: React.FC<ShowProps> = (props) => {
 
     const id = recordItemId ?? idFromRoute;
 
+    const loadingOverlayVisible = isLoading ?? false;
+
     const defaultHeaderButtons = (
         <>
             {!recordItemId && (
@@ -137,6 +140,7 @@ export const Show: React.FC<ShowProps> = (props) => {
 
     return (
         <Card p="md" {...wrapperProps}>
+            <LoadingOverlay visible={loadingOverlayVisible} />
             <Group position="apart" align="center" {...headerProps}>
                 <Stack spacing="xs">
                     {breadcrumb}

@@ -10,6 +10,7 @@ import {
     ActionIcon,
     Stack,
     Title,
+    LoadingOverlay,
 } from "@mantine/core";
 import {
     ResourceRouterParams,
@@ -89,6 +90,9 @@ export const Edit: React.FC<EditProps> = (props) => {
 
     const id = recordItemId ?? idFromRoute;
 
+    const loadingOverlayVisible =
+        isLoading ?? saveButtonProps?.disabled ?? false;
+
     const defaultHeaderButtons = (
         <>
             {!recordItemId && (
@@ -151,6 +155,7 @@ export const Edit: React.FC<EditProps> = (props) => {
 
     return (
         <Card p="md" {...wrapperProps}>
+            <LoadingOverlay visible={loadingOverlayVisible} />
             <Group position="apart" {...headerProps}>
                 <Stack spacing="xs">
                     {breadcrumb}

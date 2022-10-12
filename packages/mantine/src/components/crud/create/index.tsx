@@ -10,6 +10,7 @@ import {
     ActionIcon,
     Stack,
     Title,
+    LoadingOverlay,
 } from "@mantine/core";
 import {
     ResourceRouterParams,
@@ -63,6 +64,9 @@ export const Create: React.FC<CreateProps> = (props) => {
 
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
 
+    const loadingOverlayVisible =
+        isLoading ?? saveButtonProps?.disabled ?? false;
+
     const defaultFooterButtons = (
         <SaveButton
             {...(isLoading ? { disabled: true } : {})}
@@ -95,6 +99,7 @@ export const Create: React.FC<CreateProps> = (props) => {
 
     return (
         <Card p="md" {...wrapperProps}>
+            <LoadingOverlay visible={loadingOverlayVisible} />
             <Group position="apart" align="center" {...headerProps}>
                 <Stack spacing="xs">
                     {breadcrumb}
