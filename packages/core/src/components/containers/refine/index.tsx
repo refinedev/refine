@@ -117,6 +117,7 @@ export interface RefineProps {
     ReadyPage?: React.FC;
     /**
      * `mutationMode` determines which mode the mutations run with. (e.g. useUpdate, useDelete).
+     * @deprecated `mutationMode` property is deprecated at this level. Use it from within `options` instead.
      * @type [`MutationMode`](/docs/api-reference/core/components/refine-config/#mutationmode)
      * @default "pessimistic"
      */
