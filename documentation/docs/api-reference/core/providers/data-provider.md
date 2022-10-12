@@ -504,7 +504,7 @@ mutate({ resource: "categories", id: "2" });
 
 ### `deleteMany`
 
-This method allows us to delete multiple items in a resource. Implementation of this method is optional. If you don't implement it, Refine will use `deleteOne` method to handle multiple requests.
+This method allows us to delete multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use `deleteOne` method to handle multiple requests.
 
 ```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
