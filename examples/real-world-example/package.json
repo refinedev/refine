@@ -3,10 +3,10 @@
   "version": "3.25.0",
   "private": true,
   "dependencies": {
-    "@pankod/refine-core": "^3.82.0",
+    "@pankod/refine-core": "^3.83.0",
     "@pankod/refine-react-hook-form": "^3.33.2",
     "@pankod/refine-react-router-v6": "^3.36.0",
-    "@pankod/refine-simple-rest": "^3.31.0",
+    "@pankod/refine-simple-rest": "^3.32.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^14.1.1",

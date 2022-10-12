@@ -1,5 +1,15 @@
 # @pankod/refine-core
 
+## 3.83.0
+
+### Minor Changes
+
+-   [#2688](https://github.com/pankod/refine/pull/2688) [`508045ac30`](https://github.com/pankod/refine/commit/508045ac30cd3948f68497e13fdf04f7c72ce387) Thanks [@aliemir](https://github.com/aliemir)! - Marked `getMany`, `createMany`, `updateMany` and `deleteMany` functions as optional and substituted with `getOne`, `create`, `update` and `deleteOne` respectively. Now users can choose to skip implementing `getMany`, `createMany`, `updateMany` and `deleteMany` functions and use `getOne`, `create`, `update` and `deleteOne` functions instead.
+
+    **Breaking Change**
+
+    -   `getMany`, `createMany`, `updateMany` and `deleteMany` functions are now optional and may cause type issues if used outside of the **refine** hooks.
+
 ## 3.82.0
 
 ### Minor Changes
