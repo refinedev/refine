@@ -183,19 +183,19 @@ export default function FooterLayout({
                                     rel="noreferrer"
                                 >
                                     {socialLink.label === "github" && (
-                                        <GithubIcon className="w-[22px] h-[22px] hover:fill-[#1890ff]" />
+                                        <GithubIcon className="w-[22px] h-[22px] hover:fill-[#171515]" />
                                     )}
                                     {socialLink.label === "twitter" && (
-                                        <TwitterIcon className="w-[22px] h-[22px] hover:fill-[#1890ff]" />
+                                        <TwitterIcon className="w-[22px] h-[22px] hover:fill-[#1DA1F2]" />
                                     )}
                                     {socialLink.label === "linkedin" && (
-                                        <LinkedinIcon className="w-[22px] h-[22px] hover:fill-[#1890ff]" />
+                                        <LinkedinIcon className="w-[22px] h-[22px] hover:fill-[#0077B5]" />
                                     )}
                                     {socialLink.label === "discord" && (
-                                        <DiscordIcon className="w-[22px] h-[22px] hover:fill-[#1890ff]" />
+                                        <DiscordIcon className="w-[22px] h-[22px] hover:fill-[#5865F2]" />
                                     )}
                                     {socialLink.label === "reddit" && (
-                                        <RedditIcon className="w-[22px] h-[22px] hover:fill-[#1890ff]" />
+                                        <RedditIcon className="w-[22px] h-[22px] hover:fill-[#FF4300]" />
                                     )}
                                 </a>
                             ))}
