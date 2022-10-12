@@ -1,5 +1,11 @@
 # @pankod/refine-hasura
 
+## 4.14.0
+
+### Minor Changes
+
+-   [#2728](https://github.com/pankod/refine/pull/2728) [`585ba350f8`](https://github.com/pankod/refine/commit/585ba350f831be93055c58c1ff660645f21bdf77) Thanks [@aliemir](https://github.com/aliemir)! - Added missing implementations for `nnull`, `startswith`, `startswiths`, `nstartswith`, `nstartswiths`, `endswith`, `endswiths`, `nendswith` and `nendswiths` filters by `_similar`, `_nsimilar`, `_regex` and `_iregex` filters from Hasura.
+
 ## 4.13.0
 
 ### Minor Changes
