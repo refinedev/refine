@@ -209,6 +209,7 @@ export type RefineCrudEditProps<
     isLoading?: boolean;
     /**
      * Adds a `<DeleteButton />`
+     * @default If the resource has `canDelete` prop it is `true` else `false`
      */
     canDelete?: boolean;
     /**
@@ -242,27 +243,75 @@ export type RefineCrudShowProps<
     TContentProps extends {} = Record<keyof any, unknown>,
     TExtraProps extends {} = {},
 > = PropsWithChildren<{
-    // Common Props
+    /**
+     * Title of the edit view
+     * @default `"Show {resource.name}"`
+     */
     title?: React.ReactNode;
+    /**
+     * Resource name for API data interactions
+     * @default Reads `:resource` from the URL
+     */
     resource?: string;
+    /**
+     * Props for the wrapper component of the view
+     */
     wrapperProps?: TWrapperProps;
+    /**
+     * Props for the header component
+     */
     headerProps?: THeaderProps;
+    /**
+     * Props for the content wrapper component
+     */
     contentProps?: TContentProps;
+    /**
+     * Breadcrumb to be displayed in the header
+     * @default `<Breadcrumb />`
+     */
     breadcrumb?: React.ReactNode;
-    // Back Props
+    /**
+     * Back button element at the top left of the page
+     */
     goBack?: React.ReactNode;
-    // Header Action Buttons Props
+    /**
+     * Header action buttons to be displayed in the header
+     */
     headerButtons?: ActionButtonRenderer;
+    /**
+     * Additional props to be passed to the wrapper of the header buttons
+     */
     headerButtonProps?: THeaderButtonProps;
-    // Footer Action Buttons Props
+    /**
+     * Footer action buttons to be displayed in the footer
+     * @default `null`
+     */
     footerButtons?: ActionButtonRenderer;
+    /**
+     * Additional props to be passed to the wrapper of the footer buttons
+     */
     footerButtonProps?: TFooterButtonProps;
-    // Data Provider Props
+    /**
+     * To specify a data provider other than default use this property
+     */
     dataProviderName?: string;
-    // Crud Show Props
+    /**
+     * Loading state of the component
+     */
     isLoading?: boolean;
-    canDelete?: boolean;
+    /**
+     * Adds a `<DeleteButton />`
+     * @default If the resource has `canDelete` prop it is `true` else `false`
+     canDelete?: boolean;
+     */
+    /**
+     * Adds a `<EditButton />`
+     * @default If the resource is passed a edit component, `true` else `false`
+     */
     canEdit?: boolean;
+    /**
+     * The record id for `<RefreshButton />`
+     */
     recordItemId?: BaseKey;
 }> &
     TExtraProps;
