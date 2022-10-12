@@ -1056,3 +1056,9 @@ render(
     </Wrapper>,
 );
 ```
+
+## API Reference
+
+### Props
+
+<PropsTable module="@pankod/refine-mantine/Show" />
