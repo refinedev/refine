@@ -71,7 +71,7 @@ const generateFilter = (filters?: CrudFilters) => {
         filters.map((filter) => {
             const mappedOperator = mapOperator(filter.operator);
 
-            if (filter.operator !== "or") {
+            if (filter.operator !== "or" && "field" in filter) {
                 const { field, value } = filter;
 
                 switch (mappedOperator) {
