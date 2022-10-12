@@ -1153,8 +1153,7 @@ nock("https://api.nestjsx-crud.refine.dev:443", { encodedQueryParams: true })
 nock("https://api.nestjsx-crud.refine.dev:443", { encodedQueryParams: true })
     .get("/posts")
     .query({
-        "filter%5B0%5D":
-            "category.id%7C%7C%24in%7C%7C73bdc4c0-0cc2-49bb-bd6f-550deb795468",
+        s: "%7B%22%24and%22%3A%5B%7B%22category.id%22%3A%7B%22%24in%22%3A%5B%2273bdc4c0-0cc2-49bb-bd6f-550deb795468%22%5D%7D%7D%5D%7D",
         limit: "10",
         page: "1",
         offset: "0",
@@ -1734,8 +1733,7 @@ nock("https://api.nestjsx-crud.refine.dev:443", { encodedQueryParams: true })
 nock("https://api.nestjsx-crud.refine.dev:443", { encodedQueryParams: true })
     .get("/posts")
     .query({
-        "filter%5B0%5D":
-            "category.id%7C%7C%24in%7C%7C73bdc4c0-0cc2-49bb-bd6f-550deb795468",
+        s: "%7B%22%24and%22%3A%5B%7B%22category.id%22%3A%7B%22%24in%22%3A%5B%2273bdc4c0-0cc2-49bb-bd6f-550deb795468%22%5D%7D%7D%5D%7D",
         limit: "10",
         page: "1",
         offset: "0",
@@ -2310,5 +2308,153 @@ nock("https://api.nestjsx-crud.refine.dev:443", { encodedQueryParams: true })
             "*",
             "ETag",
             'W/"81d2-fU5n8AE1T9c7O1lr0btQyAj+Fpk"',
+        ],
+    );
+
+nock("https://api.nestjsx-crud.refine.dev:443", {
+    encodedQueryParams: true,
+})
+    .get("/posts")
+    .query({
+        s: "%7B%22%24and%22%3A%5B%7B%22%24or%22%3A%5B%7B%22%24and%22%3A%5B%7B%22title%22%3A%7B%22%24startsL%22%3A%22a%22%7D%7D%2C%7B%22title%22%3A%7B%22%24contL%22%3A%22heuristic%22%7D%7D%5D%7D%2C%7B%22%24and%22%3A%5B%7B%22title%22%3A%7B%22%24startsL%22%3A%22e%22%7D%7D%2C%7B%22title%22%3A%7B%22%24contL%22%3A%22invoice%22%7D%7D%5D%7D%5D%7D%5D%7D",
+        limit: "10",
+        page: "1",
+        offset: "0",
+    })
+    .reply(
+        200,
+        {
+            data: [
+                {
+                    status: "draft",
+                    id: "402def0f-5116-4044-81bd-e979442f2909",
+                    title: "Engage Marshall Islands invoice",
+                    content:
+                        "Hic ut molestias eum soluta eligendi. Totam vero ipsa vitae enim sit et doloremque. Quo quos commodi praesentium.\n \rMaxime dolorem dolorem sit perspiciatis. Velit ut et. Ut doloribus ab natus rem voluptatibus. Qui at dolorem quo repellat numquam esse minima incidunt. Consequatur omnis autem.\n \rQuia earum dolorem aperiam corrupti natus. Consequatur dolore non ex quos facere possimus. Quod dolor repellat eaque. Cupiditate et libero aut et architecto.\n \rAlias aspernatur quibusdam quas tenetur enim et est ut. Suscipit cum sint est esse sit quis quidem rerum omnis. Commodi praesentium autem quibusdam consequatur sapiente.\n \rEt sit deserunt dolore dolore. Dolor quia est molestiae corporis sit sed sunt. Libero et similique. Dicta quia dicta. Eos iusto inventore.\n \rAspernatur porro magni est minima quia corrupti et. Rem consequuntur pariatur exercitationem sed quas exercitationem rerum. Nemo nostrum in necessitatibus at eveniet fuga nemo ea.\n \rId fuga qui accusamus qui itaque. Tempora deleniti laboriosam natus cum non. At quisquam molestias quaerat dolore veritatis. Doloremque dolores repellat et totam reiciendis harum. In quo consequatur possimus non. Odit consectetur pariatur nam autem assumenda aliquam illum.\n \rAliquid sed optio earum at esse quam. Qui repudiandae ea. Accusantium accusamus neque iste temporibus harum. Non aut necessitatibus. Et sed voluptatibus qui harum similique eos ipsum.\n \rVel et repudiandae accusamus iure eum. Quisquam est nisi consequuntur impedit ut in et voluptates. Ipsa quia autem enim recusandae consequatur minima. Quia quisquam sint. In modi quis quo odio nisi ut eum.\n \rConsectetur totam omnis consequatur. Fuga sit consequuntur error reprehenderit modi. Eveniet iusto autem eaque. Possimus commodi vel.",
+                    slug: "engage-marshall-islands-invoice",
+                    images: [
+                        {
+                            uid: "rc-upload-94ebpngytk",
+                            name: "random-image.jpg",
+                            url: "https://picsum.photos/800",
+                            type: "image/jpeg",
+                            size: 141940,
+                        },
+                    ],
+                    createdAt: "2022-10-12T08:05:07.450Z",
+                    updatedAt: "2022-10-12T08:05:07.629Z",
+                    category: {
+                        id: "c079c036-8e49-42ad-bbdc-43110f305e3e",
+                        title: "Music Platforms Hawaii",
+                        createdAt: "2022-10-12T08:05:07.629Z",
+                        updatedAt: "2022-10-12T08:05:07.629Z",
+                    },
+                    user: {
+                        id: "1bb3d392-9092-42eb-bb1a-bcf3f8cc1338",
+                        firstName: "Kelsie",
+                        lastName: "Murray",
+                        email: "kelsie58@yahoo.com",
+                        status: true,
+                        createdAt: "2022-10-12T08:05:07.270Z",
+                        updatedAt: "2022-10-12T08:05:07.270Z",
+                    },
+                    tags: [
+                        {
+                            id: "8b8f5c6f-52f1-48c5-8b73-972751697e25",
+                            title: "concrete",
+                            createdAt: "2022-10-12T08:05:07.277Z",
+                            updatedAt: "2022-10-12T08:05:07.277Z",
+                        },
+                        {
+                            id: "4ef83b61-d7d2-46ad-81ad-c0cc288767b2",
+                            title: "invoice",
+                            createdAt: "2022-10-12T08:05:07.283Z",
+                            updatedAt: "2022-10-12T08:05:07.283Z",
+                        },
+                        {
+                            id: "55e31eba-e003-457a-aca4-bc4cee719dee",
+                            title: "enhance",
+                            createdAt: "2022-10-12T08:05:07.289Z",
+                            updatedAt: "2022-10-12T08:05:07.289Z",
+                        },
+                    ],
+                },
+                {
+                    status: "draft",
+                    id: "d62c6cb2-9bad-481e-8432-2680aca918ec",
+                    title: "Avon heuristic Washington",
+                    content:
+                        "Qui quidem ut nisi necessitatibus iste velit voluptatem. Facere recusandae placeat similique tempore sit aut quia reiciendis. Harum et sed accusantium nesciunt. Quia deleniti ut ea consequatur magnam.\n \rTempora id sed omnis corrupti est impedit ipsum veritatis nemo. Eos laudantium perspiciatis. Animi quia voluptatem sit qui aperiam vel vel sunt ab.\n \rIncidunt rerum incidunt et maiores dignissimos beatae aut quo. Rerum enim facere sed quia nesciunt omnis incidunt provident ipsa. Quos qui ipsam.\n \rAb enim blanditiis qui minima. Non veritatis porro adipisci totam similique unde incidunt dolores. Placeat quod et alias corrupti tenetur non quas voluptas. Minima inventore magni illo quasi natus sequi. Amet iusto molestiae sit sed molestiae corporis autem. Alias modi iure est suscipit est.\n \rEius soluta dignissimos in. Minus vitae ut a. Officiis quam nobis sed esse eum dolores. Libero illo eos.\n \rDolores repudiandae dolorem quae in earum fugiat voluptatem. Et excepturi animi sed et nulla ipsa. Ut quo itaque excepturi amet omnis sint id. Exercitationem praesentium ratione sed vel qui. Molestiae et qui libero consequatur voluptatibus asperiores accusantium magni. Sed vero quo sed.\n \rTempora cum blanditiis. Vero eligendi eum quaerat facilis id dolore exercitationem eligendi. Hic eum voluptate animi saepe reprehenderit quos eos sint sit. Autem ut quia enim molestias magni molestias. Iusto ea tempore ex aperiam eos omnis animi quibusdam qui.\n \rEt deleniti autem asperiores aut nesciunt non enim labore voluptate. Tenetur odio est sapiente est ut. Ut consequatur voluptas ea eius ea. Rerum expedita molestias unde temporibus et. Quos suscipit magni quo et.\n \rQuia in ut tempore commodi. Ea quia reprehenderit iusto assumenda quas. Dolor omnis exercitationem officia dolorum aut. Veniam aliquid magnam aut perspiciatis temporibus pariatur.\n \rUt soluta porro aut neque accusamus aliquam. Sed nihil aut. Consequatur quod non vel tempore rerum aut molestiae.",
+                    slug: "avon-heuristic-washington",
+                    images: [
+                        {
+                            uid: "rc-upload-o1apezp7ae",
+                            name: "random-image.jpg",
+                            url: "https://picsum.photos/800",
+                            type: "image/jpeg",
+                            size: 141940,
+                        },
+                    ],
+                    createdAt: "2022-10-12T08:05:07.503Z",
+                    updatedAt: "2022-10-12T08:05:07.629Z",
+                    category: {
+                        id: "c079c036-8e49-42ad-bbdc-43110f305e3e",
+                        title: "Music Platforms Hawaii",
+                        createdAt: "2022-10-12T08:05:07.629Z",
+                        updatedAt: "2022-10-12T08:05:07.629Z",
+                    },
+                    user: {
+                        id: "1bb3d392-9092-42eb-bb1a-bcf3f8cc1338",
+                        firstName: "Kelsie",
+                        lastName: "Murray",
+                        email: "kelsie58@yahoo.com",
+                        status: true,
+                        createdAt: "2022-10-12T08:05:07.270Z",
+                        updatedAt: "2022-10-12T08:05:07.270Z",
+                    },
+                    tags: [
+                        {
+                            id: "8b8f5c6f-52f1-48c5-8b73-972751697e25",
+                            title: "concrete",
+                            createdAt: "2022-10-12T08:05:07.277Z",
+                            updatedAt: "2022-10-12T08:05:07.277Z",
+                        },
+                        {
+                            id: "4ef83b61-d7d2-46ad-81ad-c0cc288767b2",
+                            title: "invoice",
+                            createdAt: "2022-10-12T08:05:07.283Z",
+                            updatedAt: "2022-10-12T08:05:07.283Z",
+                        },
+                        {
+                            id: "55e31eba-e003-457a-aca4-bc4cee719dee",
+                            title: "enhance",
+                            createdAt: "2022-10-12T08:05:07.289Z",
+                            updatedAt: "2022-10-12T08:05:07.289Z",
+                        },
+                    ],
+                },
+            ],
+            count: 2,
+            total: 2,
+            page: 1,
+            pageCount: 1,
+        },
+        [
+            "Date",
+            "Wed, 12 Oct 2022 10:58:52 GMT",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Content-Length",
+            "6179",
+            "Connection",
+            "close",
+            "Vary",
+            "Accept-Encoding",
+            "X-Powered-By",
+            "Express",
+            "Access-Control-Allow-Origin",
+            "*",
+            "ETag",
+            'W/"1823-IZKKvFv/U47CIu6x2eTo3YvoRq4"',
         ],
     );
