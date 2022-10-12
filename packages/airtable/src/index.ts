@@ -92,7 +92,7 @@ const generateFilterFormula = (filters: CrudFilters): Formula[] => {
             return ["OR", ...generateFilterFormula(value)];
         }
 
-        return generateLogicalFilterFormula(filter);
+        return generateLogicalFilterFormula(filter as LogicalFilter);
     });
 
     return compound;
