@@ -272,7 +272,7 @@ import dataProvider from "@pankod/refine-simple-rest";
 const CustomPage: React.FC = () => {
     return (
         /* highlight-next-line */
-        <Create resource="posts">
+        <Create resource="categories">
             <p>Rest of your page here</p>
         </Create>
     );

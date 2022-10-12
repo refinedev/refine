@@ -368,7 +368,7 @@ render(
 
 [Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
 
-```tsx live url=http://localhost:3000/posts/custom/23 previewHeight=280px
+```tsx live url=http://localhost:3000/custom/23 previewHeight=280px
 setInitialRoutes(["/custom/23"]);
 
 // visible-block-start
@@ -380,7 +380,7 @@ import dataProvider from "@pankod/refine-simple-rest";
 const CustomPage: React.FC = () => {
     return (
         /* highlight-next-line */
-        <Edit resource="posts">
+        <Edit resource="categories">
             <p>Rest of your page here</p>
         </Edit>
     );
