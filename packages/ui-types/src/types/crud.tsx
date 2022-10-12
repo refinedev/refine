@@ -98,7 +98,7 @@ export type RefineCrudCreateProps<
      */
     isLoading?: boolean;
     /**
-     * Additional props for the SaveButton component
+     * Additional props for the `<SaveButton />` component
      */
     saveButtonProps?: TSaveButtonProps;
 }> &
@@ -127,28 +127,74 @@ export type RefineCrudEditProps<
      * @default Reads `:resource` from the URL
      */
     resource?: string;
+    /**
+     * Props for the wrapper component of the view
+     */
     wrapperProps?: TWrapperProps;
+    /**
+     * Props for the header component
+     */
     headerProps?: THeaderProps;
+    /**
+     * Props for the content wrapper component
+     */
     contentProps?: TContentProps;
+    /**
+     * Breadcrumb to be displayed in the header
+     * @default `<Breadcrumb />`
+     */
     breadcrumb?: React.ReactNode;
     /**
      * Back button element at the top left of the page
      */
     goBack?: React.ReactNode;
-    // Header Action Buttons Props
+    /**
+     * Header action buttons to be displayed in the header
+     * @default If `recordItemId` is present `<RefreshButton />` otherwise `<RefreshButton /> <ListButton />`
+     */
     headerButtons?: ActionButtonRenderer;
+    /**
+     * Additional props to be passed to the wrapper of the header buttons
+     */
     headerButtonProps?: THeaderButtonProps;
-    // Footer Action Buttons Props
+    /**
+     * Footer action buttons to be displayed in the footer
+     * @default If `canDelete` is present `<SaveButton /> <ListButton />` otherwise `<SaveButton />`
+     */
     footerButtons?: ActionButtonRenderer;
+    /**
+     * Additional props to be passed to the wrapper of the footer buttons
+     */
     footerButtonProps?: TFooterButtonProps;
-    // Data Provider Props
+    /**
+     * To specify a data provider other than default use this property
+     */
     dataProviderName?: string;
-    // Crud Edit Props
+    /**
+     * Loading state of the component
+     * @default `false`
+     */
     isLoading?: boolean;
+    /**
+     * Adds a `<DeleteButton />`
+     */
     canDelete?: boolean;
+    /**
+     * Additional props for the `<SaveButton />` component
+     */
     saveButtonProps?: TSaveButtonProps;
+    /**
+     * Adds properties for `<DeleteButton />`
+     */
     deleteButtonProps?: TDeleteButtonProps;
+    /**
+     * [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)
+     * @default pessimistic
+     */
     mutationMode?: MutationMode;
+    /**
+     * The record id for `<RefreshButton />`
+     */
     recordItemId?: BaseKey;
 }> &
     TExtraProps;
