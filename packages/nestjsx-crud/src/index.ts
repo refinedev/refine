@@ -71,6 +71,10 @@ const mapOperator = (operator: CrudOperators): ComparisonOperator => {
             return CondOperator.STARTS_LOW;
         case "startswiths":
             return CondOperator.STARTS;
+        case "endswith":
+            return CondOperator.ENDS_LOW;
+        case "endswiths":
+            return CondOperator.ENDS;
     }
 
     return CondOperator.EQUALS;
