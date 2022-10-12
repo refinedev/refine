@@ -6,6 +6,7 @@ title: Create
 ```tsx live shared
 setRefineProps({
     Sider: () => null,
+    notificationProvider: RefineMantine.notificationProvider,
 });
 
 const Wrapper = ({ children }) => {
@@ -18,7 +19,9 @@ const Wrapper = ({ children }) => {
             <RefineMantine.Global
                 styles={{ body: { WebkitFontSmoothing: "auto" } }}
             />
-            {children}
+            <RefineMantine.NotificationsProvider position="top-right">
+                {children}
+            </RefineMantine.NotificationsProvider>
         </RefineMantine.MantineProvider>
     );
 };
@@ -44,7 +47,7 @@ We'll show what `<Create>` does using properties with examples.
 ```tsx live url=http://localhost:3000/posts/create previewHeight=420px hideCode
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { AuthPage, Layout, CreateButton } from "@pankod/refine-mantine";
+import { Layout, CreateButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -151,7 +154,7 @@ It allows adding title inside the `<Create>` component. if you don't pass title 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { AuthPage, Layout, CreateButton } from "@pankod/refine-mantine";
+import { Layout, CreateButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -206,7 +209,7 @@ render(
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { AuthPage, Layout, CreateButton } from "@pankod/refine-mantine";
+import { Layout, CreateButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -310,7 +313,7 @@ To customize the back button or to disable it, you can use the `goBack` property
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { AuthPage, Layout, CreateButton } from "@pankod/refine-mantine";
+import { Layout, CreateButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -362,7 +365,7 @@ To toggle the loading state of the `<Create/>` component, you can use the `isLoa
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { AuthPage, Layout, CreateButton } from "@pankod/refine-mantine";
+import { Layout, CreateButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -417,7 +420,7 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { AuthPage, Layout, CreateButton } from "@pankod/refine-mantine";
+import { Layout, CreateButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -483,7 +486,7 @@ If you want to customize the wrapper of the `<Create/>` component, you can use t
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { AuthPage, Layout, CreateButton } from "@pankod/refine-mantine";
+import { Layout, CreateButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -545,7 +548,7 @@ If you want to customize the header of the `<Create/>` component, you can use th
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { AuthPage, Layout, CreateButton } from "@pankod/refine-mantine";
+import { Layout, CreateButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -557,7 +560,6 @@ const PostCreate: React.FC = () => {
         <Create
             // highlight-start
             headerProps={{
-                subTitle: "This is a subtitle",
                 style: {
                     border: "2px dashed cornflowerblue",
                     padding: "16px",
@@ -608,7 +610,7 @@ If you want to customize the content of the `<Create/>` component, you can use t
 ```tsx live url=http://localhost:3000/posts/create previewHeight=320px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { AuthPage, Layout, CreateButton } from "@pankod/refine-mantine";
+import { Layout, CreateButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -668,7 +670,7 @@ You can customize the buttons at the header by using the `headerButtons` propert
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { AuthPage, Layout, CreateButton } from "@pankod/refine-mantine";
+import { Layout, CreateButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -730,7 +732,7 @@ You can customize the wrapper element of the buttons at the header by using the 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { AuthPage, Layout, CreateButton } from "@pankod/refine-mantine";
+import { Layout, CreateButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -791,7 +793,7 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { AuthPage, Layout, CreateButton } from "@pankod/refine-mantine";
+import { Layout, CreateButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -853,7 +855,7 @@ You can customize the wrapper element of the buttons at the footer by using the 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { AuthPage, Layout, CreateButton } from "@pankod/refine-mantine";
+import { Layout, CreateButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
