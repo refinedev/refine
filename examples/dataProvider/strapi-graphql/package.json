@@ -4,9 +4,9 @@
   "private": true,
   "dependencies": {
     "@pankod/refine-antd": "^3.55.3",
-    "@pankod/refine-core": "^3.83.0",
+    "@pankod/refine-core": "^3.84.0",
     "@pankod/refine-react-router-v6": "^3.36.0",
-    "@pankod/refine-strapi-graphql": "^4.6.0",
+    "@pankod/refine-strapi-graphql": "^4.7.0",
     "@types/node": "^12.20.11",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",

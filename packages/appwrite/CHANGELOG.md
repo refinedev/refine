@@ -1,5 +1,11 @@
 # @pankod/refine-appwrite
 
+## 5.3.0
+
+### Minor Changes
+
+-   Updated `dataProvider` types with `Required` utility to mark `getMany`, `createMany`, `updateMany` and `deleteMany` as implemented.
+
 ## 5.2.0
 
 ### Minor Changes

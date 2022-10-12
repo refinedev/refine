@@ -1,5 +1,11 @@
 # @pankod/refine-strapi
 
+## 3.35.0
+
+### Minor Changes
+
+-   Updated `dataProvider` types with `Required` utility to mark `getMany`, `createMany`, `updateMany` and `deleteMany` as implemented.
+
 ## 3.34.0
 
 ### Minor Changes
