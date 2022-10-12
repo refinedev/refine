@@ -1,8 +1,6 @@
 import { useList, useNavigation } from "@pankod/refine-core";
 
 import { Map, MapMarker } from "components";
-import CourierSvg from "components/icons/courier.svg";
-import LocationSvg from "components/icons/location.svg";
 
 import { IOrder } from "interfaces";
 
@@ -41,7 +39,7 @@ export const DeliveryMap: React.FC = () => {
                         key={order.id}
                         onClick={() => show("orders", order.id)}
                         icon={{
-                            url: CourierSvg,
+                            url: "/images/marker-courier.svg",
                         }}
                         position={{
                             lat: Number(order.adress.coordinate[0]),
@@ -56,7 +54,7 @@ export const DeliveryMap: React.FC = () => {
                         key={order.id}
                         onClick={() => show("orders", order.id)}
                         icon={{
-                            url: LocationSvg,
+                            url: "/images/marker-location.svg",
                         }}
                         position={{
                             lat: Number(order.store.address.coordinate[0]),

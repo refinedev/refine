@@ -26,8 +26,6 @@ import {
 import dayjs from "dayjs";
 
 import { Map, MapMarker } from "components";
-import CourierSvg from "components/icons/courier.svg";
-import LocationSvg from "components/icons/location.svg";
 import { BikeWhiteIcon } from "components/icons";
 import { useOrderCustomKbarActions } from "hooks";
 import { IEvent, IOrder, IProduct } from "interfaces";
@@ -300,7 +298,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                         <MapMarker
                             key={`user-marker-${record?.user.id}`}
                             icon={{
-                                url: LocationSvg,
+                                url: "/images/marker-location.svg",
                             }}
                             position={{
                                 lat: Number(record?.adress.coordinate[0]),
@@ -310,7 +308,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                         <MapMarker
                             key={`user-marker-${record?.user.id}`}
                             icon={{
-                                url: CourierSvg,
+                                url: "/images/marker-courier.svg",
                             }}
                             position={{
                                 lat: Number(
