@@ -1,5 +1,11 @@
 # @pankod/refine-airtable
 
+## 3.31.0
+
+### Minor Changes
+
+-   Updated `dataProvider` types with `Required` utility to mark `getMany`, `createMany`, `updateMany` and `deleteMany` as implemented.
+
 ## 3.30.0
 
 ### Minor Changes

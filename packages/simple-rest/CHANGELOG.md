@@ -1,5 +1,13 @@
 # @pankod/refine-simple-rest
 
+## 3.33.0
+
+### Minor Changes
+
+-   Updated `dataProvider` types with `Required` utility to mark `getMany`, `createMany`, `updateMany` and `deleteMany` as implemented.
+
+-   Remove unimplemented `createMany`, `updateMany` and `deleteMany` functions.
+
 ## 3.32.0
 
 ### Minor Changes

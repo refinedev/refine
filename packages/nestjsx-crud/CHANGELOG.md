@@ -1,5 +1,11 @@
 # @pankod/refine-nestjsx-crud
 
+## 3.33.0
+
+### Minor Changes
+
+-   Updated `dataProvider` types with `Required` utility to mark `getMany`, `createMany`, `updateMany` and `deleteMany` as implemented.
+
 ## 3.32.0
 
 ### Minor Changes
