@@ -9,6 +9,8 @@ import {
     CrudSort,
     CrudOperators,
     SortOrder,
+    LogicalFilter,
+    ConditionalFilter,
 } from "../../interfaces";
 
 export const parseTableParams = (url: string) => {
@@ -54,9 +56,22 @@ export const compareFilters = (
     left: CrudFilter,
     right: CrudFilter,
 ): boolean => {
+    if (
+        left.operator !== "and" &&
+        left.operator !== "or" &&
+        right.operator !== "and" &&
+        right.operator !== "or"
+    ) {
+        return (
+            ("field" in left ? left.field : undefined) ==
+                ("field" in right ? right.field : undefined) &&
+            left.operator == right.operator
+        );
+    }
+
     return (
-        ("field" in left ? left.field : undefined) ==
-            ("field" in right ? right.field : undefined) &&
+        ("key" in left ? left.key : undefined) ==
+            ("key" in right ? right.key : undefined) &&
         left.operator == right.operator
     );
 };
@@ -79,6 +94,9 @@ export const unionFilters = (
             crudFilter.value !== null &&
             (crudFilter.operator !== "or" ||
                 (crudFilter.operator === "or" &&
+                    crudFilter.value.length !== 0)) &&
+            (crudFilter.operator !== "and" ||
+                (crudFilter.operator === "and" &&
                     crudFilter.value.length !== 0)),
     );
 
@@ -130,7 +148,11 @@ export const getDefaultFilter = (
     operatorType: CrudOperators = "eq",
 ): CrudFilter["value"] | undefined => {
     const filter = filters?.find((filter) => {
-        if (filter.operator !== "or") {
+        if (
+            filter.operator !== "or" &&
+            filter.operator !== "and" &&
+            "field" in filter
+        ) {
             const { operator, field } = filter;
             return field === columnName && operator === operatorType;
         }

@@ -30,7 +30,6 @@ export interface Pagination {
 // | nendswith           | Doesn't end with                  |
 // | endswiths           | Ends with, case sensitive         |
 // | nendswiths          | Doesn't end with, case sensitive  |
-
 export type CrudOperators =
     | "eq"
     | "ne"
@@ -48,7 +47,6 @@ export type CrudOperators =
     | "nbetween"
     | "null"
     | "nnull"
-    | "or"
     | "startswith"
     | "nstartswith"
     | "startswiths"
@@ -56,19 +54,22 @@ export type CrudOperators =
     | "endswith"
     | "nendswith"
     | "endswiths"
-    | "nendswiths";
+    | "nendswiths"
+    | "or"
+    | "and";
 
 export type SortOrder = "desc" | "asc" | null;
 
 export type LogicalFilter = {
     field: string;
-    operator: Exclude<CrudOperators, "or">;
+    operator: Exclude<CrudOperators, "or" | "and">;
     value: any;
 };
 
 export type ConditionalFilter = {
-    operator: "or";
-    value: LogicalFilter[];
+    key?: string;
+    operator: Extract<CrudOperators, "or" | "and">;
+    value: (LogicalFilter | ConditionalFilter)[];
 };
 
 export type CrudFilter = LogicalFilter | ConditionalFilter;
