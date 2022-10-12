@@ -709,7 +709,7 @@ const { data } = useOne<ICategory>({ resource: "categories", id: "1" });
 
 ### `getMany`
 
-This method allows us to retrieve multiple items in a resource. Implementation of this method is optional. If you don't implement it, Refine will use `getOne` method to handle multiple requests.
+This method allows us to retrieve multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use `getOne` method to handle multiple requests.
 
 ```ts title="dataProvider.ts"
 import { stringify } from "query-string";
