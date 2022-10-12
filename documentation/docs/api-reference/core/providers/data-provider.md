@@ -610,7 +610,7 @@ mutate({
 
 ### `updateMany`
 
-This method allows us to update multiple items in a resource. Implementation of this method is optional. If you don't implement it, Refine will use `update` method to handle multiple requests.
+This method allows us to update multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use `update` method to handle multiple requests.
 
 ```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
