@@ -47,7 +47,7 @@ const generateFilter = (filters?: CrudFilters) => {
     return queryFilters;
 };
 
-const dataProvider = (client: GraphQLClient): DataProvider => {
+const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
     return {
         getList: async ({
             resource,

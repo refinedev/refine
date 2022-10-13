@@ -69,14 +69,7 @@ In this example, we hide the left sider only for this page. The rest should look
 
 ### Properties
 
-| Property      | Description                                           | Type       | Default |
-| ------------- | ----------------------------------------------------- | ---------- | ------- |
-| Layout        | Outer component that renders other components         | `React.FC` | \*      |
-| Sider         | [Custom sider to use][refine#sider]                   | `React.FC` | \*      |
-| Header        | [Custom header to use][refine#header]                 | `React.FC` | \*      |
-| Title         | [Custom title to use][refine#title]                   | `React.FC` | \*      |
-| Footer        | [Custom footer to use][refine#footer]                 | `React.FC` | \*      |
-| OffLayoutArea | [Custom off layout area to use][refine#offlayoutarea] | `React.FC` | \*      |
+<PropsTable module="@pankod/refine-core/LayoutWrapper"/>
 
 > `*`: These props have default values in `RefineContext` and can also be set on **<[Refine][refine]>** component.
 

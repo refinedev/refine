@@ -774,4 +774,10 @@ const App: React.FC = () => (
 );
 ```
 
+## API Reference
+
+### Properties
+    
+<PropsTable module="@pankod/refine-core/Refine"/>
+
 [routerprovider]: /api-reference/core/providers/router-provider.md

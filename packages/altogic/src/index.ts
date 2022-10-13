@@ -103,7 +103,7 @@ const generateFilter = (filters?: CrudFilters) => {
 const AltogicDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
-): DataProvider => ({
+): Required<DataProvider> => ({
     getList: async ({
         resource,
         hasPagination = true,

@@ -5,7 +5,7 @@ type SplitReturn = {
 
 /**
  * This function will split code by the visible-block-start and visible-block-end comments and returns the visible block and join function.
- * @param {string} code code to be splitted by `// visible-block-start` and `// visible-block-end`
+ * @param {string} code to be splitted by `// visible-block-start` and `// visible-block-end`
  */
 export const splitCode = (code?: string): SplitReturn => {
     const beginningComment = "// visible-block-start";

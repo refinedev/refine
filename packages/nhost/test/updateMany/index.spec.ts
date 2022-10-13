@@ -11,7 +11,7 @@ describe("updateMany", () => {
     });
 
     it("correct response with metaData", async () => {
-        const { data } = await dataProvider(nhost).updateMany({
+        const { data } = await dataProvider(nhost).updateMany!({
             resource: "posts",
             ids: [
                 "6a117e72-9446-4413-9760-30d66b9a27dc",
@@ -35,7 +35,7 @@ describe("updateMany", () => {
     });
 
     it("correct response without metaData", async () => {
-        const { data } = await dataProvider(nhost).updateMany({
+        const { data } = await dataProvider(nhost).updateMany!({
             resource: "posts",
             ids: [
                 "6a117e72-9446-4413-9760-30d66b9a27dc",

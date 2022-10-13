@@ -102,7 +102,9 @@ const handleError = (error: PostgrestError) => {
     return Promise.reject(customError);
 };
 
-const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
+const dataProvider = (
+    supabaseClient: SupabaseClient,
+): Required<DataProvider> => {
     return {
         getList: async ({
             resource,

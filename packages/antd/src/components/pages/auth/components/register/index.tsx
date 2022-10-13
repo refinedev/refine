@@ -52,7 +52,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     );
 
     const renderProviders = () => {
-        if (providers) {
+        if (providers && providers.length > 0) {
             return (
                 <>
                     {providers.map((provider) => {

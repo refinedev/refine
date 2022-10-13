@@ -111,17 +111,18 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
 
 export default ProductList;
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
     const data = await DataProvider(API_URL + "/api").getList<IProduct>({
         resource: "products",
         metaData: { populate: ["image"] },
         pagination: { current: 1, pageSize: 9 },
     });
 
-    const { data: storesData } = await DataProvider(API_URL + "/api").getMany({
-        resource: "stores",
-        ids: ["1", "2", "3"],
-    });
+    const { data: storesData } =
+        (await DataProvider(API_URL + "/api").getMany?.({
+            resource: "stores",
+            ids: ["1", "2", "3"],
+        })) ?? {};
 
     return {
         props: { products: data, stores: storesData },

@@ -7,7 +7,6 @@ export const layoutStyles: CSSProperties = {
 
 export const titleStyles: CSSProperties = {
     textAlign: "center",
-    color: "#626262",
     fontSize: "24px",
     letterSpacing: "-0.04em",
     marginBottom: "24px",

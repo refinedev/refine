@@ -134,6 +134,153 @@ const App: React.FC = () => {
 
 :::
 
+### Using Multiple Data Providers
+
+**refine** gives you the ability to use multiple data providers in your app. All you need to do is to pass key, value pairs to the `dataProvider` prop of the `<Refine />` component in a form of value being the data provider and the key being the name of the data provider.
+
+:::tip
+`default` key is required for the default data provider and it will be used as the default data provider.
+:::
+
+```tsx title="App.tsx"
+const App = () => {
+    return (
+        <Refine
+            dataProvider={{
+                default: defaultDataProvider,
+                example: exampleDataProvider,
+            }}
+        />
+    );
+};
+```
+
+You can pick data providers in two ways:
+
+**Using `dataProviderName` prop in the data hooks and all data related components/functions.**
+
+```tsx title="posts/list.tsx"
+const { tableProps } = useTable<IPost>({
+    dataProviderName: "example",
+});
+```
+
+**Using `options.dataProviderName` property in your resource config**
+
+This will be the default data provider for the specified resource but you can still override it in the data hooks and components.
+
+```tsx title="App.tsx"
+const App = () => {
+    return (
+        <Refine
+            dataProvider={{
+                default: defaultDataProvider,
+                example: exampleDataProvider,
+            }}
+        />
+    );
+};
+```
+
+**Example usage of multiple data providers**
+
+```tsx live hideCode url=http://localhost:3000/posts previewHeight=420px
+setRefineProps({ Sider: () => null });
+// visible-block-start
+import { Refine, useList } from "@pankod/refine-core";
+import { Layout, Collapse, Tag } from "@pankod/refine-antd";
+import dataProvider from "@pankod/refine-simple-rest";
+import routerProvider from "@pankod/refine-react-router-v6";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+const FINE_FOODS_API_URL = "https://api.finefoods.refine.dev";
+
+interface IPost {
+    id: number;
+    title: string;
+    status: "published" | "draft" | "rejected";
+}
+
+interface IProduct {
+    id: number;
+    name: string;
+    price: number;
+}
+
+const App: React.FC = () => {
+    return (
+        <Refine
+            routerProvider={routerProvider}
+            Layout={Layout}
+            // highlight-start
+            dataProvider={{
+                default: dataProvider(API_URL),
+                fineFoods: dataProvider(FINE_FOODS_API_URL),
+            }}
+            // highlight-end
+            resources={[
+                {
+                    // highlight-next-line
+                    // Refine will use the `default` data provider for this resource
+                    name: "posts",
+                    list: PostList,
+                },
+                {
+                    name: "products",
+                    options: {
+                        // highlight-next-line
+                        // Refine will use the `fineFoods` data provider for this resource
+                        dataProviderName: "fineFoods",
+                    }
+                }
+            ]}
+        />
+    )
+}
+
+const PostList: React.FC = () => {
+    const { data: posts } = useList<IPost>({
+        resource: "posts",
+        // highlight-start
+        // Data provider can be selected through props
+        dataProviderName: "default"
+        // highlight-end
+    });
+    // highlight-start
+    // We've defined the data provider for this resource as "fineFoods" in its config so we don't need to pass it here
+    const { data: products } = useList<IProduct>({ resource: "products" });
+    // highlight-end
+
+    console.log({
+        posts, products
+    })
+
+    return (
+        <Collapse defaultActiveKey={["products"]}>
+            <Collapse.Panel header="Posts" key="posts">
+                {posts?.data.map((post) => (
+                    <div key={post.title} style={{ display: "flex", flexDirection: "row", gap: "0.5rem", marginBottom: "0.25rem" }}>
+                        {post.title}
+                        <Tag>{post.status}</Tag>
+                    </div>
+                ))}
+            </Collapse.Panel>
+            <Collapse.Panel header="Products" key="products">
+                {products?.data.map((product) => (
+                    <div key={product.name} style={{ display: "flex", flexDirection: "row", gap: "0.5rem", marginBottom: "0.25rem" }}>
+                        {product.name}
+                        <Tag>{product.price / 10}</Tag>
+                    </div>
+                ))}
+            </Collapse.Panel>
+        </Collapse>
+    );
+};
+// visible-block-end
+
+render(<App/>);
+```
+
 ## Creating a data provider
 
 We will build **"Simple REST Dataprovider"** of `@pankod/refine-simple-rest` from scratch to show the logic of how data provider methods interact with the API.
@@ -160,14 +307,14 @@ const SimpleRestDataProvider = (
     httpClient: AxiosInstance = axiosInstance,
 ): DataProvider => ({
     create: ({ resource, variables, metaData }) => Promise,
-    createMany: ({ resource, variables, metaData }) => Promise,
+    createMany?: ({ resource, variables, metaData }) => Promise,
     deleteOne: ({ resource, id, variables, metaData }) => Promise,
-    deleteMany: ({ resource, ids, variables, metaData }) => Promise,
+    deleteMany?: ({ resource, ids, variables, metaData }) => Promise,
     getList: ({ resource, pagination, sort, filters, metaData }) => Promise,
-    getMany: ({ resource, ids, metaData }) => Promise,
+    getMany?: ({ resource, ids, metaData }) => Promise,
     getOne: ({ resource, id, metaData }) => Promise,
     update: ({ resource, id, variables, metaData }) => Promise,
-    updateMany: ({ resource, ids, variables, metaData }) => Promise,
+    updateMany?: ({ resource, ids, variables, metaData }) => Promise,
     custom: ({
         url,
         method,
@@ -183,6 +330,10 @@ const SimpleRestDataProvider = (
 ```
 
 It will take the API URL as a parameter and an optional **HTTP** client. We will use **axios** as the default **HTTP** client.
+
+:::note
+    `getMany`, `createMany`, `updateMany` and `deleteMany` properties are optional. If you don't implement them, Refine will use `getOne`, `create`, `update` and `deleteOne` methods to handle multiple requests. If your API supports these methods, you can implement them to improve performance.
+:::
 
 <br/>
 
@@ -243,7 +394,7 @@ mutate({
 
 ### `createMany`
 
-This method allows us to create multiple items in a resource.
+This method allows us to create multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use `create` method to handle multiple requests.
 
 ```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
@@ -253,17 +404,12 @@ const SimpleRestDataProvider = (
     ...
 // highlight-start
     createMany: async ({ resource, variables }) => {
-        const response = await Promise.all(
-            variables.map(async (param) => {
-                const { data } = await httpClient.post(
-                    `${apiUrl}/${resource}`,
-                    param,
-                );
-                return data;
-            }),
+        const response = await httpClient.post(
+            `${apiUrl}/${resource}/bulk`,
+            { values: variables },
         );
 
-        return { data: response };
+        return response;
     },
 // highlight-end
     ...
@@ -358,7 +504,7 @@ mutate({ resource: "categories", id: "2" });
 
 ### `deleteMany`
 
-This method allows us to delete multiple items in a resource.
+This method allows us to delete multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use `deleteOne` method to handle multiple requests.
 
 ```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
@@ -368,15 +514,10 @@ const SimpleRestDataProvider = (
     ...
 // highlight-start
     deleteMany: async ({ resource, ids }) => {
-        const response = await Promise.all(
-            ids.map(async (id) => {
-                const { data } = await httpClient.delete(
-                    `${apiUrl}/${resource}/${id}`,
-                );
-                return data;
-            }),
+        const response = await httpClient.delete(
+            `${apiUrl}/${resource}/bulk?ids=${ids.join(",")}`,
         );
-        return { data: response };
+        return response;
     },
 // highlight-end
     ...
@@ -469,7 +610,7 @@ mutate({
 
 ### `updateMany`
 
-This method allows us to update multiple items in a resource.
+This method allows us to update multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use `update` method to handle multiple requests.
 
 ```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
@@ -479,17 +620,11 @@ const SimpleRestDataProvider = (
     ...
 // highlight-start
     updateMany: async ({ resource, ids, variables }) => {
-        const response = await Promise.all(
-            ids.map(async (id) => {
-                const { data } = await httpClient.patch(
-                    `${apiUrl}/${resource}/${id}`,
-                    variables,
-                );
-                return data;
-            }),
+        const response = await httpClient.patch(
+            `${apiUrl}/${resource}/bulk`,
+            { ids, variables },
         );
-
-        return { data: response };
+        return response;
     },
 // highlight-end
     ...
@@ -574,7 +709,7 @@ const { data } = useOne<ICategory>({ resource: "categories", id: "1" });
 
 ### `getMany`
 
-This method allows us to retrieve multiple items in a resource.
+This method allows us to retrieve multiple items in a resource. Implementation of this method is optional. If you don't implement it, refine will use `getOne` method to handle multiple requests.
 
 ```ts title="dataProvider.ts"
 import { stringify } from "query-string";

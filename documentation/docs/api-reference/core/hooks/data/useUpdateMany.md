@@ -7,6 +7,10 @@ description: useUpdateMany data hook from refine is a modified version of react-
 
 `useUpdateMany` is a modified version of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation#) for multiple update mutations. It uses `updateMany` method as mutation function from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
+:::tip
+If your data provider didn't implement `updateMany` method, `useUpdateMany` will use `update` method multiple times instead.
+:::
+
 ## Features
 
 -   Shows notifications after the mutation succeeds, fails, or gets canceled.

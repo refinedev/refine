@@ -27,7 +27,6 @@ import {
     useTheme,
 } from "@pankod/refine-mui";
 import dayjs from "dayjs";
-import GoogleMapReact from "google-map-react";
 
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import MopedIcon from "@mui/icons-material/Moped";
@@ -35,8 +34,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
-import { MapMarker, CourierInfoBox } from "components";
-import { LocationIcon, CourierIcon } from "components/icons";
+import { CourierInfoBox, Map, MapMarker } from "components";
 
 import { IEvent, IOrder, IProduct } from "interfaces";
 import { useOrderCustomKbarActions } from "hooks";
@@ -224,31 +222,34 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
             </Card>
 
             <Box sx={{ height: 500 }}>
-                <GoogleMapReact
-                    bootstrapURLKeys={{
-                        key: process.env.REACT_APP_MAP_ID,
-                    }}
-                    defaultCenter={{
+                <Map
+                    center={{
                         lat: 40.73061,
                         lng: -73.935242,
                     }}
-                    defaultZoom={9}
+                    zoom={9}
                 >
                     <MapMarker
                         key={`user-marker-${record?.user.id}`}
-                        lat={record?.adress.coordinate[0]}
-                        lng={record?.adress.coordinate[1]}
-                    >
-                        <LocationIcon sx={{ width: "36px", height: "36px" }} />
-                    </MapMarker>
+                        icon={{
+                            url: "/images/marker-location.svg",
+                        }}
+                        position={{
+                            lat: Number(record?.adress.coordinate[0]),
+                            lng: Number(record?.adress.coordinate[1]),
+                        }}
+                    />
                     <MapMarker
-                        key={`store-marker-${record?.store.id}`}
-                        lat={record?.store.address.coordinate[0]}
-                        lng={record?.store.address.coordinate[1]}
-                    >
-                        <CourierIcon sx={{ width: "64px", height: "64px" }} />
-                    </MapMarker>
-                </GoogleMapReact>
+                        key={`user-marker-${record?.user.id}`}
+                        icon={{
+                            url: "/images/marker-courier.svg",
+                        }}
+                        position={{
+                            lat: Number(record?.store.address.coordinate[0]),
+                            lng: Number(record?.store.address.coordinate[1]),
+                        }}
+                    />
+                </Map>
             </Box>
 
             <Paper sx={{ padding: 2 }}>

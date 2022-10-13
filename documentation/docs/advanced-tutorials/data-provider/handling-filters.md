@@ -28,7 +28,15 @@ type CrudOperators =
     | "nbetween"
     | "null"
     | "nnull"
-    | "or";
+    | "or"
+    | "startswith"
+    | "nstartswith"
+    | "startswiths"
+    | "nstartswiths"
+    | "endswith"
+    | "nendswith"
+    | "endswiths"
+    | "nendswiths"
 
 // Supported filter types:
 type LogicalFilter = {

@@ -1,5 +1,117 @@
 # @pankod/refine-core
 
+## 3.84.0
+
+### Minor Changes
+
+-   Marked `getMany`, `createMany`, `updateMany` and `deleteMany` functions as optional and substituted with `getOne`, `create`, `update` and `deleteOne` respectively. Now users can choose to skip implementing `getMany`, `createMany`, `updateMany` and `deleteMany` functions and use `getOne`, `create`, `update` and `deleteOne` functions instead.
+
+    **Breaking Change**
+
+    -   `getMany`, `createMany`, `updateMany` and `deleteMany` functions are now optional and may cause type issues if used outside of the **refine** hooks.
+
+## 3.83.0
+
+### Minor Changes
+
+-   [#2688](https://github.com/pankod/refine/pull/2688) [`508045ac30`](https://github.com/pankod/refine/commit/508045ac30cd3948f68497e13fdf04f7c72ce387) Thanks [@aliemir](https://github.com/aliemir)! - Marked `getMany`, `createMany`, `updateMany` and `deleteMany` functions as optional and substituted with `getOne`, `create`, `update` and `deleteOne` respectively. Now users can choose to skip implementing `getMany`, `createMany`, `updateMany` and `deleteMany` functions and use `getOne`, `create`, `update` and `deleteOne` functions instead.
+
+    **Breaking Change**
+
+    -   `getMany`, `createMany`, `updateMany` and `deleteMany` functions are now optional and may cause type issues if used outside of the **refine** hooks.
+
+## 3.82.0
+
+### Minor Changes
+
+-   Added `useSelect()`, setState handler functions are memoized
+
+    Fixed when `queryOptions.enabled = true` on `useSelect()`, fetches all data. #2691
+
+### Patch Changes
+
+-   fix: `useSelect()`'s overridden `onSearch` function is not calling when value is empty.
+
+## 3.81.0
+
+### Minor Changes
+
+-   [#2704](https://github.com/pankod/refine/pull/2704) [`e4d78052ef`](https://github.com/pankod/refine/commit/e4d78052efea85f6cc3097ca05cfa1d6537ac9bc) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Added `useSelect()`, setState handler functions are memoized
+
+    Fixed when `queryOptions.enabled = true` on `useSelect()`, fetches all data. #2691
+
+### Patch Changes
+
+-   [#2705](https://github.com/pankod/refine/pull/2705) [`031f67707c`](https://github.com/pankod/refine/commit/031f67707ce51b57668e61d4f75851b98f8e6b90) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: `useSelect()`'s overridden `onSearch` function is not calling when value is empty.
+
+## 3.80.0
+
+### Minor Changes
+
+-   Added infinite loading example to antd `useSelect()`
+    `useSelect()` `fetchSize` prop is deprecated. From now [`pagination`](https://refine.dev/docs/api-reference/core/interfaceReferences/#pagination) should be used
+
+-   Added `dataProviderName` property to resource options. Now you can define default data provider per resource.
+
+    **Usage**
+
+    ```ts
+    <Refine
+        dataProvider={{
+            default: myProvider,
+            second: mySecondProvider,
+        }}
+        resources={[
+            {
+                name: "posts",
+                options: {
+                    dataProviderName: "second",
+                },
+            },
+        ]}
+    />
+    ```
+
+### Patch Changes
+
+-   Add AuthProps type export
+
+-   Mark `default` key as required for multiple data providers in `dataProvider` prop of `<Refine />` component.
+
+## 3.79.0
+
+### Minor Changes
+
+-   [#2629](https://github.com/pankod/refine/pull/2629) [`bc89228e73`](https://github.com/pankod/refine/commit/bc89228e73dbf373cbbbd0fbf5e6e4721224a7c5) Thanks [@bungambohlah](https://github.com/bungambohlah)! - Added infinite loading example to antd `useSelect()`
+    `useSelect()` `fetchSize` prop is deprecated. From now [`pagination`](https://refine.dev/docs/api-reference/core/interfaceReferences/#pagination) should be used
+
+-   [#2674](https://github.com/pankod/refine/pull/2674) [`3bd6196056`](https://github.com/pankod/refine/commit/3bd61960564a524b5a4d18e1b3aaf0a313e28ca6) Thanks [@aliemir](https://github.com/aliemir)! - Added `dataProviderName` property to resource options. Now you can define default data provider per resource.
+
+    **Usage**
+
+    ```ts
+    <Refine
+        dataProvider={{
+            default: myProvider,
+            second: mySecondProvider,
+        }}
+        resources={[
+            {
+                name: "posts",
+                options: {
+                    dataProviderName: "second",
+                },
+            },
+        ]}
+    />
+    ```
+
+### Patch Changes
+
+-   [#2666](https://github.com/pankod/refine/pull/2666) [`8a562d2114`](https://github.com/pankod/refine/commit/8a562d2114b7145707070e363981a4e31e02547a) Thanks [@omeraplak](https://github.com/omeraplak)! - Add AuthProps type export
+
+-   [#2684](https://github.com/pankod/refine/pull/2684) [`38c3876af5`](https://github.com/pankod/refine/commit/38c3876af571a10aa58a35fab45ab7340e08ce5f) Thanks [@aliemir](https://github.com/aliemir)! - Mark `default` key as required for multiple data providers in `dataProvider` prop of `<Refine />` component.
+
 ## 3.78.0
 
 ### Minor Changes

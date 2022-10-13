@@ -193,11 +193,12 @@ Now, you should see the output as a table populated with `post` & `category` dat
 
 👉 Jump to [Refine<>Ant Design Tutorial](https://refine.dev/docs/ui-frameworks/antd/tutorial/) to continue your work and turn the example into a full-blown CRUD application.
 
-👉 Check out the [Refine<>Tailwind Tutorial](https://refine.dev/docs/ui-frameworks/antd/tutorial/) to learn how to use **refine** in a pure *headless* way.
+👉 Check out the [Refine<>Tailwind Tutorial](https://refine.dev/docs/tutorials/headless-tutorial/) to learn how to use **refine** in a pure *headless* way.
 
 👉 Visit [Learn the Basics Page](https://refine.dev/docs/getting-started/overview/) to get informed about the fundamental concepts.
 
-👉 Read more on [Guides & Concepts](https://refine.dev/docs/guides-and-concepts/access-control/) for different usage scenarios.
+👉 Read more on [Advanced Tutorials
+](https://refine.dev/docs/advanced-tutorials/) for different usage scenarios.
 
 👉 See the real-life [Finefoods Demo](https://refine.dev/demo/) project.
 

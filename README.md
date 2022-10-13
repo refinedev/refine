@@ -51,7 +51,7 @@ It eliminates the repetitive tasks demanded by **CRUD** operations and provides 
 **refine** is *headless by design* offering unlimited styling and customization options. 
 
 ## What do you mean by "headless" ?
-Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your *UI components* and *business logic*, so they never keep you from customizing your *UI* or coding your own flow.
+Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components`, and `providers`. They are all decoupled from your *UI components* and *business logic*, so they never keep you from customizing your *UI* or coding your own flow.
 
 **refine** seamlessly works with any **custom design** or **UI framework you favor**. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), and [Mantine](https://mantine.dev/).
 
@@ -194,11 +194,12 @@ Now, you should see the output as a table populated with `post` & `category` dat
 
 👉 Jump to [Refine<>Ant Design Tutorial](https://refine.dev/docs/ui-frameworks/antd/tutorial/) to continue your work and turn the example into a full-blown CRUD application.
 
-👉 Check out the [Refine<>Tailwind Tutorial](https://refine.dev/docs/ui-frameworks/antd/tutorial/) to learn how to use **refine** in a pure *headless* way.
+👉 Check out the [Refine<>Tailwind Tutorial](https://refine.dev/docs/tutorials/headless-tutorial/) to learn how to use **refine** in a pure *headless* way.
 
 👉 Visit [Learn the Basics Page](https://refine.dev/docs/getting-started/overview/) to get informed about the fundemental concepts.
 
-👉 Read more on [Guides & Concepts](https://refine.dev/docs/guides-and-concepts/access-control/) for different usage scenarios.
+👉 Read more on [Advanced Tutorials
+](https://refine.dev/docs/advanced-tutorials/) for different usage scenarios.
 
 👉 See the real-life [Finefoods Demo](https://refine.dev/demo/) project.
 
@@ -213,9 +214,11 @@ You can find refine's <a href="https://github.com/pankod/refine/projects/1">Publ
 
 ## Contribution
 
-If you have a bug to report, do not hesitate to file an issue.
+If you have a bug to report, do not hesitate to file an [issue](https://github.com/pankod/refine/issues/new/choose).
 
-If you are willing to fix an issue or propose a feature; all PRs with clear explanations are welcome and encouraged.
+If you are willing to fix an issue or propose a feature, all PRs with clear explanations are welcome and encouraged.
+
+If you have any doubts related to the project or want to discuss something, then join our [Discord Server](https://discord.gg/refine).
 
 ## License
 

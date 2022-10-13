@@ -63,7 +63,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     const { mutate: register, isLoading } = useLogin<RegisterFormTypes>();
 
     const renderProviders = () => {
-        if (providers) {
+        if (providers && providers.length > 0) {
             return (
                 <>
                     <Stack spacing={8}>

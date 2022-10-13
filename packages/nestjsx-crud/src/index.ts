@@ -130,7 +130,7 @@ const generateSearchFilter = (filters: RefineCrudFilter): SCondition => {
 const NestsxCrud = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
-): DataProvider => ({
+): Required<DataProvider> => ({
     getList: async ({
         resource,
         hasPagination = true,

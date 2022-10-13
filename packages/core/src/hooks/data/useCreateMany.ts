@@ -1,4 +1,5 @@
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import pluralize from "pluralize";
 
 import {
     BaseRecord,
@@ -16,8 +17,7 @@ import {
     useDataProvider,
     useInvalidate,
 } from "@hooks";
-import pluralize from "pluralize";
-import { pickDataProvider } from "@definitions/helpers";
+import { handleMultiple, pickDataProvider } from "@definitions";
 
 type useCreateManyParams<TVariables> = {
     resource: string;
@@ -73,14 +73,29 @@ export const useCreateMany = <
             values,
             metaData,
             dataProviderName,
-        }: useCreateManyParams<TVariables>) =>
-            dataProvider(
+        }: useCreateManyParams<TVariables>) => {
+            const selectedDataProvider = dataProvider(
                 pickDataProvider(resource, dataProviderName, resources),
-            ).createMany<TData, TVariables>({
-                resource,
-                variables: values,
-                metaData,
-            }),
+            );
+
+            if (selectedDataProvider.createMany) {
+                return selectedDataProvider.createMany<TData, TVariables>({
+                    resource,
+                    variables: values,
+                    metaData,
+                });
+            } else {
+                return handleMultiple(
+                    values.map((val) =>
+                        selectedDataProvider.create<TData, TVariables>({
+                            resource,
+                            variables: val,
+                            metaData,
+                        }),
+                    ),
+                );
+            }
+        },
         {
             onSuccess: (
                 response,

@@ -23,11 +23,10 @@ import {
     Icon,
 } from "@pankod/refine-antd";
 
-import GoogleMapReact from "google-map-react";
 import dayjs from "dayjs";
 
-import { MapMarker } from "components/map";
-import { BikeWhiteIcon, UserIcon, CourierIcon } from "components/icons";
+import { Map, MapMarker } from "components";
+import { BikeWhiteIcon } from "components/icons";
 import { useOrderCustomKbarActions } from "hooks";
 import { IEvent, IOrder, IProduct } from "interfaces";
 
@@ -289,31 +288,38 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
             <Space size={20} direction="vertical" style={{ width: "100%" }}>
                 {renderOrderSteps()}
                 <div style={{ height: "500px", width: "100%" }}>
-                    <GoogleMapReact
-                        bootstrapURLKeys={{
-                            key: process.env.REACT_APP_MAP_ID,
-                        }}
-                        defaultCenter={{
+                    <Map
+                        center={{
                             lat: 40.73061,
                             lng: -73.935242,
                         }}
-                        defaultZoom={9}
+                        zoom={9}
                     >
                         <MapMarker
                             key={`user-marker-${record?.user.id}`}
-                            lat={record?.adress.coordinate[0]}
-                            lng={record?.adress.coordinate[1]}
-                        >
-                            <UserIcon />
-                        </MapMarker>
+                            icon={{
+                                url: "/images/marker-location.svg",
+                            }}
+                            position={{
+                                lat: Number(record?.adress.coordinate[0]),
+                                lng: Number(record?.adress.coordinate[1]),
+                            }}
+                        />
                         <MapMarker
-                            key={`store-marker-${record?.store.id}`}
-                            lat={record?.store.address.coordinate[0]}
-                            lng={record?.store.address.coordinate[1]}
-                        >
-                            <CourierIcon />
-                        </MapMarker>
-                    </GoogleMapReact>
+                            key={`user-marker-${record?.user.id}`}
+                            icon={{
+                                url: "/images/marker-courier.svg",
+                            }}
+                            position={{
+                                lat: Number(
+                                    record?.store.address.coordinate[0],
+                                ),
+                                lng: Number(
+                                    record?.store.address.coordinate[1],
+                                ),
+                            }}
+                        />
+                    </Map>
                 </div>
                 {renderCourierInfo()}
             </Space>
