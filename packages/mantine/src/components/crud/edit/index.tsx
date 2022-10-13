@@ -130,15 +130,16 @@ export const Edit: React.FC<EditProps> = (props) => {
         </>
     );
 
-    const buttonBack = (
-        <ActionIcon onClick={routeFromAction ? goBack : undefined}>
-            {typeof goBackFromProps !== "undefined" ? (
-                goBackFromProps
-            ) : (
-                <IconArrowLeft />
-            )}
-        </ActionIcon>
-    );
+    const buttonBack =
+        goBackFromProps === (false || null) ? null : (
+            <ActionIcon onClick={routeFromAction ? goBack : undefined}>
+                {typeof goBackFromProps !== "undefined" ? (
+                    goBackFromProps
+                ) : (
+                    <IconArrowLeft />
+                )}
+            </ActionIcon>
+        );
 
     const headerButtons = headerButtonsFromProps
         ? typeof headerButtonsFromProps === "function"
