@@ -27,7 +27,12 @@ export type UseRadioGroupReturnType<TData extends BaseRecord = BaseRecord> = {
 type UseRadioGroupProps<TData, TError> = Omit<
     UseSelectProps<TData, TError>,
     "defaultValue"
-> & { defaultValue?: BaseKey };
+> & {
+    /**
+     * Sets the default value
+     */
+    defaultValue?: BaseKey;
+};
 
 export const useRadioGroup = <
     TData extends BaseRecord = BaseRecord,
