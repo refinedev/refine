@@ -46,6 +46,7 @@ export type AuthPageProps<
           type?: "login";
           /**
            * @description Providers array for login with third party auth services.
+           * @type [OAuthProvider](/docs/api-reference/core/components/auth-page/#interface)
            * @optional
            */
           providers?: OAuthProvider[];

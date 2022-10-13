@@ -113,7 +113,6 @@ render(<App />);
 -   `"forgotPassword"` - type of the forgot password page.
 -   `"updatePassword"` - type of the update password page.
 
-
 ### Login
 
 You can use the following props for the `<AuthPage>` component when the type is `"login"`:
@@ -154,6 +153,7 @@ render(<App/>);
 ```
 
 ### Register
+
 The register page will be used to register new users. You can use the following props for the `<AuthPage>` component when the type is `"register"`:
 
 ```tsx live disableScroll hideCode url=http://localhost:3000/login previewHeight=390px
@@ -193,6 +193,7 @@ render(<App/>);
 ```
 
 ### ForgotPassword
+
 The `forgotPassword` type is a page that allows users to reset their passwords. You can use this page to reset your password.
 
 ```tsx live url=http://localhost:3000/forgot-password
@@ -232,6 +233,7 @@ render(<App />);
 ```
 
 ### UpdatePassword
+
 The `updatePassword` type is the page used to update the password of the user.
 
 ```tsx live url=http://localhost:3000/update-password
@@ -271,7 +273,9 @@ render(<App />);
 ```
 
 ## Props
+
 ### `providers`
+
 :::info
 `providers` property is only available for types `login` and `register`.
 :::
@@ -283,7 +287,12 @@ setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { Refine, useRouterContext, useNavigation, AuthPage } from "@pankod/refine-core";
+import {
+    Refine,
+    useRouterContext,
+    useNavigation,
+    AuthPage,
+} from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
@@ -339,8 +348,7 @@ const LoginPage = () => {
             ]}
         />
     );
-
-}
+};
 
 const App = () => {
     return (
@@ -356,9 +364,7 @@ const App = () => {
     );
 };
 // visible-block-end
-render(
-    <App />,
-);
+render(<App />);
 ```
 
 ### `rememberMe`
@@ -395,7 +401,8 @@ const App = () => {
                                 padding: 3,
                             }}
                         >
-                            <input name="CustomRememberMe" type="checkbox" /> Custom remember me
+                            <input name="CustomRememberMe" type="checkbox" />{" "}
+                            Custom remember me
                         </div>
                     }
                 />
@@ -407,11 +414,8 @@ const App = () => {
     );
 };
 // visible-block-end
-render(
-    <App />,
-);
+render(<App />);
 ```
-
 
 ### `loginLink`
 
@@ -529,7 +533,7 @@ const App = () => {
                 ...routerProvider,
                 routes: [
                     { path: "/register", element: <Auth type="register" /> },
-                ]
+                ],
             }}
             // highlight-next-line
             LoginPage={Auth}
@@ -591,8 +595,11 @@ const App = () => {
             routerProvider={{
                 ...routerProvider,
                 routes: [
-                    { path: "/forgot-password", element: <Auth type="forgotPassword" /> },
-                ]
+                    {
+                        path: "/forgot-password",
+                        element: <Auth type="forgotPassword" />,
+                    },
+                ],
             }}
             // highlight-next-line
             LoginPage={Auth}
@@ -630,7 +637,8 @@ const App = () => {
                     // highlight-start
                     wrapperProps={{
                         style: {
-                            background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+                            background:
+                                "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
                             position: "absolute",
                             top: "0px",
                             right: "0px",
@@ -675,7 +683,8 @@ const App = () => {
                     // highlight-start
                     contentProps={{
                         style: {
-                            background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+                            background:
+                                "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
                         },
                     }}
                     // highlight-end
@@ -800,22 +809,12 @@ render(<App />);
 
 ### Properties
 
-| Property           | Description                                                                         | Type                                                          |
-| ------------------ | ----------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| type               | Render `<AuthPage>` forms by `type` property.                                       | `login` \| `register` \| `forgotPassword` \| `updatePassword` |
-| providers          | Render auth logins if `type` is `"login"`.                                          | [`IProvider[]`](#interface)                                   |
-| registerLink       | A custom node that will be rendered as a register link to the `<AuthPage>`.         | `React.ReactNode`                                             |
-| loginLink          | A custom node that will be rendered as a link to the `<AuthPage>`.                  | `React.ReactNode`                                             |
-| forgotPasswordLink | A custom node that will be rendered as a forgot password link to the `<AuthPage>`.  | `React.ReactNode`                                             |
-| wrapperProps       | Wrapper element props.                                                              | [`HTMLDivElement`]                                            |
-| contentProps       | Content wrapper element props.                                                      | [`HTMLDivElement`]                                            |
-| formProps          | Props for the form component.                                                       | [`HTMLFormElement`]                                           |
-| renderContent      | Gives you default content you can use it to add some extra elements to the content. | `function(content: React.ReactNode) => React.ReactNode`       |
+<PropsTable module="@pankod/refine-core/AuthPage"/>
 
 ### Interface
 
 ```tsx
-interface IProvider {
+interface OAuthProvider {
     name: string;
     icon?: React.ReactNode;
     label?: string;

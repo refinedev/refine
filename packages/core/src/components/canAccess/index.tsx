@@ -4,6 +4,9 @@ import { useCan } from "@hooks";
 import { CanParams } from "../../interfaces";
 
 export type CanAccessProps = CanParams & {
+    /**
+     * Content to show if access control returns `false`
+     */
     fallback?: React.ReactNode;
     children: React.ReactNode;
 };

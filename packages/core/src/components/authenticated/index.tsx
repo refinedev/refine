@@ -3,7 +3,13 @@ import React from "react";
 import { useAuthenticated, useNavigation, useRouterContext } from "@hooks";
 
 export type AuthenticatedProps = {
+    /**
+     * Content to show if user is not logged in. If undefined, routes to `/`
+     */
     fallback?: React.ReactNode;
+    /**
+     * Content to show while checking whether user is logged in
+     */
     loading?: React.ReactNode;
     children: React.ReactNode;
 };
