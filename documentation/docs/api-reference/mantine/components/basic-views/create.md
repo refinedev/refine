@@ -260,8 +260,8 @@ The `<Create>` component reads the `resource` information from the route by defa
 
 [Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
 
-```tsx live url=http://localhost:3000/custom/12 previewHeight=280px
-setInitialRoutes(["/custom/12"]);
+```tsx live url=http://localhost:3000/custom previewHeight=280px
+setInitialRoutes(["/custom"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
