@@ -5,6 +5,7 @@ import {
     CrudFilters,
     CrudSorting,
     CrudOperators,
+    LogicalFilter,
 } from "@pankod/refine-core";
 import { stringify, parse } from "qs";
 
@@ -27,6 +28,10 @@ axiosInstance.interceptors.response.use(
 
 const mapOperator = (operator: CrudOperators) => {
     switch (operator) {
+        case "startswith":
+            return "startsWith";
+        case "endswith":
+            return "endsWith";
         case "nin":
             return "notIn";
         case "ncontains":
@@ -59,7 +64,11 @@ const generateFilter = (filters?: CrudFilters) => {
 
     if (filters) {
         filters.map((filter) => {
-            if (filter.operator !== "or") {
+            if (
+                filter.operator !== "or" &&
+                filter.operator !== "and" &&
+                "field" in filter
+            ) {
                 const { field, operator, value } = filter;
 
                 const mapedOperator = mapOperator(operator);
@@ -75,11 +84,11 @@ const generateFilter = (filters?: CrudFilters) => {
                 const { value } = filter;
 
                 value.map((item, index) => {
-                    const { field, operator, value } = item;
+                    const { field, operator, value } = item as LogicalFilter;
 
                     const mapedOperator = mapOperator(operator);
 
-                    rawQuery += `&filters[$or][${index}][${field}][$${mapedOperator}]=${value}`;
+                    rawQuery += `&filters[$${filter.operator}][${index}][${field}][$${mapedOperator}]=${value}`;
                 });
             }
         });
