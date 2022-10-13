@@ -22,7 +22,6 @@
   "author": "Pankod",
   "module": "dist/esm/index.js",
   "peerDependencies": {
-    "react-table": "^7.7.0",
     "@pankod/refine-core": "^3.23.2",
     "@tanstack/react-table": "^8.2.6",
     "react": "^17.0.0 || ^18.0.0",
