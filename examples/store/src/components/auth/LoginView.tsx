@@ -89,7 +89,7 @@ const LoginView: React.FC = () => {
                 />
 
                 <Button
-                    className="text-black font-bold"
+                    className="bg-black font-bold"
                     variant="slim"
                     type="submit"
                     loading={isLoading}
@@ -97,8 +97,11 @@ const LoginView: React.FC = () => {
                     Log In
                 </Button>
                 <div className="pt-1 text-center text-sm">
+                    <span className="text-accent-7">
+                        Don&lsquo;t have an account?
+                    </span>
                     <a
-                        className="text-accent-9 cursor-pointer font-bold hover:underline"
+                        className="pl-1 text-accent-9 cursor-pointer font-bold hover:underline"
                         onClick={() => setModalView("SIGNUP_VIEW")}
                     >
                         Sign Up

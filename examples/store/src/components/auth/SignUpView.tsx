@@ -118,7 +118,7 @@ const SignUpView: React.FC = () => {
                 </span>
                 <div className="flex w-full flex-col pt-2">
                     <Button
-                        className="text-black font-bold"
+                        className="bg-black font-bold"
                         variant="slim"
                         type="submit"
                         loading={formLoading}

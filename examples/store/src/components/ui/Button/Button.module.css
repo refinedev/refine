@@ -8,7 +8,7 @@
 }
 
 .root:hover {
-  @apply border-accent-9 bg-accent-6 text-white;
+  @apply border-accent-9 bg-accent-6;
 }
 
 .root:focus {
