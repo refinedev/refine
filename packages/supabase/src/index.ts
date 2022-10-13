@@ -79,11 +79,29 @@ const generateFilter = (filter: CrudFilter, query: any) => {
             return query.like(filter.field, `%${filter.value}%`);
         case "null":
             return query.is(filter.field, null);
+        case "startswith":
+            return query.ilike(filter.field, `${filter.value}%`);
+        case "endswith":
+            return query.ilike(filter.field, `%${filter.value}`);
         case "or":
             const orSyntax = filter.value
-                .map((item) => `${item.field}.${item.operator}.${item.value}`)
+                .map((item) => {
+                    if (
+                        item.operator !== "or" &&
+                        item.operator !== "and" &&
+                        "field" in item
+                    ) {
+                        return `${item.field}.${item.operator}.${item.value}`;
+                    }
+                    return;
+                })
                 .join(",");
+            console.log("orSyntax", orSyntax);
             return query.or(orSyntax);
+
+        // return query.or(`title.eq.Lorem 3,title.eq.Test`);
+        case "and":
+            throw Error("Operator 'and' is not supported");
         default:
             return query.filter(
                 filter.field,
@@ -121,6 +139,8 @@ const dataProvider = (
                 .select(metaData?.select ?? "*", {
                     count: "exact",
                 });
+
+            query.eq;
             if (hasPagination) {
                 query.range((current - 1) * pageSize, current * pageSize - 1);
             }
