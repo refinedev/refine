@@ -78,7 +78,7 @@ export const List: React.FC<ListProps> = (props) => {
                 <Stack spacing="xs">
                     {breadcrumb}
                     {title ?? (
-                        <Title order={2} transform="capitalize">
+                        <Title order={3} transform="capitalize">
                             {translate(
                                 `${resource.name}.titles.list`,
                                 userFriendlyResourceName(
