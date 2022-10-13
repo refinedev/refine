@@ -7,11 +7,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@pankod/refine-mantine": "^1.6.3",
+    "@pankod/refine-mantine": "^1.6.4",
     "@pankod/refine-core": "^3.84.0",
     "@pankod/refine-react-router-v6": "^3.33.2",
     "@pankod/refine-simple-rest": "^3.33.0",
-    "@pankod/refine-react-table": "^4.7.6",
+    "@pankod/refine-react-table": "^4.7.7",
     "@mantine/rte": "^5.4.1",
     "@mantine/dropzone": "^5.4.1",
     "@tabler/icons": "^1.1.0",

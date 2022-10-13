@@ -1,5 +1,13 @@
 # @pankod/refine-react-table
 
+## 4.7.7
+
+### Patch Changes
+
+-   [#2746](https://github.com/pankod/refine/pull/2746) [`f19369d911`](https://github.com/pankod/refine/commit/f19369d91166cb00b2c042034fb856bb0ba0a8d7) Thanks [@omeraplak](https://github.com/omeraplak)! - Fix `@tanstack/react-table` exports
+
+-   [#2740](https://github.com/pankod/refine/pull/2740) [`8a4a96ac6a`](https://github.com/pankod/refine/commit/8a4a96ac6acb8d497f78fdd6af5a0ff5b71b6429) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Removed the old version of `react-table` dependency.
+
 ## 4.7.6
 
 ### Patch Changes
