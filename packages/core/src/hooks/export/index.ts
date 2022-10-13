@@ -44,6 +44,7 @@ type UseExportOptionsType<
     pageSize?: number;
     /**
      *  Used for exporting options
+     *  @type [Options](https://github.com/alexcaza/export-to-csv)
      */
     exportOptions?: Options;
     /**
