@@ -88,7 +88,12 @@ const LoginView: React.FC = () => {
                     touched={touchedFields}
                 />
 
-                <Button variant="slim" type="submit" loading={isLoading}>
+                <Button
+                    className="text-black font-bold"
+                    variant="slim"
+                    type="submit"
+                    loading={isLoading}
+                >
                     Log In
                 </Button>
                 <div className="pt-1 text-center text-sm">
