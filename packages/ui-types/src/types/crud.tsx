@@ -18,7 +18,7 @@ export type RefineCrudListProps<
 > = PropsWithChildren<{
     /**
      * Title of the list view
-     * @default `{resource.name}`
+     * @default `<Title order={3}>{resource.name}</Title>`
      */
     title?: React.ReactNode;
     /**
@@ -78,7 +78,7 @@ export type RefineCrudCreateProps<
 > = PropsWithChildren<{
     /**
      * Title of the create view
-     * @default `"Create {resource.name}"`
+     * @default `<Title order={3}>Create {resource.name}</Title>`
      */
     title?: React.ReactNode;
     /**
@@ -151,7 +151,7 @@ export type RefineCrudEditProps<
 > = PropsWithChildren<{
     /**
      * Title of the edit view
-     * @default `"Edit {resource.name}"`
+     * @default `<Title order={3}>Edit {resource.name}</Title>`
      */
     title?: React.ReactNode;
     /**
@@ -245,7 +245,7 @@ export type RefineCrudShowProps<
 > = PropsWithChildren<{
     /**
      * Title of the edit view
-     * @default `"Show {resource.name}"`
+     * @default `<Title order={3}>Show {resource.name}</Title>`
      */
     title?: React.ReactNode;
     /**
@@ -302,8 +302,8 @@ export type RefineCrudShowProps<
     /**
      * Adds a `<DeleteButton />`
      * @default If the resource has `canDelete` prop it is `true` else `false`
-     canDelete?: boolean;
      */
+    canDelete?: boolean;
     /**
      * Adds a `<EditButton />`
      * @default If the resource is passed a edit component, `true` else `false`
