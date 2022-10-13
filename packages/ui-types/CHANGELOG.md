@@ -1,5 +1,11 @@
 # @pankod/refine-ui-types
 
+## 0.11.4
+
+### Patch Changes
+
+-   Added tsdoc comments to crud component interfaces.
+
 ## 0.11.3
 
 ### Patch Changes

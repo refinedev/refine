@@ -1,5 +1,11 @@
 # @pankod/refine-hasura
 
+## 4.15.2
+
+### Patch Changes
+
+-   Added nested property filter support for `or` filters.
+
 ## 4.15.1
 
 ### Patch Changes
