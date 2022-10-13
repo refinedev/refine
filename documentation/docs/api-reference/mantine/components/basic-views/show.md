@@ -418,7 +418,7 @@ export const App: React.FC = () => {
 
 ### `goBack`
 
-To customize the back button or to disable it, you can use the `goBack` property.
+To customize the back button or to disable it, you can use the `goBack` property. You can pass `false` or `null` to hide the back button.
 
 ```tsx live url=http://localhost:3000/posts/show/12 previewHeight=280px
 setInitialRoutes(["/posts/show/12"]);
