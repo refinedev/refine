@@ -311,8 +311,6 @@ render(
 To customize the back button or to disable it, you can use the `goBack` property. You can pass `false` or `null` to hide the back button.
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
-
-```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, CreateButton } from "@pankod/refine-mantine";
