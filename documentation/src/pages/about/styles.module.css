@@ -1,5 +1,5 @@
 .root {
-    @apply px-5 sm:px-0 flex flex-col mx-auto justify-center items-center font-montserrat;
+    @apply px-5 sm:px-0 flex flex-col mx-auto justify-center items-center font-montserrat text-[#2A2A2A];
 }
 
 .header {
