@@ -10,7 +10,7 @@ import accessControl from '@site/static/img/guides-and-concepts/access-control/a
 
 ## Introduction
 
-Access control is a broad topic where there are lots of advanced solutions that provide different set of features. **refine** is deliberately agnostic for its own API to be able to integrate different methods (RBAC, ABAC, ACL, etc.) and different libraries ([Casbin](https://casbin.org/), [CASL](https://casl.js.org/v5/en/), [Cerbos](https://cerbos.dev/), [AccessControl.js](https://onury.io/accesscontrol/)). `can` method would be the entry point for those solutions.
+Access control is a broad topic whsere there are lots of advanced solutions that provide different set of features. **refine** is deliberately agnostic for its own API to be able to integrate different methods (RBAC, ABAC, ACL, etc.) and different libraries ([Casbin](https://casbin.org/), [CASL](https://casl.js.org/v5/en/), [Cerbos](https://cerbos.dev/), [AccessControl.js](https://onury.io/accesscontrol/)). `can` method would be the entry point for those solutions.
 
 [Refer to the Access Control Provider documentation for detailed information. &#8594](/api-reference/core/providers/accessControl-provider.md)
 
@@ -129,7 +129,7 @@ p, editor, posts, list
 ```
 
 :::tip
-You can can find more examples in [Casbin documentation](https://casbin.org/docs/en/supported-models) or play with lots of examples in [Casbin editor](https://casbin.org/en/editor)  
+You can can find more examples in [Casbin documentation](https://casbin.org/docs/en/supported-models) or play with lots of examples in [Casbin editor](https://casbin.org/en/editor)
 :::
 
 ## Adding `accessControlProvider`
@@ -349,7 +349,7 @@ const App: React.FC = () => {
                     ) {
                         const can = await enforcer.enforce(
                             role,
-                            `${resource}/${params.id}`,
+                            `${resource}/${params?.id}`,
                             action,
                         );
                         return Promise.resolve({ can });
@@ -439,7 +439,7 @@ const App: React.FC = () => {
                     ) {
                         const can = await enforcer.enforce(
                             role,
-                            `${resource}/${params.id}`,
+                            `${resource}/${params?.id}`,
                             action,
                         );
                         return Promise.resolve({ can });
@@ -449,7 +449,7 @@ const App: React.FC = () => {
                     if (action === "field") {
                         const can = await enforcer.enforce(
                             role,
-                            `${resource}/${params.field}`,
+                            `${resource}/${params?.field}`,
                             action,
                         );
                         return Promise.resolve({ can });
@@ -490,7 +490,7 @@ export const PostList: React.FC = () => {
     return (
         <List>
             <Table {...tableProps} rowKey="id">
-                // ... 
+                // ...
                 // highlight-start
                 {canAccess?.can && (
                     <Table.Column
@@ -504,7 +504,7 @@ export const PostList: React.FC = () => {
                         )}
                     />
                 )}
-                // highlight-end 
+                // highlight-end
                 // ...
             </Table>
         </List>
