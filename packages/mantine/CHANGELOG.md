@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 1.6.7
+
+### Patch Changes
+
+-   Fixed <ErrorComponent /> responsive design for mobile devices
+
 ## 1.6.6
 
 ### Patch Changes
