@@ -27,6 +27,28 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 order: "asc",
             },
         ],
+        initialFilter: [
+            {
+                field: "title",
+                operator: "contains",
+                value: ["Lorem", "Ipsum"],
+            },
+            // {
+            //     operator: "or",
+            //     value: [
+            //         {
+            //             field: "title",
+            //             operator: "eq",
+            //             value: "Lorem",
+            //         },
+            //         {
+            //             field: "title",
+            //             operator: "eq",
+            //             value: "Ipsum",
+            //         },
+            //     ],
+            // },
+        ],
     });
 
     const categoryIds =

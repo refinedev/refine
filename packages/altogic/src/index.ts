@@ -44,6 +44,10 @@ const mapOperator = (operator: CrudOperators): string => {
             return "<=";
         case "ne":
             return "!=";
+        case "contains":
+            return "IN";
+        case "ncontains":
+            return "NIN";
         default:
             throw Error(`Operator ${operator} is not supported`);
     }
