@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 1.6.6
+
+### Patch Changes
+
+-   [#2748](https://github.com/pankod/refine/pull/2748) [`0eaddb65ee`](https://github.com/pankod/refine/commit/0eaddb65ee77777fd1e6b9e5501c18d69bef4be8) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed <ErrorComponent /> responsive design for mobile devices
+
 ## 1.6.5
 
 ### Patch Changes
