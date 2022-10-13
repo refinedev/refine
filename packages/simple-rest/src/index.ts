@@ -62,7 +62,11 @@ const generateFilter = (filters?: CrudFilters) => {
     const queryFilters: { [key: string]: string } = {};
     if (filters) {
         filters.map((filter) => {
-            if (filter.operator !== "or") {
+            if (
+                filter.operator !== "or" &&
+                filter.operator !== "and" &&
+                "field" in filter
+            ) {
                 const { field, operator, value } = filter;
 
                 if (field === "q") {
