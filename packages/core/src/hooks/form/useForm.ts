@@ -47,6 +47,31 @@ type ActionFormProps<
     TVariables = {},
 > = {
     /**
+     * Resource name for API data interactions
+     * @default Resource name that it reads from route
+     */
+    resource?: string;
+    /**
+     * Record id for fetching
+     * @default Id that it reads from the URL
+     */
+    id?: BaseKey;
+    /**
+     * Page to redirect after a succesfull mutation
+     * @type `"show" | "edit" | "list" | "create" | false`
+     * @default `"list"`
+     */
+    redirect?: RedirectAction;
+    /**
+     * Metadata query for dataProvider
+     */
+    metaData?: MetaDataQuery;
+    /**
+     * [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)
+     * @default `"pessimistic"*`
+     */
+    mutationMode?: MutationMode;
+    /**
      * Called when a mutation is successful
      */
     onMutationSuccess?: (
@@ -62,31 +87,6 @@ type ActionFormProps<
         variables: TVariables,
         context: any,
     ) => void;
-    /**
-     * Resource name for API data interactions
-     * @default Resource name that it reads from route
-     */
-    resource?: string;
-    /**
-     * Page to redirect after a succesfull mutation
-     * @type `"show" | "edit" | "list" | "create" | false`
-     * @default `"list"`
-     */
-    redirect?: RedirectAction;
-    /**
-     * Record id for fetching
-     * @default Id that it reads from the URL
-     */
-    id?: BaseKey;
-    /**
-     * Metadata query for dataProvider
-     */
-    metaData?: MetaDataQuery;
-    /**
-     * [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)
-     * @default `"pessimistic"*`
-     */
-    mutationMode?: MutationMode;
     /**
      * Duration to wait before executing mutations when `mutationMode = "undoable"`
      * @default `5000*`
@@ -114,7 +114,7 @@ export type UseFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
-> = ActionParams & ActionFormProps<TData, TError, TVariables> & LiveModeProps;
+> = ActionFormProps<TData, TError, TVariables> & ActionParams & LiveModeProps;
 
 export type UseFormReturnType<
     TData extends BaseRecord = BaseRecord,
@@ -154,8 +154,8 @@ export const useForm = <
     TError extends HttpError = HttpError,
     TVariables = {},
 >({
-    action: actionFromProps,
     resource: resourceFromProps,
+    action: actionFromProps,
     id: idFromProps,
     onMutationSuccess,
     onMutationError,

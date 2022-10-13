@@ -43,36 +43,42 @@ export type useTableProps<TData, TError> = {
     resource?: string;
     /**
      * Initial page index
+     * @default 10
      */
     initialCurrent?: number;
     /**
      * Initial number of items per page
+     * @default 10
      */
     initialPageSize?: number;
-    /**
-     * Whether to use server side pagination or not
-     */
-    hasPagination?: boolean;
     /**
      * Initial sorter state
      */
     initialSorter?: CrudSorting;
     /**
      * Default and unchangeable sorter state
+     *  @default `[]`
      */
     permanentSorter?: CrudSorting;
-    /**
-     *Default behavior of the `setFilters` function
-     */
-    defaultSetFilterBehavior?: SetFilterBehavior;
     /**
      * Initial filter state
      */
     initialFilter?: CrudFilters;
     /**
      * WDefault and unchangeable filter state
+     * @default `[]`
      */
     permanentFilter?: CrudFilters;
+    /**
+     *Default behavior of the `setFilters` function
+     * @default `"merge"`
+     */
+    defaultSetFilterBehavior?: SetFilterBehavior;
+    /**
+     * Whether to use server side pagination or not.
+     * @default `true`
+     */
+    hasPagination?: boolean;
     /**
      * Sortings, filters, page index and records shown per page are tracked by browser history
      * @default Value set in [Refine](/docs/api-reference/core/components/refine-config/#syncwithlocation). If a custom resource is given, it will be `false`

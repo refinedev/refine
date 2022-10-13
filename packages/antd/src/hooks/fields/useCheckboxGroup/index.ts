@@ -28,7 +28,12 @@ export type UseCheckboxGroupReturnType<TData extends BaseRecord = BaseRecord> =
 type UseCheckboxGroupProps<TData, TError> = Omit<
     UseSelectProps<TData, TError>,
     "defaultValue"
-> & { defaultValue?: BaseKey[] };
+> & {
+    /**
+     * Sets the default value
+     */
+    defaultValue?: BaseKey[];
+};
 
 export const useCheckboxGroup = <
     TData extends BaseRecord = BaseRecord,
