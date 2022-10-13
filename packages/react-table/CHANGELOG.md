@@ -1,5 +1,13 @@
 # @pankod/refine-react-table
 
+## 4.7.8
+
+### Patch Changes
+
+-   Fix `@tanstack/react-table` exports
+
+-   Removed the old version of `react-table` dependency.
+
 ## 4.7.7
 
 ### Patch Changes

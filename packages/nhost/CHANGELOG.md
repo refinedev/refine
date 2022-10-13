@@ -1,5 +1,13 @@
 # @pankod/refine-nhost
 
+## 3.39.0
+
+### Minor Changes
+
+-   Added missing implementations for `nnull`, `startswith`, `startswiths`, `nstartswith`, `nstartswiths`, `endswith`, `endswiths`, `nendswith` and `nendswiths` filters by `_similar`, `_nsimilar`, `_regex` and `_iregex` filters from Nhost.
+
+    Added nested property filter support for `or` filters.
+
 ## 3.38.0
 
 ### Minor Changes
