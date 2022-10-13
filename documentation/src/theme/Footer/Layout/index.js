@@ -177,7 +177,7 @@ export default function FooterLayout({
                             {socialLinks?.items?.map?.((socialLink, i) => (
                                 <a
                                     key={i}
-                                    className="w-[22px] h-[22px] hover:text-red-600"
+                                    className="w-[22px] h-[22px]"
                                     href={socialLink.href}
                                     target="_blank"
                                     rel="noreferrer"
