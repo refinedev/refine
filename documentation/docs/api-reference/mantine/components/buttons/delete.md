@@ -1,0 +1,546 @@
+---
+id: delete-button
+title: Delete
+---
+
+```tsx live shared
+setRefineProps({
+    Sider: () => null,
+    Layout: RefineMantine.Layout,
+    notificationProvider: RefineMantine.notificationProvider,
+    catchAll: <RefineMantine.ErrorComponent />,
+});
+
+const Wrapper = ({ children }) => {
+    return (
+        <RefineMantine.MantineProvider
+            theme={RefineMantine.LightTheme}
+            withNormalizeCSS
+            withGlobalStyles
+        >
+            <RefineMantine.Global
+                styles={{ body: { WebkitFontSmoothing: "auto" } }}
+            />
+            <RefineMantine.NotificationsProvider position="top-right">
+                {children}
+            </RefineMantine.NotificationsProvider>
+        </RefineMantine.MantineProvider>
+    );
+};
+```
+
+`<DeleteButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button/) and [`<Popconfirm>`](https://mantine.dev/core/popover/) components.
+When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/api-reference/core/hooks/data/useDelete.md) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
+
+## Usage
+
+```tsx live url=http://localhost:3000 previewHeight=420px hideCode
+setInitialRoutes(["/posts"]);
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
+
+// visible-block-start
+import { List, Table, Pagination, DeleteButton } from "@pankod/refine-mantine";
+import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+
+const PostList: React.FC = () => {
+    const columns = React.useMemo<ColumnDef<IPost>[]>(
+        () => [
+            {
+                id: "id",
+                header: "ID",
+                accessorKey: "id",
+            },
+            {
+                id: "title",
+                header: "Title",
+                accessorKey: "title",
+            },
+            {
+                id: "actions",
+                header: "Actions",
+                accessorKey: "id",
+                cell: function render({ getValue }) {
+                    return (
+                        // highlight-start
+                        <DeleteButton
+                            size="xs"
+                            recordItemId={getValue() as number}
+                        />
+                        // highlight-end
+                    );
+                },
+            },
+        ],
+        [],
+    );
+
+    const {
+        getHeaderGroups,
+        getRowModel,
+        refineCore: { setCurrent, pageCount, current },
+    } = useTable({
+        columns,
+    });
+
+    return (
+        <List>
+            <Table>
+                <thead>
+                    {getHeaderGroups().map((headerGroup) => (
+                        <tr key={headerGroup.id}>
+                            {headerGroup.headers.map((header) => (
+                                <th key={header.id}>
+                                    {header.isPlaceholder
+                                        ? null
+                                        : flexRender(
+                                              header.column.columnDef.header,
+                                              header.getContext(),
+                                          )}
+                                </th>
+                            ))}
+                        </tr>
+                    ))}
+                </thead>
+                <tbody>
+                    {getRowModel().rows.map((row) => (
+                        <tr key={row.id}>
+                            {row.getVisibleCells().map((cell) => (
+                                <td key={cell.id}>
+                                    {flexRender(
+                                        cell.column.columnDef.cell,
+                                        cell.getContext(),
+                                    )}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </Table>
+            <br />
+            <Pagination
+                position="right"
+                total={pageCount}
+                page={current}
+                onChange={setCurrent}
+            />
+        </List>
+    );
+};
+
+interface IPost {
+    id: number;
+    title: string;
+}
+// visible-block-end
+
+const App = () => {
+    return (
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                },
+            ]}
+        />
+    );
+};
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+## Properties
+
+### `recordItemId`
+
+`recordItemId` allows us to manage which record will be deleted.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
+
+// visible-block-start
+import { DeleteButton } from "@pankod/refine-mantine";
+
+const MyDeleteComponent = () => {
+    return <DeleteButton recordItemId="5" />;
+};
+// visible-block-end
+
+const App = () => {
+    const simpleRestDataProvider = dataProvider(
+        "https://api.fake-rest.refine.dev",
+    );
+
+    const customDataProvider = {
+        ...simpleRestDataProvider,
+        deleteOne: async ({ resource, id, variables }) => {
+            await new Promise((resolve) => setTimeout(resolve, 500));
+
+            return {
+                data: {},
+            };
+        },
+    };
+
+    return (
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={customDataProvider}
+            resources={[
+                {
+                    name: "posts",
+                    list: MyDeleteComponent,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Clicking the button will trigger the [`useDelete`](/api-reference/core/hooks/data/useDelete.md) method and then the record whose resource is "post" and whose id is "5" gets deleted.
+
+:::note
+**`<DeleteButton>`** component reads the id information from the route by default.
+:::
+
+### `resourceNameOrRouteName`
+
+`resourceNameOrRouteName` allows us to manage which resource's record is going to be deleted.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
+
+// visible-block-start
+import { DeleteButton } from "@pankod/refine-mantine";
+
+const MyDeleteComponent = () => {
+    return (
+        <DeleteButton resourceNameOrRouteName="categories" recordItemId="2" />
+    );
+};
+// visible-block-end
+
+const App = () => {
+    const simpleRestDataProvider = dataProvider(
+        "https://api.fake-rest.refine.dev",
+    );
+
+    const customDataProvider = {
+        ...simpleRestDataProvider,
+        deleteOne: async ({ resource, id, variables }) => {
+            await new Promise((resolve) => setTimeout(resolve, 500));
+
+            return {
+                data: {},
+            };
+        },
+    };
+
+    return (
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={customDataProvider}
+            resources={[
+                {
+                    name: "posts",
+                    list: MyDeleteComponent,
+                },
+                {
+                    name: "categories",
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+Clicking the button will trigger the [`useDelete`](/api-reference/core/hooks/data/useDelete.md) method and then the record whose resource is "categories" and whose id is "2" gets deleted.
+
+:::note
+**`<DeleteButton>`** component reads the resource name from the route by default.
+:::
+
+### `onSuccess`
+
+`onSuccess` can be used if you want to do anything on the result returned after the delete request.
+
+For example, let's `console.log` after deletion:
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
+
+// visible-block-start
+import { DeleteButton } from "@pankod/refine-mantine";
+
+const MyDeleteComponent = () => {
+    return (
+        <DeleteButton
+            resourceNameOrRouteName="posts"
+            recordItemId="1"
+            onSuccess={(value) => {
+                console.log(value);
+            }}
+        />
+    );
+};
+// visible-block-end
+
+const App = () => {
+    const simpleRestDataProvider = dataProvider(
+        "https://api.fake-rest.refine.dev",
+    );
+
+    const customDataProvider = {
+        ...simpleRestDataProvider,
+        deleteOne: async ({ resource, id, variables }) => {
+            await new Promise((resolve) => setTimeout(resolve, 500));
+
+            return {
+                message: "You have successfully deleted the record",
+            };
+        },
+    };
+
+    return (
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={customDataProvider}
+            resources={[
+                {
+                    name: "posts",
+                    list: MyDeleteComponent,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+### `mutationMode`
+
+Determines which mode mutation will have while executing `<DeleteButton>`.
+
+[Refer to the mutation mode docs for further information. &#8594](/advanced-tutorials/mutation-mode.md)
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
+
+// visible-block-start
+import { DeleteButton } from "@pankod/refine-mantine";
+
+const MyDeleteComponent = () => {
+    return <DeleteButton recordItemId="1" mutationMode="undoable" />;
+};
+// visible-block-end
+
+const App = () => {
+    const simpleRestDataProvider = dataProvider(
+        "https://api.fake-rest.refine.dev",
+    );
+
+    const customDataProvider = {
+        ...simpleRestDataProvider,
+        deleteOne: async ({ resource, id, variables }) => {
+            await new Promise((resolve) => setTimeout(resolve, 500));
+
+            return {
+                data: {},
+            };
+        },
+    };
+
+    return (
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={customDataProvider}
+            resources={[
+                {
+                    name: "posts",
+                    list: MyDeleteComponent,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+### `hideText`
+
+It is used to show and not show the text of the button. When `true`, only the button icon is visible.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
+
+// visible-block-start
+import { DeleteButton } from "@pankod/refine-mantine";
+
+const MyDeleteComponent = () => {
+    return <DeleteButton recordItemId="1" hideText />;
+};
+// visible-block-end
+
+const App = () => {
+    const simpleRestDataProvider = dataProvider(
+        "https://api.fake-rest.refine.dev",
+    );
+
+    const customDataProvider = {
+        ...simpleRestDataProvider,
+        deleteOne: async ({ resource, id, variables }) => {
+            await new Promise((resolve) => setTimeout(resolve, 500));
+
+            return {
+                data: {},
+            };
+        },
+    };
+
+    return (
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={customDataProvider}
+            resources={[
+                {
+                    name: "posts",
+                    list: MyDeleteComponent,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+### `ignoreAccessControlProvider`
+
+It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
+
+```tsx
+import { DeleteButton } from "@pankod/refine-mantine";
+
+export const MyListComponent = () => {
+    return <DeleteButton ignoreAccessControlProvider />;
+};
+```
+
+## How to override confirm texts?
+
+You can change the text that appears when you confirm a transaction with `confirmTitle` prop, as well as what ok and cancel buttons text look like with `confirmOkText` and `confirmCancelText` props.
+
+```tsx live url=http://localhost:3000 previewHeight=200px
+setInitialRoutes(["/"]);
+import { Refine } from "@pankod/refine-core";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
+
+// visible-block-start
+import { DeleteButton } from "@pankod/refine-mantine";
+
+const MyDeleteComponent = () => {
+    return (
+        <DeleteButton
+            //hide-start
+            recordItemId="1"
+            //hide-end
+            confirmTitle="Custom Title"
+            confirmOkText="Ok Text"
+            confirmCancelText="Delete Text"
+        />
+    );
+};
+// visible-block-end
+
+const App = () => {
+    const simpleRestDataProvider = dataProvider(
+        "https://api.fake-rest.refine.dev",
+    );
+
+    const customDataProvider = {
+        ...simpleRestDataProvider,
+        deleteOne: async ({ resource, id, variables }) => {
+            await new Promise((resolve) => setTimeout(resolve, 500));
+
+            return {
+                data: {},
+            };
+        },
+    };
+
+    return (
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={customDataProvider}
+            resources={[
+                {
+                    name: "posts",
+                    list: MyDeleteComponent,
+                },
+            ]}
+        />
+    );
+};
+
+render(
+    <Wrapper>
+        <App />
+    </Wrapper>,
+);
+```
+
+## API Reference
+
+### Properties
+
+<PropsTable module="@pankod/refine-mantine/DeleteButton" />
