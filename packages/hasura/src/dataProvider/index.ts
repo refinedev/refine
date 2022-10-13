@@ -136,10 +136,12 @@ export const generateFilters: any = (filters?: CrudFilters) => {
                         `Operator ${val.operator} is not supported`,
                     );
                 }
-                if (!filterObject.hasOwnProperty(val.field)) {
-                    filterObject[val.field] = {};
-                }
-                filterObject[val.field][mapedOperator] = val.value;
+
+                const fieldsArray = val.field.split(".");
+                const fieldsWithOperator = [...fieldsArray, val.operator];
+                const value = handleFilterValue(val.operator, val.value);
+                setWith(filterObject, fieldsWithOperator, value, Object);
+
                 orFilter.push(filterObject);
             });
 
