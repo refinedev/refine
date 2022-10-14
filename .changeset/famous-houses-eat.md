@@ -17,7 +17,7 @@
 "@pankod/refine-supabase": minor
 ---
 
-Only `or` was supported as a conditional filter. Now and and or can be used together and nested. 🚀
+Only `or` was supported as a conditional filter. Now `and` and `or` can be used together and nested. 🚀
 
 ```
 {
