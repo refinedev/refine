@@ -129,7 +129,7 @@ p, editor, posts, list
 ```
 
 :::tip
-You can can find more examples in [Casbin documentation](https://casbin.org/docs/en/supported-models) or play with lots of examples in [Casbin editor](https://casbin.org/en/editor)  
+You can can find more examples in [Casbin documentation](https://casbin.org/docs/en/supported-models) or play with lots of examples in [Casbin editor](https://casbin.org/en/editor)
 :::
 
 ## Adding `accessControlProvider`
@@ -349,7 +349,7 @@ const App: React.FC = () => {
                     ) {
                         const can = await enforcer.enforce(
                             role,
-                            `${resource}/${params.id}`,
+                            `${resource}/${params?.id}`,
                             action,
                         );
                         return Promise.resolve({ can });
@@ -439,7 +439,7 @@ const App: React.FC = () => {
                     ) {
                         const can = await enforcer.enforce(
                             role,
-                            `${resource}/${params.id}`,
+                            `${resource}/${params?.id}`,
                             action,
                         );
                         return Promise.resolve({ can });
@@ -449,7 +449,7 @@ const App: React.FC = () => {
                     if (action === "field") {
                         const can = await enforcer.enforce(
                             role,
-                            `${resource}/${params.field}`,
+                            `${resource}/${params?.field}`,
                             action,
                         );
                         return Promise.resolve({ can });
@@ -490,7 +490,7 @@ export const PostList: React.FC = () => {
     return (
         <List>
             <Table {...tableProps} rowKey="id">
-                // ... 
+                // ...
                 // highlight-start
                 {canAccess?.can && (
                     <Table.Column
@@ -504,7 +504,7 @@ export const PostList: React.FC = () => {
                         )}
                     />
                 )}
-                // highlight-end 
+                // highlight-end
                 // ...
             </Table>
         </List>

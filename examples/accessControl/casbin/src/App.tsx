@@ -40,7 +40,7 @@ const App: React.FC = () => {
                         return Promise.resolve({
                             can: await enforcer.enforce(
                                 role,
-                                `${resource}/${params.id}`,
+                                `${resource}/${params?.id}`,
                                 action,
                             ),
                         });
@@ -49,7 +49,7 @@ const App: React.FC = () => {
                         return Promise.resolve({
                             can: await enforcer.enforce(
                                 role,
-                                `${resource}/${params.field}`,
+                                `${resource}/${params?.field}`,
                                 action,
                             ),
                         });
