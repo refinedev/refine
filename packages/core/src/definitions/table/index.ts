@@ -1,6 +1,7 @@
 import qs, { IStringifyOptions } from "qs";
 import unionWith from "lodash/unionWith";
 import differenceWith from "lodash/differenceWith";
+import warnOnce from "warn-once";
 
 import {
     CrudFilters,
@@ -91,7 +92,7 @@ export const unionFilters = (
     );
 
     if (isKeyRequired.length > 1) {
-        throw new Error("Only one filter without key can be used!");
+        warnOnce(true, `Only one filter without key can be used!`);
     }
 
     return unionWith(
