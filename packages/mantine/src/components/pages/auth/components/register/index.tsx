@@ -1,6 +1,10 @@
 import React from "react";
 import { RegisterPageProps, RegisterFormTypes } from "@pankod/refine-core";
-import { useLogin, useTranslate, useRouterContext } from "@pankod/refine-core";
+import {
+    useTranslate,
+    useRouterContext,
+    useRegister,
+} from "@pankod/refine-core";
 import {
     Box,
     Card,
@@ -60,7 +64,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     });
     const { onSubmit, getInputProps } = form;
 
-    const { mutate: register, isLoading } = useLogin<RegisterFormTypes>();
+    const { mutate: register, isLoading } = useRegister<RegisterFormTypes>();
 
     const renderProviders = () => {
         if (providers && providers.length > 0) {

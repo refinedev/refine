@@ -3,7 +3,11 @@ import {
     ForgotPasswordPageProps,
     ForgotPasswordFormTypes,
 } from "@pankod/refine-core";
-import { useLogin, useTranslate, useRouterContext } from "@pankod/refine-core";
+import {
+    useTranslate,
+    useRouterContext,
+    useForgotPassword,
+} from "@pankod/refine-core";
 import {
     Box,
     Card,
@@ -62,7 +66,7 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
     const { getInputProps, onSubmit } = form;
 
     const { mutate: forgotPassword, isLoading } =
-        useLogin<ForgotPasswordFormTypes>();
+        useForgotPassword<ForgotPasswordFormTypes>();
 
     const CardContent = (
         <Card style={cardStyles} {...(contentProps ?? {})}>
