@@ -401,6 +401,8 @@ module.exports = {
                                         "api-reference/mantine/components/buttons/delete-button",
                                         "api-reference/mantine/components/buttons/edit-button",
                                         "api-reference/mantine/components/buttons/export-button",
+                                        "api-reference/mantine/components/buttons/import-button",
+                                        "api-reference/mantine/components/buttons/list-button",
                                     ],
                                 },
                             ],
