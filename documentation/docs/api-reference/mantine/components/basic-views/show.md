@@ -44,8 +44,8 @@ interface IPost {
 
 We will show what `<Show>` does using properties with examples.
 
-```tsx live url=http://localhost:3000/posts/show/12 previewHeight=420px hideCode
-setInitialRoutes(["/posts/show/12"]);
+```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
+setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, ShowButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -92,8 +92,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <ShowButton recordItemId="12">
-                                Show Item 12
+                            <ShowButton recordItemId="123">
+                                Show Item 123
                             </ShowButton>
                         </div>
                     ),
@@ -115,8 +115,8 @@ render(
 
 It allows adding a title for the `<Show>` component. if you don't pass title props it uses the "Show" prefix and the singular resource name by default. For example, for the "posts" resource, it will be "Show post".
 
-```tsx live url=http://localhost:3000/posts/show/12 previewHeight=420px hideCode
-setInitialRoutes(["/posts/show/12"]);
+```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
+setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, ShowButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -148,8 +148,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <ShowButton recordItemId="12">
-                                Show Item 12
+                            <ShowButton recordItemId="123">
+                                Show Item 123
                             </ShowButton>
                         </div>
                     ),
@@ -171,8 +171,8 @@ The `<Show>` component reads the `resource` information from the route by defaul
 
 [Refer to the custom pages documentation for detailed usage. &#8594](/advanced-tutorials/custom-pages.md)
 
-```tsx live url=http://localhost:3000/custom/12 previewHeight=280px
-setInitialRoutes(["/custom/12"]);
+```tsx live url=http://localhost:3000/custom/123 previewHeight=280px
+setInitialRoutes(["/custom/123"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
@@ -225,8 +225,8 @@ When clicked on, delete button executes the `useDelete` method provided by the [
 
 Refer to the [`<DeleteButton>`](/api-reference/antd/components/buttons/delete.md) and the [`<EditButton>`](/api-reference/antd/components/buttons/edit.md) documentation for detailed usage.
 
-```tsx live url=http://localhost:3000/posts/show/12 previewHeight=420px hideCode
-setInitialRoutes(["/posts/show/12"]);
+```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
+setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, ShowButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -288,8 +288,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <ShowButton recordItemId="12">
-                                Show Item 12
+                            <ShowButton recordItemId="123">
+                                Show Item 123
                             </ShowButton>
                         </div>
                     ),
@@ -311,8 +311,8 @@ render(
 
 `<Show>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL (when used on a custom page, modal or drawer).
 
-```tsx live url=http://localhost:3000/posts/show/12 previewHeight=350px
-setInitialRoutes(["/posts/show/12"]);
+```tsx live url=http://localhost:3000/posts/show/123 previewHeight=350px
+setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -363,8 +363,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <ShowButton recordItemId="12">
-                                Show Item 12
+                            <ShowButton recordItemId="123">
+                                Show Item 123
                             </ShowButton>
                         </div>
                     ),
@@ -420,8 +420,8 @@ export const App: React.FC = () => {
 
 To customize the back button or to disable it, you can use the `goBack` property. You can pass `false` or `null` to hide the back button.
 
-```tsx live url=http://localhost:3000/posts/show/12 previewHeight=280px
-setInitialRoutes(["/posts/show/12"]);
+```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
+setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, ShowButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -434,7 +434,7 @@ const PostShow: React.FC = () => {
     return (
         /* highlight-next-line */
         <Show goBack="😊">
-            <p>Rest of your page here 2</p>
+            <p>Rest of your page here</p>
         </Show>
     );
 };
@@ -453,8 +453,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <ShowButton recordItemId="12">
-                                Show Item 12
+                            <ShowButton recordItemId="123">
+                                Show Item 123
                             </ShowButton>
                         </div>
                     ),
@@ -474,8 +474,8 @@ render(
 
 To toggle the loading state of the `<Edit/>` component, you can use the `isLoading` property.
 
-```tsx live url=http://localhost:3000/posts/show/12 previewHeight=280px
-setInitialRoutes(["/posts/show/12"]);
+```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
+setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, ShowButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -507,8 +507,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <ShowButton recordItemId="12">
-                                Show Item 12
+                            <ShowButton recordItemId="123">
+                                Show Item 123
                             </ShowButton>
                         </div>
                     ),
@@ -531,8 +531,8 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 <!-- TODO: Add breadcrumb link when the Breadcrumb doc is created. -->
 <!-- [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/mantine/components/breadcrumb.md) -->
 
-```tsx live url=http://localhost:3000/posts/show/12 previewHeight=280px
-setInitialRoutes(["/posts/show/12"]);
+```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
+setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, ShowButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -580,8 +580,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <ShowButton recordItemId="12">
-                                Show Item 12
+                            <ShowButton recordItemId="123">
+                                Show Item 123
                             </ShowButton>
                         </div>
                     ),
@@ -603,8 +603,8 @@ If you want to customize the wrapper of the `<Show/>` component, you can use the
 
 [Refer to the `Card` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/card/)
 
-```tsx live url=http://localhost:3000/posts/show/12 previewHeight=280px
-setInitialRoutes(["/posts/show/12"]);
+```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
+setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, ShowButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -644,8 +644,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <ShowButton recordItemId="12">
-                                Show Item 12
+                            <ShowButton recordItemId="123">
+                                Show Item 123
                             </ShowButton>
                         </div>
                     ),
@@ -667,8 +667,8 @@ If you want to customize the header of the `<Show/>` component, you can use the 
 
 [Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group/)
 
-```tsx live url=http://localhost:3000/posts/show/12 previewHeight=280px
-setInitialRoutes(["/posts/show/12"]);
+```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
+setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, ShowButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -708,8 +708,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <ShowButton recordItemId="12">
-                                Show Item 12
+                            <ShowButton recordItemId="123">
+                                Show Item 123
                             </ShowButton>
                         </div>
                     ),
@@ -731,8 +731,8 @@ If you want to customize the content of the `<Show/>` component, you can use the
 
 [Refer to the `Box` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/box/)
 
-```tsx live url=http://localhost:3000/posts/show/12 previewHeight=280px
-setInitialRoutes(["/posts/show/12"]);
+```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
+setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, ShowButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -772,8 +772,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <ShowButton recordItemId="12">
-                                Show Item 12
+                            <ShowButton recordItemId="123">
+                                Show Item 123
                             </ShowButton>
                         </div>
                     ),
@@ -793,8 +793,8 @@ render(
 
 You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
-```tsx live url=http://localhost:3000/posts/show/12 previewHeight=280px
-setInitialRoutes(["/posts/show/12"]);
+```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
+setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, ShowButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -836,8 +836,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <ShowButton recordItemId="12">
-                                Show Item 12
+                            <ShowButton recordItemId="123">
+                                Show Item 123
                             </ShowButton>
                         </div>
                     ),
@@ -859,8 +859,8 @@ You can customize the wrapper element of the buttons at the header by using the 
 
 [Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group/)
 
-```tsx live url=http://localhost:3000/posts/show/12 previewHeight=280px
-setInitialRoutes(["/posts/show/12"]);
+```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
+setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, ShowButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -905,8 +905,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <ShowButton recordItemId="12">
-                                Show Item 12
+                            <ShowButton recordItemId="123">
+                                Show Item 123
                             </ShowButton>
                         </div>
                     ),
@@ -926,8 +926,8 @@ render(
 
 You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
-```tsx live url=http://localhost:3000/posts/show/12 previewHeight=280px
-setInitialRoutes(["/posts/show/12"]);
+```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
+setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, ShowButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -967,8 +967,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <ShowButton recordItemId="12">
-                                Show Item 12
+                            <ShowButton recordItemId="123">
+                                Show Item 123
                             </ShowButton>
                         </div>
                     ),
@@ -990,8 +990,8 @@ You can customize the wrapper element of the buttons at the footer by using the 
 
 [Refer to the `Space` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/space/)
 
-```tsx live url=http://localhost:3000/posts/show/12 previewHeight=280px
-setInitialRoutes(["/posts/show/12"]);
+```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
+setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, ShowButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -1040,8 +1040,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <ShowButton recordItemId="12">
-                                Show Item 12
+                            <ShowButton recordItemId="123">
+                                Show Item 123
                             </ShowButton>
                         </div>
                     ),
