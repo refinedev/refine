@@ -122,6 +122,38 @@ const filter = [
 
 Here the query will look like: `("name" = John Doe AND "age" = 30) OR ("name" = JR.Doe AND "age" = 1)`
 
+### Top level multiple conditional filters usage
+
+If you create multiple Conditional Filters at the top level, you must add a key to it. Otherwise, you will get a warning in the console and your filters may not be combined correctly.
+
+```ts
+const filter = [
+    {
+        key: "name",
+        operator: "and",
+        value: [
+            {
+                field: "name",
+                operator: "eq",
+                value: "John Doe",
+            },
+        ],
+    },
+    {
+        key: "age",
+        operator: "and",
+        value: [
+            {
+                field: "age",
+                operator: "eq",
+                value: "10",
+            },
+        ],
+    },
+];
+```
+
+
 ## Combining Filters
 
 You can group multiple parameters in the same query using the logical filters or the conditional filters operators to filter results based on more than one criteria at the same time. This allows you to create more complex queries.
@@ -165,7 +197,7 @@ const dataProvider = (): DataProvider => ({
     getList: async ({ resource, pagination, filters, sort }) => {
         if (filters) {
             filters.map((filter) => {
-                if (filter.operator !== "or") {
+                if (filter.operator !== "or" && filter.operator !== "and" && "field" in filter) {
                     // Handle your logical filters here
                     // console.log(typeof filter); // LogicalFilter
                 } else {

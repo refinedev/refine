@@ -92,7 +92,10 @@ export const unionFilters = (
     );
 
     if (isKeyRequired.length > 1) {
-        warnOnce(true, `Only one filter without key can be used!`);
+        warnOnce(
+            true,
+            `[conditionalFilters]: You have created multiple Conditional Filters at the top level, this requires the key parameter. \nFor more information, see docs/advanced-tutorials/data-provider/handling-filters/#top-level-multiple-conditional-filters-usage`,
+        );
     }
 
     return unionWith(
