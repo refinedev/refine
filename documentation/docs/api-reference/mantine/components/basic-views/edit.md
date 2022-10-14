@@ -1237,4 +1237,4 @@ render(
 
 ### Props
 
-<PropsTable module="@pankod/refine-mantine/Edit" goBack-default="`<IconArrowLeft />`" />
+<PropsTable module="@pankod/refine-mantine/Edit" goBack-default="`<IconArrowLeft />`" title-default="`<Title order={3}>Edit {resource.name}</Title>`" />

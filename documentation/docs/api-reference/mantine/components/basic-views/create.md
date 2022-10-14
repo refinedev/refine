@@ -915,4 +915,4 @@ render(
 
 ### Props
 
-<PropsTable module="@pankod/refine-mantine/Create" goBack-default="`<IconArrowLeft />`" />
+<PropsTable module="@pankod/refine-mantine/Create" goBack-default="`<IconArrowLeft />`" title-default="`<Title order={3}>Create {resource.name}</Title>`"/>
