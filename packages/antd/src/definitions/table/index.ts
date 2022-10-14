@@ -88,7 +88,7 @@ export const mapAntdFilterToCrudFilter = (
             .filter((i) => i.operator !== "or")
             .find((p: any) => p.field === field)?.operator;
 
-        if (operator !== "or") {
+        if (operator !== "or" && operator !== "and") {
             crudFilters.push({
                 field,
                 operator: operator ?? (Array.isArray(value) ? "in" : "eq"),
