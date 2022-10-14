@@ -1,5 +1,4 @@
 import axios from "axios";
-import { recorder } from "nock";
 
 import JsonServer from "../../src/index";
 import "./index.mock";
@@ -82,7 +81,6 @@ describe("getList", () => {
     });
 
     it("or/and correct filter response", async () => {
-        recorder.rec();
         const { data, total } = await JsonServer(
             "https://api.nestjsx-crud.refine.dev",
             axios,
