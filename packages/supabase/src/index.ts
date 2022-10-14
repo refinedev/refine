@@ -138,7 +138,6 @@ const dataProvider = (
                     count: "exact",
                 });
 
-            query.eq;
             if (hasPagination) {
                 query.range((current - 1) * pageSize, current * pageSize - 1);
             }
