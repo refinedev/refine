@@ -75,7 +75,7 @@ It is used to show and not show the text of the button. When `true`, only the bu
 ```tsx 
 import { ExportButton } from "@pankod/refine-antd";
 
-export const MyRefreshComponent = () => {
+export const MyExportComponent = () => {
     return <ExportButton hideText />;
 };
 ```

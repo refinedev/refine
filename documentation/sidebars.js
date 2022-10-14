@@ -400,6 +400,7 @@ module.exports = {
                                         "api-reference/mantine/components/buttons/create-button",
                                         "api-reference/mantine/components/buttons/delete-button",
                                         "api-reference/mantine/components/buttons/edit-button",
+                                        "api-reference/mantine/components/buttons/export-button",
                                     ],
                                 },
                             ],
