@@ -46,11 +46,11 @@ export const team = [
         url: "https://www.linkedin.com/in/necatiozmen/",
     },
     {
-        name: "Melih Özkalay",
-        avatar: "/about/images/team-avatars/melih.png",
-        avatar2x: "/about/images/team-avatars/melih2x.png",
+        name: "Alican Erdurmaz",
+        avatar: "/about/images/team-avatars/alican.png",
+        avatar2x: "/about/images/team-avatars/alican2x.png",
         role1: "Software Developer",
-        url: "https://www.linkedin.com/in/melihozkalay/",
+        url: "https://www.linkedin.com/in/alicanerdurmaz/",
     },
     {
         name: "Salih Özdemir",
