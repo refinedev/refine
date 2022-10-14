@@ -20,8 +20,12 @@ const mapOperator = (operator: CrudOperators): string => {
 const generateFilter = (filters?: CrudFilters) => {
     const queryFilters: { [key: string]: string } = {};
     if (filters) {
-        filters.map((filter) => {
-            if (filter.operator !== "or") {
+        filters.map((filter: any) => {
+            if (
+                filter.operator !== "or" &&
+                filter.operator !== "and" &&
+                "field" in filter
+            ) {
                 const { field, operator, value } = filter;
 
                 const mappedOperator = mapOperator(operator);
