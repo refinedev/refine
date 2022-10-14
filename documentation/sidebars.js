@@ -403,6 +403,7 @@ module.exports = {
                                         "api-reference/mantine/components/buttons/export-button",
                                         "api-reference/mantine/components/buttons/import-button",
                                         "api-reference/mantine/components/buttons/list-button",
+                                        "api-reference/mantine/components/buttons/refresh-button",
                                     ],
                                 },
                             ],
