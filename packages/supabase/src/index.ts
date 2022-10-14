@@ -96,10 +96,8 @@ const generateFilter = (filter: CrudFilter, query: any) => {
                     return;
                 })
                 .join(",");
-            console.log("orSyntax", orSyntax);
             return query.or(orSyntax);
 
-        // return query.or(`title.eq.Lorem 3,title.eq.Test`);
         case "and":
             throw Error("Operator 'and' is not supported");
         default:
