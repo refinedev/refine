@@ -9,8 +9,6 @@ import {
     CrudSort,
     CrudOperators,
     SortOrder,
-    LogicalFilter,
-    ConditionalFilter,
 } from "../../interfaces";
 
 export const parseTableParams = (url: string) => {
@@ -87,8 +85,21 @@ export const unionFilters = (
     permanentFilter: CrudFilters,
     newFilters: CrudFilters,
     prevFilters: CrudFilters = [],
-): CrudFilters =>
-    unionWith(permanentFilter, newFilters, prevFilters, compareFilters).filter(
+): CrudFilters => {
+    const isKeyRequired = newFilters.filter(
+        (f) => (f.operator === "or" || f.operator === "and") && !f.key,
+    );
+
+    if (isKeyRequired.length > 1) {
+        throw new Error("Only one filter without key can be used!");
+    }
+
+    return unionWith(
+        permanentFilter,
+        newFilters,
+        prevFilters,
+        compareFilters,
+    ).filter(
         (crudFilter) =>
             crudFilter.value !== undefined &&
             crudFilter.value !== null &&
@@ -99,6 +110,7 @@ export const unionFilters = (
                 (crudFilter.operator === "and" &&
                     crudFilter.value.length !== 0)),
     );
+};
 
 export const unionSorters = (
     permanentSorter: CrudSorting,
