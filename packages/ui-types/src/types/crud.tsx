@@ -18,7 +18,7 @@ export type RefineCrudListProps<
 > = PropsWithChildren<{
     /**
      * Title of the list view
-     * @default `<Title order={3}>{resource.name}</Title>`
+     * @default {resource.name}
      */
     title?: React.ReactNode;
     /**
@@ -78,7 +78,7 @@ export type RefineCrudCreateProps<
 > = PropsWithChildren<{
     /**
      * Title of the create view
-     * @default `<Title order={3}>Create {resource.name}</Title>`
+     * @default Create {resource.name}
      */
     title?: React.ReactNode;
     /**
@@ -151,7 +151,7 @@ export type RefineCrudEditProps<
 > = PropsWithChildren<{
     /**
      * Title of the edit view
-     * @default `<Title order={3}>Edit {resource.name}</Title>`
+     * @default Edit {resource.name}
      */
     title?: React.ReactNode;
     /**
@@ -245,7 +245,7 @@ export type RefineCrudShowProps<
 > = PropsWithChildren<{
     /**
      * Title of the edit view
-     * @default `<Title order={3}>Show {resource.name}</Title>`
+     * @default Show {resource.name}
      */
     title?: React.ReactNode;
     /**
