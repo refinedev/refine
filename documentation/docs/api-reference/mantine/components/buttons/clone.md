@@ -36,7 +36,7 @@ It can be useful when redirecting the app to the create page with the record id 
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine, useNavigation } from "@pankod/refine-core";
+import { Refine, useNavigation, useRouterContext } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import { Button, Code, Space, Text } from "@pankod/refine-mantine";

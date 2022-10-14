@@ -35,9 +35,10 @@ const Wrapper = ({ children }) => {
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine, useNavigation } from "@pankod/refine-core";
+import { Refine, useNavigation, useRouterContext } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
+import { Button, Code, Space, Text } from "@pankod/refine-mantine";
 
 // visible-block-start
 import { List, Table, Pagination, CreateButton } from "@pankod/refine-mantine";
@@ -235,12 +236,7 @@ It is used to show and not show the text of the button. When `true`, only the bu
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import {
-    Refine,
-    useRouterContext,
-    useNavigation,
-    useRouterContext,
-} from "@pankod/refine-core";
+import { Refine, useRouterContext, useNavigation } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import { Button, Code, Space, Text } from "@pankod/refine-mantine";
