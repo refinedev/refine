@@ -514,30 +514,36 @@ You can also see the deployed application [here](https://calculator-ui-with-ligh
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
 </a>
 </div>
 
 ---
 
-## Build your React-based CRUD applications without constraints
+<div style={{backgroundColor:"#F8F8F8", padding:"18px", borderRadius:"10px"}}>
+<div style={{fontSize:"32px", fontWeight:"700", lineHeight:"1.4", marginBottom:"25px"}} >Stop wasting your time copy/pasting your form code all over your application!</div >
 
-Modern CRUD applications are required to consume data from many different sources from custom API’s to backend services like Supabase, Hasura, Airtable and Strapi.
 
-Check out [refine](https://github.com/pankod/refine), if you are interested in a backend agnostic, headless framework which can connect 15+ data sources thanks to built-in providers and community plugins.
 
+Meet the headless, React-based solution to build sleek **CRUD** applications. With refine, you can be confident that your codebase will always stay clean and boilerplate-free.
+
+Try [refine](https://github.com/pankod/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
+
+    
 
 <div>
 <a href="https://github.com/pankod/refine">
-    <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
+   <img  src="/img/mui_banner.png" alt="refine blog logo" /> 
 </a>
 </div>
 
 <br/>
 
-**refine** is an open-source React-based framework for building CRUD applications **without constraints.**
-It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
 
-**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
+**refine** is an open-source, React-based framework for building CRUD applications without constraints. It’s headless by design and seamlessly works with **any custom design** or **UI framework** you favor. For convenience, it ships with ready-made integrations for **Ant Design System, Material UI and Mantine UI**.
+
+It can **speed up your development time up to 3X** without compromising freedom on styling, customization and project workflow.
 
 Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials, and example projects.
+
+</div>
