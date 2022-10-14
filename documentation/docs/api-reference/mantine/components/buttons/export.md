@@ -38,8 +38,15 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
+//highlight-next-line
 import { useExport } from "@pankod/refine-core";
-import { List, Table, Pagination, ExportButton } from "@pankod/refine-mantine";
+import {
+    List,
+    Table,
+    Pagination,
+    //highlight-next-line
+    ExportButton,
+} from "@pankod/refine-mantine";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 const PostList: React.FC = () => {
@@ -67,6 +74,7 @@ const PostList: React.FC = () => {
         columns,
     });
 
+    //highlight-start
     const { triggerExport, isLoading: exportLoading } = useExport<IPost>({
         mapData: (item) => {
             return {
@@ -77,6 +85,7 @@ const PostList: React.FC = () => {
         pageSize: 10,
         maxItemCount: 50,
     });
+    //highlight-end
 
     return (
         <List
