@@ -65,7 +65,7 @@ The button text is defined automatically by **refine** based on _resource_ objec
 
 Redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceNameOrRouteName` property. By default, `<ListButton>` uses `name` property of the resource object as the endpoint to redirect after clicking.
 
-```tsx 
+```tsx
 import { ListButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
@@ -79,7 +79,7 @@ Clicking the button will trigger the `list` method of [`useNavigation`](/api-ref
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx 
+```tsx
 import { ListButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
@@ -91,7 +91,7 @@ export const MyListComponent = () => {
 
 It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
-```tsx 
+```tsx
 import { ListButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
