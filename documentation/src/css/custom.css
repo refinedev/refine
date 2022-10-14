@@ -507,26 +507,8 @@ html[data-page="index"] {
     scroll-behavior: smooth;
 }
 
-@media screen and (min-width: 1024px) {
-    html[data-page="index"] body {
-        scroll-snap-align: start;
-    }
-
-html[data-page="index"] #__docusaurus .main-wrapper {
-    margin-top: -64px;
-}
-
-html[data-page="index"] body.has-announcement #__docusaurus .main-wrapper {
-    margin-top: -96px;
-}
-}
-
 #__docusaurus .main-wrapper {
     padding-top: 64px;
-}
-
-body.has-announcement #__docusaurus .main-wrapper {
-    padding-top: 96px;
 }
 
 #__docusaurus .text-color-base {

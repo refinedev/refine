@@ -3,10 +3,10 @@
   "version": "3.25.0",
   "private": true,
   "dependencies": {
-    "@pankod/refine-antd": "^3.51.0",
-    "@pankod/refine-core": "^3.74.8",
+    "@pankod/refine-antd": "^3.55.3",
+    "@pankod/refine-core": "^3.84.0",
     "@pankod/refine-react-router-v6": "^3.36.0",
-    "@pankod/refine-strapi-v4": "^3.35.0",
+    "@pankod/refine-strapi-v4": "^3.37.0",
     "@progress/kendo-drawing": "1.16.3",
     "@progress/kendo-licensing": "1.2.2",
     "@progress/kendo-react-pdf": "^5.0.1",

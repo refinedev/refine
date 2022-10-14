@@ -10,6 +10,7 @@ import {
     ActionIcon,
     Stack,
     Title,
+    LoadingOverlay,
 } from "@mantine/core";
 import {
     ResourceRouterParams,
@@ -63,6 +64,9 @@ export const Create: React.FC<CreateProps> = (props) => {
 
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
 
+    const loadingOverlayVisible =
+        isLoading ?? saveButtonProps?.disabled ?? false;
+
     const defaultFooterButtons = (
         <SaveButton
             {...(isLoading ? { disabled: true } : {})}
@@ -71,11 +75,13 @@ export const Create: React.FC<CreateProps> = (props) => {
     );
 
     const buttonBack =
-        typeof goBackFromProps !== "undefined" ? (
-            goBackFromProps
-        ) : (
+        goBackFromProps === (false || null) ? null : (
             <ActionIcon onClick={routeFromAction ? goBack : undefined}>
-                <IconArrowLeft />
+                {typeof goBackFromProps !== "undefined" ? (
+                    goBackFromProps
+                ) : (
+                    <IconArrowLeft />
+                )}
             </ActionIcon>
         );
 
@@ -95,13 +101,14 @@ export const Create: React.FC<CreateProps> = (props) => {
 
     return (
         <Card p="md" {...wrapperProps}>
+            <LoadingOverlay visible={loadingOverlayVisible} />
             <Group position="apart" align="center" {...headerProps}>
                 <Stack spacing="xs">
                     {breadcrumb}
-                    {title ?? (
-                        <Group spacing="xs">
-                            {buttonBack}
-                            <Title order={2} transform="capitalize">
+                    <Group spacing="xs">
+                        {buttonBack}
+                        {title ?? (
+                            <Title order={3} transform="capitalize">
                                 {translate(
                                     `${resource.name}.titles.create`,
                                     `Create ${userFriendlyResourceName(
@@ -110,8 +117,8 @@ export const Create: React.FC<CreateProps> = (props) => {
                                     )}`,
                                 )}
                             </Title>
-                        </Group>
-                    )}
+                        )}
+                    </Group>
                 </Stack>
                 <Group spacing="xs" {...headerButtonProps}>
                     {headerButtons}

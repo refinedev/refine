@@ -63,7 +63,7 @@ When you're working on an Open Source projects, you need to be able to communica
 
 This is a great way to improve your communication skills. You need to be able to explain your ideas clearly and concisely. You also need to be able to listen to others and understand their point of view. Working on an Open Source project is a great way to improve your communication skills. 
 
-The Refine has a [discord  channel](https://discord.com/invite/refine) where we discuss the development of Refine and help each other.
+The Refine has a [discord  channel](https://discord.gg/refine) where we discuss the development of Refine and help each other.
 
 ## 🌚 Disadvantage of Working on an Open Source Projects
 

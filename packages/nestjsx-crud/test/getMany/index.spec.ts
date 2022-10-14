@@ -10,7 +10,7 @@ describe("getMany", () => {
         const { data } = await JsonServer(
             "https://api.nestjsx-crud.refine.dev",
             axios,
-        ).getMany({
+        ).getMany!({
             resource: "posts",
             ids: [
                 "6536e986-e500-4933-b154-b51d60d702c2",

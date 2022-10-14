@@ -50,7 +50,7 @@ const About: React.FC = () => {
                     </p>
                     <p className={styles.aboutParagraph}>
                         With the aim of sustaining the growth and expanding the
-                        user base, the project was
+                        user base, the project was{" "}
                         <strong>
                             backed by prominent VC&apos;s and angel investors on
                             May 2022
@@ -171,8 +171,7 @@ const About: React.FC = () => {
                                     <Pin className={styles.icon} />
                                 </div>
                                 <p className={styles.text}>
-                                    256 Chapman Road STE 105-4 Newark, New
-                                    Castle <strong>Delaware 19702</strong>
+                                    256 Chapman Road STE 105-4 Newark, DE 19702
                                 </p>
                             </div>
                             <div className={styles.locationInfo}>

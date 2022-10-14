@@ -36,18 +36,65 @@ import {
 type SetFilterBehavior = "merge" | "replace";
 
 export type useTableProps<TData, TError> = {
+    /**
+     * Resource name for API data interactions
+     * @default Resource name that it reads from route
+     */
     resource?: string;
+    /**
+     * Initial page index
+     * @default 10
+     */
     initialCurrent?: number;
+    /**
+     * Initial number of items per page
+     * @default 10
+     */
     initialPageSize?: number;
-    hasPagination?: boolean;
+    /**
+     * Initial sorter state
+     */
     initialSorter?: CrudSorting;
+    /**
+     * Default and unchangeable sorter state
+     *  @default `[]`
+     */
     permanentSorter?: CrudSorting;
-    defaultSetFilterBehavior?: SetFilterBehavior;
+    /**
+     * Initial filter state
+     */
     initialFilter?: CrudFilters;
+    /**
+     * WDefault and unchangeable filter state
+     * @default `[]`
+     */
     permanentFilter?: CrudFilters;
+    /**
+     *Default behavior of the `setFilters` function
+     * @default `"merge"`
+     */
+    defaultSetFilterBehavior?: SetFilterBehavior;
+    /**
+     * Whether to use server side pagination or not.
+     * @default `true`
+     */
+    hasPagination?: boolean;
+    /**
+     * Sortings, filters, page index and records shown per page are tracked by browser history
+     * @default Value set in [Refine](/docs/api-reference/core/components/refine-config/#syncwithlocation). If a custom resource is given, it will be `false`
+     */
     syncWithLocation?: boolean;
+    /**
+     * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
+     */
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
+    /**
+     * Metadata query for dataProvider
+     */
     metaData?: MetaDataQuery;
+    /**
+     * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
+     */
     dataProviderName?: string;
 } & SuccessErrorNotification &
     LiveModeProps;

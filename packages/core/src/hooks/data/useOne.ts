@@ -14,19 +14,37 @@ import {
     SuccessErrorNotification,
 } from "../../interfaces";
 import {
+    useResource,
     useCheckError,
     useTranslate,
     useResourceSubscription,
     useHandleNotification,
     useDataProvider,
 } from "@hooks";
-import { queryKeys } from "@definitions";
+import { queryKeys, pickDataProvider } from "@definitions";
 
 export type UseOneProps<TData, TError> = {
+    /**
+     * Resource name for API data interactions
+     */
     resource: string;
+    /**
+     * id of the item in the resource
+     * @type [`BaseKey`](/docs/api-reference/core/interfaceReferences/#basekey)
+     */
     id: BaseKey;
+    /**
+     * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
+     */
     queryOptions?: UseQueryOptions<GetOneResponse<TData>, TError>;
+    /**
+     * Metadata query for `dataProvider`,
+     */
     metaData?: MetaDataQuery;
+    /**
+     * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
+     * @default `"default"``
+     */
     dataProviderName?: string;
 } & SuccessErrorNotification &
     LiveModeProps;
@@ -57,10 +75,17 @@ export const useOne = <
     liveParams,
     dataProviderName,
 }: UseOneProps<TData, TError>): QueryObserverResult<GetOneResponse<TData>> => {
+    const { resources } = useResource();
     const dataProvider = useDataProvider();
-    const queryKey = queryKeys(resource, dataProviderName, metaData);
+    const queryKey = queryKeys(
+        resource,
+        pickDataProvider(resource, dataProviderName, resources),
+        metaData,
+    );
 
-    const { getOne } = dataProvider(dataProviderName);
+    const { getOne } = dataProvider(
+        pickDataProvider(resource, dataProviderName, resources),
+    );
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
     const handleNotification = useHandleNotification();

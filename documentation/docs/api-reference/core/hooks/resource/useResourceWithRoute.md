@@ -17,9 +17,8 @@ const resourceWithRoute = useResourceWithRoute();
 
 ### Return value
 
-| Description       | Type                                                                        |
-| ----------------- | --------------------------------------------------------------------------- |
+| Description       | Type                                                                                      |
+| ----------------- | ----------------------------------------------------------------------------------------- |
 | resourceWithRoute | [`(route: string) => IResourceItem`](/api-reference/core/interfaces.md#resourceitemprops) |
-
 
 > The `canCreate`, `canShow` and `canEdit` properties are defined automatically if the `create`, `show` and `edit` components are defined on the `resources` property in `<Refine>`.

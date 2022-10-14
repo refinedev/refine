@@ -6,6 +6,7 @@ import {
 import pluralize from "pluralize";
 
 import {
+    useResource,
     useCancelNotification,
     useCheckError,
     useMutationMode,
@@ -29,7 +30,11 @@ import {
     GetListResponse,
     IQueryKeys,
 } from "../../interfaces";
-import { queryKeys } from "@definitions/helpers";
+import {
+    queryKeys,
+    pickDataProvider,
+    handleMultiple,
+} from "@definitions/helpers";
 
 type UpdateManyParams<TVariables> = {
     ids: BaseKey[];
@@ -71,6 +76,7 @@ export const useUpdateMany = <
     TError extends HttpError = HttpError,
     TVariables = {},
 >(): UseUpdateManyReturnType<TData, TError, TVariables> => {
+    const { resources } = useResource();
     const queryClient = useQueryClient();
     const dataProvider = useDataProvider();
     const translate = useTranslate();
@@ -107,28 +113,40 @@ export const useUpdateMany = <
             const undoableTimeoutPropOrContext =
                 undoableTimeout ?? undoableTimeoutContext;
 
+            const selectedDataProvider = dataProvider(
+                pickDataProvider(resource, dataProviderName, resources),
+            );
+
+            const mutationFn = () => {
+                if (selectedDataProvider.updateMany) {
+                    return selectedDataProvider.updateMany<TData, TVariables>({
+                        resource,
+                        ids,
+                        variables: values,
+                        metaData,
+                    });
+                } else {
+                    return handleMultiple(
+                        ids.map((id) =>
+                            selectedDataProvider.update<TData, TVariables>({
+                                resource,
+                                id,
+                                variables: values,
+                                metaData,
+                            }),
+                        ),
+                    );
+                }
+            };
+
             if (!(mutationModePropOrContext === "undoable")) {
-                return dataProvider(dataProviderName).updateMany<
-                    TData,
-                    TVariables
-                >({
-                    resource,
-                    ids,
-                    variables: values,
-                    metaData,
-                });
+                return mutationFn();
             }
 
             const updatePromise = new Promise<UpdateManyResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        dataProvider(dataProviderName)
-                            .updateMany<TData, TVariables>({
-                                resource,
-                                ids,
-                                variables: values,
-                                metaData,
-                            })
+                        mutationFn()
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
                     };
@@ -168,7 +186,7 @@ export const useUpdateMany = <
             }) => {
                 const queryKey = queryKeys(
                     resource,
-                    dataProviderName,
+                    pickDataProvider(resource, dataProviderName, resources),
                     metaData,
                 );
 
@@ -279,14 +297,22 @@ export const useUpdateMany = <
                 invalidateStore({
                     resource,
                     invalidates: ["list", "many"],
-                    dataProviderName,
+                    dataProviderName: pickDataProvider(
+                        resource,
+                        dataProviderName,
+                        resources,
+                    ),
                 });
 
                 ids.forEach((id) =>
                     invalidateStore({
                         resource,
                         invalidates: ["detail"],
-                        dataProviderName,
+                        dataProviderName: pickDataProvider(
+                            resource,
+                            dataProviderName,
+                            resources,
+                        ),
                         id,
                     }),
                 );

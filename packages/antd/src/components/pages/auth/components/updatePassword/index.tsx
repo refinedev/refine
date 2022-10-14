@@ -1,8 +1,8 @@
 import React from "react";
 import {
-    RefineUpdatePasswordPageProps,
-    RefineUpdatePasswordFormTypes,
-} from "@pankod/refine-ui-types";
+    UpdatePasswordPageProps,
+    UpdatePasswordFormTypes,
+} from "@pankod/refine-core";
 import {
     Row,
     Col,
@@ -22,7 +22,7 @@ import { layoutStyles, containerStyles, titleStyles } from "../styles";
 
 const { Title } = Typography;
 
-type UpdatePasswordProps = RefineUpdatePasswordPageProps<
+type UpdatePasswordProps = UpdatePasswordPageProps<
     LayoutProps,
     CardProps,
     FormProps
@@ -39,10 +39,10 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
     renderContent,
     formProps,
 }) => {
-    const [form] = Form.useForm<RefineUpdatePasswordFormTypes>();
+    const [form] = Form.useForm<UpdatePasswordFormTypes>();
     const translate = useTranslate();
     const { mutate: updatePassword, isLoading } =
-        useUpdatePassword<RefineUpdatePasswordFormTypes>();
+        useUpdatePassword<UpdatePasswordFormTypes>();
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>
@@ -57,7 +57,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
             style={containerStyles}
             {...(contentProps ?? {})}
         >
-            <Form<RefineUpdatePasswordFormTypes>
+            <Form<UpdatePasswordFormTypes>
                 layout="vertical"
                 form={form}
                 onFinish={(values) => updatePassword(values)}

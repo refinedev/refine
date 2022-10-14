@@ -1,5 +1,41 @@
 # @pankod/refine-hasura
 
+## 4.15.2
+
+### Patch Changes
+
+-   Added nested property filter support for `or` filters.
+
+## 4.15.1
+
+### Patch Changes
+
+-   [#2743](https://github.com/pankod/refine/pull/2743) [`8aecb59d7b`](https://github.com/pankod/refine/commit/8aecb59d7bf68ae8b9e2e256f1995dd9ba3a8e66) Thanks [@aliemir](https://github.com/aliemir)! - Added nested property filter support for `or` filters.
+
+## 4.15.0
+
+### Minor Changes
+
+-   Added missing implementations for `nnull`, `startswith`, `startswiths`, `nstartswith`, `nstartswiths`, `endswith`, `endswiths`, `nendswith` and `nendswiths` filters by `_similar`, `_nsimilar`, `_regex` and `_iregex` filters from Hasura.
+
+## 4.14.0
+
+### Minor Changes
+
+-   [#2728](https://github.com/pankod/refine/pull/2728) [`585ba350f8`](https://github.com/pankod/refine/commit/585ba350f831be93055c58c1ff660645f21bdf77) Thanks [@aliemir](https://github.com/aliemir)! - Added missing implementations for `nnull`, `startswith`, `startswiths`, `nstartswith`, `nstartswiths`, `endswith`, `endswiths`, `nendswith` and `nendswiths` filters by `_similar`, `_nsimilar`, `_regex` and `_iregex` filters from Hasura.
+
+## 4.13.0
+
+### Minor Changes
+
+-   Updated `dataProvider` types with `Required` utility to mark `getMany`, `createMany`, `updateMany` and `deleteMany` as implemented.
+
+## 4.12.0
+
+### Minor Changes
+
+-   [#2688](https://github.com/pankod/refine/pull/2688) [`508045ac30`](https://github.com/pankod/refine/commit/508045ac30cd3948f68497e13fdf04f7c72ce387) Thanks [@aliemir](https://github.com/aliemir)! - Updated `dataProvider` types with `Required` utility to mark `getMany`, `createMany`, `updateMany` and `deleteMany` as implemented.
+
 ## 4.11.2
 
 ### Patch Changes

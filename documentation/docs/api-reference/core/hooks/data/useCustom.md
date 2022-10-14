@@ -60,23 +60,16 @@ const { data, isLoading } = useCustom<PostUniqueCheckResponse>({
 
 ### Properties
 
-| Property                                        | Description                                                                                                    | Type                                                                                                                                                           |
-| ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| url <div className="required">Required</div>    | URL                                                                                                            | string                                                                                                                                                         |
-| method <div className="required">Required</div> | Method                                                                                                         | `get`, `delete`, `head`, `options`, `post`, `put`, `patch`                                                                                                     |
-| config                                          | The config of your request. You can send `headers`, `payload`, `query`, `filters` and `sort` using this field. | { sort?: [CrudSorting](/api-reference/core/interfaces.md#crudsorting); filters?: [`CrudFilters`](/api-reference/core/interfaces.md#crudfilters); payload?: {}; query?: {}, headers?: {}; } |
-| queryOptions                                    | [useQuery Options](https://react-query.tanstack.com/reference/useQuery)                                        | object                                                                                                                                                         |
-| metaData                                        | Metadata query for `dataProvider`                                                                              | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                                                                                                           | {}        |
-| dataProviderName                                | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.             | `string`                                                                                                                                                       | `default` |
+<PropsTable module="@pankod/refine-core/useCustom" />
 
 ### Type Parameters
 
-| Property | Desription                                                                       | Type                                           | Default                                        |
-| -------- | -------------------------------------------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| Property | Desription                                                                                     | Type                                                         | Default                                                      |
+| -------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | TData    | Result data of the query. Extends [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) |
 | TError   | Custom error object that extends [`HttpError`](/api-reference/core/interfaces.md#httperror)    | [`HttpError`](/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/api-reference/core/interfaces.md#httperror)   |
-| TQuery   | Values for query params.                                                         | `TQuery`                                       | unknown                                        |
-| TPayload | Values for params.                                                               | `TPayload`                                     | unknown                                        |
+| TQuery   | Values for query params.                                                                       | `TQuery`                                                     | unknown                                                      |
+| TPayload | Values for params.                                                                             | `TPayload`                                                   | unknown                                                      |
 
 ### Return value
 

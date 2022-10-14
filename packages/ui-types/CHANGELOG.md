@@ -1,5 +1,17 @@
 # @pankod/refine-ui-types
 
+## 0.11.4
+
+### Patch Changes
+
+-   Added tsdoc comments to crud component interfaces.
+
+## 0.11.3
+
+### Patch Changes
+
+-   [#2718](https://github.com/pankod/refine/pull/2718) [`d78d2a2a99`](https://github.com/pankod/refine/commit/d78d2a2a99adb508094069cda23deaba55c25b63) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added tsdoc comments to crud component interfaces.
+
 ## 0.11.2
 
 ### Patch Changes

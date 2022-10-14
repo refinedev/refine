@@ -1,8 +1,5 @@
 import * as React from "react";
-import {
-    RefineLoginPageProps,
-    RefineLoginFormTypes,
-} from "@pankod/refine-ui-types";
+import { LoginPageProps, LoginFormTypes } from "@pankod/refine-core";
 import { FormProvider, useForm } from "@pankod/refine-react-hook-form";
 import {
     Button,
@@ -17,6 +14,7 @@ import {
     TextField,
     Typography,
     Divider,
+    Link as MuiLink,
 } from "@mui/material";
 
 import {
@@ -29,11 +27,7 @@ import {
 import { layoutStyles, titleStyles } from "../styles";
 
 import { FormPropsType } from "../../index";
-type LoginProps = RefineLoginPageProps<
-    BoxProps,
-    CardContentProps,
-    FormPropsType
->;
+type LoginProps = LoginPageProps<BoxProps, CardContentProps, FormPropsType>;
 
 /**
  * login will be used as the default type of the <AuthPage> component. The login page will be used to log in to the system.
@@ -50,7 +44,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     formProps,
 }) => {
     const { onSubmit, ...useFormProps } = formProps || {};
-    const methods = useForm<BaseRecord, HttpError, RefineLoginFormTypes>({
+    const methods = useForm<BaseRecord, HttpError, LoginFormTypes>({
         ...useFormProps,
     });
     const {
@@ -59,12 +53,12 @@ export const LoginPage: React.FC<LoginProps> = ({
         formState: { errors },
     } = methods;
 
-    const { mutate: login, isLoading } = useLogin<RefineLoginFormTypes>();
+    const { mutate: login, isLoading } = useLogin<LoginFormTypes>();
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
     const renderProviders = () => {
-        if (providers) {
+        if (providers && providers.length > 0) {
             return (
                 <>
                     {providers.map((provider: any) => {
@@ -103,6 +97,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                     variant="h5"
                     align="center"
                     style={titleStyles}
+                    color="primary"
                 >
                     {translate("pages.login.title", "Sign in to your account")}
                 </Typography>
@@ -124,7 +119,6 @@ export const LoginPage: React.FC<LoginProps> = ({
                         })}
                         id="email"
                         margin="normal"
-                        size="small"
                         fullWidth
                         label={translate("pages.login.fields.email", "Email")}
                         error={!!errors.email}
@@ -137,7 +131,6 @@ export const LoginPage: React.FC<LoginProps> = ({
                             required: true,
                         })}
                         id="password"
-                        size="small"
                         margin="normal"
                         fullWidth
                         name="password"
@@ -164,7 +157,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                             <FormControlLabel
                                 sx={{
                                     span: {
-                                        fontSize: "12px",
+                                        fontSize: "14px",
                                         color: "text.secondary",
                                     },
                                 }}
@@ -183,24 +176,17 @@ export const LoginPage: React.FC<LoginProps> = ({
                             />
                         )}
                         {forgotPasswordLink ?? (
-                            <Link
+                            <MuiLink
+                                variant="body2"
+                                component={Link}
+                                underline="none"
                                 to="/forgot-password"
-                                sx={{
-                                    fontSize: "12px",
-                                    textDecoration: "none",
-                                }}
                             >
-                                <Typography
-                                    sx={{
-                                        fontSize: "12px",
-                                    }}
-                                >
-                                    {translate(
-                                        "pages.login.buttons.forgotPassword",
-                                        "Forgot password?",
-                                    )}
-                                </Typography>
-                            </Link>
+                                {translate(
+                                    "pages.login.buttons.forgotPassword",
+                                    "Forgot password?",
+                                )}
+                            </MuiLink>
                         )}
                     </Box>
                     <Button
@@ -208,8 +194,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         fullWidth
                         variant="contained"
                         sx={{
-                            my: "8px",
-                            color: "white",
+                            mt: "8px",
                         }}
                         disabled={isLoading}
                     >
@@ -217,21 +202,22 @@ export const LoginPage: React.FC<LoginProps> = ({
                     </Button>
                     {registerLink ?? (
                         <Box style={{ marginTop: 8 }}>
-                            <Typography variant="subtitle2">
+                            <Typography variant="body2" component="span">
                                 {translate(
                                     "pages.login.buttons.noAccount",
                                     "Don’t have an account?",
-                                )}{" "}
-                                <Link
-                                    underline="none"
-                                    to="/register"
-                                    style={{
-                                        fontWeight: "bold",
-                                    }}
-                                >
-                                    {translate("pages.login.signup", "Sign up")}
-                                </Link>
+                                )}
                             </Typography>
+                            <MuiLink
+                                ml="8px"
+                                variant="body2"
+                                component={Link}
+                                underline="none"
+                                to="/register"
+                                fontWeight="bold"
+                            >
+                                {translate("pages.login.signup", "Sign up")}
+                            </MuiLink>
                         </Box>
                     )}
                 </Box>

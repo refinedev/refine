@@ -28,10 +28,8 @@
 [![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/refine)
 [![Twitter Follow](https://img.shields.io/twitter/follow/refine_dev?style=social)](https://twitter.com/refine_dev)
 
-<a href="https://www.producthunt.com/posts/refine-3?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-refine&#0045;3" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=362220&theme=light" alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0046;&#0032;Build&#0032;web&#0032;apps&#0032;3x&#0032;faster&#0046; | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+<a href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=362220&theme=light&period=daily" alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0032;to&#0032;build&#0032;web&#0032;apps&#0032;3x&#0032;faster | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
-[![Meercode CI Score](https://meercode.io/badge/pankod/refine?type=ci-score&branch=master&token=2ZiT8YsoJgt57JB23NYwXrFY3rJHZboT&lastDay=31)](https://meercode.io/)
-[![Meercode CI Success Rate](https://meercode.io/badge/pankod/refine?type=ci-success-rate&branch=master&token=2ZiT8YsoJgt57JB23NYwXrFY3rJHZboT&lastDay=31)](https://meercode.io/)
 [![Maintainability](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/maintainability)](https://codeclimate.com/github/pankod/refine/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/test_coverage)](https://codeclimate.com/github/pankod/refine/test_coverage)
 [![npm version](https://img.shields.io/npm/v/@pankod/refine-mui.svg)](https://www.npmjs.com/package/@pankod/refine-mui)
@@ -195,11 +193,12 @@ Now, you should see the output as a table populated with `post` & `category` dat
 
 👉 Jump to [Refine<>Ant Design Tutorial](https://refine.dev/docs/ui-frameworks/antd/tutorial/) to continue your work and turn the example into a full-blown CRUD application.
 
-👉 Check out the [Refine<>Tailwind Tutorial](https://refine.dev/docs/ui-frameworks/antd/tutorial/) to learn how to use **refine** in a pure *headless* way.
+👉 Check out the [Refine<>Tailwind Tutorial](https://refine.dev/docs/tutorials/headless-tutorial/) to learn how to use **refine** in a pure *headless* way.
 
 👉 Visit [Learn the Basics Page](https://refine.dev/docs/getting-started/overview/) to get informed about the fundemental concepts.
 
-👉 Read more on [Guides & Concepts](https://refine.dev/docs/guides-and-concepts/access-control/) for different usage scenarios.
+👉 Read more on [Advanced Tutorials
+](https://refine.dev/docs/advanced-tutorials/) for different usage scenarios.
 
 👉 See the real-life [Finefoods Demo](https://refine.dev/demo/) project.
 

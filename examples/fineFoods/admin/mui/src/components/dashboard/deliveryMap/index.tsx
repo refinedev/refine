@@ -1,10 +1,8 @@
 import { useList, useNavigation } from "@pankod/refine-core";
 import { Box } from "@pankod/refine-mui";
-import GoogleMapReact from "google-map-react";
 
-import { MapMarker } from "components/mapMarker";
-import { LocationIcon, CourierIcon } from "components/icons";
 import { IOrder } from "interfaces";
+import { Map, MapMarker } from "components";
 
 export const DeliveryMap: React.FC = () => {
     const { data: orderData } = useList<IOrder>({
@@ -35,43 +33,38 @@ export const DeliveryMap: React.FC = () => {
 
     return (
         <Box sx={{ height: "576px", width: "100%", position: "relative" }}>
-            <GoogleMapReact
-                bootstrapURLKeys={{
-                    key: process.env.REACT_APP_MAP_ID,
-                }}
-                defaultCenter={defaultProps.center}
-                defaultZoom={defaultProps.zoom}
-            >
+            <Map {...defaultProps}>
                 {orderData?.data.map((order) => {
                     return (
                         <MapMarker
                             key={order.id}
-                            lat={order.adress.coordinate[0]}
-                            lng={order.adress.coordinate[1]}
-                        >
-                            <LocationIcon
-                                sx={{ width: "36px", height: "36px" }}
-                                onClick={() => show("orders", order.id)}
-                            />
-                        </MapMarker>
+                            onClick={() => show("orders", order.id)}
+                            icon={{
+                                url: "/images/marker-courier.svg",
+                            }}
+                            position={{
+                                lat: Number(order.adress.coordinate[0]),
+                                lng: Number(order.adress.coordinate[1]),
+                            }}
+                        />
                     );
                 })}
-
                 {orderData?.data.map((order) => {
                     return (
                         <MapMarker
                             key={order.id}
-                            lat={order.store.address.coordinate[0]}
-                            lng={order.store.address.coordinate[1]}
-                        >
-                            <CourierIcon
-                                sx={{ width: "64px", height: "64px" }}
-                                onClick={() => show("orders", order.id)}
-                            />
-                        </MapMarker>
+                            onClick={() => show("orders", order.id)}
+                            icon={{
+                                url: "/images/marker-location.svg",
+                            }}
+                            position={{
+                                lat: Number(order.store.address.coordinate[0]),
+                                lng: Number(order.store.address.coordinate[1]),
+                            }}
+                        />
                     );
                 })}
-            </GoogleMapReact>
+            </Map>
         </Box>
     );
 };

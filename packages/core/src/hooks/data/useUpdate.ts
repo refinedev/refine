@@ -20,6 +20,7 @@ import {
 } from "../../interfaces";
 import pluralize from "pluralize";
 import {
+    useResource,
     useMutationMode,
     useCancelNotification,
     useTranslate,
@@ -30,17 +31,45 @@ import {
     useLog,
     useInvalidate,
 } from "@hooks";
-import { queryKeys } from "@definitions/helpers";
+import { queryKeys, pickDataProvider } from "@definitions/helpers";
 
 export type UpdateParams<TVariables> = {
-    id: BaseKey;
+    /**
+     * Resource name for API data interactions
+     */
     resource: string;
+    /**
+     * id for mutation function
+     */
+    id: BaseKey;
+    /**
+     * [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)
+     */
     mutationMode?: MutationMode;
+    /**
+     * Duration to wait before executing the mutation when `mutationMode = "undoable"`
+     */
     undoableTimeout?: number;
+    /**
+     * Callback that runs when undo button is clicked on `mutationMode = "undoable"`
+     */
     onCancel?: (cancelMutation: () => void) => void;
+    /**
+     * Values for mutation function
+     */
     values: TVariables;
+    /**
+     * Metadata query for `dataProvider`,
+     */
     metaData?: MetaDataQuery;
+    /**
+     * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
+     * @default "default"
+     */
     dataProviderName?: string;
+    /**
+     *  You can use it to manage the invalidations that will occur at the end of the mutation.
+     */
     invalidates?: Array<keyof IQueryKeys>;
 } & SuccessErrorNotification;
 
@@ -72,6 +101,7 @@ export const useUpdate = <
     TError extends HttpError = HttpError,
     TVariables = {},
 >(): UseUpdateReturnType<TData, TError, TVariables> => {
+    const { resources } = useResource();
     const queryClient = useQueryClient();
     const dataProvider = useDataProvider();
 
@@ -110,19 +140,25 @@ export const useUpdate = <
                 undoableTimeout ?? undoableTimeoutContext;
 
             if (!(mutationModePropOrContext === "undoable")) {
-                return dataProvider(dataProviderName).update<TData, TVariables>(
-                    {
-                        resource,
-                        id,
-                        variables: values,
-                        metaData,
-                    },
-                );
+                return dataProvider(
+                    pickDataProvider(resource, dataProviderName, resources),
+                ).update<TData, TVariables>({
+                    resource,
+                    id,
+                    variables: values,
+                    metaData,
+                });
             }
             const updatePromise = new Promise<UpdateResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        dataProvider(dataProviderName)
+                        dataProvider(
+                            pickDataProvider(
+                                resource,
+                                dataProviderName,
+                                resources,
+                            ),
+                        )
                             .update<TData, TVariables>({
                                 resource,
                                 id,
@@ -164,7 +200,10 @@ export const useUpdate = <
                 values,
                 dataProviderName,
             }) => {
-                const queryKey = queryKeys(resource, dataProviderName);
+                const queryKey = queryKeys(
+                    resource,
+                    pickDataProvider(resource, dataProviderName, resources),
+                );
 
                 const previousQueries: PreviousQuery<TData>[] =
                     queryClient.getQueriesData(queryKey.resourceAll);
@@ -263,7 +302,11 @@ export const useUpdate = <
             ) => {
                 invalidateStore({
                     resource,
-                    dataProviderName,
+                    dataProviderName: pickDataProvider(
+                        resource,
+                        dataProviderName,
+                        resources,
+                    ),
                     invalidates,
                     id,
                 });
@@ -345,7 +388,11 @@ export const useUpdate = <
                     previousData,
                     meta: {
                         id,
-                        dataProviderName,
+                        dataProviderName: pickDataProvider(
+                            resource,
+                            dataProviderName,
+                            resources,
+                        ),
                         ...rest,
                     },
                 });

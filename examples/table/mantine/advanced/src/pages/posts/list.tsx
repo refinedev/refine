@@ -24,12 +24,13 @@ import {
     Space,
     Box,
     DateField,
+    EditButton,
 } from "@pankod/refine-mantine";
 import { RichTextEditor } from "@mantine/rte";
 import { IconChevronDown, IconChevronRight } from "@tabler/icons";
 
 import { ColumnFilter, ColumnSorter } from "../../components/table";
-import { IPost, ICategory, FilterElementProps } from "../../interfaces";
+import { IPost, ICategory } from "../../interfaces";
 
 export const PostList: React.FC = () => {
     const {
@@ -157,12 +158,6 @@ export const PostList: React.FC = () => {
                     );
                     return category?.title ?? "Loading...";
                 },
-                meta: {
-                    filterElement: function render(props: FilterElementProps) {
-                        return <Select {...filterSelectProps} {...props} />;
-                    },
-                    filterOperator: "eq",
-                },
             },
             {
                 id: "createdAt",
@@ -184,6 +179,12 @@ export const PostList: React.FC = () => {
                 cell: function render({ getValue }) {
                     return (
                         <Group spacing="xs" noWrap>
+                            <EditButton
+                                hideText
+                                onClick={() => {
+                                    setId(getValue() as number);
+                                }}
+                            />
                             <DeleteButton
                                 hideText
                                 recordItemId={getValue() as number}

@@ -296,6 +296,55 @@ describe("useSelect Hook", () => {
         });
     });
 
+    it("should onSearchFromProp work as expected", async () => {
+        const getListMock = jest.fn(() =>
+            Promise.resolve({ data: [], total: 0 }),
+        );
+
+        const { result } = renderHook(
+            () =>
+                useSelect({
+                    resource: "posts",
+                    onSearch: (value) => {
+                        return [
+                            {
+                                field: "title",
+                                operator: "contains",
+                                value,
+                            },
+                        ];
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: {
+                        default: {
+                            ...MockJSONServer.default!,
+                            getList: getListMock,
+                        },
+                    },
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        const { onSearch } = result.current;
+
+        onSearch("1");
+        await waitFor(() => {
+            expect(getListMock).toBeCalledTimes(2);
+        });
+
+        onSearch("");
+        await waitFor(() => {
+            expect(getListMock).toBeCalledTimes(3);
+        });
+
+        await waitFor(() => {
+            expect(result.current.queryResult.isSuccess).toBeTruthy();
+        });
+    });
+
     it("should invoke queryOptions methods successfully", async () => {
         const mockFunc = jest.fn();
 
@@ -528,20 +577,26 @@ describe("useSelect Hook", () => {
 
         expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
             filters: [],
+            hasPagination: undefined,
             resource: "posts",
             metaData: {
                 queryContext: {
+                    pageParam: undefined,
                     queryKey: [
                         "default",
                         "posts",
                         "list",
                         {
                             filters: [],
+                            pagination: {},
+                            sort: undefined,
                         },
                     ],
                     signal: new AbortController().signal,
                 },
             },
+            pagination: {},
+            sort: undefined,
         });
 
         await act(async () => {
@@ -551,21 +606,98 @@ describe("useSelect Hook", () => {
         await waitFor(() => {
             expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
                 filters,
+                hasPagination: undefined,
                 resource: "posts",
                 metaData: {
                     queryContext: {
+                        pageParam: undefined,
                         queryKey: [
                             "default",
                             "posts",
                             "list",
                             {
                                 filters,
+                                pagination: {},
+                                sort: undefined,
                             },
                         ],
                         signal: new AbortController().signal,
                     },
                 },
+                pagination: {},
+                sort: undefined,
             });
+        });
+    });
+
+    it("should use pagination option as infinite loading when fetching list", async () => {
+        const posts = [
+            {
+                id: "1",
+                title: "Post 1",
+            },
+            {
+                id: "2",
+                title: "Post 2",
+            },
+            {
+                id: "3",
+                title: "Post 3",
+            },
+        ];
+
+        const mockDataProvider = {
+            default: {
+                ...MockJSONServer.default,
+                getList: jest.fn(() =>
+                    Promise.resolve({ data: posts, total: 3 }),
+                ),
+                getMany: jest.fn(() => Promise.resolve({ data: [...posts] })),
+            },
+        } as IDataMultipleContextProvider;
+
+        renderHook(
+            () =>
+                useSelect({
+                    resource: "posts",
+                    defaultValue: ["1", "2", "3"],
+                    pagination: {
+                        current: 2,
+                        pageSize: 1,
+                    },
+                }),
+            {
+                wrapper: TestWrapper({
+                    dataProvider: mockDataProvider as unknown as IDataContext,
+                    resources: [{ name: "posts" }],
+                }),
+            },
+        );
+
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        await act(() => {});
+
+        expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
+            filters: [],
+            pagination: { current: 2, pageSize: 1 },
+            resource: "posts",
+            metaData: {
+                queryContext: {
+                    queryKey: [
+                        "default",
+                        "posts",
+                        "list",
+                        {
+                            filters: [],
+                            pagination: {
+                                current: 2,
+                                pageSize: 1,
+                            },
+                        },
+                    ],
+                    signal: new AbortController().signal,
+                },
+            },
         });
     });
 });

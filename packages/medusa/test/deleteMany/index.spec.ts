@@ -10,7 +10,7 @@ describe("deleteMany", () => {
         const response = await DataProvider(
             "https://refine-example-storefront.herokuapp.com/store",
             axios,
-        ).deleteMany({
+        ).deleteMany!({
             resource: "customers/me/addresses",
             ids: ["addr_01G8ZK9FMJG86YBDWXQ2R4FSJF"],
         });

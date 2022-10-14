@@ -1,5 +1,49 @@
 # @pankod/refine-mui
 
+## 3.50.5
+
+### Patch Changes
+
+-   Fixed `providers` property empty array state in `<AuthPage />` component
+
+## 3.50.4
+
+### Patch Changes
+
+-   Fixed `providers` property empty array state in `<AuthPage />` component
+
+## 3.50.3
+
+### Patch Changes
+
+-   [#2712](https://github.com/pankod/refine/pull/2712) [`c434055011`](https://github.com/pankod/refine/commit/c434055011cbdd846c9f228c23987607bb828a1b) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed `providers` property empty array state in `<AuthPage />` component
+
+## 3.50.2
+
+### Patch Changes
+
+-   Add AuthProps type export
+
+## 3.50.1
+
+### Patch Changes
+
+-   [#2666](https://github.com/pankod/refine/pull/2666) [`8a562d2114`](https://github.com/pankod/refine/commit/8a562d2114b7145707070e363981a4e31e02547a) Thanks [@omeraplak](https://github.com/omeraplak)! - Add AuthProps type export
+
+## 3.50.0
+
+### Minor Changes
+
+-   -   Added new <AuthPage /> component core and mantine support.
+    -   Move Auth types `@pankod/refine-ui-types` to `@pankod/refine-core`
+
+## 3.49.0
+
+### Minor Changes
+
+-   [#2627](https://github.com/pankod/refine/pull/2627) [`c5fb45d61f`](https://github.com/pankod/refine/commit/c5fb45d61fa7470a7a34762ad19d17e9f87e4421) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - - Added new <AuthPage /> component core and mantine support.
+    -   Move Auth types `@pankod/refine-ui-types` to `@pankod/refine-core`
+
 ## 3.48.2
 
 ### Patch Changes

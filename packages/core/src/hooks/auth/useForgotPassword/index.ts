@@ -2,9 +2,9 @@ import React from "react";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
 
 import { AuthContext } from "@contexts/auth";
+import { useNavigation, useNotification } from "@hooks";
 
 import { IAuthContext, TForgotPasswordData } from "../../../interfaces";
-import { useNavigation, useNotification } from "@hooks";
 
 /**
  * `useForgotPassword` calls `forgotPassword` method from {@link https://refine.dev/docs/api-references/providers/auth-provider `authProvider`} under the hood.

@@ -1,5 +1,5 @@
 import React from "react";
-import { RefineLoginPageProps } from "@pankod/refine-ui-types";
+import { LoginPageProps } from "@pankod/refine-core";
 import {
     Row,
     Col,
@@ -34,7 +34,7 @@ export interface ILoginForm {
  *
  * @see {@link https://refine.dev/docs/api-references/components/refine-config#loginpage} for more details.
  */
-export const LoginPage: React.FC<RefineLoginPageProps> = () => {
+export const LoginPage: React.FC<LoginPageProps> = () => {
     const [form] = Form.useForm<ILoginForm>();
     const translate = useTranslate();
 

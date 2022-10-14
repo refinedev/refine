@@ -18,7 +18,7 @@ describe("useAuthProviderWithCloudConfig Hook", () => {
         const { login } = generateCloudAuthProvider();
 
         const response = await login({
-            username: "test",
+            email: "test@mail.com",
             password: "test",
         });
 

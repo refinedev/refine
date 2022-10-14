@@ -1,5 +1,33 @@
 # @pankod/refine-nhost
 
+## 3.39.0
+
+### Minor Changes
+
+-   Added missing implementations for `nnull`, `startswith`, `startswiths`, `nstartswith`, `nstartswiths`, `endswith`, `endswiths`, `nendswith` and `nendswiths` filters by `_similar`, `_nsimilar`, `_regex` and `_iregex` filters from Nhost.
+
+    Added nested property filter support for `or` filters.
+
+## 3.38.0
+
+### Minor Changes
+
+-   [#2742](https://github.com/pankod/refine/pull/2742) [`46a7ff2b75`](https://github.com/pankod/refine/commit/46a7ff2b757c5a5446e7f10643a6fb9807c0ae11) Thanks [@aliemir](https://github.com/aliemir)! - Added missing implementations for `nnull`, `startswith`, `startswiths`, `nstartswith`, `nstartswiths`, `endswith`, `endswiths`, `nendswith` and `nendswiths` filters by `_similar`, `_nsimilar`, `_regex` and `_iregex` filters from Nhost.
+
+    Added nested property filter support for `or` filters.
+
+## 3.37.0
+
+### Minor Changes
+
+-   Updated `dataProvider` types with `Required` utility to mark `getMany`, `createMany`, `updateMany` and `deleteMany` as implemented.
+
+## 3.36.0
+
+### Minor Changes
+
+-   [#2688](https://github.com/pankod/refine/pull/2688) [`508045ac30`](https://github.com/pankod/refine/commit/508045ac30cd3948f68497e13fdf04f7c72ce387) Thanks [@aliemir](https://github.com/aliemir)! - Updated `dataProvider` types with `Required` utility to mark `getMany`, `createMany`, `updateMany` and `deleteMany` as implemented.
+
 ## 3.35.2
 
 ### Patch Changes

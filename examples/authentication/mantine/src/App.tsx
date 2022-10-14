@@ -31,8 +31,12 @@ const App: React.FC = () => {
                 return Promise.resolve(false);
             }
 
-            localStorage.setItem("email", email);
-            return Promise.resolve();
+            if (email) {
+                localStorage.setItem("email", email);
+                return Promise.resolve();
+            }
+
+            return Promise.reject();
         },
         register: (params: any) => {
             if (params.email && params.password) {
@@ -106,7 +110,7 @@ const App: React.FC = () => {
                                 ),
                             },
                             {
-                                path: "/reset-password",
+                                path: "/forgot-password",
                                 element: <AuthPage type="forgotPassword" />,
                             },
                             {

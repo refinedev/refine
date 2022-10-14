@@ -9,11 +9,35 @@ import {
 import { LayoutProps, TitleProps } from "../../interfaces";
 
 export interface LayoutWrapperProps {
+    /**
+     * Outer component that renders other components
+     * @default *
+     */
     Layout?: React.FC<LayoutProps>;
+    /**
+     * [Custom sider to use](/api-reference/core/components/refine-config.md#sider)
+     * @default *
+     */
     Sider?: React.FC;
+    /**
+     * [Custom header to use](/api-reference/core/components/refine-config.md#header)
+     * @default *
+     */
     Header?: React.FC;
+    /**
+     * [Custom title to use](/api-reference/core/components/refine-config.md#title)
+     * @default *
+     */
     Title?: React.FC<TitleProps>;
+    /**
+     * [Custom footer to use](/api-reference/core/components/refine-config.md#footer)
+     * @default *
+     */
     Footer?: React.FC;
+    /**
+     * [Custom off layout area to use](/api-reference/core/components/refine-config.md#offlayoutarea)
+     * @default *
+     */
     OffLayoutArea?: React.FC;
     children: React.ReactNode;
 }

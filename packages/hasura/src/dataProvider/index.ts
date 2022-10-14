@@ -48,7 +48,11 @@ export type HasuraFilterCondition =
     | "_nlike"
     | "_ilike"
     | "_nilike"
-    | "_is_null";
+    | "_is_null"
+    | "_similar"
+    | "_nsimilar"
+    | "_regex"
+    | "_iregex";
 
 const hasuraFilters: Record<CrudOperators, HasuraFilterCondition | undefined> =
     {
@@ -68,16 +72,39 @@ const hasuraFilters: Record<CrudOperators, HasuraFilterCondition | undefined> =
         or: "_or",
         between: undefined,
         nbetween: undefined,
-        nnull: undefined,
-        startswith: undefined,
-        nstartswith: undefined,
-        startswiths: undefined,
-        nstartswiths: undefined,
-        endswith: undefined,
-        nendswith: undefined,
-        endswiths: undefined,
-        nendswiths: undefined,
+        nnull: "_is_null",
+        startswith: "_iregex",
+        nstartswith: "_iregex",
+        endswith: "_iregex",
+        nendswith: "_iregex",
+        startswiths: "_similar",
+        nstartswiths: "_nsimilar",
+        endswiths: "_similar",
+        nendswiths: "_nsimilar",
     };
+
+export const handleFilterValue = (operator: CrudOperators, value: any) => {
+    switch (operator) {
+        case "startswiths":
+        case "nstartswiths":
+            return `${value}%`;
+        case "endswiths":
+        case "nendswiths":
+            return `%${value}`;
+        case "startswith":
+            return `^${value}`;
+        case "nstartswith":
+            return `^(?!${value})`;
+        case "endswith":
+            return `${value}$`;
+        case "nendswith":
+            return `(?<!${value})$`;
+        case "nnull":
+            return false;
+        default:
+            return value;
+    }
+};
 
 export const generateFilters: any = (filters?: CrudFilters) => {
     if (!filters) {
@@ -95,7 +122,8 @@ export const generateFilters: any = (filters?: CrudFilters) => {
         if (filter.operator !== "or") {
             const fieldsArray = filter.field.split(".");
             const fieldsWithOperator = [...fieldsArray, operator];
-            setWith(resultFilter, fieldsWithOperator, filter.value, Object);
+            const value = handleFilterValue(filter.operator, filter.value);
+            setWith(resultFilter, fieldsWithOperator, value, Object);
         } else {
             const orFilter: any = [];
 
@@ -108,10 +136,12 @@ export const generateFilters: any = (filters?: CrudFilters) => {
                         `Operator ${val.operator} is not supported`,
                     );
                 }
-                if (!filterObject.hasOwnProperty(val.field)) {
-                    filterObject[val.field] = {};
-                }
-                filterObject[val.field][mapedOperator] = val.value;
+
+                const fieldsArray = val.field.split(".");
+                const fieldsWithOperator = [...fieldsArray, val.operator];
+                const value = handleFilterValue(val.operator, val.value);
+                setWith(filterObject, fieldsWithOperator, value, Object);
+
                 orFilter.push(filterObject);
             });
 
@@ -122,7 +152,7 @@ export const generateFilters: any = (filters?: CrudFilters) => {
     return resultFilter;
 };
 
-const dataProvider = (client: GraphQLClient): DataProvider => {
+const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
     return {
         getOne: async ({ resource, id, metaData }) => {
             const operation = `${metaData?.operation ?? resource}_by_pk`;

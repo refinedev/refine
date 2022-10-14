@@ -10,6 +10,7 @@ import {
     ActionIcon,
     Stack,
     Title,
+    LoadingOverlay,
 } from "@mantine/core";
 import {
     ResourceRouterParams,
@@ -89,6 +90,9 @@ export const Edit: React.FC<EditProps> = (props) => {
 
     const id = recordItemId ?? idFromRoute;
 
+    const loadingOverlayVisible =
+        isLoading ?? saveButtonProps?.disabled ?? false;
+
     const defaultHeaderButtons = (
         <>
             {!recordItemId && (
@@ -127,11 +131,13 @@ export const Edit: React.FC<EditProps> = (props) => {
     );
 
     const buttonBack =
-        typeof goBackFromProps !== "undefined" ? (
-            goBackFromProps
-        ) : (
+        goBackFromProps === (false || null) ? null : (
             <ActionIcon onClick={routeFromAction ? goBack : undefined}>
-                <IconArrowLeft />
+                {typeof goBackFromProps !== "undefined" ? (
+                    goBackFromProps
+                ) : (
+                    <IconArrowLeft />
+                )}
             </ActionIcon>
         );
 
@@ -151,13 +157,14 @@ export const Edit: React.FC<EditProps> = (props) => {
 
     return (
         <Card p="md" {...wrapperProps}>
+            <LoadingOverlay visible={loadingOverlayVisible} />
             <Group position="apart" {...headerProps}>
                 <Stack spacing="xs">
                     {breadcrumb}
-                    {title ?? (
-                        <Group spacing="xs">
-                            {buttonBack}
-                            <Title order={2} transform="capitalize">
+                    <Group spacing="xs">
+                        {buttonBack}
+                        {title ?? (
+                            <Title order={3} transform="capitalize">
                                 {translate(
                                     `${resource.name}.titles.edit`,
                                     `Edit ${userFriendlyResourceName(
@@ -166,8 +173,8 @@ export const Edit: React.FC<EditProps> = (props) => {
                                     )}`,
                                 )}
                             </Title>
-                        </Group>
-                    )}
+                        )}
+                    </Group>
                 </Stack>
                 <Group spacing="xs" {...headerButtonProps}>
                     {headerButtons}

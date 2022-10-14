@@ -132,7 +132,7 @@ const normalizeData = (data: any): any => {
 export const DataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
-): IDataProvider => ({
+): Required<IDataProvider> => ({
     getList: async ({
         resource,
         hasPagination = true,

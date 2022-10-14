@@ -449,6 +449,7 @@ const PostEdit: React.FC<IResourceComponentsProps> = () => {
         <Edit
             /* highlight-next-line */
             mutationMode="undoable"
+            canDelete
             saveButtonProps={saveButtonProps}
         >
             <Form {...formProps} layout="vertical">

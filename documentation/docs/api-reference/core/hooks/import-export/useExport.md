@@ -39,31 +39,27 @@ Let's say that we have an endpoint like this:
 
 To enable export functionality for this endpoint, we can use the `useExport` hook to create an export button.
 
-```tsx  title="src/pages/posts/list.tsx"
+```tsx title="src/pages/posts/list.tsx"
 import {
-// highlight-start
+    // highlight-start
     useExport,
     ExportButton,
-// highlight-end
+    // highlight-end
 } from "@pankod/refine-core";
 
-import {
-    List,
-    Table,
-    useTable,
-} from "@pankod/refine-antd";
+import { List, Table, useTable } from "@pankod/refine-antd";
 
 export const PostList: React.FC = () => {
     const { tableProps } = useTable<IPost>();
 
-// highlight-next-line
+    // highlight-next-line
     const { triggerExport, isLoading } = useExport<IPost>();
 
     return (
         <List
             pageHeaderProps={{
                 extra: (
-// highlight-next-line
+                    // highlight-next-line
                     <ExportButton onClick={triggerExport} loading={isLoading} />
                 ),
             }}
@@ -86,9 +82,9 @@ interface IPost {
 ```
 
 :::info
-In the examples, instead of [<Button\>][Button], [<ExportButton\>][ExportButton] is used. [<ExportButton\>][ExportButton] is nothing more than a default Ant Design [<Button\>][Button] with an icon and a default text.  
+In the examples, instead of [<Button\>][button], [<ExportButton\>][exportbutton] is used. [<ExportButton\>][exportbutton] is nothing more than a default Ant Design [<Button\>][button] with an icon and a default text.
 
-[Refer to ExportButton docs for more detailed information. &#8594][ExportButton]
+[Refer to ExportButton docs for more detailed information. &#8594][exportbutton]
 :::
 <br />
 
@@ -103,9 +99,8 @@ id,title,slug,content,status,categoryId,userId
 
 ### Handling Relational Data
 
-You can run a mapping function for all entries before they are saved. This is useful in cases of being required to reference relational data or saving files in a specific way to process them in different applications etc. 
-This mapping function is similar to the mapping function of [`useImport`][useImport#handling-relational-data].
-
+You can run a mapping function for all entries before they are saved. This is useful in cases of being required to reference relational data or saving files in a specific way to process them in different applications etc.
+This mapping function is similar to the mapping function of [`useImport`][useimport#handling-relational-data].
 
 Let's assume that we have this endpoint with some relational data in it:
 
@@ -160,7 +155,6 @@ const { triggerExport, isLoading } = useExport<IPost>({
     },
 });
 
-
 interface ICategory {
     id: number;
     title: string;
@@ -194,17 +188,7 @@ You can pass more options to further customize the exporting process.
 
 ### `useExport` Options
 
-| Key              | Description                                                                                                                | Type                                                                             |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| resourceName     | Default resource name this button imports to. Inferred from route by default                                               | `string`                                                                         |
-| mapData          | A mapping function that runs for every record. Mapped data will be included in the file contents                           | `<TItem, TVariables>(item: TItem, index?: number, items?: TItem[]): TVariables;` |
-| pageSize         | Requests to fetch data are made as batches by page size. By default, it is 20. Used for `getList` method of `DataProvider` | `number`                                                                         |
-| sorter           | Sorts  records                                                                                                             | [`CrudSorting`][CrudSorting] \| `undefined`                                      |           |
-| filter           | Filters records                                                                                                            | [`CrudFilters`][CrudFilters] \| `undefined`                                      |           |
-| exportOptions    | Used for exporting options                                                                                                 | [`Options`][export-to-csv#api] \| `undefined`                                    |           |
-| metaData         | Metadata query for `dataProvider`                                                                                          | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                             | {}        |
-| dataProviderName | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.                         | `string`                                                                         | `default` |
-| onError          | Callback to handle error events of this hook                                                                               | `(error: any) => void`                                                           |  |
+<PropsTable module="@pankod/refine-core/useExport" />
 
 ### `useExport` Return Values
 
@@ -217,15 +201,15 @@ You can pass more options to further customize the exporting process.
 
 | Property   | Desription                                                                 | Default                    |
 | ---------- | -------------------------------------------------------------------------- | -------------------------- |
-| TData      | Result type of the data query type that extends [`BaseRecord`][BaseRecord] | [`BaseRecord`][BaseRecord] |
+| TData      | Result type of the data query type that extends [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
 | TVariables | Values for params                                                          | `any`                      |
 
-[Button]: https://ant.design/components/button/
-[ExportButton]: /api-reference/antd/components/buttons/export.md
-[useImport]: /api-reference/core/hooks/import-export/useImport.md
-[useImport#handling-relational-data]: /api-reference/core/hooks/import-export/useImport.md#handling-relational-data
+[button]: https://ant.design/components/button/
+[exportbutton]: /api-reference/antd/components/buttons/export.md
+[useimport]: /api-reference/core/hooks/import-export/useImport.md
+[useimport#handling-relational-data]: /api-reference/core/hooks/import-export/useImport.md#handling-relational-data
 [export-to-csv]: https://github.com/alexcaza/export-to-csv
 [export-to-csv#api]: https://github.com/alexcaza/export-to-csv#api
-[BaseRecord]: /api-reference/core/interfaces.md#baserecord
-[CrudSorting]: /api-reference/core/interfaces.md#crudsorting
-[CrudFilters]: /api-reference/core/interfaces.md#crudfilters
+[baserecord]: /api-reference/core/interfaces.md#baserecord
+[crudsorting]: /api-reference/core/interfaces.md#crudsorting
+[crudfilters]: /api-reference/core/interfaces.md#crudfilters

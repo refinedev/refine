@@ -1,5 +1,59 @@
 # @pankod/refine-antd
 
+## 3.55.3
+
+### Patch Changes
+
+-   Fixed `providers` property empty array state in `<AuthPage />` component
+
+## 3.55.2
+
+### Patch Changes
+
+-   Fixed `providers` property empty array state in `<AuthPage />` component
+
+## 3.55.1
+
+### Patch Changes
+
+-   [#2712](https://github.com/pankod/refine/pull/2712) [`c434055011`](https://github.com/pankod/refine/commit/c434055011cbdd846c9f228c23987607bb828a1b) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed `providers` property empty array state in `<AuthPage />` component
+
+## 3.55.0
+
+### Minor Changes
+
+-   Added infinite loading example to antd `useSelect()`
+    `useSelect()` `fetchSize` prop is deprecated. From now [`pagination`](https://refine.dev/docs/api-reference/core/interfaceReferences/#pagination) should be used
+
+### Patch Changes
+
+-   Add AuthProps type export
+
+## 3.54.0
+
+### Minor Changes
+
+-   [#2629](https://github.com/pankod/refine/pull/2629) [`bc89228e73`](https://github.com/pankod/refine/commit/bc89228e73dbf373cbbbd0fbf5e6e4721224a7c5) Thanks [@bungambohlah](https://github.com/bungambohlah)! - Added infinite loading example to antd `useSelect()`
+    `useSelect()` `fetchSize` prop is deprecated. From now [`pagination`](https://refine.dev/docs/api-reference/core/interfaceReferences/#pagination) should be used
+
+### Patch Changes
+
+-   [#2666](https://github.com/pankod/refine/pull/2666) [`8a562d2114`](https://github.com/pankod/refine/commit/8a562d2114b7145707070e363981a4e31e02547a) Thanks [@omeraplak](https://github.com/omeraplak)! - Add AuthProps type export
+
+## 3.53.0
+
+### Minor Changes
+
+-   -   Added new <AuthPage /> component core and mantine support.
+    -   Move Auth types `@pankod/refine-ui-types` to `@pankod/refine-core`
+
+## 3.52.0
+
+### Minor Changes
+
+-   [#2627](https://github.com/pankod/refine/pull/2627) [`c5fb45d61f`](https://github.com/pankod/refine/commit/c5fb45d61fa7470a7a34762ad19d17e9f87e4421) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - - Added new <AuthPage /> component core and mantine support.
+    -   Move Auth types `@pankod/refine-ui-types` to `@pankod/refine-core`
+
 ## 3.51.0
 
 ### Minor Changes

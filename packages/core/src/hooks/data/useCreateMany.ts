@@ -1,4 +1,5 @@
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import pluralize from "pluralize";
 
 import {
     BaseRecord,
@@ -9,13 +10,14 @@ import {
     IQueryKeys,
 } from "../../interfaces";
 import {
+    useResource,
     useTranslate,
     usePublish,
     useHandleNotification,
     useDataProvider,
     useInvalidate,
 } from "@hooks";
-import pluralize from "pluralize";
+import { handleMultiple, pickDataProvider } from "@definitions";
 
 type useCreateManyParams<TVariables> = {
     resource: string;
@@ -55,6 +57,7 @@ export const useCreateMany = <
 >(): UseCreateManyReturnType<TData, TError, TVariables> => {
     const dataProvider = useDataProvider();
 
+    const { resources } = useResource();
     const translate = useTranslate();
     const publish = usePublish();
     const handleNotification = useHandleNotification();
@@ -70,12 +73,29 @@ export const useCreateMany = <
             values,
             metaData,
             dataProviderName,
-        }: useCreateManyParams<TVariables>) =>
-            dataProvider(dataProviderName).createMany<TData, TVariables>({
-                resource,
-                variables: values,
-                metaData,
-            }),
+        }: useCreateManyParams<TVariables>) => {
+            const selectedDataProvider = dataProvider(
+                pickDataProvider(resource, dataProviderName, resources),
+            );
+
+            if (selectedDataProvider.createMany) {
+                return selectedDataProvider.createMany<TData, TVariables>({
+                    resource,
+                    variables: values,
+                    metaData,
+                });
+            } else {
+                return handleMultiple(
+                    values.map((val) =>
+                        selectedDataProvider.create<TData, TVariables>({
+                            resource,
+                            variables: val,
+                            metaData,
+                        }),
+                    ),
+                );
+            }
+        },
         {
             onSuccess: (
                 response,
@@ -112,7 +132,11 @@ export const useCreateMany = <
 
                 invalidateStore({
                     resource,
-                    dataProviderName,
+                    dataProviderName: pickDataProvider(
+                        resource,
+                        dataProviderName,
+                        resources,
+                    ),
                     invalidates,
                 });
 

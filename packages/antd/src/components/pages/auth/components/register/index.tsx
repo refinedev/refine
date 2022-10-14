@@ -1,8 +1,5 @@
 import React from "react";
-import {
-    RefineRegisterPageProps,
-    RefineRegisterFormTypes,
-} from "@pankod/refine-ui-types";
+import { RegisterPageProps, RegisterFormTypes } from "@pankod/refine-core";
 import {
     Row,
     Col,
@@ -27,7 +24,7 @@ import { layoutStyles, containerStyles, titleStyles } from "../styles";
 
 const { Text, Title } = Typography;
 
-type RegisterProps = RefineRegisterPageProps<LayoutProps, CardProps, FormProps>;
+type RegisterProps = RegisterPageProps<LayoutProps, CardProps, FormProps>;
 
 /**
  * **refine** has register page form which is served on `/register` route when the `authProvider` configuration is provided.
@@ -42,12 +39,11 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     renderContent,
     formProps,
 }) => {
-    const [form] = Form.useForm<RefineRegisterFormTypes>();
+    const [form] = Form.useForm<RegisterFormTypes>();
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
-    const { mutate: register, isLoading } =
-        useRegister<RefineRegisterFormTypes>();
+    const { mutate: register, isLoading } = useRegister<RegisterFormTypes>();
 
     const CardTitle = (
         <Title level={3} style={titleStyles}>
@@ -56,7 +52,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     );
 
     const renderProviders = () => {
-        if (providers) {
+        if (providers && providers.length > 0) {
             return (
                 <>
                     {providers.map((provider) => {
@@ -98,7 +94,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             {...(contentProps ?? {})}
         >
             {renderProviders()}
-            <Form<RefineRegisterFormTypes>
+            <Form<RegisterFormTypes>
                 layout="vertical"
                 form={form}
                 onFinish={(values) => register(values)}

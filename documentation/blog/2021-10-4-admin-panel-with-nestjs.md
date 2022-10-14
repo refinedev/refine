@@ -67,7 +67,7 @@ I used [nestjsx-crud](https://github.com/nestjsx/crud) library because it makes 
 npm i @nestjsx/crud @nestjsx/crud-typeorm class-transformer class-validator
 ```
 
-*Since the steps to create Entities Contorllers, and services are very long, I do not explain step by step. You can check the [repo](https://github.com/pankod/refine-hackathon/tree/main/job-posting-app) for details.*
+*Since the steps to create Entities Controllers, and services are very long, I do not explain step by step. You can check the [repo](https://github.com/pankod/refine-hackathon/tree/main/job-posting-app) for details.*
 
 It created these end-points automatically with nestjsx/crud.
 

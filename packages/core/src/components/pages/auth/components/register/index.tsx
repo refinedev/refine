@@ -1,21 +1,32 @@
-import { useTranslate, useRouterContext, useRegister } from "@hooks";
 import React, { useState } from "react";
-import { IAuthCommonProps, IRegisterForm } from "../..";
+import { RegisterPageProps } from "../../../../../interfaces";
 
-export const Register: React.FC<IAuthCommonProps> = ({
-    submitButton,
-    backLink,
+import { useTranslate, useRouterContext, useRegister } from "@hooks";
+
+import { DivPropsType, FormPropsType } from "../..";
+
+type RegisterProps = RegisterPageProps<
+    DivPropsType,
+    DivPropsType,
+    FormPropsType
+>;
+
+export const RegisterPage: React.FC<RegisterProps> = ({
+    providers,
     loginLink,
+    wrapperProps,
+    contentProps,
+    renderContent,
+    formProps,
 }) => {
     const { Link } = useRouterContext();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
 
     const translate = useTranslate();
 
-    const { mutate: register } = useRegister<IRegisterForm>();
+    const { mutate: register, isLoading } = useRegister();
 
     const renderLink = (link: React.ReactNode, text?: string) => {
         if (link) {
@@ -27,19 +38,51 @@ export const Register: React.FC<IAuthCommonProps> = ({
         return null;
     };
 
-    return (
-        <>
+    const renderProviders = () => {
+        if (providers) {
+            return providers.map((provider) => (
+                <div
+                    key={provider.name}
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        marginBottom: "1rem",
+                    }}
+                >
+                    <button
+                        onClick={() =>
+                            register({
+                                providerName: provider.name,
+                            })
+                        }
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                        }}
+                    >
+                        {provider?.icon}
+                        {provider.label ?? <label>{provider.label}</label>}
+                    </button>
+                </div>
+            ));
+        }
+        return null;
+    };
+
+    const content = (
+        <div {...contentProps}>
             <h1 style={{ textAlign: "center" }}>
-                {translate("pages.register.title", "Register")}
+                {translate("pages.register.title", "Sign up for your account")}
             </h1>
+            {renderProviders()}
             <hr />
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
-                    if (password === confirmPassword) {
-                        register({ email, password });
-                    }
+                    register({ email, password });
                 }}
+                {...formProps}
             >
                 <div
                     style={{
@@ -49,9 +92,10 @@ export const Register: React.FC<IAuthCommonProps> = ({
                     }}
                 >
                     <label>
-                        {translate("pages.register.email", undefined, "Email")}
+                        {translate("pages.register.fields.email", "Email")}
                     </label>
                     <input
+                        name="email"
                         type="email"
                         size={20}
                         autoCorrect="off"
@@ -63,58 +107,48 @@ export const Register: React.FC<IAuthCommonProps> = ({
                     />
                     <label>
                         {translate(
-                            "pages.register.password",
-                            undefined,
+                            "pages.register.fields.password",
                             "Password",
                         )}
                     </label>
                     <input
+                        name="password"
                         type="password"
                         required
                         size={20}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <label>
-                        {translate(
-                            "pages.register.confirmPassword",
-                            undefined,
-                            "Confirm Password",
-                        )}
-                    </label>
                     <input
-                        type="password"
-                        required
-                        size={20}
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        type="submit"
+                        value={translate(
+                            "pages.register.buttons.submit",
+                            "Sign up",
+                        )}
+                        disabled={isLoading}
                     />
-                    <br />
-                    {submitButton ?? (
-                        <input
-                            type="submit"
-                            value={translate(
-                                "pages.register.button",
-                                "Register",
-                            )}
-                        />
+                    {loginLink ?? (
+                        <>
+                            <span>
+                                {translate(
+                                    "pages.login.buttons.haveAccount",
+                                    "Have an account?",
+                                )}{" "}
+                                {renderLink(
+                                    "login",
+                                    translate("pages.login.signin", "Sign in"),
+                                )}
+                            </span>
+                        </>
                     )}
-                    <br />
-                    {loginLink &&
-                        renderLink(
-                            loginLink,
-                            translate(
-                                "pages.register.loginLink",
-                                "Have an account? Login",
-                            ),
-                        )}
-                    {backLink &&
-                        renderLink(
-                            backLink,
-                            translate("pages.register.backLink", "Go Back"),
-                        )}
                 </div>
             </form>
-        </>
+        </div>
+    );
+
+    return (
+        <div {...wrapperProps}>
+            {renderContent ? renderContent(content) : content}
+        </div>
     );
 };

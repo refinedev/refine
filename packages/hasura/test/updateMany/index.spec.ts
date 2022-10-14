@@ -4,7 +4,7 @@ import "./index.mock";
 
 describe("updateMany", () => {
     it("correct response with metaData", async () => {
-        const { data } = await dataProvider(client).updateMany({
+        const { data } = await dataProvider(client).updateMany!({
             resource: "posts",
             ids: [
                 "487524fd-1160-45c8-a28d-717f78893c37",
@@ -28,7 +28,7 @@ describe("updateMany", () => {
     });
 
     it("correct response without metaData", async () => {
-        const { data } = await dataProvider(client).updateMany({
+        const { data } = await dataProvider(client).updateMany!({
             resource: "posts",
             ids: [
                 "487524fd-1160-45c8-a28d-717f78893c37",

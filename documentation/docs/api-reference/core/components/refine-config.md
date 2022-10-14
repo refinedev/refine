@@ -130,6 +130,7 @@ These components will receive some properties.
 type OptionsProps<TExtends = { [key: string]: any }> = TExtends & {
     label?: string;
     route?: string;
+    dataProviderName?: string;
     hide?: boolean;
 }
 
@@ -250,6 +251,10 @@ Name to show in the menu. Plural form of the resource name is shown by default.
 #### `route`
 
 Custom route name
+
+#### `dataProviderName`
+
+Default data provider name to use for the resource. If not specified, the default data provider will be used.
 
 #### `hide`
 
@@ -469,6 +474,27 @@ const App: React.FC = () => (
                         },
                     },
                 },
+            },
+        }}
+        // highlight-end
+    />
+);
+```
+
+Also, you can implement your own [QueryClient](https://react-query.tanstack.com/reference/QueryClient#queryclient).
+
+```tsx
+import { QueryClient } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
+
+const App: React.FC = () => (
+    <Refine
+        ...
+        // highlight-start
+        options={{
+            reactQuery: {
+                clientConfig: queryClient
             },
         }}
         // highlight-end
@@ -747,5 +773,11 @@ const App: React.FC = () => (
     />
 );
 ```
+
+## API Reference
+
+### Properties
+    
+<PropsTable module="@pankod/refine-core/Refine"/>
 
 [routerprovider]: /api-reference/core/providers/router-provider.md

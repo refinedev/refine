@@ -46,13 +46,41 @@ export type ImportOptions<
     TVariables = any,
     TData extends BaseRecord = BaseRecord,
 > = {
+    /**
+     * Resource name for API data interactions.
+     * @default Resource name that it reads from route
+     */
     resourceName?: string;
+    /**
+     * A mapping function that runs for every record. Mapped data will be included in the file contents.
+     */
     mapData?: MapDataFn<TItem, TVariables>;
+    /**
+     * Custom Papa Parse options.
+     * @type [`ParseConfig`](https://www.papaparse.com/docs)
+     */
     paparseOptions?: ParseConfig;
+    /**
+     * Requests batch size. If it is 1, all records are sent one by one. By default, it is [`Number.MAX_SAFE_INTEGER`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER) to send all records in one batch. If it is more than 1, `createMany` should be implemented on DataProvider.
+     */
     batchSize?: number;
+    /**
+     * Called with errors and successful responses when all requests are sent.
+     */
     onFinish?: (results: OnFinishParams<TVariables, TData>) => void;
+    /**
+     *  Metadata query for `dataProvider`
+     */
     metaData?: MetaDataQuery;
+    /**
+     *  A callback function that returns a current state of uploading process.
+     *
+     *  Ex: `percentage = onProgressParams.processedAmount / onProgressParams.totalAmount * 100`
+     */
     onProgress?: (onProgressParams: OnProgressParams) => void;
+    /**
+     * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
+     */
     dataProviderName?: string;
 };
 
