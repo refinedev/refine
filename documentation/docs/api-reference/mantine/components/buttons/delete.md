@@ -172,7 +172,7 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { DeleteButton } from "@pankod/refine-mantine";
 
 const MyDeleteComponent = () => {
-    return <DeleteButton recordItemId="5" />;
+    return <DeleteButton recordItemId="123" />;
 };
 // visible-block-end
 
@@ -213,7 +213,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the [`useDelete`](/api-reference/core/hooks/data/useDelete.md) method and then the record whose resource is "post" and whose id is "5" gets deleted.
+Clicking the button will trigger the [`useDelete`](/api-reference/core/hooks/data/useDelete.md) method and then the record whose resource is "post" and whose id is "123" gets deleted.
 
 :::note
 **`<DeleteButton>`** component reads the id information from the route by default.

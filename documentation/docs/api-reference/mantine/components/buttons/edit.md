@@ -193,7 +193,7 @@ import { Button, Code, Space, Text } from "@pankod/refine-mantine";
 import { EditButton } from "@pankod/refine-mantine";
 
 const MyEditComponent = () => {
-    return <EditButton recordItemId="1" />;
+    return <EditButton recordItemId="123" />;
 };
 // visible-block-end
 
@@ -320,7 +320,7 @@ import { Button, Code, Space, Text } from "@pankod/refine-mantine";
 import { EditButton } from "@pankod/refine-mantine";
 
 const MyEditComponent = () => {
-    return <EditButton recordItemId="12" hideText />;
+    return <EditButton recordItemId="123" hideText />;
 };
 // visible-block-end
 

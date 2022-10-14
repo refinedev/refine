@@ -29,7 +29,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-`<ImportButton>` is compatible with the [`useImport`](/api-reference/antd/hooks/import/useImport.md) hook and is meant to be used as it's upload button.
+`<ImportButton>` is compatible with the [`useImport`][useimport] hook and is meant to be used as it's upload button.
 
 It uses Mantine [`<Button>`][button] component and native html [`<input>`][input] element. It wraps a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) with a [`<Button>`][button] component and [`<input>`][input] element and accepts it's own properties for separately.
 
@@ -215,6 +215,6 @@ render(
 
 <PropsTable module="@pankod/refine-mantine/ImportButton" />
 
-[useimport]: /api-reference/antd/hooks/import/useImport.md
+[useimport]: /api-reference/core/hooks/import-export/useImport.md
 [button]: https://mantine.dev/core/button/
 [input]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input

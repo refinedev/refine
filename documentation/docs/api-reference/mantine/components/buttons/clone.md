@@ -199,7 +199,7 @@ import { Button, Code, Space, Text } from "@pankod/refine-mantine";
 import { CloneButton } from "@pankod/refine-mantine";
 
 const MyCloneComponent = () => {
-    return <CloneButton recordItemId="1" />;
+    return <CloneButton recordItemId="123" />;
 };
 // visible-block-end
 
@@ -244,7 +244,7 @@ render(
 );
 ```
 
-Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/posts/clone/1`.
+Clicking the button will trigger the `clone` method of [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) and then redirect the app to `/posts/clone/123`.
 
 :::note
 **`<CloneButton>`** component reads the id information from the route by default.
