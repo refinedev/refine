@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 1.6.8
+
+### Patch Changes
+
+-   [#2769](https://github.com/pankod/refine/pull/2769) [`501aebe997`](https://github.com/pankod/refine/commit/501aebe9974520c30093cc9cec781ee58129d053) Thanks [@dgelineau](https://github.com/dgelineau)! - Fixed incorrectly used hooks in AuthPage component
+
 ## 1.6.7
 
 ### Patch Changes
