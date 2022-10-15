@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 1.6.9
+
+### Patch Changes
+
+-   Fixed incorrectly used hooks in AuthPage component
+
 ## 1.6.8
 
 ### Patch Changes
