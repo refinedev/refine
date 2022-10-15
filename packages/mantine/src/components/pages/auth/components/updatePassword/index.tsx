@@ -3,7 +3,7 @@ import {
     UpdatePasswordPageProps,
     UpdatePasswordFormTypes,
 } from "@pankod/refine-core";
-import { useLogin, useTranslate } from "@pankod/refine-core";
+import { useUpdatePassword, useTranslate } from "@pankod/refine-core";
 import {
     Box,
     Card,
@@ -59,7 +59,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
     const { getInputProps, onSubmit } = form;
 
     const { mutate: updatePassword, isLoading } =
-        useLogin<UpdatePasswordFormTypes>();
+        useUpdatePassword<UpdatePasswordFormTypes>();
 
     const CardContent = (
         <Card style={cardStyles} {...(contentProps ?? {})}>
