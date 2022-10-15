@@ -1,9 +1,7 @@
 import cn from "clsx";
-import { useTheme } from "next-themes";
 import { useRouter } from "next/router";
 import { useLogout } from "@pankod/refine-core";
 
-import { Moon, Sun } from "@components/icons";
 import { DropdownContent, DropdownMenuItem } from "@components/ui";
 
 import s from "./CustomerMenuContent.module.css";
@@ -31,7 +29,6 @@ export const CustomerMenuContent: React.FC = () => {
     const router = useRouter();
     router.beforePopState;
     const { pathname } = useRouter();
-    const { theme, setTheme } = useTheme();
 
     const { mutate: logout } = useLogout<{ redirectPath: string }>();
 

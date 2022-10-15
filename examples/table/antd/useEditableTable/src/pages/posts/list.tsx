@@ -33,6 +33,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     {...tableProps}
                     rowKey="id"
                     onRow={(record) => ({
+                        // eslint-disable-next-line
                         onClick: (event: any) => {
                             if (event.target.nodeName === "TD") {
                                 setEditId && setEditId(record.id);

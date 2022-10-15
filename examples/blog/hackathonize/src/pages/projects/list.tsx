@@ -10,12 +10,7 @@ import {
     TextField,
 } from "@pankod/refine-antd";
 
-import {
-    HackathonerType,
-    TeamType,
-    ProjectType,
-    HackathonType,
-} from "interfaces";
+import { HackathonerType, ProjectType, HackathonType } from "interfaces";
 
 export const ProjectsList: React.FC = () => {
     const { tableProps, tableQueryResult } = useTable<ProjectType>();

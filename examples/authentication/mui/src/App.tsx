@@ -39,6 +39,7 @@ const App: React.FC = () => {
             localStorage.setItem("email", email);
             return Promise.resolve();
         },
+        // eslint-disable-next-line
         register: (params: any) => {
             if (params.email && params.password) {
                 localStorage.setItem("email", params.email);
@@ -46,6 +47,7 @@ const App: React.FC = () => {
             }
             return Promise.reject();
         },
+        // eslint-disable-next-line
         updatePassword: (params: any) => {
             if (params.newPassword) {
                 //we can update password here
@@ -53,6 +55,7 @@ const App: React.FC = () => {
             }
             return Promise.reject();
         },
+        // eslint-disable-next-line
         forgotPassword: (params: any) => {
             if (params.email) {
                 //we can send email with forgot password link here

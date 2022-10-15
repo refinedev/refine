@@ -5,6 +5,7 @@ import App from "./App";
 import "./i18n";
 
 const container = document.getElementById("root");
+// eslint-disable-next-line
 const root = createRoot(container!);
 root.render(
     <React.StrictMode>

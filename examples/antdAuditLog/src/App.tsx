@@ -93,7 +93,7 @@ const App: React.FC = () => {
             LoginPage={AuthPage}
             DashboardPage={DashboardPage}
             auditLogProvider={{
-                create: async ({ author, ...params }) => {
+                create: async ({ ...params }) => {
                     await refineSDK.log.create(params);
                 },
                 get: async ({ resource, action, meta, author }) => {

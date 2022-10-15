@@ -76,6 +76,7 @@ export const CreateProduct: React.FC<
 
         const { name, size, type, lastModified } = file;
 
+        // eslint-disable-next-line
         const imagePaylod: any = [
             {
                 name,

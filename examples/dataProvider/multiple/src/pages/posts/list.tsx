@@ -115,6 +115,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                             render={(value: string) => (
                                 <TagField value={value} />
                             )}
+                            // eslint-disable-next-line
                             filterDropdown={(props: any) => (
                                 <FilterDropdown {...props}>
                                     <Radio.Group>

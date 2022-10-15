@@ -43,22 +43,23 @@ const schema = Yup.object().shape({
     number: Yup.number().label("Number").required(),
     work: Yup.string().label("Work").oneOf(["unemployed", "employed"]),
     company: Yup.string().when("work", {
+        // eslint-disable-next-line
         is: (val: any) => val === "employed",
         then: Yup.string().label("Company").required().min(3).max(64),
     }),
     role: Yup.string().when("work", {
+        // eslint-disable-next-line
         is: (val: any) => val === "employed",
         then: Yup.string().label("Role").required().min(3).max(64),
     }),
 });
 
-const Create: React.FC = (props) => {
+const Create: React.FC = () => {
     const {
         control,
         handleSubmit,
         watch,
         formState: { errors },
-        refineCore: { onFinish, formLoading },
     } = useForm<IFormValue>({
         mode: "onChange",
         defaultValues,
@@ -67,6 +68,7 @@ const Create: React.FC = (props) => {
 
     const type = watch("work");
 
+    // eslint-disable-next-line
     const handleSubmission = (data: any) => console.log(data);
 
     return (

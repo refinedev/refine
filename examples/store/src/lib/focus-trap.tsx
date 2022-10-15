@@ -9,7 +9,9 @@ export default function FocusTrap({
     children,
     focusFirst = false,
 }: PropsWithChildren<Props>) {
+    // eslint-disable-next-line
     const root: RefObject<any> = React.useRef();
+    // eslint-disable-next-line
     const anchor: RefObject<any> = React.useRef(document.activeElement);
 
     const returnFocus = () => {

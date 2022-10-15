@@ -171,6 +171,7 @@ export const PostList: React.FC = () => {
         indeterminate,
         ...rest
     }: { indeterminate?: boolean } & React.HTMLProps<HTMLInputElement>) {
+        // eslint-disable-next-line
         const ref = React.useRef<HTMLInputElement>(null!);
 
         useEffect(() => {

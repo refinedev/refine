@@ -70,8 +70,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                     formProps.onFinish?.({
                         ...values,
                         category: values.category?.id,
-                    } as any)
-                }
+                    } as any )} // eslint-disable-line
             >
                 <Form.Item
                     label="Title"

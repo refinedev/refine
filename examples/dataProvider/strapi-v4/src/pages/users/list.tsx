@@ -3,7 +3,7 @@ import { IResourceComponentsProps } from "@pankod/refine-core";
 import { List, Table, useTable } from "@pankod/refine-antd";
 
 export const UsersList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter } = useTable({
+    const { tableProps } = useTable({
         hasPagination: false,
         syncWithLocation: true,
     });

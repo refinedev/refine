@@ -25,7 +25,7 @@ const AuthenticatedPostReview = () => {
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
-        login: ({ email, password, remember }) => {
+        login: ({ email }) => {
             if (email) {
                 localStorage.setItem("email", email);
                 return Promise.resolve();

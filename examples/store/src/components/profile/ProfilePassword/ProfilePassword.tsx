@@ -90,6 +90,7 @@ export const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
 
     return (
         <form
+            // eslint-disable-next-line
             onSubmit={handleSubmit(updatePassword as any)}
             onReset={() => reset()}
             className="w-full"

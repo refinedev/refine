@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useEffect } from "react";
 import { Product, ProductVariant } from "@medusajs/medusa";
 
 import { ProductOptions } from "@components/product";
-import { Button, Text, Rating, Collapse } from "@components/ui";
+import { Button, Text } from "@components/ui";
 import { selectDefaultOptionFromProduct, SelectedOptions } from "../helpers";
 import { useCartContext, useUI } from "@lib/context";
 

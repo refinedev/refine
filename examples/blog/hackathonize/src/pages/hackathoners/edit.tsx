@@ -10,8 +10,7 @@ import {
 import { HackathonerType, TeamType } from "interfaces";
 
 export const HackathonersEdit: React.FC = () => {
-    const { formProps, saveButtonProps, queryResult } =
-        useForm<HackathonerType>();
+    const { formProps, saveButtonProps } = useForm<HackathonerType>();
 
     const { selectProps: teamsSelectProps } = useSelect<TeamType>({
         resource: "teams",

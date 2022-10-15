@@ -5,7 +5,7 @@ import { default as FastMarquee } from "react-fast-marquee";
 
 interface MarqueeProps {
     className?: string;
-    children?: ReactNode[] | Component[] | any[];
+    children?: ReactNode[] | Component[] | any[]; // eslint-disable-line
     variant?: "primary" | "secondary";
 }
 

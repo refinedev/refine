@@ -19,7 +19,7 @@ export const Container: React.FC<ContainerProps> = ({
     });
 
     const Component: React.ComponentType<React.HTMLAttributes<HTMLDivElement>> =
-        el as any;
+        el as any; // eslint-disable-line
 
     return <Component className={rootClassName}>{children}</Component>;
 };

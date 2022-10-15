@@ -76,6 +76,7 @@ export const LoginPage: React.FC = () => {
                                             clearErrors();
                                             handleSubmit((values) => {
                                                 return login(values, {
+                                                    // eslint-disable-next-line
                                                     onError: (error: any) => {
                                                         setError(
                                                             "api",

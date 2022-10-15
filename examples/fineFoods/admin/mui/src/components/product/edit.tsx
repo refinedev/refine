@@ -80,6 +80,7 @@ export const EditProduct: React.FC<
 
         const { name, size, type, lastModified } = file;
 
+        // eslint-disable-next-line
         const imagePaylod: any = [
             {
                 name,
@@ -282,6 +283,7 @@ export const EditProduct: React.FC<
                                                 { field: "Category" },
                                             ),
                                         }}
+                                        // eslint-disable-next-line
                                         defaultValue={null as any}
                                         render={({ field }) => (
                                             <Autocomplete

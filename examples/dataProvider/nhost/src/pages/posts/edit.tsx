@@ -146,6 +146,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                                     );
                                 }
                             }}
+                            // eslint-disable-next-line
                             onRemove={async (props: any) => {
                                 await nhost.storage.delete({
                                     fileId: props.fileId,

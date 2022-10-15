@@ -14,7 +14,7 @@ import hasParent from "./has-parent";
 interface ClickOutsideProps {
     active: boolean;
     onClick: (e?: MouseEvent) => void;
-    ref?: Ref<any>;
+    ref?: Ref<any>; // eslint-disable-line
 }
 
 /**
@@ -26,7 +26,7 @@ const ClickOutside: FC<PropsWithChildren<ClickOutsideProps>> = forwardRef(
         const innerRef = useRef();
 
         const child = children
-            ? (React.Children.only(children) as any)
+            ? (React.Children.only(children) as any) // eslint-disable-line
             : undefined;
 
         if (!child || child.type === React.Fragment) {
@@ -56,6 +56,7 @@ const ClickOutside: FC<PropsWithChildren<ClickOutsideProps>> = forwardRef(
             };
         });
 
+        // eslint-disable-next-line
         const handleClick = (event: any) => {
             /**
              * Check if the clicked element is contained by the top level tag provided to the

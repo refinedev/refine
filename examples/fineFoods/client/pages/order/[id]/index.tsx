@@ -14,6 +14,7 @@ type OrderPageProps = {
 };
 
 export const OrderDetail: React.FC<OrderPageProps> = ({ order }) => {
+    // eslint-disable-next-line
     const el = useRef<any>();
     const q = gsap.utils.selector(el);
 

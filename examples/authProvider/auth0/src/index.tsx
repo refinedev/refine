@@ -5,6 +5,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import App from "./App";
 
 const container = document.getElementById("root");
+// eslint-disable-next-line
 const root = createRoot(container!);
 root.render(
     <React.StrictMode>

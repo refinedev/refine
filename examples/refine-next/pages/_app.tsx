@@ -4,7 +4,6 @@ import { AppProps } from "next/app";
 import { Refine } from "@pankod/refine-core";
 import {
     notificationProvider,
-    LoginPage,
     Layout,
     ErrorComponent,
     AuthPage,

@@ -18,6 +18,7 @@ const BikeWhiteSVG: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     </svg>
 );
 
+// eslint-disable-next-line
 export const BikeWhiteIcon = (props: any) => (
     <Icon component={BikeWhiteSVG} {...props} />
 );

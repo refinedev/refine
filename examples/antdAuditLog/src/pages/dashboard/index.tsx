@@ -26,6 +26,7 @@ export const DashboardPage: React.FC = () => {
         // },
     });
 
+    // eslint-disable-next-line
     const send = async (values: any) => {
         const { name, username, email } = values;
         return await refineSDK.log.create({

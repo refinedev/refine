@@ -1,4 +1,4 @@
-import { HttpError, useNavigation, useOne } from "@pankod/refine-core";
+import { HttpError, useNavigation } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 import routerProvider from "@pankod/refine-react-router-v6";
 import { ErrorList } from "components/Error";
@@ -50,6 +50,7 @@ export const EditArticlePage: React.FC = () => {
                 push(`/article/${response.data.article.slug}`);
             },
             queryOptions: {
+                // eslint-disable-next-line
                 select: (data) => ({ data: { article: data?.data } } as any),
             },
         },
@@ -115,6 +116,7 @@ export const EditArticlePage: React.FC = () => {
                                         type="text"
                                         className="form-control"
                                         placeholder="Enter tags"
+                                        // eslint-disable-next-line
                                         onKeyUp={(e: any) => {
                                             e.preventDefault();
                                             if (e.key === "Enter") {

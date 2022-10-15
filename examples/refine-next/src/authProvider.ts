@@ -13,7 +13,7 @@ const mockUsers = [
 ];
 
 export const authProvider: AuthProvider = {
-    login: ({ email, password, remember }) => {
+    login: ({ email }) => {
         // Suppose we actually send a request to the back end here.
         const user = mockUsers.find((item) => item.email === email);
 

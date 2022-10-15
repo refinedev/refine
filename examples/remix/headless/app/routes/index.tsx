@@ -7,7 +7,7 @@ import {
 
 import { authProvider } from "~/authProvider";
 
-export const loader: LoaderFunction = async ({ params, request, context }) => {
+export const loader: LoaderFunction = async ({ request }) => {
     await checkAuthentication(authProvider, request);
     return null;
 };

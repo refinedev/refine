@@ -14,6 +14,6 @@ export default {
     decorators: [(Story) => RefineWithoutLayout(Story)],
 } as ComponentMeta<typeof Create>;
 
-export const CreateBasicView: ComponentStory<typeof Create> = (args) => {
+export const CreateBasicView: ComponentStory<typeof Create> = () => {
     return <Create>Content of Create Basic View comes here 🎉</Create>;
 };

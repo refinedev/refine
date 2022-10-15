@@ -10,8 +10,10 @@ import { useDialog } from "@react-aria/dialog";
 import { FocusScope } from "@react-aria/focus";
 import { AriaButtonProps, OverlayProvider } from "react-aria";
 
+// eslint-disable-next-line
 function ModalDialog(props: AriaButtonProps<ElementType> | any) {
     const { title, children } = props;
+    // eslint-disable-next-line
     const ref: RefObject<any> = React.useRef();
     const { overlayProps, underlayProps } = useOverlay(props, ref);
 

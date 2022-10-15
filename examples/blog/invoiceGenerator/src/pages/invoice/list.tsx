@@ -62,6 +62,7 @@ export const InvoiceList: React.FC = () => {
                         dataIndex={"missions"}
                         title="Missions"
                         render={(value) => {
+                            // eslint-disable-next-line
                             return value.map((item: any) => {
                                 return (
                                     <TagField

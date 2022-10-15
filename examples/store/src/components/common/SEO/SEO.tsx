@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { FC, Fragment, ReactNode } from "react";
+import { Fragment, ReactNode } from "react";
 import config from "@config/seo_meta.json";
 
 const storeUrl =
@@ -31,6 +31,7 @@ interface SeoProps {
 
 const ogImage = ({ url, width, height, alt }: OgImage, index: number) => {
     // generate full URL for OG image url with store base URL
+    // eslint-disable-next-line
     const imgUrl = storeBaseUrl ? new URL(url!, storeBaseUrl).toString() : url;
     return (
         <Fragment key={`og:image:${index}`}>

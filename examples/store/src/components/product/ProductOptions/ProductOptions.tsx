@@ -24,7 +24,7 @@ export const ProductOptions: React.FC<ProductOptionsProps> = ({
                     <div role="listbox" className="flex flex-row py-4">
                         {opt.values
                             .filter(
-                                (val, index: number, arr: any[]) =>
+                                (val, index: number, arr: any[]) => // eslint-disable-line
                                     arr.findIndex(
                                         (val2) => val2.value === val.value,
                                     ) === index,

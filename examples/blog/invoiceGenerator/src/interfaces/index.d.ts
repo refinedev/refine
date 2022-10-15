@@ -6,7 +6,7 @@ export interface ICompany {
     city: string;
     email: string;
     website: string;
-    logo: any;
+    logo: any; // eslint-disable-line
 }
 
 export interface IClient {
