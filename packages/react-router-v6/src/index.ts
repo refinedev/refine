@@ -61,4 +61,4 @@ const RouterProvider: IReactRouterProvider = {
 };
 export default RouterProvider;
 
-export { MemoryRouterComponent, HashRouterComponent };
+export { MemoryRouterComponent, HashRouterComponent, BrowserRouterComponent };
