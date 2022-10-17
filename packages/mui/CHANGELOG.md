@@ -1,5 +1,14 @@
 # @pankod/refine-mui
 
+## 3.50.7
+
+### Patch Changes
+
+-   Fix login link alignment on forgot password page.
+
+-   Updated dependencies []:
+    -   @pankod/refine-ui-types@0.11.6
+
 ## 3.50.6
 
 ### Patch Changes

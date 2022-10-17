@@ -1,5 +1,54 @@
 # @pankod/refine-antd
 
+## 3.57.0
+
+### Minor Changes
+
+-   Only `or` was supported as a conditional filter. Now `and` and `or` can be used together and nested. 🚀
+
+    ```
+    {
+      operator: "or",
+      value: [
+        {
+          operator: "and",
+          value: [
+            {
+              field: "name",
+              operator: "eq",
+              value: "John Doe",
+            },
+            {
+              field: "age",
+              operator: "eq",
+              value: 30,
+            },
+          ],
+        },
+        {
+          operator: "and",
+          value: [
+            {
+              field: "name",
+              operator: "eq",
+              value: "JR Doe",
+            },
+            {
+              field: "age",
+              operator: "eq",
+              value: 1,
+            },
+          ],
+        },
+      ],
+    }
+    ```
+
+### Patch Changes
+
+-   Updated dependencies []:
+    -   @pankod/refine-ui-types@0.11.6
+
 ## 3.56.0
 
 ### Minor Changes
