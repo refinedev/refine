@@ -705,7 +705,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 -       setEditId,
 +       setId,
 -       editId,
-+       id
++       id,
         saveButtonProps,
         cancelButtonProps,
         editButtonProps,
