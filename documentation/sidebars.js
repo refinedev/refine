@@ -419,6 +419,7 @@ module.exports = {
                                         "api-reference/mantine/components/fields/file",
                                         "api-reference/mantine/components/fields/markdown",
                                         "api-reference/mantine/components/fields/number",
+                                        "api-reference/mantine/components/fields/tag",
                                     ],
                                 },
                             ],
