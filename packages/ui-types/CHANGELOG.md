@@ -1,5 +1,14 @@
 # @pankod/refine-ui-types
 
+## 0.11.5
+
+### Patch Changes
+
+-   [#2786](https://github.com/pankod/refine/pull/2786) [`19124711a7`](https://github.com/pankod/refine/commit/19124711a7dc23c0b0e61bc845fbd294927999da) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Added descriptions to ui-types
+
+-   Updated dependencies [[`addff64c77`](https://github.com/pankod/refine/commit/addff64c777e4c9f044a1a109cb05453e6e9f762)]:
+    -   @pankod/refine-core@3.85.0
+
 ## 0.11.4
 
 ### Patch Changes

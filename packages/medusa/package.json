@@ -1,7 +1,7 @@
 {
     "name": "@pankod/refine-medusa",
     "description": "refine medusa data provider. refine is a React-based framework for building internal tools, rapidly.",
-    "version": "1.5.0",
+    "version": "1.6.0",
     "license": "MIT",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
@@ -22,7 +22,7 @@
     "author": "Pankod",
     "module": "dist/esm/index.js",
     "devDependencies": {
-        "@pankod/refine-core": "^3.84.0",
+        "@pankod/refine-core": "^3.85.0",
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "jest": "^27.5.1",
         "nock": "^13.1.3",

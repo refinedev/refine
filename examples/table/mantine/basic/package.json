@@ -8,10 +8,10 @@
   },
   "dependencies": {
     "@pankod/refine-mantine": "^1.6.11",
-    "@pankod/refine-core": "^3.84.0",
+    "@pankod/refine-core": "^3.85.0",
     "@pankod/refine-react-router-v6": "^3.36.2",
-    "@pankod/refine-simple-rest": "^3.33.0",
-    "@pankod/refine-react-table": "^4.7.8",
+    "@pankod/refine-simple-rest": "^3.34.0",
+    "@pankod/refine-react-table": "^4.8.0",
     "@tabler/icons": "^1.1.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
