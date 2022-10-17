@@ -34,7 +34,7 @@ And it's done. Now your project uses `refine@3.x.x`.
 
 Packages used by your app must be updated to `^3.xx.xx`
 
-@pankod/refine has been depracate with **refine** 3.x.x version. You must now use `@pankod/refine-core` and `@pankod/refine-antd`.
+@pankod/refine has been deprecated with **refine** 3.x.x version. You must now use `@pankod/refine-core` and `@pankod/refine-antd`.
 
 ```bash
 npm uninstall @pankod/refine
@@ -66,7 +66,7 @@ export const Packages = () => {
             label: p, value: p
         }))}
         >{
-            packages.map(p => 
+            packages.map(p =>
             <TabItem value={p}>
                 <CodeBlock className="language-bash">{`npm i ${p}@latest`}</CodeBlock>
             </TabItem>
@@ -351,7 +351,7 @@ const App: React.FC = () => {
 
 ```diff title="PostList.tsx"
 - import {
--    IResourceComponentsProps, 
+-    IResourceComponentsProps,
 -    useMany,
 -    List,
 -    TextField,
@@ -537,7 +537,7 @@ import {
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
-    //highlight-end 
+    //highlight-end
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router";
 
@@ -705,7 +705,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 -       setEditId,
 +       setId,
 -       editId,
-+       id 
++       id
         saveButtonProps,
         cancelButtonProps,
         editButtonProps,
