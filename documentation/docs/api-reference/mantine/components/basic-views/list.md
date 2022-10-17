@@ -5,8 +5,9 @@ title: List
 
 ```tsx live shared
 setRefineProps({
-    Sider: () => null,
     notificationProvider: RefineMantine.notificationProvider,
+    Layout: RefineMantine.Layout,
+    Sider: () => null,
 });
 
 const Wrapper = ({ children }) => {
@@ -47,7 +48,6 @@ We will show what `<List>` does using properties with examples.
 ```tsx live url=http://localhost:3000/posts previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -146,7 +146,6 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
@@ -172,7 +171,6 @@ It allows adding a title for the `<List>` component. if you don't pass title pro
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -194,7 +192,6 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
@@ -250,8 +247,8 @@ const App = () => {
                 ],
                 // highlight-end
             }}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             Layout={Layout}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[{ name: "posts" }]}
         />
     );
@@ -272,7 +269,6 @@ Create button redirects to the create page of the resource according to the valu
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -323,7 +319,6 @@ const App = () => {
             routerProvider={routerProvider}
             dataProvider={customDataProvider}
             authProvider={authProvider}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
@@ -350,7 +345,6 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -388,7 +382,6 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
@@ -414,7 +407,6 @@ If you want to customize the wrapper of the `<List/>` component, you can use the
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -444,7 +436,6 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
@@ -470,7 +461,6 @@ If you want to customize the header of the `<List/>` component, you can use the 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -500,7 +490,6 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
@@ -526,7 +515,6 @@ If you want to customize the content of the `<List/>` component, you can use the
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -556,7 +544,6 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
@@ -580,7 +567,6 @@ You can customize the buttons at the header by using the `headerButtons` propert
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -612,7 +598,6 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
@@ -638,7 +623,6 @@ You can customize the wrapper element of the buttons at the header by using the 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -673,7 +657,6 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
