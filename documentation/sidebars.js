@@ -409,6 +409,13 @@ module.exports = {
                                         "api-reference/mantine/components/buttons/show-button",
                                     ],
                                 },
+                                {
+                                    type: "category",
+                                    label: "Fields",
+                                    items: [
+                                        "api-reference/mantine/components/fields/boolean",
+                                    ],
+                                },
                             ],
                         },
                         {
