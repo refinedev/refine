@@ -194,7 +194,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/BooleanField" />
+<PropsTable module="@pankod/refine-mantine/BooleanField" title-description="The text shown in the tooltip" title-default="`value` ? `valueLabelTrue` : `valueLabelFalse`" trueIcon-default="[`<IconCheck />`](https://tabler-icons.io/i/check)" falseIcon-default="[`<IconX />`](https://tabler-icons.io/i/x)" />
 
 :::tip External Props
 It also accepts all props of Mantine [Tooltip](https://mantine.dev/core/tooltip).
