@@ -14,8 +14,7 @@ type OrderPageProps = {
 };
 
 export const OrderDetail: React.FC<OrderPageProps> = ({ order }) => {
-    // eslint-disable-next-line
-    const el = useRef<any>();
+    const el = useRef<HTMLDivElement>();
     const q = gsap.utils.selector(el);
 
     const [showMessage, setShowMessage] = useState(false);
