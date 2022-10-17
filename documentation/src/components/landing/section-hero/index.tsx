@@ -2,13 +2,7 @@ import React from "react";
 import Link from "@docusaurus/Link";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import {
-    ArrowIcon,
-    ChevronRight,
-    CloudTipIcon,
-    GithubIcon,
-    ScrollIcon,
-} from "../icons";
+import { ArrowIcon, ChevronRight, ScrollIcon } from "../icons";
 import { useTWBreakpoints } from "../../../hooks/use-tw-breakpoints";
 
 export const SectionHero: React.FC = () => {
