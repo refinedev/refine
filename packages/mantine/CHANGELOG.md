@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 1.6.11
+
+### Patch Changes
+
+-   Add primary color to `<SaveButton/>`'s `<ActionIcon/>` component.
+
 ## 1.6.10
 
 ### Patch Changes
