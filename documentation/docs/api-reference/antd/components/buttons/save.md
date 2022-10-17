@@ -76,10 +76,8 @@ export const MySaveComponent = () => {
 
 ### Properties
 
-| Property | Description                       | Type                                                                                   | Default                                                   |
-| -------- | --------------------------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| props    | Ant Design button props           | [`ButtonProps`](https://ant.design/components/button/#API) & `{ hideText?: boolean; }` |                                                           |
-| hideText | Allows to hide button text        | `boolean`                                                                              | `false`                                                   |
-| children | Sets the button text              | `ReactNode`                                                                            | `"Save"`                                                  |
-| type     | Sets the button type              | `string`                                                                               | `"primary"`                                               |
-| icon     | Sets the icon component of button | `ReactNode`                                                                            | [`<SaveOutlined />`](https://ant.design/components/icon/) |
+<PropsTable module="@pankod/refine-antd/SaveButton" />
+
+:::tip External Props
+It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).
+:::

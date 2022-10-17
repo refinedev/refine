@@ -82,8 +82,9 @@ Table columns already render their data as text by default. If the rendered data
 
 ### Properties
 
-| Property | Description             | Type                    |
-| -------- | ----------------------- | ----------------------- |
-| value    | Markdown data to render | `string` \| `undefined` |
+<PropsTable module="@pankod/refine-antd/TextField" />
 
-[Refer to Text props &#8594](https://ant.design/components/typography/#Typography.Text)
+:::tip External Props
+It also accepts all props of Ant Design [Text](https://ant.design/components/typography/#Typography.Text).
+:::
+

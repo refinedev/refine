@@ -12,7 +12,7 @@ This field is used to display boolean values. It uses the [`<Tooltip>`](https://
 Let's see how we can use `<BooleanField>` with the example in the post list.
 
 ```tsx
-import { 
+import {
     List,
     Table,
     // highlight-start
@@ -64,11 +64,8 @@ export const PostList: React.FC = () => {
 
 ### Properties
 
-| Property             | Description                                  | Type                                                                 | Default                                                    |
-| -------------------- | -------------------------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------- |
-| value                | Field value                                  | `unknown`                                                            |                                                            |
-| valueLabelTrue       | If there is a value, this is the text to use | `string`                                                             | `"true"`                                                   |
-| valueLabelFalse      | If there no value, this is the text to use   | `string`                                                             | `"false"`                                                  |
-| trueIcon             | If there is a value, this is the icon to use | `React.ReactNode`                                                    | [`<CheckOutlined />`](https://ant.design/components/icon/) |
-| falseIcon            | If there no value, this is the icon to use.  | `React.ReactNode`                                                    | [`<CloseOutlined />`](https://ant.design/components/icon/) |
-| AbstractTooltipProps | Ant Design `Tooltip` properties              | [`AbstractTooltipProps`](https://ant.design/components/tooltip/#API) |                                                            |
+<PropsTable module="@pankod/refine-antd/BooleanField" title-description="The text shown in the tooltip" title-default="`value` ? `valueLabelTrue` : `valueLabelFalse`" />
+
+:::tip External Props
+It also accepts all props of Ant Design [Tooltip](https://ant.design/components/tooltip/#API).
+:::

@@ -75,11 +75,11 @@ export const PostList: React.FC = () => {
 
 ### Properties
 
-| Property        | Description                                              | Type                                     | Default |
-| --------------- | -------------------------------------------------------- | ---------------------------------------- | ------- |
-| breadcrumbProps | Passes properties for [`<Breadcrumb>`][antd-breadcrumb]  | [BreadcrumbProps][antd-breadcrumb-props] |         |
-| showHome        | Shows the home button if application has `DashboardPage` | `boolean`                                | `true`  |
-| hideIcons       | Allows to hide resource icons                            | `boolean`                                | `false` |
+<PropsTable module="@pankod/refine-antd/Breadcrumb"
+breadcrumbProps-type="[BreadcrumbProps](https://ant.design/components/breadcrumb/#API)"
+breadcrumbProps-description="Passes properties for [`<Breadcrumb>`](https://ant.design/components/breadcrumb/#Breadcrumb)"
+/>
+
 
 [antd-breadcrumb]: https://ant.design/components/breadcrumb
 [antd-breadcrumb-props]: https://ant.design/components/breadcrumb/#Breadcrumb

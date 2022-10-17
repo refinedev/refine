@@ -59,9 +59,10 @@ interface IPost {
 
 ### Properties
 
-| Property                                                                                         | Description                                                              | Type                                            | Default |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ----------------------------------------------- | ------- |
-| <div className="required-block"><div>value</div> <div className=" required">Required</div></div> | Date value                                                               | `string` \| `number` \| `Date` \| `dayjs.Dayjs` |         |
-| [format](https://day.js.org/docs/en/display/format)                                              | Gets the formatted date according to the string of the tokens passed in. | `string` \| `undefined`                         | `"L"`   |
+<PropsTable module="@pankod/refine-antd/DateField" format-default="`L`"/>
+
+:::tip External Props
+It also accepts all props of Ant Design [Text](https://ant.design/components/typography/#Typography.Text).
+:::
 
 [Refer to Text props &#8594](https://ant.design/components/typography/#Typography.Text)

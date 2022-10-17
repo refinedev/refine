@@ -8,7 +8,15 @@ import {
 } from "@pankod/refine-ui-types";
 
 export type ImportButtonProps = RefineImportButtonProps & {
+    /**
+     * Sets the button type
+     * @type [UploadProps](https://ant.design/components/upload/#API)
+     */
     uploadProps: UploadProps;
+    /**
+     * Sets props of the button
+     * @type [ButtonProps](https://ant.design/components/button/#API)
+     */
     buttonProps: ButtonProps;
 };
 

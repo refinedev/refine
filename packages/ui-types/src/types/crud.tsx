@@ -17,15 +17,15 @@ export type RefineCrudListProps<
     TExtraProps extends {} = {},
 > = PropsWithChildren<{
     /**
-     * Title of the list view
-     * @default {resource.name}
-     */
-    title?: React.ReactNode;
-    /**
      * Resource name for API data interactions
      * @default Reads `:resource` from the URL
      */
     resource?: string;
+    /**
+     * Title of the create view
+     * @default Plural of the resource.name
+     */
+    title?: React.ReactNode;
     /**
      * Props for the wrapper component of the view
      */
@@ -77,15 +77,15 @@ export type RefineCrudCreateProps<
     TExtraProps extends {} = {},
 > = PropsWithChildren<{
     /**
-     * Title of the create view
-     * @default Create {resource.name}
-     */
-    title?: React.ReactNode;
-    /**
      * Resource name for API data interactions
      * @default Reads `:resource` from the URL
      */
     resource?: string;
+    /**
+     * Title of the create view
+     * @default Create {resource.name}
+     */
+    title?: React.ReactNode;
     /**
      * Props for the wrapper component of the view
      */
@@ -150,15 +150,15 @@ export type RefineCrudEditProps<
     TExtraProps extends {} = {},
 > = PropsWithChildren<{
     /**
-     * Title of the edit view
-     * @default Edit {resource.name}
-     */
-    title?: React.ReactNode;
-    /**
      * Resource name for API data interactions
      * @default Reads `:resource` from the URL
      */
     resource?: string;
+    /**
+     * Title of the edit view
+     * @default Edit {resource.name}
+     */
+    title?: React.ReactNode;
     /**
      * Props for the wrapper component of the view
      */
@@ -222,11 +222,11 @@ export type RefineCrudEditProps<
     deleteButtonProps?: TDeleteButtonProps;
     /**
      * [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)
-     * @default pessimistic
+     * @default `"pessimistic"`\*
      */
     mutationMode?: MutationMode;
     /**
-     * The record id for `<RefreshButton />`
+     *  The record id for `<RefreshButton>`
      */
     recordItemId?: BaseKey;
 }> &
@@ -244,15 +244,15 @@ export type RefineCrudShowProps<
     TExtraProps extends {} = {},
 > = PropsWithChildren<{
     /**
-     * Title of the edit view
-     * @default Show {resource.name}
-     */
-    title?: React.ReactNode;
-    /**
      * Resource name for API data interactions
      * @default Reads `:resource` from the URL
      */
     resource?: string;
+    /**
+     * Title of the edit view
+     * @default Show {resource.name}
+     */
+    title?: React.ReactNode;
     /**
      * Props for the wrapper component of the view
      */

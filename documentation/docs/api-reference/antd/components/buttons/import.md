@@ -83,12 +83,7 @@ export const MyImportComponent = () => {
 
 ### Properties
 
-| Property    | Description                       | Type                                                       | Default    |
-| ----------- | --------------------------------- | ---------------------------------------------------------- | ---------- |
-| uploadProps | Sets the button type              | [`UploadProps`](https://ant.design/components/upload/#API) |            |
-| buttonProps | Sets the icon component of button | [`ButtonProps`](https://ant.design/components/button/#API) |            |
-| hideText    | Allows to hide button text        | `boolean`                                                  | `false`    |
-| children    | Sets the button text              | `ReactNode`                                                | `"Import"` |
+<PropsTable module="@pankod/refine-antd/ImportButton" />
 
 [useimport]: /api-reference/antd/hooks/import/useImport.md
 [button]: https://ant.design/components/button/

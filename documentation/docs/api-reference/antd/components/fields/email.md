@@ -53,11 +53,10 @@ export const UserList: React.FC = () => {
 
 ## API Reference
 
-### Properties
+<PropsTable module="@pankod/refine-antd/EmailField" />
 
-| Property | Description | Type              | Default |
-| -------- | ----------- | ----------------- | ------- |
-| value    | Email value | `React.ReactNode` |         |
-
+:::tip External Props
+It also accepts all props of Ant Design [Link](https://ant.design/components/typography/#How-to-use-Typography.Link-in-react-router).
+:::
 
 [Refer to the documentation for the rest of Link properties. &#8594](https://ant.design/components/typography/#API)
