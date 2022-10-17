@@ -36,7 +36,7 @@ This field is used to display files and it uses the [`<Anchor>`](https://mantine
 
 ## Usage
 
-Let's see how we can use `<FileField>` with the example in the edit page.
+Let's see how we can use `<FileField>` with the example in the list page.
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
