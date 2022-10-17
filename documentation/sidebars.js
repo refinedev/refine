@@ -416,6 +416,7 @@ module.exports = {
                                         "api-reference/mantine/components/fields/boolean",
                                         "api-reference/mantine/components/fields/date",
                                         "api-reference/mantine/components/fields/email",
+                                        "api-reference/mantine/components/fields/file",
                                     ],
                                 },
                             ],
