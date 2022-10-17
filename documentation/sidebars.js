@@ -420,6 +420,7 @@ module.exports = {
                                         "api-reference/mantine/components/fields/markdown",
                                         "api-reference/mantine/components/fields/number",
                                         "api-reference/mantine/components/fields/tag",
+                                        "api-reference/mantine/components/fields/text",
                                     ],
                                 },
                             ],
