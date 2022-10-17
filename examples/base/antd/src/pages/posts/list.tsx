@@ -24,13 +24,6 @@ import { IPost, ICategory } from "interfaces";
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, filters } = useTable<IPost>({
         syncWithLocation: true,
-        initialFilter: [
-            {
-                field: "category",
-                operator: "eq",
-                value: 1,
-            },
-        ],
     });
 
     const categoryIds =
