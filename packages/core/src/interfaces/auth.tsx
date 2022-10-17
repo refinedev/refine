@@ -51,6 +51,11 @@ export type AuthPageProps<
            */
           providers?: OAuthProvider[];
           /**
+           * @description Render a redirect to login page button node. If set to false, login button will not be rendered.
+           * @optional
+           */
+          loginLink?: React.ReactNode;
+          /**
            * @description Render a redirect to register page button node. If set to false, register button will not be rendered.
            * @optional
            */
@@ -72,11 +77,6 @@ export type AuthPageProps<
            * @optional
            */
           type: "register";
-          /**
-           * @description Render a redirect to login page button node. If set to false, login button will not be rendered.
-           * @optional
-           */
-          loginLink?: React.ReactNode;
           /**
            * @description Providers array for login with third party auth services.
            * @optional
