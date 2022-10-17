@@ -1,5 +1,11 @@
 # @pankod/refine-react-router-v6
 
+## 3.36.2
+
+### Patch Changes
+
+-   Add missing `BrowserRouterComponent` export to `@pankod/refine-react-router-v6` package.
+
 ## 3.36.1
 
 ### Patch Changes
