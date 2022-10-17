@@ -1,5 +1,53 @@
 # @pankod/refine-simple-rest
 
+## 3.34.0
+
+### Minor Changes
+
+-   [#2751](https://github.com/pankod/refine/pull/2751) [`addff64c77`](https://github.com/pankod/refine/commit/addff64c777e4c9f044a1a109cb05453e6e9f762) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Only `or` was supported as a conditional filter. Now `and` and `or` can be used together and nested. 🚀
+
+    ```
+    {
+      operator: "or",
+      value: [
+        {
+          operator: "and",
+          value: [
+            {
+              field: "name",
+              operator: "eq",
+              value: "John Doe",
+            },
+            {
+              field: "age",
+              operator: "eq",
+              value: 30,
+            },
+          ],
+        },
+        {
+          operator: "and",
+          value: [
+            {
+              field: "name",
+              operator: "eq",
+              value: "JR Doe",
+            },
+            {
+              field: "age",
+              operator: "eq",
+              value: 1,
+            },
+          ],
+        },
+      ],
+    }
+    ```
+
+### Patch Changes
+
+-   [#2790](https://github.com/pankod/refine/pull/2790) [`8144e10156`](https://github.com/pankod/refine/commit/8144e10156c2691f4f298e27720eea183241e971) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed using `data` in `axios'` `delete` function
+
 ## 3.33.0
 
 ### Minor Changes

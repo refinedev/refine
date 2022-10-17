@@ -1,5 +1,14 @@
 # @pankod/refine-mui
 
+## 3.50.6
+
+### Patch Changes
+
+-   [#2787](https://github.com/pankod/refine/pull/2787) [`eeb7303b8b`](https://github.com/pankod/refine/commit/eeb7303b8b413f00b74802d08791adc560af5fe2) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Fix login link alignment on forgot password page.
+
+-   Updated dependencies [[`19124711a7`](https://github.com/pankod/refine/commit/19124711a7dc23c0b0e61bc845fbd294927999da)]:
+    -   @pankod/refine-ui-types@0.11.5
+
 ## 3.50.5
 
 ### Patch Changes
