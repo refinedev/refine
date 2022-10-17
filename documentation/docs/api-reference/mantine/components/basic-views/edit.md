@@ -44,8 +44,8 @@ interface IPost {
 
 We will show what `<Edit>` does using properties with examples.
 
-```tsx live url=http://localhost:3000/posts/edit/23 previewHeight=420px hideCode
-setInitialRoutes(["/posts/edit/23"]);
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=420px hideCode
+setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -139,8 +139,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <EditButton recordItemId="23">
-                                Edit Item 23
+                            <EditButton recordItemId="123">
+                                Edit Item 123
                             </EditButton>
                         </div>
                     ),
@@ -162,8 +162,8 @@ render(
 
 It allows adding titles inside the `<Edit>` component. if you don't pass title props it uses the "Edit" prefix and singular resource name by default. For example, for the "posts" resource, it will be "Edit post".
 
-```tsx live url=http://localhost:3000/posts/edit/23 previewHeight=280px
-setInitialRoutes(["/posts/edit/23"]);
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
+setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -195,8 +195,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <EditButton recordItemId="23">
-                                Edit Item 23
+                            <EditButton recordItemId="123">
+                                Edit Item 123
                             </EditButton>
                         </div>
                     ),
@@ -218,11 +218,10 @@ The `<Edit>` component has a save button by default. If you want to customize th
 
 Clicking on the save button will submit your form.
 
-<!-- TODO: Add SaveButton link when the SaveButton doc created. -->
-<!-- [Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-reference/mantine/components/buttons/save.md) -->
+[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-reference/mantine/components/buttons/save.md)
 
-```tsx live url=http://localhost:3000/posts/edit/23 previewHeight=280px
-setInitialRoutes(["/posts/edit/23"]);
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
+setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -254,8 +253,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <EditButton recordItemId="23">
-                                Edit Item 23
+                            <EditButton recordItemId="123">
+                                Edit Item 123
                             </EditButton>
                         </div>
                     ),
@@ -277,11 +276,10 @@ render(
 
 When clicked on, the delete button executes the `useDelete` method provided by the `dataProvider`.
 
-<!-- TODO: Add DeleteButton link when the DeleteButton doc created.
-[Refer to the `<DeleteButton>` documentation for detailed usage. &#8594](/api-reference/mantine/components/buttons/delete.md) -->
+[Refer to the `<DeleteButton>` documentation for detailed usage. &#8594](/api-reference/mantine/components/buttons/delete.md)
 
-```tsx live url=http://localhost:3000/posts/edit/23 previewHeight=280px
-setInitialRoutes(["/posts/edit/23"]);
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
+setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -343,8 +341,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <EditButton recordItemId="23">
-                                Edit Item 23
+                            <EditButton recordItemId="123">
+                                Edit Item 123
                             </EditButton>
                         </div>
                     ),
@@ -418,8 +416,8 @@ render(
 
 The `<Edit>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL(when used on a custom page, modal or drawer).
 
-```tsx live url=http://localhost:3000/posts/edit/23 previewHeight=350px
-setInitialRoutes(["/posts/edit/23"]);
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=350px
+setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -497,8 +495,8 @@ Determines which mode mutation will have while executing `<DeleteButton>`.
 
 [Refer to the mutation mode docs for further information. &#8594](/advanced-tutorials/mutation-mode.md)
 
-```tsx live url=http://localhost:3000/posts/edit/230 previewHeight=280px
-setInitialRoutes(["/posts/edit/230"]);
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
+setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -553,8 +551,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <EditButton recordItemId="23">
-                                Edit Item 23
+                            <EditButton recordItemId="123">
+                                Edit Item 123
                             </EditButton>
                         </div>
                     ),
@@ -607,8 +605,8 @@ export const App: React.FC = () => {
 
 To customize the back button or to disable it, you can use the `goBack` property. You can pass `false` or `null` to hide the back button.
 
-```tsx live url=http://localhost:3000/posts/edit/23 previewHeight=280px
-setInitialRoutes(["/posts/edit/23"]);
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
+setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -640,8 +638,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <EditButton recordItemId="23">
-                                Edit Item 23
+                            <EditButton recordItemId="123">
+                                Edit Item 123
                             </EditButton>
                         </div>
                     ),
@@ -661,8 +659,8 @@ render(
 
 To toggle the loading state of the `<Edit/>` component, you can use the `isLoading` property.
 
-```tsx live url=http://localhost:3000/posts/edit/23 previewHeight=280px
-setInitialRoutes(["/posts/edit/23"]);
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
+setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -694,8 +692,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <EditButton recordItemId="23">
-                                Edit Item 23
+                            <EditButton recordItemId="123">
+                                Edit Item 123
                             </EditButton>
                         </div>
                     ),
@@ -718,8 +716,8 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 <!-- TODO: Add breadcrumb link when the Breadcrumb doc is created. -->
 <!-- [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/mantine/components/breadcrumb.md) -->
 
-```tsx live url=http://localhost:3000/posts/edit/23 previewHeight=280px
-setInitialRoutes(["/posts/edit/23"]);
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
+setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -763,8 +761,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <EditButton recordItemId="23">
-                                Edit Item 23
+                            <EditButton recordItemId="123">
+                                Edit Item 123
                             </EditButton>
                         </div>
                     ),
@@ -786,8 +784,8 @@ If you want to customize the wrapper of the `<Edit/>` component, you can use the
 
 [Refer to the `Card` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/card/)
 
-```tsx live url=http://localhost:3000/posts/edit/23 previewHeight=280px
-setInitialRoutes(["/posts/edit/23"]);
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
+setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -827,8 +825,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <EditButton recordItemId="23">
-                                Edit Item 23
+                            <EditButton recordItemId="123">
+                                Edit Item 123
                             </EditButton>
                         </div>
                     ),
@@ -850,8 +848,8 @@ If you want to customize the header of the `<Edit/>` component, you can use the 
 
 [Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group/)
 
-```tsx live url=http://localhost:3000/posts/edit/23 previewHeight=280px
-setInitialRoutes(["/posts/edit/23"]);
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
+setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -891,8 +889,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <EditButton recordItemId="23">
-                                Edit Item 23
+                            <EditButton recordItemId="123">
+                                Edit Item 123
                             </EditButton>
                         </div>
                     ),
@@ -914,8 +912,8 @@ If you want to customize the content of the `<Edit/>` component, you can use the
 
 [Refer to the `Box` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/box/)
 
-```tsx live url=http://localhost:3000/posts/edit/23 previewHeight=280px
-setInitialRoutes(["/posts/edit/23"]);
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
+setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -955,8 +953,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <EditButton recordItemId="23">
-                                Edit Item 23
+                            <EditButton recordItemId="123">
+                                Edit Item 123
                             </EditButton>
                         </div>
                     ),
@@ -976,8 +974,8 @@ render(
 
 You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
-```tsx live url=http://localhost:3000/posts/edit/23 previewHeight=280px
-setInitialRoutes(["/posts/edit/23"]);
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
+setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -1019,8 +1017,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <EditButton recordItemId="23">
-                                Edit Item 23
+                            <EditButton recordItemId="123">
+                                Edit Item 123
                             </EditButton>
                         </div>
                     ),
@@ -1042,8 +1040,8 @@ You can customize the wrapper element of the buttons at the header by using the 
 
 [Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group/)
 
-```tsx live url=http://localhost:3000/posts/edit/23 previewHeight=280px
-setInitialRoutes(["/posts/edit/23"]);
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
+setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -1088,8 +1086,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <EditButton recordItemId="23">
-                                Edit Item 23
+                            <EditButton recordItemId="123">
+                                Edit Item 123
                             </EditButton>
                         </div>
                     ),
@@ -1109,8 +1107,8 @@ render(
 
 You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
-```tsx live url=http://localhost:3000/posts/edit/23 previewHeight=280px
-setInitialRoutes(["/posts/edit/23"]);
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
+setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -1150,8 +1148,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <EditButton recordItemId="23">
-                                Edit Item 23
+                            <EditButton recordItemId="123">
+                                Edit Item 123
                             </EditButton>
                         </div>
                     ),
@@ -1173,8 +1171,8 @@ You can customize the wrapper element of the buttons at the footer by using the 
 
 [Refer to the `Space` documentation from Ant Design for detailed usage. &#8594](https://ant.design/components/space/)
 
-```tsx live url=http://localhost:3000/posts/edit/23 previewHeight=280px
-setInitialRoutes(["/posts/edit/23"]);
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
+setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
 import { Layout, EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -1218,8 +1216,8 @@ const App = () => {
                     list: () => (
                         <div>
                             <p>This page is empty.</p>
-                            <EditButton recordItemId="23">
-                                Edit Item 23
+                            <EditButton recordItemId="123">
+                                Edit Item 123
                             </EditButton>
                         </div>
                     ),
@@ -1239,4 +1237,4 @@ render(
 
 ### Props
 
-<PropsTable module="@pankod/refine-mantine/Edit" goBack-default="`<IconArrowLeft />`" />
+<PropsTable module="@pankod/refine-mantine/Edit" goBack-default="`<IconArrowLeft />`" title-default="`<Title order={3}>Edit {resource.name}</Title>`" />

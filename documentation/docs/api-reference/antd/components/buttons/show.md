@@ -107,10 +107,10 @@ export const MyShowComponent = () => {
 It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx 
-import { ListButton } from "@pankod/refine-antd";
+import { ShowButton } from "@pankod/refine-antd";
 
-export const MyListComponent = () => {
-    return <ListButton ignoreAccessControlProvider />;
+export const MyShowComponent = () => {
+    return <ShowButton ignoreAccessControlProvider />;
 };
 ```
 

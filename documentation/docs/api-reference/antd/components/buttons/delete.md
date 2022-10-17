@@ -90,7 +90,7 @@ Clicking the button will trigger the [`useDelete`](/api-reference/core/hooks/dat
 **`<DeleteButton>`** component reads the id information from the route by default.
 :::
 
-### `resourceName`
+### `resourceNameOrRouteName`
 
 `resourceNameOrRouteName` allows us to manage which resource's record is going to be deleted.
 

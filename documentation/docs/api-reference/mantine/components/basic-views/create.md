@@ -203,8 +203,7 @@ render(
 
 `<Create>` component has a default button that submits the form. If you want to customize this button you can use the `saveButtonProps` property like the code below.
 
-<!-- TODO: Add SaveButton link when the SaveButton doc created. -->
-<!-- [Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-reference/mantine/components/buttons/save.md) -->
+[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-reference/mantine/components/buttons/save.md)
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
@@ -916,4 +915,4 @@ render(
 
 ### Props
 
-<PropsTable module="@pankod/refine-mantine/Create" goBack-default="`<IconArrowLeft />`" />
+<PropsTable module="@pankod/refine-mantine/Create" goBack-default="`<IconArrowLeft />`" title-default="`<Title order={3}>Create {resource.name}</Title>`"/>

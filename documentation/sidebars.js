@@ -392,6 +392,22 @@ module.exports = {
                                         "api-reference/mantine/components/basic-views/show",
                                     ],
                                 },
+                                {
+                                    type: "category",
+                                    label: "Buttons",
+                                    items: [
+                                        "api-reference/mantine/components/buttons/clone-button",
+                                        "api-reference/mantine/components/buttons/create-button",
+                                        "api-reference/mantine/components/buttons/delete-button",
+                                        "api-reference/mantine/components/buttons/edit-button",
+                                        "api-reference/mantine/components/buttons/export-button",
+                                        "api-reference/mantine/components/buttons/import-button",
+                                        "api-reference/mantine/components/buttons/list-button",
+                                        "api-reference/mantine/components/buttons/refresh-button",
+                                        "api-reference/mantine/components/buttons/save-button",
+                                        "api-reference/mantine/components/buttons/show-button",
+                                    ],
+                                },
                             ],
                         },
                         {

@@ -694,4 +694,4 @@ render(
 
 ### Props
 
-<PropsTable module="@pankod/refine-mantine/List" />
+<PropsTable module="@pankod/refine-mantine/List" title-default="`<Title order={3}>{resource.name}</Title>`" />
