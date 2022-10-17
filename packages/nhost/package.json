@@ -1,7 +1,7 @@
 {
     "name": "@pankod/refine-nhost",
     "description": "refine nhost.io data provider. refine is a React-based headless framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
-    "version": "3.40.0",
+    "version": "3.41.0",
     "license": "MIT",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
@@ -22,7 +22,7 @@
     "author": "Pankod",
     "module": "dist/esm/index.js",
     "devDependencies": {
-        "@pankod/refine-core": "^3.85.0",
+        "@pankod/refine-core": "^3.86.0",
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "jest": "^27.5.1",
         "lodash": "^4.17.21",
