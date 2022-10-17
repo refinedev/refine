@@ -29,7 +29,7 @@ const GithubFloatingCta: FC = () => {
             <div className="ml-4">Star us on Github</div>
             <a
                 className="flex items-center gap-2 mx-auto text--no-decoration text-inherit"
-                href="https://github.com/pankod/refine"
+                href="https://github.com/pankod/refine/stargazers?ref=float-cta"
                 target="_blank"
                 rel="noreferrer"
             >
