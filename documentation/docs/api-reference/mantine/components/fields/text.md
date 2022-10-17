@@ -69,6 +69,11 @@ const PostShow: React.FC<IResourceComponentsProps> = () => {
             <Title mt="sm" order={5}>
                 Category
             </Title>
+            <TextField
+                value={
+                    categoryIsLoading ? "Loading..." : categoryData?.data?.title
+                }
+            />
         </Show>
     );
 };
@@ -118,5 +123,5 @@ render(
 <PropsTable module="@pankod/refine-mantine/TextField" />
 
 :::tip External Props
-It also accepts all props of Mantine [Text](https://mantine.dev/core/text/).
+It also accepts all props of Mantine [Text](https://mantine.dev/core/text/?t=props).
 :::
