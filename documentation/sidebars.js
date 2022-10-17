@@ -392,6 +392,7 @@ module.exports = {
                                         "api-reference/mantine/components/basic-views/show",
                                     ],
                                 },
+                                "api-reference/mantine/components/breadcrumb",
                                 {
                                     type: "category",
                                     label: "Buttons",
