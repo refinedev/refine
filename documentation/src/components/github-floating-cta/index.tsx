@@ -25,10 +25,10 @@ const GithubFloatingCta: FC = () => {
     if (isClosed) return null;
 
     return (
-        <div className="font-montserrat  flex px-3 items-center sticky bottom-[32px] mx-auto bg-[#2A2A42] w-[350px] h-[48px] shadow-githubFloatingCta rounded-3xl text-xs font-bold">
+        <div className="font-montserrat text-white flex px-3 items-center sticky bottom-[32px] mx-auto bg-[#2A2A42] w-[350px] h-[48px] shadow-githubFloatingCta rounded-3xl text-xs font-bold">
             <div className="ml-4">Star us on Github</div>
             <a
-                className="flex items-center gap-2 mx-auto text-white text--no-decoration"
+                className="flex items-center gap-2 mx-auto text--no-decoration text-inherit"
                 href="https://github.com/pankod/refine"
                 target="_blank"
                 rel="noreferrer"
