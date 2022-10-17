@@ -93,7 +93,7 @@
     font-size: 24px;
     padding: 2px;
     cursor: pointer;
-    transition: all 0.s;
+    transition: all 0.5s;
 }
 
 .icon:hover {
