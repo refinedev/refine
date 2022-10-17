@@ -129,24 +129,74 @@ If you create multiple Conditional Filters at the top level, you must add a key 
 ```ts
 const filter = [
     {
-        key: "name",
-        operator: "and",
+        key: "parent",
+        operator: "or",
         value: [
             {
-                field: "name",
-                operator: "eq",
-                value: "John Doe",
+                operator: "and",
+                value: [
+                    {
+                        field: "name",
+                        operator: "eq",
+                        value: "John Doe",
+                    },
+                    {
+                        field: "age",
+                        operator: "eq",
+                        value: 30,
+                    },
+                ],
+            },
+            {
+                operator: "and",
+                value: [
+                    {
+                        field: "name",
+                        operator: "eq",
+                        value: "Jane Doe",
+                    },
+                    {
+                        field: "age",
+                        operator: "eq",
+                        value: 28,
+                    },
+                ],
             },
         ],
     },
     {
-        key: "age",
-        operator: "and",
+        key: "children",
+        operator: "or",
         value: [
             {
-                field: "age",
-                operator: "eq",
-                value: "10",
+                operator: "and",
+                value: [
+                    {
+                        field: "name",
+                        operator: "eq",
+                        value: "JR John",
+                    },
+                    {
+                        field: "age",
+                        operator: "eq",
+                        value: 1,
+                    },
+                ],
+            },
+            {
+                operator: "and",
+                value: [
+                    {
+                        field: "name",
+                        operator: "eq",
+                        value: "JR Jane",
+                    },
+                    {
+                        field: "age",
+                        operator: "eq",
+                        value: 2,
+                    },
+                ],
             },
         ],
     },
