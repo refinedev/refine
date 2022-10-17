@@ -8,14 +8,10 @@ export type MedusaProduct = Awaited<
     ReturnType<Medusa["products"]["list"]>
 >["products"][number];
 
-// eslint-disable-next-line
-export function getProductVariant(product: any, opts: SelectedOptions) {
-    // eslint-disable-next-line
-    const variant = product?.variants.find((variant: any) => {
-        // eslint-disable-next-line
-        return Object.entries(opts).every(([key, value]) =>
-            // eslint-disable-next-line
-            variant.options.find((option: any) => {
+export function getProductVariant(product: Product, opts: SelectedOptions) {
+    const variant = product?.variants.find((variant) => {
+        return Object.entries(opts).every(([_key, value]) =>
+            variant.options.find((option) => {
                 return (
                     option.value.toLocaleLowerCase() ===
                     value?.toLocaleLowerCase()
