@@ -25,7 +25,7 @@ export const Landing: React.FC = () => {
 
     return (
         <main id="landing_main">
-            <SectionHero starCount={githubStarCount} />
+            <SectionHero />
             <SectionFreeStart />
             <SectionBullets />
             <SectionNoConstraints starCount={githubStarCount} />
