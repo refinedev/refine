@@ -7,10 +7,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@pankod/refine-antd": "^3.56.0",
-    "@pankod/refine-core": "^3.85.0",
+    "@pankod/refine-antd": "^3.57.0",
+    "@pankod/refine-core": "^3.86.0",
     "@pankod/refine-react-router-v6": "^3.36.2",
-    "@pankod/refine-simple-rest": "^3.34.0",
+    "@pankod/refine-simple-rest": "^3.35.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-markdown": "^6.0.1",

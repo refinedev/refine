@@ -1,5 +1,14 @@
 # @pankod/refine-ui-types
 
+## 0.11.6
+
+### Patch Changes
+
+-   Added descriptions to ui-types
+
+-   Updated dependencies []:
+    -   @pankod/refine-core@3.86.0
+
 ## 0.11.5
 
 ### Patch Changes

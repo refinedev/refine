@@ -1,5 +1,49 @@
 # @pankod/refine-hasura
 
+## 4.17.0
+
+### Minor Changes
+
+-   Only `or` was supported as a conditional filter. Now `and` and `or` can be used together and nested. 🚀
+
+    ```
+    {
+      operator: "or",
+      value: [
+        {
+          operator: "and",
+          value: [
+            {
+              field: "name",
+              operator: "eq",
+              value: "John Doe",
+            },
+            {
+              field: "age",
+              operator: "eq",
+              value: 30,
+            },
+          ],
+        },
+        {
+          operator: "and",
+          value: [
+            {
+              field: "name",
+              operator: "eq",
+              value: "JR Doe",
+            },
+            {
+              field: "age",
+              operator: "eq",
+              value: 1,
+            },
+          ],
+        },
+      ],
+    }
+    ```
+
 ## 4.16.0
 
 ### Minor Changes
