@@ -71,8 +71,8 @@ interface IPost {
 
 ### Properties
 
-| Property   | Description                | Type                                                     | Default |
-| ---------- | -------------------------- | -------------------------------------------------------- | ------- |
-| value      | Image path                 | `string` \| `undefined`                                  |         |
-| imageTitle | Image title value          | `string` \| `undefined`                                  |         |
-| ImageProps | Ant Design `<Image>` properties | [`ImageProps`](https://ant.design/components/image/#API) |         |
+<PropsTable module="@pankod/refine-antd/ImageField" value-description="Image path"/>
+
+:::tip External Props
+It also accepts all props of Ant Design [Image](https://ant.design/components/image/#API).
+:::

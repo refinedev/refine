@@ -2,6 +2,9 @@ import { ReactNode } from "react";
 import { ConfigType } from "dayjs";
 
 export type RefineFieldCommonProps<T = unknown> = {
+    /**
+     * The value of the field.
+     */
     value: T;
 };
 
@@ -18,9 +21,23 @@ export type RefineFieldBooleanProps<
     RefineFieldTooltipProps &
     TComponentProps &
     TExtraProps & {
+        /**
+         * If there is a value, this is the text to use.
+         */
         valueLabelTrue?: string;
+        /**
+         * If there no value, this is the text to use.
+         */
         valueLabelFalse?: string;
+        /**
+         * If there is a value, this is the icon to use.
+         * @default [`<CheckOutlined />`](https://ant.design/components/icon/)
+         */
         trueIcon?: ReactNode;
+        /**
+         * If there is no value, this is the icon to use.
+         * @default [`<CloseOutlined />`](https://ant.design/components/icon/)
+         */
         falseIcon?: ReactNode;
     };
 
@@ -31,7 +48,13 @@ export type RefineFieldDateProps<
 > = RefineFieldCommonProps<TValueType> &
     TComponentProps &
     TExtraProps & {
+        /**
+         * The locales of the date.
+         */
         locales?: string;
+        /**
+         * Gets the formatted date according to the string of the tokens passed in.
+         */
         format?: string;
     };
 
@@ -46,7 +69,14 @@ export type RefineFieldFileProps<
     TExtraProps extends {} = {},
 > = TComponentProps &
     TExtraProps & {
+        /**
+         * Used for file title
+         * @default The `src` property
+         */
         title?: string;
+        /**
+         * Used for file path
+         */
         src: string;
     };
 
@@ -69,7 +99,13 @@ export type RefineFieldNumberProps<
 > = RefineFieldCommonProps<TValueType> &
     TComponentProps &
     TExtraProps & {
+        /**
+         * Override the browser locale in the date formatting. Passed as first argument to [`Intl.NumberFormat()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat)
+         */
         locale?: string | string[];
+        /**
+         * Number formatting options. Passed as second argument to [`Intl.NumberFormat()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat)
+         */
         options?: Intl.NumberFormatOptions;
     };
 

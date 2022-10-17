@@ -67,7 +67,8 @@ interface IImage {
 
 ### Properties
 
-| Property | Description                  | Type        |
-| -------- | ---------------------------- | ----------- |
-| value    | URL for link to reference to | `string`    |
-| children | What to show instead of URL  | `ReactNode` |
+<PropsTable module="@pankod/refine-antd/UrlField" value-description="URL for link to reference to"/>
+
+:::tip External Props
+It also accepts all props of Ant Design [Link](https://ant.design/components/typography/#How-to-use-Typography.Link-in-react-router).
+:::

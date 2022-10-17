@@ -84,12 +84,11 @@ export const MyExportComponent = () => {
 
 ### Properties
 
-| Property | Description                       | Type                                                                                   | Default                                                     |
-| -------- | --------------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| props    | Ant Design button properties      | [`ButtonProps`](https://ant.design/components/button/#API) & `{ hideText?: boolean; }` |                                                             |
-| hideText | Allows to hide button text        | `boolean`                                                                              | `false`                                                     |
-| children | Sets the button text              | `ReactNode`                                                                            | `"Export"`                                                  |
-| icon     | Sets the icon component of button | `ReactNode`                                                                            | [`<ExportOutlined />`](https://ant.design/components/icon/) |
+<PropsTable module="@pankod/refine-antd/ExportButton" />
+
+:::tip External Props
+It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).
+:::
 
 [button]: https://ant.design/components/button/
 [useexport]: /api-reference/core/hooks/import-export/useExport.md

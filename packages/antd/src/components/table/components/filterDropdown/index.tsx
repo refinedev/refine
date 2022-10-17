@@ -14,14 +14,16 @@ export type FilterDropdownProps = AntdFilterDropdownProps & {
  *
  * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/filter-dropdown} for more details.
  */
-export const FilterDropdown: React.FC<FilterDropdownProps> = ({
-    setSelectedKeys,
-    confirm,
-    clearFilters,
-    mapValue,
-    selectedKeys,
-    children,
-}) => {
+export const FilterDropdown: React.FC<FilterDropdownProps> = (props) => {
+    const {
+        setSelectedKeys,
+        confirm,
+        clearFilters,
+        mapValue,
+        selectedKeys,
+        children,
+    } = props;
+
     const [value, setValue] = useState<any[] | undefined>(selectedKeys);
     const translate = useTranslate();
 
