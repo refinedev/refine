@@ -21,6 +21,7 @@ export default function NavbarNavLink({
     const activeBaseUrl = useBaseUrl(activeBasePath);
     const normalizedHref = useBaseUrl(href, { forcePrependBaseUrl: true });
     const isExternalLink = label && href && !isInternalUrl(href);
+
     // Link content is set through html XOR label
     const linkContentProps = html
         ? { dangerouslySetInnerHTML: { __html: html } }

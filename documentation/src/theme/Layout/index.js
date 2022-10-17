@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import clsx from "clsx";
 import ErrorBoundary from "@docusaurus/ErrorBoundary";
 import { PageMetadata, ThemeClassNames } from "@docusaurus/theme-common";
@@ -11,6 +11,9 @@ import LayoutProvider from "@theme/Layout/Provider";
 import ErrorPageContent from "@theme/ErrorPageContent";
 import styles from "./styles.module.css";
 import { LivePreviewProvider } from "../../components/live-preview-context";
+import GithubFloatingCta from "../../components/github-floating-cta";
+import { useLocation } from "@docusaurus/router";
+import { GithubProvider } from "../../context/GithubContext";
 
 export default function Layout(props) {
     const {
@@ -22,31 +25,46 @@ export default function Layout(props) {
         description,
     } = props;
     useKeyboardNavigation();
+
+    const location = useLocation();
+
+    const showGithubCta = useMemo(() => {
+        if (location.pathname.startsWith("/docs")) {
+            return false;
+        }
+
+        return true;
+    }, [location]);
+
     return (
         <LayoutProvider>
-            <PageMetadata title={title} description={description} />
+            <GithubProvider>
+                <PageMetadata title={title} description={description} />
 
-            <SkipToContent />
+                <SkipToContent />
 
-            <AnnouncementBar />
+                <AnnouncementBar />
 
-            <Navbar />
+                <Navbar />
 
-            <div
-                className={clsx(
-                    ThemeClassNames.wrapper.main,
-                    styles.mainWrapper,
-                    wrapperClassName,
-                )}
-            >
-                <ErrorBoundary
-                    fallback={(params) => <ErrorPageContent {...params} />}
+                <div
+                    className={clsx(
+                        ThemeClassNames.wrapper.main,
+                        styles.mainWrapper,
+                        wrapperClassName,
+                    )}
                 >
-                    <LivePreviewProvider>{children}</LivePreviewProvider>
-                </ErrorBoundary>
-            </div>
+                    <ErrorBoundary
+                        fallback={(params) => <ErrorPageContent {...params} />}
+                    >
+                        <LivePreviewProvider>{children}</LivePreviewProvider>
+                    </ErrorBoundary>
+                </div>
 
-            {!noFooter && <Footer />}
+                {!noFooter && <Footer />}
+
+                {showGithubCta && <GithubFloatingCta />}
+            </GithubProvider>
         </LayoutProvider>
     );
 }
