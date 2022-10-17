@@ -69,7 +69,7 @@ const Wrapper = (children) => {
 
 `<AuthPage>` component can be used like this:
 
-```tsx live disableScroll hideCode previewHeight=333px url=http://localhost:3000/login
+```tsx live disableScroll hideCode previewHeight=333px url=http://localhost:3000
 setInitialRoutes(["/login"]);
 
 // visible-block-start
@@ -86,6 +86,8 @@ const App = () => {
                 ...routerProvider,
                 routes: [
                     { path: "/login", element: <AuthPage type="login" /> },
+                    { path: "/register", element: <AuthPage type="register" /> },
+                    { path: "/forgot-password", element: <AuthPage type="forgotPassword" /> },
                 ],
             }}
             authProvider={authProvider}
