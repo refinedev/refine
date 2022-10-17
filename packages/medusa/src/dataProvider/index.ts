@@ -169,7 +169,9 @@ const DataProvider = (
         deleteOne: async ({ resource, id, variables }) => {
             const url = `${apiUrl}/${resource}/${id}`;
 
-            const { data } = await httpClient.delete(url, variables);
+            const { data } = await httpClient.delete(url, {
+                data: variables,
+            });
 
             return {
                 data,
