@@ -61,7 +61,11 @@ export const getAppwriteFilters: GetAppwriteFiltersType = (filters) => {
     const appwriteFilters: string[] = [];
 
     for (const filter of filters ?? []) {
-        if (filter.operator !== "or") {
+        if (
+            filter.operator !== "or" &&
+            filter.operator !== "and" &&
+            "field" in filter
+        ) {
             const filterField = filter.field === "id" ? "$id" : filter.field;
 
             appwriteFilters.push(

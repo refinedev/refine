@@ -1,6 +1,7 @@
 import qs, { IStringifyOptions } from "qs";
 import unionWith from "lodash/unionWith";
 import differenceWith from "lodash/differenceWith";
+import warnOnce from "warn-once";
 
 import {
     CrudFilters,
@@ -54,9 +55,22 @@ export const compareFilters = (
     left: CrudFilter,
     right: CrudFilter,
 ): boolean => {
+    if (
+        left.operator !== "and" &&
+        left.operator !== "or" &&
+        right.operator !== "and" &&
+        right.operator !== "or"
+    ) {
+        return (
+            ("field" in left ? left.field : undefined) ==
+                ("field" in right ? right.field : undefined) &&
+            left.operator == right.operator
+        );
+    }
+
     return (
-        ("field" in left ? left.field : undefined) ==
-            ("field" in right ? right.field : undefined) &&
+        ("key" in left ? left.key : undefined) ==
+            ("key" in right ? right.key : undefined) &&
         left.operator == right.operator
     );
 };
@@ -72,15 +86,35 @@ export const unionFilters = (
     permanentFilter: CrudFilters,
     newFilters: CrudFilters,
     prevFilters: CrudFilters = [],
-): CrudFilters =>
-    unionWith(permanentFilter, newFilters, prevFilters, compareFilters).filter(
+): CrudFilters => {
+    const isKeyRequired = newFilters.filter(
+        (f) => (f.operator === "or" || f.operator === "and") && !f.key,
+    );
+
+    if (isKeyRequired.length > 1) {
+        warnOnce(
+            true,
+            `[conditionalFilters]: You have created multiple Conditional Filters at the top level, this requires the key parameter. \nFor more information, see https://refine.dev/docs/advanced-tutorials/data-provider/handling-filters/#top-level-multiple-conditional-filters-usage`,
+        );
+    }
+
+    return unionWith(
+        permanentFilter,
+        newFilters,
+        prevFilters,
+        compareFilters,
+    ).filter(
         (crudFilter) =>
             crudFilter.value !== undefined &&
             crudFilter.value !== null &&
             (crudFilter.operator !== "or" ||
                 (crudFilter.operator === "or" &&
+                    crudFilter.value.length !== 0)) &&
+            (crudFilter.operator !== "and" ||
+                (crudFilter.operator === "and" &&
                     crudFilter.value.length !== 0)),
     );
+};
 
 export const unionSorters = (
     permanentSorter: CrudSorting,
@@ -130,7 +164,11 @@ export const getDefaultFilter = (
     operatorType: CrudOperators = "eq",
 ): CrudFilter["value"] | undefined => {
     const filter = filters?.find((filter) => {
-        if (filter.operator !== "or") {
+        if (
+            filter.operator !== "or" &&
+            filter.operator !== "and" &&
+            "field" in filter
+        ) {
             const { operator, field } = filter;
             return field === columnName && operator === operatorType;
         }

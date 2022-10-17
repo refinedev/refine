@@ -86,7 +86,11 @@ export function useTable<
 
     const logicalFilters: LogicalFilter[] = [];
     filtersCore.map((filter) => {
-        if (filter.operator !== "or") {
+        if (
+            filter.operator !== "or" &&
+            filter.operator !== "and" &&
+            "field" in filter
+        ) {
             logicalFilters.push(filter);
         }
     });
@@ -159,7 +163,7 @@ export function useTable<
 
         columnFilters?.map((filter) => {
             const operator = (columns.find((c) => c.id === filter.id) as any)
-                ?.meta?.filterOperator as Exclude<CrudOperators, "or">;
+                ?.meta?.filterOperator as Exclude<CrudOperators, "or" | "and">;
 
             crudFilters.push({
                 field: filter.id,

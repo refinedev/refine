@@ -148,7 +148,9 @@ nock("https://api.nestjsx-crud.refine.dev:443", { encodedQueryParams: true })
 
 nock("https://api.nestjsx-crud.refine.dev:443", { encodedQueryParams: true })
     .get("/users")
-    .query({ "filter%5B0%5D": "email%7C%7C%24eq%7C%7Cnolan85%40hotmail.com" })
+    .query({
+        s: "%7B%22%24and%22%3A%5B%7B%22email%22%3A%7B%22%24eq%22%3A%22nolan85%40hotmail.com%22%7D%7D%5D%7D",
+    })
     .reply(
         200,
         [

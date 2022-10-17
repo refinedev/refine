@@ -6,6 +6,7 @@ import {
     CrudSorting,
     DataProvider,
     HttpError,
+    CrudFilter,
 } from "@pankod/refine-core";
 import setWith from "lodash/setWith";
 import set from "lodash/set";
@@ -71,6 +72,7 @@ const hasuraFilters: Record<CrudOperators, HasuraFilterCondition | undefined> =
         ncontainss: "_nlike",
         null: "_is_null",
         or: "_or",
+        and: "_and",
         between: undefined,
         nbetween: undefined,
         nnull: "_is_null",
@@ -107,50 +109,42 @@ export const handleFilterValue = (operator: CrudOperators, value: any) => {
     }
 };
 
+const generateNestedFilterQuery = (filter: CrudFilter): any => {
+    const { operator } = filter;
+
+    if (operator !== "or" && operator !== "and" && "field" in filter) {
+        const { field, value } = filter;
+
+        const hasuraOperator = hasuraFilters[filter.operator];
+        if (!hasuraOperator) {
+            throw new Error(`Operator ${operator} is not supported`);
+        }
+
+        const fieldsArray = field.split(".");
+        const fieldsWithOperator = [...fieldsArray, hasuraOperator];
+        const filteredValue = handleFilterValue(operator, value);
+
+        return {
+            ...setWith({}, fieldsWithOperator, filteredValue, Object),
+        };
+    }
+
+    return {
+        [`_${operator}`]: filter.value.map((f) => generateNestedFilterQuery(f)),
+    };
+};
+
 export const generateFilters: any = (filters?: CrudFilters) => {
     if (!filters) {
         return undefined;
     }
 
-    const resultFilter: any = {};
-
-    filters.map((filter) => {
-        const operator = hasuraFilters[filter.operator];
-        if (!operator) {
-            throw new Error(`Operator ${filter.operator} is not supported`);
-        }
-
-        if (filter.operator !== "or") {
-            const fieldsArray = filter.field.split(".");
-            const fieldsWithOperator = [...fieldsArray, operator];
-            const value = handleFilterValue(filter.operator, filter.value);
-            setWith(resultFilter, fieldsWithOperator, value, Object);
-        } else {
-            const orFilter: any = [];
-
-            filter.value.map((val) => {
-                const filterObject: any = {};
-                const mapedOperator = hasuraFilters[val.operator];
-
-                if (!mapedOperator) {
-                    throw new Error(
-                        `Operator ${val.operator} is not supported`,
-                    );
-                }
-
-                const fieldsArray = val.field.split(".");
-                const fieldsWithOperator = [...fieldsArray, val.operator];
-                const value = handleFilterValue(val.operator, val.value);
-                setWith(filterObject, fieldsWithOperator, value, Object);
-
-                orFilter.push(filterObject);
-            });
-
-            resultFilter[operator] = orFilter;
-        }
+    const nestedQuery = generateNestedFilterQuery({
+        operator: "and",
+        value: filters,
     });
 
-    return resultFilter;
+    return nestedQuery;
 };
 
 const handleError = (error: object | Error) => {
