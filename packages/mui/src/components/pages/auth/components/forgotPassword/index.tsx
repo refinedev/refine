@@ -108,7 +108,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
                         autoComplete="email"
                     />
                     {loginLink ?? (
-                        <Box>
+                        <Box textAlign="right">
                             <Typography variant="body2" component="span">
                                 {translate(
                                     "pages.register.buttons.haveAccount",
