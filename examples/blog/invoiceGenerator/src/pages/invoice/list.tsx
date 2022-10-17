@@ -15,7 +15,7 @@ import {
     Modal,
 } from "@pankod/refine-antd";
 
-import { IInvoice } from "interfaces";
+import { IInvoice, IMission } from "interfaces";
 import { PdfLayout } from "components/pdf";
 
 const { FilePdfOutlined } = Icons;
@@ -62,8 +62,7 @@ export const InvoiceList: React.FC = () => {
                         dataIndex={"missions"}
                         title="Missions"
                         render={(value) => {
-                            // eslint-disable-next-line
-                            return value.map((item: any) => {
+                            return value.map((item: IMission) => {
                                 return (
                                     <TagField
                                         key={item.id}

@@ -15,7 +15,6 @@ export const ErrorList: React.FC<ErrorProps> = ({ errors }) => {
                             {key} {errors[key as any] /* eslint-disable-line */ } 
                         </>
                     </li>
-                    // eslint-enable
                 );
             })}
         </ul>

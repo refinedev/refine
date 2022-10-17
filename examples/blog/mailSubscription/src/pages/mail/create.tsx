@@ -40,8 +40,7 @@ export const MailCreate: React.FC<IResourceComponentsProps> = () => {
                     <ReactMde
                         selectedTab={selectedTab}
                         onTabChange={setSelectedTab}
-                        // eslint-disable-next-line
-                        generateMarkdownPreview={(markdown: any) =>
+                        generateMarkdownPreview={(markdown) =>
                             Promise.resolve(
                                 <ReactMarkdown>{markdown}</ReactMarkdown>,
                             )

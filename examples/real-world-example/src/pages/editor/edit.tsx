@@ -116,8 +116,7 @@ export const EditArticlePage: React.FC = () => {
                                         type="text"
                                         className="form-control"
                                         placeholder="Enter tags"
-                                        // eslint-disable-next-line
-                                        onKeyUp={(e: any) => {
+                                        onKeyUp={(e) => {
                                             e.preventDefault();
                                             if (e.key === "Enter") {
                                                 const value = e.target.value;

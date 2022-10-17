@@ -39,24 +39,21 @@ const App: React.FC = () => {
 
             return Promise.reject();
         },
-        // eslint-disable-next-line
-        register: (params: any) => {
+        register: (params) => {
             if (params.email && params.password) {
                 localStorage.setItem("email", params.email);
                 return Promise.resolve();
             }
             return Promise.reject();
         },
-        // eslint-disable-next-line
-        updatePassword: (params: any) => {
+        updatePassword: (params) => {
             if (params.newPassword) {
                 //we can update password here
                 return Promise.resolve();
             }
             return Promise.reject();
         },
-        // eslint-disable-next-line
-        forgotPassword: (params: any) => {
+        forgotPassword: (params) => {
             if (params.email) {
                 //we can send email with forgot password link here
                 return Promise.resolve();

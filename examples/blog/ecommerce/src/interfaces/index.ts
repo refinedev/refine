@@ -2,7 +2,7 @@ export interface IProduct {
     id: string;
     title: string;
     description: string;
-    image: any; // eslint-disable-line
+    image?: null | { url: string };
 }
 
 export interface IStore {
