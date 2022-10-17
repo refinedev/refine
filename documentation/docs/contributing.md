@@ -104,7 +104,7 @@ Please make sure you contribute well tested code.
 We're using live previews powered with [`react-live`](https://github.com/FormidableLabs/react-live) to demonstrate our components and logic with `refine` running at full functionality. To create a live preview, you should add `live` property to your code blocks in markdown files.
 
 :::tip
-You can use `import` statements to show them in the code block but they will be ignored when running the code. Instead all import statements related to **refine** will be converted into object destructures and prependend into code. This will allow you to do the import in the visible part of the code and also use them before the import statements. Check out [Defined Scope](#defined-scope) section to learn more about the available packages and variables.
+You can use `import` statements to show them in the code block but they will be ignored when running the code. Instead all import statements related to **refine** will be converted into object destructures and prepended into code. This will allow you to do the import in the visible part of the code and also use them before the import statements. Check out [Defined Scope](#defined-scope) section to learn more about the available packages and variables.
 :::
 
 :::info

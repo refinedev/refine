@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 ## How can I change the form data before submitting it to the API?
 
-You may need to modify the form data before it is sent to the API. 
+You may need to modify the form data before it is sent to the API.
 
 For example, Let's send the values we received from the user in two separate inputs, `name` and `surname`, to the API as `fullName`.
 
@@ -107,13 +107,13 @@ export const UserCreate: React.FC = () => {
     const handleSubmitPostCreate = (values) => {
         const { name, surname } = values;
         const fullName = `${name} ${surname}`;
-        onFinish({ 
-            ...value, 
-            fullName 
+        onFinish({
+            ...value,
+            fullName
         });
     };
 
-    return (    
+    return (
         <form onSubmit={handleSubmit(handleSubmitPostCreate)}>
             <input {...register("name")} />
             <input {...register("surname")} />
@@ -194,7 +194,7 @@ invalidate({
 
 ## How can I request an API with nested route?
 
-**Refine**'s way of doing this is with the `resource` property on all data hooks. You can think of the `resource` property as the URL. 
+**Refine**'s way of doing this is with the `resource` property on all data hooks. You can think of the `resource` property as the URL.
 
 For example, If you want to make a request of the URL `/user/1/posts`.
 
@@ -206,13 +206,13 @@ useTable({
 });
 ```
 
-## How can I ensure a query is only runned after a certain variable is available and not on load?       
+## How can I ensure a query is only run after a certain variable is available and not on load?
 
-Note that `data` related hooks (`useMany`, `useOne`, etc.) can also accept all `useQuery` options, which allows you to implement dependent queries whereby a query is only runned after a certain data  is available. This is particularly useful if you want `useMany` to only run after a certain data is available and not on load.  
+Note that `data` related hooks (`useMany`, `useOne`, etc.) can also accept all `useQuery` options, which allows you to implement dependent queries whereby a query is only run after a certain data  is available. This is particularly useful if you want `useMany` to only run after a certain data is available and not on load.
 
 [Refer to react-query docs on **dependent queries** for more information  → ](https://react-query.tanstack.com/guides/dependent-queries)
 
--   Suppose you want this query to run after `categoryIds` is fetched by a preceding query, you can set  `enabled` to `categoryIds.length > 0`. This will ensure that `useMany` is only runned after `categoryIds` is fetched.
+-   Suppose you want this query to run after `categoryIds` is fetched by a preceding query, you can set  `enabled` to `categoryIds.length > 0`. This will ensure that `useMany` is only run after `categoryIds` is fetched.
 
 ```tsx
 useMany({
@@ -225,7 +225,7 @@ useMany({
 
 ## Can I work with JavaScript?
 
-**Yes!** You can work with JavaScript! 
+**Yes!** You can work with JavaScript!
 
 [Refer to **Refine JavaScript** example  → ](https://github.com/pankod/refine/tree/master/examples/javascript)
 
@@ -257,12 +257,12 @@ const myDataProvider = {
 <Refine dataProvider={myDataProvider} />
 ```
 
-What if we want to select `PUT` or `PATCH` on a request basis? 
+What if we want to select `PUT` or `PATCH` on a request basis?
 
 💥 We can use `metaData` for this. Remember, `metaData` can be used in all `data`, `form` and `table` hooks
 
 ```tsx
-// PATCH Request 
+// PATCH Request
 useUpdate({
     resource: "this-is-patch",
     id: 1,
@@ -274,7 +274,7 @@ useUpdate({
     }
 });
 
-// PUT Request 
+// PUT Request
 useUpdate({
     resource: "this-is-put",
     id: 1,
