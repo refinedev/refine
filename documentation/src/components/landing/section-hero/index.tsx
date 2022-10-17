@@ -118,7 +118,7 @@ export const SectionHero: React.FC = () => {
                                           }
                                 }
                             >
-                                <ArrowIcon />
+                                <ArrowIcon width={36} height={36} />
                             </motion.div>
                         </div>
                         <div className="line-wrapper text-white font-montserrat tracking-tighter leading-[32px] md:leading-[45px] lg:leading-[50px] xl:leading-[60px]">
