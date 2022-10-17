@@ -421,6 +421,7 @@ module.exports = {
                                         "api-reference/mantine/components/fields/number",
                                         "api-reference/mantine/components/fields/tag",
                                         "api-reference/mantine/components/fields/text",
+                                        "api-reference/mantine/components/fields/url",
                                     ],
                                 },
                             ],
