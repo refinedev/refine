@@ -4,8 +4,14 @@ title: Breadcrumb
 ---
 
 ```tsx live shared
+const { default: routerProvider } = RefineReactRouterV6;
+const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
+    routerProvider,
+    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
+    Layout: RefineMantine.Layout,
     Sider: () => null,
+    DashboardPage: () => <p>Dashboard Page</p>,
     notificationProvider: RefineMantine.notificationProvider,
 });
 
@@ -50,7 +56,7 @@ const PostIcon = (
 );
 ```
 
-A breadcrumb displays the current location within a hierarchy. It allows going back to states higher up in the hierarchy. `<Breadcrumb>` component built with Ant Design's [Breadcrumb][mantine-breadcrumb] components using the [`useBreadcrumb`](/api-reference/core/hooks/useBreadcrumb.md) hook.
+A breadcrumb displays the current location within a hierarchy. It allows going back to states higher up in the hierarchy. `<Breadcrumb>` component built with Mantine [Breadcrumb][mantine-breadcrumb] components using the [`useBreadcrumb`](/api-reference/core/hooks/useBreadcrumb.md) hook.
 
 :::info
 You can refer to the [source-code][source-code] of the `<Breadcrumb>` component to see how it is built. You can also create your custom breadcrumb component inspired by the source code.
@@ -60,14 +66,12 @@ You can refer to the [source-code][source-code] of the `<Breadcrumb>` component 
 
 ### `breadcrumbProps`
 
-`<Breadcrumb>` component uses the Ant Design [Breadcrumb][mantine-breadcrumb] component so it can be configured with the `breadcrumbProps` property.
+`<Breadcrumb>` component uses the Mantine [Breadcrumb][mantine-breadcrumb] component so it can be configured with the `breadcrumbProps` property.
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout, ShowButton } from "@pankod/refine-mantine";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { ShowButton } from "@pankod/refine-mantine";
 
 // visible-block-start
 import { Show, Breadcrumb } from "@pankod/refine-mantine";
@@ -87,10 +91,6 @@ const PostShow: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
-            DashboardPage={() => <p>Dashboard Page</p>}
             resources={[
                 {
                     name: "posts",
@@ -123,9 +123,7 @@ If your application has a [DashboardPage](/api-reference/core/components/refine-
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout, ShowButton } from "@pankod/refine-mantine";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { ShowButton } from "@pankod/refine-mantine";
 
 // visible-block-start
 import { Show, Breadcrumb } from "@pankod/refine-mantine";
@@ -145,10 +143,6 @@ const PostShow: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
-            DashboardPage={() => <p>Dashboard Page</p>}
             resources={[
                 {
                     name: "posts",
@@ -181,9 +175,7 @@ If you don't want to show the resource icons on the breadcrumb, you can set `hid
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout, ShowButton } from "@pankod/refine-mantine";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { ShowButton } from "@pankod/refine-mantine";
 
 // visible-block-start
 import { Show, Breadcrumb } from "@pankod/refine-mantine";
@@ -203,10 +195,6 @@ const PostShow: React.FC = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
-            DashboardPage={() => <p>Dashboard Page</p>}
             resources={[
                 {
                     name: "posts",
