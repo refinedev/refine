@@ -3,7 +3,7 @@ interface IdConfiguration {
     auto_select?: boolean;
     callback: (handleCredentialResponse: CredentialResponse) => void;
     login_uri?: string;
-    native_callback?: (...args: any[]) => void; // eslint-disable-line
+    native_callback?: (...args: unknown[]) => void;
     cancel_on_tap_outside?: boolean;
     prompt_parent_id?: string;
     nonce?: string;
@@ -11,7 +11,7 @@ interface IdConfiguration {
     state_cookie_domain?: string;
     ux_mode?: "popup" | "redirect";
     allowed_parent_origin?: string | string[];
-    intermediate_iframe_close_callback?: (...args: any[]) => void; // eslint-disable-line
+    intermediate_iframe_close_callback?: (...args: unknown[]) => void;
 }
 
 interface CredentialResponse {

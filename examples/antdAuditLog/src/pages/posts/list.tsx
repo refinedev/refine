@@ -88,8 +88,7 @@ export const PostList: React.FC = () => {
                     dataIndex="status"
                     title="Status"
                     render={(value: string) => <TagField value={value} />}
-                    // eslint-disable-next-line
-                    filterDropdown={(props: any) => (
+                    filterDropdown={(props) => (
                         <FilterDropdown {...props}>
                             <Radio.Group>
                                 <Radio value="published">Published</Radio>

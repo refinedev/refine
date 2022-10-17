@@ -55,8 +55,7 @@ export const ExamplePage: React.FC = () => {
             label: "Sign in with GitHub",
         },
     ];
-    // eslint-disable-next-line
-    const Box = ({ children }: any) => (
+    const Box = ({ children }: React.PropsWithChildren) => (
         <div
             style={{
                 padding: "1rem",
