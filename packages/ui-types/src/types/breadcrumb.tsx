@@ -6,7 +6,7 @@ export type RefineBreadcrumbProps<
      */
     breadcrumbProps?: TBreadcrumbProps;
     /**
-     * Shows the home button if application has [`DashboardPage`](http://localhost:3000/docs/api-reference/core/components/refine-config/#dashboardpage)
+     * Shows the home button if application has [`DashboardPage`](/docs/api-reference/core/components/refine-config/#dashboardpage)
      */
     showHome?: boolean;
     /**
