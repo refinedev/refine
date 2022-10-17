@@ -195,3 +195,7 @@ render(
 ### Properties
 
 <PropsTable module="@pankod/refine-mantine/BooleanField" />
+
+:::tip External Props
+It also accepts all props of Mantine [Tooltip](https://mantine.dev/core/tooltip).
+:::
