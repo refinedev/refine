@@ -60,7 +60,7 @@ const DashboardPage = () => {
 
 `<AuthPage>` component can be used like below 👇🏻
 
-```tsx live url=http://localhost:3000/login previewHeight=460px hideCode
+```tsx live url=http://localhost:3000 previewHeight=460px hideCode
 setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 // visible-block-start
@@ -74,7 +74,21 @@ import { DashboardPage } from "./pages/dashboard";
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                    // highlight-start
+                    {
+                        path: "/register",
+                        element: <AuthPage type="register" />,
+                    },
+                    {
+                        path: "/forgot-password",
+                        element: <AuthPage type="forgotPassword" />,
+                    },
+                    // highlight-end
+                ],
+            }}
             authProvider={authProvider}
             // highlight-next-line
             LoginPage={AuthPage}
