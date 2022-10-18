@@ -16,9 +16,9 @@ export const Layout: React.FC<RefineLayoutLayoutProps> = ({
     const HeaderToRender = Header ?? DefaultHeader;
 
     return (
-        <Box sx={{ display: "flex" }}>
+        <Box sx={{ display: "flex" }} bg="gray.100">
             <SiderToRender />
-            <Box>
+            <Box w="100%">
                 <HeaderToRender />
                 <Box px="2" py="2">
                     {children}

@@ -12,7 +12,7 @@ import {
 } from "@pankod/refine-core";
 import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
 import { Box, Button, Tooltip, VStack } from "@chakra-ui/react";
-import { HamburgerIcon, InfoIcon } from "@chakra-ui/icons";
+import { ExternalLinkIcon, HamburgerIcon, InfoIcon } from "@chakra-ui/icons";
 
 import { Title as DefaultTitle } from "../title";
 
@@ -80,9 +80,9 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const logout = isExistAuthentication && (
         <Tooltip label={t("buttons.logout", "Logout")}>
             <Button
+                leftIcon={<ExternalLinkIcon />}
                 variant="link"
                 color="white"
-                as={Link}
                 onClick={() => mutateLogout()}
             >
                 {t("buttons.logout", "Logout")}

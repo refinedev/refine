@@ -1,7 +1,7 @@
 import React from "react";
 import { RefineLayoutHeaderProps } from "@pankod/refine-ui-types";
 import { useGetIdentity } from "@pankod/refine-core";
-import { Box, Avatar } from "@chakra-ui/react";
+import { Box, Avatar, Text, HStack } from "@chakra-ui/react";
 
 export const Header: React.FC<RefineLayoutHeaderProps> = () => {
     const { data: user } = useGetIdentity();
@@ -9,9 +9,23 @@ export const Header: React.FC<RefineLayoutHeaderProps> = () => {
     const shouldRenderHeader = user && (user.name || user.avatar);
 
     return shouldRenderHeader ? (
-        <Box height={50} py={6} px="sm">
-            <span>{user?.name}</span>
-            <Avatar src={user?.avatar} />
+        <Box
+            bg="white"
+            p="2.5"
+            display="flex"
+            justifyContent="flex-end"
+            w="100%"
+        >
+            <HStack>
+                <Text size="sm">{user?.name}</Text>
+                <Avatar
+                    bg="primary"
+                    color="white"
+                    size="sm"
+                    name={user?.name}
+                    src={user?.avatar}
+                />
+            </HStack>
         </Box>
     ) : null;
 };
