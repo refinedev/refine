@@ -1,5 +1,13 @@
 # @pankod/refine-mantine
 
+## 1.6.12
+
+### Patch Changes
+
+-   [#2799](https://github.com/pankod/refine/pull/2799) [`78b61da700`](https://github.com/pankod/refine/commit/78b61da700ad0ee68e538c69746ddb6ed8378df8) Thanks [@salihozdemir](https://github.com/salihozdemir)! - - Updated the default false icon for the BooleanField component to be a cross instead of a minus.
+    -   Updated the TextField export name to be "TextField" instead of "TextFieldComponent".
+    -   Fixed the tsdoc links for the field components.
+
 ## 1.6.11
 
 ### Patch Changes
