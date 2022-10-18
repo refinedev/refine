@@ -4,10 +4,14 @@ title: List
 ---
 
 ```tsx live shared
+const { default: routerProvider } = RefineReactRouterV6;
+const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    Sider: () => null,
-    Layout: RefineMantine.Layout,
+    routerProvider,
+    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
     notificationProvider: RefineMantine.notificationProvider,
+    Layout: RefineMantine.Layout,
+    Sider: () => null,
     catchAll: <RefineMantine.ErrorComponent />,
 });
 
@@ -36,9 +40,7 @@ const Wrapper = ({ children }) => {
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout, ShowButton } from "@pankod/refine-mantine";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { ShowButton } from "@pankod/refine-mantine";
 
 // visible-block-start
 import { useShow } from "@pankod/refine-core";
@@ -79,9 +81,6 @@ const PostShow: React.FC<IResourceComponentsProps> = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
@@ -120,8 +119,6 @@ Redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceName
 setInitialRoutes(["/"]);
 
 import { Refine, useRouterContext, useNavigation } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
 import { Button, Code, Space, Text } from "@pankod/refine-mantine";
 
 // visible-block-start
@@ -153,8 +150,6 @@ const ListPage = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
                     name: "posts",
@@ -186,8 +181,6 @@ It is used to show and not show the text of the button. When `true`, only the bu
 setInitialRoutes(["/"]);
 
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
 import { ListButton } from "@pankod/refine-mantine";
@@ -200,8 +193,6 @@ const MyListComponent = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
                     name: "posts",

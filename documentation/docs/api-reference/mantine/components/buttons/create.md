@@ -4,10 +4,14 @@ title: Create
 ---
 
 ```tsx live shared
+const { default: routerProvider } = RefineReactRouterV6;
+const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    Sider: () => null,
-    Layout: RefineMantine.Layout,
+    routerProvider,
+    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
     notificationProvider: RefineMantine.notificationProvider,
+    Layout: RefineMantine.Layout,
+    Sider: () => null,
     catchAll: <RefineMantine.ErrorComponent />,
 });
 
@@ -36,8 +40,6 @@ const Wrapper = ({ children }) => {
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
 import { Refine, useNavigation, useRouterContext } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
 import { Button, Code, Space, Text } from "@pankod/refine-mantine";
 
 // visible-block-start
@@ -142,8 +144,6 @@ const CreatePage = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
                     name: "posts",
@@ -171,8 +171,6 @@ It is used to redirect the app to the `/create` endpoint of the given resource n
 setInitialRoutes(["/"]);
 
 import { Refine, useRouterContext, useNavigation } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
 import { Button, Code, Space, Text } from "@pankod/refine-mantine";
 
 // visible-block-start
@@ -205,7 +203,6 @@ const App = () => {
     return (
         <Refine
             routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
                     name: "posts",
@@ -237,8 +234,6 @@ It is used to show and not show the text of the button. When `true`, only the bu
 setInitialRoutes(["/"]);
 
 import { Refine, useRouterContext, useNavigation } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
 import { Button, Code, Space, Text } from "@pankod/refine-mantine";
 
 // visible-block-start
@@ -271,7 +266,6 @@ const App = () => {
     return (
         <Refine
             routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
                     name: "posts",

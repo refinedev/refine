@@ -4,10 +4,14 @@ title: Export
 ---
 
 ```tsx live shared
+const { default: routerProvider } = RefineReactRouterV6;
+const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    Sider: () => null,
-    Layout: RefineMantine.Layout,
+    routerProvider,
+    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
     notificationProvider: RefineMantine.notificationProvider,
+    Layout: RefineMantine.Layout,
+    Sider: () => null,
     catchAll: <RefineMantine.ErrorComponent />,
 });
 
@@ -34,8 +38,6 @@ const Wrapper = ({ children }) => {
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
 //highlight-next-line
@@ -146,8 +148,6 @@ interface IPost {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
                     name: "posts",
@@ -174,8 +174,6 @@ It is used to show and not show the text of the button. When `true`, only the bu
 setInitialRoutes(["/"]);
 
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
 import { ExportButton } from "@pankod/refine-mantine";
@@ -188,8 +186,6 @@ const MyExportComponent = () => {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
                     name: "posts",
