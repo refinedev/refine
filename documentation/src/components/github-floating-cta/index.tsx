@@ -23,23 +23,23 @@ const GithubFloatingCta: FC = () => {
     if (isClosed) return null;
 
     return (
-        <div className="font-montserrat flex items-center sticky sm:bottom-[32px] bottom-0 w-full sm:w-[350px] h-[48px] mx-auto px-3 bg-[#2A2A42] shadow-githubFloatingCta sm:rounded-3xl text-xs text-white font-bold">
-            <div className="ml-4">Star us on Github</div>
+        <div className="font-montserrat shadow-githubFloatingCta sticky bottom-0 mx-auto flex h-[48px] w-full items-center bg-[#2A2A42] px-3 text-xs font-bold text-white sm:bottom-[32px] sm:w-[350px] sm:rounded-3xl">
+            <div className="ml-4">Star us on GitHub</div>
             <a
-                className="flex items-center gap-2 mx-auto text--no-decoration text-inherit"
-                href="https://github.com/pankod/refine/stargazers?ref=float-cta"
+                className="text--no-decoration mx-auto flex items-center gap-2 text-inherit"
+                href="https://github.com/pankod/refine/?ref=float-cta"
                 target="_blank"
                 rel="noreferrer"
             >
                 <GithubIcon />
                 <span>Star</span>
-                <div className=" bg-white text-[#2A2A42] p-2 rounded-md flex items-center justify-center min-w-[58px] min-h-[32px]">
+                <div className=" flex min-h-[32px] min-w-[58px] items-center justify-center rounded-md bg-white p-2 text-[#2A2A42]">
                     <span>{formattedStarCount}</span>
                 </div>
             </a>
 
             <button
-                className="text-[#9797A2] bg-transparent border-none hover:scale-125 cursor-pointer flex items-center justify-center"
+                className="flex cursor-pointer items-center justify-center border-none bg-transparent text-[#9797A2] hover:scale-125"
                 onClick={handleClose}
             >
                 <CancelIcon />
