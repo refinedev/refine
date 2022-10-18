@@ -31,6 +31,28 @@ const Wrapper = ({ children }) => {
         </RefineMantine.MantineProvider>
     );
 };
+
+const ClonePage = () => {
+    const { list } = RefineCore.useNavigation();
+    const params = RefineCore.useRouterContext().useParams();
+
+    return (
+        <div>
+            <RefineMantine.Text italic color="dimmed" size="sm">
+                URL Parameters:
+            </RefineMantine.Text>
+            <RefineMantine.Code>{JSON.stringify(params)}</RefineMantine.Code>
+            <RefineMantine.Space h="md" />
+            <RefineMantine.Button
+                size="xs"
+                variant="outline"
+                onClick={() => list("posts")}
+            >
+                Go back
+            </RefineMantine.Button>
+        </div>
+    );
+};
 ```
 
 `<CloneButton>` uses Mantine's [`<Button>`](https://mantine.dev/core/button/) component. It uses the `clone` method from [useNavigation](/api-reference/core/hooks/navigation/useNavigation.md) under the hood.
@@ -40,8 +62,7 @@ It can be useful when redirecting the app to the create page with the record id 
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine, useNavigation, useRouterContext } from "@pankod/refine-core";
-import { Button, Code, Space, Text } from "@pankod/refine-mantine";
+import { Refine } from "@pankod/refine-core";
 
 // visible-block-start
 import { List, Table, Pagination, CloneButton } from "@pankod/refine-mantine";
@@ -144,24 +165,6 @@ interface IPost {
 }
 // visible-block-end
 
-const ClonePage = () => {
-    const { list } = useNavigation();
-    const params = useRouterContext().useParams();
-
-    return (
-        <div>
-            <Text italic color="dimmed" size="sm">
-                URL Parameters:
-            </Text>
-            <Code>{JSON.stringify(params)}</Code>
-            <Space h="md" />
-            <Button size="xs" variant="outline" onClick={() => list("posts")}>
-                Go back
-            </Button>
-        </div>
-    );
-};
-
 const App = () => {
     return (
         <Refine
@@ -190,8 +193,7 @@ render(
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
-import { Refine, useRouterContext, useNavigation } from "@pankod/refine-core";
-import { Button, Code, Space, Text } from "@pankod/refine-mantine";
+import { Refine } from "@pankod/refine-core";
 
 // visible-block-start
 import { CloneButton } from "@pankod/refine-mantine";
@@ -200,24 +202,6 @@ const MyCloneComponent = () => {
     return <CloneButton recordItemId="123" />;
 };
 // visible-block-end
-
-const ClonePage = () => {
-    const { list } = useNavigation();
-    const params = useRouterContext().useParams();
-
-    return (
-        <div>
-            <Text italic color="dimmed" size="sm">
-                URL Parameters:
-            </Text>
-            <Code>{JSON.stringify(params)}</Code>
-            <Space h="md" />
-            <Button size="xs" variant="outline" onClick={() => list("posts")}>
-                Go back
-            </Button>
-        </div>
-    );
-};
 
 const App = () => {
     return (
@@ -253,8 +237,7 @@ It is used to redirect the app to the `/clone` endpoint of the given resource na
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine, useRouterContext, useNavigation } from "@pankod/refine-core";
-import { Button, Code, Space, Text } from "@pankod/refine-mantine";
+import { Refine } from "@pankod/refine-core";
 
 // visible-block-start
 import { CloneButton } from "@pankod/refine-mantine";
@@ -265,24 +248,6 @@ const MyCloneComponent = () => {
     );
 };
 // visible-block-end
-
-const ClonePage = () => {
-    const { list } = useNavigation();
-    const params = useRouterContext().useParams();
-
-    return (
-        <div>
-            <Text italic color="dimmed" size="sm">
-                URL Parameters:
-            </Text>
-            <Code>{JSON.stringify(params)}</Code>
-            <Space h="md" />
-            <Button size="xs" variant="outline" onClick={() => list("posts")}>
-                Go back
-            </Button>
-        </div>
-    );
-};
 
 const App = () => {
     return (
@@ -317,8 +282,7 @@ It is used to show and not show the text of the button. When `true`, only the bu
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine, useRouterContext, useNavigation } from "@pankod/refine-core";
-import { Button, Code, Space, Text } from "@pankod/refine-mantine";
+import { Refine } from "@pankod/refine-core";
 
 // visible-block-start
 import { CloneButton } from "@pankod/refine-mantine";
@@ -327,24 +291,6 @@ const MyCloneComponent = () => {
     return <CloneButton hideText />;
 };
 // visible-block-end
-
-const ClonePage = () => {
-    const { list } = useNavigation();
-    const params = useRouterContext().useParams();
-
-    return (
-        <div>
-            <Text italic color="dimmed" size="sm">
-                URL Parameters:
-            </Text>
-            <Code>{JSON.stringify(params)}</Code>
-            <Space h="md" />
-            <Button size="xs" variant="outline" onClick={() => list("posts")}>
-                Go back
-            </Button>
-        </div>
-    );
-};
 
 const App = () => {
     return (
