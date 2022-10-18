@@ -13,7 +13,7 @@ interface TextProps {
     className?: string;
     style?: CSSProperties;
     html?: string;
-    onClick?: () => any;
+    onClick?: () => any; // eslint-disable-line
 }
 
 type Variant = "heading" | "body" | "pageHeading" | "sectionHeading";
@@ -27,6 +27,7 @@ export const Text: FunctionComponent<PropsWithChildren<TextProps>> = ({
     onClick,
 }) => {
     const componentsMap: {
+        // eslint-disable-next-line
         [P in Variant]: React.ComponentType<any> | string;
     } = {
         body: "div",
@@ -36,9 +37,10 @@ export const Text: FunctionComponent<PropsWithChildren<TextProps>> = ({
     };
 
     const Component:
-        | JSXElementConstructor<any>
-        | React.ReactElement<any>
-        | React.ComponentType<any>
+        | JSXElementConstructor<any> // eslint-disable-line
+        | React.ReactElement<any> // eslint-disable-line
+        | React.ComponentType<any> // eslint-disable-line
+        // eslint-disable-next-line
         | string = componentsMap![variant!];
 
     const htmlContentProps = html

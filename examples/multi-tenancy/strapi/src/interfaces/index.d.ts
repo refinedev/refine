@@ -7,7 +7,7 @@ export interface IProduct {
     id: string;
     title: string;
     description: string;
-    image: any;
+    image: any; // eslint-disable-line
     stores: IStore;
 }
 

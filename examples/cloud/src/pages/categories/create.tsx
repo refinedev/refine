@@ -8,6 +8,7 @@ export const CategoryCreate: React.FC<IResourceComponentsProps> = () => {
     const [form] = Form.useForm();
     const { mutate, isLoading } = useCloudMutation();
 
+    // eslint-disable-next-line
     const onFinish = (values: any) => {
         const { title } = values;
         mutate(

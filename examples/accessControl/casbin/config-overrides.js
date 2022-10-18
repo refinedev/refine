@@ -1,6 +1,6 @@
 const webpack = require("webpack");
 
-module.exports = function override(config, env) {
+module.exports = function override(config) {
     config.resolve.fallback = Object.assign(config.resolve.fallback || {}, {
         ...config.resolve.fallback,
         fs: false,

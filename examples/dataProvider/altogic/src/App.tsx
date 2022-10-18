@@ -28,7 +28,7 @@ axiosInstance.interceptors.response.use(
         const customError: HttpError = {
             ...error,
             message: error.response?.data
-                ?.map((p: any) => p.message)
+                ?.map((p: any) => p.message) // eslint-disable-line
                 .join(", "),
             statusCode: error.response?.status,
         };

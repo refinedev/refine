@@ -1,7 +1,7 @@
-import { useShow, useOne } from "@pankod/refine-core";
-import { Show, Typography, Tag } from "@pankod/refine-antd";
+import { useShow } from "@pankod/refine-core";
+import { Show, Typography } from "@pankod/refine-antd";
 import dayjs from "dayjs";
-import { HackathonType, TeamType } from "interfaces";
+import { HackathonType } from "interfaces";
 const { Title, Text } = Typography;
 
 export const HackathonsShow = () => {

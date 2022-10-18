@@ -16,7 +16,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                             alt="Logo"
                         />
                         <ul className="hidden md:flex">
-                            {menuItems.map(({ name, route }) => (
+                            {menuItems.map(({ name }) => (
                                 <li key={name} className="float-left">
                                     <Link
                                         className="mt-2 flex cursor-pointer items-center gap-1 rounded-sm px-2 py-1 capitalize
@@ -34,7 +34,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 </div>
             </div>
             <div className="flex flex-col border-b pl-3 md:hidden">
-                {menuItems.map(({ name, route }) => (
+                {menuItems.map(({ name }) => (
                     <Link
                         key={name}
                         className="mt-2 flex cursor-pointer items-center gap-1 rounded-sm px-2 py-1 capitalize

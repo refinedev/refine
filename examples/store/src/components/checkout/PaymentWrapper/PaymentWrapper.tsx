@@ -35,6 +35,7 @@ const StripeWrapper: React.FC<PropsWithChildren<WrapperProps>> = ({
     children,
 }) => {
     const options: StripeElementsOptions = {
+        // eslint-disable-next-line
         clientSecret: paymentSession!.data.client_secret as string | undefined,
     };
 

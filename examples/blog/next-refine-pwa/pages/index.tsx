@@ -45,7 +45,7 @@ const ProductList: React.FC<ItemProp> = ({ products }) => {
 
 export default ProductList;
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
     const data = await dataProvider(
         "https://fakestoreapi.com",
     ).getList<IProduct>({

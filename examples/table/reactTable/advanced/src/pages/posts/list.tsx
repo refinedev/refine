@@ -171,11 +171,13 @@ export const PostList: React.FC = () => {
         indeterminate,
         ...rest
     }: { indeterminate?: boolean } & React.HTMLProps<HTMLInputElement>) {
-        const ref = React.useRef<HTMLInputElement>(null!);
+        const ref = React.useRef<HTMLInputElement>(null);
 
         useEffect(() => {
             if (typeof indeterminate === "boolean") {
-                ref.current.indeterminate = !rest.checked && indeterminate;
+                if (ref?.current) {
+                    ref.current.indeterminate = !rest.checked && indeterminate;
+                }
             }
         }, [ref, indeterminate]);
 

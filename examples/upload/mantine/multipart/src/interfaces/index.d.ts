@@ -14,10 +14,10 @@ export interface IPost {
 }
 
 export interface ColumnButtonProps {
-    column: Column<any, any>;
+    column: Column<any, any>; // eslint-disable-line
 }
 
 export interface FilterElementProps {
-    value: any;
-    onChange: (value: any) => void;
+    value: any; // eslint-disable-line
+    onChange: (value: any) => void; // eslint-disable-line
 }

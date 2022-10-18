@@ -16,7 +16,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
-        login: ({ username, password, remember }) => {
+        login: ({ username }) => {
             if (username === "admin") {
                 localStorage.setItem("username", username);
                 return Promise.resolve();

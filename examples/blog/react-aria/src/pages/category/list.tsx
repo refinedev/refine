@@ -3,6 +3,7 @@ import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 import { CategoryCreate } from "./create";
 
 export const CategoryList: React.FC = () => {
+    // eslint-disable-next-line
     const columns = React.useMemo<ColumnDef<any>[]>(
         () => [
             {
@@ -20,6 +21,7 @@ export const CategoryList: React.FC = () => {
         [],
     );
 
+    // eslint-disable-next-line
     const { getHeaderGroups, getRowModel } = useTable<any>({
         columns,
         refineCoreProps: {

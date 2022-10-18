@@ -1,5 +1,5 @@
-import { useShow, useOne } from "@pankod/refine-core";
-import { Show, Typography, Tag } from "@pankod/refine-antd";
+import { useShow } from "@pankod/refine-core";
+import { Show, Typography } from "@pankod/refine-antd";
 import { TeamType } from "interfaces";
 const { Title, Text } = Typography;
 

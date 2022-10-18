@@ -5,7 +5,7 @@ import s from "./Grid.module.css";
 
 interface GridProps {
     className?: string;
-    children?: ReactNode[] | Component[] | any[];
+    children?: ReactNode[] | Component[] | any[]; // eslint-disable-line
     layout?: "A" | "B" | "C" | "D" | "normal";
     variant?: "default" | "filled";
 }

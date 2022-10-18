@@ -12,15 +12,16 @@ type PdfProps = {
 };
 
 export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
-    const pdfExportComponent = useRef<any>();
+    const pdfExportComponent = useRef<PDFExport>(null);
 
     const handleExportWithComponent = () => {
         pdfExportComponent?.current?.save();
     };
 
-    const total = record?.missions.reduce((prev: any, cur: any): any => {
-        return prev + cur.day * cur.daily_rate;
-    }, 0);
+    const total =
+        record?.missions.reduce((prev, cur) => {
+            return prev + cur.day * cur.daily_rate;
+        }, 0) ?? 0;
 
     return (
         <div>

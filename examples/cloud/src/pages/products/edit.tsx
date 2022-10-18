@@ -30,6 +30,7 @@ export const ProductEdit: React.FC<IResourceComponentsProps> = () => {
         );
     }, []);
 
+    // eslint-disable-next-line
     const onFinish = (values: any) => {
         const { name, price } = values;
         updateMutate(

@@ -1,5 +1,5 @@
 import { useShow, useOne } from "@pankod/refine-core";
-import { Show, Typography, Tag } from "@pankod/refine-antd";
+import { Show, Typography } from "@pankod/refine-antd";
 import { HackathonerType, TeamType } from "interfaces";
 const { Title, Text } = Typography;
 

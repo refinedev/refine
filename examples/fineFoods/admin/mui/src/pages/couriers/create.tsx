@@ -81,6 +81,7 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
 
         const { name, size, type, lastModified } = file;
 
+        // eslint-disable-next-line
         const imagePaylod: any = [
             {
                 name,

@@ -18,7 +18,7 @@ export const authProvider: AuthProvider = {
     updatePassword: async () => {
         return Promise.resolve();
     },
-    forgotPassword: async ({ email }) => {
+    forgotPassword: async () => {
         return Promise.resolve();
     },
     logout: () => {
