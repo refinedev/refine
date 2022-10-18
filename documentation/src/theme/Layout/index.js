@@ -13,7 +13,6 @@ import styles from "./styles.module.css";
 import { LivePreviewProvider } from "../../components/live-preview-context";
 import GithubFloatingCta from "../../components/github-floating-cta";
 import { useLocation } from "@docusaurus/router";
-import { GithubProvider } from "../../context/GithubContext";
 
 export default function Layout(props) {
     const {
@@ -38,33 +37,31 @@ export default function Layout(props) {
 
     return (
         <LayoutProvider>
-            <GithubProvider>
-                <PageMetadata title={title} description={description} />
+            <PageMetadata title={title} description={description} />
 
-                <SkipToContent />
+            <SkipToContent />
 
-                <AnnouncementBar />
+            <AnnouncementBar />
 
-                <Navbar />
+            <Navbar />
 
-                <div
-                    className={clsx(
-                        ThemeClassNames.wrapper.main,
-                        styles.mainWrapper,
-                        wrapperClassName,
-                    )}
+            <div
+                className={clsx(
+                    ThemeClassNames.wrapper.main,
+                    styles.mainWrapper,
+                    wrapperClassName,
+                )}
+            >
+                <ErrorBoundary
+                    fallback={(params) => <ErrorPageContent {...params} />}
                 >
-                    <ErrorBoundary
-                        fallback={(params) => <ErrorPageContent {...params} />}
-                    >
-                        <LivePreviewProvider>{children}</LivePreviewProvider>
-                    </ErrorBoundary>
-                </div>
+                    <LivePreviewProvider>{children}</LivePreviewProvider>
+                </ErrorBoundary>
+            </div>
 
-                {!noFooter && <Footer />}
+            {!noFooter && <Footer />}
 
-                {showGithubCta && <GithubFloatingCta />}
-            </GithubProvider>
+            {showGithubCta && <GithubFloatingCta />}
         </LayoutProvider>
     );
 }
