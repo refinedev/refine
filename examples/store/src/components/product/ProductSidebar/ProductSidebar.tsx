@@ -13,7 +13,7 @@ interface ProductSidebarProps {
     className?: string;
     selectedOptions?: SelectedOptions;
     setSelectedOptions?: Dispatch<SetStateAction<SelectedOptions>>;
-    variant: ProductVariant;
+    variant?: ProductVariant;
 }
 
 export const ProductSidebar: React.FC<ProductSidebarProps> = ({
@@ -42,31 +42,26 @@ export const ProductSidebar: React.FC<ProductSidebarProps> = ({
                 className="w-full max-w-xl break-words pb-4"
                 html={product.description || ""}
             />
-            {/* TODO: Reviews featured will be addded here */}
-            {/* <div className="flex flex-row items-center justify-between">
-                <Rating value={4} />
-                <div className="text-accent-6 pr-1 text-sm font-medium">
-                    36 reviews
-                </div>
-            </div> */}
-            <Button
-                aria-label="Add to Cart"
-                className={s.button}
-                onClick={async () => {
-                    await addItem?.({
-                        variantId: variant.id,
-                        quantity: 1,
-                    });
+            {variant && (
+                <Button
+                    aria-label="Add to Cart"
+                    className={s.button}
+                    onClick={async () => {
+                        await addItem?.({
+                            variantId: variant.id,
+                            quantity: 1,
+                        });
 
-                    setSidebarView("CART_VIEW");
-                    openSidebar();
-                }}
-                disabled={variant?.inventory_quantity === 0}
-            >
-                {variant?.inventory_quantity > 0
-                    ? "Add to Cart"
-                    : "Soon in Stock"}
-            </Button>
+                        setSidebarView("CART_VIEW");
+                        openSidebar();
+                    }}
+                    disabled={variant.inventory_quantity === 0}
+                >
+                    {variant.inventory_quantity > 0
+                        ? "Add to Cart"
+                        : "Soon in Stock"}
+                </Button>
+            )}
         </div>
     );
 };
