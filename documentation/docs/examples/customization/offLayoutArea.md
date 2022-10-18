@@ -9,7 +9,7 @@ With **refine**, you may manage your entire project. It does not limit you in an
 
 [View Off Layout Example Source](https://github.com/pankod/refine/tree/master/examples/customization/offLayoutArea)
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/customization/offLayoutArea?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/customization/offLayoutArea?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-off-layout-area-example"
 ></iframe>

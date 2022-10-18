@@ -455,7 +455,7 @@ In this case, only events will be created for the `create` mutation.
 
 ## Live StackBlitz Example
 
-<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/auditLogProvider?embed=1&view=preview&theme=dark&preset=node"
+<iframe src="https://stackblitz.com/github/pankod/refine/tree/master/examples/auditLogProvider?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-audit-log-provider-example"
 ></iframe>

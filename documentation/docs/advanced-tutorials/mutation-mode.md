@@ -121,7 +121,7 @@ mutate({
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com//refine-example-mutation-mode-yh7nb?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com//refine-example-mutation-mode-yh7nb?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-example-mutation-mode"
 ></iframe>
