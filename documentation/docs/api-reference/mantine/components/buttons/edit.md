@@ -4,10 +4,14 @@ title: Edit
 ---
 
 ```tsx live shared
+const { default: routerProvider } = RefineReactRouterV6;
+const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    Sider: () => null,
-    Layout: RefineMantine.Layout,
+    routerProvider,
+    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
     notificationProvider: RefineMantine.notificationProvider,
+    Layout: RefineMantine.Layout,
+    Sider: () => null,
     catchAll: <RefineMantine.ErrorComponent />,
 });
 
@@ -27,6 +31,28 @@ const Wrapper = ({ children }) => {
         </RefineMantine.MantineProvider>
     );
 };
+
+const EditPage = () => {
+    const { list } = RefineCore.useNavigation();
+    const params = RefineCore.useRouterContext().useParams();
+
+    return (
+        <div>
+            <RefineMantine.Text italic color="dimmed" size="sm">
+                URL Parameters:
+            </RefineMantine.Text>
+            <RefineMantine.Code>{JSON.stringify(params)}</RefineMantine.Code>
+            <RefineMantine.Space h="md" />
+            <RefineMantine.Button
+                size="xs"
+                variant="outline"
+                onClick={() => list("posts")}
+            >
+                Go back
+            </RefineMantine.Button>
+        </div>
+    );
+};
 ```
 
 `<EditButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button/) component. It uses the `edit` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the edit page with the record id route of resource.
@@ -36,9 +62,6 @@ const Wrapper = ({ children }) => {
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
 import { Refine, useNavigation, useRouterContext } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
-import { Button, Code, Space, Text } from "@pankod/refine-mantine";
 
 // visible-block-start
 import { List, Table, Pagination, EditButton } from "@pankod/refine-mantine";
@@ -135,29 +158,9 @@ interface IPost {
 }
 // visible-block-end
 
-const EditPage = () => {
-    const { list } = useNavigation();
-    const params = useRouterContext().useParams();
-
-    return (
-        <div>
-            <Text italic color="dimmed" size="sm">
-                URL Parameters:
-            </Text>
-            <Code>{JSON.stringify(params)}</Code>
-            <Space h="md" />
-            <Button size="xs" variant="outline" onClick={() => list("posts")}>
-                Go back
-            </Button>
-        </div>
-    );
-};
-
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
                     name: "posts",
@@ -184,10 +187,7 @@ render(
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine, useRouterContext, useNavigation } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
-import { Button, Code, Space, Text } from "@pankod/refine-mantine";
+import { Refine } from "@pankod/refine-core";
 
 // visible-block-start
 import { EditButton } from "@pankod/refine-mantine";
@@ -197,29 +197,9 @@ const MyEditComponent = () => {
 };
 // visible-block-end
 
-const EditPage = () => {
-    const { list } = useNavigation();
-    const params = useRouterContext().useParams();
-
-    return (
-        <div>
-            <Text italic color="dimmed" size="sm">
-                URL Parameters:
-            </Text>
-            <Code>{JSON.stringify(params)}</Code>
-            <Space h="md" />
-            <Button size="xs" variant="outline" onClick={() => list("posts")}>
-                Go back
-            </Button>
-        </div>
-    );
-};
-
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
                     name: "posts",
@@ -245,10 +225,7 @@ Redirection endpoint(`resourceNameOrRouteName/edit`) is defined by `resourceName
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine, useRouterContext, useNavigation } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
-import { Button, Code, Space, Text } from "@pankod/refine-mantine";
+import { Refine } from "@pankod/refine-core";
 
 // visible-block-start
 import { EditButton } from "@pankod/refine-mantine";
@@ -258,29 +235,9 @@ const MyEditComponent = () => {
 };
 // visible-block-end
 
-const EditPage = () => {
-    const { list } = useNavigation();
-    const params = useRouterContext().useParams();
-
-    return (
-        <div>
-            <Text italic color="dimmed" size="sm">
-                URL Parameters:
-            </Text>
-            <Code>{JSON.stringify(params)}</Code>
-            <Space h="md" />
-            <Button size="xs" variant="outline" onClick={() => list("posts")}>
-                Go back
-            </Button>
-        </div>
-    );
-};
-
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
                     name: "posts",
@@ -311,10 +268,7 @@ It is used to show and not show the text of the button. When `true`, only the bu
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 
-import { Refine, useRouterContext, useNavigation } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
-import { Button, Code, Space, Text } from "@pankod/refine-mantine";
+import { Refine } from "@pankod/refine-core";
 
 // visible-block-start
 import { EditButton } from "@pankod/refine-mantine";
@@ -324,29 +278,9 @@ const MyEditComponent = () => {
 };
 // visible-block-end
 
-const EditPage = () => {
-    const { list } = useNavigation();
-    const params = useRouterContext().useParams();
-
-    return (
-        <div>
-            <Text italic color="dimmed" size="sm">
-                URL Parameters:
-            </Text>
-            <Code>{JSON.stringify(params)}</Code>
-            <Space h="md" />
-            <Button size="xs" variant="outline" onClick={() => list("posts")}>
-                Go back
-            </Button>
-        </div>
-    );
-};
-
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
                     name: "posts",
