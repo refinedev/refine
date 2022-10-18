@@ -1,5 +1,5 @@
 import useIsBrowser from "@docusaurus/useIsBrowser";
-import React, { FC, memo, useState } from "react";
+import React, { FC, memo, useMemo, useState } from "react";
 import { useGithubContext } from "../../context/GithubContext";
 import { GithubIcon, CancelIcon } from "../landing/icons";
 
@@ -20,7 +20,11 @@ const GithubFloatingCta: FC = () => {
         setIsClosed(true);
     };
 
-    const formattedStarCount = new Intl.NumberFormat().format(starCount);
+    const formattedStarCount = useMemo(() => {
+        if (loading || !starCount) return "";
+
+        return new Intl.NumberFormat().format(starCount);
+    }, [starCount, loading]);
 
     if (isClosed) return null;
 
@@ -35,8 +39,8 @@ const GithubFloatingCta: FC = () => {
             >
                 <GithubIcon />
                 <span>Star</span>
-                <div className=" bg-white text-[#2A2A42] p-2 rounded-md flex items-center justify-center min-w-[58px]">
-                    <span>{loading ? "-" : formattedStarCount}</span>
+                <div className=" bg-white text-[#2A2A42] p-2 rounded-md flex items-center justify-center min-w-[58px] min-h-[32px]">
+                    <span>{formattedStarCount}</span>
                 </div>
             </a>
 
