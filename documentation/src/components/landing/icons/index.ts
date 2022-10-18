@@ -17,6 +17,7 @@ export * from "./rocket-icon";
 export * from "./scroll-icon";
 export * from "./shield-icon";
 export * from "./triple-icon";
+export * from "./cancel-icon";
 export * as BackendIcons from "./backend";
 export * as BenefitIcons from "./benefit";
 export * as GraySocialIcons from "./gray-social-icons";
