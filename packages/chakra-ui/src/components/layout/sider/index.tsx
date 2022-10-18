@@ -11,7 +11,17 @@ import {
     useTranslate,
 } from "@pankod/refine-core";
 import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
-import { Box, Button, Tooltip, VStack } from "@chakra-ui/react";
+import {
+    Accordion,
+    AccordionButton,
+    AccordionIcon,
+    AccordionItem,
+    AccordionPanel,
+    Box,
+    Button,
+    Tooltip,
+    VStack,
+} from "@chakra-ui/react";
 import { ExternalLinkIcon, HamburgerIcon, InfoIcon } from "@chakra-ui/icons";
 
 import { Title as DefaultTitle } from "../title";
@@ -33,6 +43,13 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
 
             const isParent = children.length > 0;
 
+            const linkProps = !isParent
+                ? {
+                      as: Link,
+                      to: route,
+                  }
+                : undefined;
+
             return (
                 <CanAccess
                     key={route}
@@ -42,18 +59,27 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                         resource: item,
                     }}
                 >
-                    <Tooltip label={label}>
-                        <Button
-                            leftIcon={<HamburgerIcon />}
-                            as={Link}
-                            to={route}
-                            variant="link"
-                            color="white"
-                        >
-                            {label}
-                        </Button>
-                    </Tooltip>
-                    {isParent && renderTreeView(children)}
+                    <AccordionItem border="none">
+                        <AccordionButton px="0">
+                            <Button
+                                leftIcon={<HamburgerIcon />}
+                                variant="link"
+                                color="white"
+                                {...linkProps}
+                            >
+                                {label}
+                            </Button>
+                            {isParent && <AccordionIcon />}
+                        </AccordionButton>
+
+                        {isParent && (
+                            <AccordionPanel py="0">
+                                <Accordion allowToggle>
+                                    {renderTreeView(children)}
+                                </Accordion>
+                            </AccordionPanel>
+                        )}
+                    </AccordionItem>
                 </CanAccess>
             );
         });
@@ -65,6 +91,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
         <CanAccess resource="dashboard" action="list">
             <Tooltip label={t("dashboard.title", "Dashboard")}>
                 <Button
+                    py="2"
                     leftIcon={<InfoIcon />}
                     variant="link"
                     color="white"
@@ -80,6 +107,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const logout = isExistAuthentication && (
         <Tooltip label={t("buttons.logout", "Logout")}>
             <Button
+                py="2"
                 leftIcon={<ExternalLinkIcon />}
                 variant="link"
                 color="white"
@@ -119,7 +147,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 <RenderToTitle collapsed={false} />
             </Box>
             <VStack mt="2" color="white" alignItems="start" px="3">
-                {renderSider()}
+                <Accordion allowToggle>{renderSider()}</Accordion>
             </VStack>
         </Box>
     );

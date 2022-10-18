@@ -62,6 +62,18 @@ const App: React.FC = () => {
                 }}
                 resources={[
                     {
+                        name: "foo",
+                    },
+                    {
+                        parentName: "foo",
+                        name: "bar",
+                    },
+                    {
+                        parentName: "bar",
+                        name: "baz",
+                    },
+                    {
+                        parentName: "baz",
                         name: "posts",
                         list: () => <span>posts list</span>,
                     },
