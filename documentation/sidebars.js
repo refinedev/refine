@@ -379,6 +379,23 @@ module.exports = {
                     items: [
                         {
                             type: "category",
+                            label: "Hooks",
+                            items: [
+                                {
+                                    type: "category",
+                                    label: "Form",
+                                    items: [
+                                        "api-reference/mantine/hooks/form/useDrawerForm",
+                                        "api-reference/mantine/hooks/form/useForm",
+                                        "api-reference/mantine/hooks/form/useModalForm",
+                                        "api-reference/mantine/hooks/form/useStepsForm",
+                                    ],
+                                },
+                                "api-reference/mantine/hooks/useSelect",
+                            ],
+                        },
+                        {
+                            type: "category",
                             label: "Components",
                             items: [
                                 "api-reference/mantine/components/mantine-auth-page",
@@ -428,19 +445,9 @@ module.exports = {
                         },
                         {
                             type: "category",
-                            label: "Hooks",
+                            label: "Customization",
                             items: [
-                                {
-                                    type: "category",
-                                    label: "Form",
-                                    items: [
-                                        "api-reference/mantine/hooks/form/useDrawerForm",
-                                        "api-reference/mantine/hooks/form/useForm",
-                                        "api-reference/mantine/hooks/form/useModalForm",
-                                        "api-reference/mantine/hooks/form/useStepsForm",
-                                    ],
-                                },
-                                "api-reference/mantine/hooks/useSelect",
+                                "api-reference/mantine/customization/theme",
                             ],
                         },
                     ],
