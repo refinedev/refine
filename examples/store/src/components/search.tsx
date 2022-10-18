@@ -155,18 +155,12 @@ export default function Search({ products }: { products?: MedusaProduct[] }) {
                                     <span
                                         className={cn("animated", {
                                             fadeIn: products.length > 0,
-                                            hidden: products.length === 0,
                                         })}
                                     >
-                                        {q ? (
+                                        {q && products.length === 0 && (
                                             <>
                                                 There are no products that match
                                                 <strong>{` ${q}`}</strong>
-                                            </>
-                                        ) : (
-                                            <>
-                                                There are no products that match
-                                                the selected category.
                                             </>
                                         )}
                                     </span>
