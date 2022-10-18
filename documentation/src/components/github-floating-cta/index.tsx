@@ -1,22 +1,16 @@
-import useIsBrowser from "@docusaurus/useIsBrowser";
 import React, { FC, memo, useMemo, useState } from "react";
 import { useGithubContext } from "../../context/GithubContext";
 import { GithubIcon, CancelIcon } from "../landing/icons";
 
 const GithubFloatingCta: FC = () => {
-    const isBrowser = useIsBrowser();
-
-    const [isClosed, setIsClosed] = useState(() =>
-        isBrowser ? localStorage.getItem("github-float-cta") === "true" : false,
+    const [isClosed, setIsClosed] = useState(
+        localStorage.getItem("github-float-cta") === "true",
     );
 
     const { starCount, loading } = useGithubContext();
 
     const handleClose = () => {
-        if (isBrowser) {
-            localStorage.setItem("github-float-cta", "true");
-        }
-
+        localStorage.setItem("github-float-cta", "true");
         setIsClosed(true);
     };
 

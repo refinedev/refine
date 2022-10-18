@@ -13,6 +13,7 @@ import styles from "./styles.module.css";
 import { LivePreviewProvider } from "../../components/live-preview-context";
 import GithubFloatingCta from "../../components/github-floating-cta";
 import { useLocation } from "@docusaurus/router";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 
 export default function Layout(props) {
     const {
@@ -61,7 +62,9 @@ export default function Layout(props) {
 
             {!noFooter && <Footer />}
 
-            {showGithubCta && <GithubFloatingCta />}
+            {showGithubCta && (
+                <BrowserOnly>{() => <GithubFloatingCta />}</BrowserOnly>
+            )}
         </LayoutProvider>
     );
 }
