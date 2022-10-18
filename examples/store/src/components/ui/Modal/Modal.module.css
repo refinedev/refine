@@ -13,5 +13,5 @@
 }
 
 .close {
-  @apply hover:text-accent-5 transition ease-in-out duration-150 focus:outline-none absolute right-0 top-0 m-4;
+  @apply hover:text-accent-5 transition ease-in-out duration-150 focus:outline-none absolute right-0 top-0 m-6;
 }
