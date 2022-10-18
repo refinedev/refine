@@ -14,7 +14,7 @@ You may use the `useDataGrid` hook to process your data with features compatible
 
 [View useDataGrid with `DataGrid` component example source](https://github.com/pankod/refine/tree/master/examples/table/mui/useDataGrid)
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/table/mui/useDataGrid?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/table/mui/useDataGrid?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-data-grid-example"
 ></iframe>
@@ -23,7 +23,7 @@ You may use the `useDataGrid` hook to process your data with features compatible
 
 [View useDataGrid with `DataGridPro` component example source](https://github.com/pankod/refine/tree/master/examples/table/mui/dataGridPro)
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/table/mui/dataGridPro?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/table/mui/dataGridPro?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-data-grid-example"
 ></iframe>

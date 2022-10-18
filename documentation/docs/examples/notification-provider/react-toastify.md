@@ -10,7 +10,7 @@ With **refine** Notification Provider, you can show notification messages in you
 
 [View React Toastify Example Source](https://github.com/pankod/refine/tree/master/examples/reactToastify)
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/reactToastify/?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/reactToastify/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-react-toastify-example"
 ></iframe>
