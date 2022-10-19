@@ -19,7 +19,7 @@
         "test": "jest --passWithNoTests --runInBand",
         "prepare": "npm run build"
     },
-    "author": "Pankod",
+    "author": "refine",
     "module": "dist/esm/index.js",
     "devDependencies": {
         "@pankod/refine-core": "^3.86.0",

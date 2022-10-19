@@ -18,7 +18,7 @@
     "prepare": "npm run build"
   },
   "name": "@pankod/refine-appwrite",
-  "author": "Pankod",
+  "author": "refine",
   "module": "dist/esm/index.js",
   "devDependencies": {
     "@pankod/refine-core": "^3.86.0",

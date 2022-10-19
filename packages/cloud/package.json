@@ -19,7 +19,7 @@
     },
     "name": "@pankod/refine-cloud",
     "description": "refine cloud",
-    "author": "Pankod",
+    "author": "refine",
     "module": "dist/esm/index.js",
     "peerDependencies": {
         "@pankod/refine-core": "^3.23.2",

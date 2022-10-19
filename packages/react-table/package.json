@@ -19,7 +19,7 @@
   },
   "name": "@pankod/refine-react-table",
   "description": "refine offers a React Table adapter that allows you to use the React Table library with refine.",
-  "author": "Pankod",
+  "author": "refine",
   "module": "dist/esm/index.js",
   "peerDependencies": {
     "@pankod/refine-core": "^3.23.2",

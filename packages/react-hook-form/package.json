@@ -19,7 +19,7 @@
   },
   "name": "@pankod/refine-react-hook-form",
   "description": "refine offers a React Hook Form adapter that allows you to use the React Hook Form library with refine.",
-  "author": "Pankod",
+  "author": "refine",
   "module": "dist/esm/index.js",
   "peerDependencies": {
     "@pankod/refine-core": "^3.23.2",
