@@ -17,7 +17,7 @@ import {
     Table,
     // highlight-start
     BooleanField,
-    Icons,
+    Icons
     // highlight-end
 } from "@pankod/refine-antd";
 
