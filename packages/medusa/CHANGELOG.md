@@ -1,5 +1,11 @@
 # @pankod/refine-medusa
 
+## 1.7.1
+
+### Patch Changes
+
+-   [#2824](https://github.com/pankod/refine/pull/2824) [`51b01f3891`](https://github.com/pankod/refine/commit/51b01f3891740e8824527d9584030d9c4cc4fa08) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed adding `/store` suffix to the end of Medusa API URL
+
 ## 1.7.0
 
 ### Minor Changes
