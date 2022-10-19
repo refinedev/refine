@@ -3,4 +3,3 @@
 ---
 
 Added missing `Title` component export.
-
