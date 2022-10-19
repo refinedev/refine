@@ -12,7 +12,7 @@ Connect your [Supabase](https://supabase.com/) database with **refine** Supabase
 StackBlitz environment does not allow Realtime features to work.
 :::
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/dataProvider/supabase?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/dataProvider/supabase?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-supabase-example"
 ></iframe>

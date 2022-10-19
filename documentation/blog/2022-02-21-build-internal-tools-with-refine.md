@@ -294,8 +294,8 @@ Refer to the [`accessControlProvider`](https://refine.dev/docs/core/providers/ac
 
 ### Out-of-the-box access control providers
 
--   Casbin - [Source Code](https://github.com/refinedev/refine/tree/master/examples/accessControl/casbin) - [Demo](https://codesandbox.io/s/github/pankod/refine/tree/master/examples/accessControl/casbin)
--   Cerbos - [Source Code](https://github.com/refinedev/refine/tree/master/examples/accessControl/cerbos) - [Demo](https://codesandbox.io/s/github/pankod/refine/tree/master/examples/accessControl/cerbos)
+-   Casbin - [Source Code](https://github.com/refinedev/refine/tree/master/examples/accessControl/casbin) - [Demo](https://stackblitz.com/github/refinedev/refine/tree/master/examples/accessControl/casbin)
+-   Cerbos - [Source Code](https://github.com/refinedev/refine/tree/master/examples/accessControl/cerbos) - [Demo](https://stackblitz.com/github/refinedev/refine/tree/master/examples/accessControl/cerbos)
 
 ## Internationalization
 
@@ -335,7 +335,7 @@ If you send an event after the relevant operations on the server, Refine will in
 
 ### Out-of-the-box access control providers
 
--   Ably - [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/s/github/pankod/refine/tree/master/examples/ably)
+-   Ably - [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://stackblitz.com/github/refinedev/refine/tree/master/examples/ably)
 -   Supabase - [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
 -   Appwrite - [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
 

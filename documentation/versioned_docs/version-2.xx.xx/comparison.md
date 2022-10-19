@@ -52,7 +52,7 @@ This comparison table strives to be as accurate and as unbiased as possible. If 
 
 <!-- -->
 
-[stars-refine]: https://img.shields.io/github/stars/pankod/refine?label=%F0%9F%8C%9F
+[stars-refine]: https://img.shields.io/github/stars/refinedev/refine?label=%F0%9F%8C%9F
 [gh-refine]: https://github.com/refinedev/refine
 [bpl-refine]: https://bundlephobia.com/result?p=@pankod/refine
 [bp-refine]: https://badgen.net/bundlephobia/minzip/@pankod/refine?label=💾

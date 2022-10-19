@@ -32,7 +32,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           registry: ghcr.io
-          repository: pankod/refine/refine-store
+          repository: refinedev/refine/refine-store
           tag_with_sha: true
           dockerfile: examples/store/Dockerfile
       - name: Set up kubectl

@@ -1,6 +1,6 @@
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
-  <img src="https://raw.githubusercontent.com/pankod/refine/master/logo.png"   style="width:250px;" align="center" />
+  <img src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"   style="width:250px;" align="center" />
 </a>
 <br />
 <br />
@@ -39,7 +39,7 @@
 
 <div align="center" style="margin: 30px;">
   <a href="https://refine.dev/">
-      <img src="https://raw.githubusercontent.com/pankod/refine/master/documentation/static/img/refine-promo-gif-v2.gif" style="width:688px;"/>
+      <img src="https://raw.githubusercontent.com/refinedev/refine/master/documentation/static/img/refine-promo-gif-v2.gif" style="width:688px;"/>
   </a>
 </div>
 
@@ -210,7 +210,7 @@ You can find refine's <a href="https://github.com/refinedev/refine/projects/1">P
 
 ## Stargazers
 
-[![Stargazers repo roster for pankod/refine](https://reporoster.com/stars/pankod/refine)](https://github.com/refinedev/refine/stargazers)
+[![Stargazers repo roster for refinedev/refine](https://reporoster.com/stars/refinedev/refine)](https://github.com/refinedev/refine/stargazers)
 
 ## Contribution
 
@@ -222,4 +222,4 @@ If you have any doubts related to the project or want to discuss something, then
 
 ## License
 
-Licensed under the MIT License, Copyright © 2021-present Pankod
+Licensed under the MIT License, Copyright © 2021-present Refinedev

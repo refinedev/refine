@@ -647,7 +647,7 @@ export default App;
   </div>
 </details>
 
-[You can use this StackBlitz link to access this example. &#8594](https://stackblitz.com/github/pankod/refine/tree/master/examples/customization/customTheme/mui/?preset=node)
+[You can use this StackBlitz link to access this example. &#8594](https://stackblitz.com/github/refinedev/refine/tree/master/examples/customization/customTheme/mui/?preset=node)
 
 <div class="img-container">
     <div class="window">

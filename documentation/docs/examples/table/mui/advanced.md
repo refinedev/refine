@@ -10,7 +10,7 @@ Advanced table examples with [`useDataGrid`](/api-reference/mui/hooks/useDataGri
 
 [View advanced example source](https://github.com/refinedev/refine/tree/master/examples/table/mui/advancedTable)
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/table/mui/advancedTable?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/table/mui/advancedTable?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-data-grid-example"
 ></iframe>

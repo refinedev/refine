@@ -14,7 +14,7 @@ Username: `refine-demo`
 
 Password: `demodemo`
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/multi-tenancy/strapi?fautoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/multi-tenancy/strapi?fautoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="strapi-multi-tenant-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

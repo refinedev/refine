@@ -16,7 +16,7 @@ const siteConfig = {
     url: "https://refine.dev",
     baseUrl: "/",
     projectName: "refine",
-    organizationName: "pankod",
+    organizationName: "refinedev",
     trailingSlash: true,
     favicon: "img/refine_favicon.png",
     scripts: ["https://platform.twitter.com/widgets.js"],

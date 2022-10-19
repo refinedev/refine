@@ -1,6 +1,6 @@
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
-  <img src="https://raw.githubusercontent.com/pankod/refine/master/logo.png"   style="width:250px;" align="center" />
+  <img src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"   style="width:250px;" align="center" />
 </a>
 <br />
 <br />
@@ -39,7 +39,7 @@
 </div>
 
 <div align="center">
-  <sub>Created by <a href="https://www.pankod.com">Pankod</a></sub>
+  <sub>Created by <a href="https://refine.dev">refine</a></sub>
 </div>
 
 ## About
@@ -111,7 +111,7 @@ Access to external sources and API's happen via providers which are basically pl
 <br/>
 
 <div align="center">
-    <img src="https://raw.githubusercontent.com/pankod/refine/master/documentation/static/img/getting-started/refine_architecture.png" width="400px" />
+    <img src="https://raw.githubusercontent.com/refinedev/refine/master/documentation/static/img/getting-started/refine_architecture.png" width="400px" />
 </div>
 
 ## Benchmark
@@ -124,7 +124,7 @@ In addition to **shorter development** times and **overall performance gains**, 
 <br/>
 
 <div align="center">
-    <img src="https://raw.githubusercontent.com/pankod/refine/master/documentation/static/img/getting-started/benchmark.png" width="400px" align="center" />
+    <img src="https://raw.githubusercontent.com/refinedev/refine/master/documentation/static/img/getting-started/benchmark.png" width="400px" align="center" />
 </div>
 
 ## Quick Start
@@ -259,7 +259,7 @@ You can find Refine's <a href="https://github.com/refinedev/refine/projects/1">P
 
 ## Stargazers
 
-[![Stargazers repo roster for pankod/refine](https://reporoster.com/stars/pankod/refine)](https://github.com/refinedev/refine/stargazers)
+[![Stargazers repo roster for refinedev/refine](https://reporoster.com/stars/refinedev/refine)](https://github.com/refinedev/refine/stargazers)
 
 ## Contribution
 
@@ -269,7 +269,7 @@ If you are willing to fix an issue or propose a feature; all PRs with clear expl
 
 ## License
 
-Licensed under the MIT License, Copyright © 2021-present Pankod
+Licensed under the MIT License, Copyright © 2021-present refine
 
 ## Special Thanks
 
