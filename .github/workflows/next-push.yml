@@ -49,7 +49,7 @@ jobs:
         run: mkdir -p ./_changeset/ && cp -r ./.changeset/* ./_changeset/
       - name: Create Release Pull Request or Publish to npm
         id: changesets
-        uses: refinedev/action@main
+        uses: changesets/action@v1
         with:
           version: npm run changeset version
           publish: npm run changeset publish -- --tag next
