@@ -1,5 +1,16 @@
 # @pankod/refine-mui
 
+## 3.52.0
+
+### Minor Changes
+
+-   [#2836](https://github.com/refinedev/refine/pull/2836) [`e43e9a17ae`](https://github.com/refinedev/refine/commit/e43e9a17ae0ed41e649b8026b2b04d850136dcfd) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - added locales prop to date fields
+
+### Patch Changes
+
+-   Updated dependencies [[`e43e9a17ae`](https://github.com/refinedev/refine/commit/e43e9a17ae0ed41e649b8026b2b04d850136dcfd)]:
+    -   @pankod/refine-ui-types@0.13.0
+
 ## 3.51.0
 
 ### Minor Changes
