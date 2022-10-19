@@ -36,11 +36,15 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     resourceNameOrRouteName: propResourceNameOrRouteName,
     recordItemId,
     hideText = false,
+    accessControl,
     ignoreAccessControlProvider = false,
     children,
     onClick,
     ...rest
 }) => {
+    const accessControlEnabled =
+        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const { cloneUrl: generateCloneUrl } = useNavigation();
     const { Link } = useRouterContext();
 
@@ -57,7 +61,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
         action: "create",
         params: { id, resource },
         queryOptions: {
-            enabled: !ignoreAccessControlProvider,
+            enabled: accessControlEnabled,
         },
     });
 
@@ -72,6 +76,10 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     };
 
     const cloneUrl = generateCloneUrl(propResourceName ?? resource.route!, id!);
+
+    if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
+        return null;
+    }
 
     return (
         <Link

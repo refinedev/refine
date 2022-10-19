@@ -35,11 +35,15 @@ export const ListButton: React.FC<ListButtonProps> = ({
     resourceName: propResourceName,
     resourceNameOrRouteName: propResourceNameOrRouteName,
     hideText = false,
+    accessControl,
     ignoreAccessControlProvider = false,
     children,
     onClick,
     ...rest
 }) => {
+    const accessControlEnabled =
+        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const { listUrl: generateListUrl } = useNavigation();
     const { Link } = useRouterContext();
     const translate = useTranslate();
@@ -53,7 +57,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
         resource: resourceName,
         action: "list",
         queryOptions: {
-            enabled: !ignoreAccessControlProvider,
+            enabled: accessControlEnabled,
         },
         params: {
             resource,
@@ -71,6 +75,10 @@ export const ListButton: React.FC<ListButtonProps> = ({
     };
 
     const listUrl = generateListUrl(propResourceName ?? resource.route!);
+
+    if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
+        return null;
+    }
 
     return (
         <Link
