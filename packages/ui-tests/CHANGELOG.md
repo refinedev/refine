@@ -1,5 +1,13 @@
 # @pankod/refine-ui-tests
 
+## 0.9.1
+
+### Patch Changes
+
+-   Updated dependencies [[`476285e342`](https://github.com/refinedev/refine/commit/476285e3427c7e065892a281da529c038aee83d2), [`5388a338ab`](https://github.com/refinedev/refine/commit/5388a338abb9a5e03599da0a2786bea394cbc516), [`5388a338ab`](https://github.com/refinedev/refine/commit/5388a338abb9a5e03599da0a2786bea394cbc516)]:
+    -   @pankod/refine-ui-types@0.12.0
+    -   @pankod/refine-core@3.86.1
+
 ## 0.9.0
 
 ### Minor Changes

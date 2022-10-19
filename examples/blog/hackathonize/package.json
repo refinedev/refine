@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "@pankod/refine": "2.0.12",
-    "@pankod/refine-antd": "^3.57.0",
-    "@pankod/refine-core": "^3.86.0",
+    "@pankod/refine-antd": "^3.58.0",
+    "@pankod/refine-core": "^3.86.1",
     "@pankod/refine-react-router-v6": "^3.36.2",
     "@pankod/refine-supabase": "^3.35.0",
     "@testing-library/jest-dom": "^5.16.4",

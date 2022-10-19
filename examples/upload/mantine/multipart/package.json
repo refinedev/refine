@@ -7,8 +7,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@pankod/refine-mantine": "^1.6.13",
-    "@pankod/refine-core": "^3.86.0",
+    "@pankod/refine-mantine": "^1.7.0",
+    "@pankod/refine-core": "^3.86.1",
     "@pankod/refine-react-router-v6": "^3.36.2",
     "@pankod/refine-simple-rest": "^3.35.0",
     "@pankod/refine-react-table": "^4.9.0",

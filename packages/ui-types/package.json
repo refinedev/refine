@@ -1,6 +1,6 @@
 {
     "name": "@pankod/refine-ui-types",
-    "version": "0.11.6",
+    "version": "0.12.0",
     "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
     "private": false,
     "main": "dist/index.js",
@@ -25,7 +25,7 @@
         "typescript": "^4.7.4"
     },
     "dependencies": {
-        "@pankod/refine-core": "^3.86.0",
+        "@pankod/refine-core": "^3.86.1",
         "dayjs": "^1.10.7",
         "tslib": "^2.3.1"
     },
