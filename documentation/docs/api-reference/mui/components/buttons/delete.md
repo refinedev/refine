@@ -287,3 +287,7 @@ export const MyDeleteComponent = () => {
 ### Props
 
 <PropsTable module="@pankod/refine-mui/DeleteButton" />
+
+:::tip External Props
+It also accepts all props of Material UI [Button](https://mui.com/material-ui/react-button/).
+:::

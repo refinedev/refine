@@ -57,9 +57,7 @@ interface IPost {
 
 ### Properties
 
-| Property | Description             | Type                    |
-| -------- | ----------------------- | ----------------------- |
-| value    | Markdown data to render | `string` \| `undefined` |
+<PropsTable module="@pankod/refine-antd/MarkdownField" value-description="Markdown data to render"/>
 
 ## Live StackBlitz Example
 

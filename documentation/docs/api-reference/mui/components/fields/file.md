@@ -92,9 +92,8 @@ If you don't use `title` prop it will use `src` as `title`
 
 ### Properties
 
-| Property                                     | Description                           | Type                                                             | Default            |
-| -------------------------------------------- | ------------------------------------- | ---------------------------------------------------------------- | ------------------ |
-| src <div className="required">Required</div> | Used for file path                    | `string`                                                         |                    |
-| title                                        | Used for file title                   | `string` \| `undefined`                                          | The `src` property |
-| LinkProps                                    | Material UI `<Link>` properties       | [`LinkProps`](https://mui.com/material-ui/api/link/)             |                    |
-| TypographyProps                              | Material UI `<Typography>` properties | [`TypographyProps`](https://mui.com/material-ui/api/typography/) |                    |
+<PropsTable module="@pankod/refine-mui/FileField"/>
+
+:::tip External Props
+It also accepts all props of Material UI [Link](https://mui.com/material-ui/react-link/#main-content).
+:::

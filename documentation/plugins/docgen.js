@@ -249,7 +249,9 @@ const createParser = (configPath) => {
                     prop.declarations.length > 0 &&
                     !Boolean(prop.declarations.find(declarationFilter));
 
-                if (isExcluded || isExternal) {
+                const isUnknown = typeof prop.declarations === "undefined";
+
+                if (isExcluded || isExternal || isUnknown) {
                     return false;
                 }
                 return true;

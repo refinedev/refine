@@ -31,12 +31,12 @@ export type RefineFieldBooleanProps<
         valueLabelFalse?: string;
         /**
          * If there is a value, this is the icon to use.
-         * @default [`<CheckOutlined />`](https://ant.design/components/icon/)
+         * @default [`<CheckOutlined />`]
          */
         trueIcon?: ReactNode;
         /**
          * If there is no value, this is the icon to use.
-         * @default [`<CloseOutlined />`](https://ant.design/components/icon/)
+         * @default [`<CloseOutlined />`]
          */
         falseIcon?: ReactNode;
     };
