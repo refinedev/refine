@@ -10,7 +10,7 @@ export const SHOW_CASES: Examples = [
             text: "VIEW DEMO",
             link: "https://store.refine.dev",
         },
-        source: "https://github.com/pankod/refine/tree/master/examples/store",
+        source: "https://github.com/refinedev/refine/tree/master/examples/store",
     },
     {
         title: "FINEFOODS ADMIN PANEL [ANT DESIGN]",
@@ -21,7 +21,7 @@ export const SHOW_CASES: Examples = [
             text: "VIEW DEMO",
             link: "https://example.admin.refine.dev",
         },
-        source: "https://github.com/pankod/refine/tree/master/examples/fineFoods/admin/antd",
+        source: "https://github.com/refinedev/refine/tree/master/examples/fineFoods/admin/antd",
     },
     {
         title: "FINEFOODS STOREFRONT",
@@ -32,7 +32,7 @@ export const SHOW_CASES: Examples = [
             text: "VIEW DEMO",
             link: "https://example.refine.dev",
         },
-        source: "https://github.com/pankod/refine/tree/master/examples/fineFoods/client",
+        source: "https://github.com/refinedev/refine/tree/master/examples/fineFoods/client",
     },
     {
         title: "FINEFOODS ADMIN PANEL [MATERIAL UI]",
@@ -43,7 +43,7 @@ export const SHOW_CASES: Examples = [
             text: "VIEW DEMO",
             link: "https://example.mui.admin.refine.dev",
         },
-        source: "https://github.com/pankod/refine/tree/master/examples/fineFoods/admin/mui",
+        source: "https://github.com/refinedev/refine/tree/master/examples/fineFoods/admin/mui",
     },
 ];
 
@@ -56,7 +56,7 @@ export const EXAMPLES: Examples = [
             text: "VIEW DEMO",
             link: "https://refine.dev/docs/examples/real-world-refine-example",
         },
-        source: "https://github.com/pankod/refine/tree/master/examples/real-world-example",
+        source: "https://github.com/refinedev/refine/tree/master/examples/real-world-example",
     },
     {
         title: "WIN95 STYLE ADMIN PANEL",
@@ -67,7 +67,7 @@ export const EXAMPLES: Examples = [
             text: "READ BLOG",
             link: "https://refine.dev/blog/awesome-react-windows95-ui-with-refine",
         },
-        source: "https://github.com/pankod/refine/tree/master/examples/blog/win95",
+        source: "https://github.com/refinedev/refine/tree/master/examples/blog/win95",
     },
     {
         title: "INVOICE GENERATOR APP",
@@ -78,7 +78,7 @@ export const EXAMPLES: Examples = [
             text: "READ BLOG",
             link: "https://refine.dev/blog/refine-invoice-generator/",
         },
-        source: "https://github.com/pankod/refine/tree/master/examples/blog/invoiceGenerator",
+        source: "https://github.com/refinedev/refine/tree/master/examples/blog/invoiceGenerator",
     },
     {
         title: "REFEEDBACK!",
@@ -89,7 +89,7 @@ export const EXAMPLES: Examples = [
             text: "READ BLOG",
             link: "https://refine.dev/blog/create-a-feedback-admin-panel-with-refine-and-strapi",
         },
-        source: "https://github.com/pankod/refine/tree/master/examples/blog/refeedback",
+        source: "https://github.com/refinedev/refine/tree/master/examples/blog/refeedback",
     },
     {
         title: "E-MAIL SUBSCRIPTION PANEL",
@@ -100,7 +100,7 @@ export const EXAMPLES: Examples = [
             text: "READ BLOG",
             link: "https://refine.dev/blog/e-mail-subscription-panel-with-refine",
         },
-        source: "https://github.com/pankod/refine/tree/master/examples/blog/mailSubscription",
+        source: "https://github.com/refinedev/refine/tree/master/examples/blog/mailSubscription",
     },
     {
         title: "INTERNAL ISSUE TRACKER",
@@ -111,7 +111,7 @@ export const EXAMPLES: Examples = [
             text: "READ BLOG",
             link: "https://refine.dev/blog/customizable-issue-tracker-with-refine-and-supabase",
         },
-        source: "https://github.com/pankod/refine/tree/master/examples/blog/issueTracker",
+        source: "https://github.com/refinedev/refine/tree/master/examples/blog/issueTracker",
     },
     {
         title: "NEXT.JS E-COMMERCE APP",
@@ -122,7 +122,7 @@ export const EXAMPLES: Examples = [
             text: "READ BLOG",
             link: "https://refine.dev/blog/handcrafted-nextjs-e-commerce-app-tutorial-strapi-chakra-ui",
         },
-        source: "https://github.com/pankod/refine/tree/master/examples/blog/ecommerce",
+        source: "https://github.com/refinedev/refine/tree/master/examples/blog/ecommerce",
     },
     {
         title: "MULTI-TENANCY EXAMPLE",

@@ -19,7 +19,7 @@
     "test": "jest --passWithNoTests --runInBand",
     "prepare": "npm run build"
   },
-  "author": "Pankod",
+  "author": "refine",
   "module": "dist/esm/index.js",
   "devDependencies": {
     "@pankod/refine-core": "^3.86.0",
@@ -46,7 +46,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pankod/refine.git",
+    "url": "https://github.com/refinedev/refine.git",
     "directory": "packages/strapi-graphql"
   },
   "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",

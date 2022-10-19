@@ -3,7 +3,7 @@ id: cerbos
 title: Cerbos
 ---
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/accessControl/cerbos)
+[View Source](https://github.com/refinedev/refine/tree/master/examples/accessControl/cerbos)
 
 <iframe src="https://codesandbox.io/embed/access-control-cerbos-react-5mfkq?autoresize=1&fontsize=14&module=%2Fsrc%2FApp.tsx&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}

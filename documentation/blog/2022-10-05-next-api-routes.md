@@ -297,12 +297,12 @@ In this article we introduced you to **API Routes in Next.js** and how to use th
 
 Meet the headless, React-based solution to build sleek **CRUD** applications. With refine, you can be confident that your codebase will always stay clean and boilerplate-free.
 
-Try [refine](https://github.com/pankod/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
+Try [refine](https://github.com/refinedev/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
 
     
 
 <div>
-<a href="https://github.com/pankod/refine">
+<a href="https://github.com/refinedev/refine">
    <img  src="/img/generic_banner.png" alt="refine blog logo" /> 
 </a>
 </div>
@@ -314,7 +314,7 @@ Try [refine](https://github.com/pankod/refine) to rapidly build your next **CRUD
 
 It can **speed up your development time up to 3X** without compromising freedom on styling, customization and project workflow.
 
-Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials, and example projects.
+Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.
 
 </div>
 

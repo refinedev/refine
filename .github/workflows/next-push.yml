@@ -83,7 +83,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           registry: ghcr.io
-          repository: pankod/refine/refine-live-preview
+          repository: refinedev/refine/refine-live-preview
           dockerfile: packages/live-previews/Dockerfile
           tag_with_sha: true
       - name: Set up kubectl
@@ -135,7 +135,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           registry: ghcr.io
-          repository: pankod/refine/refine-documentation
+          repository: refinedev/refine/refine-documentation
           dockerfile: documentation/Dockerfile
           tag_with_sha: true
       - name: Set up kubectl

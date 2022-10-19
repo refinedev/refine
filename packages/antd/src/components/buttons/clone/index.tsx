@@ -18,7 +18,7 @@ export type CloneButtonProps = RefineCloneButtonProps<
     {
         /**
          * Resource name for API data interactions
-         * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead [Github Issue #1618](https://github.com/pankod/refine/issues/1618)
+         * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead [Github Issue #1618](https://github.com/refinedev/refine/issues/1618)
          */
         resourceName?: string;
     }

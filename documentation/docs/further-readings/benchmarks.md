@@ -9,7 +9,7 @@ Many **refine** projects involve migrating an existing vanilla React application
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/pankod/refine/master/documentation/static/img/getting-started/benchmark.png" width="400px" align="center" />
+<img src="https://raw.githubusercontent.com/refinedev/refine/master/documentation/static/img/getting-started/benchmark.png" width="400px" align="center" />
 
 </div>
 

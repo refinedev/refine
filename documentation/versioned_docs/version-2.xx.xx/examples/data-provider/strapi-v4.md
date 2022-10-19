@@ -3,7 +3,7 @@ id: strapi-v4
 title: Strapi v4
 ---
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/dataProvider/strapi-v4)
+[View Source](https://github.com/refinedev/refine/tree/master/examples/dataProvider/strapi-v4)
 
 **Username**: demo@refine.dev  
 **Password**: demodemo

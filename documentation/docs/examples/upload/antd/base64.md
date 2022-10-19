@@ -8,9 +8,9 @@ example-tags: [antd,upload]
 
 [Refer to the **refine** Base64 Upload documentation for more information. →](/docs/advanced-tutorials/upload/base64-upload/)
 
-[View Base64 Upload Example Source](https://github.com/pankod/refine/tree/master/examples/upload/base64Upload)
+[View Base64 Upload Example Source](https://github.com/refinedev/refine/tree/master/examples/upload/base64Upload)
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/upload/antd/base64?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/upload/antd/base64?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-base64-upload-example"
 ></iframe>

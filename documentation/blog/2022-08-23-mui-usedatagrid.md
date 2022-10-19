@@ -27,7 +27,7 @@ In this article, we'll show how to use Material UI [`<DataGrid/>`](https://mui.c
 
 
 
-[refine](https://github.com/pankod/refine) is a React-based framework for rapidly developing data-driven applications through a collection of helper `hooks`, `components`, and `data-providers`. refine is a headless framework that doesn't include UI components by default but has support and configurations to inject any UI libraries or a framework of choices such as Material UI or Tailwind CSS.
+[refine](https://github.com/refinedev/refine) is a React-based framework for rapidly developing data-driven applications through a collection of helper `hooks`, `components`, and `data-providers`. refine is a headless framework that doesn't include UI components by default but has support and configurations to inject any UI libraries or a framework of choices such as Material UI or Tailwind CSS.
 
 Material UI is a React UI component library with a rich set of components and tools for bootstrapping elegant user interfaces. We'll use the `<DataGrid/>` component to render a list of employees from a mock server. We'll also look at some of the properties and custom configurations that can be used with the component.
 
@@ -124,7 +124,7 @@ We'll see how to leverage these components with refine's `useDataGrid` hook in o
 
 <br/>
 <div>
-<a href="https://github.com/pankod/refine">
+<a href="https://github.com/refinedev/refine">
   <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
 </a>
 </div>
@@ -839,7 +839,7 @@ Where to go next? Check the useDataGrid hook documentation [here](https://refine
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/blog/mui-datagrid/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/blog/mui-datagrid/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-mui-datagrid-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
@@ -855,12 +855,12 @@ Where to go next? Check the useDataGrid hook documentation [here](https://refine
 
 Meet the headless, React-based solution to build sleek **CRUD** applications. With refine, you can be confident that your codebase will always stay clean and boilerplate-free.
 
-Try [refine](https://github.com/pankod/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
+Try [refine](https://github.com/refinedev/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
 
     
 
 <div>
-<a href="https://github.com/pankod/refine">
+<a href="https://github.com/refinedev/refine">
    <img  src="/img/mui_banner.png" alt="refine blog logo" /> 
 </a>
 </div>
@@ -872,6 +872,6 @@ Try [refine](https://github.com/pankod/refine) to rapidly build your next **CRUD
 
 It can **speed up your development time up to 3X** without compromising freedom on styling, customization and project workflow.
 
-Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials, and example projects.
+Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.
 
 </div>

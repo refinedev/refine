@@ -1,6 +1,6 @@
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
-  <img src="https://raw.githubusercontent.com/pankod/refine/master/logo.png"   style="width:250px;" align="center" />
+  <img src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"   style="width:250px;" align="center" />
 </a>
 <br />
 <br />
@@ -10,7 +10,7 @@
     <a href="https://refine.dev/demo/">Demo</a> | 
     <a href="https://refine.dev/blog/">Blog</a> | 
     <a href="https://refine.dev/docs/">Documentation</a> | 
-    <a href="https://github.com/pankod/refine/projects/1">Roadmap</a> | 
+    <a href="https://github.com/refinedev/refine/projects/1">Roadmap</a> | 
     <a href="https://refine.dev/docs/examples/tutorial/">Examples</a> | 
     <a href="https://refine.dev/enterprise/">Enterprise</a> | 
     <a href="https://discord.gg/refine">Discord</a>
@@ -38,7 +38,7 @@
 </div>
 
 <div align="center" style="margin: 30px;">
-  <img src="https://github.com/pankod/refine/blob/master/documentation/static/img/refine-promo-gif.gif?raw=true" style="width:688px;"/>
+  <img src="https://github.com/refinedev/refine/blob/master/documentation/static/img/refine-promo-gif.gif?raw=true" style="width:688px;"/>
 </div>
 
 
@@ -60,7 +60,7 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 
 ⚙️ Zero-config, **one-minute setup** with a **single CLI command**
 
-🔌 Connectors for **15+ backend services** including [REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest), [GraphQL](https://github.com/pankod/refine/tree/master/packages/graphql), [NestJs CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud), [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable), [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi), [Strapi v4](https://github.com/pankod/refine/tree/master/packages/strapi-v4), [Strapi GraphQL](https://github.com/pankod/refine/tree/master/packages/strapi-graphql), [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase), [Hasura](https://github.com/pankod/refine/tree/master/packages/hasura), [Nhost](https://github.com/pankod/refine/tree/master/packages/nhost), [Appwrite](https://github.com/pankod/refine/tree/master/packages/appwrite), [Firebase](https://firebase.google.com/), [Directus](https://directus.io/) and [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
+🔌 Connectors for **15+ backend services** including [REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest), [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql), [NestJs CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud), [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable), [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi), [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4), [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql), [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase), [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura), [Nhost](https://github.com/refinedev/refine/tree/master/packages/nhost), [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite), [Firebase](https://firebase.google.com/), [Directus](https://directus.io/) and [Altogic](https://github.com/refinedev/refine/tree/master/packages/altogic)
 
 🌐 **SSR support** with **Next.js** or **Remix**
 
@@ -96,7 +96,7 @@ npm run dev
 ```
 
 Your **refine** application will be accessible at [http://localhost:3000](http://localhost:3000):
-![Welcome on board](https://github.com/pankod/refine/blob/master/documentation/static/img/welcome-on-board.png?raw=true)
+![Welcome on board](https://github.com/refinedev/refine/blob/master/documentation/static/img/welcome-on-board.png?raw=true)
 Let's consume a public `fake REST API` and add two resources (*posts*, *categories*) to our project. Replace the contents of `src/App.tsx` with the following code:
 
 ```tsx title="src/App.tsx"
@@ -188,7 +188,7 @@ interface ICategory {
 ```
 
 Now, you should see the output as a table populated with `post` & `category` data:
-![First example result](https://github.com/pankod/refine/blob/master/documentation/static/img/first-example-result.png?raw=true)
+![First example result](https://github.com/refinedev/refine/blob/master/documentation/static/img/first-example-result.png?raw=true)
 ## Next Steps
 
 👉 Jump to [Refine<>Ant Design Tutorial](https://refine.dev/docs/ui-frameworks/antd/tutorial/) to continue your work and turn the example into a full-blown CRUD application.
@@ -204,11 +204,11 @@ Now, you should see the output as a table populated with `post` & `category` dat
 👉 Play with interactive [Examples](https://refine.dev/docs/examples/)
 
 ## Roadmap
-You can find refine's <a href="https://github.com/pankod/refine/projects/1">Public Roadmap here!</a> 
+You can find refine's <a href="https://github.com/refinedev/refine/projects/1">Public Roadmap here!</a> 
 
 ## Stargazers
 
-[![Stargazers repo roster for pankod/refine](https://reporoster.com/stars/pankod/refine)](https://github.com/pankod/refine/stargazers)
+[![Stargazers repo roster for refinedev/refine](https://reporoster.com/stars/refinedev/refine)](https://github.com/refinedev/refine/stargazers)
 
 ## Contribution
 
@@ -218,4 +218,4 @@ If you are willing to fix an issue or propose a feature; all PRs with clear expl
 
 ## License
 
-Licensed under the MIT License, Copyright © 2021-present Pankod
+Licensed under the MIT License, Copyright © 2021-present refine

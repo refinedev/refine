@@ -37,7 +37,7 @@
         "axios-auth-refresh": "^3.2.2",
         "query-string": "^7.1.1"
     },
-    "author": "Pankod",
+    "author": "refine",
     "license": "MIT",
     "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",
     "publishConfig": {

@@ -713,7 +713,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
-[refine-codemod]: https://github.com/pankod/refine/tree/master/packages/codemod
+[refine-codemod]: https://github.com/refinedev/refine/tree/master/packages/codemod
 [refine]: /api-reference/core/components/refine-config.md
 [resources]: /api-reference/core/components/refine-config.md#resources
 [routerProvider]: /api-reference/core/providers/router-provider.md

@@ -136,18 +136,18 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 
 **refine** includes many out-of-the-box data providers to use in your projects like
 
--   [Simple REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest)
--   [GraphQL](https://github.com/pankod/refine/tree/master/packages/graphql)
--   [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
--   [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable)
--   [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi) - [Strapi v4](https://github.com/pankod/refine/tree/master/packages/strapi-v4)
--   [Strapi GraphQL](https://github.com/pankod/refine/tree/master/packages/strapi-graphql)
--   [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
--   [Hasura](https://github.com/pankod/refine/tree/master/packages/hasura)
--   [Nhost](https://github.com/pankod/refine/tree/master/packages/nhost)
--   [Appwrite](https://github.com/pankod/refine/tree/master/packages/appwrite)
--   [Medusa](https://github.com/pankod/refine/tree/master/packages/medusa)
--   [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
+-   [Simple REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest)
+-   [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql)
+-   [NestJS CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud)
+-   [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable)
+-   [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi) - [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4)
+-   [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql)
+-   [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase)
+-   [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
+-   [Nhost](https://github.com/refinedev/refine/tree/master/packages/nhost)
+-   [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite)
+-   [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa)
+-   [Altogic](https://github.com/refinedev/refine/tree/master/packages/altogic)
 
 ### Community ❤️
 
@@ -208,7 +208,7 @@ export default App;
 :::
 
 :::info
-Refine application uses [`Montserrat`](https://fonts.google.com/specimen/Montserrat) font by default as it is defined in the [`typography`](https://github.com/pankod/refine/blob/next/packages/mui/src/theme/typography.ts) property of the theme. But to use [`Montserrat`](https://fonts.google.com/specimen/Montserrat), you need to embed it to your `index.html` file.
+Refine application uses [`Montserrat`](https://fonts.google.com/specimen/Montserrat) font by default as it is defined in the [`typography`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/typography.ts) property of the theme. But to use [`Montserrat`](https://fonts.google.com/specimen/Montserrat), you need to embed it to your `index.html` file.
 For more information about adding font family in your Refine application, you can look at [`Material UI Theme Customization`](/api-reference/mui/customization/theme.md#overriding-variables).
 
 ```html title="index.html"
@@ -981,7 +981,7 @@ export const PostList: React.FC = () => {
 Until this point, we were basically working with reading operations such as fetching and displaying data from resources. From now on, we are going to start creating and updating records by using **refine**
 
 The Material UI provides already styled, but still very customizable inputs that encapsulate adding labels and error handling with helper texts. However, we need a third-party library to handle forms when using Material UI. [React Hook Form](https://react-hook-form.com/) is one of the best options for this job!
-The React Hook Form library has been integrated with **refine** ([`@pankod/refine-react-hook-form`](https://github.com/pankod/refine/tree/master/packages/react-hook-form)) . This means you can now use Material UI for your forms and manage them using [`@pankod/refine-react-hook-form`](https://github.com/pankod/refine/tree/master/packages/react-hook-form)!
+The React Hook Form library has been integrated with **refine** ([`@pankod/refine-react-hook-form`](https://github.com/refinedev/refine/tree/master/packages/react-hook-form)) . This means you can now use Material UI for your forms and manage them using [`@pankod/refine-react-hook-form`](https://github.com/refinedev/refine/tree/master/packages/react-hook-form)!
 
 Let's start by creating a new `<PostEdit>` page responsible for `editing` a single record:
 
@@ -1663,7 +1663,7 @@ After adding `canDelete` prop, `<DeleteButton>` will appear in edit form.
 
 Our tutorial is complete. Below you'll find a Live StackBlitz Example displaying what we have done so far:
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/tutorial/mui?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/tutorial/mui?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-tutorial"
 ></iframe>

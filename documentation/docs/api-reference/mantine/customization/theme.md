@@ -157,7 +157,7 @@ interface IPost {
 }
 ```
 
-Mantine theme is an object where your application's colors, fonts, spacing, border-radius and other design tokens are stored. You can either create your own theme object or use themes that provide from **refine**. There are two types of themes: [`LightTheme`](https://github.com/pankod/refine/blob/next/packages/mantine/src/theme/index.ts) and [`DarkTheme`](https://github.com/pankod/refine/blob/next/packages/mantine/src/theme/index.ts). `LightTheme` tend to have dark text on a light background, while `DarkTheme` have light text on a dark background. Theme provides a way to your app's design to meet them.
+Mantine theme is an object where your application's colors, fonts, spacing, border-radius and other design tokens are stored. You can either create your own theme object or use themes that provide from **refine**. There are two types of themes: [`LightTheme`](https://github.com/refinedev/refine/blob/next/packages/mantine/src/theme/index.ts) and [`DarkTheme`](https://github.com/refinedev/refine/blob/next/packages/mantine/src/theme/index.ts). `LightTheme` tend to have dark text on a light background, while `DarkTheme` have light text on a dark background. Theme provides a way to your app's design to meet them.
 
 [Refer to the Mantine documentation for more information about theme object. &#8594](https://mantine.dev/theming/theme-object/)
 
