@@ -23,7 +23,7 @@ export const AccountNav: React.FC = () => {
             </div>
             <div className={s.links}>
                 <div>
-                    <h3 className="font-bold text-2xl">Account</h3>
+                    <h3 className="text-2xl font-bold">Account</h3>
                     <div>
                         <ul className={s.list}>
                             <li>
