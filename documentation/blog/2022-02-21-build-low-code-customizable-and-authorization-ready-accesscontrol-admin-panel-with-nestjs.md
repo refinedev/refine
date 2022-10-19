@@ -12,7 +12,7 @@ In the [previous blog post](https://refine.dev/blog/customizable-admin-panel-wit
 
 <!--truncate-->
 
-**All the steps described are in this [repo](https://github.com/pankod/refine-hackathon/tree/main/job-posting-app).**
+**All the steps described are in this [repo](https://github.com/refinedev/refine-hackathon/tree/main/job-posting-app).**
 
 ## Intro
 

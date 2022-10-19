@@ -263,11 +263,11 @@ const dataProvider = (): DataProvider => ({
 :::tip
 Data providers that support `or` and `and` filtering logic are as follows:
 
--   [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
--   [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi) - [Strapi v4](https://github.com/pankod/refine/tree/master/packages/strapi-v4)
--   [Strapi GraphQL](https://github.com/pankod/refine/tree/master/packages/strapi-graphql)
--   [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
--   [Hasura](https://github.com/pankod/refine/tree/master/packages/hasura)
--   [Nhost](https://github.com/pankod/refine/tree/master/packages/nhost)
+-   [NestJS CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud)
+-   [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi) - [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4)
+-   [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql)
+-   [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase)
+-   [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
+-   [Nhost](https://github.com/refinedev/refine/tree/master/packages/nhost)
 
 :::

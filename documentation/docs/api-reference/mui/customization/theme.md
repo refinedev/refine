@@ -10,7 +10,7 @@ import customTheme from '@site/static/img/guides-and-concepts/theme/mui/customTh
 import toggleDarkMode from '@site/static/img/guides-and-concepts/theme/mui/toggleDarkMode.gif'
 import notistackTheme from '@site/static/img/guides-and-concepts/theme/mui/notistackTheme.gif'
 
-Theme specifies the color of the components, the darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc. You can either create your own Theme or use Themes that provide from Refine. There are two types of Themes: [`LightTheme`](https://github.com/pankod/refine/blob/next/packages/mui/src/theme/index.ts#L16) and [`DarkTheme`](https://github.com/pankod/refine/blob/next/packages/mui/src/theme/index.ts#L46). [`LightTheme`](https://github.com/pankod/refine/blob/next/packages/mui/src/theme/index.ts#L16) tend to have dark text on a light background, while [`DarkTheme`](https://github.com/pankod/refine/blob/next/packages/mui/src/theme/index.ts#L46) have light text on a dark background. Theme provides a way to your app's design to meet them.
+Theme specifies the color of the components, the darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc. You can either create your own Theme or use Themes that provide from Refine. There are two types of Themes: [`LightTheme`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/index.ts#L16) and [`DarkTheme`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/index.ts#L46). [`LightTheme`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/index.ts#L16) tend to have dark text on a light background, while [`DarkTheme`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/index.ts#L46) have light text on a dark background. Theme provides a way to your app's design to meet them.
 
 [Refer to the Material UI documentation for more information about Material UI Theming. &#8594](https://mui.com/material-ui/customization/theming/)
 
@@ -69,7 +69,7 @@ We recommend [**superplate**][superplate] to initialize your Refine projects. It
 
 ## Passing the Theme to ThemeProvider
 
-In order to use the theme in your app, you just have one choice: pass it on! Refine provide two types of themes [`LightTheme`](https://github.com/pankod/refine/blob/next/packages/mui/src/theme/index.ts#L16) and [`DarkTheme`](https://github.com/pankod/refine/blob/next/packages/mui/src/theme/index.ts#L46).
+In order to use the theme in your app, you just have one choice: pass it on! Refine provide two types of themes [`LightTheme`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/index.ts#L16) and [`DarkTheme`](https://github.com/refinedev/refine/blob/next/packages/mui/src/theme/index.ts#L46).
 
 If you don't wrap your app with [`ThemeProvider`](https://mui.com/material-ui/customization/theming/#theme-provider) and theme, it looks like this when using the Material UI default:
 
@@ -433,7 +433,7 @@ declare module "@pankod/refine-mui" {
 }
 ```
 
-You can see an example of how to [`create your own theme with custom variables`](https://github.com/pankod/refine/blob/next/examples/fineFoods/admin/mui/src/theme.ts) and its [`interface`](https://github.com/pankod/refine/blob/next/examples/fineFoods/admin/mui/src/interfaces/theme.d.ts) by accessing the links.
+You can see an example of how to [`create your own theme with custom variables`](https://github.com/refinedev/refine/blob/next/examples/fineFoods/admin/mui/src/theme.ts) and its [`interface`](https://github.com/refinedev/refine/blob/next/examples/fineFoods/admin/mui/src/interfaces/theme.d.ts) by accessing the links.
 
 ## Dark Mode
 
@@ -663,7 +663,7 @@ export default App;
 We use the [`notistack`](https://iamhosseindhv.com/notistack) library for notifications in our Material UI package provides an elegant way to engage with your users.
 The main motivation for us to use the Notistack was that while the Notistack provider ( `<SnackbarProvider>` ) is a child of our ThemeProvider, it works in harmony with the theme.
 
-We provide [`<RefineSnackbarProvider>`](https://github.com/pankod/refine/blob/next/packages/mui/src/providers/refineSnackbarProvider/index.tsx) that extended `<SnackbarProvider>` with theme style. You have to wrap Refine with [`<RefineSnackbarProvider>`](https://github.com/pankod/refine/blob/next/packages/mui/src/providers/refineSnackbarProvider/index.tsx) and also pass the `notificationProvider` as props.
+We provide [`<RefineSnackbarProvider>`](https://github.com/refinedev/refine/blob/next/packages/mui/src/providers/refineSnackbarProvider/index.tsx) that extended `<SnackbarProvider>` with theme style. You have to wrap Refine with [`<RefineSnackbarProvider>`](https://github.com/refinedev/refine/blob/next/packages/mui/src/providers/refineSnackbarProvider/index.tsx) and also pass the `notificationProvider` as props.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";

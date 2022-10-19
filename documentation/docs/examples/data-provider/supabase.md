@@ -6,7 +6,7 @@ example-tags: [antd,supabase,data-provider,live-provider,auth-provider,authentic
 
 Connect your [Supabase](https://supabase.com/) database with **refine** Supabase Data Provider and easily manage all the features that the database offers in your interface. This example will show you how Supabase Data Provider works and is used.
 
-[View Supabase Example Source](https://github.com/pankod/refine/tree/master/examples/dataProvider/supabase)
+[View Supabase Example Source](https://github.com/refinedev/refine/tree/master/examples/dataProvider/supabase)
 
 :::note
 StackBlitz environment does not allow Realtime features to work.

@@ -169,5 +169,5 @@ All variable overrides configured in `lessOptions.modifyVars` always have higher
 ></iframe>
 
 [superplate]: https://github.com/pankod/superplate
-[finefoods-client]: https://github.com/pankod/refine/tree/master/examples/fineFoods/client
+[finefoods-client]: https://github.com/refinedev/refine/tree/master/examples/fineFoods/client
 [next-plugin-antd-less]: https://github.com/SolidZORO/next-plugin-antd-less

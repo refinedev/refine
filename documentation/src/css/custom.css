@@ -459,7 +459,7 @@
     @apply font-montserrat mb-4 text-center font-semibold text-[#2a2a42];
 }
 
-#__docusaurus .navbar-sidebar__item.menu a[href="https://github.com/pankod/refine"]::after
+#__docusaurus .navbar-sidebar__item.menu a[href="https://github.com/refinedev/refine"]::after
 {
     display: none;
 }

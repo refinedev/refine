@@ -1596,9 +1596,9 @@ Our project is done. Lets see how its look like.
 
 As you can see, we made a simple and short task manager application using refine on our front end and using its data-provider. 
 
-[Here is repo](https://github.com/pankod/refine/tree/master/examples/blog/issueTracker) 
+[Here is repo](https://github.com/refinedev/refine/tree/master/examples/blog/issueTracker) 
 
-For more information about Refine: [Refine Github Page](https://github.com/pankod/refine)
+For more information about Refine: [Refine Github Page](https://github.com/refinedev/refine)
 
 For other examples and articles that will interest you with refine:  [https://refine.dev/blog/](https://refine.dev/blog/)
 

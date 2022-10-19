@@ -985,4 +985,4 @@ export const MovieShow: React.FC<IResourceComponentsProps> = () => {
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
-[here is repo](https://github.com/pankod/refine/tree/master/examples/blog/refineflix)
+[here is repo](https://github.com/refinedev/refine/tree/master/examples/blog/refineflix)

@@ -846,8 +846,8 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 
 ## Examples
 
--   [Ant Design](https://ant.design/) CRUD app example ([source code](https://github.com/pankod/refine/tree/next/examples/remix/antd))
--   Headless CRUD app example ([source code](https://github.com/pankod/refine/tree/next/examples/remix/headless))
+-   [Ant Design](https://ant.design/) CRUD app example ([source code](https://github.com/refinedev/refine/tree/next/examples/remix/antd))
+-   Headless CRUD app example ([source code](https://github.com/refinedev/refine/tree/next/examples/remix/headless))
 
 [remix]: https://remix.run/
 [remixrouter]: https://www.npmjs.com/package/@pankod/remix-router

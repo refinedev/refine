@@ -52,7 +52,7 @@ const GithubBanner = () => {
             </div>
             {/* eslint-disable react/jsx-no-target-blank */}
             <Link
-                to="https://github.com/pankod/refine"
+                to="https://github.com/refinedev/refine"
                 rel="noopener"
                 className="bg-[#211d21] no-underline rounded-xl h-[54px] flex gap-2 pl-3.5 py-2.5 pr-2.5 items-center"
             >

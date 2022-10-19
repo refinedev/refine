@@ -61,7 +61,7 @@ export type UseDataGridProps<
     onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
 } & {
     /**
-     * @deprecated columns is deprecated and will be removed in the next major version. # https://github.com/pankod/refine/pull/2072
+     * @deprecated columns is deprecated and will be removed in the next major version. # https://github.com/refinedev/refine/pull/2072
      */
     columns?: DataGridProps<TData>["columns"];
 };
@@ -207,7 +207,7 @@ export function useDataGrid<
     useEffect(() => {
         warnOnce(
             !!columns,
-            "[useDataGrid]: `columns` is deprecated and will be removed in the next major version.\nFor more information, see https://github.com/pankod/refine/pull/2072",
+            "[useDataGrid]: `columns` is deprecated and will be removed in the next major version.\nFor more information, see https://github.com/refinedev/refine/pull/2072",
         );
     }, []);
 

@@ -76,8 +76,8 @@ You can pass a `reason` along with `can`. It will be accessible using `useCan`. 
 :::tip
 You can find access control examples made with **refine**
 
--   **Casbin** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/accessControl/casbin) - [Demo](https://stackblitz.com/github/pankod/refine/tree/master/examples/accessControl/casbin/?preset=node)
--   **Cerbos** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/accessControl/cerbos) - [Demo](https://stackblitz.com/github/pankod/refine/tree/master/examples/accessControl/cerbos/?preset=node)
+-   **Casbin** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/accessControl/casbin) - [Demo](https://stackblitz.com/github/pankod/refine/tree/master/examples/accessControl/casbin/?preset=node)
+-   **Cerbos** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/accessControl/cerbos) - [Demo](https://stackblitz.com/github/pankod/refine/tree/master/examples/accessControl/cerbos/?preset=node)
 
 :::
 

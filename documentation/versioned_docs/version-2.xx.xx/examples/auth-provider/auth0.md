@@ -5,7 +5,7 @@ title: Auth0
 
 Auth0 example doesn't work in codesandbox embed mode. With [this](https://ussft.csb.app/) link, you can open the example in the browser and try it.
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/authProvider/auth0)
+[View Source](https://github.com/refinedev/refine/tree/master/examples/authProvider/auth0)
 
 <iframe src="https://codesandbox.io/embed/refine-auth0-example-7drxm?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}

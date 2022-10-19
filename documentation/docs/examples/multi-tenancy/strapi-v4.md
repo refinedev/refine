@@ -8,7 +8,7 @@ In this example, we've shown how to build a Multi-Tenant app using the [Strapi-v
 
 [Refer to the **refine** Strapi-v4 Multi-Tenancy guide for more information. →](/docs/advanced-tutorials/multi-tenancy/appwrite/)
 
-[View Strapi Multi-Tenancy Example Source](https://github.com/pankod/refine/tree/master/examples/multi-tenancy/strapi)
+[View Strapi Multi-Tenancy Example Source](https://github.com/refinedev/refine/tree/master/examples/multi-tenancy/strapi)
 
 Username: `refine-demo`
 

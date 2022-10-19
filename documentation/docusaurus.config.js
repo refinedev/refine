@@ -28,7 +28,7 @@ const siteConfig = {
                     path: "./docs",
                     sidebarPath: require.resolve("./sidebars.js"),
                     editUrl:
-                        "https://github.com/pankod/refine/tree/master/documentation",
+                        "https://github.com/refinedev/refine/tree/master/documentation",
                     showLastUpdateAuthor: true,
                     showLastUpdateTime: true,
                     versions: {
@@ -155,7 +155,7 @@ const siteConfig = {
                 },
                 { to: "blog", label: "Blog", position: "left" },
                 {
-                    to: "https://github.com/pankod/refine",
+                    to: "https://github.com/refinedev/refine",
                     label: "GitHub",
                     position: "left",
                 },
@@ -170,7 +170,7 @@ const siteConfig = {
                     dropdownActiveClassDisabled: true,
                 },
                 {
-                    href: "https://github.com/pankod/refine",
+                    href: "https://github.com/refinedev/refine",
                     position: "right",
                     className: "header-icon-link header-github-link",
                 },
@@ -240,7 +240,7 @@ const siteConfig = {
                     items: [
                         {
                             label: "License",
-                            to: "https://github.com/pankod/refine/blob/next/LICENSE",
+                            to: "https://github.com/refinedev/refine/blob/next/LICENSE",
                         },
                         // {
                         //     label: "Terms",
@@ -260,7 +260,7 @@ const siteConfig = {
                     title: "__SOCIAL",
                     items: [
                         {
-                            href: "https://github.com/pankod/refine",
+                            href: "https://github.com/refinedev/refine",
                             label: "github",
                         },
                         {

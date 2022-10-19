@@ -60,7 +60,7 @@ So to follow along with this tutorial, you should have a fundamental knowledge o
 
 ## What is refine?
 
-[refine](https://github.com/pankod/refine) is an open-source React-based headless framework for rapidly building data-driven applications. It offers immense development speed without any customization or significant functionality tradeoffs. refine's use-case includes **admin panels**. 
+[refine](https://github.com/refinedev/refine) is an open-source React-based headless framework for rapidly building data-driven applications. It offers immense development speed without any customization or significant functionality tradeoffs. refine's use-case includes **admin panels**. 
 
 At its core, refine is a collection of helper hooks, components, and providers that give you complete control over your application's user interface. These hooks are similar to what you'd find in React query, meaning refine will automatically handle your data-fetching logic, authorizations, state management, and internalization out of the box. 
 
@@ -207,7 +207,7 @@ Within seconds it should automatically bring up your default browser with the pr
 ## Adding a Data provider 
 Data providers are hooks that refine use to communicate with APIs. They act as adapters that make HTTP requests to different APIs and return response data using predefined methods.
 
-refine comes with different data providers out of the box, but the one we’re interested in and will be using in this tutorial is the [refine-simple-rest](https://github.com/pankod/refine/tree/master/packages/simple-rest) data provider, a data provider for communicating with RESTful APIs. Visit the docs to learn more about refine’s data providers.
+refine comes with different data providers out of the box, but the one we’re interested in and will be using in this tutorial is the [refine-simple-rest](https://github.com/refinedev/refine/tree/master/packages/simple-rest) data provider, a data provider for communicating with RESTful APIs. Visit the docs to learn more about refine’s data providers.
 
 We’ll be using the fake store API to populate our storefront prototype app, and since it’s a REST API, the refine-simple-rest data provider won’t have trouble communicating with it.
 
@@ -235,7 +235,7 @@ With our Fake store endpoint:
 
 <br/>
 <div>
-<a href="https://github.com/pankod/refine">
+<a href="https://github.com/refinedev/refine">
   <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
 </a>
 </div>
@@ -721,7 +721,7 @@ The purpose of this tutorial is to give you a headstart with refine and its ecos
 
 ## Project source code
 
-https://github.com/pankod/refine/tree/next/examples/blog/next-refine-pwa
+https://github.com/refinedev/refine/tree/next/examples/blog/next-refine-pwa
 
 
 <br/>
@@ -741,12 +741,12 @@ https://github.com/pankod/refine/tree/next/examples/blog/next-refine-pwa
 
 Meet the headless, React-based solution to build sleek **CRUD** applications. With refine, you can be confident that your codebase will always stay clean and boilerplate-free.
 
-Try [refine](https://github.com/pankod/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
+Try [refine](https://github.com/refinedev/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
 
     
 
 <div>
-<a href="https://github.com/pankod/refine">
+<a href="https://github.com/refinedev/refine">
    <img  src="/img/generic_banner.png" alt="refine blog logo" /> 
 </a>
 </div>
@@ -758,6 +758,6 @@ Try [refine](https://github.com/pankod/refine) to rapidly build your next **CRUD
 
 It can **speed up your development time up to 3X** without compromising freedom on styling, customization and project workflow.
 
-Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials, and example projects.
+Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.
 
 </div>

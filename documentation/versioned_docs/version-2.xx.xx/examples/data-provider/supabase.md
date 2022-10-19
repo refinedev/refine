@@ -3,7 +3,7 @@ id: supabase
 title: Supabase
 ---
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/dataProvider/supabase)
+[View Source](https://github.com/refinedev/refine/tree/master/examples/dataProvider/supabase)
 
 :::note
 Codesandbox environment does not allow real-time features to work.

@@ -153,7 +153,7 @@ export default App;
 
 <br/>
 <div>
-<a href="https://github.com/pankod/refine">
+<a href="https://github.com/refinedev/refine">
   <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
 </a>
 </div>
@@ -613,11 +613,11 @@ As a React developer creating highly interactive user interfaces, you have proba
 
 Building CRUD applications involves many repetitive task consuming your precious development time. If you are starting from scratch, you also have to implement custom solutions for critical parts of your application like authentication, authorization, state management and networking. 
 
-Check out [refine](https://github.com/pankod/refine), if you are interested in a headless framework with robust architecture and full of industry best practices for your next CRUD project.
+Check out [refine](https://github.com/refinedev/refine), if you are interested in a headless framework with robust architecture and full of industry best practices for your next CRUD project.
 
 
 <div>
-<a href="https://github.com/pankod/refine">
+<a href="https://github.com/refinedev/refine">
     <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
 </a>
 </div>
@@ -629,4 +629,4 @@ It can speed up your development time up to **3X** without compromising freedom 
 
 **refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
 
-Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials, and example projects.
+Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.

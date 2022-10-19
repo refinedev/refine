@@ -8,7 +8,7 @@ example-tags: [next.js,i18n,antd]
 
 [Refer to the refine i18n Provider documentation for more information. →](/docs/api-reference/core/providers/i18n-provider/)
 
-[View i18n-Nextjs Example Source](https://github.com/pankod/refine/tree/master/examples/i18n/nextjs)
+[View i18n-Nextjs Example Source](https://github.com/refinedev/refine/tree/master/examples/i18n/nextjs)
 
 <iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/i18n/nextjs/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
 style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}

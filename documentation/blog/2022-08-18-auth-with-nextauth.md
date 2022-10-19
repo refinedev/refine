@@ -263,7 +263,7 @@ NEXTAUTH_SECRET=YOUR_SECRET
 
 <br/>
 <div>
-<a href="https://github.com/pankod/refine">
+<a href="https://github.com/refinedev/refine">
   <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
 </a>
 </div>
@@ -685,12 +685,12 @@ Throughout this tutorial, we've implemented how to add Google and GitHub authent
 
 Meet the headless, React-based solution to build sleek **CRUD** applications. With refine, you can be confident that your codebase will always stay clean and boilerplate-free.
 
-Try [refine](https://github.com/pankod/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
+Try [refine](https://github.com/refinedev/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
 
     
 
 <div>
-<a href="https://github.com/pankod/refine">
+<a href="https://github.com/refinedev/refine">
    <img  src="/img/generic_banner.png" alt="refine blog logo" /> 
 </a>
 </div>
@@ -702,6 +702,6 @@ Try [refine](https://github.com/pankod/refine) to rapidly build your next **CRUD
 
 It can **speed up your development time up to 3X** without compromising freedom on styling, customization and project workflow.
 
-Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials, and example projects.
+Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.
 
 </div>

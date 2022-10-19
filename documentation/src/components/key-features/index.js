@@ -216,7 +216,7 @@ export const KeyFeatures = () => {
                     <strong>
                         any{" "}
                         <a
-                            href="https://github.com/pankod/refine/tree/master/packages/simple-rest"
+                            href="https://github.com/refinedev/refine/tree/master/packages/simple-rest"
                             target="_blank"
                             rel="noreferrer"
                         >
@@ -224,7 +224,7 @@ export const KeyFeatures = () => {
                         </a>{" "}
                         or{" "}
                         <a
-                            href="https://github.com/pankod/refine/tree/master/packages/graphql"
+                            href="https://github.com/refinedev/refine/tree/master/packages/graphql"
                             target="_blank"
                             rel="noreferrer"
                         >

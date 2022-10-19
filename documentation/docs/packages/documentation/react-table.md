@@ -654,7 +654,7 @@ export const PostList: React.FC = () => {
 ></iframe>
 
 [tanstack-table]: https://tanstack.com/table/v8
-[refine-react-table]: https://github.com/pankod/refine/tree/master/packages/react-table
+[refine-react-table]: https://github.com/refinedev/refine/tree/master/packages/react-table
 [use-table-core]: /api-reference/core/hooks/useTable.md
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror

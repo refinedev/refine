@@ -134,18 +134,18 @@ Fake REST API is based on [JSON Server Project](https://github.com/typicode/json
 
 **refine** includes many out-of-the-box data providers to use in your projects like
 
--   [Simple REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest)
--   [GraphQL](https://github.com/pankod/refine/tree/master/packages/graphql)
--   [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
--   [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable)
--   [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi) - [Strapi v4](https://github.com/pankod/refine/tree/master/packages/strapi-v4)
--   [Strapi GraphQL](https://github.com/pankod/refine/tree/master/packages/strapi-graphql)
--   [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
--   [Hasura](https://github.com/pankod/refine/tree/master/packages/hasura)
--   [Nhost](https://github.com/pankod/refine/tree/master/packages/nhost)
--   [Appwrite](https://github.com/pankod/refine/tree/master/packages/appwrite)
--   [Medusa](https://github.com/pankod/refine/tree/master/packages/medusa)
--   [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
+-   [Simple REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest)
+-   [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql)
+-   [NestJS CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud)
+-   [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable)
+-   [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi) - [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4)
+-   [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql)
+-   [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase)
+-   [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
+-   [Nhost](https://github.com/refinedev/refine/tree/master/packages/nhost)
+-   [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite)
+-   [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa)
+-   [Altogic](https://github.com/refinedev/refine/tree/master/packages/altogic)
 
 ### Community ❤️
 

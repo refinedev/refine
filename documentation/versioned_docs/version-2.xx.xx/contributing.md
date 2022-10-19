@@ -110,9 +110,9 @@ Please make sure you contribute well tested code.
 [Lerna]: https://github.com/lerna/lerna
 [Lerna Bootstrap]: https://lerna.js.org/#command-bootstrap
 [Lerna Filter]: https://github.com/lerna/lerna/blob/main/core/filter-options/README.md#--scope-glob
-[package.json]: https://github.com/pankod/refine/blob/master/package.json
+[package.json]: https://github.com/refinedev/refine/blob/master/package.json
 [Docusaurus]: https://docusaurus.io/
-[Issues]: https://github.com/pankod/refine/issues
-[CODE_OF_CONDUCT]: https://github.com/pankod/refine/blob/master/CODE_OF_CONDUCT.md
+[Issues]: https://github.com/refinedev/refine/issues
+[CODE_OF_CONDUCT]: https://github.com/refinedev/refine/blob/master/CODE_OF_CONDUCT.md
 [Discord Channel]: https://discord.gg/refine
-[lerna.json]: https://github.com/pankod/refine/blob/master/lerna.json
+[lerna.json]: https://github.com/refinedev/refine/blob/master/lerna.json

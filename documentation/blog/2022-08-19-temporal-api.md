@@ -99,7 +99,7 @@ Now, we are able to inspect the browser console when testing the following cases
 
 <br/>
 <div>
-<a href="https://github.com/pankod/refine">
+<a href="https://github.com/refinedev/refine">
   <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
 </a>
 </div>
@@ -294,10 +294,10 @@ Dates in JavaScript include multiple issues with the implementation. Temporal AP
 
 Low-code React frameworks are great for gaining development speed but they often fall short of flexibility if you need extensive styling and customization for your project.
 
-Check out [refine](https://github.com/pankod/refine), if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
+Check out [refine](https://github.com/refinedev/refine), if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
 
 <div>
-<a href="https://github.com/pankod/refine">
+<a href="https://github.com/refinedev/refine">
     <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
 </a>
 </div>
@@ -309,4 +309,4 @@ It can speed up your development time up to **3X** without compromising freedom 
 
 **refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
 
-Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials and example projects.
+Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials and example projects.

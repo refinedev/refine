@@ -74,19 +74,19 @@ As we mentioned above, you can easily handle any API and GraphQL queries without
 
 **refine** includes many out-of-the-box data providers to use in your projects like:
 
--   [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable)
--   [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
--   [Appwrite](https://github.com/pankod/refine/tree/master/packages/appwrite)
--   [GraphQL](https://github.com/pankod/refine/tree/master/packages/graphql)
--   [Hasura](https://github.com/pankod/refine/tree/master/packages/hasura)
--   [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
--   [Nhost](https://github.com/pankod/refine/tree/master/packages/nhost)
--   [Simple REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest)
--   [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi)
--   [Strapi GraphQL](https://github.com/pankod/refine/tree/master/packages/strapi-graphql)
--   [Strapi v4](https://github.com/pankod/refine/tree/master/packages/strapi-v4)
--   [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
--   [Medusa](https://github.com/pankod/refine/tree/master/packages/medusa)
+-   [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable)
+-   [Altogic](https://github.com/refinedev/refine/tree/master/packages/altogic)
+-   [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite)
+-   [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql)
+-   [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
+-   [NestJS CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud)
+-   [Nhost](https://github.com/refinedev/refine/tree/master/packages/nhost)
+-   [Simple REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest)
+-   [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi)
+-   [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql)
+-   [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4)
+-   [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase)
+-   [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa)
 
 [Refer to the `dataProvider` documentation for detailed usage. &#8594](/docs/api-reference/core/providers/data-provider/)
 
@@ -313,6 +313,6 @@ One of the biggest features that distinguishes **refine** from other frameworks 
 
 You can develop any web application or admin panel you want in a very short time with **refine**.
 
-Give **refine** a star on [GitHub](https://github.com/pankod/refine) if you like it - your support will help us continue making this tool amazing!
+Give **refine** a star on [GitHub](https://github.com/refinedev/refine) if you like it - your support will help us continue making this tool amazing!
 
 

@@ -8,7 +8,7 @@ Access Control is a complex topic with a variety of sophisticated solutions that
 
 [Refer to the refine Access Control Provider documentation for more information. →](/docs/api-reference/core/providers/accessControl-provider/)
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/accessControl/cerbos)
+[View Source](https://github.com/refinedev/refine/tree/master/examples/accessControl/cerbos)
 
 <iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/accessControl/cerbos?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}

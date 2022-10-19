@@ -36,9 +36,9 @@ Authorization hooks are used to manage authentication and authorization operatio
 :::tip
 You can find auth provider examples made with **refine**
 
--   **Auth0** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/authProvider/auth0/) - [Demo](examples/auth-provider/auth0.md)
--   **Google** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/authProvider/googleLogin) - [Demo](examples/auth-provider/google-auth.md)
--   **OTP Login** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/authProvider/otpLogin) - [Demo](examples/auth-provider/otpLogin.md)
+-   **Auth0** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/authProvider/auth0/) - [Demo](examples/auth-provider/auth0.md)
+-   **Google** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/authProvider/googleLogin) - [Demo](examples/auth-provider/google-auth.md)
+-   **OTP Login** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/authProvider/otpLogin) - [Demo](examples/auth-provider/otpLogin.md)
 
 :::
 

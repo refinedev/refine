@@ -21,7 +21,7 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 
 ⚙️ Zero-config, **one-minute setup** with a **single CLI command**
 
-🔌 Connectors for **15+ backend services** including [REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest), [GraphQL](https://github.com/pankod/refine/tree/master/packages/graphql), [NestJs CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud), [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable), [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi), [Strapi v4](https://github.com/pankod/refine/tree/master/packages/strapi-v4), [Strapi GraphQL](https://github.com/pankod/refine/tree/master/packages/strapi-graphql), [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase), [Hasura](https://github.com/pankod/refine/tree/master/packages/hasura), [Nhost](https://github.com/pankod/refine/tree/master/packages/nhost), [Appwrite](https://github.com/pankod/refine/tree/master/packages/appwrite), [Firebase](https://firebase.google.com/), [Directus](https://directus.io/) and [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
+🔌 Connectors for **15+ backend services** including [REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest), [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql), [NestJs CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud), [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable), [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi), [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4), [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql), [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase), [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura), [Nhost](https://github.com/refinedev/refine/tree/master/packages/nhost), [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite), [Firebase](https://firebase.google.com/), [Directus](https://directus.io/) and [Altogic](https://github.com/refinedev/refine/tree/master/packages/altogic)
 
 🌐 **SSR support** with **Next.js** or **Remix**
 
@@ -47,13 +47,13 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 **refine** has a very friendly community and we are always happy to help you get started:
 
 -   [Join the Discord Community](https://discord.gg/refine) – it is the easiest way to get help, all questions are usually answered in about 30 minutes.
--   [GitHub Discussions](https://github.com/pankod/refine/discussions) – ask anything about the project or give feedback.
+-   [GitHub Discussions](https://github.com/refinedev/refine/discussions) – ask anything about the project or give feedback.
 -   [Contributing](/docs/contributing/) – learn how to contribute refine project.
 -   [Guest Technical Writer Program](https://refine.dev/blog/refine-writer-program/) – join the program and become a blog writer for refine.
 
 ## Roadmap
 
-You can find Refine's [Public Roadmap here!](https://github.com/pankod/refine/projects/1)
+You can find Refine's [Public Roadmap here!](https://github.com/refinedev/refine/projects/1)
 
 ## Next Steps
 

@@ -6,7 +6,7 @@ example-tags: [antd,data-provider,strapi,auth-provider]
 
 This example demonstrates how to quickly connect your [Strapi](https://strapi.io/) data with a full-featured **refine** Strapi Data Provider without having to make any additional adjustments.
 
-[View Strapi Example Source](https://github.com/pankod/refine/tree/master/examples/dataProvider/strapi)
+[View Strapi Example Source](https://github.com/refinedev/refine/tree/master/examples/dataProvider/strapi)
 
 **Username**: demo@refine.dev  
 **Password**: demodemo

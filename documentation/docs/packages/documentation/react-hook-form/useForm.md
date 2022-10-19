@@ -475,7 +475,7 @@ const {
 ></iframe>
 
 [react-hook-form]: https://react-hook-form.com
-[refine-react-hook-form]: https://github.com/pankod/refine/tree/master/packages/react-hook-form
+[refine-react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
 [use-form-core]: /api-reference/core/hooks/useForm.md
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror

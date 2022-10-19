@@ -9,7 +9,7 @@ By using `useDataGrid`, you are able to get properties that are compatible with 
 The `useDataGrid` hook works in compatible with both the `<DataGrid>` and the `<DataGridPro>` component.
 :::
 
-This hook is extended from [`useTable`](/api-reference/core/hooks/useTable.md) from the [`@pankod/refine-core`](https://github.com/pankod/refine/tree/master/packages/core) package.
+This hook is extended from [`useTable`](/api-reference/core/hooks/useTable.md) from the [`@pankod/refine-core`](https://github.com/refinedev/refine/tree/master/packages/core) package.
 
 ## Basic usage
 
@@ -465,7 +465,7 @@ export const PostsList: React.FC = () => {
     title="refine-use-data-grid-example"
 ></iframe>
 
-[source-code]: https://github.com/pankod/refine/blob/master/packages/master/src/hooks/useDataGrid/index.ts
+[source-code]: https://github.com/refinedev/refine/blob/master/packages/master/src/hooks/useDataGrid/index.ts
 [syncwithlocationparams]: /api-reference/core/interfaces.md#syncwithlocationparams
 [crudsorting]: /api-reference/core/interfaces.md#crudsorting
 [crudfilters]: /api-reference/core/interfaces.md#crudfilters

@@ -9,7 +9,7 @@ example-tags: [table,antd,refine-hooksreact-router]
 
 [Refer to the **refine** useEditableTable hook documentation for more information. →](/docs/api-reference/antd/hooks/table/useEditableTable/)
 
-[View useEditableTable Example Source](https://github.com/pankod/refine/tree/master/examples/table/antd/useEditableTable)
+[View useEditableTable Example Source](https://github.com/refinedev/refine/tree/master/examples/table/antd/useEditableTable)
 
 <iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/table/antd/useEditableTable?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}

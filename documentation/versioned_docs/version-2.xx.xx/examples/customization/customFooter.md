@@ -3,7 +3,7 @@ id: customFooter
 title: Custom Footer
 ---
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/customization/customFooter)
+[View Source](https://github.com/refinedev/refine/tree/master/examples/customization/customFooter)
 
 <iframe src="https://codesandbox.io/embed/refine-custom-footer-example-mrueu?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}

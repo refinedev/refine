@@ -21,7 +21,7 @@ This year, for the first time, refine is excited to participate in Hacktoberfest
   
 We've already labeled a bunch of **refine** issues with `hacktoberfest` so you can start hunting right away. The list includes easy ones to get familiar with **refine**, but we've also got more difficult ones for experienced developers:
 
-[github.com/pankod/refine/labels/hacktoberfest](https://github.com/pankod/refine/labels/hacktoberfest)
+[github.com/pankod/refine/labels/hacktoberfest](https://github.com/refinedev/refine/labels/hacktoberfest)
 
 <div class="img-container" align-items="center" >
    <img  src={prize}  alt="prize" />

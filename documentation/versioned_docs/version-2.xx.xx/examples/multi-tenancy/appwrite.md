@@ -3,7 +3,7 @@ id: appwrite
 title: Appwrite
 ---
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/multi-tenancy/appwrite)
+[View Source](https://github.com/refinedev/refine/tree/master/examples/multi-tenancy/appwrite)
 
 <iframe src="https://codesandbox.io/embed/cake-house-cvco9?autoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
