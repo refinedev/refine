@@ -78,11 +78,6 @@ const App: React.FC = () => {
                         list: PostList,
                         create: () => <span>create</span>,
                     },
-                    {
-                        parentName: "baz",
-                        name: "categories",
-                        list: () => <span>categories</span>,
-                    },
                 ]}
             />
         </ChakraProvider>

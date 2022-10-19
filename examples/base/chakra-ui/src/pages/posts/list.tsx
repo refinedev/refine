@@ -12,6 +12,8 @@ import {
     TableContainer,
     HStack,
     Box,
+    EditButton,
+    DeleteButton,
 } from "@pankod/refine-chakra-ui";
 
 // import { ColumnFilter, ColumnSorter } from "../../components/table";
@@ -88,15 +90,15 @@ export const PostList: React.FC = () => {
                 enableSorting: false,
                 cell: function render({ getValue }) {
                     return (
-                        <HStack spacing="xs">
-                            {/* <EditButton
+                        <HStack>
+                            <EditButton
                                 hideText
                                 recordItemId={getValue() as number}
                             />
                             <DeleteButton
                                 hideText
                                 recordItemId={getValue() as number}
-                            /> */}
+                            />
                         </HStack>
                     );
                 },
