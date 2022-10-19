@@ -3,10 +3,11 @@ import React from "react";
 import { RefineFieldDateProps } from "@pankod/refine-ui-types";
 import dayjs, { ConfigType } from "dayjs";
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
-
 import { Typography, TypographyProps } from "@mui/material";
 
 dayjs.extend(LocalizedFormat);
+
+const defaultLocale = dayjs.locale();
 
 export type DateFieldProps = RefineFieldDateProps<ConfigType, TypographyProps>;
 
@@ -18,12 +19,15 @@ export type DateFieldProps = RefineFieldDateProps<ConfigType, TypographyProps>;
  */
 export const DateField: React.FC<DateFieldProps> = ({
     value,
+    locales,
     format: dateFormat = "L",
     ...rest
 }) => {
     return (
         <Typography variant="body2" {...rest}>
-            {dayjs(value).format(dateFormat)}
+            {dayjs(value)
+                .locale(locales || defaultLocale)
+                .format(dateFormat)}
         </Typography>
     );
 };

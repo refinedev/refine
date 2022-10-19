@@ -8,6 +8,8 @@ import LocalizedFormat from "dayjs/plugin/localizedFormat";
 
 dayjs.extend(LocalizedFormat);
 
+const defaultLocale = dayjs.locale();
+
 export type DateFieldProps = RefineFieldDateProps<ConfigType, TextProps>;
 
 /**
@@ -17,10 +19,17 @@ export type DateFieldProps = RefineFieldDateProps<ConfigType, TextProps>;
  */
 export const DateField: React.FC<DateFieldProps> = ({
     value,
+    locales,
     format: dateFormat = "L",
     ...rest
 }) => {
     const { Text } = Typography;
 
-    return <Text {...rest}>{dayjs(value).format(dateFormat)}</Text>;
+    return (
+        <Text {...rest}>
+            {dayjs(value)
+                .locale(locales || defaultLocale)
+                .format(dateFormat)}
+        </Text>
+    );
 };

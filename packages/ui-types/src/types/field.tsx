@@ -50,6 +50,9 @@ export type RefineFieldDateProps<
     TExtraProps & {
         /**
          * The locales of the date.
+         * By default, Day.js comes with English locale only. If you need other locales, you can load them on demand.
+         * [Refer to loading locales](https://day.js.org/docs/en/i18n/loading-into-browser)
+         * @default English
          */
         locales?: string;
         /**
