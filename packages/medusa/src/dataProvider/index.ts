@@ -59,8 +59,6 @@ const DataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
 ): Required<DataProviderType> => {
-    httpClient.defaults.baseURL = `${apiUrl}/store`;
-
     return {
         getList: async ({
             resource,
