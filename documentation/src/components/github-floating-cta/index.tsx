@@ -28,7 +28,7 @@ const GithubFloatingCta: FC = () => {
             {/* eslint-disable-next-line react/jsx-no-target-blank */}
             <a
                 className="text--no-decoration mx-auto flex items-center gap-2 text-inherit"
-                href="https://github.com/pankod/refine/?ref=float-cta"
+                href="https://github.com/refinedev/refine/?ref=float-cta"
                 target="_blank"
             >
                 <GithubIcon />

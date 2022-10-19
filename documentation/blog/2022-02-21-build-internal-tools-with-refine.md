@@ -147,18 +147,18 @@ Refer to the [`dataProvider`](https://refine.dev/docs/core/providers/data-provid
 
 Refine includes many out-of-the-box data providers to use in your projects like:
 
--   [Simple REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest)
--   [GraphQL](https://github.com/pankod/refine/tree/master/packages/graphql)
--   [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
--   [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable)
--   [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi) - [Strapi v4](https://github.com/pankod/refine/tree/master/packages/strapi-v4)
--   [Strapi GraphQL](https://github.com/pankod/refine/tree/master/packages/strapi-graphql)
--   [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
--   [Hasura](https://github.com/pankod/refine/tree/master/packages/hasura)
--   [Nhost](https://github.com/pankod/refine/tree/master/packages/nhost)
--   [Medusa](https://github.com/pankod/refine/tree/master/packages/medusa)
--   [Appwrite](https://github.com/pankod/refine/tree/master/packages/appwrite)
--   [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic)
+-   [Simple REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest)
+-   [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql)
+-   [NestJS CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud)
+-   [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable)
+-   [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi) - [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4)
+-   [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql)
+-   [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase)
+-   [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
+-   [Nhost](https://github.com/refinedev/refine/tree/master/packages/nhost)
+-   [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa)
+-   [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite)
+-   [Altogic](https://github.com/refinedev/refine/tree/master/packages/altogic)
 
 ## Add routing to the application
 
@@ -172,9 +172,9 @@ Refer to the [`routerProvider`](https://refine.dev/docs/core/providers/router-pr
 
 Refine includes many out-of-the-box data providers to use in your projects like:
 
--   [React Router](https://github.com/pankod/refine/tree/master/packages/react-router)
--   [React Location](https://github.com/pankod/refine/tree/master/packages/react-location)
--   [Next.js Router](https://github.com/pankod/refine/tree/master/packages/nextjs-router)
+-   [React Router](https://github.com/refinedev/refine/tree/master/packages/react-router)
+-   [React Location](https://github.com/refinedev/refine/tree/master/packages/react-location)
+-   [Next.js Router](https://github.com/refinedev/refine/tree/master/packages/nextjs-router)
 
 ## Create pages via `resources`
 
@@ -234,9 +234,9 @@ Refer to the [`authProvider`](https://refine.dev/docs/core/providers/auth-provid
 
 ### Out-of-the-box router providers
 
--   Auth0 - [Source Code](https://github.com/pankod/refine/tree/master/examples/authProvider/auth0/) - [Demo](https://refine.dev/docs/examples/auth-provider/auth0)
--   Google - [Source Code](https://github.com/pankod/refine/tree/master/examples/authProvider/googleLogin) - [Demo](https://refine.dev/docs/examples/auth-provider/google-auth)
--   OTP Login - [Source Code](https://github.com/pankod/refine/tree/master/examples/authProvider/otpLogin) - [Demo](https://refine.dev/docs/examples/auth-provider/otpLogin)
+-   Auth0 - [Source Code](https://github.com/refinedev/refine/tree/master/examples/authProvider/auth0/) - [Demo](https://refine.dev/docs/examples/auth-provider/auth0)
+-   Google - [Source Code](https://github.com/refinedev/refine/tree/master/examples/authProvider/googleLogin) - [Demo](https://refine.dev/docs/examples/auth-provider/google-auth)
+-   OTP Login - [Source Code](https://github.com/refinedev/refine/tree/master/examples/authProvider/otpLogin) - [Demo](https://refine.dev/docs/examples/auth-provider/otpLogin)
 
 ## Authorization
 
@@ -294,8 +294,8 @@ Refer to the [`accessControlProvider`](https://refine.dev/docs/core/providers/ac
 
 ### Out-of-the-box access control providers
 
--   Casbin - [Source Code](https://github.com/pankod/refine/tree/master/examples/accessControl/casbin) - [Demo](https://codesandbox.io/s/github/pankod/refine/tree/master/examples/accessControl/casbin)
--   Cerbos - [Source Code](https://github.com/pankod/refine/tree/master/examples/accessControl/cerbos) - [Demo](https://codesandbox.io/s/github/pankod/refine/tree/master/examples/accessControl/cerbos)
+-   Casbin - [Source Code](https://github.com/refinedev/refine/tree/master/examples/accessControl/casbin) - [Demo](https://stackblitz.com/github/refinedev/refine/tree/master/examples/accessControl/casbin)
+-   Cerbos - [Source Code](https://github.com/refinedev/refine/tree/master/examples/accessControl/cerbos) - [Demo](https://stackblitz.com/github/refinedev/refine/tree/master/examples/accessControl/cerbos)
 
 ## Internationalization
 
@@ -335,9 +335,9 @@ If you send an event after the relevant operations on the server, Refine will in
 
 ### Out-of-the-box access control providers
 
--   Ably - [Source Code](https://github.com/pankod/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/s/github/pankod/refine/tree/master/examples/ably)
--   Supabase - [Source Code](https://github.com/pankod/refine/blob/master/packages/supabase/src/index.ts#L187)
--   Appwrite - [Source Code](https://github.com/pankod/refine/blob/master/packages/appwrite/src/index.ts#L252)
+-   Ably - [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://stackblitz.com/github/refinedev/refine/tree/master/examples/ably)
+-   Supabase - [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
+-   Appwrite - [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
 
 ## Other features of Refine
 
@@ -363,4 +363,4 @@ Check out all of Refine's [features](https://refine.dev/docs/core/components/ref
 
 ## Conclusion
 
-If you're looking for a way to quickly and easily create an internal tool without sacrificing customization, Refine is worth checking out. It allows you to choose any library that you want for your requirements. Plus, if you need help or have feedback, the team at Refine is responsive and happy to help out. Give [Refine](https://github.com/pankod/refine) a star on GitHub if you like it - your support will help us continue making this tool amazing!
+If you're looking for a way to quickly and easily create an internal tool without sacrificing customization, Refine is worth checking out. It allows you to choose any library that you want for your requirements. Plus, if you need help or have feedback, the team at Refine is responsive and happy to help out. Give [Refine](https://github.com/refinedev/refine) a star on GitHub if you like it - your support will help us continue making this tool amazing!

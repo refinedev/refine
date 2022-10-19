@@ -27,7 +27,7 @@
     ]
   },
   "name": "refinejs-repo",
-  "author": "Pankod",
+  "author": "refine",
   "devDependencies": {
     "@commitlint/cli": "^17.0.1",
     "@commitlint/config-conventional": "^17.0.0",

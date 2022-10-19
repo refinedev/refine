@@ -25,13 +25,13 @@ npm install @pankod/refine-ably
 
 Since we will need `apiKey` from Ably, you must first register and get the key from [Ably](https://ably.com).
 
-The app will have one resource: **posts** with [CRUD pages(list, create, edit and show) similar to base example](https://github.com/pankod/refine/tree/master/examples/base/src/pages/posts).
+The app will have one resource: **posts** with [CRUD pages(list, create, edit and show) similar to base example](https://github.com/refinedev/refine/tree/master/examples/base/src/pages/posts).
 
 [You can also refer to codesandbox to see final state of the app &#8594](#live-condesandbox-example)
 
 ## Adding `liveProvider`
 
-Firstly we create a ably client for [`@pankod/refine-ably`](https://github.com/pankod/refine/tree/master/packages/ably) live provider.
+Firstly we create a ably client for [`@pankod/refine-ably`](https://github.com/refinedev/refine/tree/master/packages/ably) live provider.
 
 ```ts title="src/utility/ablyClient.ts"
 import { Ably } from "@pankod/refine-ably";
@@ -39,7 +39,7 @@ import { Ably } from "@pankod/refine-ably";
 export const ablyClient = new Ably.Realtime("your-api-key");
 ```
 
-Then pass `liveProvider` from [`@pankod/refine-ably`](https://github.com/pankod/refine/tree/master/packages/ably) to `<Refine>`.
+Then pass `liveProvider` from [`@pankod/refine-ably`](https://github.com/refinedev/refine/tree/master/packages/ably) to `<Refine>`.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine";

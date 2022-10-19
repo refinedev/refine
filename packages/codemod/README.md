@@ -8,7 +8,7 @@
 <br/>
 
 <div align="center">
-  <sub>Created by <a href="https://www.pankod.com">Pankod</a></sub><br />
+  <sub>Created by <a href="https://refine.dev">refine</a></sub><br />
   <sub>CLI is forked from <a href="https://github.com/vercel/next.js/tree/canary/packages/next-codemod">next-codemod</a></sub>
 </div>
 

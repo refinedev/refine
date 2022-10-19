@@ -3,7 +3,7 @@ id: useUpdateMany
 title: useUpdateMany
 ---
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/table/useUpdateMany)
+[View Source](https://github.com/refinedev/refine/tree/master/examples/table/useUpdateMany)
 
 <iframe src="https://codesandbox.io/embed/refine-use-update-many-example-o2rll?autoresize=1&fontsize=14&theme=dark&view=preview"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}

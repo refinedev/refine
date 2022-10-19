@@ -140,7 +140,7 @@ This gives us a huge performance gain.
 
 <br/>
 <div>
-<a href="https://github.com/pankod/refine">
+<a href="https://github.com/refinedev/refine">
   <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
 </a>
 </div>
@@ -200,7 +200,7 @@ In the next post, we will demonstrate the use of `useCallback()` hook.
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/blog/react-memoization-memo/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/blog/react-memoization-memo/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="react-memoization-memo"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
@@ -213,11 +213,11 @@ In the next post, we will demonstrate the use of `useCallback()` hook.
 
 Low-code React frameworks are great for gaining development speed but they often fall short of flexibility if you need extensive styling and customization for your project.
 
-Check out [refine](https://github.com/pankod/refine),if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
+Check out [refine](https://github.com/refinedev/refine),if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
 
 
 <div>
-<a href="https://github.com/pankod/refine">
+<a href="https://github.com/refinedev/refine">
     <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
 </a>
 </div>
@@ -229,5 +229,5 @@ It can speed up your development time up to **3X** without compromising freedom 
 
 **refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
 
-Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials, and example projects.
+Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.
 

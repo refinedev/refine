@@ -24,9 +24,9 @@ const liveProvider = {
 :::tip
 **refine** includes out-of-the-box live providers to use in your projects like:
 
--   **Ably** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/s/refine-ably-example-u9wg9)
--   **Supabase** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/supabase/src/index.ts#L187)
--   **Appwrite** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/appwrite/src/index.ts#L252)
+-   **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/s/refine-ably-example-u9wg9)
+-   **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
+-   **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
 
 :::
 
@@ -46,7 +46,7 @@ const App: React.FC = () => {
 
 ## Creating a live provider
 
-We will build **"Ably Live Provider"** of [`@pankod/refine-ably`](https://github.com/pankod/refine/tree/master/packages/ably) from scratch to show the logic of how live provider methods interact with Ably.
+We will build **"Ably Live Provider"** of [`@pankod/refine-ably`](https://github.com/refinedev/refine/tree/master/packages/ably) from scratch to show the logic of how live provider methods interact with Ably.
 
 ### `subscribe`
 

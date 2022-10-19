@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation, useHistory } from "@docusaurus/router";
 
 /** @ts-expect-error Docusaurus and Typescript doesn't play well together. */
 import data from "@examples/examples-data.json";
@@ -74,6 +75,22 @@ const ExampleList: React.FC = () => {
         new Set(visibleTags.map(({ name }) => name)),
     );
 
+    const { search } = useLocation();
+    const { replace } = useHistory();
+
+    React.useEffect(() => {
+        // tags are stored in the query string as a comma separated list
+        const params = new URLSearchParams(search);
+        const tags = params.get("tags");
+        if (tags) {
+            // validate tags by checking `staticTags`
+            const validTags = tags
+                .split(",")
+                .filter((tag) => staticTags.includes(tag));
+            setFilters(new Set(validTags));
+        }
+    }, []);
+
     const filteredExamples = examples.filter((example) => {
         const queryMatch = `${example.displayTitle
             .replace("antd", "Ant Design")
@@ -115,6 +132,22 @@ const ExampleList: React.FC = () => {
         return PREDEFINED_COLORS[tag] || undefined;
     };
 
+    const updateURLParams = (nextFilters?: Set<string>) => {
+        if (
+            !nextFilters ||
+            nextFilters.size === visibleTags.length ||
+            nextFilters.size === 0
+        ) {
+            replace({
+                search: "",
+            });
+        } else {
+            replace({
+                search: `?tags=${Array.from(nextFilters).join(",")}`,
+            });
+        }
+    };
+
     const updateFilters = (tag: string) => {
         const newFilters = new Set(filters);
         // if all tags are selected, unselect all and select the clicked tag
@@ -130,8 +163,10 @@ const ExampleList: React.FC = () => {
         }
 
         if (newFilters.size === 0) {
+            updateURLParams();
             setFilters(new Set(visibleTags.map(({ name }) => name)));
         } else {
+            updateURLParams(newFilters);
             setFilters(newFilters);
         }
     };

@@ -31,7 +31,7 @@ npm i @pankod/refine-strapi-v4
 ```
 
 :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package.
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
 
 ## Usage
@@ -153,7 +153,7 @@ const App: React.FC = () => {
 ```
 
 :::tip
-You can find detailed usage information and the source code [here](https://github.com/pankod/refine/tree/master/examples/multi-tenancy/strapi).
+You can find detailed usage information and the source code [here](https://github.com/refinedev/refine/tree/master/examples/multi-tenancy/strapi).
 :::
 
 ## Create Collections
@@ -696,7 +696,7 @@ Username: `refine-demo`
 
 Password: `demodemo`
 
-<iframe loading="lazy" src="https://stackblitz.com/github/pankod/refine/tree/master/examples/multi-tenancy/strapi?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/multi-tenancy/strapi?embed=1&view=preview&theme=dark&preset=node&ctl=1"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="strapi-multi-tenant-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

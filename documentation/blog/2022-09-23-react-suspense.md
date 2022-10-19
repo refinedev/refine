@@ -73,7 +73,7 @@ const Users = () => {
 
 <br/>
 <div>
-<a href="https://github.com/pankod/refine">
+<a href="https://github.com/refinedev/refine">
   <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
 </a>
 </div>

@@ -230,7 +230,7 @@ export * from "./list";
 
 <br/>
 <div>
-<a href="https://github.com/pankod/refine">
+<a href="https://github.com/refinedev/refine">
   <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
 </a>
 </div>
@@ -389,7 +389,7 @@ We use benefits of Strapi V4 relational population feature by using `populate` p
 The Material UI provides already styled, but still very customizable inputs that encapsulate adding labels and error handling with helper texts. However, we need a third-party library to handle forms when using Material UI. [React Hook Form](https://react-hook-form.com/) is one of the best options for this job!
 
 
-The React Hook Form library has been integrated with **refine** ([`@pankod/refine-react-hook-form`](https://github.com/pankod/refine/tree/master/packages/react-hook-form)) . This means you can now use Material UI for your forms and manage them using [`@pankod/refine-react-hook-form`](https://github.com/pankod/refine/tree/master/packages/react-hook-form).
+The React Hook Form library has been integrated with **refine** ([`@pankod/refine-react-hook-form`](https://github.com/refinedev/refine/tree/master/packages/react-hook-form)) . This means you can now use Material UI for your forms and manage them using [`@pankod/refine-react-hook-form`](https://github.com/refinedev/refine/tree/master/packages/react-hook-form).
 
 First, we'll create PostCreate page to create new records.
 
@@ -1065,10 +1065,10 @@ refine is an open source tool that rapidly and flexibly develops for CRUD admin 
 
 Low-code React frameworks are great for gaining development speed but they often fall short of flexibility if you need extensive styling and customization for your project.
 
-Check out [refine](https://github.com/pankod/refine), if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
+Check out [refine](https://github.com/refinedev/refine), if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
 
 <div>
-<a href="https://github.com/pankod/refine">
+<a href="https://github.com/refinedev/refine">
     <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
 </a>
 </div>
@@ -1080,7 +1080,7 @@ It can speed up your development time up to **3X** without compromising freedom 
 
 **refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
 
-Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials and example projects.
+Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials and example projects.
 
 ## Live StackBlitz Example
 
@@ -1088,7 +1088,7 @@ Username: demo@refine.dev
 
 Password: demodemo
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/blog/material-ui/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/blog/material-ui/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-material-ui-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

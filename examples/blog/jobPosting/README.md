@@ -8,7 +8,7 @@
 <br/>
 
 <div align="center">
-  <sub>Created by <a href="https://www.pankod.com">Pankod</a></sub>
+  <sub>Created by <a href="https://refine.dev">refine</a></sub>
 </div>
 
 ## About

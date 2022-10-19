@@ -1538,7 +1538,7 @@ export const SectionNoConstraints: React.FC = () => {
                                                     <a
                                                         target="_blank"
                                                         rel="noreferrer"
-                                                        href="https://github.com/pankod/refine"
+                                                        href="https://github.com/refinedev/refine"
                                                     >
                                                         <GraySocialIcons.GithubIcon className="block w-8 h-8 hover:scale-110 nested-hover-hidden" />
                                                         <ColoredSocialIcons.GithubIcon className="hidden w-8 h-8 hover:scale-110 nested-hover-visible" />

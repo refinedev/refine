@@ -469,13 +469,13 @@ const {
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/form/reactHookForm/useForm/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/form/reactHookForm/useForm/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-react-hook-form-example"
 ></iframe>
 
 [react-hook-form]: https://react-hook-form.com
-[refine-react-hook-form]: https://github.com/pankod/refine/tree/master/packages/react-hook-form
+[refine-react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
 [use-form-core]: /api-reference/core/hooks/useForm.md
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror

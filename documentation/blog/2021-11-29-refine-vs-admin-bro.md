@@ -22,7 +22,7 @@ Looking for open source **admin panel framework**? Here we are going to review t
 These frameworks that we will talk about have emerged to offer solutions to the same business demands in general. Although the purpose of these two frameworks is the same, the solutions are different from each other. Our goal in this article is to show you these differences and help you find the appropriate framework for your project.
 
 :::note
-This comparison table strives to be as accurate and as unbiased as possible. If you use any of these libraries and feel the information could be improved, feel free to suggest changes (with notes or evidence of claims) contact info@refine.dev or you can open a issue on [Github](https://github.com/pankod/refine).
+This comparison table strives to be as accurate and as unbiased as possible. If you use any of these libraries and feel the information could be improved, feel free to suggest changes (with notes or evidence of claims) contact info@refine.dev or you can open a issue on [Github](https://github.com/refinedev/refine).
 :::
 
 
@@ -373,17 +373,17 @@ Here we only make requests for queries that are necessary. As you can see, all y
 ### Refine Avaible Providers
 Connects to any REST or GraphQL custom backend.
 
-* NestJs CRUD: [https://github.com/pankod/refine/tree/master/examples/dataProvider/nestjsxCrud](https://github.com/pankod/refine/tree/master/examples/dataProvider/nestjsxCrud)
-* Airtable: [https://github.com/pankod/refine/tree/master/examples/dataProvider/airtable](https://github.com/pankod/refine/tree/master/examples/dataProvider/airtable)
-* Strapi: [https://github.com/pankod/refine/tree/master/examples/dataProvider/strapi](https://github.com/pankod/refine/tree/master/examples/dataProvider/strapi)
-* Strapi v4: [https://github.com/pankod/refine/tree/master/examples/dataProvider/strapi-v4](https://github.com/pankod/refine/tree/master/examples/dataProvider/strapi-v4)
-* Strapi GraphQL: [https://github.com/pankod/refine/tree/master/examples/dataProvider/strapi-graphql](https://github.com/pankod/refine/tree/master/examples/dataProvider/strapi-graphql)
-* Supabase: [https://github.com/pankod/refine/tree/master/examples/dataProvider/supabase](https://github.com/pankod/refine/tree/master/examples/dataProvider/supabase)
-* Hasura: [https://github.com/pankod/refine/tree/master/examples/dataProvider/hasura](https://github.com/pankod/refine/tree/master/examples/dataProvider/hasura)
-* Nhost: [https://github.com/pankod/refine/tree/master/examples/dataProvider/nhost](https://github.com/pankod/refine/tree/master/examples/dataProvider/nhost)
-* Appwrite: [https://github.com/pankod/refine/tree/master/examples/dataProvider/appwrite](https://github.com/pankod/refine/tree/master/examples/dataProvider/appwrite)
-* Altogic: [https://github.com/pankod/refine/tree/master/examples/dataProvider/altogic](https://github.com/pankod/refine/tree/master/examples/dataProvider/altogic)
-* Medusa: [https://github.com/pankod/refine/tree/next/packages/medusa](https://github.com/pankod/refine/tree/next/packages/medusa)
+* NestJs CRUD: [https://github.com/refinedev/refine/tree/master/examples/dataProvider/nestjsxCrud](https://github.com/refinedev/refine/tree/master/examples/dataProvider/nestjsxCrud)
+* Airtable: [https://github.com/refinedev/refine/tree/master/examples/dataProvider/airtable](https://github.com/refinedev/refine/tree/master/examples/dataProvider/airtable)
+* Strapi: [https://github.com/refinedev/refine/tree/master/examples/dataProvider/strapi](https://github.com/refinedev/refine/tree/master/examples/dataProvider/strapi)
+* Strapi v4: [https://github.com/refinedev/refine/tree/master/examples/dataProvider/strapi-v4](https://github.com/refinedev/refine/tree/master/examples/dataProvider/strapi-v4)
+* Strapi GraphQL: [https://github.com/refinedev/refine/tree/master/examples/dataProvider/strapi-graphql](https://github.com/refinedev/refine/tree/master/examples/dataProvider/strapi-graphql)
+* Supabase: [https://github.com/refinedev/refine/tree/master/examples/dataProvider/supabase](https://github.com/refinedev/refine/tree/master/examples/dataProvider/supabase)
+* Hasura: [https://github.com/refinedev/refine/tree/master/examples/dataProvider/hasura](https://github.com/refinedev/refine/tree/master/examples/dataProvider/hasura)
+* Nhost: [https://github.com/refinedev/refine/tree/master/examples/dataProvider/nhost](https://github.com/refinedev/refine/tree/master/examples/dataProvider/nhost)
+* Appwrite: [https://github.com/refinedev/refine/tree/master/examples/dataProvider/appwrite](https://github.com/refinedev/refine/tree/master/examples/dataProvider/appwrite)
+* Altogic: [https://github.com/refinedev/refine/tree/master/examples/dataProvider/altogic](https://github.com/refinedev/refine/tree/master/examples/dataProvider/altogic)
+* Medusa: [https://github.com/refinedev/refine/tree/next/packages/medusa](https://github.com/refinedev/refine/tree/next/packages/medusa)
 
 ### Customization
 * **refine's** motivation and main purpose are as follows: "Higher-level frontend frameworks can save you a lot time, but they typically offer you a trade-off between speed and flexibility." 

@@ -3,7 +3,7 @@ id: strapi-v4
 title: Strapi-v4
 ---
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/multi-tenancy/strapi)
+[View Source](https://github.com/refinedev/refine/tree/master/examples/multi-tenancy/strapi)
 
 Username: `refine-demo`
 

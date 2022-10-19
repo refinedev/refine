@@ -17,7 +17,7 @@ export type ShowButtonProps = RefineShowButtonProps<
     ButtonProps,
     {
         /**
-         * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/pankod/refine/issues/1618
+         * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/refinedev/refine/issues/1618
          */
         resourceName?: string;
     }
