@@ -137,14 +137,8 @@ export const MyCloneComponent = () => {
 
 ## API Reference
 
-| Property                    | Description                                      | Type                                                              | Default                                                                                                                       |
-| --------------------------- | ------------------------------------------------ | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| props                       | Material UI button props                         | [`ButtonProps`](https://mui.com/material-ui/api/button/)          |                                                                                                                               |
-| resourceNameOrRouteName     | Determines which resource to use for redirection | `string`                                                          | Resource name that it reads from route                                                                                        |
-| recordItemId                | Adds `id` to the end of the URL                  | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                          | Record id that it reads from route                                                                                            |
-| hideText                    | Allows to hide button text                       | `boolean`                                                         | `false`                                                                                                                       |
-| ignoreAccessControlProvider | Skip access control                              | `boolean`                                                         | `false`                                                                                                                       |
-| children                    | Sets the button text                             | `ReactNode`                                                       | `"Clone"`                                                                                                                     |
-| startIcon                   | Sets the icon component of button                | `ReactNode`                                                       | [`<AddBoxOutlinedIcon />`](https://mui.com/material-ui/material-icons/?query=add+box&theme=Outlined&selected=AddBoxOutlined/) |
-| svgIconProps                | Allows to set icon props                         | [`SvgIconProps`](https://mui.com/material-ui/api/svg-icon/#props) |                                                                                                                               |
-| onClick                     | Sets the handler to handle click event           | `(event) => void`                                                 | Triggers navigation for redirection to the create page of resource                                                            |
+<PropsTable module="@pankod/refine-mui/CloneButton" />
+
+:::tip External Props
+It also accepts all props of Material UI [Button](https://mui.com/material-ui/react-button/).
+:::                                   

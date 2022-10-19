@@ -54,14 +54,12 @@ export const PostList: React.FC = () => {
 ```
 
 ## API Reference
-
 ### Properties
 
-| Property        | Description                                              | Type                                    | Default |
-| --------------- | -------------------------------------------------------- | --------------------------------------- | ------- |
-| breadcrumbProps | Passes properties for [`<Breadcrumb>`][mui-breadcrumb]   | [BreadcrumbProps][mui-breadcrumb-props] |         |
-| showHome        | Shows the home button if application has `DashboardPage` | `boolean`                               | `true`  |
-| hideIcons       | Allows to hide resource icons                            | `boolean`                               | `false` |
+<PropsTable module="@pankod/refine-mui/Breadcrumb"
+breadcrumbProps-type="[BreadcrumbProps](https://mui.com/material-ui/react-breadcrumbs/#main-content)"
+breadcrumbProps-description="Passes properties for [`<Breadcrumb>`](https://mui.com/material-ui/react-breadcrumbs/#api)"
+/>
 
 [mui-breadcrumb]: https://mui.com/material-ui/react-breadcrumbs/#main-content
 [mui-breadcrumb-props]: https://mui.com/material-ui/react-breadcrumbs/#api

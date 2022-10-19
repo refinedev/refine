@@ -106,13 +106,8 @@ export const MyListComponent = () => {
 
 ### Properties
 
-| Property                    | Description                                              | Type                                                              | Default                                                                                                               |
-| --------------------------- | -------------------------------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| props                       | [`ButtonProps`](https://mui.com/material-ui/api/button/) |                                                                   |
-| resourceNameOrRouteName     | Determines which resource to use for redirection         | `string`                                                          | Resource name that it reads from route                                                                                |
-| hideText                    | Allows to hide button text                               | `boolean`                                                         | `false`                                                                                                               |
-| ignoreAccessControlProvider | Skip access control                                      | `boolean`                                                         | `false`                                                                                                               |
-| children                    | Sets the button text                                     | `ReactNode`                                                       | Humanized resource name that it reads from route                                                                      |
-| startIcon                   | Sets the icon component of button                        | `ReactNode`                                                       | [`<ListOutlinedIcon />`](https://mui.com/material-ui/material-icons/?query=List&theme=Outlined&selected=ListOutlined) |
-| svgIconProps                | Allows to set icon props                                 | [`SvgIconProps`](https://mui.com/material-ui/api/svg-icon/#props) |                                                                                                                       |
-| onClick                     | Sets the handler to handle click event                   | `(event) => void`                                                 | Triggers navigation for redirection to the list page of resource                                                      |
+<PropsTable module="@pankod/refine-mui/ListButton" />
+
+:::tip External Props
+It also accepts all props of Material UI [Button](https://mui.com/material-ui/api/button/).
+:::

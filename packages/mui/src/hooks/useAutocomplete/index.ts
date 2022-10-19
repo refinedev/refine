@@ -8,10 +8,11 @@ import { AutocompleteProps } from "@mui/material/Autocomplete";
 import isEqual from "lodash/isEqual";
 import unionWith from "lodash/unionWith";
 
-export type UseAutocompleteProps<TData, TError> = Omit<
+export type UseAutocompleteProps<TData, TError> = Pick<
     UseSelectProps<TData, TError>,
-    "optionLabel" | "optionValue"
->;
+    "resource"
+> &
+    Omit<UseSelectProps<TData, TError>, "optionLabel" | "optionValue">;
 
 type AutocompletePropsType<TData> = Required<
     Pick<
