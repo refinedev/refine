@@ -11,7 +11,7 @@ sidebar_label: Telemetry
 
 **refine** implements a **simple** and **transparent** telemetry module for collecting usage statistics defined in a **very limited scope**. 
 
-Tracking is totally **secure** and **anonymous**. It includes no personally identifiable Information and **does not use cookies**. Participation is optional and users may easily **opt-out**.
+Tracking is totally **secure** and **anonymous**. It includes no personally identifiable information and **does not use cookies**. Participation is optional and users may easily **opt-out**.
 
 
 ## Why do we need this?
@@ -21,9 +21,9 @@ We try to answer the question **how many users are actively using the Refine fra
 
 ## How do we collect data?
 
-The tracking happens when a Refine application is loaded on the user's browser. On application init, a single HTTP request is sent to [https://telemetry.refine.dev](https://telemetry.refine.dev). The request body is encode with Base64 to be decode on Refine servers.
+The tracking happens when a Refine application is loaded on the user's browser. On application init, a single HTTP request is sent to [https://telemetry.refine.dev](https://telemetry.refine.dev). The request body is encoded with Base64 to be decoded on Refine servers.
 
-There are no consequent requests on that session, as we do NOT collect any behavioral information such as _page views_, _button clicks_, etc.
+There are no consequent requests for that session, as we do NOT collect any behavioral information such as _page views_, _button clicks_, etc.
 
 
 ## What is collected?
@@ -36,7 +36,7 @@ The HTTP call has a JSON payload having the following application-specific attri
 | version       | string    | Version of the refine package.                                                                                  |
 | resourceCount | number    | Number of total resources.                                                                                      |
 
-Additionaly following information is extracted and collected from the HTTP header:
+Additionally, the following information is extracted and collected from the HTTP header:
 
 | Value      | Description                                           |
 | ---------- | ----------------------------------------------------- |
