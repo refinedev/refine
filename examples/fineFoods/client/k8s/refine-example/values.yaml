@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: ghcr.io/pankod/refine/refine-client-example
+  repository: ghcr.io/refinedev/refine/refine-client-example
   pullPolicy: IfNotPresent
 
 imagePullSecrets:

@@ -47,7 +47,7 @@ Sveltekit helps you build web apps that are fiendishly complicated with all of t
 It uses Vite in combination with a Svelte plugin to deliver a lightning-fast and feature-rich development experience with Hot Module Replacement (HMR), in which changes to your code are instantly reflected in the browser.
 
 ## Prerequisites
-To get the best out of this tutorial, prior knowledge of Svelte is required, and ensure you have Node.JS version 16 or later installed. The code for this tutorial is available on [Github](https://github.com/pankod/refine/tree/next/examples/blog/sveltekit-crud)
+To get the best out of this tutorial, prior knowledge of Svelte is required, and ensure you have Node.JS version 16 or later installed. The code for this tutorial is available on [Github](https://github.com/refinedev/refine/tree/next/examples/blog/sveltekit-crud)
  
 ## Create Sveltekit Application
 With the above requirements met, let's create a new **Sveltekit application** by running the following commands.
@@ -154,7 +154,7 @@ In the above code snippet, we imported the **SMUI** components we need, and we d
 
 <br/>
 <div>
-<a href="https://github.com/pankod/refine">
+<a href="https://github.com/refinedev/refine">
   <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
 </a>
 </div>
@@ -455,7 +455,7 @@ Throughout this tutorial, we've implemented how to create a CRUD application usi
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/blog/sveltekit-crud/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/blog/sveltekit-crud/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="sveltekit-crud-app"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
@@ -468,11 +468,11 @@ Throughout this tutorial, we've implemented how to create a CRUD application usi
 
 Modern CRUD applications are required to consume data from many different sources from custom API’s to backend services like Supabase, Hasura, Airtable and Strapi.
 
-Check out [refine](https://github.com/pankod/refine), if you are interested in a backend agnostic, headless framework which can connect 15+ data sources thanks to built-in providers and community plugins.
+Check out [refine](https://github.com/refinedev/refine), if you are interested in a backend agnostic, headless framework which can connect 15+ data sources thanks to built-in providers and community plugins.
 
 
 <div>
-<a href="https://github.com/pankod/refine">
+<a href="https://github.com/refinedev/refine">
     <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
 </a>
 </div>
@@ -484,4 +484,4 @@ It can speed up your development time up to **3X** without compromising freedom 
 
 **refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
 
-Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials, and example projects.
+Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.

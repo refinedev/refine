@@ -66,7 +66,7 @@ export const Footer: React.FC<FooterProps> = ({ className }) => {
                         <div className="flex h-10 items-center space-x-6">
                             <a
                                 aria-label="Github Repository"
-                                href="https://github.com/pankod/refine"
+                                href="https://github.com/refinedev/refine"
                             >
                                 <Github />
                             </a>

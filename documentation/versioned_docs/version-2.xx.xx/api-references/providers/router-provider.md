@@ -570,7 +570,7 @@ Since Nextjs has a folder base route structure, it is used by exporting the `<Ne
 
 &#8594 [Refer to the React Router's `<RouterComponent>` for detailed usage information.][routercomponent]  
 &#8594 [Refer to the React Location's `<RouterComponent>` for detailed usage information.][react-location-routercomponent]  
-&#8594 [Refer to the Next.js Router's `<NextRouteComponent>` for detailed usage information.](https://github.com/pankod/refine/blob/master/packages/nextjs-router/src/nextRouteComponent.tsx)
+&#8594 [Refer to the Next.js Router's `<NextRouteComponent>` for detailed usage information.](https://github.com/refinedev/refine/blob/master/packages/nextjs-router/src/nextRouteComponent.tsx)
 
 ## Serving the application from a subdirectory
 
@@ -709,8 +709,8 @@ Now you can access our application at `www.domain.com/admin`.
 
 [browserrouter]: https://reactrouter.com/web/api/BrowserRouter
 [router]: https://react-location.tanstack.com/docs/api#router
-[routercomponent]: https://github.com/pankod/refine/blob/master/packages/react-router/src/routerComponent.tsx
-[react-location-routercomponent]: https://github.com/pankod/refine/blob/master/packages/react-location/src/routerComponent.tsx
-[react-router]: https://github.com/pankod/refine/tree/master/packages/react-router
-[nextjs-router]: https://github.com/pankod/refine/tree/master/packages/nextjs-router
-[react-location]: https://github.com/pankod/refine/tree/master/packages/react-location
+[routercomponent]: https://github.com/refinedev/refine/blob/master/packages/react-router/src/routerComponent.tsx
+[react-location-routercomponent]: https://github.com/refinedev/refine/blob/master/packages/react-location/src/routerComponent.tsx
+[react-router]: https://github.com/refinedev/refine/tree/master/packages/react-router
+[nextjs-router]: https://github.com/refinedev/refine/tree/master/packages/nextjs-router
+[react-location]: https://github.com/refinedev/refine/tree/master/packages/react-location

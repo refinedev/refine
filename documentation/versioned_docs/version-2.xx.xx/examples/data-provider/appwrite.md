@@ -3,7 +3,7 @@ id: appwrite
 title: Appwrite
 ---
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/dataProvider/appwrite)
+[View Source](https://github.com/refinedev/refine/tree/master/examples/dataProvider/appwrite)
 
 **Username**: `demo@refine.dev`  
 **Password**: `demodemo`

@@ -5,7 +5,7 @@ import isInternalUrl from "@docusaurus/isInternalUrl";
 export default function MDXA(props) {
     let rel = "noopener noreferrer";
     const isInternalURL = isInternalUrl(props?.href);
-    const isGitHubRepoURL = props.href?.includes("github.com/pankod/refine");
+    const isGitHubRepoURL = props.href?.includes("github.com/refinedev/refine");
     if (isGitHubRepoURL) {
         rel = "noopener";
     } else if (!isInternalURL) {

@@ -53,12 +53,12 @@
         "@tabler/icons": "^1.1.0",
         "tslib": "^2.3.1"
     },
-    "author": "Pankod",
+    "author": "refine",
     "license": "MIT",
     "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",
     "repository": {
         "type": "git",
-        "url": "https://github.com/pankod/refine.git",
+        "url": "https://github.com/refinedev/refine.git",
         "directory": "packages/mantine"
     },
     "publishConfig": {

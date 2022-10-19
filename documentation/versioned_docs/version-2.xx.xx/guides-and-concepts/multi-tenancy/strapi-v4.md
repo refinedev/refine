@@ -127,7 +127,7 @@ const App: React.FC = () => {
 ```
 
 :::tip
-You can find detailed usage information and the source code [here](https://github.com/pankod/refine/tree/master/examples/multi-tenancy/strapi).
+You can find detailed usage information and the source code [here](https://github.com/refinedev/refine/tree/master/examples/multi-tenancy/strapi).
 :::
 
 ## Create Collections

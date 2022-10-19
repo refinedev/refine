@@ -10,7 +10,7 @@ import graphqlShow from '@site/static/img/guides-and-concepts/data-provider/grap
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-**refine** [graphql](https://github.com/pankod/refine/tree/master/packages/graphql) and [strapi-graphql](https://github.com/pankod/refine/tree/master/packages/strapi-graphql) data provider built with [gql-query-builder](https://github.com/atulmy/gql-query-builder) and [graphql-request](https://github.com/prisma-labs/graphql-request) is made for GraphQL implemantation. It aims to create a query dynamically with [gql-query-builder](https://github.com/atulmy/gql-query-builder) and send requests with [graphql-request](https://github.com/prisma-labs/graphql-request).
+**refine** [graphql](https://github.com/refinedev/refine/tree/master/packages/graphql) and [strapi-graphql](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql) data provider built with [gql-query-builder](https://github.com/atulmy/gql-query-builder) and [graphql-request](https://github.com/prisma-labs/graphql-request) is made for GraphQL implemantation. It aims to create a query dynamically with [gql-query-builder](https://github.com/atulmy/gql-query-builder) and send requests with [graphql-request](https://github.com/prisma-labs/graphql-request).
 
 ## GraphQL Query Builder
 
@@ -44,7 +44,7 @@ npm i @pankod/refine @pankod/refine-strapi-graphql graphql-request@3
 ```
 
 :::info
-We used [strapi-graphql](https://github.com/pankod/refine/tree/master/packages/strapi-graphql) server for this guide. You can customize your data provider for your own GraphQL server.
+We used [strapi-graphql](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql) server for this guide. You can customize your data provider for your own GraphQL server.
 :::
 
 ## Usage

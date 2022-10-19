@@ -244,7 +244,7 @@ Don't forget to pass the record id to `show` to fetch the record data. This is n
 
 ## Live StackBlitz Example
 
-   <iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/form/antd/useModalForm?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+   <iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/form/antd/useModalForm?embed=1&view=preview&theme=dark&preset=node&ctl=1"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-use-modal-form-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

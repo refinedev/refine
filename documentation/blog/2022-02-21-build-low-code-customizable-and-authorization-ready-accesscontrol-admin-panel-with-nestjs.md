@@ -12,11 +12,11 @@ In the [previous blog post](https://refine.dev/blog/customizable-admin-panel-wit
 
 <!--truncate-->
 
-**All the steps described are in this [repo](https://github.com/pankod/refine-hackathon/tree/main/job-posting-app).**
+**All the steps described are in this [repo](https://github.com/refinedev/refine-hackathon/tree/main/job-posting-app).**
 
 ## Intro
 
-In the [previous blog post](https://dev.to/pankod/build-fast-and-customizable-admin-panel-with-nestjs-291), we used [nestjs](https://nestjs.com) with an api and [refine](https://refine.dev) in the admin panel. In this blog, let's add **authorization** to both api and admin panel.
+In the [previous blog post](https://dev.to/refine/build-fast-and-customizable-admin-panel-with-nestjs-291), we used [nestjs](https://nestjs.com) with an api and [refine](https://refine.dev) in the admin panel. In this blog, let's add **authorization** to both api and admin panel.
 
 ## Scenario
 Let's have two roles in this system, they are `admin` and `editor`. In the API we prepared, we had two crud processes that we categorized as `companies` and `jobs`.

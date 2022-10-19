@@ -153,7 +153,7 @@ function App() {
 
 <br/>
 <div>
-<a href="https://github.com/pankod/refine">
+<a href="https://github.com/refinedev/refine">
   <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
 </a>
 </div>
@@ -380,11 +380,11 @@ This article taught us how to use Framer Motion to create a simple text and imag
 
 Modern CRUD applications are required to consume data from many different sources from custom API’s to backend services like Supabase, Hasura, Airtable and Strapi.
 
-Check out [refine](https://github.com/pankod/refine), if you are interested in a backend agnostic, headless framework which can connect 15+ data sources thanks to built-in providers and community plugins.
+Check out [refine](https://github.com/refinedev/refine), if you are interested in a backend agnostic, headless framework which can connect 15+ data sources thanks to built-in providers and community plugins.
 
 
 <div>
-<a href="https://github.com/pankod/refine">
+<a href="https://github.com/refinedev/refine">
     <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
 </a>
 </div>
@@ -396,4 +396,4 @@ It can speed up your development time up to **3X** without compromising freedom 
 
 **refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
 
-Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials, and example projects.
+Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.
