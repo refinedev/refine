@@ -57,7 +57,6 @@ jobs:
           title: "ci(changesets): next version packages"
           createGithubReleases: false
         env:
-          GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
   documentation-live-preview:
