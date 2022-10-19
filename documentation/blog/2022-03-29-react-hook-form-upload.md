@@ -124,6 +124,39 @@ npm install react-hook-form
 npm run start
 ```
 
+
+
+---
+
+<div className="banner-container">
+<div className="banner-header" >Stop wasting your time copy/pasting your table code all over your application!</div >
+
+
+
+Meet the headless, React-based solution to build sleek **CRUD** applications. With refine, you can be confident that your codebase will always stay clean and boilerplate-free.
+
+Try [refine](https://github.com/pankod/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
+
+    
+
+<div>
+<a href="https://github.com/pankod/refine">
+   <img  src="/img/generic_banner.png" alt="refine blog logo" /> 
+</a>
+</div>
+
+<br/>
+
+
+**refine** is an open-source, React-based framework for building CRUD applications without constraints. It’s headless by design and seamlessly works with **any custom design** or **UI framework** you favor. For convenience, it ships with ready-made integrations for **Ant Design System, Material UI and Mantine UI**.
+
+It can **speed up your development time up to 3X** without compromising freedom on styling, customization and project workflow.
+
+Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials, and example projects.
+
+</div>
+
+---
 ## Multipart File Upload with React Hook Form
 
 We created our React project and installed our react hook form package. Now let's create a form and manage it with the react hook form.
@@ -202,6 +235,16 @@ Our project is ready! With React Hook Form, we can now send the selected file to
     <img src={image_upload} alt="multipart/form-data file upload" />
 </div>
 <br />
+
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
+
+
 
 ## Are You Looking React Web Framework?
 
