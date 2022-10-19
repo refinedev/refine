@@ -39,6 +39,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     successNotification,
     errorNotification,
     hideText = false,
+    accessControl,
     ignoreAccessControlProvider = false,
     metaData,
     dataProviderName,
@@ -48,6 +49,9 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     invalidates,
     ...rest
 }) => {
+    const accessControlEnabled =
+        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const translate = useTranslate();
 
     const { resourceName, id, resource } = useResource({
@@ -67,9 +71,13 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
         action: "delete",
         params: { id, resource },
         queryOptions: {
-            enabled: !ignoreAccessControlProvider,
+            enabled: accessControlEnabled,
         },
     });
+
+    if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
+        return null;
+    }
 
     return (
         <Popconfirm

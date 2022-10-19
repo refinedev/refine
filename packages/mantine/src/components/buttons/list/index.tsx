@@ -33,12 +33,16 @@ export type ListButtonProps = RefineListButtonProps<
 export const ListButton: React.FC<ListButtonProps> = ({
     resourceNameOrRouteName,
     hideText = false,
+    accessControl,
     ignoreAccessControlProvider = false,
     svgIconProps,
     children,
     onClick,
     ...rest
 }) => {
+    const accessControlEnabled =
+        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const { resource, resourceName } = useResource({
         resourceNameOrRouteName,
     });
@@ -52,7 +56,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
         resource: resourceName,
         action: "list",
         queryOptions: {
-            enabled: !ignoreAccessControlProvider,
+            enabled: accessControlEnabled,
         },
         params: {
             resource,
@@ -72,6 +76,10 @@ export const ListButton: React.FC<ListButtonProps> = ({
     const listUrl = generateListUrl(resource.route!);
 
     const { variant, styles, ...commonProps } = rest;
+
+    if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
+        return null;
+    }
 
     return (
         <Anchor

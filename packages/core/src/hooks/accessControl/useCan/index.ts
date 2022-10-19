@@ -56,6 +56,7 @@ export const useCan = ({
                 action,
                 resource,
                 params: { ...paramsRest, resource: restResource },
+                enabled: queryOptions?.enabled,
             },
         ],
         // Enabled check for `can` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.

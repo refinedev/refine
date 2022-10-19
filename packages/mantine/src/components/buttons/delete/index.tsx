@@ -44,6 +44,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     successNotification,
     errorNotification,
     hideText = false,
+    accessControl,
     ignoreAccessControlProvider = false,
     metaData,
     dataProviderName,
@@ -53,6 +54,9 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     svgIconProps,
     ...rest
 }) => {
+    const accessControlEnabled =
+        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const { resourceName, id, resource } = useResource({
         resourceNameOrRouteName,
         recordItemId,
@@ -71,7 +75,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
         action: "delete",
         params: { id, resource },
         queryOptions: {
-            enabled: !ignoreAccessControlProvider,
+            enabled: accessControlEnabled,
         },
     });
 
@@ -98,6 +102,10 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     };
 
     const { variant, styles, ...commonProps } = rest;
+
+    if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
+        return null;
+    }
 
     return (
         <Popover opened={opened} onChange={setOpened} withArrow withinPortal>

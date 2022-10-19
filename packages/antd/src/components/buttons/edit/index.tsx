@@ -35,11 +35,15 @@ export const EditButton: React.FC<EditButtonProps> = ({
     resourceNameOrRouteName: propResourceNameOrRouteName,
     recordItemId,
     hideText = false,
+    accessControl,
     ignoreAccessControlProvider = false,
     children,
     onClick,
     ...rest
 }) => {
+    const accessControlEnabled =
+        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const translate = useTranslate();
 
     const { editUrl: generateEditUrl } = useNavigation();
@@ -56,7 +60,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
         action: "edit",
         params: { id, resource },
         queryOptions: {
-            enabled: !ignoreAccessControlProvider,
+            enabled: accessControlEnabled,
         },
     });
 
@@ -71,6 +75,10 @@ export const EditButton: React.FC<EditButtonProps> = ({
     };
 
     const editUrl = generateEditUrl(propResourceName ?? resource.route!, id!);
+
+    if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
+        return null;
+    }
 
     return (
         <Link
