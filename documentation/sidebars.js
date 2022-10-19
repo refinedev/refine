@@ -448,6 +448,7 @@ module.exports = {
                             label: "Customization",
                             items: [
                                 "api-reference/mantine/customization/theme",
+                                "api-reference/mantine/customization/layout",
                                 "api-reference/mantine/customization/sider",
                             ],
                         },

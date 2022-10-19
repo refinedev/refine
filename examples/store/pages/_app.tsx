@@ -35,7 +35,7 @@ function MyApp({
                 DashboardPage={Dashboard}
                 authProvider={authProvider(PROXY_URL)}
                 routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
+                dataProvider={dataProvider(PROXY_URL)}
                 resources={[
                     {
                         name: "dummy",
