@@ -11,6 +11,7 @@ import {
     BreadcrumbLink,
     BreadcrumbProps as ChakraBreadcrumbProps,
 } from "@chakra-ui/react";
+import { IconHome } from "@tabler/icons";
 
 export type BreadcrumbProps = RefineBreadcrumbProps<ChakraBreadcrumbProps>;
 
@@ -28,55 +29,28 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     }
 
     return (
-        <ChakraBreadcrumb>
-            <ChakraBreadcrumbItem>
-                <BreadcrumbLink href="#">Home</BreadcrumbLink>
-            </ChakraBreadcrumbItem>
-
-            <ChakraBreadcrumbItem>
-                <BreadcrumbLink href="#">Docs</BreadcrumbLink>
-            </ChakraBreadcrumbItem>
-
-            <ChakraBreadcrumbItem isCurrentPage>
-                <BreadcrumbLink href="#">Breadcrumb</BreadcrumbLink>
-            </ChakraBreadcrumbItem>
+        <ChakraBreadcrumb {...breadcrumbProps}>
+            {showHome && hasDashboard && (
+                <ChakraBreadcrumbItem>
+                    <Link to="/">
+                        <IconHome size={18} />
+                    </Link>
+                </ChakraBreadcrumbItem>
+            )}
+            {breadcrumbs.map(({ label, icon, href }) => {
+                return (
+                    <ChakraBreadcrumbItem key={label}>
+                        {!hideIcons && icon}
+                        {href ? (
+                            <BreadcrumbLink as={Link} to={href}>
+                                {label}
+                            </BreadcrumbLink>
+                        ) : (
+                            <BreadcrumbLink>{label}</BreadcrumbLink>
+                        )}
+                    </ChakraBreadcrumbItem>
+                );
+            })}
         </ChakraBreadcrumb>
     );
-
-    // return (
-    //     <MantineBreadcrumbs
-    //         aria-label="breadcrumb"
-    //         styles={{
-    //             separator: { marginRight: 8, marginLeft: 8, color: "dimgray" },
-    //         }}
-    //         {...breadcrumbProps}
-    //     >
-    //         {showHome && hasDashboard && (
-    //             <Anchor component={Link} color="dimmed" to="/">
-    //                 <IconHome size={18} />
-    //             </Anchor>
-    //         )}
-    //         {breadcrumbs.map(({ label, icon, href }) => {
-    //             return (
-    //                 <Group key={label} spacing={4} align="center" noWrap>
-    //                     {!hideIcons && icon}
-    //                     {href ? (
-    //                         <Anchor
-    //                             component={Link}
-    //                             color="dimmed"
-    //                             to={href}
-    //                             size="sm"
-    //                         >
-    //                             {label}
-    //                         </Anchor>
-    //                     ) : (
-    //                         <Text color="dimmed" size="sm">
-    //                             {label}
-    //                         </Text>
-    //                     )}
-    //                 </Group>
-    //             );
-    //         })}
-    //     </MantineBreadcrumbs>
-    // );
 };
