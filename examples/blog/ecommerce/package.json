@@ -13,7 +13,7 @@
     "@chakra-ui/react": "^1.8.3",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
-    "@pankod/refine-core": "^3.86.0",
+    "@pankod/refine-core": "^3.86.1",
     "@pankod/refine-nextjs-router": "^3.38.0",
     "@pankod/refine-strapi": "^3.37.0",
     "@pankod/refine-strapi-v4": "^3.39.0",

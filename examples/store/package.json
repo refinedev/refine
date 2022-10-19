@@ -12,7 +12,7 @@
         "@headlessui/react": "^1.6.1",
         "nextjs-progressbar": "^0.0.14",
         "@medusajs/medusa-js": "^1.2.3",
-        "@pankod/refine-core": "^3.86.0",
+        "@pankod/refine-core": "^3.86.1",
         "@pankod/refine-nextjs-router": "^3.38.0",
         "@pankod/refine-react-hook-form": "^3.33.2",
         "@pankod/refine-medusa": "^1.7.2",

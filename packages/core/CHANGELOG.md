@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.86.1
+
+### Patch Changes
+
+-   [#2839](https://github.com/refinedev/refine/pull/2839) [`5388a338ab`](https://github.com/refinedev/refine/commit/5388a338abb9a5e03599da0a2786bea394cbc516) Thanks [@aliemir](https://github.com/aliemir)! - `useCan` hook was returning the stale value if same call is made with skipped access control.
+
 ## 3.86.0
 
 ### Minor Changes

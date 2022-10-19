@@ -1,5 +1,27 @@
 # @pankod/refine-mantine
 
+## 1.7.0
+
+### Minor Changes
+
+-   [#2839](https://github.com/refinedev/refine/pull/2839) [`5388a338ab`](https://github.com/refinedev/refine/commit/5388a338abb9a5e03599da0a2786bea394cbc516) Thanks [@aliemir](https://github.com/aliemir)! - **Deprecation**
+
+    `ignoreAccessControlProvider` prop on buttons is deprecated. Use `accessContro.enabled` instead.
+
+    **Features**
+
+    `accessControl.enabled` prop is added to buttons to enable/disable access control for buttons.
+    `accessControl.hideIfUnauthorized` prop is added to buttons to hide the button if access is denied.
+
+### Patch Changes
+
+-   [#2838](https://github.com/refinedev/refine/pull/2838) [`f7968fa16f`](https://github.com/refinedev/refine/commit/f7968fa16f9930442e1122fe5294e350252bdd5c) Thanks [@aliemir](https://github.com/aliemir)! - Fixed #2828 - Buttons were not respecting access control when navigating to a new page. Now, if button is disabled, it will not also block the navigation not just the onClick event.
+
+-   [#2818](https://github.com/refinedev/refine/pull/2818) [`295fc2f773`](https://github.com/refinedev/refine/commit/295fc2f7735c05101a5dba24e3ebd73039ebd317) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added missing `Title` component export.
+
+-   Updated dependencies [[`476285e342`](https://github.com/refinedev/refine/commit/476285e3427c7e065892a281da529c038aee83d2), [`5388a338ab`](https://github.com/refinedev/refine/commit/5388a338abb9a5e03599da0a2786bea394cbc516)]:
+    -   @pankod/refine-ui-types@0.12.0
+
 ## 1.6.13
 
 ### Patch Changes

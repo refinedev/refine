@@ -11,7 +11,7 @@
     "@remix-run/node": "^1.6.7",
     "@remix-run/react": "^1.6.7",
     "@remix-run/serve": "^1.6.7",
-    "@pankod/refine-core": "^3.86.0",
+    "@pankod/refine-core": "^3.86.1",
     "@pankod/refine-simple-rest": "^3.35.0",
     "@pankod/refine-remix-router": "^1.7.0",
     "@pankod/refine-react-hook-form": "^3.33.2",
