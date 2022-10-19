@@ -10,14 +10,19 @@ import {
     RefineDeleteButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
+
 import {
-    Group,
-    Text,
     Button,
     ButtonProps,
+    HStack,
+    IconButton,
     Popover,
-    ActionIcon,
-} from "@mantine/core";
+    PopoverArrow,
+    PopoverBody,
+    PopoverContent,
+    PopoverHeader,
+    PopoverTrigger,
+} from "@chakra-ui/react";
 import { IconTrash, TablerIconProps } from "@tabler/icons";
 
 export type DeleteButtonProps = RefineDeleteButtonProps<
@@ -28,10 +33,10 @@ export type DeleteButtonProps = RefineDeleteButtonProps<
 >;
 
 /**
- * `<DeleteButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button>`} and {@link https://mantine.dev/core/modal/ `<Modal>`} components.
+ * `<DeleteButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button>`} and {@link https://chakra-ui.com/docs/components/popover `<Popover>`} components.
  * When you try to delete something, a dialog modal shows up and asks for confirmation. When confirmed it executes the `useDelete` method provided by your `dataProvider`.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/delete-button} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/buttons/delete-button} for more details.
  */
 export const DeleteButton: React.FC<DeleteButtonProps> = ({
     resourceNameOrRouteName,
@@ -95,23 +100,23 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
         );
     };
 
-    const { variant, styles, ...commonProps } = rest;
-
     return (
-        <Popover opened={opened} onChange={setOpened} withArrow withinPortal>
-            <Popover.Target>
+        <Popover isOpen={opened}>
+            <PopoverTrigger>
                 {hideText ? (
-                    <ActionIcon
-                        color="red"
+                    <IconButton
+                        colorScheme="red"
+                        variant="outline"
+                        size="sm"
+                        aria-label={translate("buttons.edit", "Edit")}
                         onClick={() => setOpened((o) => !o)}
                         disabled={isLoading || data?.can === false}
                         loading={id === variables?.id && isLoading}
                         data-testid={RefineButtonTestIds.DeleteButton}
-                        {...(variant ? {} : { variant: "outline" })}
-                        {...commonProps}
+                        {...rest}
                     >
                         <IconTrash size={18} {...svgIconProps} />
-                    </ActionIcon>
+                    </IconButton>
                 ) : (
                     <Button
                         color="red"
@@ -126,26 +131,31 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                         {children ?? translate("buttons.delete", "Delete")}
                     </Button>
                 )}
-            </Popover.Target>
-            <Popover.Dropdown py="xs">
-                <Text size="sm" weight="bold">
+            </PopoverTrigger>
+            <PopoverContent>
+                <PopoverArrow />
+                <PopoverHeader textAlign="center">
                     {confirmTitle ??
                         translate("buttons.confirm", "Are you sure?")}
-                </Text>
-                <Group position="center" noWrap spacing="xs" mt="xs">
-                    <Button
-                        onClick={() => setOpened(false)}
-                        variant="default"
-                        size="xs"
-                    >
-                        {confirmCancelText ??
-                            translate("buttons.cancel", "Cancel")}
-                    </Button>
-                    <Button color="red" onClick={onConfirm} autoFocus size="xs">
-                        {confirmOkText ?? translate("buttons.delete", "Delete")}
-                    </Button>
-                </Group>
-            </Popover.Dropdown>
+                </PopoverHeader>
+                <PopoverBody display="flex" justifyContent="center">
+                    <HStack>
+                        <Button onClick={() => setOpened(false)} size="sm">
+                            {confirmCancelText ??
+                                translate("buttons.cancel", "Cancel")}
+                        </Button>
+                        <Button
+                            colorScheme="red"
+                            onClick={onConfirm}
+                            autoFocus
+                            size="sm"
+                        >
+                            {confirmOkText ??
+                                translate("buttons.delete", "Delete")}
+                        </Button>
+                    </HStack>
+                </PopoverBody>
+            </PopoverContent>
         </Popover>
     );
 };
