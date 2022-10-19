@@ -44,7 +44,7 @@
         "@pankod/refine-ui-types": "^0.11.5",
         "@pankod/refine-react-hook-form": "^3.33.2",
         "@chakra-ui/react": "^2.3.6",
-        "@chakra-ui/icons": "^2.0.11",
+        "@tabler/icons": "^1.1.0",
         "@emotion/react": "^11.8.2",
         "@emotion/styled": "^11.8.1",
         "framer-motion": "^7.5.3",

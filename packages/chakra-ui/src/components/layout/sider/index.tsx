@@ -22,7 +22,6 @@ import {
     Tooltip,
     VStack,
 } from "@chakra-ui/react";
-import { ExternalLinkIcon, HamburgerIcon, InfoIcon } from "@chakra-ui/icons";
 
 import { Title as DefaultTitle } from "../title";
 
@@ -62,7 +61,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                     <AccordionItem border="none">
                         <AccordionButton px="0">
                             <Button
-                                leftIcon={<HamburgerIcon />}
+                                // leftIcon={<HamburgerIcon />}
                                 variant="link"
                                 color="white"
                                 {...linkProps}
@@ -92,7 +91,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
             <Tooltip label={t("dashboard.title", "Dashboard")}>
                 <Button
                     py="2"
-                    leftIcon={<InfoIcon />}
+                    // leftIcon={<InfoIcon />}
                     variant="link"
                     color="white"
                     as={Link}
@@ -108,7 +107,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
         <Tooltip label={t("buttons.logout", "Logout")}>
             <Button
                 py="2"
-                leftIcon={<ExternalLinkIcon />}
+                // leftIcon={<ExternalLinkIcon />}
                 variant="link"
                 color="white"
                 onClick={() => mutateLogout()}
