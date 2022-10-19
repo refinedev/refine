@@ -10,7 +10,7 @@ import {
     RefineCreateButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
-import { Button, ButtonProps } from "@chakra-ui/react";
+import { Button, ButtonProps, IconButton } from "@chakra-ui/react";
 import { IconSquarePlus, TablerIconProps } from "@tabler/icons";
 
 export type CreateButtonProps = RefineCreateButtonProps<
@@ -73,26 +73,24 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
             }}
         >
             {hideText ? (
-                <span>TODO: Icon Button</span>
+                <IconButton
+                    variant="outline"
+                    aria-label={translate("buttons.create", "Create")}
+                    title={disabledTitle()}
+                    disabled={data?.can === false}
+                    data-testid={RefineButtonTestIds.CreateButton}
+                    {...rest}
+                >
+                    <IconSquarePlus size={18} {...svgIconProps} />
+                </IconButton>
             ) : (
-                // <ActionIcon
-                //     title={disabledTitle()}
-                //     disabled={data?.can === false}
-                //     {...(variant
-                //         ? {
-                //           }
-                //         : { variant: "default" })}
-                //     data-testid={RefineButtonTestIds.CreateButton}
-                //     {...commonProps}
-                // >
-                //     <IconSquarePlus size={18} {...svgIconProps} />
-                // </ActionIcon>
                 <Button
+                    size="lg"
+                    variant="outline"
                     disabled={data?.can === false}
                     leftIcon={<IconSquarePlus size={18} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.CreateButton}
-                    colorScheme="primary"
                     {...rest}
                 >
                     {children ?? translate("buttons.create", "Create")}
