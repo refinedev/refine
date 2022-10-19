@@ -1,5 +1,11 @@
 # @pankod/refine-medusa
 
+## 1.7.2
+
+### Patch Changes
+
+-   Fixed adding `/store` suffix to the end of Medusa API URL
+
 ## 1.7.1
 
 ### Patch Changes
