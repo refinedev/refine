@@ -10,8 +10,8 @@ import {
     RefineEditButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
-import { ActionIcon, Anchor, Button, ButtonProps } from "@mantine/core";
 import { IconPencil, TablerIconProps } from "@tabler/icons";
+import { Button, ButtonProps, IconButton } from "@chakra-ui/react";
 
 export type EditButtonProps = RefineEditButtonProps<
     ButtonProps,
@@ -21,11 +21,11 @@ export type EditButtonProps = RefineEditButtonProps<
 >;
 
 /**
- * `<EditButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button> component`}.
+ * `<EditButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> component`}.
  * It uses the {@link https://refine.dev/docs/core/hooks/navigation/useNavigation#edit `edit`} method from {@link https://refine.dev/docs/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when redirecting the app to the edit page with the record id route of resource}.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/edit-button} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/buttons/edit-button} for more details.
  */
 export const EditButton: React.FC<EditButtonProps> = ({
     resourceNameOrRouteName,
@@ -68,11 +68,8 @@ export const EditButton: React.FC<EditButtonProps> = ({
 
     const editUrl = generateEditUrl(resource.route!, id!);
 
-    const { variant, styles, ...commonProps } = rest;
-
     return (
-        <Anchor
-            component={Link}
+        <Link
             to={editUrl}
             replace={false}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
@@ -83,18 +80,21 @@ export const EditButton: React.FC<EditButtonProps> = ({
             }}
         >
             {hideText ? (
-                <ActionIcon
+                <IconButton
+                    variant="outline"
+                    size="sm"
+                    aria-label={translate("buttons.edit", "Edit")}
                     title={disabledTitle()}
                     disabled={data?.can === false}
                     data-testid={RefineButtonTestIds.EditButton}
-                    {...(variant ? {} : { variant: "default" })}
-                    {...commonProps}
+                    {...rest}
                 >
                     <IconPencil size={18} {...svgIconProps} />
-                </ActionIcon>
+                </IconButton>
             ) : (
                 <Button
-                    variant="default"
+                    variant="outline"
+                    size="sm"
                     disabled={data?.can === false}
                     leftIcon={<IconPencil size={18} {...svgIconProps} />}
                     title={disabledTitle()}
@@ -104,6 +104,6 @@ export const EditButton: React.FC<EditButtonProps> = ({
                     {children ?? translate("buttons.edit", "Edit")}
                 </Button>
             )}
-        </Anchor>
+        </Link>
     );
 };
