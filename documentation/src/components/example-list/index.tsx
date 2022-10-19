@@ -133,20 +133,18 @@ const ExampleList: React.FC = () => {
     };
 
     const updateURLParams = (nextFilters?: Set<string>) => {
-        if (typeof history !== "undefined") {
-            if (
-                !nextFilters ||
-                nextFilters.size === visibleTags.length ||
-                nextFilters.size === 0
-            ) {
-                replace({
-                    search: "",
-                });
-            } else {
-                replace({
-                    search: `?tags=${Array.from(nextFilters).join(",")}`,
-                });
-            }
+        if (
+            !nextFilters ||
+            nextFilters.size === visibleTags.length ||
+            nextFilters.size === 0
+        ) {
+            replace({
+                search: "",
+            });
+        } else {
+            replace({
+                search: `?tags=${Array.from(nextFilters).join(",")}`,
+            });
         }
     };
 
