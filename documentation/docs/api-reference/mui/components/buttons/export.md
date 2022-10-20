@@ -101,14 +101,11 @@ export const MyRefreshComponent = () => {
 
 ### Properties
 
-| Property     | Description                           | Type                                                                                 | Default                                                                                                                                        |
-| ------------ | ------------------------------------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| props        | Material UI loading button properties | [`LoadingButtonProps`](https://mui.com/material-ui/api/loading-button/#main-content) |                                                                                                                                                |
-| hideText     | Allows to hide button text            | `boolean`                                                                            | `false`                                                                                                                                        |
-| loading      | Sets the loading status of the button | `boolean`                                                                            | When the request is not completed, loading is `true`, when it completes it's `false`                                                           |
-| children     | Sets the button text                  | `ReactNode`                                                                          | `"Export"`                                                                                                                                     |
-| startIcon    | Sets the icon component of button     | `ReactNode`                                                                          | [`<ImportExportOutlinedIcon />`](https://mui.com/material-ui/material-icons/?theme=Outlined&query=import+export&selected=ImportExportOutlined) |
-| svgIconProps | Allows to set icon props              | [`SvgIconProps`](https://mui.com/material-ui/api/svg-icon/#props)                    |                                                                                                                                                |
+<PropsTable module="@pankod/refine-mui/ExportButton" />
+
+:::tip External Props
+It also accepts all props of Material UI [LoadingButton](https://mui.com/material-ui/api/loading-button/#main-content).
+:::                             
 
 [button]: https://mui.com/material-ui/api/loading-button/#main-content
 [useexport]: /api-reference/core/hooks/import-export/useExport.md

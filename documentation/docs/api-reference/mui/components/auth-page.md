@@ -831,17 +831,12 @@ render(<Wrapper><App /></Wrapper>);
 
 ### Properties
 
-| Property           | Description                                                                         | Type                                                          |
-| ------------------ | ----------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| type               | Render `<AuthPage>` forms by `type` property.                                       | `login` \| `register` \| `forgotPassword` \| `updatePassword` |
-| providers          | Render auth logins if `type` is `"login"`.                                          | [`IProvider[]`](#interface)                                   |
-| registerLink       | A custom node that will be rendered as a register link to the `<AuthPage>`.         | `React.ReactNode`                                             |
-| loginLink          | A custom node that will be rendered as a link to the `<AuthPage>`.                  | `React.ReactNode`                                             |
-| forgotPasswordLink | A custom node that will be rendered as a forgot password link to the `<AuthPage>`.  | `React.ReactNode`                                             |
-| wrapperProps       | Wrapper element props.                                                              | [`WrapperProps`](https://mui.com/material-ui/api/box/)        |
-| contentProps       | Content wrapper element props.                                                      | [`CardProps`](https://mui.com/material-ui/api/card/)          |
-| formProps          | Props for the form component.                                                       | [`**FormPropsType**`](#interface)                             |
-| renderContent      | Gives you default content you can use it to add some extra elements to the content. | `function(content: React.ReactNode) => React.ReactNode`       |
+<PropsTable module="@pankod/refine-mui/AuthPage" 
+wrapperProps-type="[`CardProps`](https://mui.com/material-ui/api/card/#props)"
+contentProps-type="[`CardContentProps`](https://mui.com/material-ui/api/card-content/#props)"
+headerProps-type="[`CardHeaderProps`](https://mui.com/material-ui/api/card-header/#props)"
+rememberMe-default="[`<Checkbox>Remember me</Checkbox>`](/docs/api-reference/mui/components/mui-auth-page/#rememberme)"
+/>
 
 ### Interface
 

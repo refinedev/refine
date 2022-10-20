@@ -35,11 +35,15 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     resourceNameOrRouteName: propResourceNameOrRouteName,
     recordItemId,
     hideText = false,
+    accessControl,
     ignoreAccessControlProvider = false,
     children,
     onClick,
     ...rest
 }) => {
+    const accessControlEnabled =
+        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const { showUrl: generateShowUrl } = useNavigation();
     const { Link } = useRouterContext();
 
@@ -56,7 +60,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
         action: "show",
         params: { id, resource },
         queryOptions: {
-            enabled: !ignoreAccessControlProvider,
+            enabled: accessControlEnabled,
         },
     });
 
@@ -72,11 +76,19 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
 
     const showUrl = generateShowUrl(propResourceName ?? resource.route!, id!);
 
+    if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
+        return null;
+    }
+
     return (
         <Link
             to={showUrl}
             replace={false}
             onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+                if (data?.can === false) {
+                    e.preventDefault();
+                    return;
+                }
                 if (onClick) {
                     e.preventDefault();
                     onClick(e);

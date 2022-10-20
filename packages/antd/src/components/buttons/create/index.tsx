@@ -34,11 +34,15 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
     resourceName: propResourceName,
     resourceNameOrRouteName: propResourceNameOrRouteName,
     hideText = false,
+    accessControl,
     ignoreAccessControlProvider = false,
     children,
     onClick,
     ...rest
 }) => {
+    const accessControlEnabled =
+        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const translate = useTranslate();
 
     const { Link } = useRouterContext();
@@ -54,7 +58,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
         resource: resourceName,
         action: "create",
         queryOptions: {
-            enabled: !ignoreAccessControlProvider,
+            enabled: accessControlEnabled,
         },
         params: {
             resource,
@@ -73,11 +77,19 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
 
     const createUrl = generateCreateUrl(propResourceName ?? resource.route!);
 
+    if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
+        return null;
+    }
+
     return (
         <Link
             to={createUrl}
             replace={false}
             onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+                if (data?.can === false) {
+                    e.preventDefault();
+                    return;
+                }
                 if (onClick) {
                     e.preventDefault();
                     onClick(e);
