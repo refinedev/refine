@@ -38,7 +38,7 @@
     "tsup": "^5.11.13"
   },
   "dependencies": {
-    "axios": "^0.26.1",
+    "axios": "^0.27.2",
     "query-string": "^7.1.1"
   },
   "repository": {
