@@ -1,4 +1,5 @@
 import React, { FC, PropsWithChildren, ReactNode } from "react";
+import styles from "./styles.module.css";
 
 type Props = {
     label?: ReactNode;
@@ -8,13 +9,11 @@ const Tooltip: FC<PropsWithChildren<Props>> = ({ label, children }) => {
     if (!label) return <>{children}</>;
 
     return (
-        <div className="relative flex flex-col items-center group">
+        <div className={`${styles.tooltip} group`}>
             {children}
-            <div className="absolute bottom-0 left-0 flex flex-col items-center invisible mb-6 transition-all ease-out delay-75 group-hover:visible">
-                <span className="relative z-50 p-2 text-white bg-black rounded-sm shadow-2xl w-60">
-                    {label}
-                </span>
-                <div className="w-3 h-3 -mt-2 rotate-45 bg-black" />
+            <div className={`${styles.tooltipContainer} group-hover:visible`}>
+                <span className={styles.tooltipContent}>{label}</span>
+                <div className={styles.tooltipArrow} />
             </div>
         </div>
     );
