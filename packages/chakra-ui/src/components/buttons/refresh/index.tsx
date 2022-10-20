@@ -4,7 +4,7 @@ import {
     RefineButtonTestIds,
     RefineRefreshButtonProps,
 } from "@pankod/refine-ui-types";
-import { ActionIcon, Button, ButtonProps } from "@mantine/core";
+import { IconButton, Button, ButtonProps } from "@chakra-ui/react";
 import { IconRefresh, TablerIconProps } from "@tabler/icons";
 
 export type RefreshButtonProps = RefineRefreshButtonProps<
@@ -15,10 +15,10 @@ export type RefreshButtonProps = RefineRefreshButtonProps<
 >;
 
 /**
- * `<RefreshButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button> `} component.
+ * `<RefreshButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> `} component.
  * to update the data shown on the page via the {@link https://refine.dev/docs/core/hooks/data/useOne `useOne`} method provided by your dataProvider.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/refresh-button} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/buttons/refresh-button} for more details.
  */
 export const RefreshButton: React.FC<RefreshButtonProps> = ({
     resourceNameOrRouteName,
@@ -49,20 +49,18 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
         dataProviderName,
     });
 
-    const { variant, styles, ...commonProps } = rest;
-
     return hideText ? (
-        <ActionIcon
+        <IconButton
+            variant="outline"
+            aria-label={translate("buttons.refresh", "Refresh")}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) =>
                 onClick ? onClick(e) : refetch()
             }
-            loading={isFetching}
+            disabled={isFetching}
             data-testid={RefineButtonTestIds.RefreshButton}
-            {...(variant ? {} : { variant: "default" })}
-            {...commonProps}
         >
             <IconRefresh size={18} {...svgIconProps} />
-        </ActionIcon>
+        </IconButton>
     ) : (
         <Button
             variant="default"
