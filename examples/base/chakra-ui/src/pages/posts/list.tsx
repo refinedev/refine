@@ -17,10 +17,10 @@ import {
 } from "@pankod/refine-chakra-ui";
 
 // import { ColumnFilter, ColumnSorter } from "../../components/table";
-// import { FilterElementProps, ICategory, IPost } from "../../interfaces";
+import { FilterElementProps, ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
-    const columns = React.useMemo<ColumnDef<{ id: string }>[]>(
+    const columns = React.useMemo<ColumnDef<IPost>[]>(
         () => [
             {
                 id: "id",
@@ -31,6 +31,14 @@ export const PostList: React.FC = () => {
                 id: "title",
                 header: "Title",
                 accessorKey: "title",
+                meta: {
+                    filterOperator: "contains",
+                },
+            },
+            {
+                id: "status",
+                header: "Status",
+                accessorKey: "status",
                 meta: {
                     filterOperator: "contains",
                 },
@@ -56,21 +64,21 @@ export const PostList: React.FC = () => {
             //         filterOperator: "eq",
             //     },
             // },
-            // {
-            //     id: "category.id",
-            //     header: "Category",
-            //     enableColumnFilter: false,
-            //     accessorKey: "category.id",
-            //     cell: function render({ getValue, table }) {
-            //         const meta = table.options.meta as {
-            //             categoriesData: GetManyResponse<ICategory>;
-            //         };
-            //         const category = meta.categoriesData?.data.find(
-            //             (item) => item.id === getValue(),
-            //         );
-            //         return category?.title ?? "Loading...";
-            //     },
-            // },
+            {
+                id: "category.id",
+                header: "Category",
+                enableColumnFilter: false,
+                accessorKey: "category.id",
+                cell: function render({ getValue, table }) {
+                    const meta = table.options.meta as {
+                        categoriesData: GetManyResponse<ICategory>;
+                    };
+                    const category = meta.categoriesData?.data.find(
+                        (item) => item.id === getValue(),
+                    );
+                    return category?.title ?? "Loading...";
+                },
+            },
             {
                 id: "createdAt",
                 header: "Created At",
@@ -119,24 +127,32 @@ export const PostList: React.FC = () => {
         },
     } = useTable({
         columns,
+        refineCoreProps: {
+            initialSorter: [
+                {
+                    field: "id",
+                    order: "desc",
+                },
+            ],
+        },
     });
 
-    // const categoryIds = tableData?.data?.map((item) => item.category.id) ?? [];
-    // const { data: categoriesData } = useMany<ICategory>({
-    //     resource: "categories",
-    //     ids: categoryIds,
-    //     queryOptions: {
-    //         enabled: categoryIds.length > 0,
-    //     },
-    // });
+    const categoryIds = tableData?.data?.map((item) => item.category.id) ?? [];
+    const { data: categoriesData } = useMany<ICategory>({
+        resource: "categories",
+        ids: categoryIds,
+        queryOptions: {
+            enabled: categoryIds.length > 0,
+        },
+    });
 
-    // setOptions((prev) => ({
-    //     ...prev,
-    //     meta: {
-    //         ...prev.meta,
-    //         categoriesData,
-    //     },
-    // }));
+    setOptions((prev) => ({
+        ...prev,
+        meta: {
+            ...prev.meta,
+            categoriesData,
+        },
+    }));
 
     return (
         <List>

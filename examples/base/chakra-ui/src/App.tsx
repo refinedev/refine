@@ -3,7 +3,7 @@ import { ChakraProvider, Layout, LightTheme } from "@pankod/refine-chakra-ui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import { PostList } from "./pages";
+import { PostList, PostCreate } from "./pages";
 
 const DashboardPage = () => {
     return <span>dashboard</span>;
@@ -76,7 +76,7 @@ const App: React.FC = () => {
                         parentName: "baz",
                         name: "posts",
                         list: PostList,
-                        create: () => <span>create</span>,
+                        create: PostCreate,
                     },
                 ]}
             />
