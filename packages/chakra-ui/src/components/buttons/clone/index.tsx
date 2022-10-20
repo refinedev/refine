@@ -10,7 +10,7 @@ import {
     RefineCloneButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
-import { ActionIcon, Anchor, Button, ButtonProps } from "@mantine/core";
+import { Button, ButtonProps, IconButton } from "@chakra-ui/react";
 import { IconSquarePlus, TablerIconProps } from "@tabler/icons";
 
 export type CloneButtonProps = RefineCloneButtonProps<
@@ -21,11 +21,11 @@ export type CloneButtonProps = RefineCloneButtonProps<
 >;
 
 /**
- * `<CloneButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button> component`}.
+ * `<CloneButton>` uses Mantine {@link https://chakra-ui.com/docs/components/button `<Button> component`}.
  * It uses the {@link https://refine.dev/docs/core/hooks/navigation/useNavigation#clone `clone`} method from {@link https://refine.dev/docs/core/hooks/navigation/useNavigation useNavigation} under the hood.
  * It can be useful when redirecting the app to the create page with the record id route of resource.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/clone-button} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/buttons/clone-button} for more details.
  *
  */
 export const CloneButton: React.FC<CloneButtonProps> = ({
@@ -69,11 +69,8 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
 
     const cloneUrl = generateCloneUrl(resource.route!, id!);
 
-    const { variant, styles, ...commonProps } = rest;
-
     return (
-        <Anchor
-            component={Link}
+        <Link
             to={cloneUrl}
             replace={false}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
@@ -84,19 +81,20 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
             }}
         >
             {hideText ? (
-                <ActionIcon
-                    disabled={data?.can === false}
+                <IconButton
+                    variant="outline"
+                    aria-label={translate("buttons.clone", "Clone")}
                     title={disabledTitle()}
-                    {...(variant ? {} : { variant: "default" })}
                     data-testid={RefineButtonTestIds.CloneButton}
-                    {...commonProps}
+                    {...rest}
                 >
                     <IconSquarePlus size={18} {...svgIconProps} />
-                </ActionIcon>
+                </IconButton>
             ) : (
                 <Button
+                    size="lg"
+                    variant="outline"
                     disabled={data?.can === false}
-                    variant="default"
                     leftIcon={<IconSquarePlus size={18} {...svgIconProps} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.CloneButton}
@@ -105,6 +103,6 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
                     {children ?? translate("buttons.clone", "Clone")}
                 </Button>
             )}
-        </Anchor>
+        </Link>
     );
 };
