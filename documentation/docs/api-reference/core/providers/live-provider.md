@@ -177,7 +177,7 @@ If you don't handle unsubscription it could lead to memory leaks.
 
 This method is used to publish an event on client side. Beware that publishing events on client side is not recommended and best practice is to publish events from server side. You can refer [Publish Events from API](#publish-events-from-api) to see which events must be published from the server.
 
-This `publish` is used in [realated hooks](#publish-events-from-hooks). When `publish` is used, subscribers to these events are notifyed. You can also publish your custom events using [`usePublish`](/api-reference/core/hooks/live/usePublish.md).
+This `publish` is used in [realated hooks](#publish-events-from-hooks). When `publish` is used, subscribers to these events are notified. You can also publish your custom events using [`usePublish`](/api-reference/core/hooks/live/usePublish.md).
 
 ```ts title="liveProvider.ts"
 const liveProvider = (client: Ably.Realtime): LiveProvider => {
@@ -247,17 +247,17 @@ const { data } = useList({ liveMode: "auto" });
 
 ### `auto`
 
-Queries of related resource are invalidated in Realtime as new events from subscription arrive.  
+Queries of related resource are invalidated in Realtime as new events from subscription arrive.
 For example data from a `useTable` hook will be automatically updated when data is changed.
 
 ### `manual`
 
-Queries of related resource are **not invalidated** in Realtime, instead [`onLiveEvent`](#onliveevent) is run with the `event` as new events from subscription arrive.  
+Queries of related resource are **not invalidated** in Realtime, instead [`onLiveEvent`](#onliveevent) is run with the `event` as new events from subscription arrive.
 For example while in an edit form, it would be undesirable for data shown to change. `manual` mode can be used to prevent data from changing.
 
 ### `off`
 
-Disables live mode.  
+Disables live mode.
 For example it can be used to disable some parts of the app if you have app wide live mode configuration in `<Refine>`.
 
 ## `onLiveEvent`
