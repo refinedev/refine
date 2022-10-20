@@ -5,10 +5,7 @@ interface PaymentDetailsProps {
     paymentStatus: PaymentStatus;
 }
 
-export const PaymentDetails: React.FC<PaymentDetailsProps> = ({
-    payments,
-    paymentStatus,
-}) => {
+export const PaymentDetails: React.FC<PaymentDetailsProps> = ({ payments }) => {
     return (
         <div>
             <h2 className="text-base-semi">Payment</h2>
@@ -32,7 +29,7 @@ const StripeDetails = ({ payment }: { payment: Payment }) => {
         last4: string;
         exp_year: number;
         exp_month: number;
-    } = (payment.data.charges as any).data[0].payment_method_details.card;
+    } = (payment.data.charges as any).data[0].payment_method_details.card; // eslint-disable-line
 
     return (
         <div className="text-base-regular flex flex-col">

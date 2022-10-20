@@ -1112,9 +1112,9 @@ So far, we have implemented the followings:
 ## Supabase Real Time Support
 
 **refine** has a built-in support for [Supabase Real Time](https://supabase.com/docs/guides/realtime). It means that when you create, update, or delete a record, the changes will be reflected in the app in real-time.  
-Required Supabase Real Time setup is already done in the [`@pankod/refine-supabase`](https://github.com/pankod/refine/tree/master/packages/supabase)` data provider. 
+Required Supabase Real Time setup is already done in the [`@pankod/refine-supabase`](https://github.com/refinedev/refine/tree/master/packages/supabase)` data provider. 
 
- [You can check the Supabase Real Time integration in the data provider source code  &#8594](https://github.com/pankod/refine/blob/master/packages/supabase/src/index.ts#L325)
+ [You can check the Supabase Real Time integration in the data provider source code  &#8594](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L325)
 
 We only need to register refine's Supabase Live Provider to the `liveProvider` property to enable real-time support.
 
@@ -1163,11 +1163,11 @@ For live features to work automatically, we setted `liveMode: "auto"` in the opt
 :::tip
 **refine** offers out-of-the-box live provider support:
 
--   **Ably** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://stackblitz.com/github/pankod/refine/tree/master/examples/ably/?preset=node)
--   **Supabase** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/supabase/src/index.ts#L187)
--   **Appwrite** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/appwrite/src/index.ts#L252)
--   **Hasura** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/hasura/src/liveProvider/index.ts#L16)
--   **Nhost** &#8594 [Source Code](https://github.com/pankod/refine/blob/master/packages/nhost/src/liveProvider/index.ts#L16)
+-   **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://stackblitz.com/github/refinedev/refine/tree/master/examples/ably/?preset=node)
+-   **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
+-   **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
+-   **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/hasura/src/liveProvider/index.ts#L16)
+-   **Nhost** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/nhost/src/liveProvider/index.ts#L16)
 :::
 
 ## Using `metaData` to pass values to data provider
@@ -1181,7 +1181,7 @@ Take a look at the useTable hook in List page we created on the [previous sectio
 
 ### `select` - Handling one-to-many relationship
 
-We pass a `select` value in `metaData` object to perform relational database operation in [Supabase data provider](https://github.com/pankod/refine/blob/master/packages/supabase/src/index.ts). The data provider methods are using Supabase [`select`](https://supabase.io/docs/reference/javascript/select) property internally.
+We pass a `select` value in `metaData` object to perform relational database operation in [Supabase data provider](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts). The data provider methods are using Supabase [`select`](https://supabase.io/docs/reference/javascript/select) property internally.
 
 
 In this way, we can get the `title` data from the `categories` table and display it on the List page.
@@ -1277,7 +1277,7 @@ If you filter based on a table from an inner join, you will need to use `.select
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/dataProvider/supabase/?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/dataProvider/supabase/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-supabase-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

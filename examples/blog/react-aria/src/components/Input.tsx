@@ -3,6 +3,7 @@ import { useTextField } from "@react-aria/textfield";
 import { AriaTextFieldProps } from "react-aria";
 
 export default function Input(props: AriaTextFieldProps) {
+    // eslint-disable-next-line
     const ref: RefObject<any> = React.useRef();
     const {
         inputProps: { className, ...inputProps },

@@ -70,6 +70,7 @@ export const EditPostDrawer: React.FC<UseModalFormReturnType> = ({
                         control={control}
                         name="status"
                         rules={{ required: "This field is required" }}
+                        // eslint-disable-next-line
                         defaultValue={null as any}
                         render={({ field }) => (
                             <Autocomplete
@@ -96,6 +97,7 @@ export const EditPostDrawer: React.FC<UseModalFormReturnType> = ({
                         control={control}
                         name="category"
                         rules={{ required: "This field is required" }}
+                        // eslint-disable-next-line
                         defaultValue={null as any}
                         render={({ field }) => (
                             <Autocomplete

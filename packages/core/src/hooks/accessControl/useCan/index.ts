@@ -33,7 +33,7 @@ export const useCan = ({
 
     /**
      * Since `react-query` stringifies the query keys, it will throw an error for a circular dependency if we include `React.ReactNode` elements inside the keys.
-     * The feature in #2220(https://github.com/pankod/refine/issues/2220) includes such change and to fix this, we need to remove `icon` property in the `resource`
+     * The feature in #2220(https://github.com/refinedev/refine/issues/2220) includes such change and to fix this, we need to remove `icon` property in the `resource`
      */
     const { resource: _resource, ...paramsRest } = params ?? {};
 
@@ -56,6 +56,7 @@ export const useCan = ({
                 action,
                 resource,
                 params: { ...paramsRest, resource: restResource },
+                enabled: queryOptions?.enabled,
             },
         ],
         // Enabled check for `can` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.

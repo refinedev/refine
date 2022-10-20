@@ -379,6 +379,23 @@ module.exports = {
                     items: [
                         {
                             type: "category",
+                            label: "Hooks",
+                            items: [
+                                {
+                                    type: "category",
+                                    label: "Form",
+                                    items: [
+                                        "api-reference/mantine/hooks/form/useDrawerForm",
+                                        "api-reference/mantine/hooks/form/useForm",
+                                        "api-reference/mantine/hooks/form/useModalForm",
+                                        "api-reference/mantine/hooks/form/useStepsForm",
+                                    ],
+                                },
+                                "api-reference/mantine/hooks/useSelect",
+                            ],
+                        },
+                        {
+                            type: "category",
                             label: "Components",
                             items: [
                                 "api-reference/mantine/components/mantine-auth-page",
@@ -409,23 +426,30 @@ module.exports = {
                                         "api-reference/mantine/components/buttons/show-button",
                                     ],
                                 },
+                                {
+                                    type: "category",
+                                    label: "Fields",
+                                    items: [
+                                        "api-reference/mantine/components/fields/boolean",
+                                        "api-reference/mantine/components/fields/date",
+                                        "api-reference/mantine/components/fields/email",
+                                        "api-reference/mantine/components/fields/file",
+                                        "api-reference/mantine/components/fields/markdown",
+                                        "api-reference/mantine/components/fields/number",
+                                        "api-reference/mantine/components/fields/tag",
+                                        "api-reference/mantine/components/fields/text",
+                                        "api-reference/mantine/components/fields/url",
+                                    ],
+                                },
                             ],
                         },
                         {
                             type: "category",
-                            label: "Hooks",
+                            label: "Customization",
                             items: [
-                                {
-                                    type: "category",
-                                    label: "Form",
-                                    items: [
-                                        "api-reference/mantine/hooks/form/useDrawerForm",
-                                        "api-reference/mantine/hooks/form/useForm",
-                                        "api-reference/mantine/hooks/form/useModalForm",
-                                        "api-reference/mantine/hooks/form/useStepsForm",
-                                    ],
-                                },
-                                "api-reference/mantine/hooks/useSelect",
+                                "api-reference/mantine/customization/theme",
+                                "api-reference/mantine/customization/layout",
+                                "api-reference/mantine/customization/sider",
                             ],
                         },
                     ],

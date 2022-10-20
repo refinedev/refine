@@ -23,7 +23,7 @@ export const AccountNav: React.FC = () => {
             </div>
             <div className={s.links}>
                 <div>
-                    <h3 className="">Account</h3>
+                    <h3 className="text-2xl font-bold">Account</h3>
                     <div>
                         <ul className={s.list}>
                             <li>
@@ -75,7 +75,7 @@ const AccountNavLink = ({ href, route, children }: AccountNavLinkProps) => {
         <Link
             href={href}
             className={cn("text-accent-6", {
-                "text-accent-9 font-semibold": active,
+                "text-accent-9 font-semibold underline": active,
             })}
         >
             {children}

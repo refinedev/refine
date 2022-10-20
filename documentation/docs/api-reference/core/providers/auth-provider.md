@@ -36,9 +36,9 @@ Authorization hooks are used to manage authentication and authorization operatio
 :::tip
 You can find auth provider examples made with **refine**
 
--   **Auth0** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/authProvider/auth0/) - [Demo](examples/auth-provider/auth0.md)
--   **Google** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/authProvider/googleLogin) - [Demo](examples/auth-provider/google-auth.md)
--   **OTP Login** &#8594 [Source Code](https://github.com/pankod/refine/tree/master/examples/authProvider/otpLogin) - [Demo](examples/auth-provider/otpLogin.md)
+-   **Auth0** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/authProvider/auth0/) - [Demo](examples/auth-provider/auth0.md)
+-   **Google** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/authProvider/googleLogin) - [Demo](examples/auth-provider/google-auth.md)
+-   **OTP Login** &#8594 [Source Code](https://github.com/refinedev/refine/tree/master/examples/authProvider/otpLogin) - [Demo](examples/auth-provider/otpLogin.md)
 
 :::
 
@@ -898,7 +898,7 @@ These hooks can be used with the `authProvider` authentication and authorization
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/authentication/antd?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/authentication/antd?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-authentication-example"
 ></iframe>

@@ -27,6 +27,7 @@ export const ProductShow: React.FC<IResourceComponentsProps> = () => {
             <Title level={5}>Images</Title>
             <Space wrap>
                 {image ? (
+                    // eslint-disable-next-line
                     image.map((img: any) => (
                         <ImageField
                             key={img.name}

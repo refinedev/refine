@@ -82,7 +82,7 @@ Submit the code with APIs without sacrificing the flexibility of the backend. It
 
 ### Refine
 
-If you are looking for a framework that will provide extreme customizability to your application, [refine](https://github.com/pankod/refine) will be a very good alternative. Refine doesn't have any back-end support yet, but if you have a rest-full API or GraphQL api it allows you to build very flexible applications.
+If you are looking for a framework that will provide extreme customizability to your application, [refine](https://github.com/refinedev/refine) will be a very good alternative. Refine doesn't have any back-end support yet, but if you have a rest-full API or GraphQL api it allows you to build very flexible applications.
 
 Refine comes with Ant Design and can also be used headless if you prefer.
 

@@ -19,7 +19,7 @@
     },
     "name": "@pankod/refine-cloud",
     "description": "refine cloud",
-    "author": "Pankod",
+    "author": "refine",
     "module": "dist/esm/index.js",
     "peerDependencies": {
         "@pankod/refine-core": "^3.23.2",
@@ -48,7 +48,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/pankod/refine.git",
+        "url": "https://github.com/refinedev/refine.git",
         "directory": "packages/react-hook-form"
     },
     "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",

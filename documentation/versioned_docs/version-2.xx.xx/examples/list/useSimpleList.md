@@ -3,7 +3,7 @@ id: useSimpleList
 title: useSimpleList
 ---
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/list/useSimpleList)
+[View Source](https://github.com/refinedev/refine/tree/master/examples/list/useSimpleList)
 
 <iframe src="https://codesandbox.io/embed/refine-use-simple-list-example-3098n?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}

@@ -92,8 +92,8 @@ interface IPost {
 
 ### Properties
 
-| Property | Description                                                                                            | Type                                                                                                                                                         | Default |
-| -------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| value    | Number value                                                                                           | `React.ReactChild`                                                                                                                                           |         |
-| locale   | Override the browser locale in the date formatting. Passed as first argument to `Intl.NumberFormat()`. | `string` \| `undefined`                                                                                                                                      |         |
-| options  | Number formatting options. Passed as second argument to `Intl.NumberFormat()`.                         | [`Intl.NumberFormatOptions`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat) \| `undefined` |         |
+<PropsTable module="@pankod/refine-mui/NumberField" value-description="Number value" />
+
+:::tip External Props
+It also accepts all props of Material UI [Text](https://mui.com/material-ui/react-text-field/).
+:::

@@ -1,19 +1,17 @@
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
-  <img src="https://raw.githubusercontent.com/pankod/refine/master/logo.png"   style="width:250px;" align="center" />
+  <img src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"   style="width:250px;" align="center" />
 </a>
 <br />
 <br />
 
 <div align="center">
     <a href="https://refine.dev">Home Page</a> |
-    <a href="https://refine.dev/demo/">Demo</a> | 
+    <a href="https://discord.gg/refine">Discord</a> |
+    <a href="https://refine.dev/examples/">Examples</a> | 
     <a href="https://refine.dev/blog/">Blog</a> | 
     <a href="https://refine.dev/docs/">Documentation</a> | 
-    <a href="https://github.com/pankod/refine/projects/1">Roadmap</a> | 
-    <a href="https://refine.dev/docs/examples/tutorial/">Examples</a> | 
-    <a href="https://refine.dev/enterprise/">Enterprise</a> | 
-    <a href="https://discord.gg/UuU3XCc3J5">Discord</a>
+    <a href="https://github.com/refinedev/refine/projects/1">Roadmap</a>
 </div>
 
 </div>
@@ -30,6 +28,7 @@
 
 <a href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=362220&theme=light&period=daily" alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0032;to&#0032;build&#0032;web&#0032;apps&#0032;3x&#0032;faster | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
+[![Awesome](https://github.com/refinedev/awesome-refine/raw/main/images/badge.svg)](https://github.com/refinedev/awesome-refine)
 [![Maintainability](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/maintainability)](https://codeclimate.com/github/pankod/refine/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/test_coverage)](https://codeclimate.com/github/pankod/refine/test_coverage)
 [![npm version](https://img.shields.io/npm/v/@pankod/refine-mui.svg)](https://www.npmjs.com/package/@pankod/refine-mui)
@@ -40,7 +39,7 @@
 </div>
 
 <div align="center">
-  <sub>Created by <a href="https://www.pankod.com">Pankod</a></sub>
+  <sub>Created by <a href="https://refine.dev">refine</a></sub>
 </div>
 
 ## About
@@ -76,7 +75,7 @@ Refine offers lots of out-of-the box functionality for rapid development, withou
 
 📦 **Out-of-the-box** : Routing, networking, authentication, state management, i18n and UI.
 
-🔌 **Backend Agnostic** : Connects to any custom backend. Built-in support for [REST API](https://github.com/pankod/refine/tree/master/packages/simple-rest), [GraphQL](https://github.com/pankod/refine/tree/master/packages/graphql), [NestJs CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud), [Airtable](https://github.com/pankod/refine/tree/master/packages/airtable), [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi), [Strapi v4](https://github.com/pankod/refine/tree/master/packages/strapi-v4), [Strapi GraphQL](https://github.com/pankod/refine/tree/master/packages/strapi-graphql), [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase), [Hasura](https://github.com/pankod/refine/tree/master/packages/hasura), [Appwrite](https://github.com/pankod/refine/tree/master/packages/appwrite), [Firebase](https://firebase.google.com/), [Directus](https://directus.io/) and [Altogic](https://github.com/pankod/refine/tree/master/packages/altogic).
+🔌 **Backend Agnostic** : Connects to any custom backend. Built-in support for [REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest), [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql), [NestJs CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud), [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable), [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi), [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4), [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql), [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase), [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura), [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite), [Firebase](https://firebase.google.com/), [Directus](https://directus.io/) and [Altogic](https://github.com/refinedev/refine/tree/master/packages/altogic).
 
 📝 **Native Typescript Core** : You can always opt out for plain JavaScript.
 
@@ -111,7 +110,7 @@ Access to external sources and API's happen via providers which are basically pl
 <br/>
 
 <div align="center">
-    <img src="https://raw.githubusercontent.com/pankod/refine/master/documentation/static/img/getting-started/refine_architecture.png" width="400px" />
+    <img src="https://raw.githubusercontent.com/refinedev/refine/master/documentation/static/img/getting-started/refine_architecture.png" width="400px" />
 </div>
 
 ## Benchmark
@@ -124,7 +123,7 @@ In addition to **shorter development** times and **overall performance gains**, 
 <br/>
 
 <div align="center">
-    <img src="https://raw.githubusercontent.com/pankod/refine/master/documentation/static/img/getting-started/benchmark.png" width="400px" align="center" />
+    <img src="https://raw.githubusercontent.com/refinedev/refine/master/documentation/static/img/getting-started/benchmark.png" width="400px" align="center" />
 </div>
 
 ## Quick Start
@@ -254,11 +253,11 @@ interface ICategory {
 ```
 
 ## Roadmap
-You can find Refine's <a href="https://github.com/pankod/refine/projects/1">Public Roadmap here!</a> 
+You can find Refine's <a href="https://github.com/refinedev/refine/projects/1">Public Roadmap here!</a> 
 
 ## Stargazers
 
-[![Stargazers repo roster for pankod/refine](https://reporoster.com/stars/pankod/refine)](https://github.com/pankod/refine/stargazers)
+[![Stargazers repo roster for refinedev/refine](https://reporoster.com/stars/refinedev/refine)](https://github.com/refinedev/refine/stargazers)
 
 ## Contribution
 
@@ -268,7 +267,7 @@ If you are willing to fix an issue or propose a feature; all PRs with clear expl
 
 ## License
 
-Licensed under the MIT License, Copyright © 2021-present Pankod
+Licensed under the MIT License, Copyright © 2021-present refine
 
 ## Special Thanks
 

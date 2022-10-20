@@ -57,12 +57,6 @@ export type UseSelectProps<TData, TError> = {
      */
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
     /**
-     * Amount of records to fetch in select box list.
-     * @deprecated use [`pagination`](https://refine.dev/docs/api-reference/core/interfaceReferences/#pagination) instead
-     * @default `undefined`
-     */
-    fetchSize?: number;
-    /**
      * Pagination option from [`useList()`](/docs/api-reference/core/hooks/data/useList/)
      * @type {  current?: number; pageSize?: number;}
      * @default `undefined`
@@ -87,6 +81,12 @@ export type UseSelectProps<TData, TError> = {
      * @default `default`
      */
     dataProviderName?: string;
+    /**
+     * Amount of records to fetch in select box list.
+     * @deprecated use [`pagination`](https://refine.dev/docs/api-reference/core/interfaceReferences/#pagination) instead
+     * @default `undefined`
+     */
+    fetchSize?: number;
 } & SuccessErrorNotification &
     LiveModeProps;
 

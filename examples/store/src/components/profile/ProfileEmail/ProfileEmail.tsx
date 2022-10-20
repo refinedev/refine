@@ -14,6 +14,7 @@ type UpdateCustomerEmailFormData = {
 };
 
 export const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
+    // eslint-disable-next-line
     const [errorMessage, setErrorMessage] = React.useState<string | undefined>(
         undefined,
     );

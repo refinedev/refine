@@ -5,8 +5,9 @@ title: Edit
 
 ```tsx live shared
 setRefineProps({
-    Sider: () => null,
     notificationProvider: RefineMantine.notificationProvider,
+    Layout: RefineMantine.Layout,
+    Sider: () => null,
 });
 
 const Wrapper = ({ children }) => {
@@ -47,7 +48,7 @@ We will show what `<Edit>` does using properties with examples.
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout, EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -131,7 +132,6 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
@@ -165,7 +165,7 @@ It allows adding titles inside the `<Edit>` component. if you don't pass title p
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout, EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -187,7 +187,6 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
@@ -223,7 +222,7 @@ Clicking on the save button will submit your form.
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout, EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -245,7 +244,6 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
@@ -281,7 +279,7 @@ When clicked on, the delete button executes the `useDelete` method provided by t
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout, EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -333,7 +331,6 @@ const App = () => {
             routerProvider={routerProvider}
             dataProvider={customDataProvider}
             authProvider={authProvider}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
@@ -371,7 +368,7 @@ setInitialRoutes(["/custom/23"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
-import { Edit } from "@pankod/refine-mantine";
+import { Layout, Edit } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -398,6 +395,7 @@ const App: React.FC = () => {
                 ],
                 // highlight-end
             }}
+            Layout={Layout}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[{ name: "posts" }]}
         />
@@ -419,7 +417,7 @@ The `<Edit>` component reads the `id` information from the route by default. `re
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=350px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout, EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -460,7 +458,6 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
@@ -498,7 +495,7 @@ Determines which mode mutation will have while executing `<DeleteButton>`.
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout, EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -543,7 +540,6 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
@@ -608,7 +604,7 @@ To customize the back button or to disable it, you can use the `goBack` property
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout, EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -630,7 +626,6 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
@@ -662,7 +657,7 @@ To toggle the loading state of the `<Edit/>` component, you can use the `isLoadi
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout, EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -684,7 +679,6 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
@@ -713,13 +707,12 @@ render(
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-mantine` package.
 
-<!-- TODO: Add breadcrumb link when the Breadcrumb doc is created. -->
-<!-- [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/mantine/components/breadcrumb.md) -->
+[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/mantine/components/breadcrumb.md)
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout, EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -753,7 +746,6 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
@@ -787,7 +779,7 @@ If you want to customize the wrapper of the `<Edit/>` component, you can use the
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout, EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -817,7 +809,6 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
@@ -851,7 +842,7 @@ If you want to customize the header of the `<Edit/>` component, you can use the 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout, EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -881,7 +872,6 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
@@ -915,7 +905,7 @@ If you want to customize the content of the `<Edit/>` component, you can use the
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout, EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -945,7 +935,6 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
@@ -977,7 +966,7 @@ You can customize the buttons at the header by using the `headerButtons` propert
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout, EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -1009,7 +998,6 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
@@ -1043,7 +1031,7 @@ You can customize the wrapper element of the buttons at the header by using the 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout, EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -1078,7 +1066,6 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
@@ -1110,7 +1097,7 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout, EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -1140,7 +1127,6 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",
@@ -1174,7 +1160,7 @@ You can customize the wrapper element of the buttons at the footer by using the 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { Layout, EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -1208,7 +1194,6 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            Layout={Layout}
             resources={[
                 {
                     name: "posts",

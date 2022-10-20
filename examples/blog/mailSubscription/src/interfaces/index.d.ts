@@ -1,5 +1,5 @@
 export interface ISubscriber {
-    id: any;
+    id: any; // eslint-disable-line
     name: string;
     email: string;
     created_at: string;

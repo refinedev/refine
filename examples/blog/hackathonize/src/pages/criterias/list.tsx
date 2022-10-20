@@ -10,7 +10,7 @@ import {
     TextField,
 } from "@pankod/refine-antd";
 
-import { CriteriaType, HackathonType, TeamType } from "interfaces";
+import { CriteriaType, TeamType } from "interfaces";
 
 export const CriteriasList: React.FC = () => {
     const { tableProps, tableQueryResult } = useTable<CriteriaType>();

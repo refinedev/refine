@@ -93,8 +93,8 @@ export interface IUser {
 
 ### Properties
 
-| Property | Description | Type              | Default |
-| -------- | ----------- | ----------------- | ------- |
-| value    | Email value | `React.ReactNode` |         |
+<PropsTable module="@pankod/refine-mui/EmailField"/>
 
-[Refer to the documentation for the rest of Link properties. &#8594](https://mui.com/material-ui/react-link/#main-content)
+:::tip External Props
+It also accepts all props of Material UI [Link](https://mui.com/material-ui/react-link/#main-content).
+:::

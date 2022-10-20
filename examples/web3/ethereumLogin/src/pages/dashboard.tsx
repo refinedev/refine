@@ -28,8 +28,10 @@ export const DashboardPage: React.FC = () => {
     const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);
 
+    // eslint-disable-next-line
     const handleModal = async (values: any) => {
         setLoading(true);
+        // eslint-disable-next-line
         const tx: any | undefined = await sendEthereum(
             data?.address || "",
             values.receiver,

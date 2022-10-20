@@ -155,13 +155,13 @@ The Multipart file upload process with **refine** is very simple. How to use it 
 
 [Refer to the **refine** Multipart Upload guide for more information. →](https://refine.dev/docs/guides-and-concepts/upload/multipart-upload/) 
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/upload/multipartUpload)
+[View Source](https://github.com/refinedev/refine/tree/master/examples/upload/multipartUpload)
 
 ## Refine Multipart Upload Live Codesandbox Example
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/upload/antd/multipart?autoresize=1&fontsize=14&theme=dark&view=preview"
+
+<iframe src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/upload/antd/multipart?embed=1&view=preview&theme=dark&preset=node&ctl=1"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-     title="refine-multipart-upload-example"
+     title="refine-react-hook-form-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
-

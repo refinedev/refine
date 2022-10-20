@@ -20,7 +20,6 @@ import {
     Table,
     List,
     Skeleton,
-    Icon,
 } from "@pankod/refine-antd";
 
 import dayjs from "dayjs";
@@ -196,9 +195,8 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                     )}
                     {courierInfoBox(
                         t("orders.courier.deliveryTime"),
-                        <Icon
+                        <BikeWhiteIcon
                             className="mobile"
-                            component={BikeWhiteIcon}
                             style={{ color: "#ffff", fontSize: 32 }}
                         />,
                         "15:05",

@@ -3,7 +3,7 @@ id: rtl
 title: RTL (Right to Left)
 ---
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/customization/rtl)
+[View Source](https://github.com/refinedev/refine/tree/master/examples/customization/rtl)
 
 <iframe src="https://codesandbox.io/embed/refine-rtl-example-3lzv3?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}

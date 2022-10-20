@@ -18,6 +18,6 @@ const PizzaIconSVG: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     </svg>
 );
 
-export const PizzaIcon = (props: any) => (
+export const PizzaIcon = (props: React.ComponentProps<typeof Icon>) => (
     <Icon component={PizzaIconSVG} {...props} />
 );

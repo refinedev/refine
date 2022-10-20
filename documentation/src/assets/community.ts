@@ -5,7 +5,7 @@ export const community = [
         title: "VISIT OUR",
         subtitle: "GITHUB REPO",
         icon: Github,
-        url: "https://github.com/pankod/refine",
+        url: "https://github.com/refinedev/refine",
     },
     {
         title: "JOIN OUR",

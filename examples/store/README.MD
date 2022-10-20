@@ -13,7 +13,7 @@ https://store.refine.dev/
 
 ### Participants
 
-refine.dev - [GitHub](https://github.com/pankod/refine) - [Twitter](https://twitter.com/refine_dev) - [Discord](https://discord.gg/refine)
+refine.dev - [GitHub](https://github.com/refinedev/refine) - [Twitter](https://twitter.com/refine_dev) - [Discord](https://discord.gg/refine)
 
 
 ### Description
@@ -67,7 +67,7 @@ Currently, we are using this store and have already processed real shopping tran
 Clone the project
 
 ```
-git clone https://github.com/pankod/refine --depth 1
+git clone https://github.com/refinedev/refine --depth 1
 ```
 
 Go to the project directory.

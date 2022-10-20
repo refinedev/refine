@@ -23,6 +23,7 @@ import {
 import { TopMenu } from "components/bar";
 
 export const PostList: React.FC = () => {
+    // eslint-disable-next-line
     const csvInputRef = useRef<any>(null);
     const [total, setTotal] = useState(0);
     const [processed, setProcessed] = useState(0);
@@ -196,6 +197,7 @@ export const PostList: React.FC = () => {
                     <Select
                         style={{ marginLeft: 8 }}
                         value={getState().pagination.pageSize}
+                        // eslint-disable-next-line
                         onChange={(_: any, selection: any) => {
                             setPageSize(selection.value);
                         }}
@@ -216,6 +218,7 @@ export const PostList: React.FC = () => {
                                     getState().pagination.pageIndex + 1
                                 }
                                 width={130}
+                                // eslint-disable-next-line
                                 onChange={(value: any) => {
                                     const page = value ? Number(value) - 1 : 0;
                                     setPageIndex(page);

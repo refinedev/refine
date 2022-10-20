@@ -8,18 +8,27 @@ import { Text, TextProps } from "@mantine/core";
 
 dayjs.extend(LocalizedFormat);
 
+const defaultLocale = dayjs.locale();
+
 export type DateFieldProps = RefineFieldDateProps<ConfigType, TextProps>;
 
 /**
  * This field is used to display dates. It uses {@link https://day.js.org/docs/en/display/format `Day.js`} to display date format and
  * Mantine {@link https://mantine.dev/core/text/ `<Text>`} component
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/fields/date} for more details.
+ * @see {@link https://refine.dev/docs/api-reference/mantine/components/fields/date} for more details.
  */
 export const DateField: React.FC<DateFieldProps> = ({
     value,
+    locales,
     format: dateFormat = "L",
     ...rest
 }) => {
-    return <Text {...rest}>{dayjs(value).format(dateFormat)}</Text>;
+    return (
+        <Text {...rest}>
+            {dayjs(value)
+                .locale(locales || defaultLocale)
+                .format(dateFormat)}
+        </Text>
+    );
 };

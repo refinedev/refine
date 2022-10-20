@@ -5,7 +5,7 @@
 replicaCount: 3
 
 image:
-  repository: ghcr.io/pankod/refine/refine-store
+  repository: ghcr.io/refinedev/refine/refine-store
   pullPolicy: IfNotPresent
 
 imagePullSecrets:

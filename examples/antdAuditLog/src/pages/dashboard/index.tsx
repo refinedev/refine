@@ -26,7 +26,8 @@ export const DashboardPage: React.FC = () => {
         // },
     });
 
-    const send = async (values: any) => {
+    type AuthRecord = Record<"name" | "username" | "email", string | undefined>;
+    const send = async (values: AuthRecord) => {
         const { name, username, email } = values;
         return await refineSDK.log.create({
             resource: "auth",

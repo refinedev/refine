@@ -128,15 +128,15 @@ useRegisterActions(customAction);
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/commandPalette/kbar?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/commandPalette/kbar?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-kbar-example"
 ></iframe>
 
 [kbar]: https://github.com/timc1/kbar
 [kbar-actions]: https://kbar.vercel.app/docs/concepts/actions
-[refine-kbar]: https://github.com/pankod/refine/tree/master/packages/kbar
+[refine-kbar]: https://github.com/refinedev/refine/tree/master/packages/kbar
 [access-contol]: https://refine.dev/docs/core/providers/accessControl-provider/
-[usecanwithoutcache]: https://github.com/pankod/refine/blob/master/packages/core/src/hooks/accessControl/useCanWithoutCache.ts
-[refine-finefoods]: https://github.com/pankod/refine/blob/master/examples/fineFoods/admin/mui/src/hooks/useOrderCustomKbarActions/index.tsx
+[usecanwithoutcache]: https://github.com/refinedev/refine/blob/master/packages/core/src/hooks/accessControl/useCanWithoutCache.ts
+[refine-finefoods]: https://github.com/refinedev/refine/blob/master/examples/fineFoods/admin/mui/src/hooks/useOrderCustomKbarActions/index.tsx
 [superplate-url]: https://github.com/pankod/superplate

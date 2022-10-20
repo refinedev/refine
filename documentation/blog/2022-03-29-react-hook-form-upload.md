@@ -124,6 +124,39 @@ npm install react-hook-form
 npm run start
 ```
 
+
+
+---
+
+<div className="banner-container">
+<div className="banner-header" >Stop wasting your time copy/pasting your table code all over your application!</div >
+
+
+
+Meet the headless, React-based solution to build sleek **CRUD** applications. With refine, you can be confident that your codebase will always stay clean and boilerplate-free.
+
+Try [refine](https://github.com/pankod/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
+
+    
+
+<div>
+<a href="https://github.com/pankod/refine">
+   <img  src="/img/generic_banner.png" alt="refine blog logo" /> 
+</a>
+</div>
+
+<br/>
+
+
+**refine** is an open-source, React-based framework for building CRUD applications without constraints. It’s headless by design and seamlessly works with **any custom design** or **UI framework** you favor. For convenience, it ships with ready-made integrations for **Ant Design System, Material UI and Mantine UI**.
+
+It can **speed up your development time up to 3X** without compromising freedom on styling, customization and project workflow.
+
+Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials, and example projects.
+
+</div>
+
+---
 ## Multipart File Upload with React Hook Form
 
 We created our React project and installed our react hook form package. Now let's create a form and manage it with the react hook form.
@@ -203,6 +236,16 @@ Our project is ready! With React Hook Form, we can now send the selected file to
 </div>
 <br />
 
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
+
+
+
 ## Are You Looking React Web Framework?
 
 A React-based framework for building internal tools, rapidly. **refine** offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to admin panels, B2B applications and dashboards.
@@ -229,7 +272,7 @@ It allows you to manage your forms and send data to your server with the [refine
 
 [Refer to the refine-react-hook-form adapter documentation for detailed information. →](/docs/packages/documentation/react-hook-form/useForm/)
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/reactHookForm/useForm)
+[View Source](https://github.com/refinedev/refine/tree/master/examples/reactHookForm/useForm)
 
 You can manage your form very easily with the `refine-react-hook-form adapter`. The data created in the form will be automatically saved to the database with the **refine** `onFinish` method.
 
@@ -361,7 +404,7 @@ As you can see, we have easily saved both our data such as title, category, stat
 
 ## Refine Multipart Upload Live CodeSandbox Example
 
-<iframe src="https://codesandbox.io/embed/github/pankod/refine/tree/master/examples/reactHookForm/useForm?autoresize=1&fontsize=14&theme=dark&view=preview"
+<iframe src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/form/reactHookForm/useForm/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-react-hook-form-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

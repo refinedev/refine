@@ -2,6 +2,7 @@ import React, { ElementType } from "react";
 import { useHover } from "@react-aria/interactions";
 import { AriaButtonProps } from "react-aria";
 
+// eslint-disable-next-line
 export default function Header(props: AriaButtonProps<ElementType> | any) {
     const { hoverProps, isHovered } = useHover({});
 

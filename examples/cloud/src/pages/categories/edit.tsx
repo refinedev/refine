@@ -30,6 +30,7 @@ export const CategoryEdit: React.FC<IResourceComponentsProps> = () => {
         );
     }, []);
 
+    // eslint-disable-next-line
     const onFinish = (values: any) => {
         const { title } = values;
         updateMutate(

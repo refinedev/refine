@@ -215,6 +215,7 @@ export const ArticlePage: React.FC = () => {
                                                               .username,
                                                       )
                                                     : followUser(
+                                                          // eslint-disable-next-line
                                                           article!.data.author
                                                               .username,
                                                       );
@@ -340,6 +341,7 @@ export const ArticlePage: React.FC = () => {
                                                               .username,
                                                       )
                                                     : followUser(
+                                                          // eslint-disable-next-line
                                                           article!.data.author
                                                               .username,
                                                       );
@@ -420,7 +422,7 @@ export const ArticlePage: React.FC = () => {
                                 <br />
 
                                 <div className="card">
-                                    {commentData?.data.map((item: any) => {
+                                    {commentData?.data.map((item: any) => { // eslint-disable-line 
                                         return (
                                             <>
                                                 <div className="card-block">

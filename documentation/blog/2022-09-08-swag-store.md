@@ -55,7 +55,7 @@ As we've already stated, the **main objective of our swag strategy is gifting**.
   📚 Creating refine related content like blog posts, articles, tutorial videos, etc.  
   🐞 Finding and reporting problems in our software while also helping in their solution.  
   👍 Supporting us on social media with your likes, shares, and comments.  
-  ☝️ Participating in and responding to discussions on [GitHub](https://github.com/pankod/refine), [Discord](https://discord.gg/refine), [Reddit](https://www.reddit.com/r/refine), and [Twitter](https://twitter.com/refine_dev).  
+  ☝️ Participating in and responding to discussions on [GitHub](https://github.com/refinedev/refine), [Discord](https://discord.gg/refine), [Reddit](https://www.reddit.com/r/refine), and [Twitter](https://twitter.com/refine_dev).  
   ✍️ Contributing to our open source libraries.  
   🔃 Creating pull requests on GitHub.
 
@@ -77,7 +77,7 @@ For the launch of our [swag store](https://store.refine.dev/), we have prepared 
 
 
  <div>
-      <a href="https://github.com/pankod/refine">
+      <a href="https://github.com/refinedev/refine">
         <img style={{marginRight: "20px", width:"300px"}} src={github} alt="github" />
       </a>
       <a href="https://discord.gg/refine">

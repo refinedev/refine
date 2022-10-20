@@ -32,7 +32,7 @@ Another significant problem with password-based login is that keeping track of d
 
 When we talk about OTP-based authentication, users need to enter a six-digit OTP number sent to them through an automated call or SMS when they want to access the application.
 
-You can see the example app we'll build in the article from [here](https://github.com/pankod/refine/tree/next/examples/refine-supabase-auth)
+You can see the example app we'll build in the article from [here](https://github.com/refinedev/refine/tree/next/examples/refine-supabase-auth)
 
 Steps we'll cover:
 - [What is Supabase?](#what-is-supabase)
@@ -80,7 +80,7 @@ npx superplate-cli -p refine-react refine-supabase-auth
 
 Choose the headless option while specifying the UI framework, as you will be integrating tailwind in this tutorial. You can select your preferred package manager; this tutorial will use yarn. Choose the `supabase` option when selecting the Data Provider.
 
-Here is the source code of [refine supabase data provider](https://github.com/pankod/refine/tree/master/packages/supabase)
+Here is the source code of [refine supabase data provider](https://github.com/refinedev/refine/tree/master/packages/supabase)
 
 ## Installing Tailwind CSS for refine project
 
@@ -232,7 +232,7 @@ The backend setup is now complete. In the next section, you will start building 
 
 <br/>
 <div>
-<a href="https://github.com/pankod/refine">
+<a href="https://github.com/refinedev/refine">
   <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
 </a>
 </div>
@@ -627,11 +627,11 @@ Following this article's steps, you should now have a refine application with OT
 
 Low-code React frameworks are great for gaining development speed but they often fall short of flexibility if you need extensive styling and customization for your project.
 
-Check out [refine](https://github.com/pankod/refine),if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
+Check out [refine](https://github.com/refinedev/refine),if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
 
 
 <div>
-<a href="https://github.com/pankod/refine">
+<a href="https://github.com/refinedev/refine">
     <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
 </a>
 </div>
@@ -643,5 +643,5 @@ It can speed up your development time up to **3X** without compromising freedom 
 
 **refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
 
-Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials, and example projects.
+Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.
 

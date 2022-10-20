@@ -193,16 +193,15 @@ export const MyDeleteComponent = () => {
 };
 ```
 
+### `accessControl`
 
-### `ignoreAccessControlProvider`
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
-It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
-
-```tsx 
+```tsx
 import { DeleteButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
-    return <DeleteButton ignoreAccessControlProvider />;
+    return <DeleteButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
 };
 ```
 

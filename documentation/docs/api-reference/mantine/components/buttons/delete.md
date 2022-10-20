@@ -4,10 +4,12 @@ title: Delete
 ---
 
 ```tsx live shared
+const { default: routerProvider } = RefineReactRouterV6;
 setRefineProps({
-    Sider: () => null,
-    Layout: RefineMantine.Layout,
+    routerProvider,
     notificationProvider: RefineMantine.notificationProvider,
+    Layout: RefineMantine.Layout,
+    Sider: () => null,
     catchAll: <RefineMantine.ErrorComponent />,
 });
 
@@ -37,7 +39,6 @@ When you try to delete something, a pop-up shows up and asks for confirmation. W
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
@@ -138,7 +139,6 @@ interface IPost {
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
@@ -165,7 +165,6 @@ render(
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
@@ -194,7 +193,6 @@ const App = () => {
 
     return (
         <Refine
-            routerProvider={routerProvider}
             dataProvider={customDataProvider}
             resources={[
                 {
@@ -227,7 +225,6 @@ Clicking the button will trigger the [`useDelete`](/api-reference/core/hooks/dat
 setInitialRoutes(["/"]);
 
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
@@ -258,7 +255,6 @@ const App = () => {
 
     return (
         <Refine
-            routerProvider={routerProvider}
             dataProvider={customDataProvider}
             resources={[
                 {
@@ -295,7 +291,6 @@ For example, let's `console.log` after deletion:
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
@@ -332,7 +327,6 @@ const App = () => {
 
     return (
         <Refine
-            routerProvider={routerProvider}
             dataProvider={customDataProvider}
             resources={[
                 {
@@ -360,7 +354,6 @@ Determines which mode mutation will have while executing `<DeleteButton>`.
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
@@ -389,7 +382,6 @@ const App = () => {
 
     return (
         <Refine
-            routerProvider={routerProvider}
             dataProvider={customDataProvider}
             resources={[
                 {
@@ -415,7 +407,6 @@ It is used to show and not show the text of the button. When `true`, only the bu
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
@@ -444,7 +435,6 @@ const App = () => {
 
     return (
         <Refine
-            routerProvider={routerProvider}
             dataProvider={customDataProvider}
             resources={[
                 {
@@ -463,15 +453,15 @@ render(
 );
 ```
 
-### `ignoreAccessControlProvider`
+### `accessControl`
 
-It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
 import { DeleteButton } from "@pankod/refine-mantine";
 
 export const MyListComponent = () => {
-    return <DeleteButton ignoreAccessControlProvider />;
+    return <DeleteButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
 };
 ```
 
@@ -482,7 +472,6 @@ You can change the text that appears when you confirm a transaction with `confir
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
 import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
@@ -520,7 +509,6 @@ const App = () => {
 
     return (
         <Refine
-            routerProvider={routerProvider}
             dataProvider={customDataProvider}
             resources={[
                 {

@@ -8,7 +8,7 @@ import dataProvider, { authProvider } from "@pankod/refine-medusa";
 import NextNProgress from "nextjs-progressbar";
 import { ProductCollection } from "@medusajs/medusa";
 
-import { API_URL, PROXY_URL } from "@lib/constants";
+import { PROXY_URL } from "@lib/constants";
 import { Dashboard, SEO } from "@components";
 import Layout from "@components/common/Layout";
 import { CartProvider, ManagedUIContext } from "@lib/context";
@@ -35,7 +35,7 @@ function MyApp({
                 DashboardPage={Dashboard}
                 authProvider={authProvider(PROXY_URL)}
                 routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL)}
+                dataProvider={dataProvider(PROXY_URL)}
                 resources={[
                     {
                         name: "dummy",

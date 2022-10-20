@@ -252,15 +252,15 @@ export const MyDeleteComponent = () => {
 };
 ```
 
-### `ignoreAccessControlProvider`
+### `accessControl`
 
-It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
 import { DeleteButton } from "@pankod/refine-mui";
 
 export const MyListComponent = () => {
-    return <DeleteButton ignoreAccessControlProvider />;
+    return <DeleteButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
 };
 ```
 
@@ -287,3 +287,7 @@ export const MyDeleteComponent = () => {
 ### Props
 
 <PropsTable module="@pankod/refine-mui/DeleteButton" />
+
+:::tip External Props
+It also accepts all props of Material UI [Button](https://mui.com/material-ui/react-button/).
+:::

@@ -8,6 +8,7 @@ export const ProductCreate: React.FC<IResourceComponentsProps> = () => {
     const [form] = Form.useForm();
     const { mutate, isLoading } = useCloudMutation();
 
+    // eslint-disable-next-line
     const onFinish = (values: any) => {
         const { name, price } = values;
         mutate(

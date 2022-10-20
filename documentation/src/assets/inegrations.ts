@@ -156,7 +156,7 @@ export const integrations: IntegrationsType = {
             contributors: [
                 {
                     name: "rturan29",
-                    url: "https://www.npmjs.com/package/refine-firebase",
+                    url: "https://github.com/rturan29",
                 },
             ],
         },

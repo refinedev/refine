@@ -27,7 +27,9 @@ export function useSearchMeta(asPath: string) {
 }
 
 // Removes empty query parameters from the query object
+// eslint-disable-next-line
 export const filterQuery = (query: any) =>
+    // eslint-disable-next-line
     Object.keys(query).reduce<any>((obj, key) => {
         if (query[key]?.length) {
             obj[key] = query[key];

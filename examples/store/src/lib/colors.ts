@@ -1,4 +1,5 @@
 export function getRandomPairOfColors() {
+    // eslint-disable-next-line
     const colors = ["#37B679", "#DA3C3C", "#3291FF", "#7928CA", "#79FFE1"];
     // const getRandomIdx = () => random(0, colors.length - 1);
     // const idx = getRandomIdx();

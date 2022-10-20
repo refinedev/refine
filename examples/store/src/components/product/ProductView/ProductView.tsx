@@ -24,7 +24,10 @@ export const ProductView: FC<ProductViewProps> = ({
 }) => {
     const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>({});
 
-    const variant: ProductVariant = getProductVariant(product, selectedOptions);
+    const variant: ProductVariant | undefined = getProductVariant(
+        product,
+        selectedOptions,
+    );
     const price = useProductPrice({ id: product.id, variantId: variant?.id });
 
     const selectedPrice = useMemo(() => {

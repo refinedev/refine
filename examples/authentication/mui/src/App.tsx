@@ -39,21 +39,21 @@ const App: React.FC = () => {
             localStorage.setItem("email", email);
             return Promise.resolve();
         },
-        register: (params: any) => {
+        register: (params) => {
             if (params.email && params.password) {
                 localStorage.setItem("email", params.email);
                 return Promise.resolve();
             }
             return Promise.reject();
         },
-        updatePassword: (params: any) => {
+        updatePassword: (params) => {
             if (params.newPassword) {
                 //we can update password here
                 return Promise.resolve();
             }
             return Promise.reject();
         },
-        forgotPassword: (params: any) => {
+        forgotPassword: (params) => {
             if (params.email) {
                 //we can send email with forgot password link here
                 return Promise.resolve();
