@@ -204,14 +204,16 @@ export const AddAddress: React.FC = () => {
                         </div>
                         <div className="mt-4">
                             <Button
-                                className="min-h-0 !border-gray-200 !bg-gray-200 !text-gray-900"
+                                variant="flat"
+                                className="min-h-0 !border-gray-200 !bg-gray-200 !text-gray-900 hover:!bg-gray-100 hover:!border-gray-100"
                                 onClick={handleClose}
                             >
                                 Cancel
                             </Button>
                             <Button
+                                variant="flat"
                                 type="submit"
-                                className="min-h-0"
+                                className="min-h-0 hover:!border-accent-6"
                                 disabled={formLoading}
                             >
                                 Save
