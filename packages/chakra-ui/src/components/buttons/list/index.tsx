@@ -11,7 +11,7 @@ import {
     RefineButtonTestIds,
     RefineListButtonProps,
 } from "@pankod/refine-ui-types";
-import { ActionIcon, Anchor, Button, ButtonProps } from "@mantine/core";
+import { IconButton, Button, ButtonProps } from "@chakra-ui/react";
 import { IconList, TablerIconProps } from "@tabler/icons";
 
 export type ListButtonProps = RefineListButtonProps<
@@ -22,11 +22,11 @@ export type ListButtonProps = RefineListButtonProps<
 >;
 
 /**
- * `<ListButton>` is using uses Mantine {@link https://mantine.dev/core/button/ `<Button> `} component.
+ * `<ListButton>` is using uses Mantine {@link https://chakra-ui.com/docs/components/button `<Button> `} component.
  * It uses the  {@link https://refine.dev/docs/core/hooks/navigation/useNavigation#list `list`} method from {@link https://refine.dev/docs/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when redirecting the app to the list page route of resource}.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/list-button} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/buttons/list-button} for more details.
  **/
 export const ListButton: React.FC<ListButtonProps> = ({
     resourceNameOrRouteName,
@@ -69,11 +69,8 @@ export const ListButton: React.FC<ListButtonProps> = ({
 
     const listUrl = generateListUrl(resource.route!);
 
-    const { variant, styles, ...commonProps } = rest;
-
     return (
-        <Anchor
-            component={Link}
+        <Link
             to={listUrl}
             replace={false}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
@@ -84,18 +81,26 @@ export const ListButton: React.FC<ListButtonProps> = ({
             }}
         >
             {hideText ? (
-                <ActionIcon
-                    {...(variant ? {} : { variant: "default" })}
+                <IconButton
+                    variant="outline"
+                    aria-label={translate(
+                        `${resourceName}.titles.list`,
+                        userFriendlyResourceName(
+                            resource.label ?? resourceName,
+                            "plural",
+                        ),
+                    )}
                     disabled={data?.can === false}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.ListButton}
-                    {...commonProps}
+                    {...rest}
                 >
                     <IconList size={18} {...svgIconProps} />
-                </ActionIcon>
+                </IconButton>
             ) : (
                 <Button
-                    variant="default"
+                    size="lg"
+                    variant="outline"
                     disabled={data?.can === false}
                     leftIcon={<IconList size={18} {...svgIconProps} />}
                     title={disabledTitle()}
@@ -112,6 +117,6 @@ export const ListButton: React.FC<ListButtonProps> = ({
                         )}
                 </Button>
             )}
-        </Anchor>
+        </Link>
     );
 };
