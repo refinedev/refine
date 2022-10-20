@@ -626,10 +626,11 @@ export const PostList: React.FC = () => {
 
 ### Properties
 
-| Property                  | Description                                                                                   | Type                                                  |
-| ------------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| refineCoreProps           | Configuration object for the core of the [`useTable`][use-table-core]                         | [`UseTableProps`](/api-reference/core/hooks/useTable.md#properties) |
-| Tanstack Table Properties | See [TanStack Table](https://tanstack.com/table/v8/docs/api/core/table#options) documentation |
+<PropsTable module="@pankod/refine-react-table/useTable" />
+
+:::tip External Props
+It also accepts all props of [TanStack Table](https://tanstack.com/table/v8/docs/api/core/table#options).
+:::
 
 ### Type Parameters
 

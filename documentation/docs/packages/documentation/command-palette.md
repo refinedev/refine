@@ -123,7 +123,7 @@ useRegisterActions(customAction);
 ```
 
 :::tip
-`refine-kbar` export the `kbar`. You can use all `kbar` features.
+`refine-kbar` exports the [`kbar`](https://github.com/timc1/kbar). You can use all [`kbar`](https://github.com/timc1/kbar) features.
 :::
 
 ## Live StackBlitz Example

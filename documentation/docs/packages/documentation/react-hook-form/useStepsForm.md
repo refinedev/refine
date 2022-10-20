@@ -427,20 +427,13 @@ export const PostEdit: React.FC = () => {
 
 ### Properties
 
-| Property                   | Description                                                         | Type                                                |
-| -------------------------- | ------------------------------------------------------------------- | --------------------------------------------------- |
-| stepsProps                 | Configuration object for the steps                                  | [`StepsPropsType`](#stepspropstype)                 |
-| refineCoreProps            | Configuration object for the core of the [`useForm`][use-form-core] | [`UseFormProps`](/api-reference/core/hooks/useForm.md#properties) |
-| React Hook Form Properties | See [React Hook Form][react-hook-form-use-form] documentation       |
+<PropsTable module="@pankod/refine-react-hook-form/useStepsForm" />
 
-<br />
+> `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/api-reference/core/components/refine-config.md)>** component.
 
-> -   #### StepsPropsType
->
-> | Property       | Description                                             | Type      | Default |
-> | -------------- | ------------------------------------------------------- | --------- | ------- |
-> | defaultStep    | Allows you to set the initial step                      | `number`  | `0`     |
-> | isBackValidate | Whether to validation the current step when going back. | `boolean` | `false` |
+:::tip External Props
+It also accepts all props of [useForm](https://react-hook-form.com/api/useform) hook available in the  [React Hook Form](https://react-hook-form.com/).
+:::
 
 ### Return values
 

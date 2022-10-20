@@ -22,6 +22,17 @@ export type UseStepsFormProps<
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
 > = UseFormProps<TData, TError, TVariables, TContext> & {
+    /**
+     * @description Configuration object for the steps.
+     * `defaultStep`: Allows you to set the initial step.
+     * 
+     * `isBackValidate`: Whether to validation the current step when going back.
+     * @type `{
+      defaultStep?: number;
+      isBackValidate?: boolean;
+      }`
+     * @default `defaultStep = 0` `isBackValidate = false`
+     */
     stepsProps?: {
         defaultStep?: number;
         isBackValidate?: boolean;
