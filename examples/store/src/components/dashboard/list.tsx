@@ -89,7 +89,7 @@ export const Dashboard: React.FC<
                 ))}
             </Grid>
             <Marquee>
-                {data?.data.slice(3, 10).map((product) => (
+                {data?.data.slice(0, 10).map((product) => (
                     <ProductCard
                         key={product.id}
                         product={product}
