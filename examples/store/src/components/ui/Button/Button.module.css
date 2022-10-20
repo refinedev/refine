@@ -3,50 +3,50 @@
   px-10 py-5 leading-6 transition ease-in-out duration-150
   shadow-sm text-center justify-center uppercase
   border border-transparent items-center text-sm font-semibold
-  tracking-wide;
+  tracking-wide !important;
   max-height: 64px;
 }
 
 .root:hover {
-  @apply border-accent-9 bg-accent-6;
+  @apply border-accent-9 bg-accent-6 !important;
 }
 
 .root:focus {
-  @apply shadow-outline-normal outline-none;
+  @apply shadow-outline-normal outline-none !important;
 }
 
 .root[data-active] {
-  @apply bg-accent-6;
+  @apply bg-accent-6 !important;
 }
 
 .loading {
-  @apply bg-accent-1 text-accent-3 border-accent-2 cursor-not-allowed;
+  @apply bg-accent-1 text-accent-3 border-accent-2 cursor-not-allowed !important;
 }
 
 .slim {
-  @apply py-2 transform-none normal-case;
+  @apply py-2 transform-none normal-case !important;
 }
 
 .ghost {
-  @apply border border-accent-2 bg-accent-0 text-accent-9 text-sm;
+  @apply border border-accent-2 bg-accent-0 text-accent-9 text-sm !important;
 }
 
 .ghost:hover {
-  @apply border-accent-9 bg-accent-9 text-accent-0;
+  @apply border-accent-9 bg-accent-9 text-accent-0 !important;
 }
 
 .naked {
-  @apply bg-transparent font-semibold border-none shadow-none outline-none py-0 px-0;
+  @apply bg-transparent font-semibold border-none shadow-none outline-none py-0 px-0 !important;
 }
 
 .naked:hover,
 .naked:focus {
-  @apply bg-transparent border-none;
+  @apply bg-transparent border-none !important;
 }
 
 .disabled,
 .disabled:hover {
-  @apply text-accent-4 border-accent-2 bg-accent-1 cursor-not-allowed;
+  @apply text-accent-4 border-accent-2 bg-accent-1 cursor-not-allowed !important;
   filter: grayscale(1);
   -webkit-transform: translateZ(0);
   -webkit-perspective: 1000;
