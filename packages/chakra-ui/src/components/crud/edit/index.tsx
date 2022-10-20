@@ -1,18 +1,6 @@
 import React from "react";
 import { RefineCrudEditProps } from "@pankod/refine-ui-types";
 import {
-    Box,
-    BoxProps,
-    Card,
-    CardProps,
-    Group,
-    GroupProps,
-    ActionIcon,
-    Stack,
-    Title,
-    LoadingOverlay,
-} from "@mantine/core";
-import {
     ResourceRouterParams,
     useMutationMode,
     useNavigation,
@@ -21,6 +9,14 @@ import {
     useRouterContext,
     useTranslate,
 } from "@pankod/refine-core";
+import {
+    Box,
+    BoxProps,
+    Heading,
+    HStack,
+    IconButton,
+    Stack,
+} from "@chakra-ui/react";
 import { IconArrowLeft } from "@tabler/icons";
 
 import {
@@ -36,10 +32,10 @@ import { Breadcrumb } from "@components/breadcrumb";
 export type EditProps = RefineCrudEditProps<
     SaveButtonProps,
     DeleteButtonProps,
-    GroupProps,
-    GroupProps,
-    CardProps,
-    GroupProps,
+    BoxProps,
+    BoxProps,
+    BoxProps,
+    BoxProps,
     BoxProps
 >;
 
@@ -90,9 +86,6 @@ export const Edit: React.FC<EditProps> = (props) => {
 
     const id = recordItemId ?? idFromRoute;
 
-    const loadingOverlayVisible =
-        isLoading ?? saveButtonProps?.disabled ?? false;
-
     const defaultHeaderButtons = (
         <>
             {!recordItemId && (
@@ -132,13 +125,18 @@ export const Edit: React.FC<EditProps> = (props) => {
 
     const buttonBack =
         goBackFromProps === (false || null) ? null : (
-            <ActionIcon onClick={routeFromAction ? goBack : undefined}>
+            <IconButton
+                aria-label="back"
+                variant="outline"
+                size="sm"
+                onClick={routeFromAction ? goBack : undefined}
+            >
                 {typeof goBackFromProps !== "undefined" ? (
                     goBackFromProps
                 ) : (
                     <IconArrowLeft />
                 )}
-            </ActionIcon>
+            </IconButton>
         );
 
     const headerButtons = headerButtonsFromProps
@@ -156,15 +154,14 @@ export const Edit: React.FC<EditProps> = (props) => {
         : defaultFooterButtons;
 
     return (
-        <Card p="md" {...wrapperProps}>
-            <LoadingOverlay visible={loadingOverlayVisible} />
-            <Group position="apart" {...headerProps}>
+        <Box bg="white" borderRadius="md" px="4" py="3" {...wrapperProps}>
+            <Box mb="3" {...headerProps}>
                 <Stack spacing="xs">
                     {breadcrumb}
-                    <Group spacing="xs">
+                    <HStack spacing="xs">
                         {buttonBack}
                         {title ?? (
-                            <Title order={3} transform="capitalize">
+                            <Heading as="h3" size="md">
                                 {translate(
                                     `${resource.name}.titles.edit`,
                                     `Edit ${userFriendlyResourceName(
@@ -172,20 +169,26 @@ export const Edit: React.FC<EditProps> = (props) => {
                                         "singular",
                                     )}`,
                                 )}
-                            </Title>
+                            </Heading>
                         )}
-                    </Group>
+                    </HStack>
                 </Stack>
-                <Group spacing="xs" {...headerButtonProps}>
+                <Box spacing="xs" {...headerButtonProps}>
                     {headerButtons}
-                </Group>
-            </Group>
-            <Box pt="sm" {...contentProps}>
+                </Box>
+            </Box>
+            <Box mb="3" {...contentProps}>
                 {children}
             </Box>
-            <Group position="right" spacing="xs" mt="md" {...footerButtonProps}>
+            <Box
+                display="flex"
+                justifyContent="flex-end"
+                spacing="xs"
+                mt="md"
+                {...footerButtonProps}
+            >
                 {footerButtons}
-            </Group>
-        </Card>
+            </Box>
+        </Box>
     );
 };
