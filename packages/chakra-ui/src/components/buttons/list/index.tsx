@@ -99,7 +99,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
                 </IconButton>
             ) : (
                 <Button
-                    size="lg"
+                    size="sm"
                     variant="outline"
                     disabled={data?.can === false}
                     leftIcon={<IconList size={18} {...svgIconProps} />}

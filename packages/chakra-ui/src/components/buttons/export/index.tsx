@@ -41,7 +41,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
         </IconButton>
     ) : (
         <Button
-            size="lg"
+            size="sm"
             variant="outline"
             loading={loading}
             leftIcon={<IconFileExport size={18} {...svgIconProps} />}

@@ -85,7 +85,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                 </IconButton>
             ) : (
                 <Button
-                    size="lg"
+                    size="sm"
                     variant="outline"
                     disabled={data?.can === false}
                     leftIcon={<IconSquarePlus size={18} />}
