@@ -4,7 +4,7 @@ import {
     RefineSaveButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
-import { ActionIcon, Button, ButtonProps } from "@mantine/core";
+import { IconButton, Button, ButtonProps } from "@chakra-ui/react";
 import { IconDeviceFloppy, TablerIconProps } from "@tabler/icons";
 
 export type SaveButtonProps = RefineSaveButtonProps<
@@ -15,10 +15,10 @@ export type SaveButtonProps = RefineSaveButtonProps<
 >;
 
 /**
- * `<SaveButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button> `}.
+ * `<SaveButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> `}.
  * It uses it for presantation purposes only. Some of the hooks that refine has adds features to this button.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/save-button} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/buttons/save-button} for more details.
  */
 export const SaveButton: React.FC<SaveButtonProps> = ({
     hideText = false,
@@ -28,19 +28,19 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
-    const { variant, styles, ...commonProps } = rest;
-
     return hideText ? (
-        <ActionIcon
-            {...(variant ? {} : { variant: "filled", color: "primary" })}
+        <IconButton
+            variant="outline"
+            aria-label={translate("buttons.save", "Save")}
             data-testid={RefineButtonTestIds.SaveButton}
-            {...commonProps}
+            {...rest}
         >
             <IconDeviceFloppy size={18} {...svgIconProps} />
-        </ActionIcon>
+        </IconButton>
     ) : (
         <Button
-            variant="filled"
+            size="md"
+            colorScheme="primary"
             leftIcon={<IconDeviceFloppy size={18} {...svgIconProps} />}
             data-testid={RefineButtonTestIds.SaveButton}
             {...rest}
