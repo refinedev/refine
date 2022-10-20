@@ -34,6 +34,20 @@ export type UseModalFormProps<
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
 > = UseFormProps<TData, TError, TVariables, TContext> & {
+    /**
+     * @description Configuration object for the modal.
+     * `defaultVisible`: Initial visibility state of the modal.
+     * 
+     * `autoSubmitClose`: Whether the form should be submitted when the modal is closed.
+     * 
+     * `autoResetForm`: Whether the form should be reset when the form is submitted.
+     * @type `{
+      defaultVisible?: boolean;
+      autoSubmitClose?: boolean;
+      autoResetForm?: boolean;
+      }`
+     * @default `defaultVisible = false` `autoSubmitClose = true` `autoResetForm = true`
+     */
     modalProps?: {
         defaultVisible?: boolean;
         autoSubmitClose?: boolean;
