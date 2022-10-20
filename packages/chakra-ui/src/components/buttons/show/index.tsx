@@ -10,7 +10,7 @@ import {
     RefineButtonTestIds,
     RefineShowButtonProps,
 } from "@pankod/refine-ui-types";
-import { ActionIcon, Anchor, Button, ButtonProps } from "@mantine/core";
+import { IconButton, Button, ButtonProps } from "@chakra-ui/react";
 import { IconEye, TablerIconProps } from "@tabler/icons";
 
 export type ShowButtonProps = RefineShowButtonProps<
@@ -21,11 +21,11 @@ export type ShowButtonProps = RefineShowButtonProps<
 >;
 
 /**
- * `<ShowButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button> `} component.
+ * `<ShowButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> `} component.
  * It uses the {@link https://refine.dev/docs/core/hooks/navigation/useNavigation#show `show`} method from {@link https://refine.dev/docs/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when red sirecting the app to the show page with the record id route of resource.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/show-button} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/buttons/show-button} for more details.
  */
 export const ShowButton: React.FC<ShowButtonProps> = ({
     resourceNameOrRouteName,
@@ -68,11 +68,8 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
 
     const showUrl = generateShowUrl(resource.route!, id!);
 
-    const { variant, styles, ...commonProps } = rest;
-
     return (
-        <Anchor
-            component={Link}
+        <Link
             to={showUrl}
             replace={false}
             onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
@@ -83,18 +80,20 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
             }}
         >
             {hideText ? (
-                <ActionIcon
-                    {...(variant ? {} : { variant: "default" })}
+                <IconButton
+                    variant="outline"
+                    aria-label={translate("buttons.show", "Show")}
                     disabled={data?.can === false}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.ShowButton}
-                    {...commonProps}
+                    {...rest}
                 >
                     <IconEye size={18} {...svgIconProps} />
-                </ActionIcon>
+                </IconButton>
             ) : (
                 <Button
-                    variant="default"
+                    variant="outline"
+                    size="sm"
                     disabled={data?.can === false}
                     leftIcon={<IconEye size={18} {...svgIconProps} />}
                     title={disabledTitle()}
@@ -104,6 +103,6 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
                     {children ?? translate("buttons.show", "Show")}
                 </Button>
             )}
-        </Anchor>
+        </Link>
     );
 };
