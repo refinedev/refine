@@ -99,7 +99,7 @@ export const Create: React.FC<CreateProps> = (props) => {
 
     return (
         <Box bg="white" borderRadius="md" px="4" py="3" {...wrapperProps}>
-            <Box mb="3" align="center" {...headerProps}>
+            <Box mb="3" {...headerProps}>
                 <Stack spacing="xs">
                     {breadcrumb}
                     <HStack>
