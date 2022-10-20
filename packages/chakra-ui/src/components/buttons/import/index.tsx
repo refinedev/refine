@@ -4,7 +4,7 @@ import {
     RefineImportButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
-import { ActionIcon, Button, ButtonProps } from "@mantine/core";
+import { IconButton, Button, ButtonProps } from "@chakra-ui/react";
 import { IconFileImport, TablerIconProps } from "@tabler/icons";
 
 export type ImportButtonProps = RefineImportButtonProps<
@@ -17,9 +17,9 @@ export type ImportButtonProps = RefineImportButtonProps<
 
 /**
  * `<ImportButton>` is compatible with the {@link https://refine.dev/docs/core/hooks/import-export/useImport/ `useImport`} core hook.
- * It uses uses Mantine {@link https://mantine.dev/core/button/ `<Button> component`} and native html {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input  `<input>`} element.
+ * It uses uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> component`} and native html {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input  `<input>`} element.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/import-button} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/buttons/import-button} for more details.
  */
 export const ImportButton: React.FC<ImportButtonProps> = ({
     inputProps,
@@ -31,24 +31,23 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
-    const { variant, styles, ...commonProps } = rest;
-
     return (
         <label htmlFor="contained-button-file">
             <input {...inputProps} id="contained-button-file" multiple hidden />
             {hideText ? (
-                <ActionIcon
-                    {...(variant ? {} : { variant: "default" })}
-                    component="span"
+                <IconButton
+                    variant="outline"
+                    aria-label={translate("buttons.import", "Import")}
                     loading={loading}
                     data-testid={RefineButtonTestIds.ImportButton}
-                    {...commonProps}
+                    {...rest}
                 >
                     <IconFileImport size={18} {...svgIconProps} />
-                </ActionIcon>
+                </IconButton>
             ) : (
                 <Button
-                    variant="default"
+                    size="lg"
+                    variant="outline"
                     component="span"
                     leftIcon={<IconFileImport size={18} {...svgIconProps} />}
                     loading={loading}
