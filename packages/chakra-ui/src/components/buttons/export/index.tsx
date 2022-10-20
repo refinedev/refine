@@ -4,7 +4,7 @@ import {
     RefineExportButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
-import { ActionIcon, Button, ButtonProps } from "@mantine/core";
+import { IconButton, Button, ButtonProps } from "@chakra-ui/react";
 import { IconFileExport, TablerIconProps } from "@tabler/icons";
 
 export type ExportButtonProps = RefineExportButtonProps<
@@ -15,10 +15,10 @@ export type ExportButtonProps = RefineExportButtonProps<
 >;
 
 /**
- * `<ExportButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button> `} component with a default export icon and a default text with "Export".
+ * `<ExportButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> `} component with a default export icon and a default text with "Export".
  * It only has presentational value.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/export-button} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/buttons/export-button} for more details.
  */
 export const ExportButton: React.FC<ExportButtonProps> = ({
     hideText = false,
@@ -29,20 +29,20 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
-    const { variant, styles, ...commonProps } = rest;
-
     return hideText ? (
-        <ActionIcon
-            {...(variant ? {} : { variant: "default" })}
+        <IconButton
+            variant="outline"
+            aria-label={translate("buttons.export", "Export")}
             loading={loading}
             data-testid={RefineButtonTestIds.ExportButton}
-            {...commonProps}
+            {...rest}
         >
             <IconFileExport size={18} {...svgIconProps} />
-        </ActionIcon>
+        </IconButton>
     ) : (
         <Button
-            variant="default"
+            size="lg"
+            variant="outline"
             loading={loading}
             leftIcon={<IconFileExport size={18} {...svgIconProps} />}
             data-testid={RefineButtonTestIds.ExportButton}
