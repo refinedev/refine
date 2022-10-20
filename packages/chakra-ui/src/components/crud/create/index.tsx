@@ -1,18 +1,6 @@
 import React from "react";
 import { RefineCrudCreateProps } from "@pankod/refine-ui-types";
 import {
-    Box,
-    BoxProps,
-    Card,
-    CardProps,
-    Group,
-    GroupProps,
-    ActionIcon,
-    Stack,
-    Title,
-    LoadingOverlay,
-} from "@mantine/core";
-import {
     ResourceRouterParams,
     useNavigation,
     useResourceWithRoute,
@@ -24,13 +12,21 @@ import { IconArrowLeft } from "@tabler/icons";
 
 import { SaveButton, SaveButtonProps } from "@components/buttons";
 import { Breadcrumb } from "@components/breadcrumb";
+import {
+    Box,
+    BoxProps,
+    Heading,
+    HStack,
+    IconButton,
+    Stack,
+} from "@chakra-ui/react";
 
 export type CreateProps = RefineCrudCreateProps<
     SaveButtonProps,
-    GroupProps,
-    GroupProps,
-    CardProps,
-    GroupProps,
+    BoxProps,
+    BoxProps,
+    BoxProps,
+    BoxProps,
     BoxProps
 >;
 
@@ -64,9 +60,6 @@ export const Create: React.FC<CreateProps> = (props) => {
 
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
 
-    const loadingOverlayVisible =
-        isLoading ?? saveButtonProps?.disabled ?? false;
-
     const defaultFooterButtons = (
         <SaveButton
             {...(isLoading ? { disabled: true } : {})}
@@ -76,13 +69,18 @@ export const Create: React.FC<CreateProps> = (props) => {
 
     const buttonBack =
         goBackFromProps === (false || null) ? null : (
-            <ActionIcon onClick={routeFromAction ? goBack : undefined}>
+            <IconButton
+                aria-label="back"
+                variant="outline"
+                size="sm"
+                onClick={routeFromAction ? goBack : undefined}
+            >
                 {typeof goBackFromProps !== "undefined" ? (
                     goBackFromProps
                 ) : (
                     <IconArrowLeft />
                 )}
-            </ActionIcon>
+            </IconButton>
         );
 
     const headerButtons = headerButtonsFromProps
@@ -100,15 +98,14 @@ export const Create: React.FC<CreateProps> = (props) => {
         : defaultFooterButtons;
 
     return (
-        <Card p="md" {...wrapperProps}>
-            <LoadingOverlay visible={loadingOverlayVisible} />
-            <Group position="apart" align="center" {...headerProps}>
+        <Box bg="white" borderRadius="md" px="4" py="3" {...wrapperProps}>
+            <Box mb="3" align="center" {...headerProps}>
                 <Stack spacing="xs">
                     {breadcrumb}
-                    <Group spacing="xs">
+                    <HStack>
                         {buttonBack}
                         {title ?? (
-                            <Title order={3} transform="capitalize">
+                            <Heading as="h3" size="md">
                                 {translate(
                                     `${resource.name}.titles.create`,
                                     `Create ${userFriendlyResourceName(
@@ -116,20 +113,26 @@ export const Create: React.FC<CreateProps> = (props) => {
                                         "singular",
                                     )}`,
                                 )}
-                            </Title>
+                            </Heading>
                         )}
-                    </Group>
+                    </HStack>
                 </Stack>
-                <Group spacing="xs" {...headerButtonProps}>
+                <Box spacing="xs" {...headerButtonProps}>
                     {headerButtons}
-                </Group>
-            </Group>
-            <Box pt="sm" {...contentProps}>
+                </Box>
+            </Box>
+            <Box mb="3" {...contentProps}>
                 {children}
             </Box>
-            <Group position="right" spacing="xs" mt="md" {...footerButtonProps}>
+            <Box
+                display="flex"
+                justifyContent="flex-end"
+                spacing="xs"
+                mt="md"
+                {...footerButtonProps}
+            >
                 {footerButtons}
-            </Group>
-        </Card>
+            </Box>
+        </Box>
     );
 };
