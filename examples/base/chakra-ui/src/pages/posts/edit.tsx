@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
     Create,
     FormControl,
@@ -17,13 +18,19 @@ export const PostEdit = () => {
         saveButtonProps,
         register,
         formState: { errors },
+        resetField,
     } = useForm<IPost>();
 
     const { options } = useSelect({
         resource: "categories",
+
         defaultValue: queryResult?.data?.data.category.id,
         queryOptions: { enabled: !!queryResult?.data?.data.category.id },
     });
+
+    useEffect(() => {
+        resetField("category.id");
+    }, [options]);
 
     return (
         <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
@@ -58,10 +65,10 @@ export const PostEdit = () => {
             <FormControl mb="3" isInvalid={!!errors?.categoryId}>
                 <FormLabel>Category</FormLabel>
                 <Select
-                    id="categoryId"
+                    id="ca"
                     placeholder="Select Category"
-                    {...register("categoryId", {
-                        required: "Category is required",
+                    {...register("category.id", {
+                        required: true,
                     })}
                 >
                     {options?.map((option) => (
