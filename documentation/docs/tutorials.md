@@ -14,7 +14,7 @@ refine is a **headless** Framework, so it does not include UI Components by defa
 There are two ways to add UI elements to refine;
 
 1. Using a **UI Library** such as [Tailwind](https://tailwindcss.com/), [Chakra UI](https://chakra-ui.com/), etc.
-2. Using a complete **UI Framework** such as [Ant Design](https://ant.design/), [Material UI](https://mui.com/), etc.
+2. Using a complete **UI Framework** such as [Ant Design](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/) etc.
 
 These tutorials will go through process of building a simple _admin panel_ for a _CMS-like_ application.
 
