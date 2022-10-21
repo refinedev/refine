@@ -9,6 +9,12 @@ We follow a [code of conduct][code_of_conduct] when participating in the communi
 -   If you plan to work on a new feature, create an issue and discuss it with other community members/maintainers.
 -   Ask for help in our [community room][discord channel].
 
+## Process
+
+-   Take a fork from refine repo into your own
+-   Create a new branch based on feature/docs/bugfix etc. [Naming convention](https://www.conventionalcommits.org/en/v1.0.0/) to follow
+-   Once you work is complete, send a PR to upstream repo for review
+
 ## Running in development mode
 
 `node` version 16 is required.
@@ -305,8 +311,9 @@ const PostCreate: React.FC = () => {
         resource: "categories",
     });
 
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
+        "write",
+    );
 
     return (
         <Create saveButtonProps={saveButtonProps}>
@@ -389,21 +396,21 @@ render(
 
 ### Defined Scope
 
-| Variable              | Description                                                                                                                               |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `React`               | React 17                                                                                                                                  |
-| `RefineCore`          | `@pankod/refine-core`                                                                                                                     |
-| `RefineSimpleRest`    | `@pankod/refine-simple-rest`                                                                                                              |
-| `RefineAntd`          | `@pankod/refine-antd`                                                                                                                     |
-| `RefineMui`           | `@pankod/refine-mui`                                                                                                                      |
-| `RefineReactRouterV6` | `@pankod/refine-react-router-v6`                                                                                                          |
-| `RefineReactHookForm` | `@pankod/refine-react-hook-form`                                                                                                          |
-| `RefineReactTable`    | `@pankod/refine-react-table`                                                                                                              |
-| `RefineHeadlessDemo`  | Predefined `<Refine/>` component with simple-rest and react-router-v6 props for easier use                                                |
-| `RefineMuiDemo`       | Predefined `<Refine/>` component with Material UI, simple-rest and react-router-v6 props for easier use                                   |
-| `RefineAntdDemo`      | Predefined `<Refine/>` component with Ant Design, simple-rest and react-router-v6 props for easier use                                    |
-| `setInitialRoutes`    | For live previews, we use `MemoryRouter` from `react-router-v6` and to set the initial entries of the history, you can use this function. |
-| `setRefineProps` | For live previews, you may need to set some props to `<Refine />` component that are unrelated to the code block you're writing. In those cases, you can use `setRefinProps` outside of the visible code block to set props or override the existing props. |
+| Variable              | Description                                                                                                                                                                                                                                                 |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `React`               | React 17                                                                                                                                                                                                                                                    |
+| `RefineCore`          | `@pankod/refine-core`                                                                                                                                                                                                                                       |
+| `RefineSimpleRest`    | `@pankod/refine-simple-rest`                                                                                                                                                                                                                                |
+| `RefineAntd`          | `@pankod/refine-antd`                                                                                                                                                                                                                                       |
+| `RefineMui`           | `@pankod/refine-mui`                                                                                                                                                                                                                                        |
+| `RefineReactRouterV6` | `@pankod/refine-react-router-v6`                                                                                                                                                                                                                            |
+| `RefineReactHookForm` | `@pankod/refine-react-hook-form`                                                                                                                                                                                                                            |
+| `RefineReactTable`    | `@pankod/refine-react-table`                                                                                                                                                                                                                                |
+| `RefineHeadlessDemo`  | Predefined `<Refine/>` component with simple-rest and react-router-v6 props for easier use                                                                                                                                                                  |
+| `RefineMuiDemo`       | Predefined `<Refine/>` component with Material UI, simple-rest and react-router-v6 props for easier use                                                                                                                                                     |
+| `RefineAntdDemo`      | Predefined `<Refine/>` component with Ant Design, simple-rest and react-router-v6 props for easier use                                                                                                                                                      |
+| `setInitialRoutes`    | For live previews, we use `MemoryRouter` from `react-router-v6` and to set the initial entries of the history, you can use this function.                                                                                                                   |
+| `setRefineProps`      | For live previews, you may need to set some props to `<Refine />` component that are unrelated to the code block you're writing. In those cases, you can use `setRefinProps` outside of the visible code block to set props or override the existing props. |
 
 :::tip
 Demo components are recommended to be used whenever possible to avoid unnecessary configuration at every code block. They are equipped with the `refine-react-router-v6` setup with `MemoryRouter`, `refine-simple-rest` data provider and the preferred UI Integration.
