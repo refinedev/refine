@@ -215,11 +215,13 @@ export const PostList: React.FC = () => {
                     </Tbody>
                 </Table>
             </TableContainer>
-            <Pagination
-                current={current}
-                setCurrent={setCurrent}
-                pageCount={pageCount}
-            />
+            <Box display="flex" justifyContent="flex-end">
+                <Pagination
+                    current={current}
+                    setCurrent={setCurrent}
+                    pageCount={pageCount}
+                />
+            </Box>
         </List>
     );
 };
