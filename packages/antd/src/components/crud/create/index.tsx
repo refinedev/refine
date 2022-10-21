@@ -15,6 +15,7 @@ import {
     useTranslate,
     userFriendlyResourceName,
     ResourceRouterParams,
+    useRefineContext,
 } from "@pankod/refine-core";
 import { RefineCrudCreateProps } from "@pankod/refine-ui-types";
 
@@ -62,7 +63,7 @@ export const Create: React.FC<CreateProps> = ({
     pageHeaderProps,
     resource: resourceFromProps,
     isLoading = false,
-    breadcrumb,
+    breadcrumb: breadcrumbFromProps,
     wrapperProps,
     headerProps,
     contentProps,
@@ -82,6 +83,9 @@ export const Create: React.FC<CreateProps> = ({
     const resourceWithRoute = useResourceWithRoute();
 
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
+
+    const { options } = useRefineContext();
+    const breadcrumb = breadcrumbFromProps ?? options?.breadcrumb;
 
     const defaultFooterButtons = (
         <>

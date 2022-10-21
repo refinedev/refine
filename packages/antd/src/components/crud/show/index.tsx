@@ -15,6 +15,7 @@ import {
     useTranslate,
     ResourceRouterParams,
     userFriendlyResourceName,
+    useRefineContext,
 } from "@pankod/refine-core";
 
 import {
@@ -64,7 +65,7 @@ export const Show: React.FC<ShowProps> = ({
     resource: resourceFromProps,
     recordItemId,
     dataProviderName,
-    breadcrumb,
+    breadcrumb: breadcrumbFromProps,
     contentProps,
     headerProps,
     wrapperProps,
@@ -92,6 +93,9 @@ export const Show: React.FC<ShowProps> = ({
 
     const isDeleteButtonVisible = canDelete ?? resource.canDelete;
     const isEditButtonVisible = canEdit ?? resource.canEdit;
+
+    const { options } = useRefineContext();
+    const breadcrumb = breadcrumbFromProps ?? options?.breadcrumb;
 
     const id = recordItemId ?? idFromRoute;
 

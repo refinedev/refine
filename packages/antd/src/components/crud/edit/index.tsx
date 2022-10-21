@@ -17,6 +17,7 @@ import {
     useRouterContext,
     userFriendlyResourceName,
     ResourceRouterParams,
+    useRefineContext,
 } from "@pankod/refine-core";
 import { RefineCrudEditProps } from "@pankod/refine-ui-types";
 
@@ -77,7 +78,7 @@ export const Edit: React.FC<EditProps> = ({
     resource: resourceFromProps,
     isLoading = false,
     dataProviderName,
-    breadcrumb,
+    breadcrumb: breadcrumbFromProps,
     wrapperProps,
     headerProps,
     contentProps,
@@ -106,6 +107,9 @@ export const Edit: React.FC<EditProps> = ({
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
     const isDeleteButtonVisible =
         canDelete ?? (resource.canDelete || deleteButtonProps);
+
+    const { options } = useRefineContext();
+    const breadcrumb = breadcrumbFromProps ?? options?.breadcrumb;
 
     const id = recordItemId ?? idFromRoute;
 
