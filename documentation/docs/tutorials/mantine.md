@@ -383,7 +383,6 @@ setRefineProps({
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
     notificationProvider: RefineMantine.notificationProvider,
     Layout: RefineMantine.Layout,
-    Sider: () => null,
     catchAll: <RefineMantine.ErrorComponent />,
     ReadyPage: RefineMantine.ReadyPage,
 });
