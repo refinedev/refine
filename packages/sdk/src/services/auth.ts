@@ -67,12 +67,7 @@ class Auth {
         const accessToken = this.client.getLocalStorage(
             "refine-sdk-access-token",
         );
-
-        if (accessToken) {
-            return true;
-        }
-
-        return false;
+   return !!accessToken;
     }
 
     async session(): Promise<IUser> {
