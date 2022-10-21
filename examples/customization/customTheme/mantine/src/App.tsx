@@ -16,7 +16,7 @@ import {
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import { PostCreate, PostEdit, PostList } from "./pages";
+import { PostCreate, PostEdit, PostList, PostShow } from "./pages";
 import { Header } from "./components";
 
 const App: React.FC = () => {
@@ -56,6 +56,7 @@ const App: React.FC = () => {
                         resources={[
                             {
                                 name: "posts",
+                                show: PostShow,
                                 list: PostList,
                                 edit: PostEdit,
                                 create: PostCreate,
