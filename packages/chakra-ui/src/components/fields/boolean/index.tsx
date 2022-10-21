@@ -1,6 +1,6 @@
 import React from "react";
 import { RefineFieldBooleanProps } from "@pankod/refine-ui-types";
-import { Tooltip, TooltipProps } from "@mantine/core";
+import { Tooltip, TooltipProps } from "@chakra-ui/react";
 import { IconMinus, IconCheck, TablerIconProps } from "@tabler/icons";
 
 export type BooleanFieldProps = RefineFieldBooleanProps<
@@ -10,9 +10,9 @@ export type BooleanFieldProps = RefineFieldBooleanProps<
 >;
 
 /**
- * This field is used to display boolean values. It uses the {@link https://mantine.dev/core/tooltip/ `<Tooltip>`} values from Mantine.
+ * This field is used to display boolean values. It uses the {@link https://chakra-ui.com/docs/components/tooltip `<Tooltip>`} values from Chakra UI.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/fields/boolean} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/fields/boolean} for more details.
  */
 export const BooleanField: React.FC<BooleanFieldProps> = ({
     value,

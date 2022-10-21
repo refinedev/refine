@@ -4,7 +4,7 @@ import { RefineFieldDateProps } from "@pankod/refine-ui-types";
 import dayjs, { ConfigType } from "dayjs";
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
 
-import { Text, TextProps } from "@mantine/core";
+import { Text, TextProps } from "@chakra-ui/react";
 
 dayjs.extend(LocalizedFormat);
 
@@ -12,9 +12,9 @@ export type DateFieldProps = RefineFieldDateProps<ConfigType, TextProps>;
 
 /**
  * This field is used to display dates. It uses {@link https://day.js.org/docs/en/display/format `Day.js`} to display date format and
- * Mantine {@link https://mantine.dev/core/text/ `<Text>`} component
+ * Mantine {@link https://chakra-ui.com/docs/components/text `<Text>`} component
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/fields/date} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/fields/date} for more details.
  */
 export const DateField: React.FC<DateFieldProps> = ({
     value,

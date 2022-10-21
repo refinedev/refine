@@ -1,22 +1,21 @@
 import React from "react";
 
 import { RefineFieldUrlProps } from "@pankod/refine-ui-types";
-import { TextProps, Anchor, AnchorProps } from "@mantine/core";
+import { Link, LinkProps } from "@chakra-ui/react";
 
 export type UrlFieldProps = RefineFieldUrlProps<
     string | undefined,
-    AnchorProps & TextProps,
+    LinkProps,
     {
         title?: string;
     }
 >;
 
 /**
- * This field is used to display email values. It uses the {@link https://mantine.dev/core/text/  `<Text>` }
- * and {@link https://mantine.dev/core/anchor/ <Anchor>`} components from Mantine.
+ * This field is used to display email values. It uses the {@link https://chakra-ui.com/docs/components/text  `<Text>` } component from Chakra UI.
  * You can pass a URL in its `value` property and you can show a text in its place by passing any `children`.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/fields/url} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/fields/url} for more details.
  */
 export const UrlField: React.FC<UrlFieldProps> = ({
     children,
@@ -25,8 +24,8 @@ export const UrlField: React.FC<UrlFieldProps> = ({
     ...rest
 }) => {
     return (
-        <Anchor href={value} title={title} {...rest}>
+        <Link href={value} title={title} {...rest}>
             {children ?? value}
-        </Anchor>
+        </Link>
     );
 };
