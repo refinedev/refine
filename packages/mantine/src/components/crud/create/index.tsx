@@ -15,6 +15,7 @@ import {
 import {
     ResourceRouterParams,
     useNavigation,
+    useRefineContext,
     useResourceWithRoute,
     userFriendlyResourceName,
     useRouterContext,
@@ -48,7 +49,7 @@ export const Create: React.FC<CreateProps> = (props) => {
         contentProps,
         headerProps,
         goBack: goBackFromProps,
-        breadcrumb = <Breadcrumb />,
+        breadcrumb: breadcrumbFromProps,
         title,
     } = props;
     const translate = useTranslate();
@@ -63,6 +64,16 @@ export const Create: React.FC<CreateProps> = (props) => {
     const resourceWithRoute = useResourceWithRoute();
 
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
+
+    const { options } = useRefineContext();
+    const breadcrumb = breadcrumbFromProps ?? options?.breadcrumb;
+
+    const breadcrumbComponent =
+        typeof breadcrumb !== "undefined" ? (
+            <>{breadcrumb}</> ?? undefined
+        ) : (
+            <Breadcrumb />
+        );
 
     const loadingOverlayVisible =
         isLoading ?? saveButtonProps?.disabled ?? false;
@@ -104,7 +115,7 @@ export const Create: React.FC<CreateProps> = (props) => {
             <LoadingOverlay visible={loadingOverlayVisible} />
             <Group position="apart" align="center" {...headerProps}>
                 <Stack spacing="xs">
-                    {breadcrumb}
+                    {breadcrumbComponent}
                     <Group spacing="xs">
                         {buttonBack}
                         {title ?? (

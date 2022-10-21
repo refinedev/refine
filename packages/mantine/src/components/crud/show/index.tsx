@@ -15,6 +15,7 @@ import {
 import {
     ResourceRouterParams,
     useNavigation,
+    useRefineContext,
     useResourceWithRoute,
     userFriendlyResourceName,
     useRouterContext,
@@ -55,7 +56,7 @@ export const Show: React.FC<ShowProps> = (props) => {
         contentProps,
         headerProps,
         goBack: goBackFromProps,
-        breadcrumb = <Breadcrumb />,
+        breadcrumb: breadcrumbFromProps,
         title,
     } = props;
     const translate = useTranslate();
@@ -77,6 +78,16 @@ export const Show: React.FC<ShowProps> = (props) => {
     const isDeleteButtonVisible = canDelete ?? resource.canDelete;
 
     const isEditButtonVisible = canEdit ?? resource.canEdit;
+
+    const { options } = useRefineContext();
+    const breadcrumb = breadcrumbFromProps ?? options?.breadcrumb;
+
+    const breadcrumbComponent =
+        typeof breadcrumb !== "undefined" ? (
+            <>{breadcrumb}</> ?? undefined
+        ) : (
+            <Breadcrumb />
+        );
 
     const id = recordItemId ?? idFromRoute;
 
@@ -145,7 +156,7 @@ export const Show: React.FC<ShowProps> = (props) => {
             <LoadingOverlay visible={loadingOverlayVisible} />
             <Group position="apart" align="center" {...headerProps}>
                 <Stack spacing="xs">
-                    {breadcrumb}
+                    {breadcrumbComponent}
                     <Group spacing="xs">
                         {buttonBack}
                         {title ?? (

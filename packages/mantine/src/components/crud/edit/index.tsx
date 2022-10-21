@@ -16,6 +16,7 @@ import {
     ResourceRouterParams,
     useMutationMode,
     useNavigation,
+    useRefineContext,
     useResourceWithRoute,
     userFriendlyResourceName,
     useRouterContext,
@@ -62,7 +63,7 @@ export const Edit: React.FC<EditProps> = (props) => {
         contentProps,
         headerProps,
         goBack: goBackFromProps,
-        breadcrumb = <Breadcrumb />,
+        breadcrumb: breadcrumbFromProps,
         title,
     } = props;
     const translate = useTranslate();
@@ -87,6 +88,16 @@ export const Edit: React.FC<EditProps> = (props) => {
 
     const isDeleteButtonVisible =
         canDelete ?? (resource.canDelete || deleteButtonProps);
+
+    const { options } = useRefineContext();
+    const breadcrumb = breadcrumbFromProps ?? options?.breadcrumb;
+
+    const breadcrumbComponent =
+        typeof breadcrumb !== "undefined" ? (
+            <>{breadcrumb}</> ?? undefined
+        ) : (
+            <Breadcrumb />
+        );
 
     const id = recordItemId ?? idFromRoute;
 
@@ -160,7 +171,7 @@ export const Edit: React.FC<EditProps> = (props) => {
             <LoadingOverlay visible={loadingOverlayVisible} />
             <Group position="apart" {...headerProps}>
                 <Stack spacing="xs">
-                    {breadcrumb}
+                    {breadcrumbComponent}
                     <Group spacing="xs">
                         {buttonBack}
                         {title ?? (
