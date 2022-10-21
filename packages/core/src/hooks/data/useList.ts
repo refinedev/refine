@@ -38,7 +38,7 @@ export type UseListProps<TData, TError> = {
     resource: string;
     /**
      * Configuration for pagination, sorting and filtering
-     * @type [`UseListConfig`](docs/api-reference/core/hooks/data/useList/#config-parameters)
+     * @type [`UseListConfig`](/docs/api-reference/core/hooks/data/useList/#config-parameters)
      */
     config?: UseListConfig;
     /**
