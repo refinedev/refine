@@ -29,7 +29,7 @@ export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
             <img src={logo} alt="Refine Logo" />
             <Space h={24} />
             <Title align="center" sx={{ color: "white", fontSize: "3rem" }}>
-                Welcome on board.
+                Welcome on board
             </Title>
             <Text size="xl" sx={{ color: "white" }} mt="md">
                 Your configuration is completed.
