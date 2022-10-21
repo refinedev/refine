@@ -14,6 +14,7 @@ import {
     Box,
     EditButton,
     DeleteButton,
+    Pagination,
 } from "@pankod/refine-chakra-ui";
 
 // import { ColumnFilter, ColumnSorter } from "../../components/table";
@@ -214,6 +215,11 @@ export const PostList: React.FC = () => {
                     </Tbody>
                 </Table>
             </TableContainer>
+            <Pagination
+                current={current}
+                setCurrent={setCurrent}
+                pageCount={pageCount}
+            />
         </List>
     );
 };
