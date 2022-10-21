@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { RefineCrudShowProps } from "@pankod/refine-ui-types";
 import {
     Box,
@@ -80,7 +80,10 @@ export const Show: React.FC<ShowProps> = (props) => {
     const isEditButtonVisible = canEdit ?? resource.canEdit;
 
     const { options } = useRefineContext();
-    const breadcrumb = breadcrumbFromProps ?? options?.breadcrumb;
+    const breadcrumb: ReactNode =
+        typeof breadcrumbFromProps === "undefined"
+            ? options?.breadcrumb
+            : breadcrumbFromProps;
 
     const breadcrumbComponent =
         typeof breadcrumb !== "undefined" ? (

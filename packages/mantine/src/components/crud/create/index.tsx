@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { RefineCrudCreateProps } from "@pankod/refine-ui-types";
 import {
     Box,
@@ -66,7 +66,11 @@ export const Create: React.FC<CreateProps> = (props) => {
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
 
     const { options } = useRefineContext();
-    const breadcrumb = breadcrumbFromProps ?? options?.breadcrumb;
+
+    const breadcrumb: ReactNode =
+        typeof breadcrumbFromProps === "undefined"
+            ? options?.breadcrumb
+            : breadcrumbFromProps;
 
     const breadcrumbComponent =
         typeof breadcrumb !== "undefined" ? (

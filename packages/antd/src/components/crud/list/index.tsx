@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { PageHeader, PageHeaderProps, Space, SpaceProps } from "antd";
 import {
     useResourceWithRoute,
@@ -65,7 +65,10 @@ export const List: React.FC<ListProps> = ({
         canCreate ?? (resource.canCreate || createButtonProps);
 
     const { options } = useRefineContext();
-    const breadcrumb = breadcrumbFromProps ?? options?.breadcrumb;
+    const breadcrumb: ReactNode =
+        typeof breadcrumbFromProps === "undefined"
+            ? options?.breadcrumb
+            : breadcrumbFromProps;
 
     const defaultExtra = isCreateButtonVisible ? (
         <CreateButton

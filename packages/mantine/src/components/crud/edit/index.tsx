@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { RefineCrudEditProps } from "@pankod/refine-ui-types";
 import {
     Box,
@@ -90,7 +90,10 @@ export const Edit: React.FC<EditProps> = (props) => {
         canDelete ?? (resource.canDelete || deleteButtonProps);
 
     const { options } = useRefineContext();
-    const breadcrumb = breadcrumbFromProps ?? options?.breadcrumb;
+    const breadcrumb: ReactNode =
+        typeof breadcrumbFromProps === "undefined"
+            ? options?.breadcrumb
+            : breadcrumbFromProps;
 
     const breadcrumbComponent =
         typeof breadcrumb !== "undefined" ? (

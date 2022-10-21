@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import {
     useResourceWithRoute,
@@ -82,7 +82,10 @@ export const List: React.FC<ListProps> = ({
         canCreate ?? (resource.canCreate || createButtonProps);
 
     const { options } = useRefineContext();
-    const breadcrumb = breadcrumbFromProps ?? options?.breadcrumb;
+    const breadcrumb: ReactNode =
+        typeof breadcrumbFromProps === "undefined"
+            ? options?.breadcrumb
+            : breadcrumbFromProps;
 
     const breadcrumbComponent =
         typeof breadcrumb !== "undefined" ? (

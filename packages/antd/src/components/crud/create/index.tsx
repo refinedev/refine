@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import {
     Card,
     Space,
@@ -85,7 +85,10 @@ export const Create: React.FC<CreateProps> = ({
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
 
     const { options } = useRefineContext();
-    const breadcrumb = breadcrumbFromProps ?? options?.breadcrumb;
+    const breadcrumb: ReactNode =
+        typeof breadcrumbFromProps === "undefined"
+            ? options?.breadcrumb
+            : breadcrumbFromProps;
 
     const defaultFooterButtons = (
         <>

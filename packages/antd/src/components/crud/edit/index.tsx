@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import {
     Card,
@@ -109,7 +109,10 @@ export const Edit: React.FC<EditProps> = ({
         canDelete ?? (resource.canDelete || deleteButtonProps);
 
     const { options } = useRefineContext();
-    const breadcrumb = breadcrumbFromProps ?? options?.breadcrumb;
+    const breadcrumb: ReactNode =
+        typeof breadcrumbFromProps === "undefined"
+            ? options?.breadcrumb
+            : breadcrumbFromProps;
 
     const id = recordItemId ?? idFromRoute;
 
