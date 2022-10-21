@@ -5,6 +5,8 @@ import { RefineFieldDateProps } from "@pankod/refine-ui-types";
 
 import { render } from "@test";
 
+import "dayjs/locale/tr";
+
 export const fieldDateTests = function (
     DateField: React.ComponentType<RefineFieldDateProps<ConfigType, any, any>>,
 ): void {
@@ -29,9 +31,17 @@ export const fieldDateTests = function (
         });
 
         it("renders date with given  LocalizedFormat", () => {
-            const { getByText } = render(
-                <DateField value={new Date("2021-05-20")} format="l" />,
+            const { getByText, rerender } = render(
+                <DateField
+                    value={new Date("2021-05-20")}
+                    format="l"
+                    locales="tr"
+                />,
             );
+
+            getByText("20.5.2021");
+
+            rerender(<DateField value={new Date("2021-05-20")} format="l" />);
 
             getByText("5/20/2021");
         });

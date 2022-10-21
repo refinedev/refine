@@ -30,12 +30,16 @@ export type CreateButtonProps = RefineCreateButtonProps<
 export const CreateButton: React.FC<CreateButtonProps> = ({
     resourceNameOrRouteName,
     hideText = false,
+    accessControl,
     ignoreAccessControlProvider = false,
     svgIconProps,
     children,
     onClick,
     ...rest
 }) => {
+    const accessControlEnabled =
+        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const { resource, resourceName } = useResource({
         resourceNameOrRouteName,
     });
@@ -49,7 +53,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
         resource: resourceName,
         action: "create",
         queryOptions: {
-            enabled: !ignoreAccessControlProvider,
+            enabled: accessControlEnabled,
         },
         params: {
             resource,
@@ -70,11 +74,19 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
 
     const { sx, ...restProps } = rest;
 
+    if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
+        return null;
+    }
+
     return (
         <Link
             to={createUrl}
             replace={false}
             onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+                if (data?.can === false) {
+                    e.preventDefault();
+                    return;
+                }
                 if (onClick) {
                     e.preventDefault();
                     onClick(e);

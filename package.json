@@ -13,6 +13,7 @@
     "bootstrap": "cd packages/codemod && npm ci && cd ../.. && lerna bootstrap --hoist --strict  --ignore @pankod/refine-codemod --ignore @pankod/refine-react-router --scope @pankod/refine*",
     "lint": "eslint -c ./.eslintrc packages examples",
     "lint:fix": "npm run lint -- --quiet --fix",
+    "lint:staged": "lint-staged",
     "build": "lerna run build --ignore @pankod/refine-react-router --scope @pankod/refine*",
     "start:docs": "concurrently \"cd documentation && npm run start\" \"npm run start -- --scope @pankod/refine-live-previews\" --names docs,live --prefix-colors blue,red",
     "nuke": "rm -rf node_modules; for d in for d in packages/*/node_modules; do echo $d; rm -rf $d; done; for d in for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in examples/*/node_modules; do echo $d; rm -rf $d; done;  for d in examples/*/package-lock.json; do echo $d; rm -rf $d; done;",
@@ -23,7 +24,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "npm run lint:fix"
+      "eslint -c ./.eslintrc --quiet --fix"
     ]
   },
   "name": "refinejs-repo",

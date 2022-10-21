@@ -31,6 +31,10 @@ export type UseTableProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
 > = {
+    /**
+     * Configuration object for the core of the [useTable](/docs/api-reference/core/hooks/useTable/)
+     * @type [`useTablePropsCore<TData, TError>`](/docs/api-reference/core/hooks/useTable/#properties)
+     */
     refineCoreProps?: useTablePropsCore<TData, TError>;
 } & Pick<TableOptions<TData>, "columns"> &
     Partial<Omit<TableOptions<TData>, "columns">>;

@@ -83,8 +83,8 @@ interface IPost {
 
 ### Properties
 
-| Property | Description | Type              |
-| -------- | ----------- | ----------------- |
-| value    | Tag content | `React.ReactNode` |
+<PropsTable module="@pankod/refine-mui/TagField" value-description="Tag content" />
 
-[Refer to the documentation for rest of Link props &#8594](https://ant.design/components/tag/#API)
+:::tip External Props
+It also accepts all props of Material UI [Chip](https://mui.com/material-ui/react-chip/#main-content).
+:::

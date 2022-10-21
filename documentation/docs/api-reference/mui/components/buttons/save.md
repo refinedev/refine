@@ -85,10 +85,8 @@ export const MySaveComponent = () => {
 
 ### Properties
 
-| Property     | Description                       | Type                                                              | Default                                                                                                               |
-| ------------ | --------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| props        | Material UI button props          | [`ButtonProps`](https://mui.com/material-ui/api/button/)          |
-| hideText     | Allows to hide button text        | `boolean`                                                         | `false`                                                                                                               |
-| children     | Sets the button text              | `ReactNode`                                                       | `"Save"`                                                                                                              |
-| startIcon    | Sets the icon component of button | `ReactNode`                                                       | [`<SaveOutlinedIcon />`](https://mui.com/material-ui/material-icons/?theme=Outlined&query=save&selected=SaveOutlined) |
-| svgIconProps | Allows to set icon props          | [`SvgIconProps`](https://mui.com/material-ui/api/svg-icon/#props) |                                                                                                                       |
+<PropsTable module="@pankod/refine-mui/SaveButton" />
+
+:::tip External Props
+It also accepts all props of Material UI [Button](https://mui.com/material-ui/api/button/).
+::: 

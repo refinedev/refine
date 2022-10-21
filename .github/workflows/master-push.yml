@@ -20,7 +20,7 @@ jobs:
         uses: rokroskar/workflow-run-cleanup-action@v0.2.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -48,7 +48,7 @@ jobs:
           cp -R ./_changeset/* ./.changeset || : && rm -rf ./_changeset/
       - name: Create Release Pull Request or Publish to npm
         id: changesets
-        uses: refinedev/action@main
+        uses: changesets/action@v1
         with:
           version: npm run changeset version
           publish: npm run changeset publish

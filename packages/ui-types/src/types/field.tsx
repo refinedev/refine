@@ -31,12 +31,10 @@ export type RefineFieldBooleanProps<
         valueLabelFalse?: string;
         /**
          * If there is a value, this is the icon to use.
-         * @default [`<CheckOutlined />`](https://ant.design/components/icon/)
          */
         trueIcon?: ReactNode;
         /**
          * If there is no value, this is the icon to use.
-         * @default [`<CloseOutlined />`](https://ant.design/components/icon/)
          */
         falseIcon?: ReactNode;
     };
@@ -50,6 +48,9 @@ export type RefineFieldDateProps<
     TExtraProps & {
         /**
          * The locales of the date.
+         * By default, Day.js comes with English locale only. If you need other locales, you can load them on demand.
+         * [Refer to loading locales](https://day.js.org/docs/en/i18n/loading-into-browser)
+         * @default English
          */
         locales?: string;
         /**

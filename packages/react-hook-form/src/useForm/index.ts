@@ -36,7 +36,15 @@ export type UseFormProps<
     TVariables extends FieldValues = FieldValues,
     TContext extends object = {},
 > = {
+    /**
+     * Configuration object for the core of the [useForm](/docs/api-reference/core/hooks/useForm/)
+     * @type [`UseFormCoreProps<TData, TError, TVariables>`](/docs/api-reference/core/hooks/useForm/#properties)
+     */
     refineCoreProps?: UseFormCoreProps<TData, TError, TVariables>;
+    /**
+     * When you have unsaved changes and try to leave the current page, **refine** shows a confirmation modal box.
+     * @default `false*`
+     */
     warnWhenUnsavedChanges?: boolean;
 } & UseHookFormProps<TVariables, TContext>;
 

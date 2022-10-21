@@ -31,12 +31,16 @@ export type ListButtonProps = RefineListButtonProps<
 export const ListButton: React.FC<ListButtonProps> = ({
     resourceNameOrRouteName,
     hideText = false,
+    accessControl,
     ignoreAccessControlProvider = false,
     svgIconProps,
     children,
     onClick,
     ...rest
 }) => {
+    const accessControlEnabled =
+        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const { resource, resourceName } = useResource({
         resourceNameOrRouteName,
     });
@@ -50,7 +54,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
         resource: resourceName,
         action: "list",
         queryOptions: {
-            enabled: !ignoreAccessControlProvider,
+            enabled: accessControlEnabled,
         },
         params: {
             resource,
@@ -71,11 +75,19 @@ export const ListButton: React.FC<ListButtonProps> = ({
 
     const { sx, ...restProps } = rest;
 
+    if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
+        return null;
+    }
+
     return (
         <Link
             to={listUrl}
             replace={false}
             onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+                if (data?.can === false) {
+                    e.preventDefault();
+                    return;
+                }
                 if (onClick) {
                     e.preventDefault();
                     onClick(e);

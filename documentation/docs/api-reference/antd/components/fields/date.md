@@ -64,5 +64,3 @@ interface IPost {
 :::tip External Props
 It also accepts all props of Ant Design [Text](https://ant.design/components/typography/#Typography.Text).
 :::
-
-[Refer to Text props &#8594](https://ant.design/components/typography/#Typography.Text)

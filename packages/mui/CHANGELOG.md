@@ -1,5 +1,58 @@
 # @pankod/refine-mui
 
+## 3.53.0
+
+### Minor Changes
+
+-   [#2839](https://github.com/refinedev/refine/pull/2839) [`5388a338ab`](https://github.com/refinedev/refine/commit/5388a338abb9a5e03599da0a2786bea394cbc516) Thanks [@aliemir](https://github.com/aliemir)! - **Deprecation**
+
+    `ignoreAccessControlProvider` prop on buttons is deprecated. Use `accessContro.enabled` instead.
+
+    **Features**
+
+    `accessControl.enabled` prop is added to buttons to enable/disable access control for buttons.
+    `accessControl.hideIfUnauthorized` prop is added to buttons to hide the button if access is denied.
+
+-   [#2836](https://github.com/refinedev/refine/pull/2836) [`e43e9a17ae`](https://github.com/refinedev/refine/commit/e43e9a17ae0ed41e649b8026b2b04d850136dcfd) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - added locales prop to date fields
+
+### Patch Changes
+
+-   [#2838](https://github.com/refinedev/refine/pull/2838) [`f7968fa16f`](https://github.com/refinedev/refine/commit/f7968fa16f9930442e1122fe5294e350252bdd5c) Thanks [@aliemir](https://github.com/aliemir)! - Fixed #2828 - Buttons were not respecting access control when navigating to a new page. Now, if button is disabled, it will not also block the navigation not just the onClick event.
+
+-   Updated dependencies [[`476285e342`](https://github.com/refinedev/refine/commit/476285e3427c7e065892a281da529c038aee83d2), [`5388a338ab`](https://github.com/refinedev/refine/commit/5388a338abb9a5e03599da0a2786bea394cbc516), [`e43e9a17ae`](https://github.com/refinedev/refine/commit/e43e9a17ae0ed41e649b8026b2b04d850136dcfd)]:
+    -   @pankod/refine-ui-types@0.14.0
+
+## 3.52.0
+
+### Minor Changes
+
+-   [#2836](https://github.com/refinedev/refine/pull/2836) [`e43e9a17ae`](https://github.com/refinedev/refine/commit/e43e9a17ae0ed41e649b8026b2b04d850136dcfd) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - added locales prop to date fields
+
+### Patch Changes
+
+-   Updated dependencies [[`e43e9a17ae`](https://github.com/refinedev/refine/commit/e43e9a17ae0ed41e649b8026b2b04d850136dcfd)]:
+    -   @pankod/refine-ui-types@0.13.0
+
+## 3.51.0
+
+### Minor Changes
+
+-   [#2839](https://github.com/refinedev/refine/pull/2839) [`5388a338ab`](https://github.com/refinedev/refine/commit/5388a338abb9a5e03599da0a2786bea394cbc516) Thanks [@aliemir](https://github.com/aliemir)! - **Deprecation**
+
+    `ignoreAccessControlProvider` prop on buttons is deprecated. Use `accessContro.enabled` instead.
+
+    **Features**
+
+    `accessControl.enabled` prop is added to buttons to enable/disable access control for buttons.
+    `accessControl.hideIfUnauthorized` prop is added to buttons to hide the button if access is denied.
+
+### Patch Changes
+
+-   [#2838](https://github.com/refinedev/refine/pull/2838) [`f7968fa16f`](https://github.com/refinedev/refine/commit/f7968fa16f9930442e1122fe5294e350252bdd5c) Thanks [@aliemir](https://github.com/aliemir)! - Fixed #2828 - Buttons were not respecting access control when navigating to a new page. Now, if button is disabled, it will not also block the navigation not just the onClick event.
+
+-   Updated dependencies [[`476285e342`](https://github.com/refinedev/refine/commit/476285e3427c7e065892a281da529c038aee83d2), [`5388a338ab`](https://github.com/refinedev/refine/commit/5388a338abb9a5e03599da0a2786bea394cbc516)]:
+    -   @pankod/refine-ui-types@0.12.0
+
 ## 3.50.7
 
 ### Patch Changes

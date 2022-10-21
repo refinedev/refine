@@ -94,7 +94,7 @@ import { useTable, List, Table } from "@pankod/refine-antd";
 const API_URL = "https://api.fake-rest.refine.dev";
 // highlight-start
 export const UserList: React.FC = () => {
-    const { tableProps } = useTable<IPost>({
+    const { tableProps } = useTable<IUser>({
         resource: "users",
     });
 
@@ -110,7 +110,7 @@ export const UserList: React.FC = () => {
     );
 };
 // highlight-end
-interface IPost {
+interface IUser {
     id: number;
     firstName: string;
 }
@@ -143,11 +143,11 @@ import { useTable, List, Table } from "@pankod/refine-antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 // highlight-start
-export const UserList: React.FC<{ users: GetListResponse<IPost> }> = ({
+export const UserList: React.FC<{ users: GetListResponse<IUser> }> = ({
     users,
 }) => {
     // highlight-end
-    const { tableProps } = useTable<IPost>({
+    const { tableProps } = useTable<IUser>({
         resource: "users",
         // highlight-start
         queryOptions: {
@@ -180,7 +180,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 // highlight-end
 
-interface IPost {
+interface IUser {
     id: number;
     firstName: string;
 }
