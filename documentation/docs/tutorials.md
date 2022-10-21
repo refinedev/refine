@@ -22,23 +22,27 @@ Step by step, you're going to learn how to consume a _REST API_ and add basic CR
 
 <div className="tutorial-cards">
     <Card
-        iconPath={"/img/cra-tailwind.png"}
-        title={"Refine Core - Tailwind - CRA"}
+        iconPath={"/img/tutorial-cards/tailwind-icon.png"}
+        title={"Tailwind CSS"}
         direction={"/docs/tutorials/headless-tutorial"}
+        alt={"Tailwind Icon"}
     />
     <Card
-        iconPath={"/img/cra-antd.png"}
-        title={"Refine Core & Ant Design - CRA"}
+        iconPath={"/img/tutorial-cards/antd-icon.png"}
+        title={"Ant Design"}
         direction={"/docs/tutorials/ant-design-tutorial"}
+        alt={"Ant Design Icon"}
     />
      <Card
-        iconPath={"/img/cra-mantine.png"}
-        title={"Refine Core & Mantine - CRA"}
+        iconPath={"/img/tutorial-cards/mantine-icon.png"}
+        title={"Mantine"}
         direction={"/docs/tutorials/mantine-tutorial"}
+        alt={"Mantine Icon"}
     />
      <Card
-        iconPath={"/img/cra-mui.png"}
-        title={"Refine Core & Material UI - CRA"}
+        iconPath={"/img/tutorial-cards/mui-icon.png"}
+        title={"Material UI"}
         direction={"/docs/tutorials/material-ui-tutorial"}
+        alt={"Material UI Icon"}
     />
 </div>

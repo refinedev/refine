@@ -3,28 +3,26 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 32px 24px 24px 24px;
+    padding: 24px;
     height: 100%;
-    border-radius: 10px;
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    border: 1px solid #ededef;
     transition: all 0.2s;
     text-align: center;
-    background-color: #81818f;
+    height: 160px;
 }
 
 .card:hover {
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
-    transform: scale(1.01);
-    background-color: #1890FF;
+    box-shadow: 4px 8px 16px rgba(42, 42, 66, 0.25);
 }
 
-.card img {
-    height: 100px;
+.link {
+    text-decoration: none !important;
 }
 
 .card span {
     margin-top: 8px;
-    color: white;
+    color: #81818f;
     font-weight: 700;
     font-family: "Montserrat";
 }
