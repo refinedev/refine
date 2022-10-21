@@ -324,7 +324,7 @@ const routerProvider = {
 * Next.js Router
 :::
 
-[To take a look at how other router providers are defined and working](https://refine.dev/docs/api-references/providers/router-provider/)
+[To take a look at how other router providers are defined and working](https://refine.dev/docs/api-reference/core/providers/router-provider/)
 
 To activate router provider in **refine**, we have to pass the routerProvider to the `<Refine />` component.
 
