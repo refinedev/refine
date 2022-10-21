@@ -15,9 +15,11 @@ import {
     EditButton,
     DeleteButton,
     Pagination,
+    Select,
+    DateField,
 } from "@pankod/refine-chakra-ui";
 
-// import { ColumnFilter, ColumnSorter } from "../../components/table";
+import { ColumnFilter, ColumnSorter } from "../../components/table";
 import { FilterElementProps, ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
@@ -27,6 +29,7 @@ export const PostList: React.FC = () => {
                 id: "id",
                 header: "ID",
                 accessorKey: "id",
+                enableColumnFilter: false,
             },
             {
                 id: "title",
@@ -41,30 +44,18 @@ export const PostList: React.FC = () => {
                 header: "Status",
                 accessorKey: "status",
                 meta: {
-                    filterOperator: "contains",
+                    filterElement: function render(props: FilterElementProps) {
+                        return (
+                            <Select defaultValue="published" {...props}>
+                                <option value="published">published</option>
+                                <option value="draft">draft</option>
+                                <option value="rejected">rejected</option>
+                            </Select>
+                        );
+                    },
+                    filterOperator: "eq",
                 },
             },
-            // {
-            //     id: "status",
-            //     header: "Status",
-            //     accessorKey: "status",
-            //     meta: {
-            //         filterElement: function render(props: FilterElementProps) {
-            //             return (
-            //                 <Select
-            //                     defaultValue="published"
-            //                     data={[
-            //                         { label: "Published", value: "published" },
-            //                         { label: "Draft", value: "draft" },
-            //                         { label: "Rejected", value: "rejected" },
-            //                     ]}
-            //                     {...props}
-            //                 />
-            //             );
-            //         },
-            //         filterOperator: "eq",
-            //     },
-            // },
             {
                 id: "category.id",
                 header: "Category",
@@ -84,11 +75,11 @@ export const PostList: React.FC = () => {
                 id: "createdAt",
                 header: "Created At",
                 accessorKey: "createdAt",
-                // cell: function render({ getValue }) {
-                //     return (
-                //         <DateField value={getValue() as string} format="LLL" />
-                //     );
-                // },
+                cell: function render({ getValue }) {
+                    return (
+                        <DateField value={getValue() as string} format="LLL" />
+                    );
+                },
                 enableColumnFilter: false,
             },
             {
@@ -176,7 +167,7 @@ export const PostList: React.FC = () => {
                                                         )}
                                                     </Box>
                                                     <HStack spacing="xs">
-                                                        {/* <ColumnSorter
+                                                        <ColumnSorter
                                                             column={
                                                                 header.column
                                                             }
@@ -185,7 +176,7 @@ export const PostList: React.FC = () => {
                                                             column={
                                                                 header.column
                                                             }
-                                                        /> */}
+                                                        />
                                                     </HStack>
                                                 </HStack>
                                             )}
