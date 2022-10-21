@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 1.9.2
+
+### Patch Changes
+
+-   [#2856](https://github.com/refinedev/refine/pull/2856) [`21d0f19863`](https://github.com/refinedev/refine/commit/21d0f19863fb6c3508aa92e2097cc6d9702a16f0) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: Mantine UserFormInput requires 2 type argument(s).
+
 ## 1.9.1
 
 ### Patch Changes
