@@ -6,6 +6,7 @@ import {
     useRouterContext,
     userFriendlyResourceName,
     ResourceRouterParams,
+    useRefineContext,
 } from "@pankod/refine-core";
 import { RefineCrudListProps } from "@pankod/refine-ui-types";
 
@@ -60,7 +61,7 @@ export const List: React.FC<ListProps> = ({
     cardProps,
     cardHeaderProps,
     cardContentProps,
-    breadcrumb = <Breadcrumb />,
+    breadcrumb: breadcrumbFromProps,
     wrapperProps,
     headerProps,
     contentProps,
@@ -80,6 +81,16 @@ export const List: React.FC<ListProps> = ({
     const isCreateButtonVisible =
         canCreate ?? (resource.canCreate || createButtonProps);
 
+    const { options } = useRefineContext();
+    const breadcrumb = breadcrumbFromProps ?? options?.breadcrumb;
+
+    const breadcrumbComponent =
+        typeof breadcrumb !== "undefined" ? (
+            <>{breadcrumb}</> ?? undefined
+        ) : (
+            <Breadcrumb />
+        );
+
     const defaultHeaderButtons = isCreateButtonVisible ? (
         <CreateButton
             resourceNameOrRouteName={resource.route}
@@ -89,7 +100,7 @@ export const List: React.FC<ListProps> = ({
 
     return (
         <Card {...(cardProps ?? {})} {...(wrapperProps ?? {})}>
-            {breadcrumb}
+            {breadcrumbComponent}
             <CardHeader
                 sx={{ display: "flex", flexWrap: "wrap" }}
                 title={

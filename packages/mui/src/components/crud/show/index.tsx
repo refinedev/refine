@@ -6,6 +6,7 @@ import {
     useTranslate,
     ResourceRouterParams,
     userFriendlyResourceName,
+    useRefineContext,
 } from "@pankod/refine-core";
 import { RefineCrudShowProps } from "@pankod/refine-ui-types";
 
@@ -82,7 +83,7 @@ export const Show: React.FC<ShowProps> = ({
     cardHeaderProps,
     cardContentProps,
     cardActionsProps,
-    breadcrumb = <Breadcrumb />,
+    breadcrumb: breadcrumbFromProps,
     dataProviderName,
     wrapperProps,
     headerProps,
@@ -112,6 +113,16 @@ export const Show: React.FC<ShowProps> = ({
     const isDeleteButtonVisible = canDelete ?? resource.canDelete;
 
     const isEditButtonVisible = canEdit ?? resource.canEdit;
+
+    const { options } = useRefineContext();
+    const breadcrumb = breadcrumbFromProps ?? options?.breadcrumb;
+
+    const breadcrumbComponent =
+        typeof breadcrumb !== "undefined" ? (
+            <>{breadcrumb}</> ?? undefined
+        ) : (
+            <Breadcrumb />
+        );
 
     const id = recordItemId ?? idFromRoute;
 
@@ -150,7 +161,7 @@ export const Show: React.FC<ShowProps> = ({
 
     return (
         <Card {...(cardProps ?? {})} {...(wrapperProps ?? {})}>
-            {breadcrumb}
+            {breadcrumbComponent}
             <CardHeader
                 sx={{ display: "flex", flexWrap: "wrap" }}
                 title={
