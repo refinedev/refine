@@ -18,7 +18,6 @@ import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
                         type="primary"
                         size="large"
                         block
-                        onClick={() => loginWithRedirect()}
                     >
                         Sign in
                     </Button>
