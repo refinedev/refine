@@ -14,17 +14,14 @@ import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
                     <div style={{ marginBottom: "28px" }}>
                         <img src="./refine.svg" alt="Refine" />
                     </div>
-                    <Router>
-                        <Link to="/signin">
-                            <Button
-                                type="primary"
-                                size="large"
-                                block
-                            >
-                                Sign in
-                            </Button>
-                        </Link>
-                    </Router>  
+                    <Button component={Link} to="./SignIn"
+                        type="primary"
+                        size="large"
+                        block
+                        onClick={() => loginWithRedirect()}
+                    >
+                        Sign in
+                    </Button>
                 </div>
             </div>
         </AntdLayout>
