@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 1.9.3
+
+### Patch Changes
+
+-   [#2869](https://github.com/refinedev/refine/pull/2869) [`d64e4a02c3`](https://github.com/refinedev/refine/commit/d64e4a02c3c23f6d1386948f9e0f3666eb20188e) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: @mantine/\* package version fixed to 5.5.6 due to [useForm issue](https://github.com/mantinedev/mantine/pull/2758)
+
 ## 1.9.2
 
 ### Patch Changes
