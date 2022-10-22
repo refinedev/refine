@@ -109,8 +109,8 @@ interface ICategory {
 
 ### Properties
 
-| Property | Description             | Type                    |
-| -------- | ----------------------- | ----------------------- |
-| value    | Markdown data to render | `string` \| `undefined` |
+<PropsTable module="@pankod/refine-mui/TextField" />
 
-[Refer to Text props &#8594](https://ant.design/components/typography/#Typography.Text)
+:::tip External Props
+It also accepts all props of Material UI [Typography](https://mui.com/material-ui/react-typography/#main-content).
+:::

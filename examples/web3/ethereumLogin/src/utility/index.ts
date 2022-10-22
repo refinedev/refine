@@ -4,6 +4,7 @@ const web3 = new Web3(window.ethereum);
 
 export const getBalance = async (account: string): Promise<string> => {
     return new Promise((resolve, reject) => {
+        // eslint-disable-next-line
         web3.eth.getBalance(account, (err: any, result: any) => {
             if (err) {
                 reject(err);

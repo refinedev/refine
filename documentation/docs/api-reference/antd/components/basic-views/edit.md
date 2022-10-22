@@ -48,8 +48,9 @@ const PostEdit: React.FC<IResourceComponentsProps> = () => {
         defaultValue: postData?.category.id,
     });
 
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
+        "write",
+    );
 
     return (
         <Edit saveButtonProps={saveButtonProps}>
@@ -442,13 +443,15 @@ const PostEdit: React.FC<IResourceComponentsProps> = () => {
         defaultValue: postData?.category.id,
     });
 
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
+    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
+        "write",
+    );
 
     return (
         <Edit
             /* highlight-next-line */
             mutationMode="undoable"
+            canDelete
             saveButtonProps={saveButtonProps}
         >
             <Form {...formProps} layout="vertical">
@@ -1112,35 +1115,21 @@ export const EditPage: React.FC = () => {
 :::
 
 ## API Reference
-
-### Props
-
-<PropsTable module="@pankod/refine-antd/Edit" goBack-default="`<ArrowLeft />`"  />
-
 ### Properties
 
-| Property                                                                                                     | Description                                                                    | Type                                                                            | Default                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| title                                                                                                        | Adds the title                                                                 | `React.ReactNode`                                                               | `"Edit"` prefix and singular of `resource.name`                                                                                |
-| saveButtonProps                                                                                              | Adds properties for save button                                                | `{ disabled: boolean; onClick: () => void; loading: boolean; }`                 | `<SaveButton>`                                                                                                                 |
-| canDelete                                                                                                    | Adds a delete button                                                           | `boolean`                                                                       | If the resource has `canDelete` prop it is `true` else `false` `false`                                                         |
-| deleteButtonProps                                                                                            | Adds properties for delete button                                              | [`DeleteButtonProps`](/api-reference/core/interfaces.md#delete-button-props)    | `<DeleteButton>`                                                                                                               |
-| resource                                                                                                     | Resource name for API data interactions                                        | `string`                                                                        | Resource name that it reads from the URL.                                                                                      |
-| recordItemId                                                                                                 | The record id for `<RefreshButton>`                                            | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                          |                                                                                                                                |
-| mutationMode\*                                                                                               | [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md) | ` "pessimistic` \| `"optimistic` \| `"undoable"`                                | `"pessimistic"`\*                                                                                                              |
-| dataProviderName                                                                                             | To specify a data provider other than `default` use this property              | `string`                                                                        |                                                                                                                                |
-| goBack                                                                                                       | Custom back icon element                                                       | `React.ReactNode`                                                               | `<ArrowLeft />`                                                                                                                |
-| isLoading                                                                                                    | Loading state of the component                                                 | `boolean`                                                                       | `false`                                                                                                                        |
-| breadcrumb                                                                                                   | Custom breadcrumb element                                                      | `React.ReactNode`                                                               | `<Breadcrumb/>`                                                                                                                |
-| wrapperProps                                                                                                 | Wrapper element props                                                          | `React.DetailedHTMLProps<HTMLDivElement>`                                       |                                                                                                                                |
-| headerProps                                                                                                  | Header element props                                                           | `PageHeaderProps`                                                               |                                                                                                                                |
-| contentProps                                                                                                 | Content wrapper element props                                                  | `CardProps`                                                                     |                                                                                                                                |
-| headerButtons                                                                                                | Header buttons element or render function                                      | `({ defaultButtons: React.ReactNode }) => React.ReactNode` \| `React.ReactNode` |                                                                                                                                |
-| headerButtonProps                                                                                            | Header buttons wrapper element props                                           | `SpaceProps`                                                                    |                                                                                                                                |
-| footerButtons                                                                                                | Footer buttons element or render function                                      | `({ defaultButtons: React.ReactNode }) => React.ReactNode` \| `React.ReactNode` |                                                                                                                                |
-| footerButtonProps                                                                                            | Footer buttons wrapper element props                                           | `SpaceProps`                                                                    |                                                                                                                                |
-| <div className="required-block"><div>actionButtons</div> <div className=" required">deprecated</div></div>   | Passes properties for `<PageHeader>`                                           | `React.ReactNode`                                                               | `<SaveButton>` and depending on your resource configuration (`canDelete` prop)                                                 |
-| <div className="required-block"><div>pageHeaderProps</div> <div className=" required">deprecated</div></div> | Passes properties for `<PageHeader>`                                           | [PageHeaderProps](https://ant.design/components/page-header/#API)               | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>`, breadcrumb: [Breadcrumb][breadcrumb-component] } |
+<PropsTable module="@pankod/refine-antd/Edit" 
+contentProps-type="[`CardProps`](https://ant.design/components/card/#API)"
+headerProps-type="[`PageHeaderProps`](https://ant.design/components/page-header/#API)"
+headerButtons-default="[`ListButton`](https://refine.dev/docs/api-reference/antd/components/buttons/list-button/) and [`RefreshButton`](https://refine.dev/docs/api-reference/antd/components/buttons/refresh-button/)"
+headerButtonProps-type="[`SpaceProps`](https://ant.design/components/space/)"
+deleteButtonProps-type="[`DeleteButtonProps`](/docs/api-reference/antd/components/buttons/delete-button/)"
+saveButtonProps-type="[`SaveButtonProps`](https://refine.dev/docs/api-reference/antd/components/buttons/save-button/)"
+footerButtons-default="[`SaveButton`](https://refine.dev/docs/api-reference/antd/components/buttons/save-button/) and [`DeleteButton`](https://refine.dev/docs/api-reference/antd/components/buttons/delete-button/)"
+footerButtonsProps-type="[`SpaceProps`](https://ant.design/components/space/)"
+breadcrumb-default="[`<Breadcrumb>`](https://ant.design/components/breadcrumb/)"
+goBack-default="`<ArrowLeft />`" 
+goBack-type="`ReactNode`"
+/>
 
 > `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/api-reference/core/components/refine-config.md)>** component.
 

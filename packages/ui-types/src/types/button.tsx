@@ -23,17 +23,29 @@ export type RefineButtonResourceProps = {
     resourceNameOrRouteName?: string;
     /**
      * Whether to skip access control for the resource and the delete action or not
+     * @deprecated `ignoreAccessControlProvider` deprecated. Use `accessControl.enabled` instead.
      */
     ignoreAccessControlProvider?: boolean;
+    /**
+     * Access Control configuration for the button
+     * @default `{ enabled: true }`
+     */
+    accessControl?: {
+        enabled?: boolean;
+        hideIfUnauthorized?: boolean;
+    };
 };
 
 export type RefineButtonLinkingProps = {
+    /**
+     * Sets the handler to handle click event
+     */
     onClick?: React.PointerEventHandler<HTMLButtonElement>;
 };
 
 export type RefineButtonSingleProps = {
     /**
-     * Data item identifier for the delete action with the API
+     * Data item identifier for the actions with the API
      * @default Reads `:id` from the URL
      */
     recordItemId?: BaseKey;
@@ -128,6 +140,9 @@ export type RefineExportButtonProps<
     RefineButtonLinkingProps &
     TComponentProps &
     TExtraProps & {
+        /**
+         * Set the loading status of button
+         */
         loading?: boolean;
     };
 
@@ -137,6 +152,9 @@ export type RefineImportButtonProps<
 > = RefineButtonCommonProps &
     TComponentProps &
     TExtraProps & {
+        /**
+         * Set the loading status of button
+         */
         loading?: boolean;
     };
 

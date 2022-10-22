@@ -18,7 +18,7 @@ import { PostCreate, PostEdit, PostList } from "./pages";
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
-        login: async ({ email, providerName }) => {
+        login: async ({ providerName, email }) => {
             if (providerName === "google") {
                 window.location.href =
                     "https://accounts.google.com/o/oauth2/v2/auth";
@@ -38,21 +38,21 @@ const App: React.FC = () => {
 
             return Promise.reject();
         },
-        register: (params: any) => {
+        register: (params) => {
             if (params.email && params.password) {
                 localStorage.setItem("email", params.email);
                 return Promise.resolve();
             }
             return Promise.reject();
         },
-        updatePassword: (params: any) => {
+        updatePassword: (params) => {
             if (params.newPassword) {
                 //we can update password here
                 return Promise.resolve();
             }
             return Promise.reject();
         },
-        forgotPassword: (params: any) => {
+        forgotPassword: (params) => {
             if (params.email) {
                 //we can send email with reset password link here
                 return Promise.resolve();
@@ -110,7 +110,7 @@ const App: React.FC = () => {
                                 ),
                             },
                             {
-                                path: "/reset-password",
+                                path: "/forgot-password",
                                 element: <AuthPage type="forgotPassword" />,
                             },
                             {

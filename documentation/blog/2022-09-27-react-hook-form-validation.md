@@ -18,7 +18,7 @@ import gif3 from '@site/static/img/blog/2022-09-27-react-hook-form-validation/re
 import gifConsole from '@site/static/img/blog/2022-09-27-react-hook-form-validation/react-hook-form-console.gif';
 
 ## Introduction
-Forms are crucial in how web administrators connect with their audience and how users interact with web applications. Hence, form validation is often the upmost priority for a developer when building web applications.
+Forms are crucial in how web administrators connect with their audience and how users interact with web applications. Hence, form validation is often the utmost priority for a developer when building web applications.
 
 However, due to how complicated and frustrating form validation can get, developers often settle for third-party libraries that simplify the process.
 
@@ -61,7 +61,7 @@ The package is super light, it has a minified size of 24.6kb and a minified + gz
 <br/>
 
 ## What is refine?
-refine is an headless React-based framework for rapidly building CRUD applications like admin panels, dashboards and internal tools. The framework uses a collection of helper hooks, components, and data-providers that give you complete control over your application's user interface.
+refine is a headless React-based framework for rapidly building CRUD applications like admin panels, dashboards, and internal tools. The framework uses a collection of helper hooks, components, and data providers that give you complete control over your application's user interface.
 
 There are a lot of benefits to using refine in your applications, to name a few:
 
@@ -124,7 +124,7 @@ Next, we'll install the refine React Hook Form package and set up refine. To do 
 npm i @pankod/refine-react-hook-form
 ```
 
-After installation, open the project folder in your IDE of choice, in our case, we'll be using Vscode. The next step is to create a pages subfolder inside the src folder and add a create.tsx file.
+After installation, open the project folder in your IDE of choice, in our case, we'll be using VS code. The next step is to create a pages subfolder inside the src folder and add a create.tsx file.
 
 This file will serve as our resource page, which we're going to pass to the `<Refine>` component inside the `App.tsx` file. 
 
@@ -343,7 +343,7 @@ const {
 
 The controller, on the other hand, is a wrapper component for registering controlled components from external UI libraries such as MUI. 
 
-The component takes care of the registration process of components that don't expose input's ref but rely on a state. So it's basically a register method, but for controlled inputs.
+The component takes care of the registration process of components that don't expose input's ref but rely on a state. So it's a register method, but for controlled inputs.
 
 The component accepts three major properties: 
 
@@ -610,7 +610,7 @@ We can do this by adding a maxLength property to the `<TextField>` component and
 />;
 ```
 
-This way, if we input characters beyond the specified amount in the maxLenght props, we’ll get an error.
+This way, if we input characters beyond the specified amount in the maxLength props, we’ll get an error.
 
 To display the error, we’d have to render a message based on the state of the errors object from the formState below each field:
 
@@ -718,7 +718,7 @@ const Create: React.FC = (props) => {
 
 You'll notice that the schema for the select (work) component is different from the rest because we're conditionally validating the company and role fields. This is being done by the when, is and then methods. 
 
-The is method checks if the selected value is Employed, while the then method handles the validation. We'll take this up a notch in the coming section by rendering both fields based on the value selected.
+The method checks if the selected value is Employed, while the then method handles the validation. We'll take this up a notch in the coming section by rendering both fields based on the value selected.
 
 :::note
 The `oneOff` method is for telling yup that one of the string values in the provided array will be selected.
@@ -785,7 +785,7 @@ This will check if there's an error with the `error` prop, then it'll display a 
 
 <br />
 
-Unlike the previous error message we implemented, this approach does not only display an error message that is intrinsic to the field's value, but it also changes outline color of the TextField to red.
+Unlike the previous error message we implemented, this approach does not only display an error message that is intrinsic to the field's value, but it also changes the outline color of the TextField to red.
 
 Our form is almost ready, what's left for us to do is to conditionally display the Company and Role fields and look at how we can handle our form's submission function.
 
@@ -857,7 +857,7 @@ Next, wrap the Company and Role fields with the following code:
 ```
 
 :::note
-Make sure to add a fragment tag, else Typescript will throw an error.
+Make sure to add a fragment tag, or else Typescript will throw an error.
 :::
 
 Now, if you save your progress and go to the browser, the company and role fields should only display when the Employed option is selected.
@@ -909,7 +909,7 @@ Lastly, add an `onSubmit` event handler to the form and pass the `handleSubmit` 
 </form>
 ```
 
-Now, if you save your progress and head over to the browser, you should get a logged object of the form’s data in your console when you fill the fields and submit the form.
+Now, if you save your progress and head over to the browser, you should get a logged object of the form’s data in your console when you fill in the fields and submit the form.
 
 <div class="img-container">
     <div class="window">
@@ -931,7 +931,7 @@ There you have it, we’ve successfully built a form that can validate input val
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/blog/refine-react-hook-form/?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/blog/refine-react-hook-form/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-react-hook-form"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

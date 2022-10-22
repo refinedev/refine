@@ -94,7 +94,7 @@ Select the following options to complete the CLI wizard:
 ❯ No
 ```
 
-After the installation is completed, Strapi-specific [data provider](https://github.com/pankod/refine/blob/master/packages/strapi), auth provider, and also layout components that we can change the default view of Refine with the custom layout option will be included in our project.
+After the installation is completed, Strapi-specific [data provider](https://github.com/refinedev/refine/blob/master/packages/strapi), auth provider, and also layout components that we can change the default view of Refine with the custom layout option will be included in our project.
 
 Now, bootstrap the app with the following command:
 
@@ -445,7 +445,7 @@ In this component
 
 - We listed our records using the [`useSimpleList`](https://refine.dev/docs/ui-frameworks/antd/hooks/list/useSimpleList/) and [Ant Design](https://ant.design) [`<List>`](https://ant.design/components/list) component.
 - We used Antd [`<Form>`](https://ant.design/components/form/) component to filter our records.
-- We made it possible to change the `type` of our record with [`useUpdate`](https://refine.dev/docs/api-references/hooks/data/useUpdate)
+- We made it possible to change the `type` of our record with [`useUpdate`](https://refine.dev/docs/api-reference/core/hooks/data/useUpdate/)
 
 See detailed usage of useSimpleList for adding new filters, adding search entries, dynamic sorting operations and more [here](https://refine.dev/docs/ui-frameworks/antd/hooks/list/useSimpleList/).
 
@@ -465,7 +465,7 @@ See detailed usage of useSimpleList for adding new filters, adding search entrie
 
 Let's develop feedback widget where we can get feedback to expand the application a little more. For this application, I will develop this component with refine, but you can create this component with Strapi APIs in any way you want.
 
-You can look at the code of the component I developed [here](https://github.com/pankod/refine-hackathon/tree/main/refeedback/src/components/feedback).
+You can look at the code of the component I developed [here](https://github.com/refinedev/refine-hackathon/tree/main/refeedback/src/components/feedback).
 
 Now let's add this component to the `OfflayouArea` component and create feedback on the page and see how it comes to our feedback list.
 
@@ -479,4 +479,4 @@ Now let's add this component to the `OfflayouArea` component and create feedback
 </div>
 <br />
 
-You can find the source code of the project here: https://github.com/pankod/refine/tree/master/examples/blog/refeedback
+You can find the source code of the project here: https://github.com/refinedev/refine/tree/master/examples/blog/refeedback

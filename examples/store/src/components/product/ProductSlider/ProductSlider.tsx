@@ -37,6 +37,7 @@ export const ProductSlider: React.FC<ProductSliderProps> = ({
             if (thumbsContainerRef.current) {
                 const $el = document.getElementById(`thumb-${slideNumber}`);
                 if (slideNumber >= 3) {
+                    // eslint-disable-next-line
                     thumbsContainerRef.current.scrollLeft = $el!.offsetLeft;
                 } else {
                     thumbsContainerRef.current.scrollLeft = 0;
@@ -63,7 +64,7 @@ export const ProductSlider: React.FC<ProductSliderProps> = ({
             )
                 event.preventDefault();
         };
-
+        // eslint-disable-next-line
         const slider = sliderContainerRef.current!;
 
         slider.addEventListener("touchstart", preventNavigation);

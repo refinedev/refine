@@ -5,6 +5,7 @@ import {
     CrudFilters,
     CrudSorting,
     DataProvider,
+    CrudFilter,
 } from "@pankod/refine-core";
 import setWith from "lodash/setWith";
 import set from "lodash/set";
@@ -48,7 +49,11 @@ export type HasuraFilterCondition =
     | "_nlike"
     | "_ilike"
     | "_nilike"
-    | "_is_null";
+    | "_is_null"
+    | "_similar"
+    | "_nsimilar"
+    | "_regex"
+    | "_iregex";
 
 const hasuraFilters: Record<CrudOperators, HasuraFilterCondition | undefined> =
     {
@@ -66,63 +71,82 @@ const hasuraFilters: Record<CrudOperators, HasuraFilterCondition | undefined> =
         ncontainss: "_nlike",
         null: "_is_null",
         or: "_or",
+        and: "_and",
         between: undefined,
         nbetween: undefined,
-        nnull: undefined,
-        startswith: undefined,
-        nstartswith: undefined,
-        startswiths: undefined,
-        nstartswiths: undefined,
-        endswith: undefined,
-        nendswith: undefined,
-        endswiths: undefined,
-        nendswiths: undefined,
+        nnull: "_is_null",
+        startswith: "_iregex",
+        nstartswith: "_iregex",
+        endswith: "_iregex",
+        nendswith: "_iregex",
+        startswiths: "_similar",
+        nstartswiths: "_nsimilar",
+        endswiths: "_similar",
+        nendswiths: "_nsimilar",
     };
+
+export const handleFilterValue = (operator: CrudOperators, value: any) => {
+    switch (operator) {
+        case "startswiths":
+        case "nstartswiths":
+            return `${value}%`;
+        case "endswiths":
+        case "nendswiths":
+            return `%${value}`;
+        case "startswith":
+            return `^${value}`;
+        case "nstartswith":
+            return `^(?!${value})`;
+        case "endswith":
+            return `${value}$`;
+        case "nendswith":
+            return `(?<!${value})$`;
+        case "nnull":
+            return false;
+        default:
+            return value;
+    }
+};
+
+const generateNestedFilterQuery = (filter: CrudFilter): any => {
+    const { operator } = filter;
+
+    if (operator !== "or" && operator !== "and" && "field" in filter) {
+        const { field, value } = filter;
+
+        const hasuraOperator = hasuraFilters[filter.operator];
+        if (!hasuraOperator) {
+            throw new Error(`Operator ${operator} is not supported`);
+        }
+
+        const fieldsArray = field.split(".");
+        const fieldsWithOperator = [...fieldsArray, hasuraOperator];
+        const filteredValue = handleFilterValue(operator, value);
+
+        return {
+            ...setWith({}, fieldsWithOperator, filteredValue, Object),
+        };
+    }
+
+    return {
+        [`_${operator}`]: filter.value.map((f) => generateNestedFilterQuery(f)),
+    };
+};
 
 export const generateFilters: any = (filters?: CrudFilters) => {
     if (!filters) {
         return undefined;
     }
 
-    const resultFilter: any = {};
-
-    filters.map((filter) => {
-        const operator = hasuraFilters[filter.operator];
-        if (!operator) {
-            throw new Error(`Operator ${filter.operator} is not supported`);
-        }
-
-        if (filter.operator !== "or") {
-            const fieldsArray = filter.field.split(".");
-            const fieldsWithOperator = [...fieldsArray, operator];
-            setWith(resultFilter, fieldsWithOperator, filter.value, Object);
-        } else {
-            const orFilter: any = [];
-
-            filter.value.map((val) => {
-                const filterObject: any = {};
-                const mapedOperator = hasuraFilters[val.operator];
-
-                if (!mapedOperator) {
-                    throw new Error(
-                        `Operator ${val.operator} is not supported`,
-                    );
-                }
-                if (!filterObject.hasOwnProperty(val.field)) {
-                    filterObject[val.field] = {};
-                }
-                filterObject[val.field][mapedOperator] = val.value;
-                orFilter.push(filterObject);
-            });
-
-            resultFilter[operator] = orFilter;
-        }
+    const nestedQuery = generateNestedFilterQuery({
+        operator: "and",
+        value: filters,
     });
 
-    return resultFilter;
+    return nestedQuery;
 };
 
-const dataProvider = (client: GraphQLClient): DataProvider => {
+const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
     return {
         getOne: async ({ resource, id, metaData }) => {
             const operation = `${metaData?.operation ?? resource}_by_pk`;

@@ -39,23 +39,32 @@ export type AuthPageProps<
 > = (
     | PropsWithChildren<{
           /**
-           * @default "login"
            * @description The type of the auth page.
+           * @default "login"
            * @optional
            */
           type?: "login";
           /**
            * @description Providers array for login with third party auth services.
+           * @type [OAuthProvider](/docs/api-reference/core/components/auth-page/#interface)
            * @optional
            */
           providers?: OAuthProvider[];
           /**
+           * @description Render a redirect to login page button node. If set to false, login button will not be rendered.
+           * @default `"/login"`
+           * @optional
+           */
+          loginLink?: React.ReactNode;
+          /**
            * @description Render a redirect to register page button node. If set to false, register button will not be rendered.
+           * @default `"/register"`
            * @optional
            */
           registerLink?: React.ReactNode;
           /**
            * @description Render a redirect to forgot password page button node. If set to false, forgot password button will not be rendered.
+           * @default `"/forgot-password"`
            * @optional
            */
           forgotPasswordLink?: React.ReactNode;
@@ -71,11 +80,6 @@ export type AuthPageProps<
            * @optional
            */
           type: "register";
-          /**
-           * @description Render a redirect to login page button node. If set to false, login button will not be rendered.
-           * @optional
-           */
-          loginLink?: React.ReactNode;
           /**
            * @description Providers array for login with third party auth services.
            * @optional

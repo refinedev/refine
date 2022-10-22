@@ -19,6 +19,7 @@ import {
     IQueryKeys,
 } from "../../interfaces";
 import {
+    useResource,
     useTranslate,
     useMutationMode,
     useCancelNotification,
@@ -29,7 +30,7 @@ import {
     useInvalidate,
 } from "@hooks";
 import { ActionTypes } from "@contexts/undoableQueue";
-import { queryKeys } from "@definitions";
+import { queryKeys, pickDataProvider, handleMultiple } from "@definitions";
 
 export type DeleteManyParams<TVariables> = {
     ids: BaseKey[];
@@ -85,6 +86,7 @@ export const useDeleteMany = <
     const handleNotification = useHandleNotification();
     const invalidateStore = useInvalidate();
 
+    const { resources } = useResource();
     const queryClient = useQueryClient();
 
     const mutation = useMutation<
@@ -108,25 +110,41 @@ export const useDeleteMany = <
 
             const undoableTimeoutPropOrContext =
                 undoableTimeout ?? undoableTimeoutContext;
+
+            const selectedDataProvider = dataProvider(
+                pickDataProvider(resource, dataProviderName, resources),
+            );
+
+            const mutationFn = () => {
+                if (selectedDataProvider.deleteMany) {
+                    return selectedDataProvider.deleteMany<TData, TVariables>({
+                        resource,
+                        ids,
+                        metaData,
+                        variables: values,
+                    });
+                } else {
+                    return handleMultiple(
+                        ids.map((id) =>
+                            selectedDataProvider.deleteOne<TData, TVariables>({
+                                resource,
+                                id,
+                                metaData,
+                                variables: values,
+                            }),
+                        ),
+                    );
+                }
+            };
+
             if (!(mutationModePropOrContext === "undoable")) {
-                return dataProvider(dataProviderName).deleteMany<TData>({
-                    resource,
-                    ids,
-                    metaData,
-                    variables: values,
-                });
+                return mutationFn();
             }
 
             const updatePromise = new Promise<DeleteManyResponse<TData>>(
                 (resolve, reject) => {
                     const doMutation = () => {
-                        dataProvider(dataProviderName)
-                            .deleteMany<TData>({
-                                resource,
-                                ids,
-                                metaData,
-                                variables: values,
-                            })
+                        mutationFn()
                             .then((result) => resolve(result))
                             .catch((err) => reject(err));
                     };
@@ -161,7 +179,10 @@ export const useDeleteMany = <
                 mutationMode,
                 dataProviderName,
             }) => {
-                const queryKey = queryKeys(resource, dataProviderName);
+                const queryKey = queryKeys(
+                    resource,
+                    pickDataProvider(resource, dataProviderName, resources),
+                );
 
                 const mutationModePropOrContext =
                     mutationMode ?? mutationModeContext;
@@ -260,7 +281,11 @@ export const useDeleteMany = <
                 // invalidate the cache for the list and many queries:
                 invalidateStore({
                     resource,
-                    dataProviderName,
+                    dataProviderName: pickDataProvider(
+                        resource,
+                        dataProviderName,
+                        resources,
+                    ),
                     invalidates,
                 });
 

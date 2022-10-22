@@ -57,6 +57,7 @@ export type ImportOptions<
     mapData?: MapDataFn<TItem, TVariables>;
     /**
      * Custom Papa Parse options.
+     * @type [`ParseConfig`](https://www.papaparse.com/docs)
      */
     paparseOptions?: ParseConfig;
     /**

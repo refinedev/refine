@@ -20,6 +20,7 @@ const gqlDataProvider = dataProvider(client);
 const authProvider: AuthProvider = {
     login: async ({ email, password }) => {
         try {
+            // eslint-disable-next-line
             const { data } = await gqlDataProvider.custom!({
                 url: "",
                 method: "post",
@@ -63,6 +64,7 @@ const authProvider: AuthProvider = {
     },
     getPermissions: async () => {
         try {
+            // eslint-disable-next-line
             const { data } = await gqlDataProvider.custom!({
                 url: "",
                 method: "get",
@@ -84,6 +86,7 @@ const authProvider: AuthProvider = {
     },
     getUserIdentity: async () => {
         try {
+            // eslint-disable-next-line
             const { data } = await gqlDataProvider.custom!({
                 url: "",
                 method: "get",

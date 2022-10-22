@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
 import uniqBy from "lodash/uniqBy";
 import debounce from "lodash/debounce";
@@ -17,6 +17,7 @@ import {
     MetaDataQuery,
     LiveModeProps,
     BaseKey,
+    Pagination,
 } from "../../interfaces";
 
 export type UseSelectProps<TData, TError> = {
@@ -56,10 +57,11 @@ export type UseSelectProps<TData, TError> = {
      */
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
     /**
-     * Amount of records to fetch in select box list.
+     * Pagination option from [`useList()`](/docs/api-reference/core/hooks/data/useList/)
+     * @type {  current?: number; pageSize?: number;}
      * @default `undefined`
      */
-    fetchSize?: number;
+    pagination?: Pagination;
     /**
      * react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options
      */
@@ -79,13 +81,19 @@ export type UseSelectProps<TData, TError> = {
      * @default `default`
      */
     dataProviderName?: string;
+    /**
+     * Amount of records to fetch in select box list.
+     * @deprecated use [`pagination`](https://refine.dev/docs/api-reference/core/interfaceReferences/#pagination) instead
+     * @default `undefined`
+     */
+    fetchSize?: number;
 } & SuccessErrorNotification &
     LiveModeProps;
 
 export type UseSelectReturnType<TData extends BaseRecord = BaseRecord> = {
     queryResult: QueryObserverResult<GetListResponse<TData>>;
     defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
-    onSearch: (value: string | undefined) => void;
+    onSearch: (value: string) => void;
     options: Option[];
 };
 
@@ -111,6 +119,7 @@ export const useSelect = <
         defaultValueQueryOptions: defaultValueQueryOptionsFromProps,
         queryOptions,
         fetchSize,
+        pagination,
         liveMode,
         defaultValue = [],
         onLiveEvent,
@@ -124,14 +133,17 @@ export const useSelect = <
         ? defaultValue
         : [defaultValue];
 
-    const defaultValueQueryOnSuccess = (data: GetManyResponse<TData>) => {
-        setSelectedOptions(
-            data.data.map((item) => ({
-                label: get(item, optionLabel),
-                value: get(item, optionValue),
-            })),
-        );
-    };
+    const defaultValueQueryOnSuccess = useCallback(
+        (data: GetManyResponse<TData>) => {
+            setSelectedOptions(
+                data.data.map((item) => ({
+                    label: get(item, optionLabel),
+                    value: get(item, optionValue),
+                })),
+            );
+        },
+        [optionLabel, optionValue],
+    );
 
     const defaultValueQueryOptions =
         defaultValueQueryOptionsFromProps ?? (queryOptions as any);
@@ -140,8 +152,10 @@ export const useSelect = <
         resource,
         ids: defaultValues,
         queryOptions: {
-            enabled: defaultValues.length > 0,
             ...defaultValueQueryOptions,
+            enabled:
+                defaultValues.length > 0 &&
+                (defaultValueQueryOptionsFromProps?.enabled ?? true),
             onSuccess: (data) => {
                 defaultValueQueryOnSuccess(data);
                 defaultValueQueryOptions?.onSuccess?.(data);
@@ -152,25 +166,29 @@ export const useSelect = <
         dataProviderName,
     });
 
-    const defaultQueryOnSuccess = (data: GetListResponse<TData>) => {
-        setOptions(
-            data.data.map((item) => ({
-                label: get(item, optionLabel),
-                value: get(item, optionValue),
-            })),
-        );
-    };
+    const defaultQueryOnSuccess = useCallback(
+        (data: GetListResponse<TData>) => {
+            {
+                setOptions(
+                    data.data.map((item) => ({
+                        label: get(item, optionLabel),
+                        value: get(item, optionValue),
+                    })),
+                );
+            }
+        },
+        [optionLabel, optionValue],
+    );
 
     const queryResult = useList<TData, TError>({
         resource,
         config: {
             sort,
             filters: filters.concat(search),
-            pagination: fetchSize
-                ? {
-                      pageSize: fetchSize,
-                  }
-                : undefined,
+            pagination: {
+                current: pagination?.current,
+                pageSize: pagination?.pageSize ?? fetchSize,
+            },
         },
         queryOptions: {
             ...queryOptions,
@@ -188,14 +206,15 @@ export const useSelect = <
         dataProviderName,
     });
 
-    const onSearch = (value: string | undefined) => {
-        if (!value) {
-            setSearch([]);
+    const onSearch = (value: string) => {
+        if (onSearchFromProp) {
+            setSearch(onSearchFromProp(value));
             return;
         }
 
-        if (onSearchFromProp) {
-            setSearch(onSearchFromProp(value));
+        if (!value) {
+            setSearch([]);
+            return;
         } else {
             setSearch([
                 {

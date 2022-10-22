@@ -21,6 +21,9 @@ export type UseFormProps<
     TVariables = {},
 > = UseFormPropsCore<TData, TError, TVariables> & {
     submitOnEnter?: boolean;
+    /**
+     * Shows notification when unsaved changes exist
+     */
     warnWhenUnsavedChanges?: boolean;
 };
 

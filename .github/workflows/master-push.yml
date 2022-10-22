@@ -20,7 +20,7 @@ jobs:
         uses: rokroskar/workflow-run-cleanup-action@v0.2.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -48,7 +48,7 @@ jobs:
           cp -R ./_changeset/* ./.changeset || : && rm -rf ./_changeset/
       - name: Create Release Pull Request or Publish to npm
         id: changesets
-        uses: refinedev/action@main
+        uses: changesets/action@v1
         with:
           version: npm run changeset version
           publish: npm run changeset publish
@@ -114,7 +114,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           registry: ghcr.io
-          repository: pankod/refine/refine-example
+          repository: refinedev/refine/refine-example
           tags: sha-${{ steps.current-time.outputs.formattedTime }}
           dockerfile: examples/fineFoods/admin/antd/Dockerfile
       - name: Set up kubectl
@@ -175,7 +175,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           registry: ghcr.io
-          repository: pankod/refine/refine-mui-example
+          repository: refinedev/refine/refine-mui-example
           tags: sha-${{ steps.current-time.outputs.formattedTime }}
           dockerfile: examples/fineFoods/admin/mui/Dockerfile
       - name: Set up kubectl
@@ -230,7 +230,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           registry: ghcr.io
-          repository: pankod/refine/refine-client-example
+          repository: refinedev/refine/refine-client-example
           tag_with_sha: true
           dockerfile: examples/fineFoods/client/Dockerfile
       - name: Set up kubectl
@@ -281,7 +281,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           registry: ghcr.io
-          repository: pankod/refine/refine-live-preview
+          repository: refinedev/refine/refine-live-preview
           dockerfile: packages/live-previews/Dockerfile
           tag_with_sha: true
       - name: Set up kubectl

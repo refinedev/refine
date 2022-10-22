@@ -461,7 +461,7 @@ export const MailCreate: React.FC<IResourceComponentsProps> = () => {
 };
 ```
 
-Using refine's [form](https://refine.dev/docs/api-references/hooks/form/useForm) and [create](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/create/) components, we can now create subscribers and messages with refine.
+Using refine's [form](https://refine.dev/docs/api-reference/antd/hooks/form/useForm/) and [create](https://refine.dev/docs/ui-frameworks/antd/components/basic-views/create/) components, we can now create subscribers and messages with refine.
 
 
 <div class="img-container">
@@ -583,7 +583,7 @@ Let's send the same e-mail to our subscribers shown in the picture at once.
 
 Sending mail was successful. As you can see, we were able to send the same email to all subscribers by sending a single email.
 
-[Here is repo](https://github.com/pankod/refine/tree/master/examples/blog/mailSubscription) 
+[Here is repo](https://github.com/refinedev/refine/tree/master/examples/blog/mailSubscription) 
 
 
  

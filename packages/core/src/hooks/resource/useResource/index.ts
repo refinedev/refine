@@ -6,10 +6,19 @@ import { useRouterContext, useResourceWithRoute } from "@hooks";
 
 export type UseResourcePropsType = {
     /**
-     * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/pankod/refine/issues/1618
+     * Determines which resource to use for redirection
+     * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/refinedev/refine/issues/1618
      */
     resourceName?: string;
+    /**
+     * Determines which resource to use for redirection
+     * @default Resource name that it reads from route
+     */
     resourceNameOrRouteName?: string;
+    /**
+     * Adds id to the end of the URL
+     * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/refinedev/refine/issues/1618
+     */
     recordItemId?: BaseKey;
 };
 

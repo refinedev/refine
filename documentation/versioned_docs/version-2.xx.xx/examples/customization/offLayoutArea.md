@@ -3,7 +3,7 @@ id: offLayoutArea
 title: Off Layout Area
 ---
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/customization/offLayoutArea)
+[View Source](https://github.com/refinedev/refine/tree/master/examples/customization/offLayoutArea)
 
 <iframe src="https://codesandbox.io/embed/refine-off-layout-area-example-i8o1r?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}

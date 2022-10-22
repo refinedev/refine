@@ -13,6 +13,7 @@ export const useEnrichedLineItems = (
     cartId?: string,
 ) => {
     const { data: cartData } = useOne<{ cart: Cart }>({
+        // eslint-disable-next-line
         id: cartId!,
         resource: "carts",
         queryOptions: {

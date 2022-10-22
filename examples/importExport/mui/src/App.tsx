@@ -1,7 +1,6 @@
 import { Refine } from "@pankod/refine-core";
 import {
     Layout,
-    LoginPage,
     ErrorComponent,
     ReadyPage,
     ThemeProvider,

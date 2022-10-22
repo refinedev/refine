@@ -60,8 +60,8 @@ interface IPost {
 
 ### Properties
 
-| Property | Description | Type              |
-| -------- | ----------- | ----------------- |
-| value    | Tag content | `React.ReactNode` |
+<PropsTable module="@pankod/refine-antd/TagField" value-description="Tag content" />
 
-[Refer to the documentation for rest of Link props &#8594](https://ant.design/components/tag/#API)
+:::tip External Props
+It also accepts all props of Ant Design [Tag](https://ant.design/components/tag/#API).
+:::

@@ -11,7 +11,7 @@ describe("createMany", () => {
     });
 
     it("correct response with metaData", async () => {
-        const { data } = await dataProvider(nhost).createMany({
+        const { data } = await dataProvider(nhost).createMany!({
             resource: "posts",
             variables: [
                 {
@@ -48,7 +48,7 @@ describe("createMany", () => {
     });
 
     it("correct response without metaData", async () => {
-        const { data } = await dataProvider(nhost).createMany({
+        const { data } = await dataProvider(nhost).createMany!({
             resource: "posts",
             variables: [
                 {

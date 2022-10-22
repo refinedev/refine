@@ -6,7 +6,7 @@ describe("deleteMany", () => {
         const response = await dataProvider(
             "keywoytODSr6xAqfg",
             "appKYl1H4k9g73sBT",
-        ).deleteMany({ resource: "posts", ids: ["recdgFXue7JnGD90w"] });
+        ).deleteMany!({ resource: "posts", ids: ["recdgFXue7JnGD90w"] });
 
         const { data } = response;
 

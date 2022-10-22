@@ -1,5 +1,4 @@
-import { ProductOption } from "@medusajs/medusa";
-
+import { ProductOption, ProductOptionValue } from "@medusajs/medusa";
 import { Swatch } from "@components/product";
 import { SelectedOptions } from "../helpers";
 
@@ -24,7 +23,11 @@ export const ProductOptions: React.FC<ProductOptionsProps> = ({
                     <div role="listbox" className="flex flex-row py-4">
                         {opt.values
                             .filter(
-                                (val, index: number, arr: any[]) =>
+                                (
+                                    val,
+                                    index: number,
+                                    arr: ProductOptionValue[],
+                                ) =>
                                     arr.findIndex(
                                         (val2) => val2.value === val.value,
                                     ) === index,

@@ -17,7 +17,7 @@ import dynamic from '@site/static/img/blog/2022-10-05-next-api-routes/dynamic-ro
 
 Next.js is a React framework and platform for building production-grade, static and server-side rendered applications, with a lot of useful built-in features and the ability to fully customize your page requests.
 
-Next.js has a page-based routing system, and an API route feature which allows you to create APIs endpoints in a pages directory as though you're writing backend code. Next.js API Routes let you combine backend code along with your frontend code, thereby eliminating the need for extra codebases. With Next.js, building your RESTful or GraphQL APIs has never been easier!
+Next.js has a page-based routing system, and an API route feature which allows you to create APIs endpoints in a pages directory as though you're writing backend code. **Next.js API Routes** let you combine backend code along with your frontend code, thereby eliminating the need for extra codebases. With Next.js, building your RESTful or GraphQL APIs has never been easier!
 
 In this article, you'll learn how to set up Next.js API Routes and we'll explain some of their core features and how you can leverage them in your applications along the way. You'll also learn how to submit form data to an API route.  
 
@@ -33,7 +33,7 @@ Steps we'll cover:
 - [Conclusion](#conclusion)
 
 ## What are Next.js API Routes?
-Before you dive into Next.js API Routes let's provide a little background first. 
+Before you dive into **Next.js API Routes** let's provide a little background first. 
 
 An Application Programming Interface (API) defines how two application or services communicate with each other using HTTP requests and responses. This communication usually involves the two applications exchanging data. For example a client-side web application requesting from a server application a list of users stored in a database. 
 
@@ -41,7 +41,7 @@ There are different methods of creating an API based on your requirements and us
 
 To build an application in which you need data and resources provided and stored by an external source, you'll need an API to request for those resources. Basically, you need two different applications that communicate with each other for exchange of data. In modern web development, this is typically done by creating two different applications (assuming you own the application that stores the data), a client-side application that runs in the browser and a server-side application that runs on the server.
 
-In essence, Next.js API Routes eliminate the need for creating an additional backend server in your full-stack web applications. With Next.js API Routes, you can access or store data in your database like you would if you were using a separate backend application. We will discuss how you can begin using this straightforward approach Next.js provides developers in the next section.
+In essence, **Next.js API Routes** eliminate the need for creating an additional backend server in your full-stack web applications. With **Next.js API Routes**, you can access or store data in your database like you would if you were using a separate backend application. We will discuss how you can begin using this straightforward approach Next.js provides developers in the next section.
 
 
 ## How to create API Routes in Next.js
@@ -276,5 +276,45 @@ You can learn more about extending the `res` and `req` objects with TypeScript [
 
 ## Conclusion
 
-In this article we introduced you to API Routes in Next.js and how to use them to create API endpoints for your application. You learned how to add custom configurations to API Routes and also how to include typings among other things. Ready to get started with API Routes in your next project? Let's know what you build and feel free to reach out if you have any questions. Happy coding!
+In this article we introduced you to **API Routes in Next.js** and how to use them to create API endpoints for your application. You learned how to add custom configurations to API Routes and also how to include typings among other things. Ready to get started with **API Routes** in your next project? Let's know what you build and feel free to reach out if you have any questions. Happy coding!
+
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
+
+
+
+---
+
+<div className="banner-container">
+<div className="banner-header" >Stop wasting your time copy/pasting your CRUD code all over your application!</div >
+
+
+
+Meet the headless, React-based solution to build sleek **CRUD** applications. With refine, you can be confident that your codebase will always stay clean and boilerplate-free.
+
+Try [refine](https://github.com/refinedev/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
+
+    
+
+<div>
+<a href="https://github.com/refinedev/refine">
+   <img  src="/img/generic_banner.png" alt="refine blog logo" /> 
+</a>
+</div>
+
+<br/>
+
+
+**refine** is an open-source, React-based framework for building CRUD applications without constraints. It’s headless by design and seamlessly works with **any custom design** or **UI framework** you favor. For convenience, it ships with ready-made integrations for **Ant Design System, Material UI and Mantine UI**.
+
+It can **speed up your development time up to 3X** without compromising freedom on styling, customization and project workflow.
+
+Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.
+
+</div>
 

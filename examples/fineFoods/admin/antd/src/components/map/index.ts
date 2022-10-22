@@ -1,1 +1,0 @@
-export { MapMarker } from "./marker";

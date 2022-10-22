@@ -50,7 +50,7 @@ A [`dataProvider`](/api-reference/core/providers/data-provider.md) makes HTTP re
 [Refer to the Data Provider documentation for detailed information. &#8594](/api-reference/core/providers/data-provider.md)
 :::tip
 
-To activate multiple data provider in refine, we have to pass the default key with `dataProvider` for default data provider and we can pass other data provider with any key to the `<Refine />` component.
+To activate multiple data provider in refine, we have to pass the default key with `dataProvider` for the default data provider and we can pass other data providers with any key to the `<Refine />` component.
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine-core";
@@ -130,6 +130,7 @@ These components will receive some properties.
 type OptionsProps<TExtends = { [key: string]: any }> = TExtends & {
     label?: string;
     route?: string;
+    dataProviderName?: string;
     hide?: boolean;
 }
 
@@ -148,7 +149,7 @@ const PostList: React.FC<IResourceComponentsProps> = (props) => {
 }
 ```
 
-The values of `canCreate`, `canEdit` and `canShow` are determined by whether associated component are passed as an element to `resources` or not.  
+The values of `canCreate`, `canEdit`, and `canShow` are determined by whether the associated component is passed as an element to `resources` or not.  
 `name` and `canDelete` are the values passed to the `resources`.
 
 :::tip
@@ -182,7 +183,7 @@ https://api.fake-rest.refine.dev/posts/1
 
 ### `list`
 
-The component passed to `list` prop will be rendered on the `/posts` route.
+The component passed to the `list` prop will be rendered on the `/posts` route.
 
 ### `create`
 
@@ -203,7 +204,7 @@ The component passed to `show` will be rendered on the `/posts/show/:id` route.
 
 ### `canDelete`
 
-This value will be passed to all CRUD pages defined to as the `resources` element.
+This value will be passed to all CRUD pages defined as the `resources` element.
 
 :::tip
 **refine**'s <[Edit](/api-reference/antd/components/basic-views/edit.md)> component uses `canDelete` value to whether show delete button in the edit form or not.
@@ -245,18 +246,22 @@ Menu item name and route on clicking can be customized.
 
 #### `label`
 
-Name to show in the menu. Plural form of the resource name is shown by default.
+Name to show in the menu. The plural form of the resource name is shown by default.
 
 #### `route`
 
 Custom route name
+
+#### `dataProviderName`
+
+Default data provider name to use for the resource. If not specified, the default data provider will be used.
 
 #### `hide`
 
 Can be used to hide a `resource` in `Sider`. This resource is also filtered in the `useMenu` hook.
 
 :::tip
-You can also pass any type of property into the options object. This property you pass can be recieved from the [useResource](/api-reference/core/hooks/resource/useResource.md) and [useResourceWithRoute](/api-reference/core/hooks/resource/useResourceWithRoute.md) hooks as well as the components rendered in the `list`, `create`, `edit` and `show` pages.
+You can also pass any type of property into the options object. This property you pass can be received from the [useResource](/api-reference/core/hooks/resource/useResource.md) and [useResourceWithRoute](/api-reference/core/hooks/resource/useResourceWithRoute.md) hooks as well as the components rendered in the `list`, `create`, `edit` and `show` pages.
 
 ```tsx
 type DataType = {
@@ -281,7 +286,7 @@ const PostList: React.FC<IResourceComponentsProps<DataType, OptionType>> = (prop
 
 ## `authProvider`
 
-`authProvider` handles authentication logic like login, logout flow and checking user credentials. It is an object with methods that refine uses when necessary.
+`authProvider` handles authentication logic like login, logout flow, and checking user credentials. It is an object with methods that refine uses when necessary.
 
 [Refer to the Auth Provider documentation for detailed information. &#8594](/api-reference/core/providers/auth-provider.md)
 
@@ -289,7 +294,7 @@ const PostList: React.FC<IResourceComponentsProps<DataType, OptionType>> = (prop
 
 ## `i18nProvider`
 
-`i18nProvider` property lets you add i18n support to your app. Making you able to use any i18n framework.
+The `i18nProvider` property lets you add i18n support to your app. Making you able to use any i18n framework.
 
 [Refer to i18n documentation for detailed information. &#8594](/api-reference/core/providers/i18n-provider.md)
 
@@ -313,7 +318,7 @@ const PostList: React.FC<IResourceComponentsProps<DataType, OptionType>> = (prop
 
 ## `notificationProvider`
 
-`notificationProvider` handles notification logics. It is an object with methods that refine uses when necessary.
+`notificationProvider` handles notification logic. It is an object with methods that refine uses when necessary.
 
 [Refer to the Notification Provider documentation for detailed information. &#8594](/api-reference/core/providers/notification-provider.md)
 
@@ -339,17 +344,17 @@ const App: React.FC = () => {
 };
 ```
 
-`pessimistic`: The mutation runs immediately. Redirection and UI updates are executed after the mutation returns successfuly. This is the default setting.
+`pessimistic`: The mutation runs immediately. Redirection and UI updates are executed after the mutation returns successfully. This is the default setting.
 
-`optimistic`: The mutation is applied locally, redirection and UI updates are executed immediately as if the mutation is succesful. If the mutation returns with error, UI updates accordingly.
+`optimistic`: The mutation is applied locally, and redirection and UI updates are executed immediately as if the mutation is successful. If the mutation returns with an error, UI updates accordingly.
 
-`undoable`: The mutation is applied locally, redirection and UI updates are executed immediately as if mutation is succesful. Waits for a customizable amount of timeout before mutation is applied. During the timeout, mutation can be cancelled from the notification with the ?undo? button. UI will revert back accordingly.
+`undoable`: The mutation is applied locally, and redirection and UI updates are executed immediately as if the mutation is successful. Waits for a customizable amount of timeout before mutation is applied. During the timeout, mutation can be canceled from the notification with the ?undo? button. UI will revert accordingly.
 
 [Refer to the Mutation Mode docs for further information. &#8594](/advanced-tutorials/mutation-mode.md)
 
 ### `undoableTimeout`
 
-The duration of the timeout period in **undoable** mode, shown in milliseconds. Mutations can be cancelled during this period. This period can also be set on the supported data hooks.  
+The duration of the timeout period in **undoable** mode is shown in milliseconds. Mutations can be canceled during this period. This period can also be set on the supported data hooks.  
 The value set in hooks will override the value set with `undoableTimeout`.  
 `undoableTimeout` has a default value of `5000`.
 
@@ -369,15 +374,15 @@ const App: React.FC = () => {
 
 List query parameter values can be edited manually by typing directly in the URL. To activate this feature `syncWithLocation` needs to be set to `true`.
 
-When `syncWithLocation` is active, URL on the listing page shows query parameters like below:
+When `syncWithLocation` is active, the URL on the listing page shows query parameters like those shown below:
 
 ```
 /posts?current=1&pageSize=8&sort[]=createdAt&order[]=desc
 ```
 
-Users are able to change current page, items count per page, sort and filter parameters.
+Users can change the current page, items count per page, and sort and filter parameters.
 
-Default value is `false`.
+The default value is `false`.
 
 ### `warnWhenUnsavedChanges`
 
@@ -393,7 +398,7 @@ To activate this feature, set the `warnWhenUnsavedChanges` to `true`.
 </div>
 <br/>
 
-Default value is `false`.
+The default value is `false`.
 
 ### `liveMode`
 
@@ -430,11 +435,11 @@ const App: React.FC = () => {
 };
 ```
 
-When `redirect` option is set to `false`, no redirect is performed after a successful form mutation.
+When the `redirect` option is set to `false`, no redirect is performed after a successful form mutation.
 
 :::caution
 
-If you don't have a show page and you redirect to the show page, the user will be redirected to the list page. Also, in `undoable` and `optimistic` mutation modes, redirect happens before the mutation succeeds. Therefore, if there is no data in query cache, the user will be redirected to the list page.
+If you don't have a show page and you redirect to the show page, the user will be redirected to the list page. Also, in the `undoable` and `optimistic` mutation modes, redirect happens before the mutation succeeds. Therefore, if there is no data in the query cache, the user will be redirected to the list page.
 
 :::
 
@@ -444,7 +449,7 @@ If you don't have a show page and you redirect to the show page, the user will b
 
 Config for React Query client that **refine** uses.
 
-**refine** uses some defaults that applies to all queries:
+**refine** uses some defaults that apply to all queries:
 
 ```ts
 {
@@ -476,11 +481,32 @@ const App: React.FC = () => (
 );
 ```
 
+Also, you can implement your own [QueryClient](https://react-query.tanstack.com/reference/QueryClient#queryclient).
+
+```tsx
+import { QueryClient } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
+
+const App: React.FC = () => (
+    <Refine
+        ...
+        // highlight-start
+        options={{
+            reactQuery: {
+                clientConfig: queryClient
+            },
+        }}
+        // highlight-end
+    />
+);
+```
+
 #### `devtoolConfig`
 
-Config for customize React Query Devtools. If you want to disable the Devtools, set `devtoolConfig` to `false`.
+Config for customizing React Query Devtools. If you want to disable the Devtools, set `devtoolConfig` to `false`.
 
-**refine** uses some defaults that applies to react-query devtool:
+**refine** uses some defaults that apply to react-query devtool:
 
 ```ts
 {
@@ -519,7 +545,7 @@ Callback to handle all live events.
 
 ## `catchAll`
 
-When the app is navigated to a non-existent route, **refine** shows a default error page. A custom error component can be used for this error page by passing the customized component to `catchAll` property:
+When the app is navigated to a non-existent route, **refine** shows a default error page. A custom error component can be used for this error page by passing the customized component to the `catchAll` property:
 
 ```tsx title="App.tsx"
 // highlight-next-line
@@ -540,7 +566,7 @@ const App: React.FC = () => {
 
 ## `LoginPage`
 
-**refine** has a default login page form which is served on `/login` route when the `authProvider` configuration is provided.
+**refine** has a default login page form which is served on the `/login` route when the `authProvider` configuration is provided.
 
 Custom login component can be passed to the `LoginPage` property.
 
@@ -561,7 +587,7 @@ const App: React.FC = () => (
 
 ## `DashboardPage`
 
-A custom dashboard page can be passed to the `DashboardPage` prop which is accessible on root route.
+A custom dashboard page can be passed to the `DashboardPage` prop which is accessible on the root route.
 
 The dashboard item will appear at the top of the sider menu. If `DashboardPage` is not given, the first resource of `resources` will be shown.
 
@@ -582,9 +608,9 @@ const App: React.FC = () => (
 
 ## `ReadyPage`
 
-**refine** shows a default ready page on root route when no `resources` is passed to the `<Refine>`.
+**refine** shows a default ready page on the root route when no `resources` is passed to the `<Refine>`.
 
-Custom ready page component can be set by passing to `ReadyPage` property?.
+Custom ready page component can be set by passing to the `ReadyPage` property?.
 
 ```tsx title="App.tsx"
 // highlight-next-line
@@ -603,7 +629,7 @@ const App: React.FC = () => (
 
 ## `Sider`
 
-The default sidebar can be customized by using refine hooks and passing custom components to `Sider` property.
+The default sidebar can be customized by using refine hooks and passing custom components to the `Sider` property.
 
 **refine** uses [Ant Design Sider](https://ant.design/components/layout/#Layout.Sider) component by default.
 
@@ -651,7 +677,7 @@ const App: React.FC = () => (
 
 ## `Layout`
 
-Default layout can be customized by passing the `Layout` property.
+The default layout can be customized by passing the `Layout` property.
 
 **refine** uses [Ant Design Layout](https://ant.design/components/layout/) components by default.
 
@@ -710,7 +736,7 @@ const App: React.FC = () => (
 
 ## `OffLayoutArea`
 
-The component wanted to be placed out of app layout structure can be set by passing to `OffLayoutArea` prop.
+The component wanted to be placed out of the app layout structure can be set by passing to the `OffLayoutArea` prop.
 
 ```tsx title="App.tsx"
 // highlight-next-line
@@ -747,5 +773,11 @@ const App: React.FC = () => (
     />
 );
 ```
+
+## API Reference
+
+### Properties
+    
+<PropsTable module="@pankod/refine-core/Refine"/>
 
 [routerprovider]: /api-reference/core/providers/router-provider.md

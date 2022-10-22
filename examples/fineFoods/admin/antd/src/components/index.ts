@@ -5,3 +5,4 @@ export * from "./icons";
 export * from "./orderActions";
 export * from "./dashboard";
 export * from "./offLayoutArea";
+export * from "./map";

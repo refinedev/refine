@@ -29,7 +29,7 @@ import {
     TextFieldProps,
 } from "@pankod/refine-mui";
 import { useStepsForm, Controller } from "@pankod/refine-react-hook-form";
-import { ICourier, IFile, IStore } from "interfaces";
+import { ICourier, IStore } from "interfaces";
 
 export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
@@ -52,7 +52,7 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
         ICourier,
         HttpError,
         ICourier & {
-            avatar: any;
+            avatar: any; // eslint-disable-line
         }
     >({
         stepsProps: {
@@ -259,6 +259,7 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                                             { field: "Gender" },
                                                         ),
                                                     }}
+                                                    // eslint-disable-next-line
                                                     defaultValue={null as any}
                                                     render={({ field }) => (
                                                         <Autocomplete
@@ -458,6 +459,7 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                             rules={{
                                                 required: "Store required",
                                             }}
+                                            // eslint-disable-next-line
                                             defaultValue={null as any}
                                             render={({ field }) => (
                                                 <Autocomplete

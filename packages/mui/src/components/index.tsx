@@ -5,7 +5,7 @@ export { Title } from "./layout/title";
 export { Header } from "./layout/header";
 
 // Pages
-export { LoginPage, ReadyPage, ErrorComponent, AuthPage } from "./pages";
+export * from "./pages";
 
 export * from "./crud";
 export * from "./buttons";

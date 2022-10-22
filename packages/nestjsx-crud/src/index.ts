@@ -1,13 +1,12 @@
 import axios, { AxiosInstance } from "axios";
 import {
-    QueryFilter,
-    QueryFilterArr,
     QuerySort,
     QuerySortArr,
     QuerySortOperator,
     RequestQueryBuilder,
     CondOperator,
     ComparisonOperator,
+    SCondition,
 } from "@nestjsx/crud-request";
 import {
     DataProvider,
@@ -15,14 +14,11 @@ import {
     CrudFilters as RefineCrudFilter,
     CrudOperators,
     CrudSorting,
+    CrudFilter,
 } from "@pankod/refine-core";
 import { stringify } from "query-string";
 
 type SortBy = QuerySort | QuerySortArr | Array<QuerySort | QuerySortArr>;
-type CrudFilters =
-    | QueryFilter
-    | QueryFilterArr
-    | Array<QueryFilter | QueryFilterArr>;
 
 const axiosInstance = axios.create();
 
@@ -43,6 +39,10 @@ axiosInstance.interceptors.response.use(
 
 const mapOperator = (operator: CrudOperators): ComparisonOperator => {
     switch (operator) {
+        case "and":
+            return "$and";
+        case "or":
+            return "$or";
         case "ne":
             return CondOperator.NOT_EQUALS;
         case "lt":
@@ -67,6 +67,14 @@ const mapOperator = (operator: CrudOperators): ComparisonOperator => {
             return CondOperator.EXCLUDES;
         case "null":
             return CondOperator.IS_NULL;
+        case "startswith":
+            return CondOperator.STARTS_LOW;
+        case "startswiths":
+            return CondOperator.STARTS;
+        case "endswith":
+            return CondOperator.ENDS_LOW;
+        case "endswiths":
+            return CondOperator.ENDS;
     }
 
     return CondOperator.EQUALS;
@@ -89,39 +97,40 @@ const generateSort = (sort?: CrudSorting): SortBy | undefined => {
     return;
 };
 
-const generateFilter = (
-    filters?: RefineCrudFilter,
-): { crudFilters: CrudFilters; orFilters: CrudFilters } => {
-    const crudFilters: CrudFilters = [];
-    const orFilters: CrudFilters = [];
-
-    if (filters) {
-        filters.map((filter) => {
-            if (filter.operator !== "or") {
-                crudFilters.push({
-                    field: filter.field,
-                    operator: mapOperator(filter.operator),
-                    value: filter.value,
-                });
-            } else {
-                filter.value.map((orFilter) => {
-                    orFilters.push({
-                        field: orFilter.field,
-                        operator: mapOperator(orFilter.operator),
-                        value: orFilter.value,
-                    });
-                });
-            }
-        });
+const createSearchQuery = (filter: CrudFilter): SCondition => {
+    if (
+        filter.operator !== "and" &&
+        filter.operator !== "or" &&
+        "field" in filter
+    ) {
+        // query
+        return {
+            [filter.field]: {
+                [mapOperator(filter.operator)]: filter.value,
+            },
+        };
     }
 
-    return { crudFilters, orFilters };
+    const { operator } = filter;
+
+    return {
+        [mapOperator(operator)]: filter.value.map((filter) =>
+            createSearchQuery(filter),
+        ),
+    };
+};
+
+const generateSearchFilter = (filters: RefineCrudFilter): SCondition => {
+    return createSearchQuery({
+        operator: "and",
+        value: filters,
+    });
 };
 
 const NestsxCrud = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
-): DataProvider => ({
+): Required<DataProvider> => ({
     getList: async ({
         resource,
         hasPagination = true,
@@ -133,11 +142,11 @@ const NestsxCrud = (
 
         const { current = 1, pageSize = 10 } = pagination ?? {};
 
-        const { crudFilters, orFilters } = generateFilter(filters);
+        const query = RequestQueryBuilder.create();
 
-        const query = RequestQueryBuilder.create()
-            .setFilter(crudFilters)
-            .setOr(orFilters);
+        if (filters) {
+            query.search(generateSearchFilter(filters));
+        }
 
         if (hasPagination) {
             query
@@ -258,9 +267,11 @@ const NestsxCrud = (
     },
 
     custom: async ({ url, method, filters, sort, payload, query, headers }) => {
-        const { crudFilters } = generateFilter(filters);
-        const requestQueryBuilder =
-            RequestQueryBuilder.create().setFilter(crudFilters);
+        const requestQueryBuilder = RequestQueryBuilder.create();
+
+        if (filters) {
+            requestQueryBuilder.search(generateSearchFilter(filters));
+        }
 
         const sortBy = generateSort(sort);
         if (sortBy) {

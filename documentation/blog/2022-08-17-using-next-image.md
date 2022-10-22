@@ -113,7 +113,7 @@ You **should** always add the `width` and `height` props in the image component 
 
 <br/>
 <div>
-<a href="https://github.com/pankod/refine">
+<a href="https://github.com/refinedev/refine">
   <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
 </a>
 </div>
@@ -398,12 +398,7 @@ module.exports = {
 }
 ```
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
-</a>
-</div>
+
 
 ## Conclusion
 
@@ -413,23 +408,41 @@ Congratulations if you made it this far! In this article, you learned how to use
 We hope this article helps you get started with building amazing developer and user experiences by leveraging the numerous customization options and features of the Image component to score good performance points.
 
 
-## Build your React-based CRUD applications without constraints
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
 
-Low-code React frameworks are great for gaining development speed but they often fall short of flexibility if you need extensive styling and customization for your project.
 
-Check out [refine](https://github.com/pankod/refine), if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
+
+---
+
+<div className="banner-container">
+<div className="banner-header" >Stop wasting your time copy/pasting your table code all over your application!</div >
+
+
+
+Meet the headless, React-based solution to build sleek **CRUD** applications. With refine, you can be confident that your codebase will always stay clean and boilerplate-free.
+
+Try [refine](https://github.com/refinedev/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
+
+    
 
 <div>
-<a href="https://github.com/pankod/refine">
-    <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
+<a href="https://github.com/refinedev/refine">
+   <img  src="/img/generic_banner.png" alt="refine blog logo" /> 
 </a>
 </div>
 
 <br/>
 
-**refine** is a React-based framework for building CRUD applications **without constraints.**
-It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
 
-**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
+**refine** is an open-source, React-based framework for building CRUD applications without constraints. It’s headless by design and seamlessly works with **any custom design** or **UI framework** you favor. For convenience, it ships with ready-made integrations for **Ant Design System, Material UI and Mantine UI**.
 
-Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials and example projects.
+It can **speed up your development time up to 3X** without compromising freedom on styling, customization and project workflow.
+
+Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.
+
+</div>

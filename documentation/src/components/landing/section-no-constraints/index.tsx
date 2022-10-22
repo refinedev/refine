@@ -16,10 +16,11 @@ import {
 import { CountingNumber } from "../counting-number";
 import { useTWBreakpoints } from "../../../hooks/use-tw-breakpoints";
 import { ExternalLinkIcon } from "../icons/external-link-icon";
+import { useGithubContext } from "../../../context/GithubContext";
 
-export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
-    starCount,
-}) => {
+export const SectionNoConstraints: React.FC = () => {
+    const { starCount } = useGithubContext();
+
     const ref = React.useRef<HTMLDivElement>(null);
 
     const { sm, md, lg, xl } = useTWBreakpoints();
@@ -262,8 +263,8 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                 ref={ref}
                 className="h-auto lg:h-[600vh] bg-white -mt-px"
             >
-                <div className="hidden lg:block snap-start h-0 w-screen max-w-full" />
-                <div className="hidden lg:snap-start lg:block h-px w-full -mb-px" />
+                <div className="hidden w-screen h-0 max-w-full lg:block snap-start" />
+                <div className="hidden w-full h-px -mb-px lg:snap-start lg:block" />
                 {/* Scroll animated section */}
                 <motion.div className="lg:overflow-hidden h-auto lg:h-screen w-screen max-w-full top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 flex flex-col justify-center pt-[86px] pb-[50px]">
                     <motion.div
@@ -282,25 +283,25 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                     >
                         <RefineAnimatedBgIcon dotY={slideRightBgDotY} />
                     </motion.div>
-                    <div className="w-full flex-shrink-0">
+                    <div className="flex-shrink-0 w-full">
                         <div className="w-full text-center font-montserrat text-[36px] md:text-[60px] lg:text-[90px] leading-none font-extrabold text-[#1890FF] short:text-[55px]">
                             no constraints
                         </div>
                         <div className="w-full font-medium uppercase text-2xl md:text-3xl lg:text-4xl leading-none font-montserrat text-[#1890FF] text-center h-9 relative overflow-hidden short:text-[24px] short:leading-[24px] short:h-6">
                             <motion.div
-                                className="absolute left-0 top-0 w-full"
+                                className="absolute top-0 left-0 w-full"
                                 style={{ translateY: slideSubtitleY }}
                             >
-                                <div className="w-full h-9 short:h-6 text-center">
+                                <div className="w-full text-center h-9 short:h-6">
                                     on styling
                                 </div>
-                                <div className="w-full h-9 short:h-6 text-center">
+                                <div className="w-full text-center h-9 short:h-6">
                                     on backend
                                 </div>
-                                <div className="w-full h-9 short:h-6 text-center">
+                                <div className="w-full text-center h-9 short:h-6">
                                     on your workflow
                                 </div>
-                                <div className="w-full h-9 short:h-6 text-center">
+                                <div className="w-full text-center h-9 short:h-6">
                                     with open software
                                 </div>
                             </motion.div>
@@ -311,13 +312,13 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                         style={lg ? { opacity: slideOpacity } : {}}
                     >
                         <motion.div
-                            className="flex w-full lg:h-full lg:absolute flex-col lg:flex-row"
+                            className="flex flex-col w-full lg:h-full lg:absolute lg:flex-row"
                             style={lg ? { translateX: slideX } : {}}
                             animate={lg ? {} : { translateX: 0 }}
                         >
                             {/* slide 01 */}
-                            <div className="w-full flex-shrink-0 lg:h-full flex justify-center items-center">
-                                <div className="flex flex-col lg:flex-row h-auto max-w-screen-xl w-full">
+                            <div className="flex items-center justify-center flex-shrink-0 w-full lg:h-full">
+                                <div className="flex flex-col w-full h-auto max-w-screen-xl lg:flex-row">
                                     <div className="flex-[3] flex justify-center items-center relative">
                                         <motion.div
                                             className="p-16 lg:p-[50px] lg:pt-[20px] -mx-6 lg:mx-0"
@@ -546,7 +547,7 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                     <div className="flex-[2] place-self-center">
                                         <div className="relative">
                                             <motion.div
-                                                className="relative lg:absolute w-full h-full left-0 top-0 pointer-events-none"
+                                                className="relative top-0 left-0 w-full h-full pointer-events-none lg:absolute"
                                                 style={{
                                                     opacity:
                                                         slideScreenText12Progress,
@@ -627,7 +628,7 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                                             <div className="uppercase text-[#9696B4] text-[12px] leading-[12px] font-montserrat font-bold">
                                                                 view examples
                                                             </div>
-                                                            <div className="h-5 w-5 bg-white rounded-full flex justify-center items-center pl-px">
+                                                            <div className="flex items-center justify-center w-5 h-5 pl-px bg-white rounded-full">
                                                                 <ExternalLinkIcon className="h-2.5 w-2.5 text-[#9696B4]" />
                                                             </div>
                                                         </Link>
@@ -638,8 +639,8 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex lg:hidden w-full flex-shrink-0 lg:h-full justify-center items-center">
-                                <div className="flex flex-col lg:flex-row h-auto max-w-screen-xl w-full">
+                            <div className="flex items-center justify-center flex-shrink-0 w-full lg:hidden lg:h-full">
+                                <div className="flex flex-col w-full h-auto max-w-screen-xl lg:flex-row">
                                     <div className="flex-[3] flex justify-center items-center relative">
                                         <motion.div
                                             className="p-16 lg:p-[50px] lg:pt-[20px] -mx-6 lg:mx-0"
@@ -703,7 +704,7 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                     </div>
                                     <div className="flex-[2] place-self-center">
                                         <div className="relative">
-                                            <motion.div className="w-full h-full left-0 top-0">
+                                            <motion.div className="top-0 left-0 w-full h-full">
                                                 <motion.p className="font-montserrat font-normal text-[21px] leading-[30px] max-w-[350px] text-[#2A2A42]">
                                                     Instead, you can use any{" "}
                                                     <strong className="font-bold">
@@ -724,8 +725,8 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                     </div>
                                 </div>
                             </div>
-                            <div className="mb-24 lg:mb-0 flex lg:hidden w-full flex-shrink-0 lg:h-full justify-center items-center">
-                                <div className="flex flex-col lg:flex-row h-auto max-w-screen-xl w-full">
+                            <div className="flex items-center justify-center flex-shrink-0 w-full mb-24 lg:mb-0 lg:hidden lg:h-full">
+                                <div className="flex flex-col w-full h-auto max-w-screen-xl lg:flex-row">
                                     <div className="flex-[3] flex justify-center items-center relative">
                                         <motion.div
                                             className="p-16 lg:p-[50px] lg:pt-[20px] -mx-6 lg:mx-0"
@@ -808,7 +809,7 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                     <div className="flex-[2] place-self-center">
                                         <div className="relative">
                                             <motion.div
-                                                className="w-full h-full left-0 top-0"
+                                                className="top-0 left-0 w-full h-full"
                                                 style={{
                                                     opacity:
                                                         slideScreenText12Progress,
@@ -845,7 +846,7 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                                             <span className="uppercase text-[#9696B4] text-[12px] leading-[12px] font-montserrat font-bold">
                                                                 view examples
                                                             </span>
-                                                            <div className="h-5 w-5 bg-white rounded-full flex justify-center items-center pl-px">
+                                                            <div className="flex items-center justify-center w-5 h-5 pl-px bg-white rounded-full">
                                                                 <ExternalLinkIcon className="h-2.5 w-2.5 text-[#9696B4]" />
                                                             </div>
                                                         </Link>
@@ -856,21 +857,21 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                     </div>
                                 </div>
                             </div>
-                            <div className="block lg:hidden mb-8 w-full flex-shrink-0">
+                            <div className="flex-shrink-0 block w-full mb-8 lg:hidden">
                                 <div className="w-full text-center font-montserrat text-[36px] md:text-[60px] lg:text-[90px] leading-none font-extrabold text-[#1890FF] short:text-[55px]">
                                     no constraints
                                 </div>
                                 <div className="w-full font-medium uppercase text-2xl md:text-3xl lg:text-4xl leading-none font-montserrat text-[#1890FF] text-center h-9 relative overflow-hidden short:text-[24px] short:leading-[24px] short:h-6">
-                                    <motion.div className="absolute left-0 top-0 w-full">
-                                        <div className="w-full h-9 short:h-6 text-center">
+                                    <motion.div className="absolute top-0 left-0 w-full">
+                                        <div className="w-full text-center h-9 short:h-6">
                                             on backend
                                         </div>
                                     </motion.div>
                                 </div>
                             </div>
-                            <div className="mb-24 lg:mb-0 w-full lg:h-full flex-shrink-0 flex justify-center items-center">
-                                <div className="flex pt-3 h-auto max-w-screen-xl w-full">
-                                    <div className="flex-1 flex flex-col justify-start items-center w-full gap-2">
+                            <div className="flex items-center justify-center flex-shrink-0 w-full mb-24 lg:mb-0 lg:h-full">
+                                <div className="flex w-full h-auto max-w-screen-xl pt-3">
+                                    <div className="flex flex-col items-center justify-start flex-1 w-full gap-2">
                                         <div className="font-montserrat text-xl leading-8 font-medium text-[#2A2A42] text-center max-w-[860px] mb-4">
                                             <p className="mb-0">
                                                 <strong className="font-bold">
@@ -964,7 +965,7 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                                                 : "pt-0"
                                                         }`}
                                                     >
-                                                        <div className="group-hover:opacity-0 scale-100 group-hover:scale-0 opacity-100 transition-all duration-300 w-full h-full flex justify-center items-center">
+                                                        <div className="flex items-center justify-center w-full h-full transition-all duration-300 scale-100 opacity-100 group-hover:opacity-0 group-hover:scale-0">
                                                             <AltIcon className="scale-50 lg:scale-75" />
                                                         </div>
                                                         <div
@@ -984,20 +985,20 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                     </div>
                                 </div>
                             </div>
-                            <div className="block lg:hidden mb-8 w-full flex-shrink-0">
+                            <div className="flex-shrink-0 block w-full mb-8 lg:hidden">
                                 <div className="w-full text-center font-montserrat text-[36px] md:text-[60px] lg:text-[90px] leading-none font-extrabold text-[#1890FF] short:text-[55px]">
                                     no constraints
                                 </div>
                                 <div className="w-full font-medium uppercase text-2xl md:text-3xl lg:text-4xl leading-none font-montserrat text-[#1890FF] text-center h-9 relative overflow-hidden short:text-[24px] short:leading-[24px] short:h-6">
-                                    <motion.div className="absolute left-0 top-0 w-full">
-                                        <div className="w-full h-9 short:h-6 text-center">
+                                    <motion.div className="absolute top-0 left-0 w-full">
+                                        <div className="w-full text-center h-9 short:h-6">
                                             on your workflow
                                         </div>
                                     </motion.div>
                                 </div>
                             </div>
-                            <div className="mb-24 lg:mb-0 w-full flex-shrink-0 lg:h-full flex justify-center items-center">
-                                <div className="flex h-auto max-w-screen-xl w-full flex-col lg:flex-row gap-20 md:gap-32 lg:gap-0">
+                            <div className="flex items-center justify-center flex-shrink-0 w-full mb-24 lg:mb-0 lg:h-full">
+                                <div className="flex flex-col w-full h-auto max-w-screen-xl gap-20 lg:flex-row md:gap-32 lg:gap-0">
                                     <div className="flex-1 flex relative -mx-6 lg:mx-0 px-[55px] pt-0 pb-4 lg:px-12 lg:pb-12 lg:pt-0 justify-center items-center">
                                         <motion.div
                                             style={{
@@ -1168,20 +1169,20 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                     </div>
                                 </div>
                             </div>
-                            <div className="block lg:hidden mb-8 w-full flex-shrink-0">
+                            <div className="flex-shrink-0 block w-full mb-8 lg:hidden">
                                 <div className="w-full text-center font-montserrat text-[36px] md:text-[60px] lg:text-[90px] leading-none font-extrabold text-[#1890FF] short:text-[55px]">
                                     no constraints
                                 </div>
                                 <div className="w-full font-medium uppercase text-2xl md:text-3xl lg:text-4xl leading-none font-montserrat text-[#1890FF] text-center h-9 relative overflow-hidden short:text-[24px] short:leading-[24px] short:h-6">
-                                    <motion.div className="absolute left-0 top-0 w-full">
-                                        <div className="w-full h-9 short:h-6 text-center">
+                                    <motion.div className="absolute top-0 left-0 w-full">
+                                        <div className="w-full text-center h-9 short:h-6">
                                             with open software
                                         </div>
                                     </motion.div>
                                 </div>
                             </div>
-                            <div className="w-full flex-shrink-0 lg:h-full flex justify-center items-center">
-                                <div className="flex h-auto max-w-screen-xl w-full">
+                            <div className="flex items-center justify-center flex-shrink-0 w-full lg:h-full">
+                                <div className="flex w-full h-auto max-w-screen-xl">
                                     <div className="flex-1 flex flex-col justif text-[#2A2A42] text-center max-w-[800px]y-center items-center w-full gap-4 lg:gap-2">
                                         <div className="font-montserrat text-xl pt-[14px] max-w-screen-lg">
                                             <p className="lg:mb-2">
@@ -1529,50 +1530,50 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                                     <span className="inline group-hover:hidden">
                                                         Come to dark side
                                                     </span>
-                                                    <span className="group-hover:inline hidden">
+                                                    <span className="hidden group-hover:inline">
                                                         We have cookies
                                                     </span>
                                                 </div>
-                                                <div className="flex gap-6 justify-center">
+                                                <div className="flex justify-center gap-6">
                                                     <a
                                                         target="_blank"
                                                         rel="noreferrer"
-                                                        href="https://github.com/pankod/refine"
+                                                        href="https://github.com/refinedev/refine"
                                                     >
-                                                        <GraySocialIcons.GithubIcon className="h-8 w-8 hover:scale-110 block nested-hover-hidden" />
-                                                        <ColoredSocialIcons.GithubIcon className="h-8 w-8 hover:scale-110 hidden nested-hover-visible" />
+                                                        <GraySocialIcons.GithubIcon className="block w-8 h-8 hover:scale-110 nested-hover-hidden" />
+                                                        <ColoredSocialIcons.GithubIcon className="hidden w-8 h-8 hover:scale-110 nested-hover-visible" />
                                                     </a>
                                                     <a
                                                         target="_blank"
                                                         rel="noreferrer"
                                                         href="https://discord.gg/refine"
                                                     >
-                                                        <GraySocialIcons.DiscordIcon className="h-8 w-8 hover:scale-110 block nested-hover-hidden" />
-                                                        <ColoredSocialIcons.DiscordIcon className="h-8 w-8 hover:scale-110 hidden nested-hover-visible" />{" "}
+                                                        <GraySocialIcons.DiscordIcon className="block w-8 h-8 hover:scale-110 nested-hover-hidden" />
+                                                        <ColoredSocialIcons.DiscordIcon className="hidden w-8 h-8 hover:scale-110 nested-hover-visible" />{" "}
                                                     </a>
                                                     <a
                                                         target="_blank"
                                                         rel="noreferrer"
                                                         href="https://reddit.com/r/refine"
                                                     >
-                                                        <GraySocialIcons.RedditIcon className="h-8 w-8 hover:scale-110 block nested-hover-hidden" />
-                                                        <ColoredSocialIcons.RedditIcon className="h-8 w-8 hover:scale-110 hidden nested-hover-visible" />
+                                                        <GraySocialIcons.RedditIcon className="block w-8 h-8 hover:scale-110 nested-hover-hidden" />
+                                                        <ColoredSocialIcons.RedditIcon className="hidden w-8 h-8 hover:scale-110 nested-hover-visible" />
                                                     </a>
                                                     <a
                                                         target="_blank"
                                                         rel="noreferrer"
                                                         href="https://twitter.com/refine_dev"
                                                     >
-                                                        <GraySocialIcons.TwitterIcon className="h-8 w-8 hover:scale-110 block nested-hover-hidden" />
-                                                        <ColoredSocialIcons.TwitterIcon className="h-8 w-8 hover:scale-110 hidden nested-hover-visible" />
+                                                        <GraySocialIcons.TwitterIcon className="block w-8 h-8 hover:scale-110 nested-hover-hidden" />
+                                                        <ColoredSocialIcons.TwitterIcon className="hidden w-8 h-8 hover:scale-110 nested-hover-visible" />
                                                     </a>
                                                     <a
                                                         target="_blank"
                                                         rel="noreferrer"
                                                         href="https://www.linkedin.com/company/refine-dev"
                                                     >
-                                                        <GraySocialIcons.LinkedinIcon className="h-8 w-8 hover:scale-110 block nested-hover-hidden" />
-                                                        <ColoredSocialIcons.LinkedinIcon className="h-8 w-8 hover:scale-110 hidden nested-hover-visible" />
+                                                        <GraySocialIcons.LinkedinIcon className="block w-8 h-8 hover:scale-110 nested-hover-hidden" />
+                                                        <ColoredSocialIcons.LinkedinIcon className="hidden w-8 h-8 hover:scale-110 nested-hover-visible" />
                                                     </a>
                                                 </div>
                                             </motion.div>
@@ -1584,10 +1585,10 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                     </motion.div>
                     <motion.div
                         style={lg ? { opacity: slideOpacity } : {}}
-                        className="hidden lg:block flex-shrink-0"
+                        className="flex-shrink-0 hidden lg:block"
                     >
                         <div
-                            className="w-full flex max-w-5xl mx-auto bg-white relative"
+                            className="relative flex w-full max-w-5xl mx-auto bg-white"
                             style={{
                                 boxShadow:
                                     "6px 8px 16px 0 rgba(42, 42, 66, 0.4)",
@@ -1605,7 +1606,7 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                             ? "#1890FF"
                                             : "#A3D3FF",
                                 }}
-                                className="ml-px transition-colors duration-200 ease-in-out flex-1 uppercase font-montserrat font-medium text-lg text-center py-3 border border-solid"
+                                className="flex-1 py-3 ml-px text-lg font-medium text-center uppercase transition-colors duration-200 ease-in-out border border-solid font-montserrat"
                             >
                                 headless ui
                             </motion.div>
@@ -1621,7 +1622,7 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                             ? "#1890FF"
                                             : "#A3D3FF",
                                 }}
-                                className="-ml-px transition-colors duration-200 ease-in-out flex-1 uppercase font-montserrat font-medium text-lg text-center py-3 border border-solid"
+                                className="flex-1 py-3 -ml-px text-lg font-medium text-center uppercase transition-colors duration-200 ease-in-out border border-solid font-montserrat"
                             >
                                 backend agnostic
                             </motion.div>
@@ -1637,7 +1638,7 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                             ? "#1890FF"
                                             : "#A3D3FF",
                                 }}
-                                className="-ml-px transition-colors duration-200 ease-in-out flex-1 uppercase font-montserrat font-medium text-lg text-center py-3 border border-solid"
+                                className="flex-1 py-3 -ml-px text-lg font-medium text-center uppercase transition-colors duration-200 ease-in-out border border-solid font-montserrat"
                             >
                                 custom workflow
                             </motion.div>
@@ -1653,7 +1654,7 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                                             ? "#1890FF"
                                             : "#A3D3FF",
                                 }}
-                                className="-ml-px transition-colors duration-200 ease-in-out flex-1 uppercase font-montserrat font-medium text-lg text-center py-3 border border-solid"
+                                className="flex-1 py-3 -ml-px text-lg font-medium text-center uppercase transition-colors duration-200 ease-in-out border border-solid font-montserrat"
                             >
                                 open source
                             </motion.div>
@@ -1674,7 +1675,7 @@ export const SectionNoConstraints: React.FC<{ starCount?: number }> = ({
                 {Array.from({ length: 5 }, (_, i) => i).map((i) => (
                     <div
                         key={i}
-                        className="hidden lg:block snap-start h-screen w-screen max-w-full"
+                        className="hidden w-screen h-screen max-w-full lg:block snap-start"
                     />
                 ))}
             </motion.div>

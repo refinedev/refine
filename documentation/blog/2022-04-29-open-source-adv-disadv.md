@@ -63,7 +63,7 @@ When you're working on an Open Source projects, you need to be able to communica
 
 This is a great way to improve your communication skills. You need to be able to explain your ideas clearly and concisely. You also need to be able to listen to others and understand their point of view. Working on an Open Source project is a great way to improve your communication skills. 
 
-The Refine has a [discord  channel](https://discord.com/invite/refine) where we discuss the development of Refine and help each other.
+The Refine has a [discord  channel](https://discord.gg/refine) where we discuss the development of Refine and help each other.
 
 ## 🌚 Disadvantage of Working on an Open Source Projects
 
@@ -97,6 +97,6 @@ You should weigh these carefully before deciding whether or not to work on one.
 
 If you do decide to work on an Open Source project, be prepared for challenges and demands from the community. But also be prepared to learn and grow as a developer.
 
-Refine is an amazing tool. We have reached 50 contributors and we are currently working on our features that we had on the roadmap. If you're interested in learning more about Refine and becoming a contributor, please check out our [website](https://refine.dev/) or [GitHub repository](https://github.com/pankod/refine).
+Refine is an amazing tool. We have reached 50 contributors and we are currently working on our features that we had on the roadmap. If you're interested in learning more about Refine and becoming a contributor, please check out our [website](https://refine.dev/) or [GitHub repository](https://github.com/refinedev/refine).
 
 I hope this article was helpful in explaining the advantages and disadvantages of working on an Open Source project. If you have any questions, please feel free to leave a comment below. Thanks for reading!

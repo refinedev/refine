@@ -7,6 +7,9 @@ import {
 } from "../../interfaces";
 
 export const useDataProvider = (): ((
+    /**
+     * The name of the `data provider` you want to access
+     */
     dataProviderName?: string,
 ) => IDataContextProvider) => {
     const context = useContext<IDataMultipleContextProvider>(DataContext);

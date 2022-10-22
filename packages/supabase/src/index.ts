@@ -79,11 +79,27 @@ const generateFilter = (filter: CrudFilter, query: any) => {
             return query.like(filter.field, `%${filter.value}%`);
         case "null":
             return query.is(filter.field, null);
+        case "startswith":
+            return query.ilike(filter.field, `${filter.value}%`);
+        case "endswith":
+            return query.ilike(filter.field, `%${filter.value}`);
         case "or":
             const orSyntax = filter.value
-                .map((item) => `${item.field}.${item.operator}.${item.value}`)
+                .map((item) => {
+                    if (
+                        item.operator !== "or" &&
+                        item.operator !== "and" &&
+                        "field" in item
+                    ) {
+                        return `${item.field}.${item.operator}.${item.value}`;
+                    }
+                    return;
+                })
                 .join(",");
             return query.or(orSyntax);
+
+        case "and":
+            throw Error("Operator 'and' is not supported");
         default:
             return query.filter(
                 filter.field,
@@ -102,7 +118,9 @@ const handleError = (error: PostgrestError) => {
     return Promise.reject(customError);
 };
 
-const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
+const dataProvider = (
+    supabaseClient: SupabaseClient,
+): Required<DataProvider> => {
     return {
         getList: async ({
             resource,
@@ -119,6 +137,7 @@ const dataProvider = (supabaseClient: SupabaseClient): DataProvider => {
                 .select(metaData?.select ?? "*", {
                     count: "exact",
                 });
+
             if (hasPagination) {
                 query.range((current - 1) * pageSize, current * pageSize - 1);
             }

@@ -28,7 +28,7 @@ We need to install Casbin.
 npm install casbin
 ```
 :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package.
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
 ## Setup
 
@@ -129,7 +129,7 @@ p, editor, posts, list
 ```
 
 :::tip
-You can can find more examples in [Casbin documentation](https://casbin.org/docs/en/supported-models) or play with lots of examples in [Casbin editor](https://casbin.org/en/editor)  
+You can can find more examples in [Casbin documentation](https://casbin.org/docs/en/supported-models) or play with lots of examples in [Casbin editor](https://casbin.org/en/editor)
 :::
 
 ## Adding `accessControlProvider`
@@ -172,7 +172,7 @@ export default App;
 
 Whenever a part of the app checks for access control, refine passes `resource`, `action` and `params` parameters to `can` and then we can use these parameters to integrate our specific access control solution which is **Casbin** in this case.
 
-Our model provides that user with role **editor** have access for **list** action on **posts** resource. Even though we have two other resources, since our policy doesn't include them, they will not appear on sidebar menu. Also in list page of `posts`, buttons for **create**, **edit** and **show** buttons will be disabled since thay are not included in the policy.
+Our model provides that user with role **editor** have access for **list** action on **posts** resource. Even though we have two other resources, since our policy doesn't include them, they will not appear on sidebar menu. Also in list page of `posts`, buttons for **create**, **edit** and **show** buttons will be disabled since they are not included in the policy.
 
 <div class="img-container">
     <div class="window">
@@ -349,7 +349,7 @@ const App: React.FC = () => {
                     ) {
                         const can = await enforcer.enforce(
                             role,
-                            `${resource}/${params.id}`,
+                            `${resource}/${params?.id}`,
                             action,
                         );
                         return Promise.resolve({ can });
@@ -439,7 +439,7 @@ const App: React.FC = () => {
                     ) {
                         const can = await enforcer.enforce(
                             role,
-                            `${resource}/${params.id}`,
+                            `${resource}/${params?.id}`,
                             action,
                         );
                         return Promise.resolve({ can });
@@ -449,7 +449,7 @@ const App: React.FC = () => {
                     if (action === "field") {
                         const can = await enforcer.enforce(
                             role,
-                            `${resource}/${params.field}`,
+                            `${resource}/${params?.field}`,
                             action,
                         );
                         return Promise.resolve({ can });
@@ -490,7 +490,7 @@ export const PostList: React.FC = () => {
     return (
         <List>
             <Table {...tableProps} rowKey="id">
-                // ... 
+                // ...
                 // highlight-start
                 {canAccess?.can && (
                     <Table.Column
@@ -504,7 +504,7 @@ export const PostList: React.FC = () => {
                         )}
                     />
                 )}
-                // highlight-end 
+                // highlight-end
                 // ...
             </Table>
         </List>
@@ -530,7 +530,7 @@ export const PostList: React.FC = () => {
 
 ### Casbin
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/accessControl/casbin/?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/accessControl/casbin/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="access-control-casbin-react"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
@@ -539,7 +539,7 @@ export const PostList: React.FC = () => {
 
 ### Cerbos
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/accessControl/cerbos/?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/accessControl/cerbos/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="access-control-cerbos-react"
 ></iframe>

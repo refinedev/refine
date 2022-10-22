@@ -11,7 +11,7 @@ describe("deleteMany", () => {
     });
 
     it("correct response with metaData", async () => {
-        const { data } = await dataProvider(nhost).deleteMany({
+        const { data } = await dataProvider(nhost).deleteMany!({
             resource: "posts",
             ids: [
                 "b16d671e-1172-4622-8c2f-b4b88fd60bfc",
@@ -31,7 +31,7 @@ describe("deleteMany", () => {
     });
 
     it("correct response without metaData", async () => {
-        const { data } = await dataProvider(nhost).deleteMany({
+        const { data } = await dataProvider(nhost).deleteMany!({
             resource: "posts",
             ids: [
                 "be7fd33d-efa2-4d49-8576-48d9a57a5bb1",

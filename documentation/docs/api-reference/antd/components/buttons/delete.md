@@ -90,7 +90,7 @@ Clicking the button will trigger the [`useDelete`](/api-reference/core/hooks/dat
 **`<DeleteButton>`** component reads the id information from the route by default.
 :::
 
-### `resourceName`
+### `resourceNameOrRouteName`
 
 `resourceNameOrRouteName` allows us to manage which resource's record is going to be deleted.
 
@@ -193,16 +193,15 @@ export const MyDeleteComponent = () => {
 };
 ```
 
+### `accessControl`
 
-### `ignoreAccessControlProvider`
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
-It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
-
-```tsx 
+```tsx
 import { DeleteButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
-    return <DeleteButton ignoreAccessControlProvider />;
+    return <DeleteButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
 };
 ```
 
@@ -227,22 +226,8 @@ export const MyDeleteComponent = () => {
 
 ### Properties
 
-| Property                    | Description                                                                                  | Type                                                                                                                        | Default                                                                              |
-| --------------------------- | -------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| props                       | Ant Design button properties                                                                 | [`ButtonProps`](https://ant.design/components/button/#API) & [`DeleteButtonProps`](/api-reference/core/interfaces.md#delete-button-props) |                                                                                      |
-| resourceNameOrRouteName                                                                                   | Determines which resource to use for redirection | `string`                                                                                                      | Resource name that it reads from route                           |
-| <div className="required-block"><div>resourceName</div> <div className=" required">deprecated</div></div> | Determines which resource to use for redirection | `string`                                                                                                      | Resource name that it reads from route                           |
-| recordItemId                | Determines which id to use for deletion                                                      | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                                                                                                  | Record id that it reads from route                                                   |
-| onSuccess                   | Called when [mutation](https://react-query.tanstack.com/reference/useMutation) is successful | `(value: DeleteOneResponse) => void`                                                                                        |                                                                                      |
-| mutationMode                | Determines when mutations are executed.                                                      | `"pessimistic"` \| `"optimistic"` \| `"undoable"`                                                                           |                                                                                      |
-| hideText                    | Allows to hide button text                                                                   | `boolean`                                                                                                                   | `false`                                                                              |
-| confirmTitle                | The title of the confirmation box                                                            | `string`                                                                                                                    | `"Are you sure?"`                                                                        |
-| confirmOkText               | The text of the Confirm button                                                               | `string`                                                                                                                    | `"Delete"`                                                                                | 
-| confirmCancelText           | The text of the Cancel button                                                                | `string`                                                                                                                    | `"Cancel"`                                                                 |
-| children                    | Sets the button text                                                                         | `ReactNode`                                                                                                                 | `"Delete"`                                                                           |
-| ignoreAccessControlProvider | Skip access control                                                                          | `boolean`                                                                                                                   | `false`                                                                              |
-| icon                        | Sets the icon component of the button                                                        | `ReactNode`                                                                                                                 | [`<DeleteOutlined />`](https://ant.design/components/icon/)                          |
-| danger                      | Sets the danger status of the button                                                         | `boolean`                                                                                                                   | `true`                                                                               |
-| loading                     | Sets the loading status of the button                                                        | `boolean`                                                                                                                   | When the request is not completed, loading is `true`, when it completes it's `false` |
-| metaData                    | Metadata query for `dataProvider`                                                            | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                                                              | {}                                                                                   |
-| invalidates                                                                                        | You can use it to manage the invalidations that will occur at the end of the mutation.           | `all`, `resourceAll`, `list`, `many`, `detail`, `false`                    | `["list", "many"]`                                                   |
+<PropsTable module="@pankod/refine-antd/DeleteButton" />
+
+:::tip External Props
+It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).
+:::

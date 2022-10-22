@@ -388,21 +388,13 @@ export const EditPost: React.FC<UseModalFormReturnType> = ({
 
 ### Properties
 
-| Property                   | Description                                                         | Type                                                |
-| -------------------------- | ------------------------------------------------------------------- | --------------------------------------------------- |
-| modalProps                 | Configuration object for the modal                                  | [`ModalPropsType`](#modalpropstype)                 |
-| refineCoreProps            | Configuration object for the core of the [`useForm`][use-form-core] | [`UseFormProps`](/api-reference/core/hooks/useForm.md#properties) |
-| React Hook Form Properties | See [React Hook Form][react-hook-form-use-form] documentation       |
+<PropsTable module="@pankod/refine-react-hook-form/useModalForm" />
 
-<br />
+> `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/api-reference/core/components/refine-config.md)>** component.
 
-> -   #### ModalPropsType
->
-> | Property        | Description                                                   | Type      | Default |
-> | --------------- | ------------------------------------------------------------- | --------- | ------- |
-> | defaultVisible  | Initial visibility state of the modal                         | `boolean` | `false` |
-> | autoSubmitClose | Whether the form should be submitted when the modal is closed | `boolean` | `true`  |
-> | autoResetForm   | Whether the form should be reset when the form is submitted   | `boolean` | `true`  |
+:::tip External Props
+It also accepts all props of [useForm](https://react-hook-form.com/api/useform) hook available in the  [React Hook Form](https://react-hook-form.com/).
+:::
 
 ### Return values
 
@@ -427,12 +419,12 @@ export const EditPost: React.FC<UseModalFormReturnType> = ({
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/form/reactHookForm/useModalForm/?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/form/reactHookForm/useModalForm/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-react-hook-form-example"
 ></iframe>
 
-[@pankod/refine-react-hook-form]: https://github.com/pankod/refine/tree/master/packages/react-hook-form
+[@pankod/refine-react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
 [refine-react-hook-form-use-form]: /packages/documentation/react-hook-form/useForm.md
 [react-hook-form-use-form]: https://react-hook-form.com/api/useform
 [use-form-core]: /api-reference/core/hooks/useForm.md

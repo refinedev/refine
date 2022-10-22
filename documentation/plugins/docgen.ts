@@ -93,9 +93,6 @@ const replacementProps: Record<string, string> = {
         "[CrudFilters](/docs/api-reference/core/interfaceReferences/#crudfilters)",
     CrudSorting:
         "[CrudSorting](/docs/api-reference/core/interfaceReferences/#crudsorting)",
-    queryOptions:
-        "react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options",
-    paparseOptions: "https://www.papaparse.com/docs",
 };
 
 /** HELPERS */
@@ -215,7 +212,9 @@ const createParser = (configPath: string) => {
                 prop.declarations.length > 0 &&
                 !Boolean(prop.declarations.find(declarationFilter));
 
-            if (isExcluded || isExternal) {
+            const isUnknown = typeof prop.declarations === "undefined";
+
+            if (isExcluded || isExternal || isUnknown) {
                 return false;
             }
             return true;

@@ -20,6 +20,7 @@ import social from '@site/static/img/blog/2022-08-26-react-content-filtering/ref
 
 
 
+
 ## Introduction
 Filtering systems are common for most modern web applications. They are especially useful if there are large amounts of data. They allow users to save time and easily access the information they are looking for.
 
@@ -43,6 +44,7 @@ Steps we'll cover:
   - [Content card](#content-card)
 - [Implementing the logic](#implementing-the-logic)
 - [Testing the app](#testing-the-app)
+- [Conclusion](#conclusion)
 
 
 
@@ -62,7 +64,7 @@ Today we will be building a filtering system that will let us sort the results t
 
 <br/>
 
-We will use the [refine](https://github.com/pankod/refine) framework, which is based on React and allows users to build tools rapidly.
+We will use the [refine](https://github.com/refinedev/refine) framework, which is based on React and allows users to build tools rapidly.
 
 
 ## Why refine framework?
@@ -280,7 +282,7 @@ We set the button's title to be positioned left for the button's contents. For t
 
 <br/>
 <div>
-<a href="https://github.com/pankod/refine">
+<a href="https://github.com/refinedev/refine">
   <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
 </a>
 </div>
@@ -616,7 +618,7 @@ Feel free to modify the app with your own custom features. Play around with diff
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
 </a>
 </div>
 
@@ -624,7 +626,7 @@ Feel free to modify the app with your own custom features. Play around with diff
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/blog/refine-filtering/?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/blog/refine-filtering/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-search-and-filtering-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
@@ -632,25 +634,30 @@ Feel free to modify the app with your own custom features. Play around with diff
 ></iframe>
 
 ---
+<div style={{backgroundColor:"#F8F8F8", padding:"18px", borderRadius:"10px"}}>
+<div style={{fontSize:"32px", fontWeight:"700", lineHeight:"1.4", marginBottom:"25px"}} >Stop wasting your time copy/pasting your table code all over your application!</div >
 
-## Build your React-based CRUD applications without constraints
 
-Building CRUD applications involves many repetitive task consuming your precious development time. If you are starting from scratch, you also have to implement custom solutions for critical parts of your application like authentication, authorization, state management and networking. 
 
-Check out [refine](https://github.com/pankod/refine), if you are interested in a headless framework with robust architecture and full of industry best practices for your next CRUD project.
+Meet the headless, React-based solution to build sleek **CRUD** applications. With refine, you can be confident that your codebase will always stay clean and boilerplate-free.
 
+Try [refine](https://github.com/refinedev/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
+
+    
 
 <div>
-<a href="https://github.com/pankod/refine">
-    <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
+<a href="https://github.com/refinedev/refine">
+   <img  src="/img/generic_banner.png" alt="refine blog logo" /> 
 </a>
 </div>
 
 <br/>
 
-**refine** is an open-source React-based framework for building CRUD applications **without constraints.**
-It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
 
-**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
+**refine** is an open-source, React-based framework for building CRUD applications without constraints. It’s headless by design and seamlessly works with **any custom design** or **UI framework** you favor. For convenience, it ships with ready-made integrations for **Ant Design System, Material UI and Mantine UI**.
 
-Visit [refine GitHub repository](https://github.com/pankod/refine) for more information, demos, tutorials, and example projects.
+It can **speed up your development time up to 3X** without compromising freedom on styling, customization and project workflow.
+
+Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.
+
+</div>

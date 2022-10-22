@@ -13,6 +13,7 @@ export const useCart = ({
 } => {
     const { data, isFetching } = useOne<StoreCartsRes>({
         resource: "carts",
+        // eslint-disable-next-line
         id: id!,
         queryOptions: {
             enabled: !!id,

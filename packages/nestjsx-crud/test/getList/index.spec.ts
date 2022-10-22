@@ -79,4 +79,57 @@ describe("getList", () => {
         expect(data[0]["title"]).toBe("Games initiatives online");
         expect(total).toBe(24);
     });
+
+    it("or/and correct filter response", async () => {
+        const { data, total } = await JsonServer(
+            "https://api.nestjsx-crud.refine.dev",
+            axios,
+        ).getList({
+            resource: "posts",
+            filters: [
+                {
+                    key: "1",
+                    operator: "or",
+                    value: [
+                        {
+                            key: "1.1",
+                            operator: "and",
+                            value: [
+                                {
+                                    field: "title",
+                                    operator: "startswith",
+                                    value: "a",
+                                },
+                                {
+                                    field: "title",
+                                    operator: "contains",
+                                    value: "heuristic",
+                                },
+                            ],
+                        },
+                        {
+                            key: "1.2",
+                            operator: "and",
+                            value: [
+                                {
+                                    field: "title",
+                                    operator: "startswith",
+                                    value: "e",
+                                },
+                                {
+                                    field: "title",
+                                    operator: "contains",
+                                    value: "invoice",
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        });
+
+        expect(data[0]["title"]).toBe("Engage Marshall Islands invoice");
+        expect(data[1]["title"]).toBe("Avon heuristic Washington");
+        expect(total).toBe(2);
+    });
 });

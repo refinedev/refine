@@ -1,6 +1,7 @@
 import { handleRefineOptions } from ".";
 import { defaultRefineOptions } from "@contexts/refine";
 import { IRefineOptions } from "src/interfaces";
+import { QueryClient } from "@tanstack/react-query";
 
 describe("handleRefineOptions", () => {
     it("should return the default options if no options are provided", () => {
@@ -170,6 +171,24 @@ describe("handleRefineOptions", () => {
             afterClone: "show",
             afterCreate: "list",
             afterEdit: "list",
+        });
+    });
+
+    it("it should return provided query client", () => {
+        const queryClient = new QueryClient();
+
+        const options: IRefineOptions = {
+            reactQuery: {
+                clientConfig: queryClient,
+                devtoolConfig: false,
+            },
+        };
+
+        const { reactQueryWithDefaults } = handleRefineOptions({ options });
+
+        expect(reactQueryWithDefaults).toEqual({
+            clientConfig: queryClient,
+            devtoolConfig: false,
         });
     });
 });

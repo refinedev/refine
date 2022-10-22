@@ -12,6 +12,7 @@ const web3Modal = new Web3Modal({
     providerOptions,
 });
 
+// eslint-disable-next-line
 let provider: any | null = null;
 
 export const authProvider: AuthProvider = {

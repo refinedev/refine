@@ -16,7 +16,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: "flat" | "slim" | "ghost" | "naked";
     active?: boolean;
     type?: "submit" | "reset" | "button";
-    Component?: string | JSXElementConstructor<any>;
+    Component?: string | JSXElementConstructor<any>; // eslint-disable-line
     width?: string | number;
     loading?: boolean;
     disabled?: boolean;

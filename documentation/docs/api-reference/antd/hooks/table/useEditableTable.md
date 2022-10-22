@@ -316,22 +316,7 @@ export const PostList: React.FC = () => {
 
 ### Properties
 
-| Key                                                          | Description                                                                                                                                                        | Type                                                                           |
-| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------ |
-| resource                                                     | The resource to use for table data                                                                                                                                 | `string` \| `undefined`                                                        | Resource name that it reads from the url                                             |
-| permanentFilter                                              | Default and unchangeable filter.                                                                                                                                   | [`CrudFilters`][crudfilters]                                                   |
-| hasPagination                                                | Whether to use server side pagination or not.                                                                                                                      | `boolean`                                                                      | `true` |
-| initialCurrent                                               | Initial page index.                                                                                                                                                | `number`                                                                       |
-| initialPageSize                                              | Number of records shown per initial number of pages.                                                                                                               | `number`                                                                       |
-| initialSorter                                                | Initial sorting.                                                                                                                                                   | [`CrudSorting`][crudsorting]                                                   |
-| initialFilter                                                | Initial filtering.                                                                                                                                                 | [`CrudFilters`][crudfilters]                                                   |
-| syncWithLocation                                             | Sortings, filters, page index and records shown per page are tracked by browser history.                                                                           | `boolean`                                                                      |
-| onSearch                                                     | When the search form is submitted, it creates the 'CrudFilters' object. Refer to [search form][table search] to learn how to create a search form.                 | `Function`                                                                     |
-| queryOptions                                                 | `react-query`'s `useQuery` options                                                                                                                                 | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                    |
-| metaData                                                     | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                           |
-| [liveMode](/api-reference/core/providers/live-provider.md#usage-in-a-hook) | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/api-reference/core/interfaces.md#livemodeprops)         |
-| liveParams                                                   | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: string[]; [key: string]: any; }`](/api-reference/core/interfaces.md#livemodeprops) |
-| onLiveEvent                                                  | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/api-reference/core/interfaces.md#livemodeprops)              |
+<PropsTable module="@pankod/refine-antd/useEditableTable"/>
 
 ### Type Parameters
 
@@ -367,7 +352,7 @@ export const PostList: React.FC = () => {
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/table/antd/useEditableTable?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/table/antd/useEditableTable?embed=1&view=preview&theme=dark&preset=node&ctl=1"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-use-editable-table-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

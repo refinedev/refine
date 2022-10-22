@@ -1,5 +1,5 @@
 {
-  "version": "4.7.6",
+  "version": "4.9.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -19,17 +19,16 @@
   },
   "name": "@pankod/refine-react-table",
   "description": "refine offers a React Table adapter that allows you to use the React Table library with refine.",
-  "author": "Pankod",
+  "author": "refine",
   "module": "dist/esm/index.js",
   "peerDependencies": {
-    "react-table": "^7.7.0",
     "@pankod/refine-core": "^3.23.2",
     "@tanstack/react-table": "^8.2.6",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
-    "@pankod/refine-core": "^3.69.9",
+    "@pankod/refine-core": "^3.86.0",
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "jest": "^27.5.1",
     "react-router-dom": "6.3.0",
@@ -42,7 +41,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pankod/refine.git",
+    "url": "https://github.com/refinedev/refine.git",
     "directory": "packages/react-table"
   },
   "gitHead": "17dd5af3e4c9f7f09e1e707362c6f5a9d1cab8a8",

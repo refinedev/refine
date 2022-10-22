@@ -15,27 +15,27 @@ You can use `visible` state to show or hide the modal. The `show` and `close` fu
 
 Let's see an example:
 
-```tsx  title="src/pages/posts/list.tsx"
+```tsx title="src/pages/posts/list.tsx"
 import {
-// highlight-next-line
+    // highlight-next-line
     useModal,
 } from "@pankod/refine-core";
 
 export const PostList: React.FC = () => {
-// highlight-next-line
+    // highlight-next-line
     const { visible, show, close } = useModal();
 
     return (
         <>
-// highlight-start
+            // highlight-start
             <button onClick={show}>Show Modal</button>
-            {visible && 
-            <YourModalComponent>
-                <p>Dummy Modal Content</p>
-                <button onClick={close}>Close Modal</button>
-            </YourModalComponent>
-            }
-// highlight-end
+            {visible && (
+                <YourModalComponent>
+                    <p>Dummy Modal Content</p>
+                    <button onClick={close}>Close Modal</button>
+                </YourModalComponent>
+            )}
+            // highlight-end
         </>
     );
 };
@@ -51,10 +51,7 @@ We also created a `<button>` to close the `<YourModalComponent>` and gave the on
 
 ### Properties
 
-| Property       | Description                     | Type      | Default |
-| -------------- | ------------------------------- | --------- | ------- |
-| defaultVisible | Modal's default `visible` state | `boolean` | `false` |
-
+<PropsTable module="@pankod/refine-core/useModal"  />
 
 ### Return Value
 
@@ -66,9 +63,9 @@ We also created a `<button>` to close the `<YourModalComponent>` and gave the on
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/core/useModal?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/core/useModal?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-modal-example"
 ></iframe>
 
-[Modal]: https://ant.design/components/modal/#API
+[modal]: https://ant.design/components/modal/#API

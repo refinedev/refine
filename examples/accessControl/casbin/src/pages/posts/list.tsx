@@ -1,4 +1,4 @@
-import { IResourceComponentsProps, useMany, useCan } from "@pankod/refine-core";
+import { useMany, useCan } from "@pankod/refine-core";
 
 import {
     List,
@@ -94,7 +94,7 @@ export const PostList: React.FC = () => {
                     dataIndex="status"
                     title="Status"
                     render={(value: string) => <TagField value={value} />}
-                    filterDropdown={(props: any) => (
+                    filterDropdown={(props) => (
                         <FilterDropdown {...props}>
                             <Radio.Group>
                                 <Radio value="published">Published</Radio>

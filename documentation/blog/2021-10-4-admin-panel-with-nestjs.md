@@ -12,11 +12,11 @@ import api from '@site/static/img/blog/2021-10-4-admin-panel-with-nestjs/api.png
 import refine_sample from '@site/static/img/blog/2021-10-4-admin-panel-with-nestjs/refine_sample.png';
 import refine_job from '@site/static/img/blog/2021-10-4-admin-panel-with-nestjs/refine_job.png';
 
-In this article, we will prepare a simple `job-posting` application. We will also use the [refine](https://github.com/pankod/refine) framework for the **admin panel**. The project will consist of two parts, api and admin.
+In this article, we will prepare a simple `job-posting` application. We will also use the [refine](https://github.com/refinedev/refine) framework for the **admin panel**. The project will consist of two parts, api and admin.
 
 <!--truncate-->
 
-All the steps described are in this [repo](https://github.com/pankod/refine/tree/master/examples/blog/jobPosting).
+All the steps described are in this [repo](https://github.com/refinedev/refine/tree/master/examples/blog/jobPosting).
 
 ## Intro
 [NestJS](https://github.com/nestjs/nest) is a framework for building efficient, scalable Node.js server-side applications. With [nestjsx/crud](https://github.com/nestjsx/crud) we can add CRUD functions quickly and effortlessly on this framework.
@@ -47,9 +47,9 @@ To start with this library we have to install all required dependencies:
 npm install --save @nestjs/typeorm @nestjs/config typeorm mysql2
 ```
 
-- Create an [.env.example](https://github.com/pankod/refine-hackathon/tree/main/job-posting-app/blob/master/api/.env.example) file. Here we will save the database information.
-- Create and configured a [docker-compose](https://github.com/pankod/refine-hackathon/tree/main/job-posting-app/blob/master/api/docker-compose.yml) file for MySQL.
-- Create a [ormconfig.ts](https://github.com/pankod/refine-hackathon/tree/main/job-posting-app/blob/master/api/ormconfig.ts) file for migrations.
+- Create an [.env.example](https://github.com/refinedev/refine-hackathon/tree/main/job-posting-app/blob/master/api/.env.example) file. Here we will save the database information.
+- Create and configured a [docker-compose](https://github.com/refinedev/refine-hackathon/tree/main/job-posting-app/blob/master/api/docker-compose.yml) file for MySQL.
+- Create a [ormconfig.ts](https://github.com/refinedev/refine-hackathon/tree/main/job-posting-app/blob/master/api/ormconfig.ts) file for migrations.
 - Add the following scripts to the `package.json` file for migrations.
 ```bash
 "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
@@ -67,7 +67,7 @@ I used [nestjsx-crud](https://github.com/nestjsx/crud) library because it makes 
 npm i @nestjsx/crud @nestjsx/crud-typeorm class-transformer class-validator
 ```
 
-*Since the steps to create Entities Contorllers, and services are very long, I do not explain step by step. You can check the [repo](https://github.com/pankod/refine-hackathon/tree/main/job-posting-app) for details.*
+*Since the steps to create Entities Controllers, and services are very long, I do not explain step by step. You can check the [repo](https://github.com/refinedev/refine-hackathon/tree/main/job-posting-app) for details.*
 
 It created these end-points automatically with nestjsx/crud.
 
@@ -122,7 +122,7 @@ Refine's sample application will welcome you.
 </div>
 <br />
 
-Change api url in [admin/src/App.tsx](https://github.com/pankod/refine-hackathon/tree/main/job-posting-app/blob/master/admin/src/App.tsx)
+Change api url in [admin/src/App.tsx](https://github.com/refinedev/refine-hackathon/tree/main/job-posting-app/blob/master/admin/src/App.tsx)
 
 ```
 const API_URL = "http://localhost:3000";

@@ -3,7 +3,7 @@ id: useModal
 title: useModal
 ---
 
-[View Source](https://github.com/pankod/refine/tree/master/examples/ui/useModal)
+[View Source](https://github.com/refinedev/refine/tree/master/examples/ui/useModal)
 
 <iframe src="https://codesandbox.io/embed/refine-use-modal-example-ghdhl?autoresize=1&fontsize=14&theme=dark&view=preview"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}

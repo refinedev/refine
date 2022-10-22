@@ -14,7 +14,7 @@ type OrderPageProps = {
 };
 
 export const OrderDetail: React.FC<OrderPageProps> = ({ order }) => {
-    const el = useRef<any>();
+    const el = useRef<HTMLDivElement>(null);
     const q = gsap.utils.selector(el);
 
     const [showMessage, setShowMessage] = useState(false);

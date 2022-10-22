@@ -418,9 +418,15 @@ export const PostCreate: React.FC = () => {
 
 ### Properties
 
-Supports all the properties supported by the `useForm` hook are available in the [React Hook Form][react-hook-form] documentation. Also, we added the following property:
+<PropsTable module="@pankod/refine-react-hook-form/useForm" />
 
-`refineCoreProps`: You can define all properties provided by [`useForm`][use-form-core] here. You can see all of them in [here](/api-reference/core/hooks/useForm.md#properties).
+> `*`: These properties have default values in `RefineContext` and can also be set on the **<[Refine](/api-reference/core/components/refine-config.md)>** component.
+
+:::tip External Props
+It also accepts all props of [useForm](https://react-hook-form.com/api/useform) hook available in the  [React Hook Form](https://react-hook-form.com/).
+:::
+
+<br/>
 
 > For example, we can define the `refineCoreProps` property in the `useForm` hook as:
 
@@ -469,13 +475,13 @@ const {
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/form/reactHookForm/useForm/?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/form/reactHookForm/useForm/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-react-hook-form-example"
 ></iframe>
 
 [react-hook-form]: https://react-hook-form.com
-[refine-react-hook-form]: https://github.com/pankod/refine/tree/master/packages/react-hook-form
+[refine-react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
 [use-form-core]: /api-reference/core/hooks/useForm.md
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror

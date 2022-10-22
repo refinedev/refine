@@ -44,6 +44,10 @@ const mapOperator = (operator: CrudOperators): string => {
             return "<=";
         case "ne":
             return "!=";
+        case "contains":
+            return "IN";
+        case "ncontains":
+            return "NIN";
         default:
             throw Error(`Operator ${operator} is not supported`);
     }
@@ -71,7 +75,11 @@ const generateFilter = (filters?: CrudFilters) => {
         filters.map((filter) => {
             const mappedOperator = mapOperator(filter.operator);
 
-            if (filter.operator !== "or") {
+            if (
+                filter.operator !== "or" &&
+                filter.operator !== "and" &&
+                "field" in filter
+            ) {
                 const { field, value } = filter;
 
                 switch (mappedOperator) {
@@ -99,7 +107,7 @@ const generateFilter = (filters?: CrudFilters) => {
 const AltogicDataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
-): DataProvider => ({
+): Required<DataProvider> => ({
     getList: async ({
         resource,
         hasPagination = true,

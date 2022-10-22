@@ -199,6 +199,22 @@ const { selectProps } = useSelect({
 
 Amount of records to fetch in select box.
 
+### `pagination`
+
+Allows us to set page and items per page values.
+
+For example imagine that we have 1000 post records:
+
+```ts
+const { selectProps } = useSelect({
+    resource: "categories",
+    // highlight-next-line
+    pagination: { current: 3, pageSize: 8 }
+});
+```
+
+> Listing will start from page 3 showing 8 records.
+
 ### `onSearch`
 
 ```tsx
@@ -275,23 +291,7 @@ const { selectProps } = useSelect({
 
 ### Properties
 
-| Property                                          | Description                                                                         | Type                                                           | Default   |
-| ------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------- | --------- |
-| resource <div className="required">Required</div> | Resource name for API data interactions                                             | `string`                                                       |           |
-| defaultValue                                      | Adds extra `options`                                                                | `string` \| `Array<string>`                                    |           |
-| optionValue                                       | Set the option's value                                                              | `string`                                                       | `"id"`    |
-| optionLabel                                       | Set the option's label value                                                        | `string`                                                       | `"title"` |
-| filters                                           | Add filters while fetching the data                                                 | [`CrudFilters`](/api-reference/core/interfaces.md#crudfilters)               |           |
-| sort                                              | Allow us to sort the options                                                        | [`CrudSorting`](/api-reference/core/interfaces.md#crudsorting)               |           |
-| debounce                                          | The number of milliseconds to delay                                                 | `number`                                                       | 300       |
-| queryOptions                                      | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetListResponse<TData>, TError>`             |           |
-| defaultValueQueryOptions                          | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetManyResponse<TData>, TError>`             |           |
-| fetchSize                                         | Amount of records to fetch in select box list.                                      | `number`                                                       | `undefined` |
-| onSearch                                          | If defined, this callback allows us to override all filters for every search request.| `(value: string) => CrudFilters `\|` Promise<CrudFilters>`    | `undefined` |
-| metaData                                          | Metadata query for `dataProvider`                                                   | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery) | {}        |
-| [liveMode](/api-reference/core/providers/live-provider.md#usage-in-a-hook)                                                                                            | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/api-reference/core/interfaces.md#livemodeprops)       | `"off"`                             |
-| liveParams                                                                                          | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                     | [`{ ids?: string[]; [key: string]: any; }`](/api-reference/core/interfaces.md#livemodeprops) | `undefined`                         |
-| onLiveEvent                                                                                         | Callback to handle all related live events of this hook.                                                                                                                                   | [`(event: LiveEvent) => void`](/api-reference/core/interfaces.md#livemodeprops)                           | `undefined`                                  |
+<PropsTable module="@pankod/refine-antd/useSelect"/>
 
 ### Return values
 
@@ -304,7 +304,14 @@ const { selectProps } = useSelect({
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/field/useSelect/antd?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/field/useSelect/antd/basic?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+    title="refine-use-select-example"
+></iframe>
+
+## Live StackBlitz Infinite Loading Example
+
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/field/useSelect/antd/infiniteLoading?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-use-select-example"
 ></iframe>

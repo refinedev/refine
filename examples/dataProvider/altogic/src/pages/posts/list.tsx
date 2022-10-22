@@ -87,7 +87,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="status"
                     title="Status"
                     render={(value: string) => <TagField value={value} />}
-                    filterDropdown={(props: any) => (
+                    filterDropdown={(props) => (
                         <FilterDropdown
                             {...props}
                             mapValue={(selectedKeys) => {

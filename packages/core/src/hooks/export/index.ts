@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+    useResource,
     useResourceWithRoute,
     useRouterContext,
     useDataProvider,
@@ -12,7 +13,7 @@ import {
     CrudFilters,
     MetaDataQuery,
 } from "../../interfaces";
-import { userFriendlyResourceName } from "@definitions";
+import { userFriendlyResourceName, pickDataProvider } from "@definitions";
 import { ExportToCsv, Options } from "export-to-csv-fix-source-map";
 
 type UseExportOptionsType<
@@ -43,6 +44,7 @@ type UseExportOptionsType<
     pageSize?: number;
     /**
      *  Used for exporting options
+     *  @type [Options](https://github.com/alexcaza/export-to-csv)
      */
     exportOptions?: Options;
     /**
@@ -90,6 +92,8 @@ export const useExport = <
 }: UseExportOptionsType<TData, TVariables> = {}): UseExportReturnType => {
     const [isLoading, setIsLoading] = useState(false);
 
+    const { resources } = useResource();
+
     const resourceWithRoute = useResourceWithRoute();
     const dataProvider = useDataProvider();
 
@@ -107,7 +111,9 @@ export const useExport = <
         "plural",
     )}-${new Date().toLocaleString()}`;
 
-    const { getList } = dataProvider(dataProviderName);
+    const { getList } = dataProvider(
+        pickDataProvider(resource, dataProviderName, resources),
+    );
 
     const triggerExport = async () => {
         setIsLoading(true);

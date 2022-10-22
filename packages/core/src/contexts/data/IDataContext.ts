@@ -30,7 +30,6 @@ export interface Pagination {
 // | nendswith           | Doesn't end with                  |
 // | endswiths           | Ends with, case sensitive         |
 // | nendswiths          | Doesn't end with, case sensitive  |
-
 export type CrudOperators =
     | "eq"
     | "ne"
@@ -48,7 +47,6 @@ export type CrudOperators =
     | "nbetween"
     | "null"
     | "nnull"
-    | "or"
     | "startswith"
     | "nstartswith"
     | "startswiths"
@@ -56,19 +54,22 @@ export type CrudOperators =
     | "endswith"
     | "nendswith"
     | "endswiths"
-    | "nendswiths";
+    | "nendswiths"
+    | "or"
+    | "and";
 
 export type SortOrder = "desc" | "asc" | null;
 
 export type LogicalFilter = {
     field: string;
-    operator: Exclude<CrudOperators, "or">;
+    operator: Exclude<CrudOperators, "or" | "and">;
     value: any;
 };
 
 export type ConditionalFilter = {
-    operator: "or";
-    value: LogicalFilter[];
+    key?: string;
+    operator: Extract<CrudOperators, "or" | "and">;
+    value: (LogicalFilter | ConditionalFilter)[];
 };
 
 export type CrudFilter = LogicalFilter | ConditionalFilter;
@@ -120,83 +121,6 @@ export interface DeleteManyResponse<TData = BaseRecord> {
     data: TData[];
 }
 
-export interface IDataContext {
-    getList: <TData extends BaseRecord = BaseRecord>(params: {
-        resource: string;
-        pagination?: Pagination;
-        hasPagination?: boolean;
-        sort?: CrudSorting;
-        filters?: CrudFilters;
-        metaData?: MetaDataQuery;
-    }) => Promise<GetListResponse<TData>>;
-    getMany: <TData extends BaseRecord = BaseRecord>(params: {
-        resource: string;
-        ids: BaseKey[];
-        metaData?: MetaDataQuery;
-    }) => Promise<GetManyResponse<TData>>;
-    getOne: <TData extends BaseRecord = BaseRecord>(params: {
-        resource: string;
-        id: BaseKey;
-        metaData?: MetaDataQuery;
-    }) => Promise<GetOneResponse<TData>>;
-    create: <TData extends BaseRecord = BaseRecord, TVariables = {}>(params: {
-        resource: string;
-        variables: TVariables;
-        metaData?: MetaDataQuery;
-    }) => Promise<CreateResponse<TData>>;
-    createMany: <
-        TData extends BaseRecord = BaseRecord,
-        TVariables = {},
-    >(params: {
-        resource: string;
-        variables: TVariables[];
-        metaData?: MetaDataQuery;
-    }) => Promise<CreateManyResponse<TData>>;
-    update: <TData extends BaseRecord = BaseRecord, TVariables = {}>(params: {
-        resource: string;
-        id: BaseKey;
-        variables: TVariables;
-        metaData?: MetaDataQuery;
-    }) => Promise<UpdateResponse<TData>>;
-    updateMany: <
-        TData extends BaseRecord = BaseRecord,
-        TVariables = {},
-    >(params: {
-        resource: string;
-        ids: BaseKey[];
-        variables: TVariables;
-        metaData?: MetaDataQuery;
-    }) => Promise<UpdateManyResponse<TData>>;
-    deleteOne: <TData extends BaseRecord = BaseRecord>(params: {
-        resource: string;
-        id: BaseKey;
-        metaData?: MetaDataQuery;
-    }) => Promise<DeleteOneResponse<TData>>;
-    deleteMany: <TData extends BaseRecord = BaseRecord>(params: {
-        resource: string;
-        ids: BaseKey[];
-        metaData?: MetaDataQuery;
-    }) => Promise<DeleteManyResponse<TData>>;
-    getApiUrl: () => string;
-    custom: <TData extends BaseRecord = BaseRecord>(params: {
-        url: string;
-        method:
-            | "get"
-            | "delete"
-            | "head"
-            | "options"
-            | "post"
-            | "put"
-            | "patch";
-        sort?: CrudSorting;
-        filters?: CrudFilter[];
-        payload?: {};
-        query?: {};
-        headers?: {};
-        metaData?: MetaDataQuery;
-    }) => Promise<CustomResponse<TData>>;
-}
-
 export interface IDataContextProvider {
     getList: <TData extends BaseRecord = BaseRecord>(params: {
         resource: string;
@@ -207,7 +131,7 @@ export interface IDataContextProvider {
         metaData?: MetaDataQuery;
         dataProviderName?: string;
     }) => Promise<GetListResponse<TData>>;
-    getMany: <TData extends BaseRecord = BaseRecord>(params: {
+    getMany?: <TData extends BaseRecord = BaseRecord>(params: {
         resource: string;
         ids: BaseKey[];
         metaData?: MetaDataQuery;
@@ -223,7 +147,7 @@ export interface IDataContextProvider {
         variables: TVariables;
         metaData?: MetaDataQuery;
     }) => Promise<CreateResponse<TData>>;
-    createMany: <
+    createMany?: <
         TData extends BaseRecord = BaseRecord,
         TVariables = {},
     >(params: {
@@ -237,7 +161,7 @@ export interface IDataContextProvider {
         variables: TVariables;
         metaData?: MetaDataQuery;
     }) => Promise<UpdateResponse<TData>>;
-    updateMany: <
+    updateMany?: <
         TData extends BaseRecord = BaseRecord,
         TVariables = {},
     >(params: {
@@ -255,7 +179,7 @@ export interface IDataContextProvider {
         variables?: TVariables;
         metaData?: MetaDataQuery;
     }) => Promise<DeleteOneResponse<TData>>;
-    deleteMany: <
+    deleteMany?: <
         TData extends BaseRecord = BaseRecord,
         TVariables = {},
     >(params: {
@@ -265,7 +189,11 @@ export interface IDataContextProvider {
         metaData?: MetaDataQuery;
     }) => Promise<DeleteManyResponse<TData>>;
     getApiUrl: () => string;
-    custom?: <TData extends BaseRecord = BaseRecord>(params: {
+    custom?: <
+        TData extends BaseRecord = BaseRecord,
+        TQuery = unknown,
+        TPayload = unknown,
+    >(params: {
         url: string;
         method:
             | "get"
@@ -277,14 +205,16 @@ export interface IDataContextProvider {
             | "patch";
         sort?: CrudSorting;
         filters?: CrudFilter[];
-        payload?: {};
-        query?: {};
+        payload?: TPayload;
+        query?: TQuery;
         headers?: {};
         metaData?: MetaDataQuery;
     }) => Promise<CustomResponse<TData>>;
 }
 
+export type IDataContext = IDataContextProvider;
+
 export interface IDataMultipleContextProvider {
-    default?: IDataContextProvider;
+    default: IDataContextProvider;
     [key: string]: IDataContextProvider | any;
 }

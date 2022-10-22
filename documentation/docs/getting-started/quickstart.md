@@ -17,7 +17,7 @@ npm run dev
 ```
 
 Your **refine** application will be accessible at [http://localhost:3000](http://localhost:3000):
-![Welcome on board](https://github.com/pankod/refine/blob/master/documentation/static/img/welcome-on-board.png?raw=true)
+![Welcome on board](https://github.com/refinedev/refine/blob/master/documentation/static/img/welcome-on-board.png?raw=true)
 Let's consume a public `fake REST API` and add two resources (*posts*, *categories*) to our project. Replace the contents of `src/App.tsx` with the following code:
 
 ```tsx title="src/App.tsx"
@@ -109,7 +109,7 @@ interface ICategory {
 ```
 
 Now, you should see the output as a table populated with `post` & `category` data:
-![First example result](https://github.com/pankod/refine/blob/master/documentation/static/img/first-example-result.png?raw=true)
+![First example result](https://github.com/refinedev/refine/blob/master/documentation/static/img/first-example-result.png?raw=true)
 
 ## Next Steps
 
@@ -117,7 +117,8 @@ Now, you should see the output as a table populated with `post` & `category` dat
 
 👉 Check out the [Refine - Tailwind Tutorial](https://refine.dev/docs/ui-frameworks/antd/tutorial/) to learn how to use **refine** in a pure *headless* way.
 
-👉 Read more on [Guides & Concepts](https://refine.dev/docs/guides-and-concepts/access-control/) for different usage scenarios.
+👉 Read more on [Advanced Tutorials
+](https://refine.dev/docs/advanced-tutorials/) for different usage scenarios.
 
 👉 See the real-life [Finefoods Demo](https://refine.dev/demo/) project.
 

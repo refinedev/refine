@@ -27,7 +27,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         ref,
     ) => {
         const inputRef = React.useRef<HTMLInputElement>(null);
-
+        // eslint-disable-next-line
         useImperativeHandle(ref, () => inputRef.current!);
 
         const hasError = get(errors, name) && get(touched, name);

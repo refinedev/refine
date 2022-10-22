@@ -60,7 +60,7 @@ const DashboardPage = () => {
 
 `<AuthPage>` component can be used like below 👇🏻
 
-```tsx live url=http://localhost:3000/login previewHeight=460px hideCode
+```tsx live url=http://localhost:3000 previewHeight=460px hideCode
 setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 // visible-block-start
@@ -74,7 +74,21 @@ import { DashboardPage } from "./pages/dashboard";
 const App = () => {
     return (
         <Refine
-            routerProvider={routerProvider}
+            routerProvider={{
+                ...routerProvider,
+                routes: [
+                    // highlight-start
+                    {
+                        path: "/register",
+                        element: <AuthPage type="register" />,
+                    },
+                    {
+                        path: "/forgot-password",
+                        element: <AuthPage type="forgotPassword" />,
+                    },
+                    // highlight-end
+                ],
+            }}
             authProvider={authProvider}
             // highlight-next-line
             LoginPage={AuthPage}
@@ -772,17 +786,12 @@ render(<App />);
 
 ### Properties
 
-| Property           | Description                                                                         | Type                                                          |
-| ------------------ | ----------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| type               | Render `<AuthPage>` forms by `type` property.                                       | `login` \| `register` \| `forgotPassword` \| `updatePassword` |
-| providers          | Render auth logins if `type` is `"login"`.                                          | [`IProvider[]`](#interface)                                   |
-| registerLink       | A custom node that will be rendered as a register link to the `<AuthPage>`.         | `React.ReactNode`                                             |
-| loginLink          | A custom node that will be rendered as a link to the `<AuthPage>`.                  | `React.ReactNode`                                             |
-| forgotPasswordLink | A custom node that will be rendered as a forgot password link to the `<AuthPage>`.  | `React.ReactNode`                                             |
-| wrapperProps       | Wrapper element props.                                                              | [`WrapperProps`](https://ant.design/components/layout/#API)   |
-| contentProps       | Content wrapper element props.                                                      | [`CardProps`](https://ant.design/components/card/#API)        |
-| formProps          | Props for the form component.                                                       | [`FormProps`](https://ant.design/components/form/#API)        |
-| renderContent      | Gives you default content you can use it to add some extra elements to the content. | `function(content: React.ReactNode) => React.ReactNode`       |
+<PropsTable module="@pankod/refine-antd/AuthPage" 
+formProps-type="[`FormProps`](https://ant.design/components/form/#API)"
+wrapperProps-type="[`WrapperProps`](https://ant.design/components/layout/#API)"
+contentProps-type="[`CardProps`](https://ant.design/components/card/#API)"
+rememberMe-default="[`<Checkbox>Remember me</Checkbox>`](/docs/api-reference/antd/components/antd-auth-page/#rememberme)"
+/>
 
 ### Interface
 

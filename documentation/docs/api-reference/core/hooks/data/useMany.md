@@ -9,6 +9,10 @@ description: useMany data hook from refine is a modified version of react-query'
 
 It uses `getMany` method as query function from the [`dataProvider`](/api-reference/core/providers/data-provider.md) which is passed to `<Refine>`.
 
+:::tip
+If your data provider didn't implement `getMany` method, `useMany` will use `getOne` method multiple times instead.
+:::
+
 ## Usage
 
 Let's say that we have a resource named `categories`.
@@ -32,7 +36,7 @@ Let's say that we have a resource named `categories`.
 }
 ```
 
-```tsx 
+```tsx
 import { useMany } from "@pankod/refine-core";
 
 type ICategory = {
@@ -90,23 +94,15 @@ After query runs, the `categoryQueryResult` will include the retrieved data:
 
 ### Properties
 
-| Property                                                                                            | Description                                                                                                                                                        | Type                                                                           | Default                             |
-| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ----------------------------------- |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                                                                                                            | `string`                                                                       |                                     |
-| ids <div className="required">Required</div>                                                        | ids of the item in the resource                                                                                                                                    | [`BaseKey[]`](/api-reference/core/interfaces.md#basekey)                                                                      |                                     |
-| queryOptions                                                                                        | `react-query`'s `useQuery` options                                                                                                                                 | ` UseQueryOptions<`<br/>`{ data: TData[]; },`<br/>`TError>`                    |                                     |
-| successNotification                                                                                 | Successful Query notification                                                                                                                                      | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification)     | `false`                             |
-| errorNotification                                                                                   | Unsuccessful Query notification                                                                                                                                    | [`SuccessErrorNotification`](/api-reference/core/interfaces.md#successerrornotification)     | "Error (status code: `statusCode`)" |
-| metaData                                                                                            | Metadata query for `dataProvider`                                                                                                                                  | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery)                           | {}                                  |
-| dataProviderName                                                                                    | If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.                                                                 | `string`                                                                       | `default`                           |
-| [liveMode](/api-reference/core/providers/live-provider.md#usage-in-a-hook)                                        | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/api-reference/core/interfaces.md#livemodeprops)         | `"off"`                             |
-| liveParams                                                                                          | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                    | [`{ ids?: BaseKey[]; [key: string]: any; }`](/api-reference/core/interfaces.md#livemodeprops) | `undefined`                         |
-| onLiveEvent                                                                                         | Callback to handle all related live events of this hook.                                                                                                           | [`(event: LiveEvent) => void`](/api-reference/core/interfaces.md#livemodeprops)              | `undefined`                         |
+<PropsTable module="@pankod/refine-core/useMany" 
+successNotification-default='`false`'
+errorNotification-default='"Error (status code: `statusCode`)"'
+/>
 
 ### Type Parameters
 
-| Property | Desription                                                                       | Type                                           | Default                                        |
-| -------- | -------------------------------------------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| Property | Desription                                                                                     | Type                                                         | Default                                                      |
+| -------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | TData    | Result data of the query. Extends [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) | [`BaseRecord`](/api-reference/core/interfaces.md#baserecord) |
 | TError   | Custom error object that extends [`HttpError`](/api-reference/core/interfaces.md#httperror)    | [`HttpError`](/api-reference/core/interfaces.md#httperror)   | [`HttpError`](/api-reference/core/interfaces.md#httperror)   |
 

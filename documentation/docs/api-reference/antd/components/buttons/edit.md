@@ -103,15 +103,15 @@ export const MyEditComponent = () => {
 };
 ```
 
-### `ignoreAccessControlProvider`
+### `accessControl`
 
-It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
-```tsx 
+```tsx
 import { EditButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
-    return <EditButton ignoreAccessControlProvider />;
+    return <EditButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
 };
 ```
 
@@ -119,14 +119,8 @@ export const MyListComponent = () => {
 
 ### Properties
 
-| Property                                                                                                  | Description                                      | Type                                                                                                                                  | Default                                                          |
-| --------------------------------------------------------------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| props                                                                                                     | Ant Design button properties                     | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; recordItemId?: BaseKey; hideText?: boolean; }` |                                                                  |
-| resourceNameOrRouteName                                                                                   | Determines which resource to use for redirection | `string`                                                                                                                              | Resource name that it reads from route                           |
-| <div className="required-block"><div>resourceName</div> <div className=" required">deprecated</div></div> | Determines which resource to use for redirection | `string`                                                                                                                              | Resource name that it reads from route                           |
-| recordItemId                                                                                              | Adds `id` to the end of the URL                  | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                                                                              | Record id that it reads from route                               |
-| hideText                                                                                                  | Allows to hide button text                       | `boolean`                                                                                                                             | `false`                                                          |
-| ignoreAccessControlProvider                                                                               | Skip access control                              | `boolean`                                                                                                                             | `false`                                                          |
-| children                                                                                                  | Sets the button text                             | `ReactNode`                                                                                                                           | `"Edit"`                                                         |
-| icon                                                                                                      | Sets the icon component of button                | `ReactNode`                                                                                                                           | [`<EditOutlined />`](https://ant.design/components/icon/)        |
-| onClick                                                                                                   | Sets the handler to handle click event           | `(event) => void`                                                                                                                     | Triggers navigation for redirection to the edit page of resource |
+<PropsTable module="@pankod/refine-antd/EditButton" />
+
+:::tip External Props
+It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).
+:::

@@ -31,6 +31,10 @@ export type UseTableProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
 > = {
+    /**
+     * Configuration object for the core of the [useTable](/docs/api-reference/core/hooks/useTable/)
+     * @type [`useTablePropsCore<TData, TError>`](/docs/api-reference/core/hooks/useTable/#properties)
+     */
     refineCoreProps?: useTablePropsCore<TData, TError>;
 } & Pick<TableOptions<TData>, "columns"> &
     Partial<Omit<TableOptions<TData>, "columns">>;
@@ -86,7 +90,11 @@ export function useTable<
 
     const logicalFilters: LogicalFilter[] = [];
     filtersCore.map((filter) => {
-        if (filter.operator !== "or") {
+        if (
+            filter.operator !== "or" &&
+            filter.operator !== "and" &&
+            "field" in filter
+        ) {
             logicalFilters.push(filter);
         }
     });
@@ -159,7 +167,7 @@ export function useTable<
 
         columnFilters?.map((filter) => {
             const operator = (columns.find((c) => c.id === filter.id) as any)
-                ?.meta?.filterOperator as Exclude<CrudOperators, "or">;
+                ?.meta?.filterOperator as Exclude<CrudOperators, "or" | "and">;
 
             crudFilters.push({
                 field: filter.id,

@@ -23,7 +23,7 @@ npx superplate-cli -o refine-nextjs my-refine-nextjs-app
 :::
 
 :::caution
-To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/pankod/refine/tree/master/packages/refine-antd) package.
+To make this example more visual, we used the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package. If you are using Refine headless, you need to provide the components, hooks or helpers imported from the [`@pankod/refine-antd`](https://github.com/refinedev/refine/tree/master/packages/refine-antd) package.
 :::
 
 ## Usage
@@ -94,7 +94,7 @@ import { useTable, List, Table } from "@pankod/refine-antd";
 const API_URL = "https://api.fake-rest.refine.dev";
 // highlight-start
 export const UserList: React.FC = () => {
-    const { tableProps } = useTable<IPost>({
+    const { tableProps } = useTable<IUser>({
         resource: "users",
     });
 
@@ -110,7 +110,7 @@ export const UserList: React.FC = () => {
     );
 };
 // highlight-end
-interface IPost {
+interface IUser {
     id: number;
     firstName: string;
 }
@@ -143,11 +143,11 @@ import { useTable, List, Table } from "@pankod/refine-antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 // highlight-start
-export const UserList: React.FC<{ users: GetListResponse<IPost> }> = ({
+export const UserList: React.FC<{ users: GetListResponse<IUser> }> = ({
     users,
 }) => {
     // highlight-end
-    const { tableProps } = useTable<IPost>({
+    const { tableProps } = useTable<IUser>({
         resource: "users",
         // highlight-start
         queryOptions: {
@@ -180,7 +180,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 // highlight-end
 
-interface IPost {
+interface IUser {
     id: number;
     firstName: string;
 }
@@ -398,7 +398,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/refine-next/?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/refine-next/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-next"
 ></iframe>

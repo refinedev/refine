@@ -335,7 +335,13 @@ nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
             limit: 10,
             offset: 0,
             where: {
-                category_id: { _eq: "73c14cb4-a58c-471d-9410-fc97ea6dac66" },
+                _and: [
+                    {
+                        category_id: {
+                            _eq: "73c14cb4-a58c-471d-9410-fc97ea6dac66",
+                        },
+                    },
+                ],
             },
         },
     })
@@ -462,7 +468,13 @@ nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
             offset: 0,
             order_by: { title: "desc" },
             where: {
-                category_id: { _eq: "73c14cb4-a58c-471d-9410-fc97ea6dac66" },
+                _and: [
+                    {
+                        category_id: {
+                            _eq: "73c14cb4-a58c-471d-9410-fc97ea6dac66",
+                        },
+                    },
+                ],
             },
         },
     })

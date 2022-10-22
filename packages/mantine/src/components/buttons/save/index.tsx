@@ -38,7 +38,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
                 ? {
                       variant: mapButtonVariantToActionIconVariant(variant),
                   }
-                : { variant: "filled" })}
+                : { variant: "filled", color: "primary" })}
             data-testid={RefineButtonTestIds.SaveButton}
             {...commonProps}
         >

@@ -626,10 +626,11 @@ export const PostList: React.FC = () => {
 
 ### Properties
 
-| Property                  | Description                                                                                   | Type                                                  |
-| ------------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| refineCoreProps           | Configuration object for the core of the [`useTable`][use-table-core]                         | [`UseTableProps`](/api-reference/core/hooks/useTable.md#properties) |
-| Tanstack Table Properties | See [TanStack Table](https://tanstack.com/table/v8/docs/api/core/table#options) documentation |
+<PropsTable module="@pankod/refine-react-table/useTable" />
+
+:::tip External Props
+It also accepts all props of [TanStack Table](https://tanstack.com/table/v8/docs/api/core/table#options).
+:::
 
 ### Type Parameters
 
@@ -648,13 +649,13 @@ export const PostList: React.FC = () => {
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/table/reactTable/basic/?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/table/reactTable/basic/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-react-table-example"
 ></iframe>
 
 [tanstack-table]: https://tanstack.com/table/v8
-[refine-react-table]: https://github.com/pankod/refine/tree/master/packages/react-table
+[refine-react-table]: https://github.com/refinedev/refine/tree/master/packages/react-table
 [use-table-core]: /api-reference/core/hooks/useTable.md
 [baserecord]: /api-reference/core/interfaces.md#baserecord
 [httperror]: /api-reference/core/interfaces.md#httperror

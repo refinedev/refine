@@ -124,7 +124,7 @@ It makes development faster and easier by isolating components. This allows you 
 
 <img src={refine} alt="refine" />
 
-[Refine](https://refine.dev/) A React-based framework for building internal tools, rapidly. It provides lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to admin panels, B2B applications and dashboards. With over 2.1k stars on [Github](https://github.com/pankod/refine) even though it has been released recently.
+[Refine](https://refine.dev/) A React-based framework for building internal tools, rapidly. It provides lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to admin panels, B2B applications and dashboards. With over 2.1k stars on [Github](https://github.com/refinedev/refine) even though it has been released recently.
 
 Refine is a headless React framework, which means all out-of-the-box features(Routing, Networking, Authentication, Authorization, State Management, Realtime, i18n, etc.), it can be used without being tied to any UI elements or framework. Also, Ant Design as out-of-the-box is supported.
 

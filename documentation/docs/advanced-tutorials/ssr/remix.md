@@ -22,7 +22,7 @@ npx superplate-cli -o refine-remix my-refine-remix-app
 
 ## Usage
 
-`<Refine>` should be wrapped in your `<Outlet>` component located in `app/root.tsx`. This way your [routes][remixroutes] are integrated to **refine**.
+`<Refine>` should wrap your `<Outlet>` component located in `app/root.tsx`. This way your [routes][remixroutes] are integrated to **refine**.
 
 ```tsx title="app/root.tsx"
 import type { MetaFunction } from "@remix-run/node";
@@ -846,8 +846,8 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 
 ## Examples
 
--   [Ant Design](https://ant.design/) CRUD app example ([source code](https://github.com/pankod/refine/tree/next/examples/remix/antd))
--   Headless CRUD app example ([source code](https://github.com/pankod/refine/tree/next/examples/remix/headless))
+-   [Ant Design](https://ant.design/) CRUD app example ([source code](https://github.com/refinedev/refine/tree/next/examples/remix/antd))
+-   Headless CRUD app example ([source code](https://github.com/refinedev/refine/tree/next/examples/remix/headless))
 
 [remix]: https://remix.run/
 [remixrouter]: https://www.npmjs.com/package/@pankod/remix-router

@@ -2,8 +2,8 @@
 id: number
 title: Number
 ---
-import numberField from '@site/static/img/guides-and-concepts/fields/number/numberField.png'
 
+import numberField from '@site/static/img/guides-and-concepts/fields/number/numberField.png'
 
 This field is used to display a number formatted according to the browser locale, right aligned. and uses [`Intl`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) to display date format.
 
@@ -62,8 +62,8 @@ interface IPost {
 
 ### Properties
 
-| Property | Description                                                                                            | Type                                                                                                                                                         | Default |
-| -------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
-| value    | Number value                                                                                           | `React.ReactChild`                                                                                                                                           |         |
-| locale   | Override the browser locale in the date formatting. Passed as first argument to `Intl.NumberFormat()`. | `string` \| `undefined`                                                                                                                                      |         |
-| options  | Number formatting options. Passed as second argument to `Intl.NumberFormat()`.                         | [`Intl.NumberFormatOptions`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat) \| `undefined` |         |
+<PropsTable module="@pankod/refine-antd/NumberField" value-description="Number value" />
+
+:::tip External Props
+It also accepts all props of Ant Design [Text](https://ant.design/components/typography/#Typography.Text).
+:::

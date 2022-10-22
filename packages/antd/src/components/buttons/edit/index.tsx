@@ -17,7 +17,7 @@ export type EditButtonProps = RefineEditButtonProps<
     ButtonProps,
     {
         /**
-         * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/pankod/refine/issues/1618
+         * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/refinedev/refine/issues/1618
          */
         resourceName?: string;
     }
@@ -35,11 +35,15 @@ export const EditButton: React.FC<EditButtonProps> = ({
     resourceNameOrRouteName: propResourceNameOrRouteName,
     recordItemId,
     hideText = false,
+    accessControl,
     ignoreAccessControlProvider = false,
     children,
     onClick,
     ...rest
 }) => {
+    const accessControlEnabled =
+        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const translate = useTranslate();
 
     const { editUrl: generateEditUrl } = useNavigation();
@@ -56,7 +60,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
         action: "edit",
         params: { id, resource },
         queryOptions: {
-            enabled: !ignoreAccessControlProvider,
+            enabled: accessControlEnabled,
         },
     });
 
@@ -72,11 +76,19 @@ export const EditButton: React.FC<EditButtonProps> = ({
 
     const editUrl = generateEditUrl(propResourceName ?? resource.route!, id!);
 
+    if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
+        return null;
+    }
+
     return (
         <Link
             to={editUrl}
             replace={false}
             onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+                if (data?.can === false) {
+                    e.preventDefault();
+                    return;
+                }
                 if (onClick) {
                     e.preventDefault();
                     onClick(e);

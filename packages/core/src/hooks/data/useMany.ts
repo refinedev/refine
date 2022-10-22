@@ -14,19 +14,41 @@ import {
     SuccessErrorNotification,
 } from "../../interfaces";
 import {
+    useResource,
     useTranslate,
     useCheckError,
     useResourceSubscription,
     useHandleNotification,
     useDataProvider,
 } from "@hooks";
-import { queryKeys } from "@definitions/helpers";
+import {
+    queryKeys,
+    pickDataProvider,
+    handleMultiple,
+} from "@definitions/helpers";
 
 export type UseManyProps<TData, TError> = {
+    /**
+     * Resource name for API data interactions
+     */
     resource: string;
+    /**
+     * ids of the item in the resource
+     * @type [`BaseKey[]`](/docs/api-reference/core/interfaceReferences/#basekey)
+     */
     ids: BaseKey[];
+    /**
+     * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
+     */
     queryOptions?: UseQueryOptions<GetManyResponse<TData>, TError>;
+    /**
+     * Metadata query for `dataProvider`,
+     */
     metaData?: MetaDataQuery;
+    /**
+     * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
+     * @default "default"
+     */
     dataProviderName?: string;
 } & SuccessErrorNotification &
     LiveModeProps;
@@ -59,10 +81,17 @@ export const useMany = <
 }: UseManyProps<TData, TError>): QueryObserverResult<
     GetManyResponse<TData>
 > => {
+    const { resources } = useResource();
     const dataProvider = useDataProvider();
-    const queryKey = queryKeys(resource, dataProviderName, metaData);
+    const queryKey = queryKeys(
+        resource,
+        pickDataProvider(resource, dataProviderName, resources),
+        metaData,
+    );
 
-    const { getMany } = dataProvider(dataProviderName);
+    const { getMany, getOne } = dataProvider(
+        pickDataProvider(resource, dataProviderName, resources),
+    );
 
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();
@@ -88,19 +117,39 @@ export const useMany = <
 
     const queryResponse = useQuery<GetManyResponse<TData>, TError>(
         queryKey.many(ids),
-        ({ queryKey, pageParam, signal }) =>
-            getMany<TData>({
-                resource,
-                ids,
-                metaData: {
-                    ...metaData,
-                    queryContext: {
-                        queryKey,
-                        pageParam,
-                        signal,
+        ({ queryKey, pageParam, signal }) => {
+            if (getMany) {
+                return getMany({
+                    resource,
+                    ids,
+                    metaData: {
+                        ...metaData,
+                        queryContext: {
+                            queryKey,
+                            pageParam,
+                            signal,
+                        },
                     },
-                },
-            }),
+                });
+            } else {
+                return handleMultiple(
+                    ids.map((id) =>
+                        getOne<TData>({
+                            resource,
+                            id,
+                            metaData: {
+                                ...metaData,
+                                queryContext: {
+                                    queryKey,
+                                    pageParam,
+                                    signal,
+                                },
+                            },
+                        }),
+                    ),
+                );
+            }
+        },
         {
             ...queryOptions,
             onSuccess: (data) => {

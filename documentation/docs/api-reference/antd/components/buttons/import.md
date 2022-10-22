@@ -73,7 +73,7 @@ It is used to show and not show the text of the button. When `true`, only the bu
 ```tsx 
 import { ImportButton, useImport } from "@pankod/refine-antd";
 
-export const MyRefreshComponent = () => {
+export const MyImportComponent = () => {
     const importProps = useImport();
 
     return <ImportButton {...importProps} hideText />;
@@ -83,12 +83,7 @@ export const MyRefreshComponent = () => {
 
 ### Properties
 
-| Property    | Description                       | Type                                                       | Default    |
-| ----------- | --------------------------------- | ---------------------------------------------------------- | ---------- |
-| uploadProps | Sets the button type              | [`UploadProps`](https://ant.design/components/upload/#API) |            |
-| buttonProps | Sets the icon component of button | [`ButtonProps`](https://ant.design/components/button/#API) |            |
-| hideText    | Allows to hide button text        | `boolean`                                                  | `false`    |
-| children    | Sets the button text              | `ReactNode`                                                | `"Import"` |
+<PropsTable module="@pankod/refine-antd/ImportButton" />
 
 [useimport]: /api-reference/antd/hooks/import/useImport.md
 [button]: https://ant.design/components/button/

@@ -65,7 +65,7 @@ The button text is defined automatically by **refine** based on _resource_ objec
 
 Redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceNameOrRouteName` property. By default, `<ListButton>` uses `name` property of the resource object as the endpoint to redirect after clicking.
 
-```tsx 
+```tsx
 import { ListButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
@@ -79,7 +79,7 @@ Clicking the button will trigger the `list` method of [`useNavigation`](/api-ref
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx 
+```tsx
 import { ListButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
@@ -87,15 +87,15 @@ export const MyListComponent = () => {
 };
 ```
 
-### `ignoreAccessControlProvider`
+### `accessControl`
 
-It is used to skip access control for the button so that it doesn't check for access control. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
-```tsx 
+```tsx
 import { ListButton } from "@pankod/refine-antd";
 
 export const MyListComponent = () => {
-    return <ListButton ignoreAccessControlProvider />;
+    return <ListButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
 };
 ```
 
@@ -103,13 +103,8 @@ export const MyListComponent = () => {
 
 ### Properties
 
-| Property                                                                                                  | Description                                      | Type                                                                                                          | Default                                                          |
-| --------------------------------------------------------------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| props                                                                                                     | Ant Design button properties                     | [`ButtonProps`](https://ant.design/components/button/#API) & `{ resourceName?: string; hideText?: boolean; }` |                                                                  |
-| resourceNameOrRouteName                                                                                   | Determines which resource to use for redirection | `string`                                                                                                      | Resource name that it reads from route                           |
-| <div className="required-block"><div>resourceName</div> <div className=" required">deprecated</div></div> | Determines which resource to use for redirection | `string`                                                                                                      | Resource name that it reads from route                           |
-| hideText                                                                                                  | Allows to hide button text                       | `boolean`                                                                                                     | `false`                                                          |
-| ignoreAccessControlProvider                                                                               | Skip access control                              | `boolean`                                                                                                     | `false`                                                          |
-| children                                                                                                  | Sets the button text                             | `ReactNode`                                                                                                   | Humanized resource name that it reads from route                 |
-| icon                                                                                                      | Sets the icon component of button                | `ReactNode`                                                                                                   | [`<BarsOutlined />`](https://ant.design/components/icon/)        |
-| onClick                                                                                                   | Sets the handler to handle click event           | `(event) => void`                                                                                             | Triggers navigation for redirection to the list page of resource |
+<PropsTable module="@pankod/refine-antd/ListButton" />
+
+:::tip External Props
+It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).
+:::

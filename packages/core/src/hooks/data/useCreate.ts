@@ -1,5 +1,6 @@
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import pluralize from "pluralize";
+import { pickDataProvider } from "@definitions/helpers";
 
 import {
     CreateResponse,
@@ -10,6 +11,7 @@ import {
     IQueryKeys,
 } from "../../interfaces";
 import {
+    useResource,
     useTranslate,
     useCheckError,
     usePublish,
@@ -20,10 +22,25 @@ import {
 } from "@hooks";
 
 type useCreateParams<TVariables> = {
+    /**
+     * Resource name for API data interactions
+     */
     resource: string;
+    /**
+     * Values for mutation function
+     */
     values: TVariables;
+    /**
+     *  Metadata query for `dataProvider`
+     */
     metaData?: MetaDataQuery;
+    /**
+     * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
+     */
     dataProviderName?: string;
+    /**
+     * You can use it to manage the invalidations that will occur at the end of the mutation.
+     */
     invalidates?: Array<keyof IQueryKeys>;
 } & SuccessErrorNotification;
 
@@ -60,6 +77,8 @@ export const useCreate = <
     const dataProvider = useDataProvider();
     const invalidateStore = useInvalidate();
 
+    const { resources } = useResource();
+
     const translate = useTranslate();
     const publish = usePublish();
     const { log } = useLog();
@@ -77,7 +96,9 @@ export const useCreate = <
             metaData,
             dataProviderName,
         }: useCreateParams<TVariables>) => {
-            return dataProvider(dataProviderName).create<TData, TVariables>({
+            return dataProvider(
+                pickDataProvider(resource, dataProviderName, resources),
+            ).create<TData, TVariables>({
                 resource,
                 variables: values,
                 metaData,
@@ -120,7 +141,11 @@ export const useCreate = <
 
                 invalidateStore({
                     resource,
-                    dataProviderName,
+                    dataProviderName: pickDataProvider(
+                        resource,
+                        dataProviderName,
+                        resources,
+                    ),
                     invalidates,
                 });
 
@@ -141,7 +166,11 @@ export const useCreate = <
                     resource,
                     data: values,
                     meta: {
-                        dataProviderName,
+                        dataProviderName: pickDataProvider(
+                            resource,
+                            dataProviderName,
+                            resources,
+                        ),
                         id: data?.data?.id ?? undefined,
                         ...rest,
                     },

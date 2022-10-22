@@ -15,13 +15,14 @@ import {
     LiveModeProps,
 } from "../../interfaces";
 import {
+    useResource,
     useCheckError,
     useHandleNotification,
     useResourceSubscription,
     useTranslate,
     useDataProvider,
 } from "@hooks";
-import { queryKeys } from "@definitions/helpers";
+import { queryKeys, pickDataProvider } from "@definitions/helpers";
 
 export interface UseListConfig {
     pagination?: Pagination;
@@ -31,10 +32,26 @@ export interface UseListConfig {
 }
 
 export type UseListProps<TData, TError> = {
+    /**
+     * Resource name for API data interactions
+     */
     resource: string;
+    /**
+     * Configuration for pagination, sorting and filtering
+     * @type [`UseListConfig`](/docs/api-reference/core/hooks/data/useList/#config-parameters)
+     */
     config?: UseListConfig;
+    /**
+     * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options,
+     */
     queryOptions?: UseQueryOptions<GetListResponse<TData>, TError>;
+    /**
+     *  Metadata query for `dataProvider`
+     */
     metaData?: MetaDataQuery;
+    /**
+     * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
+     */
     dataProviderName?: string;
 } & SuccessErrorNotification &
     LiveModeProps;
@@ -51,7 +68,7 @@ export type UseListProps<TData, TError> = {
  *
  */
 export const useList = <
-    TData = BaseRecord,
+    TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
 >({
     resource,
@@ -68,9 +85,16 @@ export const useList = <
     GetListResponse<TData>,
     TError
 > => {
+    const { resources } = useResource();
     const dataProvider = useDataProvider();
-    const queryKey = queryKeys(resource, dataProviderName, metaData);
-    const { getList } = dataProvider(dataProviderName);
+    const queryKey = queryKeys(
+        resource,
+        pickDataProvider(resource, dataProviderName, resources),
+        metaData,
+    );
+    const { getList } = dataProvider(
+        pickDataProvider(resource, dataProviderName, resources),
+    );
 
     const translate = useTranslate();
     const { mutate: checkError } = useCheckError();

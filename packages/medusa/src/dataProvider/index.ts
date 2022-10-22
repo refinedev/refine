@@ -22,7 +22,11 @@ const generateFilter = (filters?: CrudFilter[]) => {
     const queryFilters: { [key: string]: string } = {};
     if (filters) {
         filters.map((filter: CrudFilter) => {
-            if (filter.operator !== "or") {
+            if (
+                filter.operator !== "or" &&
+                filter.operator !== "and" &&
+                "field" in filter
+            ) {
                 const { field, operator, value } = filter;
 
                 const mappedOperator = mapOperator(operator);
@@ -54,9 +58,7 @@ axiosInstance.interceptors.response.use(
 const DataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
-): DataProviderType => {
-    httpClient.defaults.baseURL = `${apiUrl}/store`;
-
+): Required<DataProviderType> => {
     return {
         getList: async ({
             resource,
@@ -169,7 +171,9 @@ const DataProvider = (
         deleteOne: async ({ resource, id, variables }) => {
             const url = `${apiUrl}/${resource}/${id}`;
 
-            const { data } = await httpClient.delete(url, variables);
+            const { data } = await httpClient.delete(url, {
+                data: variables,
+            });
 
             return {
                 data,

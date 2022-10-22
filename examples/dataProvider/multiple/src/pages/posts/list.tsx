@@ -115,7 +115,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                             render={(value: string) => (
                                 <TagField value={value} />
                             )}
-                            filterDropdown={(props: any) => (
+                            filterDropdown={(props) => (
                                 <FilterDropdown {...props}>
                                     <Radio.Group>
                                         <Radio value="published">

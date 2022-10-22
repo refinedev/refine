@@ -14,6 +14,7 @@ import {
     TextField,
     Typography,
     Divider,
+    Link as MuiLink,
 } from "@mui/material";
 
 import {
@@ -57,7 +58,7 @@ export const LoginPage: React.FC<LoginProps> = ({
     const { Link } = useRouterContext();
 
     const renderProviders = () => {
-        if (providers) {
+        if (providers && providers.length > 0) {
             return (
                 <>
                     {providers.map((provider: any) => {
@@ -96,6 +97,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                     variant="h5"
                     align="center"
                     style={titleStyles}
+                    color="primary"
                 >
                     {translate("pages.login.title", "Sign in to your account")}
                 </Typography>
@@ -117,7 +119,6 @@ export const LoginPage: React.FC<LoginProps> = ({
                         })}
                         id="email"
                         margin="normal"
-                        size="small"
                         fullWidth
                         label={translate("pages.login.fields.email", "Email")}
                         error={!!errors.email}
@@ -130,7 +131,6 @@ export const LoginPage: React.FC<LoginProps> = ({
                             required: true,
                         })}
                         id="password"
-                        size="small"
                         margin="normal"
                         fullWidth
                         name="password"
@@ -157,7 +157,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                             <FormControlLabel
                                 sx={{
                                     span: {
-                                        fontSize: "12px",
+                                        fontSize: "14px",
                                         color: "text.secondary",
                                     },
                                 }}
@@ -176,24 +176,17 @@ export const LoginPage: React.FC<LoginProps> = ({
                             />
                         )}
                         {forgotPasswordLink ?? (
-                            <Link
+                            <MuiLink
+                                variant="body2"
+                                component={Link}
+                                underline="none"
                                 to="/forgot-password"
-                                sx={{
-                                    fontSize: "12px",
-                                    textDecoration: "none",
-                                }}
                             >
-                                <Typography
-                                    sx={{
-                                        fontSize: "12px",
-                                    }}
-                                >
-                                    {translate(
-                                        "pages.login.buttons.forgotPassword",
-                                        "Forgot password?",
-                                    )}
-                                </Typography>
-                            </Link>
+                                {translate(
+                                    "pages.login.buttons.forgotPassword",
+                                    "Forgot password?",
+                                )}
+                            </MuiLink>
                         )}
                     </Box>
                     <Button
@@ -201,8 +194,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         fullWidth
                         variant="contained"
                         sx={{
-                            my: "8px",
-                            color: "white",
+                            mt: "8px",
                         }}
                         disabled={isLoading}
                     >
@@ -210,21 +202,22 @@ export const LoginPage: React.FC<LoginProps> = ({
                     </Button>
                     {registerLink ?? (
                         <Box style={{ marginTop: 8 }}>
-                            <Typography variant="subtitle2">
+                            <Typography variant="body2" component="span">
                                 {translate(
                                     "pages.login.buttons.noAccount",
                                     "Don’t have an account?",
-                                )}{" "}
-                                <Link
-                                    underline="none"
-                                    to="/register"
-                                    style={{
-                                        fontWeight: "bold",
-                                    }}
-                                >
-                                    {translate("pages.login.signup", "Sign up")}
-                                </Link>
+                                )}
                             </Typography>
+                            <MuiLink
+                                ml="8px"
+                                variant="body2"
+                                component={Link}
+                                underline="none"
+                                to="/register"
+                                fontWeight="bold"
+                            >
+                                {translate("pages.login.signup", "Sign up")}
+                            </MuiLink>
                         </Box>
                     )}
                 </Box>

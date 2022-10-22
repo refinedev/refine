@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: ghcr.io/pankod/refine/refine-mui-example
+  repository: ghcr.io/refinedev/refine/refine-mui-example
   pullPolicy: IfNotPresent
 
 imagePullSecrets:

@@ -17,7 +17,8 @@ export type CloneButtonProps = RefineCloneButtonProps<
     ButtonProps,
     {
         /**
-         * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/pankod/refine/issues/1618
+         * Resource name for API data interactions
+         * @deprecated `resourceName` deprecated. Use `resourceNameOrRouteName` instead [Github Issue #1618](https://github.com/refinedev/refine/issues/1618)
          */
         resourceName?: string;
     }
@@ -35,11 +36,15 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     resourceNameOrRouteName: propResourceNameOrRouteName,
     recordItemId,
     hideText = false,
+    accessControl,
     ignoreAccessControlProvider = false,
     children,
     onClick,
     ...rest
 }) => {
+    const accessControlEnabled =
+        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const { cloneUrl: generateCloneUrl } = useNavigation();
     const { Link } = useRouterContext();
 
@@ -56,7 +61,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
         action: "create",
         params: { id, resource },
         queryOptions: {
-            enabled: !ignoreAccessControlProvider,
+            enabled: accessControlEnabled,
         },
     });
 
@@ -72,11 +77,19 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
 
     const cloneUrl = generateCloneUrl(propResourceName ?? resource.route!, id!);
 
+    if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
+        return null;
+    }
+
     return (
         <Link
             to={cloneUrl}
             replace={false}
             onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+                if (data?.can === false) {
+                    e.preventDefault();
+                    return;
+                }
                 if (onClick) {
                     e.preventDefault();
                     onClick(e);

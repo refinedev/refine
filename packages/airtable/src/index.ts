@@ -92,7 +92,7 @@ const generateFilterFormula = (filters: CrudFilters): Formula[] => {
             return ["OR", ...generateFilterFormula(value)];
         }
 
-        return generateLogicalFilterFormula(filter);
+        return generateLogicalFilterFormula(filter as LogicalFilter);
     });
 
     return compound;
@@ -111,7 +111,7 @@ const AirtableDataProvider = (
     apiKey: string,
     baseId: string,
     airtableClient?: AirtableBase,
-): DataProvider => {
+): Required<DataProvider> => {
     const base =
         airtableClient || new Airtable({ apiKey: apiKey }).base(baseId);
 

@@ -188,24 +188,27 @@ const { radioGroupProps } = useRadioGroup({
 
 [useQuery](https://react-query.tanstack.com/reference/useQuery) options can be set by passing `queryOptions` property.
 
+### `pagination`
+
+Allows us to set page and items per page values.
+
+For example imagine that we have 1000 post records:
+
+```ts
+const { selectProps } = useSelect({
+    resource: "categories",
+    // highlight-next-line
+    pagination: { current: 3, pageSize: 8 }
+});
+```
+
+> Listing will start from page 3 showing 8 records.
+
 ## API Reference
 
 ### Properties
 
-| Property                                                                                            | Description                                                                         | Type                                                           | Default   |
-| --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------- | --------- |
-| <div className="required-block"><div>resource</div> <div className=" required">Required</div></div> | Resource name for API data interactions                                             | `string`                                                       |           |
-| defaultValue                                                                                        | Sets the default value                                                              | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                                                         |           |
-| optionValue                                                                                         | Sets the option's value                                                             | `string`                                                       | `"id"`    |
-| optionLabel                                                                                         | Sets the option's label value                                                       | `string`                                                       | `"title"` |
-| filters                                                                                             | Adds filters while fetching the data                                                | [`CrudFilters`](/api-reference/core/interfaces.md#crudfilters)               |           |
-| sort                                                                                                | Allows us to sort the options                                                       | [`CrudSorting`](/api-reference/core/interfaces.md#crudsorting)               |           |
-| fetchSize                                                                                           | Amount of records to fetch in radio group buttons.                                     | `number`                                                       | `undefined` |
-| queryOptions                                                                                        | react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options | ` UseQueryOptions<GetListResponse<TData>, TError>`             |           |
-| metaData                                                                                            | Metadata query for `dataProvider`                                                   | [`MetaDataQuery`](/api-reference/core/interfaces.md#metadataquery) | {}        |
-| [liveMode](/api-reference/core/providers/live-provider.md#usage-in-a-hook)                                                                                            | Whether to update data automatically (`"auto"`) or not (`"manual"`) if a related live event is received. The "off" value is used to avoid creating a subscription. | [`"auto"` \| `"manual"` \| `"off"`](/api-reference/core/interfaces.md#livemodeprops)       | `"off"`                             |
-| liveParams                                                                                          | Params to pass to `liveProvider`'s `subscribe` method if `liveMode` is enabled.                                                                                     | [`{ ids?: string[]; [key: string]: any; }`](/api-reference/core/interfaces.md#livemodeprops) | `undefined`                         |
-| onLiveEvent                                                                                         | Callback to handle all related live events of this hook.                                                                                                                                   | [`(event: LiveEvent) => void`](/api-reference/core/interfaces.md#livemodeprops)                           | `undefined`                                  |
+<PropsTable module="@pankod/refine-antd/useRadioGroup"/>
 
 ### Return values
 
@@ -216,7 +219,7 @@ const { radioGroupProps } = useRadioGroup({
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/field/useRadioGroup?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/field/useRadioGroup?embed=1&view=preview&theme=dark&preset=node&ctl=1"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-use-radio-group-example"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"

@@ -87,7 +87,8 @@ interface IImage {
 
 ### Properties
 
-| Property | Description                  | Type        |
-| -------- | ---------------------------- | ----------- |
-| value    | URL for link to reference to | `string`    |
-| children | What to show instead of URL  | `ReactNode` |
+<PropsTable module="@pankod/refine-mui/UrlField" value-description="URL for link to reference to"/>
+
+:::tip External Props
+It also accepts all props of Material UI [Link](https://mui.com/material-ui/react-link/#main-content).
+:::

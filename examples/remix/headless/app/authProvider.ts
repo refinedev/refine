@@ -16,7 +16,7 @@ const mockUsers = [
 const COOKIE_NAME = "user";
 
 export const authProvider: AuthProvider = {
-    login: ({ email, password, remember }) => {
+    login: () => {
         // Suppose we actually send a request to the back end here.
         const user = mockUsers[0];
 

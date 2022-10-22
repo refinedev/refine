@@ -1,4 +1,9 @@
-import { CrudFilters, CrudSorting, DataProvider } from "@pankod/refine-core";
+import {
+    CrudFilters,
+    CrudSorting,
+    DataProvider,
+    LogicalFilter,
+} from "@pankod/refine-core";
 import { GraphQLClient } from "graphql-request";
 import * as gql from "gql-query-builder";
 import pluralize from "pluralize";
@@ -21,7 +26,11 @@ const generateFilter = (filters?: CrudFilters) => {
 
     if (filters) {
         filters.map((filter) => {
-            if (filter.operator !== "or") {
+            if (
+                filter.operator !== "or" &&
+                filter.operator !== "and" &&
+                "field" in filter
+            ) {
                 const { field, operator, value } = filter;
 
                 if (operator === "eq") {
@@ -30,7 +39,7 @@ const generateFilter = (filters?: CrudFilters) => {
                     queryFilters[`${field}_${operator}`] = value;
                 }
             } else {
-                const { value } = filter;
+                const value = filter.value as LogicalFilter[];
 
                 const orFilters: any[] = [];
                 value.map((val) => {
@@ -47,7 +56,7 @@ const generateFilter = (filters?: CrudFilters) => {
     return queryFilters;
 };
 
-const dataProvider = (client: GraphQLClient): DataProvider => {
+const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
     return {
         getList: async ({
             resource,

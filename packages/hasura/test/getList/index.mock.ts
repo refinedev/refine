@@ -79,7 +79,13 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             limit: 10,
             offset: 0,
             where: {
-                category_id: { _eq: "170b5abd-d8e6-476c-b3fd-bd2474b0f369" },
+                _and: [
+                    {
+                        category_id: {
+                            _eq: "170b5abd-d8e6-476c-b3fd-bd2474b0f369",
+                        },
+                    },
+                ],
             },
         },
     })
@@ -122,7 +128,13 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             offset: 0,
             order_by: { title: "asc" },
             where: {
-                category_id: { _eq: "170b5abd-d8e6-476c-b3fd-bd2474b0f369" },
+                _and: [
+                    {
+                        category_id: {
+                            _eq: "170b5abd-d8e6-476c-b3fd-bd2474b0f369",
+                        },
+                    },
+                ],
             },
         },
     })
@@ -164,9 +176,13 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             limit: 10,
             offset: 0,
             where: {
-                category: {
-                    id: { _eq: "8332c138-3231-406d-9655-1328ded9d5f2" },
-                },
+                _and: [
+                    {
+                        category: {
+                            id: { _eq: "8332c138-3231-406d-9655-1328ded9d5f2" },
+                        },
+                    },
+                ],
             },
         },
     })

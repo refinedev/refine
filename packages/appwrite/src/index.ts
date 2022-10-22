@@ -61,7 +61,11 @@ export const getAppwriteFilters: GetAppwriteFiltersType = (filters) => {
     const appwriteFilters: string[] = [];
 
     for (const filter of filters ?? []) {
-        if (filter.operator !== "or") {
+        if (
+            filter.operator !== "or" &&
+            filter.operator !== "and" &&
+            "field" in filter
+        ) {
             const filterField = filter.field === "id" ? "$id" : filter.field;
 
             appwriteFilters.push(
@@ -102,7 +106,7 @@ export const getAppwritePagination = (pagination: Pagination) => {
 export const dataProvider = (
     appwriteClient: Appwrite,
     options: { databaseId: string } = { databaseId: "default" },
-): DataProvider => {
+): Required<DataProvider> => {
     const { databaseId } = options;
 
     const database = new Databases(appwriteClient);

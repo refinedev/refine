@@ -23,7 +23,7 @@ jobs:
         uses: rokroskar/workflow-run-cleanup-action@v0.2.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -49,7 +49,7 @@ jobs:
         run: mkdir -p ./_changeset/ && cp -r ./.changeset/* ./_changeset/
       - name: Create Release Pull Request or Publish to npm
         id: changesets
-        uses: refinedev/action@main
+        uses: changesets/action@v1
         with:
           version: npm run changeset version
           publish: npm run changeset publish -- --tag next
@@ -57,9 +57,9 @@ jobs:
           title: "ci(changesets): next version packages"
           createGithubReleases: false
         env:
-          GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
   documentation-live-preview:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip')"
@@ -83,7 +83,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           registry: ghcr.io
-          repository: pankod/refine/refine-live-preview
+          repository: refinedev/refine/refine-live-preview
           dockerfile: packages/live-previews/Dockerfile
           tag_with_sha: true
       - name: Set up kubectl
@@ -135,7 +135,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           registry: ghcr.io
-          repository: pankod/refine/refine-documentation
+          repository: refinedev/refine/refine-documentation
           dockerfile: documentation/Dockerfile
           tag_with_sha: true
       - name: Set up kubectl

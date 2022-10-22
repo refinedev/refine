@@ -6,6 +6,9 @@ export type ImageFieldProps = RefineFieldImageProps<
     string | undefined,
     ImageProps,
     {
+        /**
+         * Image title value
+         */
         imageTitle?: string;
     }
 >;

@@ -5,6 +5,7 @@ import {
     CrudFilters,
     CrudSorting,
     BaseKey,
+    LogicalFilter,
 } from "@pankod/refine-core";
 import { stringify } from "query-string";
 
@@ -44,7 +45,11 @@ const generateFilter = (filters?: CrudFilters) => {
 
     if (filters) {
         filters.map((filter) => {
-            if (filter.operator !== "or") {
+            if (
+                filter.operator !== "or" &&
+                filter.operator !== "and" &&
+                "field" in filter
+            ) {
                 const { field, operator, value } = filter;
 
                 if (operator === "eq") {
@@ -59,7 +64,7 @@ const generateFilter = (filters?: CrudFilters) => {
                     }
                 }
             } else {
-                const { value } = filter;
+                const value = filter.value as LogicalFilter[];
 
                 value.map((item, index) => {
                     const { field, operator, value } = item;
@@ -76,7 +81,7 @@ const generateFilter = (filters?: CrudFilters) => {
 export const DataProvider = (
     apiUrl: string,
     httpClient: AxiosInstance = axiosInstance,
-): IDataProvider => ({
+): Required<IDataProvider> => ({
     getList: async ({
         resource,
         hasPagination = true,

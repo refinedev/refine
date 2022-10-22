@@ -47,6 +47,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
             <Form
                 {...formProps}
                 layout="vertical"
+                // eslint-disable-next-line
                 onFinish={(values: any) => {
                     return formProps.onFinish?.(mediaUploadMapper(values));
                 }}

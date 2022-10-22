@@ -92,12 +92,13 @@ export interface IPost {
 
 ### Properties
 
-| Property             | Description                                  | Type                                                               | Default                                                                                                               |
-| -------------------- | -------------------------------------------- | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
-| value                | Field value                                  | `unknown`                                                          |                                                                                                                       |
-| valueLabelTrue       | If there is a value, this is the text to use | `string`                                                           | `"true"`                                                                                                              |
-| valueLabelFalse      | If there no value, this is the text to use   | `string`                                                           | `"false"`                                                                                                             |
-| trueIcon             | If there is a value, this is the icon to use | `React.FC` \| `object`                                             | [`<CheckOutlined />`](https://mui.com/material-ui/material-icons/?query=check&theme=Outlined&selected=CheckOutlined)  |
-| falseIcon            | If there no value, this is the icon to use.  | `React.FC` \| `object`                                             | [`<CloseOutlined />`](https://mui.com/material-ui/material-icons/?query=close+&theme=Outlined&selected=CloseOutlined) |
-| svgIconProps         | Allows to set icon props                     | [`SvgIconProps`](https://mui.com/material-ui/api/svg-icon/#props)  |                                                                                                                       |
-| AbstractTooltipProps | Material UI `Tooltip` properties             | [`AbstractTooltipProps`](https://mui.com/material-ui/api/tooltip/) |                                                                                                                       |
+<PropsTable module="@pankod/refine-mui/BooleanField" 
+title-description="The text shown in the tooltip" 
+title-default="`value` ? `valueLabelTrue` : `valueLabelFalse`" 
+trueIcon-default="[`<CheckOutlined />`](https://mui.com/material-ui/material-icons/)"
+falseIcon-default="[`<CloseOutlined />`](https://mui.com/material-ui/material-icons/)"
+/>
+
+:::tip External Props
+It also accepts all props of Material UI [Tooltip](https://mui.com/material-ui/react-tooltip/#main-content).
+:::

@@ -2,21 +2,13 @@ import React from "react";
 import Link from "@docusaurus/Link";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import {
-    ArrowIcon,
-    ChevronRight,
-    CloudTipIcon,
-    GithubIcon,
-    ScrollIcon,
-} from "../icons";
+import { ArrowIcon, ChevronRight, ScrollIcon } from "../icons";
 import { useTWBreakpoints } from "../../../hooks/use-tw-breakpoints";
 
-export const SectionHero: React.FC<{ starCount?: number }> = ({
-    starCount,
-}) => {
+export const SectionHero: React.FC = () => {
     const ref = React.useRef<HTMLDivElement>(null);
 
-    const { md, lg, xl } = useTWBreakpoints();
+    const { md, lg } = useTWBreakpoints();
 
     const { scrollYProgress } = useScroll({
         target: ref,
@@ -75,10 +67,10 @@ export const SectionHero: React.FC<{ starCount?: number }> = ({
                 backgroundPositionY: bgPosition,
             }}
         >
-            <div className="hidden lg:snap-start lg:block h-px w-full -mb-px" />
+            <div className="hidden w-full h-px -mb-px lg:snap-start lg:block" />
             {/* Scroll animated section */}
-            <motion.div className="h-auto lg:h-screen max-w-screen-xl mx-auto w-full top-0 left-0 relative lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 pt-16 lg:pt-0 short:pt-16 -mt-16 lg:mt-0 flex flex-col justify-center">
-                <div className="flex pt-10 lg:pt-16 flex-col lg:flex-row gap-12 lg:gap-0">
+            <motion.div className="relative top-0 left-0 flex flex-col justify-center w-full h-auto max-w-screen-xl pt-16 mx-auto -mt-16 lg:h-screen lg:sticky px-7 md:px-10 lg:px-16 xl:px-24 lg:pt-0 short:pt-16 lg:mt-0">
+                <div className="flex flex-col gap-12 pt-10 lg:pt-16 lg:flex-row lg:gap-0">
                     <div className="heading mx-auto lg:mx-0 flex flex-[2] gap-6 h-min">
                         <div className="caret-wrapper relative py-2.5 w-[33px]">
                             <motion.div
@@ -126,7 +118,7 @@ export const SectionHero: React.FC<{ starCount?: number }> = ({
                                           }
                                 }
                             >
-                                <ArrowIcon />
+                                <ArrowIcon width={36} height={36} />
                             </motion.div>
                         </div>
                         <div className="line-wrapper text-white font-montserrat tracking-tighter leading-[32px] md:leading-[45px] lg:leading-[50px] xl:leading-[60px]">
@@ -172,7 +164,7 @@ export const SectionHero: React.FC<{ starCount?: number }> = ({
                                           translateY: -8,
                                       }
                             }
-                            className="tile shadow-tile relative overflow-hidden bg-white w-full md:max-w-[338px] h-[4.5rem]"
+                            className="tile shadow-tile relative overflow-hidden bg-white w-full md:max-w-[338px] h-[4.5rem] rounded-lg"
                         >
                             <motion.div
                                 transition={
@@ -242,7 +234,7 @@ export const SectionHero: React.FC<{ starCount?: number }> = ({
                                           translateY: -8,
                                       }
                             }
-                            className="tile shadow-tile relative overflow-hidden bg-white w-full md:max-w-[338px] h-[4.5rem]"
+                            className="tile shadow-tile relative overflow-hidden bg-white w-full md:max-w-[338px] h-[4.5rem] rounded-lg"
                         >
                             <motion.div
                                 transition={
@@ -312,7 +304,7 @@ export const SectionHero: React.FC<{ starCount?: number }> = ({
                                           translateY: -8,
                                       }
                             }
-                            className="tile shadow-tile relative overflow-hidden bg-white w-full md:max-w-[338px] h-[4.5rem]"
+                            className="tile shadow-tile relative overflow-hidden bg-white w-full md:max-w-[338px] h-[4.5rem] rounded-lg"
                         >
                             <motion.div
                                 transition={
@@ -382,7 +374,7 @@ export const SectionHero: React.FC<{ starCount?: number }> = ({
                                           translateY: -8,
                                       }
                             }
-                            className="tile shadow-tile relative overflow-hidden bg-white w-full md:max-w-[338px] h-[4.5rem]"
+                            className="tile shadow-tile relative overflow-hidden bg-white w-full md:max-w-[338px] h-[4.5rem] rounded-lg"
                         >
                             <motion.div
                                 transition={
@@ -427,8 +419,8 @@ export const SectionHero: React.FC<{ starCount?: number }> = ({
                         </motion.div>
                     </div>
                 </div>
-                <div className="flex flex-col-reverse lg:flex-row pt-12 sm:pt-16 lg:pt-24 short:pt-10 pb-8 short:pb-4 gap-2 lg:gap-0 mx-auto lg:mx-0 max-w-lg lg:max-w-none">
-                    <div className="flex flex-col lg:flex-row flex-1 gap-4 -mx-4 px-0 md:px-8 lg:px-12">
+                <div className="flex flex-col-reverse max-w-lg gap-2 pt-12 pb-8 mx-auto lg:flex-row sm:pt-16 lg:pt-24 short:pt-10 short:pb-4 lg:gap-0 lg:mx-0 lg:max-w-none">
+                    <div className="flex flex-col flex-1 gap-4 px-0 -mx-4 lg:flex-row md:px-8 lg:px-12">
                         <Link
                             className="flex flex-1 justify-center items-center appearance-none no-underline font-montserrat font-bold text-xl text-white text-center py-3 px-4 md:px-0 xl:px-4 rounded-lg shadow-lg hover:shadow-xl focus:outline-none focus:shadow-xl bg-gradient-to-l from-[#1890FF] to-[#47EBF5]"
                             to="/docs"
@@ -436,55 +428,30 @@ export const SectionHero: React.FC<{ starCount?: number }> = ({
                             Start Tutorial
                         </Link>
                         <Link
-                            className="flex flex-1 justify-center items-center gap-3 appearance-none no-underline font-montserrat font-bold text-xl text-white text-center py-3 px-4 md:px-0 xl:px-4 focus:outline-none"
+                            className="flex items-center justify-center flex-1 gap-3 px-4 py-3 text-xl font-bold text-center text-white no-underline appearance-none font-montserrat md:px-0 xl:px-4 focus:outline-none"
                             href="/docs/getting-started/overview"
                         >
                             Read the docs <ChevronRight />
                         </Link>
                     </div>
-                    <div className="flex flex-row flex-1 gap-1 justify-end -mx-4 px-0 md:px-8 lg:px-12">
+                    <div className="flex flex-row justify-end flex-1 gap-1 px-0 -mx-4 md:px-8 lg:px-12">
                         <div>
                             <a
-                                href="https://www.producthunt.com/posts/refine-3?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-refine&#0045;3"
+                                href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3"
                                 target="_blank"
-                                rel="noopener noreferrer"
+                                rel="noreferrer"
                             >
                                 <img
-                                    src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=362220&theme=dark"
-                                    alt="refine - Open&#0032;Source&#0032;React&#0032;Framework | Product Hunt"
-                                    className="w-full lg:w-[250px] h-[54px] bg-[#211d21] rounded-tl-xl rounded-bl-xl"
+                                    src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=362220&theme=light&period=daily"
+                                    alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0032;to&#0032;build&#0032;web&#0032;apps&#0032;3x&#0032;faster | Product Hunt"
+                                    width="250"
+                                    height="54"
                                 />
-                            </a>
-                        </div>
-                        <div>
-                            {/* eslint-disable react/jsx-no-target-blank */}
-                            <a
-                                href="https://github.com/pankod/refine"
-                                target="_blank"
-                                rel="noopener"
-                                className="bg-[#211d21] no-underline rounded-tr-xl rounded-br-xl h-[54px] flex gap-2 pl-3.5 py-2.5 pr-2.5 items-center justify-center lg:justify-start"
-                            >
-                                <GithubIcon />
-                                <div className="hidden sm:block font-bold font-montserrat text-base text-white">
-                                    Star
-                                </div>
-                                <div className="flex items-start h-full">
-                                    <CloudTipIcon className="mt-2 -mr-px" />
-                                    <div className="cloud rounded-md bg-white text-[#211d21] h-full flex items-center justify-center px-1.5 font-montserrat font-bold text-base">
-                                        <span
-                                            className={`min-w-[45px] text-center ${
-                                                starCount ? "" : "invisible"
-                                            }`}
-                                        >
-                                            {starCount ? starCount : "1234"}
-                                        </span>
-                                    </div>
-                                </div>
                             </a>
                         </div>
                     </div>
                 </div>
-                <div className="hidden lg:flex items-center justify-center short:mt-auto lg:mt-6 pb-5 short:pb-7">
+                <div className="items-center justify-center hidden pb-5 lg:flex short:mt-auto lg:mt-6 short:pb-7">
                     <motion.button
                         className="appearance-none border-none bg-none bg-transparent flex w-auto items-center justify-center gap-2.5"
                         animate={{ translateY: [-10, 10] }}
@@ -502,18 +469,18 @@ export const SectionHero: React.FC<{ starCount?: number }> = ({
                             }
                         }}
                     >
-                        <span className="uppercase text-xs text-white font-montserrat w-14 text-right">
+                        <span className="text-xs text-right text-white uppercase font-montserrat w-14">
                             scroll
                         </span>
                         <ScrollIcon className="text-white" />
-                        <span className="uppercase text-xs text-white font-montserrat w-14 text-left">
+                        <span className="text-xs text-left text-white uppercase font-montserrat w-14">
                             down
                         </span>
                     </motion.button>
                 </div>
             </motion.div>
             {/* Scroll snap alignment */}
-            <div className="lg:snap-start hidden lg:block h-screen w-screen max-w-full" />
+            <div className="hidden w-screen h-screen max-w-full lg:snap-start lg:block" />
             {/* Scroll snap alignment */}
         </motion.div>
     );

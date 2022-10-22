@@ -28,7 +28,15 @@ type CrudOperators =
     | "nbetween"
     | "null"
     | "nnull"
-    | "or";
+    | "or"
+    | "startswith"
+    | "nstartswith"
+    | "startswiths"
+    | "nstartswiths"
+    | "endswith"
+    | "nendswith"
+    | "endswiths"
+    | "nendswiths"
 
 // Supported filter types:
 type LogicalFilter = {
@@ -70,7 +78,7 @@ Here the query will look like: `"name" = "John" AND "age" < 30`
 
 ## `ConditionalFilters`
 
-`ConditionalFilter` works only with `or` operator and expects an array of `LogicalFilter` objects in the `value` property. For example, if you want to filter by `age` field or `createdAt` field, you can use the following filter:
+`ConditionalFilter` works `or` / `and` operator and expects an array of `LogicalFilter` objects in the `value` property. For example, if you want to filter multiple `OR` by `name` field and `age` field, you can use the following filter:
 
 ```ts
 const filter = [
@@ -78,21 +86,123 @@ const filter = [
         operator: "or",
         value: [
             {
-                field: "age",
-                operator: "eq",
-                value: 30,
+                operator: "and",
+                value: [
+                    {
+                        field: "name",
+                        operator: "eq",
+                        value: "John Doe",
+                    },
+                    {
+                        field: "age",
+                        operator: "eq",
+                        value: 30,
+                    },
+                ],
             },
             {
-                field: "createdAt",
-                operator: "gte",
-                value: "2018-01-01",
+                operator: "and",
+                value: [
+                    {
+                        field: "name",
+                        operator: "eq",
+                        value: "JR.Doe",
+                    },
+                    {
+                        field: "age",
+                        operator: "eq",
+                        value: 1,
+                    },
+                ],
             },
         ],
     },
 ];
 ```
 
-Here the query will look like: `"age" = 30 OR "createdAt" <= "2018-01-01"`
+Here the query will look like: `("name" = John Doe AND "age" = 30) OR ("name" = JR.Doe AND "age" = 1)`
+
+### Top level multiple conditional filters usage
+
+If you create multiple Conditional Filters at the top level, you must add a key to it. Otherwise, you will get a warning in the console and your filters may not be combined correctly.
+
+```ts
+const filter = [
+    {
+        key: "parent",
+        operator: "or",
+        value: [
+            {
+                operator: "and",
+                value: [
+                    {
+                        field: "name",
+                        operator: "eq",
+                        value: "John Doe",
+                    },
+                    {
+                        field: "age",
+                        operator: "eq",
+                        value: 30,
+                    },
+                ],
+            },
+            {
+                operator: "and",
+                value: [
+                    {
+                        field: "name",
+                        operator: "eq",
+                        value: "Jane Doe",
+                    },
+                    {
+                        field: "age",
+                        operator: "eq",
+                        value: 28,
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        key: "children",
+        operator: "or",
+        value: [
+            {
+                operator: "and",
+                value: [
+                    {
+                        field: "name",
+                        operator: "eq",
+                        value: "JR John",
+                    },
+                    {
+                        field: "age",
+                        operator: "eq",
+                        value: 1,
+                    },
+                ],
+            },
+            {
+                operator: "and",
+                value: [
+                    {
+                        field: "name",
+                        operator: "eq",
+                        value: "JR Jane",
+                    },
+                    {
+                        field: "age",
+                        operator: "eq",
+                        value: 2,
+                    },
+                ],
+            },
+        ],
+    },
+];
+```
+
 
 ## Combining Filters
 
@@ -137,7 +247,7 @@ const dataProvider = (): DataProvider => ({
     getList: async ({ resource, pagination, filters, sort }) => {
         if (filters) {
             filters.map((filter) => {
-                if (filter.operator !== "or") {
+                if (filter.operator !== "or" && filter.operator !== "and" && "field" in filter) {
                     // Handle your logical filters here
                     // console.log(typeof filter); // LogicalFilter
                 } else {
@@ -153,11 +263,11 @@ const dataProvider = (): DataProvider => ({
 :::tip
 Data providers that support `or` and `and` filtering logic are as follows:
 
--   [NestJS CRUD](https://github.com/pankod/refine/tree/master/packages/nestjsx-crud)
--   [Strapi](https://github.com/pankod/refine/tree/master/packages/strapi) - [Strapi v4](https://github.com/pankod/refine/tree/master/packages/strapi-v4)
--   [Strapi GraphQL](https://github.com/pankod/refine/tree/master/packages/strapi-graphql)
--   [Supabase](https://github.com/pankod/refine/tree/master/packages/supabase)
--   [Hasura](https://github.com/pankod/refine/tree/master/packages/hasura)
--   [Nhost](https://github.com/pankod/refine/tree/master/packages/nhost)
+-   [NestJS CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud)
+-   [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi) - [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4)
+-   [Strapi GraphQL](https://github.com/refinedev/refine/tree/master/packages/strapi-graphql)
+-   [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase)
+-   [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
+-   [Nhost](https://github.com/refinedev/refine/tree/master/packages/nhost)
 
 :::

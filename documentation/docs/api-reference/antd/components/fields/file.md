@@ -70,8 +70,8 @@ If you don't use `title` prop it will use `src` as `title`
 
 ### Properties
 
-| Property                                       | Description                     | Type                                                         | Default    |
-| ---------------------------------------------- | ------------------------------- | ------------------------------------------------------------ | ---------- |
-| src   <div className="required">Required</div> | Used for file path             | `string`                                                     |            |
-| title                                          | Used for file title            | `string` \| `undefined`                                      | The `src` property |
-| LinkProps                                      | Ant Design `<Typography>` properties | [`LinkProps`](https://ant.design/components/typography/#API) |            |
+<PropsTable module="@pankod/refine-antd/FileField" />
+
+:::tip External Props
+It also accepts all props of Ant Design [Link](https://ant.design/components/typography/#How-to-use-Typography.Link-in-react-router).
+:::

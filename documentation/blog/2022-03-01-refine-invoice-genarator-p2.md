@@ -890,7 +890,7 @@ export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
 </div>
 <br />
 
-## Live CodeSandbox Example
+## Live StackBlitz Example
 
 -   `Username`: demo
 -   `Password`: demodemo
@@ -899,12 +899,11 @@ export const PdfLayout: React.FC<PdfProps> = ({ record }) => {
 PDF download may not work in codeSandbox mode. With [**this**](https://n59710.csb.app/invoices) link, you can open the example in the browser and try it.
 :::
 
-<iframe src="https://codesandbox.io/embed/refine-invoice-genarator-n59710?autoresize=1&fontsize=14&theme=dark&view=preview"
-     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-     title="refine-invoice-generator"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/blog/invoiceGenerator?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+    style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+    title="refine-use-select-example"
 ></iframe>
+
 
 ## Conclusion
 

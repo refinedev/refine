@@ -11,9 +11,9 @@ While most "todo" demos provide an excellent cursory glance at a framework's cap
 
 [RealWorld](https://github.com/gothinkster/realworld) solves this by allowing you to choose any frontend (React, Angular, & more) and any backend (Node, Django, & more) and see how they power a real world, beautifully designed fullstack app called [Conduit](https://demo.realworld.io/#/).
 
-[View Source Code](https://github.com/pankod/refine/tree/master/examples/real-world-example)
+[View Source Code](https://github.com/refinedev/real-world-example)
 
-<iframe loading="lazy" src="https://stackblitz.com//github/pankod/refine/tree/master/examples/real-world-example?embed=1&view=preview&theme=dark&preset=node"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/real-world-example?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-tutorial"
 ></iframe>

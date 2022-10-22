@@ -14,7 +14,7 @@ We will show what `<Show>` does using properties with examples.
 ```tsx live hideCode url=http://localhost:3000/posts/show/2
 // visible-block-start
 import { Show, Typography, MarkdownField } from "@pankod/refine-antd";
-import { useShow, IResourceComponentsProps, useOne } from "@pankod/refine";
+import { useShow, IResourceComponentsProps, useOne } from "@pankod/refine-core";
 
 const { Title, Text } = Typography;
 
@@ -896,6 +896,19 @@ The `<Show>` component needs the `id` information for work properly, so if you u
 ## API Reference
 
 ### Properties
+
+<PropsTable module="@pankod/refine-antd/Show"
+contentProps-type="[`CardProps`](https://ant.design/components/card/#API)"
+headerProps-type="[`PageHeaderProps`](https://ant.design/components/page-header/#API)"
+headerButtons-default="[`ListButton`](https://refine.dev/docs/api-reference/antd/components/buttons/list-button/), [`RefreshButton`](https://refine.dev/docs/api-reference/antd/components/buttons/refresh-button/), [`EditButton`](https://refine.dev/docs/api-reference/antd/components/buttons/edit-button/) and [`DeleteButton`](https://refine.dev/docs/api-reference/antd/components/buttons/delete-button/)"
+headerButtonProps-type="[`SpaceProps`](https://ant.design/components/space/)"
+deleteButtonProps-type="[`DeleteButtonProps`](/docs/api-reference/antd/components/buttons/delete-button/)"
+saveButtonProps-type="[`SaveButtonProps`](https://refine.dev/docs/api-reference/antd/components/buttons/save-button/)"
+footerButtonsProps-type="[`SpaceProps`](https://ant.design/components/space/)"
+breadcrumb-default="[`<Breadcrumb>`](https://ant.design/components/breadcrumb/)"
+goBack-default="`<ArrowLeft />`"
+goBack-type="`ReactNode`"
+/>
 
 | Property                                                                                                     | Description                                                       | Type                                                                            | Default                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
