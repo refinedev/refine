@@ -47,17 +47,17 @@
 
 ## What is refine?
 **refine** is a React-based framework for the rapid ✨ development of web applications. 
-It eliminates the repetitive tasks demanded by **CRUD** operations and provides industry standard solutions for critical parts like **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**.
+It eliminates repetitive tasks demanded by **CRUD** operations and provides industry standard solutions for critical parts like **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**.
 
-**refine** is *headless by design* offering unlimited styling and customization options. 
+**refine** is *headless by design*, thereby offering unlimited styling and customization options.
 
 ## What do you mean by "headless" ?
-Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components`, and `providers`. They are all decoupled from your *UI components* and *business logic*, so they never keep you from customizing your *UI* or coding your own flow.
+Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components`, and `providers`. They are all decoupled from *UI components* and *business logic*, so that they never keep you from customizing your *UI* or coding your own flow.
 
-**refine** seamlessly works with any **custom design** or **UI framework you favor**. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), and [Mantine](https://mantine.dev/).
+**refine** seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), and [Mantine](https://mantine.dev/).
 
 ## Use cases
-**refine** shines on *data-intensive* applications like *admin panels*, *dashboards* and *internal tools*. Thanks to built-in **SSR support**, **refine** can also power *customer-facing* applications like *storefronts*.
+**refine** shines on *data-intensive* applications like *admin panels*, *dashboards* and *internal tools*. Thanks to the built-in **SSR support**, **refine** can also power *customer-facing* applications like *storefronts*.
 
 ## Key Features
 
@@ -85,7 +85,7 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 
 ## Quick Start
 
-The fastest way to get started with **refine** is using the [superplate](https://github.com/pankod/superplate) project starter tool.
+The fastest way to get started with **refine** is by using the [superplate](https://github.com/pankod/superplate) project starter tool.
 Run the following command to create a new **refine** project configured with  [Ant Design System](https://ant.design/) as the default UI framework:
 
 ```
