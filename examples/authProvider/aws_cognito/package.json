@@ -13,7 +13,7 @@
     "react-dom": "^18.2.0",
     "react-markdown": "^6.0.1",
     "react-mde": "^11.1.0",
-    "react-scripts": "^5.0.0",
+    "react-scripts": "^5.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.15",
