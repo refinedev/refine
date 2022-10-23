@@ -49,6 +49,11 @@
     overflow: auto;
     box-shadow: var(--ifm-alert-shadow);
 }
+.centered-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .banner-container {
     background-color: #f8f8f8;
