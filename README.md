@@ -17,7 +17,7 @@
 </div>
 <br/>
 
-<div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>Open source, headless web application framework developed with flexibility in mind.</div>
+<div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>An open source, headless web application framework developed with flexibility in mind.</div>
 
 <br />
 
@@ -86,7 +86,7 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 ## Quick Start
 
 The fastest way to get started with **refine** is using the [superplate](https://github.com/pankod/superplate) project starter tool.
-Run the following command to create a new **refine** project configured with  [Ant Design System](https://ant.design/) as the default UI framework:
+Run the following commands to create a new **refine** project configured with  [Ant Design System](https://ant.design/) as the default UI framework:
 
 ```
 npx superplate-cli --preset refine-antd my-project
@@ -215,9 +215,12 @@ You can find refine's <a href="https://github.com/refinedev/refine/projects/1">P
 
 ## Contribution
 
-If you have a bug to report, do not hesitate to file an [issue](https://github.com/refinedev/refine/issues/new/choose).
+If you discover a bug, please file a bug report at [issue](https://github.com/refinedev/refine/issues/new/choose).
+
 
 If you are willing to fix an issue or propose a feature, all PRs with clear explanations are welcome and encouraged.
+
+
 
 If you have any doubts related to the project or want to discuss something, then join our [Discord Server](https://discord.gg/refine).
 
