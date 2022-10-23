@@ -149,7 +149,7 @@ export default function FooterLayout({
                 <div className="flex flex-col-reverse gap-6 lg:gap-0 lg:flex-row">
                     <div className="flex-1">
                         <div className="flex items-center text-[#9696B4] text-[11px] sm:text-xs leading-[12px] font-montserrat justify-center lg:justify-start">
-                            © 2022, refine from Delaware to wherever
+                            © {new Date().getFullYear()}, refine from Delaware to wherever
                             you&apos;re with{" "}
                             <LoveIcon
                                 className="ml-2"
