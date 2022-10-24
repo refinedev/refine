@@ -14,12 +14,12 @@ import {
     Box,
     EditButton,
     DeleteButton,
-    Pagination,
     Select,
     DateField,
 } from "@pankod/refine-chakra-ui";
 
 import { ColumnFilter, ColumnSorter } from "../../components/table";
+import { Pagination } from "../../components/pagination";
 import { FilterElementProps, ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
@@ -206,13 +206,11 @@ export const PostList: React.FC = () => {
                     </Tbody>
                 </Table>
             </TableContainer>
-            <Box display="flex" justifyContent="flex-end">
-                <Pagination
-                    current={current}
-                    setCurrent={setCurrent}
-                    pageCount={pageCount}
-                />
-            </Box>
+            <Pagination
+                current={current}
+                pageCount={pageCount}
+                setCurrent={setCurrent}
+            />
         </List>
     );
 };
