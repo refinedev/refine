@@ -20,6 +20,7 @@ import {
     Box,
     Button,
     Tooltip,
+    TooltipProps,
     VStack,
 } from "@chakra-ui/react";
 import {
@@ -35,7 +36,7 @@ import { Title as DefaultTitle } from "../title";
 const defaultNavIcon = <IconList size={18} />;
 
 export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
-    const [collapsed, setCollapsed] = useState(true);
+    const [collapsed, setCollapsed] = useState(false);
 
     const { Link } = useRouterContext();
     const { menuItems, selectedKey } = useMenu();
@@ -50,6 +51,12 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const drawerWidth = () => {
         if (collapsed) return "80px";
         return "200px";
+    };
+
+    const commonTooltipProps: Omit<TooltipProps, "children"> = {
+        placement: "right",
+        hasArrow: true,
+        isDisabled: !collapsed,
     };
 
     const renderTreeView = (tree: ITreeMenu[]) => {
@@ -75,24 +82,26 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                     }}
                 >
                     <AccordionItem border="none">
-                        <AccordionButton as="div" width="full">
-                            <Button
-                                width="full"
-                                variant="link"
-                                color="white"
-                                leftIcon={icon ?? (defaultNavIcon as any)}
-                                rightIcon={
-                                    isParent ? <AccordionIcon /> : undefined
-                                }
-                                {...linkProps}
-                            >
-                                {!collapsed && (
-                                    <Box flexGrow={1} textAlign="left">
-                                        {label}
-                                    </Box>
-                                )}
-                            </Button>
-                        </AccordionButton>
+                        <Tooltip label={label} {...commonTooltipProps}>
+                            <AccordionButton as="div" width="full">
+                                <Button
+                                    width="full"
+                                    variant="link"
+                                    color="white"
+                                    leftIcon={icon ?? (defaultNavIcon as any)}
+                                    rightIcon={
+                                        isParent ? <AccordionIcon /> : undefined
+                                    }
+                                    {...linkProps}
+                                >
+                                    {!collapsed && (
+                                        <Box flexGrow={1} textAlign="left">
+                                            {label}
+                                        </Box>
+                                    )}
+                                </Button>
+                            </AccordionButton>
+                        </Tooltip>
 
                         {isParent && (
                             <AccordionPanel p={0} pl={collapsed ? 0 : 4}>
@@ -111,7 +120,10 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
 
     const dashboard = hasDashboard ? (
         <CanAccess resource="dashboard" action="list">
-            <Tooltip label={t("dashboard.title", "Dashboard")}>
+            <Tooltip
+                label={t("dashboard.title", "Dashboard")}
+                {...commonTooltipProps}
+            >
                 <Button
                     width="full"
                     justifyContent={collapsed ? "center" : "flex-start"}
@@ -133,7 +145,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     ) : null;
 
     const logout = isExistAuthentication && (
-        <Tooltip label={t("buttons.logout", "Logout")}>
+        <Tooltip label={t("buttons.logout", "Logout")} {...commonTooltipProps}>
             <Button
                 width="full"
                 justifyContent={collapsed ? "center" : "flex-start"}
