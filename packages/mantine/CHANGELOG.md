@@ -1,5 +1,13 @@
 # @pankod/refine-mantine
 
+## 1.9.5
+
+### Patch Changes
+
+-   [#2857](https://github.com/refinedev/refine/pull/2857) [`1d8b1820f4`](https://github.com/refinedev/refine/commit/1d8b1820f47118dd1e3d3dfbfc9df655056d591a) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed the `<ReadyPage />` mobile view.
+
+-   [#2857](https://github.com/refinedev/refine/pull/2857) [`1d8b1820f4`](https://github.com/refinedev/refine/commit/1d8b1820f47118dd1e3d3dfbfc9df655056d591a) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed the `<ErrorComponent />` responsive view.
+
 ## 1.9.4
 
 ### Patch Changes
