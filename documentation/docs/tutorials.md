@@ -30,7 +30,7 @@ If your system versions do not meet both requirements, the installation bootstra
 - node: `>=16.x`
 - yarn: `>=1.15` or npm: `>=8.x` or PnPm: `>=7.x`
 
-To check, please run the following from your terminal command line:
+To check, please run the following commands from your terminal.
 
 ```bash
 node -v
@@ -45,7 +45,7 @@ Then continue with the next step when ready!
 
 Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components`, and `providers`. They are all decoupled from *UI components* and *business logic*, so that they never keep you from customizing your *UI* or coding your own flow. 
 
-Our [Tailwind CSS](https://tailwindcss.com/) tutorial below is a good starting point for users who want to go [headless](/docs/getting-started/overview.md/#what-do-you-mean-by-headless-). For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) (Coming soon ⏲). 
+Our [Tailwind CSS](https://tailwindcss.com/) tutorial below is a good starting point for users who want to go [headless](/docs/getting-started/overview.md/#what-do-you-mean-by-headless-). For convenience, **refine** ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) (Coming soon ⏲). 
 
 <div className="tutorial-cards">
     <Card
