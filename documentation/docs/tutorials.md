@@ -30,7 +30,7 @@ If your system versions do not meet both requirements, the installation bootstra
 - node: `>=16.x`
 - yarn: `>=1.15` or npm: `>=8.x` or PnPm: `>=7.x`
 
-To check, please run the following commands from your terminal.
+To check, please run the following commands from your terminal:
 
 ```bash
 node -v
