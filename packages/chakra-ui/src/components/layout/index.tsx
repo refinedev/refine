@@ -18,11 +18,9 @@ export const Layout: React.FC<RefineLayoutLayoutProps> = ({
     return (
         <Box sx={{ display: "flex" }} bg="gray.100">
             <SiderToRender />
-            <Box w="100%">
+            <Box sx={{ display: "flex", flexDirection: "column", flex: 1 }}>
                 <HeaderToRender />
-                <Box px="2" py="2">
-                    {children}
-                </Box>
+                <Box sx={{ minHeight: "100vh", p: [2, 4] }}>{children}</Box>
                 {Footer && <Footer />}
             </Box>
             {OffLayoutArea && <OffLayoutArea />}
