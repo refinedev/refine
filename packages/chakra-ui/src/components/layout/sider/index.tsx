@@ -111,7 +111,12 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
         <CanAccess resource="dashboard" action="list">
             <Tooltip label={t("dashboard.title", "Dashboard")}>
                 <Button
-                    p={4}
+                    width="full"
+                    justifyContent="start"
+                    pl={4}
+                    pr={4}
+                    pt={2}
+                    pb={2}
                     leftIcon={<IconDashboard size={18} />}
                     variant="link"
                     color="white"
@@ -128,7 +133,12 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const logout = isExistAuthentication && (
         <Tooltip label={t("buttons.logout", "Logout")}>
             <Button
-                p={4}
+                width="full"
+                justifyContent="start"
+                pl={4}
+                pr={4}
+                pt={2}
+                pb={2}
                 leftIcon={<IconLogout size={18} />}
                 variant="link"
                 color="white"
@@ -172,7 +182,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 <Box display="flex" justifyContent="center" p={2}>
                     <RenderToTitle collapsed={collapsed} />
                 </Box>
-                <VStack color="white" alignItems="start" flexGrow={1}>
+                <VStack mt={2} color="white" alignItems="start" flexGrow={1}>
                     <Accordion width="full" allowToggle>
                         {renderSider()}
                     </Accordion>
