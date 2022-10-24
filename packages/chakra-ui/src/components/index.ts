@@ -5,4 +5,3 @@ export * from "./layout/sider";
 export * from "./crud";
 export * from "./buttons";
 export * from "./fields";
-export * from "./pagination";
