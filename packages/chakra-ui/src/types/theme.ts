@@ -13,6 +13,9 @@ export const LightTheme = extendTheme({
             800: "#468118",
             900: "#2F5610",
         },
-        sider: "#2A132E",
+        sider: {
+            background: "#2A132E",
+            collapseButton: "#150A17",
+        },
     },
 });
