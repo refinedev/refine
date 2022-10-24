@@ -5,10 +5,10 @@
 @import "tailwindcss/utilities";
 
 @layer base {
-    button[type=submit]{
+    button[type="submit"] {
         background-color: rgb(0 0 0);
     }
-  }
+}
 
 @layer components {
     .content-container {
