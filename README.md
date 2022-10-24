@@ -17,7 +17,7 @@
 </div>
 <br/>
 
-<div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>Open source, headless web application framework developed with flexibility in mind.</div>
+<div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>An open source, headless web application framework developed with flexibility in mind.</div>
 
 <br />
 
@@ -215,9 +215,12 @@ You can find refine's <a href="https://github.com/refinedev/refine/projects/1">P
 
 ## Contribution
 
-If you have a bug to report, do not hesitate to file an [issue](https://github.com/refinedev/refine/issues/new/choose).
+If you discover a bug, please file a bug report at [issue](https://github.com/refinedev/refine/issues/new/choose).
+
 
 If you are willing to fix an issue or propose a feature, all PRs with clear explanations are welcome and encouraged.
+
+
 
 If you have any doubts related to the project or want to discuss something, then join our [Discord Server](https://discord.gg/refine).
 
