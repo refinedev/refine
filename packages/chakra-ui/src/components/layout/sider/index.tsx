@@ -39,7 +39,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const [collapsed, setCollapsed] = useState(false);
 
     const { Link } = useRouterContext();
-    const { menuItems, selectedKey } = useMenu();
+    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const Title = useTitle();
     const isExistAuthentication = useIsExistAuthentication();
     const t = useTranslate();
@@ -63,6 +63,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
         return tree.map((item) => {
             const { label, route, name, icon, children } = item;
 
+            const isSelected = route === selectedKey;
             const isParent = children.length > 0;
 
             const linkProps = !isParent
@@ -81,36 +82,54 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                         resource: item,
                     }}
                 >
-                    <AccordionItem border="none">
-                        <Tooltip label={label} {...commonTooltipProps}>
-                            <AccordionButton as="div" width="full">
-                                <Button
-                                    width="full"
-                                    variant="link"
-                                    color="white"
-                                    leftIcon={icon ?? (defaultNavIcon as any)}
-                                    rightIcon={
-                                        isParent ? <AccordionIcon /> : undefined
-                                    }
-                                    {...linkProps}
-                                >
-                                    {!collapsed && (
-                                        <Box flexGrow={1} textAlign="left">
-                                            {label}
-                                        </Box>
-                                    )}
-                                </Button>
-                            </AccordionButton>
-                        </Tooltip>
+                    <Accordion
+                        defaultIndex={
+                            defaultOpenKeys.includes(route || "") ? 0 : -1
+                        }
+                        width="full"
+                        allowToggle
+                    >
+                        <AccordionItem border="none">
+                            <Tooltip label={label} {...commonTooltipProps}>
+                                <AccordionButton as="div" width="full">
+                                    <Button
+                                        width="full"
+                                        variant="link"
+                                        color="white"
+                                        leftIcon={
+                                            icon ?? (defaultNavIcon as any)
+                                        }
+                                        rightIcon={
+                                            isParent ? (
+                                                <AccordionIcon />
+                                            ) : undefined
+                                        }
+                                        _active={{
+                                            color: "none",
+                                            fontWeight: "bold",
+                                        }}
+                                        _hover={{ textDecoration: "none" }}
+                                        isActive={isSelected}
+                                        {...linkProps}
+                                    >
+                                        {!collapsed && (
+                                            <Box flexGrow={1} textAlign="left">
+                                                {label}
+                                            </Box>
+                                        )}
+                                    </Button>
+                                </AccordionButton>
+                            </Tooltip>
 
-                        {isParent && (
-                            <AccordionPanel p={0} pl={collapsed ? 0 : 4}>
-                                <Accordion width="full" allowToggle>
-                                    {renderTreeView(children)}
-                                </Accordion>
-                            </AccordionPanel>
-                        )}
-                    </AccordionItem>
+                            {isParent && (
+                                <AccordionPanel p={0} pl={collapsed ? 0 : 4}>
+                                    <Accordion width="full" allowToggle>
+                                        {renderTreeView(children)}
+                                    </Accordion>
+                                </AccordionPanel>
+                            )}
+                        </AccordionItem>
+                    </Accordion>
                 </CanAccess>
             );
         });
@@ -134,7 +153,9 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                     leftIcon={<IconDashboard size={18} />}
                     variant="link"
                     color="white"
-                    isActive={selectedKey === "dashboard"}
+                    isActive={selectedKey === "/"}
+                    _active={{ color: "none", fontWeight: "bold" }}
+                    _hover={{ textDecoration: "none" }}
                     as={Link}
                     to="/"
                 >
@@ -155,6 +176,8 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 pb={2}
                 leftIcon={<IconLogout size={18} />}
                 variant="link"
+                _active={{ color: "none" }}
+                _hover={{ textDecoration: "none" }}
                 color="white"
                 onClick={() => mutateLogout()}
             >
@@ -197,9 +220,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                     <RenderToTitle collapsed={collapsed} />
                 </Box>
                 <VStack mt={2} color="white" alignItems="start" flexGrow={1}>
-                    <Accordion width="full" allowToggle>
-                        {renderSider()}
-                    </Accordion>
+                    <Box width="full">{renderSider()}</Box>
                 </VStack>
                 <Button
                     onClick={() => setCollapsed((prev) => !prev)}
