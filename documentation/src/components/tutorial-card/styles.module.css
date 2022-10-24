@@ -6,13 +6,15 @@
     padding: 24px;
     height: 100%;
     border-radius: 16px;
-    border: 1px solid #ededef;
+    border: 1px solid var(--ifm-color-emphasis-200);
     transition: all 0.2s;
     text-align: center;
     height: 160px;
+    background: var(--tutorial-card-bg);
 }
 
 .card:hover {
+    background: var(--tutorial-card-bg-hover);
     box-shadow: 4px 8px 16px rgba(42, 42, 66, 0.25);
 }
 
@@ -22,7 +24,7 @@
 
 .card span {
     margin-top: 8px;
-    color: #81818f;
+    color: var(--ifm-font-color-base);
     font-weight: 700;
     font-family: "Montserrat";
 }

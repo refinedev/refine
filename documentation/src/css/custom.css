@@ -40,6 +40,13 @@
     --color-bg-white: white;
     --ifm-navbar-sidebar-width: 100%;
     --ifm-table-cell-padding: 6px 8px;
+    --tutorial-card-bg: var(--ifm-card-background-color);
+    ---tutorial-card-bg-hover: var(--ifm-card-background-color);
+}
+
+[data-theme="dark"] {
+    --tutorial-card-bg: #252527;
+    --tutorial-card-bg-hover: #2c2e33;
 }
 
 .img-container {

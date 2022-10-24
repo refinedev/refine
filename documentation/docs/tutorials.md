@@ -1,13 +1,11 @@
 ---
 id: tutorials
-title: Tutorials
+title: Welcome to refine!
 sidebar_label: Tutorials
 slug: /
 ---
 
 import Card from "@site/src/components/tutorial-card";
-
-## Introduction
 
 refine is a **headless** Framework, so it does not include UI Components by default.
 
@@ -19,6 +17,8 @@ There are two ways to add UI elements to refine;
 These tutorials will go through process of building a simple _admin panel_ for a _CMS-like_ application.
 
 Step by step, you're going to learn how to consume a _REST API_ and add basic CRUD functionality to your panel leveraging the unique capabilities of **refine**.
+
+### Tutorial guides
 
 <div className="tutorial-cards">
     <Card
