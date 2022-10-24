@@ -1,5 +1,5 @@
 .control {
-    @apply bg-blue border-accent-0 text-accent-0 h-12 absolute bottom-10 right-10
+    @apply bg-blue border-accent-0 text-accent-0 h-10 absolute bottom-10 right-10
   z-30 flex select-none flex-row border shadow-xl opacity-60;
 }
 
