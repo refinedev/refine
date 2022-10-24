@@ -35,7 +35,7 @@ import { Title as DefaultTitle } from "../title";
 const defaultNavIcon = <IconList size={18} />;
 
 export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
-    const [collapsed, setCollapsed] = useState(false);
+    const [collapsed, setCollapsed] = useState(true);
 
     const { Link } = useRouterContext();
     const { menuItems, selectedKey } = useMenu();
@@ -86,14 +86,16 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                                 }
                                 {...linkProps}
                             >
-                                <Box flexGrow={1} textAlign="left">
-                                    {label}
-                                </Box>
+                                {!collapsed && (
+                                    <Box flexGrow={1} textAlign="left">
+                                        {label}
+                                    </Box>
+                                )}
                             </Button>
                         </AccordionButton>
 
                         {isParent && (
-                            <AccordionPanel p={0} pl={4}>
+                            <AccordionPanel p={0} pl={collapsed ? 0 : 4}>
                                 <Accordion width="full" allowToggle>
                                     {renderTreeView(children)}
                                 </Accordion>
@@ -112,7 +114,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
             <Tooltip label={t("dashboard.title", "Dashboard")}>
                 <Button
                     width="full"
-                    justifyContent="start"
+                    justifyContent={collapsed ? "center" : "flex-start"}
                     pl={4}
                     pr={4}
                     pt={2}
@@ -124,7 +126,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                     as={Link}
                     to="/"
                 >
-                    {t("dashboard.title", "Dashboard")}
+                    {!collapsed && t("dashboard.title", "Dashboard")}
                 </Button>
             </Tooltip>
         </CanAccess>
@@ -134,7 +136,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
         <Tooltip label={t("buttons.logout", "Logout")}>
             <Button
                 width="full"
-                justifyContent="start"
+                justifyContent={collapsed ? "center" : "flex-start"}
                 pl={4}
                 pr={4}
                 pt={2}
@@ -144,7 +146,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 color="white"
                 onClick={() => mutateLogout()}
             >
-                {t("buttons.logout", "Logout")}
+                {!collapsed && t("buttons.logout", "Logout")}
             </Button>
         </Tooltip>
     );
