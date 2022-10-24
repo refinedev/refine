@@ -22,15 +22,23 @@ import {
     Tooltip,
     VStack,
 } from "@chakra-ui/react";
-import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
+import {
+    IconList,
+    IconChevronRight,
+    IconChevronLeft,
+    IconDashboard,
+    IconLogout,
+} from "@tabler/icons";
 
 import { Title as DefaultTitle } from "../title";
+
+const defaultNavIcon = <IconList size={18} />;
 
 export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const [collapsed, setCollapsed] = useState(false);
 
     const { Link } = useRouterContext();
-    const { menuItems } = useMenu();
+    const { menuItems, selectedKey } = useMenu();
     const Title = useTitle();
     const isExistAuthentication = useIsExistAuthentication();
     const t = useTranslate();
@@ -46,7 +54,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
 
     const renderTreeView = (tree: ITreeMenu[]) => {
         return tree.map((item) => {
-            const { label, route, name, children } = item;
+            const { label, route, name, icon, children } = item;
 
             const isParent = children.length > 0;
 
@@ -67,21 +75,26 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                     }}
                 >
                     <AccordionItem border="none">
-                        <AccordionButton px="0">
+                        <AccordionButton as="div" width="full">
                             <Button
-                                // leftIcon={<HamburgerIcon />}
+                                width="full"
                                 variant="link"
                                 color="white"
+                                leftIcon={icon ?? (defaultNavIcon as any)}
+                                rightIcon={
+                                    isParent ? <AccordionIcon /> : undefined
+                                }
                                 {...linkProps}
                             >
-                                {label}
+                                <Box flexGrow={1} textAlign="left">
+                                    {label}
+                                </Box>
                             </Button>
-                            {isParent && <AccordionIcon />}
                         </AccordionButton>
 
                         {isParent && (
-                            <AccordionPanel py="0">
-                                <Accordion allowToggle>
+                            <AccordionPanel p={0} pl={4}>
+                                <Accordion width="full" allowToggle>
                                     {renderTreeView(children)}
                                 </Accordion>
                             </AccordionPanel>
@@ -98,10 +111,11 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
         <CanAccess resource="dashboard" action="list">
             <Tooltip label={t("dashboard.title", "Dashboard")}>
                 <Button
-                    py="2"
-                    // leftIcon={<InfoIcon />}
+                    p={[2, 4]}
+                    leftIcon={<IconDashboard size={18} />}
                     variant="link"
                     color="white"
+                    isActive={selectedKey === "dashboard"}
                     as={Link}
                     to="/"
                 >
@@ -114,8 +128,8 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const logout = isExistAuthentication && (
         <Tooltip label={t("buttons.logout", "Logout")}>
             <Button
-                py="2"
-                // leftIcon={<ExternalLinkIcon />}
+                p={[2, 4]}
+                leftIcon={<IconLogout size={18} />}
                 variant="link"
                 color="white"
                 onClick={() => mutateLogout()}
@@ -145,7 +159,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
 
     return (
         <>
-            <Box width={drawerWidth()} />
+            <Box width={drawerWidth()} flexShrink={0} />
             <Box
                 bg="sider.background"
                 position="fixed"
@@ -158,14 +172,10 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 <Box display="flex" justifyContent="center" p={4}>
                     <RenderToTitle collapsed={collapsed} />
                 </Box>
-                <VStack
-                    mt="2"
-                    color="white"
-                    alignItems="start"
-                    px="3"
-                    flexGrow={1}
-                >
-                    <Accordion allowToggle>{renderSider()}</Accordion>
+                <VStack mt="2" color="white" alignItems="start" flexGrow={1}>
+                    <Accordion width="full" allowToggle>
+                        {renderSider()}
+                    </Accordion>
                 </VStack>
                 <Button
                     onClick={() => setCollapsed((prev) => !prev)}
