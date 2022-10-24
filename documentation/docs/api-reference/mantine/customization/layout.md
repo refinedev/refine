@@ -191,6 +191,7 @@ import {
     MantineProvider,
     Global,
     NotificationsProvider,
+    notificationProvider,
     LightTheme,
     // highlight-start
     Box,
@@ -241,6 +242,7 @@ const App = () => {
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}
+                    notificationProvider={notificationProvider}
                     // highlight-next-line
                     Layout={CustomLayout}
                     resources={[

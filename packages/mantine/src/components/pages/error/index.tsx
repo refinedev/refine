@@ -73,7 +73,7 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
                 alignItems: "center",
                 textAlign: "center",
                 minHeight: "100vh",
-                "@media (min-width: 755px)": {
+                "@media (min-height: 755px)": {
                     marginTop: "-150px",
                 },
             }}

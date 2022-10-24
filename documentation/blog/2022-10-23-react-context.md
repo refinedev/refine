@@ -527,27 +527,9 @@ In the `example.context.tsx`, we called the `useContext` hook and passed the `Ex
 
 ---
 
-<div className="banner-container">
-<div className="banner-header" >Does your CRUD app need server state management?</div >
+<PromotionBanner title="Does your CRUD app need server state management?" image="/img/generic_banner.png" />
 
-
-
-Meet the headless, React-based solution to build sleek **CRUD** applications. With refine, you can be confident that your codebase will always stay clean and boilerplate-free.
-
-Try [refine](https://github.com/refinedev/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
-
-    
-
-<div>
-<a href="https://github.com/refinedev/refine">
-   <img  src="/img/generic_banner.png" alt="refine blog logo" /> 
-</a>
-</div>
-
-<br/>
-
-
-</div>
+---
 
 ## Share Data across components
 
