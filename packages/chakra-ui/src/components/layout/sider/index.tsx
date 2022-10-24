@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     CanAccess,
     ITreeMenu,
@@ -19,8 +19,16 @@ import {
     AccordionPanel,
     Box,
     Button,
+    Drawer,
+    DrawerBody,
+    DrawerCloseButton,
+    DrawerContent,
+    DrawerHeader,
+    DrawerOverlay,
+    IconButton,
     Tooltip,
     TooltipProps,
+    useMediaQuery,
     VStack,
 } from "@chakra-ui/react";
 import {
@@ -29,6 +37,7 @@ import {
     IconChevronLeft,
     IconDashboard,
     IconLogout,
+    IconMenu2,
 } from "@tabler/icons";
 
 import { Title as DefaultTitle } from "../title";
@@ -37,6 +46,7 @@ const defaultNavIcon = <IconList size={18} />;
 
 export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const [collapsed, setCollapsed] = useState(false);
+    const [opened, setOpened] = useState(false);
 
     const { Link } = useRouterContext();
     const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
@@ -48,7 +58,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
 
     const RenderToTitle = Title ?? DefaultTitle;
 
-    const drawerWidth = () => {
+    const siderWidth = () => {
         if (collapsed) return "80px";
         return "200px";
     };
@@ -204,16 +214,71 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
         );
     };
 
+    const [isLargerThanLg] = useMediaQuery("(min-width: 62em)");
+
+    useEffect(() => {
+        if (isLargerThanLg) {
+            setOpened(false);
+        }
+    }, [isLargerThanLg]);
+
     return (
         <>
-            <Box width={drawerWidth()} flexShrink={0} />
+            <Box
+                position="fixed"
+                top={16}
+                left={0}
+                zIndex={1200}
+                display={["block", "block", "none", "none", "none"]}
+            >
+                <IconButton
+                    borderLeftRadius={0}
+                    bg="sider.background"
+                    color="white"
+                    _hover={{ bg: "sider.background" }}
+                    _active={{
+                        bg: "sider.background",
+                        transform: "translateY(1px)",
+                    }}
+                    aria-label="Open Menu"
+                    onClick={() => setOpened((prev) => !prev)}
+                >
+                    <IconMenu2 />
+                </IconButton>
+            </Box>
+            <Drawer
+                placement="left"
+                isOpen={opened}
+                onClose={() => setOpened(false)}
+            >
+                <DrawerOverlay />
+                <DrawerContent w="200px" maxW="200px" bg="sider.background">
+                    <Box display="flex" justifyContent="center" p={2}>
+                        <RenderToTitle collapsed={collapsed} />
+                    </Box>
+                    <VStack
+                        mt={2}
+                        color="white"
+                        alignItems="start"
+                        flexGrow={1}
+                    >
+                        <Box width="full">{renderSider()}</Box>
+                    </VStack>
+                </DrawerContent>
+            </Drawer>
+
+            <Box
+                display={["none", "none", "flex"]}
+                width={siderWidth()}
+                flexShrink={0}
+            />
             <Box
                 bg="sider.background"
                 position="fixed"
-                width={drawerWidth()}
+                width={siderWidth()}
                 top={0}
                 h="100vh"
-                display="flex"
+                display={["none", "none", "flex"]}
                 flexDirection="column"
             >
                 <Box display="flex" justifyContent="center" p={2}>
