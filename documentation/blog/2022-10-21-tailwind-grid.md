@@ -288,6 +288,12 @@ OK.
 
 Now if we look closely at the layout, we see that everything is haphazard and it is still not a well set and usable grid to work with - as the last two `div`s seem to be isolated from the rest. This is because, we have applied the half of the equation: only Grid **column** classes. The other half involves the Grid **rows**.
 
+---
+
+<PromotionBanner title="Small dev teams love this React framework!" image="/img/generic_banner.png" />
+
+---
+
 ## Grid Rows
 If we want to have finer control over the Grid, we need to explicitly set the number of rows, just like we have the columns. We'll do this by introducing `grid-rows-{n}`.
 
