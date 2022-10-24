@@ -295,28 +295,9 @@ Here’s the result:
 
 ---
 
-<div className="banner-container">
-<div className="banner-header" >Stop wasting your time copy/pasting your table code all over your application!</div >
-
-
-Meet the headless, React-based solution to build sleek **CRUD** applications. With refine, you can be confident that your codebase will always stay clean and boilerplate-free.
-
-Try [refine](https://github.com/pankod/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
-
-    
-
-<div>
-<a href="https://github.com/pankod/refine">
-   <img  src="/img/mui_banner.png" alt="refine blog logo" /> 
-</a>
-</div>
-
-
-</div>
+<PromotionBanner title="Tired of looking for the best template for your B2B app" image="/img/mui_banner.png" />
 
 ---
-
-
 
 
 
@@ -866,6 +847,12 @@ Here’s the result:
    <img style={{alignSelf:"center"}}  src={google}  alt="MUI useAutoComplete google" />
 </div>
 
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
 
 
 ## MUI Autocomplete Limitations

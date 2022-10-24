@@ -204,6 +204,12 @@ function App() {
 
 We formatted the CSV file that came in plain text format, using Javascript [slice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice) and [split](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split) methods, and created two separate array. Then we converted Header and Rows arrays to Array of Object format as Key, Value.
 
+---
+
+<PromotionBanner title="Not confident with your frontend skills?" image="/img/generic_banner.png" />
+
+---
+
 ## Live Codesandbox Example
 
 <iframe src="https://codesandbox.io/embed/csv-import-example-hw3ne?autoresize=1&fontsize=14&theme=dark&view=preview"
@@ -213,25 +219,7 @@ We formatted the CSV file that came in plain text format, using Javascript [slic
     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
-## Are You Looking React Web Framework?
 
-A React-based framework for building internal tools, rapidly. **refine** offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to admin panels, B2B applications and dashboards.
-
-🔥 **Headless** : Works with any UI framework
-
-⚙️ Zero-configuration: One-line setup with superplate. It takes less than a minute to start a project.
-
-📦 Out-of-the-box : Routing, networking, authentication, state management, i18n and UI.
-
-🔌 Backend Agnostic : Connects to any custom backend. Built-in support for REST API, Strapi, NestJs CRUD, Hasura, Nhost, Airtable, Medusa, Supabase, Appwrite and Altogic.
-
-📝 Native Typescript Core : You can always opt-out for plain JavaScript.
-
-🐜 Enterprise UI : Works seamlessly with Ant Design System. (Support for multiple UI frameworks is on the Roadmap)
-
-📝 Boilerplate-free Code : Keeps your codebase clean and readable.
-
-[Refer to the **refine** documentation for more information. →](https://refine.dev/docs/getting-started/overview/)
 
 ## How to CSV Import with Refine?
 

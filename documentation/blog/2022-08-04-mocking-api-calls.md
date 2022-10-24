@@ -150,6 +150,12 @@ Testing this HTTP request-related architecture in that way can be a headache.
 
 With the nock mock service, we can intercept requests to the API and return custom responses.
 
+---
+
+<PromotionBanner title="React state management: Even the pros get it wrong!" image="/img/generic_banner.png" />
+
+---
+
 ## Nock installation and configuration
 Install the nock with the following command if you don't have it.
 
@@ -322,24 +328,3 @@ We have seen how to test only the behavior of an application in isolation. Avoid
 </a>
 </div>
 
-
-## Build your React-based CRUD applications without constraints
-
-Low-code React frameworks are great for gaining development speed but they often fall short of flexibility if you need extensive styling and customization for your project.
-
-Check out [refine](https://github.com/refinedev/refine), if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
-
-<div>
-<a href="https://github.com/refinedev/refine">
-    <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
-</a>
-</div>
-
-<br/>
-
-**refine** is a React-based framework for building CRUD applications **without constraints.**
-It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
-
-**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
-
-Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials and example projects.
