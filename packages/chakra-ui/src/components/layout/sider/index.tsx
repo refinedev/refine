@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     CanAccess,
     ITreeMenu,
@@ -22,10 +22,13 @@ import {
     Tooltip,
     VStack,
 } from "@chakra-ui/react";
+import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
 
 import { Title as DefaultTitle } from "../title";
 
 export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
+    const [collapsed, setCollapsed] = useState(false);
+
     const { Link } = useRouterContext();
     const { menuItems } = useMenu();
     const Title = useTitle();
@@ -35,6 +38,11 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const { mutate: mutateLogout } = useLogout();
 
     const RenderToTitle = Title ?? DefaultTitle;
+
+    const drawerWidth = () => {
+        if (collapsed) return "80px";
+        return "200px";
+    };
 
     const renderTreeView = (tree: ITreeMenu[]) => {
         return tree.map((item) => {
@@ -136,18 +144,43 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     };
 
     return (
-        <Box bg="sider" width="200px" h="100vh">
+        <>
+            <Box width={drawerWidth()} />
             <Box
-                paddingX="2"
-                paddingY="4"
+                bg="sider.background"
+                position="fixed"
+                width={drawerWidth()}
+                top={0}
+                h="100vh"
                 display="flex"
-                justifyContent="center"
+                flexDirection="column"
             >
-                <RenderToTitle collapsed={false} />
+                <Box display="flex" justifyContent="center" p={4}>
+                    <RenderToTitle collapsed={collapsed} />
+                </Box>
+                <VStack
+                    mt="2"
+                    color="white"
+                    alignItems="start"
+                    px="3"
+                    flexGrow={1}
+                >
+                    <Accordion allowToggle>{renderSider()}</Accordion>
+                </VStack>
+                <Button
+                    onClick={() => setCollapsed((prev) => !prev)}
+                    color="white"
+                    bg="sider.collapseButton"
+                    borderRadius={0}
+                    _hover={{ bg: "sider.collapseButton" }}
+                    _active={{
+                        bg: "sider.collapseButton",
+                        transform: "translateY(1px)",
+                    }}
+                >
+                    {collapsed ? <IconChevronRight /> : <IconChevronLeft />}
+                </Button>
             </Box>
-            <VStack mt="2" color="white" alignItems="start" px="3">
-                <Accordion allowToggle>{renderSider()}</Accordion>
-            </VStack>
-        </Box>
+        </>
     );
 };
