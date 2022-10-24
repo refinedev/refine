@@ -1,5 +1,11 @@
 import { Refine } from "@pankod/refine-core";
-import { ChakraProvider, Layout, LightTheme } from "@pankod/refine-chakra-ui";
+import {
+    ChakraProvider,
+    ErrorComponent,
+    Layout,
+    LightTheme,
+    ReadyPage,
+} from "@pankod/refine-chakra-ui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
@@ -17,6 +23,8 @@ const App: React.FC = () => {
                 routerProvider={routerProvider}
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 Layout={Layout}
+                ReadyPage={ReadyPage}
+                catchAll={<ErrorComponent />}
                 authProvider={{
                     login: async ({ email, providerName }) => {
                         localStorage.setItem("email", email);
