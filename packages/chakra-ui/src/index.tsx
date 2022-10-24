@@ -594,4 +594,5 @@ export type {
 } from "@chakra-ui/react";
 
 export * from "./components";
+export * from "./hooks";
 export * from "./types/theme";
