@@ -106,7 +106,7 @@ The code above showcases an input text field that displays 5 songs as predefined
 
 
 
-<div style={{display: "flex", flexDirection: "column", alignItems:"center"}}  >
+<div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src={image1}  alt="MUI useAutoComplete" />
 </div>
 
@@ -149,7 +149,7 @@ The code above illustrates the use of the `renderInput` prop. Take special note 
 Here’s the result:
 
 
-<div style={{display: "flex", flexDirection: "column", alignItems:"center"}}  >
+<div className="centered-image"  >
    <img style={{alignSelf:"center", width:"300px"}}  src={renderInput}  alt="MUI useAutoComplete renderInput" />
 </div>
 
@@ -238,7 +238,7 @@ export default function FreeSolo() {
 
 Here’s the result:
 
-<div style={{display: "flex", flexDirection: "column", alignItems:"center"}}  >
+<div className="centered-image"  >
    <img style={{alignSelf:"center", width:"300px"}}  src={freeSolo}  alt="MUI useAutoComplete freeSolo" />
 </div>
 
@@ -285,7 +285,7 @@ The code above illustrates the use of the `groupBy` prop in the `<Autocomplete/>
 
 Here’s the result:
 
-<div style={{display: "flex", flexDirection: "column", alignItems:"center"}}  >
+<div className="centered-image"  >
    <img style={{alignSelf:"center", width:"300px"}}  src={groupby}  alt="MUI useAutoComplete groupby" />
 </div>
 
@@ -371,7 +371,7 @@ export default function ManageableStates() {
 
 The code showcases how the values of the `AutoComplete` component can be controlled and altered in state.
 
-<div style={{display: "flex", flexDirection: "column", alignItems:"center"}}  >
+<div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src={statemanagement}  alt="MUI useAutoComplete statemanagement" />
 </div>
 
@@ -474,7 +474,7 @@ The code above showcases a simple use case for the `useAutocomplete` hook. It he
 
 Here’s the result:
 
-<div style={{display: "flex", flexDirection: "column", alignItems:"center"}}  >
+<div className="centered-image"  >
    <img style={{alignSelf:"center", width:"300px"}}  src={useAutoComplete}  alt="MUI useAutoComplete" />
 </div>
 
@@ -584,7 +584,7 @@ The code above showcases an asynchronous DOM display of the MUI Autocomplete com
  
 
 
-<div style={{display: "flex", flexDirection: "column", alignItems:"center"}}  >
+<div className="centered-image"  >
    <img style={{alignSelf:"center", width:"300px"}}  src={async}  alt="MUI useAutoComplete async" />
 </div>
 
@@ -631,7 +631,7 @@ export default function Tags() {
 
 Here’s the result:
 
-<div style={{display: "flex", flexDirection: "column", alignItems:"center"}}  >
+<div className="centered-image"  >
    <img style={{alignSelf:"center", width:"300px"}}  src={multiplevalues}  alt="MUI useAutoComplete multiplevalues" />
 </div>
 
@@ -702,7 +702,7 @@ Here’s the result:
 
 
 
-<div style={{display: "flex", flexDirection: "column", alignItems:"center"}}  >
+<div className="centered-image"  >
    <img style={{alignSelf:"center", }}  src={fixedoptions}  alt="MUI useAutoComplete fixedoptions" />
 </div>
 
@@ -759,7 +759,7 @@ export default function CheckboxesTags() {
   );
 }
 ```
-<div style={{display: "flex", flexDirection: "column", alignItems:"center"}}  >
+<div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src={checkbox}  alt="MUI useAutoComplete checkbox" />
 </div>
 
@@ -862,7 +862,7 @@ export default Home
 
 Here’s the result:
 
-<div style={{display: "flex", flexDirection: "column", alignItems:"center"}}  >
+<div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src={google}  alt="MUI useAutoComplete google" />
 </div>
 
