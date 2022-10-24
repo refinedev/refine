@@ -27,39 +27,39 @@ export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
             src="https://refine.ams3.cdn.digitaloceanspaces.com/login-background/background.png"
         >
             <img src={logo} alt="Refine Logo" />
-            <Space h={48} />
-            <Title sx={{ color: "white", fontSize: "3.75rem" }}>
+            <Space h={24} />
+            <Title align="center" sx={{ color: "white", fontSize: "3rem" }}>
                 Welcome on board
             </Title>
-            <Title order={2} sx={{ color: "white" }} mt="md">
+            <Text size="xl" sx={{ color: "white" }} mt="md">
                 Your configuration is completed.
-            </Title>
-            <Text size="lg" sx={{ color: "white" }} mt="md">
+            </Text>
+            <Text size="lg" sx={{ color: "white" }} mt="md" align="center">
                 Now you can get started by adding your resources to the{" "}
-                <Code>resources</Code> property of <Code>Refine</Code>
+                <Code>resources</Code> property of <Code>Refine</Code>.
             </Text>
             <Space h={48} />
-            <Group>
+            <Group position="center">
                 <Anchor
                     href="https://refine.dev"
                     target="_blank"
                     rel="noreferrer"
                 >
-                    <Button>Documentation</Button>
+                    <Button variant="default">Documentation</Button>
                 </Anchor>
                 <Anchor
                     href="https://refine.dev/examples"
                     target="_blank"
                     rel="noreferrer"
                 >
-                    <Button>Examples</Button>
+                    <Button variant="default">Examples</Button>
                 </Anchor>
                 <Anchor
                     href="https://discord.gg/refine"
                     target="_blank"
                     rel="noreferrer"
                 >
-                    <Button>Community</Button>
+                    <Button variant="default">Community</Button>
                 </Anchor>
             </Group>
         </BackgroundImage>
