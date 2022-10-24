@@ -3,12 +3,10 @@ import {
     Input,
     Menu,
     IconButton,
-    Stack,
-    Box,
     MenuButton,
-    Button,
     MenuList,
-    MenuItem,
+    VStack,
+    HStack,
 } from "@pankod/refine-chakra-ui";
 import { IconFilter, IconX, IconCheck } from "@tabler/icons";
 
@@ -38,7 +36,6 @@ export const ColumnFilter: React.FC<ColumnButtonProps> = ({ column }) => {
     };
 
     const save = () => {
-        console.log("save", state);
         if (!state) return;
         column.setFilterValue(state.value);
         close();
@@ -51,6 +48,8 @@ export const ColumnFilter: React.FC<ColumnButtonProps> = ({ column }) => {
         if (!FilterComponent && !!state) {
             return (
                 <Input
+                    borderRadius="md"
+                    size="sm"
                     autoComplete="off"
                     value={state.value}
                     onChange={(e) => change(e.target.value)}
@@ -67,7 +66,7 @@ export const ColumnFilter: React.FC<ColumnButtonProps> = ({ column }) => {
     };
 
     return (
-        <Menu isOpen={!!state}>
+        <Menu isOpen={!!state} onClose={close}>
             <MenuButton
                 onClick={open}
                 as={IconButton}
@@ -76,84 +75,32 @@ export const ColumnFilter: React.FC<ColumnButtonProps> = ({ column }) => {
                 variant="ghost"
                 size="xs"
             />
-            <MenuList>
+            <MenuList p="2">
                 {!!state && (
-                    <Stack p="xs" spacing="xs">
+                    <VStack align="flex-start">
                         {renderFilterElement()}
-                        <Box>
+                        <HStack spacing="1">
                             <IconButton
                                 aria-label="Clear"
-                                size="md"
-                                color="gray"
-                                variant="outline"
+                                size="sm"
+                                colorScheme="red"
                                 onClick={clear}
                             >
                                 <IconX size={18} />
                             </IconButton>
                             <IconButton
                                 aria-label="Save"
-                                size="md"
+                                size="sm"
                                 onClick={save}
-                                color="primary"
-                                variant="outline"
+                                variant="solid"
+                                colorScheme="primary"
                             >
                                 <IconCheck size={18} />
                             </IconButton>
-                        </Box>
-                    </Stack>
+                        </HStack>
+                    </VStack>
                 )}
             </MenuList>
         </Menu>
     );
-
-    /*
-    return (
-        <Menu
-            isOpen={!!state}
-            // position="bottom"
-            // withArrow
-            // transition="scale-y"
-            // shadow="xl"
-            onClose={close}
-            // width="256px"
-            // withinPortal
-        >
-            <Menu.Target>
-                <ActionIcon
-                    size="xs"
-                    onClick={open}
-                    variant={column.getIsFiltered() ? "light" : "transparent"}
-                    color={column.getIsFiltered() ? "primary" : "gray"}
-                >
-                    <IconFilter size={18} />
-                </ActionIcon>
-            </Menu.Target>
-            <Menu.Dropdown>
-                {!!state && (
-                    <Stack p="xs" spacing="xs">
-                        {renderFilterElement()}
-                        <Group position="right" spacing={6} noWrap>
-                            <ActionIcon
-                                size="md"
-                                color="gray"
-                                variant="outline"
-                                onClick={clear}
-                            >
-                                <IconX size={18} />
-                            </ActionIcon>
-                            <ActionIcon
-                                size="md"
-                                onClick={save}
-                                color="primary"
-                                variant="outline"
-                            >
-                                <IconCheck size={18} />
-                            </ActionIcon>
-                        </Group>
-                    </Stack>
-                )}
-            </Menu.Dropdown>
-        </Menu>
-    );
-    */
 };

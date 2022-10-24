@@ -46,7 +46,12 @@ export const PostList: React.FC = () => {
                 meta: {
                     filterElement: function render(props: FilterElementProps) {
                         return (
-                            <Select defaultValue="published" {...props}>
+                            <Select
+                                borderRadius="md"
+                                size="sm"
+                                placeholder="All Status"
+                                {...props}
+                            >
                                 <option value="published">published</option>
                                 <option value="draft">draft</option>
                                 <option value="rejected">rejected</option>
