@@ -18,7 +18,7 @@ These tutorials will go through process of building a simple _admin panel_ for a
 
 Step by step, you're going to learn how to consume a _REST API_ and add basic CRUD functionality to your panel leveraging the unique capabilities of **refine**.
 
-### Tutorial guides
+### Tutorials
 
 <div className="tutorial-cards">
     <Card
