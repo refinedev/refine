@@ -22,7 +22,7 @@ We follow a [code of conduct][code_of_conduct] when participating in the communi
 refine is a monorepo. For a monorepo, commit messages are essential to keep everything clear. We use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) to keep our commit messages consistent and easy to understand.
 
 ```
-<type>[optional scope]: <description>
+<type>(optional scope): <description>
 ```
 Examples:
 - `feat: allow provided config object to extend other configs`
