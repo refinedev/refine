@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import {
-    Create,
+    Edit,
     FormControl,
     FormErrorMessage,
     FormLabel,
@@ -33,7 +33,7 @@ export const PostEdit = () => {
     }, [options]);
 
     return (
-        <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
+        <Edit isLoading={formLoading} saveButtonProps={saveButtonProps}>
             <FormControl mb="3" isInvalid={!!errors?.title}>
                 <FormLabel>Title</FormLabel>
                 <Input
@@ -81,6 +81,6 @@ export const PostEdit = () => {
                     {`${errors.categoryId?.message}`}
                 </FormErrorMessage>
             </FormControl>
-        </Create>
+        </Edit>
     );
 };
