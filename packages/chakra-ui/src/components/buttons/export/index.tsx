@@ -33,7 +33,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
         <IconButton
             variant="outline"
             aria-label={translate("buttons.export", "Export")}
-            loading={loading}
+            isLoading={loading}
             data-testid={RefineButtonTestIds.ExportButton}
             {...rest}
         >
@@ -42,7 +42,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
     ) : (
         <Button
             variant="outline"
-            loading={loading}
+            isLoading={loading}
             leftIcon={<IconFileExport size={18} {...svgIconProps} />}
             data-testid={RefineButtonTestIds.ExportButton}
             {...rest}

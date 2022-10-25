@@ -110,7 +110,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                         aria-label={translate("buttons.edit", "Edit")}
                         onClick={() => setOpened((o) => !o)}
                         disabled={isLoading || data?.can === false}
-                        loading={id === variables?.id && isLoading}
+                        isLoading={id === variables?.id && isLoading}
                         data-testid={RefineButtonTestIds.DeleteButton}
                         {...rest}
                     >
@@ -122,7 +122,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                         variant="outline"
                         onClick={() => setOpened((o) => !o)}
                         disabled={isLoading || data?.can === false}
-                        loading={id === variables?.id && isLoading}
+                        isLoading={id === variables?.id && isLoading}
                         leftIcon={<IconTrash size={18} {...svgIconProps} />}
                         data-testid={RefineButtonTestIds.DeleteButton}
                         {...rest}

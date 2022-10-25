@@ -38,7 +38,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
                 <IconButton
                     variant="outline"
                     aria-label={translate("buttons.import", "Import")}
-                    loading={loading}
+                    isLoading={loading}
                     data-testid={RefineButtonTestIds.ImportButton}
                     {...rest}
                 >
@@ -49,7 +49,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
                     variant="outline"
                     component="span"
                     leftIcon={<IconFileImport size={18} {...svgIconProps} />}
-                    loading={loading}
+                    isLoading={loading}
                     data-testid={RefineButtonTestIds.ImportButton}
                     {...rest}
                 >
