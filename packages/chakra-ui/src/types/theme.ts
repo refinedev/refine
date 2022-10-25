@@ -1,6 +1,21 @@
 import { extendTheme } from "@chakra-ui/react";
+import type { GlobalStyleProps } from "@chakra-ui/theme-tools";
 
 export const LightTheme = extendTheme({
+    fonts: {
+        heading:
+            "Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+        body: "Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    },
+    styles: {
+        global: (props: GlobalStyleProps) => ({
+            "html, body": {
+                fontSize: "14px",
+                color: props.colorMode === "dark" ? "white" : "gray.700",
+                lineHeight: "tall",
+            },
+        }),
+    },
     colors: {
         primary: {
             100: "#F1FBE9",
