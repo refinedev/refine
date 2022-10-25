@@ -92,7 +92,6 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
                 </IconButton>
             ) : (
                 <Button
-                    size="sm"
                     variant="outline"
                     disabled={data?.can === false}
                     leftIcon={<IconSquarePlus size={18} {...svgIconProps} />}

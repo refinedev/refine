@@ -82,7 +82,6 @@ export const EditButton: React.FC<EditButtonProps> = ({
             {hideText ? (
                 <IconButton
                     variant="outline"
-                    size="sm"
                     aria-label={translate("buttons.edit", "Edit")}
                     title={disabledTitle()}
                     disabled={data?.can === false}
@@ -94,7 +93,6 @@ export const EditButton: React.FC<EditButtonProps> = ({
             ) : (
                 <Button
                     variant="outline"
-                    size="sm"
                     disabled={data?.can === false}
                     leftIcon={<IconPencil size={18} {...svgIconProps} />}
                     title={disabledTitle()}

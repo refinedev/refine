@@ -107,7 +107,6 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                     <IconButton
                         colorScheme="red"
                         variant="outline"
-                        size="sm"
                         aria-label={translate("buttons.edit", "Edit")}
                         onClick={() => setOpened((o) => !o)}
                         disabled={isLoading || data?.can === false}

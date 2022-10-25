@@ -46,7 +46,6 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
                 </IconButton>
             ) : (
                 <Button
-                    size="sm"
                     variant="outline"
                     component="span"
                     leftIcon={<IconFileImport size={18} {...svgIconProps} />}

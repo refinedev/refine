@@ -39,7 +39,6 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
         </IconButton>
     ) : (
         <Button
-            size="md"
             colorScheme="primary"
             leftIcon={<IconDeviceFloppy size={18} {...svgIconProps} />}
             data-testid={RefineButtonTestIds.SaveButton}
