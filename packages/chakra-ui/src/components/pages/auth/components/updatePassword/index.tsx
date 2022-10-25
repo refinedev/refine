@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import {
     useTranslate,
     useUpdatePassword,
     UpdatePasswordFormTypes,
     UpdatePasswordPageProps,
 } from "@pankod/refine-core";
-import { Box, BoxProps } from "@chakra-ui/react";
+import {
+    Box,
+    BoxProps,
+    Button,
+    FormControl,
+    FormErrorMessage,
+    FormLabel,
+    Heading,
+    Input,
+} from "@chakra-ui/react";
+import { useForm } from "@pankod/refine-react-hook-form";
 
+import { layoutStyles, cardStyles } from "../styles";
 import { FormPropsType } from "../..";
 
 type UpdatePasswordProps = UpdatePasswordPageProps<
@@ -22,79 +33,77 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
     formProps,
 }) => {
     const translate = useTranslate();
-
-    const { mutate: updatePassword, isLoading } =
-        useUpdatePassword<UpdatePasswordFormTypes>();
-
-    const [newPassword, setNewPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    const { mutate } = useUpdatePassword<UpdatePasswordFormTypes>();
+    const {
+        handleSubmit,
+        register,
+        formState: { errors },
+        watch,
+    } = useForm<UpdatePasswordFormTypes>();
 
     const content = (
-        <Box {...contentProps}>
-            <h1 style={{ textAlign: "center" }}>
+        <Box style={cardStyles} {...contentProps}>
+            <Heading mb="8" textAlign="center" size="lg">
                 {translate("pages.updatePassword.title", "Update Password")}
-            </h1>
-            <hr />
+            </Heading>
             <form
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    updatePassword({
-                        password: newPassword,
-                        confirmPassword,
-                    });
-                }}
+                onSubmit={handleSubmit((data) => mutate(data))}
                 {...formProps}
             >
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        padding: 25,
-                    }}
-                >
-                    <label>
+                <FormControl mb="3" isInvalid={!!errors?.password}>
+                    <FormLabel>
                         {translate(
                             "pages.updatePassword.fields.password",
                             "New Password",
                         )}
-                    </label>
-                    <input
-                        name="password"
+                    </FormLabel>
+                    <Input
                         type="password"
-                        required
-                        size={20}
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
+                        {...register("password", {
+                            required: true,
+                        })}
                     />
-                    <label>
+                    <FormErrorMessage>
+                        {`${errors.password?.message}`}
+                    </FormErrorMessage>
+                </FormControl>
+
+                <FormControl mb="3" isInvalid={!!errors?.confirmPassword}>
+                    <FormLabel>
                         {translate(
                             "pages.updatePassword.fields.confirmPassword",
                             "Confirm New Password",
                         )}
-                    </label>
-                    <input
-                        name="confirmPassword"
+                    </FormLabel>
+                    <Input
                         type="password"
-                        required
-                        size={20}
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        {...register("confirmPassword", {
+                            required: true,
+                            validate: (val: string) => {
+                                if (watch("password") != val) {
+                                    return translate(
+                                        "pages.updatePassword.errors.confirmPasswordNotMatch",
+                                        "Passwords do not match",
+                                    );
+                                }
+                                return;
+                            },
+                        })}
                     />
-                    <input
-                        type="submit"
-                        disabled={isLoading}
-                        value={translate(
-                            "pages.updatePassword.buttons.submit",
-                            "Update",
-                        )}
-                    />
-                </div>
+                    <FormErrorMessage>
+                        {`${errors.confirmPassword?.message}`}
+                    </FormErrorMessage>
+                </FormControl>
+
+                <Button mb="3" type="submit" width="full" colorScheme="primary">
+                    {translate("pages.updatePassword.buttons.submit", "Update")}
+                </Button>
             </form>
         </Box>
     );
 
     return (
-        <Box {...wrapperProps}>
+        <Box style={layoutStyles} {...wrapperProps}>
             {renderContent ? renderContent(content) : content}
         </Box>
     );
