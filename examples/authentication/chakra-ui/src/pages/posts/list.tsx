@@ -154,7 +154,7 @@ export const PostList: React.FC = () => {
     return (
         <List>
             <TableContainer>
-                <Table variant="simple">
+                <Table variant="simple" whiteSpace="pre-line">
                     <Thead>
                         {getHeaderGroups().map((headerGroup) => (
                             <Tr key={headerGroup.id}>
