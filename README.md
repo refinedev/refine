@@ -43,8 +43,9 @@
 
 <br/>
 
-![diagram](https://user-images.githubusercontent.com/18739364/197812166-d355418d-2255-49e5-88b0-8aff96a5c7ac.png)
 
+
+![diyagram](https://user-images.githubusercontent.com/18739364/197813665-0b8dbdd4-6580-4c3b-9517-a7ec184608a0.png)
 
 
 ## What is refine?
