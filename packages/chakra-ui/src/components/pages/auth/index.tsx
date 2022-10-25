@@ -7,13 +7,13 @@ import {
     UpdatePasswordPage,
 } from "./components";
 import { BoxProps } from "@chakra-ui/react";
+import { UseFormProps } from "@pankod/refine-react-hook-form";
 
-export type FormPropsType = DetailedHTMLProps<
-    FormHTMLAttributes<HTMLFormElement>,
-    HTMLFormElement
->;
+export interface FormPropsType<TFormType> extends UseFormProps {
+    onSubmit?: (values: TFormType) => void;
+}
 
-export type AuthProps = AuthPageProps<BoxProps, BoxProps, FormPropsType>;
+export type AuthProps = AuthPageProps<BoxProps, BoxProps, FormPropsType<any>>;
 
 /**
  * **refine** has a default auth page form which is served on `/login` route when the `authProvider` configuration is provided.

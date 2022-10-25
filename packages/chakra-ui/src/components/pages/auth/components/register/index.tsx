@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import {
     useTranslate,
     useRouterContext,
     useRegister,
     RegisterPageProps,
     RegisterFormTypes,
+    BaseRecord,
+    HttpError,
 } from "@pankod/refine-core";
 import {
     Box,
@@ -19,12 +21,16 @@ import {
     VStack,
     Link as ChakraLink,
 } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
+import { useForm } from "@pankod/refine-react-hook-form";
 
 import { layoutStyles, cardStyles } from "../styles";
 import { FormPropsType } from "../..";
 
-type RegisterProps = RegisterPageProps<BoxProps, BoxProps, FormPropsType>;
+type RegisterProps = RegisterPageProps<
+    BoxProps,
+    BoxProps,
+    FormPropsType<RegisterFormTypes>
+>;
 
 export const RegisterPage: React.FC<RegisterProps> = ({
     providers,
@@ -34,14 +40,18 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     renderContent,
     formProps,
 }) => {
+    const { onSubmit, ...useFormProps } = formProps || {};
+
     const { Link } = useRouterContext();
     const translate = useTranslate();
     const { mutate } = useRegister();
     const {
-        handleSubmit,
         register,
+        handleSubmit,
         formState: { errors },
-    } = useForm<RegisterFormTypes>();
+    } = useForm<BaseRecord, HttpError, RegisterFormTypes>({
+        ...useFormProps,
+    });
 
     const renderProviders = () => {
         if (providers && providers.length > 0) {
@@ -80,8 +90,13 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             </Heading>
             {renderProviders()}
             <form
-                onSubmit={handleSubmit((data) => mutate(data))}
-                {...formProps}
+                onSubmit={handleSubmit((data) => {
+                    if (onSubmit) {
+                        return onSubmit(data);
+                    }
+
+                    return mutate(data);
+                })}
             >
                 <FormControl mb="3" isInvalid={!!errors?.email}>
                     <FormLabel>

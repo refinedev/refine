@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import {
     useTranslate,
     useRouterContext,
     useForgotPassword,
     ForgotPasswordFormTypes,
     ForgotPasswordPageProps,
+    BaseRecord,
+    HttpError,
 } from "@pankod/refine-core";
 import {
     Box,
@@ -17,7 +19,7 @@ import {
     Input,
     Link as ChakraLink,
 } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
+import { useForm } from "@pankod/refine-react-hook-form";
 
 import { layoutStyles, cardStyles } from "../styles";
 import { FormPropsType } from "../..";
@@ -25,7 +27,7 @@ import { FormPropsType } from "../..";
 type ForgotPasswordProps = ForgotPasswordPageProps<
     BoxProps,
     BoxProps,
-    FormPropsType
+    FormPropsType<ForgotPasswordFormTypes>
 >;
 
 export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
@@ -35,14 +37,17 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
     renderContent,
     formProps,
 }) => {
+    const { onSubmit, ...useFormProps } = formProps || {};
+    const { mutate } = useForgotPassword<ForgotPasswordFormTypes>();
     const translate = useTranslate();
     const { Link } = useRouterContext();
     const {
         handleSubmit,
         register,
         formState: { errors },
-    } = useForm<ForgotPasswordFormTypes>();
-    const { mutate } = useForgotPassword<ForgotPasswordFormTypes>();
+    } = useForm<BaseRecord, HttpError, ForgotPasswordFormTypes>({
+        ...useFormProps,
+    });
 
     const content = (
         <Box style={cardStyles} {...contentProps}>
@@ -54,8 +59,13 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
             </Heading>
 
             <form
-                onSubmit={handleSubmit((data) => mutate(data))}
-                {...formProps}
+                onSubmit={handleSubmit((data) => {
+                    if (onSubmit) {
+                        return onSubmit(data);
+                    }
+
+                    return mutate(data);
+                })}
             >
                 <FormControl mb="3" isInvalid={!!errors?.email}>
                     <FormLabel>
