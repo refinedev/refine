@@ -15,7 +15,9 @@ import {
     Heading,
     HStack,
     IconButton,
+    Spinner,
     Stack,
+    StackProps,
 } from "@chakra-ui/react";
 import { IconArrowLeft } from "@tabler/icons";
 
@@ -33,7 +35,7 @@ export type EditProps = RefineCrudEditProps<
     SaveButtonProps,
     DeleteButtonProps,
     BoxProps,
-    BoxProps,
+    StackProps,
     BoxProps,
     BoxProps,
     BoxProps
@@ -127,7 +129,7 @@ export const Edit: React.FC<EditProps> = (props) => {
         goBackFromProps === (false || null) ? null : (
             <IconButton
                 aria-label="back"
-                variant="outline"
+                variant="ghost"
                 size="sm"
                 onClick={routeFromAction ? goBack : undefined}
             >
@@ -154,11 +156,34 @@ export const Edit: React.FC<EditProps> = (props) => {
         : defaultFooterButtons;
 
     return (
-        <Box bg="white" borderRadius="md" px="4" py="3" {...wrapperProps}>
-            <Box mb="3" {...headerProps}>
-                <Stack spacing="xs">
+        <Box
+            position="relative"
+            bg="white"
+            borderRadius="md"
+            px="4"
+            py="3"
+            {...wrapperProps}
+        >
+            {isLoading && (
+                <Spinner
+                    position="absolute"
+                    top="50%"
+                    left="50%"
+                    transform="translate(-50%, -50%)"
+                />
+            )}
+            <Box
+                mb="3"
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                flexWrap={{ base: "wrap", md: "nowrap" }}
+                gap="3"
+                {...headerProps}
+            >
+                <Stack spacing="0">
                     {breadcrumb}
-                    <HStack spacing="xs">
+                    <HStack spacing={2}>
                         {buttonBack}
                         {title ?? (
                             <Heading as="h3" size="lg">
@@ -173,18 +198,18 @@ export const Edit: React.FC<EditProps> = (props) => {
                         )}
                     </HStack>
                 </Stack>
-                <Box spacing="xs" {...headerButtonProps}>
+                <HStack spacing="2" {...headerButtonProps}>
                     {headerButtons}
-                </Box>
+                </HStack>
             </Box>
-            <Box mb="3" {...contentProps}>
+            <Box opacity={isLoading ? 0.5 : undefined} {...contentProps}>
                 {children}
             </Box>
             <Box
                 display="flex"
                 justifyContent="flex-end"
-                spacing="xs"
-                mt="md"
+                spacing="2"
+                mt={8}
                 {...footerButtonProps}
             >
                 {footerButtons}

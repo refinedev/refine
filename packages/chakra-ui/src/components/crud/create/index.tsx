@@ -8,24 +8,26 @@ import {
     useRouterContext,
     useTranslate,
 } from "@pankod/refine-core";
-import { IconArrowLeft } from "@tabler/icons";
-
-import { SaveButton, SaveButtonProps } from "@components/buttons";
-import { Breadcrumb } from "@components/breadcrumb";
 import {
     Box,
     BoxProps,
     Heading,
     HStack,
     IconButton,
+    Spinner,
     Stack,
+    StackProps,
 } from "@chakra-ui/react";
+import { IconArrowLeft } from "@tabler/icons";
+
+import { SaveButton, SaveButtonProps } from "@components/buttons";
+import { Breadcrumb } from "@components/breadcrumb";
 
 export type CreateProps = RefineCrudCreateProps<
     SaveButtonProps,
     BoxProps,
     BoxProps,
-    BoxProps,
+    StackProps,
     BoxProps,
     BoxProps
 >;
@@ -71,7 +73,7 @@ export const Create: React.FC<CreateProps> = (props) => {
         goBackFromProps === (false || null) ? null : (
             <IconButton
                 aria-label="back"
-                variant="outline"
+                variant="ghost"
                 size="sm"
                 onClick={routeFromAction ? goBack : undefined}
             >
@@ -98,9 +100,32 @@ export const Create: React.FC<CreateProps> = (props) => {
         : defaultFooterButtons;
 
     return (
-        <Box bg="white" borderRadius="md" px="4" py="3" {...wrapperProps}>
-            <Box mb="3" {...headerProps}>
-                <Stack spacing="xs">
+        <Box
+            position="relative"
+            bg="white"
+            borderRadius="md"
+            px="4"
+            py="3"
+            {...wrapperProps}
+        >
+            {isLoading && (
+                <Spinner
+                    position="absolute"
+                    top="50%"
+                    left="50%"
+                    transform="translate(-50%, -50%)"
+                />
+            )}
+            <Box
+                mb="3"
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                flexWrap={{ base: "wrap", md: "nowrap" }}
+                gap="3"
+                {...headerProps}
+            >
+                <Stack spacing="2">
                     {breadcrumb}
                     <HStack>
                         {buttonBack}
@@ -117,18 +142,18 @@ export const Create: React.FC<CreateProps> = (props) => {
                         )}
                     </HStack>
                 </Stack>
-                <Box spacing="xs" {...headerButtonProps}>
+                <HStack spacing="2" {...headerButtonProps}>
                     {headerButtons}
-                </Box>
+                </HStack>
             </Box>
-            <Box mb="3" {...contentProps}>
+            <Box opacity={isLoading ? 0.5 : undefined} {...contentProps}>
                 {children}
             </Box>
             <Box
                 display="flex"
                 justifyContent="flex-end"
-                spacing="xs"
-                mt="md"
+                spacing="2"
+                mt="8"
                 {...footerButtonProps}
             >
                 {footerButtons}

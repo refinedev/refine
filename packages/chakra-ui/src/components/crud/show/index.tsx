@@ -1,6 +1,14 @@
 import React from "react";
 import { RefineCrudShowProps } from "@pankod/refine-ui-types";
 import {
+    ResourceRouterParams,
+    useNavigation,
+    useResourceWithRoute,
+    userFriendlyResourceName,
+    useRouterContext,
+    useTranslate,
+} from "@pankod/refine-core";
+import {
     Box,
     BoxProps,
     IconButton,
@@ -10,14 +18,6 @@ import {
     Heading,
     Spinner,
 } from "@chakra-ui/react";
-import {
-    ResourceRouterParams,
-    useNavigation,
-    useResourceWithRoute,
-    userFriendlyResourceName,
-    useRouterContext,
-    useTranslate,
-} from "@pankod/refine-core";
 import { IconArrowLeft } from "@tabler/icons";
 
 import {
@@ -167,12 +167,12 @@ export const Show: React.FC<ShowProps> = (props) => {
                 gap="3"
                 {...headerProps}
             >
-                <Stack spacing="xs">
+                <Stack spacing="2">
                     {breadcrumb}
                     <HStack>
                         {buttonBack}
                         {title ?? (
-                            <Heading as="h3" size="lg" flexGrow="1">
+                            <Heading as="h3" size="lg">
                                 {translate(
                                     `${resource.name}.titles.show`,
                                     `Show ${userFriendlyResourceName(
@@ -188,13 +188,14 @@ export const Show: React.FC<ShowProps> = (props) => {
                     {headerButtons}
                 </HStack>
             </Box>
-            <Box {...contentProps} filter={isLoading ? "blur(1px)" : undefined}>
+            <Box opacity={isLoading ? 0.5 : undefined} {...contentProps}>
                 {children}
             </Box>
             <Box
                 display="flex"
                 justifyContent="flex-end"
-                spacing="xs"
+                spacing="2"
+                mt={8}
                 {...footerButtonProps}
             >
                 {footerButtons}
