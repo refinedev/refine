@@ -293,13 +293,13 @@ Here’s the result:
 
 
 
+
+
 ---
 
-<PromotionBanner title="Tired of looking for the best template for your B2B app" image="/img/mui_banner.png" />
+<PromotionBanner title="Is your CRUD app overloaded with technical debt?" image="/img/mui_banner.png" />
 
 ---
-
-
 
 ## MUI Autocomplete features
 
