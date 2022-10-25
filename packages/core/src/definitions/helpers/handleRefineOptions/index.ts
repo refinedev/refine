@@ -44,6 +44,7 @@ export const handleRefineOptions = ({
     warnWhenUnsavedChanges,
 }: HandleRefineOptionsProps = {}): HandleRefineOptionsReturnValues => {
     const optionsWithDefaults: IRefineContextOptions = {
+        breadcrumb: options?.breadcrumb,
         mutationMode:
             options?.mutationMode ??
             mutationMode ??
