@@ -65,7 +65,7 @@ export const List: React.FC<ListProps> = ({
         canCreate ?? (resource.canCreate || createButtonProps);
 
     const { options } = useRefineContext();
-    const breadcrumb: ReactNode =
+    const breadcrumb =
         typeof breadcrumbFromProps === "undefined"
             ? options?.breadcrumb
             : breadcrumbFromProps;

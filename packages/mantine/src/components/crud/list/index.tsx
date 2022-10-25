@@ -66,7 +66,7 @@ export const List: React.FC<ListProps> = (props) => {
     ) : null;
 
     const { options } = useRefineContext();
-    const breadcrumb: ReactNode =
+    const breadcrumb =
         typeof breadcrumbFromProps === "undefined"
             ? options?.breadcrumb
             : breadcrumbFromProps;

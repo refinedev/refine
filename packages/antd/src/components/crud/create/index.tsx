@@ -85,7 +85,7 @@ export const Create: React.FC<CreateProps> = ({
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
 
     const { options } = useRefineContext();
-    const breadcrumb: ReactNode =
+    const breadcrumb =
         typeof breadcrumbFromProps === "undefined"
             ? options?.breadcrumb
             : breadcrumbFromProps;

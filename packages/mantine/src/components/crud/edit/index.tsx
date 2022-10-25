@@ -90,7 +90,7 @@ export const Edit: React.FC<EditProps> = (props) => {
         canDelete ?? (resource.canDelete || deleteButtonProps);
 
     const { options } = useRefineContext();
-    const breadcrumb: ReactNode =
+    const breadcrumb =
         typeof breadcrumbFromProps === "undefined"
             ? options?.breadcrumb
             : breadcrumbFromProps;

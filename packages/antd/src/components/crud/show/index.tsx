@@ -95,7 +95,7 @@ export const Show: React.FC<ShowProps> = ({
     const isEditButtonVisible = canEdit ?? resource.canEdit;
 
     const { options } = useRefineContext();
-    const breadcrumb: ReactNode =
+    const breadcrumb =
         typeof breadcrumbFromProps === "undefined"
             ? options?.breadcrumb
             : breadcrumbFromProps;
