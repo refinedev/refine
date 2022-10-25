@@ -12,6 +12,7 @@ import {
     TableContainer,
     HStack,
     Box,
+    ShowButton,
     EditButton,
     DeleteButton,
     Select,
@@ -96,6 +97,10 @@ export const PostList: React.FC = () => {
                 cell: function render({ getValue }) {
                     return (
                         <HStack>
+                            <ShowButton
+                                hideText
+                                recordItemId={getValue() as number}
+                            />
                             <EditButton
                                 hideText
                                 recordItemId={getValue() as number}

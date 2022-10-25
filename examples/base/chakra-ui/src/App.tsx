@@ -9,7 +9,7 @@ import {
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import { PostList, PostCreate, PostEdit } from "./pages";
+import { PostList, PostCreate, PostEdit, PostShow } from "./pages";
 
 const DashboardPage = () => {
     return <span>dashboard</span>;
@@ -84,6 +84,7 @@ const App: React.FC = () => {
                         parentName: "baz",
                         name: "posts",
                         list: PostList,
+                        show: PostShow,
                         create: PostCreate,
                         edit: PostEdit,
                     },
