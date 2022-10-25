@@ -264,6 +264,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
             <Box
                 display={["none", "none", "flex"]}
                 width={siderWidth()}
+                transition="width 200ms ease, min-width 200ms ease"
                 flexShrink={0}
             />
             <Box
@@ -274,6 +275,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 h="100vh"
                 display={["none", "none", "flex"]}
                 flexDirection="column"
+                transition="width 200ms ease, min-width 200ms ease"
             >
                 <Box display="flex" justifyContent="center" p={2}>
                     <RenderToTitle collapsed={collapsed} />
