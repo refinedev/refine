@@ -20,9 +20,9 @@ export const Pagination: FC<PaginationProps> = ({
     });
 
     const paginationCommonProps: ButtonProps = {
-        size: "sm",
         variant: "outline",
     };
+
     return (
         <Box display="flex" justifyContent="flex-end">
             <HStack my="3" spacing="1">
