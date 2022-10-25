@@ -324,7 +324,7 @@ This method can take the following parameters.
 
 ## Supported Hooks
 
-**refine** creates an audit log event when the mutation is succssful on hooks that `useCreate`, `useUpdate` and `useDelete` hooks. The `useCreateMany`, `useUpdateMany` and `useDeleteMany` hooks are not create audit log events.
+**refine** creates an audit log event when the mutation is successful on hooks that `useCreate`, `useUpdate` and `useDelete` hooks. The `useCreateMany`, `useUpdateMany` and `useDeleteMany` hooks are not create audit log events.
 
 ### `useCreate`
 

@@ -12,6 +12,7 @@ import {
     EditButton,
     DeleteButton,
     DateField,
+    ShowButton,
 } from "@pankod/refine-mantine";
 
 import { ColumnFilter, ColumnSorter } from "../../components/table";
@@ -89,6 +90,10 @@ export const PostList: React.FC = () => {
                 cell: function render({ getValue }) {
                     return (
                         <Group spacing="xs" noWrap>
+                            <ShowButton
+                                hideText
+                                recordItemId={getValue() as number}
+                            />
                             <EditButton
                                 hideText
                                 recordItemId={getValue() as number}

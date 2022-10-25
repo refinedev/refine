@@ -70,7 +70,7 @@ const App = () => {
 
 By default, **refine** doesn't require authentication configuration.
 
-If an `authProvider` property is not provided, **refine** will use the default `authProvider`. This default `authProvider` lets the app work without an authentication requirement.  
+If an `authProvider` property is not provided, **refine** will use the default `authProvider`. This default `authProvider` lets the app work without an authentication requirement.
 If your app doesn't require authentication, no further setup is necessary for the app to work.
 
 ## Creating an `authProvider`
@@ -124,7 +124,7 @@ login(values);
 ```
 
 :::tip
-`mutate` acquired from `useLogin` can accept any kind of object for values since `login` method from `authProvider` does not have a restriction on its parameters.  
+`mutate` acquired from `useLogin` can accept any kind of object for values since `login` method from `authProvider` does not have a restriction on its parameters.
 A type parameter for the values can be provided to `useLogin`.
 
 ```tsx
@@ -165,7 +165,7 @@ login: ({ username, password, remember }) => {
 #### Default login page
 
 If an `authProvider` is given, refine shows a default login page on `"/"` and `"/login"` routes and a login form if a custom `LoginPage` is not provided.
-Rest of the app won't be accessible until successful authentication.  
+Rest of the app won't be accessible until successful authentication.
 After submission, login form calls the `login` method from `authProvider`.
 
 <br />
@@ -183,7 +183,7 @@ After submission, login form calls the `login` method from `authProvider`.
 <br />
 
 :::important
-If an `authProvider` is given, `resources` passed to `<Refine>` as propery are only accessible if the login is successful. if no `authProvider` was provided, they are accessible without authentication.  
+If an `authProvider` is given, `resources` passed to `<Refine>` as property are only accessible if the login is successful. if no `authProvider` was provided, they are accessible without authentication.
 :::
 
 :::tip
@@ -230,7 +230,7 @@ register(values);
 ```
 
 :::tip
-`mutate` acquired from `useRegister` can accept any kind of object for values since `register` method from `authProvider` does not have a restriction on its parameters.  
+`mutate` acquired from `useRegister` can accept any kind of object for values since `register` method from `authProvider` does not have a restriction on its parameters.
 A type parameter for the values can be provided to `useRegister`.
 
 ```tsx
@@ -299,7 +299,7 @@ forgotPassword(values);
 ```
 
 :::tip
-`mutate` acquired from `useForgotPassword` can accept any kind of object for values since `forgotPassword` method from `authProvider` does not have a restriction on its parameters.  
+`mutate` acquired from `useForgotPassword` can accept any kind of object for values since `forgotPassword` method from `authProvider` does not have a restriction on its parameters.
 A type parameter for the values can be provided to `useForgotPassword`.
 
 ```tsx
@@ -373,7 +373,7 @@ updatePassword(values);
 ```
 
 :::tip
-`mutate` acquired from `useUpdatePassword` can accept any kind of object for values since `updatePassword` method from `authProvider` does not have a restriction on its parameters.  
+`mutate` acquired from `useUpdatePassword` can accept any kind of object for values since `updatePassword` method from `authProvider` does not have a restriction on its parameters.
 A type parameter for the values can be provided to `useUpdatePassword`.
 
 ```tsx
@@ -411,7 +411,7 @@ forgotPassword: ({ email }) => {
 
 **refine** expects this method to return a resolved Promise if the logout is successful, and a rejected Promise if it is not.
 
--   If the logout is successful, pages that requires authentication becomes unaccessible.
+-   If the logout is successful, pages that requires authentication becomes inaccessible.
 
 -   If the logout fails, **refine** displays an error notification to the user.
 
@@ -443,7 +443,7 @@ logout();
 ```
 
 :::tip
-`mutate` acquired from `useLogout` can accept any kind of object for values since `logout` method from `authProvider` doesn't have a restriction on its parameters.  
+`mutate` acquired from `useLogout` can accept any kind of object for values since `logout` method from `authProvider` doesn't have a restriction on its parameters.
 :::
 
 > [Refer to useLogout documentation for more information. &#8594](/api-reference/core/hooks/auth/useLogout.md)
@@ -490,10 +490,10 @@ Current authentication data needs to be cleaned by the `logout` method. For exam
 
 ### `checkError`
 
-When a [`dataProvider`](/api-reference/core/providers/data-provider.md) method returns an error, `checkError` is called with the error object.  
+When a [`dataProvider`](/api-reference/core/providers/data-provider.md) method returns an error, `checkError` is called with the error object.
 If `checkError` returns a rejected promise, the `logout` method is called and user becomes unauthorized and gets redirected to `/login` page by default.
 
-In this example, we log the user out when **HTTP** error status code is `401`.  
+In this example, we log the user out when **HTTP** error status code is `401`.
 You can decide, depending on any error status code you want to check, if the users continue to process by returning a resolved promise or if they are logged out for rejecting the promise.
 
 ```tsx title="auth-provider.ts"
@@ -528,7 +528,7 @@ checkError(error);
 ```
 
 :::tip
-`mutate` acquired from `useLogout` can accept any kind of object for values since `logout` method from `authProvider` doesn't have a restriction on its parameters.  
+`mutate` acquired from `useLogout` can accept any kind of object for values since `logout` method from `authProvider` doesn't have a restriction on its parameters.
 :::
 
 > [Refer to useCheckError documentation for more information. &#8594](/api-reference/core/hooks/auth/useCheckError.md)
@@ -556,7 +556,7 @@ Redirection path given to `checkError` overrides the one on `logout`.
 
 ### `checkAuth`
 
-Whenever route changes, `checkAuth` from `authProvider` is called.  
+Whenever route changes, `checkAuth` from `authProvider` is called.
 When `checkAuth` returns a rejected promise, authentication is cancelled and the app is redirected to an error page that allows the user to navigate to the root path which shows a login page by default.
 
 Checking the authentication data can be easily done here. For example if the authentication data is stored in the local storage:
@@ -644,7 +644,7 @@ const authProvider = {
 
 <br/>
 
-Data that `getPermissions` resolves with is accesible by the [`usePermissions`](/api-reference/core/hooks/auth/usePermissions.md) hook.
+Data that `getPermissions` resolves with is accessible by the [`usePermissions`](/api-reference/core/hooks/auth/usePermissions.md) hook.
 
 For example let's say that only the admins must be able to create new posts from the list page.
 `<List>` can show a button for creating new posts. If it's required that only admins can create new posts, this button must be only accessible to users who has the `"admin"` role.
@@ -890,7 +890,7 @@ These hooks can be used with the `authProvider` authentication and authorization
 | checkAuth <div className=" required">Required</div>     | Checks credentials on each route changes  | Authentication still persist          |
 | checkError <div className=" required">Required</div>    | Checks if a dataProvider returns an error | Data provider doesn't return an error |
 | getPermissions <div className="required">Required</div> | Can be use to get user credentials        | Authorization roles accepted          |
-| getUserIdentity                                         | Can be use to get user identity           | User identity avaliable to return     |
+| getUserIdentity                                         | Can be use to get user identity           | User identity available to return     |
 | register                                                | Register user                             | Auth confirms register                |
 | forgotPassword                                          | Can be use to get password reset          | Auth confirms forgot password         |
 | updatePassword                                          | Can be use to get update password         | Auth confirms update password         |

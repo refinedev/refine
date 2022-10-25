@@ -61,7 +61,7 @@ jobs:
         uses: nwtgck/actions-netlify@v1.2
         with:
           publish-dir: './documentation/build'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.PANKOD_BOT_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
           enable-pull-request-comment: false
           overwrites-pull-request-comment: false

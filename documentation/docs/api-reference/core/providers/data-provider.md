@@ -8,8 +8,8 @@ import dpFlow from '@site/static/img/guides-and-concepts/providers/data-provider
 
 ## Overview
 
-A data provider is the place where a refine app communicates with an API.  
-Data providers also act as adapters for refine making it possible to consume different API's and data services conveniently.  
+A data provider is the place where a refine app communicates with an API.
+Data providers also act as adapters for refine making it possible to consume different API's and data services conveniently.
 A data provider makes **HTTP** requests and returns response data back using predefined methods.
 
 A data provider must include following methods:
@@ -285,7 +285,7 @@ render(<App/>);
 
 We will build **"Simple REST Dataprovider"** of `@pankod/refine-simple-rest` from scratch to show the logic of how data provider methods interact with the API.
 
-We will provide you a fully working, _fake REST API_ located at https://api.fake-rest.refine.dev. You may take a look at available [resources and routes of the API](https://api.fake-rest.refine.dev) before proceeding to the next step.  
+We will provide you a fully working, _fake REST API_ located at https://api.fake-rest.refine.dev. You may take a look at available [resources and routes of the API](https://api.fake-rest.refine.dev) before proceeding to the next step.
 Our **"Simple REST Dataprovider"** will be consuming this _fake REST API_.
 
 :::note
@@ -875,7 +875,7 @@ const { data } = useList({
 
 **Adding sorting**
 
-We'll sort records by speficified order and field.
+We'll sort records by specified order and field.
 
 > [CrudSorting](/api-reference/core/interfaces.md#crudoperators) ?
 
@@ -968,7 +968,7 @@ const { data } = useList({
 
 **Adding filtering**
 
-Filters allow you to filter queries using [refine's filter operators](/api-reference/core/interfaces.md#crudoperators). It is configured via field, operator and value properites.
+Filters allow you to filter queries using [refine's filter operators](/api-reference/core/interfaces.md#crudoperators). It is configured via field, operator and value properties.
 
 ```tsx title="dataProvider.ts"
 const generateSort = (sort?: CrudSorting) => {
@@ -1092,8 +1092,8 @@ const { data } = useList({
 
 ### `custom`
 
-An optional method named `custom` can be added to handle requests with custom parameters like URL, CRUD methods and configurations.  
-It's useful if you have non-stantard REST API endpoints or want to make a connection with external resources.
+An optional method named `custom` can be added to handle requests with custom parameters like URL, CRUD methods and configurations.
+It's useful if you have non-standard REST API endpoints or want to make a connection with external resources.
 
 ```ts title="dataProvider.ts"
 const SimpleRestDataProvider = (
@@ -1186,7 +1186,7 @@ const { data, isLoading } = useCustom({
 
 ### Error Format
 
-**refine** expects errors to be extended from [`HttpError`](/api-reference/core/interfaces.md#httperror).  
+**refine** expects errors to be extended from [`HttpError`](/api-reference/core/interfaces.md#httperror).
 Axios interceptor can be used to transform the error from response before Axios returns the response to your code. Interceptors are methods which are triggered before the main method.
 
 ```ts title="dataProvider.ts"

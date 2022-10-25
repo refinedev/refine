@@ -216,7 +216,7 @@ npm run start
   </TabItem>
 </Tabs>
 
-Your **refine** application should be up and running!  
+Your **refine** application should be up and running!
 Point your browser to [http://localhost:3000](http://localhost:3000) to access it. You will see the welcome page.
 
 <div class="img-container">
@@ -1226,7 +1226,7 @@ In edit page, `useForm` hook initializes the form with current record values.
 
 ✳️ Form data is set automatically, whenever children inputs `<Form.Item>`'s are edited.
 
-✳️ Save button submits the form by executing the `useUpdate` method provided by the [`dataProvider`](/api-reference/core/providers/data-provider.md). After a successfull response, the application will be redirected to the listing page.
+✳️ Save button submits the form by executing the `useUpdate` method provided by the [`dataProvider`](/api-reference/core/providers/data-provider.md). After a successful response, the application will be redirected to the listing page.
 
 <br />
 

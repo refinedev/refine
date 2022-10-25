@@ -89,7 +89,7 @@ const LoginView: React.FC = () => {
                 />
 
                 <Button
-                    className="bg-black font-bold"
+                    className="font-bold"
                     variant="slim"
                     type="submit"
                     loading={isLoading}

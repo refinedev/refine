@@ -36,7 +36,7 @@ jobs:
         uses: nwtgck/actions-netlify@v1.2
         with:
           publish-dir: './examples/fineFoods/admin/antd/build'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.PANKOD_BOT_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
           alias: deploy-preview-antd-${{ github.event.number }}
           enable-pull-request-comment: false
@@ -71,7 +71,7 @@ jobs:
         uses: nwtgck/actions-netlify@v1.2
         with:
           publish-dir: './examples/fineFoods/admin/mui/build'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.PANKOD_BOT_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
           alias: deploy-preview-mui-${{ github.event.number }}
           enable-pull-request-comment: false

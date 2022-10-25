@@ -108,7 +108,7 @@ export default sortPosts;
 ```
 
 
-If we look at the console, we see that `Sorting posts...` is being looged at 1000ms intervals, i.e. with the tick of our clock:
+If we look at the console, we see that `Sorting posts...` is being logged at 1000ms intervals, i.e. with the tick of our clock:
 
 <div  class="img-container" align-items="center" >
      <img style={{alignSelf:"center", width:"400px"}} src={usememo1}  alt="usememo1" />

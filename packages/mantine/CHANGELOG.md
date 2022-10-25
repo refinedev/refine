@@ -1,5 +1,39 @@
 # @pankod/refine-mantine
 
+## 1.9.5
+
+### Patch Changes
+
+-   [#2857](https://github.com/refinedev/refine/pull/2857) [`1d8b1820f4`](https://github.com/refinedev/refine/commit/1d8b1820f47118dd1e3d3dfbfc9df655056d591a) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed the `<ReadyPage />` mobile view.
+
+-   [#2857](https://github.com/refinedev/refine/pull/2857) [`1d8b1820f4`](https://github.com/refinedev/refine/commit/1d8b1820f47118dd1e3d3dfbfc9df655056d591a) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed the `<ErrorComponent />` responsive view.
+
+## 1.9.4
+
+### Patch Changes
+
+-   [#2857](https://github.com/refinedev/refine/pull/2857) [`1d8b1820f4`](https://github.com/refinedev/refine/commit/1d8b1820f47118dd1e3d3dfbfc9df655056d591a) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed the `<ReadyPage />` mobile view.
+
+-   [#2857](https://github.com/refinedev/refine/pull/2857) [`1d8b1820f4`](https://github.com/refinedev/refine/commit/1d8b1820f47118dd1e3d3dfbfc9df655056d591a) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed the `<ErrorComponent />` responsive view.
+
+## 1.9.3
+
+### Patch Changes
+
+-   [#2869](https://github.com/refinedev/refine/pull/2869) [`d64e4a02c3`](https://github.com/refinedev/refine/commit/d64e4a02c3c23f6d1386948f9e0f3666eb20188e) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: @mantine/\* package version fixed to 5.5.6 due to [useForm issue](https://github.com/mantinedev/mantine/pull/2758)
+
+## 1.9.2
+
+### Patch Changes
+
+-   [#2856](https://github.com/refinedev/refine/pull/2856) [`21d0f19863`](https://github.com/refinedev/refine/commit/21d0f19863fb6c3508aa92e2097cc6d9702a16f0) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: Mantine UserFormInput requires 2 type argument(s).
+
+## 1.9.1
+
+### Patch Changes
+
+-   [#2856](https://github.com/refinedev/refine/pull/2856) [`21d0f19863`](https://github.com/refinedev/refine/commit/21d0f19863fb6c3508aa92e2097cc6d9702a16f0) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: Mantine UserFormInput requires 2 type argument(s).
+
 ## 1.9.0
 
 ### Minor Changes
