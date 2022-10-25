@@ -92,7 +92,24 @@ DISABLE_DOCGEN=true npm run start
 ```
 
 :::tip
-`DISABLE_DOCGEN` is set to `true` to not generate documentation for the packages. If you want to generate documentation for the packages, you can set it to `false`.
+`DISABLE_DOCGEN` is set to `true` to skip generate type documentation for the packages. If you want to generate documentation for the packages, you can set it to `false`.
+:::
+
+:::note Docgen plugin and Props Table
+If you are working on type generation and props tables for specific packages, you can use `INCLUDED_PACKAGES` environment variable to run the scripts for only the packages you are working on by providing comma delimited list of package directories.
+
+For example, if you are working on `@pankod/refine-antd` and `@pankod/refine-core` packages, which are located under `packages/antd` and `packages/core` directories, you can run the following command to generate type documentation for only these packages:
+
+```bash
+INCLUDED_PACKAGES=antd,core npm run start
+```
+
+To use `<PropsTable />` component, you should pass `module` prop as `string` to the component in form of `@pankod/refine-antd/MyComponent`.
+
+```jsx
+<PropsTable module="@pankod/refine-antd/Create" />
+```
+
 :::
 
 ## Running tests
