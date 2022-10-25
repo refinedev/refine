@@ -153,7 +153,7 @@ export const PostList: React.FC = () => {
 
     return (
         <List>
-            <TableContainer>
+            <TableContainer whiteSpace="pre-wrap">
                 <Table variant="simple">
                     <Thead>
                         {getHeaderGroups().map((headerGroup) => (
