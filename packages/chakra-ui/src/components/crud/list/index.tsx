@@ -49,7 +49,6 @@ export const List: React.FC<ListProps> = (props) => {
 
     const defaultHeaderButtons = isCreateButtonVisible ? (
         <CreateButton
-            size="md"
             resourceNameOrRouteName={resource.route}
             {...createButtonProps}
         />
@@ -69,7 +68,7 @@ export const List: React.FC<ListProps> = (props) => {
                 {breadcrumb}
                 <HStack justifyContent="space-between">
                     {title ?? (
-                        <Heading as="h3" size="md">
+                        <Heading as="h3" size="lg">
                             {translate(
                                 `${resource.name}.titles.list`,
                                 userFriendlyResourceName(

@@ -161,7 +161,7 @@ export const Edit: React.FC<EditProps> = (props) => {
                     <HStack spacing="xs">
                         {buttonBack}
                         {title ?? (
-                            <Heading as="h3" size="md">
+                            <Heading as="h3" size="lg">
                                 {translate(
                                     `${resource.name}.titles.edit`,
                                     `Edit ${userFriendlyResourceName(

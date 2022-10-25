@@ -105,7 +105,7 @@ export const Create: React.FC<CreateProps> = (props) => {
                     <HStack>
                         {buttonBack}
                         {title ?? (
-                            <Heading as="h3" size="md">
+                            <Heading as="h3" size="lg">
                                 {translate(
                                     `${resource.name}.titles.create`,
                                     `Create ${userFriendlyResourceName(
