@@ -31,5 +31,5 @@ example/.cache
 examples/**/package-lock.json
 .next
 
-# cli tool
+# command line interface tool
 /refine
