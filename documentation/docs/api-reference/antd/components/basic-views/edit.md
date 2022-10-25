@@ -644,6 +644,10 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/antd/components/breadcrumb.md)
 
+:::tip
+This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+:::
+
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/2
 const { EditButton } = RefineAntd;
 

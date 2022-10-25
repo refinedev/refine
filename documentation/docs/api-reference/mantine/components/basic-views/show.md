@@ -527,6 +527,10 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 <!-- TODO: Add breadcrumb link when the Breadcrumb doc is created. -->
 <!-- [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/mantine/components/breadcrumb.md) -->
 
+:::tip
+This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+:::
+
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
