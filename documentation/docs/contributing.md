@@ -8,7 +8,30 @@ We follow a [code of conduct][code_of_conduct] when participating in the communi
 -   If you plan to work on an issue, mention so in the issue page before you start working on it.
 -   If you plan to work on a new feature, create an issue and discuss it with other community members/maintainers.
 -   Ask for help in our [community room][discord channel].
+## Ways to contribute
 
+- **Stars on GitHub**: If you're a refine user and enjoy using our platform, don't forget to star it on [GitHub](https://github.com/refinedev/refine)! 🌟
+- **Improve documentation**: Good documentation is imperative to the success of any project. You can make our documents the best they need to be by improving their quality or adding new ones.
+- **Give feedback**: We're always looking for ways to make refine better, please share how you use refine, what features are missing and what is done good via [GitHub Discussions](https://github.com/refinedev/refine/discussions) or [Discord](http://discord.gg/refine).
+- **Share refine**: Help us reach people. Share [refine repository](https://github.com/refinedev/refine) with everyone who can be interested.
+- **Contribute to codebase**: your help is needed to make this project the best it can be! You could develop new features or fix [existing issues](https://github.com/refinedev/refine/issues) - every contribution will be welcomed with great pleasure!
+
+
+## Commit convention
+
+refine is a monorepo. For a monorepo, commit messages are essential to keep everything clear. We use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) to keep our commit messages consistent and easy to understand.
+
+```
+<type>(optional scope): <description>
+```
+Examples:
+- `feat: allow provided config object to extend other configs`
+- `fix: array parsing issue when multiple spaces were contained in string`
+- `docs: correct spelling of CHANGELOG`
+
+## Git branches
+- `next` – contains next version (1.x.0), most likely you would want to create a PR to this branch
+- `master` – current stable version
 ## Running in development mode
 
 `node` version 16 is required.
@@ -65,8 +88,29 @@ Our documentation is built with [Docusaurus][docusaurus]. To start it in develop
 ```bash
 cd documentation
 npm install
-npm run start
+DISABLE_DOCGEN=true npm run start
 ```
+
+:::tip
+`DISABLE_DOCGEN` is set to `true` to skip generate type documentation for the packages. If you want to generate documentation for the packages, you can set it to `false`.
+:::
+
+:::note Docgen plugin and Props Table
+If you are working on type generation and props tables for specific packages, you can use `INCLUDED_PACKAGES` environment variable to run the scripts for only the packages you are working on by providing comma delimited list of package directories.
+
+For example, if you are working on `@pankod/refine-antd` and `@pankod/refine-core` packages, which are located under `packages/antd` and `packages/core` directories, you can run the following command to generate type documentation for only these packages:
+
+```bash
+INCLUDED_PACKAGES=antd,core npm run start
+```
+
+To use `<PropsTable />` component, you should pass `module` prop as `string` to the component in form of `@pankod/refine-antd/MyComponent`.
+
+```jsx
+<PropsTable module="@pankod/refine-antd/Create" />
+```
+
+:::
 
 ## Running tests
 
