@@ -163,56 +163,45 @@ export const PostList: React.FC = () => {
                     <Thead>
                         {getHeaderGroups().map((headerGroup) => (
                             <Tr key={headerGroup.id}>
-                                {headerGroup.headers.map((header) => {
-                                    return (
-                                        <Th key={header.id}>
-                                            {!header.isPlaceholder && (
+                                {headerGroup.headers.map((header) => (
+                                    <Th key={header.id}>
+                                        {!header.isPlaceholder && (
+                                            <HStack spacing="2">
+                                                <Text>
+                                                    {flexRender(
+                                                        header.column.columnDef
+                                                            .header,
+                                                        header.getContext(),
+                                                    )}
+                                                </Text>
                                                 <HStack spacing="2">
-                                                    <Text>
-                                                        {flexRender(
-                                                            header.column
-                                                                .columnDef
-                                                                .header,
-                                                            header.getContext(),
-                                                        )}
-                                                    </Text>
-                                                    <HStack spacing="2">
-                                                        <ColumnSorter
-                                                            column={
-                                                                header.column
-                                                            }
-                                                        />
-                                                        <ColumnFilter
-                                                            column={
-                                                                header.column
-                                                            }
-                                                        />
-                                                    </HStack>
+                                                    <ColumnSorter
+                                                        column={header.column}
+                                                    />
+                                                    <ColumnFilter
+                                                        column={header.column}
+                                                    />
                                                 </HStack>
-                                            )}
-                                        </Th>
-                                    );
-                                })}
+                                            </HStack>
+                                        )}
+                                    </Th>
+                                ))}
                             </Tr>
                         ))}
                     </Thead>
                     <Tbody>
-                        {getRowModel().rows.map((row) => {
-                            return (
-                                <Tr key={row.id}>
-                                    {row.getVisibleCells().map((cell) => {
-                                        return (
-                                            <Td key={cell.id}>
-                                                {flexRender(
-                                                    cell.column.columnDef.cell,
-                                                    cell.getContext(),
-                                                )}
-                                            </Td>
-                                        );
-                                    })}
-                                </Tr>
-                            );
-                        })}
+                        {getRowModel().rows.map((row) => (
+                            <Tr key={row.id}>
+                                {row.getVisibleCells().map((cell) => (
+                                    <Td key={cell.id}>
+                                        {flexRender(
+                                            cell.column.columnDef.cell,
+                                            cell.getContext(),
+                                        )}
+                                    </Td>
+                                ))}
+                            </Tr>
+                        ))}
                     </Tbody>
                 </Table>
             </TableContainer>
