@@ -7,10 +7,10 @@ Feat: Added ability to manage breadcrumb component globally via options
 ## Usage
 ```jsx
 <Refine
-options= {{
-   breadcrumb: false, // hide globally
-}}
-```
+    options= {{
+        breadcrumb: false, // hide globally
+    }}
+/>
 or
 ```jsx
 <Refine
