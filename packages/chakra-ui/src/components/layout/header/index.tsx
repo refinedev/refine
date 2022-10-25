@@ -17,7 +17,9 @@ export const Header: React.FC<RefineLayoutHeaderProps> = () => {
             w="100%"
         >
             <HStack>
-                <Text size="sm">{user?.name}</Text>
+                <Text size="sm" fontWeight="bold">
+                    {user?.name}
+                </Text>
                 <Avatar
                     bg="primary"
                     color="white"
