@@ -19,10 +19,6 @@ export const Pagination: FC<PaginationProps> = ({
         pageCount,
     });
 
-    const paginationCommonProps: ButtonProps = {
-        variant: "outline",
-    };
-
     return (
         <Box display="flex" justifyContent="flex-end">
             <HStack my="3" spacing="1">
@@ -30,7 +26,7 @@ export const Pagination: FC<PaginationProps> = ({
                     <Button
                         onClick={() => setCurrent(current - 1)}
                         disabled={!pagination?.prev}
-                        {...paginationCommonProps}
+                        variant="outline"
                     >
                         <IconChevronLeft size="18" />
                     </Button>
@@ -45,7 +41,6 @@ export const Pagination: FC<PaginationProps> = ({
                             key={page}
                             onClick={() => setCurrent(page)}
                             variant={page === current ? "solid" : "outline"}
-                            {...paginationCommonProps}
                         >
                             {page}
                         </Button>
@@ -54,7 +49,7 @@ export const Pagination: FC<PaginationProps> = ({
                 {pagination?.next && (
                     <Button
                         onClick={() => setCurrent(current + 1)}
-                        {...paginationCommonProps}
+                        variant="outline"
                     >
                         <IconChevronRight size="18" />
                     </Button>
