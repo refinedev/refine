@@ -301,8 +301,6 @@ Here’s the result:
 
 ---
 
-
-
 ## MUI Autocomplete features
 
 ### MUI Autocomplete State Management
@@ -849,6 +847,12 @@ Here’s the result:
    <img style={{alignSelf:"center"}}  src={google}  alt="MUI useAutoComplete google" />
 </div>
 
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
 
 
 ## MUI Autocomplete Limitations

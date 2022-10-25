@@ -361,6 +361,12 @@ export default NextAuth({
 
 Congratulations! You’ve added your complete API route. The next thing you are going to do is to configure the shared session state.
 
+---
+
+<PromotionBanner title="Is your CRUD app overloaded with technical debt?" image="/img/generic_banner.png" />
+
+---
+
 ## Configure Shared Session State
 
 The `useSession()` React Hook in the NextAuth.js client is the easiest way to check if someone is signed in, and to be able to use this hook, first you’ll need to expose the session context, `<SessionProvider />`, at the top level of your application:
@@ -676,32 +682,3 @@ Throughout this tutorial, we've implemented how to add Google and GitHub authent
 </div>
 
 
----
-
-<div className="banner-container">
-<div className="banner-header" >Stop wasting your time copy/pasting your CRUD code all over your application!</div >
-
-
-
-Meet the headless, React-based solution to build sleek **CRUD** applications. With refine, you can be confident that your codebase will always stay clean and boilerplate-free.
-
-Try [refine](https://github.com/refinedev/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
-
-    
-
-<div>
-<a href="https://github.com/refinedev/refine">
-   <img  src="/img/generic_banner.png" alt="refine blog logo" /> 
-</a>
-</div>
-
-<br/>
-
-
-**refine** is an open-source, React-based framework for building CRUD applications without constraints. It’s headless by design and seamlessly works with **any custom design** or **UI framework** you favor. For convenience, it ships with ready-made integrations for **Ant Design System, Material UI and Mantine UI**.
-
-It can **speed up your development time up to 3X** without compromising freedom on styling, customization and project workflow.
-
-Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.
-
-</div>
