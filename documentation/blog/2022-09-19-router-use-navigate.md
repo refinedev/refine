@@ -70,11 +70,7 @@ root.render(
 );
 ```
 
-<div>
-<a href="https://github.com/refinedev/refine">
-  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
-</a>
-</div>
+
 
 ### Configure routes
 
@@ -99,6 +95,11 @@ function App() {
 
 That is just about everything you need to do to start using React router version 6.
 
+---
+
+<PromotionBanner title="Does your CRUD app need server state management?" image="/img/generic_banner.png" />
+
+---
 ## How to use the `useNavigate` hook
 
 As mentioned above, the **`useNavigate`** hook became part of React router in version 6. It is useful when navigating programmatically in your React project. The **`useNavigate`** hook returns an imperative method that you can use for changing location.
@@ -171,26 +172,3 @@ The **`useNavigate`** hook is functionally similar to the `Navigate` component. 
 </a>
 </div>
 
----
-
-## Build your React-based CRUD applications without constraints
-
-Building CRUD applications involves many repetitive task consuming your precious development time. If you are starting from scratch, you also have to implement custom solutions for critical parts of your application like authentication, authorization, state management and networking. 
-
-Check out [refine](https://github.com/refinedev/refine),if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
-
-
-<div>
-<a href="https://github.com/refinedev/refine">
-    <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
-</a>
-</div>
-
-<br/>
-
-**refine** is an open-source React-based framework for building CRUD applications **without constraints.**
-It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
-
-**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
-
-Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.

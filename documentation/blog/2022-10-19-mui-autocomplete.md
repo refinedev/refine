@@ -106,7 +106,7 @@ The code above showcases an input text field that displays 5 songs as predefined
 
 
 
-<div style={{display: "flex", flexDirection: "column", alignItems:"center"}}  >
+<div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src={image1}  alt="MUI useAutoComplete" />
 </div>
 
@@ -149,7 +149,7 @@ The code above illustrates the use of the `renderInput` prop. Take special note 
 Here’s the result:
 
 
-<div style={{display: "flex", flexDirection: "column", alignItems:"center"}}  >
+<div className="centered-image"  >
    <img style={{alignSelf:"center", width:"300px"}}  src={renderInput}  alt="MUI useAutoComplete renderInput" />
 </div>
 
@@ -238,7 +238,7 @@ export default function FreeSolo() {
 
 Here’s the result:
 
-<div style={{display: "flex", flexDirection: "column", alignItems:"center"}}  >
+<div className="centered-image"  >
    <img style={{alignSelf:"center", width:"300px"}}  src={freeSolo}  alt="MUI useAutoComplete freeSolo" />
 </div>
 
@@ -285,7 +285,7 @@ The code above illustrates the use of the `groupBy` prop in the `<Autocomplete/>
 
 Here’s the result:
 
-<div style={{display: "flex", flexDirection: "column", alignItems:"center"}}  >
+<div className="centered-image"  >
    <img style={{alignSelf:"center", width:"300px"}}  src={groupby}  alt="MUI useAutoComplete groupby" />
 </div>
 
@@ -293,32 +293,13 @@ Here’s the result:
 
 
 
----
 
-<div className="banner-container">
-<div className="banner-header" >Stop wasting your time copy/pasting your table code all over your application!</div >
-
-
-Meet the headless, React-based solution to build sleek **CRUD** applications. With refine, you can be confident that your codebase will always stay clean and boilerplate-free.
-
-Try [refine](https://github.com/pankod/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
-
-    
-
-<div>
-<a href="https://github.com/pankod/refine">
-   <img  src="/img/mui_banner.png" alt="refine blog logo" /> 
-</a>
-</div>
-
-
-</div>
 
 ---
 
+<PromotionBanner title="Is your CRUD app overloaded with technical debt?" image="/img/mui_banner.png" />
 
-
-
+---
 
 ## MUI Autocomplete features
 
@@ -371,7 +352,7 @@ export default function ManageableStates() {
 
 The code showcases how the values of the `AutoComplete` component can be controlled and altered in state.
 
-<div style={{display: "flex", flexDirection: "column", alignItems:"center"}}  >
+<div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src={statemanagement}  alt="MUI useAutoComplete statemanagement" />
 </div>
 
@@ -474,7 +455,7 @@ The code above showcases a simple use case for the `useAutocomplete` hook. It he
 
 Here’s the result:
 
-<div style={{display: "flex", flexDirection: "column", alignItems:"center"}}  >
+<div className="centered-image"  >
    <img style={{alignSelf:"center", width:"300px"}}  src={useAutoComplete}  alt="MUI useAutoComplete" />
 </div>
 
@@ -584,7 +565,7 @@ The code above showcases an asynchronous DOM display of the MUI Autocomplete com
  
 
 
-<div style={{display: "flex", flexDirection: "column", alignItems:"center"}}  >
+<div className="centered-image"  >
    <img style={{alignSelf:"center", width:"300px"}}  src={async}  alt="MUI useAutoComplete async" />
 </div>
 
@@ -631,7 +612,7 @@ export default function Tags() {
 
 Here’s the result:
 
-<div style={{display: "flex", flexDirection: "column", alignItems:"center"}}  >
+<div className="centered-image"  >
    <img style={{alignSelf:"center", width:"300px"}}  src={multiplevalues}  alt="MUI useAutoComplete multiplevalues" />
 </div>
 
@@ -702,7 +683,7 @@ Here’s the result:
 
 
 
-<div style={{display: "flex", flexDirection: "column", alignItems:"center"}}  >
+<div className="centered-image"  >
    <img style={{alignSelf:"center", }}  src={fixedoptions}  alt="MUI useAutoComplete fixedoptions" />
 </div>
 
@@ -759,7 +740,7 @@ export default function CheckboxesTags() {
   );
 }
 ```
-<div style={{display: "flex", flexDirection: "column", alignItems:"center"}}  >
+<div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src={checkbox}  alt="MUI useAutoComplete checkbox" />
 </div>
 
@@ -862,10 +843,16 @@ export default Home
 
 Here’s the result:
 
-<div style={{display: "flex", flexDirection: "column", alignItems:"center"}}  >
+<div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src={google}  alt="MUI useAutoComplete google" />
 </div>
 
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
 
 
 ## MUI Autocomplete Limitations
