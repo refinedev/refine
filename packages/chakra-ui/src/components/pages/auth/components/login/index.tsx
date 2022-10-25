@@ -5,6 +5,8 @@ import {
     useRouterContext,
     useLogin,
     useTranslate,
+    BaseRecord,
+    HttpError,
 } from "@pankod/refine-core";
 import {
     Box,
@@ -21,12 +23,16 @@ import {
     HStack,
     Checkbox,
 } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "@pankod/refine-react-hook-form";
 
 import { layoutStyles, cardStyles } from "../styles";
 import { FormPropsType } from "../..";
 
-type LoginProps = LoginPageProps<BoxProps, BoxProps, FormPropsType>;
+type LoginProps = LoginPageProps<
+    BoxProps,
+    BoxProps,
+    FormPropsType<LoginFormTypes>
+>;
 
 export const LoginPage: React.FC<LoginProps> = ({
     providers,
@@ -38,16 +44,19 @@ export const LoginPage: React.FC<LoginProps> = ({
     renderContent,
     formProps,
 }) => {
-    const { Link } = useRouterContext();
-    const {
-        handleSubmit,
-        register,
-        formState: { errors },
-    } = useForm<LoginFormTypes>();
+    const { onSubmit, ...useFormProps } = formProps || {};
 
     const translate = useTranslate();
-
     const { mutate: login } = useLogin<LoginFormTypes>();
+    const { Link } = useRouterContext();
+    const methods = useForm<BaseRecord, HttpError, LoginFormTypes>({
+        ...useFormProps,
+    });
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = methods;
 
     const renderProviders = () => {
         if (providers && providers.length > 0) {
@@ -85,7 +94,15 @@ export const LoginPage: React.FC<LoginProps> = ({
                 {translate("pages.login.title", "Sign in to your account")}
             </Heading>
             {renderProviders()}
-            <form onSubmit={handleSubmit((data) => login(data))} {...formProps}>
+            <form
+                onSubmit={handleSubmit((data) => {
+                    if (onSubmit) {
+                        return onSubmit(data);
+                    }
+
+                    return login(data);
+                })}
+            >
                 <FormControl mb="3" isInvalid={!!errors?.email}>
                     <FormLabel>
                         {translate("pages.login.fields.email", "Email")}
@@ -179,8 +196,10 @@ export const LoginPage: React.FC<LoginProps> = ({
     );
 
     return (
-        <Box style={layoutStyles} {...wrapperProps}>
-            {renderContent ? renderContent(content) : content}
-        </Box>
+        <FormProvider {...methods}>
+            <Box style={layoutStyles} {...wrapperProps}>
+                {renderContent ? renderContent(content) : content}
+            </Box>
+        </FormProvider>
     );
 };
