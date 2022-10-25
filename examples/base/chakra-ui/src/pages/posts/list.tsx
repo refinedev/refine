@@ -11,7 +11,7 @@ import {
     Td,
     TableContainer,
     HStack,
-    Box,
+    Text,
     ShowButton,
     EditButton,
     DeleteButton,
@@ -167,16 +167,16 @@ export const PostList: React.FC = () => {
                                     return (
                                         <Th key={header.id}>
                                             {!header.isPlaceholder && (
-                                                <HStack spacing="xs">
-                                                    <Box>
+                                                <HStack spacing="2">
+                                                    <Text>
                                                         {flexRender(
                                                             header.column
                                                                 .columnDef
                                                                 .header,
                                                             header.getContext(),
                                                         )}
-                                                    </Box>
-                                                    <HStack spacing="xs">
+                                                    </Text>
+                                                    <HStack spacing="2">
                                                         <ColumnSorter
                                                             column={
                                                                 header.column
