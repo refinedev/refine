@@ -16,13 +16,17 @@ export const Layout: React.FC<RefineLayoutLayoutProps> = ({
     const HeaderToRender = Header ?? DefaultHeader;
 
     return (
-        <Box sx={{ display: "flex" }} bg="gray.100">
+        <Box display="flex" bg="gray.100">
             <SiderToRender />
-            <Box sx={{ display: "flex", flexDirection: "column", flex: 1 }}>
+            <Box
+                display="flex"
+                flexDirection="column"
+                flex={1}
+                overflow="hidden"
+                minH="100vh"
+            >
                 <HeaderToRender />
-                <Box sx={{ minHeight: "100vh", p: [2, 4] }} overflow="hidden">
-                    {children}
-                </Box>
+                <Box p={[2, 4]}>{children}</Box>
                 {Footer && <Footer />}
             </Box>
             {OffLayoutArea && <OffLayoutArea />}
