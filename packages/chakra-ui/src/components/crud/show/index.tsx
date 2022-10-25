@@ -3,15 +3,13 @@ import { RefineCrudShowProps } from "@pankod/refine-ui-types";
 import {
     Box,
     BoxProps,
-    Card,
-    CardProps,
-    Group,
-    GroupProps,
-    ActionIcon,
+    IconButton,
+    HStack,
+    StackProps,
     Stack,
-    Title,
-    LoadingOverlay,
-} from "@mantine/core";
+    Heading,
+    Spinner,
+} from "@chakra-ui/react";
 import {
     ResourceRouterParams,
     useNavigation,
@@ -31,10 +29,10 @@ import {
 import { Breadcrumb } from "@components/breadcrumb";
 
 export type ShowProps = RefineCrudShowProps<
-    GroupProps,
-    GroupProps,
-    CardProps,
-    GroupProps,
+    BoxProps,
+    BoxProps,
+    BoxProps,
+    StackProps,
     BoxProps
 >;
 
@@ -80,8 +78,6 @@ export const Show: React.FC<ShowProps> = (props) => {
 
     const id = recordItemId ?? idFromRoute;
 
-    const loadingOverlayVisible = isLoading ?? false;
-
     const defaultHeaderButtons = (
         <>
             {!recordItemId && (
@@ -117,13 +113,18 @@ export const Show: React.FC<ShowProps> = (props) => {
 
     const buttonBack =
         goBackFromProps === (false || null) ? null : (
-            <ActionIcon onClick={routeFromAction ? goBack : undefined}>
+            <IconButton
+                aria-label="back"
+                variant="ghost"
+                size="sm"
+                onClick={routeFromAction ? goBack : undefined}
+            >
                 {typeof goBackFromProps !== "undefined" ? (
                     goBackFromProps
                 ) : (
                     <IconArrowLeft />
                 )}
-            </ActionIcon>
+            </IconButton>
         );
 
     const headerButtons = headerButtonsFromProps
@@ -141,15 +142,37 @@ export const Show: React.FC<ShowProps> = (props) => {
         : null;
 
     return (
-        <Card p="md" {...wrapperProps}>
-            <LoadingOverlay visible={loadingOverlayVisible} />
-            <Group position="apart" align="center" {...headerProps}>
+        <Box
+            position="relative"
+            bg="white"
+            borderRadius="md"
+            px="4"
+            py="3"
+            {...wrapperProps}
+        >
+            {isLoading && (
+                <Spinner
+                    position="absolute"
+                    top="50%"
+                    left="50%"
+                    transform="translate(-50%, -50%)"
+                />
+            )}
+            <Box
+                mb="3"
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                flexWrap={{ base: "wrap", md: "nowrap" }}
+                gap="3"
+                {...headerProps}
+            >
                 <Stack spacing="xs">
                     {breadcrumb}
-                    <Group spacing="xs">
+                    <HStack>
                         {buttonBack}
                         {title ?? (
-                            <Title order={3} transform="capitalize">
+                            <Heading as="h3" size="lg" flexGrow="1">
                                 {translate(
                                     `${resource.name}.titles.show`,
                                     `Show ${userFriendlyResourceName(
@@ -157,20 +180,25 @@ export const Show: React.FC<ShowProps> = (props) => {
                                         "singular",
                                     )}`,
                                 )}
-                            </Title>
+                            </Heading>
                         )}
-                    </Group>
+                    </HStack>
                 </Stack>
-                <Group spacing="xs" {...headerButtonProps}>
+                <HStack spacing="2" {...headerButtonProps}>
                     {headerButtons}
-                </Group>
-            </Group>
-            <Box pt="sm" {...contentProps}>
+                </HStack>
+            </Box>
+            <Box {...contentProps} filter={isLoading ? "blur(1px)" : undefined}>
                 {children}
             </Box>
-            <Group position="right" spacing="xs" mt="md" {...footerButtonProps}>
+            <Box
+                display="flex"
+                justifyContent="flex-end"
+                spacing="xs"
+                {...footerButtonProps}
+            >
                 {footerButtons}
-            </Group>
-        </Card>
+            </Box>
+        </Box>
     );
 };
