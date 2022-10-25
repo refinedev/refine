@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
     CanAccess,
     ITreeMenu,
@@ -20,15 +20,11 @@ import {
     Box,
     Button,
     Drawer,
-    DrawerBody,
-    DrawerCloseButton,
     DrawerContent,
-    DrawerHeader,
     DrawerOverlay,
     IconButton,
     Tooltip,
     TooltipProps,
-    useMediaQuery,
     VStack,
 } from "@chakra-ui/react";
 import {
@@ -66,7 +62,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const commonTooltipProps: Omit<TooltipProps, "children"> = {
         placement: "right",
         hasArrow: true,
-        isDisabled: !collapsed,
+        isDisabled: !collapsed || opened,
     };
 
     const renderTreeView = (tree: ITreeMenu[]) => {
@@ -122,7 +118,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                                         isActive={isSelected}
                                         {...linkProps}
                                     >
-                                        {!collapsed && (
+                                        {(!collapsed || opened) && (
                                             <Box flexGrow={1} textAlign="left">
                                                 {label}
                                             </Box>
@@ -132,7 +128,10 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                             </Tooltip>
 
                             {isParent && (
-                                <AccordionPanel p={0} pl={collapsed ? 0 : 4}>
+                                <AccordionPanel
+                                    p={0}
+                                    pl={collapsed && !opened ? 0 : 4}
+                                >
                                     <Accordion width="full" allowToggle>
                                         {renderTreeView(children)}
                                     </Accordion>
@@ -155,7 +154,9 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
             >
                 <Button
                     width="full"
-                    justifyContent={collapsed ? "center" : "flex-start"}
+                    justifyContent={
+                        collapsed && !opened ? "center" : "flex-start"
+                    }
                     pl={4}
                     pr={4}
                     pt={2}
@@ -169,7 +170,8 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                     as={Link}
                     to="/"
                 >
-                    {!collapsed && t("dashboard.title", "Dashboard")}
+                    {(!collapsed || opened) &&
+                        t("dashboard.title", "Dashboard")}
                 </Button>
             </Tooltip>
         </CanAccess>
@@ -179,7 +181,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
         <Tooltip label={t("buttons.logout", "Logout")} {...commonTooltipProps}>
             <Button
                 width="full"
-                justifyContent={collapsed ? "center" : "flex-start"}
+                justifyContent={collapsed && !opened ? "center" : "flex-start"}
                 pl={4}
                 pr={4}
                 pt={2}
@@ -191,7 +193,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 color="white"
                 onClick={() => mutateLogout()}
             >
-                {!collapsed && t("buttons.logout", "Logout")}
+                {(!collapsed || opened) && t("buttons.logout", "Logout")}
             </Button>
         </Tooltip>
     );
@@ -213,14 +215,6 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
             </>
         );
     };
-
-    const [isLargerThanLg] = useMediaQuery("(min-width: 62em)");
-
-    useEffect(() => {
-        if (isLargerThanLg) {
-            setOpened(false);
-        }
-    }, [isLargerThanLg]);
 
     return (
         <>
@@ -254,7 +248,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 <DrawerOverlay />
                 <DrawerContent w="200px" maxW="200px" bg="sider.background">
                     <Box display="flex" justifyContent="center" p={2}>
-                        <RenderToTitle collapsed={collapsed} />
+                        <RenderToTitle collapsed={false} />
                     </Box>
                     <VStack
                         mt={2}
