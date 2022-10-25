@@ -4,7 +4,6 @@ import cn from "clsx";
 import Link from "next/link";
 import { LineItem } from "@medusajs/medusa";
 
-import { Avatar } from "@components/common";
 import { useUI } from "@lib/context";
 import { Heart, Bag, Menu, User } from "@components/icons";
 import { CustomerMenuContent } from "./CustomerMenuContent";
