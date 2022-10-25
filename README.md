@@ -1,3 +1,5 @@
+<br/>
+
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
   <img src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"   style="width:250px;" align="center" />
@@ -38,11 +40,11 @@
 
 </div>
 
-<div align="center" style="margin: 30px;">
-  <a href="https://refine.dev/">
-      <img src="https://raw.githubusercontent.com/refinedev/refine/master/documentation/static/img/refine-promo-gif-v2.gif" style="width:688px;"/>
-  </a>
-</div>
+
+<br/>
+
+![diagram](https://user-images.githubusercontent.com/18739364/197812166-d355418d-2255-49e5-88b0-8aff96a5c7ac.png)
+
 
 
 ## What is refine?
