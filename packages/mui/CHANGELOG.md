@@ -1,5 +1,13 @@
 # @pankod/refine-mui
 
+## 3.54.0
+
+### Minor Changes
+
+-   [#2872](https://github.com/refinedev/refine/pull/2872) [`da3fc4a702`](https://github.com/refinedev/refine/commit/da3fc4a702b3ea50f7c1a2cc484fe6364fc3ddc0) Thanks [@TDP17](https://github.com/TDP17)! - Feat: Added ability to manage breadcrumb component globally via options
+
+    > **The option set in individual CRUD components takes priority over the global option**
+
 ## 3.53.0
 
 ### Minor Changes
