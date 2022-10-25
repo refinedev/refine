@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
     LoginPageProps,
     LoginFormTypes,
@@ -6,8 +6,24 @@ import {
     useLogin,
     useTranslate,
 } from "@pankod/refine-core";
-import { Box, BoxProps } from "@chakra-ui/react";
+import {
+    Box,
+    Heading,
+    BoxProps,
+    VStack,
+    Button,
+    Divider,
+    FormControl,
+    FormLabel,
+    Input,
+    Link as ChakraLink,
+    FormErrorMessage,
+    HStack,
+    Checkbox,
+} from "@chakra-ui/react";
+import { useForm } from "react-hook-form";
 
+import { layoutStyles, cardStyles } from "../styles";
 import { FormPropsType } from "../..";
 
 type LoginProps = LoginPageProps<BoxProps, BoxProps, FormPropsType>;
@@ -23,154 +39,147 @@ export const LoginPage: React.FC<LoginProps> = ({
     formProps,
 }) => {
     const { Link } = useRouterContext();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [remember, setRemember] = useState(false);
+    const {
+        handleSubmit,
+        register,
+        formState: { errors },
+    } = useForm<LoginFormTypes>();
 
     const translate = useTranslate();
 
     const { mutate: login } = useLogin<LoginFormTypes>();
 
-    const renderLink = (link: React.ReactNode, text?: string) => {
-        if (link) {
-            if (typeof link === "string") {
-                return <Link to={link}>{text}</Link>;
-            }
-            return link;
-        }
-        return null;
-    };
-
     const renderProviders = () => {
-        if (providers) {
-            return providers.map((provider) => (
-                <div
-                    key={provider.name}
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        marginBottom: "1rem",
-                    }}
-                >
-                    <button
-                        onClick={() =>
-                            login({
-                                providerName: provider.name,
-                            })
-                        }
-                        style={{
-                            display: "flex",
-                            alignItems: "center",
-                        }}
-                    >
-                        {provider?.icon}
-                        {provider.label ?? <label>{provider.label}</label>}
-                    </button>
-                </div>
-            ));
+        if (providers && providers.length > 0) {
+            return (
+                <>
+                    <VStack>
+                        {providers.map((provider) => (
+                            <Button
+                                key={provider.name}
+                                colorScheme="primary"
+                                width="full"
+                                leftIcon={<>{provider?.icon}</>}
+                                onClick={() =>
+                                    login({
+                                        providerName: provider.name,
+                                    })
+                                }
+                            >
+                                {provider.label ?? (
+                                    <label>{provider.label}</label>
+                                )}
+                            </Button>
+                        ))}
+                    </VStack>
+                    <Divider my="6" />
+                </>
+            );
         }
         return null;
     };
 
     const content = (
-        <Box {...contentProps}>
-            <h1 style={{ textAlign: "center" }}>
+        <Box style={cardStyles} {...contentProps}>
+            <Heading mb="8" textAlign="center" size="lg">
                 {translate("pages.login.title", "Sign in to your account")}
-            </h1>
+            </Heading>
             {renderProviders()}
-            <hr />
-            <form
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    login({ email, password, remember });
-                }}
-                {...formProps}
-            >
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        padding: 25,
-                    }}
-                >
-                    <label>
+            <form onSubmit={handleSubmit((data) => login(data))} {...formProps}>
+                <FormControl mb="3" isInvalid={!!errors?.email}>
+                    <FormLabel>
                         {translate("pages.login.fields.email", "Email")}
-                    </label>
-                    <input
-                        name="email"
+                    </FormLabel>
+                    <Input
+                        id="title"
                         type="text"
-                        size={20}
-                        autoCorrect="off"
-                        spellCheck={false}
-                        autoCapitalize="off"
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        {...register("email", {
+                            required: true,
+                            pattern: {
+                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                message: translate(
+                                    "pages.login.errors.validEmail",
+                                    "Invalid email address",
+                                ),
+                            },
+                        })}
                     />
-                    <label>
+                    <FormErrorMessage>
+                        {`${errors.email?.message}`}
+                    </FormErrorMessage>
+                </FormControl>
+
+                <FormControl mb="3" isInvalid={!!errors?.password}>
+                    <FormLabel>
                         {translate("pages.login.fields.password", "Password")}
-                    </label>
-                    <input
+                    </FormLabel>
+                    <Input
+                        id="title"
                         type="password"
-                        name="password"
-                        required
-                        size={20}
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        {...register("password", {
+                            required: true,
+                        })}
                     />
-                    {rememberMe ?? (
-                        <>
-                            <label>
-                                {translate(
-                                    "pages.login.buttons.rememberMe",
-                                    "Remember me",
-                                )}
-                                <input
-                                    name="remember"
-                                    type="checkbox"
-                                    size={20}
-                                    checked={remember}
-                                    value={remember.toString()}
-                                    onChange={() => {
-                                        setRemember(!remember);
-                                    }}
-                                />
-                            </label>
-                        </>
-                    )}
-                    <br />
-                    {forgotPasswordLink ??
-                        renderLink(
-                            "/forgot-password",
-                            translate(
-                                "pages.login.buttons.forgotPassword",
-                                "Forgot password?",
-                            ),
+                    <FormErrorMessage>
+                        {`${errors.password?.message}`}
+                    </FormErrorMessage>
+                </FormControl>
+
+                <Box mb="3">
+                    <HStack justifyContent="space-between">
+                        {rememberMe ?? (
+                            <Box>
+                                <Checkbox {...register("remember")}>
+                                    {translate(
+                                        "pages.login.buttons.rememberMe",
+                                        "Remember me",
+                                    )}
+                                </Checkbox>
+                            </Box>
                         )}
-                    <input
-                        type="submit"
-                        value={translate("pages.login.signin", "Sign in")}
-                    />
-                    {registerLink ?? (
+                        {forgotPasswordLink ?? (
+                            <ChakraLink
+                                as={Link}
+                                to="/forgot-password"
+                                color="primary.500"
+                            >
+                                {translate(
+                                    "pages.login.buttons.forgotPassword",
+                                    "Forgot password?",
+                                )}
+                            </ChakraLink>
+                        )}
+                    </HStack>
+                </Box>
+
+                <Button mb="3" type="submit" width="full" colorScheme="primary">
+                    {translate("pages.login.signin", "Sign in")}
+                </Button>
+
+                {registerLink ?? (
+                    <Box>
                         <span>
                             {translate(
                                 "pages.login.buttons.noAccount",
                                 "Don’t have an account?",
-                            )}{" "}
-                            {renderLink(
-                                "/register",
-                                translate("pages.login.register", "Sign up"),
                             )}
                         </span>
-                    )}
-                </div>
+                        <ChakraLink
+                            color="primary.500"
+                            ml="1"
+                            as={Link}
+                            to="/register"
+                        >
+                            {translate("pages.login.register", "Sign up")}
+                        </ChakraLink>
+                    </Box>
+                )}
             </form>
         </Box>
     );
 
     return (
-        <Box {...wrapperProps}>
+        <Box style={layoutStyles} {...wrapperProps}>
             {renderContent ? renderContent(content) : content}
         </Box>
     );
