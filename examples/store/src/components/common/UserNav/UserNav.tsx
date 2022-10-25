@@ -6,7 +6,7 @@ import { LineItem } from "@medusajs/medusa";
 
 import { Avatar } from "@components/common";
 import { useUI } from "@lib/context";
-import { Heart, Bag, Menu } from "@components/icons";
+import { Heart, Bag, Menu, User } from "@components/icons";
 import { CustomerMenuContent } from "./CustomerMenuContent";
 import {
     Dropdown,
@@ -73,7 +73,7 @@ export const UserNav: React.FC<{
                                 className={s.avatarButton}
                                 onClick={() => (isSuccess ? null : openModal())}
                             >
-                                <Avatar />
+                                <User />
                             </button>
                         </DropdownTrigger>
                         <CustomerMenuContent />

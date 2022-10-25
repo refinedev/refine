@@ -1,14 +1,13 @@
 import { IconProps } from "src/types/icon";
 
 export const User: React.FC<IconProps> = ({
-    size = "16",
     color = "currentColor",
     ...props
 }) => {
     return (
         <svg
-            width={size}
-            height={size}
+            width="22"
+            height="24"
             viewBox="0 0 20 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

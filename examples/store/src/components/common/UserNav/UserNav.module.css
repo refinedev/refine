@@ -33,7 +33,7 @@
 }
 
 .avatarButton {
-  @apply flex justify-center rounded-full;
+  @apply flex justify-center border-primary hover:border-secondary focus:border-secondary h-8 w-8 rounded-full border-2 transition-colors ease-linear;
 }
 
 .mobileMenu {
