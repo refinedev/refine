@@ -14,7 +14,8 @@ Feat: Added ability to manage breadcrumb component globally via options
 or
 ```jsx
 <Refine
-options= {{
-   breadcrumb: <MyCustomBreadcrumbComponent /> // custom component
-}}
+    options= {{
+        breadcrumb: <MyCustomBreadcrumbComponent /> // custom component
+    }}
+/>
 ```
