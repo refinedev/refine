@@ -6,8 +6,20 @@ import {
     ForgotPasswordFormTypes,
     ForgotPasswordPageProps,
 } from "@pankod/refine-core";
-import { Box, BoxProps } from "@chakra-ui/react";
+import {
+    Box,
+    BoxProps,
+    Button,
+    FormControl,
+    FormErrorMessage,
+    FormLabel,
+    Heading,
+    Input,
+    Link as ChakraLink,
+} from "@chakra-ui/react";
+import { useForm } from "react-hook-form";
 
+import { layoutStyles, cardStyles } from "../styles";
 import { FormPropsType } from "../..";
 
 type ForgotPasswordProps = ForgotPasswordPageProps<
@@ -25,89 +37,83 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
 }) => {
     const translate = useTranslate();
     const { Link } = useRouterContext();
-
-    const [email, setEmail] = useState("");
-
-    const { mutate: forgotPassword, isLoading } =
-        useForgotPassword<ForgotPasswordFormTypes>();
-
-    const renderLink = (link: React.ReactNode, text?: string) => {
-        if (link) {
-            if (typeof link === "string") {
-                return <Link to={link}>{text}</Link>;
-            }
-            return link;
-        }
-        return null;
-    };
+    const {
+        handleSubmit,
+        register,
+        formState: { errors },
+    } = useForm<ForgotPasswordFormTypes>();
+    const { mutate } = useForgotPassword<ForgotPasswordFormTypes>();
 
     const content = (
-        <Box {...contentProps}>
-            <h1 style={{ textAlign: "center" }}>
+        <Box style={cardStyles} {...contentProps}>
+            <Heading mb="8" textAlign="center" size="lg">
                 {translate(
                     "pages.forgotPassword.title",
                     "Forgot your password?",
                 )}
-            </h1>
-            <hr />
+            </Heading>
+
             <form
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    forgotPassword({ email });
-                }}
+                onSubmit={handleSubmit((data) => mutate(data))}
                 {...formProps}
             >
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        padding: 25,
-                    }}
-                >
-                    <label>
+                <FormControl mb="3" isInvalid={!!errors?.email}>
+                    <FormLabel>
                         {translate(
                             "pages.forgotPassword.fields.email",
                             "Email",
                         )}
-                    </label>
-                    <input
-                        name="email"
-                        type="mail"
-                        autoCorrect="off"
-                        spellCheck={false}
-                        autoCapitalize="off"
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                    </FormLabel>
+                    <Input
+                        id="title"
+                        type="text"
+                        {...register("email", {
+                            required: true,
+                            pattern: {
+                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                message: translate(
+                                    "pages.login.errors.validEmail",
+                                    "Invalid email address",
+                                ),
+                            },
+                        })}
                     />
-                    <input
-                        type="submit"
-                        disabled={isLoading}
-                        value={translate(
-                            "pages.forgotPassword.buttons.submit",
-                            "Send reset instructions",
-                        )}
-                    />
-                    <br />
-                    {loginLink ?? (
+                    <FormErrorMessage>
+                        {`${errors.email?.message}`}
+                    </FormErrorMessage>
+                </FormControl>
+
+                {loginLink ?? (
+                    <Box mb="3" display="flex" justifyContent="flex-end">
                         <span>
                             {translate(
                                 "pages.register.buttons.haveAccount",
-                                "Have an account? ",
-                            )}{" "}
-                            {renderLink(
-                                "/login",
-                                translate("pages.login.signin", "Sign in"),
+                                "Have an account?",
                             )}
                         </span>
+                        <ChakraLink
+                            color="primary.500"
+                            ml="1"
+                            as={Link}
+                            to="/login"
+                        >
+                            {translate("pages.login.signin", "Sign in")}
+                        </ChakraLink>
+                    </Box>
+                )}
+
+                <Button mb="3" type="submit" width="full" colorScheme="primary">
+                    {translate(
+                        "pages.forgotPassword.buttons.submit",
+                        "Send reset instructions",
                     )}
-                </div>
+                </Button>
             </form>
         </Box>
     );
 
     return (
-        <Box {...wrapperProps}>
+        <Box style={layoutStyles} {...wrapperProps}>
             {renderContent ? renderContent(content) : content}
         </Box>
     );
