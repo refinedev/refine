@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { HStack, Button, Box, ButtonProps } from "@chakra-ui/react";
+import { HStack, Button, Box } from "@chakra-ui/react";
 import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
 import { usePagination } from "@pankod/refine-chakra-ui";
 
@@ -19,10 +19,6 @@ export const Pagination: FC<PaginationProps> = ({
         pageCount,
     });
 
-    const paginationCommonProps: ButtonProps = {
-        size: "sm",
-        variant: "outline",
-    };
     return (
         <Box display="flex" justifyContent="flex-end">
             <HStack my="3" spacing="1">
@@ -30,20 +26,20 @@ export const Pagination: FC<PaginationProps> = ({
                     <Button
                         onClick={() => setCurrent(current - 1)}
                         disabled={!pagination?.prev}
-                        {...paginationCommonProps}
+                        variant="outline"
                     >
                         <IconChevronLeft size="18" />
                     </Button>
                 )}
 
                 {pagination?.items.map((page) => {
-                    if (typeof page === "string") return <span>...</span>;
+                    if (typeof page === "string")
+                        return <span key={page}>...</span>;
 
                     return (
                         <Button
-                            onClick={() => setCurrent(page)}
                             key={page}
-                            {...paginationCommonProps}
+                            onClick={() => setCurrent(page)}
                             variant={page === current ? "solid" : "outline"}
                         >
                             {page}
@@ -53,7 +49,7 @@ export const Pagination: FC<PaginationProps> = ({
                 {pagination?.next && (
                     <Button
                         onClick={() => setCurrent(current + 1)}
-                        {...paginationCommonProps}
+                        variant="outline"
                     >
                         <IconChevronRight size="18" />
                     </Button>
