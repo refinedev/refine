@@ -14,7 +14,7 @@ const NewsletterCta = () => {
     const onCloseClickHandler = () => {
         setVisible(false);
         setCookie("false", {
-            days: 15,
+            days: 7,
         });
     };
 
