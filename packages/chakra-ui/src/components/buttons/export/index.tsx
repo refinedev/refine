@@ -37,13 +37,13 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
             data-testid={RefineButtonTestIds.ExportButton}
             {...rest}
         >
-            <IconFileExport size={18} {...svgIconProps} />
+            <IconFileExport size={20} {...svgIconProps} />
         </IconButton>
     ) : (
         <Button
             variant="outline"
             isLoading={loading}
-            leftIcon={<IconFileExport size={18} {...svgIconProps} />}
+            leftIcon={<IconFileExport size={20} {...svgIconProps} />}
             data-testid={RefineButtonTestIds.ExportButton}
             {...rest}
         >

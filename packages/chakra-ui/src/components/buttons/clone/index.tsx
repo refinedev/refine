@@ -88,13 +88,13 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
                     data-testid={RefineButtonTestIds.CloneButton}
                     {...rest}
                 >
-                    <IconSquarePlus size={18} {...svgIconProps} />
+                    <IconSquarePlus size={20} {...svgIconProps} />
                 </IconButton>
             ) : (
                 <Button
                     variant="outline"
                     disabled={data?.can === false}
-                    leftIcon={<IconSquarePlus size={18} {...svgIconProps} />}
+                    leftIcon={<IconSquarePlus size={20} {...svgIconProps} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.CloneButton}
                     {...rest}

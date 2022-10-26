@@ -114,7 +114,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                         data-testid={RefineButtonTestIds.DeleteButton}
                         {...rest}
                     >
-                        <IconTrash size={18} {...svgIconProps} />
+                        <IconTrash size={20} {...svgIconProps} />
                     </IconButton>
                 ) : (
                     <Button
@@ -123,7 +123,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                         onClick={() => setOpened((o) => !o)}
                         disabled={isLoading || data?.can === false}
                         isLoading={id === variables?.id && isLoading}
-                        leftIcon={<IconTrash size={18} {...svgIconProps} />}
+                        leftIcon={<IconTrash size={20} {...svgIconProps} />}
                         data-testid={RefineButtonTestIds.DeleteButton}
                         {...rest}
                     >

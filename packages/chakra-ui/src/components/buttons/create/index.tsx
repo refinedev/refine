@@ -81,13 +81,13 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                     data-testid={RefineButtonTestIds.CreateButton}
                     {...rest}
                 >
-                    <IconSquarePlus size={18} {...svgIconProps} />
+                    <IconSquarePlus size={20} {...svgIconProps} />
                 </IconButton>
             ) : (
                 <Button
                     variant="outline"
                     disabled={data?.can === false}
-                    leftIcon={<IconSquarePlus size={18} />}
+                    leftIcon={<IconSquarePlus size={20} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.CreateButton}
                     {...rest}

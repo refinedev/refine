@@ -95,13 +95,13 @@ export const ListButton: React.FC<ListButtonProps> = ({
                     data-testid={RefineButtonTestIds.ListButton}
                     {...rest}
                 >
-                    <IconList size={18} {...svgIconProps} />
+                    <IconList size={20} {...svgIconProps} />
                 </IconButton>
             ) : (
                 <Button
                     variant="outline"
                     disabled={data?.can === false}
-                    leftIcon={<IconList size={18} {...svgIconProps} />}
+                    leftIcon={<IconList size={20} {...svgIconProps} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.ListButton}
                     {...rest}

@@ -42,13 +42,13 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
                     data-testid={RefineButtonTestIds.ImportButton}
                     {...rest}
                 >
-                    <IconFileImport size={18} {...svgIconProps} />
+                    <IconFileImport size={20} {...svgIconProps} />
                 </IconButton>
             ) : (
                 <Button
                     variant="outline"
                     component="span"
-                    leftIcon={<IconFileImport size={18} {...svgIconProps} />}
+                    leftIcon={<IconFileImport size={20} {...svgIconProps} />}
                     isLoading={loading}
                     data-testid={RefineButtonTestIds.ImportButton}
                     {...rest}

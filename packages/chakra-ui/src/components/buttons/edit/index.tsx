@@ -88,13 +88,13 @@ export const EditButton: React.FC<EditButtonProps> = ({
                     data-testid={RefineButtonTestIds.EditButton}
                     {...rest}
                 >
-                    <IconPencil size={18} {...svgIconProps} />
+                    <IconPencil size={20} {...svgIconProps} />
                 </IconButton>
             ) : (
                 <Button
                     variant="outline"
                     disabled={data?.can === false}
-                    leftIcon={<IconPencil size={18} {...svgIconProps} />}
+                    leftIcon={<IconPencil size={20} {...svgIconProps} />}
                     title={disabledTitle()}
                     data-testid={RefineButtonTestIds.EditButton}
                     {...rest}

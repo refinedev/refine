@@ -33,7 +33,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
             {showHome && hasDashboard && (
                 <ChakraBreadcrumbItem>
                     <Link to="/">
-                        <IconHome size={18} />
+                        <IconHome size={20} />
                     </Link>
                 </ChakraBreadcrumbItem>
             )}
