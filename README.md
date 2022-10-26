@@ -41,10 +41,9 @@
 </div>
 
 <br/>
-
 <a href="https://refine.dev/">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/1110414/197966418-ba6ca0f2-6ec3-47de-b904-3bff4ad7f67b.png">
+  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/1110414/197984957-639630c1-03e9-4e18-9a57-63de81124fbd.png">
   <img alt="how-works-refine" src="https://user-images.githubusercontent.com/1110414/197965247-f91f4a0c-f901-4775-b072-abfa736b6e67.png">
 </picture>
 </a>
