@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import {
     useNavigation,
@@ -7,6 +7,7 @@ import {
     useTranslate,
     userFriendlyResourceName,
     ResourceRouterParams,
+    useRefineContext,
 } from "@pankod/refine-core";
 import { RefineCrudCreateProps } from "@pankod/refine-ui-types";
 
@@ -76,7 +77,7 @@ export const Create: React.FC<CreateProps> = ({
     cardHeaderProps,
     cardContentProps,
     cardActionsProps,
-    breadcrumb = <Breadcrumb />,
+    breadcrumb: breadcrumbFromProps,
     wrapperProps,
     headerProps,
     contentProps,
@@ -99,6 +100,19 @@ export const Create: React.FC<CreateProps> = ({
 
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
 
+    const { options } = useRefineContext();
+    const breadcrumb =
+        typeof breadcrumbFromProps === "undefined"
+            ? options?.breadcrumb
+            : breadcrumbFromProps;
+
+    const breadcrumbComponent =
+        typeof breadcrumb !== "undefined" ? (
+            <>{breadcrumb}</> ?? undefined
+        ) : (
+            <Breadcrumb />
+        );
+
     const defaultFooterButtons = (
         <SaveButton
             {...(isLoading ? { disabled: true } : {})}
@@ -108,7 +122,7 @@ export const Create: React.FC<CreateProps> = ({
 
     return (
         <Card {...(cardProps ?? {})} {...(wrapperProps ?? {})}>
-            {breadcrumb}
+            {breadcrumbComponent}
             <CardHeader
                 sx={{ display: "flex", flexWrap: "wrap" }}
                 title={

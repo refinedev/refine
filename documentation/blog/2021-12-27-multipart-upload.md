@@ -132,24 +132,11 @@ The requests we created to send files by JavaScript will now be sent to our loca
 </div>
 <br />
 
-## Are You Looking React Web Framework?
-A React-based framework for building internal tools, rapidly. **refine** offers lots of out-of-the box functionality for rapid development, without compromising extreme customizability. Use-cases include, but are not limited to admin panels, B2B applications and dashboards.
+---
 
-⚙️ Zero-configuration: One-line setup with superplate. It takes less than a minute to start a project.
+<PromotionBanner title="Does your CRUD app need server state management?" image="/img/generic_banner.png" />
 
-📦 Out-of-the-box : Routing, networking, authentication, state management, i18n and UI.
-
-🔌 Backend Agnostic : Connects to any custom backend. Built-in support for REST API, Strapi, NestJs CRUD, Hasura, Nhost, Airtable, Medusa, Supabase, Appwrite and Altogic.
-
-📝 Native Typescript Core : You can always opt-out for plain JavaScript.
-
-🔘 Headless : Works with any UI framework
-
-🐜 Enterprise UI : Works seamlessly with Ant Design System. (Support for multiple UI frameworks is on the Roadmap)
-
-📝 Boilerplate-free Code : Keeps your codebase clean and readable.
-
-[Refer to the **refine** documentation for more information. →](https://refine.dev/docs/getting-started/overview/) 
+---
 ## How to Multipart Upload with Refine?
 The Multipart file upload process with **refine** is very simple. How to use it is explained step by step in the guide and example. 
 

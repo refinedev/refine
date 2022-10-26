@@ -120,7 +120,11 @@ export const API_URL = "https://api.strapi-v4.refine.dev";
 
 
 
+---
 
+<PromotionBanner title="Tired of looking for the best template for your B2B app" image="/img/mui_banner.png" />
+
+---
 
 ## CRUD operations
 
@@ -549,6 +553,12 @@ Try it on the browser and see if you can create new posts from scratch.
 
 <br/>
 
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
 
 ### Editing a record
 
@@ -1054,43 +1064,3 @@ refine is an open source tool that rapidly and flexibly develops for CRUD admin 
 
 [Refer to official refine page for more information &#8594](https://refine.dev/)
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
-</a>
-</div>
-  
-  ## Build your React-based CRUD applications without constraints
-
-Low-code React frameworks are great for gaining development speed but they often fall short of flexibility if you need extensive styling and customization for your project.
-
-Check out [refine](https://github.com/refinedev/refine), if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
-
-<div>
-<a href="https://github.com/refinedev/refine">
-    <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
-</a>
-</div>
-
-<br/>
-
-**refine** is a React-based framework for building CRUD applications **without constraints.**
-It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
-
-**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
-
-Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials and example projects.
-
-## Live StackBlitz Example
-
-Username: demo@refine.dev
-
-Password: demodemo
-
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/blog/material-ui/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
-     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
-     title="refine-material-ui-example"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-></iframe>

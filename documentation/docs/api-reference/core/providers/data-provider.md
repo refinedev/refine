@@ -73,14 +73,14 @@ const dataProvider = {
 <br/>
 
 :::important
-**refine** consumes this methods using [data hooks](/api-reference/core/hooks/data/useCreate.md).
+**refine** consumes these methods using [data hooks](/api-reference/core/hooks/data/useCreate.md).
 
-Data hooks are used to operate CRUD actions like creating a new record, listing a resource or deleting a record etc..
+Data hooks are used to operate CRUD actions like creating a new record, listing a resource or deleting a record, etc.
 
 :::
 
 :::note
-Data hooks uses [React Query](https://react-query.tanstack.com/) to manage data fetching. React Query handles important concerns like caching, invalidation, loading states etc..
+Data hooks use [React Query](https://react-query.tanstack.com/) to manage data fetching. React Query handles important concerns like caching, invalidation, loading states, etc.
 
 :::
 
