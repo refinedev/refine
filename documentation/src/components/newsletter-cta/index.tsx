@@ -32,7 +32,7 @@ const NewsletterCta = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="fixed bottom-4 right-4 z-50 flex flex-col items-center w-[312px] lg:w-[384px] rounded-2xl shadow-modal bg-white"
+                    className="fixed mx-auto right-0 left-0 bottom-4 sm:mx-0 sm:left-[unset] sm:right-4 z-50 flex flex-col items-center w-[312px] lg:w-[384px] rounded-2xl shadow-modal bg-white "
                 >
                     <button
                         className="absolute text-white bg-transparent border-none cursor-pointer top-2 right-2 hover:scale-110"
@@ -43,12 +43,12 @@ const NewsletterCta = () => {
 
                     <img
                         srcSet="
-                                /img/newsletter-logo2x.jpg 1920w,
-                                /img/newsletter-logo.jpg 1200w"
+                        /img/newsletter-logo2x.jpg 1920w,
+                        /img/newsletter-logo.jpg 1200w"
                         src="/img/newsletter-logo.jpg"
                         sizes="100vw"
                         alt="Refine app screenshot"
-                        className="bg-[#5D26D3] block object-cover w-full rounded-tl-2xl rounded-tr-2xl"
+                        className="bg-[#5D26D3] min-h-[104px] lg:min-h-[128px] block object-cover w-full rounded-tl-2xl rounded-tr-2xl"
                     />
 
                     <section className="w-[280px] lg:w-[320px] font-montserrat pt-3 pb-4 lg:pt-8 lg:pb-8">
