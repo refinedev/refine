@@ -72,7 +72,7 @@ export const UserNav: React.FC<{
                                 className={s.avatarButton}
                                 onClick={() => (isSuccess ? null : openModal())}
                             >
-                                <User />
+                                <User size={24} />
                             </button>
                         </DropdownTrigger>
                         <CustomerMenuContent />
