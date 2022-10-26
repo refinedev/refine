@@ -3,7 +3,7 @@ import {
     ChakraProvider,
     ErrorComponent,
     Layout,
-    LightTheme,
+    refineTheme,
     ReadyPage,
 } from "@pankod/refine-chakra-ui";
 import dataProvider from "@pankod/refine-simple-rest";
@@ -17,7 +17,7 @@ const DashboardPage = () => {
 
 const App: React.FC = () => {
     return (
-        <ChakraProvider theme={LightTheme}>
+        <ChakraProvider theme={refineTheme}>
             <Refine
                 DashboardPage={DashboardPage}
                 routerProvider={routerProvider}

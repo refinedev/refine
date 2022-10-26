@@ -5,7 +5,7 @@ import {
     Layout,
     ErrorComponent,
     ReadyPage,
-    LightTheme,
+    refineTheme,
 } from "@pankod/refine-chakra-ui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -75,7 +75,7 @@ const App: React.FC = () => {
     };
 
     return (
-        <ChakraProvider theme={LightTheme}>
+        <ChakraProvider theme={refineTheme}>
             <Refine
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 authProvider={authProvider}
