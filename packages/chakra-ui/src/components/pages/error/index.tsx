@@ -64,35 +64,18 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
 
     return (
         <Box
-            sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                textAlign: "center",
-                minHeight: "100vh",
-                "@media (min-width: 755px)": {
-                    marginTop: "-150px",
-                },
-            }}
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            minH="100vh"
+            mt={{ base: "0", md: "-150px" }}
         >
-            <Heading
-                sx={{
-                    textAlign: "center",
-                    fontWeight: 900,
-                    fontSize: 220,
-                    lineHeight: 1,
-                }}
-            >
+            <Heading fontWeight={900} fontSize="220" color="gray.600">
                 404
             </Heading>
-            <Box justifyContent="center" sx={{ justifyContent: "center" }}>
-                <Text
-                    color="dimmed"
-                    size="lg"
-                    align="center"
-                    sx={{ maxWidth: 500 }}
-                >
+            <Box display="flex" alignItems="center" justifyContent="center">
+                <Text color="gray.600" fontSize="xl">
                     {translate(
                         "pages.error.404",
                         "Sorry, the page you visited does not exist.",
@@ -102,6 +85,7 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
                     <Tooltip openDelay={0} label={errorMessage}>
                         <IconButton
                             aria-label="info"
+                            color="gray.600"
                             data-testid="error-component-tooltip"
                         >
                             <IconInfoCircle />
@@ -109,7 +93,7 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
                     </Tooltip>
                 )}
             </Box>
-            <Button variant="subtle" size="md" onClick={() => push("/")}>
+            <Button mt={6} colorScheme="green" onClick={() => push("/")}>
                 {translate("pages.error.backHome", "Back Home")}
             </Button>
         </Box>
