@@ -128,7 +128,7 @@ root.render(
 
 
 ## Override login page
-First, we need to override the refine login page. In this way, we will redirect it to the Auth0 login page. We create a `login.tsx` file in the `/src` folder.
+First, we need to override the refine login page. In this way, we will redirect it to the Azure AD login page. We create a `login.tsx` file in the `/src` folder.
 
 ```tsx title="src/login.tsx"
 import React from "react";
