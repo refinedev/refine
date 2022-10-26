@@ -99,14 +99,17 @@ export const PostList: React.FC = () => {
                         <HStack>
                             <ShowButton
                                 hideText
+                                size="sm"
                                 recordItemId={getValue() as number}
                             />
                             <EditButton
                                 hideText
+                                size="sm"
                                 recordItemId={getValue() as number}
                             />
                             <DeleteButton
                                 hideText
+                                size="sm"
                                 recordItemId={getValue() as number}
                             />
                         </HStack>

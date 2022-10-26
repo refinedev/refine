@@ -118,6 +118,7 @@ export const PostList: React.FC = () => {
                         <HStack>
                             <EditButton
                                 hideText
+                                size="sm"
                                 onClick={() =>
                                     showEditDrawer(getValue() as number)
                                 }

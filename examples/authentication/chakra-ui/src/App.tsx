@@ -11,7 +11,7 @@ import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 import { IconBrandGoogle, IconBrandGithub } from "@tabler/icons";
 
-import { PostCreate, PostEdit, PostList } from "./pages";
+import { PostCreate, PostEdit, PostList, PostShow } from "./pages";
 
 const App: React.FC = () => {
     const authProvider: AuthProvider = {
@@ -135,6 +135,7 @@ const App: React.FC = () => {
                     {
                         name: "posts",
                         list: PostList,
+                        show: PostShow,
                         edit: PostEdit,
                         create: PostCreate,
                     },

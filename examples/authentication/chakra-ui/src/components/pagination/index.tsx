@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { HStack, Button, Box } from "@chakra-ui/react";
 import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
-import { usePagination } from "@pankod/refine-chakra-ui";
+import { IconButton, usePagination } from "@pankod/refine-chakra-ui";
 
 type PaginationProps = {
     current: number;
@@ -23,13 +23,14 @@ export const Pagination: FC<PaginationProps> = ({
         <Box display="flex" justifyContent="flex-end">
             <HStack my="3" spacing="1">
                 {pagination?.prev && (
-                    <Button
+                    <IconButton
+                        aria-label="previous page"
                         onClick={() => setCurrent(current - 1)}
                         disabled={!pagination?.prev}
                         variant="outline"
                     >
                         <IconChevronLeft size="18" />
-                    </Button>
+                    </IconButton>
                 )}
 
                 {pagination?.items.map((page) => {
@@ -47,12 +48,13 @@ export const Pagination: FC<PaginationProps> = ({
                     );
                 })}
                 {pagination?.next && (
-                    <Button
+                    <IconButton
+                        aria-label="next page"
                         onClick={() => setCurrent(current + 1)}
                         variant="outline"
                     >
                         <IconChevronRight size="18" />
-                    </Button>
+                    </IconButton>
                 )}
             </HStack>
         </Box>

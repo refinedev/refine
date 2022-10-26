@@ -8,6 +8,12 @@ import {
 } from "@pankod/refine-chakra-ui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
+import {
+    IconAppWindow,
+    IconBrandMercedes,
+    IconBrandApple,
+    IconCurling,
+} from "@tabler/icons";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "./pages";
 
@@ -71,17 +77,21 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "foo",
+                        icon: <IconAppWindow size={20} />,
                     },
                     {
                         parentName: "foo",
                         name: "bar",
+                        icon: <IconBrandMercedes size={20} />,
                     },
                     {
                         parentName: "bar",
                         name: "baz",
+                        icon: <IconBrandApple size={20} />,
                     },
                     {
                         parentName: "baz",
+                        icon: <IconCurling size={20} />,
                         name: "posts",
                         list: PostList,
                         show: PostShow,
