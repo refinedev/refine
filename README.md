@@ -44,7 +44,7 @@
 
 <a href="https://refine.dev/">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="[./dark.png](https://user-images.githubusercontent.com/1110414/197965774-53917d5f-2f6c-43be-b0b2-79a0ca90e21f.png)">
+  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/1110414/197966418-ba6ca0f2-6ec3-47de-b904-3bff4ad7f67b.png">
   <img alt="how-works-refine" src="https://user-images.githubusercontent.com/1110414/197965247-f91f4a0c-f901-4775-b072-abfa736b6e67.png">
 </picture>
 </a>
