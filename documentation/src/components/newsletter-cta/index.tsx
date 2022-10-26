@@ -95,7 +95,7 @@ const NewsletterCta = () => {
                                     name="member[email]"
                                     id="member_email"
                                     type="email"
-                                    placeholder="example@refine.com"
+                                    placeholder="example@refine.dev"
                                     className="text-[#2A2A42] font-medium text-xs  w-full bg-transparent border-none outline-none"
                                     required
                                 />
