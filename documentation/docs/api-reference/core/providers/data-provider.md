@@ -73,9 +73,9 @@ const dataProvider = {
 <br/>
 
 :::important
-**refine** consumes this methods using [data hooks](/api-reference/core/hooks/data/useCreate.md).
+**refine** consumes these methods using [data hooks](/api-reference/core/hooks/data/useCreate.md).
 
-Data hooks are used to operate CRUD actions like creating a new record, listing a resource or deleting a record etc..
+Data hooks are used to operate CRUD actions like creating a new record, listing a resource or deleting a record, etc.
 
 :::
 
