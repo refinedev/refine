@@ -38,7 +38,7 @@ import {
 
 import { Title as DefaultTitle } from "../title";
 
-const defaultNavIcon = <IconList size={18} />;
+const defaultNavIcon = <IconList size={20} />;
 
 export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const [collapsed, setCollapsed] = useState(false);
@@ -97,11 +97,19 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                     >
                         <AccordionItem border="none">
                             <Tooltip label={label} {...commonTooltipProps}>
-                                <AccordionButton as="div" width="full">
+                                <AccordionButton
+                                    pl={6}
+                                    pr={4}
+                                    pt={3}
+                                    pb={3}
+                                    as="div"
+                                    width="full"
+                                >
                                     <Button
                                         width="full"
                                         variant="link"
                                         color="white"
+                                        fontWeight="normal"
                                         leftIcon={
                                             icon ?? (defaultNavIcon as any)
                                         }
@@ -112,7 +120,9 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                                         }
                                         _active={{
                                             color: "none",
-                                            fontWeight: "bold",
+                                            fontWeight: isParent
+                                                ? "normal"
+                                                : "bold",
                                         }}
                                         _hover={{ textDecoration: "none" }}
                                         isActive={isSelected}
@@ -157,11 +167,12 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                     justifyContent={
                         collapsed && !opened ? "center" : "flex-start"
                     }
-                    pl={4}
+                    pl={6}
                     pr={4}
-                    pt={2}
-                    pb={2}
-                    leftIcon={<IconDashboard size={18} />}
+                    pt={3}
+                    pb={3}
+                    fontWeight="normal"
+                    leftIcon={<IconDashboard size={20} />}
                     variant="link"
                     color="white"
                     isActive={selectedKey === "/"}
@@ -182,11 +193,12 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
             <Button
                 width="full"
                 justifyContent={collapsed && !opened ? "center" : "flex-start"}
-                pl={4}
+                pl={6}
                 pr={4}
-                pt={2}
-                pb={2}
-                leftIcon={<IconLogout size={18} />}
+                pt={3}
+                pb={3}
+                fontWeight="normal"
+                leftIcon={<IconLogout size={20} />}
                 variant="link"
                 _active={{ color: "none" }}
                 _hover={{ textDecoration: "none" }}
@@ -247,7 +259,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
             >
                 <DrawerOverlay />
                 <DrawerContent w="200px" maxW="200px" bg="sider.background">
-                    <Box display="flex" justifyContent="center" p={2}>
+                    <Box display="flex" justifyContent="center" py={4}>
                         <RenderToTitle collapsed={false} />
                     </Box>
                     <VStack
@@ -277,7 +289,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 flexDirection="column"
                 transition="width 200ms ease, min-width 200ms ease"
             >
-                <Box display="flex" justifyContent="center" p={2}>
+                <Box display="flex" justifyContent="center" py={4}>
                     <RenderToTitle collapsed={collapsed} />
                 </Box>
                 <VStack mt={2} color="white" alignItems="start" flexGrow={1}>
