@@ -70,7 +70,13 @@ export const List: React.FC<ListProps> = (props) => {
         : defaultHeaderButtons;
 
     return (
-        <Box bg="white" borderRadius="md" px="4" py="3" {...wrapperProps}>
+        <Box
+            bg="chakra-body-bg"
+            borderRadius="md"
+            px="4"
+            py="3"
+            {...wrapperProps}
+        >
             <Box
                 mb="3"
                 display="flex"

@@ -10,11 +10,12 @@ export const Header: React.FC<RefineLayoutHeaderProps> = () => {
 
     return shouldRenderHeader ? (
         <Box
-            bg="white"
-            p="2.5"
+            py="2"
+            px="4"
             display="flex"
             justifyContent="flex-end"
-            w="100%"
+            w="full"
+            bg="chakra-body-bg"
         >
             <HStack>
                 <Text size="sm" fontWeight="bold">

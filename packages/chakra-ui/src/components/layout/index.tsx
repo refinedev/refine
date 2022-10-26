@@ -1,6 +1,6 @@
 import React from "react";
 import { RefineLayoutLayoutProps } from "@pankod/refine-ui-types";
-import { Box } from "@chakra-ui/react";
+import { Box, useColorModeValue } from "@chakra-ui/react";
 
 import { Sider as DefaultSider } from "./sider";
 import { Header as DefaultHeader } from "./header";
@@ -15,8 +15,10 @@ export const Layout: React.FC<RefineLayoutLayoutProps> = ({
     const SiderToRender = Sider ?? DefaultSider;
     const HeaderToRender = Header ?? DefaultHeader;
 
+    const bg = useColorModeValue("gray.100", "gray.900");
+
     return (
-        <Box display="flex" bg="gray.100">
+        <Box display="flex" bg={bg}>
             <SiderToRender />
             <Box
                 display="flex"

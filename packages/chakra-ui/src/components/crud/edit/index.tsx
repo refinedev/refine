@@ -158,7 +158,7 @@ export const Edit: React.FC<EditProps> = (props) => {
     return (
         <Box
             position="relative"
-            bg="white"
+            bg="chakra-body-bg"
             borderRadius="md"
             px="4"
             py="3"
