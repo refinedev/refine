@@ -157,8 +157,8 @@ export const LoginPage: React.FC<LoginProps> = ({
                         {forgotPasswordLink ?? (
                             <ChakraLink
                                 as={Link}
+                                color="green"
                                 to="/forgot-password"
-                                color="primary.500"
                             >
                                 {translate(
                                     "pages.login.buttons.forgotPassword",
@@ -182,7 +182,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                             )}
                         </span>
                         <ChakraLink
-                            color="primary.500"
+                            color="green"
                             ml="1"
                             as={Link}
                             to="/register"

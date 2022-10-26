@@ -140,28 +140,23 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     </FormErrorMessage>
                 </FormControl>
 
-                <Button mb="3" type="submit" width="full" colorScheme="green">
-                    {translate("pages.register.buttons.submit", "Sign up")}
-                </Button>
-
                 {loginLink ?? (
-                    <Box>
+                    <Box display="flex" justifyContent="flex-end" mb="3">
                         <span>
                             {translate(
                                 "pages.login.buttons.haveAccount",
                                 "Have an account?",
                             )}
                         </span>
-                        <ChakraLink
-                            color="primary.500"
-                            ml="1"
-                            as={Link}
-                            to="/login"
-                        >
+                        <ChakraLink color="green" ml="1" as={Link} to="/login">
                             {translate("pages.login.signin", "Sign in")}
                         </ChakraLink>
                     </Box>
                 )}
+
+                <Button mb="3" type="submit" width="full" colorScheme="green">
+                    {translate("pages.register.buttons.submit", "Sign up")}
+                </Button>
             </form>
         </Box>
     );

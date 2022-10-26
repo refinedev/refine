@@ -101,12 +101,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
                                 "Have an account?",
                             )}
                         </span>
-                        <ChakraLink
-                            color="primary.500"
-                            ml="1"
-                            as={Link}
-                            to="/login"
-                        >
+                        <ChakraLink color="green" ml="1" as={Link} to="/login">
                             {translate("pages.login.signin", "Sign in")}
                         </ChakraLink>
                     </Box>
