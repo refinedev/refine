@@ -66,7 +66,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         {providers.map((provider) => (
                             <Button
                                 key={provider.name}
-                                colorScheme="primary"
+                                colorScheme="green"
                                 width="full"
                                 leftIcon={<>{provider?.icon}</>}
                                 onClick={() =>
@@ -169,7 +169,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                     </HStack>
                 </Box>
 
-                <Button mb="3" type="submit" width="full" colorScheme="primary">
+                <Button mb="3" type="submit" width="full" colorScheme="green">
                     {translate("pages.login.signin", "Sign in")}
                 </Button>
 

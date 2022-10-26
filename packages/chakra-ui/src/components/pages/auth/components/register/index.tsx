@@ -61,7 +61,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         {providers.map((provider) => (
                             <Button
                                 key={provider.name}
-                                colorScheme="primary"
+                                colorScheme="green"
                                 width="full"
                                 leftIcon={<>{provider?.icon}</>}
                                 onClick={() =>
@@ -140,7 +140,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     </FormErrorMessage>
                 </FormControl>
 
-                <Button mb="3" type="submit" width="full" colorScheme="primary">
+                <Button mb="3" type="submit" width="full" colorScheme="green">
                     {translate("pages.register.buttons.submit", "Sign up")}
                 </Button>
 
