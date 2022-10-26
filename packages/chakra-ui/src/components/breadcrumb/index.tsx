@@ -42,11 +42,11 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
                     <ChakraBreadcrumbItem key={label}>
                         {!hideIcons && icon}
                         {href ? (
-                            <BreadcrumbLink as={Link} to={href}>
+                            <BreadcrumbLink ml={2} as={Link} to={href}>
                                 {label}
                             </BreadcrumbLink>
                         ) : (
-                            <BreadcrumbLink>{label}</BreadcrumbLink>
+                            <BreadcrumbLink ml={2}>{label}</BreadcrumbLink>
                         )}
                     </ChakraBreadcrumbItem>
                 );
