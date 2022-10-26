@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "@docusaurus/Link";
 import { useBlogPost } from "@docusaurus/theme-common/internal";
 import { blogPostContainerID } from "@docusaurus/utils-common";
@@ -16,23 +16,9 @@ import {
 
 import { Tags } from "@site/src/components/blog";
 import { Date, ReadingTime, Spacer } from "@site/src/components/blog/common";
-import useScrollTracker from "@site/src/hooks/use-scroll-tracker";
-import useLocalStorage from "@site/src/hooks/use-localstorage";
 import NewsletterCta from "../../newsletter-cta";
 
 export const BlogPostPageView = ({ children }) => {
-    const { scrollY } = useScrollTracker([50]);
-    const [canShowNewsletterWidget, setCanShowNewsletterWidget] =
-        useLocalStorage("newsletter-popup-visible", true);
-
-    const [showNewsletterWidget, setShowNewsletterWidget] = useState(false);
-
-    useEffect(() => {
-        if (canShowNewsletterWidget === true && scrollY >= 50) {
-            setShowNewsletterWidget(true);
-        }
-    }, [scrollY]);
-
     const { metadata, isBlogPostPage } = useBlogPost();
     const {
         permalink,
@@ -117,13 +103,7 @@ export const BlogPostPageView = ({ children }) => {
                 <br />
                 <Tags />
             </div>
-            <NewsletterCta
-                visible={showNewsletterWidget}
-                onCloseClick={() => {
-                    setCanShowNewsletterWidget(true);
-                    setShowNewsletterWidget(false);
-                }}
-            />
+            <NewsletterCta />
         </BlogPostItemContainer>
     );
 };

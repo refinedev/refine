@@ -1,13 +1,29 @@
 import { AnimatePresence, motion } from "framer-motion";
-import React, { FC } from "react";
+import React, { useState, useEffect } from "react";
+import useScrollTracker from "../../hooks/use-scroll-tracker";
 import { CancelIcon } from "../landing/icons";
+import useCookie from "react-use-cookie";
 
-interface Props {
-    visible: boolean;
-    onCloseClick: () => void;
-}
+const NewsletterCta = () => {
+    const { scrollY } = useScrollTracker([50]);
 
-const NewsletterCta: FC<Props> = ({ visible, onCloseClick }) => {
+    const [cookie, setCookie] = useCookie("newsletter-popup-visible", "true");
+
+    const [visible, setVisible] = useState(false);
+
+    const onCloseClickHandler = () => {
+        setVisible(false);
+        setCookie("false", {
+            days: 15,
+        });
+    };
+
+    useEffect(() => {
+        if (scrollY >= 50 && cookie !== "false") {
+            setVisible(true);
+        }
+    }, [scrollY]);
+
     return (
         <AnimatePresence>
             {visible && (
@@ -20,7 +36,7 @@ const NewsletterCta: FC<Props> = ({ visible, onCloseClick }) => {
                 >
                     <button
                         className="absolute text-white bg-transparent border-none cursor-pointer top-2 right-2 hover:scale-110"
-                        onClick={onCloseClick}
+                        onClick={onCloseClickHandler}
                     >
                         <CancelIcon />
                     </button>
@@ -81,6 +97,7 @@ const NewsletterCta: FC<Props> = ({ visible, onCloseClick }) => {
                                     type="email"
                                     placeholder="example@refine.com"
                                     className="text-[#2A2A42] font-medium text-xs  w-full bg-transparent border-none outline-none"
+                                    required
                                 />
                             </div>
                             <button
@@ -89,7 +106,7 @@ const NewsletterCta: FC<Props> = ({ visible, onCloseClick }) => {
                                     background:
                                         "linear-gradient(265.27deg, #1890FF -1.58%, #47EBF5 90.77%, #47EBF5 90.77%)",
                                 }}
-                                className="mt-2 lg:mt-4 font-bold text-xs p-2 shadow-modal rounded-[4px] border-none"
+                                className="text-white mt-2 lg:mt-4 font-bold text-xs p-2 shadow-modal rounded-[4px] border-none"
                             >
                                 Subscribe
                             </button>
