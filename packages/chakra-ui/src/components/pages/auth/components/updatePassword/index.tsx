@@ -105,7 +105,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                     </FormErrorMessage>
                 </FormControl>
 
-                <Button mb="3" type="submit" width="full" colorScheme="primary">
+                <Button mb="3" type="submit" width="full" colorScheme="green">
                     {translate("pages.updatePassword.buttons.submit", "Update")}
                 </Button>
             </form>

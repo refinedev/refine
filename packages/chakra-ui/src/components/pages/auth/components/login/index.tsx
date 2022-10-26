@@ -66,7 +66,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         {providers.map((provider) => (
                             <Button
                                 key={provider.name}
-                                colorScheme="primary"
+                                colorScheme="green"
                                 width="full"
                                 leftIcon={<>{provider?.icon}</>}
                                 onClick={() =>
@@ -157,8 +157,8 @@ export const LoginPage: React.FC<LoginProps> = ({
                         {forgotPasswordLink ?? (
                             <ChakraLink
                                 as={Link}
+                                color="green"
                                 to="/forgot-password"
-                                color="primary.500"
                             >
                                 {translate(
                                     "pages.login.buttons.forgotPassword",
@@ -169,7 +169,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                     </HStack>
                 </Box>
 
-                <Button mb="3" type="submit" width="full" colorScheme="primary">
+                <Button mb="3" type="submit" width="full" colorScheme="green">
                     {translate("pages.login.signin", "Sign in")}
                 </Button>
 
@@ -182,7 +182,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                             )}
                         </span>
                         <ChakraLink
-                            color="primary.500"
+                            color="green"
                             ml="1"
                             as={Link}
                             to="/register"
