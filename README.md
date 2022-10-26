@@ -43,9 +43,8 @@
 
 <br/>
 
-
 <a href="https://refine.dev/">
-  <img src="https://user-images.githubusercontent.com/18739364/197813665-0b8dbdd4-6580-4c3b-9517-a7ec184608a0.png"  />
+  <img src="https://user-images.githubusercontent.com/1110414/197965247-f91f4a0c-f901-4775-b072-abfa736b6e67.png" />
 </a>
 
 
