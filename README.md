@@ -40,12 +40,15 @@
 
 </div>
 
-
 <br/>
 
 <a href="https://refine.dev/">
-  <img src="https://user-images.githubusercontent.com/1110414/197965247-f91f4a0c-f901-4775-b072-abfa736b6e67.png" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="[./dark.png](https://user-images.githubusercontent.com/1110414/197965774-53917d5f-2f6c-43be-b0b2-79a0ca90e21f.png)">
+  <img alt="how-works-refine" src="https://user-images.githubusercontent.com/1110414/197965247-f91f4a0c-f901-4775-b072-abfa736b6e67.png">
+</picture>
 </a>
+
 
 
 ## What is refine?
