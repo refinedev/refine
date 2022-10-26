@@ -27,8 +27,8 @@ const NewsletterCta: FC<Props> = ({ visible, onCloseClick }) => {
 
                     <img
                         srcSet="
-                    /img/newsletter-logo2x.jpg 1920w,
-                    /img/newsletter-logo.jpg 1200w"
+                                /img/newsletter-logo2x.jpg 1920w,
+                                /img/newsletter-logo.jpg 1200w"
                         src="/img/newsletter-logo.jpg"
                         sizes="100vw"
                         alt="Refine app screenshot"
@@ -48,7 +48,11 @@ const NewsletterCta: FC<Props> = ({ visible, onCloseClick }) => {
                         </div>
 
                         <form
-                            action="#"
+                            action="https://www.getrevue.co/profile/refine_dev/add_subscriber"
+                            method="post"
+                            id="revue-form"
+                            name="revue-form"
+                            target="_blank"
                             className="flex flex-col w-full mt-2 lg:mt-6"
                         >
                             <div className="flex gap-2 items-center w-full p-2 border border-[#EDEDEF] border-solid rounded-[4px]">
@@ -65,11 +69,15 @@ const NewsletterCta: FC<Props> = ({ visible, onCloseClick }) => {
                                     />
                                 </svg>
 
-                                <label htmlFor="email" className="sr-only">
+                                <label
+                                    htmlFor="member_email"
+                                    className="sr-only"
+                                >
                                     Email
                                 </label>
                                 <input
-                                    id="email-newsletter"
+                                    name="member[email]"
+                                    id="member_email"
                                     type="email"
                                     placeholder="example@refine.com"
                                     className="text-[#2A2A42] font-medium text-xs  w-full bg-transparent border-none outline-none"
