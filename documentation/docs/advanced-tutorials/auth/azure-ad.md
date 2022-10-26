@@ -1,6 +1,6 @@
 ---
-id: azure-ad-b2c
-title: Azure AD B2C Login
+id: azure-ad
+title: Azure AD Login
 ---
 
 # Azure Active Directory B2C (AAD B2C)
@@ -9,7 +9,12 @@ title: Azure AD B2C Login
 
 The Microsoft Authentication Library (MSAL) enables developers to acquire security tokens from the Microsoft identity platform to authenticate users and access secured web APIs. It can be used to provide secure access to Microsoft Graph, other Microsoft APIs, third-party web APIs, or your own web API. MSAL supports many different application architectures and platforms including .NET, JavaScript, Java, Python, Android, and iOS.
 
-### We use Azure AD B2C in our example but authentication with Azure AD should be very similar.
+
+:::tip
+We use Azure AD B2C in our example but authentication with Azure AD should be very similar.
+:::
+
+### Installation
 
 We will be using the javascript version of msal library and a helper for react. You can find more about the msal library here: [docs](https://learn.microsoft.com/en-us/azure/active-directory/develop/msal-overview)
 
@@ -21,17 +26,52 @@ npm install @azure/msal-browser @azure/msal-react
 
 Detailed documentation for using msal with react can be found here: [docs](https://learn.microsoft.com/en-us/azure/active-directory/develop/single-page-app-quickstart?pivots=devlang-react)
 
-## Project Setup:
+## Configure the MsalProvider component
+We've create config file in `src/config.ts` folder. This file contains the configuration for the msal library. You can find more information about the configuration options here: [docs](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-js-initializing-client-applications)
 
-Make the changes to following files:
 
-index.tsx
+```ts title="src/config.ts"
+import { Configuration, LogLevel } from "@azure/msal-browser";
 
-```tsx title="index.tsx"
+export const msalConfig: Configuration = {
+    auth: {
+        clientId: "YOUR_CLIENT_ID", //`${process.env.REACT_APP_AZURE_AAD_CLIENT_ID}`,
+        authority: "YOUR_AUTHORITY", //`https://${process.env.REACT_APP_AZURE_AAD_TENANT_NAME}.b2clogin.com/${process.env.REACT_APP_AZURE_AAD_TENANT_NAME}.onmicrosoft.com/${process.env.REACT_APP_AZURE_AAD_POLICY_NAME}`,
+        knownAuthorities: ["YOUR_KNOWN_AUTHORITIES"], //[`${process.env.REACT_APP_AZURE_AAD_TENANT_NAME}.b2clogin.com`],
+        redirectUri: "http://localhost:3000/", // Replace appropriately
+        postLogoutRedirectUri: window.location.origin,
+    },
+    cache: {
+        cacheLocation: "sessionStorage", // This configures where your cache will be stored
+        storeAuthStateInCookie: false, // Set this to "true" if you are having issues on IE11 or Edge
+    },
+};
+
+// Add scopes here for ID token to be used at Microsoft identity platform endpoints.
+export const loginRequest = {
+    scopes: ["User.Read"]
+};
+
+export const tokenRequest = {
+    scopes: [...] // Replace ... with your custom scopes
+};
+
+
+// Add the endpoints here for Microsoft Graph API services you'd like to use.
+export const graphConfig = {
+    graphMeEndpoint: "ENTER_THE_GRAPH_ENDPOINT_HERE/v1.0/me"
+};
+```
+
+:::note
+We recommend to use environment variables for the configuration parameters.
+:::
+
+Wrap your root component with an `MsalProvider` that you can import from the SDK.
+
+```tsx title="src/index.tsx"
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import App, { TOKEN_KEY } from "./App";
 
 import {
     EventType,
@@ -41,6 +81,8 @@ import {
     SilentRequest,
 } from "@azure/msal-browser";
 import { MsalProvider } from "@azure/msal-react";
+
+import App, { TOKEN_KEY } from "./App";
 import { msalConfig, tokenRequest } from "./config";
 
 const msalInstance = new PublicClientApplication(msalConfig);
@@ -84,58 +126,67 @@ root.render(
 );
 ```
 
-config.tsx
 
-```typescript
-import { Configuration, LogLevel } from "@azure/msal-browser";
+## Override login page
+First, we need to override the refine login page. In this way, we will redirect it to the Auth0 login page. We create a `login.tsx` file in the `/src` folder.
 
-export const msalConfig: Configuration = {
-    auth: {
-        clientId: `${process.env.REACT_APP_AZURE_AAD_CLIENT_ID}`,
-        authority: `https://${process.env.REACT_APP_AZURE_AAD_TENANT_NAME}.b2clogin.com/${process.env.REACT_APP_AZURE_AAD_TENANT_NAME}.onmicrosoft.com/${process.env.REACT_APP_AZURE_AAD_POLICY_NAME}`,
-        knownAuthorities: [`${process.env.REACT_APP_AZURE_AAD_TENANT_NAME}.b2clogin.com`],
-        redirectUri: "http://localhost:3000/", // Replace appropriately
-        postLogoutRedirectUri: window.location.origin,
-    },
-    cache: {
-        cacheLocation: "sessionStorage", // This configures where your cache will be stored
-        storeAuthStateInCookie: false, // Set this to "true" if you are having issues on IE11 or Edge
-    },
+```tsx title="src/login.tsx"
+import React from "react";
+import { useLogin } from "@pankod/refine-core";
+import { AntdLayout, Button } from "@pankod/refine-antd";
+
+const LoginPage = () => {
+    const SignInButton = () => {
+        const { mutate: login } = useLogin();
+
+        return (
+            <Button
+                type="primary"
+                size="large"
+                block
+                onClick={() => login()}
+            >
+                Sign in
+            </Button>
+        );
+    };
+
+    return (
+        <AntdLayout
+            style={{
+                background: `radial-gradient(50% 50% at 50% 50%, #63386A 0%, #310438 100%)`,
+                backgroundSize: "cover",
+            }}
+        >
+            <div style={{ height: "100vh", display: "flex" }}>
+                <div style={{ maxWidth: "200px", margin: "auto" }}>
+                    <div style={{ marginBottom: "28px" }}>
+                        <img src="./refine.svg" alt="Refine" />
+                    </div>
+                    <SignInButton />
+                </div>
+            </div>
+        </AntdLayout>
+    );
+
 };
 
-// Add scopes here for ID token to be used at Microsoft identity platform endpoints.
-export const loginRequest = {
-    scopes: ["User.Read"]
-};
-
-export const tokenRequest = {
-    scopes: [...] // Replace ... with your custom scopes
-};
-
-
-// Add the endpoints here for Microsoft Graph API services you'd like to use.
-export const graphConfig = {
-    graphMeEndpoint: "Enter_the_Graph_Endpoint_Here/v1.0/me"
-};
+export default LoginPage;
 ```
+## Auth Provider
+In refine, authentication and authorization processes are performed with the auth provider. Let's write a provider for Azure AD.
 
-_Make sure the env vars are set correctly via a .env file or command line._
-
-app.tsx
-
-```tsx title="app.tsx"
-import { Refine } from "@pankod/refine-core";
+```tsx title="src/App.tsx"
+import { Refine, AuthProvider } from "@pankod/refine-core";
+import { Layout } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
-import { AuthProvider } from "@pankod/refine-core";
 import { useIsAuthenticated, useMsal } from "@azure/msal-react";
-import axios from "axios";
-import { AxiosRequestConfig } from "axios";
-
-import LoginPage from "./pages/auth";
 import { AccountInfo, SilentRequest } from "@azure/msal-browser";
+import axios, { AxiosRequestConfig } from "axios";
+
+import LoginPage from "./login";
 import { tokenRequest } from "./config";
-import { Layout } from "./components/layout";
 
 export const TOKEN_KEY = "refine-auth";
 
@@ -162,6 +213,8 @@ axiosInstance.interceptors.request.use(
 );
 
 const App: React.FC = () => {
+    const API_URL = "https://api.fake-rest.refine.dev";
+
     const isAuthenticated = useIsAuthenticated();
     const { instance, inProgress, accounts } = useMsal();
 
@@ -178,6 +231,7 @@ const App: React.FC = () => {
 
     const authProvider: AuthProvider = {
         login: async () => {
+            instance.loginRedirect(); // Pick the strategy you prefer i.e. redirect or popup
             return Promise.resolve(false);
         },
         register: async () => Promise.resolve(),
@@ -194,7 +248,6 @@ const App: React.FC = () => {
                     return Promise.reject();
                 }
             } catch (e) {
-                console.log("error", { e });
                 return Promise.reject();
             }
         },
@@ -208,74 +261,21 @@ const App: React.FC = () => {
         },
     };
 
-    const API_URL = `${process.env.REACT_APP_API_URL}`;
-
     return (
-        <>
-            <Refine
-                routerProvider={routerProvider}
-                dataProvider={dataProvider(API_URL, axiosInstance)}
-                authProvider={authProvider}
-                LoginPage={LoginPage}
-                Layout={Layout}
-                resources={[]}
-            />
-        </>
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider(API_URL, axiosInstance)}
+            authProvider={authProvider}
+            LoginPage={LoginPage}
+            Layout={Layout}
+            resources={[
+                {
+                    name: "posts",
+                }
+            ]}
+        />
     );
 };
 
 export default App;
 ```
-
-login.tsx
-
-```tsx title="login.tsx"
-import React from "react";
-import { SignInButton } from "../../widgets/auth/SignInButton";
-
-type Props = {};
-
-const LoginPage = (props: Props) => {
-    return (
-        <>
-            <div>Login</div>
-
-            <SignInButton />
-        </>
-    );
-};
-
-export default LoginPage;
-```
-
-SignInButton.tsx
-
-```tsx title="SignInButton.tsx"
-import { useMsal } from "@azure/msal-react";
-import { loginRequest } from "../../config";
-import { IPublicClientApplication } from "@azure/msal-browser";
-import { Button } from "@pankod/refine-mui";
-
-function handleLogin(instance: IPublicClientApplication) {
-    instance
-        .loginRedirect() // Pick the strategy you prefer i.e. redirect or popup
-        .catch((e) => {
-            console.error(e);
-        });
-}
-
-/**
- * Renders a button which, when selected, will redirect the page to the login prompt
- */
-export const SignInButton = () => {
-    const { instance } = useMsal();
-
-    return (
-        <Button className="ml-auto" onClick={() => handleLogin(instance)}>
-            Sign In
-        </Button>
-    );
-};
-```
-
-And that should be it.
