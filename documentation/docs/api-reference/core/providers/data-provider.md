@@ -12,8 +12,33 @@ A data provider is the place where a refine app communicates with an API.
 Data providers also act as adapters for refine making it possible to consume different API's and data services conveniently.
 A data provider makes **HTTP** requests and returns response data back using predefined methods.
 
-A data provider must include following methods:
+A data provider is an object that **must** include definitions of the following methods:
 
+[`create()`](#create)
+for creating a single item in a resource.  
+[`createMany()`](#createmany)
+for creating multiple items in a resource together.  
+[`deleteOne()`](#deleteone)
+for deleting a single item in a resource.  
+[`deleteMany()`](#deletemany)
+for deleting multiple items in a resource together.  
+[`getList()`](#getlist)
+for fetching a collection of a resource.  
+[`getMany()`](#getmany)
+for fetching multiple items in a resource together.  
+[`getOne()`](#getone)
+for fetching one item in a resource.  
+[`update()`](#update)
+for updating one item in a resource.  
+[`updateMany()`](#updatemany)
+for updating multiple items in a resource together.  
+[`getApiUrl()`]() for getting the API url.
+<br></br>
+Optionally, a data provider can have a custom method:  
+[`custom()`](#custom)for non-standard API endpoints.
+<br></br>
+An example data provider object has the following signature:
+  
 ```tsx
 const dataProvider = {
     create: ({ resource, variables, metaData }) => Promise,
