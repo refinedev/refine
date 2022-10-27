@@ -5,6 +5,7 @@ import {
     Layout,
     refineTheme,
     ReadyPage,
+    notificationProvider,
 } from "@pankod/refine-chakra-ui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -18,6 +19,7 @@ const App: React.FC = () => {
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                notificationProvider={notificationProvider()}
                 ReadyPage={ReadyPage}
                 catchAll={<ErrorComponent />}
                 Layout={Layout}
@@ -31,6 +33,7 @@ const App: React.FC = () => {
                         edit: PostEdit,
                     },
                 ]}
+                options={{ mutationMode: "undoable" }}
             />
         </ChakraProvider>
     );

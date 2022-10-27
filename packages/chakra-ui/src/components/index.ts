@@ -6,3 +6,4 @@ export * from "./crud";
 export * from "./buttons";
 export * from "./fields";
 export * from "./pages";
+export * from "./undoableNotification";
