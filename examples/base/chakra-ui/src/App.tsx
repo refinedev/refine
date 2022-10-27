@@ -5,6 +5,7 @@ import {
     Layout,
     refineTheme,
     ReadyPage,
+    notificationProvider,
 } from "@pankod/refine-chakra-ui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -26,6 +27,7 @@ const App: React.FC = () => {
         <ChakraProvider theme={refineTheme}>
             <Refine
                 DashboardPage={DashboardPage}
+                notificationProvider={notificationProvider()}
                 routerProvider={routerProvider}
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 Layout={Layout}

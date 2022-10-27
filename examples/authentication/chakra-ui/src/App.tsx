@@ -6,6 +6,7 @@ import {
     ErrorComponent,
     ReadyPage,
     refineTheme,
+    notificationProvider,
 } from "@pankod/refine-chakra-ui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -79,6 +80,7 @@ const App: React.FC = () => {
             <Refine
                 dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                 authProvider={authProvider}
+                notificationProvider={notificationProvider()}
                 routerProvider={{
                     ...routerProvider,
                     routes: [
