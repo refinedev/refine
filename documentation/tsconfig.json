@@ -3,7 +3,7 @@
     "include": ["src/"],
     "exclude": ["node_modules", "./plugins/docgen.js", "./plugins/docgen.ts"],
     "compilerOptions": {
-        "types": ["node", "@docusaurus/module-type-aliases"],
+        "types": ["node", "@docusaurus/module-type-aliases", "@types/gtag.js"],
         "resolveJsonModule": true
     }
 }
