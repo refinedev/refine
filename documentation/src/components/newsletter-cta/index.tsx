@@ -50,7 +50,7 @@ const NewsletterCta = () => {
                     className="shadow-modal fixed right-0 left-0 bottom-4 z-50 mx-auto flex w-[312px] flex-col items-center rounded-2xl bg-white sm:left-[unset] sm:right-4 sm:mx-0 lg:w-[384px] "
                 >
                     <button
-                        className="absolute top-2 right-2 cursor-pointer border-none bg-transparent text-white hover:scale-110"
+                        className="absolute text-white bg-transparent border-none cursor-pointer top-2 right-2 hover:scale-110"
                         onClick={onCloseClickHandler}
                     >
                         <CancelIcon />
@@ -58,8 +58,8 @@ const NewsletterCta = () => {
 
                     <img
                         srcSet="
-                        /img/newsletter-logo2x.jpg 1920w,
-                        /img/newsletter-logo.jpg 1200w"
+                        /img/newsletter-logo2x.jpg 2x,
+                        /img/newsletter-logo1x.jpg 1x"
                         src="/img/newsletter-logo.jpg"
                         sizes="100vw"
                         alt="Refine app screenshot"
@@ -86,7 +86,7 @@ const NewsletterCta = () => {
                             id="revue-form"
                             name="revue-form"
                             target="_blank"
-                            className="mt-2 flex w-full flex-col lg:mt-6"
+                            className="flex flex-col w-full mt-2 lg:mt-6"
                             onSubmit={() => {
                                 window?.gtag("event", "newsletter-subscribe", {
                                     event_category: "newsletter",
