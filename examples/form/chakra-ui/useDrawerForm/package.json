@@ -1,5 +1,5 @@
 {
-    "name": "chakra-ui-modal-form-example",
+    "name": "chakra-ui-use-drawer-form-example",
     "private": true,
     "scripts": {
         "start": "vite",
