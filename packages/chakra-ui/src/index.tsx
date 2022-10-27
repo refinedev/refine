@@ -23,7 +23,7 @@ export {
     AvatarGroup,
     Badge,
     Box,
-    Breadcrumb,
+    Breadcrumb as ChakraBreadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
     BreadcrumbSeparator,
