@@ -33,7 +33,6 @@ const App: React.FC = () => {
                         edit: PostEdit,
                     },
                 ]}
-                options={{ mutationMode: "undoable" }}
             />
         </ChakraProvider>
     );
