@@ -4,7 +4,22 @@ import useScrollTracker from "../../hooks/use-scroll-tracker";
 import { CancelIcon } from "../landing/icons";
 import useCookie from "react-use-cookie";
 
+const newsletterCTAs = [
+    {
+        title: "No Spam!",
+        description: `The team behind the <b>popular</b> React-based framework shares <b>hand-picked</b> resources and tutorials.`,
+        trackId: "no-spam",
+    },
+    {
+        title: "Hack it!",
+        description: `You'll get a weekly email from us with the latest and greatest front-end <b>trends</b> and <b>resources</b> so that you can stay on <b>top of your game!</b>`,
+        trackId: "hack-it",
+    },
+];
+
 const NewsletterCta = () => {
+    const randomNewsletterCTA =
+        newsletterCTAs[Math.floor(Math.random() * newsletterCTAs.length)];
     const { scrollY } = useScrollTracker([50]);
 
     const [cookie, setCookie] = useCookie("newsletter-popup-visible", "true");
@@ -32,10 +47,10 @@ const NewsletterCta = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="fixed mx-auto right-0 left-0 bottom-4 sm:mx-0 sm:left-[unset] sm:right-4 z-50 flex flex-col items-center w-[312px] lg:w-[384px] rounded-2xl shadow-modal bg-white "
+                    className="shadow-modal fixed right-0 left-0 bottom-4 z-50 mx-auto flex w-[312px] flex-col items-center rounded-2xl bg-white sm:left-[unset] sm:right-4 sm:mx-0 lg:w-[384px] "
                 >
                     <button
-                        className="absolute text-white bg-transparent border-none cursor-pointer top-2 right-2 hover:scale-110"
+                        className="absolute top-2 right-2 cursor-pointer border-none bg-transparent text-white hover:scale-110"
                         onClick={onCloseClickHandler}
                     >
                         <CancelIcon />
@@ -48,30 +63,38 @@ const NewsletterCta = () => {
                         src="/img/newsletter-logo.jpg"
                         sizes="100vw"
                         alt="Refine app screenshot"
-                        className="bg-[#5D26D3] min-h-[104px] lg:min-h-[128px] block object-cover w-full rounded-tl-2xl rounded-tr-2xl"
+                        className="block min-h-[104px] w-full rounded-tl-2xl rounded-tr-2xl bg-[#5D26D3] object-cover lg:min-h-[128px]"
                     />
 
-                    <section className="w-[280px] lg:w-[320px] font-montserrat pt-3 pb-4 lg:pt-8 lg:pb-8">
+                    <section className="font-montserrat w-[280px] pt-3 lg:w-[360px] lg:pt-4 lg:pb-2">
                         <div className="flex flex-col items-center text-center">
-                            <h2 className="font-bold text-xl uppercase text-[#1890FF] mb-0 lg:mb-4">
-                                Join our Newsletter
+                            <h2 className="mb-0 text-xl font-bold uppercase text-[#1890FF] lg:mb-4">
+                                {randomNewsletterCTA.title}
                             </h2>
-                            <p className="text-xs leading-[18px] font-medium tracking-[-0.01rem] mb-0 text-[#2A2A42]">
-                                Get started with our monthly newsletter for
-                                helpful tips on how to run your business
-                                smoothly.
-                            </p>
+                            <p
+                                className="mb-0 text-xs font-medium leading-[18px] tracking-[-0.01rem] text-[#2A2A42]"
+                                dangerouslySetInnerHTML={{
+                                    __html: randomNewsletterCTA.description,
+                                }}
+                            />
                         </div>
-
+                    </section>
+                    <section className="font-montserrat w-[280px] pb-4 lg:w-[320px] lg:pb-8">
                         <form
                             action="https://www.getrevue.co/profile/refine_dev/add_subscriber"
                             method="post"
                             id="revue-form"
                             name="revue-form"
                             target="_blank"
-                            className="flex flex-col w-full mt-2 lg:mt-6"
+                            className="mt-2 flex w-full flex-col lg:mt-6"
+                            onSubmit={() => {
+                                window?.gtag("event", "newsletter-subscribe", {
+                                    event_category: "newsletter",
+                                    value: randomNewsletterCTA.trackId,
+                                });
+                            }}
                         >
-                            <div className="flex gap-2 items-center w-full p-2 border border-[#EDEDEF] border-solid rounded-[4px]">
+                            <div className="flex w-full items-center gap-2 rounded-[4px] border border-solid border-[#EDEDEF] p-2">
                                 <svg
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +119,7 @@ const NewsletterCta = () => {
                                     id="member_email"
                                     type="email"
                                     placeholder="example@refine.dev"
-                                    className="text-[#2A2A42] font-medium text-xs  w-full bg-transparent border-none outline-none"
+                                    className="w-full border-none bg-transparent  text-xs font-medium text-[#2A2A42] outline-none"
                                     required
                                 />
                             </div>
@@ -106,9 +129,9 @@ const NewsletterCta = () => {
                                     background:
                                         "linear-gradient(265.27deg, #1890FF -1.58%, #47EBF5 90.77%, #47EBF5 90.77%)",
                                 }}
-                                className="text-white mt-2 lg:mt-4 font-bold text-xs p-2 shadow-modal rounded-[4px] border-none"
+                                className="shadow-modal mt-2 cursor-pointer rounded-[4px] border-none p-2 text-xs font-bold text-white lg:mt-4"
                             >
-                                Subscribe
+                                Subscribe now
                             </button>
                         </form>
                     </section>
