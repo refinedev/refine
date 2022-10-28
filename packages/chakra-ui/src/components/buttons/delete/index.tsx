@@ -101,7 +101,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     };
 
     return (
-        <Popover isOpen={opened}>
+        <Popover isOpen={opened} isLazy>
             <PopoverTrigger>
                 {hideText ? (
                     <IconButton
