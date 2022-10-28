@@ -13,11 +13,14 @@ import {
 import { IconButton, Button, ButtonProps } from "@chakra-ui/react";
 import { IconEye, TablerIconProps } from "@tabler/icons";
 
-export type ShowButtonProps = RefineShowButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: TablerIconProps;
-    }
+export type ShowButtonProps = Omit<
+    RefineShowButtonProps<
+        ButtonProps,
+        {
+            svgIconProps?: TablerIconProps;
+        }
+    >,
+    "ignoreAccessControlProvider"
 >;
 
 /**
@@ -31,12 +34,14 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     resourceNameOrRouteName,
     recordItemId,
     hideText = false,
-    ignoreAccessControlProvider = false,
+    accessControl,
     svgIconProps,
     children,
     onClick,
     ...rest
 }) => {
+    const accessControlEnabled = accessControl?.enabled;
+    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const { resourceName, id, resource } = useResource({
         resourceNameOrRouteName,
         recordItemId,
@@ -52,7 +57,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
         action: "show",
         params: { id, resource },
         queryOptions: {
-            enabled: !ignoreAccessControlProvider,
+            enabled: accessControlEnabled,
         },
     });
 
@@ -67,6 +72,10 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     };
 
     const showUrl = generateShowUrl(resource.route!, id!);
+
+    if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
+        return null;
+    }
 
     return (
         <Link

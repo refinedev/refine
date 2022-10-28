@@ -25,11 +25,14 @@ import {
 } from "@chakra-ui/react";
 import { IconTrash, TablerIconProps } from "@tabler/icons";
 
-export type DeleteButtonProps = RefineDeleteButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: TablerIconProps;
-    }
+export type DeleteButtonProps = Omit<
+    RefineDeleteButtonProps<
+        ButtonProps,
+        {
+            svgIconProps?: TablerIconProps;
+        }
+    >,
+    "ignoreAccessControlProvider"
 >;
 
 /**
@@ -47,7 +50,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     successNotification,
     errorNotification,
     hideText = false,
-    ignoreAccessControlProvider = false,
+    accessControl,
     metaData,
     dataProviderName,
     confirmTitle,
@@ -56,6 +59,8 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     svgIconProps,
     ...rest
 }) => {
+    const accessControlEnabled = accessControl?.enabled;
+    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const { resourceName, id, resource } = useResource({
         resourceNameOrRouteName,
         recordItemId,
@@ -74,7 +79,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
         action: "delete",
         params: { id, resource },
         queryOptions: {
-            enabled: !ignoreAccessControlProvider,
+            enabled: accessControlEnabled,
         },
     });
 
@@ -99,6 +104,10 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
             },
         );
     };
+
+    if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
+        return null;
+    }
 
     return (
         <Popover isOpen={opened} isLazy>

@@ -13,11 +13,14 @@ import {
 import { IconPencil, TablerIconProps } from "@tabler/icons";
 import { Button, ButtonProps, IconButton } from "@chakra-ui/react";
 
-export type EditButtonProps = RefineEditButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: TablerIconProps;
-    }
+export type EditButtonProps = Omit<
+    RefineEditButtonProps<
+        ButtonProps,
+        {
+            svgIconProps?: TablerIconProps;
+        }
+    >,
+    "ignoreAccessControlProvider"
 >;
 
 /**
@@ -31,12 +34,14 @@ export const EditButton: React.FC<EditButtonProps> = ({
     resourceNameOrRouteName,
     recordItemId,
     hideText = false,
-    ignoreAccessControlProvider = false,
+    accessControl,
     svgIconProps,
     children,
     onClick,
     ...rest
 }) => {
+    const accessControlEnabled = accessControl?.enabled;
+    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const { resourceName, resource, id } = useResource({
         resourceNameOrRouteName,
         recordItemId,
@@ -52,7 +57,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
         action: "edit",
         params: { id, resource },
         queryOptions: {
-            enabled: !ignoreAccessControlProvider,
+            enabled: accessControlEnabled,
         },
     });
 
@@ -67,6 +72,10 @@ export const EditButton: React.FC<EditButtonProps> = ({
     };
 
     const editUrl = generateEditUrl(resource.route!, id!);
+
+    if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
+        return null;
+    }
 
     return (
         <Link

@@ -14,11 +14,14 @@ import {
 import { IconButton, Button, ButtonProps } from "@chakra-ui/react";
 import { IconList, TablerIconProps } from "@tabler/icons";
 
-export type ListButtonProps = RefineListButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: TablerIconProps;
-    }
+export type ListButtonProps = Omit<
+    RefineListButtonProps<
+        ButtonProps,
+        {
+            svgIconProps?: TablerIconProps;
+        }
+    >,
+    "ignoreAccessControlProvider"
 >;
 
 /**
@@ -31,12 +34,14 @@ export type ListButtonProps = RefineListButtonProps<
 export const ListButton: React.FC<ListButtonProps> = ({
     resourceNameOrRouteName,
     hideText = false,
-    ignoreAccessControlProvider = false,
+    accessControl,
     svgIconProps,
     children,
     onClick,
     ...rest
 }) => {
+    const accessControlEnabled = accessControl?.enabled;
+    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const { resource, resourceName } = useResource({
         resourceNameOrRouteName,
     });
@@ -50,7 +55,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
         resource: resourceName,
         action: "list",
         queryOptions: {
-            enabled: !ignoreAccessControlProvider,
+            enabled: accessControlEnabled,
         },
         params: {
             resource,
@@ -68,6 +73,10 @@ export const ListButton: React.FC<ListButtonProps> = ({
     };
 
     const listUrl = generateListUrl(resource.route!);
+
+    if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
+        return null;
+    }
 
     return (
         <Link
