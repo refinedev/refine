@@ -15,7 +15,7 @@ import TabItem from '@theme/TabItem';
 
 ## Introduction
 
-This tutorial will go through process of building a simple _admin panel_ for a _CMS-like_ application.
+This tutorial will go through the process of building a simple _admin panel_ for a _CMS-like_ application.
 
 Step by step, you're going to learn how to consume a _REST API_ and add basic CRUD functionality to your panel leveraging the unique capabilities of **refine**.
 
@@ -229,6 +229,8 @@ Point your browser to [http://localhost:3000](http://localhost:3000) to access i
 </div>
 <br/>
 
+You'll still see a **404** error page because no **Page** component is assigned to our resource yet.
+
 ## Adding Resources
 
 Now we are ready to start connecting to our API by adding a resource to our application.
@@ -306,7 +308,7 @@ export const App: React.FC = () => {
 `resources` is a property of `<Refine/>` representing API Endpoints. The `name` property of every single resource should match one of the endpoints in your API!
 :::
 
-Instead of showing the welcome page, the application should redirect now to an URL defined by the `name` property. Open your application to check that the URL is routed to **/posts**:
+Instead of showing the welcome page, the application should redirect now to an URL defined by the `name` property. Open your application to check if the URL is routed to **/posts**:
 
 <>
 
@@ -323,7 +325,7 @@ Instead of showing the welcome page, the application should redirect now to an U
 
 You'll still see a **404** error page because no **Page** component is assigned to our resource yet.
 
-:::note
+:::Note
 `resources` use **Page** components to handle data and perform rendering. **Page** components are passed to `resources` as an array of objects.
 For basic _CRUD_ operations, there are **four** predefined props: **list**, **create**, **edit** and **show**.
 :::
@@ -448,7 +450,8 @@ export const App: React.FC = () => {
 };
 ```
 
-Note you will need a few more files which help `src/App.tsx` to find your pages and posts. In the `/pages` folder, put this `index.tsx` file in it which allows everything in the `posts` folder to be used elsewhere.
+:::Note 
+You will need a few more files which help `src/App.tsx` to find your pages and posts. In the `/pages` folder, put this `index.tsx` file in it which allows everything in the `posts` folder to be used elsewhere.
 
 ```tsx title="src/pages/index.tsx"
 export * from "./posts";
@@ -469,7 +472,7 @@ export * from "./list";
 
 Open your application in your browser. You will see **posts** are displayed correctly in a table structure and even the pagination works out-of-the box.
 
-On the next step, we are going to add a category field to the table which involves handling data relationships.
+In the next step, we are going to add a category field to the table which involves handling data relationships.
 
 <>
 
@@ -726,7 +729,7 @@ export const PostList: React.FC = () => {
 };
 ```
 
-✳️ `<FilterDropdown>` component serves as a bridge between its child input and **refine**'s `useTable` hook. It passes childs input value to `useTable` using `filterDropdown`'s embedded props and provides a filter button.
+✳️ `<FilterDropdown>` component serves as a bridge between its child input and **refine**'s `useTable` hook. It passes child's input value to `useTable` using `filterDropdown`'s embedded props and provides a filter button.
 
 [Refer to the `<FilterDropdown>` documentation for detailed usage. &#8594](/api-reference/antd/components/filter-dropdown.md)
 
@@ -944,7 +947,7 @@ export const PostList: React.FC = () => {
 
 [Refer to the `useShow` documentation for detailed usage information. &#8594](/api-reference/core/hooks/show/useShow.md)
 
-✳️ To retrieve the category title, again we need to make a call to `/categories` endpoint. This time we used `useOne()` hook to get a single record from another resource.
+✳️ To retrieve the category title again, we need to make a call to `/categories` endpoint. This time we used `useOne()` hook to get a single record from another resource.
 
 [Refer to the `useOne` documentation for detailed usage information. &#8594](/api-reference/core/hooks/data/useOne.md)
 
@@ -1215,7 +1218,7 @@ Let's see what's going on in our `<PostEdit>` component in detail:
 ✳️ `useForm` is a refine hook for handling form data.
 In the example, it returns `formProps` and `saveButtonProps`, where the former includes all necessary props to build the form and the latter has the ones for the save button.
 
-:::caution Attention
+:::Caution
 In the edit page, `useForm` hook initializes the form with current record values.
 
 [Refer to the `useForm` documentation for detailed usage information . &#8594](/api-reference/antd/hooks/form/useForm.md)
@@ -1224,7 +1227,7 @@ In the edit page, `useForm` hook initializes the form with current record values
 
 ✳️ `<Edit>` is a wrapper **refine** component for `<Form>`. It provides save, delete and refresh buttons that can be used for form actions.
 
-✳️ Form data is set automatically, whenever children inputs `<Form.Item>`'s are edited.
+✳️ Form data is set automatically, whenever children input `<Form.Item>`'s are edited.
 
 ✳️ Save button submits the form by executing the `useUpdate` method provided by the [`dataProvider`](/api-reference/core/providers/data-provider.md). After a successful response, the application will be redirected to the listing page.
 
