@@ -178,19 +178,19 @@ export default function FooterLayout({
                                     rel="noreferrer"
                                 >
                                     {socialLink.label === "github" && (
-                                        <GithubIcon className="w-[22px] h-[22px] hover:fill-[#171515]" />
+                                        <GithubIcon className="w-[22px] h-[22px] hover:fill-[#171515] hover:fill-[#171515] transition-colors ease-in-out duration-500" />
                                     )}
                                     {socialLink.label === "twitter" && (
-                                        <TwitterIcon className="w-[22px] h-[22px] hover:fill-[#1DA1F2]" />
+                                        <TwitterIcon className="w-[22px] h-[22px] hover:fill-[#1DA1F2] hover:fill-[#171515] transition-colors ease-in-out duration-500" />
                                     )}
                                     {socialLink.label === "linkedin" && (
-                                        <LinkedinIcon className="w-[22px] h-[22px] hover:fill-[#0077B5]" />
+                                        <LinkedinIcon className="w-[22px] h-[22px] hover:fill-[#0077B5] hover:fill-[#171515] transition-colors ease-in-out duration-500" />
                                     )}
                                     {socialLink.label === "discord" && (
-                                        <DiscordIcon className="w-[22px] h-[22px] hover:fill-[#5865F2]" />
+                                        <DiscordIcon className="w-[22px] h-[22px] hover:fill-[#5865F2] hover:fill-[#171515] transition-colors ease-in-out duration-500" />
                                     )}
                                     {socialLink.label === "reddit" && (
-                                        <RedditIcon className="w-[22px] h-[22px] hover:fill-[#FF4300]" />
+                                        <RedditIcon className="w-[22px] h-[22px] hover:fill-[#FF4300] hover:fill-[#171515] transition-colors ease-in-out duration-500" />
                                     )}
                                 </a>
                             ))}
