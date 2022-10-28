@@ -226,6 +226,8 @@ If you want to propose a feature, raise a detailed issue with explanation [here]
 
 If you are willing to fix an issue or propose a feature, all PRs with clear explanations are welcome and encouraged.
 
+know more about the ways to contribute [here](https://refine.dev/docs/contributing/#ways-to-contribute)
+
 
 
 If you have any doubts related to the project or want to discuss something, then join our [Discord Server](https://discord.gg/refine).
