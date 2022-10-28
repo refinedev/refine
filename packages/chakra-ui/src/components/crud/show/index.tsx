@@ -141,6 +141,32 @@ export const Show: React.FC<ShowProps> = (props) => {
             : footerButtonsFromProps
         : null;
 
+    const renderTitle = () => {
+        if (title) {
+            if (typeof title === "string" || typeof title === "number") {
+                return (
+                    <Heading as="h3" size="lg">
+                        {title}
+                    </Heading>
+                );
+            }
+
+            return title;
+        }
+
+        return (
+            <Heading as="h3" size="lg">
+                {translate(
+                    `${resource.name}.titles.show`,
+                    `Show ${userFriendlyResourceName(
+                        resource.label ?? resource.name,
+                        "singular",
+                    )}`,
+                )}
+            </Heading>
+        );
+    };
+
     return (
         <Box
             position="relative"
@@ -171,17 +197,7 @@ export const Show: React.FC<ShowProps> = (props) => {
                     {breadcrumb}
                     <HStack>
                         {buttonBack}
-                        {title ?? (
-                            <Heading as="h3" size="lg">
-                                {translate(
-                                    `${resource.name}.titles.show`,
-                                    `Show ${userFriendlyResourceName(
-                                        resource.label ?? resource.name,
-                                        "singular",
-                                    )}`,
-                                )}
-                            </Heading>
-                        )}
+                        {renderTitle()}
                     </HStack>
                 </Stack>
                 <HStack spacing="2" {...headerButtonProps}>

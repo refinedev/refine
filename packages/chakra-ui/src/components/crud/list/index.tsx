@@ -69,6 +69,32 @@ export const List: React.FC<ListProps> = (props) => {
             : headerButtonsFromProps
         : defaultHeaderButtons;
 
+    const renderTitle = () => {
+        if (title) {
+            if (typeof title === "string" || typeof title === "number") {
+                return (
+                    <Heading as="h3" size="lg">
+                        {title}
+                    </Heading>
+                );
+            }
+
+            return title;
+        }
+
+        return (
+            <Heading as="h3" size="lg">
+                {translate(
+                    `${resource.name}.titles.list`,
+                    userFriendlyResourceName(
+                        resource.label ?? resource.name,
+                        "plural",
+                    ),
+                )}
+            </Heading>
+        );
+    };
+
     return (
         <Box
             bg="chakra-body-bg"
@@ -88,17 +114,7 @@ export const List: React.FC<ListProps> = (props) => {
             >
                 <Stack spacing="0">
                     {breadcrumb}
-                    {title ?? (
-                        <Heading as="h3" size="lg">
-                            {translate(
-                                `${resource.name}.titles.list`,
-                                userFriendlyResourceName(
-                                    resource.label ?? resource.name,
-                                    "plural",
-                                ),
-                            )}
-                        </Heading>
-                    )}
+                    {renderTitle()}
                 </Stack>
                 <HStack spacing="2" {...headerButtonProps}>
                     {headerButtons}
