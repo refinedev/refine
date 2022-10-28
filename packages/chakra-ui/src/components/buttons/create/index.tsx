@@ -13,22 +13,27 @@ import {
 import { Button, ButtonProps, IconButton } from "@chakra-ui/react";
 import { IconSquarePlus, TablerIconProps } from "@tabler/icons";
 
-export type CreateButtonProps = RefineCreateButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: TablerIconProps;
-    }
+export type CreateButtonProps = Omit<
+    RefineCreateButtonProps<
+        ButtonProps,
+        {
+            svgIconProps?: TablerIconProps;
+        }
+    >,
+    "ignoreAccessControlProvider"
 >;
 
 export const CreateButton: React.FC<CreateButtonProps> = ({
     resourceNameOrRouteName,
     hideText = false,
-    ignoreAccessControlProvider = false,
+    accessControl,
     svgIconProps,
     children,
     onClick,
     ...rest
 }) => {
+    const accessControlEnabled = accessControl?.enabled;
+    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const { resource, resourceName } = useResource({
         resourceNameOrRouteName,
     });
@@ -42,7 +47,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
         resource: resourceName,
         action: "create",
         queryOptions: {
-            enabled: !ignoreAccessControlProvider,
+            enabled: accessControlEnabled,
         },
         params: {
             resource,
@@ -60,6 +65,10 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
     };
 
     const createUrl = generateCreateUrl(resource.route!);
+
+    if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
+        return null;
+    }
 
     return (
         <Link

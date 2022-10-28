@@ -99,6 +99,32 @@ export const Create: React.FC<CreateProps> = (props) => {
             : footerButtonsFromProps
         : defaultFooterButtons;
 
+    const renderTitle = () => {
+        if (title) {
+            if (typeof title === "string" || typeof title === "number") {
+                return (
+                    <Heading as="h3" size="lg">
+                        {title}
+                    </Heading>
+                );
+            }
+
+            return title;
+        }
+
+        return (
+            <Heading as="h3" size="lg">
+                {translate(
+                    `${resource.name}.titles.create`,
+                    `Create ${userFriendlyResourceName(
+                        resource.label ?? resource.name,
+                        "singular",
+                    )}`,
+                )}
+            </Heading>
+        );
+    };
+
     return (
         <Box
             position="relative"
@@ -129,17 +155,7 @@ export const Create: React.FC<CreateProps> = (props) => {
                     {breadcrumb}
                     <HStack>
                         {buttonBack}
-                        {title ?? (
-                            <Heading as="h3" size="lg">
-                                {translate(
-                                    `${resource.name}.titles.create`,
-                                    `Create ${userFriendlyResourceName(
-                                        resource.label ?? resource.name,
-                                        "singular",
-                                    )}`,
-                                )}
-                            </Heading>
-                        )}
+                        {renderTitle()}
                     </HStack>
                 </Stack>
                 <HStack spacing="2" {...headerButtonProps}>

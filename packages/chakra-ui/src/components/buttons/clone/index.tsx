@@ -13,11 +13,14 @@ import {
 import { Button, ButtonProps, IconButton } from "@chakra-ui/react";
 import { IconSquarePlus, TablerIconProps } from "@tabler/icons";
 
-export type CloneButtonProps = RefineCloneButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: TablerIconProps;
-    }
+export type CloneButtonProps = Omit<
+    RefineCloneButtonProps<
+        ButtonProps,
+        {
+            svgIconProps?: TablerIconProps;
+        }
+    >,
+    "ignoreAccessControlProvider"
 >;
 
 /**
@@ -32,12 +35,14 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     resourceNameOrRouteName,
     recordItemId,
     hideText = false,
-    ignoreAccessControlProvider = false,
+    accessControl,
     svgIconProps,
     children,
     onClick,
     ...rest
 }) => {
+    const accessControlEnabled = accessControl?.enabled;
+    const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const { resourceName, resource, id } = useResource({
         resourceNameOrRouteName,
         recordItemId,
@@ -53,7 +58,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
         action: "create",
         params: { id, resource },
         queryOptions: {
-            enabled: !ignoreAccessControlProvider,
+            enabled: accessControlEnabled,
         },
     });
 
@@ -68,6 +73,10 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     };
 
     const cloneUrl = generateCloneUrl(resource.route!, id!);
+
+    if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
+        return null;
+    }
 
     return (
         <Link

@@ -155,6 +155,32 @@ export const Edit: React.FC<EditProps> = (props) => {
             : footerButtonsFromProps
         : defaultFooterButtons;
 
+    const renderTitle = () => {
+        if (title) {
+            if (typeof title === "string" || typeof title === "number") {
+                return (
+                    <Heading as="h3" size="lg">
+                        {title}
+                    </Heading>
+                );
+            }
+
+            return title;
+        }
+
+        return (
+            <Heading as="h3" size="lg">
+                {translate(
+                    `${resource.name}.titles.edit`,
+                    `Edit ${userFriendlyResourceName(
+                        resource.label ?? resource.name,
+                        "singular",
+                    )}`,
+                )}
+            </Heading>
+        );
+    };
+
     return (
         <Box
             position="relative"
@@ -185,17 +211,7 @@ export const Edit: React.FC<EditProps> = (props) => {
                     {breadcrumb}
                     <HStack spacing={2}>
                         {buttonBack}
-                        {title ?? (
-                            <Heading as="h3" size="lg">
-                                {translate(
-                                    `${resource.name}.titles.edit`,
-                                    `Edit ${userFriendlyResourceName(
-                                        resource.label ?? resource.name,
-                                        "singular",
-                                    )}`,
-                                )}
-                            </Heading>
-                        )}
+                        {renderTitle()}
                     </HStack>
                 </Stack>
                 <HStack spacing="2" {...headerButtonProps}>
