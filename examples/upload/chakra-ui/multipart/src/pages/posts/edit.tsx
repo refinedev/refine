@@ -106,9 +106,13 @@ export const PostEdit = () => {
                         }
                     }}
                     onSuccess={(response, file) => {
+                        const { name, size, type, lastModified } = file;
                         const images = [
                             {
-                                ...file,
+                                name,
+                                size,
+                                type,
+                                lastModified,
                                 url: response.url,
                             },
                         ];

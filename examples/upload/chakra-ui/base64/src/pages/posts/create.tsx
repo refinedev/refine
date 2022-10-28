@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
     Box,
     Create,
@@ -11,7 +10,7 @@ import {
     Select,
     Text,
 } from "@pankod/refine-chakra-ui";
-import { useApiUrl, useSelect } from "@pankod/refine-core";
+import { useSelect, file2Base64 } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 import Upload from "rc-upload";
 import { IconFileUpload } from "@tabler/icons";
@@ -19,7 +18,6 @@ import { IconFileUpload } from "@tabler/icons";
 import { IPost } from "../../interfaces";
 
 export const PostCreate = () => {
-    const [uploading, setUploading] = useState(false);
     const {
         refineCore: { formLoading },
         saveButtonProps,
@@ -28,7 +26,6 @@ export const PostCreate = () => {
         watch,
         formState: { errors },
     } = useForm<IPost>();
-    const apiUrl = useApiUrl();
 
     const { options } = useSelect({
         resource: "categories",
@@ -91,27 +88,26 @@ export const PostCreate = () => {
                 <Input type="file" display="none" {...register("images")} />
                 <Upload
                     name="file"
-                    onProgress={({ percent }) => {
-                        setUploading(true);
-                        if (percent === 100) {
-                            setUploading(false);
-                        }
-                    }}
-                    onSuccess={(response, file) => {
+                    beforeUpload={async (file) => {
+                        const base64String = await file2Base64({
+                            originFileObj: file,
+                        });
+
                         const { name, size, type, lastModified } = file;
+
                         const images = [
                             {
                                 name,
                                 size,
                                 type,
                                 lastModified,
-                                url: response.url,
+                                base64String,
                             },
                         ];
 
                         setValue("images", images);
+                        return false;
                     }}
-                    action={`${apiUrl}/media/upload`}
                 >
                     <Box
                         p="4"
@@ -121,22 +117,16 @@ export const PostCreate = () => {
                         alignItems="center"
                         flexDirection="column"
                     >
-                        {uploading ? (
-                            <span>The file is uploading...</span>
-                        ) : (
-                            <>
-                                <Icon
-                                    as={IconFileUpload}
-                                    w={8}
-                                    h={8}
-                                    mb="3"
-                                    color="gray.600"
-                                />
-                                <Text color="gray.700" fontWeight="semibold">
-                                    Click or drag file to this area to upload
-                                </Text>
-                            </>
-                        )}
+                        <Icon
+                            as={IconFileUpload}
+                            w={8}
+                            h={8}
+                            mb="3"
+                            color="gray.600"
+                        />
+                        <Text color="gray.700" fontWeight="semibold">
+                            Click or drag file to this area to upload
+                        </Text>
                     </Box>
                 </Upload>
             </FormControl>
@@ -145,7 +135,7 @@ export const PostCreate = () => {
                 <Image
                     boxSize="100px"
                     objectFit="cover"
-                    src={imageInput[0].url}
+                    src={imageInput[0].base64String}
                     alt="Post image"
                 />
             )}

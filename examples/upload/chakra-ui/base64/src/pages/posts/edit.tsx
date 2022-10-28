@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import {
     Box,
-    Create,
+    Edit,
     FormControl,
     FormErrorMessage,
     FormLabel,
@@ -11,33 +11,39 @@ import {
     Select,
     Text,
 } from "@pankod/refine-chakra-ui";
-import { useApiUrl, useSelect } from "@pankod/refine-core";
+import { file2Base64, useSelect } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 import Upload from "rc-upload";
 import { IconFileUpload } from "@tabler/icons";
 
 import { IPost } from "../../interfaces";
 
-export const PostCreate = () => {
-    const [uploading, setUploading] = useState(false);
+export const PostEdit = () => {
     const {
-        refineCore: { formLoading },
+        refineCore: { formLoading, queryResult },
         saveButtonProps,
         register,
-        setValue,
         watch,
+        setValue,
         formState: { errors },
+        resetField,
     } = useForm<IPost>();
-    const apiUrl = useApiUrl();
 
     const { options } = useSelect({
         resource: "categories",
+
+        defaultValue: queryResult?.data?.data.category.id,
+        queryOptions: { enabled: !!queryResult?.data?.data.category.id },
     });
+
+    useEffect(() => {
+        resetField("category.id");
+    }, [options]);
 
     const imageInput = watch("images");
 
     return (
-        <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
+        <Edit isLoading={formLoading} saveButtonProps={saveButtonProps}>
             <FormControl mb="3" isInvalid={!!errors?.title}>
                 <FormLabel>Title</FormLabel>
                 <Input
@@ -69,10 +75,10 @@ export const PostCreate = () => {
             <FormControl mb="3" isInvalid={!!errors?.categoryId}>
                 <FormLabel>Category</FormLabel>
                 <Select
-                    id="categoryId"
+                    id="ca"
                     placeholder="Select Category"
-                    {...register("categoryId", {
-                        required: "Category is required",
+                    {...register("category.id", {
+                        required: true,
                     })}
                 >
                     {options?.map((option) => (
@@ -91,27 +97,26 @@ export const PostCreate = () => {
                 <Input type="file" display="none" {...register("images")} />
                 <Upload
                     name="file"
-                    onProgress={({ percent }) => {
-                        setUploading(true);
-                        if (percent === 100) {
-                            setUploading(false);
-                        }
-                    }}
-                    onSuccess={(response, file) => {
+                    beforeUpload={async (file) => {
+                        const base64String = await file2Base64({
+                            originFileObj: file,
+                        });
+
                         const { name, size, type, lastModified } = file;
+
                         const images = [
                             {
                                 name,
                                 size,
                                 type,
                                 lastModified,
-                                url: response.url,
+                                base64String,
                             },
                         ];
 
                         setValue("images", images);
+                        return false;
                     }}
-                    action={`${apiUrl}/media/upload`}
                 >
                     <Box
                         p="4"
@@ -121,22 +126,16 @@ export const PostCreate = () => {
                         alignItems="center"
                         flexDirection="column"
                     >
-                        {uploading ? (
-                            <span>The file is uploading...</span>
-                        ) : (
-                            <>
-                                <Icon
-                                    as={IconFileUpload}
-                                    w={8}
-                                    h={8}
-                                    mb="3"
-                                    color="gray.600"
-                                />
-                                <Text color="gray.700" fontWeight="semibold">
-                                    Click or drag file to this area to upload
-                                </Text>
-                            </>
-                        )}
+                        <Icon
+                            as={IconFileUpload}
+                            w={8}
+                            h={8}
+                            mb="3"
+                            color="gray.600"
+                        />
+                        <Text color="gray.700" fontWeight="semibold">
+                            Click or drag file to this area to upload
+                        </Text>
                     </Box>
                 </Upload>
             </FormControl>
@@ -145,10 +144,10 @@ export const PostCreate = () => {
                 <Image
                     boxSize="100px"
                     objectFit="cover"
-                    src={imageInput[0].url}
+                    src={imageInput[0].base64String}
                     alt="Post image"
                 />
             )}
-        </Create>
+        </Edit>
     );
 };
