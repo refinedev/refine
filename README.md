@@ -220,10 +220,13 @@ You can find refine's <a href="https://github.com/refinedev/refine/projects/1">P
 
 ## Contribution
 
-If you discover a bug, please file a bug report at [issue](https://github.com/refinedev/refine/issues/new/choose).
-
+If you discover a bug, please file a bug report at [issue](https://github.com/refinedev/refine/issues/new?assignees=&labels=bug&template=bug_report.yml&title=%5BBUG%5D). <br/>
+If you want to fix a typo or update documentation, raise an issue [here](https://github.com/refinedev/refine/issues/new?assignees=&labels=documentation&template=documentation.yml&title=%5BDOC%5D). <br/>
+If you want to propose a feature, raise a detailed issue with explanation [here](https://github.com/refinedev/refine/issues/new?assignees=&labels=enhancement&template=feature_request.yml&title=%5BFEAT%5D).
 
 If you are willing to fix an issue or propose a feature, all PRs with clear explanations are welcome and encouraged.
+
+know more about the ways to contribute [here](https://refine.dev/docs/contributing/#ways-to-contribute)
 
 
 
