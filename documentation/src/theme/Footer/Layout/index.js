@@ -178,19 +178,19 @@ export default function FooterLayout({
                                     rel="noreferrer"
                                 >
                                     {socialLink.label === "github" && (
-                                        <GithubIcon className="w-[22px] h-[22px] hover:fill-[#171515] transition ease-in-out duration-500" />
+                                        <GithubIcon className="w-[22px] h-[22px] hover:fill-[#171515] transition-colors ease-in-out duration-500" />
                                     )}
                                     {socialLink.label === "twitter" && (
-                                        <TwitterIcon className="w-[22px] h-[22px] hover:fill-[#1DA1F2] transition ease-in-out duration-500" />
+                                        <TwitterIcon className="w-[22px] h-[22px] hover:fill-[#1DA1F2] transition-colors ease-in-out duration-500" />
                                     )}
                                     {socialLink.label === "linkedin" && (
-                                        <LinkedinIcon className="w-[22px] h-[22px] hover:fill-[#0077B5] transition ease-in-out duration-500" />
+                                        <LinkedinIcon className="w-[22px] h-[22px] hover:fill-[#0077B5] transition-colors ease-in-out duration-500" />
                                     )}
                                     {socialLink.label === "discord" && (
-                                        <DiscordIcon className="w-[22px] h-[22px] hover:fill-[#5865F2] transition ease-in-out duration-500" />
+                                        <DiscordIcon className="w-[22px] h-[22px] hover:fill-[#5865F2] transition-colors ease-in-out duration-500" />
                                     )}
                                     {socialLink.label === "reddit" && (
-                                        <RedditIcon className="w-[22px] h-[22px] hover:fill-[#FF4300] transition ease-in-out duration-500" />
+                                        <RedditIcon className="w-[22px] h-[22px] hover:fill-[#FF4300] transition-colors ease-in-out duration-500" />
                                     )}
                                 </a>
                             ))}
