@@ -1,0 +1,16 @@
+tasks:
+  - name: yarn
+    init: yarn install
+    command: yarn run start
+ports:
+  - port: 3000
+    onOpen: open-browser
+github:
+  prebuilds:
+    master: true
+    branches: true
+    pullRequests: true
+    pullRequestsFromForks: true
+    addCheck: true
+    addComment: true
+    addBadge: true
