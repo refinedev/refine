@@ -472,7 +472,7 @@ export const SectionHero: React.FC = () => {
                         <span className="text-xs text-right text-white uppercase font-montserrat w-14">
                             scroll
                         </span>
-                        <ScrollIcon className="text-white" />
+                        <ScrollIcon className="text-white cursor-pointer" />
                         <span className="text-xs text-left text-white uppercase font-montserrat w-14">
                             down
                         </span>
