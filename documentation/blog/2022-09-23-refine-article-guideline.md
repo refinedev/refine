@@ -13,7 +13,7 @@ We use Docusaurus for our blog pages. Your article should follow some standards.
 
 - The article needs to be written in markdown format. Do not publish the article on platforms like hackmd.io and your personal blog.
 
-- You need to be wait minumum one month before publishing the article on your personal blog due SEO purpose. Do not forget to give a canonical url to the article on your personal blog.
+- You need to be wait minimum one month before publishing the article on your personal blog due SEO purpose. Do not forget to give a canonical url to the article on your personal blog.
 
 - Add the word count at the end of your article - excluding the code.
 
@@ -27,13 +27,13 @@ It is a CLI tool that helps you to bootstrap a new project with a lot of feature
 [You can check the repo here &#8594](https://github.com/pankod/superplate)
 
 To create a project called my-app, run this command:
-```bash 
+```bash
 npx superplate-cli my-app
 ```
 
 ## Adding table of contents
 
-Covered sections need to be shown at the beginning of the article. 
+Covered sections need to be shown at the beginning of the article.
 
 
 Imagine you have 3 headings in your article.
@@ -52,13 +52,13 @@ Steps we'll cover:
 -[How to customize refine?](#how-to-customize-refine)
 ```
 
-The result will be like this when the post is published.  
+The result will be like this when the post is published.
 
 Steps we'll cover:
 
 - [What is refine?](#what-is-refine)
 - [How to use refine?](#how-to-use-refine)
-- [How to customize refine?](#how-to-customize-refine) 
+- [How to customize refine?](#how-to-customize-refine)
 
 
 ## Code blocks
@@ -72,19 +72,19 @@ Explain the topic contents step by step. Imagine you are reading the article for
 - Keep your code blocks content as much as minimal.
 
 
-- Add the component imports, functions definitions, etc., into the code blocks if they are only required for the code to work successfully.   
+- Add the component imports, functions definitions, etc., into the code blocks if they are only required for the code to work successfully.
    Otherwise, do not show any code that is not explained or implemented in the section at that time. Shortly, please add the required code blocks only.
 
 
 ### File path and code block syntax
 
-- For code block language syntax, we always use `"tsx"` option whetever your code is written in Typescript or not. This is just usefull for syntax coloring.
+- For code block language syntax, we always use `"tsx"` option whetever your code is written in Typescript or not. This is just useful for syntax coloring.
 
 - We use `title` attribute to show the file name of the codeblock.
 
 
 ```
-```tsx title="src/App.tsx"  
+```tsx title="src/App.tsx"
 function App() {
   return (
     <Refine
@@ -118,7 +118,7 @@ We recommended to use title attribute for all codeblocks to make it easier to un
 For example, you should use `//highlight-next-line` to highlight the new added code, if you want to add a resources property `<Refine />` component
 
 ```
-```tsx title="src/App.tsx"  
+```tsx title="src/App.tsx"
 function App() {
   return (
     <Refine
@@ -133,7 +133,7 @@ function App() {
 
  The result will be like this in the blog post when published.
 
-```tsx title="src/App.tsx"  
+```tsx title="src/App.tsx"
 function App() {
   return (
     <Refine
@@ -151,7 +151,7 @@ function App() {
 - For more than one line highlighting, you can use `//highlight-start` and `//highlight-end` to highlight the code block.
 
 ```
-```tsx title="src/App.tsx"  
+```tsx title="src/App.tsx"
 function App() {
   return (
     <Refine
@@ -169,7 +169,7 @@ function App() {
 
  The result will be like this in the blog post when published.
 
- ```tsx title="src/App.tsx"  
+ ```tsx title="src/App.tsx"
 function App() {
   return (
     <Refine
