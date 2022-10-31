@@ -3,7 +3,7 @@
  * @param {string} URL to be dest for link
  */
 export const getLinkRel = (URL?: string): string => {
-    let rel = "noopener noreferrer";
+    let rel = "noopener noreferrer nofollow";
 
     if (URL?.includes("github.com/refinedev/refine")) {
         rel = "noopener";
