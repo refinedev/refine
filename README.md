@@ -232,7 +232,9 @@ know more about the ways to contribute [here](https://refine.dev/docs/contributi
 
 If you have any doubts related to the project or want to discuss something, then join our [Discord Server](https://discord.gg/refine).
 
-## Thanks to all contributors ⭐
+
+## Our ♥️ Contributors
+
 <a href="https://github.com/refinedev/refine/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=refinedev/refine" />
 </a>
