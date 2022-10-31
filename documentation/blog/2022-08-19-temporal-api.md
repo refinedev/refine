@@ -97,13 +97,11 @@ import { Temporal } from '@js-temporal/polyfill';
 
 Now, we are able to inspect the browser console when testing the following cases.
 
-<br/>
-<div>
-<a href="https://github.com/refinedev/refine">
-  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
-</a>
-</div>
+---
 
+<PromotionBanner title="Not confident with your frontend skills?" image="/img/generic_banner.png" />
+
+---
 ## Temporal API Data Types
 
 ### Temporal.Now
@@ -180,6 +178,14 @@ console.log(now.toString())
 ```
 It puts the time zone at the end to show time with your current time zone. It's something you can't do very easily with a normal Date object. Conversion between time zones and non-time zones was very difficult to achieve. So, this `Temporal.Now`
 the object has functions for getting the current date time, whatever you're looking for.
+
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
 
 ### Temporal.PlainDate
 If you want to get the exact date without time, You can do this:
@@ -282,31 +288,4 @@ Now, after reading all this, you may get excited to start trying out the `Tempor
 ## Conclusion
 Dates in JavaScript include multiple issues with the implementation. Temporal API solves this problem with easy-to-use APIs. JavaScript developers will find it helpful once browsers start supporting this API.
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
-</a>
-</div>
 
-
-## Build your React-based CRUD applications without constraints
-
-Low-code React frameworks are great for gaining development speed but they often fall short of flexibility if you need extensive styling and customization for your project.
-
-Check out [refine](https://github.com/refinedev/refine), if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
-
-<div>
-<a href="https://github.com/refinedev/refine">
-    <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
-</a>
-</div>
-
-<br/>
-
-**refine** is a React-based framework for building CRUD applications **without constraints.**
-It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
-
-**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
-
-Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials and example projects.

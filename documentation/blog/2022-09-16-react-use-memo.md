@@ -118,6 +118,13 @@ If we look at the console, we see that `Sorting posts...` is being logged at 100
 
 This shows `sortPosts()` is called at every re-render of `<Blog />`. An expensive function, invoked every second for no obvious reason, is too much of an ask from the app. We don't want `sortPosts()` to be called if `updatedPosts` is not changed.
 
+
+---
+
+<PromotionBanner title="Tired of looking for the best template for your B2B app?" image="/img/generic_banner.png" />
+
+---
+
 ## Enter `useMemo()`
 `useMemo()` helps us memoize the value of `sortPosts()` when `updatedPosts` doesn't change. Let's use the memoized function:
 
@@ -140,10 +147,11 @@ This gives us a huge performance gain.
 
 <br/>
 <div>
-<a href="https://github.com/refinedev/refine">
-  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
+<a href="https://discord.gg/refine">
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
 </a>
 </div>
+
 
 ## useMemo Dependencies
 Notice the dependency of `useMemo()` as the second argument, `updatedPosts`. We are asking the hook to renew the memo when `updatedPosts` changes. Let's try to change the value of `updatedPosts`:
@@ -206,28 +214,4 @@ In the next post, we will demonstrate the use of `useCallback()` hook.
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
-
----
-
-## Build your React-based CRUD applications without constraints
-
-Low-code React frameworks are great for gaining development speed but they often fall short of flexibility if you need extensive styling and customization for your project.
-
-Check out [refine](https://github.com/refinedev/refine),if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
-
-
-<div>
-<a href="https://github.com/refinedev/refine">
-    <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
-</a>
-</div>
-
-<br/>
-
-**refine** is an open-source React-based framework for building CRUD applications **without constraints.**
-It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
-
-**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
-
-Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.
 
