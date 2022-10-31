@@ -22,7 +22,6 @@ Next.js has a page-based routing system, and an API route feature which allows y
 In this article, you'll learn how to set up Next.js API Routes and we'll explain some of their core features and how you can leverage them in your applications along the way. You'll also learn how to submit form data to an API route.  
 
 Steps we'll cover:
-- [Introduction](#introduction)
 - [What are Next.js API Routes?](#what-are-nextjs-api-routes)
 - [How to create API Routes in Next.js](#how-to-create-api-routes-in-nextjs)
 - [Dynamic API Routes](#dynamic-api-routes)
@@ -30,7 +29,6 @@ Steps we'll cover:
 - [Typing API Routes with TypeScript](#typing-api-routes-with-typescript)
     - [Typing `request` and `response` objects](#typing-request-and-response-objects)
     - [Typing response data](#typing-response-data)
-- [Conclusion](#conclusion)
 
 ## What are Next.js API Routes?
 Before you dive into **Next.js API Routes** let's provide a little background first. 
@@ -165,7 +163,11 @@ export default function handler(req, res) {
   res.status(200).json({ message: "Post created successfully" });
 }
 ```
+---
 
+<PromotionBanner title="Stop wasting your time copy/pasting your CRUD code all over your application!" image="/img/generic_banner.png" />
+
+---
 ## Dynamic API Routes
 
 API Routes in Next.js can also be dynamic. This is similar to how regular dynamic pages work in Next.js. You can read more about dynamic routes [here](https://nextjs.org/docs/routing/dynamic-routes) to understand their syntax.
@@ -247,6 +249,16 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 }
 ```
 
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
+
+
+
+
 #### Typing response data
 
 We can also type the response data returned from an API endpoint by adding types to `res: NextApiResponse`.
@@ -279,42 +291,4 @@ You can learn more about extending the `res` and `req` objects with TypeScript [
 In this article we introduced you to **API Routes in Next.js** and how to use them to create API endpoints for your application. You learned how to add custom configurations to API Routes and also how to include typings among other things. Ready to get started with **API Routes** in your next project? Let's know what you build and feel free to reach out if you have any questions. Happy coding!
 
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
-
-
-
----
-
-<div className="banner-container">
-<div className="banner-header" >Stop wasting your time copy/pasting your CRUD code all over your application!</div >
-
-
-
-Meet the headless, React-based solution to build sleek **CRUD** applications. With refine, you can be confident that your codebase will always stay clean and boilerplate-free.
-
-Try [refine](https://github.com/refinedev/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
-
-    
-
-<div>
-<a href="https://github.com/refinedev/refine">
-   <img  src="/img/generic_banner.png" alt="refine blog logo" /> 
-</a>
-</div>
-
-<br/>
-
-
-**refine** is an open-source, React-based framework for building CRUD applications without constraints. It’s headless by design and seamlessly works with **any custom design** or **UI framework** you favor. For convenience, it ships with ready-made integrations for **Ant Design System, Material UI and Mantine UI**.
-
-It can **speed up your development time up to 3X** without compromising freedom on styling, customization and project workflow.
-
-Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.
-
-</div>
 
