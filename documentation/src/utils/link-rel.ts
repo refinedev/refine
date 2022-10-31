@@ -5,11 +5,11 @@
 export const getLinkRel = (URL?: string): string => {
     let rel = "noopener noreferrer";
 
-    if (URL.includes("github.com/refinedev/refine")) {
+    if (URL?.includes("github.com/refinedev/refine")) {
         rel = "noopener";
     }
 
-    if (URL.includes("refine.dev")) {
+    if (URL?.includes("refine.dev")) {
         rel = "noopener dofollow";
     }
 
