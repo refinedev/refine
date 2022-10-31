@@ -846,6 +846,15 @@ export const normalizeFile = (event: EventArgs) => {
 </p>
 </details>
 
+Finally expose those modules at `src/pages/posts` by adding
+
+```tsx title="src/pages/posts/index.ts"
+export * from "./create";
+export * from "./edit";
+export * from "./list";
+``` 
+    
+    
 ### Adding Resources
 One last thing we need to do is to add newly created CRUD pages to the `resources` property of `<Refine>` component. 
 
