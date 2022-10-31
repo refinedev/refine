@@ -22,6 +22,7 @@ const staticTags = [
     "antd",
     "mui",
     "mantine",
+    "chakra-ui",
     "data-provider",
     "live-provider",
     "auth-provider",
