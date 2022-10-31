@@ -25,7 +25,7 @@ const OnStyling: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
 
     return (
         <motion.div
-            className="relative lg:snap-start z-[1]"
+            className="relative z-[1]"
             style={twBreakpoints.lg ? { opacity } : {}}
             whileInView={
                 twBreakpoints.lg
@@ -35,6 +35,7 @@ const OnStyling: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                       }
             }
         >
+            <div className="h-[0] lg:snap-start" />
             {!twBreakpoints.lg && <HeaderMobile>On Styling</HeaderMobile>}
             <motion.div
                 className="relative lg:sticky top-0 flex md:flex-row flex-col-reverse items-center justify-center h-auto lg:h-screen pt-4 lg:pt-[11rem]"

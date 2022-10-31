@@ -46,40 +46,44 @@ const SpotLight: FC<Props> = ({ scrollYProgress }) => {
         [-80, -80, -30, 220, 60, 1],
     );
 
+    const spotlightOpacity = useTransform(scrollYProgress, [0.9, 1], [1, 0]);
+
     return (
         <motion.div
-            className="sticky w-auto xl:w-[1024px] 2xl:w-[1280px] mx-auto top-0 h-screen flex flex-col items-center justify-center"
-            whileInView={{
-                opacity: [0, 1],
+            className="sticky h-[0px] w-auto xl:w-[1024px] 2xl:w-[1280px] mx-auto top-0 flex flex-col items-center justify-center"
+            style={{
+                opacity: spotlightOpacity,
             }}
         >
-            <motion.div
-                style={{
-                    x: spotlightCyanX,
-                    y: spotlightCyanY,
-                    position: "absolute",
-                }}
-            >
-                <GradientCyan />
-            </motion.div>
-            <motion.div
-                style={{
-                    x: spotlightBlueX,
-                    y: spotlightBlueY,
-                    position: "absolute",
-                }}
-            >
-                <GradientBlue />
-            </motion.div>
-            <motion.div
-                style={{
-                    x: spotlightPurpleX,
-                    y: spotlightPurpleY,
-                    position: "absolute",
-                }}
-            >
-                <GradientPurple />
-            </motion.div>
+            <div className="absolute top-0 left-0 flex flex-col items-center justify-center w-full h-screen">
+                <motion.div
+                    style={{
+                        x: spotlightCyanX,
+                        y: spotlightCyanY,
+                        position: "absolute",
+                    }}
+                >
+                    <GradientCyan />
+                </motion.div>
+                <motion.div
+                    style={{
+                        x: spotlightBlueX,
+                        y: spotlightBlueY,
+                        position: "absolute",
+                    }}
+                >
+                    <GradientBlue />
+                </motion.div>
+                <motion.div
+                    style={{
+                        x: spotlightPurpleX,
+                        y: spotlightPurpleY,
+                        position: "absolute",
+                    }}
+                >
+                    <GradientPurple />
+                </motion.div>
+            </div>
         </motion.div>
     );
 };

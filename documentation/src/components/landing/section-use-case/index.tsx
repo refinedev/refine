@@ -16,7 +16,10 @@ export const SectionUseCase: React.FC = () => {
     const { sm, md, lg, xl } = useTWBreakpoints();
 
     return (
-        <motion.div ref={ref} className="h-auto -mt-px bg-white lg:h-screen">
+        <motion.div
+            ref={ref}
+            className="h-auto px-4 -mt-px bg-white lg:h-screen lg:px-0"
+        >
             <motion.div className="relative top-0 left-0 flex flex-col items-center justify-end w-screen h-auto max-w-full gap-24 pt-12 pb-6 overflow-x-hidden lg:pt-16 lg:pb-12 lg:h-screen lg:snap-start lg:sticky lg:gap-0">
                 <div className="flex-1 flex flex-col-reverse gap-4 lg:gap-0 lg:flex-row mx-auto max-w-[800px] w-full items-center justify-center">
                     <div className="flex-1">
