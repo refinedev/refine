@@ -878,7 +878,10 @@ module.exports = {
                 {
                     type: "category",
                     label: "Auth",
-                    items: ["advanced-tutorials/auth/auth0"],
+                    items: [
+                        "advanced-tutorials/auth/auth0",
+                        "advanced-tutorials/auth/azure-ad",
+                    ],
                 },
                 "advanced-tutorials/custom-layout",
                 "advanced-tutorials/custom-pages",

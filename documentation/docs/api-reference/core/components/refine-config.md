@@ -328,6 +328,62 @@ The `i18nProvider` property lets you add i18n support to your app. Making you ab
 
 `options` is used to configure the app.
 
+### `breadcrumb`
+
+Customize or disable the breadcrumb. By default it uses the Breadcrumb component from respective package.
+
+The value set in individual CRUD components ([ANTD](/docs/api-reference/antd/components/basic-views/create/#breadcrumb), [Mantine](/docs/api-reference/mantine/components/basic-views/create/#breadcrumb), [MUI](/docs/api-reference/mui/components/basic-views/create/#breadcrumb)) will override the value set with `breadcrumb`.
+
+[Refer to the Breadcrumb docs for further information. &#8594](/docs/api-reference/antd/components/breadcrumb/)
+
+```tsx title="App.tsx"
+import { Breadcrumb } from "@pankod/refine-antd";
+OR
+import { Breadcrumb } from "@pankod/refine-mantine";
+OR
+import { Breadcrumb } from "@pankod/refine-mui";
+OR
+import { Breadcrumb } from "my-custom-breadcrumb";
+
+const App: React.FC = () => {
+    return (
+        <Refine
+            ...
+            // highlight-start
+            options={{
+                breadcrumb: (
+                    <div
+                        style={{
+                            padding: "3px 6px",
+                            border: "2px dashed cornflowerblue",
+                        }}
+                    >
+                        <Breadcrumb />
+                    </div>
+                ),
+            }}
+            // highlight-end
+        />
+    );
+};
+```
+
+To disable the breadcrumb
+```tsx title="App.tsx"
+const App: React.FC = () => {
+    return (
+        <Refine
+            ...
+            // highlight-start
+            options={{
+                breadcrumb: false,
+            }}
+            // highlight-end
+        />
+    );
+};
+```
+
 ### `mutationMode`
 
 `mutationMode` determines which mode the mutations run with. (e.g. useUpdate, useDelete).
@@ -777,7 +833,7 @@ const App: React.FC = () => (
 ## API Reference
 
 ### Properties
-    
+
 <PropsTable module="@pankod/refine-core/Refine"/>
 
 [routerprovider]: /api-reference/core/providers/router-provider.md

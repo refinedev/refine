@@ -1210,13 +1210,13 @@ export const PostList: React.FC = () => {
 
 You can try using edit buttons which will trigger the edit forms for each record, allowing you to update the record data.
 
-Let's see what's going on our `<PostEdit>` component in detail:
+Let's see what's going on in our `<PostEdit>` component in detail:
 
 ✳️ `useForm` is a refine hook for handling form data.
 In the example, it returns `formProps` and `saveButtonProps`, where the former includes all necessary props to build the form and the latter has the ones for the save button.
 
 :::caution Attention
-In edit page, `useForm` hook initializes the form with current record values.
+In the edit page, `useForm` hook initializes the form with current record values.
 
 [Refer to the `useForm` documentation for detailed usage information . &#8594](/api-reference/antd/hooks/form/useForm.md)
 
@@ -1327,7 +1327,7 @@ export const PostCreate = () => {
 
 <br />
 
-After creating the `<PostCreate>` component, add it to resource with `create` prop:
+After creating the `<PostCreate>` component, add it to the resource with `create` prop:
 
 <br />
 
@@ -1521,7 +1521,7 @@ export const PostList: React.FC = () => {
 
 Now you can try deleting records yourself. Just click on the delete button of the record you want to delete and confirm.
 
-The second way is showing delete button in `<PostEdit>` component. To show delete button in edit page, `canDelete` prop needs to be passed to resource object.
+The second way is by showing delete button in `<PostEdit>` component. To show delete button in edit page, `canDelete` prop needs to be passed to resource object.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@pankod/refine-core";

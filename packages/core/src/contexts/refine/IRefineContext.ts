@@ -12,6 +12,7 @@ import {
 } from "../../interfaces";
 
 export interface IRefineOptions {
+    breadcrumb?: ReactNode;
     mutationMode?: MutationMode;
     syncWithLocation?: boolean;
     warnWhenUnsavedChanges?: boolean;
@@ -30,6 +31,7 @@ export interface IRefineOptions {
 }
 
 export interface IRefineContextOptions {
+    breadcrumb?: ReactNode;
     mutationMode: MutationMode;
     syncWithLocation: boolean;
     warnWhenUnsavedChanges: boolean;

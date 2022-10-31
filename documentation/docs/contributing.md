@@ -32,6 +32,7 @@ Examples:
 ## Git branches
 - `next` – contains next version (1.x.0), most likely you would want to create a PR to this branch
 - `master` – current stable version
+
 ## Running in development mode
 
 `node` version 16 is required.

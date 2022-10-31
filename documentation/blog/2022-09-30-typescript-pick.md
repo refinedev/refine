@@ -56,6 +56,12 @@ So, what we will do is use TypeScript's transformation utilities to generate the
 
 For example, in this article we will consider the use case for `Pick<Type, Keys>`.
 
+---
+
+<PromotionBanner title="Not confident with your frontend skills?" image="/img/diagram.png" />
+
+---
+
 ## What is TypeScript Pick? 
 
 ### Picking Items with `Pick<Type, Keys>`
@@ -176,6 +182,12 @@ console.log(me.roles); // ["Admin", "Editor", "Author"]
 console.log(guest.username); // "randomly_generated"
 console.log(guest.roles); // undefined
 ```
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
 
 ### When to Avoid
 

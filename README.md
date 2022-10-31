@@ -1,3 +1,5 @@
+<br/>
+
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
   <img src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"   style="width:250px;" align="center" />
@@ -38,11 +40,14 @@
 
 </div>
 
-<div align="center" style="margin: 30px;">
-  <a href="https://refine.dev/">
-      <img src="https://raw.githubusercontent.com/refinedev/refine/master/documentation/static/img/refine-promo-gif-v2.gif" style="width:688px;"/>
-  </a>
-</div>
+<br/>
+<a href="https://refine.dev/">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/1110414/197984957-639630c1-03e9-4e18-9a57-63de81124fbd.png">
+  <img alt="how-works-refine" src="https://user-images.githubusercontent.com/1110414/197965247-f91f4a0c-f901-4775-b072-abfa736b6e67.png">
+</picture>
+</a>
+
 
 
 ## What is refine?
@@ -197,7 +202,7 @@ Now, you should see the output as a table populated with `post` & `category` dat
 
 👉 Check out the [Refine<>Tailwind Tutorial](https://refine.dev/docs/tutorials/headless-tutorial/) to learn how to use **refine** in a pure *headless* way.
 
-👉 Visit [Learn the Basics Page](https://refine.dev/docs/getting-started/overview/) to get informed about the fundemental concepts.
+👉 Visit [Learn the Basics Page](https://refine.dev/docs/getting-started/overview/) to get informed about the fundamental concepts.
 
 👉 Read more on [Advanced Tutorials
 ](https://refine.dev/docs/advanced-tutorials/) for different usage scenarios.
@@ -215,14 +220,24 @@ You can find refine's <a href="https://github.com/refinedev/refine/projects/1">P
 
 ## Contribution
 
-If you discover a bug, please file a bug report at [issue](https://github.com/refinedev/refine/issues/new/choose).
-
+If you discover a bug, please file a bug report at [issue](https://github.com/refinedev/refine/issues/new?assignees=&labels=bug&template=bug_report.yml&title=%5BBUG%5D). <br/>
+If you want to fix a typo or update documentation, raise an issue [here](https://github.com/refinedev/refine/issues/new?assignees=&labels=documentation&template=documentation.yml&title=%5BDOC%5D). <br/>
+If you want to propose a feature, raise a detailed issue with explanation [here](https://github.com/refinedev/refine/issues/new?assignees=&labels=enhancement&template=feature_request.yml&title=%5BFEAT%5D).
 
 If you are willing to fix an issue or propose a feature, all PRs with clear explanations are welcome and encouraged.
+
+know more about the ways to contribute [here](https://refine.dev/docs/contributing/#ways-to-contribute)
 
 
 
 If you have any doubts related to the project or want to discuss something, then join our [Discord Server](https://discord.gg/refine).
+
+
+## Our ♥️ Contributors
+
+<a href="https://github.com/refinedev/refine/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=refinedev/refine" />
+</a>
 
 ## License
 

@@ -53,13 +53,14 @@ The focus of this article will be the `<Post />` component, but `<App />`, `<Blo
 
 `React.memo()` is a **HOC** that memoizes the passed in component. Doing so helps in optimizing its performance by preventing unnecessary re-renders due to state changes it does not depend on, e.g. those coming from ancestor components.
 
-<br/>
-<div>
-<a href="https://github.com/refinedev/refine">
-  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
-</a>
-</div>
 
+
+
+---
+
+<PromotionBanner title="Still building from scratch in 2022?" image="/img/mui_banner.png" />
+
+---
 
 ## Memoizing a Functional Component using `React.memo()`
 To begin the example, we have an `<App />` component that houses `<Blog />`.
@@ -346,13 +347,13 @@ In this post, we found out that `React.memo()` is very useful in preventing unne
 In the next article, we will turn our attention back to the `<Blog />` component and memoize a sorting function with `useMemo()` hook.
 
 
+
 <br/>
 <div>
 <a href="https://discord.gg/refine">
-  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
 </a>
 </div>
-
 
 ## Live StackBlitz Example
 
@@ -362,29 +363,5 @@ In the next article, we will turn our attention back to the `<Blog />` component
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
-
----
-
-## Build your React-based CRUD applications without constraints
-
-Low-code React frameworks are great for gaining development speed but they often fall short of flexibility if you need extensive styling and customization for your project.
-
-Check out [refine](https://github.com/refinedev/refine),if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
-
-
-<div>
-<a href="https://github.com/refinedev/refine">
-    <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
-</a>
-</div>
-
-<br/>
-
-**refine** is an open-source React-based framework for building CRUD applications **without constraints.**
-It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
-
-**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
-
-Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.
 
 
