@@ -103,6 +103,13 @@ If we look at `console.log(subscriber.roles);` though, we can see that our assig
 
 So, caution there, as it is an important distinction that TypeScript is applying omit at development, not JavaScript. TypeScript does not check for any consequence of the written code **after** it is compiled to JavaScript. So, it is crucial to leverage TypeScript linter suggestions to strictly check omit while developing.
 
+
+---
+
+<PromotionBanner title="Backend devs love this React framework!" image="/img/generic_banner.png" />
+
+---
+
 ## TypeScript `Omit<>` with Interface
 Like it was in `Pick<>`, we can use an interface for `SuperbUser` and the results will be the same:
 
