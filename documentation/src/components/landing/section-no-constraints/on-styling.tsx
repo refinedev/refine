@@ -25,7 +25,7 @@ const OnStyling: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
 
     return (
         <motion.div
-            className="relative lg:snap-start"
+            className="relative lg:snap-start z-[1]"
             style={twBreakpoints.lg ? { opacity } : {}}
             whileInView={
                 twBreakpoints.lg
@@ -84,6 +84,7 @@ const OnStyling: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                     }
                 >
                     <motion.img
+                        className="z-[1]"
                         style={{
                             filter: "drop-shadow(14.4px 7.2px 21.6px rgba(0, 0, 0, 0.25))",
                             width: "100%",
@@ -101,7 +102,7 @@ const OnStyling: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                         src="/landing/no-constraints/custom-ui.png"
                     />
                     <motion.div
-                        className="font-montserrat bg-[#2A2A42] text-white text-xs md:text-2xl font-extrabold px-4 py-2 rounded-md absolute shadow-startTiles left-[10%] bottom-[26%]"
+                        className="font-montserrat bg-[#2A2A42] text-white text-xs md:text-2xl font-extrabold px-4 py-2 rounded-md absolute shadow-startTiles left-[10%] bottom-[26%] z-50"
                         transition={{
                             yoyo: Infinity,
                             ease: "easeInOut",
@@ -172,6 +173,7 @@ const OnStyling: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                     }
                 >
                     <motion.img
+                        className="z-[1]"
                         style={{
                             filter: "drop-shadow(14.4px 7.2px 21.6px rgba(0, 0, 0, 0.25))",
                             width: "100%",
@@ -189,7 +191,7 @@ const OnStyling: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                         }}
                         src="/landing/no-constraints/dashboard-mui.png"
                     />
-                    <div className="absolute left-0 md:left-[-40px] z-10 flex flex-col gap-1 md:gap-4 bottom-9">
+                    <div className="absolute left-0 md:left-[-40px] flex flex-col gap-1 md:gap-4 bottom-9 z-50">
                         <div className="font-montserrat flex justify-center bg-[#3FDCF7] text-white text-xs md:text-2xl font-extrabold px-2 py-1 rounded-md shadow-startTiles flex-shrink-0">
                             ANT DESIGN
                         </div>

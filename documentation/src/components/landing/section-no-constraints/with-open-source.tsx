@@ -95,7 +95,7 @@ const WithOpenSource: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                           }
                 }
             >
-                <div className="pt-5 lg:pt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full px-5 pb-5 max-w-[1000px]">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full  max-w-[688px]">
                     <motion.div className="transition-colors group border border-solid border-[#ededef] rounded-[10px] bg-[#ffffffb3] hover:bg-white p-2.5 lg:p-0  min-h-[106px] short:min-h-[95px] short:max-h-[95px] flex flex-col justify-center relative select-none shadow-startTiles">
                         <Badge>
                             <SmallSocialIcons.GithubIcon className="group-hover:text-[#2A2A42] text-[#ACACB6]" />
