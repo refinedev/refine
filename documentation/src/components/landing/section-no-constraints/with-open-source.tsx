@@ -214,7 +214,7 @@ const WithOpenSource: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                     </motion.div>
                 </div>
 
-                <div className="max-w-[591px] mx-auto mt-4 lg:mt-16 text-base 2xl:text-xl text-center font-montserrat tracking-tight">
+                <div className="max-w-[591px] mx-auto mt-8 lg:mt-16 text-base 2xl:text-xl text-center font-montserrat tracking-tight">
                     <p className="mb-1 lg:mb-2">
                         <strong>refine</strong> core is an open source framework
                         and it will always <strong>stay free</strong>.
