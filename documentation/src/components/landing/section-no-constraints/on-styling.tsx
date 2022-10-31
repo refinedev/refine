@@ -35,7 +35,7 @@ const OnStyling: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                       }
             }
         >
-            <div className="h-[0] lg:snap-start" />
+            <div className="h-[1px] lg:snap-start bg-transparent" />
             {!twBreakpoints.lg && <HeaderMobile>On Styling</HeaderMobile>}
             <motion.div
                 className="relative lg:sticky top-0 flex md:flex-row flex-col-reverse items-center justify-center h-auto lg:h-screen pt-4 lg:pt-[11rem]"
