@@ -89,7 +89,7 @@ export const SectionUseCase: React.FC = () => {
                                 margin: "50px",
                             }}
                         >
-                            <div className="w-full max-w-[260px] lg:max-w-[475px] absolute top-[-32px]">
+                            <div className="w-full max-w-[260px] lg:max-w-[375px] absolute top-[-32px]">
                                 <motion.img
                                     src="landing/giftcard.png"
                                     style={
@@ -111,7 +111,7 @@ export const SectionUseCase: React.FC = () => {
                                     }}
                                 />
                             </div>
-                            <div className="w-full max-w-screen md:max-w-[350px] min-h-[200px] md:min-h-[330px] lg:max-w-[475px] flex justify-center items-end lg:min-h-[352px]">
+                            <div className="w-full max-w-screen md:max-w-[350px] min-h-[200px] md:min-h-[330px] lg:max-w-[375px] flex justify-center items-end lg:min-h-[352px]">
                                 <motion.div
                                     style={{
                                         position: "absolute",
