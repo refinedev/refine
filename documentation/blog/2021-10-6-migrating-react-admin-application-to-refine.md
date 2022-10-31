@@ -63,7 +63,7 @@ Both of these images show a list page of a resource (campaign).
 
 List pages have one/more tables inside them. Ideally, all table state should be managed by the framework in use.
 
-refine is very flexible with tables. You can put them anywhere, configure it as much as you want with [useTable](https://refine.dev/docs/api-references/hooks/table/useTable/). See the [fineFoods example](https://refine.dev/demo/) and [it's code](https://github.com/refinedev/refine/blob/master/examples/fineFoods/admin/antd/src/pages/categories/list.tsx).
+refine is very flexible with tables. You can put them anywhere, configure it as much as you want with [useTable](https://refine.dev/docs/api-reference/antd/hooks/table/useTable/). See the [fineFoods example](https://refine.dev/demo/) and [it's code](https://github.com/refinedev/refine/blob/master/examples/fineFoods/admin/antd/src/pages/categories/list.tsx).
 
 Here is an example list page from React-Admin that shows you the list of `id`,`name`, `isActive`, `startDate`, `endDate` from the API endpoint for `campaigns` resource.
 

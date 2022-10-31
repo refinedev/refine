@@ -27,7 +27,7 @@ export default function BlogPostItem({ className }) {
                         <img
                             src={`https://refine-web.imgix.net${frontMatter.image}?w=500`}
                             alt="Post image"
-                            className="absolute inset-0 h-full w-full object-cover transition duration-150 rounded-tl-[10px] rounded-tr-[10px]"
+                            className="absolute inset-0 h-full w-full rounded-tl-[10px] rounded-tr-[10px] object-cover transition duration-150"
                             loading="lazy"
                         />
                     </div>
@@ -48,6 +48,7 @@ export default function BlogPostItem({ className }) {
                                 itemProp="url"
                                 to={permalink}
                                 className="hover:no-underline"
+                                rel="noopener dofollow"
                             >
                                 <div className="text-color-base text-base font-bold transition duration-150 hover:text-stone-600">
                                     {title}

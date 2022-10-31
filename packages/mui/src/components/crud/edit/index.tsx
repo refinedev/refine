@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import {
     useResourceWithRoute,
@@ -8,6 +8,7 @@ import {
     useRouterContext,
     userFriendlyResourceName,
     ResourceRouterParams,
+    useRefineContext,
 } from "@pankod/refine-core";
 import { RefineCrudEditProps } from "@pankod/refine-ui-types";
 
@@ -90,7 +91,7 @@ export const Edit: React.FC<EditProps> = ({
     cardHeaderProps,
     cardContentProps,
     cardActionsProps,
-    breadcrumb = <Breadcrumb />,
+    breadcrumb: breadcrumbFromProps,
     dataProviderName,
     wrapperProps,
     headerProps,
@@ -123,6 +124,19 @@ export const Edit: React.FC<EditProps> = ({
 
     const isDeleteButtonVisible =
         canDelete ?? (resource.canDelete || deleteButtonProps);
+
+    const { options } = useRefineContext();
+    const breadcrumb =
+        typeof breadcrumbFromProps === "undefined"
+            ? options?.breadcrumb
+            : breadcrumbFromProps;
+
+    const breadcrumbComponent =
+        typeof breadcrumb !== "undefined" ? (
+            <>{breadcrumb}</> ?? undefined
+        ) : (
+            <Breadcrumb />
+        );
 
     const id = recordItemId ?? idFromRoute;
 
@@ -166,7 +180,7 @@ export const Edit: React.FC<EditProps> = ({
 
     return (
         <Card {...(cardProps ?? {})} {...(wrapperProps ?? {})}>
-            {breadcrumb}
+            {breadcrumbComponent}
             <CardHeader
                 sx={{ display: "flex", flexWrap: "wrap" }}
                 title={

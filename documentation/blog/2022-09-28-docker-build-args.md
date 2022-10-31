@@ -89,6 +89,11 @@ build:
 		CUDA_VERSION
 ```
 
+---
+
+<PromotionBanner title="Not confident with your frontend skills?" image="/img/generic_banner.png" />
+
+---
 ## How to pass env variables
 There are many ways you can pass the ENV values, such as:
 1.	Provide their values in the dockerfile

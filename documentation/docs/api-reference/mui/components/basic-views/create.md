@@ -129,6 +129,10 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 
 [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/mui/components/breadcrumb.md)
 
+:::tip
+This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
+:::
+
 ```tsx
 import { Create } from "@pankod/refine-mui";
 

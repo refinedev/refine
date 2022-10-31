@@ -10,7 +10,7 @@ import {
     UpdatePasswordPage,
 } from "./components";
 
-export type FormPropsType = UseFormInput<{}, any> & {
+export type FormPropsType = UseFormInput<{}> & {
     onSubmit: (values: any) => void;
 };
 

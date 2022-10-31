@@ -92,6 +92,12 @@ function App() {
 }
 ```
 
+---
+
+<PromotionBanner title="CRUD apps are just boring!" image="/img/diagram.png" />
+
+---
+
 ## What are URL parameters in React router
 
 When declaring functions in JavaScript, we use placeholders referred to as parameters. You use the parameters to perform some operations in the function declaration and return a value. The code below is a JavaScript function declaration that takes two numbers and returns their sum.
@@ -152,6 +158,13 @@ If the matching route is`/blog/use-params` for the example above, the `useParams
   id: "use-params"
 }
 ```
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
 
 ## Conclusion
 

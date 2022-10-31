@@ -4,6 +4,12 @@
 @import "./components.css";
 @import "tailwindcss/utilities";
 
+@layer base {
+    button[type="submit"] {
+        background-color: rgb(0 0 0);
+    }
+}
+
 @layer components {
     .content-container {
         @apply mx-auto w-full max-w-[1440px] px-8;

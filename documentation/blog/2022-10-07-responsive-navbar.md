@@ -372,6 +372,12 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
 ```
 
+---
+
+<PromotionBanner title="Is your CRUD app overloaded with technical debt?" image="/img/generic_banner.png" />
+
+---
+
 ## Responsive Navbar with Bootstrap
 I've already walked you through [setting up refine app](#refine-setup). Now, we'll create navbar inside `Layout.tsx` and pass it as a prop to `<Refine />` component.
 
@@ -480,6 +486,12 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 <br/>
 
 
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
 
 ##  Add React Router to Bootstrap Navbar
 Now, we're done with creating a responsive navbar using `react-bootstrap`.

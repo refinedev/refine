@@ -17,7 +17,7 @@
 </div>
 <br/>
 
-<div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>Open source, headless web application framework developed with flexibility in mind.</div>
+<div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>An Open source, headless web application framework developed with flexibility in mind.</div>
 
 <br />
 

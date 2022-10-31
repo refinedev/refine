@@ -147,12 +147,12 @@ We already memoized `<UserPostsList />` with `React.memo()`. We don't see any re
 
  Does `deletePost()` change ?
 
-<br/>
-<div>
-<a href="https://github.com/refinedev/refine">
-  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
-</a>
-</div>
+
+---
+
+<PromotionBanner title="Building a side project?" image="/img/generic_banner.png" />
+
+---
 
 ## Referential Integrity
 Well, `deletePost()` changes, and it changes due to breaking of **referential integrity**. And this change triggers a re-render in `<UserPostsList />` which we don't expect to see.
@@ -197,6 +197,13 @@ This is because `useCallback()` caches and produces the same copy of `deletePost
 
 Here, a change in `userPosts` triggers renewal of the memo of the function, so everytime the value of `userPosts` changes, `<UserPostsList />` will be re-rendered.
 
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
+
 ## Other Cases
 Memoized callbacks are very important to maintain referential integrity so that the same function object is made available every time a component re-renders. `useCallback()` is also used to cache callbacks in debouncing, as well as dependencies in hooks like `useEffect()`.
 
@@ -221,28 +228,4 @@ In this article, we looked at how re-renders of a parent component lead to viola
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
-
----
-
-## Build your React-based CRUD applications without constraints
-
-Low-code React frameworks are great for gaining development speed but they often fall short of flexibility if you need extensive styling and customization for your project.
-
-Check out [refine](https://github.com/refinedev/refine),if you are interested in a headless framework you can use with any custom design or UI-Kit for 100% control over styling.
-
-
-<div>
-<a href="https://github.com/refinedev/refine">
-    <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
-</a>
-</div>
-
-<br/>
-
-**refine** is an open-source React-based framework for building CRUD applications **without constraints.**
-It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
-
-**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
-
-Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.
 

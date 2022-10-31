@@ -120,6 +120,7 @@ type PlaygroundProps = {
     hideCode?: boolean;
     previewHeight?: string;
     url?: string;
+    previewOnly?: boolean;
 };
 
 /**
@@ -131,6 +132,7 @@ const LivePreviewBase = ({
     previewHeight,
     hideCode = false,
     url = "http://localhost:3000",
+    previewOnly = false,
 }: PlaygroundProps): JSX.Element => {
     const code = String(children);
     const { shared } = useLivePreviewContext();
@@ -184,7 +186,7 @@ ${code}
                         </Conditional>
                     </div>
                 </BrowserWindow>
-                <Editor hidden={hideCode} code={visible} />
+                {!previewOnly && <Editor hidden={hideCode} code={visible} />}
             </>
         </div>
     );

@@ -12,7 +12,7 @@ import {
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import { PostCreate, PostEdit, PostList } from "./pages";
+import { PostCreate, PostEdit, PostList, PostShow } from "./pages";
 
 const App: React.FC = () => {
     return (
@@ -31,9 +31,11 @@ const App: React.FC = () => {
                     resources={[
                         {
                             name: "posts",
+                            show: PostShow,
                             list: PostList,
                             edit: PostEdit,
                             create: PostCreate,
+                            canDelete: true,
                         },
                     ]}
                 />
