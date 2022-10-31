@@ -20,8 +20,8 @@ export const SectionUseCase: React.FC = () => {
             ref={ref}
             className="h-auto px-4 -mt-px bg-white lg:h-screen lg:px-0"
         >
-            <motion.div className="relative top-0 left-0 flex flex-col items-center justify-end w-screen h-auto max-w-full gap-24 pt-12 pb-6 overflow-x-hidden lg:pt-16 lg:pb-12 lg:h-screen lg:snap-start lg:sticky lg:gap-0">
-                <div className="flex-1 flex flex-col-reverse gap-4 lg:gap-0 lg:flex-row mx-auto max-w-[800px] w-full items-center justify-center">
+            <motion.div className="relative top-0 left-0 flex flex-col items-center justify-end w-screen h-auto max-w-full gap-24 pt-16 pb-6 overflow-x-hidden lg:pt-16 lg:pb-12 lg:h-screen lg:snap-start lg:sticky lg:gap-0">
+                <div className="flex-1 flex flex-col-reverse gap-4 lg:gap-0 lg:flex-row mx-auto max-w-[900px] w-full h-full items-center justify-center">
                     <div className="flex-1">
                         <div className="font-montserrat text-[#1890FF] text-[26px] leading-[26px] sm:text-[28px] sm:leading-[28px] lg:text-[30px] lg:leading-[36px] mb-0">
                             <div className="font-medium">IF YOU’RE ALREADY</div>
@@ -89,28 +89,29 @@ export const SectionUseCase: React.FC = () => {
                                 margin: "50px",
                             }}
                         >
-                            <motion.img
-                                src="landing/giftcard.png"
-                                className="w-full max-w-[300px] lg:max-w-[330px] absolute top-0"
-                                style={
-                                    lg
-                                        ? {
-                                              opacity: cardOpacity,
-                                          }
-                                        : {}
-                                }
-                                animate={{
-                                    translateY: ["20px", "0px"],
-                                    rotate: ["-3deg", "0deg"],
-                                    ...(!lg ? { opacity: [1, 1] } : {}),
-                                }}
-                                transition={{
-                                    duration: 5,
-                                    ease: "easeInOut",
-                                    yoyo: Infinity,
-                                }}
-                            />
-                            <div className="w-full max-w-screen md:max-w-[350px] min-h-[300px] md:min-h-[330px] lg:max-w-[330px] flex justify-center items-end lg:min-h-[300px]">
+                            <div className="w-full max-w-[260px] lg:max-w-[475px] absolute top-[-32px]">
+                                <motion.img
+                                    src="landing/giftcard.png"
+                                    style={
+                                        lg
+                                            ? {
+                                                  opacity: cardOpacity,
+                                              }
+                                            : {}
+                                    }
+                                    animate={{
+                                        translateY: ["20px", "0px"],
+                                        rotate: ["-3deg", "0deg"],
+                                        ...(!lg ? { opacity: [1, 1] } : {}),
+                                    }}
+                                    transition={{
+                                        duration: 5,
+                                        ease: "easeInOut",
+                                        yoyo: Infinity,
+                                    }}
+                                />
+                            </div>
+                            <div className="w-full max-w-screen md:max-w-[350px] min-h-[200px] md:min-h-[330px] lg:max-w-[475px] flex justify-center items-end lg:min-h-[352px]">
                                 <motion.div
                                     style={{
                                         position: "absolute",
