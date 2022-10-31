@@ -1,12 +1,14 @@
 import React from "react";
 import clsx from "clsx";
 import NavbarNavLink from "@theme/NavbarItem/NavbarNavLink";
+import { getLinkRel } from "@site/src/utils/link-rel";
+
 function DefaultNavbarItemDesktop({
     className,
     isDropdownItem = false,
     ...props
 }) {
-    const isGitHubLink = props?.href?.includes("github.com/refinedev/refine");
+    const rel = getLinkRel(props?.href);
     const element = (
         <NavbarNavLink
             className={clsx(
@@ -15,7 +17,7 @@ function DefaultNavbarItemDesktop({
             )}
             isDropdownLink={isDropdownItem}
             {...props}
-            rel={isGitHubLink ? "noopener" : "noopener noreferrer"}
+            rel={rel}
         />
     );
     if (isDropdownItem) {
