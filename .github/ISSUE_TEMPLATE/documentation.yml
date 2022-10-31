@@ -25,3 +25,11 @@ body:
         description: Ideas about what we should do to improve experience of beginners and readers. It may be new pages to add, grammar fixes etc.
       validations:
         required: false
+    - type: checkboxes
+      id: read-code-of-conduct
+      attributes:
+        label: "🏢 Have you read the Code of Conduct?"
+      options:
+        - label: "I have read the [Code of Conduct](https://github.com/refinedev/refine/blob/next/CODE_OF_CONDUCT.md)"
+          required: true
+28    
