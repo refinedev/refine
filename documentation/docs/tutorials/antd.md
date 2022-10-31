@@ -229,8 +229,6 @@ Point your browser to [http://localhost:3000](http://localhost:3000) to access i
 </div>
 <br/>
 
-You'll still see a **404** error page because no **Page** component is assigned to our resource yet.
-
 ## Adding Resources
 
 Now we are ready to start connecting to our API by adding a resource to our application.
@@ -325,7 +323,7 @@ Instead of showing the welcome page, the application should redirect now to an U
 
 You'll still see a **404** error page because no **Page** component is assigned to our resource yet.
 
-:::Note
+:::note
 `resources` use **Page** components to handle data and perform rendering. **Page** components are passed to `resources` as an array of objects.
 For basic _CRUD_ operations, there are **four** predefined props: **list**, **create**, **edit** and **show**.
 :::
@@ -450,8 +448,7 @@ export const App: React.FC = () => {
 };
 ```
 
-:::Note 
-You will need a few more files which help `src/App.tsx` to find your pages and posts. In the `/pages` folder, put this `index.tsx` file in it which allows everything in the `posts` folder to be used elsewhere.
+Note you will need a few more files which help `src/App.tsx` to find your pages and posts. In the `/pages` folder, put this `index.tsx` file in it which allows everything in the `posts` folder to be used elsewhere.
 
 ```tsx title="src/pages/index.tsx"
 export * from "./posts";
@@ -947,7 +944,7 @@ export const PostList: React.FC = () => {
 
 [Refer to the `useShow` documentation for detailed usage information. &#8594](/api-reference/core/hooks/show/useShow.md)
 
-✳️ To retrieve the category title again, we need to make a call to `/categories` endpoint. This time we used `useOne()` hook to get a single record from another resource.
+✳️ To retrieve the category title, we need to make a call to `/categories` endpoint. This time we used `useOne()` hook to get a single record from another resource.
 
 [Refer to the `useOne` documentation for detailed usage information. &#8594](/api-reference/core/hooks/data/useOne.md)
 
@@ -1218,7 +1215,7 @@ Let's see what's going on in our `<PostEdit>` component in detail:
 ✳️ `useForm` is a refine hook for handling form data.
 In the example, it returns `formProps` and `saveButtonProps`, where the former includes all necessary props to build the form and the latter has the ones for the save button.
 
-:::Caution
+:::caution Attention
 In the edit page, `useForm` hook initializes the form with current record values.
 
 [Refer to the `useForm` documentation for detailed usage information . &#8594](/api-reference/antd/hooks/form/useForm.md)
