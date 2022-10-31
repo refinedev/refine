@@ -12,7 +12,7 @@ export const getLinkRel = (URL?: string): string => {
         rel = "noopener";
     }
 
-    if (isInternalURL) {
+    if (isInternalURL || URL?.includes("refine.dev")) {
         rel = "noopener dofollow";
     }
 
