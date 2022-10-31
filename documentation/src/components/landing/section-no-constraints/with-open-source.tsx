@@ -82,7 +82,7 @@ const WithOpenSource: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
     const opacity = useTransform(scrollYProgress, [0.7, 0.8, 1], [0, 1, 0]);
 
     return (
-        <div className="lg:snap-start flex flex-col items-center justify-center h-auto lg:h-screen pt-0 lg:pt-[11rem]">
+        <div className="lg:snap-start flex flex-col items-center justify-center h-auto lg:h-screen pt-0 lg:pt-[11rem] lg:pb-20">
             {!twBreakpoints.lg && <HeaderMobile>With Opensource</HeaderMobile>}
             <motion.div
                 className="flex flex-col w-full h-full items-center justify-center text-[#2A2A42] text-center"
@@ -214,7 +214,7 @@ const WithOpenSource: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                     </motion.div>
                 </div>
 
-                <div className="max-w-[800px] mx-auto mt-4 lg:mt-16 text-base 2xl:text-xl text-center font-montserrat">
+                <div className="max-w-[591px] mx-auto mt-4 lg:mt-16 text-base 2xl:text-xl text-center font-montserrat tracking-tight">
                     <p className="mb-1 lg:mb-2">
                         <strong>refine</strong> core is an open source framework
                         and it will always <strong>stay free</strong>.

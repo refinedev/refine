@@ -37,13 +37,13 @@ const SpotLight: FC<Props> = ({ scrollYProgress }) => {
     const spotlightPurpleX = useTransform(
         scrollYProgress,
         [0, 0.2, 0.4, 0.6, 0.8, 0.9],
-        [-30, -30, -70, -190, 125, 125],
+        [-30, -30, -70, -190, 100, 125],
     );
 
     const spotlightPurpleY = useTransform(
         scrollYProgress,
         [0, 0.2, 0.4, 0.6, 0.8, 0.9],
-        [-80, -80, -30, 220, 115, 1],
+        [-80, -80, -30, 220, 60, 1],
     );
 
     return (
