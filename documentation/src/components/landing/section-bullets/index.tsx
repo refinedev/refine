@@ -2,32 +2,23 @@ import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { BenefitIcons } from "../icons";
 import { useTWBreakpoints } from "../../../hooks/use-tw-breakpoints";
+import styles from "./styles.module.css";
 
 export const SectionBullets = () => {
     const ref = React.useRef<HTMLDivElement>(null);
     const innerRef = React.useRef<HTMLDivElement>(null);
 
-    const { sm, md, lg, xl } = useTWBreakpoints();
-
-    const { scrollYProgress: scrollYProgressIncoming } = useScroll({
-        target: ref,
-        offset: ["start end", "end start"],
-    });
+    const { lg } = useTWBreakpoints();
 
     const { scrollYProgress: scrollYProgressInnerIncoming } = useScroll({
         target: innerRef,
         offset: ["start end", "end end"],
     });
 
-    const { scrollYProgress: scrollYProgressOutgoing } = useScroll({
-        target: ref,
-        offset: ["start start", "end start"],
-    });
-
     const whyNotY = useTransform(
         scrollYProgressInnerIncoming,
         [0, 0.25, 1],
-        [100, -50, 0],
+        [100, -50, 24],
     );
 
     const whyNotRotate = useTransform(
@@ -56,14 +47,14 @@ export const SectionBullets = () => {
 
     return (
         // Scroll animated container
-        <motion.div ref={ref} className="h-auto lg:h-[100vh] bg-white">
+        <motion.div ref={ref} className="h-auto bg-white lg:h-screen">
             {/* Scroll animated section */}
             <motion.div
                 ref={innerRef}
-                className="h-auto lg:h-screen lg:snap-start overflow-x-hidden overflow-y-hidden w-screen max-w-full top-0 left-0 relative lg:sticky pt-8 px-4 md:px-10 lg:px-16 xl:px-24 flex flex-col -mt-px"
+                className="relative top-0 left-0 flex flex-col w-screen h-auto pt-0 -mt-px overflow-x-hidden overflow-y-hidden lg:pt-8 max-w-ful lg:h-screen lg:snap-start"
             >
                 <motion.div
-                    className="flex items-center justify-center lg:pt-16 short:pt-14 lg:pb-4 opacity-100 px-2 lg:px-0"
+                    className="flex items-center justify-center px-2 mt-8 opacity-100 lg:pt-8 short:pt-14 lg:pb-4 lg:px-0"
                     // animate={
                     //     !lg
                     //         ? {
@@ -102,7 +93,7 @@ export const SectionBullets = () => {
                               }
                     }
                 >
-                    <motion.div className="h-fit z-[1] px-1 lg:px-5 -mx-16 bg-[#1784EB] font-extrabold font-montserrat text-white uppercase text-[36px] leading-[36px] lg:text-[52px] lg:leading-[52px] py-0.5 lg:-rotate-3 shadow-startTiles flex">
+                    <motion.div className="h-fit z-[1] px-1 lg:px-5 -mx-16 bg-[#1784EB] font-extrabold font-montserrat text-white uppercase text-[36px] leading-[36px] lg:text-[52px] lg:leading-[52px]  lg:-rotate-3 shadow-startTiles flex rounded-lg">
                         why not both?
                     </motion.div>
                 </motion.div>
@@ -116,11 +107,11 @@ export const SectionBullets = () => {
                               }
                             : { opacity: 1, translateY: 0 }
                     }
-                    className="flex gap-5 max-w-6xl lg:px-3 mx-auto w-full justify-center flex-col"
+                    className={styles.container}
                 >
-                    <div className="grid pt-12 short:pt-4 w-full">
-                        <div className="grid grid-cols-6 gap-4 lg:gap-4 place-items-center lg:place-items-start">
-                            <div className="col-span-3 lg:col-span-2 h-full flex w-full">
+                    <div className={styles.gridWrapper}>
+                        <div className={styles.gridContainer}>
+                            <div className={styles.gridItem}>
                                 <motion.div
                                     animate={
                                         lg ? { scale: [1, 1.02] } : { scale: 1 }
@@ -152,12 +143,14 @@ export const SectionBullets = () => {
                                     viewport={{
                                         margin: "20px",
                                     }}
-                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-2 md:p-4 pt-3 pb-3 md:pt-4 md:pb-4 flex flex-col md:flex-row gap-2 md:gap-6 items-center justify-between w-full max-w-[400px]"
+                                    className={styles.card}
                                 >
-                                    <div className="flex justify-center mb-4 lg:mb-0 lg:block">
-                                        <BenefitIcons.ChronoIcon className="h-[36px] lg:h-[50px]" />
+                                    <div className={styles.cardIconWrapper}>
+                                        <BenefitIcons.ChronoIcon
+                                            className={styles.cardIcon}
+                                        />
                                     </div>
-                                    <div className="font-montserrat font-normal text-center lg:text-left text-sm lg:text-base leading-4 lg:leading-5 text-[#2A2A42] tracking-tight">
+                                    <div className={styles.cardText}>
                                         <strong className="font-extrabold">
                                             1-minute
                                         </strong>{" "}
@@ -168,7 +161,7 @@ export const SectionBullets = () => {
                                     </div>
                                 </motion.div>
                             </div>
-                            <div className="col-span-3 lg:col-span-2 h-full flex w-full">
+                            <div className={styles.gridItem}>
                                 <motion.div
                                     animate={
                                         lg ? { scale: [1, 1.02] } : { scale: 1 }
@@ -200,26 +193,28 @@ export const SectionBullets = () => {
                                     viewport={{
                                         margin: "20px",
                                     }}
-                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-2 md:p-4 pt-3 pb-3 md:pt-4 md:pb-4 flex flex-col md:flex-row gap-2 md:gap-6 items-center justify-between w-full max-w-[400px]"
+                                    className={styles.card}
                                 >
-                                    <div className="flex-shrink-0 flex justify-center mb-4 lg:mb-0 lg:block">
-                                        <BenefitIcons.SsrIcon className="h-[36px] lg:h-[50px]" />
+                                    <div className={styles.cardIconWrapper}>
+                                        <BenefitIcons.SsrIcon
+                                            className={styles.cardIcon}
+                                        />
                                     </div>
-                                    <div className="flex-1 font-montserrat font-normal text-center lg:text-left text-sm lg:text-base leading-4 lg:leading-5 text-[#2A2A42] tracking-tight">
+                                    <div className={styles.cardText}>
                                         <div>
                                             <strong className="font-extrabold">
                                                 SSR
                                             </strong>{" "}
                                             support with{" "}
                                         </div>
-                                        <div className="flex items-center flex-row justify-center lg:justify-start lg: gap-3 pt-2">
+                                        <div className="flex flex-row items-center justify-center gap-3 pt-2 lg:justify-start lg:">
                                             <BenefitIcons.NextjsIcon className="w-auto h-[12px] lg:h-[18px]" />
-                                            <BenefitIcons.RemixIcon className="w-auto h-[12px] lg:h-[18px]" />
+                                            <BenefitIcons.RemixIcon className="w-auto h-[12px] lg:h-[22px]" />
                                         </div>
                                     </div>
                                 </motion.div>
                             </div>
-                            <div className="col-span-3 lg:col-span-2 h-full flex w-full">
+                            <div className={styles.gridItem}>
                                 <motion.div
                                     animate={
                                         lg ? { scale: [1, 1.02] } : { scale: 1 }
@@ -251,12 +246,14 @@ export const SectionBullets = () => {
                                     viewport={{
                                         margin: "20px",
                                     }}
-                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-2 md:p-4 pt-3 pb-3 md:pt-4 md:pb-4 flex flex-col md:flex-row gap-2 md:gap-6 items-center justify-between w-full max-w-[400px]"
+                                    className={styles.card}
                                 >
-                                    <div className="flex justify-center mb-4 lg:mb-0 lg:block">
-                                        <BenefitIcons.ReactIcon className="h-[36px] lg:h-[50px]" />
+                                    <div className={styles.cardIconWrapper}>
+                                        <BenefitIcons.ReactIcon
+                                            className={styles.cardIcon}
+                                        />
                                     </div>
-                                    <div className="font-montserrat font-normal text-center lg:text-left text-sm lg:text-base leading-4 lg:leading-5 text-[#2A2A42] tracking-tight">
+                                    <div className={styles.cardText}>
                                         Perfect{" "}
                                         <strong className="font-extrabold">
                                             state management
@@ -272,7 +269,7 @@ export const SectionBullets = () => {
                                     </div>
                                 </motion.div>
                             </div>
-                            <div className="col-span-3 lg:col-span-2 h-full flex w-full">
+                            <div className={styles.gridItem}>
                                 <motion.div
                                     animate={
                                         lg ? { scale: [1, 1.02] } : { scale: 1 }
@@ -304,12 +301,14 @@ export const SectionBullets = () => {
                                     viewport={{
                                         margin: "20px",
                                     }}
-                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-2 md:p-4 pt-3 pb-3 md:pt-4 md:pb-4 flex flex-col md:flex-row gap-2 md:gap-6 items-center justify-between w-full max-w-[400px]"
+                                    className={styles.card}
                                 >
-                                    <div className="flex justify-center mb-4 lg:mb-0 lg:block">
-                                        <BenefitIcons.RouteIcon className="h-[36px] lg:h-[50px]" />
+                                    <div className={styles.cardIconWrapper}>
+                                        <BenefitIcons.RouteIcon
+                                            className={styles.cardIcon}
+                                        />
                                     </div>
-                                    <div className="font-montserrat font-normal text-center lg:text-left text-sm lg:text-base leading-4 lg:leading-5 text-[#2A2A42] tracking-tight">
+                                    <div className={styles.cardText}>
                                         Advanced routing with any{" "}
                                         <strong className="font-extrabold">
                                             router
@@ -318,7 +317,7 @@ export const SectionBullets = () => {
                                     </div>
                                 </motion.div>
                             </div>
-                            <div className="col-span-3 lg:col-span-2 h-full flex w-full">
+                            <div className={styles.gridItem}>
                                 <motion.div
                                     animate={
                                         lg ? { scale: [1, 1.02] } : { scale: 1 }
@@ -350,12 +349,14 @@ export const SectionBullets = () => {
                                     viewport={{
                                         margin: "20px",
                                     }}
-                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-2 md:p-4 pt-3 pb-3 md:pt-4 md:pb-4 flex flex-col md:flex-row gap-2 md:gap-6 items-center justify-between w-full max-w-[400px]"
+                                    className={styles.card}
                                 >
-                                    <div className="flex justify-center mb-4 lg:mb-0 lg:block">
-                                        <BenefitIcons.AuthIcon className="h-[36px] lg:h-[50px]" />
+                                    <div className={styles.cardIconWrapper}>
+                                        <BenefitIcons.AuthIcon
+                                            className={styles.cardIcon}
+                                        />
                                     </div>
-                                    <div className="font-montserrat font-normal text-center lg:text-left text-sm lg:text-base leading-4 lg:leading-5 text-[#2A2A42] tracking-tight">
+                                    <div className={styles.cardText}>
                                         Providers for seamless{" "}
                                         <strong className="font-extrabold">
                                             authentication
@@ -368,7 +369,7 @@ export const SectionBullets = () => {
                                     </div>
                                 </motion.div>
                             </div>
-                            <div className="col-span-3 lg:col-span-2 h-full flex w-full">
+                            <div className={styles.gridItem}>
                                 <motion.div
                                     animate={
                                         lg ? { scale: [1, 1.02] } : { scale: 1 }
@@ -400,20 +401,23 @@ export const SectionBullets = () => {
                                     viewport={{
                                         margin: "20px",
                                     }}
-                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-2 md:p-4 pt-3 pb-3 md:pt-4 md:pb-4 flex flex-col md:flex-row gap-2 md:gap-6 items-center justify-between w-full max-w-[400px]"
+                                    className={styles.card}
                                 >
-                                    <div className="flex justify-center mb-4 lg:mb-0 lg:block">
-                                        <BenefitIcons.RealtimeIcon className="h-[36px] lg:h-[50px]" />
+                                    <div className={styles.cardIconWrapper}>
+                                        <BenefitIcons.RealtimeIcon
+                                            className={styles.cardIcon}
+                                        />
                                     </div>
-                                    <div className="font-montserrat font-normal text-center lg:text-left text-sm lg:text-base leading-4 lg:leading-5 text-[#2A2A42] tracking-tight">
+                                    <div className={styles.cardText}>
                                         Out-of-the-box support for{" "}
                                         <strong className="font-extrabold">
-                                            live / realtime applications
+                                            live&nbsp;/&nbsp;realtime
+                                            applications
                                         </strong>
                                     </div>
                                 </motion.div>
                             </div>
-                            <div className="col-span-3 lg:col-span-2 lg:col-start-2 h-full flex w-full">
+                            <div className={styles.gridItem}>
                                 <motion.div
                                     animate={
                                         lg ? { scale: [1, 1.02] } : { scale: 1 }
@@ -445,12 +449,14 @@ export const SectionBullets = () => {
                                     viewport={{
                                         margin: "20px",
                                     }}
-                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-2 md:p-4 pt-3 pb-3 md:pt-4 md:pb-4 flex flex-col md:flex-row gap-2 md:gap-6 items-center justify-between w-full max-w-[400px]"
+                                    className={styles.card}
                                 >
-                                    <div className="flex justify-center mb-4 lg:mb-0 lg:block">
-                                        <BenefitIcons.AuditIcon className="h-[36px] lg:h-[50px]" />
+                                    <div className={styles.cardIconWrapper}>
+                                        <BenefitIcons.AuditIcon
+                                            className={styles.cardIcon}
+                                        />
                                     </div>
-                                    <div className="font-montserrat font-normal text-center lg:text-left text-sm lg:text-base leading-4 lg:leading-5 text-[#2A2A42] tracking-tight">
+                                    <div className={styles.cardText}>
                                         Easy{" "}
                                         <strong className="font-extrabold">
                                             audit logs
@@ -462,7 +468,7 @@ export const SectionBullets = () => {
                                     </div>
                                 </motion.div>
                             </div>
-                            <div className="col-span-3 lg:col-span-2 h-full flex w-full">
+                            <div className={styles.gridItem}>
                                 <motion.div
                                     animate={
                                         lg ? { scale: [1, 1.02] } : { scale: 1 }
@@ -494,12 +500,14 @@ export const SectionBullets = () => {
                                     viewport={{
                                         margin: "20px",
                                     }}
-                                    className="col-span-3 lg:col-span-2 rounded-2xl bg-white shadow-tile p-2 md:p-4 pt-3 pb-3 md:pt-4 md:pb-4 flex flex-col md:flex-row gap-2 md:gap-6 items-center justify-between w-full lg:w-auto max-w-[400px]"
+                                    className={styles.card}
                                 >
-                                    <div className="flex justify-center mb-4 lg:mb-0 lg:block">
-                                        <BenefitIcons.GlobalIcon className="h-[36px] lg:h-[50px]" />
+                                    <div className={styles.cardText}>
+                                        <BenefitIcons.GlobalIcon
+                                            className={styles.cardIcon}
+                                        />
                                     </div>
-                                    <div className="flex-1 font-montserrat font-normal text-center lg:text-left text-sm lg:text-base leading-4 lg:leading-5 text-[#2A2A42] tracking-tight">
+                                    <div className={styles.cardText}>
                                         Support for any{" "}
                                         <strong className="font-extrabold">
                                             i18n
@@ -510,7 +518,7 @@ export const SectionBullets = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="text-center font-montserrat font-medium text-lg lg:text-2xl text-[#2A2A42] pt-2 pb-6 lg:pb-2 lg:pt-2 tracking-wide">
+                    <div className="text-center font-montserrat font-medium text-base xl:text-xl text-[#2A2A42] tracking-wide">
                         <p className="mb-0">
                             With <strong className="font-bold">refine</strong>{" "}
                             you can have it all without compromising
@@ -522,7 +530,7 @@ export const SectionBullets = () => {
                 </motion.div>
             </motion.div>
             {/* Scroll snap alignment */}
-            {/* <div className="hidden lg:block snap-start h-screen" /> */}
+            {/* <div className="hidden h-screen lg:block snap-start" /> */}
         </motion.div>
     );
 };
