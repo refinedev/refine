@@ -103,6 +103,9 @@ const OnStyling: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                     />
                     <motion.div
                         className="font-montserrat bg-[#2A2A42] text-white text-xs md:text-2xl font-extrabold px-4 py-2 rounded-md absolute shadow-startTiles left-[10%] bottom-[26%] z-50"
+                        initial={{
+                            translateZ: "10px",
+                        }}
                         transition={{
                             yoyo: Infinity,
                             ease: "easeInOut",
@@ -197,7 +200,12 @@ const OnStyling: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                         }}
                         src="/landing/no-constraints/dashboard-mui.png"
                     />
-                    <div className="absolute left-0 md:left-[-40px] flex flex-col gap-1 md:gap-4 bottom-9 z-50">
+                    <motion.div
+                        className="absolute left-0 md:left-[-40px] flex flex-col gap-1 md:gap-4 bottom-9 z-50"
+                        initial={{
+                            translateZ: "10px",
+                        }}
+                    >
                         <div className="font-montserrat flex justify-center bg-[#3FDCF7] text-white text-xs md:text-2xl font-extrabold px-2 py-1 rounded-md shadow-startTiles flex-shrink-0">
                             ANT DESIGN
                         </div>
@@ -210,7 +218,7 @@ const OnStyling: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                         <div className="translate-x-[180%] md:translate-x-[150%] font-montserrat flex justify-center bg-[#450D87] text-white text-xs md:text-2xl font-extrabold px-2 py-1 rounded-md shadow-startTiles flex-shrink-0">
                             CHAKRA UI
                         </div>
-                    </div>
+                    </motion.div>
                 </motion.div>
             </motion.div>
         </motion.div>
