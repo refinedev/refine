@@ -37,7 +37,7 @@ const OnStyling: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
         >
             {!twBreakpoints.lg && <HeaderMobile>On Styling</HeaderMobile>}
             <motion.div
-                className="relative lg:sticky top-0 flex md:flex-row flex-col-reverse items-center justify-center h-auto lg:h-screen pt-0 lg:pt-[11rem]"
+                className="relative lg:sticky top-0 flex md:flex-row flex-col-reverse items-center justify-center h-auto lg:h-screen pt-4 lg:pt-[11rem]"
                 style={
                     twBreakpoints.lg
                         ? {
@@ -48,7 +48,7 @@ const OnStyling: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                 }
             >
                 <motion.div className="relative flex flex-[1] item-start md:items-center h-full pointer-events-none 2xl:pr-16">
-                    <p className="font-montserrat font-medium text-base 2xl:text-xl tracking-tight leading-[20px] max-w-[280px] 2xl:max-w-none mb-0 text-[#2A2A42]">
+                    <p className="font-montserrat font-medium text-base 2xl:text-xl tracking-tight leading-[20px] max-w-[280px] 2xl:max-w-none mb-0 text-[#2A2A42] lg:translate-y-[-80%]">
                         <strong className="font-bold">refine</strong> is is{" "}
                         <strong className="font-bold">design.</strong>{" "}
                         <div>
@@ -125,35 +125,41 @@ const OnStyling: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                 }
             >
                 <div className="flex flex-[1] flex-col font-montserrat font-medium text-base 2xl:text-xl 2xl:pr-16 text-[#2A2A42] pointer-events-none">
-                    <p>
-                        Not ready for going headless yet?
-                        <div>
-                            <strong className="font-bold">No problem.</strong>
-                        </div>
-                    </p>
+                    <div className="lg:translate-y-[-80%]">
+                        <p>
+                            Not ready for going headless yet?
+                            <div>
+                                <strong className="font-bold">
+                                    No problem.
+                                </strong>
+                            </div>
+                        </p>
 
-                    <p>
-                        <strong className="font-bold">refine</strong> supports
-                        three powerful
-                        <div>
-                            <strong className="font-bold">UI frameworks</strong>{" "}
-                            out-of-the box:
-                        </div>
-                    </p>
+                        <p>
+                            <strong className="font-bold">refine</strong>{" "}
+                            supports three powerful
+                            <div>
+                                <strong className="font-bold">
+                                    UI frameworks
+                                </strong>{" "}
+                                out-of-the box:
+                            </div>
+                        </p>
 
-                    <div className="flex flex-col gap-2">
-                        <div className="">
-                            <Link
-                                to="/examples"
-                                className="z-[1] border border-[#F0F2F5] bg-[#F6F6F9] border-solid rounded-[20px] h-7 w-[153px] flex items-center justify-between pl-3 py-1 pr-1"
-                            >
-                                <div className="uppercase text-[#9696B4] text-[12px] leading-[12px] font-montserrat font-bold">
-                                    view examples
-                                </div>
-                                <div className="flex items-center justify-center w-5 h-5 pl-px bg-white rounded-full">
-                                    <ExternalLinkIcon className="h-2.5 w-2.5 text-[#9696B4]" />
-                                </div>
-                            </Link>
+                        <div className="flex flex-col gap-2">
+                            <div className="">
+                                <Link
+                                    to="/examples"
+                                    className="z-[1] border border-[#F0F2F5] bg-[#F6F6F9] border-solid rounded-[20px] h-7 w-[153px] flex items-center justify-between pl-3 py-1 pr-1"
+                                >
+                                    <div className="uppercase text-[#9696B4] text-[12px] leading-[12px] font-montserrat font-bold">
+                                        view examples
+                                    </div>
+                                    <div className="flex items-center justify-center w-5 h-5 pl-px bg-white rounded-full">
+                                        <ExternalLinkIcon className="h-2.5 w-2.5 text-[#9696B4]" />
+                                    </div>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>

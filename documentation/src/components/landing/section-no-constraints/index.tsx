@@ -20,7 +20,7 @@ export const SectionNoConstraints: React.FC = () => {
 
     return (
         <>
-            <div className="relative mx-auto px-6 xl:px-0 xl:max-w-[1024px] 2xl:max-w-[1280px]">
+            <div className="relative mt-16 lg:mt-0 mx-auto px-6 xl:px-0 xl:max-w-[1024px] 2xl:max-w-[1280px]">
                 {twBreakpoints.lg && (
                     <Header scrollYProgress={scrollYProgress} />
                 )}
