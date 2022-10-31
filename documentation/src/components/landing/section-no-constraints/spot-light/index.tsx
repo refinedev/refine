@@ -25,25 +25,25 @@ const SpotLight: FC<Props> = ({ scrollYProgress }) => {
     const spotlightBlueX = useTransform(
         scrollYProgress,
         [0, 0.2, 0.4, 0.6, 0.8, 0.9],
-        [350, 350, 300, -430, 90, 1],
+        [350, 350, 300, -540, 90, 1],
     );
 
     const spotlightBlueY = useTransform(
         scrollYProgress,
         [0, 0.2, 0.4, 0.6, 0.8, 0.9],
-        [24, 24, 0, 80, -35, 1],
+        [24, 24, 0, 40, -35, 1],
     );
 
     const spotlightPurpleX = useTransform(
         scrollYProgress,
         [0, 0.2, 0.4, 0.6, 0.8, 0.9],
-        [-30, -30, -70, -190, 100, 125],
+        [-30, -30, -70, -240, 100, 125],
     );
 
     const spotlightPurpleY = useTransform(
         scrollYProgress,
         [0, 0.2, 0.4, 0.6, 0.8, 0.9],
-        [-80, -80, -30, 220, 60, 1],
+        [-80, -80, -30, 170, 60, 1],
     );
 
     const spotlightOpacity = useTransform(scrollYProgress, [0.9, 1], [1, 0]);
