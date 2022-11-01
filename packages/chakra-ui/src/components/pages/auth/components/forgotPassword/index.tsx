@@ -21,7 +21,7 @@ import {
 } from "@chakra-ui/react";
 import { useForm } from "@pankod/refine-react-hook-form";
 
-import { layoutStyles, cardStyles } from "../styles";
+import { layoutProps, cardProps } from "../styles";
 import { FormPropsType } from "../..";
 
 type ForgotPasswordProps = ForgotPasswordPageProps<
@@ -49,8 +49,9 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
         ...useFormProps,
     });
 
+    const allContentProps = { ...cardProps, ...contentProps };
     const content = (
-        <Box style={cardStyles} {...contentProps}>
+        <Box {...allContentProps}>
             <Heading mb="8" textAlign="center" size="lg">
                 {translate(
                     "pages.forgotPassword.title",
@@ -117,8 +118,9 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
         </Box>
     );
 
+    const allWrapperProps = { ...layoutProps, ...wrapperProps };
     return (
-        <Box style={layoutStyles} {...wrapperProps}>
+        <Box {...allWrapperProps}>
             {renderContent ? renderContent(content) : content}
         </Box>
     );
