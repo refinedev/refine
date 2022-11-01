@@ -138,7 +138,7 @@ const WithOpenSource: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                     </motion.div>
                     <motion.div className="transition-colors group border border-solid border-[#ededef] rounded-[10px] bg-[#ffffffb3] hover:bg-white p-2.5 lg:p-0 min-h-[106px] short:min-h-[95px] short:max-h-[95px] flex flex-col justify-center relative select-none shadow-startTiles">
                         <Badge>
-                            <SmallSocialIcons.DiscordIcon className="group-hover:text-discord text-[#ACACB6]" />
+                            <SmallSocialIcons.DiscordIcon className="group-hover:text-discord text-[#9797A2]" />
                         </Badge>
                         <div className="font-montserrat text-4xl font-black text-center group-hover:text-[#1890FF] text-[#6B6B7C]">
                             <CountingNumber to={500} />+
@@ -149,7 +149,7 @@ const WithOpenSource: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                     </motion.div>
                     <motion.div className="transition-colors group border border-solid border-[#ededef] rounded-[10px] bg-[#ffffffb3] hover:bg-white p-2.5 lg:p-0  min-h-[106px] short:min-h-[95px] short:max-h-[95px] flex flex-col justify-center relative select-none shadow-startTiles">
                         <Badge>
-                            <SmallSocialIcons.TwitterIcon className="group-hover:text-twitter text-[#ACACB6]" />
+                            <SmallSocialIcons.TwitterIcon className="group-hover:text-twitter text-[#9797A2]" />
                         </Badge>
                         <div className="transition-[colors,transform] ease-in-out font-montserrat text-4xl font-black text-center group-hover:text-[#1890FF] text-[#6B6B7C] group-hover:scale-110">
                             <CountingNumber to={1000} />+
