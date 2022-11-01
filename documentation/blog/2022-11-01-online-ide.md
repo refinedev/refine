@@ -31,13 +31,11 @@ It is worth pointing out that this article will explore the main features of the
 
 Steps we will cover:
 
-- [How to create Refine application](#how-to-create-refine-application)
-- [Top free online Editors and IDEs with free plans for hobby projects](top-free-online-rditors-and-ides-with-free-plans-for-hobby-projects)
-- [Comparing top online Editors and IDEs](comparing-top-online-editors-and-ides-with-free-plans-for-hobby-projects)
-- [Conclusion](conclusion)
+- [Bootstrapping a project for demonstration](#bootstrapping-a-project-for-demonstration)
+- [Top free online Editors and IDEs with free plans for hobby projects](#top-free-online-editors-and-ides-with-free-plans-for-hobby-projects)
+- [Comparing top online Editors and IDEs](#comparing-top-online-editors-and-ides)
 
-
-## Bootstrapping a project for testing
+## Bootstrapping a project for demonstration
 
 It is possible to import a project from your local machine or Git hosting service like GitHub to some online text editors or IDEs. Therefore, we will create a basic **[refine](https://github.com/refinedev/refine)** application in this section. We will use this application for illustration.
 
