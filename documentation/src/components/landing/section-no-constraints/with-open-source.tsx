@@ -222,8 +222,34 @@ const WithOpenSource: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                     <p className="mb-0">
                         It has a very strong community of maintainers,
                         contributers and and users providing{" "}
-                        <strong>7/24 support</strong> on our GitHub, Twitter and
-                        Discord channels.
+                        <strong>7/24 support</strong> on our{" "}
+                        <a
+                            className="underline text-inherit"
+                            target="_blank"
+                            rel="noreferrer"
+                            href="https://github.com/refinedev/refine"
+                        >
+                            Github
+                        </a>
+                        ,{" "}
+                        <a
+                            className="underline text-inherit"
+                            target="_blank"
+                            rel="noreferrer"
+                            href="https://twitter.com/refine_dev"
+                        >
+                            Twitter
+                        </a>{" "}
+                        and{" "}
+                        <a
+                            className="underline text-inherit"
+                            target="_blank"
+                            rel="noreferrer"
+                            href="https://discord.gg/refine"
+                        >
+                            Discord
+                        </a>{" "}
+                        server.
                     </p>
                 </div>
             </motion.div>
