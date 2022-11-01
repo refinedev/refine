@@ -1,155 +1,67 @@
 import React from "react";
 import { NotificationProvider } from "@pankod/refine-core";
-// import {
-//     showNotification,
-//     updateNotification,
-//     hideNotification,
-// } from "@mantine/notifications";
-// import { ActionIcon, Group, Text } from "@mantine/core";
-import { IconCheck, IconRotate2, IconX } from "@tabler/icons";
-
-import { RingCountdown } from "@components";
+import { IconButton, useSnackbar } from "@saas-ui/react";
+import { IconRotate2 } from "@tabler/icons";
 
 export const notificationProvider = (): NotificationProvider => {
-    const activeNotifications: string[] = [];
+    const snackbar = useSnackbar({
+        position: "top-right",
+        isClosable: true,
+    });
 
-    const isNotificationActive = (key?: string) => {
-        return activeNotifications.includes(key as string);
-    };
-
-    const addNotification = (key?: string) => {
-        if (key) {
-            const index = activeNotifications.indexOf(key);
-            if (index === -1) {
-                activeNotifications.push(key);
-            }
-        }
-    };
-
-    const removeNotification = (key?: string) => {
-        if (key) {
-            const index = activeNotifications.indexOf(key);
-            if (index > -1) {
-                activeNotifications.splice(index, 1);
-            }
-        }
-    };
-
-    const notificationProvider: NotificationProvider = {
-        open: ({ message, type, undoableTimeout, key, cancelMutation }) => {
+    return {
+        open: ({
+            key,
+            message,
+            type,
+            description,
+            undoableTimeout,
+            cancelMutation,
+        }) => {
             if (type === "progress") {
-                if (isNotificationActive(key)) {
-                    // updateNotification({
-                    //     id: key!,
-                    //     message: (
-                    //         <Group position="apart" noWrap>
-                    //             <Group spacing="xs" position="center">
-                    //                 <RingCountdown
-                    //                     undoableTimeout={undoableTimeout ?? 0}
-                    //                 />
-                    //                 <Text>{message}</Text>
-                    //             </Group>
-                    //             <ActionIcon
-                    //                 variant="default"
-                    //                 onClick={() => {
-                    //                     cancelMutation?.();
-                    //                     if (key) {
-                    //                         removeNotification(key);
-                    //                         hideNotification(key);
-                    //                     }
-                    //                 }}
-                    //             >
-                    //                 <IconRotate2 size={18} />
-                    //             </ActionIcon>
-                    //         </Group>
-                    //     ),
-                    //     styles: {
-                    //         root: {
-                    //             paddingLeft: "8px",
-                    //             paddingTop: "0px",
-                    //             paddingBottom: "0px",
-                    //             "&::before": { display: "none" },
-                    //         },
-                    //     },
-                    //     disallowClose: true,
-                    //     autoClose: false,
-                    // });
+                if (key && snackbar.isActive(key)) {
+                    snackbar.update(key, {
+                        title: message,
+                        action: (
+                            <IconButton
+                                icon={<IconRotate2 />}
+                                aria-label="Undo"
+                                variant="outline"
+                                onClick={cancelMutation}
+                            />
+                        ),
+                    } as any);
                 } else {
-                    addNotification(key);
-                    // showNotification({
-                    //     id: key,
-                    //     message: (
-                    //         <Group position="apart" noWrap>
-                    //             <Group spacing="xs" position="center">
-                    //                 <RingCountdown
-                    //                     undoableTimeout={undoableTimeout ?? 0}
-                    //                 />
-                    //                 <Text>{message}</Text>
-                    //             </Group>
-                    //             <ActionIcon
-                    //                 variant="default"
-                    //                 onClick={() => {
-                    //                     cancelMutation?.();
-                    //                     if (key) {
-                    //                         removeNotification(key);
-                    //                         hideNotification(key);
-                    //                     }
-                    //                 }}
-                    //             >
-                    //                 <IconRotate2 size={18} />
-                    //             </ActionIcon>
-                    //         </Group>
-                    //     ),
-                    //     styles: {
-                    //         root: {
-                    //             paddingLeft: "8px",
-                    //             paddingTop: "0px",
-                    //             paddingBottom: "0px",
-                    //             "&::before": { display: "none" },
-                    //         },
-                    //     },
-                    //     disallowClose: true,
-                    //     autoClose: false,
-                    // });
+                    snackbar({
+                        id: key,
+                        title: message,
+                        action: (
+                            <IconButton
+                                icon={<IconRotate2 />}
+                                aria-label="Undo"
+                                variant="outline"
+                                onClick={cancelMutation}
+                            />
+                        ),
+                    });
                 }
             } else {
-                if (isNotificationActive(key)) {
-                    // updateNotification({
-                    //     id: key!,
-                    //     color: type === "success" ? "primary" : "red",
-                    //     icon:
-                    //         type === "success" ? (
-                    //             <IconCheck size={18} />
-                    //         ) : (
-                    //             <IconX size={18} />
-                    //         ),
-                    //     message,
-                    //     autoClose: 5000,
-                    // });
+                if (key && snackbar.isActive(key)) {
+                    snackbar.update(key, {
+                        title: message,
+                        status: type,
+                        description,
+                    });
                 } else {
-                    addNotification(key);
-                    // showNotification({
-                    //     color: type === "success" ? "primary" : "red",
-                    //     icon:
-                    //         type === "success" ? (
-                    //             <IconCheck size={18} />
-                    //         ) : (
-                    //             <IconX size={18} />
-                    //         ),
-                    //     message,
-                    //     onClose: () => {
-                    //         removeNotification(key);
-                    //     },
-                    //     autoClose: 5000,
-                    // });
+                    snackbar({
+                        id: key,
+                        title: message,
+                        description,
+                        status: type,
+                    });
                 }
             }
         },
-        close: (key) => {
-            removeNotification(key);
-            // hideNotification(key);
-        },
+        close: (key) => snackbar.close(key),
     };
-
-    return notificationProvider;
 };

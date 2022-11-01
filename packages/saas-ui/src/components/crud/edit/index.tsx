@@ -135,6 +135,8 @@ export const Edit: React.FC<EditProps> = (props) => {
                 onClick={routeFromAction ? goBack : undefined}
                 aria-label="Go back"
                 icon={icon}
+                size="sm"
+                variant="ghost"
             />
         );
 
@@ -153,12 +155,12 @@ export const Edit: React.FC<EditProps> = (props) => {
         : defaultFooterButtons;
 
     return (
-        <Card p="md" {...wrapperProps}>
-            <Loader visible={loadingOverlayVisible} />
-            <HStack {...headerProps}>
-                <Stack spacing="xs">
+        <Card p="4" position="relative" variant="solid" {...wrapperProps}>
+            <Loader isLoading={loadingOverlayVisible} variant="overlay" />
+            <HStack spacing="4" alignItems="flex-start" {...headerProps}>
+                <Stack spacing="4" flex="1">
                     {breadcrumb}
-                    <HStack spacing="xs">
+                    <HStack spacing="4">
                         {buttonBack}
                         {title ?? (
                             <Heading as="h3" transform="capitalize">
@@ -173,11 +175,11 @@ export const Edit: React.FC<EditProps> = (props) => {
                         )}
                     </HStack>
                 </Stack>
-                <HStack spacing="2" {...headerButtonProps}>
+                <HStack spacing="4" {...headerButtonProps}>
                     {headerButtons}
                 </HStack>
             </HStack>
-            <Box pt="sm" {...contentProps}>
+            <Box pt="8" {...contentProps}>
                 {children}
             </Box>
             <HStack

@@ -17,9 +17,9 @@ export type ImportButtonProps = RefineImportButtonProps<
 
 /**
  * `<ImportButton>` is compatible with the {@link https://refine.dev/docs/core/hooks/import-export/useImport/ `useImport`} core hook.
- * It uses uses Mantine {@link https://mantine.dev/core/button/ `<Button> component`} and native html {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input  `<input>`} element.
+ * It uses uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> component`} and native html {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input  `<input>`} element.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/import-button} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/buttons/import-button} for more details.
  */
 export const ImportButton: React.FC<ImportButtonProps> = ({
     inputProps,
@@ -31,25 +31,24 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
-    const icon = <IconFileImport size={18} {...svgIconProps} />;
-
     return (
         <label htmlFor="contained-button-file">
             <input {...inputProps} id="contained-button-file" multiple hidden />
             {hideText ? (
                 <IconButton
-                    as="span"
+                    variant="outline"
                     aria-label={translate("buttons.import", "Import")}
-                    icon={icon}
                     isLoading={loading}
                     data-testid={RefineButtonTestIds.ImportButton}
                     {...rest}
-                ></IconButton>
+                >
+                    <IconFileImport size={20} {...svgIconProps} />
+                </IconButton>
             ) : (
                 <Button
-                    variant="default"
-                    as="span"
-                    leftIcon={icon}
+                    variant="outline"
+                    component="span"
+                    leftIcon={<IconFileImport size={20} {...svgIconProps} />}
                     isLoading={loading}
                     data-testid={RefineButtonTestIds.ImportButton}
                     {...rest}

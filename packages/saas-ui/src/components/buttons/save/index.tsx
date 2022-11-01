@@ -15,10 +15,10 @@ export type SaveButtonProps = RefineSaveButtonProps<
 >;
 
 /**
- * `<SaveButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button> `}.
+ * `<SaveButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> `}.
  * It uses it for presantation purposes only. Some of the hooks that refine has adds features to this button.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/save-button} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/buttons/save-button} for more details.
  */
 export const SaveButton: React.FC<SaveButtonProps> = ({
     hideText = false,
@@ -28,20 +28,19 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
-    const icon = <IconDeviceFloppy size={18} {...svgIconProps} />;
-
     return hideText ? (
         <IconButton
-            variant="primary"
-            icon={icon}
+            variant="outline"
             aria-label={translate("buttons.save", "Save")}
             data-testid={RefineButtonTestIds.SaveButton}
             {...rest}
-        />
+        >
+            <IconDeviceFloppy size={20} {...svgIconProps} />
+        </IconButton>
     ) : (
         <Button
-            variant="primary"
-            leftIcon={icon}
+            colorScheme="green"
+            leftIcon={<IconDeviceFloppy size={20} {...svgIconProps} />}
             data-testid={RefineButtonTestIds.SaveButton}
             {...rest}
         >

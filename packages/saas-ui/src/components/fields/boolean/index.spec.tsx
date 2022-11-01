@@ -12,11 +12,11 @@ describe("BooleanField", () => {
 
         const iconClass = [
             "icon-tabler-check",
-            "icon-tabler-x",
+            "icon-tabler-minus",
             "icon-tabler-check",
             "icon-tabler-check",
-            "icon-tabler-x",
-            "icon-tabler-x",
+            "icon-tabler-minus",
+            "icon-tabler-minus",
         ];
 
         initialValues.forEach((element, index) => {

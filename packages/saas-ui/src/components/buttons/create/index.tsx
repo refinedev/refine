@@ -10,28 +10,29 @@ import {
     RefineCreateButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
-import { IconButton, Button, ButtonProps } from "@chakra-ui/react";
+import { Button, ButtonProps, IconButton } from "@chakra-ui/react";
 import { IconSquarePlus, TablerIconProps } from "@tabler/icons";
 
-export type CreateButtonProps = RefineCreateButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: TablerIconProps;
-    }
+export type CreateButtonProps = Omit<
+    RefineCreateButtonProps<
+        ButtonProps,
+        {
+            svgIconProps?: TablerIconProps;
+        }
+    >,
+    "ignoreAccessControlProvider"
 >;
 
 export const CreateButton: React.FC<CreateButtonProps> = ({
     resourceNameOrRouteName,
     hideText = false,
     accessControl,
-    ignoreAccessControlProvider = false,
     svgIconProps,
     children,
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled =
-        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const accessControlEnabled = accessControl?.enabled;
     const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const { resource, resourceName } = useResource({
         resourceNameOrRouteName,
@@ -69,46 +70,40 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
         return null;
     }
 
-    const btnProps = {
-        to: createUrl,
-        replace: false,
-        onClick: (e: React.PointerEvent<HTMLButtonElement>) => {
-            if (data?.can === false) {
-                e.preventDefault();
-                return;
-            }
-            if (onClick) {
-                e.preventDefault();
-                onClick(e);
-            }
-        },
-    };
-
-    const icon = <IconSquarePlus size={18} {...svgIconProps} />;
-
-    const label = children ?? translate("buttons.create", "Create");
-
-    return hideText ? (
-        <IconButton
-            as={Link}
-            isDisabled={data?.can === false}
-            aria-label={disabledTitle()}
-            icon={icon}
-            data-testid={RefineButtonTestIds.CreateButton}
-            {...btnProps}
-            {...rest}
-        />
-    ) : (
-        <Button
-            as={Link}
-            isDisabled={data?.can === false}
-            leftIcon={icon}
-            title={disabledTitle()}
-            data-testid={RefineButtonTestIds.CreateButton}
-            {...rest}
-            {...btnProps}
+    return (
+        <Link
+            to={createUrl}
+            replace={false}
+            onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
+                if (onClick) {
+                    e.preventDefault();
+                    onClick(e);
+                }
+            }}
         >
-            {label}
-        </Button>
+            {hideText ? (
+                <IconButton
+                    variant="outline"
+                    aria-label={translate("buttons.create", "Create")}
+                    title={disabledTitle()}
+                    disabled={data?.can === false}
+                    data-testid={RefineButtonTestIds.CreateButton}
+                    {...rest}
+                >
+                    <IconSquarePlus size={20} {...svgIconProps} />
+                </IconButton>
+            ) : (
+                <Button
+                    variant="outline"
+                    disabled={data?.can === false}
+                    leftIcon={<IconSquarePlus size={20} />}
+                    title={disabledTitle()}
+                    data-testid={RefineButtonTestIds.CreateButton}
+                    {...rest}
+                >
+                    {children ?? translate("buttons.create", "Create")}
+                </Button>
+            )}
+        </Link>
     );
 };

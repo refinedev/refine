@@ -118,6 +118,8 @@ export const Show: React.FC<ShowProps> = (props) => {
                 onClick={routeFromAction ? goBack : undefined}
                 aria-label="Go back"
                 icon={backIcon}
+                size="sm"
+                variant="ghost"
             />
         );
 
@@ -136,12 +138,12 @@ export const Show: React.FC<ShowProps> = (props) => {
         : null;
 
     return (
-        <Card p="md" {...wrapperProps}>
-            <Loader isLoading={loadingOverlayVisible} />
-            <HStack align="center" {...headerProps}>
-                <Stack spacing="xs">
+        <Card p="4" position="relative" variant="solid" {...wrapperProps}>
+            <Loader isLoading={loadingOverlayVisible} variant="overlay" />
+            <HStack spacing="4" alignItems="flex-start" {...headerProps}>
+                <Stack spacing="4" flex="1">
                     {breadcrumb}
-                    <HStack spacing="xs">
+                    <HStack spacing="4">
                         {buttonBack}
                         {title ?? (
                             <Heading as="h3" transform="capitalize">
@@ -160,13 +162,13 @@ export const Show: React.FC<ShowProps> = (props) => {
                     {headerButtons}
                 </HStack>
             </HStack>
-            <Box pt="sm" {...contentProps}>
+            <Box pt="8" {...contentProps}>
                 {children}
             </Box>
             <HStack
                 alignItems="right"
-                spacing="xs"
-                mt="md"
+                spacing="4"
+                mt="4"
                 {...footerButtonProps}
             >
                 {footerButtons}

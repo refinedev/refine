@@ -13,19 +13,22 @@ import {
 import { Button, ButtonProps, IconButton } from "@chakra-ui/react";
 import { IconSquarePlus, TablerIconProps } from "@tabler/icons";
 
-export type CloneButtonProps = RefineCloneButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: TablerIconProps;
-    }
+export type CloneButtonProps = Omit<
+    RefineCloneButtonProps<
+        ButtonProps,
+        {
+            svgIconProps?: TablerIconProps;
+        }
+    >,
+    "ignoreAccessControlProvider"
 >;
 
 /**
- * `<CloneButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button> component`}.
+ * `<CloneButton>` uses Mantine {@link https://chakra-ui.com/docs/components/button `<Button> component`}.
  * It uses the {@link https://refine.dev/docs/core/hooks/navigation/useNavigation#clone `clone`} method from {@link https://refine.dev/docs/core/hooks/navigation/useNavigation useNavigation} under the hood.
  * It can be useful when redirecting the app to the create page with the record id route of resource.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/clone-button} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/buttons/clone-button} for more details.
  *
  */
 export const CloneButton: React.FC<CloneButtonProps> = ({
@@ -33,14 +36,12 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     recordItemId,
     hideText = false,
     accessControl,
-    ignoreAccessControlProvider = false,
     svgIconProps,
     children,
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled =
-        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const accessControlEnabled = accessControl?.enabled;
     const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const { resourceName, resource, id } = useResource({
         resourceNameOrRouteName,
@@ -77,46 +78,39 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
         return null;
     }
 
-    const btnProps = {
-        to: cloneUrl,
-        replace: false,
-        onClick: (e: React.PointerEvent<HTMLButtonElement>) => {
-            if (data?.can === false) {
-                e.preventDefault();
-                return;
-            }
-            if (onClick) {
-                e.preventDefault();
-                onClick(e);
-            }
-        },
-    };
-
-    const icon = <IconSquarePlus size={18} {...svgIconProps} />;
-
-    const label = children ?? translate("buttons.clone", "Clone");
-
-    return hideText ? (
-        <IconButton
-            as={Link}
-            isDisabled={data?.can === false}
-            aria-label={disabledTitle()}
-            icon={icon}
-            data-testid={RefineButtonTestIds.CloneButton}
-            {...btnProps}
-            {...rest}
-        />
-    ) : (
-        <Button
-            as={Link}
-            isDisabled={data?.can === false}
-            leftIcon={icon}
-            title={disabledTitle()}
-            data-testid={RefineButtonTestIds.CloneButton}
-            {...rest}
-            {...btnProps}
+    return (
+        <Link
+            to={cloneUrl}
+            replace={false}
+            onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
+                if (onClick) {
+                    e.preventDefault();
+                    onClick(e);
+                }
+            }}
         >
-            {label}
-        </Button>
+            {hideText ? (
+                <IconButton
+                    variant="outline"
+                    aria-label={translate("buttons.clone", "Clone")}
+                    title={disabledTitle()}
+                    data-testid={RefineButtonTestIds.CloneButton}
+                    {...rest}
+                >
+                    <IconSquarePlus size={20} {...svgIconProps} />
+                </IconButton>
+            ) : (
+                <Button
+                    variant="outline"
+                    disabled={data?.can === false}
+                    leftIcon={<IconSquarePlus size={20} {...svgIconProps} />}
+                    title={disabledTitle()}
+                    data-testid={RefineButtonTestIds.CloneButton}
+                    {...rest}
+                >
+                    {children ?? translate("buttons.clone", "Clone")}
+                </Button>
+            )}
+        </Link>
     );
 };

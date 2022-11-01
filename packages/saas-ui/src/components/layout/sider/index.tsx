@@ -10,39 +10,48 @@ import {
     useTitle,
     useTranslate,
 } from "@pankod/refine-core";
+import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
 import {
-    IconButton,
+    Accordion,
+    AccordionButton,
+    AccordionIcon,
+    AccordionItem,
+    AccordionPanel,
     Box,
-    Drawer,
     Button,
+    Drawer,
+    DrawerContent,
+    DrawerOverlay,
+    IconButton,
     Tooltip,
     TooltipProps,
-    useBreakpointValue,
+    VStack,
 } from "@chakra-ui/react";
-import {} from "@saas-ui/react";
-
-import { Sidebar, SidebarSection, NavGroup, NavItem } from "@saas-ui/sidebar";
-
+import {
+    Sidebar,
+    SidebarSection,
+    NavItem,
+    SidebarToggleButton,
+} from "@saas-ui/sidebar";
 import {
     IconList,
-    IconMenu2,
     IconChevronRight,
     IconChevronLeft,
-    IconLogout,
     IconDashboard,
+    IconLogout,
+    IconMenu2,
 } from "@tabler/icons";
-import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
 
 import { Title as DefaultTitle } from "../title";
 
-const defaultNavIcon = <IconList size={18} />;
+const defaultNavIcon = <IconList size={20} />;
 
 export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const [collapsed, setCollapsed] = useState(false);
     const [opened, setOpened] = useState(false);
 
     const { Link } = useRouterContext();
-    const { defaultOpenKeys, menuItems, selectedKey } = useMenu();
+    const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
     const Title = useTitle();
     const isExistAuthentication = useIsExistAuthentication();
     const t = useTranslate();
@@ -51,254 +60,237 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
 
     const RenderToTitle = Title ?? DefaultTitle;
 
-    const drawerWidth = () => {
-        if (collapsed) return 80;
-        return 200;
+    const siderWidth = () => {
+        if (collapsed) return "80px";
+        return "200px";
     };
 
-    return null;
-    // const commonNavLinkStyles: Styles<NavLinkStylesNames, NavLinkStylesParams> =
-    //     {
-    //         root: {
-    //             display: "flex",
-    //             color: "white",
-    //             fontWeight: 500,
-    //             "&:hover": {
-    //                 backgroundColor: "unset",
-    //             },
-    //             "&[data-active]": {
-    //                 backgroundColor: "#ffffff1a",
-    //                 color: "white",
-    //                 fontWeight: 700,
-    //                 "&:hover": {
-    //                     backgroundColor: "#ffffff1a",
-    //                 },
-    //             },
-    //             justifyContent: collapsed && !opened ? "center" : "flex-start",
-    //         },
-    //         icon: {
-    //             marginRight: collapsed && !opened ? 0 : 12,
-    //         },
-    //         body: {
-    //             display: collapsed && !opened ? "none" : "flex",
-    //         },
-    //     };
+    const commonTooltipProps: Omit<TooltipProps, "children"> = {
+        placement: "right",
+        hasArrow: true,
+        isDisabled: !collapsed || opened,
+    };
 
-    // const commonTooltipProps: Partial<TooltipProps> = {
-    //     disabled: !collapsed || opened,
-    //     position: "right",
-    //     withinPortal: true,
-    //     withArrow: true,
-    //     arrowSize: 8,
-    //     arrowOffset: 12,
-    //     offset: 4,
-    // };
+    const renderTreeView = (tree: ITreeMenu[]) => {
+        return tree.map((item) => {
+            const { label, route, name, icon, children } = item;
 
-    // const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
-    //     return tree.map((item) => {
-    //         const { icon, label, route, name, children } = item;
+            const isSelected = route === selectedKey;
+            const isParent = children.length > 0;
 
-    //         const isSelected = route === selectedKey;
-    //         const isParent = children.length > 0;
+            const linkProps = !isParent
+                ? {
+                      as: Link,
+                      to: route,
+                  }
+                : undefined;
 
-    //         const additionalLinkProps = isParent
-    //             ? {}
-    //             : { component: Link, to: route };
+            return (
+                <CanAccess
+                    key={route}
+                    resource={name.toLowerCase()}
+                    action="list"
+                    params={{
+                        resource: item,
+                    }}
+                >
+                    <Accordion
+                        defaultIndex={
+                            defaultOpenKeys.includes(route || "") ? 0 : -1
+                        }
+                        width="full"
+                        allowToggle
+                    >
+                        <AccordionItem border="none">
+                            <Tooltip label={label} {...commonTooltipProps}>
+                                <AccordionButton
+                                    pl={6}
+                                    pr={4}
+                                    pt={3}
+                                    pb={3}
+                                    as="div"
+                                    width="full"
+                                >
+                                    <Button
+                                        width="full"
+                                        variant="link"
+                                        color="white"
+                                        fontWeight="normal"
+                                        leftIcon={
+                                            icon ?? (defaultNavIcon as any)
+                                        }
+                                        rightIcon={
+                                            isParent ? (
+                                                <AccordionIcon />
+                                            ) : undefined
+                                        }
+                                        _active={{
+                                            color: "none",
+                                            fontWeight: isParent
+                                                ? "normal"
+                                                : "bold",
+                                        }}
+                                        _hover={{ textDecoration: "none" }}
+                                        isActive={isSelected}
+                                        {...linkProps}
+                                    >
+                                        {!collapsed && (
+                                            <Box flexGrow={1} textAlign="left">
+                                                {label}
+                                            </Box>
+                                        )}
+                                    </Button>
+                                </AccordionButton>
+                            </Tooltip>
 
-    //         return (
-    //             <CanAccess
-    //                 key={route}
-    //                 resource={name.toLowerCase()}
-    //                 action="list"
-    //                 params={{
-    //                     resource: item,
-    //                 }}
-    //             >
-    //                 <Tooltip label={label} {...commonTooltipProps}>
-    //                     <NavItem
-    //                         key={route}
-    //                         // label={collapsed && !opened ? null : label}
-    //                         icon={icon ?? defaultNavIcon}
-    //                         active={isSelected}
-    //                         childrenOffset={collapsed && !opened ? 0 : 12}
-    //                         defaultOpened={defaultOpenKeys.includes(
-    //                             route || "",
-    //                         )}
-    //                         styles={commonNavLinkStyles}
-    //                         {...additionalLinkProps}
-    //                     >
-    //                         {isParent && renderTreeView(children, selectedKey)}
-    //                     </NavItem>
-    //                 </Tooltip>
-    //             </CanAccess>
-    //         );
-    //     });
-    // };
+                            {isParent && (
+                                <AccordionPanel
+                                    p={0}
+                                    pl={collapsed && !opened ? 0 : 4}
+                                >
+                                    <Accordion width="full" allowToggle>
+                                        {renderTreeView(children)}
+                                    </Accordion>
+                                </AccordionPanel>
+                            )}
+                        </AccordionItem>
+                    </Accordion>
+                </CanAccess>
+            );
+        });
+    };
 
-    // const items = renderTreeView(menuItems, selectedKey);
+    const items = renderTreeView(menuItems);
 
-    // const dashboard = hasDashboard ? (
-    //     <CanAccess resource="dashboard" action="list">
-    //         <Tooltip
-    //             label={t("dashboard.title", "Dashboard")}
-    //             {...commonTooltipProps}
-    //         >
-    //             <NavItem
-    //                 key="dashboard"
-    //                 icon={<IconDashboard size={18} />}
-    //                 label={
-    //                     collapsed && !opened
-    //                         ? null
-    //                         : t("dashboard.title", "Dashboard")
-    //                 }
-    //                 as={Link}
-    //                 to="/"
-    //                 active={selectedKey === "/"}
-    //                 styles={commonNavLinkStyles}
-    //             />
-    //         </Tooltip>
-    //     </CanAccess>
-    // ) : null;
+    const dashboard = hasDashboard ? (
+        <CanAccess resource="dashboard" action="list">
+            <Tooltip
+                label={t("dashboard.title", "Dashboard")}
+                {...commonTooltipProps}
+            >
+                <Button
+                    width="full"
+                    justifyContent={
+                        collapsed && !opened ? "center" : "flex-start"
+                    }
+                    pl={6}
+                    pr={4}
+                    pt={3}
+                    pb={3}
+                    fontWeight="normal"
+                    leftIcon={<IconDashboard size={20} />}
+                    variant="link"
+                    color="white"
+                    isActive={selectedKey === "/"}
+                    _active={{ color: "none", fontWeight: "bold" }}
+                    _hover={{ textDecoration: "none" }}
+                    as={Link}
+                    to="/"
+                >
+                    {(!collapsed || opened) &&
+                        t("dashboard.title", "Dashboard")}
+                </Button>
+            </Tooltip>
+        </CanAccess>
+    ) : null;
 
-    // const logout = isExistAuthentication && (
-    //     <Tooltip label={t("buttons.logout", "Logout")} {...commonTooltipProps}>
-    //         <NavItem
-    //             key="logout"
-    //             as={Link}
-    //             label={
-    //                 collapsed && !opened ? null : t("buttons.logout", "Logout")
-    //             }
-    //             icon={<IconLogout size={18} />}
-    //             onClick={() => mutateLogout()}
-    //             styles={commonNavLinkStyles}
-    //         />
-    //     </Tooltip>
-    // );
+    const logout = isExistAuthentication && (
+        <Tooltip label={t("buttons.logout", "Logout")} {...commonTooltipProps}>
+            <Button
+                width="full"
+                justifyContent={collapsed && !opened ? "center" : "flex-start"}
+                pl={6}
+                pr={4}
+                pt={3}
+                pb={3}
+                fontWeight="normal"
+                leftIcon={<IconLogout size={20} />}
+                variant="link"
+                _active={{ color: "none" }}
+                _hover={{ textDecoration: "none" }}
+                color="white"
+                onClick={() => mutateLogout()}
+            >
+                {(!collapsed || opened) && t("buttons.logout", "Logout")}
+            </Button>
+        </Tooltip>
+    );
 
-    // const renderSider = () => {
-    //     if (render) {
-    //         return render({
-    //             dashboard,
-    //             logout,
-    //             items,
-    //             collapsed,
-    //         });
-    //     }
-    //     return (
-    //         <>
-    //             {dashboard}
-    //             {items}
-    //             {logout}
-    //         </>
-    //     );
-    // };
+    const renderSider = () => {
+        if (render) {
+            return render({
+                dashboard,
+                logout,
+                items,
+                collapsed: false,
+            });
+        }
+        return (
+            <>
+                {dashboard}
+                {items}
+                {logout}
+            </>
+        );
+    };
 
-    // const isDesktop = useBreakpointValue({ md: true });
-
-    // return (
-    //     <>
-    //         {isDesktop && (
-    //             <Box sx={{ position: "fixed", top: 64, left: 0, zIndex: 1199 }}>
-    //                 <IconButton
-    //                     color="white"
-    //                     size={36}
-    //                     sx={{
-    //                         borderRadius: "0 6px 6px 0",
-    //                         backgroundColor: "#2A132E",
-    //                         color: "white",
-    //                         "&:hover": {
-    //                             backgroundColor: "#2A132E",
-    //                         },
-    //                     }}
-    //                     onClick={() => setOpened((prev) => !prev)}
-    //                 >
-    //                     <IconMenu2 />
-    //                 </IconButton>
-    //             </Box>
-    //         )}
-
-    //         <MediaQuery largerThan="md" styles={{ display: "none" }}>
-    //             <Drawer
-    //                 opened={opened}
-    //                 onClose={() => setOpened(false)}
-    //                 size={200}
-    //                 zIndex={1200}
-    //                 withCloseButton={false}
-    //                 styles={{
-    //                     drawer: {
-    //                         overflow: "hidden",
-    //                         backgroundColor: "#2A132E",
-    //                     },
-    //                 }}
-    //             >
-    //                 <Navbar.Section px="xs">
-    //                     <RenderToTitle collapsed={false} />
-    //                 </Navbar.Section>
-    //                 <Navbar.Section
-    //                     grow
-    //                     component={ScrollArea}
-    //                     mx="-xs"
-    //                     px="xs"
-    //                 >
-    //                     {renderSider()}
-    //                 </Navbar.Section>
-    //             </Drawer>
-    //         </MediaQuery>
-
-    //         <MediaQuery smallerThan="md" styles={{ display: "none" }}>
-    //             <Box
-    //                 sx={{
-    //                     width: drawerWidth(),
-    //                     transition: "width 200ms ease, min-width 200ms ease",
-    //                 }}
-    //             />
-    //         </MediaQuery>
-
-    //         <MediaQuery smallerThan="md" styles={{ display: "none" }}>
-    //             <Navbar
-    //                 width={{ base: drawerWidth() }}
-    //                 sx={{
-    //                     overflow: "hidden",
-    //                     transition: "width 200ms ease, min-width 200ms ease",
-    //                     backgroundColor: "#2A132E",
-    //                     position: "fixed",
-    //                     top: 0,
-    //                     height: "100vh",
-    //                 }}
-    //             >
-    //                 <Navbar.Section px="xs">
-    //                     <RenderToTitle collapsed={collapsed} />
-    //                 </Navbar.Section>
-    //                 <Navbar.Section
-    //                     grow
-    //                     mt="sm"
-    //                     component={ScrollArea}
-    //                     mx="-xs"
-    //                     px="xs"
-    //                 >
-    //                     {renderSider()}
-    //                 </Navbar.Section>
-    //                 <Navbar.Section>
-    //                     <Button
-    //                         sx={{
-    //                             background: "rgba(0,0,0,.5)",
-    //                             borderRadius: 0,
-    //                             borderTop: "1px solid #ffffff1a",
-    //                         }}
-    //                         size="md"
-    //                         variant="gradient"
-    //                         fullWidth
-    //                         onClick={() => setCollapsed((prev) => !prev)}
-    //                     >
-    //                         {collapsed ? (
-    //                             <IconChevronRight />
-    //                         ) : (
-    //                             <IconChevronLeft />
-    //                         )}
-    //                     </Button>
-    //                 </Navbar.Section>
-    //             </Navbar>
-    //         </MediaQuery>
-    //     </>
-    // );
+    return (
+        <>
+            <Sidebar
+                bg="sider.background"
+                width={siderWidth()}
+                h="100vh"
+                position={{ base: "fixed", lg: "sticky" }}
+                top="0"
+                variant={collapsed ? "collapsed" : "default"}
+                borderWidth="0"
+                isOpen={opened}
+                onOpen={() => setOpened(true)}
+                onClose={() => setOpened(false)}
+            >
+                <Box
+                    position={!opened ? "fixed" : "absolute"}
+                    top={16}
+                    left={!opened ? 0 : undefined}
+                    right={opened ? -8 : undefined}
+                    zIndex={1200}
+                    display={{ base: "block", lg: "none" }}
+                >
+                    <IconButton
+                        borderLeftRadius={0}
+                        bg="sider.background"
+                        color="white"
+                        _hover={{ bg: "sider.background" }}
+                        _active={{
+                            bg: "sider.background",
+                            transform: "translateY(1px)",
+                        }}
+                        aria-label="Open Menu"
+                        onClick={() => setOpened((prev) => !prev)}
+                    >
+                        <IconMenu2 />
+                    </IconButton>
+                </Box>
+                <SidebarSection pt="3">
+                    <RenderToTitle collapsed={collapsed} />
+                </SidebarSection>
+                <SidebarSection flex={1} mt={2} px="0">
+                    {renderSider()}
+                </SidebarSection>
+                <Button
+                    onClick={() => setCollapsed((prev) => !prev)}
+                    color="white"
+                    bg="sider.collapseButton"
+                    borderRadius={0}
+                    _hover={{ bg: "sider.collapseButton" }}
+                    _active={{
+                        bg: "sider.collapseButton",
+                        transform: "translateY(1px)",
+                    }}
+                >
+                    {collapsed ? <IconChevronRight /> : <IconChevronLeft />}
+                </Button>
+            </Sidebar>
+        </>
+    );
 };

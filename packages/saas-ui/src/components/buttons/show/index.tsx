@@ -13,33 +13,34 @@ import {
 import { IconButton, Button, ButtonProps } from "@chakra-ui/react";
 import { IconEye, TablerIconProps } from "@tabler/icons";
 
-export type ShowButtonProps = RefineShowButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: TablerIconProps;
-    }
+export type ShowButtonProps = Omit<
+    RefineShowButtonProps<
+        ButtonProps,
+        {
+            svgIconProps?: TablerIconProps;
+        }
+    >,
+    "ignoreAccessControlProvider"
 >;
 
 /**
- * `<ShowButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button> `} component.
+ * `<ShowButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> `} component.
  * It uses the {@link https://refine.dev/docs/core/hooks/navigation/useNavigation#show `show`} method from {@link https://refine.dev/docs/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when red sirecting the app to the show page with the record id route of resource.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/show-button} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/buttons/show-button} for more details.
  */
 export const ShowButton: React.FC<ShowButtonProps> = ({
     resourceNameOrRouteName,
     recordItemId,
     hideText = false,
     accessControl,
-    ignoreAccessControlProvider = false,
     svgIconProps,
     children,
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled =
-        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const accessControlEnabled = accessControl?.enabled;
     const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const { resourceName, id, resource } = useResource({
         resourceNameOrRouteName,
@@ -76,46 +77,40 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
         return null;
     }
 
-    const btnProps = {
-        to: showUrl,
-        replace: false,
-        onClick: (e: React.PointerEvent<HTMLButtonElement>) => {
-            if (data?.can === false) {
-                e.preventDefault();
-                return;
-            }
-            if (onClick) {
-                e.preventDefault();
-                onClick(e);
-            }
-        },
-    };
-
-    const icon = <IconEye size={18} {...svgIconProps} />;
-
-    const label = children ?? translate("buttons.show", "Show");
-
-    return hideText ? (
-        <IconButton
-            as={Link}
-            isDisabled={data?.can === false}
-            aria-label={disabledTitle()}
-            icon={icon}
-            data-testid={RefineButtonTestIds.ShowButton}
-            {...btnProps}
-            {...rest}
-        />
-    ) : (
-        <Button
-            as={Link}
-            isDisabled={data?.can === false}
-            leftIcon={icon}
-            title={disabledTitle()}
-            data-testid={RefineButtonTestIds.ShowButton}
-            {...rest}
-            {...btnProps}
+    return (
+        <Link
+            to={showUrl}
+            replace={false}
+            onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
+                if (onClick) {
+                    e.preventDefault();
+                    onClick(e);
+                }
+            }}
         >
-            {label}
-        </Button>
+            {hideText ? (
+                <IconButton
+                    variant="outline"
+                    aria-label={translate("buttons.show", "Show")}
+                    disabled={data?.can === false}
+                    title={disabledTitle()}
+                    data-testid={RefineButtonTestIds.ShowButton}
+                    {...rest}
+                >
+                    <IconEye size={20} {...svgIconProps} />
+                </IconButton>
+            ) : (
+                <Button
+                    variant="outline"
+                    disabled={data?.can === false}
+                    leftIcon={<IconEye size={20} {...svgIconProps} />}
+                    title={disabledTitle()}
+                    data-testid={RefineButtonTestIds.ShowButton}
+                    {...rest}
+                >
+                    {children ?? translate("buttons.show", "Show")}
+                </Button>
+            )}
+        </Link>
     );
 };

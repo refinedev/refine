@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     useDelete,
     useTranslate,
@@ -10,33 +10,36 @@ import {
     RefineDeleteButtonProps,
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
+
 import {
-    HStack,
     Button,
     ButtonProps,
-    Popover,
-    PopoverAnchor,
-    PopoverContent,
+    HStack,
     IconButton,
-    useDisclosure,
-    Portal,
-    PopoverHeader,
+    Popover,
+    PopoverArrow,
     PopoverBody,
+    PopoverContent,
+    PopoverHeader,
+    PopoverTrigger,
 } from "@chakra-ui/react";
 import { IconTrash, TablerIconProps } from "@tabler/icons";
 
-export type DeleteButtonProps = RefineDeleteButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: TablerIconProps;
-    }
+export type DeleteButtonProps = Omit<
+    RefineDeleteButtonProps<
+        ButtonProps,
+        {
+            svgIconProps?: TablerIconProps;
+        }
+    >,
+    "ignoreAccessControlProvider"
 >;
 
 /**
- * `<DeleteButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button>`} and {@link https://mantine.dev/core/modal/ `<Modal>`} components.
+ * `<DeleteButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button>`} and {@link https://chakra-ui.com/docs/components/popover `<Popover>`} components.
  * When you try to delete something, a dialog modal shows up and asks for confirmation. When confirmed it executes the `useDelete` method provided by your `dataProvider`.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/delete-button} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/buttons/delete-button} for more details.
  */
 export const DeleteButton: React.FC<DeleteButtonProps> = ({
     resourceNameOrRouteName,
@@ -48,7 +51,6 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     errorNotification,
     hideText = false,
     accessControl,
-    ignoreAccessControlProvider = false,
     metaData,
     dataProviderName,
     confirmTitle,
@@ -57,8 +59,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     svgIconProps,
     ...rest
 }) => {
-    const accessControlEnabled =
-        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const accessControlEnabled = accessControl?.enabled;
     const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const { resourceName, id, resource } = useResource({
         resourceNameOrRouteName,
@@ -82,10 +83,10 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
         },
     });
 
-    const { isOpen, onClose, onOpen, onToggle } = useDisclosure();
+    const [opened, setOpened] = useState(false);
 
     const onConfirm = () => {
-        onClose();
+        setOpened(false);
         mutate(
             {
                 id: id ?? "",
@@ -109,63 +110,60 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     }
 
     return (
-        <Popover isOpen={isOpen} onOpen={onOpen} onClose={onClose}>
-            <PopoverAnchor>
+        <Popover isOpen={opened} isLazy>
+            <PopoverTrigger>
                 {hideText ? (
                     <IconButton
-                        color="red"
-                        icon={<IconTrash size={18} {...svgIconProps} />}
-                        onClick={() => onToggle()}
-                        aria-label={translate("buttons.delete", "Delete")}
-                        isDisabled={isLoading || data?.can === false}
+                        colorScheme="red"
+                        variant="outline"
+                        aria-label={translate("buttons.edit", "Edit")}
+                        onClick={() => setOpened((o) => !o)}
+                        disabled={isLoading || data?.can === false}
                         isLoading={id === variables?.id && isLoading}
                         data-testid={RefineButtonTestIds.DeleteButton}
                         {...rest}
-                    />
+                    >
+                        <IconTrash size={20} {...svgIconProps} />
+                    </IconButton>
                 ) : (
                     <Button
                         color="red"
                         variant="outline"
-                        onClick={() => onToggle()}
-                        isDisabled={isLoading || data?.can === false}
+                        onClick={() => setOpened((o) => !o)}
+                        disabled={isLoading || data?.can === false}
                         isLoading={id === variables?.id && isLoading}
-                        leftIcon={<IconTrash size={18} {...svgIconProps} />}
+                        leftIcon={<IconTrash size={20} {...svgIconProps} />}
                         data-testid={RefineButtonTestIds.DeleteButton}
                         {...rest}
                     >
                         {children ?? translate("buttons.delete", "Delete")}
                     </Button>
                 )}
-            </PopoverAnchor>
-            <Portal>
-                <PopoverContent py="xs">
-                    <PopoverHeader>
-                        {confirmTitle ??
-                            translate("buttons.confirm", "Are you sure?")}
-                    </PopoverHeader>
-                    <PopoverBody>
-                        <HStack spacing="xs" mt="xs">
-                            <Button
-                                onClick={() => onClose()}
-                                variant="default"
-                                size="xs"
-                            >
-                                {confirmCancelText ??
-                                    translate("buttons.cancel", "Cancel")}
-                            </Button>
-                            <Button
-                                color="red"
-                                onClick={onConfirm}
-                                autoFocus
-                                size="xs"
-                            >
-                                {confirmOkText ??
-                                    translate("buttons.delete", "Delete")}
-                            </Button>
-                        </HStack>
-                    </PopoverBody>
-                </PopoverContent>
-            </Portal>
+            </PopoverTrigger>
+            <PopoverContent>
+                <PopoverArrow />
+                <PopoverHeader textAlign="center">
+                    {confirmTitle ??
+                        translate("buttons.confirm", "Are you sure?")}
+                </PopoverHeader>
+                <PopoverBody display="flex" justifyContent="center">
+                    <HStack>
+                        <Button onClick={() => setOpened(false)} size="sm">
+                            {confirmCancelText ??
+                                translate("buttons.cancel", "Cancel")}
+                        </Button>
+                        <Button
+                            colorScheme="red"
+                            onClick={onConfirm}
+                            autoFocus
+                            size="sm"
+                        >
+                            {confirmOkText ??
+                                translate("buttons.delete", "Delete")}
+                        </Button>
+                    </HStack>
+                </PopoverBody>
+            </PopoverContent>
         </Popover>
     );
 };

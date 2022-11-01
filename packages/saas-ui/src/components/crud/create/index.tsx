@@ -78,7 +78,9 @@ export const Create: React.FC<CreateProps> = (props) => {
                 aria-label="Go back"
                 onClick={routeFromAction ? goBack : undefined}
                 icon={<Icon as={backIcon as unknown as As} />}
-            ></IconButton>
+                size="sm"
+                variant="ghost"
+            />
         );
 
     const headerButtons = headerButtonsFromProps
@@ -96,12 +98,12 @@ export const Create: React.FC<CreateProps> = (props) => {
         : defaultFooterButtons;
 
     return (
-        <Card p="md" {...wrapperProps}>
-            <Loader visible={loadingOverlayVisible} />
-            <HStack align="center" {...headerProps}>
-                <Stack spacing="xs">
+        <Card p="4" position="relative" variant="solid" {...wrapperProps}>
+            <Loader isLoading={loadingOverlayVisible} variant="overlay" />
+            <HStack spacing="4" alignItems="flex-start" {...headerProps}>
+                <Stack spacing="4">
                     {breadcrumb}
-                    <HStack spacing="xs">
+                    <HStack spacing="4">
                         {buttonBack}
                         {title ?? (
                             <Heading as="h3" transform="capitalize">
@@ -116,17 +118,17 @@ export const Create: React.FC<CreateProps> = (props) => {
                         )}
                     </HStack>
                 </Stack>
-                <HStack spacing="xs" {...headerButtonProps}>
+                <HStack spacing="4" {...headerButtonProps}>
                     {headerButtons}
                 </HStack>
             </HStack>
-            <Box pt="sm" {...contentProps}>
+            <Box pt="8" {...contentProps}>
                 {children}
             </Box>
             <HStack
                 alignItems="right"
-                spacing="xs"
-                mt="md"
+                spacing="4"
+                mt="4"
                 {...footerButtonProps}
             >
                 {footerButtons}

@@ -2,6 +2,7 @@ import React from "react";
 import { RefineLayoutLayoutProps } from "@pankod/refine-ui-types";
 import { Box } from "@chakra-ui/react";
 
+import { AppShell } from "@saas-ui/app-shell";
 import { Sider as DefaultSider } from "./sider";
 import { Header as DefaultHeader } from "./header";
 
@@ -16,22 +17,15 @@ export const Layout: React.FC<RefineLayoutLayoutProps> = ({
     const HeaderToRender = Header ?? DefaultHeader;
 
     return (
-        <Box sx={{ display: "flex" }}>
-            <SiderToRender />
-            <Box
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    flex: 1,
-                }}
-            >
+        <AppShell sidebar={<SiderToRender />} variant="static" minH="100vh">
+            <Box display="flex" flexDirection="column" flex={1}>
                 <HeaderToRender />
-                <Box as="main" minH="100vh">
+                <Box as="main" minH="100vh" p={[2, 4]}>
                     {children}
                 </Box>
                 {Footer && <Footer />}
             </Box>
             {OffLayoutArea && <OffLayoutArea />}
-        </Box>
+        </AppShell>
     );
 };

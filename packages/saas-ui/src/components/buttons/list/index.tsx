@@ -14,32 +14,33 @@ import {
 import { IconButton, Button, ButtonProps } from "@chakra-ui/react";
 import { IconList, TablerIconProps } from "@tabler/icons";
 
-export type ListButtonProps = RefineListButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: TablerIconProps;
-    }
+export type ListButtonProps = Omit<
+    RefineListButtonProps<
+        ButtonProps,
+        {
+            svgIconProps?: TablerIconProps;
+        }
+    >,
+    "ignoreAccessControlProvider"
 >;
 
 /**
- * `<ListButton>` is using uses Mantine {@link https://mantine.dev/core/button/ `<Button> `} component.
+ * `<ListButton>` is using uses Mantine {@link https://chakra-ui.com/docs/components/button `<Button> `} component.
  * It uses the  {@link https://refine.dev/docs/core/hooks/navigation/useNavigation#list `list`} method from {@link https://refine.dev/docs/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when redirecting the app to the list page route of resource}.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/list-button} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/buttons/list-button} for more details.
  **/
 export const ListButton: React.FC<ListButtonProps> = ({
     resourceNameOrRouteName,
     hideText = false,
     accessControl,
-    ignoreAccessControlProvider = false,
     svgIconProps,
     children,
     onClick,
     ...rest
 }) => {
-    const accessControlEnabled =
-        accessControl?.enabled ?? !ignoreAccessControlProvider;
+    const accessControlEnabled = accessControl?.enabled;
     const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const { resource, resourceName } = useResource({
         resourceNameOrRouteName,
@@ -77,51 +78,53 @@ export const ListButton: React.FC<ListButtonProps> = ({
         return null;
     }
 
-    const btnProps = {
-        to: listUrl,
-        replace: false,
-        onClick: (e: React.PointerEvent<HTMLButtonElement>) => {
-            if (data?.can === false) {
-                e.preventDefault();
-                return;
-            }
-            if (onClick) {
-                e.preventDefault();
-                onClick(e);
-            }
-        },
-    };
-
-    const icon = <IconList size={18} {...svgIconProps} />;
-
-    const label =
-        children ??
-        translate(
-            `${resourceName}.titles.list`,
-            userFriendlyResourceName(resource.label ?? resourceName, "plural"),
-        );
-
-    return hideText ? (
-        <IconButton
-            as={Link}
-            isDisabled={data?.can === false}
-            aria-label={disabledTitle()}
-            icon={icon}
-            data-testid={RefineButtonTestIds.ListButton}
-            {...btnProps}
-            {...rest}
-        />
-    ) : (
-        <Button
-            as={Link}
-            isDisabled={data?.can === false}
-            leftIcon={icon}
-            title={disabledTitle()}
-            data-testid={RefineButtonTestIds.ListButton}
-            {...rest}
-            {...btnProps}
+    return (
+        <Link
+            to={listUrl}
+            replace={false}
+            onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
+                if (onClick) {
+                    e.preventDefault();
+                    onClick(e);
+                }
+            }}
         >
-            {label}
-        </Button>
+            {hideText ? (
+                <IconButton
+                    variant="outline"
+                    aria-label={translate(
+                        `${resourceName}.titles.list`,
+                        userFriendlyResourceName(
+                            resource.label ?? resourceName,
+                            "plural",
+                        ),
+                    )}
+                    disabled={data?.can === false}
+                    title={disabledTitle()}
+                    data-testid={RefineButtonTestIds.ListButton}
+                    {...rest}
+                >
+                    <IconList size={20} {...svgIconProps} />
+                </IconButton>
+            ) : (
+                <Button
+                    variant="outline"
+                    disabled={data?.can === false}
+                    leftIcon={<IconList size={20} {...svgIconProps} />}
+                    title={disabledTitle()}
+                    data-testid={RefineButtonTestIds.ListButton}
+                    {...rest}
+                >
+                    {children ??
+                        translate(
+                            `${resourceName}.titles.list`,
+                            userFriendlyResourceName(
+                                resource.label ?? resourceName,
+                                "plural",
+                            ),
+                        )}
+                </Button>
+            )}
+        </Link>
     );
 };

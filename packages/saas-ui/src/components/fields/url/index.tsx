@@ -12,11 +12,10 @@ export type UrlFieldProps = RefineFieldUrlProps<
 >;
 
 /**
- * This field is used to display email values. It uses the {@link https://chakra-ui.com/docs/components/link/usage  `<Link>` }
- * components from Chakra.
+ * This field is used to display email values. It uses the {@link https://chakra-ui.com/docs/components/text  `<Text>` } component from Chakra UI.
  * You can pass a URL in its `value` property and you can show a text in its place by passing any `children`.
  *
- * @see {@link https://refine.dev/docs/api-reference/mantine/components/fields/url} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/fields/url} for more details.
  */
 export const UrlField: React.FC<UrlFieldProps> = ({
     children,

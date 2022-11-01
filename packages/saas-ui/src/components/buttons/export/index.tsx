@@ -15,10 +15,10 @@ export type ExportButtonProps = RefineExportButtonProps<
 >;
 
 /**
- * `<ExportButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button> `} component with a default export icon and a default text with "Export".
+ * `<ExportButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> `} component with a default export icon and a default text with "Export".
  * It only has presentational value.
  *
- * @see {@link https://refine.dev/docs/ui-frameworks/mantine/components/buttons/export-button} for more details.
+ * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/buttons/export-button} for more details.
  */
 export const ExportButton: React.FC<ExportButtonProps> = ({
     hideText = false,
@@ -29,21 +29,21 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
 }) => {
     const translate = useTranslate();
 
-    const icon = <IconFileExport size={18} {...svgIconProps} />;
-
     return hideText ? (
         <IconButton
-            icon={icon}
+            variant="outline"
             aria-label={translate("buttons.export", "Export")}
-            loading={loading}
+            isLoading={loading}
             data-testid={RefineButtonTestIds.ExportButton}
             {...rest}
-        />
+        >
+            <IconFileExport size={20} {...svgIconProps} />
+        </IconButton>
     ) : (
         <Button
-            variant="default"
-            loading={loading}
-            leftIcon={icon}
+            variant="outline"
+            isLoading={loading}
+            leftIcon={<IconFileExport size={20} {...svgIconProps} />}
             data-testid={RefineButtonTestIds.ExportButton}
             {...rest}
         >
