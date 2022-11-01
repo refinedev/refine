@@ -29,6 +29,7 @@ describe("handleRefineOptions", () => {
                 afterCreate: "edit",
                 afterEdit: "show",
             },
+            breadcrumb: false,
         };
 
         const {
@@ -48,6 +49,7 @@ describe("handleRefineOptions", () => {
                 afterCreate: "edit",
                 afterEdit: "show",
             },
+            breadcrumb: false,
         });
         expect(disableTelemetryWithDefault).toBe(true);
         expect(reactQueryWithDefaults).toEqual({

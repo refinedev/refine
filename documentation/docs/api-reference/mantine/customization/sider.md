@@ -143,6 +143,7 @@ import {
     MantineProvider,
     Global,
     NotificationsProvider,
+    notificationProvider,
     LightTheme,
     Layout,
     // highlight-start
@@ -173,6 +174,7 @@ const App = () => {
                             { path: "/custom-page", element: <CustomPage /> },
                         ],
                     }}
+                    notificationProvider={notificationProvider}
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}
@@ -1029,6 +1031,7 @@ import {
     MantineProvider,
     Global,
     NotificationsProvider,
+    notificationProvider,
     LightTheme,
     Layout,
 } from "@pankod/refine-mantine";
@@ -1047,6 +1050,7 @@ const App = () => {
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}
+                    notificationProvider={notificationProvider}
                     Layout={Layout}
                     // highlight-next-line
                     Sider={CustomSider}

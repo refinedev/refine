@@ -22,6 +22,7 @@ export const buttonDeleteTests = function (
             jest.spyOn(console, "error").mockImplementation(jest.fn());
             jest.clearAllTimers();
         });
+
         it("should render button successfuly", async () => {
             const { container } = render(<DeleteButton />, {
                 wrapper: TestWrapper({}),
@@ -31,13 +32,11 @@ export const buttonDeleteTests = function (
         });
 
         it("should have the correct test-id", async () => {
-            const { queryByTestId } = render(<DeleteButton />, {
+            const { getByTestId } = render(<DeleteButton />, {
                 wrapper: TestWrapper({}),
             });
 
-            expect(
-                queryByTestId(RefineButtonTestIds.DeleteButton),
-            ).toBeTruthy();
+            getByTestId(RefineButtonTestIds.DeleteButton);
         });
 
         it("should render text by children", async () => {
@@ -136,7 +135,7 @@ export const buttonDeleteTests = function (
 
         it("should render called function successfully if click the button", async () => {
             const deleteFunc = jest.fn();
-            const { getByText } = render(
+            const { getByTestId } = render(
                 <DeleteButton onClick={() => deleteFunc()} />,
                 {
                     wrapper: TestWrapper({}),
@@ -144,24 +143,22 @@ export const buttonDeleteTests = function (
             );
 
             await act(async () => {
-                fireEvent.click(getByText("Delete"));
+                fireEvent.click(getByTestId(RefineButtonTestIds.DeleteButton));
             });
 
             expect(deleteFunc).toHaveBeenCalledTimes(1);
         });
 
         it("should render Popconfirm successfuly", async () => {
-            const { getByText, getAllByText } = render(<DeleteButton />, {
-                wrapper: (props) => {
-                    const W = TestWrapper({});
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-ignore testing purposes
-                    return <W {...props} />;
+            const { getByText, getAllByText, getByTestId } = render(
+                <DeleteButton />,
+                {
+                    wrapper: TestWrapper({}),
                 },
-            });
+            );
 
             await act(async () => {
-                fireEvent.click(getByText("Delete"));
+                fireEvent.click(getByTestId(RefineButtonTestIds.DeleteButton));
             });
 
             getByText("Are you sure?");
@@ -171,17 +168,20 @@ export const buttonDeleteTests = function (
 
         it("should confirm Popconfirm successfuly", async () => {
             const deleteOneMock = jest.fn();
-            const { getByText, getAllByText } = render(<DeleteButton />, {
-                wrapper: TestWrapper({
-                    dataProvider: {
-                        ...MockJSONServer,
-                        deleteOne: deleteOneMock,
-                    },
-                }),
-            });
+            const { getByText, getAllByText, getByTestId } = render(
+                <DeleteButton />,
+                {
+                    wrapper: TestWrapper({
+                        dataProvider: {
+                            ...MockJSONServer,
+                            deleteOne: deleteOneMock,
+                        },
+                    }),
+                },
+            );
 
             await act(async () => {
-                fireEvent.click(getByText("Delete"));
+                fireEvent.click(getByTestId(RefineButtonTestIds.DeleteButton));
             });
 
             getByText("Are you sure?");
@@ -199,8 +199,8 @@ export const buttonDeleteTests = function (
         it("should confirm Popconfirm successfuly with recordItemId", async () => {
             const deleteOneMock = jest.fn();
 
-            const { getByText, getAllByText } = render(
-                <DeleteButton recordItemId="1" />,
+            const { getByText, getAllByText, getByTestId } = render(
+                <DeleteButton recordItemId="record-id" />,
                 {
                     wrapper: TestWrapper({
                         dataProvider: {
@@ -212,7 +212,7 @@ export const buttonDeleteTests = function (
             );
 
             await act(async () => {
-                fireEvent.click(getByText("Delete"));
+                fireEvent.click(getByTestId(RefineButtonTestIds.DeleteButton));
             });
 
             getByText("Are you sure?");
@@ -224,14 +224,14 @@ export const buttonDeleteTests = function (
                 fireEvent.click(deleteButtons[1]);
             });
 
-            expect(deleteOneMock).toBeCalledTimes(1);
+            expect(deleteOneMock).toBeCalledWith({ id: "record-id" });
         });
 
         it("should confirm Popconfirm successfuly with onSuccess", async () => {
             const deleteOneMock = jest.fn();
             const onSuccessMock = jest.fn();
 
-            const { getByText, getAllByText } = render(
+            const { getByText, getAllByText, getByTestId } = render(
                 <Routes>
                     <Route
                         path="/:resource/:action/:id"
@@ -250,7 +250,7 @@ export const buttonDeleteTests = function (
             );
 
             await act(async () => {
-                fireEvent.click(getByText("Delete"));
+                fireEvent.click(getByTestId(RefineButtonTestIds.DeleteButton));
             });
 
             getByText("Are you sure?");
@@ -270,7 +270,7 @@ export const buttonDeleteTests = function (
             const deleteOneMock = jest.fn();
             const onSuccessMock = jest.fn();
 
-            const { getByText } = render(
+            const { getByText, getByTestId } = render(
                 <Routes>
                     <Route
                         path="/:resource/:action/:id"
@@ -296,7 +296,7 @@ export const buttonDeleteTests = function (
             );
 
             await act(async () => {
-                fireEvent.click(getByText("Delete"));
+                fireEvent.click(getByTestId(RefineButtonTestIds.DeleteButton));
             });
 
             getByText("confirmTitle");
@@ -312,7 +312,7 @@ export const buttonDeleteTests = function (
         });
 
         it("should render with custom mutationMode", async () => {
-            const { getByText } = render(
+            const { getByTestId } = render(
                 <Routes>
                     <Route
                         path="/:resource"
@@ -327,13 +327,11 @@ export const buttonDeleteTests = function (
                 },
             );
 
-            await act(async () => {
-                fireEvent.click(getByText("Delete"));
-            });
+            getByTestId(RefineButtonTestIds.DeleteButton);
         });
 
         it("should render with custom resource", async () => {
-            const { getByText } = render(
+            const { getByTestId } = render(
                 <Routes>
                     <Route
                         path="/:resource"
@@ -350,13 +348,11 @@ export const buttonDeleteTests = function (
                 },
             );
 
-            await act(async () => {
-                fireEvent.click(getByText("Delete"));
-            });
+            getByTestId(RefineButtonTestIds.DeleteButton);
         });
 
         it("should render with resourceNameOrRouteName", async () => {
-            const { getByText } = render(
+            const { getByTestId } = render(
                 <Routes>
                     <Route
                         path="/:resource"
@@ -374,9 +370,7 @@ export const buttonDeleteTests = function (
                 },
             );
 
-            await act(async () => {
-                fireEvent.click(getByText("Delete"));
-            });
+            getByTestId(RefineButtonTestIds.DeleteButton);
         });
     });
 };

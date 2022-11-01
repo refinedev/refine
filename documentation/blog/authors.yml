@@ -75,10 +75,10 @@ ekekenta_clinton:
     image_url: https://github.com/icode247.png
 
 muhammed_arslan:
-    name: Muhammed Arslan Sarwar
+    name: Muhammed  Sarwar
     title: Software Engineer
     url: https://twitter.com/arslans171
-    image_url: https://media-exp1.licdn.com/dms/image/C5603AQHKaAhTXytlEw/profile-displayphoto-shrink_800_800/0/1643978601436?e=1666224000&v=beta&t=vM0ajc7YqtkLTEhxsLs-cIcc1bGnYwl8-Ct1bsCoUL0
+    image_url: /img/generic-profile.png
 
 joel_adewole:
     name: Joel Adewole
@@ -152,4 +152,9 @@ clara_ekekenta:
 muhammad_khabbab:
     name: Muhammad Khabbab
     title: Project Manager
+    image_url: /img/generic-profile.png
+
+chibuzor_otuokwu:
+    name: Chibuzor Otuokwu
+    title: Software Developer
     image_url: /img/generic-profile.png

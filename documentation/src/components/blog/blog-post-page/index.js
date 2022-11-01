@@ -16,6 +16,7 @@ import {
 
 import { Tags } from "@site/src/components/blog";
 import { Date, ReadingTime, Spacer } from "@site/src/components/blog/common";
+import NewsletterCta from "../../newsletter-cta";
 
 export const BlogPostPageView = ({ children }) => {
     const { metadata, isBlogPostPage } = useBlogPost();
@@ -38,7 +39,7 @@ export const BlogPostPageView = ({ children }) => {
         <BlogPostItemContainer className="blog-post-item-shadow rounded-[10px] p-4">
             <div className="relative">
                 <div className="absolute top-0 right-0 rounded-bl-[10px] bg-white">
-                    <div className="flex items-center space-x-2 py-1 px-2">
+                    <div className="flex items-center px-2 py-1 space-x-2">
                         <TwitterShareButton
                             windowWidth={750}
                             windowHeight={800}
@@ -102,6 +103,7 @@ export const BlogPostPageView = ({ children }) => {
                 <br />
                 <Tags />
             </div>
+            <NewsletterCta />
         </BlogPostItemContainer>
     );
 };

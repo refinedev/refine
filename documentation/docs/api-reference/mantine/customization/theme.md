@@ -177,6 +177,7 @@ import {
     MantineProvider,
     Global,
     NotificationsProvider,
+    notificationProvider,
     // highlight-next-line
     DarkTheme,
 } from "@pankod/refine-mantine";
@@ -194,6 +195,7 @@ const App = () => {
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}
+                    notificationProvider={notificationProvider}
                     Layout={Layout}
                     resources={[
                         {
@@ -230,6 +232,7 @@ import {
     MantineProvider,
     Global,
     NotificationsProvider,
+    notificationProvider,
     // highlight-next-line
     LightTheme,
 } from "@pankod/refine-mantine";
@@ -268,6 +271,7 @@ const App = () => {
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
                     )}
+                    notificationProvider={notificationProvider}
                     Layout={Layout}
                     resources={[
                         {
@@ -343,6 +347,7 @@ import {
     MantineProvider,
     Global,
     NotificationsProvider,
+    notificationProvider,
     MantineHeader,
     Group,
     ActionIcon,
@@ -415,6 +420,7 @@ const App = () => {
                         dataProvider={dataProvider(
                             "https://api.fake-rest.refine.dev",
                         )}
+                        notificationProvider={notificationProvider}
                         Layout={Layout}
                         // highlight-next-line
                         Header={Header}

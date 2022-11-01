@@ -1,3 +1,5 @@
+<br/>
+
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">
   <img src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"   style="width:250px;" align="center" />
@@ -17,7 +19,7 @@
 </div>
 <br/>
 
-<div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>Open source, headless web application framework developed with flexibility in mind.</div>
+<div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>An open source, headless web application framework developed with flexibility in mind.</div>
 
 <br />
 
@@ -38,26 +40,29 @@
 
 </div>
 
-<div align="center" style="margin: 30px;">
-  <a href="https://refine.dev/">
-      <img src="https://raw.githubusercontent.com/refinedev/refine/master/documentation/static/img/refine-promo-gif-v2.gif" style="width:688px;"/>
-  </a>
-</div>
+<br/>
+<a href="https://refine.dev/">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/1110414/197984957-639630c1-03e9-4e18-9a57-63de81124fbd.png">
+  <img alt="how-works-refine" src="https://user-images.githubusercontent.com/1110414/197965247-f91f4a0c-f901-4775-b072-abfa736b6e67.png">
+</picture>
+</a>
+
 
 
 ## What is refine?
 **refine** is a React-based framework for the rapid ✨ development of web applications. 
-It eliminates the repetitive tasks demanded by **CRUD** operations and provides industry standard solutions for critical parts like **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**.
+It eliminates repetitive tasks demanded by **CRUD** operations and provides industry standard solutions for critical parts like **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**.
 
-**refine** is *headless by design* offering unlimited styling and customization options. 
+**refine** is *headless by design*, thereby offering unlimited styling and customization options.
 
 ## What do you mean by "headless" ?
-Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components`, and `providers`. They are all decoupled from your *UI components* and *business logic*, so they never keep you from customizing your *UI* or coding your own flow.
+Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components`, and `providers`. They are all decoupled from *UI components* and *business logic*, so that they never keep you from customizing your *UI* or coding your own flow.
 
-**refine** seamlessly works with any **custom design** or **UI framework you favor**. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), and [Mantine](https://mantine.dev/).
+**refine** seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), and [Mantine](https://mantine.dev/).
 
 ## Use cases
-**refine** shines on *data-intensive* applications like *admin panels*, *dashboards* and *internal tools*. Thanks to built-in **SSR support**, **refine** can also power *customer-facing* applications like *storefronts*.
+**refine** shines on *data-intensive* applications like *admin panels*, *dashboards* and *internal tools*. Thanks to the built-in **SSR support**, **refine** can also power *customer-facing* applications like *storefronts*.
 
 ## Key Features
 
@@ -85,7 +90,7 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 
 ## Quick Start
 
-The fastest way to get started with **refine** is using the [superplate](https://github.com/pankod/superplate) project starter tool.
+The fastest way to get started with **refine** is by using the [superplate](https://github.com/pankod/superplate) project starter tool.
 Run the following command to create a new **refine** project configured with  [Ant Design System](https://ant.design/) as the default UI framework:
 
 ```
@@ -99,7 +104,7 @@ npm run dev
 ```
 
 Your **refine** application will be accessible at [http://localhost:3000](http://localhost:3000):
-![Welcome on board](https://github.com/refinedev/refine/blob/master/documentation/static/img/welcome-on-board.png?raw=true)
+<a href="http://localhost:3000">![Welcome on board](https://github.com/refinedev/refine/blob/master/documentation/static/img/welcome-on-board.png?raw=true)</a>
 Let's consume a public `fake REST API` and add two resources (*posts*, *categories*) to our project. Replace the contents of `src/App.tsx` with the following code:
 
 ```tsx title="src/App.tsx"
@@ -197,7 +202,7 @@ Now, you should see the output as a table populated with `post` & `category` dat
 
 👉 Check out the [Refine<>Tailwind Tutorial](https://refine.dev/docs/tutorials/headless-tutorial/) to learn how to use **refine** in a pure *headless* way.
 
-👉 Visit [Learn the Basics Page](https://refine.dev/docs/getting-started/overview/) to get informed about the fundemental concepts.
+👉 Visit [Learn the Basics Page](https://refine.dev/docs/getting-started/overview/) to get informed about the fundamental concepts.
 
 👉 Read more on [Advanced Tutorials
 ](https://refine.dev/docs/advanced-tutorials/) for different usage scenarios.
@@ -215,11 +220,24 @@ You can find refine's <a href="https://github.com/refinedev/refine/projects/1">P
 
 ## Contribution
 
-If you have a bug to report, do not hesitate to file an [issue](https://github.com/refinedev/refine/issues/new/choose).
+If you discover a bug, please file a bug report at [issue](https://github.com/refinedev/refine/issues/new?assignees=&labels=bug&template=bug_report.yml&title=%5BBUG%5D). <br/>
+If you want to fix a typo or update documentation, raise an issue [here](https://github.com/refinedev/refine/issues/new?assignees=&labels=documentation&template=documentation.yml&title=%5BDOC%5D). <br/>
+If you want to propose a feature, raise a detailed issue with explanation [here](https://github.com/refinedev/refine/issues/new?assignees=&labels=enhancement&template=feature_request.yml&title=%5BFEAT%5D).
 
 If you are willing to fix an issue or propose a feature, all PRs with clear explanations are welcome and encouraged.
 
+know more about the ways to contribute [here](https://refine.dev/docs/contributing/#ways-to-contribute)
+
+
+
 If you have any doubts related to the project or want to discuss something, then join our [Discord Server](https://discord.gg/refine).
+
+
+## Our ♥️ Contributors
+
+<a href="https://github.com/refinedev/refine/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=refinedev/refine" />
+</a>
 
 ## License
 

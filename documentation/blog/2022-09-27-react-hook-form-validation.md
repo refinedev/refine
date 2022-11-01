@@ -591,6 +591,12 @@ The `defaultValue` object properties will serve as the default value for our for
 
 That’s it, our form has been successfully integrated with React Hook Form. Next, we’ll look at how we can validate the form.
 
+---
+
+<PromotionBanner title="Small dev teams love this React framework!" image="/img/diagram.png" />
+
+---
+
 ## Validating forms with React Hook Forms
 
 Now that we’ve integrated our form with React Hook Form, we can easily validate inputs by adding specific restrictions to our TextFields, like the minimum and maximum characters allowed for each TextFields.
@@ -736,6 +742,13 @@ const { control } = useForm<IFormValue>
 ```
 
 That’s all we have to do to set up our schema, next we’ll look at a new way we can handle errors.
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
 
 ## Handling errors
 Handling errors with MUI's TextField component is fairly straightforward, all we have to do is destructure the errors property from the useForm’s formState method:

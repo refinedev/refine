@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { PageHeader, PageHeaderProps, Space, SpaceProps } from "antd";
 import {
     useResourceWithRoute,
@@ -6,6 +6,7 @@ import {
     useTranslate,
     userFriendlyResourceName,
     ResourceRouterParams,
+    useRefineContext,
 } from "@pankod/refine-core";
 
 import { Breadcrumb, CreateButton, CreateButtonProps } from "@components";
@@ -47,7 +48,7 @@ export const List: React.FC<ListProps> = ({
     wrapperProps,
     contentProps,
     headerProps,
-    breadcrumb,
+    breadcrumb: breadcrumbFromProps,
     headerButtonProps,
     headerButtons,
 }) => {
@@ -62,6 +63,12 @@ export const List: React.FC<ListProps> = ({
 
     const isCreateButtonVisible =
         canCreate ?? (resource.canCreate || createButtonProps);
+
+    const { options } = useRefineContext();
+    const breadcrumb =
+        typeof breadcrumbFromProps === "undefined"
+            ? options?.breadcrumb
+            : breadcrumbFromProps;
 
     const defaultExtra = isCreateButtonVisible ? (
         <CreateButton

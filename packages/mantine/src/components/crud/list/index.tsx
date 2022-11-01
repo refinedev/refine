@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { RefineCrudListProps } from "@pankod/refine-ui-types";
 import {
     Box,
@@ -12,6 +12,7 @@ import {
 } from "@mantine/core";
 import {
     ResourceRouterParams,
+    useRefineContext,
     useResourceWithRoute,
     userFriendlyResourceName,
     useRouterContext,
@@ -40,7 +41,7 @@ export const List: React.FC<ListProps> = (props) => {
         headerProps,
         headerButtonProps,
         headerButtons: headerButtonsFromProps,
-        breadcrumb = <Breadcrumb />,
+        breadcrumb: breadcrumbFromProps,
         title,
     } = props;
     const translate = useTranslate();
@@ -64,6 +65,19 @@ export const List: React.FC<ListProps> = (props) => {
         />
     ) : null;
 
+    const { options } = useRefineContext();
+    const breadcrumb =
+        typeof breadcrumbFromProps === "undefined"
+            ? options?.breadcrumb
+            : breadcrumbFromProps;
+
+    const breadcrumbComponent =
+        typeof breadcrumb !== "undefined" ? (
+            <>{breadcrumb}</> ?? undefined
+        ) : (
+            <Breadcrumb />
+        );
+
     const headerButtons = headerButtonsFromProps
         ? typeof headerButtonsFromProps === "function"
             ? headerButtonsFromProps({
@@ -76,7 +90,7 @@ export const List: React.FC<ListProps> = (props) => {
         <Card p="md" {...wrapperProps}>
             <Group position="apart" align="center" {...headerProps}>
                 <Stack spacing="xs">
-                    {breadcrumb}
+                    {breadcrumbComponent}
                     {title ?? (
                         <Title order={3} transform="capitalize">
                             {translate(

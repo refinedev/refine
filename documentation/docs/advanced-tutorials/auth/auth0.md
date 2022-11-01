@@ -64,19 +64,6 @@ export const Login: React.FC = () => {
     // highlight-next-line
     const { loginWithRedirect } = useAuth0();
 
-    const CardTitle = (
-        <div
-            style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                height: "60px",
-            }}
-        >
-            <img src="./refine.svg" alt="Logo" />
-        </div>
-    );
-
     return (
         <AntdLayout
             style={{
@@ -194,6 +181,11 @@ const App = () => {
             ReadyPage={ReadyPage}
             notificationProvider={notificationProvider}
             catchAll={<ErrorComponent />}
+            resources={[
+                {
+                    name: "posts",
+                }
+            ]}
         />
     );
 };

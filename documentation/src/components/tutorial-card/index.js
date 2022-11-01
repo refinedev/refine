@@ -5,7 +5,7 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "./styles.module.css";
 
 const Card = ({ iconPath, title, direction }) => (
-    <Link to={useBaseUrl(direction)}>
+    <Link to={useBaseUrl(direction)} className={styles.link}>
         <div className={styles.card}>
             <img src={iconPath} alt="next.js" />
             <span>{title}</span>

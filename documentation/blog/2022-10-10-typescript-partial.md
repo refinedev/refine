@@ -18,7 +18,7 @@ In the previous post, we went through an example where we derived a `Subscriber`
 
 In this post, we will consider an example of **TypeScript `Partial<>`** by modifying our `Subscriber` type to assume a more realistic scenario.
 
-Steps we'll cover:  
+Steps we'll cover:
 - [Optional Registration Scenario](#optional-registration-scenario)
 - [Enter TypeScript `Partial<Type>`](#enter-typescript-partialtype)
 - [Partial with Interfaces](#with-interfaces)
@@ -98,6 +98,13 @@ console.log(subscriber);
 
 But this comes with the overhead of defining `Subscriber` manually in the first place and additionally then setting individual optional properties. In real APIs, it's not a good idea to define a shape manually.
 
+---
+
+<PromotionBanner title="Small dev teams love this React framework!" image="/img/generic_banner.png" />
+
+---
+
+
 ## Enter TypeScript `Partial<Type>`
 We want to remove the hassle and do this much more comfortably from the type returned from `Omit<>`. So what we want to do is set all the properties of the returned type to be optional with `Partial<Type>`:
 
@@ -165,7 +172,15 @@ console.log(subscriber);
 // Property 'roles' does not exist on type 'Partial<Omit<SuperbUser, "roles">>'.
 ```
 
-So, the benefits of using TypeScript to derive a partial type includes its support for partial assignment of the object's properties that is allowed by JavaScript and not allowed by default TypeScript. It also warns about possible undesired assignements to the partial.
+So, the benefits of using TypeScript to derive a partial type includes its support for partial assignment of the object's properties that is allowed by JavaScript and not allowed by default TypeScript. It also warns about possible undesired assignments to the partial.
+
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
 
 ## With Interfaces
 We get the same result if we use an interface for our base `SuperbUser` type:

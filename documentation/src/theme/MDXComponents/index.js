@@ -5,6 +5,7 @@ import DiscordBanner from "@site/src/components/blog/discord-banner";
 import GithubBanner from "@site/src/components/blog/github-banner";
 import TwitterBanner from "@site/src/components/blog/twitter-banner";
 import PropsTable from "@site/src/components/props-table";
+import PromotionBanner from "@site/src/components/blog/promotion";
 import PropTag from "../../components/prop-tag";
 
 export default {
@@ -14,4 +15,5 @@ export default {
     TwitterBanner: TwitterBanner,
     PropsTable: PropsTable,
     PropTag: PropTag,
+    PromotionBanner: PromotionBanner,
 };

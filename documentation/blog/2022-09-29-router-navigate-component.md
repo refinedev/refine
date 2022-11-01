@@ -89,6 +89,12 @@ function App() {
 }
 ```
 
+---
+
+<PromotionBanner title="Is your CRUD app overloaded with technical debt?" image="/img/generic_banner.png" />
+
+---
+
 ## How to use the  `Navigate` component
 
 The `Navigate` component is one of the several built-in components in React router version 6. It is a wrapper for the `useNavigate` hook, and the current location changes when you render it.
@@ -167,6 +173,13 @@ console.log(location.state);
 ```
 
 The `props` you pass to the `Navigate` component are the same as the arguments required by the function returned by the `useNavigate` hook.
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
 
 ## Conclusion
 

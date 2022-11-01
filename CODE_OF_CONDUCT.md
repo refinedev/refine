@@ -15,7 +15,7 @@ diverse, inclusive, and healthy community.
 ## Our Standards
 
 Examples of behavior that contributes to a positive environment for our
-community include:
+community includes:
 
 * Demonstrating empathy and kindness toward other people
 * Being respectful of differing opinions, viewpoints, and experiences
@@ -50,7 +50,7 @@ decisions when appropriate.
 
 ## Scope
 
-This Code of Conduct applies within all community spaces, and also applies when
+This Code of Conduct applies within all community spaces and also applies when
 an individual is officially representing the community in public spaces.
 Examples of representing our community include using an official e-mail address,
 posting via an official social media account, or acting as an appointed
@@ -122,7 +122,9 @@ Community Impact Guidelines were inspired by
 [Mozilla's code of conduct enforcement ladder][Mozilla CoC].
 
 For answers to common questions about this code of conduct, see the FAQ at
-[https://www.contributor-covenant.org/faq][FAQ]. Translations are available 
+[https://www.contributor-covenant.org/faq][FAQ].
+
+Translations are available
 at [https://www.contributor-covenant.org/translations][translations].
 
 [homepage]: https://www.contributor-covenant.org
