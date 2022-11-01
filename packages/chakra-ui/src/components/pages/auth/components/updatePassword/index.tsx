@@ -19,7 +19,7 @@ import {
 } from "@chakra-ui/react";
 import { useForm } from "@pankod/refine-react-hook-form";
 
-import { layoutStyles, cardStyles } from "../styles";
+import { layoutProps, cardProps } from "../styles";
 import { FormPropsType } from "../..";
 
 type UpdatePasswordProps = UpdatePasswordPageProps<
@@ -46,8 +46,9 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
         ...useFormProps,
     });
 
+    const allContentProps = { ...cardProps, ...contentProps };
     const content = (
-        <Box style={cardStyles} {...contentProps}>
+        <Box {...allContentProps}>
             <Heading mb="8" textAlign="center" size="lg">
                 {translate("pages.updatePassword.title", "Update Password")}
             </Heading>
@@ -112,8 +113,9 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
         </Box>
     );
 
+    const allWrapperProps = { ...layoutProps, ...wrapperProps };
     return (
-        <Box style={layoutStyles} {...wrapperProps}>
+        <Box {...allWrapperProps}>
             {renderContent ? renderContent(content) : content}
         </Box>
     );
