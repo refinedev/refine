@@ -803,7 +803,7 @@ render(<Wrapper><App /></Wrapper>);
 | forgotPasswordLink | A custom node that will be rendered as a forgot password link to the `<AuthPage>`.  | `React.ReactNode`                                             |
 | wrapperProps       | Wrapper element props.                                                              | [`BoxProps`](https://chakra-ui.com/docs/components/box/props) |
 | contentProps       | Content wrapper element props.                                                      | [`BoxProps`](https://chakra-ui.com/docs/components/box/props) |
-| formProps          | Props for the form component.                                                       | [`UseFormInput`]                                              |
+| formProps          | Props for the form component.                                                       | [`FormPropsType`]                                             |
 | renderContent      | Gives you default content you can use it to add some extra elements to the content. | `function(content: React.ReactNode) => React.ReactNode`       |
 
 ### Interface
