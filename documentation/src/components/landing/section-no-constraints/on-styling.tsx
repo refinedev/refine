@@ -50,7 +50,7 @@ const OnStyling: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
             >
                 <motion.div className="relative flex flex-[1] item-start md:items-center h-full pointer-events-none 2xl:pr-16">
                     <p className="font-montserrat font-medium text-base 2xl:text-xl tracking-tight leading-[20px] max-w-[280px] 2xl:max-w-none mb-0 text-[#2A2A42] lg:translate-y-[-80%]">
-                        <strong className="font-bold">refine</strong> is is{" "}
+                        <strong className="font-bold">refine</strong> is{" "}
                         <strong className="font-bold">design.</strong>{" "}
                         <div>
                             It doesn’t ship with any pre-styled components or UI
@@ -128,7 +128,7 @@ const OnStyling: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                           }
                 }
             >
-                <div className="flex flex-[1] flex-col font-montserrat font-medium text-base 2xl:text-xl 2xl:pr-16 text-[#2A2A42] pointer-events-none">
+                <div className="flex flex-[1] flex-col font-montserrat font-medium text-base 2xl:text-xl 2xl:pr-16 text-[#2A2A42]">
                     <div className="lg:translate-y-[-80%]">
                         <p>
                             Not ready for going headless yet?
