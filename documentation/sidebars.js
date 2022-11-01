@@ -20,6 +20,7 @@ module.exports = {
             },
             items: [
                 "tutorials/ant-design-tutorial",
+                "tutorials/chakra-ui-tutorial",
                 "tutorials/mantine-tutorial",
                 "tutorials/material-ui-tutorial",
                 "tutorials/headless-tutorial",
