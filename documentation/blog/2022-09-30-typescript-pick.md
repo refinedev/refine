@@ -28,9 +28,9 @@ Steps we'll cover:
   - [When to Avoid](#when-to-avoid)
 
 ## What is Object Type Transformation?
-Object Type Tranformation refers to generating a modified type from an existing type or interface that represents an object. Such transformations are related to one or more properties, in other words, the shape of an object.
+Object Type Transformation refers to generating a modified type from an existing type or interface that represents an object. Such transformations are related to one or more properties, in other words, the shape of an object.
 
-TypeScript has various utilities that allow us to implement different sorts of object type transformations, such as by picking or omitting proprties from already available types.
+TypeScript has various utilities that allow us to implement different sorts of object type transformations, such as by picking or omitting properties from already available types.
 
 Object type transformations become very handy when we need a bunch of similar object types that otherwise have to be defined individually. Instead of defining each type separately, we can leverage TypeScript's transformation utilities to generate new types from an existing type by just asking for small adjustments. This way, we are able to make our types re-usable and generate them on-the-go anywhere in our modules system.
 
@@ -62,7 +62,7 @@ For example, in this article we will consider the use case for `Pick<Type, Keys>
 
 ---
 
-## What is TypeScript Pick? 
+## What is TypeScript Pick?
 
 ### Picking Items with `Pick<Type, Keys>`
 For the above entities in the diagram, it makes sense to take `SuperbUser` as our base type because it includes all properties that exists on all other user types.
@@ -201,7 +201,7 @@ Instead, we can just omit `roles` from the passed in utility type. As we'll see 
 
 These are the cruces of using `Pick<>` transformations in TypeScript.
 
-## Conculusion
+## Conclusion
 
 In this post, we found out that Object Type Transformations allow us to derive similar types from a base type when we have objects that share properties. We looked at an example that uses TypeScript `Pick<>` to create a new type by picking a few properties from a type with larger shape. We found out that a type transformation can take both an interface as well as a type as its base, but the generated type cannot be declared as an interface.
 
