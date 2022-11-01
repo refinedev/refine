@@ -1,4 +1,4 @@
-import { IconButton } from "@chakra-ui/react";
+import { IconButton } from "@pankod/refine-saas-ui";
 import { IconChevronDown, IconSelector } from "@tabler/icons";
 
 import { ColumnButtonProps } from "../../interfaces";

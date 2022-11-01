@@ -1,7 +1,12 @@
 import { FC } from "react";
-import { HStack, Button, Box } from "@chakra-ui/react";
 import { IconChevronRight, IconChevronLeft } from "@tabler/icons";
-import { IconButton, usePagination } from "@pankod/refine-saas-ui";
+import {
+    HStack,
+    Button,
+    Box,
+    IconButton,
+    usePagination,
+} from "@pankod/refine-saas-ui";
 
 type PaginationProps = {
     current: number;
