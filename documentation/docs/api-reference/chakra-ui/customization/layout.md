@@ -21,11 +21,22 @@ Let's start with creating a `<CustomLayout/>` component using `LayoutProps` from
 ```tsx live url=http://localhost:3000 previewHeight=420px
 setInitialRoutes(["/posts"]);
 import { useNavigation } from "@pankod/refine-core";
-import { List, Text, Code, Table, Pagination } from "@pankod/refine-mantine";
+import {
+    List,
+    Text,
+    Code,
+    TableContainer,
+    Table,
+    Thead,
+    Tbody,
+    Tr,
+    Th,
+    Td,
+} from "@pankod/refine-chakra-ui";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 const PostList: React.FC = () => {
-    const columns = React.useMemo<ColumnDef[]>(
+    const columns = React.useMemo<ColumnDef<IPost>[]>(
         () => [
             {
                 id: "id",
@@ -41,11 +52,7 @@ const PostList: React.FC = () => {
         [],
     );
 
-    const {
-        getHeaderGroups,
-        getRowModel,
-        refineCore: { setCurrent, pageCount, current },
-    } = useTable({
+    const { getHeaderGroups, getRowModel } = useTable({
         columns,
         refineCoreProps: {
             initialPageSize: 5,
@@ -54,45 +61,43 @@ const PostList: React.FC = () => {
 
     return (
         <List>
-            <Table>
-                <thead>
-                    {getHeaderGroups().map((headerGroup) => (
-                        <tr key={headerGroup.id}>
-                            {headerGroup.headers.map((header) => (
-                                <th key={header.id}>
-                                    {header.isPlaceholder
-                                        ? null
-                                        : flexRender(
-                                              header.column.columnDef.header,
-                                              header.getContext(),
-                                          )}
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody>
-                    {getRowModel().rows.map((row) => (
-                        <tr key={row.id}>
-                            {row.getVisibleCells().map((cell) => (
-                                <td key={cell.id}>
-                                    {flexRender(
-                                        cell.column.columnDef.cell,
-                                        cell.getContext(),
-                                    )}
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
-            <br />
-            <Pagination
-                position="right"
-                total={pageCount}
-                page={current}
-                onChange={setCurrent}
-            />
+            <TableContainer whiteSpace="pre-line">
+                <Table variant="simple">
+                    <Thead>
+                        {getHeaderGroups().map((headerGroup) => (
+                            <Tr key={headerGroup.id}>
+                                {headerGroup.headers.map((header) => (
+                                    <Th key={header.id}>
+                                        {!header.isPlaceholder && (
+                                            <Text>
+                                                {flexRender(
+                                                    header.column.columnDef
+                                                        .header,
+                                                    header.getContext(),
+                                                )}
+                                            </Text>
+                                        )}
+                                    </Th>
+                                ))}
+                            </Tr>
+                        ))}
+                    </Thead>
+                    <Tbody>
+                        {getRowModel().rows.map((row) => (
+                            <Tr key={row.id}>
+                                {row.getVisibleCells().map((cell) => (
+                                    <Td key={cell.id}>
+                                        {flexRender(
+                                            cell.column.columnDef.cell,
+                                            cell.getContext(),
+                                        )}
+                                    </Td>
+                                ))}
+                            </Tr>
+                        ))}
+                    </Tbody>
+                </Table>
+            </TableContainer>
         </List>
     );
 };
@@ -103,7 +108,7 @@ const DummyListPage = () => {
 
     return (
         <List>
-            <Text italic color="dimmed" size="sm">
+            <Text as="i" color="dimmed" fontSize="sm">
                 URL Parameters:
             </Text>
             <Code>{JSON.stringify(params)}</Code>
@@ -188,21 +193,19 @@ import {
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
-    MantineProvider,
-    Global,
-    NotificationsProvider,
+    ChakraProvider,
+    ErrorComponent,
+    ReadyPage,
     notificationProvider,
-    LightTheme,
+    refineTheme,
     // highlight-start
     Box,
-    MantineHeader,
-    Group,
-    NavLink,
+    HStack,
+    Button,
     // highlight-end
-} from "@pankod/refine-mantine";
-import { IconList, IconCategory, IconUsers } from "@tabler/icons";
+} from "@pankod/refine-chakra-ui";
 
-import { PostList } from "./pages/posts";
+import { PostCreate, PostEdit, PostList } from "./pages";
 
 // highlight-start
 const CustomLayout: React.FC<LayoutProps> = ({ children }) => {
@@ -210,22 +213,36 @@ const CustomLayout: React.FC<LayoutProps> = ({ children }) => {
     const { Link } = useRouterContext();
 
     return (
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
-            <MantineHeader height={50} p="xs">
-                <Group>
+        <Box display="flex" flexDirection="column">
+            <Box
+                pt="2"
+                px="4"
+                bg="chakra-body-bg"
+                borderBottom="1px"
+                borderColor="gray.200"
+            >
+                <HStack>
                     {menuItems.map(({ route, label, icon }) => (
                         <Box key={route}>
-                            <NavLink
-                                component={Link}
+                            <Button
+                                as={Link}
                                 to={route}
                                 label={label}
-                                icon={icon ?? <IconList />}
-                                active={route === selectedKey}
-                            />
+                                variant="ghost"
+                                colorScheme="green"
+                                leftIcon={
+                                    icon ?? ((<IconList size={20} />) as any)
+                                }
+                                isActive={route === selectedKey}
+                                borderBottomLeftRadius="0"
+                                borderBottomRightRadius="0"
+                            >
+                                {label}
+                            </Button>
                         </Box>
                     ))}
-                </Group>
-            </MantineHeader>
+                </HStack>
+            </Box>
             <Box>{children}</Box>
         </Box>
     );
@@ -234,36 +251,32 @@ const CustomLayout: React.FC<LayoutProps> = ({ children }) => {
 
 const App = () => {
     return (
-        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    // highlight-next-line
-                    Layout={CustomLayout}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: PostList,
-                        },
-                        {
-                            name: "categories",
-                            list: DummyListPage,
-                            icon: <IconCategory />,
-                        },
-                        {
-                            name: "users",
-                            list: DummyListPage,
-                            icon: <IconUsers />,
-                        },
-                    ]}
-                />
-            </NotificationsProvider>
-        </MantineProvider>
+        <ChakraProvider theme={refineTheme}>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                notificationProvider={notificationProvider()}
+                ReadyPage={ReadyPage}
+                // highlight-next-line
+                Layout={CustomLayout}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                    },
+                    {
+                        name: "categories",
+                        list: DummyListPage,
+                        icon: <IconCategory />,
+                    },
+                    {
+                        name: "users",
+                        list: DummyListPage,
+                        icon: <IconUsers />,
+                    },
+                ]}
+            />
+        </ChakraProvider>
     );
 };
 // visible-block-end
