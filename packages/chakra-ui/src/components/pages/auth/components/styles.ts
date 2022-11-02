@@ -10,7 +10,6 @@ export const layoutProps: BoxProps = {
 };
 
 export const cardProps: BoxProps = {
-    backgroundColor: "white",
     width: "400px",
     padding: "20px",
     borderRadius: "10px",

@@ -85,7 +85,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
 
     const allContentProps = { ...cardProps, ...contentProps };
     const content = (
-        <Box {...allContentProps}>
+        <Box bg="chakra-body-bg" {...allContentProps}>
             <Heading mb="8" textAlign="center" size="lg">
                 {translate("pages.register.title", "Sign up for your account")}
             </Heading>

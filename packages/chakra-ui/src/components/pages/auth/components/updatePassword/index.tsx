@@ -48,7 +48,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
 
     const allContentProps = { ...cardProps, ...contentProps };
     const content = (
-        <Box {...allContentProps}>
+        <Box bg="chakra-body-bg" {...allContentProps}>
             <Heading mb="8" textAlign="center" size="lg">
                 {translate("pages.updatePassword.title", "Update Password")}
             </Heading>

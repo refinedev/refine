@@ -90,7 +90,7 @@ export const LoginPage: React.FC<LoginProps> = ({
 
     const allContentProps = { ...cardProps, ...contentProps };
     const content = (
-        <Box {...allContentProps}>
+        <Box bg="chakra-body-bg" {...allContentProps}>
             <Heading mb="8" textAlign="center" size="lg">
                 {translate("pages.login.title", "Sign in to your account")}
             </Heading>
