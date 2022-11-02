@@ -7,25 +7,18 @@ title: Create
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    notificationProvider: RefineMantine.notificationProvider,
-    Layout: RefineMantine.Layout,
+    // notificationProvider: notificationProvider(),
+    Layout: RefineChakra.Layout,
     Sider: () => null,
 });
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
+        <RefineChakra.ChakraProvider
+            theme={RefineChakra.refineTheme}
         >
-            <RefineMantine.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <RefineMantine.NotificationsProvider position="top-right">
-                {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+            {children}
+        </RefineChakra.ChakraProvider>
     );
 };
 
@@ -50,70 +43,82 @@ We'll show what `<Create>` does using properties with examples.
 ```tsx live url=http://localhost:3000/posts/create previewHeight=420px hideCode
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
+import { CreateButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 // visible-block-start
 import {
     Create,
+    FormControl,
+    FormErrorMessage,
+    FormLabel,
+    Input,
     Select,
-    TextInput,
-    useForm,
-    useSelect,
-} from "@pankod/refine-mantine";
+} from "@pankod/refine-chakra-ui";
+import { useSelect } from "@pankod/refine-core";
+import { useForm } from "@pankod/refine-react-hook-form";
 
 const PostCreate: React.FC = () => {
-    const { saveButtonProps, getInputProps } = useForm<IPost>({
-        initialValues: {
-            title: "",
-            status: "",
-            category: {
-                id: "",
-            },
-        },
-        validate: {
-            title: (value) => (value.length < 2 ? "Too short title" : null),
-            status: (value) =>
-                value.length <= 0 ? "Status is required" : null,
-            category: {
-                id: (value) =>
-                    value.length <= 0 ? "Category is required" : null,
-            },
-        },
-    });
+    const {
+        refineCore: { formLoading },
+        saveButtonProps,
+        register,
+        formState: { errors },
+    } = useForm<IPost>();
 
-    const { selectProps } = useSelect<ICategory>({
+    const { options } = useSelect({
         resource: "categories",
     });
 
     return (
-        <Create saveButtonProps={saveButtonProps}>
-            <form>
-                <TextInput
-                    mt={8}
-                    label="Title"
-                    placeholder="Title"
-                    {...getInputProps("title")}
+        <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
+            <FormControl mb="3" isInvalid={!!errors?.title}>
+                <FormLabel>Title</FormLabel>
+                <Input
+                    id="title"
+                    type="text"
+                    {...register("title", { required: "Title is required" })}
                 />
+                <FormErrorMessage>
+                    {`${errors.title?.message}`}
+                </FormErrorMessage>
+            </FormControl>
+            <FormControl mb="3" isInvalid={!!errors?.status}>
+                <FormLabel>Status</FormLabel>
                 <Select
-                    mt={8}
-                    label="Status"
-                    placeholder="Pick one"
-                    {...getInputProps("status")}
-                    data={[
-                        { label: "Published", value: "published" },
-                        { label: "Draft", value: "draft" },
-                        { label: "Rejected", value: "rejected" },
-                    ]}
-                />
+                    id="content"
+                    placeholder="Select Post Status"
+                    {...register("status", {
+                        required: "Status is required",
+                    })}
+                >
+                    <option>published</option>
+                    <option>draft</option>
+                    <option>rejected</option>
+                </Select>
+                <FormErrorMessage>
+                    {`${errors.status?.message}`}
+                </FormErrorMessage>
+            </FormControl>
+            <FormControl mb="3" isInvalid={!!errors?.categoryId}>
+                <FormLabel>Category</FormLabel>
                 <Select
-                    mt={8}
-                    label="Category"
-                    placeholder="Pick one"
-                    {...getInputProps("category.id")}
-                    {...selectProps}
-                />
-            </form>
+                    id="categoryId"
+                    placeholder="Select Category"
+                    {...register("categoryId", {
+                        required: "Category is required",
+                    })}
+                >
+                    {options?.map((option) => (
+                        <option value={option.value} key={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </Select>
+                <FormErrorMessage>
+                    {`${errors.categoryId?.message}`}
+                </FormErrorMessage>
+            </FormControl>
         </Create>
     );
 };
@@ -154,16 +159,16 @@ It allows adding title inside the `<Create>` component. if you don't pass title 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
+import { CreateButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 // visible-block-start
-import { Create, Title } from "@pankod/refine-mantine";
+import { Create, Heading } from "@pankod/refine-chakra-ui";
 
 const PostCreate: React.FC = () => {
     return (
         /* highlight-next-line */
-        <Create title={<Title order={3}>Custom Title</Title>}>
+        <Create title={<Heading size="lg">Custom Title</Heading>}>
             <p>Rest of your page here</p>
         </Create>
     );
@@ -200,21 +205,21 @@ render(
 
 `<Create>` component has a default button that submits the form. If you want to customize this button you can use the `saveButtonProps` property like the code below.
 
-[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-reference/mantine/components/buttons/save.md)
+[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-reference/chakra-ui/components/buttons/save.md)
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
+import { CreateButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 // visible-block-start
-import { Create } from "@pankod/refine-mantine";
+import { Create } from "@pankod/refine-chakra-ui";
 
 const PostCreate: React.FC = () => {
     return (
         /* highlight-next-line */
-        <Create saveButtonProps={{ size: "xs" }}>
+        <Create saveButtonProps={{ colorScheme: "red" }}>
             <p>Rest of your page here</p>
         </Create>
     );
@@ -260,7 +265,7 @@ setInitialRoutes(["/custom"]);
 import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
-import { Layout, Create } from "@pankod/refine-mantine";
+import { Layout, Create } from "@pankod/refine-chakra-ui";
 
 const CustomPage: React.FC = () => {
     return (
@@ -307,11 +312,11 @@ To customize the back button or to disable it, you can use the `goBack` property
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
+import { CreateButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 // visible-block-start
-import { Create } from "@pankod/refine-mantine";
+import { Create } from "@pankod/refine-chakra-ui";
 
 const PostCreate: React.FC = () => {
     return (
@@ -356,11 +361,11 @@ To toggle the loading state of the `<Create/>` component, you can use the `isLoa
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
+import { CreateButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 // visible-block-start
-import { Create } from "@pankod/refine-mantine";
+import { Create } from "@pankod/refine-chakra-ui";
 
 const PostCreate: React.FC = () => {
     return (
@@ -400,9 +405,9 @@ render(
 
 ### `breadcrumb`
 
-To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-mantine` package.
+To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-chakra-ui` package.
 
-[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/mantine/components/breadcrumb.md)
+[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/chakra-ui/components/breadcrumb.md)
 
 :::tip
 This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
@@ -411,25 +416,24 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
+import { CreateButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 // visible-block-start
-import { Create, Breadcrumb } from "@pankod/refine-mantine";
+import { Create, Breadcrumb, Box } from "@pankod/refine-chakra-ui";
 
 const PostCreate: React.FC = () => {
     return (
         <Create
             // highlight-start
             breadcrumb={
-                <div
-                    style={{
-                        padding: "3px 6px",
-                        border: "2px dashed cornflowerblue",
-                    }}
+                <Box
+                    borderColor="blue"
+                    borderStyle="dashed"
+                    borderWidth="2px"
                 >
                     <Breadcrumb />
-                </div>
+                </Box>
             }
             // highlight-end
         >
@@ -467,28 +471,27 @@ render(
 
 ### `wrapperProps`
 
-If you want to customize the wrapper of the `<Create/>` component, you can use the `wrapperProps` property. For `@pankod/refine-mantine` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Card>` can get.
+If you want to customize the wrapper of the `<Create/>` component, you can use the `wrapperProps` property. For `@pankod/refine-chakra-ui` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Box>` can get.
 
-[Refer to the `Card` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/card/)
+[Refer to the `Box` documentation from Mantine for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
+import { CreateButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 // visible-block-start
-import { Create } from "@pankod/refine-mantine";
+import { Create } from "@pankod/refine-chakra-ui";
 
 const PostCreate: React.FC = () => {
     return (
         <Create
             // highlight-start
             wrapperProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
+                borderColor: "blue",
+                borderStyle: "dashed",
+                borderWidth: "2px",
             }}
             // highlight-end
         >
@@ -528,26 +531,25 @@ render(
 
 If you want to customize the header of the `<Create/>` component, you can use the `headerProps` property.
 
-[Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group/)
+[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
+import { CreateButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 // visible-block-start
-import { Create } from "@pankod/refine-mantine";
+import { Create } from "@pankod/refine-chakra-ui";
 
 const PostCreate: React.FC = () => {
     return (
         <Create
             // highlight-start
             headerProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
+                borderColor: "blue",
+                borderStyle: "dashed",
+                borderWidth: "2px",
             }}
             // highlight-end
         >
@@ -587,26 +589,25 @@ render(
 
 If you want to customize the content of the `<Create/>` component, you can use the `contentProps` property.
 
-[Refer to the `Box` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/box/)
+[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=320px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
+import { CreateButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 // visible-block-start
-import { Create } from "@pankod/refine-mantine";
+import { Create } from "@pankod/refine-chakra-ui";
 
 const PostCreate: React.FC = () => {
     return (
         <Create
             // highlight-start
             contentProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
+                borderColor: "blue",
+                borderStyle: "dashed",
+                borderWidth: "2px",
             }}
             // highlight-end
         >
@@ -649,21 +650,26 @@ You can customize the buttons at the header by using the `headerButtons` propert
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
+import { CreateButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 // visible-block-start
-import { Create, Button } from "@pankod/refine-mantine";
+import { Create, Button, Box } from "@pankod/refine-chakra-ui";
 
 const PostCreate: React.FC = () => {
     return (
         <Create
             // highlight-start
             headerButtons={({ defaultButtons }) => (
-                <>
+                <Box
+                    borderColor="blue"
+                    borderStyle="dashed"
+                    borderWidth="2px"
+                    p="2"
+                >
                     {defaultButtons}
-                    <Button type="primary">Custom Button</Button>
-                </>
+                    <Button colorScheme="red" variant="solid">Custom Button</Button>
+                </Box>
             )}
             // highlight-end
         >
@@ -703,26 +709,25 @@ render(
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 
-[Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group/)
+[Refer to the `Box` documentation from Mantine for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
+import { CreateButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 // visible-block-start
-import { Create, Button } from "@pankod/refine-mantine";
+import { Create, Button } from "@pankod/refine-chakra-ui";
 
 const PostCreate: React.FC = () => {
     return (
         <Create
             // highlight-start
             headerButtonProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
+                borderColor: "blue",
+                borderStyle: "dashed",
+                borderWidth: "2px",
             }}
             // highlight-end
             headerButtons={<Button type="primary">Custom Button</Button>}
@@ -766,21 +771,26 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
+import { CreateButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 // visible-block-start
-import { Create, Button } from "@pankod/refine-mantine";
+import { Create, Button, HStack } from "@pankod/refine-chakra-ui";
 
 const PostCreate: React.FC = () => {
     return (
         <Create
             // highlight-start
             footerButtons={({ defaultButtons }) => (
-                <>
+                <HStack 
+                    borderColor="blue"
+                    borderStyle="dashed"
+                    borderWidth="2px" 
+                    p="2"
+                >
                     {defaultButtons}
-                    <Button variant="gradient">Custom Button</Button>
-                </>
+                    <Button colorScheme="red" variant="solid">Custom Button</Button>
+                </HStack>
             )}
             // highlight-end
         >
@@ -825,25 +835,22 @@ You can customize the wrapper element of the buttons at the footer by using the 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
 import { Refine } from "@pankod/refine-core";
-import { CreateButton } from "@pankod/refine-mantine";
+import { CreateButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 // visible-block-start
-import { Create } from "@pankod/refine-mantine";
+import { Create } from "@pankod/refine-chakra-ui";
 
 const PostCreate: React.FC = () => {
     return (
         <Create
             // highlight-start
             footerButtonProps={{
-                style: {
-                    // hide-start
-                    float: "right",
-                    marginRight: 24,
-                    // hide-end
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
+                float: "right",
+                borderColor: "blue",
+                borderStyle: "dashed",
+                borderWidth: "2px",
+                p: "2",
             }}
             // highlight-end
         >
@@ -883,4 +890,4 @@ render(
 
 ### Props
 
-<PropsTable module="@pankod/refine-mantine/Create" goBack-default="`<IconArrowLeft />`" title-default="`<Title order={3}>Create {resource.name}</Title>`"/>
+<PropsTable module="@pankod/refine-chakra-ui/Create" goBack-default="`<IconArrowLeft />`" title-default="`<Title order={3}>Create {resource.name}</Title>`"/>
