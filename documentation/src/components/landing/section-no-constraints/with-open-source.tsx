@@ -229,7 +229,7 @@ const WithOpenSource: FC<Props> = ({ scrollYProgress, twBreakpoints }) => {
                             rel="noreferrer"
                             href="https://github.com/refinedev/refine"
                         >
-                            Github
+                            GitHub
                         </a>
                         ,{" "}
                         <a
