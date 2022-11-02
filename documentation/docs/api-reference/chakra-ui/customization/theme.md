@@ -7,15 +7,24 @@ title: Theme
 import { useNavigation, useRouterContext } from "@pankod/refine-core";
 import {
     List,
-    Create,
     Edit,
+    Create,
+    TableContainer,
     Table,
-    Pagination,
+    Thead,
+    Tbody,
+    Tr,
+    Th,
+    Td,
+    Text,
     EditButton,
-    useForm,
-    TextInput,
-} from "@pankod/refine-mantine";
+    FormControl,
+    FormErrorMessage,
+    FormLabel,
+    Input,
+} from "@pankod/refine-chakra-ui";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
+import { useForm } from "@pankod/refine-react-hook-form";
 
 const PostList: React.FC = () => {
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -47,11 +56,7 @@ const PostList: React.FC = () => {
         [],
     );
 
-    const {
-        getHeaderGroups,
-        getRowModel,
-        refineCore: { setCurrent, pageCount, current },
-    } = useTable({
+    const { getHeaderGroups, getRowModel } = useTable({
         columns,
         refineCoreProps: {
             initialPageSize: 5,
@@ -60,93 +65,89 @@ const PostList: React.FC = () => {
 
     return (
         <List>
-            <Table>
-                <thead>
-                    {getHeaderGroups().map((headerGroup) => (
-                        <tr key={headerGroup.id}>
-                            {headerGroup.headers.map((header) => (
-                                <th key={header.id}>
-                                    {header.isPlaceholder
-                                        ? null
-                                        : flexRender(
-                                              header.column.columnDef.header,
-                                              header.getContext(),
-                                          )}
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody>
-                    {getRowModel().rows.map((row) => (
-                        <tr key={row.id}>
-                            {row.getVisibleCells().map((cell) => (
-                                <td key={cell.id}>
-                                    {flexRender(
-                                        cell.column.columnDef.cell,
-                                        cell.getContext(),
-                                    )}
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
-            <br />
-            <Pagination
-                position="right"
-                total={pageCount}
-                page={current}
-                onChange={setCurrent}
-            />
+            <TableContainer whiteSpace="pre-line">
+                <Table variant="simple">
+                    <Thead>
+                        {getHeaderGroups().map((headerGroup) => (
+                            <Tr key={headerGroup.id}>
+                                {headerGroup.headers.map((header) => (
+                                    <Th key={header.id}>
+                                        {!header.isPlaceholder && (
+                                            <Text>
+                                                {flexRender(
+                                                    header.column.columnDef
+                                                        .header,
+                                                    header.getContext(),
+                                                )}
+                                            </Text>
+                                        )}
+                                    </Th>
+                                ))}
+                            </Tr>
+                        ))}
+                    </Thead>
+                    <Tbody>
+                        {getRowModel().rows.map((row) => (
+                            <Tr key={row.id}>
+                                {row.getVisibleCells().map((cell) => (
+                                    <Td key={cell.id}>
+                                        {flexRender(
+                                            cell.column.columnDef.cell,
+                                            cell.getContext(),
+                                        )}
+                                    </Td>
+                                ))}
+                            </Tr>
+                        ))}
+                    </Tbody>
+                </Table>
+            </TableContainer>
         </List>
     );
 };
 
 const PostEdit: React.FC = () => {
-    const { saveButtonProps, getInputProps } = useForm({
-        initialValues: {
-            title: "",
-        },
-        validate: {
-            title: (value) => (value.length < 2 ? "Too short title" : null),
-        },
-    });
+    const {
+        refineCore: { formLoading },
+        saveButtonProps,
+        register,
+        formState: { errors },
+    } = useForm<IPost>();
 
     return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <form>
-                <TextInput
-                    mt={8}
-                    label="Title"
-                    placeholder="Title"
-                    {...getInputProps("title")}
+        <Edit isLoading={formLoading} saveButtonProps={saveButtonProps}>
+            <FormControl mb="3" isInvalid={!!errors?.title}>
+                <FormLabel>Title</FormLabel>
+                <Input
+                    {...register("title", { required: "Title is required" })}
                 />
-            </form>
+                <FormErrorMessage>
+                    {`${errors.title?.message}`}
+                </FormErrorMessage>
+            </FormControl>
         </Edit>
     );
 };
 
-const PostCreate: React.FC = () => {
-    const { saveButtonProps, getInputProps } = useForm({
-        initialValues: {
-            title: "",
-        },
-        validate: {
-            title: (value) => (value.length < 2 ? "Too short title" : null),
-        },
-    });
+const PostCreate = () => {
+    const {
+        refineCore: { formLoading },
+        saveButtonProps,
+        register,
+        formState: { errors },
+    } = useForm<IPost>();
 
     return (
-        <Create saveButtonProps={saveButtonProps}>
-            <form>
-                <TextInput
-                    mt={8}
-                    label="Title"
-                    placeholder="Title"
-                    {...getInputProps("title")}
+        <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
+            <FormControl mb="3" isInvalid={!!errors?.title}>
+                <FormLabel>Title</FormLabel>
+                <Input
+                    {...register("title", { required: "Title is required" })}
                 />
-            </form>
+                <FormErrorMessage>
+                    {`${errors.title?.message}`}
+                </FormErrorMessage>
+            </FormControl>
         </Create>
     );
 };
@@ -157,15 +158,15 @@ interface IPost {
 }
 ```
 
-Mantine theme is an object where your application's colors, fonts, spacing, border-radius and other design tokens are stored. You can either create your own theme object or use themes that provide from **refine**. There are two types of themes: [`LightTheme`](https://github.com/refinedev/refine/blob/next/packages/mantine/src/theme/index.ts) and [`DarkTheme`](https://github.com/refinedev/refine/blob/next/packages/mantine/src/theme/index.ts). `LightTheme` tend to have dark text on a light background, while `DarkTheme` have light text on a dark background. Theme provides a way to your app's design to meet them.
+The theme object is where you define your application's color palette, type scale, font stacks, breakpoints, border radius values, and more. You can either create your own theme object or use theme that provide from **refine**. You can find more information about theme in Chakra UI documentation.
 
-[Refer to the Mantine documentation for more information about theme object. &#8594](https://mantine.dev/theming/theme-object/)
+[Refer to the Chakra UI documentation for more information about theme. &#8594](https://chakra-ui.com/docs/styled-system/customize-theme)
 
 ## Theme customization
 
-`<MantineProvider/>` component can be used to change theme. It is not required if you decide to use the default theme. You can also use `LightTheme` and `DarkTheme` provided by **refine**.
+`<ChakraProvider/>` component can be used to change theme and other global settings. It is not required if you decide to use the default theme. You can also use `refineTheme` provided by **refine**.
 
-```tsx live url=http://localhost:3000 previewHeight=420px
+```tsx live url=http://localhost:3000 previewHeight=450px
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
@@ -173,130 +174,75 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
+    ChakraProvider,
+    ErrorComponent,
     Layout,
-    MantineProvider,
-    Global,
-    NotificationsProvider,
+    ReadyPage,
     notificationProvider,
-    // highlight-next-line
-    DarkTheme,
-} from "@pankod/refine-mantine";
+    // highlight-start
+    refineTheme,
+    extendTheme,
+    // highlight-end
+} from "@pankod/refine-chakra-ui";
 
 import { PostCreate, PostEdit, PostList } from "./pages";
 
 const App = () => {
+    // highlight-start
+    const customTheme = extendTheme({
+        ...refineTheme,
+        colors: {
+            sider: {
+                background: "#4A5568",
+                collapseButton: "#1a202c",
+            },
+        },
+    });
+    // highlight-end
+
     return (
         // highlight-next-line
-        <MantineProvider theme={DarkTheme} withNormalizeCSS withGlobalStyles>
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: PostList,
-                            edit: PostEdit,
-                            create: PostCreate,
-                        },
-                    ]}
-                />
-            </NotificationsProvider>
-        </MantineProvider>
+        <ChakraProvider theme={customTheme}>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                notificationProvider={notificationProvider()}
+                ReadyPage={ReadyPage}
+                Layout={Layout}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        edit: PostEdit,
+                        create: PostCreate,
+                    },
+                ]}
+            />
+        </ChakraProvider>
     );
 };
 // visible-block-end
 render(<App />);
 ```
 
-[Refer to the `<MantineProvider/>` documentation for more information. &#8594](https://mantine.dev/theming/mantine-provider/)
+:::info
 
-### Overriding the refine themes
+[Refer to the `refineTheme` object in the source code to see the default theme values.. &#8594](https://github.com/refinedev/refine/blob/next/packages/chakra-ui/src/types/theme.ts)
 
-You can override or extend the default refine themes. You can also create your own theme. Let's see how to do this.
-
-```tsx live url=http://localhost:3000 previewHeight=420px
-setInitialRoutes(["/posts"]);
-
-// visible-block-start
-import { Refine } from "@pankod/refine-core";
-import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
-import {
-    Layout,
-    MantineProvider,
-    Global,
-    NotificationsProvider,
-    notificationProvider,
-    // highlight-next-line
-    LightTheme,
-} from "@pankod/refine-mantine";
-
-import { PostCreate, PostEdit, PostList } from "./pages";
-
-const App = () => {
-    return (
-        <MantineProvider
-            // highlight-start
-            theme={{
-                ...LightTheme,
-                colors: {
-                    primary: [
-                        "#ECF9F8",
-                        "#C9EEEC",
-                        "#A6E2E1",
-                        "#84D7D5",
-                        "#61CCC9",
-                        "#3EC1BD",
-                        "#329A97",
-                        "#257471",
-                        "#194D4B",
-                        "#0C2726",
-                    ],
-                },
-            }}
-            // highlight-end
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider(
-                        "https://api.fake-rest.refine.dev",
-                    )}
-                    notificationProvider={notificationProvider}
-                    Layout={Layout}
-                    resources={[
-                        {
-                            name: "posts",
-                            list: PostList,
-                            edit: PostEdit,
-                            create: PostCreate,
-                        },
-                    ]}
-                />
-            </NotificationsProvider>
-        </MantineProvider>
-    );
-};
-// visible-block-end
-render(<App />);
-```
-
-[Refer to the Mantine colors documentation for more information. &#8594](https://mantine.dev/theming/colors/)
+:::
 
 ## Theme switching
 
-You can switch between themes as Mantine mentioned in its documentation. You can see an example of using local storage to store the theme below.
+Chakra UI comes with built-in support for managing color mode in your apps. You can manage the color mode on refine applications such as Chakra UI applications.
 
-```tsx live url=http://localhost:3000 previewHeight=420px
+:::tip
+
+Chakra stores the color mode in `localStorage` and appends a className to the body to ensure the color mode is persistent.
+:::
+
+[Refer to the Chakra UI documentation for more information about color mode. &#8594](https://chakra-ui.com/docs/styled-system/color-mode)
+
+```tsx live url=http://localhost:3000 previewHeight=500px
 setInitialRoutes(["/posts"]);
 
 const IconSun = () => (
@@ -343,104 +289,86 @@ import { Refine } from "@pankod/refine-core";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import {
+    ChakraProvider,
+    ErrorComponent,
     Layout,
-    MantineProvider,
-    Global,
-    NotificationsProvider,
+    ReadyPage,
     notificationProvider,
-    MantineHeader,
-    Group,
-    ActionIcon,
+    Box,
+    IconButton,
+    Icon,
     // highlight-start
-    ColorSchemeProvider,
-    ColorScheme,
-    LightTheme,
-    DarkTheme,
-    useLocalStorage,
-    useMantineColorScheme,
+    useColorMode,
+    refineTheme,
+    extendTheme,
     // highlight-end
-} from "@pankod/refine-mantine";
+} from "@pankod/refine-chakra-ui";
 import { IconSun, IconMoonStars } from "@tabler/icons";
 
 import { PostCreate, PostEdit, PostList } from "./pages";
 
 // highlight-start
 const Header = () => {
-    const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-    const dark = colorScheme === "dark";
-
+    const { colorMode, toggleColorMode } = useColorMode();
     return (
-        <MantineHeader height={50} p="xs">
-            <Group position="right">
-                <ActionIcon
-                    variant="outline"
-                    color={dark ? "yellow" : "primary"}
-                    onClick={() => toggleColorScheme()}
-                    title="Toggle color scheme"
-                >
-                    {dark ? <IconSun /> : <IconMoonStars />}
-                </ActionIcon>
-            </Group>
-        </MantineHeader>
+        <Box
+            py="2"
+            px="4"
+            display="flex"
+            justifyContent="flex-end"
+            w="full"
+            bg="chakra-body-bg"
+        >
+            <IconButton
+                variant="ghost"
+                aria-label="Toggle theme"
+                onClick={toggleColorMode}
+            >
+                <Icon
+                    as={colorMode === "light" ? IconMoonStars : IconSun}
+                    w="18px"
+                    h="18px"
+                />
+            </IconButton>
+        </Box>
     );
 };
 // highlight-end
 
 const App = () => {
     // highlight-start
-    const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
-        key: "mantine-color-scheme",
-        defaultValue: "light",
-        getInitialValueInEffect: true,
+    const customTheme = extendTheme({
+        ...refineTheme,
+        config: {
+            initialColorMode: "dark",
+            useSystemColorMode: false,
+        },
     });
     // highlight-end
 
-    // highlight-start
-    const toggleColorScheme = (value?: ColorScheme) =>
-        setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
-    // highlight-end
-
     return (
-        // highlight-start
-        <ColorSchemeProvider
-            colorScheme={colorScheme}
-            toggleColorScheme={toggleColorScheme}
-            // highlight-end
-        >
-            <MantineProvider
+        // highlight-next-line
+        <ChakraProvider theme={customTheme}>
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                notificationProvider={notificationProvider()}
+                ReadyPage={ReadyPage}
+                Layout={Layout}
                 // highlight-next-line
-                theme={colorScheme === "dark" ? DarkTheme : LightTheme}
-                withNormalizeCSS
-                withGlobalStyles
-            >
-                <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-                <NotificationsProvider position="top-right">
-                    <Refine
-                        routerProvider={routerProvider}
-                        dataProvider={dataProvider(
-                            "https://api.fake-rest.refine.dev",
-                        )}
-                        notificationProvider={notificationProvider}
-                        Layout={Layout}
-                        // highlight-next-line
-                        Header={Header}
-                        resources={[
-                            {
-                                name: "posts",
-                                list: PostList,
-                                edit: PostEdit,
-                                create: PostCreate,
-                            },
-                        ]}
-                    />
-                </NotificationsProvider>
-            </MantineProvider>
-        </ColorSchemeProvider>
+                Header={Header}
+                resources={[
+                    {
+                        name: "posts",
+                        list: PostList,
+                        edit: PostEdit,
+                        create: PostCreate,
+                    },
+                ]}
+            />
+        </ChakraProvider>
     );
 };
 // visible-block-end
 render(<App />);
 ```
-
-[Refer to the Mantine dark theme documentation for more information. &#8594](https://mantine.dev/guides/dark-theme)
-
