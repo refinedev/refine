@@ -434,7 +434,7 @@ module.exports = {
                             items: [
                                 "api-reference/chakra-ui/customization/theme",
                                 "api-reference/chakra-ui/customization/layout",
-                                // "api-reference/chakra-ui/customization/sider",
+                                "api-reference/chakra-ui/customization/sider",
                             ],
                         },
                     ],
