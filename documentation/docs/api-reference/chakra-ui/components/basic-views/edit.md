@@ -7,7 +7,6 @@ title: Edit
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    // notificationProvider: notificationProvider(),
     Layout: RefineChakra.Layout,
     Sider: () => null,
 });
@@ -138,6 +137,7 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={RefineChakra.notificationProvider()}
             resources={[
                 {
                     name: "posts",
@@ -551,6 +551,7 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={RefineChakra.notificationProvider()}
             resources={[
                 {
                     name: "posts",

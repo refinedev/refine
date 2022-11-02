@@ -7,7 +7,6 @@ title: List
 const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    // notificationProvider: notificationProvider(),
     Layout: RefineChakra.Layout,
     Sider: () => null,
 });
