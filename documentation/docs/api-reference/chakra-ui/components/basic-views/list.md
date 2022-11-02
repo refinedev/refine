@@ -4,26 +4,21 @@ title: List
 ---
 
 ```tsx live shared
+const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    notificationProvider: RefineMantine.notificationProvider,
-    Layout: RefineMantine.Layout,
+    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
+    // notificationProvider: notificationProvider(),
+    Layout: RefineChakra.Layout,
     Sider: () => null,
 });
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
+        <RefineChakra.ChakraProvider
+            theme={RefineChakra.refineTheme}
         >
-            <RefineMantine.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <RefineMantine.NotificationsProvider position="top-right">
-                {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+            {children}
+        </RefineChakra.ChakraProvider>
     );
 };
 
@@ -52,7 +47,7 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { List, DateField, Table, Pagination } from "@pankod/refine-mantine";
+import { List, DateField, TableContainer, Table, Thead, Tr, Th, Tbody, Td, HStack, Box } from "@pankod/refine-chakra-ui";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 const PostList: React.FC = () => {
@@ -97,45 +92,52 @@ const PostList: React.FC = () => {
 
     return (
         <List>
-            <Table>
-                <thead>
-                    {getHeaderGroups().map((headerGroup) => (
-                        <tr key={headerGroup.id}>
-                            {headerGroup.headers.map((header) => (
-                                <th key={header.id}>
-                                    {header.isPlaceholder
-                                        ? null
-                                        : flexRender(
-                                              header.column.columnDef.header,
-                                              header.getContext(),
-                                          )}
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody>
-                    {getRowModel().rows.map((row) => (
-                        <tr key={row.id}>
-                            {row.getVisibleCells().map((cell) => (
-                                <td key={cell.id}>
-                                    {flexRender(
-                                        cell.column.columnDef.cell,
-                                        cell.getContext(),
-                                    )}
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
-            <br />
-            <Pagination
-                position="right"
-                total={pageCount}
-                page={current}
-                onChange={setCurrent}
-            />
+            <TableContainer>
+                <Table variant="simple" whiteSpace="pre-line">
+                    <Thead>
+                        {getHeaderGroups().map((headerGroup) => (
+                            <Tr key={headerGroup.id}>
+                                {headerGroup.headers.map((header) => {
+                                    return (
+                                        <Th key={header.id}>
+                                            {!header.isPlaceholder && (
+                                                <HStack spacing="xs">
+                                                    <Box>
+                                                        {flexRender(
+                                                            header.column
+                                                                .columnDef
+                                                                .header,
+                                                            header.getContext(),
+                                                        )}
+                                                    </Box>
+                                                </HStack>
+                                            )}
+                                        </Th>
+                                    );
+                                })}
+                            </Tr>
+                        ))}
+                    </Thead>
+                    <Tbody>
+                        {getRowModel().rows.map((row) => {
+                            return (
+                                <Tr key={row.id}>
+                                    {row.getVisibleCells().map((cell) => {
+                                        return (
+                                            <Td key={cell.id}>
+                                                {flexRender(
+                                                    cell.column.columnDef.cell,
+                                                    cell.getContext(),
+                                                )}
+                                            </Td>
+                                        );
+                                    })}
+                                </Tr>
+                            );
+                        })}
+                    </Tbody>
+                </Table>
+            </TableContainer>
         </List>
     );
 };
@@ -175,12 +177,12 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { List, Title } from "@pankod/refine-mantine";
+import { List, Heading } from "@pankod/refine-chakra-ui";
 
 const PostList: React.FC = () => {
     return (
         /* highlight-next-line */
-        <List title={<Title order={3}>Custom Title</Title>}>
+        <List title={<Heading size="lg">Custom Title</Heading>}>
             <p>Rest of your page here</p>
         </List>
     );
@@ -219,7 +221,7 @@ setInitialRoutes(["/custom"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
-import { List, Layout } from "@pankod/refine-mantine";
+import { List, Layout } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -273,7 +275,7 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { List } from "@pankod/refine-mantine";
+import { List } from "@pankod/refine-chakra-ui";
 import { usePermissions } from "@pankod/refine-core";
 
 const PostList: React.FC = () => {
@@ -282,7 +284,7 @@ const PostList: React.FC = () => {
         <List
             /* highlight-start */
             canCreate={permissionsData?.includes("admin")}
-            createButtonProps={{ variant: "subtle" }}
+            createButtonProps={{ colorScheme: "red", variant: "solid" }}
             /* highlight-end */
         >
             <p>Rest of your page here</p>
@@ -337,9 +339,9 @@ render(
 
 ### `breadcrumb`
 
-To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-mantine` package.
+To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-chakra-ui` package.
 
-[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/mantine/components/breadcrumb.md)
+[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/chakra-ui/components/breadcrumb.md)
 
 :::tip
 This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
@@ -352,18 +354,18 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { List } from "@pankod/refine-mantine";
+import { List, Box } from "@pankod/refine-chakra-ui";
 
 const CustomBreadcrumb: React.FC = () => {
     return (
-        <p
-            style={{
-                padding: "3px 6px",
-                border: "2px dashed cornflowerblue",
-            }}
+        <Box
+            borderColor="blue"
+            borderStyle="dashed"
+            borderWidth="2px"
+            p="2"
         >
             My Custom Breadcrumb
-        </p>
+        </Box>
     );
 };
 
@@ -403,9 +405,9 @@ render(
 
 ### `wrapperProps`
 
-If you want to customize the wrapper of the `<List/>` component, you can use the `wrapperProps` property. For `@pankod/refine-mantine` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Card>` can get.
+If you want to customize the wrapper of the `<List/>` component, you can use the `wrapperProps` property. For `@pankod/refine-chakra-ui` wrapper element is `<Box>`s and `wrapperProps` can get every attribute that `<Box>` can get.
 
-[Refer to the `Card` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/card/)
+[Refer to the `Box` documentation from Mantine for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
@@ -414,17 +416,17 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { List } from "@pankod/refine-mantine";
+import { List } from "@pankod/refine-chakra-ui";
 
 const PostList: React.FC = () => {
     return (
         <List
             // highlight-start
             wrapperProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
+                borderColor: "blue",
+                borderStyle: "dashed",
+                borderWidth: "2px",
+                p: "2",
             }}
             // highlight-end
         >
@@ -459,7 +461,7 @@ render(
 
 If you want to customize the header of the `<List/>` component, you can use the `headerProps` property.
 
-[Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group/)
+[Refer to the `Box` documentation from Mantine for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
@@ -468,17 +470,17 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { List } from "@pankod/refine-mantine";
+import { List } from "@pankod/refine-chakra-ui";
 
 const PostList: React.FC = () => {
     return (
         <List
             // highlight-start
             headerProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
+                borderColor: "blue",
+                borderStyle: "dashed",
+                borderWidth: "2px",
+                p: "2",
             }}
             // highlight-end
         >
@@ -522,17 +524,18 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { List } from "@pankod/refine-mantine";
+import { List } from "@pankod/refine-chakra-ui";
 
 const PostList: React.FC = () => {
     return (
         <List
             // highlight-start
             contentProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
+                borderColor: "blue",
+                borderStyle: "dashed",
+                borderWidth: "2px",
+                padding: 2,
+
             }}
             // highlight-end
         >
@@ -574,7 +577,7 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { List, Button } from "@pankod/refine-mantine";
+import { List, Button } from "@pankod/refine-chakra-ui";
 
 const PostList: React.FC = () => {
     return (
@@ -583,7 +586,7 @@ const PostList: React.FC = () => {
             headerButtons={({ defaultButtons }) => (
                 <>
                     {defaultButtons}
-                    <Button variant="outline" type="primary">
+                    <Button colorScheme="red" variant="solid">
                         Custom Button
                     </Button>
                 </>
@@ -621,7 +624,7 @@ render(
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 
-[Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group/)
+[Refer to the `Box` documentation from Mantine for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
@@ -630,21 +633,21 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { List, Button } from "@pankod/refine-mantine";
+import { List, Button } from "@pankod/refine-chakra-ui";
 
 const PostList: React.FC = () => {
     return (
         <List
             // highlight-start
             headerButtonProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
+                borderColor: "blue",
+                borderStyle: "dashed",
+                borderWidth: "2px",
+                p: "2",
             }}
             // highlight-end
             headerButtons={
-                <Button variant="outline" type="primary">
+                <Button colorScheme="red" variant="solid">
                     Custom Button
                 </Button>
             }
@@ -680,4 +683,4 @@ render(
 
 ### Props
 
-<PropsTable module="@pankod/refine-mantine/List" title-default="`<Title order={3}>{resource.name}</Title>`" />
+<PropsTable module="@pankod/refine-chakra-ui/List" title-default="`<Title order={3}>{resource.name}</Title>`" />
