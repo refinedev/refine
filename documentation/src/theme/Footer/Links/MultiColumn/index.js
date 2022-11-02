@@ -19,7 +19,7 @@ function ColumnLinkItem({ item }) {
 function Column({ column }) {
     return (
         <div className="text-[#9696B4] text-xs leading-[24px] font-montserrat">
-            <div className="font-extrabold mb-1 tracking-wide">
+            <div className="mb-1 font-extrabold tracking-wide">
                 {column.title}
             </div>
             <ul className="footer__items clean-list">
@@ -36,12 +36,12 @@ export default function FooterLinksMultiColumn({ columns }) {
     const { contactTitle, contactDescription, contactEmail } = customFields;
 
     return (
-        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 max-w-[750px] ml-auto mr-auto lg:mr-0 place-content-center lg:place-content-end gap-4">
+        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 max-w-[750px] lg:mr-0 place-content-center lg:place-content-end gap-4">
             {columns.map((column, i) => (
                 <Column key={i} column={column} />
             ))}
             <div className="text-[#9696B4] text-xs leading-[24px] font-montserrat col-span-3 md:col-span-1 lg:col-span-2 max-w-[216px]">
-                <div className="font-extrabold mb-1 tracking-wide">
+                <div className="mb-1 font-extrabold tracking-wide">
                     {contactTitle}
                 </div>
                 <div>
