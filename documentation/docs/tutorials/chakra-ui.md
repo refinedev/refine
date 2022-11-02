@@ -3009,12 +3009,12 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "posts",
-                            list: PostList,
-                            show: PostShow,
-                            // highlight-next-line
-                            edit: PostEdit,
-                        },
-                    ]}
+                        list: PostList,
+                        show: PostShow,
+                        // highlight-next-line
+                        edit: PostEdit,
+                    },
+                ]}
             />
         </ChakraProvider>
     );
@@ -3432,13 +3432,13 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "posts",
-                            list: PostList,
-                            show: PostShow,
-                            edit: PostEdit,
-                            // highlight-next-line
-                            create: PostCreate,
-                        },
-                    ]}
+                        list: PostList,
+                        show: PostShow,
+                        edit: PostEdit,
+                        // highlight-next-line
+                        create: PostCreate,
+                    },
+                ]}
             />
         </ChakraProvider>
     );
@@ -3770,14 +3770,14 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "posts",
-                            list: PostList,
-                            show: PostShow,
-                            edit: PostEdit,
-                            create: PostCreate,
-                            // highlight-next-line
-                            canDelete: true,
-                        },
-                    ]}
+                        list: PostList,
+                        show: PostShow,
+                        edit: PostEdit,
+                        create: PostCreate,
+                        // highlight-next-line
+                        canDelete: true,
+                    },
+                ]}
             />
         </ChakraProvider>
     );

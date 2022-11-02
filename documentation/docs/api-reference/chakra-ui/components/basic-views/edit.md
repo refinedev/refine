@@ -1063,7 +1063,7 @@ const PostEdit: React.FC = () => {
             }}
             // highlight-end
             headerButtons={
-                <Button variant="outline" type="primary">
+                <Button variant="outline" colorScheme="green">
                     Custom Button
                 </Button>
             }

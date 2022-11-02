@@ -384,16 +384,16 @@ module.exports = {
                             label: "Components",
                             items: [
                                 "api-reference/chakra-ui/components/chakra-auth-page",
-                                // {
-                                //     type: "category",
-                                //     label: "Basic Views",
-                                //     items: [
-                                //         "api-reference/chakra-ui/components/basic-views/create",
-                                //         "api-reference/chakra-ui/components/basic-views/edit",
-                                //         "api-reference/chakra-ui/components/basic-views/list",
-                                //         "api-reference/chakra-ui/components/basic-views/show",
-                                //     ],
-                                // },
+                                {
+                                    type: "category",
+                                    label: "Basic Views",
+                                    items: [
+                                        "api-reference/chakra-ui/components/basic-views/create",
+                                        "api-reference/chakra-ui/components/basic-views/edit",
+                                        "api-reference/chakra-ui/components/basic-views/list",
+                                        "api-reference/chakra-ui/components/basic-views/show",
+                                    ],
+                                },
                                 // "api-reference/chakra-ui/components/breadcrumb",
                                 // {
                                 //     type: "category",

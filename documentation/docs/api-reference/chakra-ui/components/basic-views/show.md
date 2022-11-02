@@ -4,26 +4,21 @@ title: Show
 ---
 
 ```tsx live shared
+const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    Layout: RefineMantine.Layout,
+    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
+    // notificationProvider: notificationProvider(),
+    Layout: RefineChakra.Layout,
     Sider: () => null,
-    notificationProvider: RefineMantine.notificationProvider,
 });
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
+        <RefineChakra.ChakraProvider
+            theme={RefineChakra.refineTheme}
         >
-            <RefineMantine.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <RefineMantine.NotificationsProvider position="top-right">
-                {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+            {children}
+        </RefineChakra.ChakraProvider>
     );
 };
 
@@ -48,32 +43,59 @@ We will show what `<Show>` does using properties with examples.
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { useShow } from "@pankod/refine-core";
-import { Show, Title, Text, MarkdownField } from "@pankod/refine-mantine";
+import { useShow, useOne } from "@pankod/refine-core";
+import {
+    Show,
+    Heading,
+    Text,
+    MarkdownField,
+    Spacer,
+} from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;
 
+    const { data: categoryData } = useOne<ICategory>({
+        resource: "categories",
+        id: record?.category.id || "",
+        queryOptions: {
+            enabled: !!record?.category.id,
+        },
+    });
+
     return (
         <Show isLoading={isLoading}>
-            <Title order={5}>Id</Title>
-            <Text mt="sm">{record?.id}</Text>
+            <Heading as="h5" size="sm">
+                Id
+            </Heading>
+            <Text mt={2}>{record?.id}</Text>
 
-            <Title mt="sm" order={5}>
+            <Heading as="h5" size="sm" mt={4}>
                 Title
-            </Title>
-            <Text mt="sm">{record?.title}</Text>
+            </Heading>
+            <Text mt={2}>{record?.title}</Text>
 
-            <Title mt="sm" order={5}>
+            <Heading as="h5" size="sm" mt={4}>
+                Status
+            </Heading>
+            <Text mt={2}>{record?.status}</Text>
+
+            <Heading as="h5" size="sm" mt={4}>
+                Category
+            </Heading>
+            <Text mt={2}>{categoryData?.data?.title}</Text>
+
+            <Heading as="h5" size="sm" mt={4}>
                 Content
-            </Title>
+            </Heading>
+            <Spacer mt={2} />
             <MarkdownField value={record?.content} />
         </Show>
     );
@@ -118,17 +140,17 @@ It allows adding a title for the `<Show>` component. if you don't pass title pro
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Show, Title } from "@pankod/refine-mantine";
+import { Show, Heading } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
     return (
         /* highlight-next-line */
-        <Show title={<Title order={3}>Custom Title</Title>}>
+        <Show title={<Heading size="lg">Custom Title</Heading>}>
             <p>Rest of your page here</p>
         </Show>
     );
@@ -175,7 +197,7 @@ setInitialRoutes(["/custom/123"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
-import { Layout, Show } from "@pankod/refine-mantine";
+import { Layout, Show } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -223,17 +245,17 @@ render(
 
 When clicked on, delete button executes the `useDelete` method provided by the [`dataProvider`](/api-reference/core/providers/data-provider.md) and the edit button redirects the user to the record edit page.
 
-Refer to the [`<DeleteButton>`](/api-reference/antd/components/buttons/delete.md) and the [`<EditButton>`](/api-reference/antd/components/buttons/edit.md) documentation for detailed usage.
+Refer to the [`<DeleteButton>`](/api-reference/chakra-ui/components/buttons/delete.md) and the [`<EditButton>`](/api-reference/chakra-ui/components/buttons/edit.md) documentation for detailed usage.
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Show, Title } from "@pankod/refine-mantine";
+import { Show } from "@pankod/refine-chakra-ui";
 import { usePermissions } from "@pankod/refine-core";
 
 const PostShow: React.FC = () => {
@@ -318,31 +340,38 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Show, useModalForm, Modal, Button } from "@pankod/refine-mantine";
+import { useModalForm } from "@pankod/refine-react-hook-form";
+import { Show, Modal, Button, ModalOverlay, ModalContent, ModalCloseButton,ModalHeader, ModalBody } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
     const {
         modal: { visible, close, show },
         id,
     } = useModalForm({
-        action: "show",
+        refineCoreProps: { action: "show" },
     });
 
     return (
         <div>
-            <Button onClick={() => show()}>Show Button</Button>
+            <Button onClick={() => show()}>Edit Button</Button>
             <Modal
-                opened={visible}
+                isOpen={visible}
                 onClose={close}
-                // hide-start
-                size={700}
-                withCloseButton={false}
-                // hide-end
+                size="xl"
             >
-                {/* highlight-next-line */}
-                <Show recordItemId={id}>
-                    <p>Rest of your page here</p>
-                </Show>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalCloseButton />
+                    <ModalHeader>SHow</ModalHeader>
+
+                    <ModalBody>
+                        {/* highlight-next-line */}
+                        <Show recordItemId={id}>
+                            <p>Rest of your page here</p>
+                        </Show>
+                    </ModalBody>
+                </ModalContent>
+                
             </Modal>
         </div>
     );
@@ -388,7 +417,7 @@ If not specified, Refine will use the default data provider. If you have multipl
 
 ```tsx
 import { Refine } from "@pankod/refine-core";
-import { Show } from "@pankod/refine-mantine";
+import { Show } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -421,12 +450,12 @@ To customize the back button or to disable it, you can use the `goBack` property
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Show } from "@pankod/refine-mantine";
+import { Show } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
     return (
@@ -474,12 +503,12 @@ To toggle the loading state of the `<Edit/>` component, you can use the `isLoadi
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Show } from "@pankod/refine-mantine";
+import { Show } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
     return (
@@ -522,10 +551,9 @@ render(
 
 ### `breadcrumb`
 
-To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-mantine` package.
+To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-chakra-ui` package.
 
-<!-- TODO: Add breadcrumb link when the Breadcrumb doc is created. -->
-<!-- [Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/mantine/components/breadcrumb.md) -->
+[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/chakra-ui/components/breadcrumb.md)
 
 :::tip
 This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
@@ -534,23 +562,22 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Show } from "@pankod/refine-mantine";
+import { Show, Box, Breadcrumb } from "@pankod/refine-chakra-ui";
 
 const CustomBreadcrumb: React.FC = () => {
     return (
-        <p
-            style={{
-                padding: "3px 6px",
-                border: "2px dashed cornflowerblue",
-            }}
+        <Box
+            borderColor="blue"
+            borderStyle="dashed"
+            borderWidth="2px"
         >
-            My Custom Breadcrumb
-        </p>
+            <Breadcrumb />
+        </Box>
     );
 };
 
@@ -605,22 +632,22 @@ If you want to customize the wrapper of the `<Show/>` component, you can use the
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Show } from "@pankod/refine-mantine";
+import { Show } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
     return (
         <Show
             // highlight-start
             wrapperProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
+                borderColor: "blue",
+                borderStyle: "dashed",
+                borderWidth: "2px",
+                p: "2",
             }}
             // highlight-end
         >
@@ -668,22 +695,21 @@ If you want to customize the header of the `<Show/>` component, you can use the 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Show } from "@pankod/refine-mantine";
+import { Show } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
     return (
         <Show
             // highlight-start
             headerProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
+                borderColor: "blue",
+                borderStyle: "dashed",
+                borderWidth: "2px",
             }}
             // highlight-end
         >
@@ -731,22 +757,22 @@ If you want to customize the content of the `<Show/>` component, you can use the
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Show } from "@pankod/refine-mantine";
+import { Show } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
     return (
         <Show
             // highlight-start
             contentProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
+                borderColor: "blue",
+                borderStyle: "dashed",
+                borderWidth: "2px",
+                p: "2",
             }}
             // highlight-end
         >
@@ -792,24 +818,24 @@ You can customize the buttons at the header by using the `headerButtons` propert
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Show, Button } from "@pankod/refine-mantine";
+import { Show, Button, HStack, Box } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
     return (
         <Show
             // highlight-start
             headerButtons={({ defaultButtons }) => (
-                <>
+                <HStack>
                     {defaultButtons}
-                    <Button variant="outline" type="primary">
+                    <Button colorScheme="red">
                         Custom Button
                     </Button>
-                </>
+                </HStack>
             )}
             // highlight-end
         >
@@ -857,26 +883,26 @@ You can customize the wrapper element of the buttons at the header by using the 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Show, Button } from "@pankod/refine-mantine";
+import { Show, Button } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
     return (
         <Show
             // highlight-start
             headerButtonProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
+                borderColor: "blue",
+                borderStyle: "dashed",
+                borderWidth: "2px",
+                p: "2",
             }}
             // highlight-end
             headerButtons={
-                <Button variant="outline" type="primary">
+                <Button variant="outline" colorScheme="green">
                     Custom Button
                 </Button>
             }
@@ -923,22 +949,27 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Show, Button } from "@pankod/refine-mantine";
+import { Show, Button, HStack } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
     return (
         <Show
             // highlight-start
             footerButtons={({ defaultButtons }) => (
-                <>
+                <HStack 
+                    borderColor="blue"
+                    borderStyle="dashed"
+                    borderWidth="2px" 
+                    p="2"
+                >
                     {defaultButtons}
-                    <Button variant="gradient">Custom Button</Button>
-                </>
+                    <Button colorScheme="red" variant="solid">Custom Button</Button>
+                </HStack>
             )}
             // highlight-end
         >
@@ -986,12 +1017,12 @@ You can customize the wrapper element of the buttons at the footer by using the 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Show, Button } from "@pankod/refine-mantine";
+import { Show, Button } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
     return (
@@ -999,17 +1030,16 @@ const PostShow: React.FC = () => {
             // highlight-start
             footerButtonProps={{
                 style: {
-                    // hide-start
                     float: "right",
-                    marginRight: 24,
-                    // hide-end
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
+                    borderColor: "blue",
+                    borderStyle: "dashed",
+                    borderWidth: "2px",
+                    padding: "8px",
                 },
             }}
             // highlight-end
             footerButtons={
-                <Button variant="outline" type="primary">
+                <Button colorScheme="green">
                     Custom Button
                 </Button>
             }
@@ -1053,4 +1083,4 @@ render(
 
 ### Props
 
-<PropsTable module="@pankod/refine-mantine/Show" title-default="<Title order={3}>Show {resource.name}</Title>"/>
+<PropsTable module="@pankod/refine-chakra-ui/Show" title-default="<Title order={3}>Show {resource.name}</Title>"/>
