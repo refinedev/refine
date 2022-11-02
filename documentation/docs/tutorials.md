@@ -66,10 +66,16 @@ Our [Tailwind CSS](https://tailwindcss.com/) tutorial below is a good starting p
         direction={"/docs/tutorials/mantine-tutorial"}
         alt={"Mantine Icon"}
     />
-     <Card
+    <Card
         iconPath={"/img/tutorial-cards/mui-icon.svg"}
         title={"Material UI"}
         direction={"/docs/tutorials/material-ui-tutorial"}
         alt={"Material UI Icon"}
+    />
+    <Card
+        iconPath={"/img/tutorial-cards/chakra-icon.svg"}
+        title={"Chakra UI"}
+        direction={"/docs/tutorials/chakra-ui-tutorial"}
+        alt={"Chakra UI Icon"}
     />
 </div>

@@ -7,7 +7,7 @@ import styles from "./styles.module.css";
 const Card = ({ iconPath, title, direction }) => (
     <Link to={useBaseUrl(direction)} className={styles.link}>
         <div className={styles.card}>
-            <img src={iconPath} alt="next.js" />
+            <img src={iconPath} alt={title} width="64" height="64" />
             <span>{title}</span>
         </div>
     </Link>
