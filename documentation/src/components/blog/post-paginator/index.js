@@ -18,6 +18,7 @@ export const PostPaginator = ({ posts, title }) => {
                     <Link
                         key={post.id}
                         to={post.permalink}
+                        rel="dofollow"
                         className="blog-paginator-item font-montserrat flex min-h-[150px] flex-col justify-between gap-4 rounded-2xl bg-[#f6f6f9] p-4 no-underline transition duration-150 ease-in-out"
                     >
                         <figcaption className="flex items-center justify-center space-x-2">

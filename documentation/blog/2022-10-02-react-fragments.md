@@ -1,6 +1,6 @@
 ---
 title: How to use React Fragments?
-description: We'll cover what React Fragments are, diffences between React Fragments and Div elements.
+description: We'll cover what React Fragments are, differences between React Fragments and Div elements.
 slug: how-react-fragments-is-works
 authors: clara_ekekenta
 tags: [react, react-fragments]
@@ -10,8 +10,8 @@ hide_table_of_contents: false
 
 ## Introduction
 
-Returning multiple elements from a component has always been problematic for React developers.  
-This is because React depends on creating a tree-like structure that is used for reconciliation. Therefore, when multiple elements are returned in the render method, the algorithm used for reconciliation will not function as expected, and the presumption that the tree will have one root node for a component will no longer be valid. 
+Returning multiple elements from a component has always been problematic for React developers.
+This is because React depends on creating a tree-like structure that is used for reconciliation. Therefore, when multiple elements are returned in the render method, the algorithm used for reconciliation will not function as expected, and the presumption that the tree will have one root node for a component will no longer be valid.
 
 
 React Fragment fixed this problem in version 16.2 of the library.
@@ -75,9 +75,9 @@ In React, "Fragment" and "Div" are used interchangeably. The main difference bet
 
 With React Fragments, we can create code that is cleaner and easier to read. It renders components more quickly and uses less memory. Every element is rendered as intended. While Div expands the DOM due to the long nested nodes that occur when there are too many HTML tags on your website.
 
-The `div` element has more methods and properties, which causes it to consume more memory which can make the page slow load time; the prototype chain is like HTMLDivElement -> HTMLElement -> Element -> Node -> EventTarget, whereas the React fragment has fewer methods with the prototype chain DocumentFragment -> Node -> EventTarget. 
+The `div` element has more methods and properties, which causes it to consume more memory which can make the page slow load time; the prototype chain is like HTMLDivElement -> HTMLElement -> Element -> Node -> EventTarget, whereas the React fragment has fewer methods with the prototype chain DocumentFragment -> Node -> EventTarget.
 
-Using fragments, you can reuse parts of your application. But, like in the table example we used in the previous section, div makes it challenging to do so. However, there are situations where using div instead of a fragment is necessary. 
+Using fragments, you can reuse parts of your application. But, like in the table example we used in the previous section, div makes it challenging to do so. However, there are situations where using div instead of a fragment is necessary.
 
 For instance, utilizing fragments does not allow you to design a component since you must wrap the target elements in a div. Additionally, you must use a div if you are adding keys to the components' elements. In light of this, you can use the two interchangeably depending on what you want your React application to accomplish.
 
@@ -88,7 +88,7 @@ Let's look at some of the problems in using div in detail.
 - Debugging and tracing the origin of the extra nodes becomes more difficult as the DOM grows larger and more nested.
 - Using div to render components may cause performance issues by clogging your HTML.
 
-## Advantages of Fragment 
+## Advantages of Fragment
 React Fragment replaces the `<div>` element, which can cause issues with invalid HTML, with the following advantages.
 - The code readability of React Fragment is higher.
 - Because React fragments have a smaller DOM, they render faster and use less memory.
@@ -147,7 +147,7 @@ However, there are some drawbacks to this approach. For example, implementing th
 Now let's see how fragments are used in a React application. In the example below, we'll use the React Fragment to render a list of items in a table.
 
 
-```tsx 
+```tsx
 import "./App.css";
 import React from "react";
 

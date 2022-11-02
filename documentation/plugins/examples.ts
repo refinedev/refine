@@ -108,7 +108,8 @@ export default function plugin(): Plugin {
                             " " +
                             doc.title
                                 .replace("antd", "Ant Design")
-                                .replace("mui", "Material UI");
+                                .replace("mui", "Material UI")
+                                .replace("chakra-ui", "Chakra UI");
 
                         return {
                             // ...doc,

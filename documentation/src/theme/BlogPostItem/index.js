@@ -48,6 +48,7 @@ export default function BlogPostItem({ className }) {
                                 itemProp="url"
                                 to={permalink}
                                 className="hover:no-underline"
+                                rel="noopener dofollow"
                             >
                                 <div className="text-color-base text-base font-bold transition duration-150 hover:text-stone-600">
                                     {title}

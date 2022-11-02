@@ -5,7 +5,7 @@ sidebar_label: <AuthPage>
 description: <AuthPage> component from refine is a authentication page that can be used to login, register, forgot password and update password.
 ---
 
-`<AuthPage>` component from **refine** for **Mantine** contains authentication pages that can be used to login, register, forgot password and update password.
+`<AuthPage>` component from **refine** for **Chakra UI** contains authentication pages that can be used to login, register, forgot password and update password.
 
 Before using `<AuthPage>` component you need to add [authProvider](/api-reference/core/providers/auth-provider.md) that will be used to handle authentication.
 
@@ -15,12 +15,13 @@ const { default: dataProvider } = RefineSimpleRest;
 const { useNavigation: useNavigationShared, useLogout: useLogoutShared } = RefineCore;
 const {
     Button,
-} = RefineMantine;
+} = RefineChakra;
 
 window.__refineAuthStatus = false;
 
 const authProvider = {
-    login: () => { 
+    login: (params) => { 
+        console.log('params', params);
         window.__refineAuthStatus = true; 
         return Promise.resolve(); 
     },
@@ -38,16 +39,9 @@ setRefineProps({ Sider: () => null, dataProvider: dataProvider('api') });
 
 const Wrapper = ({children}) => {
     return (
-        <RefineMantine.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <RefineMantine.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
+        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
-        </RefineMantine.MantineProvider>
+        </RefineChakra.ChakraProvider>
     );
 }
 
@@ -112,7 +106,7 @@ const GithubIcon = (
 setInitialRoutes(["/login"]);
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-mantine";
+import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
@@ -167,7 +161,7 @@ setInitialRoutes(["/login"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-mantine";
+import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
@@ -199,7 +193,7 @@ setInitialRoutes(["/register"]);
 
 // visible-block-start
 import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-mantine";
+import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
@@ -240,7 +234,7 @@ setInitialRoutes(["/forgot-password"]);
 
 // visible-block-start
 import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-mantine";
+import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
@@ -281,7 +275,7 @@ setInitialRoutes(["/update-password"]);
 
 // visible-block-start
 import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-mantine";
+import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
@@ -328,7 +322,7 @@ setInitialRoutes(["/login"]);
 
 // visible-block-start
 import { Refine, useRouterContext, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-mantine";
+import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
@@ -380,17 +374,19 @@ setInitialRoutes(["/login"]);
 
 // visible-block-start
 import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout, Form, FormControlLabel, Checkbox, FormContext } from "@pankod/refine-mantine";
+import { AuthPage, Layout, Form, FormControlLabel, Checkbox } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
+import { useFormContext } from "@pankod/refine-react-hook-form";
+
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
 
 const RememberMe = () => {
-    const { getInputProps } = FormContext.useFormContext();
+    const { register } = useFormContext();
 
     return (
-        <Checkbox label="Remember Me" {...getInputProps("rememberMe")} />
+        <Checkbox {...register("rememberMe")}>Remember Me</Checkbox>
     );
 };
 
@@ -429,7 +425,7 @@ setInitialRoutes(["/register"]);
 
 // visible-block-start
 import { Refine, useRouterContext } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-mantine";
+import { AuthPage, Layout, Box } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
@@ -443,14 +439,12 @@ const Auth = (props) => {
             {...props}
             // highlight-start
             loginLink={
-                <span
-                    style={{
-                        border: "1px dashed cornflowerblue",
-                        padding: 3,
-                    }}
+                <Box
+                    mb="3"
+                    bg="gray.200"
                 >
                     <Link to="/login">Login</Link>
-                </span>
+                </Box>
             }
             // highlight-end
         />
@@ -496,7 +490,7 @@ setInitialRoutes(["/login"]);
 
 // visible-block-start
 import { Refine, useRouterContext } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-mantine";
+import { AuthPage, Layout, Box } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
@@ -510,15 +504,12 @@ const Auth = (props) => {
             {...props}
             // highlight-start
             registerLink={
-                <div
-                    style={{
-                        border: "1px dashed cornflowerblue",
-                        marginTop: 5,
-                        padding: 5,
-                    }}
+                <Box
+                    mb="3"
+                    bg="gray.200"
                 >
                     <Link to="/register">Register</Link>
-                </div>
+                </Box>
             }
             // highlight-end
         />
@@ -560,7 +551,7 @@ setInitialRoutes(["/login"]);
 
 // visible-block-start
 import { Refine, useRouterContext } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-mantine";
+import { AuthPage, Layout, Box } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
@@ -574,15 +565,12 @@ const Auth = (props) => {
             {...props}
             // highlight-start
             forgotPasswordLink={
-                <div
-                    style={{
-                        border: "1px dashed cornflowerblue",
-                        marginTop: 5,
-                        padding: 5,
-                    }}
+                <Box
+                    mb="3"
+                    bg="gray.200"
                 >
                     <Link to="/register">Forgot Password</Link>
-                </div>
+                </Box>
             }
             // highlight-end
         />
@@ -620,7 +608,7 @@ setInitialRoutes(["/login"]);
 
 // visible-block-start
 import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-mantine";
+import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
@@ -635,14 +623,7 @@ const App = () => {
                 <AuthPage
                     // highlight-start
                     wrapperProps={{
-                        style: {
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            backgroundColor: "#32b8cd",
-                            backgroundSize: "cover",
-                            minHeight: "100vh",
-                        },
+                        bg: "tomato",
                     }}
                     // highlight-end
                 />
@@ -666,7 +647,7 @@ setInitialRoutes(["/login"]);
 
 // visible-block-start
 import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-mantine";
+import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
@@ -681,8 +662,7 @@ const App = () => {
                 <AuthPage
                     // highlight-start
                     contentProps={{
-                        p: "xs",
-                        radius: "xl"
+                        bg: "tomato",
                     }}
                     // highlight-end
                 />
@@ -706,7 +686,7 @@ setInitialRoutes(["/login"]);
 
 // visible-block-start
 import { Refine, useNavigation } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-mantine";
+import { AuthPage, Layout } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
@@ -721,6 +701,9 @@ const App = () => {
                 <AuthPage
                     // highlight-start
                     formProps={{
+                        defaultValues: {
+                            email: "test@mail.com"
+                        },
                         onSubmit: (e: any) => {
                             e.preventDefault();
                             console.log("e", e.target.email.value);
@@ -758,7 +741,7 @@ setInitialRoutes(["/login"]);
 
 // visible-block-start
 import { Refine, useRouterContext } from "@pankod/refine-core";
-import { AuthPage, Layout } from "@pankod/refine-mantine";
+import { AuthPage, Layout, Box, Heading } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { authProvider } from "./authProvider";
@@ -779,18 +762,19 @@ const App = () => {
                     }}
                     renderContent={(content: React.ReactNode) => {
                         return (
-                            <div
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                }}
+                            <Box
+                                bg="white"
+                                borderRadius="md"
+                                px="5"
+                                display="flex"
+                                flexDirection="column"
+                                justifyContent="center"
+                                alignItems="center"
                             >
-                                <h1 style={{ color: "white" }}>Extra Header</h1>
+                                <Heading color="white">Extra Header</Heading>
                                 {content}
-                                <h1 style={{ color: "white" }}>Extra Footer</h1>
-                            </div>
+                                <Heading color="white">Extra Footer</Heading>
+                            </Box>
                         );
                     }}
                 />
@@ -817,9 +801,9 @@ render(<Wrapper><App /></Wrapper>);
 | registerLink       | A custom node that will be rendered as a register link to the `<AuthPage>`.         | `React.ReactNode`                                             |
 | loginLink          | A custom node that will be rendered as a link to the `<AuthPage>`.                  | `React.ReactNode`                                             |
 | forgotPasswordLink | A custom node that will be rendered as a forgot password link to the `<AuthPage>`.  | `React.ReactNode`                                             |
-| wrapperProps       | Wrapper element props.                                                              | [`BoxProps`](https://mantine.dev/core/box/?t=props)           |
-| contentProps       | Content wrapper element props.                                                      | [`CardProps`](https://mantine.dev/core/card/?t=props)         |
-| formProps          | Props for the form component.                                                       | [`UseFormInput`]                                              |
+| wrapperProps       | Wrapper element props.                                                              | [`BoxProps`](https://chakra-ui.com/docs/components/box/props) |
+| contentProps       | Content wrapper element props.                                                      | [`BoxProps`](https://chakra-ui.com/docs/components/box/props) |
+| formProps          | Props for the form component.                                                       | [`FormPropsType`]                                             |
 | renderContent      | Gives you default content you can use it to add some extra elements to the content. | `function(content: React.ReactNode) => React.ReactNode`       |
 
 ### Interface
