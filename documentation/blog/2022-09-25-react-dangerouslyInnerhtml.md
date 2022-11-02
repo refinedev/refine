@@ -25,11 +25,11 @@ Step we'll cover:
 dangerouslySetInnerHTML helps React know how to handle the HTML elements in a component where the contents are to be rendered.
 
 ## When to use dangerouslySetInnerHTML?
-**dangerouslySetInnerHTML** is mostly used in any application where you need to render formatted text in a div element. Also, you can use it to render content exactly as you have formatted it. For instance, let's consider a blog application. The body of a blog is usually formatted with headers, paragrams, images, code blocks, etc. 
+**dangerouslySetInnerHTML** is mostly used in any application where you need to render formatted text in a div element. Also, you can use it to render content exactly as you have formatted it. For instance, let's consider a blog application. The body of a blog is usually formatted with headers, paragrams, images, code blocks, etc.
 
-To render such contents in a React application, you'll need to manipulate the DOM to get the HTML elements in the contents and set them to an element using innerHTML. Because React does not allow direct interaction with the DOM, your content will end up not being displayed as it should. However, when dangerouslySetInnerHTML is applied, React recognizes the HTML tags and correctly renders them. 
+To render such contents in a React application, you'll need to manipulate the DOM to get the HTML elements in the contents and set them to an element using innerHTML. Because React does not allow direct interaction with the DOM, your content will end up not being displayed as it should. However, when dangerouslySetInnerHTML is applied, React recognizes the HTML tags and correctly renders them.
 
-Due to its vulnerability to cross-site scripting (XSS) attacks, dangerouslySetInnerHTML might constitute a major threat to your application, as the name suggests. However, DOMPurify has proven to be a highly effective tool in overcoming such difficulties. DOMPurify is a DOM-only XSS sanitizer for HTML for preventing XSS attacks by stripping out all dangerous HTML in content rendered in an application. 
+Due to its vulnerability to cross-site scripting (XSS) attacks, dangerouslySetInnerHTML might constitute a major threat to your application, as the name suggests. However, DOMPurify has proven to be a highly effective tool in overcoming such difficulties. DOMPurify is a DOM-only XSS sanitizer for HTML for preventing XSS attacks by stripping out all dangerous HTML in content rendered in an application.
 
 For example, if users are permitted to insert HTML directly into a web page via a form field, hackers can embed malicious code into the application, causing the application to behave inappropriately or even resulting in data loss. Consider the following code:
 
@@ -49,7 +49,7 @@ lorem ipsum <img src="" onerror="alert('mailicious message');" />
 ```
 
 
-As shown below, you can sanitize the data to remove all malicious code and scripts embedded in it.  
+As shown below, you can sanitize the data to remove all malicious code and scripts embedded in it.
 
 ```tsx
 import DOMPurify from 'dompurify';
@@ -75,7 +75,7 @@ The above code will strip out the script in the data that has been rendered on t
 ```
 
 ### Building a simple example app
-To demonstrate how dangerouslySetInnerHTML works in a React application, let's build a simple blog application. To make things easier, we'll use  [superplate](https://github.com/pankod/superplate) CLI to create React apps. 
+To demonstrate how dangerouslySetInnerHTML works in a React application, let's build a simple blog application. To make things easier, we'll use  [superplate](https://github.com/pankod/superplate) CLI to create React apps.
 
 To get started, create a new app with the command below.
 
@@ -160,8 +160,8 @@ export default Home;
 
 In the above code snippet, we imported dompurify to sanitize the contents in the blog, react-bootstrap components to style the application, and the dummy JSON data we created. Then in the card, we looped through the blogs to access and render the data in the objects.
 
- For the Card title and Text, we added div elements and attached the **dangerouslySetInnerHTML** property to render the contents according to how they were formatted. 
- 
+ For the Card title and Text, we added div elements and attached the **dangerouslySetInnerHTML** property to render the contents according to how they were formatted.
+
  To allow the div where the contents are rendered to have children, we passed in the `--html` key to **dangerouslySetInnerHTML** and wrapped the content to be rendered in the dompurify **sanitize** method.
 
 
@@ -172,7 +172,7 @@ In the above code snippet, we imported dompurify to sanitize the contents in the
 
 <br/>
 
-In the above screenshot, `dangerouslySetInnerHTML` has rendered the contents just the way they were been formated to look like.
+In the above screenshot, `dangerouslySetInnerHTML` has rendered the contents just the way they were been formatted to look like.
 
 ## Conclusion
-dangerouslySetInnerHTML in a React application. We started by explaning what dangerouslySetInnerHTML is, when to use it, and the best practices for using it in a React application.
+dangerouslySetInnerHTML in a React application. We started by explaining what dangerouslySetInnerHTML is, when to use it, and the best practices for using it in a React application.

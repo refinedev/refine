@@ -1,5 +1,17 @@
 # @pankod/refine-ui-tests
 
+## 0.11.2
+
+### Patch Changes
+
+-   [#2835](https://github.com/refinedev/refine/pull/2835) [`e479bef562`](https://github.com/refinedev/refine/commit/e479bef5621e21595bbae81e77f25062956abf2b) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Used find by test id instead of find by text on delete button tests.
+
+## 0.11.1
+
+### Patch Changes
+
+-   [#2835](https://github.com/refinedev/refine/pull/2835) [`e479bef562`](https://github.com/refinedev/refine/commit/e479bef5621e21595bbae81e77f25062956abf2b) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Used find by test id instead of find by text on delete button tests.
+
 ## 0.11.0
 
 ### Minor Changes

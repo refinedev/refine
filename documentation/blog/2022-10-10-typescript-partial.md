@@ -18,7 +18,7 @@ In the previous post, we went through an example where we derived a `Subscriber`
 
 In this post, we will consider an example of **TypeScript `Partial<>`** by modifying our `Subscriber` type to assume a more realistic scenario.
 
-Steps we'll cover:  
+Steps we'll cover:
 - [Optional Registration Scenario](#optional-registration-scenario)
 - [Enter TypeScript `Partial<Type>`](#enter-typescript-partialtype)
 - [Partial with Interfaces](#with-interfaces)
@@ -172,7 +172,7 @@ console.log(subscriber);
 // Property 'roles' does not exist on type 'Partial<Omit<SuperbUser, "roles">>'.
 ```
 
-So, the benefits of using TypeScript to derive a partial type includes its support for partial assignment of the object's properties that is allowed by JavaScript and not allowed by default TypeScript. It also warns about possible undesired assignements to the partial.
+So, the benefits of using TypeScript to derive a partial type includes its support for partial assignment of the object's properties that is allowed by JavaScript and not allowed by default TypeScript. It also warns about possible undesired assignments to the partial.
 
 
 <br/>

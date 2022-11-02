@@ -23,7 +23,7 @@ import pic6 from '@site/static/img/blog/2022-10-07-responsive-navbar/pic-6.png';
 In this article, you'll see how to create responsive navbars in **refine** apps using the following CSS frameworks:
 
 1. Tailwind CSS
-2. Bootstrap   
+2. Bootstrap
 
 
 refine is a React-based framework for building internal tools using helper hooks, components, and providers. It provides amazing functionality for rapid development while ensuring extreme customizability. Everything is separate from your UI components and business logic in refine-based Apps. So, you can create UI components or code your flow. You can build admin panels, B2B applications, and dashboards using refine. But it's not limited to only these three scenarios.
@@ -36,7 +36,7 @@ Steps we'll cover:
 - [Add navigation functionality to the navbar](#add-navigation-functionality-to-the-navbar)
 - [Responsive Navbar with Bootstrap](#responsive-navbar-with-bootstrap)
 - [Add React Router to Bootstrap Navbar](#add-react-router-to-bootstrap-navbar)
- 
+
 ## Setting Up a refine App
 We'll use [superplate](https://github.com/pankod/superplate) tool to create an empty React-based **refine** application.
 
@@ -64,25 +64,25 @@ Navigate to the `refine-navbar` folder and run `npm run dev` command.
 
 We're using four resources `posts`, `categories`, `users` and `events` for the navigation purpose.
 
-Create `pages/posts` folder 
+Create `pages/posts` folder
 
 ```tsx title="src/pages/posts/list.tsx"
 export const postList = () => <p className="post">Post Page</p>
 ```
 
-Create `pages/categories` folder 
+Create `pages/categories` folder
 
 ```tsx title="src/pages/categories/list.tsx"
 export const categoryList = () => <p className="category">Category Page</p>
 ```
 
-Create `pages/users` folder 
+Create `pages/users` folder
 
 ```tsx title="src/pages/users/list.tsx"
 export const userList = () => <p className="user">User Page</p>
 ```
 
-Create `pages/events` folder 
+Create `pages/events` folder
 
 ```tsx title="src/pages/events/list.tsx"
 export const eventList = () => <p className="event">Event Page</p>
@@ -102,7 +102,7 @@ export * from "./events";
 
  `resources` use Page components to handle data and perform rendering. Page components are passed to resources as an array of objects.
 
-Add these `resources` as a prop to the `<Refine />` component:   
+Add these `resources` as a prop to the `<Refine />` component:
 
 
 ```tsx title="src/App.tsx"
@@ -128,9 +128,9 @@ const App: React.FC = () => {
 export default App;
 ```
 
-**refine** works based on consuming data from APIs. You can consume Rest APIs using `dataproviders`. Data providers are **refine** components that make it possible to consume APIs and data services easily.  
+**refine** works based on consuming data from APIs. You can consume Rest APIs using `dataproviders`. Data providers are **refine** components that make it possible to consume APIs and data services easily.
 
-For this tutorial, we don't want consume API since we only want to focus navigating. The key point is `dataProvider` is required property. So we need give it anyway even if we don't want to consume the API.  We  use the fake Rest API available at `https://api.fake-rest.refine.dev/`.  
+For this tutorial, we don't want consume API since we only want to focus navigating. The key point is `dataProvider` is required property. So we need give it anyway even if we don't want to consume the API.  We  use the fake Rest API available at `https://api.fake-rest.refine.dev/`.
 
 
 Also, add following code inside `App.css`:
@@ -146,7 +146,7 @@ and import it inside `App.tsx`:
 import 'App.css'
 ```
 
- 
+
 <div class="img-container">
     <div class="window" >
         <div class="control red"></div>
@@ -163,9 +163,9 @@ import 'App.css'
 
 
 ##  Responsive Navbar with Tailwind
-Tailwind provides utility classes for creating components. We need to set up Tailwind CSS before starting to create a navbar with it.   
+Tailwind provides utility classes for creating components. We need to set up Tailwind CSS before starting to create a navbar with it.
 
-Install tailwindcss and its peer dependencies using the following command:   
+Install tailwindcss and its peer dependencies using the following command:
 
 ```
 npm i -D tailwindcss postcss autoprefixer
@@ -213,12 +213,12 @@ We're using the following tailwind classes for creating a responsive navbar layo
 -  `ml-2` provides 8px margin to the element from left.
 -  `items-center` pushes items to the center.
 -  `hidden` sets element visibility to hidden.
--  `md:flex` displays flex when screen size is atleast medium. 
--  `md:hidden` sets visibility to hidden when screen size is atleast medium. 
+-  `md:flex` displays flex when screen size is atleast medium.
+-  `md:hidden` sets visibility to hidden when screen size is atleast medium.
 -  `text-green-500` changes text color to green with 500 font weight.
--  `bg-white` sets the background color of the element to white.   
+-  `bg-white` sets the background color of the element to white.
 
-Layout component is used for the customization of **refine** app's layout. Create `components/Layout.tsx` file inside the `src` folder.   
+Layout component is used for the customization of **refine** app's layout. Create `components/Layout.tsx` file inside the `src` folder.
 
 
 Create the following navbar using Tailwind CSS inside the `Layout` component. We can get all the `menuItems` from `<Refine />` using `useMenu()` hook.
@@ -228,7 +228,7 @@ import { useMenu, LayoutProps } from "@pankod/refine-core";
 import React from "react";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
-    
+
     const { menuItems } = useMenu();
 
     return (
@@ -394,7 +394,7 @@ npm install bootstrap react-bootstrap
 import "bootstrap/dist/css/bootstrap.min.css"
 ```
 
-Add navbar component inside the layout component and then create navbar items. We'll use **refine** logo for our navbar. 
+Add navbar component inside the layout component and then create navbar items. We'll use **refine** logo for our navbar.
 
 ```tsx title="src/components/Layout.tsx"
 import { Navbar, Nav } from 'react-bootstrap'
@@ -422,7 +422,7 @@ Add following CSS classes to `App.css` file:
 
 .nav-link {
     margin-top: 5px;
-    text-transform: capitalize; 
+    text-transform: capitalize;
 }
 
 .brand-image {
@@ -442,7 +442,7 @@ Add following CSS classes to `App.css` file:
 
 
 
-`<Navbar.Toggle />` creates hamburger menu when screen size equals to minumum width set by `expand` attribute in `Navbar` component. You can do this in the following way:
+`<Navbar.Toggle />` creates hamburger menu when screen size equals to minimum width set by `expand` attribute in `Navbar` component. You can do this in the following way:
 
 
 ```tsx title="src/components/Layout.tsx"

@@ -10,7 +10,7 @@
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^14.1.1",
     "@types/jest": "^26.0.24",
-    "framer-motion": "^7.2.1",
+    "framer-motion": "^7.5.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-scripts": "^5.0.0",

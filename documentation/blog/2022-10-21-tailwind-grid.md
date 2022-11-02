@@ -47,7 +47,7 @@ Unlike Twitter's Bootstrap and Foundation, that still use flexbox to implement t
 
  In this post, mostly, we will be playing with responsive application of **Tailwind Grid** classes that allow us to change layouts after a certain breakpoint, such as using `grid-cols-3 md:grid-cols-3`.
 
- I recommend following the documentation for Grid classes starting from [this section](https://tailwindcss.com/docs/grid-template-columns) of TailwindCSS refrences and those that follow.
+ I recommend following the documentation for Grid classes starting from [this section](https://tailwindcss.com/docs/grid-template-columns) of TailwindCSS references and those that follow.
 
 ## Project Goals
  We'll implement a simple layout having a navbar, a side content area, a main content area and a footer. It will consist of three columns and five rows.
@@ -255,9 +255,9 @@ Let's set some more sizes. The width of the second and third `div`s like so:
 ```
 
 ### Placement
-`col-span-{n}` classes provide limited freedom to place `div`s inside the grid container, whereas `col-start-{n}` and `col-end-{n}` leads to a lot of repetition when repsonsive classes are used.
+`col-span-{n}` classes provide limited freedom to place `div`s inside the grid container, whereas `col-start-{n}` and `col-end-{n}` leads to a lot of repetition when responsive classes are used.
 
-We can combine start classes with span classes to write more succint code. Start classes can be used to **place** a `div` and span classes can be used to define its width and height.
+We can combine start classes with span classes to write more succinct code. Start classes can be used to **place** a `div` and span classes can be used to define its width and height.
 
 Let's see an instance of it with the fourth `div`:
 
