@@ -4,26 +4,21 @@ title: Edit
 ---
 
 ```tsx live shared
+const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
-    notificationProvider: RefineMantine.notificationProvider,
-    Layout: RefineMantine.Layout,
+    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
+    // notificationProvider: notificationProvider(),
+    Layout: RefineChakra.Layout,
     Sider: () => null,
 });
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
+        <RefineChakra.ChakraProvider
+            theme={RefineChakra.refineTheme}
         >
-            <RefineMantine.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <RefineMantine.NotificationsProvider position="top-right">
-                {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+            {children}
+        </RefineChakra.ChakraProvider>
     );
 };
 
@@ -48,80 +43,91 @@ We will show what `<Edit>` does using properties with examples.
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
 import {
     Edit,
+    FormControl,
+    FormErrorMessage,
+    FormLabel,
+    Input,
     Select,
-    TextInput,
-    useForm,
-    useSelect,
-} from "@pankod/refine-mantine";
+} from "@pankod/refine-chakra-ui";
+import { useSelect } from "@pankod/refine-core";
+import { useForm } from "@pankod/refine-react-hook-form";
 
 const PostEdit: React.FC = () => {
     const {
+        refineCore: { formLoading, queryResult },
         saveButtonProps,
-        getInputProps,
-        refineCore: { queryResult },
-    } = useForm<IPost>({
-        initialValues: {
-            title: "",
-            status: "",
-            category: {
-                id: "",
-            },
-        },
-        validate: {
-            title: (value) => (value.length < 2 ? "Too short title" : null),
-            status: (value) =>
-                value.length <= 0 ? "Status is required" : null,
-            category: {
-                id: (value) =>
-                    value.length <= 0 ? "Category is required" : null,
-            },
-        },
-        refineCoreProps: {
-            warnWhenUnsavedChanges: true,
-        },
+        register,
+        formState: { errors },
+        resetField,
+    } = useForm<IPost>();
+
+    const { options } = useSelect({
+        resource: "categories",
+
+        defaultValue: queryResult?.data?.data.category.id,
+        queryOptions: { enabled: !!queryResult?.data?.data.category.id },
     });
 
-    const postData = queryResult?.data?.data;
-    const { selectProps } = useSelect<ICategory>({
-        resource: "categories",
-        defaultValue: postData?.category.id,
-    });
+    useEffect(() => {
+        resetField("category.id");
+    }, [options]);
 
     return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <form>
-                <TextInput
-                    mt={8}
-                    label="Title"
-                    placeholder="Title"
-                    {...getInputProps("title")}
+        <Edit isLoading={formLoading} saveButtonProps={saveButtonProps}>
+            <FormControl mb="3" isInvalid={!!errors?.title}>
+                <FormLabel>Title</FormLabel>
+                <Input
+                    id="title"
+                    type="text"
+                    {...register("title", { required: "Title is required" })}
                 />
+                <FormErrorMessage>
+                    {`${errors.title?.message}`}
+                </FormErrorMessage>
+            </FormControl>
+            <FormControl mb="3" isInvalid={!!errors?.status}>
+                <FormLabel>Status</FormLabel>
                 <Select
-                    mt={8}
-                    label="Status"
-                    placeholder="Pick one"
-                    {...getInputProps("status")}
-                    data={[
-                        { label: "Published", value: "published" },
-                        { label: "Draft", value: "draft" },
-                        { label: "Rejected", value: "rejected" },
-                    ]}
-                />
+                    id="content"
+                    placeholder="Select Post Status"
+                    {...register("status", {
+                        required: "Status is required",
+                    })}
+                >
+                    <option>published</option>
+                    <option>draft</option>
+                    <option>rejected</option>
+                </Select>
+                <FormErrorMessage>
+                    {`${errors.status?.message}`}
+                </FormErrorMessage>
+            </FormControl>
+            <FormControl mb="3" isInvalid={!!errors?.categoryId}>
+                <FormLabel>Category</FormLabel>
                 <Select
-                    mt={8}
-                    label="Category"
-                    placeholder="Pick one"
-                    {...getInputProps("category.id")}
-                    {...selectProps}
-                />
-            </form>
+                    id="ca"
+                    placeholder="Select Category"
+                    {...register("category.id", {
+                        required: true,
+                    })}
+                >
+                    {options?.map((option) => (
+                        <option value={option.value} key={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </Select>
+                <FormErrorMessage>
+                    {`${errors.categoryId?.message}`}
+                </FormErrorMessage>
+            </FormControl>
         </Edit>
     );
 };
@@ -165,17 +171,17 @@ It allows adding titles inside the `<Edit>` component. if you don't pass title p
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit, Title } from "@pankod/refine-mantine";
+import { Edit, Heading } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
     return (
         /* highlight-next-line */
-        <Edit title={<Title order={3}>Custom Title</Title>}>
+        <Edit title={<Heading size="lg">Custom Title</Heading>}>
             <p>Rest of your page here</p>
         </Edit>
     );
@@ -217,22 +223,22 @@ The `<Edit>` component has a save button by default. If you want to customize th
 
 Clicking on the save button will submit your form.
 
-[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-reference/mantine/components/buttons/save.md)
+[Refer to the `<SaveButton>` documentation for detailed usage. &#8594](/api-reference/chakra-ui/components/buttons/save.md)
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit } from "@pankod/refine-mantine";
+import { Edit } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
     return (
         /* highlight-next-line */
-        <Edit saveButtonProps={{ size: "xs" }}>
+        <Edit saveButtonProps={{ colorScheme: "red" }}>
             <p>Rest of your page here</p>
         </Edit>
     );
@@ -274,17 +280,17 @@ render(
 
 When clicked on, the delete button executes the `useDelete` method provided by the `dataProvider`.
 
-[Refer to the `<DeleteButton>` documentation for detailed usage. &#8594](/api-reference/mantine/components/buttons/delete.md)
+[Refer to the `<DeleteButton>` documentation for detailed usage. &#8594](/api-reference/chakra-ui/components/buttons/delete.md)
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit } from "@pankod/refine-mantine";
+import { Edit } from "@pankod/refine-chakra-ui";
 import { usePermissions } from "@pankod/refine-core";
 
 const PostEdit: React.FC = () => {
@@ -293,9 +299,8 @@ const PostEdit: React.FC = () => {
         <Edit
             /* highlight-start */
             canDelete={permissionsData?.includes("admin")}
-            deleteButtonProps={{ size: "xs" }}
+            deleteButtonProps={{ colorScheme: "orange" }}
             /* highlight-end */
-            saveButtonProps={{ variant: "outline", size: "xs" }}
         >
             <p>Rest of your page here</p>
         </Edit>
@@ -368,7 +373,7 @@ setInitialRoutes(["/custom/23"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
-import { Layout, Edit } from "@pankod/refine-mantine";
+import { Layout, Edit } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -417,36 +422,43 @@ The `<Edit>` component reads the `id` information from the route by default. `re
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=350px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit, useModalForm, Modal, Button } from "@pankod/refine-mantine";
+import { useModalForm } from "@pankod/refine-react-hook-form";
+import { Edit, Modal, Button, ModalOverlay, ModalContent, ModalCloseButton,ModalHeader, ModalBody } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
     const {
         modal: { visible, close, show },
         id,
     } = useModalForm({
-        action: "edit",
+        refineCoreProps: { action: "edit" },
     });
 
     return (
         <div>
             <Button onClick={() => show()}>Edit Button</Button>
             <Modal
-                opened={visible}
+                isOpen={visible}
                 onClose={close}
-                // hide-start
-                size={700}
-                withCloseButton={false}
-                // hide-end
+                size="xl"
             >
-                {/* highlight-next-line */}
-                <Edit recordItemId={id}>
-                    <p>Rest of your page here</p>
-                </Edit>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalCloseButton />
+                    <ModalHeader>Edit</ModalHeader>
+
+                    <ModalBody>
+                        {/* highlight-next-line */}
+                        <Edit recordItemId={id}>
+                            <p>Rest of your page here</p>
+                        </Edit>
+                    </ModalBody>
+                </ModalContent>
+                
             </Modal>
         </div>
     );
@@ -495,25 +507,21 @@ Determines which mode mutation will have while executing `<DeleteButton>`.
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit, TextInput, useForm } from "@pankod/refine-mantine";
+import { Edit, Input, FormControl, FormLabel, FormErrorMessage } from "@pankod/refine-chakra-ui";
+import { useForm } from "@pankod/refine-react-hook-form";
+
 
 const PostEdit: React.FC = () => {
-    const { saveButtonProps, getInputProps } = useForm<IPost>({
-        initialValues: {
-            title: "",
-        },
-        validate: {
-            title: (value) => (value.length < 2 ? "Too short title" : null),
-        },
-        refineCoreProps: {
-            warnWhenUnsavedChanges: true,
-        },
-    });
+    const {
+        saveButtonProps,
+        register,
+        formState: { errors },
+    } = useForm<IPost>();
 
     return (
         <Edit
@@ -522,14 +530,17 @@ const PostEdit: React.FC = () => {
             canDelete
             saveButtonProps={saveButtonProps}
         >
-            <form>
-                <TextInput
-                    mt={8}
-                    label="Title"
-                    placeholder="Title"
-                    {...getInputProps("title")}
+            <FormControl mb="3" isInvalid={!!errors?.title}>
+                <FormLabel>Title</FormLabel>
+                <Input
+                    id="title"
+                    type="text"
+                    {...register("title", { required: "Title is required" })}
                 />
-            </form>
+                <FormErrorMessage>
+                    {`${errors.title?.message}`}
+                </FormErrorMessage>
+            </FormControl>
         </Edit>
     );
 };
@@ -571,7 +582,7 @@ If not specified, Refine will use the default data provider. If you have multipl
 
 ```tsx
 import { Refine } from "@pankod/refine-core";
-import { Edit } from "@pankod/refine-mantine";
+import { Edit } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -604,12 +615,12 @@ To customize the back button or to disable it, you can use the `goBack` property
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit } from "@pankod/refine-mantine";
+import { Edit } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
     return (
@@ -657,12 +668,12 @@ To toggle the loading state of the `<Edit/>` component, you can use the `isLoadi
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit } from "@pankod/refine-mantine";
+import { Edit } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
     return (
@@ -705,9 +716,9 @@ render(
 
 ### `breadcrumb`
 
-To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-mantine` package.
+To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@pankod/refine-chakra-ui` package.
 
-[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/mantine/components/breadcrumb.md)
+[Refer to the `Breadcrumb` documentation for detailed usage. &#8594](/api-reference/chakra-ui/components/breadcrumb.md)
 
 :::tip
 This feature can be managed globally via the `<Refine>` component's [options](/docs/api-reference/core/components/refine-config/#breadcrumb)
@@ -716,26 +727,25 @@ This feature can be managed globally via the `<Refine>` component's [options](/d
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit, Breadcrumb } from "@pankod/refine-mantine";
+import { Edit, Breadcrumb, Box } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
     return (
         <Edit
             // highlight-start
             breadcrumb={
-                <div
-                    style={{
-                        padding: "3px 6px",
-                        border: "2px dashed cornflowerblue",
-                    }}
+                <Box
+                    borderColor="blue"
+                    borderStyle="dashed"
+                    borderWidth="2px"
                 >
                     <Breadcrumb />
-                </div>
+                </Box>
             }
             // highlight-end
         >
@@ -776,29 +786,29 @@ render(
 
 ### `wrapperProps`
 
-If you want to customize the wrapper of the `<Edit/>` component, you can use the `wrapperProps` property. For `@pankod/refine-mantine` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Card>` can get.
+If you want to customize the wrapper of the `<Edit/>` component, you can use the `wrapperProps` property. For `@pankod/refine-chakra-ui` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Card>` can get.
 
-[Refer to the `Card` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/card/)
+[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit } from "@pankod/refine-mantine";
+import { Edit } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
     return (
         <Edit
             // highlight-start
             wrapperProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
+                borderColor: "blue",
+                borderStyle: "dashed",
+                borderWidth: "2px",
+                p: "2",
             }}
             // highlight-end
         >
@@ -841,27 +851,26 @@ render(
 
 If you want to customize the header of the `<Edit/>` component, you can use the `headerProps` property.
 
-[Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group/)
+[Refer to the `Box` documentation from Mantine for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit } from "@pankod/refine-mantine";
+import { Edit } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
     return (
         <Edit
             // highlight-start
             headerProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
+                borderColor: "blue",
+                borderStyle: "dashed",
+                borderWidth: "2px",
             }}
             // highlight-end
         >
@@ -904,27 +913,27 @@ render(
 
 If you want to customize the content of the `<Edit/>` component, you can use the `contentProps` property.
 
-[Refer to the `Box` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/box/)
+[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit } from "@pankod/refine-mantine";
+import { Edit } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
     return (
         <Edit
             // highlight-start
             contentProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
+                borderColor: "blue",
+                borderStyle: "dashed",
+                borderWidth: "2px",
+                p: "2",
             }}
             // highlight-end
         >
@@ -970,24 +979,24 @@ You can customize the buttons at the header by using the `headerButtons` propert
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit, Button } from "@pankod/refine-mantine";
+import { Edit, Button, HStack, Box } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
     return (
         <Edit
             // highlight-start
             headerButtons={({ defaultButtons }) => (
-                <>
+                <HStack>
                     {defaultButtons}
-                    <Button variant="outline" type="primary">
+                    <Button colorScheme="red">
                         Custom Button
                     </Button>
-                </>
+                </HStack>
             )}
             // highlight-end
         >
@@ -1030,27 +1039,27 @@ render(
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 
-[Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group/)
+[Refer to the `Box` documentation from Mantine for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit, Button } from "@pankod/refine-mantine";
+import { Edit, Button } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
     return (
         <Edit
             // highlight-start
             headerButtonProps={{
-                style: {
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
+                borderColor: "blue",
+                borderStyle: "dashed",
+                borderWidth: "2px",
+                p: "2",
             }}
             // highlight-end
             headerButtons={
@@ -1101,22 +1110,27 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit, Button } from "@pankod/refine-mantine";
+import { Edit, Button, HStack } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
     return (
         <Edit
             // highlight-start
             footerButtons={({ defaultButtons }) => (
-                <>
+                <HStack 
+                    borderColor="blue"
+                    borderStyle="dashed"
+                    borderWidth="2px" 
+                    p="2"
+                >
                     {defaultButtons}
-                    <Button variant="gradient">Custom Button</Button>
-                </>
+                    <Button colorScheme="red" variant="solid">Custom Button</Button>
+                </HStack>
             )}
             // highlight-end
         >
@@ -1164,26 +1178,23 @@ You can customize the wrapper element of the buttons at the footer by using the 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit } from "@pankod/refine-mantine";
+import { Edit } from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
     return (
         <Edit
             // highlight-start
             footerButtonProps={{
-                style: {
-                    // hide-start
-                    float: "right",
-                    marginRight: 24,
-                    // hide-end
-                    border: "2px dashed cornflowerblue",
-                    padding: "16px",
-                },
+                float: "right",
+                borderColor: "blue",
+                borderStyle: "dashed",
+                borderWidth: "2px",
+                p: "2",
             }}
             // highlight-end
         >
@@ -1226,4 +1237,4 @@ render(
 
 ### Props
 
-<PropsTable module="@pankod/refine-mantine/Edit" goBack-default="`<IconArrowLeft />`" title-default="`<Title order={3}>Edit {resource.name}</Title>`" />
+<PropsTable module="@pankod/refine-chakra-ui/Edit" goBack-default="`<IconArrowLeft />`" title-default="`<Title order={3}>Edit {resource.name}</Title>`" />
