@@ -278,7 +278,7 @@ export const App: React.FC = () => {
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             // highlight-next-line
-            resources={[{ name: "posts", icon: PostIcon }]}
+            resources={[{ name: "/posts", icon: PostIcon }]}
         />
     );
 };
