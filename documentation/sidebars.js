@@ -428,15 +428,15 @@ module.exports = {
                                 // },
                             ],
                         },
-                        // {
-                        //     type: "category",
-                        //     label: "Customization",
-                        //     items: [
-                        //         "api-reference/chakra-ui/customization/theme",
-                        //         "api-reference/chakra-ui/customization/layout",
-                        //         "api-reference/chakra-ui/customization/sider",
-                        //     ],
-                        // },
+                        {
+                            type: "category",
+                            label: "Customization",
+                            items: [
+                                "api-reference/chakra-ui/customization/theme",
+                                // "api-reference/chakra-ui/customization/layout",
+                                // "api-reference/chakra-ui/customization/sider",
+                            ],
+                        },
                     ],
                 },
 
