@@ -63,6 +63,7 @@ import {
     Th,
     Tbody,
     Td,
+    // highlight-next-line
     ShowButton,
 } from "@pankod/refine-chakra-ui";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
@@ -164,6 +165,7 @@ interface IPost {
 const App = () => {
     return (
         <Refine
+            notificationProvider={RefineChakra.notificationProvider()}
             resources={[
                 {
                     name: "posts",
