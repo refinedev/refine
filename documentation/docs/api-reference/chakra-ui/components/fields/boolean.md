@@ -114,7 +114,6 @@ const PostList: React.FC = () => {
     const {
         getHeaderGroups,
         getRowModel,
-        refineCore: { setCurrent, pageCount, current },
     } = useTable({
         columns,
     });
