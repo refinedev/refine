@@ -9,49 +9,40 @@ const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
     routerProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    notificationProvider: RefineMantine.notificationProvider,
-    Layout: RefineMantine.Layout,
+    Layout: RefineChakra.Layout,
     Sider: () => null,
-    catchAll: <RefineMantine.ErrorComponent />,
+    catchAll: <RefineChakra.ErrorComponent />,
 });
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <RefineMantine.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <RefineMantine.NotificationsProvider position="top-right">
-                {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+            {children}
+        </RefineChakra.ChakraProvider>
     );
 };
 ```
 
-`<RefreshButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button/) component to update the data shown on the page via the [`useOne`](/api-reference/core/hooks/data/useOne.md) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
+`<RefreshButton>` uses Chakra UI [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component to update the data shown on the page via the [`useOne`](/api-reference/core/hooks/data/useOne.md) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
 ## Usage
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@pankod/refine-chakra-ui";
 
 // visible-block-start
 import { useShow } from "@pankod/refine-core";
 import {
     Show,
-    Title,
+    Heading,
     Text,
+    Spacer,
     MarkdownField,
     //highlight-next-line
     RefreshButton,
-} from "@pankod/refine-mantine";
+} from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IPost>();
@@ -61,17 +52,20 @@ const PostShow: React.FC<IResourceComponentsProps> = () => {
     return (
         // highlight-next-line
         <Show headerButtons={<RefreshButton />} isLoading={isLoading}>
-            <Title order={5}>Id</Title>
-            <Text mt="sm">{record?.id}</Text>
+            <Heading as="h5" size="sm">
+                Id
+            </Heading>
+            <Text mt={2}>{record?.id}</Text>
 
-            <Title mt="sm" order={5}>
+            <Heading as="h5" size="sm" mt={4}>
                 Title
-            </Title>
-            <Text mt="sm">{record?.title}</Text>
+            </Heading>
+            <Text mt={2}>{record?.title}</Text>
 
-            <Title mt="sm" order={5}>
+            <Heading as="h5" size="sm" mt={4}>
                 Content
-            </Title>
+            </Heading>
+            <Spacer mt={2} />
             <MarkdownField value={record?.content} />
         </Show>
     );
@@ -86,12 +80,14 @@ const App = () => {
                     name: "posts",
                     show: PostShow,
                     list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
+                        <RefineChakra.VStack alignItems="flex-start">
+                            <RefineChakra.Text>
+                                This page is empty.
+                            </RefineChakra.Text>
+                            <ShowButton colorScheme="black" recordItemId="123">
                                 Show Item 123
                             </ShowButton>
-                        </div>
+                        </RefineChakra.VStack>
                     ),
                 },
             ]}
@@ -116,10 +112,10 @@ setInitialRoutes(["/"]);
 import { Refine } from "@pankod/refine-core";
 
 // visible-block-start
-import { RefreshButton } from "@pankod/refine-mantine";
+import { RefreshButton } from "@pankod/refine-chakra-ui";
 
 const MyRefreshComponent = () => {
-    return <RefreshButton recordItemId="123" />;
+    return <RefreshButton colorScheme="black" recordItemId="123" />;
 };
 // visible-block-end
 
@@ -159,11 +155,15 @@ setInitialRoutes(["/"]);
 import { Refine } from "@pankod/refine-core";
 
 // visible-block-start
-import { RefreshButton } from "@pankod/refine-mantine";
+import { RefreshButton } from "@pankod/refine-chakra-ui";
 
 const MyRefreshComponent = () => {
     return (
-        <RefreshButton resourceNameOrRouteName="categories" recordItemId="2" />
+        <RefreshButton
+            colorScheme="black"
+            resourceNameOrRouteName="categories"
+            recordItemId="2"
+        />
     );
 };
 // visible-block-end
@@ -204,10 +204,10 @@ setInitialRoutes(["/"]);
 import { Refine } from "@pankod/refine-core";
 
 // visible-block-start
-import { RefreshButton } from "@pankod/refine-mantine";
+import { RefreshButton } from "@pankod/refine-chakra-ui";
 
 const MyRefreshComponent = () => {
-    return <RefreshButton hideText recordItemId="123" />;
+    return <RefreshButton colorScheme="black" hideText recordItemId="123" />;
 };
 // visible-block-end
 
@@ -235,4 +235,4 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/RefreshButton" />
+<PropsTable module="@pankod/refine-chakra-ui/RefreshButton" />
