@@ -394,7 +394,7 @@ module.exports = {
                                         "api-reference/chakra-ui/components/basic-views/show",
                                     ],
                                 },
-                                // "api-reference/chakra-ui/components/breadcrumb",
+                                "api-reference/chakra-ui/components/breadcrumb",
                                 // {
                                 //     type: "category",
                                 //     label: "Buttons",
