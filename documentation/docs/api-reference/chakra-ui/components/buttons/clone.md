@@ -16,9 +16,7 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider
-            theme={RefineChakra.refineTheme}
-        >
+        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
         </RefineChakra.ChakraProvider>
     );
@@ -29,12 +27,12 @@ const ClonePage = () => {
     const params = RefineCore.useRouterContext().useParams();
 
     return (
-        <RefineChakra.Box>
-            <RefineChakra.Text italic color="dimmed" size="sm">
+        <RefineChakra.VStack alignItems="flex-start">
+            <RefineChakra.Text as="i" color="gray.700" fontSize="sm">
                 URL Parameters:
             </RefineChakra.Text>
             <RefineChakra.Code>{JSON.stringify(params)}</RefineChakra.Code>
-            
+
             <RefineChakra.Button
                 size="sm"
                 onClick={() => list("posts")}
@@ -42,7 +40,7 @@ const ClonePage = () => {
             >
                 Go back
             </RefineChakra.Button>
-        </RefineChakra.Box>
+        </RefineChakra.VStack>
     );
 };
 ```
@@ -57,7 +55,18 @@ setInitialRoutes(["/posts"]);
 import { Refine } from "@pankod/refine-core";
 
 // visible-block-start
-import { List, TableContainer, Table, Thead, Tr, Th, Tbody, Td, HStack, Box, CloneButton } from "@pankod/refine-chakra-ui";
+import {
+    List,
+    TableContainer,
+    Table,
+    Thead,
+    Tr,
+    Th,
+    Tbody,
+    Td,
+    // highlight-next-line
+    CloneButton,
+} from "@pankod/refine-chakra-ui";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 const PostList: React.FC = () => {
@@ -92,10 +101,7 @@ const PostList: React.FC = () => {
         [],
     );
 
-    const {
-        getHeaderGroups,
-        getRowModel,
-    } = useTable({
+    const { getHeaderGroups, getRowModel } = useTable({
         columns,
     });
 
@@ -115,18 +121,12 @@ const PostList: React.FC = () => {
                                 {headerGroup.headers.map((header) => {
                                     return (
                                         <Th key={header.id}>
-                                            {!header.isPlaceholder && (
-                                                <HStack spacing="xs">
-                                                    <Box>
-                                                        {flexRender(
-                                                            header.column
-                                                                .columnDef
-                                                                .header,
-                                                            header.getContext(),
-                                                        )}
-                                                    </Box>
-                                                </HStack>
-                                            )}
+                                            {!header.isPlaceholder &&
+                                                flexRender(
+                                                    header.column.columnDef
+                                                        .header,
+                                                    header.getContext(),
+                                                )}
                                         </Th>
                                     );
                                 })}
@@ -166,6 +166,7 @@ interface IPost {
 const App = () => {
     return (
         <Refine
+            notificationProvider={RefineChakra.notificationProvider()}
             resources={[
                 {
                     name: "posts",
@@ -197,7 +198,7 @@ import { Refine } from "@pankod/refine-core";
 import { CloneButton } from "@pankod/refine-chakra-ui";
 
 const MyCloneComponent = () => {
-    return <CloneButton recordItemId="123" />;
+    return <CloneButton colorScheme="black" recordItemId="123" />;
 };
 // visible-block-end
 
@@ -242,7 +243,11 @@ import { CloneButton } from "@pankod/refine-chakra-ui";
 
 const MyCloneComponent = () => {
     return (
-        <CloneButton resourceNameOrRouteName="categories" recordItemId="2" />
+        <CloneButton
+            colorScheme="black"
+            resourceNameOrRouteName="categories"
+            recordItemId="2"
+        />
     );
 };
 // visible-block-end
@@ -286,7 +291,7 @@ import { Refine } from "@pankod/refine-core";
 import { CloneButton } from "@pankod/refine-chakra-ui";
 
 const MyCloneComponent = () => {
-    return <CloneButton hideText />;
+    return <CloneButton colorScheme="black" hideText />;
 };
 // visible-block-end
 
@@ -319,7 +324,11 @@ This prop can be used to skip access control check with its `enabled` property o
 import { CloneButton } from "@pankod/refine-chakra-ui";
 
 export const MyListComponent = () => {
-    return <CloneButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+    return (
+        <CloneButton
+            accessControl={{ enabled: true, hideIfUnauthorized: true }}
+        />
+    );
 };
 ```
 
