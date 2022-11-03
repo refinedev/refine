@@ -1,0 +1,6 @@
+---
+"@pankod/refine-chakra-ui": patch
+---
+
+- Fixed error and ready pages issues that dark mode compatibility and mobile view issues.
+- Fixed crud components mobile view issues and spacing issues.
