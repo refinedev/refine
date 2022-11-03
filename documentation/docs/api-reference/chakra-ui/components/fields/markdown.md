@@ -9,25 +9,17 @@ const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
     routerProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    notificationProvider: RefineMantine.notificationProvider,
-    Layout: RefineMantine.Layout,
+    Layout: RefineChakra.Layout,
     Sider: () => null,
 });
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
+        <RefineChakra.ChakraProvider
+            theme={RefineChakra.refineTheme}
         >
-            <RefineMantine.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <RefineMantine.NotificationsProvider position="top-right">
-                {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+            {children}
+        </RefineChakra.ChakraProvider>
     );
 };
 ```
@@ -41,11 +33,11 @@ Let's see how we can use `<MarkdownField>` in a show page.
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@pankod/refine-chakra-ui";
 
 // visible-block-start
 import { useShow } from "@pankod/refine-core";
-import { Show, Title, Text, MarkdownField } from "@pankod/refine-mantine";
+import { Show, Text, MarkdownField } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IPost>();
@@ -54,11 +46,11 @@ const PostShow: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Show isLoading={isLoading}>
-            <Title order={5}>Id</Title>
-            <Text mt="sm">{record?.id}</Text>
-            <Title mt="sm" order={5}>
-                Content
-            </Title>
+            <Text fontWeight="bold">Id:</Text>
+            <Text>{record?.id}</Text>
+            <Text fontWeight="bold" mt="sm">
+                Content:
+            </Text>
             <MarkdownField value={record?.content} />
         </Show>
     );
@@ -101,4 +93,4 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/MarkdownField" value-description="Markdown data to render"/>
+<PropsTable module="@pankod/refine-chakra-ui/MarkdownField" value-description="Markdown data to render"/>
