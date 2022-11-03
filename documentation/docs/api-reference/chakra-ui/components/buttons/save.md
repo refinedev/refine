@@ -9,113 +9,113 @@ const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
     routerProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    notificationProvider: RefineMantine.notificationProvider,
-    Layout: RefineMantine.Layout,
+    Layout: RefineChakra.Layout,
     Sider: () => null,
-    catchAll: <RefineMantine.ErrorComponent />,
+    catchAll: <RefineChakra.ErrorComponent />,
 });
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <RefineMantine.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <RefineMantine.NotificationsProvider position="top-right">
-                {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+            {children}
+        </RefineChakra.ChakraProvider>
     );
 };
 ```
 
-`<SaveButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button/) component. It uses it for presantation purposes only. Some of the hooks that **refine** has adds features to this button.
+`<SaveButton>` uses Chakra UI [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses it for presantation purposes only. Some of the hooks that **refine** has adds features to this button.
 
 ## Usage
 
-For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](/api-reference/mantine/hooks/form/useForm.md) hook.
+For example, let's add logic to the `<SaveButton>` component with the `saveButtonProps` returned by the [`useForm`](packages/documentation/react-hook-form/useForm.md) hook.
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/edit/123"]);
 import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-chakra-ui";
 
 // visible-block-start
 import {
     Edit,
+    FormControl,
+    FormErrorMessage,
+    FormLabel,
+    Input,
     Select,
-    TextInput,
-    useForm,
-    useSelect,
-} from "@pankod/refine-mantine";
+} from "@pankod/refine-chakra-ui";
+import { useSelect } from "@pankod/refine-core";
+import { useForm } from "@pankod/refine-react-hook-form";
 
 const PostEdit: React.FC = () => {
     const {
+        refineCore: { formLoading, queryResult },
         // highlight-next-line
         saveButtonProps,
-        getInputProps,
-        refineCore: { queryResult },
-    } = useForm<IPost>({
-        initialValues: {
-            title: "",
-            status: "",
-            category: {
-                id: "",
-            },
-        },
-        validate: {
-            title: (value) => (value.length < 2 ? "Too short title" : null),
-            status: (value) =>
-                value.length <= 0 ? "Status is required" : null,
-            category: {
-                id: (value) =>
-                    value.length <= 0 ? "Category is required" : null,
-            },
-        },
-        refineCoreProps: {
-            warnWhenUnsavedChanges: true,
-        },
+        register,
+        formState: { errors },
+        resetField,
+    } = useForm<IPost>();
+
+    const { options } = useSelect({
+        resource: "categories",
+        defaultValue: queryResult?.data?.data.category.id,
+        queryOptions: { enabled: !!queryResult?.data?.data.category.id },
     });
 
-    const postData = queryResult?.data?.data;
-    const { selectProps } = useSelect<ICategory>({
-        resource: "categories",
-        defaultValue: postData?.category.id,
-    });
+    useEffect(() => {
+        resetField("category.id");
+    }, [options]);
 
     return (
         // highlight-next-line
-        <Edit saveButtonProps={saveButtonProps}>
-            <form>
-                <TextInput
-                    mt={8}
-                    label="Title"
-                    placeholder="Title"
-                    {...getInputProps("title")}
+        <Edit isLoading={formLoading} saveButtonProps={saveButtonProps}>
+            <FormControl mb="3" isInvalid={!!errors?.title}>
+                <FormLabel>Title</FormLabel>
+                <Input
+                    id="title"
+                    type="text"
+                    {...register("title", { required: "Title is required" })}
                 />
+                <FormErrorMessage>
+                    {`${errors.title?.message}`}
+                </FormErrorMessage>
+            </FormControl>
+            <FormControl mb="3" isInvalid={!!errors?.status}>
+                <FormLabel>Status</FormLabel>
                 <Select
-                    mt={8}
-                    label="Status"
-                    placeholder="Pick one"
-                    {...getInputProps("status")}
-                    data={[
-                        { label: "Published", value: "published" },
-                        { label: "Draft", value: "draft" },
-                        { label: "Rejected", value: "rejected" },
-                    ]}
-                />
+                    id="content"
+                    placeholder="Select Post Status"
+                    {...register("status", {
+                        required: "Status is required",
+                    })}
+                >
+                    <option>published</option>
+                    <option>draft</option>
+                    <option>rejected</option>
+                </Select>
+                <FormErrorMessage>
+                    {`${errors.status?.message}`}
+                </FormErrorMessage>
+            </FormControl>
+            <FormControl mb="3" isInvalid={!!errors?.categoryId}>
+                <FormLabel>Category</FormLabel>
                 <Select
-                    mt={8}
-                    label="Category"
-                    placeholder="Pick one"
-                    {...getInputProps("category.id")}
-                    {...selectProps}
-                />
-            </form>
+                    id="ca"
+                    placeholder="Select Category"
+                    {...register("category.id", {
+                        required: true,
+                    })}
+                >
+                    {options?.map((option) => (
+                        <option value={option.value} key={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </Select>
+                <FormErrorMessage>
+                    {`${errors.categoryId?.message}`}
+                </FormErrorMessage>
+            </FormControl>
         </Edit>
     );
 };
@@ -124,17 +124,20 @@ const PostEdit: React.FC = () => {
 const App = () => {
     return (
         <Refine
+            notificationProvider={RefineChakra.notificationProvider()}
             resources={[
                 {
                     name: "posts",
                     edit: PostEdit,
                     list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
+                        <RefineChakra.VStack alignItems="flex-start">
+                            <RefineChakra.Text>
+                                This page is empty.
+                            </RefineChakra.Text>
+                            <EditButton colorScheme="black" recordItemId="123">
                                 Edit Item 123
                             </EditButton>
-                        </div>
+                        </RefineChakra.VStack>
                     ),
                 },
             ]}
@@ -172,7 +175,7 @@ setInitialRoutes(["/"]);
 import { Refine } from "@pankod/refine-core";
 
 // visible-block-start
-import { SaveButton } from "@pankod/refine-mantine";
+import { SaveButton } from "@pankod/refine-chakra-ui";
 
 const MySaveComponent = () => {
     return <SaveButton hideText />;
@@ -203,4 +206,4 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/SaveButton" />
+<PropsTable module="@pankod/refine-chakra-ui/SaveButton" />

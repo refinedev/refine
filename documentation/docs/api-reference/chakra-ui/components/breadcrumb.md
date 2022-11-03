@@ -194,11 +194,11 @@ const App = () => {
                     name: "posts",
                     show: PostShow,
                     list: () => (
-                        <RefineChakra.VStack>
+                        <RefineChakra.VStack alignItems="flex-start">
                             <RefineChakra.Text>
                                 This page is empty.
                             </RefineChakra.Text>
-                            <ShowButton bg="white" recordItemId="123">
+                            <ShowButton colorScheme="black" recordItemId="123">
                                 Show Item 123
                             </ShowButton>
                         </RefineChakra.VStack>
