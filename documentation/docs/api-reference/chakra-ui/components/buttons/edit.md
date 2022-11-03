@@ -45,7 +45,7 @@ const EditPage = () => {
 };
 ```
 
-`<EditButton>` uses Chakra UI [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `edit` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the edit page with the record id route of resource.
+`<EditButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `edit` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the edit page with the record id route of resource.
 
 ## Usage
 

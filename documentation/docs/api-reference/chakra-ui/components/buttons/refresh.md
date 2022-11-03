@@ -23,7 +23,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-`<RefreshButton>` uses Chakra UI [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component to update the data shown on the page via the [`useOne`](/api-reference/core/hooks/data/useOne.md) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
+`<RefreshButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component to update the data shown on the page via the [`useOne`](/api-reference/core/hooks/data/useOne.md) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
 ## Usage
 
@@ -75,6 +75,7 @@ const PostShow: React.FC<IResourceComponentsProps> = () => {
 const App = () => {
     return (
         <Refine
+            notificationProvider={RefineChakra.notificationProvider()}
             resources={[
                 {
                     name: "posts",
