@@ -27,7 +27,7 @@ const ShowPage = () => {
     const params = RefineCore.useRouterContext().useParams();
 
     return (
-        <RefineChakra.VStack>
+        <RefineChakra.VStack alignItems="flex-start">
             <RefineChakra.Text as="i" color="gray.700" fontSize="sm">
                 URL Parameters:
             </RefineChakra.Text>
