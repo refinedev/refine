@@ -5,33 +5,25 @@ title: Delete
 
 ```tsx live shared
 const { default: routerProvider } = RefineReactRouterV6;
+const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
     routerProvider,
-    notificationProvider: RefineMantine.notificationProvider,
-    Layout: RefineMantine.Layout,
+    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
+    Layout: RefineChakra.Layout,
     Sider: () => null,
-    catchAll: <RefineMantine.ErrorComponent />,
+    catchAll: <RefineChakra.ErrorComponent />,
 });
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <RefineMantine.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <RefineMantine.NotificationsProvider position="top-right">
-                {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+            {children}
+        </RefineChakra.ChakraProvider>
     );
 };
 ```
 
-`<DeleteButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button/) and [`<Popconfirm>`](https://mantine.dev/core/popover/) components.
+`<DeleteButton>` uses Chakra UI [`<Button>`](https://chakra-ui.com/docs/components/button/usage) and [`<Popover>`](https://chakra-ui.com/docs/components/popover/usage) components.
 When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/api-reference/core/hooks/data/useDelete.md) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
 ## Usage
@@ -42,7 +34,18 @@ import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { List, Table, Pagination, DeleteButton } from "@pankod/refine-mantine";
+import {
+    List,
+    TableContainer,
+    Table,
+    Thead,
+    Tr,
+    Th,
+    Tbody,
+    Td,
+    // highlight-next-line
+    DeleteButton,
+} from "@pankod/refine-chakra-ui";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 const PostList: React.FC = () => {
@@ -80,52 +83,52 @@ const PostList: React.FC = () => {
     const {
         getHeaderGroups,
         getRowModel,
-        refineCore: { setCurrent, pageCount, current },
     } = useTable({
         columns,
     });
 
     return (
         <List>
-            <Table>
-                <thead>
-                    {getHeaderGroups().map((headerGroup) => (
-                        <tr key={headerGroup.id}>
-                            {headerGroup.headers.map((header) => (
-                                <th key={header.id}>
-                                    {header.isPlaceholder
-                                        ? null
-                                        : flexRender(
-                                              header.column.columnDef.header,
-                                              header.getContext(),
-                                          )}
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody>
-                    {getRowModel().rows.map((row) => (
-                        <tr key={row.id}>
-                            {row.getVisibleCells().map((cell) => (
-                                <td key={cell.id}>
-                                    {flexRender(
-                                        cell.column.columnDef.cell,
-                                        cell.getContext(),
-                                    )}
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
-            <br />
-            <Pagination
-                position="right"
-                total={pageCount}
-                page={current}
-                onChange={setCurrent}
-            />
+            <TableContainer>
+                <Table variant="simple" whiteSpace="pre-line">
+                    <Thead>
+                        {getHeaderGroups().map((headerGroup) => (
+                            <Tr key={headerGroup.id}>
+                                {headerGroup.headers.map((header) => {
+                                    return (
+                                        <Th key={header.id}>
+                                            {!header.isPlaceholder &&
+                                                flexRender(
+                                                    header.column.columnDef
+                                                        .header,
+                                                    header.getContext(),
+                                                )}
+                                        </Th>
+                                    );
+                                })}
+                            </Tr>
+                        ))}
+                    </Thead>
+                    <Tbody>
+                        {getRowModel().rows.map((row) => {
+                            return (
+                                <Tr key={row.id}>
+                                    {row.getVisibleCells().map((cell) => {
+                                        return (
+                                            <Td key={cell.id}>
+                                                {flexRender(
+                                                    cell.column.columnDef.cell,
+                                                    cell.getContext(),
+                                                )}
+                                            </Td>
+                                        );
+                                    })}
+                                </Tr>
+                            );
+                        })}
+                    </Tbody>
+                </Table>
+            </TableContainer>
         </List>
     );
 };
@@ -168,7 +171,7 @@ import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-mantine";
+import { DeleteButton } from "@pankod/refine-chakra-ui";
 
 const MyDeleteComponent = () => {
     return <DeleteButton recordItemId="123" />;
@@ -228,7 +231,7 @@ import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-mantine";
+import { DeleteButton } from "@pankod/refine-chakra-ui";
 
 const MyDeleteComponent = () => {
     return (
@@ -294,7 +297,7 @@ import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-mantine";
+import { DeleteButton } from "@pankod/refine-chakra-ui";
 
 const MyDeleteComponent = () => {
     return (
@@ -357,7 +360,7 @@ import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-mantine";
+import { DeleteButton } from "@pankod/refine-chakra-ui";
 
 const MyDeleteComponent = () => {
     return <DeleteButton recordItemId="1" mutationMode="undoable" />;
@@ -383,6 +386,7 @@ const App = () => {
     return (
         <Refine
             dataProvider={customDataProvider}
+            notificationProvider={RefineChakra.notificationProvider()}
             resources={[
                 {
                     name: "posts",
@@ -410,7 +414,7 @@ import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-mantine";
+import { DeleteButton } from "@pankod/refine-chakra-ui";
 
 const MyDeleteComponent = () => {
     return <DeleteButton recordItemId="1" hideText />;
@@ -458,7 +462,7 @@ render(
 This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
-import { DeleteButton } from "@pankod/refine-mantine";
+import { DeleteButton } from "@pankod/refine-chakra-ui";
 
 export const MyListComponent = () => {
     return <DeleteButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
@@ -475,7 +479,7 @@ import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { DeleteButton } from "@pankod/refine-mantine";
+import { DeleteButton } from "@pankod/refine-chakra-ui";
 
 const MyDeleteComponent = () => {
     return (
@@ -531,4 +535,4 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/DeleteButton" />
+<PropsTable module="@pankod/refine-chakra-ui/DeleteButton" />
