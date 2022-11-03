@@ -23,7 +23,7 @@ const GithubFloatingCta: FC = () => {
     if (isClosed) return null;
 
     return (
-        <div className="font-montserrat shadow-githubFloatingCta sticky bottom-0 mx-auto flex h-[48px] w-full items-center bg-[#2A2A42] px-3 text-xs font-bold text-white sm:bottom-[32px] sm:w-[350px] sm:rounded-3xl z-[999]">
+        <div className="font-montserrat shadow-githubFloatingCta fixed bottom-0 mx-auto flex h-[48px] w-full items-center bg-[#2A2A42] px-3 text-xs font-bold text-white left-0 right-0 sm:bottom-[32px] sm:w-[350px] sm:rounded-3xl z-[999]">
             <div className="ml-4">Star us on GitHub</div>
             {/* eslint-disable-next-line react/jsx-no-target-blank */}
             <a
