@@ -13,13 +13,20 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider
-            theme={RefineChakra.refineTheme}
-        >
+        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
         </RefineChakra.ChakraProvider>
     );
 };
+
+const DummyListPage = () => (
+    <RefineChakra.VStack alignItems="flex-start">
+        <RefineChakra.Text>This page is empty.</RefineChakra.Text>
+        <EditButton colorScheme="black" recordItemId="123">
+            Edit Item 123
+        </EditButton>
+    </RefineChakra.VStack>
+);
 
 interface ICategory {
     id: number;
@@ -142,14 +149,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -197,14 +197,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -254,14 +247,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -340,14 +326,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -428,7 +407,16 @@ import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
 import { useModalForm } from "@pankod/refine-react-hook-form";
-import { Edit, Modal, Button, ModalOverlay, ModalContent, ModalCloseButton,ModalHeader, ModalBody } from "@pankod/refine-chakra-ui";
+import {
+    Edit,
+    Modal,
+    Button,
+    ModalOverlay,
+    ModalContent,
+    ModalCloseButton,
+    ModalHeader,
+    ModalBody,
+} from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
     const {
@@ -441,11 +429,7 @@ const PostEdit: React.FC = () => {
     return (
         <div>
             <Button onClick={() => show()}>Edit Button</Button>
-            <Modal
-                isOpen={visible}
-                onClose={close}
-                size="xl"
-            >
+            <Modal isOpen={visible} onClose={close} size="xl">
                 <ModalOverlay />
                 <ModalContent>
                     <ModalCloseButton />
@@ -458,7 +442,6 @@ const PostEdit: React.FC = () => {
                         </Edit>
                     </ModalBody>
                 </ModalContent>
-                
             </Modal>
         </div>
     );
@@ -512,9 +495,14 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit, Input, FormControl, FormLabel, FormErrorMessage } from "@pankod/refine-chakra-ui";
+import {
+    Edit,
+    Input,
+    FormControl,
+    FormLabel,
+    FormErrorMessage,
+} from "@pankod/refine-chakra-ui";
 import { useForm } from "@pankod/refine-react-hook-form";
-
 
 const PostEdit: React.FC = () => {
     const {
@@ -556,14 +544,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -642,14 +623,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -695,14 +669,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -740,11 +707,7 @@ const PostEdit: React.FC = () => {
         <Edit
             // highlight-start
             breadcrumb={
-                <Box
-                    borderColor="blue"
-                    borderStyle="dashed"
-                    borderWidth="2px"
-                >
+                <Box borderColor="blue" borderStyle="dashed" borderWidth="2px">
                     <Breadcrumb />
                 </Box>
             }
@@ -765,14 +728,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -828,14 +784,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -890,14 +839,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -953,14 +895,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -994,9 +929,7 @@ const PostEdit: React.FC = () => {
             headerButtons={({ defaultButtons }) => (
                 <HStack>
                     {defaultButtons}
-                    <Button colorScheme="red">
-                        Custom Button
-                    </Button>
+                    <Button colorScheme="red">Custom Button</Button>
                 </HStack>
             )}
             // highlight-end
@@ -1016,14 +949,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -1084,14 +1010,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -1123,14 +1042,16 @@ const PostEdit: React.FC = () => {
         <Edit
             // highlight-start
             footerButtons={({ defaultButtons }) => (
-                <HStack 
+                <HStack
                     borderColor="blue"
                     borderStyle="dashed"
-                    borderWidth="2px" 
+                    borderWidth="2px"
                     p="2"
                 >
                     {defaultButtons}
-                    <Button colorScheme="red" variant="solid">Custom Button</Button>
+                    <Button colorScheme="red" variant="solid">
+                        Custom Button
+                    </Button>
                 </HStack>
             )}
             // highlight-end
@@ -1150,14 +1071,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -1214,14 +1128,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
