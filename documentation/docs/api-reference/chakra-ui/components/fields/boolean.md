@@ -9,25 +9,17 @@ const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
     routerProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    notificationProvider: RefineMantine.notificationProvider,
-    Layout: RefineMantine.Layout,
+    Layout: RefineChakra.Layout,
     Sider: () => null,
 });
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
+        <RefineChakra.ChakraProvider
+            theme={RefineChakra.refineTheme}
         >
-            <RefineMantine.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <RefineMantine.NotificationsProvider position="top-right">
-                {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+            {children}
+        </RefineChakra.ChakraProvider>
     );
 };
 
@@ -69,20 +61,20 @@ const IconCheck = (
 );
 ```
 
-This field is used to display boolean values. It uses the [`<Tooltip>`](https://mantine.dev/core/tooltip/) values from Mantine.
+This field is used to display boolean values. It uses the [`<Tooltip>`](https://chakra-ui.com/docs/components/tooltip/usage) values from Chakra UI.
 
 ## Usage
 
 Let's see how we can use `<BooleanField>` with the example in the post list.
 
-```tsx live url=http://localhost:3000 previewHeight=420px hideCode
+```tsx live url=http://localhost:3000/posts previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
 import { Refine } from "@pankod/refine-core";
+import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { List, Table, Pagination, BooleanField } from "@pankod/refine-mantine";
+import { List, DateField, TableContainer, Table, Thead, Tr, Th, Tbody, Td, HStack, Box, BooleanField } from "@pankod/refine-chakra-ui";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
-import { IconX, IconCheck } from "@tabler/icons";
 
 const PostList: React.FC = () => {
     const columns = React.useMemo<ColumnDef<IPost>[]>(
@@ -129,60 +121,71 @@ const PostList: React.FC = () => {
 
     return (
         <List>
-            <Table>
-                <thead>
-                    {getHeaderGroups().map((headerGroup) => (
-                        <tr key={headerGroup.id}>
-                            {headerGroup.headers.map((header) => (
-                                <th key={header.id}>
-                                    {header.isPlaceholder
-                                        ? null
-                                        : flexRender(
-                                              header.column.columnDef.header,
-                                              header.getContext(),
-                                          )}
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody>
-                    {getRowModel().rows.map((row) => (
-                        <tr key={row.id}>
-                            {row.getVisibleCells().map((cell) => (
-                                <td key={cell.id}>
-                                    {flexRender(
-                                        cell.column.columnDef.cell,
-                                        cell.getContext(),
-                                    )}
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
-            <br />
-            <Pagination
-                position="right"
-                total={pageCount}
-                page={current}
-                onChange={setCurrent}
-            />
+            <TableContainer>
+                <Table variant="simple" whiteSpace="pre-line">
+                    <Thead>
+                        {getHeaderGroups().map((headerGroup) => (
+                            <Tr key={headerGroup.id}>
+                                {headerGroup.headers.map((header) => {
+                                    return (
+                                        <Th key={header.id}>
+                                            {!header.isPlaceholder && (
+                                                <HStack spacing="xs">
+                                                    <Box>
+                                                        {flexRender(
+                                                            header.column
+                                                                .columnDef
+                                                                .header,
+                                                            header.getContext(),
+                                                        )}
+                                                    </Box>
+                                                </HStack>
+                                            )}
+                                        </Th>
+                                    );
+                                })}
+                            </Tr>
+                        ))}
+                    </Thead>
+                    <Tbody>
+                        {getRowModel().rows.map((row) => {
+                            return (
+                                <Tr key={row.id}>
+                                    {row.getVisibleCells().map((cell) => {
+                                        return (
+                                            <Td key={cell.id}>
+                                                {flexRender(
+                                                    cell.column.columnDef.cell,
+                                                    cell.getContext(),
+                                                )}
+                                            </Td>
+                                        );
+                                    })}
+                                </Tr>
+                            );
+                        })}
+                    </Tbody>
+                </Table>
+            </TableContainer>
         </List>
     );
 };
-
-interface IPost {
-    id: number;
-    title: string;
-    status: "published" | "draft" | "rejected";
-}
 // visible-block-end
 
 const App = () => {
-    return <Refine resources={[{ name: "posts", list: PostList }]} />;
+    return (
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            resources={[
+                {
+                    name: "posts",
+                    list: PostList,
+                },
+            ]}
+        />
+    );
 };
-
 render(
     <Wrapper>
         <App />
@@ -194,8 +197,8 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/BooleanField" title-description="The text shown in the tooltip" title-default="`value` ? `valueLabelTrue` : `valueLabelFalse`" trueIcon-default="[`<IconCheck />`](https://tabler-icons.io/i/check)" falseIcon-default="[`<IconX />`](https://tabler-icons.io/i/x)" />
+<PropsTable module="@pankod/refine-chakra-ui/BooleanField" title-description="The text shown in the tooltip" title-default="`value` ? `valueLabelTrue` : `valueLabelFalse`" trueIcon-default="[`<IconCheck />`](https://tabler-icons.io/i/check)" falseIcon-default="[`<IconX />`](https://tabler-icons.io/i/x)" />
 
 :::tip External Props
-It also accepts all props of Mantine [Tooltip](https://mantine.dev/core/tooltip/?t=props).
+It also accepts all props of Chakra UI [Tooltip](https://chakra-ui.com/docs/components/tooltip/usage).
 :::
