@@ -9,26 +9,17 @@ const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
     routerProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    Layout: RefineMantine.Layout,
+    Layout: RefineChakra.Layout,
     Sider: () => null,
     DashboardPage: () => <p>Dashboard Page</p>,
-    notificationProvider: RefineMantine.notificationProvider,
+    notificationProvider: RefineChakra.notificationProvider,
 });
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <RefineMantine.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <RefineMantine.NotificationsProvider position="top-right">
-                {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+            {children}
+        </RefineChakra.ChakraProvider>
     );
 };
 
@@ -56,7 +47,7 @@ const PostIcon = (
 );
 ```
 
-A breadcrumb displays the current location within a hierarchy. It allows going back to states higher up in the hierarchy. `<Breadcrumb>` component built with Mantine [Breadcrumb][mantine-breadcrumb] components using the [`useBreadcrumb`](/api-reference/core/hooks/useBreadcrumb.md) hook.
+A breadcrumb displays the current location within a hierarchy. It allows going back to states higher up in the hierarchy. `<Breadcrumb>` component built with Chakra UI [Breadcrumb][chakra-ui-breadcrumb] components using the [`useBreadcrumb`](/api-reference/core/hooks/useBreadcrumb.md) hook.
 
 :::info
 You can refer to the [source-code][source-code] of the `<Breadcrumb>` component to see how it is built. You can also create your custom breadcrumb component inspired by the source code.
@@ -66,15 +57,15 @@ You can refer to the [source-code][source-code] of the `<Breadcrumb>` component 
 
 ### `breadcrumbProps`
 
-`<Breadcrumb>` component uses the Mantine [Breadcrumb][mantine-breadcrumb] component so it can be configured with the `breadcrumbProps` property.
+`<Breadcrumb>` component uses the Chakra UI [Breadcrumb][chakra-ui-breadcrumb] component so it can be configured with the `breadcrumbProps` property.
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@pankod/refine-chakra-ui";
 
 // visible-block-start
-import { Show, Breadcrumb } from "@pankod/refine-mantine";
+import { Show, Breadcrumb } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
     return (
@@ -96,12 +87,14 @@ const App = () => {
                     name: "posts",
                     show: PostShow,
                     list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
+                        <RefineChakra.VStack>
+                            <RefineChakra.Text>
+                                This page is empty.
+                            </RefineChakra.Text>
+                            <ShowButton bg="white" recordItemId="123">
                                 Show Item 123
                             </ShowButton>
-                        </div>
+                        </RefineChakra.VStack>
                     ),
                     icon: PostIcon,
                 },
@@ -123,10 +116,10 @@ If your application has a [DashboardPage](/api-reference/core/components/refine-
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@pankod/refine-chakra-ui";
 
 // visible-block-start
-import { Show, Breadcrumb } from "@pankod/refine-mantine";
+import { Show, Breadcrumb } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
     return (
@@ -148,12 +141,14 @@ const App = () => {
                     name: "posts",
                     show: PostShow,
                     list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
+                        <RefineChakra.VStack>
+                            <RefineChakra.Text>
+                                This page is empty.
+                            </RefineChakra.Text>
+                            <ShowButton bg="white" recordItemId="123">
                                 Show Item 123
                             </ShowButton>
-                        </div>
+                        </RefineChakra.VStack>
                     ),
                     icon: PostIcon,
                 },
@@ -175,10 +170,10 @@ If you don't want to show the resource icons on the breadcrumb, you can set `hid
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@pankod/refine-chakra-ui";
 
 // visible-block-start
-import { Show, Breadcrumb } from "@pankod/refine-mantine";
+import { Show, Breadcrumb } from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
     return (
@@ -200,12 +195,14 @@ const App = () => {
                     name: "posts",
                     show: PostShow,
                     list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
+                        <RefineChakra.VStack>
+                            <RefineChakra.Text>
+                                This page is empty.
+                            </RefineChakra.Text>
+                            <ShowButton bg="white" recordItemId="123">
                                 Show Item 123
                             </ShowButton>
-                        </div>
+                        </RefineChakra.VStack>
                     ),
                     icon: PostIcon,
                 },
@@ -224,7 +221,7 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/Breadcrumb" />
+<PropsTable module="@pankod/refine-chakra-ui/Breadcrumb" />
 
-[mantine-breadcrumb]: https://mantine.dev/core/breadcrumbs/
-[source-code]: https://github.com/refinedev/refine/blob/master/packages/mantine/src/components/breadcrumb/index.tsx
+[chakra-ui-breadcrumb]: https://chakra-ui.com/docs/components/breadcrumb/usage
+[source-code]: https://github.com/refinedev/refine/blob/master/packages/chakra-ui/src/components/breadcrumb/index.tsx
