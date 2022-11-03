@@ -240,7 +240,7 @@ describe("useLogout Hook", () => {
         });
     });
 
-    it("logout and not redirect to resolved custom path", async () => {
+    it("logout and redirect to resolved custom path", async () => {
         const { result } = renderHook(() => useLogout(), {
             wrapper: TestWrapper({
                 authProvider: {
