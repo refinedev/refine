@@ -63,8 +63,6 @@ import {
     Th,
     Tbody,
     Td,
-    HStack,
-    Box,
     ShowButton,
 } from "@pankod/refine-chakra-ui";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
@@ -121,18 +119,12 @@ const PostList: React.FC = () => {
                                 {headerGroup.headers.map((header) => {
                                     return (
                                         <Th key={header.id}>
-                                            {!header.isPlaceholder && (
-                                                <HStack spacing="xs">
-                                                    <Box>
-                                                        {flexRender(
-                                                            header.column
-                                                                .columnDef
-                                                                .header,
-                                                            header.getContext(),
-                                                        )}
-                                                    </Box>
-                                                </HStack>
-                                            )}
+                                            {!header.isPlaceholder &&
+                                                flexRender(
+                                                    header.column.columnDef
+                                                        .header,
+                                                    header.getContext(),
+                                                )}
                                         </Th>
                                     );
                                 })}
