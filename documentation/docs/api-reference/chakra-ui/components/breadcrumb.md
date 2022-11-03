@@ -12,7 +12,6 @@ setRefineProps({
     Layout: RefineChakra.Layout,
     Sider: () => null,
     DashboardPage: () => <p>Dashboard Page</p>,
-    notificationProvider: RefineChakra.notificationProvider,
 });
 
 const Wrapper = ({ children }) => {
