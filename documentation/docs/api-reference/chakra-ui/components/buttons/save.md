@@ -23,7 +23,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-`<SaveButton>` uses Chakra UI [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses it for presantation purposes only. Some of the hooks that **refine** has adds features to this button.
+`<SaveButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses it for presantation purposes only. Some of the hooks that **refine** has adds features to this button.
 
 ## Usage
 

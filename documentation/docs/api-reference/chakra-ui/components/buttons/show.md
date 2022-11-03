@@ -45,7 +45,7 @@ const ShowPage = () => {
 };
 ```
 
-`<ShowButton>` uses Chakra UI [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `show` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the show page with the record id route of resource.
+`<ShowButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `show` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the show page with the record id route of resource.
 
 ## Usage
 

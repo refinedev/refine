@@ -13,13 +13,18 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider
-            theme={RefineChakra.refineTheme}
-        >
+        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
         </RefineChakra.ChakraProvider>
     );
 };
+
+const DummyListPage = () => (
+    <RefineChakra.VStack alignItems="flex-start">
+        <RefineChakra.Text>This page is empty.</RefineChakra.Text>
+        <CreateButton colorScheme="black" />
+    </RefineChakra.VStack>
+);
 
 interface ICategory {
     id: number;
@@ -131,12 +136,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -182,12 +182,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -233,12 +228,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -335,12 +325,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -384,12 +369,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -426,11 +406,7 @@ const PostCreate: React.FC = () => {
         <Create
             // highlight-start
             breadcrumb={
-                <Box
-                    borderColor="blue"
-                    borderStyle="dashed"
-                    borderWidth="2px"
-                >
+                <Box borderColor="blue" borderStyle="dashed" borderWidth="2px">
                     <Breadcrumb />
                 </Box>
             }
@@ -450,12 +426,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -508,12 +479,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -566,12 +532,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -624,12 +585,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -667,7 +623,9 @@ const PostCreate: React.FC = () => {
                     p="2"
                 >
                     {defaultButtons}
-                    <Button colorScheme="red" variant="solid">Custom Button</Button>
+                    <Button colorScheme="red" variant="solid">
+                        Custom Button
+                    </Button>
                 </Box>
             )}
             // highlight-end
@@ -686,12 +644,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -745,12 +698,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -781,14 +729,16 @@ const PostCreate: React.FC = () => {
         <Create
             // highlight-start
             footerButtons={({ defaultButtons }) => (
-                <HStack 
+                <HStack
                     borderColor="blue"
                     borderStyle="dashed"
-                    borderWidth="2px" 
+                    borderWidth="2px"
                     p="2"
                 >
                     {defaultButtons}
-                    <Button colorScheme="red" variant="solid">Custom Button</Button>
+                    <Button colorScheme="red" variant="solid">
+                        Custom Button
+                    </Button>
                 </HStack>
             )}
             // highlight-end
@@ -807,12 +757,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -867,12 +812,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />

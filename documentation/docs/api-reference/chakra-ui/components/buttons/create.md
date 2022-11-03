@@ -16,9 +16,7 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider
-            theme={RefineChakra.refineTheme}
-        >
+        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
         </RefineChakra.ChakraProvider>
     );
@@ -29,25 +27,25 @@ const CreatePage = () => {
     const params = RefineCore.useRouterContext().useParams();
 
     return (
-        <RefineChakra.Box>
-            <RefineChakra.Text italic color="dimmed" size="sm">
+        <RefineChakra.VStack alignItems="flex-start">
+            <RefineChakra.Text as="i" color="gray.700" fontSize="sm">
                 URL Parameters:
             </RefineChakra.Text>
             <RefineChakra.Code>{JSON.stringify(params)}</RefineChakra.Code>
 
             <RefineChakra.Button
                 size="sm"
-                colorScheme="green"
                 onClick={() => list("posts")}
+                colorScheme="green"
             >
                 Go back
             </RefineChakra.Button>
-        </RefineChakra.Box>
+        </RefineChakra.VStack>
     );
 };
 ```
 
-`<CreateButton>` uses Mantine [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `create` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the create page route of resource.
+`<CreateButton>` uses UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `create` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful to redirect the app to the create page route of resource.
 
 ## Usage
 
@@ -56,7 +54,18 @@ setInitialRoutes(["/posts"]);
 import { Refine } from "@pankod/refine-core";
 
 // visible-block-start
-import { List, TableContainer, Table, Thead, Tr, Th, Tbody, Td, HStack, Box, CreateButton } from "@pankod/refine-chakra-ui";
+import {
+    List,
+    TableContainer,
+    Table,
+    Thead,
+    Tr,
+    Th,
+    Tbody,
+    Td,
+    // highlight-next-line
+    CreateButton,
+} from "@pankod/refine-chakra-ui";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 const PostList: React.FC = () => {
@@ -76,10 +85,7 @@ const PostList: React.FC = () => {
         [],
     );
 
-    const {
-        getHeaderGroups,
-        getRowModel,
-    } = useTable({
+    const { getHeaderGroups, getRowModel } = useTable({
         columns,
     });
 
@@ -94,18 +100,12 @@ const PostList: React.FC = () => {
                                 {headerGroup.headers.map((header) => {
                                     return (
                                         <Th key={header.id}>
-                                            {!header.isPlaceholder && (
-                                                <HStack spacing="xs">
-                                                    <Box>
-                                                        {flexRender(
-                                                            header.column
-                                                                .columnDef
-                                                                .header,
-                                                            header.getContext(),
-                                                        )}
-                                                    </Box>
-                                                </HStack>
-                                            )}
+                                            {!header.isPlaceholder &&
+                                                flexRender(
+                                                    header.column.columnDef
+                                                        .header,
+                                                    header.getContext(),
+                                                )}
                                         </Th>
                                     );
                                 })}
@@ -145,6 +145,7 @@ interface IPost {
 const App = () => {
     return (
         <Refine
+            notificationProvider={RefineChakra.notificationProvider()}
             resources={[
                 {
                     name: "posts",
@@ -177,7 +178,12 @@ import { Refine } from "@pankod/refine-core";
 import { CreateButton } from "@pankod/refine-chakra-ui";
 
 const MyCreateComponent = () => {
-    return <CreateButton resourceNameOrRouteName="categories" />;
+    return (
+        <CreateButton
+            colorScheme="black"
+            resourceNameOrRouteName="categories"
+        />
+    );
 };
 // visible-block-end
 
@@ -221,7 +227,7 @@ import { Refine } from "@pankod/refine-core";
 import { CreateButton } from "@pankod/refine-chakra-ui";
 
 const MyCreateComponent = () => {
-    return <CreateButton hideText />;
+    return <CreateButton colorScheme="black" hideText />;
 };
 // visible-block-end
 
@@ -255,7 +261,11 @@ This prop can be used to skip access control check with its `enabled` property o
 import { CreateButton } from "@pankod/refine-chakra-ui";
 
 export const MyListComponent = () => {
-    return <CreateButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+    return (
+        <CreateButton
+            accessControl={{ enabled: true, hideIfUnauthorized: true }}
+        />
+    );
 };
 ```
 

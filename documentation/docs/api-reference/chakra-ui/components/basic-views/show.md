@@ -13,13 +13,20 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider
-            theme={RefineChakra.refineTheme}
-        >
+        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
         </RefineChakra.ChakraProvider>
     );
 };
+
+const DummyListPage = () => (
+    <RefineChakra.VStack alignItems="flex-start">
+        <RefineChakra.Text>This page is empty.</RefineChakra.Text>
+        <ShowButton colorScheme="black" recordItemId="123">
+            Show Item 123
+        </ShowButton>
+    </RefineChakra.VStack>
+);
 
 interface ICategory {
     id: number;
@@ -104,20 +111,14 @@ const PostShow: React.FC<IResourceComponentsProps> = () => {
 const App = () => {
     return (
         <Refine
+            notificationProvider={RefineChakra.notificationProvider()}
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -165,14 +166,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -305,14 +299,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -340,7 +327,16 @@ import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
 import { useModalForm } from "@pankod/refine-react-hook-form";
-import { Show, Modal, Button, ModalOverlay, ModalContent, ModalCloseButton,ModalHeader, ModalBody } from "@pankod/refine-chakra-ui";
+import {
+    Show,
+    Modal,
+    Button,
+    ModalOverlay,
+    ModalContent,
+    ModalCloseButton,
+    ModalHeader,
+    ModalBody,
+} from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
     const {
@@ -353,11 +349,7 @@ const PostShow: React.FC = () => {
     return (
         <div>
             <Button onClick={() => show()}>Edit Button</Button>
-            <Modal
-                isOpen={visible}
-                onClose={close}
-                size="xl"
-            >
+            <Modal isOpen={visible} onClose={close} size="xl">
                 <ModalOverlay />
                 <ModalContent>
                     <ModalCloseButton />
@@ -370,7 +362,6 @@ const PostShow: React.FC = () => {
                         </Show>
                     </ModalBody>
                 </ModalContent>
-                
             </Modal>
         </div>
     );
@@ -386,14 +377,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -475,14 +459,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -528,14 +505,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -570,11 +540,7 @@ import { Show, Box, Breadcrumb } from "@pankod/refine-chakra-ui";
 
 const CustomBreadcrumb: React.FC = () => {
     return (
-        <Box
-            borderColor="blue"
-            borderStyle="dashed"
-            borderWidth="2px"
-        >
+        <Box borderColor="blue" borderStyle="dashed" borderWidth="2px">
             <Breadcrumb />
         </Box>
     );
@@ -602,14 +568,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -665,14 +624,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -727,14 +679,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -790,14 +735,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -831,9 +769,7 @@ const PostShow: React.FC = () => {
             headerButtons={({ defaultButtons }) => (
                 <HStack>
                     {defaultButtons}
-                    <Button colorScheme="red">
-                        Custom Button
-                    </Button>
+                    <Button colorScheme="red">Custom Button</Button>
                 </HStack>
             )}
             // highlight-end
@@ -853,14 +789,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -921,14 +850,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -960,14 +882,16 @@ const PostShow: React.FC = () => {
         <Show
             // highlight-start
             footerButtons={({ defaultButtons }) => (
-                <HStack 
+                <HStack
                     borderColor="blue"
                     borderStyle="dashed"
-                    borderWidth="2px" 
+                    borderWidth="2px"
                     p="2"
                 >
                     {defaultButtons}
-                    <Button colorScheme="red" variant="solid">Custom Button</Button>
+                    <Button colorScheme="red" variant="solid">
+                        Custom Button
+                    </Button>
                 </HStack>
             )}
             // highlight-end
@@ -987,14 +911,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -1037,11 +954,7 @@ const PostShow: React.FC = () => {
                 },
             }}
             // highlight-end
-            footerButtons={
-                <Button colorScheme="green">
-                    Custom Button
-                </Button>
-            }
+            footerButtons={<Button colorScheme="green">Custom Button</Button>}
         >
             <p>Rest of your page here</p>
         </Show>
@@ -1058,14 +971,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />

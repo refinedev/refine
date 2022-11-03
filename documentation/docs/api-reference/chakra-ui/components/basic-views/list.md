@@ -13,9 +13,7 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider
-            theme={RefineChakra.refineTheme}
-        >
+        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
         </RefineChakra.ChakraProvider>
     );
@@ -46,7 +44,17 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { List, DateField, TableContainer, Table, Thead, Tr, Th, Tbody, Td, HStack, Box } from "@pankod/refine-chakra-ui";
+import {
+    List,
+    DateField,
+    TableContainer,
+    Table,
+    Thead,
+    Tr,
+    Th,
+    Tbody,
+    Td,
+} from "@pankod/refine-chakra-ui";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 const PostList: React.FC = () => {
@@ -99,18 +107,12 @@ const PostList: React.FC = () => {
                                 {headerGroup.headers.map((header) => {
                                     return (
                                         <Th key={header.id}>
-                                            {!header.isPlaceholder && (
-                                                <HStack spacing="xs">
-                                                    <Box>
-                                                        {flexRender(
-                                                            header.column
-                                                                .columnDef
-                                                                .header,
-                                                            header.getContext(),
-                                                        )}
-                                                    </Box>
-                                                </HStack>
-                                            )}
+                                            {!header.isPlaceholder &&
+                                                flexRender(
+                                                    header.column.columnDef
+                                                        .header,
+                                                    header.getContext(),
+                                                )}
                                         </Th>
                                     );
                                 })}
@@ -147,6 +149,7 @@ const App = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            notificationProvider={RefineChakra.notificationProvider()}
             resources={[
                 {
                     name: "posts",
@@ -357,12 +360,7 @@ import { List, Box } from "@pankod/refine-chakra-ui";
 
 const CustomBreadcrumb: React.FC = () => {
     return (
-        <Box
-            borderColor="blue"
-            borderStyle="dashed"
-            borderWidth="2px"
-            p="2"
-        >
+        <Box borderColor="blue" borderStyle="dashed" borderWidth="2px" p="2">
             My Custom Breadcrumb
         </Box>
     );
@@ -534,7 +532,6 @@ const PostList: React.FC = () => {
                 borderStyle: "dashed",
                 borderWidth: "2px",
                 padding: 2,
-
             }}
             // highlight-end
         >
