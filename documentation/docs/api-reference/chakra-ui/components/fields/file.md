@@ -24,7 +24,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-This field is used to display files and it uses the [`<Anchor>`](https://mantine.dev/core/anchor/) component of Mantine.
+This field is used to display files and it uses the [`<Link>`](https://chakra-ui.com/docs/components/link/usage) component of Chakra UI.
 
 ## Usage
 
