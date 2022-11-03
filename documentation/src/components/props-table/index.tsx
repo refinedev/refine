@@ -213,6 +213,7 @@ const PropsTable: React.FC<React.PropsWithChildren<Props>> = ({
     ...overrides
 }) => {
     const data = useDynamicImport(module);
+    console.log(overrides);
 
     const hideRowDefault = useMemo(() => {
         if (hideDefaults) return false;
@@ -234,6 +235,10 @@ const PropsTable: React.FC<React.PropsWithChildren<Props>> = ({
         return null;
     }
 
+    const props = [...Object.values(data.props)];
+
+    console.log(props, overrides);
+
     return (
         <>
             <table className="props-table">
@@ -246,7 +251,7 @@ const PropsTable: React.FC<React.PropsWithChildren<Props>> = ({
                     </tr>
                 </thead>
                 <tbody>
-                    {Object.values(data.props).map((prop) => {
+                    {props.map((prop) => {
                         if (overrides[`${prop.name}-hidden`]) {
                             return null;
                         }

@@ -92,8 +92,7 @@ export const ColumnFilter: React.FC<ColumnButtonProps> = ({ column }) => {
                                 aria-label="Save"
                                 size="sm"
                                 onClick={save}
-                                variant="solid"
-                                colorScheme="primary"
+                                colorScheme="green"
                             >
                                 <IconCheck size={18} />
                             </IconButton>

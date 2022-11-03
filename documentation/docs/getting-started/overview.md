@@ -3,11 +3,15 @@ id: overview
 title: Overview
 ---
 
+
+
 ## What is refine?
 **refine** is a React-based framework for the rapid ✨ development of web applications. 
 It eliminates the repetitive tasks demanded by **CRUD** operations and provides industry standard solutions for critical parts like **authentication**, **access control**, **routing**, **networking**, **state management**, and **i18n**.
 
 **refine** is *headless by design* offering unlimited styling and customization options. 
+
+
 
 ## What do you mean by "headless" ?
 Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components` and `providers`. They are all decoupled from your *UI components* and *business logic*, so they never keep you from customizing your *UI* or coding your own flow.
@@ -16,6 +20,9 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 
 ## Use cases
 **refine** shines on *data-intensive* applications like *admin panels*, *dashboards* and *internal tools*. Thanks to built-in **SSR support**, **refine** can also power *customer-facing* applications like *storefronts*.
+
+<img src="/img/diagram.png" alt="Refine diagram" />
+
 
 ## Key Features
 
