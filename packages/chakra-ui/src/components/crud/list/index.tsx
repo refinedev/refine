@@ -7,14 +7,7 @@ import {
     useRouterContext,
     useTranslate,
 } from "@pankod/refine-core";
-import {
-    Box,
-    Heading,
-    HStack,
-    BoxProps,
-    StackProps,
-    Stack,
-} from "@chakra-ui/react";
+import { Box, Heading, BoxProps } from "@chakra-ui/react";
 
 import { CreateButton, CreateButtonProps } from "@components/buttons";
 import { Breadcrumb } from "@components/breadcrumb";
@@ -22,7 +15,7 @@ import { Breadcrumb } from "@components/breadcrumb";
 export type ListProps = RefineCrudListProps<
     CreateButtonProps,
     BoxProps,
-    StackProps,
+    BoxProps,
     BoxProps,
     BoxProps
 >;
@@ -112,13 +105,19 @@ export const List: React.FC<ListProps> = (props) => {
                 gap="3"
                 {...headerProps}
             >
-                <Stack spacing="0">
+                <Box minW={200}>
                     {breadcrumb}
                     {renderTitle()}
-                </Stack>
-                <HStack spacing="2" {...headerButtonProps}>
+                </Box>
+                <Box
+                    display="flex"
+                    flexWrap="wrap"
+                    justifyContent={{ base: "flex-start", md: "flex-end" }}
+                    gap="2"
+                    {...headerButtonProps}
+                >
                     {headerButtons}
-                </HStack>
+                </Box>
             </Box>
             <Box {...contentProps}>{children}</Box>
         </Box>
