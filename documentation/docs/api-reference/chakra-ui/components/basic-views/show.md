@@ -334,7 +334,7 @@ render(
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=350px
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-chakra-ui";
+import { EditButton } from "@pankod/refine-mantine";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -361,7 +361,7 @@ const PostShow: React.FC = () => {
                 <ModalOverlay />
                 <ModalContent>
                     <ModalCloseButton />
-                    <ModalHeader>Show</ModalHeader>
+                    <ModalHeader>SHow</ModalHeader>
 
                     <ModalBody>
                         {/* highlight-next-line */}
@@ -624,9 +624,9 @@ render(
 
 ### `wrapperProps`
 
-If you want to customize the wrapper of the `<Show/>` component, you can use the `wrapperProps` property. For `@pankod/refine-chakra-ui` wrapper element is `<Box>`s and `wrapperProps` can get every attribute that `<Card>` can get.
+If you want to customize the wrapper of the `<Show/>` component, you can use the `wrapperProps` property. For `@pankod/refine-mantine` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Card>` can get.
 
-[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
+[Refer to the `Card` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/card/)
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
@@ -689,7 +689,7 @@ render(
 
 If you want to customize the header of the `<Show/>` component, you can use the `headerProps` property.
 
-[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
+[Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group/)
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
@@ -751,7 +751,7 @@ render(
 
 If you want to customize the content of the `<Show/>` component, you can use the `contentProps` property.
 
-[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
+[Refer to the `Box` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/box/)
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
@@ -877,7 +877,7 @@ render(
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 
-[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
+[Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group/)
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);

@@ -852,7 +852,7 @@ render(
 
 If you want to customize the header of the `<Edit/>` component, you can use the `headerProps` property.
 
-[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
+[Refer to the `Box` documentation from Mantine for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
@@ -1040,7 +1040,7 @@ render(
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 
-[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
+[Refer to the `Box` documentation from Mantine for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
