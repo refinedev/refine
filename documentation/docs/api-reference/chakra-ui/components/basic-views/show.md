@@ -13,9 +13,7 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider
-            theme={RefineChakra.refineTheme}
-        >
+        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
         </RefineChakra.ChakraProvider>
     );
@@ -340,7 +338,16 @@ import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
 import { useModalForm } from "@pankod/refine-react-hook-form";
-import { Show, Modal, Button, ModalOverlay, ModalContent, ModalCloseButton,ModalHeader, ModalBody } from "@pankod/refine-chakra-ui";
+import {
+    Show,
+    Modal,
+    Button,
+    ModalOverlay,
+    ModalContent,
+    ModalCloseButton,
+    ModalHeader,
+    ModalBody,
+} from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC = () => {
     const {
@@ -353,11 +360,7 @@ const PostShow: React.FC = () => {
     return (
         <div>
             <Button onClick={() => show()}>Edit Button</Button>
-            <Modal
-                isOpen={visible}
-                onClose={close}
-                size="xl"
-            >
+            <Modal isOpen={visible} onClose={close} size="xl">
                 <ModalOverlay />
                 <ModalContent>
                     <ModalCloseButton />
@@ -370,7 +373,6 @@ const PostShow: React.FC = () => {
                         </Show>
                     </ModalBody>
                 </ModalContent>
-                
             </Modal>
         </div>
     );
@@ -453,13 +455,36 @@ import { ShowButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
+const IconMoodSmile = (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="icon icon-tabler icon-tabler-mood-smile"
+        width={24}
+        height={24}
+        viewBox="0 0 24 24"
+        strokeWidth="2"
+        stroke="currentColor"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <circle cx={12} cy={12} r={9}></circle>
+        <line x1={9} y1={10} x2="9.01" y2={10}></line>
+        <line x1={15} y1={10} x2="15.01" y2={10}></line>
+        <path d="M9.5 15a3.5 3.5 0 0 0 5 0"></path>
+    </svg>
+);
+
 // visible-block-start
 import { Show } from "@pankod/refine-chakra-ui";
+/* highlight-next-line */
+import { IconMoodSmile } from "@tabler/icons";
 
 const PostShow: React.FC = () => {
     return (
         /* highlight-next-line */
-        <Show goBack="😊">
+        <Show goBack={IconMoodSmile}>
             <p>Rest of your page here</p>
         </Show>
     );
@@ -570,11 +595,7 @@ import { Show, Box, Breadcrumb } from "@pankod/refine-chakra-ui";
 
 const CustomBreadcrumb: React.FC = () => {
     return (
-        <Box
-            borderColor="blue"
-            borderStyle="dashed"
-            borderWidth="2px"
-        >
+        <Box borderColor="blue" borderStyle="dashed" borderWidth="2px">
             <Breadcrumb />
         </Box>
     );
@@ -831,9 +852,7 @@ const PostShow: React.FC = () => {
             headerButtons={({ defaultButtons }) => (
                 <HStack>
                     {defaultButtons}
-                    <Button colorScheme="red">
-                        Custom Button
-                    </Button>
+                    <Button colorScheme="red">Custom Button</Button>
                 </HStack>
             )}
             // highlight-end
@@ -960,14 +979,16 @@ const PostShow: React.FC = () => {
         <Show
             // highlight-start
             footerButtons={({ defaultButtons }) => (
-                <HStack 
+                <HStack
                     borderColor="blue"
                     borderStyle="dashed"
-                    borderWidth="2px" 
+                    borderWidth="2px"
                     p="2"
                 >
                     {defaultButtons}
-                    <Button colorScheme="red" variant="solid">Custom Button</Button>
+                    <Button colorScheme="red" variant="solid">
+                        Custom Button
+                    </Button>
                 </HStack>
             )}
             // highlight-end
@@ -1037,11 +1058,7 @@ const PostShow: React.FC = () => {
                 },
             }}
             // highlight-end
-            footerButtons={
-                <Button colorScheme="green">
-                    Custom Button
-                </Button>
-            }
+            footerButtons={<Button colorScheme="green">Custom Button</Button>}
         >
             <p>Rest of your page here</p>
         </Show>

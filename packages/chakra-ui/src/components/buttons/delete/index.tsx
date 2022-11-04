@@ -127,7 +127,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                     </IconButton>
                 ) : (
                     <Button
-                        color="red"
+                        colorScheme="red"
                         variant="outline"
                         onClick={() => setOpened((o) => !o)}
                         disabled={isLoading || data?.can === false}

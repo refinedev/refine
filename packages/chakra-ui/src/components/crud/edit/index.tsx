@@ -16,8 +16,6 @@ import {
     HStack,
     IconButton,
     Spinner,
-    Stack,
-    StackProps,
 } from "@chakra-ui/react";
 import { IconArrowLeft } from "@tabler/icons";
 
@@ -35,7 +33,7 @@ export type EditProps = RefineCrudEditProps<
     SaveButtonProps,
     DeleteButtonProps,
     BoxProps,
-    StackProps,
+    BoxProps,
     BoxProps,
     BoxProps,
     BoxProps
@@ -207,16 +205,22 @@ export const Edit: React.FC<EditProps> = (props) => {
                 gap="3"
                 {...headerProps}
             >
-                <Stack spacing="0">
+                <Box minW={200}>
                     {breadcrumb}
                     <HStack spacing={2}>
                         {buttonBack}
                         {renderTitle()}
                     </HStack>
-                </Stack>
-                <HStack spacing="2" {...headerButtonProps}>
+                </Box>
+                <Box
+                    display="flex"
+                    flexWrap="wrap"
+                    justifyContent={{ base: "flex-start", md: "flex-end" }}
+                    gap="2"
+                    {...headerButtonProps}
+                >
                     {headerButtons}
-                </HStack>
+                </Box>
             </Box>
             <Box opacity={isLoading ? 0.5 : undefined} {...contentProps}>
                 {children}
@@ -224,7 +228,7 @@ export const Edit: React.FC<EditProps> = (props) => {
             <Box
                 display="flex"
                 justifyContent="flex-end"
-                spacing="2"
+                gap="2"
                 mt={8}
                 {...footerButtonProps}
             >
