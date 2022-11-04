@@ -23,7 +23,7 @@ import {
 } from "@chakra-ui/react";
 import { useForm } from "@pankod/refine-react-hook-form";
 
-import { layoutStyles, cardStyles } from "../styles";
+import { layoutProps, cardProps } from "../styles";
 import { FormPropsType } from "../..";
 
 type RegisterProps = RegisterPageProps<
@@ -83,8 +83,9 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         return null;
     };
 
+    const allContentProps = { ...cardProps, ...contentProps };
     const content = (
-        <Box style={cardStyles} {...contentProps}>
+        <Box bg="chakra-body-bg" {...allContentProps}>
             <Heading mb="8" textAlign="center" size="lg">
                 {translate("pages.register.title", "Sign up for your account")}
             </Heading>
@@ -161,8 +162,9 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         </Box>
     );
 
+    const allWrapperProps = { ...layoutProps, ...wrapperProps };
     return (
-        <Box style={layoutStyles} {...wrapperProps}>
+        <Box {...allWrapperProps}>
             {renderContent ? renderContent(content) : content}
         </Box>
     );
