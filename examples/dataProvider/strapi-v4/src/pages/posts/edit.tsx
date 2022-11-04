@@ -16,18 +16,12 @@ import {
     mediaUploadMapper,
 } from "@pankod/refine-strapi-v4";
 
-import ReactMarkdown from "react-markdown";
-import ReactMde from "react-mde";
-import "react-mde/lib/styles/css/react-mde-all.css";
+import MDEditor from "@uiw/react-md-editor";
 
 import { TOKEN_KEY, API_URL } from "../../constants";
 import { ICategory, IPost } from "interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
-        "write",
-    );
-
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
         metaData: { populate: ["category", "cover"] },
     });
@@ -91,15 +85,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <ReactMde
-                        selectedTab={selectedTab}
-                        onTabChange={setSelectedTab}
-                        generateMarkdownPreview={(markdown) =>
-                            Promise.resolve(
-                                <ReactMarkdown>{markdown}</ReactMarkdown>,
-                            )
-                        }
-                    />
+                    <MDEditor data-color-mode="light" />
                 </Form.Item>
                 <Form.Item label="Cover">
                     <Form.Item

@@ -36,18 +36,13 @@ import {
     TablePagination,
 } from "@pankod/refine-mui";
 import { useForm, Controller } from "@pankod/refine-react-hook-form";
-import ReactMarkdown from "react-markdown";
-import ReactMde from "react-mde";
 
-import "react-mde/lib/styles/css/react-mde-all.css";
+import ReactMarkdown from "react-markdown";
+import MDEditor from "@uiw/react-md-editor";
 
 import { IPost, ICategory } from "interfaces";
 
 export const PostList: React.FC = () => {
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
-        "write",
-    );
-
     const {
         refineCore: { onFinish, id, setId },
         register,
@@ -298,22 +293,11 @@ export const PostList: React.FC = () => {
                                 control={control}
                                 name="content"
                                 rules={{ required: "Content is required" }}
-                                render={({
-                                    field: { onChange, ref, value },
-                                }) => (
-                                    <ReactMde
-                                        ref={ref}
+                                render={({ field: { onChange, value } }) => (
+                                    <MDEditor
                                         value={value}
                                         onChange={onChange}
-                                        selectedTab={selectedTab}
-                                        onTabChange={setSelectedTab}
-                                        generateMarkdownPreview={(markdown) =>
-                                            Promise.resolve(
-                                                <ReactMarkdown>
-                                                    {markdown}
-                                                </ReactMarkdown>,
-                                            )
-                                        }
+                                        data-color-mode="light"
                                     />
                                 )}
                             />
@@ -322,7 +306,7 @@ export const PostList: React.FC = () => {
                 </>
             );
         },
-        [options, selectedTab],
+        [options],
     );
 
     const EnhancedTableToolbar = (props: {

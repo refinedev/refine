@@ -10,10 +10,7 @@ import {
     useSelect,
 } from "@pankod/refine-antd";
 
-import ReactMarkdown from "react-markdown";
-import ReactMde from "react-mde";
-
-import "react-mde/lib/styles/css/react-mde-all.css";
+import MDEditor from "@uiw/react-md-editor";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -25,10 +22,6 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         resource: "categories",
         defaultValue: postData?.category,
     });
-
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
-        "write",
-    );
 
     return (
         <Edit saveButtonProps={saveButtonProps}>
@@ -91,15 +84,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <ReactMde
-                        selectedTab={selectedTab}
-                        onTabChange={setSelectedTab}
-                        generateMarkdownPreview={(markdown) =>
-                            Promise.resolve(
-                                <ReactMarkdown>{markdown}</ReactMarkdown>,
-                            )
-                        }
-                    />
+                    <MDEditor data-color-mode="light" />
                 </Form.Item>
             </Form>
         </Edit>

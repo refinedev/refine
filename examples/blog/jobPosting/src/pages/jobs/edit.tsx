@@ -10,17 +10,11 @@ import {
     Select,
 } from "@pankod/refine";
 
-import ReactMarkdown from "react-markdown";
-import ReactMde from "react-mde";
-
-import "react-mde/lib/styles/css/react-mde-all.css";
+import MDEditor from "@uiw/react-md-editor";
 
 import { ICompany } from "interfaces";
 
 export const JobEdit: React.FC<IResourceComponentsProps> = () => {
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
-        "write",
-    );
     const { formProps, saveButtonProps } = useForm<ICompany>();
 
     const { selectProps: companySelectProps } = useSelect<ICompany>({
@@ -57,15 +51,7 @@ export const JobEdit: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item label="Content" name="content">
-                    <ReactMde
-                        selectedTab={selectedTab}
-                        onTabChange={setSelectedTab}
-                        generateMarkdownPreview={(markdown) =>
-                            Promise.resolve(
-                                <ReactMarkdown>{markdown}</ReactMarkdown>,
-                            )
-                        }
-                    />
+                    <MDEditor data-color-mode="light" />
                 </Form.Item>
 
                 <Form.Item

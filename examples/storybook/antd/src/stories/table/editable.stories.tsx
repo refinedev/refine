@@ -17,10 +17,8 @@ import {
 import { useMany, useDeleteMany } from "@pankod/refine-core";
 import { IPost, ICategory } from "../../interfaces";
 import React, { useState } from "react";
-import ReactMarkdown from "react-markdown";
-import ReactMde from "react-mde";
 
-import "react-mde/lib/styles/css/react-mde-all.css";
+import MDEditor from "@uiw/react-md-editor";
 
 import { RefineWithLayout } from "../../../.storybook/preview";
 
@@ -32,9 +30,6 @@ export default {
 } as ComponentMeta<typeof List>;
 
 export const TableEditable = () => {
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
-        "write",
-    );
     const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>(
         [],
     );
@@ -109,15 +104,7 @@ export const TableEditable = () => {
                         },
                     ]}
                 >
-                    <ReactMde
-                        selectedTab={selectedTab}
-                        onTabChange={setSelectedTab}
-                        generateMarkdownPreview={(markdown) =>
-                            Promise.resolve(
-                                <ReactMarkdown>{markdown}</ReactMarkdown>,
-                            )
-                        }
-                    />
+                    <MDEditor data-color-mode="light" />
                 </Form.Item>
             );
         }

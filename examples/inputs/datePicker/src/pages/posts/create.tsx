@@ -11,10 +11,7 @@ import {
 } from "@pankod/refine-antd";
 import dayjs from "dayjs";
 
-import ReactMarkdown from "react-markdown";
-import ReactMde from "react-mde";
-
-import "react-mde/lib/styles/css/react-mde-all.css";
+import MDEditor from "@uiw/react-md-editor";
 
 import { IPost, ICategory } from "interfaces";
 
@@ -24,10 +21,6 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
     });
-
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
-        "write",
-    );
 
     return (
         <Create saveButtonProps={saveButtonProps}>
@@ -98,15 +91,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <ReactMde
-                        selectedTab={selectedTab}
-                        onTabChange={setSelectedTab}
-                        generateMarkdownPreview={(markdown) =>
-                            Promise.resolve(
-                                <ReactMarkdown>{markdown}</ReactMarkdown>,
-                            )
-                        }
-                    />
+                    <MDEditor data-color-mode="light" />
                 </Form.Item>
             </Form>
         </Create>

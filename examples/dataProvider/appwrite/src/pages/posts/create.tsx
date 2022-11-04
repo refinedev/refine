@@ -12,10 +12,7 @@ import {
     RcFile,
 } from "@pankod/refine-antd";
 
-import ReactMarkdown from "react-markdown";
-import ReactMde from "react-mde";
-
-import "react-mde/lib/styles/css/react-mde-all.css";
+import MDEditor from "@uiw/react-md-editor";
 
 import { IPost, IPostVariables, ICategory } from "interfaces";
 import { normalizeFile, storage } from "utility";
@@ -32,10 +29,6 @@ export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
         optionLabel: "title",
         optionValue: "id",
     });
-
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
-        "write",
-    );
 
     return (
         <Create saveButtonProps={saveButtonProps}>
@@ -80,15 +73,7 @@ export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <ReactMde
-                        selectedTab={selectedTab}
-                        onTabChange={setSelectedTab}
-                        generateMarkdownPreview={(markdown) =>
-                            Promise.resolve(
-                                <ReactMarkdown>{markdown}</ReactMarkdown>,
-                            )
-                        }
-                    />
+                    <MDEditor data-color-mode="light" />
                 </Form.Item>
                 <Form.Item label="Images">
                     <Form.Item
