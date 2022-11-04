@@ -23,7 +23,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-`<DeleteButton>` uses Chakra UI [`<Button>`](https://chakra-ui.com/docs/components/button/usage) and [`<Popover>`](https://chakra-ui.com/docs/components/popover/usage) components.
+`<DeleteButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) and [`<Popover>`](https://chakra-ui.com/docs/components/popover/usage) components.
 When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed it executes the [`useDelete`](/api-reference/core/hooks/data/useDelete.md) method provided by your [`dataProvider`](/api-reference/core/providers/data-provider.md).
 
 ## Usage
@@ -80,10 +80,7 @@ const PostList: React.FC = () => {
         [],
     );
 
-    const {
-        getHeaderGroups,
-        getRowModel,
-    } = useTable({
+    const { getHeaderGroups, getRowModel } = useTable({
         columns,
     });
 
@@ -142,6 +139,7 @@ interface IPost {
 const App = () => {
     return (
         <Refine
+            notificationProvider={RefineChakra.notificationProvider()}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
@@ -196,6 +194,7 @@ const App = () => {
 
     return (
         <Refine
+            notificationProvider={RefineChakra.notificationProvider()}
             dataProvider={customDataProvider}
             resources={[
                 {
@@ -258,6 +257,7 @@ const App = () => {
 
     return (
         <Refine
+            notificationProvider={RefineChakra.notificationProvider()}
             dataProvider={customDataProvider}
             resources={[
                 {
@@ -330,6 +330,7 @@ const App = () => {
 
     return (
         <Refine
+            notificationProvider={RefineChakra.notificationProvider()}
             dataProvider={customDataProvider}
             resources={[
                 {
@@ -385,6 +386,7 @@ const App = () => {
 
     return (
         <Refine
+            notificationProvider={RefineChakra.notificationProvider()}
             dataProvider={customDataProvider}
             notificationProvider={RefineChakra.notificationProvider()}
             resources={[
@@ -439,6 +441,7 @@ const App = () => {
 
     return (
         <Refine
+            notificationProvider={RefineChakra.notificationProvider()}
             dataProvider={customDataProvider}
             resources={[
                 {
@@ -465,7 +468,11 @@ This prop can be used to skip access control check with its `enabled` property o
 import { DeleteButton } from "@pankod/refine-chakra-ui";
 
 export const MyListComponent = () => {
-    return <DeleteButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+    return (
+        <DeleteButton
+            accessControl={{ enabled: true, hideIfUnauthorized: true }}
+        />
+    );
 };
 ```
 
@@ -513,6 +520,7 @@ const App = () => {
 
     return (
         <Refine
+            notificationProvider={RefineChakra.notificationProvider()}
             dataProvider={customDataProvider}
             resources={[
                 {
