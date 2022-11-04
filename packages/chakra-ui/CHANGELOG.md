@@ -1,5 +1,16 @@
 # @pankod/refine-chakra-ui
 
+## 1.2.5
+
+### Patch Changes
+
+-   [#2959](https://github.com/refinedev/refine/pull/2959) [`3cd13fa5c2`](https://github.com/refinedev/refine/commit/3cd13fa5c24a38c3a14458e26a8a43567144b4ea) Thanks [@salihozdemir](https://github.com/salihozdemir)! - - Fixed error and ready pages issues that dark mode compatibility and mobile view issues.
+    -   Fixed crud components mobile view issues and spacing issues.
+    -   Update `Save` button icon button color and variant.
+    -   Rename `TextFieldComponent` export name to `TextField`.
+    -   Update `DeleteButton` color scheme.
+    -   Add missing props to `RefreshButton`'s `IconButton`.
+
 ## 1.2.4
 
 ### Patch Changes
