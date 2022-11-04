@@ -89,10 +89,7 @@ const PostList: React.FC = () => {
                 cell: function render({ getValue }) {
                     return (
                         // highlight-start
-                        <CloneButton
-                            size="sm"
-                            recordItemId={getValue() as number}
-                        />
+                        <CloneButton recordItemId={getValue() as number} />
                         // highlight-end
                     );
                 },

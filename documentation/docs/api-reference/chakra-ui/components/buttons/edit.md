@@ -88,10 +88,7 @@ const PostList: React.FC = () => {
                 cell: function render({ getValue }) {
                     return (
                         // highlight-start
-                        <EditButton
-                            size="xs"
-                            recordItemId={getValue() as number}
-                        />
+                        <EditButton recordItemId={getValue() as number} />
                         // highlight-end
                     );
                 },

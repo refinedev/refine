@@ -5,10 +5,8 @@ title: Delete
 
 ```tsx live shared
 const { default: routerProvider } = RefineReactRouterV6;
-const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
     routerProvider,
-    dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
     Layout: RefineChakra.Layout,
     Sider: () => null,
     catchAll: <RefineChakra.ErrorComponent />,
@@ -68,10 +66,7 @@ const PostList: React.FC = () => {
                 cell: function render({ getValue }) {
                     return (
                         // highlight-start
-                        <DeleteButton
-                            size="xs"
-                            recordItemId={getValue() as number}
-                        />
+                        <DeleteButton recordItemId={getValue() as number} />
                         // highlight-end
                     );
                 },
@@ -510,6 +505,7 @@ const App = () => {
     const customDataProvider = {
         ...simpleRestDataProvider,
         deleteOne: async ({ resource, id, variables }) => {
+            console.log("girdi");
             await new Promise((resolve) => setTimeout(resolve, 500));
 
             return {
