@@ -12,7 +12,7 @@ refine is a **headless** Framework, so it does not include UI Components by defa
 There are two ways to add UI elements to refine;
 
 1. Using a **UI Library** such as [Tailwind](https://tailwindcss.com/), [Chakra UI](https://chakra-ui.com/), etc.
-2. Using a complete **UI Framework** such as [Ant Design](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/) etc.
+2. Using a complete **UI Framework** such as [Ant Design](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), [Chakra UI](https://chakra-ui.com/) etc.
 
 These tutorials will go through process of building a simple _admin panel_ for a _CMS-like_ application.
 
@@ -45,7 +45,7 @@ Then continue with the next step when ready!
 
 Instead of being a limited set of pre-styled components, **refine** is a collection of helper `hooks`, `components`, and `providers`. They are all decoupled from *UI components* and *business logic*, so that they never keep you from customizing your *UI* or coding your own flow. 
 
-Our [Tailwind CSS](https://tailwindcss.com/) tutorial below is a good starting point for users who want to go [headless](/docs/getting-started/overview.md/#what-do-you-mean-by-headless-). For convenience, **refine** ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) (Coming soon ⏲). 
+Our [Tailwind CSS](https://tailwindcss.com/) tutorial below is a good starting point for users who want to go [headless](/docs/getting-started/overview.md/#what-do-you-mean-by-headless-). For convenience, **refine** ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/). 
 
 <div className="tutorial-cards">
     <Card

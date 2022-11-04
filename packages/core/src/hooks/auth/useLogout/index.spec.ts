@@ -4,6 +4,7 @@ import ReactRouterDom from "react-router-dom";
 import { act, TestWrapper } from "@test";
 
 import { useLogout } from "./";
+import { useCheckError } from "../useCheckError";
 
 const mHistory = jest.fn();
 
@@ -174,6 +175,98 @@ describe("useLogout Hook", () => {
             } catch (error) {
                 expect(error).not.toBeDefined();
             }
+        });
+    });
+
+    it("logout and not redirect if check error rejected with false", async () => {
+        const logoutMock = jest.fn();
+
+        const { result } = renderHook(() => useCheckError(), {
+            wrapper: TestWrapper({
+                authProvider: {
+                    isProvided: true,
+                    login: () => Promise.resolve(),
+                    checkAuth: () => Promise.resolve(),
+                    checkError: () => Promise.reject(false),
+                    getPermissions: () => Promise.resolve(),
+                    logout: () => Promise.resolve(),
+                    getUserIdentity: () => Promise.resolve(),
+                },
+            }),
+        });
+
+        const { mutate: checkError } = result.current!;
+
+        await act(async () => {
+            await checkError({});
+        });
+
+        await waitFor(() => {
+            expect(!result.current.isLoading).toBeTruthy();
+        });
+
+        await act(async () => {
+            expect(mHistory).toBeCalledTimes(0);
+        });
+    });
+
+    it("logout and not redirect if logout resolved false", async () => {
+        const { result } = renderHook(() => useCheckError(), {
+            wrapper: TestWrapper({
+                authProvider: {
+                    isProvided: true,
+                    login: () => Promise.resolve(),
+                    checkAuth: () => Promise.resolve(),
+                    checkError: () => Promise.reject(),
+                    getPermissions: () => Promise.resolve(),
+                    logout: () => Promise.resolve(false),
+                    getUserIdentity: () => Promise.resolve(),
+                },
+            }),
+        });
+
+        const { mutate: checkError } = result.current!;
+
+        await act(async () => {
+            await checkError({});
+        });
+
+        await waitFor(() => {
+            expect(!result.current.isLoading).toBeTruthy();
+        });
+
+        await act(async () => {
+            expect(mHistory).toBeCalledTimes(0);
+        });
+    });
+
+    it("logout and redirect to resolved custom path", async () => {
+        const { result } = renderHook(() => useLogout(), {
+            wrapper: TestWrapper({
+                authProvider: {
+                    isProvided: true,
+                    login: () => Promise.resolve(),
+                    checkAuth: () => Promise.resolve(),
+                    checkError: () => Promise.reject(),
+                    getPermissions: () => Promise.resolve(),
+                    logout: () => Promise.resolve("/custom-path"),
+                    getUserIdentity: () => Promise.resolve(),
+                },
+            }),
+        });
+
+        const { mutate: logout } = result.current!;
+
+        await act(async () => {
+            await logout();
+        });
+
+        await waitFor(() => {
+            return result.current?.status === "success";
+        });
+
+        await act(async () => {
+            expect(mHistory).toBeCalledWith("/custom-path");
         });
     });
 });
