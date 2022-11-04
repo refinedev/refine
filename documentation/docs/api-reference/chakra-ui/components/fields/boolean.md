@@ -15,9 +15,7 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider
-            theme={RefineChakra.refineTheme}
-        >
+        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
         </RefineChakra.ChakraProvider>
     );
@@ -73,7 +71,19 @@ import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { List, DateField, TableContainer, Table, Thead, Tr, Th, Tbody, Td, HStack, Box, BooleanField } from "@pankod/refine-chakra-ui";
+import {
+    List,
+    DateField,
+    TableContainer,
+    Table,
+    Thead,
+    Tr,
+    Th,
+    Tbody,
+    Td,
+    // highlight-next-line
+    BooleanField,
+} from "@pankod/refine-chakra-ui";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 const PostList: React.FC = () => {
@@ -111,10 +121,7 @@ const PostList: React.FC = () => {
         [],
     );
 
-    const {
-        getHeaderGroups,
-        getRowModel,
-    } = useTable({
+    const { getHeaderGroups, getRowModel } = useTable({
         columns,
     });
 
@@ -128,18 +135,12 @@ const PostList: React.FC = () => {
                                 {headerGroup.headers.map((header) => {
                                     return (
                                         <Th key={header.id}>
-                                            {!header.isPlaceholder && (
-                                                <HStack spacing="xs">
-                                                    <Box>
-                                                        {flexRender(
-                                                            header.column
-                                                                .columnDef
-                                                                .header,
-                                                            header.getContext(),
-                                                        )}
-                                                    </Box>
-                                                </HStack>
-                                            )}
+                                            {!header.isPlaceholder &&
+                                                flexRender(
+                                                    header.column.columnDef
+                                                        .header,
+                                                    header.getContext(),
+                                                )}
                                         </Th>
                                     );
                                 })}
@@ -174,6 +175,7 @@ const PostList: React.FC = () => {
 const App = () => {
     return (
         <Refine
+            notificationProvider={RefineChakra.notificationProvider()}
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[

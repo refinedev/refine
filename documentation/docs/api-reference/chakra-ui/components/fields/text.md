@@ -15,9 +15,7 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider
-            theme={RefineChakra.refineTheme}
-        >
+        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
         </RefineChakra.ChakraProvider>
     );
@@ -37,22 +35,31 @@ import { ShowButton } from "@pankod/refine-chakra-ui";
 
 // visible-block-start
 import { useShow } from "@pankod/refine-core";
-import { Show, Text, TextField } from "@pankod/refine-chakra-ui";
+import {
+    Show,
+    Heading,
+    // highlight-next-line
+    TextField,
+} from "@pankod/refine-chakra-ui";
 
-const PostShow: React.FC<IResourceComponentsProps> = () => {
+const PostShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;
 
     return (
         <Show isLoading={isLoading}>
-            <Text fontWeight="bold">Id</Text>
-            <Text mt="md">{record?.id}</Text>
-
-            <Text fontWeight="bold" mt="sm">
+            <Heading as="h5" size="sm">
+                Id
+            </Heading>
+            // highlight-next-line
+            <TextField value={record?.id} />
+            
+            <Heading as="h5" size="sm">
                 Title
-            </Text>
-            <Text mt="md">{record?.title}</Text>
+            </Heading>
+            // highlight-next-line
+            <TextField value={record?.title} />
         </Show>
     );
 };
@@ -66,17 +73,20 @@ interface IPost {
 const App = () => {
     return (
         <Refine
+            notificationProvider={RefineChakra.notificationProvider()}
             resources={[
                 {
                     name: "posts",
                     show: PostShow,
                     list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
+                        <RefineChakra.VStack alignItems="flex-start">
+                            <RefineChakra.Text>
+                                This page is empty.
+                            </RefineChakra.Text>
+                            <ShowButton colorScheme="black" recordItemId="123">
                                 Show Item 123
                             </ShowButton>
-                        </div>
+                        </RefineChakra.VStack>
                     ),
                 },
             ]}
