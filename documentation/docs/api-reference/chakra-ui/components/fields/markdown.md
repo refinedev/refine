@@ -58,6 +58,7 @@ const PostShow: React.FC = () => {
             <Heading as="h5" size="sm" mt={4}>
                 Content
             </Heading>
+            // highlight-next-line
             <MarkdownField value={record?.content} />
         </Show>
     );
