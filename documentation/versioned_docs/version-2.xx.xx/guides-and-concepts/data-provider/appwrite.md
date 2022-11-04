@@ -13,6 +13,7 @@ import edit from '@site/static/img/guides-and-concepts/data-provider/appwrite/ed
 import permission from '@site/static/img/guides-and-concepts/data-provider/appwrite/permission.png';
 
 ## Introduction
+
 **refine** and [Appwrite](https://appwrite.io/) work in harmony, offering you quick development options. You can use your data (API, Database) very simply by using **refine**'s Appwrite data provider.
 
 You can only focus on your UI as we can handle your data quickly and simply.
@@ -22,14 +23,17 @@ This guide has been prepared assuming you know the basics of **refine**. If you 
 :::
 
 ## Setup
+
 ```bash
 npm install @pankod/refine-appwrite
 ```
 
 ## Usage
+
 It is very simple to use and consists of two steps. First, define your Appwrite project id and then give it to the dataprovider.
 
 ### Appwrite Client
+
 ```tsx title="appwriteClient.ts"
 import { Appwrite } from "@pankod/refine-appwrite";
 
@@ -46,6 +50,7 @@ export appwriteClient;
 ```
 
 ### Authprovider
+
 ```tsx title="authProvider.ts"
 import { AuthProvider } from "@pankod/refine";
 
@@ -96,10 +101,10 @@ import authProvider from "./authProvider";
 const App: React.FC = () => {
     return (
         <Refine
-        //highlight-start
+            //highlight-start
             dataProvider={dataProvider(appwriteClient)}
             authProvider={authProvider}
-        //highlight-end    
+            //highlight-end
             routerProvider={routerProvider}
         />
     );
@@ -107,11 +112,12 @@ const App: React.FC = () => {
 ```
 
 ## Create Collections
+
 We created two collections on Appwrite Database as `posts` and `categories` and added a relation between them.
 
-`Category Collection`: 
+`Category Collection`:
 
- * Title: text
+-   Title: text
 
 <div class="img-container">
     <div class="window">
@@ -126,10 +132,10 @@ We created two collections on Appwrite Database as `posts` and `categories` and 
 
 `Post Collection`:
 
-* Title: text
-* CategoryId: text
-* Content: text
-* Images: wilcard
+-   Title: text
+-   CategoryId: text
+-   Content: text
+-   Images: wilcard
 
 <div class="img-container">
     <div class="window">
@@ -155,10 +161,12 @@ Then we need to create an appwrite user to be able to login with **refine**.
 
 <br/>
 
-### Permissions 
+### Permissions
+
 In order to list posts and categories, you need to give read and write permission by Appwrite.
 
 Example: `Post Collection Permissons`
+
 <div class="img-container">
     <div class="window">
         <div class="control red"></div>
@@ -169,13 +177,14 @@ Example: `Post Collection Permissons`
 </div>
 <br/>
 
-We indicate that the read and write permission is open to everyone by giving the "*" parameter.
+We indicate that the read and write permission is open to everyone by giving the "\*" parameter.
 
 [Refer to the Appwrite Permissions documentation for detailed information.→](https://appwrite.io/docs/permissions)
 
 [Check out how you can use permissions when creating posts with **refine** →](#create-page)
 
 ## Login page​
+
 **refine** default login screen allows you to login with username. Appwrite allows login with email, therefore we need to override the login page.
 
 <details>
@@ -310,6 +319,7 @@ export const Login: React.FC = () => {
     );
 };
 ```
+
 </p>
 </details>
 
@@ -355,9 +365,11 @@ const App: React.FC = () => {
 
 export default App;
 ```
+
 :::
 
 ## List Page
+
 Now that we've created our collections, we can create and list documents. Let's list the posts and categories that we have created by Appwrite with **refine**.
 
 <details>
@@ -451,6 +463,7 @@ export const PostsList: React.FC<IResourceComponentsProps> = () => {
     );
 };
 ```
+
 </p>
 </details>
 
@@ -466,6 +479,7 @@ export const PostsList: React.FC<IResourceComponentsProps> = () => {
 <br/>
 
 ## Create Page
+
 We can now create posts and set categories from our **refine** UI.
 
 <details>
@@ -486,10 +500,7 @@ import {
     RcFile,
 } from "@pankod/refine";
 
-import ReactMarkdown from "react-markdown";
-import ReactMde from "react-mde";
-
-import "react-mde/lib/styles/css/react-mde-all.css";
+import MDEditor from "@uiw/react-md-editor";
 
 import { IPost, ICategory } from "interfaces";
 import { appwriteClient, normalizeFile } from "utility";
@@ -502,9 +513,6 @@ export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
         optionLabel: "title",
         optionValue: "id",
     });
-
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
 
     return (
         <Create saveButtonProps={saveButtonProps}>
@@ -540,15 +548,7 @@ export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <ReactMde
-                        selectedTab={selectedTab}
-                        onTabChange={setSelectedTab}
-                        generateMarkdownPreview={(markdown) =>
-                            Promise.resolve(
-                                <ReactMarkdown>{markdown}</ReactMarkdown>,
-                            )
-                        }
-                    />
+                    <MDEditor data-color-mode="light" />
                 </Form.Item>
                 <Form.Item label="Images">
                     <Form.Item
@@ -594,6 +594,7 @@ export const PostsCreate: React.FC<IResourceComponentsProps> = () => {
     );
 };
 ```
+
 </p>
 </details>
 
@@ -617,14 +618,15 @@ If you want to restrict permissions and only allow specific users, you need to s
 const { formProps, saveButtonProps } = useForm<IPost>({
     metaData: {
         writePermissions: ["User ID, Team ID, or Role"],
-        readPermissions: ["User ID, Team ID, or Role"] 
-    }
+        readPermissions: ["User ID, Team ID, or Role"],
+    },
 });
 ```
+
 :::
 
-
 ## Edit Page
+
 You can edit the posts and categories we have created update your data.
 
 <details>
@@ -645,10 +647,7 @@ import {
     useSelect,
 } from "@pankod/refine";
 
-import ReactMarkdown from "react-markdown";
-import ReactMde from "react-mde";
-
-import "react-mde/lib/styles/css/react-mde-all.css";
+import MDEditor from "@uiw/react-md-editor";
 
 import { IPost, ICategory } from "interfaces";
 import { appwriteClient, normalizeFile } from "utility";
@@ -664,8 +663,6 @@ export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
         optionValue: "id",
     });
 
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
 
     return (
         <Edit saveButtonProps={saveButtonProps}>
@@ -701,15 +698,7 @@ export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <ReactMde
-                        selectedTab={selectedTab}
-                        onTabChange={setSelectedTab}
-                        generateMarkdownPreview={(markdown) =>
-                            Promise.resolve(
-                                <ReactMarkdown>{markdown}</ReactMarkdown>,
-                            )
-                        }
-                    />
+                    <MDEditor data-color-mode="light" />
                 </Form.Item>
                 <Form.Item label="Images">
                     <Form.Item
@@ -755,6 +744,7 @@ export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
     );
 };
 ```
+
 </p>
 </details>
 

@@ -48,10 +48,6 @@ const PostEdit: React.FC<IResourceComponentsProps> = () => {
         defaultValue: postData?.category.id,
     });
 
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
-        "write",
-    );
-
     return (
         <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
@@ -442,10 +438,6 @@ const PostEdit: React.FC<IResourceComponentsProps> = () => {
         resource: "categories",
         defaultValue: postData?.category.id,
     });
-
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
-        "write",
-    );
 
     return (
         <Edit
