@@ -15,7 +15,6 @@
         "graphql": "^15.6.1",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
-        "react-markdown": "^6.0.1",
         "@uiw/react-md-editor": "^3.19.5",
         "react-scripts": "^5.0.0",
         "typescript": "^4.7.4"

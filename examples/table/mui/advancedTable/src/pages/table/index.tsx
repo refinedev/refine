@@ -37,7 +37,6 @@ import {
 } from "@pankod/refine-mui";
 import { useForm, Controller } from "@pankod/refine-react-hook-form";
 
-import ReactMarkdown from "react-markdown";
 import MDEditor from "@uiw/react-md-editor";
 
 import { IPost, ICategory } from "interfaces";
@@ -225,7 +224,12 @@ export const PostList: React.FC = () => {
 
     const renderRowSubComponent = useCallback(
         ({ row }: { row: Row<IPost> }) => (
-            <ReactMarkdown>{row.original.content}</ReactMarkdown>
+            <div data-color-mode="light" style={{ padding: "16px" }}>
+                <MDEditor.Markdown
+                    source={row.original.content}
+                    style={{ whiteSpace: "pre-wrap" }}
+                />
+            </div>
         ),
         [],
     );

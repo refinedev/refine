@@ -47,7 +47,7 @@ npx superplate-cli --preset refine-antd-supabase my-supabase-app
 Also, we need to install npm packages to use markdown editor:
 
 ```
-npm i react-markdown @uiw/react-md-editor
+npm i @uiw/react-md-editor
 ```
 
 This will create a new refine app with Supabase data provider and Ant Desing as a UI framework. We'll be using this project as a base to implement our example.
