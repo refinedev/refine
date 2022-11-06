@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { IResourceComponentsProps, useApiUrl } from "@pankod/refine-core";
 import {
     Edit,

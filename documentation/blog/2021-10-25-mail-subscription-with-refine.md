@@ -394,7 +394,7 @@ export const CreateSubscriber: React.FC<IResourceComponentsProps> = () => {
 ## Create Message
 
 ```tsx title="/src/pages/mail/create.tsx"
-import React, { useState } from "react";
+import React from "react";
 import {
   Create,
   Form,
