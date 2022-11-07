@@ -13,8 +13,6 @@ import {
     BoxProps,
     IconButton,
     HStack,
-    StackProps,
-    Stack,
     Heading,
     Spinner,
 } from "@chakra-ui/react";
@@ -32,7 +30,7 @@ export type ShowProps = RefineCrudShowProps<
     BoxProps,
     BoxProps,
     BoxProps,
-    StackProps,
+    BoxProps,
     BoxProps
 >;
 
@@ -193,16 +191,22 @@ export const Show: React.FC<ShowProps> = (props) => {
                 gap="3"
                 {...headerProps}
             >
-                <Stack spacing="2">
+                <Box minW={200}>
                     {breadcrumb}
                     <HStack>
                         {buttonBack}
                         {renderTitle()}
                     </HStack>
-                </Stack>
-                <HStack spacing="2" {...headerButtonProps}>
+                </Box>
+                <Box
+                    display="flex"
+                    flexWrap="wrap"
+                    justifyContent={{ base: "flex-start", md: "flex-end" }}
+                    gap="2"
+                    {...headerButtonProps}
+                >
                     {headerButtons}
-                </HStack>
+                </Box>
             </Box>
             <Box opacity={isLoading ? 0.5 : undefined} {...contentProps}>
                 {children}
@@ -210,7 +214,7 @@ export const Show: React.FC<ShowProps> = (props) => {
             <Box
                 display="flex"
                 justifyContent="flex-end"
-                spacing="2"
+                gap="2"
                 mt={8}
                 {...footerButtonProps}
             >

@@ -37,6 +37,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
             {hideText ? (
                 <IconButton
                     variant="outline"
+                    as="span"
                     aria-label={translate("buttons.import", "Import")}
                     isLoading={loading}
                     data-testid={RefineButtonTestIds.ImportButton}
@@ -47,7 +48,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
             ) : (
                 <Button
                     variant="outline"
-                    component="span"
+                    as="span"
                     leftIcon={<IconFileImport size={20} {...svgIconProps} />}
                     isLoading={loading}
                     data-testid={RefineButtonTestIds.ImportButton}

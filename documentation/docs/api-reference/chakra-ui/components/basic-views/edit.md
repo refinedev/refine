@@ -13,9 +13,7 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineChakra.ChakraProvider
-            theme={RefineChakra.refineTheme}
-        >
+        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
             {children}
         </RefineChakra.ChakraProvider>
     );
@@ -428,7 +426,16 @@ import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
 import { useModalForm } from "@pankod/refine-react-hook-form";
-import { Edit, Modal, Button, ModalOverlay, ModalContent, ModalCloseButton,ModalHeader, ModalBody } from "@pankod/refine-chakra-ui";
+import {
+    Edit,
+    Modal,
+    Button,
+    ModalOverlay,
+    ModalContent,
+    ModalCloseButton,
+    ModalHeader,
+    ModalBody,
+} from "@pankod/refine-chakra-ui";
 
 const PostEdit: React.FC = () => {
     const {
@@ -441,11 +448,7 @@ const PostEdit: React.FC = () => {
     return (
         <div>
             <Button onClick={() => show()}>Edit Button</Button>
-            <Modal
-                isOpen={visible}
-                onClose={close}
-                size="xl"
-            >
+            <Modal isOpen={visible} onClose={close} size="xl">
                 <ModalOverlay />
                 <ModalContent>
                     <ModalCloseButton />
@@ -458,7 +461,6 @@ const PostEdit: React.FC = () => {
                         </Edit>
                     </ModalBody>
                 </ModalContent>
-                
             </Modal>
         </div>
     );
@@ -512,9 +514,14 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
 // visible-block-start
-import { Edit, Input, FormControl, FormLabel, FormErrorMessage } from "@pankod/refine-chakra-ui";
+import {
+    Edit,
+    Input,
+    FormControl,
+    FormLabel,
+    FormErrorMessage,
+} from "@pankod/refine-chakra-ui";
 import { useForm } from "@pankod/refine-react-hook-form";
-
 
 const PostEdit: React.FC = () => {
     const {
@@ -620,13 +627,36 @@ import { EditButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
+const IconMoodSmile = (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="icon icon-tabler icon-tabler-mood-smile"
+        width={24}
+        height={24}
+        viewBox="0 0 24 24"
+        strokeWidth="2"
+        stroke="currentColor"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <circle cx={12} cy={12} r={9}></circle>
+        <line x1={9} y1={10} x2="9.01" y2={10}></line>
+        <line x1={15} y1={10} x2="15.01" y2={10}></line>
+        <path d="M9.5 15a3.5 3.5 0 0 0 5 0"></path>
+    </svg>
+);
+
 // visible-block-start
 import { Edit } from "@pankod/refine-chakra-ui";
+/* highlight-next-line */
+import { IconMoodSmile } from "@tabler/icons";
 
 const PostEdit: React.FC = () => {
     return (
         /* highlight-next-line */
-        <Edit goBack="😊">
+        <Edit goBack={IconMoodSmile}>
             <p>Rest of your page here 2</p>
         </Edit>
     );
@@ -740,11 +770,7 @@ const PostEdit: React.FC = () => {
         <Edit
             // highlight-start
             breadcrumb={
-                <Box
-                    borderColor="blue"
-                    borderStyle="dashed"
-                    borderWidth="2px"
-                >
+                <Box borderColor="blue" borderStyle="dashed" borderWidth="2px">
                     <Breadcrumb />
                 </Box>
             }
@@ -994,9 +1020,7 @@ const PostEdit: React.FC = () => {
             headerButtons={({ defaultButtons }) => (
                 <HStack>
                     {defaultButtons}
-                    <Button colorScheme="red">
-                        Custom Button
-                    </Button>
+                    <Button colorScheme="red">Custom Button</Button>
                 </HStack>
             )}
             // highlight-end
@@ -1123,14 +1147,16 @@ const PostEdit: React.FC = () => {
         <Edit
             // highlight-start
             footerButtons={({ defaultButtons }) => (
-                <HStack 
+                <HStack
                     borderColor="blue"
                     borderStyle="dashed"
-                    borderWidth="2px" 
+                    borderWidth="2px"
                     p="2"
                 >
                     {defaultButtons}
-                    <Button colorScheme="red" variant="solid">Custom Button</Button>
+                    <Button colorScheme="red" variant="solid">
+                        Custom Button
+                    </Button>
                 </HStack>
             )}
             // highlight-end

@@ -14,6 +14,8 @@ import {
     Tooltip,
     IconButton,
     Button,
+    useColorModeValue,
+    Stack,
 } from "@chakra-ui/react";
 import { IconInfoCircle } from "@tabler/icons";
 
@@ -62,6 +64,8 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
         }
     }, [params]);
 
+    const color = useColorModeValue("gray.500", "gray.400");
+
     return (
         <Box
             display="flex"
@@ -69,13 +73,17 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
             alignItems="center"
             justifyContent="center"
             minH="100vh"
-            mt={{ base: "0", md: "-150px" }}
+            mt={{ base: "0", lg: "-150px" }}
         >
-            <Heading fontWeight={900} fontSize="220" color="gray.600">
+            <Heading fontWeight={900} fontSize={[120, 160, 220]} color={color}>
                 404
             </Heading>
-            <Box display="flex" alignItems="center" justifyContent="center">
-                <Text color="gray.600" fontSize="xl">
+            <Stack
+                direction={["column", "row"]}
+                alignItems="center"
+                spacing={2}
+            >
+                <Text color={color} fontSize="xl" align="center">
                     {translate(
                         "pages.error.404",
                         "Sorry, the page you visited does not exist.",
@@ -85,15 +93,15 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
                     <Tooltip openDelay={0} label={errorMessage}>
                         <IconButton
                             aria-label="info"
-                            color="gray.600"
+                            color={color}
                             data-testid="error-component-tooltip"
                         >
                             <IconInfoCircle />
                         </IconButton>
                     </Tooltip>
                 )}
-            </Box>
-            <Button mt={6} colorScheme="green" onClick={() => push("/")}>
+            </Stack>
+            <Button mt={6} variant="outline" onClick={() => push("/")}>
                 {translate("pages.error.backHome", "Back Home")}
             </Button>
         </Box>
