@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 1.11.1
+
+### Patch Changes
+
+-   [#2970](https://github.com/refinedev/refine/pull/2970) [`513c078df1`](https://github.com/refinedev/refine/commit/513c078df1aa7b694fc41e5d710eff0d9a716fed) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added padding to ReadyPage component.
+
 ## 1.11.0
 
 ### Minor Changes

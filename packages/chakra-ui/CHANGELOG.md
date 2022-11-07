@@ -1,5 +1,11 @@
 # @pankod/refine-chakra-ui
 
+## 1.2.7
+
+### Patch Changes
+
+-   [#2970](https://github.com/refinedev/refine/pull/2970) [`513c078df1`](https://github.com/refinedev/refine/commit/513c078df1aa7b694fc41e5d710eff0d9a716fed) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Fixed responsive style for error page.
+
 ## 1.2.6
 
 ### Patch Changes
