@@ -3,6 +3,10 @@ id: layout
 title: Layout
 ---
 
+```tsx live shared
+
+```
+
 You can create custom layouts using [`<Refine>`][refine] and [`<LayoutWrapper>`][layoutwrapper] components.
 
 Both of these components can accept the listed props for customization. [`<Refine>`][refine] being for global customization and the [`<LayoutWrapper>`][layoutwrapper] being for local.
