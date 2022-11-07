@@ -50,6 +50,14 @@ This asynchronous approach significantly reduces the waiting time for requests b
 
 Luckily, ES6 solved some of these problems by introducing Promises as a new way of writing asynchronous JavaScript code. With promises and callbacks, JavaScript's async nature becomes more predictable and easier to deal with as they help you better understand how your code is structured by offering consistency in how future events are handled. As such, having a proper understanding of the asynchronous first-class nature of Node.js, promises, and callbacks will help you avoid some of the problems associated with asynchronous programming.
 
+
+---
+
+<PromotionBanner title="Backend devs love this React framework!" image="/img/diagram.png" />
+
+---
+
+
 ## Understanding of Event-Driven Programming in Node
 Event-Driven Programming is a logical programming paradigm in which events drive program execution to avoid possible collisions in programs by limiting the complexity of program execution. Typically, an event-driven application uses an event loop to wait for an event to occur. When triggered, it invokes the appropriate action or callback function to deal with the event. 
 For instance, a web page's user interface is an interactive interface that triggers certain events every time you interact with it - for example, a user action such as clicking a button or moving a mouse. Functions associated with these events are executed when an event is triggered to make changes to the user interface.
@@ -60,12 +68,6 @@ On startup, Node starts its server, initializes variables and functions, and the
 
 A grasp of event-driven programming in Node and some experience using it to design, write, test, and debug reasonably complex event-driven applications is a required skill that successful Node.js companies look out for when hiring **Node.js developers**.
 
-<br/>
-<div>
-<a href="https://github.com/refinedev/refine">
-  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
-</a>
-</div>
 
 
 ## Experience with Express Framework
@@ -86,6 +88,13 @@ In an application's request-response cycle, middleware functions access the requ
 
 Suppose, for example; you want to add products to your backend database using an API. You can create a middleware that checks if the user trying to perform this action has the proper credentials by validating the user's details. After the middleware verifies that the credentials are valid, it passes the request to the next function responsible for adding the product to the database. However, if the user is not valid, the middleware returns an error, and the next function is not called.
 Therefore, having a proper understanding of Middlewares will allow you to write more robust and reliable Node.js applications.
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
 
 ## Version Control Tools and Package management
 To work collaboratively with other team members, every **Node.js developer** should have experience using source control tools such as git and Github. These tools provide developers with collaborative code tracking and iteration features that come in handy when working on complex projects, allowing you to track and make source code changes and resolve conflicts in the codebase.
@@ -110,33 +119,3 @@ As a Node.js developer, you must know how to provide secure authentication in yo
 ## Conclusion
 You will inevitably work on complex solutions as a **Node.js developer**. While there are several developer skills to have as a Node.js developer, you want to ensure that you are equipped with the essential skills required to function effectively as a capable Node.js developer in today's software development landscape.
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.dev/img/discord-banner.png" alt="discord banner" />
-</a>
-</div>
-
----
-
-## Build your React-based CRUD applications without constraints
-
-Modern CRUD applications are required to consume data from many different sources from custom API’s to backend services like Supabase, Hasura, Airtable and Strapi.
-
-Check out [refine](https://github.com/refinedev/refine), if you are interested in a backend agnostic, headless framework which can connect 15+ data sources thanks to built-in providers and community plugins.
-
-
-<div>
-<a href="https://github.com/refinedev/refine">
-    <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
-</a>
-</div>
-
-<br/>
-
-**refine** is an open-source React-based framework for building CRUD applications **without constraints.**
-It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
-
-**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
-
-Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.

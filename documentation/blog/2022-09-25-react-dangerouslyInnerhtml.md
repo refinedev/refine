@@ -74,6 +74,13 @@ The above code will strip out the script in the data that has been rendered on t
  lorem test <img src="">
 ```
 
+---
+
+<PromotionBanner title="Does your CRUD app need server state management?" image="/img/mui_banner.png" />
+
+---
+
+
 ### Building a simple example app
 To demonstrate how dangerouslySetInnerHTML works in a React application, let's build a simple blog application. To make things easier, we'll use  [superplate](https://github.com/pankod/superplate) CLI to create React apps.
 
@@ -173,6 +180,13 @@ In the above code snippet, we imported dompurify to sanitize the contents in the
 <br/>
 
 In the above screenshot, `dangerouslySetInnerHTML` has rendered the contents just the way they were been formatted to look like.
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
 
 ## Conclusion
 dangerouslySetInnerHTML in a React application. We started by explaining what dangerouslySetInnerHTML is, when to use it, and the best practices for using it in a React application.

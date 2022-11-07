@@ -30,7 +30,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
 
     return hideText ? (
         <IconButton
-            variant="outline"
+            colorScheme="green"
             aria-label={translate("buttons.save", "Save")}
             data-testid={RefineButtonTestIds.SaveButton}
             {...rest}

@@ -1,6 +1,6 @@
-import { CSSProperties } from "react";
+import { BoxProps } from "@chakra-ui/react";
 
-export const layoutStyles: CSSProperties = {
+export const layoutProps: BoxProps = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -9,14 +9,13 @@ export const layoutStyles: CSSProperties = {
     minHeight: "100vh",
 };
 
-export const cardStyles: CSSProperties = {
-    backgroundColor: "white",
+export const cardProps: BoxProps = {
     width: "400px",
     padding: "20px",
     borderRadius: "10px",
 };
 
-export const titleStyles: CSSProperties = {
+export const titleProps: BoxProps = {
     textAlign: "center",
     fontSize: "24px",
 };

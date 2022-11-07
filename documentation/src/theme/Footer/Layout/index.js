@@ -130,10 +130,30 @@ export default function FooterLayout({
     );
 
     return (
-        <footer className="refine-footer px-4 md:px-6 pt-7 pb-24 lg:pt-10 lg:pb-24">
-            <div className="max-w-6xl mx-auto flex flex-col gap-5">
-                <div>{logo && <div>{logo}</div>}</div>
-                <div className="flex flex-col lg:flex-row gap-6 lg:gap-20">
+        <footer className="px-4 pb-24 refine-footer md:px-6 pt-7 lg:pt-10 lg:pb-24">
+            <div className="flex flex-col max-w-6xl gap-5 mx-auto">
+                <div className="flex flex-col items-center gap-6 lg:flex-row lg:gap-20">
+                    {logo && (
+                        <div className="flex-shrink-0 max-w-full lg:max-w-[280px] w-full">
+                            {logo}
+                        </div>
+                    )}
+
+                    <a
+                        href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        <img
+                            src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=362220&theme=neutral&period=daily"
+                            alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0032;to&#0032;build&#0032;web&#0032;apps&#0032;3x&#0032;faster | Product Hunt"
+                            style={{ width: "166px", height: "35px" }}
+                            width="250"
+                            height="54"
+                        />
+                    </a>
+                </div>
+                <div className="flex flex-col gap-6 lg:flex-row lg:gap-20">
                     <div
                         className="flex-shrink-0 max-w-full lg:max-w-[280px] w-full font-montserrat text-xs text-[#9696B4] tracking-wide"
                         dangerouslySetInnerHTML={{ __html: footerDescription }}
@@ -155,7 +175,7 @@ export default function FooterLayout({
                             />
                         </div>
                     </div>
-                    <div className="flex-1 flex flex-col sm:flex-row gap-6 sm:gap-0">
+                    <div className="flex flex-col flex-1 gap-6 sm:flex-row sm:gap-0">
                         <div className="flex-[2] flex justify-center sm:justify-start lg:justify-end items-center gap-4 text-[#9696B4] text-xs h-[18px] font-montserrat">
                             {legalLinks?.items?.map?.((item, i) => (
                                 <a

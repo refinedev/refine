@@ -25,7 +25,7 @@ import {
 } from "@chakra-ui/react";
 import { FormProvider, useForm } from "@pankod/refine-react-hook-form";
 
-import { layoutStyles, cardStyles } from "../styles";
+import { layoutProps, cardProps } from "../styles";
 import { FormPropsType } from "../..";
 
 type LoginProps = LoginPageProps<
@@ -88,8 +88,9 @@ export const LoginPage: React.FC<LoginProps> = ({
         return null;
     };
 
+    const allContentProps = { ...cardProps, ...contentProps };
     const content = (
-        <Box style={cardStyles} {...contentProps}>
+        <Box bg="chakra-body-bg" {...allContentProps}>
             <Heading mb="8" textAlign="center" size="lg">
                 {translate("pages.login.title", "Sign in to your account")}
             </Heading>
@@ -195,9 +196,10 @@ export const LoginPage: React.FC<LoginProps> = ({
         </Box>
     );
 
+    const allWrapperProps = { ...layoutProps, ...wrapperProps };
     return (
         <FormProvider {...methods}>
-            <Box style={layoutStyles} {...wrapperProps}>
+            <Box {...allWrapperProps}>
                 {renderContent ? renderContent(content) : content}
             </Box>
         </FormProvider>

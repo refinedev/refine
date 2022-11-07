@@ -31,7 +31,7 @@ describe("useCheckError Hook", () => {
                     isProvided: true,
                     login: () => Promise.resolve(),
                     checkAuth: () => Promise.resolve(),
-                    checkError: () => Promise.reject("rejected"),
+                    checkError: () => Promise.reject(),
                     getPermissions: () => Promise.resolve(),
                     logout: logoutMock,
                     getUserIdentity: () => Promise.resolve(),

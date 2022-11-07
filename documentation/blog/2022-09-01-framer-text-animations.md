@@ -62,6 +62,12 @@ We are going to break this article into two sections first, the text animation, 
 :::
   
 
+---
+
+<PromotionBanner title="Not confident with your frontend skills?" image="/img/generic_banner.png" />
+
+---
+
 
 ## Getting started with text animation
 In this section, we'll demonstrate how to use Framer Motion when animating text using the `motion` components. 
@@ -362,11 +368,6 @@ Contrary to ordinary CSS, we can see that framer motion enabled the above animat
 
 You can access the app [here](https://framer-motion-animation-snowy.vercel.app/)
 
-
-## Conclusion
-This article taught us how to use Framer Motion to create a simple text and image animation for a React application. Compared to regular CSS, we saw how easy it is to implement these animations with a few lines of code. We also saw how to use some Framer Motion components and props. [Framer Motion](https://www.framer.com/docs/introduction/) has other powerful features we didn't cover in this article. You should check them out. I hope this article becomes valuable to you. 
-
-
 <br/>
 <div>
 <a href="https://discord.gg/refine">
@@ -374,26 +375,10 @@ This article taught us how to use Framer Motion to create a simple text and imag
 </a>
 </div>
 
----
 
-## Build your React-based CRUD applications without constraints
-
-Modern CRUD applications are required to consume data from many different sources from custom API’s to backend services like Supabase, Hasura, Airtable and Strapi.
-
-Check out [refine](https://github.com/refinedev/refine), if you are interested in a backend agnostic, headless framework which can connect 15+ data sources thanks to built-in providers and community plugins.
+## Conclusion
+This article taught us how to use Framer Motion to create a simple text and image animation for a React application. Compared to regular CSS, we saw how easy it is to implement these animations with a few lines of code. We also saw how to use some Framer Motion components and props. [Framer Motion](https://www.framer.com/docs/introduction/) has other powerful features we didn't cover in this article. You should check them out. I hope this article becomes valuable to you. 
 
 
-<div>
-<a href="https://github.com/refinedev/refine">
-    <img  src="https://refine.dev/img/refine_blog_logo_1.png" alt="refine blog logo" />
-</a>
-</div>
 
-<br/>
 
-**refine** is an open-source React-based framework for building CRUD applications **without constraints.**
-It can speed up your development time up to **3X** without compromising freedom on **styling**, **customization** and **project workflow.**
-
-**refine** is headless by design and it connects **30+** backend services out-of-the-box including custom REST and GraphQL API’s.
-
-Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.
