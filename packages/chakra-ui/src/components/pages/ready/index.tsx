@@ -8,7 +8,6 @@ import {
     Button,
     Link,
     Image,
-    HStack,
 } from "@chakra-ui/react";
 
 import logo from "../../../assets/images/refine.svg";
@@ -27,24 +26,27 @@ export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
         >
             <Image mb="8" src={logo} alt="Refine Logo" />
 
-            <Heading mb="6" as="h1" size="3xl" color="white">
+            <Heading mb="6" as="h1" size="3xl" color="white" textAlign="center">
                 Welcome on board
             </Heading>
-            <Heading as="h3" size="md" color="white" mb="6">
+            <Heading as="h3" size="md" color="white" mb="6" textAlign="center">
                 Your configuration is completed.
             </Heading>
-            <Text mb="8" fontSize="xl" color="white">
+            <Text mb="8" fontSize="xl" color="white" textAlign="center">
                 Now you can get started by adding your resources to the{" "}
                 <Code>resources</Code> property of <Code>Refine</Code>
             </Text>
 
-            <HStack wrap="wrap" spacing="3" justifyContent="center">
+            <Box display="flex" flexWrap="wrap" justifyContent="center" gap="3">
                 <Button
                     as={Link}
                     href="https://refine.dev"
                     target="_blank"
                     rel="noreferrer"
-                    colorScheme="green"
+                    colorScheme="white"
+                    color="white"
+                    variant="outline"
+                    minW="150px"
                 >
                     Documentation
                 </Button>
@@ -53,7 +55,10 @@ export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
                     href="https://refine.dev/examples"
                     target="_blank"
                     rel="noreferrer"
-                    colorScheme="green"
+                    colorScheme="white"
+                    color="white"
+                    variant="outline"
+                    minW="150px"
                 >
                     Examples
                 </Button>
@@ -62,11 +67,14 @@ export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
                     href="https://discord.gg/refine"
                     target="_blank"
                     rel="noreferrer"
-                    colorScheme="green"
+                    colorScheme="white"
+                    color="white"
+                    variant="outline"
+                    minW="150px"
                 >
                     Community
                 </Button>
-            </HStack>
+            </Box>
         </Box>
     );
 };

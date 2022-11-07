@@ -159,14 +159,12 @@ Here’s the result:
 
 
 
-<br/>
-<div>
-<a href="https://github.com/refinedev/refine">
-  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
-</a>
-</div>
 
+---
 
+<PromotionBanner title="Small dev teams love this React framework!" image="/img/mui_banner.png" />
+
+---
 ## How to use Material UI Button Component in your React project
 
 ### Text Button
@@ -418,6 +416,15 @@ Here’s the result:
     <img src={navbar} alt="navbar" />
 </div>
 
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
+
+
 ### The Main Component
  This component houses the Calculator’s grid system with all its buttons imported from Material UI.
 
@@ -511,39 +518,4 @@ This article covered **Material UI Buttons** and their applications in different
 You can also see the deployed application [here](https://calculator-ui-with-light-and-dark-mode-react-mui.vercel.app/).   
 
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
 
----
-
-<div style={{backgroundColor:"#F8F8F8", padding:"18px", borderRadius:"10px"}}>
-<div style={{fontSize:"32px", fontWeight:"700", lineHeight:"1.4", marginBottom:"25px"}} >Stop wasting your time copy/pasting your form code all over your application!</div >
-
-
-
-Meet the headless, React-based solution to build sleek **CRUD** applications. With refine, you can be confident that your codebase will always stay clean and boilerplate-free.
-
-Try [refine](https://github.com/refinedev/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
-
-    
-
-<div>
-<a href="https://github.com/refinedev/refine">
-   <img  src="/img/mui_banner.png" alt="refine blog logo" /> 
-</a>
-</div>
-
-<br/>
-
-
-**refine** is an open-source, React-based framework for building CRUD applications without constraints. It’s headless by design and seamlessly works with **any custom design** or **UI framework** you favor. For convenience, it ships with ready-made integrations for **Ant Design System, Material UI and Mantine UI**.
-
-It can **speed up your development time up to 3X** without compromising freedom on styling, customization and project workflow.
-
-Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.
-
-</div>

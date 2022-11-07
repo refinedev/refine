@@ -35,7 +35,7 @@ export const ProductCard: React.FC<ProductProps> = ({
                     fontWeight="semibold"
                     as="h4"
                     lineHeight="tight"
-                    isTruncated
+                    noOfLines={1}
                     color={"white"}
                 >
                     {title}

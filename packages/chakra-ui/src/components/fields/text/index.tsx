@@ -10,8 +10,6 @@ export type TextFieldProps = RefineFieldTextProps<ReactNode, TextProps>;
  *
  * @see {@link https://refine.dev/docs/ui-frameworks/chakra-ui/components/fields/text} for more details.
  */
-const TextField: React.FC<TextFieldProps> = ({ value, ...rest }) => {
+export const TextField: React.FC<TextFieldProps> = ({ value, ...rest }) => {
     return <Text {...rest}>{value}</Text>;
 };
-
-export { TextField as TextFieldComponent };

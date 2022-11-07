@@ -6,6 +6,7 @@ import * as RefineSimpleRest from "@pankod/refine-simple-rest";
 import * as RefineAntd from "@pankod/refine-antd";
 import * as RefineMui from "@pankod/refine-mui";
 import * as RefineMantine from "@pankod/refine-mantine";
+import * as RefineChakra from "@pankod/refine-chakra-ui";
 import * as RefineReactHookForm from "@pankod/refine-react-hook-form";
 import * as RefineReactTable from "@pankod/refine-react-table";
 
@@ -215,12 +216,43 @@ const RefineMantineDemo: React.FC<
     );
 };
 
+const RefineChakraDemo: React.FC<
+    Partial<RefineCore.RefineProps> & {
+        initialRoutes?: string[];
+    }
+> = ({ initialRoutes, ...rest }) => {
+    if (initialRoutes) {
+        setInitialRoutes(initialRoutes);
+    }
+
+    return (
+        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+            <Refine
+                routerProvider={RefineReactRouterV6.default}
+                dataProvider={RefineSimpleRest.default(SIMPLE_REST_API_URL)}
+                notificationProvider={RefineMantine.notificationProvider}
+                Layout={RefineMantine.Layout}
+                Sider={() => null}
+                catchAll={<RefineMantine.ErrorComponent />}
+                options={{
+                    disableTelemetry: true,
+                    reactQuery: {
+                        devtoolConfig: false,
+                    },
+                }}
+                {...rest}
+            />
+        </RefineChakra.ChakraProvider>
+    );
+};
+
 export const packageMap: Record<string, string> = {
     "@pankod/refine-core": "RefineCore",
     "@pankod/refine-react-router-v6": "RefineReactRouterV6",
     "@pankod/refine-antd": "RefineAntd",
     "@pankod/refine-mui": "RefineMui",
     "@pankod/refine-mantine": "RefineMantine",
+    "@pankod/refine-chakra-ui": "RefineChakra",
     "@pankod/refine-simple-rest": "RefineSimpleRest",
     "@pankod/refine-react-hook-form": "RefineReactHookForm",
     "@pankod/refine-react-table": "RefineReactTable",
@@ -250,6 +282,8 @@ export const RefineScope = {
     RefineMui,
     RefineMantine,
     RefineMantineDemo,
+    RefineChakra,
+    RefineChakraDemo,
     // Other Packages
     RefineReactHookForm,
     RefineReactTable,

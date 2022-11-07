@@ -808,5 +808,5 @@ export type {
 
 export * from "./components";
 export * from "./hooks";
-export * from "./types/theme";
+export * from "./theme";
 export * from "./providers";
