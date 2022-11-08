@@ -1,11 +1,12 @@
 import React from "react";
-import { useMany, useUpdateMany } from "@pankod/refine-core";
+import { Option, useSelect, useUpdateMany } from "@pankod/refine-core";
 import {
     useDataGrid,
     DataGrid,
     GridColumns,
     List,
     Button,
+    GridValueFormatterParams,
 } from "@pankod/refine-mui";
 
 import { ICategory, IPost } from "interfaces";
@@ -36,16 +37,15 @@ export const PostsList: React.FC = () => {
     };
 
     const { dataGridProps } = useDataGrid<IPost>({
-        initialPFageSize: 10,
+        initialPageSize: 10,
     });
 
-    const categoryIds = dataGridProps.rows.map((item) => item.category.id);
-    const { data: categoriesData, isLoading } = useMany<ICategory>({
+    const {
+        options,
+        queryResult: { isLoading },
+    } = useSelect<ICategory>({
         resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
+        hasPagination: false,
     });
 
     const columns = React.useMemo<GridColumns<IPost>>(
@@ -60,42 +60,53 @@ export const PostsList: React.FC = () => {
             {
                 field: "category.id",
                 headerName: "Category",
-                type: "number",
+                type: "singleSelect",
                 headerAlign: "left",
                 align: "left",
                 minWidth: 250,
                 flex: 0.5,
+                valueOptions: options,
+                valueFormatter: (params: GridValueFormatterParams<Option>) => {
+                    return params.value;
+                },
                 renderCell: function render({ row }) {
                     if (isLoading) {
                         return "Loading...";
                     }
 
-                    const category = categoriesData?.data.find(
-                        (item) => item.id === row.category.id,
+                    const category = options.find(
+                        (item) =>
+                            item.value.toString() ===
+                            row.category.id.toString(),
                     );
-                    return category?.title;
+                    return category?.label;
                 },
             },
-            { field: "status", headerName: "Status", minWidth: 120, flex: 0.3 },
+            {
+                field: "status",
+                headerName: "Status",
+                minWidth: 120,
+                flex: 0.3,
+                type: "singleSelect",
+                valueOptions: ["draft", "published", "rejected"],
+            },
         ],
-        [categoriesData, isLoading],
+        [options, isLoading],
     );
 
     return (
         <List
             cardProps={{ sx: { paddingX: { xs: 2, md: 0 } } }}
-            cardHeaderProps={{
-                subheader: (
-                    <Button
-                        onClick={() => updateSelectedItems()}
-                        disabled={!hasSelected}
-                        size="small"
-                        variant="contained"
-                    >
-                        Update Status to Approved
-                    </Button>
-                ),
-            }}
+            headerButtons={
+                <Button
+                    onClick={() => updateSelectedItems()}
+                    disabled={!hasSelected}
+                    size="small"
+                    variant="contained"
+                >
+                    Update Status to Approved
+                </Button>
+            }
         >
             <DataGrid
                 {...dataGridProps}

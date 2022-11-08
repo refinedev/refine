@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useEffect, useCallback } from "react";
 import {
     GetManyResponse,
     useDeleteMany,
@@ -30,10 +30,10 @@ import {
     TableCell,
     Checkbox,
     CheckboxProps,
-    Paper,
     TableBody,
     TableSortLabel,
     TablePagination,
+    List,
 } from "@pankod/refine-mui";
 import { useForm, Controller } from "@pankod/refine-react-hook-form";
 
@@ -332,16 +332,16 @@ export const PostList: React.FC = () => {
                     }),
                 }}
             >
-                {numSelected > 0 && (
-                    <Typography
-                        sx={{ flex: "1 1 100%" }}
-                        color="inherit"
-                        variant="subtitle1"
-                        component="div"
-                    >
-                        {numSelected} selected
-                    </Typography>
-                )}
+                <Typography
+                    sx={{ flex: "1 1 100%" }}
+                    color="inherit"
+                    variant="subtitle1"
+                    component="div"
+                >
+                    {numSelected > 0
+                        ? `${numSelected} selected`
+                        : "Not selected any row"}
+                </Typography>
                 {numSelected > 0 && <DeleteButton onClick={() => onDelete()} />}
             </Toolbar>
         );
@@ -351,185 +351,168 @@ export const PostList: React.FC = () => {
     const categoryColumn = getColumn("category.id");
 
     return (
-        <>
-            <Box sx={{ width: "100%" }}>
-                <form onSubmit={handleSubmit(onFinish)}>
-                    <Paper sx={{ width: "100%", mb: 2 }}>
-                        <Box p={1}>
-                            <Stack direction="row" spacing={2}>
-                                <TextField
-                                    label="Search by title"
-                                    id="title"
-                                    type="search"
-                                    value={
-                                        (titleColumn.getFilterValue() as string) ??
-                                        ""
-                                    }
-                                    onChange={(event) =>
-                                        titleColumn.setFilterValue(
-                                            event.target.value,
-                                        )
-                                    }
-                                />
+        <List
+            title="React Table Usage"
+            breadcrumb={false}
+            headerButtons={
+                <Stack direction="row" spacing={2}>
+                    <TextField
+                        label="Search by title"
+                        id="title"
+                        type="search"
+                        value={(titleColumn.getFilterValue() as string) ?? ""}
+                        onChange={(event) =>
+                            titleColumn.setFilterValue(event.target.value)
+                        }
+                    />
 
-                                <TextField
-                                    select
-                                    id="category"
-                                    label="Category Select"
-                                    defaultValue={"0"}
-                                    onChange={(event) => {
-                                        categoryColumn.setFilterValue(
-                                            event.target.value === "0"
-                                                ? undefined
-                                                : event.target.value.toString(),
-                                        );
-                                    }}
-                                    sx={{ minWidth: 200 }}
-                                >
-                                    <MenuItem key="All Categories" value={"0"}>
-                                        All Categories
-                                    </MenuItem>
-                                    {options?.map((category) => (
-                                        <MenuItem
-                                            key={category.value}
-                                            value={category.value}
+                    <TextField
+                        select
+                        id="category"
+                        label="Category Select"
+                        defaultValue={"0"}
+                        onChange={(event) => {
+                            categoryColumn.setFilterValue(
+                                event.target.value === "0"
+                                    ? undefined
+                                    : event.target.value.toString(),
+                            );
+                        }}
+                        sx={{ minWidth: 200 }}
+                    >
+                        <MenuItem key="All Categories" value={"0"}>
+                            All Categories
+                        </MenuItem>
+                        {options?.map((category) => (
+                            <MenuItem
+                                key={category.value}
+                                value={category.value}
+                            >
+                                {category.label}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                </Stack>
+            }
+        >
+            <form onSubmit={handleSubmit(onFinish)}>
+                <EnhancedTableToolbar
+                    numSelected={Object.keys(rowSelection ?? {}).length}
+                    onDelete={() => {
+                        deleteSelectedItems(
+                            getSelectedRowModel().flatRows.map(
+                                (row) => row.original.id,
+                            ),
+                        );
+                    }}
+                />
+                <TableContainer>
+                    <Table size="small">
+                        <TableHead>
+                            {getHeaderGroups().map((headerGroup) => (
+                                <TableRow key={headerGroup.id}>
+                                    {headerGroup.headers.map((header) => (
+                                        <TableCell
+                                            key={header.id}
+                                            onClick={header.column.getToggleSortingHandler()}
                                         >
-                                            {category.label}
-                                        </MenuItem>
-                                    ))}
-                                </TextField>
-                            </Stack>
-                        </Box>
-                        <EnhancedTableToolbar
-                            numSelected={Object.keys(rowSelection ?? {}).length}
-                            onDelete={() => {
-                                deleteSelectedItems(
-                                    getSelectedRowModel().flatRows.map(
-                                        (row) => row.original.id,
-                                    ),
-                                );
-                            }}
-                        />
-                        <TableContainer>
-                            <Table size="small">
-                                <TableHead>
-                                    {getHeaderGroups().map((headerGroup) => (
-                                        <TableRow key={headerGroup.id}>
-                                            {headerGroup.headers.map(
-                                                (header) => (
-                                                    <TableCell
-                                                        key={header.id}
-                                                        onClick={header.column.getToggleSortingHandler()}
-                                                    >
-                                                        {flexRender(
-                                                            header.column
-                                                                .columnDef
-                                                                .header,
-                                                            header.getContext(),
-                                                        )}
-                                                        {header.column.id !==
-                                                        "selection" ? (
-                                                            <TableSortLabel
-                                                                active={
-                                                                    header.column.getIsSorted() !==
-                                                                    false
-                                                                }
-                                                                direction={
-                                                                    header.column.getIsSorted() ===
-                                                                    false
-                                                                        ? undefined
-                                                                        : (header.column.getIsSorted() as
-                                                                              | "asc"
-                                                                              | "desc")
-                                                                }
-                                                            />
-                                                        ) : null}
-                                                    </TableCell>
-                                                ),
+                                            {flexRender(
+                                                header.column.columnDef.header,
+                                                header.getContext(),
                                             )}
-                                        </TableRow>
+                                            {header.column.id !==
+                                            "selection" ? (
+                                                <TableSortLabel
+                                                    active={
+                                                        header.column.getIsSorted() !==
+                                                        false
+                                                    }
+                                                    direction={
+                                                        header.column.getIsSorted() ===
+                                                        false
+                                                            ? undefined
+                                                            : (header.column.getIsSorted() as
+                                                                  | "asc"
+                                                                  | "desc")
+                                                    }
+                                                />
+                                            ) : null}
+                                        </TableCell>
                                     ))}
-                                </TableHead>
-                                <TableBody>
-                                    {getRowModel().rows.map((row) => {
-                                        if (id === row.original.id) {
-                                            return renderEditRow(row);
-                                        } else
-                                            return (
-                                                <React.Fragment key={row.id}>
-                                                    <TableRow>
-                                                        {row
-                                                            .getAllCells()
-                                                            .map((cell) => {
-                                                                return (
-                                                                    <TableCell
-                                                                        key={
-                                                                            cell.id
-                                                                        }
-                                                                    >
-                                                                        {flexRender(
-                                                                            cell
-                                                                                .column
-                                                                                .columnDef
-                                                                                .cell,
-                                                                            cell.getContext(),
-                                                                        )}
-                                                                    </TableCell>
-                                                                );
-                                                            })}
-                                                    </TableRow>
-
-                                                    {row.getIsExpanded() ? (
-                                                        <TableRow>
+                                </TableRow>
+                            ))}
+                        </TableHead>
+                        <TableBody>
+                            {getRowModel().rows.map((row) => {
+                                if (id === row.original.id) {
+                                    return renderEditRow(row);
+                                } else
+                                    return (
+                                        <React.Fragment key={row.id}>
+                                            <TableRow>
+                                                {row
+                                                    .getAllCells()
+                                                    .map((cell) => {
+                                                        return (
                                                             <TableCell
-                                                                colSpan={
-                                                                    row.getVisibleCells()
-                                                                        .length
-                                                                }
+                                                                key={cell.id}
                                                             >
-                                                                {renderRowSubComponent(
-                                                                    {
-                                                                        row,
-                                                                    },
+                                                                {flexRender(
+                                                                    cell.column
+                                                                        .columnDef
+                                                                        .cell,
+                                                                    cell.getContext(),
                                                                 )}
                                                             </TableCell>
-                                                        </TableRow>
-                                                    ) : null}
-                                                </React.Fragment>
-                                            );
-                                    })}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                        <TablePagination
-                            component="div"
-                            rowsPerPageOptions={[
-                                5,
-                                10,
-                                25,
-                                {
-                                    label: "All",
-                                    value: tableData?.total ?? 100,
-                                },
-                            ]}
-                            showFirstButton
-                            showLastButton
-                            count={pageCount || 0}
-                            rowsPerPage={pagination?.pageSize || 10}
-                            page={pagination?.pageIndex || 0}
-                            onPageChange={(_, newPage: number) =>
-                                setPageIndex(newPage)
-                            }
-                            onRowsPerPageChange={(
-                                event: React.ChangeEvent<HTMLInputElement>,
-                            ) => {
-                                setPageSize(parseInt(event.target.value, 10));
-                                setPageIndex(0);
-                            }}
-                        />
-                    </Paper>
-                </form>
-            </Box>
-        </>
+                                                        );
+                                                    })}
+                                            </TableRow>
+
+                                            {row.getIsExpanded() ? (
+                                                <TableRow>
+                                                    <TableCell
+                                                        colSpan={
+                                                            row.getVisibleCells()
+                                                                .length
+                                                        }
+                                                    >
+                                                        {renderRowSubComponent({
+                                                            row,
+                                                        })}
+                                                    </TableCell>
+                                                </TableRow>
+                                            ) : null}
+                                        </React.Fragment>
+                                    );
+                            })}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+                <TablePagination
+                    component="div"
+                    rowsPerPageOptions={[
+                        5,
+                        10,
+                        25,
+                        {
+                            label: "All",
+                            value: tableData?.total ?? 100,
+                        },
+                    ]}
+                    showFirstButton
+                    showLastButton
+                    count={pageCount || 0}
+                    rowsPerPage={pagination?.pageSize || 10}
+                    page={pagination?.pageIndex || 0}
+                    onPageChange={(_, newPage: number) => setPageIndex(newPage)}
+                    onRowsPerPageChange={(
+                        event: React.ChangeEvent<HTMLInputElement>,
+                    ) => {
+                        setPageSize(parseInt(event.target.value, 10));
+                        setPageIndex(0);
+                    }}
+                />
+            </form>
+        </List>
     );
 };
