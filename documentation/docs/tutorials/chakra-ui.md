@@ -483,14 +483,14 @@ values={[
 <TabItem value="npm">
 
 ```bash
-npm i @pankod/refine-core @pankod/refine-chakra-ui @pankod/refine-react-router-v6 @pankod/refine-react-table
+npm i @pankod/refine-core @pankod/refine-chakra-ui @pankod/refine-react-router-v6 @pankod/refine-react-table @pankod/refine-react-hook-form 
 ```
 
   </TabItem>
     <TabItem value="yarn">
 
 ```bash
-yarn add  @pankod/refine-core @pankod/refine-chakra-ui @pankod/refine-react-router-v6 @pankod/refine-react-table
+yarn add  @pankod/refine-core @pankod/refine-chakra-ui @pankod/refine-react-router-v6 @pankod/refine-react-table @pankod/refine-react-hook-form 
 ```
 
   </TabItem>
