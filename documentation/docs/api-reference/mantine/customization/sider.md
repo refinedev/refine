@@ -3,10 +3,6 @@ id: sider
 title: Sider
 ---
 
-```tsx live shared
-
-```
-
 There are 2 ways that will allow you to customize your `<Sider />` component if you need it.
 
 You can access the `logout`, `dashboard`, `items` elements and `collapsed` state that we use in our default `Sider` component by using `render` properties. Customize it to your needs or you can create a custom `<Sider />` component and use it either by passing it to [`<Refine />`][refine] or using a [Custom Layout][customlayout].
