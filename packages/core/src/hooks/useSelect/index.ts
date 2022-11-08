@@ -63,6 +63,12 @@ export type UseSelectProps<TData, TError> = {
      */
     pagination?: Pagination;
     /**
+     * Disabling pagination option from [`useList()`](/docs/api-reference/core/hooks/data/useList/)
+     * @type boolean
+     * @default `undefined`
+     */
+    hasPagination?: boolean;
+    /**
      * react-query [useQuery](https://react-query.tanstack.com/reference/useQuery) options
      */
     defaultValueQueryOptions?: UseQueryOptions<GetManyResponse<TData>, TError>;
@@ -120,6 +126,7 @@ export const useSelect = <
         queryOptions,
         fetchSize,
         pagination,
+        hasPagination,
         liveMode,
         defaultValue = [],
         onLiveEvent,
@@ -189,6 +196,7 @@ export const useSelect = <
                 current: pagination?.current,
                 pageSize: pagination?.pageSize ?? fetchSize,
             },
+            hasPagination,
         },
         queryOptions: {
             ...queryOptions,
