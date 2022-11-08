@@ -3,7 +3,7 @@ import {
     useForm as useMantineForm,
     UseFormReturnType as UseMantineFormReturnType,
 } from "@mantine/form";
-import { UseFormInput, OnSubmit } from "@mantine/form/lib/types";
+import { UseFormInput } from "@mantine/form/lib/types";
 import {
     BaseRecord,
     HttpError,
@@ -13,12 +13,29 @@ import {
     UseFormReturnType as UseFormReturnTypeCore,
 } from "@pankod/refine-core";
 
+type FormVariableType<TVariables, TTransformed> = ReturnType<
+    NonNullable<
+        UseFormInput<
+            TVariables,
+            (values: TVariables) => TTransformed
+        >["transformValues"]
+    >
+>;
+
 export type UseFormReturnType<
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TVariables = Record<string, unknown>,
-> = UseMantineFormReturnType<TVariables> & {
-    refineCore: UseFormReturnTypeCore<TData, TError, TVariables>;
+    TData extends BaseRecord,
+    TError extends HttpError,
+    TVariables,
+    TTransformed = TVariables,
+> = UseMantineFormReturnType<
+    TVariables,
+    (values: TVariables) => TTransformed
+> & {
+    refineCore: UseFormReturnTypeCore<
+        TData,
+        TError,
+        FormVariableType<TVariables, TTransformed>
+    >;
     saveButtonProps: {
         disabled: boolean;
         onClick: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -26,27 +43,34 @@ export type UseFormReturnType<
 };
 
 export type UseFormProps<
-    TData extends BaseRecord = BaseRecord,
-    TError extends HttpError = HttpError,
-    TVariables = Record<string, unknown>,
+    TData extends BaseRecord,
+    TError extends HttpError,
+    TVariables,
+    TTransformed = TVariables,
 > = {
-    refineCoreProps?: UseFormCoreProps<TData, TError, TVariables> & {
+    refineCoreProps?: UseFormCoreProps<
+        TData,
+        TError,
+        FormVariableType<TVariables, TTransformed>
+    > & {
         warnWhenUnsavedChanges?: boolean;
     };
-} & UseFormInput<TVariables>;
+} & UseFormInput<TVariables, (values: TVariables) => TTransformed>;
 
 export const useForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = Record<string, unknown>,
+    TTransformed = TVariables,
 >({
     refineCoreProps,
     ...rest
-}: UseFormProps<TData, TError, TVariables> = {}): UseFormReturnType<
+}: UseFormProps<
     TData,
     TError,
-    TVariables
-> => {
+    TVariables,
+    TTransformed
+> = {}): UseFormReturnType<TData, TError, TVariables, TTransformed> => {
     const warnWhenUnsavedChangesProp = refineCoreProps?.warnWhenUnsavedChanges;
 
     const {
@@ -56,13 +80,20 @@ export const useForm = <
     const warnWhenUnsavedChanges =
         warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesRefine;
 
-    const useFormCoreResult = useFormCore<TData, TError, TVariables>({
+    const useFormCoreResult = useFormCore<
+        TData,
+        TError,
+        FormVariableType<TVariables, TTransformed>
+    >({
         ...refineCoreProps,
     });
 
     const { queryResult, onFinish, formLoading } = useFormCoreResult;
 
-    const useMantineFormResult = useMantineForm<TVariables>({
+    const useMantineFormResult = useMantineForm<
+        TVariables,
+        (values: TVariables) => TTransformed
+    >({
         ...rest,
     });
 
@@ -96,7 +127,7 @@ export const useForm = <
         }
     }, [isValuesChanged]);
 
-    const onSubmit: OnSubmit<TVariables> =
+    const onSubmit: typeof useMantineFormResult["onSubmit"] =
         (handleSubmit, handleValidationFailure) => async (e) => {
             setWarnWhen(false);
             return await onMantineSubmit(
