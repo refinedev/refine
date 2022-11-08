@@ -1,7 +1,8 @@
 ---
 id: supabase
-title: Supabase 
+title: Supabase
 ---
+
 import login from '@site/static/img/guides-and-concepts/data-provider/supabase/login-screen.png';
 import welcome from '@site/static/img/guides-and-concepts/data-provider/supabase/welcome.png';
 import flow from '@site/static/img/guides-and-concepts/data-provider/supabase/flow.png';
@@ -31,7 +32,6 @@ We are assuming that you have already know how refine works. If not, please chec
 
 We'll be using [superplate](https://github.com/pankod/superplate) CLI to bootstrap our example project with a special preset defined to Supabase example
 
-
 <Tabs
 defaultValue="preset"
 values={[
@@ -47,7 +47,7 @@ npx superplate-cli --preset refine-antd-supabase my-supabase-app
 Also, we need to install npm packages to use markdown editor:
 
 ```
-npm i react-markdown react-mde
+npm i @uiw/react-md-editor
 ```
 
 This will create a new refine app with Supabase data provider and Ant Desing as a UI framework. We'll be using this project as a base to implement our example.
@@ -78,18 +78,17 @@ If you want to add Supabase data provider to existed **refine** app, you add it 
 ```
 npm i @pankod/refine-supabase
 ```
+
 :::
 
   </TabItem>
 </Tabs>
 
-
-
 ## Establishing Supabase connection
 
 ### Initialize Supabase client
 
-If you head over to `src/utilty` folder, you'll see a file called `supabaseClient.ts` created by CLI. This auto-generated file contains API credentials and a function that initializes the Supabase client.  
+If you head over to `src/utilty` folder, you'll see a file called `supabaseClient.ts` created by CLI. This auto-generated file contains API credentials and a function that initializes the Supabase client.
 
 ```ts
 import { createClient } from "@pankod/refine-supabase";
@@ -110,6 +109,7 @@ You can also use environment variables to store your Supabase URL and key. This 
 :::
 
 ### Register Supabase data provider
+
 Let's head over to `App.tsx` file where all magic happens. This is the entry point of our app. We'll be registering our Supabase data provider here.
 
 ```tsx title="App.tsx"
@@ -140,23 +140,20 @@ With this configuration, refine can now communicate with Supabase API and perfor
 
 [Refer to documentation to learn more about how to use data hooks &#8594](/docs/api-reference/core/hooks/data/useCreate.md)
 
+## Understanding the Auth Provider
 
-## Understanding the Auth Provider 
+Auth provider is a concept that allows us to use any authentication service with refine.
 
-Auth provider is a concept that allows us to use any authentication service with refine. 
-
-You'll see a file called `src/authProvider.ts` created by CLI. This auto-generated file contains pre-defined functions using Supabase Auth API methods internally to perform authentication and authorization operations. 
+You'll see a file called `src/authProvider.ts` created by CLI. This auto-generated file contains pre-defined functions using Supabase Auth API methods internally to perform authentication and authorization operations.
 
 So basically, this is where we set complete authentication logic for the app.
 
-Since we preferred refine-supabase as the data provider during the CLI project initialization,  all required Supabase authentication methods are already implemented for us. This shows us how easy it is to bootstrap a refine app with CLI
+Since we preferred refine-supabase as the data provider during the CLI project initialization, all required Supabase authentication methods are already implemented for us. This shows us how easy it is to bootstrap a refine app with CLI
 
-[Refer to docs for more information about Auth Provider methods and custom Auth Providers  &#8594](/docs/api-reference/core/providers/auth-provider.md)
-
+[Refer to docs for more information about Auth Provider methods and custom Auth Providers &#8594](/docs/api-reference/core/providers/auth-provider.md)
 
 <details><summary>Take a look the auto-generated <b>authProvider.ts</b> file </summary>
 <p>
-
 
 ```ts title="src/authProvider.ts"
 import { AuthProvider } from "@pankod/refine-core";
@@ -164,121 +161,115 @@ import { AuthProvider } from "@pankod/refine-core";
 import { supabaseClient } from "utility";
 
 const authProvider: AuthProvider = {
-  login: async ({ email, password, providerName }) => {
-    const { user, error } = await supabaseClient.auth.signIn({
-      email,
-      password,
-      provider: providerName,
-    });
+    login: async ({ email, password, providerName }) => {
+        const { user, error } = await supabaseClient.auth.signIn({
+            email,
+            password,
+            provider: providerName,
+        });
 
-    if (error) {
-      return Promise.reject(error);
-    }
+        if (error) {
+            return Promise.reject(error);
+        }
 
-    if (user) {
-      return Promise.resolve();
-    }
+        if (user) {
+            return Promise.resolve();
+        }
 
-    // for third-party login
-    return Promise.resolve(false);
-  },
-  register: async ({ email, password }) => {
-    const { user, error } = await supabaseClient.auth.signUp({
-      email,
-      password,
-    });
+        // for third-party login
+        return Promise.resolve(false);
+    },
+    register: async ({ email, password }) => {
+        const { user, error } = await supabaseClient.auth.signUp({
+            email,
+            password,
+        });
 
-    if (error) {
-      return Promise.reject(error);
-    }
+        if (error) {
+            return Promise.reject(error);
+        }
 
-    if (user) {
-      return Promise.resolve();
-    }
-  },
-  forgotPassword: async ({ email }) => {
-    const { data, error } = await supabaseClient.auth.api.resetPasswordForEmail(
-      email,
-      {
-        redirectTo: `${window.location.origin}/update-password`,
-      }
-    );
+        if (user) {
+            return Promise.resolve();
+        }
+    },
+    forgotPassword: async ({ email }) => {
+        const { data, error } =
+            await supabaseClient.auth.api.resetPasswordForEmail(email, {
+                redirectTo: `${window.location.origin}/update-password`,
+            });
 
-    if (error) {
-      return Promise.reject(error);
-    }
+        if (error) {
+            return Promise.reject(error);
+        }
 
-    if (data) {
-      return Promise.resolve();
-    }
-  },
-  updatePassword: async ({ password }) => {
-    const { data, error } = await supabaseClient.auth.update({ password });
+        if (data) {
+            return Promise.resolve();
+        }
+    },
+    updatePassword: async ({ password }) => {
+        const { data, error } = await supabaseClient.auth.update({ password });
 
-    if (error) {
-      return Promise.reject(error);
-    }
+        if (error) {
+            return Promise.reject(error);
+        }
 
-    if (data) {
-      return Promise.resolve("/");
-    }
-  },
-  logout: async () => {
-    const { error } = await supabaseClient.auth.signOut();
+        if (data) {
+            return Promise.resolve("/");
+        }
+    },
+    logout: async () => {
+        const { error } = await supabaseClient.auth.signOut();
 
-    if (error) {
-      return Promise.reject(error);
-    }
+        if (error) {
+            return Promise.reject(error);
+        }
 
-    return Promise.resolve("/");
-  },
-  checkError: () => Promise.resolve(),
-  checkAuth: async () => {
-    const session = supabaseClient.auth.session();
-    const sessionFromURL = await supabaseClient.auth.getSessionFromUrl();
+        return Promise.resolve("/");
+    },
+    checkError: () => Promise.resolve(),
+    checkAuth: async () => {
+        const session = supabaseClient.auth.session();
+        const sessionFromURL = await supabaseClient.auth.getSessionFromUrl();
 
-    if (session || sessionFromURL?.data?.user) {
-      return Promise.resolve();
-    }
+        if (session || sessionFromURL?.data?.user) {
+            return Promise.resolve();
+        }
 
-    return Promise.reject();
-  },
-  getPermissions: async () => {
-    const user = supabaseClient.auth.user();
+        return Promise.reject();
+    },
+    getPermissions: async () => {
+        const user = supabaseClient.auth.user();
 
-    if (user) {
-      return Promise.resolve(user.role);
-    }
-  },
-  getUserIdentity: async () => {
-    const user = supabaseClient.auth.user();
+        if (user) {
+            return Promise.resolve(user.role);
+        }
+    },
+    getUserIdentity: async () => {
+        const user = supabaseClient.auth.user();
 
-    if (user) {
-      return Promise.resolve({
-        ...user,
-        name: user.email,
-      });
-    }
-  },
+        if (user) {
+            return Promise.resolve({
+                ...user,
+                name: user.email,
+            });
+        }
+    },
 };
 
 export default authProvider;
-
 ```
 
  </p>
 </details>
 
-
-
-:::tip 
+:::tip
 Auth provider functions are also consumed by [refine authorization hooks](/docs/api-reference/core/hooks/auth/useLogin.md). Since this is out of scope of this tutorial, we'll not cover them for now
 :::
 
 <br/>
 
 Auth provider needed to be registered in `<Refine>` component to activate auth features in our app
-
 
 ```tsx title="App.tsx"
 import { Refine } from "@pankod/refine-core";
@@ -301,10 +292,8 @@ function App() {
 export default App;
 ```
 
-
 Also, we'll see the `Auth provider` methods in action when using `LoginPage` in the next sections.
 
- 
 At this point, our refine app is configured to communicate with Supabase API and ready to perform authentication operations using Supabase Auth methods.
 
 If you head over to localhost:3000, you'll see a welcome page.
@@ -322,10 +311,9 @@ If you head over to localhost:3000, you'll see a welcome page.
 
 Now it's time to add some resources to our app.
 
+## Adding CRUD pages
 
-## Adding CRUD pages   
 Before diving into Supabase features, we'll add simple CRUD pages to make the app more interactive.
-
 
 :::note
 Since this post focuses on Supabase implementation, we'll not discuss how to create CRUD pages and how it works. You can refer to [Tutorial](/docs/tutorials/antd.md/#creating-a-list-page) to learn more about creating CRUD pages.
@@ -334,7 +322,6 @@ Since this post focuses on Supabase implementation, we'll not discuss how to cre
 ### Adding a List page
 
 Let's add a listing page to show data retrieved from Supabase API in the table. Copy and paste the following code to `src/pages/posts` folder and name it `list.tsx`.
-
 
 <details><summary>Show the List Page code</summary>
 <p>
@@ -436,8 +423,6 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
  </p>
 </details>
 
-
-
 ### Adding a Create page
 
 We'll need a page for creating a new record in Supabase API. Copy and paste following code to `src/pages/posts` folder and name it `create.tsx`.
@@ -460,10 +445,7 @@ import {
     RcFile,
 } from "@pankod/refine-antd";
 
-import ReactMarkdown from "react-markdown";
-import ReactMde from "react-mde";
-
-import "react-mde/lib/styles/css/react-mde-all.css";
+import MDEditor from "@uiw/react-md-editor";
 
 import { IPost, ICategory } from "interfaces";
 import { supabaseClient, normalizeFile } from "utility";
@@ -474,10 +456,6 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
     });
-
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
-        "write",
-    );
 
     return (
         <Create saveButtonProps={saveButtonProps}>
@@ -513,15 +491,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <ReactMde
-                        selectedTab={selectedTab}
-                        onTabChange={setSelectedTab}
-                        generateMarkdownPreview={(markdown) =>
-                            Promise.resolve(
-                                <ReactMarkdown>{markdown}</ReactMarkdown>,
-                            )
-                        }
-                    />
+                    <MDEditor data-color-mode="light" />
                 </Form.Item>
                 <Form.Item label="Images">
                     <Form.Item
@@ -590,8 +560,8 @@ We'll need a page for editing a record in Supabase API. Copy and paste following
 <p>
 
 ```tsx title="src/pages/posts/edit.tsx"
-import React, { useState } from 'react';
-import { IResourceComponentsProps } from '@pankod/refine-core';
+import React, { useState } from "react";
+import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import {
     Alert,
@@ -606,20 +576,17 @@ import {
     Upload,
     useForm,
     useSelect,
-} from '@pankod/refine-antd';
+} from "@pankod/refine-antd";
 
-import ReactMarkdown from 'react-markdown';
-import ReactMde from 'react-mde';
+import MDEditor from "@uiw/react-md-editor";
 
-import 'react-mde/lib/styles/css/react-mde-all.css';
-
-import { IPost, ICategory } from 'interfaces';
-import { supabaseClient, normalizeFile } from 'utility';
+import { IPost, ICategory } from "interfaces";
+import { supabaseClient, normalizeFile } from "utility";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const [isDeprecated, setIsDeprecated] = useState(false);
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
-        liveMode: 'manual',
+        liveMode: "manual",
         onLiveEvent: () => {
             setIsDeprecated(true);
         },
@@ -627,13 +594,9 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
 
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
-        resource: 'categories',
+        resource: "categories",
         defaultValue: postData?.categoryId,
     });
-
-    const [selectedTab, setSelectedTab] = useState<'write' | 'preview'>(
-        'write'
-    );
 
     const handleRefresh = () => {
         queryResult?.refetch();
@@ -703,15 +666,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <ReactMde
-                        selectedTab={selectedTab}
-                        onTabChange={setSelectedTab}
-                        generateMarkdownPreview={(markdown) =>
-                            Promise.resolve(
-                                <ReactMarkdown>{markdown}</ReactMarkdown>
-                            )
-                        }
-                    />
+                    <MDEditor data-color-mode="light" />
                 </Form.Item>
                 <Form.Item label="Images">
                     <Form.Item
@@ -733,9 +688,9 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                                 const fileUrl = `public/${rcFile.name}`;
 
                                 const { error } = await supabaseClient.storage
-                                    .from('refine')
+                                    .from("refine")
                                     .upload(fileUrl, file, {
-                                        cacheControl: '3600',
+                                        cacheControl: "3600",
                                         upsert: true,
                                     });
 
@@ -744,7 +699,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                                 }
                                 const { data, error: urlError } =
                                     await supabaseClient.storage
-                                        .from('refine')
+                                        .from("refine")
                                         .getPublicUrl(fileUrl);
 
                                 if (urlError) {
@@ -753,7 +708,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
 
                                 onSuccess?.(
                                     { url: data?.publicURL },
-                                    new XMLHttpRequest()
+                                    new XMLHttpRequest(),
                                 );
                             }}
                         >
@@ -772,7 +727,6 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
  </p>
 </details>
 
-
 ### Adding Interfaces and Normalize file
 
 We need to add interfaces for `Post` and `Create` pages to `src/interfaces/index.d.ts` file.
@@ -790,7 +744,7 @@ export interface IFile {
     name: string;
     percent: number;
     size: number;
-    status: 'error' | 'success' | 'done' | 'uploading' | 'removed';
+    status: "error" | "success" | "done" | "uploading" | "removed";
     type: string;
     uid: string;
     url: string;
@@ -852,11 +806,11 @@ Finally expose those modules at `src/pages/posts` by adding
 export * from "./create";
 export * from "./edit";
 export * from "./list";
-``` 
-    
-    
+```
+
 ### Adding Resources
-One last thing we need to do is to add newly created CRUD pages to the `resources` property of `<Refine>` component. 
+
+One last thing we need to do is to add newly created CRUD pages to the `resources` property of `<Refine>` component.
 
 ```tsx title="src/App.tsx"
 import { dataProvider } from '@pankod/refine-supabase';
@@ -886,25 +840,21 @@ function App() {
 export default App;
 ```
 
-
-The resources property activates the connection between CRUD pages and Supabase API. 
+The resources property activates the connection between CRUD pages and Supabase API.
 
 **refine** automatically matches the Supabase API endpoint with CRUD pages for us. In this way, the pages can interact with data from the API.
 
-- The `name` property refers to the name of the table in the Supabase database.
+-   The `name` property refers to the name of the table in the Supabase database.
 
-- The `list` property registers `/posts` endpoint to the `PostList` component.
+-   The `list` property registers `/posts` endpoint to the `PostList` component.
 
-- The `create` property registers `/posts/create` endpoint to the `PostCreate` component. Thereby, when you head over to `yourdomain.com/posts/create`, you will see the `PostCreate` page you just created.
-
+-   The `create` property registers `/posts/create` endpoint to the `PostCreate` component. Thereby, when you head over to `yourdomain.com/posts/create`, you will see the `PostCreate` page you just created.
 
 [Refer to resources docs for more information &#8594](/docs/api-reference/core/components/refine-config.md/#resources)
 
+## Understanding the Login screen
 
-
-## Understanding the Login screen 
 After adding the resources, the app will look like:
-
 
 <div  style={{display:"flex", flexDirection:"column"}}>
     <div class="window" style={{alignSelf:"center", width:"700px"}} >
@@ -915,65 +865,62 @@ After adding the resources, the app will look like:
     <img style={{alignSelf:"center", width:"700px"}} src={login} alt="login" />
 </div>
 
-
 <br/>
 
 Normally, refine shows a default login page when `authProvider` and `resources` properties are passed to `<Refine />` component. However, our login screen is slightly different from the default one.
 
 #### This premade and ready to use Login screen consist `LoginPage` and `authProvider` concepts behind the scenes:
 
-
-
 Let's check out the `LoginPage` property:
 
-  ```tsx title="src/App.tsx"
+```tsx title="src/App.tsx"
 import { Refine } from '@pankod/refine-core';
 //highlight-start
 import { AuthPage } from '@pankod/refine-antd';
 import routerProvider from "@pankod/refine-react-router-v6";
-  //highlight-end
+//highlight-end
 import authProvider from './authProvider';
 ...
 
 function App() {
-    return (
-        <Refine
-            ...
-            //highlight-start
-             routerProvider={{
-                ...routerProvider,
-                routes: [
-                    {
-                        path: '/register',
-                        element: <AuthPage type="register" />,
-                    },
-                    {
-                        path: '/forgot-password',
-                        element: <AuthPage type="forgotPassword" />,
-                    },
-                    {
-                        path: '/update-password',
-                        element: <AuthPage type="updatePassword" />,
-                    },
-                ],
-            }}
-            //highlight-end
-            authProvider={authProvider}
-            //highlight-start
-            LoginPage={AuthPage}
-            //highlight-end
-        />
-    );
+  return (
+      <Refine
+          ...
+          //highlight-start
+           routerProvider={{
+              ...routerProvider,
+              routes: [
+                  {
+                      path: '/register',
+                      element: <AuthPage type="register" />,
+                  },
+                  {
+                      path: '/forgot-password',
+                      element: <AuthPage type="forgotPassword" />,
+                  },
+                  {
+                      path: '/update-password',
+                      element: <AuthPage type="updatePassword" />,
+                  },
+              ],
+          }}
+          //highlight-end
+          authProvider={authProvider}
+          //highlight-start
+          LoginPage={AuthPage}
+          //highlight-end
+      />
+  );
 }
 ```
+
 The `AuthPage` component returns ready-to-use authentication pages for login, register, update, and forgot password actions. We passed it to the `LoginPage` property to override the default login page.
 
-**This is where `authProvider` comes into play.** 
+**This is where `authProvider` comes into play.**
 
-Remember the [Understanding the Auth Provider](#understanding-auth-provider) section? We mentioned `login`, `register,`, `forgotPassword`, and `updatePassword`  functions that use [Supabase Auth API](https://supabase.com/docs/guides/auth) methods internally in the `authProvider.ts` file. These methods automatically bind to `<AuthPage>` components by **refine** to perform authentication operations.
+Remember the [Understanding the Auth Provider](#understanding-auth-provider) section? We mentioned `login`, `register,`, `forgotPassword`, and `updatePassword` functions that use [Supabase Auth API](https://supabase.com/docs/guides/auth) methods internally in the `authProvider.ts` file. These methods automatically bind to `<AuthPage>` components by **refine** to perform authentication operations.
 
 <br/>
-
 
 <div style={{display:"flex", flexDirection:"column"}}>
      <img style={{alignSelf:"center", width:"800px"}} src={flow} alt="flow" />
@@ -986,16 +933,12 @@ Remember the [Understanding the Auth Provider](#understanding-auth-provider) sec
 
 We'll show how to implement third party logins in the next sections.
 
-[Refer to AuthPage docs for more information &#8594](/docs/api-reference/antd/components/auth-page.md) 
-
-
-
+[Refer to AuthPage docs for more information &#8594](/docs/api-reference/antd/components/auth-page.md)
 
 Sign in the app with followings credentials:
 
-
-- email: info@refine.dev
-- password: refine-supabase
+-   email: info@refine.dev
+-   password: refine-supabase
 
 We have successfully logged in to the app and `ListPage` renders table of data at the `/post` route.
 
@@ -1028,10 +971,9 @@ Thanks to `refine-supabase` data provider, we can now start creating new records
 
 ### Social Logins
 
-We'll show how to add Google Login option to the app. 
+We'll show how to add Google Login option to the app.
 
 Social login feature can be activated by setting `provider` property of the `<AuthPage>` component.
-
 
 ```tsx title="src/App.tsx"
 import { Refine } from '@pankod/refine-core';
@@ -1068,7 +1010,7 @@ function App() {
 }
 ```
 
-This will add a new Google login button to the login page.  After the user successfully logs in, the app will redirect back to the app.
+This will add a new Google login button to the login page. After the user successfully logs in, the app will redirect back to the app.
 
 ### Enable Google Auth on Supabase
 
@@ -1076,8 +1018,7 @@ Head over to app.supabase.com and sign in to your Supabase account. Next, go to 
 
 You will find the Google Auth option in the Auth providers section; enable it and set your Google Credentials.
 
-[Refer to Supabase docs for more information about Credentials  &#8594](https://supabase.com/docs/guides/auth/auth-google#create-your-google-credentials)
-
+[Refer to Supabase docs for more information about Credentials &#8594](https://supabase.com/docs/guides/auth/auth-google#create-your-google-credentials)
 
 <div class="img-container">
     <div class="window">
@@ -1089,7 +1030,6 @@ You will find the Google Auth option in the Auth providers section; enable it an
 </div>
 
 <br/>
-
 
 Here is the result:
 
@@ -1109,21 +1049,21 @@ Here is the result:
 ## Let's recap what we have done so far
 
 So far, we have implemented the followings:
-- We have reviewed Supabase Client and data provider concepts. We've seen benefits of using **refine** and how it can handle complex setups for us.
-- We have talked about the `authProvider` concept and how it works with Supabase Auth API. We also see the advantages of **refine**'s built-in authentication support.
-- We have added CRUD pages to make the app interact with Supabase API. We've seen how the `resources` property works and how it connects the pages with the API.
-- We have seen how the `LoginPage` property works and how it overrides the default login page with the `AuthPage` component. We've seen how `AuthPage` component uses `authProvider` methods internally.
-- We have seen how authorization handling in **refine** app by understanding the logic behind of  `LoginPage` property, `authProvider`, and `<AuthPage>` component. 
 
+-   We have reviewed Supabase Client and data provider concepts. We've seen benefits of using **refine** and how it can handle complex setups for us.
+-   We have talked about the `authProvider` concept and how it works with Supabase Auth API. We also see the advantages of **refine**'s built-in authentication support.
+-   We have added CRUD pages to make the app interact with Supabase API. We've seen how the `resources` property works and how it connects the pages with the API.
+-   We have seen how the `LoginPage` property works and how it overrides the default login page with the `AuthPage` component. We've seen how `AuthPage` component uses `authProvider` methods internally.
+-   We have seen how authorization handling in **refine** app by understanding the logic behind of `LoginPage` property, `authProvider`, and `<AuthPage>` component.
 
 **refine provides solutions for critical parts of the complete CRUD app requirements. It saves development time and effort by providing ready-to-use components and features.**
 
 ## Supabase Real Time Support
 
 **refine** has a built-in support for [Supabase Real Time](https://supabase.com/docs/guides/realtime). It means that when you create, update, or delete a record, the changes will be reflected in the app in real-time.  
-Required Supabase Real Time setup is already done in the [`@pankod/refine-supabase`](https://github.com/refinedev/refine/tree/master/packages/supabase)` data provider. 
+Required Supabase Real Time setup is already done in the [`@pankod/refine-supabase`](https://github.com/refinedev/refine/tree/master/packages/supabase)` data provider.
 
- [You can check the Supabase Real Time integration in the data provider source code  &#8594](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L325)
+[You can check the Supabase Real Time integration in the data provider source code &#8594](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L325)
 
 We only need to register refine's Supabase Live Provider to the `liveProvider` property to enable real-time support.
 
@@ -1148,6 +1088,7 @@ function App() {
     );
 }
 ```
+
 :::note
 For live features to work automatically, we setted `liveMode: "auto"` in the options prop.
 
@@ -1164,10 +1105,7 @@ For live features to work automatically, we setted `liveMode: "auto"` in the opt
     <img  src={realTime} alt="realTime" />
 </div>
 
-
 <br/>
-
-
 
 :::tip
 **refine** offers out-of-the-box live provider support:
@@ -1177,27 +1115,25 @@ For live features to work automatically, we setted `liveMode: "auto"` in the opt
 -   **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
 -   **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/hasura/src/liveProvider/index.ts#L16)
 -   **Nhost** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/nhost/src/liveProvider/index.ts#L16)
-:::
+    :::
 
 ## Using `metaData` to pass values to data provider
 
 The [`metaData`](/docs/api-reference/general-concepts.md/#metadata) property is used to pass additional information that can be read by data provider methods.
 
-We'll show an example of getting relational data from different tables on Supabase API using `metaData` property. 
+We'll show an example of getting relational data from different tables on Supabase API using `metaData` property.
 
 Take a look at the useTable hook in List page we created on the [previous sections](http://localhost:3000/docs/advanced-tutorials/data-provider/supabase/#adding-a-list-page).
-    
 
 ### `select` - Handling one-to-many relationship
 
 We pass a `select` value in `metaData` object to perform relational database operation in [Supabase data provider](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts). The data provider methods are using Supabase [`select`](https://supabase.io/docs/reference/javascript/select) property internally.
 
-
 In this way, we can get the `title` data from the `categories` table and display it on the List page.
 
 For example, for `posts -> categories` relationship, we can get the `title` data from the `categories` table and display it on the List page.
 
- ```tsx title="src/pages/posts/list.tsx"
+```tsx title="src/pages/posts/list.tsx"
 const { tableProps, sorter } = useTable<IPost>({
     //highlight-start
     resource: "posts",
@@ -1225,48 +1161,45 @@ const { tableProps, sorter } = useTable<IUser>({
 });
 ```
 
-### `id` 
+### `id`
 
 `metaData` `id` property is used to match the column name of the primary key(in case the column name is different than "id") in your Supabase data table to the column name you have assigned.
 
-
-refine's [useMany](/docs/api-reference/core/hooks/data/useMany.md) hook accepts `metaData` property and uses `getMany` method of data provider. 
-
+refine's [useMany](/docs/api-reference/core/hooks/data/useMany.md) hook accepts `metaData` property and uses `getMany` method of data provider.
 
 ```tsx
 useMany({
-   resource: "posts",
-   ids: [1 , 2],
+    resource: "posts",
+    ids: [1, 2],
 });
 ```
+
 By default, it searches for posts in the `id` column of the data table.
 
 With passing `id` parameter to the `metaData` property, we can change the column name to the `post_id` that will be searched for the ids.
 
-
 ```tsx
 useMany({
-   resource: "posts",
-   ids: [1 , 2],
-   //highlight-start
-   metaData: {
-     id: "post_id",
-   },
-   // highlight-end
+    resource: "posts",
+    ids: [1, 2],
+    //highlight-start
+    metaData: {
+        id: "post_id",
+    },
+    // highlight-end
 });
 ```
+
 Now it searches for posts in the `post_id` column of the data table instead of `id` column.
-
-
 
 ### Deep Filtering
 
-Deep filtering is filtering on a relation's fields. 
+Deep filtering is filtering on a relation's fields.
 
 It gets the posts where the `title` of the `categories` is "Beginning". Also the inner fields of the categories can be reached with dot notation.
 
 ```tsx
- const { tableProps, sorter } = useTable({
+const { tableProps, sorter } = useTable({
     resource: "posts",
     //highlight-start
     initialFilter: [
@@ -1282,7 +1215,6 @@ It gets the posts where the `title` of the `categories` is "Beginning". Also the
 :::caution
 If you filter based on a table from an inner join, you will need to use `.select('*, mytable!inner(*)')` within Supabase.
 :::
-
 
 ## Live StackBlitz Example
 
