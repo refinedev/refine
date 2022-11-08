@@ -9,26 +9,16 @@ const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
     routerProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    notificationProvider: RefineMantine.notificationProvider,
-    Layout: RefineMantine.Layout,
+    Layout: RefineChakra.Layout,
     Sider: () => null,
-    catchAll: <RefineMantine.ErrorComponent />,
+    catchAll: <RefineChakra.ErrorComponent />,
 });
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <RefineMantine.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <RefineMantine.NotificationsProvider position="top-right">
-                {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+            {children}
+        </RefineChakra.ChakraProvider>
     );
 };
 
@@ -37,25 +27,25 @@ const EditPage = () => {
     const params = RefineCore.useRouterContext().useParams();
 
     return (
-        <div>
-            <RefineMantine.Text italic color="dimmed" size="sm">
+        <RefineChakra.VStack alignItems="flex-start">
+            <RefineChakra.Text as="i" color="gray.700" fontSize="sm">
                 URL Parameters:
-            </RefineMantine.Text>
-            <RefineMantine.Code>{JSON.stringify(params)}</RefineMantine.Code>
-            <RefineMantine.Space h="md" />
-            <RefineMantine.Button
-                size="xs"
-                variant="outline"
+            </RefineChakra.Text>
+            <RefineChakra.Code>{JSON.stringify(params)}</RefineChakra.Code>
+
+            <RefineChakra.Button
+                size="sm"
                 onClick={() => list("posts")}
+                colorScheme="green"
             >
                 Go back
-            </RefineMantine.Button>
-        </div>
+            </RefineChakra.Button>
+        </RefineChakra.VStack>
     );
 };
 ```
 
-`<EditButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button/) component. It uses the `edit` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the edit page with the record id route of resource.
+`<EditButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `edit` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the edit page with the record id route of resource.
 
 ## Usage
 
@@ -64,7 +54,18 @@ setInitialRoutes(["/posts"]);
 import { Refine, useNavigation, useRouterContext } from "@pankod/refine-core";
 
 // visible-block-start
-import { List, Table, Pagination, EditButton } from "@pankod/refine-mantine";
+import {
+    List,
+    TableContainer,
+    Table,
+    Thead,
+    Tr,
+    Th,
+    Tbody,
+    Td,
+    // highlight-next-line
+    EditButton,
+} from "@pankod/refine-chakra-ui";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 const PostList: React.FC = () => {
@@ -87,10 +88,7 @@ const PostList: React.FC = () => {
                 cell: function render({ getValue }) {
                     return (
                         // highlight-start
-                        <EditButton
-                            size="xs"
-                            recordItemId={getValue() as number}
-                        />
+                        <EditButton recordItemId={getValue() as number} />
                         // highlight-end
                     );
                 },
@@ -109,45 +107,46 @@ const PostList: React.FC = () => {
 
     return (
         <List>
-            <Table>
-                <thead>
-                    {getHeaderGroups().map((headerGroup) => (
-                        <tr key={headerGroup.id}>
-                            {headerGroup.headers.map((header) => (
-                                <th key={header.id}>
-                                    {header.isPlaceholder
-                                        ? null
-                                        : flexRender(
-                                              header.column.columnDef.header,
-                                              header.getContext(),
-                                          )}
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody>
-                    {getRowModel().rows.map((row) => (
-                        <tr key={row.id}>
-                            {row.getVisibleCells().map((cell) => (
-                                <td key={cell.id}>
-                                    {flexRender(
-                                        cell.column.columnDef.cell,
-                                        cell.getContext(),
-                                    )}
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
-            <br />
-            <Pagination
-                position="right"
-                total={pageCount}
-                page={current}
-                onChange={setCurrent}
-            />
+            <TableContainer>
+                <Table variant="simple" whiteSpace="pre-line">
+                    <Thead>
+                        {getHeaderGroups().map((headerGroup) => (
+                            <Tr key={headerGroup.id}>
+                                {headerGroup.headers.map((header) => {
+                                    return (
+                                        <Th key={header.id}>
+                                            {!header.isPlaceholder &&
+                                                flexRender(
+                                                    header.column.columnDef
+                                                        .header,
+                                                    header.getContext(),
+                                                )}
+                                        </Th>
+                                    );
+                                })}
+                            </Tr>
+                        ))}
+                    </Thead>
+                    <Tbody>
+                        {getRowModel().rows.map((row) => {
+                            return (
+                                <Tr key={row.id}>
+                                    {row.getVisibleCells().map((cell) => {
+                                        return (
+                                            <Td key={cell.id}>
+                                                {flexRender(
+                                                    cell.column.columnDef.cell,
+                                                    cell.getContext(),
+                                                )}
+                                            </Td>
+                                        );
+                                    })}
+                                </Tr>
+                            );
+                        })}
+                    </Tbody>
+                </Table>
+            </TableContainer>
         </List>
     );
 };
@@ -161,6 +160,7 @@ interface IPost {
 const App = () => {
     return (
         <Refine
+            notificationProvider={RefineChakra.notificationProvider()}
             resources={[
                 {
                     name: "posts",
@@ -190,10 +190,10 @@ setInitialRoutes(["/"]);
 import { Refine } from "@pankod/refine-core";
 
 // visible-block-start
-import { EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-chakra-ui";
 
 const MyEditComponent = () => {
-    return <EditButton recordItemId="123" />;
+    return <EditButton colorScheme="black" recordItemId="123" />;
 };
 // visible-block-end
 
@@ -228,10 +228,16 @@ setInitialRoutes(["/"]);
 import { Refine } from "@pankod/refine-core";
 
 // visible-block-start
-import { EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-chakra-ui";
 
 const MyEditComponent = () => {
-    return <EditButton resourceNameOrRouteName="categories" recordItemId="2" />;
+    return (
+        <EditButton
+            colorScheme="black"
+            resourceNameOrRouteName="categories"
+            recordItemId="2"
+        />
+    );
 };
 // visible-block-end
 
@@ -271,10 +277,10 @@ setInitialRoutes(["/"]);
 import { Refine } from "@pankod/refine-core";
 
 // visible-block-start
-import { EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-chakra-ui";
 
 const MyEditComponent = () => {
-    return <EditButton recordItemId="123" hideText />;
+    return <EditButton colorScheme="black" recordItemId="123" hideText />;
 };
 // visible-block-end
 
@@ -304,10 +310,14 @@ render(
 This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
-import { EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-chakra-ui";
 
 export const MyListComponent = () => {
-    return <EditButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+    return (
+        <EditButton
+            accessControl={{ enabled: true, hideIfUnauthorized: true }}
+        />
+    );
 };
 ```
 
@@ -315,4 +325,4 @@ export const MyListComponent = () => {
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/EditButton" />
+<PropsTable module="@pankod/refine-chakra-ui/EditButton" />

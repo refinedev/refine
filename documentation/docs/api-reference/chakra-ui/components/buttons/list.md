@@ -9,49 +9,40 @@ const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
     routerProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    notificationProvider: RefineMantine.notificationProvider,
-    Layout: RefineMantine.Layout,
+    Layout: RefineChakra.Layout,
     Sider: () => null,
-    catchAll: <RefineMantine.ErrorComponent />,
+    catchAll: <RefineChakra.ErrorComponent />,
 });
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <RefineMantine.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <RefineMantine.NotificationsProvider position="top-right">
-                {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+            {children}
+        </RefineChakra.ChakraProvider>
     );
 };
 ```
 
-`<ListButton>` is using Mantine [`<Button>`](https://mantine.dev/core/button/) component. It uses the `list` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
+`<ListButton>` is using Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `list` method from [`useNavigation`](/api-reference/core/hooks/navigation/useNavigation.md) under the hood. It can be useful when redirecting the app to the list page route of resource.
 
 ## Usage
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@pankod/refine-chakra-ui";
 
 // visible-block-start
 import { useShow } from "@pankod/refine-core";
 import {
     Show,
-    Title,
+    Heading,
     Text,
+    Spacer,
     MarkdownField,
     //highlight-next-line
     ListButton,
-} from "@pankod/refine-mantine";
+} from "@pankod/refine-chakra-ui";
 
 const PostShow: React.FC<IResourceComponentsProps> = () => {
     const { queryResult } = useShow<IPost>();
@@ -61,17 +52,20 @@ const PostShow: React.FC<IResourceComponentsProps> = () => {
     return (
         // highlight-next-line
         <Show headerButtons={<ListButton />} isLoading={isLoading}>
-            <Title order={5}>Id</Title>
-            <Text mt="sm">{record?.id}</Text>
+            <Heading as="h5" size="sm">
+                Id
+            </Heading>
+            <Text mt={2}>{record?.id}</Text>
 
-            <Title mt="sm" order={5}>
+            <Heading as="h5" size="sm" mt={4}>
                 Title
-            </Title>
-            <Text mt="sm">{record?.title}</Text>
+            </Heading>
+            <Text mt={2}>{record?.title}</Text>
 
-            <Title mt="sm" order={5}>
+            <Heading as="h5" size="sm" mt={4}>
                 Content
-            </Title>
+            </Heading>
+            <Spacer mt={2} />
             <MarkdownField value={record?.content} />
         </Show>
     );
@@ -81,17 +75,20 @@ const PostShow: React.FC<IResourceComponentsProps> = () => {
 const App = () => {
     return (
         <Refine
+            notificationProvider={RefineChakra.notificationProvider()}
             resources={[
                 {
                     name: "posts",
                     show: PostShow,
                     list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
+                        <RefineChakra.VStack alignItems="flex-start">
+                            <RefineChakra.Text>
+                                This page is empty.
+                            </RefineChakra.Text>
+                            <ShowButton colorScheme="black" recordItemId="123">
                                 Show Item 123
                             </ShowButton>
-                        </div>
+                        </RefineChakra.VStack>
                     ),
                 },
             ]}
@@ -117,33 +114,37 @@ Redirection endpoint(`resourceNameOrRouteName/list`) is defined by `resourceName
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
-
-import { Refine, useRouterContext, useNavigation } from "@pankod/refine-core";
-import { Button, Code, Space, Text } from "@pankod/refine-mantine";
+import { Refine } from "@pankod/refine-core";
 
 // visible-block-start
-import { ListButton } from "@pankod/refine-mantine";
+import { ListButton } from "@pankod/refine-chakra-ui";
 
 const MyListComponent = () => {
-    return <ListButton resourceNameOrRouteName="categories" />;
+    return (
+        <ListButton colorScheme="black" resourceNameOrRouteName="categories" />
+    );
 };
 // visible-block-end
 
 const ListPage = () => {
-    const { list } = useNavigation();
-    const params = useRouterContext().useParams();
+    const { list } = RefineCore.useNavigation();
+    const params = RefineCore.useRouterContext().useParams();
 
     return (
-        <div>
-            <Text italic color="dimmed" size="sm">
+        <RefineChakra.VStack alignItems="flex-start">
+            <RefineChakra.Text as="i" color="gray.700" fontSize="sm">
                 URL Parameters:
-            </Text>
-            <Code>{JSON.stringify(params)}</Code>
-            <Space h="md" />
-            <Button size="xs" variant="outline" onClick={() => list("posts")}>
+            </RefineChakra.Text>
+            <RefineChakra.Code>{JSON.stringify(params)}</RefineChakra.Code>
+
+            <RefineChakra.Button
+                size="sm"
+                onClick={() => list("posts")}
+                colorScheme="green"
+            >
                 Go back
-            </Button>
-        </div>
+            </RefineChakra.Button>
+        </RefineChakra.VStack>
     );
 };
 
@@ -183,10 +184,10 @@ setInitialRoutes(["/"]);
 import { Refine } from "@pankod/refine-core";
 
 // visible-block-start
-import { ListButton } from "@pankod/refine-mantine";
+import { ListButton } from "@pankod/refine-chakra-ui";
 
 const MyListComponent = () => {
-    return <ListButton hideText />;
+    return <ListButton colorScheme="black" hideText />;
 };
 // visible-block-end
 
@@ -215,10 +216,14 @@ render(
 This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/api-reference/core/providers/accessControl-provider.md) is provided to [`<Refine/>`](/api-reference/core/components/refine-config.md)
 
 ```tsx
-import { ListButton } from "@pankod/refine-mantine";
+import { ListButton } from "@pankod/refine-chakra-ui";
 
 export const MyListComponent = () => {
-    return <ListButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />;
+    return (
+        <ListButton
+            accessControl={{ enabled: true, hideIfUnauthorized: true }}
+        />
+    );
 };
 ```
 
@@ -226,4 +231,4 @@ export const MyListComponent = () => {
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/ListButton" />
+<PropsTable module="@pankod/refine-chakra-ui/ListButton" />

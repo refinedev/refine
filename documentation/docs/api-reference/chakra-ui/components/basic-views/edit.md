@@ -19,6 +19,15 @@ const Wrapper = ({ children }) => {
     );
 };
 
+const DummyListPage = () => (
+    <RefineChakra.VStack alignItems="flex-start">
+        <RefineChakra.Text>This page is empty.</RefineChakra.Text>
+        <EditButton colorScheme="black" recordItemId="123">
+            Edit Item 123
+        </EditButton>
+    </RefineChakra.VStack>
+);
+
 interface ICategory {
     id: number;
     title: string;
@@ -140,14 +149,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -195,14 +197,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -252,14 +247,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -338,14 +326,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -563,14 +544,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -672,14 +646,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -725,14 +692,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -791,14 +751,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -854,14 +807,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -878,7 +824,7 @@ render(
 
 If you want to customize the header of the `<Edit/>` component, you can use the `headerProps` property.
 
-[Refer to the `Box` documentation from Mantine for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
+[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
@@ -916,14 +862,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -979,14 +918,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -1040,14 +972,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -1064,7 +989,7 @@ render(
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 
-[Refer to the `Box` documentation from Mantine for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
+[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
@@ -1108,14 +1033,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -1176,14 +1094,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -1240,14 +1151,7 @@ const App = () => {
                 {
                     name: "posts",
                     edit: PostEdit,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <EditButton recordItemId="123">
-                                Edit Item 123
-                            </EditButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />

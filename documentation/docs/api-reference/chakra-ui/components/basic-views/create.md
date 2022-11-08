@@ -19,6 +19,13 @@ const Wrapper = ({ children }) => {
     );
 };
 
+const DummyListPage = () => (
+    <RefineChakra.VStack alignItems="flex-start">
+        <RefineChakra.Text>This page is empty.</RefineChakra.Text>
+        <CreateButton colorScheme="black" />
+    </RefineChakra.VStack>
+);
+
 interface ICategory {
     id: number;
     title: string;
@@ -129,12 +136,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -180,12 +182,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -231,12 +228,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -356,12 +348,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -405,12 +392,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -467,12 +449,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -489,7 +466,7 @@ render(
 
 If you want to customize the wrapper of the `<Create/>` component, you can use the `wrapperProps` property. For `@pankod/refine-chakra-ui` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Box>` can get.
 
-[Refer to the `Box` documentation from Mantine for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
+[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
@@ -525,12 +502,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -583,12 +555,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -641,12 +608,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -705,12 +667,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -727,7 +684,7 @@ render(
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 
-[Refer to the `Box` documentation from Mantine for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
+[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
@@ -764,12 +721,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -828,12 +780,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -850,7 +797,7 @@ render(
 
 You can customize the wrapper element of the buttons at the footer by using the `footerButtonProps` property.
 
-[Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group/)
+[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
@@ -888,12 +835,7 @@ const App = () => {
                 {
                     name: "posts",
                     create: PostCreate,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <CreateButton />
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />

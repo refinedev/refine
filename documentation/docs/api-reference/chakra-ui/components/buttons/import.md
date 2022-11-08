@@ -9,33 +9,23 @@ const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
     routerProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    notificationProvider: RefineMantine.notificationProvider,
-    Layout: RefineMantine.Layout,
+    Layout: RefineChakra.Layout,
     Sider: () => null,
-    catchAll: <RefineMantine.ErrorComponent />,
+    catchAll: <RefineChakra.ErrorComponent />,
 });
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <RefineMantine.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <RefineMantine.NotificationsProvider position="top-right">
-                {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+            {children}
+        </RefineChakra.ChakraProvider>
     );
 };
 ```
 
 `<ImportButton>` is compatible with the [`useImport`][useimport] hook and is meant to be used as it's upload button.
 
-It uses Mantine [`<Button>`][button] component and native html [`<input>`][input] element. It wraps a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) with a [`<Button>`][button] component and [`<input>`][input] element and accepts it's own properties for separately.
+It uses Chakra UI's [`<Button>`][button] component and native html [`<input>`][input] element. It wraps a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) with a [`<Button>`][button] component and [`<input>`][input] element and accepts it's own properties for separately.
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
@@ -46,11 +36,16 @@ import { Refine } from "@pankod/refine-core";
 import { useImport, useNotification } from "@pankod/refine-core";
 import {
     List,
+    TableContainer,
     Table,
-    Pagination,
+    Thead,
+    Tr,
+    Th,
+    Tbody,
+    Td,
     //highlight-next-line
     ImportButton,
-} from "@pankod/refine-mantine";
+} from "@pankod/refine-chakra-ui";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 
 const PostList: React.FC = () => {
@@ -98,45 +93,46 @@ const PostList: React.FC = () => {
                 <ImportButton loading={isLoading} inputProps={inputProps} />
             }
         >
-            <Table>
-                <thead>
-                    {getHeaderGroups().map((headerGroup) => (
-                        <tr key={headerGroup.id}>
-                            {headerGroup.headers.map((header) => (
-                                <th key={header.id}>
-                                    {header.isPlaceholder
-                                        ? null
-                                        : flexRender(
-                                              header.column.columnDef.header,
-                                              header.getContext(),
-                                          )}
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody>
-                    {getRowModel().rows.map((row) => (
-                        <tr key={row.id}>
-                            {row.getVisibleCells().map((cell) => (
-                                <td key={cell.id}>
-                                    {flexRender(
-                                        cell.column.columnDef.cell,
-                                        cell.getContext(),
-                                    )}
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
-            <br />
-            <Pagination
-                position="right"
-                total={pageCount}
-                page={current}
-                onChange={setCurrent}
-            />
+            <TableContainer>
+                <Table variant="simple" whiteSpace="pre-line">
+                    <Thead>
+                        {getHeaderGroups().map((headerGroup) => (
+                            <Tr key={headerGroup.id}>
+                                {headerGroup.headers.map((header) => {
+                                    return (
+                                        <Th key={header.id}>
+                                            {!header.isPlaceholder &&
+                                                flexRender(
+                                                    header.column.columnDef
+                                                        .header,
+                                                    header.getContext(),
+                                                )}
+                                        </Th>
+                                    );
+                                })}
+                            </Tr>
+                        ))}
+                    </Thead>
+                    <Tbody>
+                        {getRowModel().rows.map((row) => {
+                            return (
+                                <Tr key={row.id}>
+                                    {row.getVisibleCells().map((cell) => {
+                                        return (
+                                            <Td key={cell.id}>
+                                                {flexRender(
+                                                    cell.column.columnDef.cell,
+                                                    cell.getContext(),
+                                                )}
+                                            </Td>
+                                        );
+                                    })}
+                                </Tr>
+                            );
+                        })}
+                    </Tbody>
+                </Table>
+            </TableContainer>
         </List>
     );
 };
@@ -150,6 +146,7 @@ interface IPost {
 const App = () => {
     return (
         <Refine
+            notificationProvider={RefineChakra.notificationProvider()}
             resources={[
                 {
                     name: "posts",
@@ -178,10 +175,10 @@ setInitialRoutes(["/"]);
 import { Refine } from "@pankod/refine-core";
 
 // visible-block-start
-import { ImportButton } from "@pankod/refine-mantine";
+import { ImportButton } from "@pankod/refine-chakra-ui";
 
 const MyImportComponent = () => {
-    return <ImportButton hideText />;
+    return <ImportButton colorScheme="black" hideText />;
 };
 // visible-block-end
 
@@ -209,8 +206,8 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/ImportButton" />
+<PropsTable module="@pankod/refine-chakra-ui/ImportButton" />
 
 [useimport]: /api-reference/core/hooks/import-export/useImport.md
-[button]: https://mantine.dev/core/button/
+[button]: https://chakra-ui.com/docs/components/button/usage
 [input]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input

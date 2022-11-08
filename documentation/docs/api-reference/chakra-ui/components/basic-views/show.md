@@ -19,6 +19,15 @@ const Wrapper = ({ children }) => {
     );
 };
 
+const DummyListPage = () => (
+    <RefineChakra.VStack alignItems="flex-start">
+        <RefineChakra.Text>This page is empty.</RefineChakra.Text>
+        <ShowButton colorScheme="black" recordItemId="123">
+            Show Item 123
+        </ShowButton>
+    </RefineChakra.VStack>
+);
+
 interface ICategory {
     id: number;
     title: string;
@@ -102,20 +111,14 @@ const PostShow: React.FC<IResourceComponentsProps> = () => {
 const App = () => {
     return (
         <Refine
+            notificationProvider={RefineChakra.notificationProvider()}
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             resources={[
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -163,14 +166,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -303,14 +299,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -332,7 +321,7 @@ render(
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=350px
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { EditButton } from "@pankod/refine-mantine";
+import { EditButton } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
@@ -364,7 +353,7 @@ const PostShow: React.FC = () => {
                 <ModalOverlay />
                 <ModalContent>
                     <ModalCloseButton />
-                    <ModalHeader>SHow</ModalHeader>
+                    <ModalHeader>Show</ModalHeader>
 
                     <ModalBody>
                         {/* highlight-next-line */}
@@ -388,14 +377,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -500,14 +482,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -553,14 +528,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -623,14 +591,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -645,9 +606,9 @@ render(
 
 ### `wrapperProps`
 
-If you want to customize the wrapper of the `<Show/>` component, you can use the `wrapperProps` property. For `@pankod/refine-mantine` wrapper element is `<Card>`s and `wrapperProps` can get every attribute that `<Card>` can get.
+If you want to customize the wrapper of the `<Show/>` component, you can use the `wrapperProps` property. For `@pankod/refine-chakra-ui` wrapper element is `<Box>`s and `wrapperProps` can get every attribute that `<Card>` can get.
 
-[Refer to the `Card` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/card/)
+[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
@@ -686,14 +647,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -710,7 +664,7 @@ render(
 
 If you want to customize the header of the `<Show/>` component, you can use the `headerProps` property.
 
-[Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group/)
+[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
@@ -748,14 +702,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -772,7 +719,7 @@ render(
 
 If you want to customize the content of the `<Show/>` component, you can use the `contentProps` property.
 
-[Refer to the `Box` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/box/)
+[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
@@ -811,14 +758,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -872,14 +812,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -896,7 +829,7 @@ render(
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 
-[Refer to the `Group` documentation from Mantine for detailed usage. &#8594](https://mantine.dev/core/group/)
+[Refer to the `Box` documentation from Chakra UI for detailed usage. &#8594](https://chakra-ui.com/docs/components/box/usage)
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px
 setInitialRoutes(["/posts/show/123"]);
@@ -940,14 +873,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -1008,14 +934,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />
@@ -1075,14 +994,7 @@ const App = () => {
                 {
                     name: "posts",
                     show: PostShow,
-                    list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
-                                Show Item 123
-                            </ShowButton>
-                        </div>
-                    ),
+                    list: DummyListPage,
                 },
             ]}
         />

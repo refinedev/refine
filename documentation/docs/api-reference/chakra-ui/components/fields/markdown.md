@@ -9,25 +9,15 @@ const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
     routerProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    notificationProvider: RefineMantine.notificationProvider,
-    Layout: RefineMantine.Layout,
+    Layout: RefineChakra.Layout,
     Sider: () => null,
 });
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <RefineMantine.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <RefineMantine.NotificationsProvider position="top-right">
-                {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+            {children}
+        </RefineChakra.ChakraProvider>
     );
 };
 ```
@@ -41,24 +31,34 @@ Let's see how we can use `<MarkdownField>` in a show page.
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@pankod/refine-chakra-ui";
 
 // visible-block-start
 import { useShow } from "@pankod/refine-core";
-import { Show, Title, Text, MarkdownField } from "@pankod/refine-mantine";
+import {
+    Show,
+    Heading,
+    Text,
+    // highlight-next-line
+    MarkdownField,
+} from "@pankod/refine-chakra-ui";
 
-const PostShow: React.FC<IResourceComponentsProps> = () => {
+const PostShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;
 
     return (
         <Show isLoading={isLoading}>
-            <Title order={5}>Id</Title>
-            <Text mt="sm">{record?.id}</Text>
-            <Title mt="sm" order={5}>
+            <Heading as="h5" size="sm">
+                Id
+            </Heading>
+            <Text mt={2}>{record?.id}</Text>
+
+            <Heading as="h5" size="sm" mt={4}>
                 Content
-            </Title>
+            </Heading>
+            // highlight-next-line
             <MarkdownField value={record?.content} />
         </Show>
     );
@@ -73,17 +73,20 @@ interface IPost {
 const App = () => {
     return (
         <Refine
+            notificationProvider={RefineChakra.notificationProvider()}
             resources={[
                 {
                     name: "posts",
                     show: PostShow,
                     list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
+                        <RefineChakra.VStack alignItems="flex-start">
+                            <RefineChakra.Text>
+                                This page is empty.
+                            </RefineChakra.Text>
+                            <ShowButton colorScheme="black" recordItemId="123">
                                 Show Item 123
                             </ShowButton>
-                        </div>
+                        </RefineChakra.VStack>
                     ),
                 },
             ]}
@@ -101,4 +104,4 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/MarkdownField" value-description="Markdown data to render"/>
+<PropsTable module="@pankod/refine-chakra-ui/MarkdownField" value-description="Markdown data to render"/>

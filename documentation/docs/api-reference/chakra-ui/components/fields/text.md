@@ -9,30 +9,20 @@ const { default: simpleRest } = RefineSimpleRest;
 setRefineProps({
     routerProvider,
     dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-    notificationProvider: RefineMantine.notificationProvider,
-    Layout: RefineMantine.Layout,
+    Layout: RefineChakra.Layout,
     Sider: () => null,
 });
 
 const Wrapper = ({ children }) => {
     return (
-        <RefineMantine.MantineProvider
-            theme={RefineMantine.LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <RefineMantine.Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
-            <RefineMantine.NotificationsProvider position="top-right">
-                {children}
-            </RefineMantine.NotificationsProvider>
-        </RefineMantine.MantineProvider>
+        <RefineChakra.ChakraProvider theme={RefineChakra.refineTheme}>
+            {children}
+        </RefineChakra.ChakraProvider>
     );
 };
 ```
 
-This field lets you show basic text. It uses Mantine [`<Text>`](https://mantine.dev/core/text/) component.
+This field lets you show basic text. It uses Mantine [`<Text>`](https://chakra-ui.com/docs/components/text/usage) component.
 
 ## Usage
 
@@ -41,68 +31,62 @@ Let's see how to use it in a basic show page:
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/show/123"]);
 import { Refine } from "@pankod/refine-core";
-import { ShowButton } from "@pankod/refine-mantine";
+import { ShowButton } from "@pankod/refine-chakra-ui";
 
 // visible-block-start
-import { useShow, useOne } from "@pankod/refine-core";
-import { Show, Title, Text, TextField } from "@pankod/refine-mantine";
+import { useShow } from "@pankod/refine-core";
+import {
+    Show,
+    Heading,
+    // highlight-next-line
+    TextField,
+} from "@pankod/refine-chakra-ui";
 
-const PostShow: React.FC<IResourceComponentsProps> = () => {
+const PostShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();
     const { data, isLoading } = queryResult;
     const record = data?.data;
 
-    const { data: categoryData, isLoading: categoryIsLoading } =
-        useOne<ICategory>({
-            resource: "categories",
-            id: record?.category?.id,
-            queryOptions: {
-                enabled: !!record,
-            },
-        });
-
     return (
         <Show isLoading={isLoading}>
-            <Title order={5}>Id</Title>
-            <Text mt="sm">{record?.id}</Text>
-
-            <Title mt="sm" order={5}>
-                Category
-            </Title>
-            <TextField
-                value={
-                    categoryIsLoading ? "Loading..." : categoryData?.data?.title
-                }
-            />
+            <Heading as="h5" size="sm">
+                Id
+            </Heading>
+            // highlight-next-line
+            <TextField value={record?.id} />
+            
+            <Heading as="h5" size="sm">
+                Title
+            </Heading>
+            // highlight-next-line
+            <TextField value={record?.title} />
         </Show>
     );
 };
 
-interface ICategory {
-    id: number;
-    title: string;
-}
-
 interface IPost {
     id: number;
-    category: { id: number };
+    title: string;
 }
 // visible-block-end
 
 const App = () => {
     return (
         <Refine
+            notificationProvider={RefineChakra.notificationProvider()}
             resources={[
                 {
                     name: "posts",
                     show: PostShow,
                     list: () => (
-                        <div>
-                            <p>This page is empty.</p>
-                            <ShowButton recordItemId="123">
+                        <RefineChakra.VStack alignItems="flex-start">
+                            <RefineChakra.Text>
+                                This page is empty.
+                            </RefineChakra.Text>
+                            <ShowButton colorScheme="black" recordItemId="123">
                                 Show Item 123
                             </ShowButton>
-                        </div>
+                        </RefineChakra.VStack>
                     ),
                 },
             ]}
@@ -120,8 +104,8 @@ render(
 
 ### Properties
 
-<PropsTable module="@pankod/refine-mantine/TextField" />
+<PropsTable module="@pankod/refine-chakra-ui/TextField" />
 
 :::tip External Props
-It also accepts all props of Mantine [Text](https://mantine.dev/core/text/?t=props).
+It also accepts all props of Chakra UI [Text](https://chakra-ui.com/docs/components/text/usage).
 :::
