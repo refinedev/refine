@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.88.3
+
+### Patch Changes
+
+-   [#2975](https://github.com/refinedev/refine/pull/2975) [`249f9521c4`](https://github.com/refinedev/refine/commit/249f9521c4981819c2641be131d1dfb270b1d48b) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added `hasPagination` property to `useSelect` hook for disabling pagination.
+
 ## 3.88.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @pankod/refine-chakra-ui
 
+## 1.2.9
+
+### Patch Changes
+
+-   [#2969](https://github.com/refinedev/refine/pull/2969) [`a9459550a4`](https://github.com/refinedev/refine/commit/a9459550a49a640c5a1e393d4f2b8e6e9cd53dc6) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed peerDependencies of packages
+
 ## 1.2.8
 
 ### Patch Changes
