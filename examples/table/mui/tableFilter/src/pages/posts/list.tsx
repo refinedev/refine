@@ -42,7 +42,7 @@ export const PostsList: React.FC = () => {
                 {
                     field: "q",
                     operator: "eq",
-                    value: q !== "" ? q : undefined,
+                    value: q,
                 },
                 {
                     field: "category.id",
@@ -251,6 +251,7 @@ export const PostsList: React.FC = () => {
                     <DataGrid
                         {...dataGridProps}
                         columns={columns}
+                        disableColumnFilter={true}
                         filterModel={undefined}
                         autoHeight
                         rowsPerPageOptions={[10, 20, 50, 100]}

@@ -1,11 +1,13 @@
 import React from "react";
-import { useMany } from "@pankod/refine-core";
+import { Option, useSelect } from "@pankod/refine-core";
 import {
     useDataGrid,
     DataGrid,
     GridColumns,
     GridToolbar,
     GridActionsCellItem,
+    List,
+    GridValueFormatterParams,
 } from "@pankod/refine-mui";
 
 import { ICategory, IPost } from "interfaces";
@@ -13,13 +15,12 @@ import { ICategory, IPost } from "interfaces";
 export const BasicDataGrid: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>();
 
-    const categoryIds = dataGridProps.rows.map((item) => item.category.id);
-    const { data: categoriesData, isLoading } = useMany<ICategory>({
+    const {
+        options,
+        queryResult: { isLoading },
+    } = useSelect<ICategory>({
         resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
+        hasPagination: false,
     });
 
     const columns = React.useMemo<GridColumns<IPost>>(
@@ -35,19 +36,31 @@ export const BasicDataGrid: React.FC = () => {
                 field: "category.id",
                 headerName: "Category",
                 flex: 1,
-                type: "number",
+                type: "singleSelect",
+                valueOptions: options,
+                valueFormatter: (params: GridValueFormatterParams<Option>) => {
+                    return params.value;
+                },
                 renderCell: function render({ row }) {
                     if (isLoading) {
                         return "Loading...";
                     }
 
-                    const category = categoriesData?.data.find(
-                        (item) => item.id === row.category.id,
+                    const category = options.find(
+                        (item) =>
+                            item.value.toString() ===
+                            row.category.id.toString(),
                     );
-                    return category?.title;
+                    return category?.label;
                 },
             },
-            { field: "status", headerName: "Status", flex: 1 },
+            {
+                field: "status",
+                headerName: "Status",
+                flex: 1,
+                type: "singleSelect",
+                valueOptions: ["draft", "published", "rejected"],
+            },
             {
                 field: "actions",
                 type: "actions",
@@ -58,17 +71,19 @@ export const BasicDataGrid: React.FC = () => {
                 ],
             },
         ],
-        [],
+        [options, isLoading],
     );
 
     return (
-        <DataGrid
-            {...dataGridProps}
-            columns={columns}
-            components={{
-                Toolbar: GridToolbar,
-            }}
-            autoHeight
-        />
+        <List title="DataGrid Usage" headerProps={{ sx: { py: 0 } }}>
+            <DataGrid
+                {...dataGridProps}
+                columns={columns}
+                components={{
+                    Toolbar: GridToolbar,
+                }}
+                autoHeight
+            />
+        </List>
     );
 };
