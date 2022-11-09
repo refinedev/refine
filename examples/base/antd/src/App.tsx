@@ -8,7 +8,12 @@ import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 import "@pankod/refine-antd/dist/styles.min.css";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
+import { PostCreate } from "pages/posts";
+import {
+    AntdShowGuesser,
+    AntdEditGuesser,
+    AntdListGuesser,
+} from "@pankod/refine-guesser";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -32,11 +37,23 @@ const App: React.FC = () => {
             resources={[
                 {
                     name: "posts",
-                    list: PostList,
+                    list: AntdListGuesser,
+                    edit: AntdEditGuesser,
+                    show: AntdShowGuesser,
                     create: PostCreate,
-                    edit: PostEdit,
-                    show: PostShow,
                     canDelete: true,
+                },
+                {
+                    name: "categories",
+                },
+                {
+                    name: "users",
+                },
+                {
+                    name: "tags",
+                },
+                {
+                    name: "languages",
                 },
             ]}
             notificationProvider={notificationProvider}
