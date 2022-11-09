@@ -65,11 +65,9 @@ const generateFilter = (filters?: CrudFilters) => {
     if (filters) {
         filters.map((filter) => {
             if (filter.operator === "or" || filter.operator === "and") {
-                warnOnce(
-                    true,
-                    `[@pankod/refine-simple-rest]: \`operator: ${filter.operator}\` is not supported, see https://refine.dev/docs/api-reference/core/providers/data-provider/#creating-a-data-provider`,
+                throw new Error(
+                    `[@pankod/refine-simple-rest]: \`operator: ${filter.operator}\` is not supported. You can create custom data provider. https://refine.dev/docs/api-reference/core/providers/data-provider/#creating-a-data-provider`,
                 );
-                return;
             }
 
             if ("field" in filter) {
