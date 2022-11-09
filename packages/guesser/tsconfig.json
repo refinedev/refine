@@ -1,0 +1,16 @@
+{
+    "include": ["src"],
+    "extends": "../../tsconfig.build.json",
+    "compilerOptions": {
+        "rootDir": "./src",
+        "baseUrl": ".",
+        "allowSyntheticDefaultImports": true,
+        "paths": {
+            "@/*": ["src/*"],
+            "@": ["src"],
+            "@test/*": ["test/*"],
+            "@test": ["test"]
+        },
+        "typeRoots": ["../../node_modules/@types"]
+    }
+}

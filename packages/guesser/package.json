@@ -1,0 +1,59 @@
+{
+    "name": "@pankod/refine-guesser",
+    "version": "0.1.0",
+    "description": "refine is a React-based framework for building internal tools, rapidly.",
+    "private": true,
+    "main": "dist/index.js",
+    "module": "dist/esm/index.js",
+    "typings": "dist/index.d.ts",
+    "scripts": {
+        "start": "tsup --watch --format esm,cjs,iife --legacy-output",
+        "build": "tsup --format esm,cjs,iife --minify --legacy-output",
+        "test": "jest --passWithNoTests --runInBand",
+        "prepare": "npm run build"
+    },
+    "devDependencies": {
+        "@esbuild-plugins/node-resolve": "^0.1.4",
+        "@testing-library/jest-dom": "^5.16.4",
+        "@testing-library/react": "^13.1.1",
+        "@testing-library/react-hooks": "^8.0.0",
+        "@testing-library/user-event": "^14.1.1",
+        "@types/jest": "^26.0.24",
+        "@types/pluralize": "^0.0.29",
+        "@types/prismjs": "^1.26.0",
+        "@types/react": "^18.0.0",
+        "@types/react-dom": "^18.0.0",
+        "@types/testing-library__jest-dom": "^5.14.3",
+        "esbuild-copy-static-files": "^0.1.0",
+        "esbuild-plugin-inline-image": "^0.0.8",
+        "identity-obj-proxy": "^3.0.0",
+        "jest": "^27.5.1",
+        "react-router-dom": "6.3.0",
+        "ts-jest": "^27.1.3",
+        "tsup": "^5.11.13",
+        "typescript": "^4.7.4"
+    },
+    "dependencies": {
+        "@pankod/refine-core": "^3.80.0",
+        "dayjs": "^1.10.7",
+        "lodash": "^4.17.21",
+        "lodash-es": "^4.17.21",
+        "pluralize": "^8.0.0",
+        "prism-react-renderer": "^1.3.5",
+        "react-markdown": "^6.0.1",
+        "remark-gfm": "^1.0.0",
+        "tslib": "^2.3.1",
+        "react-live": "github:aliemir/react-live"
+    },
+    "author": "Refine",
+    "license": "MIT",
+    "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/refinedev/refine.git",
+        "directory": "packages/guesser"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}
