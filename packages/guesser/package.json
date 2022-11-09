@@ -12,6 +12,43 @@
         "test": "jest --passWithNoTests --runInBand",
         "prepare": "npm run build"
     },
+    "peerDependencies": {
+        "@pankod/refine-antd": "^3.62.0",
+        "@pankod/refine-chakra-ui": "^1.2.0",
+        "@pankod/refine-core": "^3.88.0",
+        "@pankod/refine-mantine": "^1.11.0",
+        "@pankod/refine-mui": "^3.55.0",
+        "@pankod/refine-react-hook-form": "^3.33.2",
+        "@pankod/refine-react-table": "^4.9.0",
+        "@types/react": "^17.0.0 || ^18.0.0",
+        "@types/react-dom": "^17.0.0 || ^18.0.0",
+        "dayjs": "^1.10.7",
+        "react": "^17.0.0 || ^18.0.0",
+        "react-dom": "^17.0.0 || ^18.0.0"
+    },
+    "peerDependenciesMeta": {
+        "@pankod/refine-react-hook-form": {
+            "optional": true
+        },
+        "@pankod/refine-react-table": {
+            "optional": true
+        },
+        "@pankod/refine-antd": {
+            "optional": true
+        },
+        "@pankod/refine-mantine": {
+            "optional": true
+        },
+        "@pankod/refine-mui": {
+            "optional": true
+        },
+        "@pankod/refine-chakra-ui": {
+            "optional": true
+        },
+        "dayjs": {
+            "optional": true
+        }
+    },
     "devDependencies": {
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@testing-library/jest-dom": "^5.16.4",
