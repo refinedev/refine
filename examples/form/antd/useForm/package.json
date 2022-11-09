@@ -4,7 +4,7 @@
     "private": true,
     "dependencies": {
         "@pankod/refine-antd": "^3.62.0",
-        "@pankod/refine-core": "^3.88.2",
+        "@pankod/refine-core": "^3.88.3",
         "@pankod/refine-react-router-v6": "^3.36.2",
         "@pankod/refine-simple-rest": "^3.35.0",
         "@types/node": "^12.20.11",
@@ -13,7 +13,6 @@
         "@uiw/react-md-editor": "^3.19.5",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
-        "@uiw/react-md-editor": "^3.19.5",
         "react-scripts": "^5.0.0",
         "typescript": "^4.7.4"
     },

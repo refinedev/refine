@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 3.55.1
+
+### Patch Changes
+
+-   [#2975](https://github.com/refinedev/refine/pull/2975) [`249f9521c4`](https://github.com/refinedev/refine/commit/249f9521c4981819c2641be131d1dfb270b1d48b) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Prevented server request when empty filter value is provided.
+
 ## 3.55.0
 
 ### Minor Changes

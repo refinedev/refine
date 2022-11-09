@@ -1,5 +1,13 @@
 # @pankod/refine-mantine
 
+## 1.11.3
+
+### Patch Changes
+
+-   [#2969](https://github.com/refinedev/refine/pull/2969) [`a9459550a4`](https://github.com/refinedev/refine/commit/a9459550a49a640c5a1e393d4f2b8e6e9cd53dc6) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed `transformValues` generics in `useForm`, `useModalForm` and `useStepForm` hooks.
+
+-   [#2969](https://github.com/refinedev/refine/pull/2969) [`a9459550a4`](https://github.com/refinedev/refine/commit/a9459550a49a640c5a1e393d4f2b8e6e9cd53dc6) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed peerDependencies of packages
+
 ## 1.11.2
 
 ### Patch Changes
