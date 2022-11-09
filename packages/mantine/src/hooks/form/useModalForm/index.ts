@@ -11,14 +11,25 @@ import {
 } from "@pankod/refine-core";
 
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
+import { UseFormInput } from "@mantine/form/lib/types";
 
 export type UseModalFormReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = Record<string, unknown>,
-> = UseFormReturnType<TData, TError, TVariables> & {
+    TTransformed = TVariables,
+> = UseFormReturnType<TData, TError, TVariables, TTransformed> & {
     modal: {
-        submit: (values: TVariables) => void;
+        submit: (
+            values: ReturnType<
+                NonNullable<
+                    UseFormInput<
+                        TVariables,
+                        (values: TVariables) => TTransformed
+                    >["transformValues"]
+                >
+            >,
+        ) => void;
         close: () => void;
         show: (id?: BaseKey) => void;
         visible: boolean;
@@ -30,7 +41,8 @@ export type UseModalFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = Record<string, unknown>,
-> = UseFormProps<TData, TError, TVariables> & {
+    TTransformed = TVariables,
+> = UseFormProps<TData, TError, TVariables, TTransformed> & {
     modalProps?: {
         defaultVisible?: boolean;
         autoSubmitClose?: boolean;
@@ -42,15 +54,17 @@ export const useModalForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = Record<string, unknown>,
+    TTransformed = TVariables,
 >({
     modalProps,
     refineCoreProps,
     ...rest
-}: UseModalFormProps<TData, TError, TVariables> = {}): UseModalFormReturnType<
+}: UseModalFormProps<
     TData,
     TError,
-    TVariables
-> => {
+    TVariables,
+    TTransformed
+> = {}): UseModalFormReturnType<TData, TError, TVariables, TTransformed> => {
     const translate = useTranslate();
 
     const { resource: resourceProp, action: actionProp } =
@@ -61,7 +75,12 @@ export const useModalForm = <
         autoResetForm = true,
     } = modalProps ?? {};
 
-    const useMantineFormResult = useForm<TData, TError, TVariables>({
+    const useMantineFormResult = useForm<
+        TData,
+        TError,
+        TVariables,
+        TTransformed
+    >({
         refineCoreProps,
         ...rest,
     });
@@ -77,7 +96,16 @@ export const useModalForm = <
         defaultVisible,
     });
 
-    const submit = async (values: TVariables) => {
+    const submit = async (
+        values: ReturnType<
+            NonNullable<
+                UseFormInput<
+                    TVariables,
+                    (values: TVariables) => TTransformed
+                >["transformValues"]
+            >
+        >,
+    ) => {
         await onFinish(values);
 
         if (autoSubmitClose) {
