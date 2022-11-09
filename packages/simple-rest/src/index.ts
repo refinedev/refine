@@ -7,6 +7,7 @@ import {
     CrudFilters,
     CrudSorting,
 } from "@pankod/refine-core";
+import warnOnce from "warn-once";
 
 const axiosInstance = axios.create();
 
@@ -60,13 +61,18 @@ const generateSort = (sort?: CrudSorting) => {
 
 const generateFilter = (filters?: CrudFilters) => {
     const queryFilters: { [key: string]: string } = {};
+
     if (filters) {
         filters.map((filter) => {
-            if (
-                filter.operator !== "or" &&
-                filter.operator !== "and" &&
-                "field" in filter
-            ) {
+            if (filter.operator === "or" || filter.operator === "and") {
+                warnOnce(
+                    true,
+                    `[@pankod/refine-simple-rest]: \`operator: ${filter.operator}\` is not supported, see https://refine.dev/docs/api-reference/core/providers/data-provider/#creating-a-data-provider`,
+                );
+                return;
+            }
+
+            if ("field" in filter) {
                 const { field, operator, value } = filter;
 
                 if (field === "q") {
