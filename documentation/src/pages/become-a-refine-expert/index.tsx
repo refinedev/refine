@@ -148,7 +148,7 @@ const BecomeAnRefineExpert: React.FC = () => {
                     })}
                 </div>
 
-                <div className="w-full lg:w-[800px] shadow-startTiles border border-solid border-[#EEEEF0] rounded-xl flex flex-col items-center justify-center mt-16 py-8 px-16">
+                {/* <div className="w-full lg:w-[800px] shadow-startTiles border border-solid border-[#EEEEF0] rounded-xl flex flex-col items-center justify-center mt-16 py-8 px-16">
                     <p className="font-montserrat text-center text-base font-bold text-[#242436] uppercase mb-0">
                         “Partnering with{" "}
                         <span className="font-black lowercase">
@@ -164,7 +164,7 @@ const BecomeAnRefineExpert: React.FC = () => {
                     <div className="text-[#C1C1C6] text-xs font-medium">
                         Frontend Team Lead @refine
                     </div>
-                </div>
+                </div> */}
             </div>
         </Layout>
     );
