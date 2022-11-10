@@ -19,10 +19,18 @@ const Preview: NextPage = () => {
 
     const scopeResolver = React.useCallback(async () => {
         if (code && hasQuery && isReady && !scopeSettled) {
-            const isAntd = code.includes("@pankod/refine-antd");
-            const isMui = code.includes("@pankod/refine-mui");
-            const isMantine = code.includes("@pankod/refine-mantine");
-            const isChakra = code.includes("@pankod/refine-chakra-ui");
+            const isAntd =
+                code.includes("@pankod/refine-antd") ||
+                code.includes("RefineAntd");
+            const isMui =
+                code.includes("@pankod/refine-mui") ||
+                code.includes("RefineMui");
+            const isMantine =
+                code.includes("@pankod/refine-mantine") ||
+                code.includes("RefineMantine");
+            const isChakra =
+                code.includes("@pankod/refine-chakra-ui") ||
+                code.includes("RefineChakra");
 
             const antdScope = isAntd
                 ? (await import("../src/scope/antd")).default
