@@ -61,7 +61,7 @@ const BecomeAnRefineExpert: React.FC = () => {
                     </div>
                 </h2>
 
-                <p className="text-[#242436] max-w-[592px] text-center text-xs font-medium mb-0 mt-4">
+                <p className="text-[#242436] max-w-[592px] text-center text-sm font-medium mb-0 mt-4">
                     Despite being a relatively new framework, hundreds of
                     companies have already started using{" "}
                     <strong className="font-bold">refine</strong> to build
@@ -70,7 +70,7 @@ const BecomeAnRefineExpert: React.FC = () => {
                     <strong className="font-bold">refine</strong> projects.
                 </p>
 
-                <p className="text-[#242436] max-w-[592px] text-center text-xs font-medium mb-0 mt-4">
+                <p className="text-[#242436] max-w-[592px] text-center text-sm font-medium mb-0 mt-4">
                     The{" "}
                     <strong className="font-bold">
                         refine EXPERTS program
@@ -99,7 +99,7 @@ const BecomeAnRefineExpert: React.FC = () => {
                     Apply Now
                 </a>
 
-                <div className="mt-11 min-h-[380px]">
+                <div className="mt-11 md:min-h-[380px] w-auto max-w-[592px]">
                     <img
                         srcSet="
                         /become-a-refine-expert/img/dashboard-4x.png 2x,
@@ -107,7 +107,7 @@ const BecomeAnRefineExpert: React.FC = () => {
                         src="/become-a-refine-expert/img/dashboard-2x.png"
                         sizes="100vw"
                         alt="Refine app screenshot"
-                        className="block max-w-[592px] object-cover h-auto"
+                        className="block object-cover"
                     />
                 </div>
 
@@ -151,8 +151,10 @@ const BecomeAnRefineExpert: React.FC = () => {
                 <div className="w-full lg:w-[800px] shadow-startTiles border border-solid border-[#EEEEF0] rounded-xl flex flex-col items-center justify-center mt-16 py-8 px-16">
                     <p className="font-montserrat text-center text-base font-bold text-[#242436] uppercase mb-0">
                         “Partnering with{" "}
-                        <span className="font-black lowercase">refine</span> has
-                        been a game changer for our business. We’re able to
+                        <span className="font-black lowercase">
+                            <q>refine</q>
+                        </span>{" "}
+                        has been a game changer for our business. We’re able to
                         exceed customer expectations, bring in new business, and
                         delight our developers.”
                     </p>
