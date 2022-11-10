@@ -221,7 +221,7 @@ const siteConfig = {
                             to: "integrations",
                         },
                         {
-                            label: "Become a Refine Expert",
+                            label: "Become an Expert",
                             to: "become-a-refine-expert",
                         },
                     ],

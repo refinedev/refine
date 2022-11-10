@@ -99,7 +99,7 @@ const BecomeAnRefineExpert: React.FC = () => {
                     Apply Now
                 </a>
 
-                <div className="mt-11">
+                <div className="mt-11 min-h-[380px]">
                     <img
                         srcSet="
                         /become-a-refine-expert/img/dashboard-4x.png 2x,
