@@ -29,9 +29,9 @@ const icons = [
 const BecomeAnRefineExpert: React.FC = () => {
     return (
         <Layout>
-            <Head title="Become a Expert | refine">
+            <Head title="Become an Expert | refine">
                 <html
-                    data-page="become-a-refine-expert"
+                    data-page="become-an-refine-expert"
                     data-customized="true"
                 />
             </Head>
@@ -134,7 +134,7 @@ const BecomeAnRefineExpert: React.FC = () => {
                         return (
                             <div
                                 key={index}
-                                className="w-full flex flex-col items-center justify-center text-[#242436]"
+                                className="h-full w-full flex flex-col items-center justify-start text-[#242436]"
                             >
                                 <div>{icon}</div>
                                 <h3 className="font-montserrat text-center text-sm font-bold mb-0 mt-4">
