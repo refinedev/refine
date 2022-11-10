@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import { Command } from "commander";
 
+import generate from "./commands/generate";
+
 const bootstrap = () => {
     const program = new Command();
     program
@@ -8,7 +10,8 @@ const bootstrap = () => {
         .usage("<command> [options]")
         .helpOption("-h, --help", "Output usage information.");
 
-    // TODO: load commands
+    // load commands
+    generate(program);
 
     program.parse(process.argv);
 
