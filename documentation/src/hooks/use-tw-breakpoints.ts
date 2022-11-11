@@ -11,10 +11,10 @@ import React from "react";
 /**
  * check tailwindcss breakpoints with matchMedia and addEventListener
  */
-export const useTWBreakpoints = (): Record<
-    "sm" | "md" | "lg" | "xl" | "xxl",
-    boolean
-> => {
+
+export type TWBreakpoints = Record<"sm" | "md" | "lg" | "xl" | "xxl", boolean>;
+
+export const useTWBreakpoints = (): TWBreakpoints => {
     const [sm, setSm] = React.useState(true);
     const [md, setMd] = React.useState(true);
     const [lg, setLg] = React.useState(true);
