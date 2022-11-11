@@ -12,27 +12,13 @@ import {
 } from "@pankod/refine-core";
 import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
 import {
-    Accordion,
-    AccordionButton,
-    AccordionIcon,
-    AccordionItem,
-    AccordionPanel,
     Box,
     Button,
-    Drawer,
-    DrawerContent,
-    DrawerOverlay,
     IconButton,
     Tooltip,
     TooltipProps,
-    VStack,
 } from "@chakra-ui/react";
-import {
-    Sidebar,
-    SidebarSection,
-    NavItem,
-    SidebarToggleButton,
-} from "@saas-ui/sidebar";
+import { Sidebar, SidebarSection, NavGroup, NavItem } from "@saas-ui/sidebar";
 import {
     IconList,
     IconChevronRight,
@@ -94,67 +80,31 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                         resource: item,
                     }}
                 >
-                    <Accordion
-                        defaultIndex={
-                            defaultOpenKeys.includes(route || "") ? 0 : -1
-                        }
-                        width="full"
-                        allowToggle
-                    >
-                        <AccordionItem border="none">
-                            <Tooltip label={label} {...commonTooltipProps}>
-                                <AccordionButton
-                                    pl={6}
-                                    pr={4}
-                                    pt={3}
-                                    pb={3}
-                                    as="div"
-                                    width="full"
-                                >
-                                    <Button
-                                        width="full"
-                                        variant="link"
-                                        color="white"
-                                        fontWeight="normal"
-                                        leftIcon={
-                                            icon ?? (defaultNavIcon as any)
-                                        }
-                                        rightIcon={
-                                            isParent ? (
-                                                <AccordionIcon />
-                                            ) : undefined
-                                        }
-                                        _active={{
-                                            color: "none",
-                                            fontWeight: isParent
-                                                ? "normal"
-                                                : "bold",
-                                        }}
-                                        _hover={{ textDecoration: "none" }}
-                                        isActive={isSelected}
-                                        {...linkProps}
-                                    >
-                                        {!collapsed && (
-                                            <Box flexGrow={1} textAlign="left">
-                                                {label}
-                                            </Box>
-                                        )}
-                                    </Button>
-                                </AccordionButton>
-                            </Tooltip>
-
-                            {isParent && (
-                                <AccordionPanel
-                                    p={0}
-                                    pl={collapsed && !opened ? 0 : 4}
-                                >
-                                    <Accordion width="full" allowToggle>
-                                        {renderTreeView(children)}
-                                    </Accordion>
-                                </AccordionPanel>
+                    {isParent ? (
+                        <NavGroup
+                            title={label}
+                            isCollapsible
+                            borderRadius="0"
+                            defaultIsOpen={defaultOpenKeys.includes(
+                                route || "",
                             )}
-                        </AccordionItem>
-                    </Accordion>
+                        >
+                            {renderTreeView(children)}
+                        </NavGroup>
+                    ) : (
+                        <Tooltip label={label} {...commonTooltipProps}>
+                            <NavItem
+                                label={label || ""}
+                                icon={icon ?? (defaultNavIcon as any)}
+                                isActive={isSelected}
+                                py="3"
+                                px="4"
+                                h="12"
+                                _active={{ fontWeight: "bold" }}
+                                {...linkProps}
+                            />
+                        </Tooltip>
+                    )}
                 </CanAccess>
             );
         });
@@ -168,51 +118,34 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 label={t("dashboard.title", "Dashboard")}
                 {...commonTooltipProps}
             >
-                <Button
-                    width="full"
-                    justifyContent={
-                        collapsed && !opened ? "center" : "flex-start"
-                    }
-                    pl={6}
-                    pr={4}
-                    pt={3}
-                    pb={3}
-                    fontWeight="normal"
-                    leftIcon={<IconDashboard size={20} />}
-                    variant="link"
-                    color="white"
-                    isActive={selectedKey === "/"}
-                    _active={{ color: "none", fontWeight: "bold" }}
-                    _hover={{ textDecoration: "none" }}
+                <NavItem
+                    label={t("dashboard.title", "Dashboard")}
                     as={Link}
                     to="/"
-                >
-                    {(!collapsed || opened) &&
-                        t("dashboard.title", "Dashboard")}
-                </Button>
+                    icon={<IconDashboard size={20} />}
+                    isActive={selectedKey === "/"}
+                    py="3"
+                    px="4"
+                    h="12"
+                    fontSize="md"
+                    _active={{ fontWeight: "bold" }}
+                />
             </Tooltip>
         </CanAccess>
     ) : null;
 
     const logout = isExistAuthentication && (
         <Tooltip label={t("buttons.logout", "Logout")} {...commonTooltipProps}>
-            <Button
-                width="full"
-                justifyContent={collapsed && !opened ? "center" : "flex-start"}
-                pl={6}
-                pr={4}
-                pt={3}
-                pb={3}
-                fontWeight="normal"
-                leftIcon={<IconLogout size={20} />}
-                variant="link"
-                _active={{ color: "none" }}
-                _hover={{ textDecoration: "none" }}
-                color="white"
+            <NavItem
+                label={t("buttons.logout", "Logout")}
+                icon={<IconLogout size={20} />}
+                py="3"
+                px="4"
+                h="12"
+                fontSize="md"
+                _active={{ fontWeight: "bold" }}
                 onClick={() => mutateLogout()}
-            >
-                {(!collapsed || opened) && t("buttons.logout", "Logout")}
-            </Button>
+            />
         </Tooltip>
     );
 
@@ -241,36 +174,39 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 width={siderWidth()}
                 h="100vh"
                 position={{ base: "fixed", lg: "sticky" }}
+                zIndex="popover"
                 top="0"
-                variant={collapsed ? "collapsed" : "default"}
+                variant={collapsed ? "condensed" : "default"}
                 borderWidth="0"
-                isOpen={opened}
+                isOpen={collapsed || opened}
                 onOpen={() => setOpened(true)}
                 onClose={() => setOpened(false)}
             >
-                <Box
-                    position={!opened ? "fixed" : "absolute"}
-                    top={16}
-                    left={!opened ? 0 : undefined}
-                    right={opened ? -8 : undefined}
-                    zIndex={1200}
-                    display={{ base: "block", lg: "none" }}
-                >
-                    <IconButton
-                        borderLeftRadius={0}
-                        bg="sider.background"
-                        color="white"
-                        _hover={{ bg: "sider.background" }}
-                        _active={{
-                            bg: "sider.background",
-                            transform: "translateY(1px)",
-                        }}
-                        aria-label="Open Menu"
-                        onClick={() => setOpened((prev) => !prev)}
+                {!collapsed && (
+                    <Box
+                        position={!opened ? "fixed" : "absolute"}
+                        top={16}
+                        left={!opened ? 0 : undefined}
+                        right={opened ? -8 : undefined}
+                        zIndex={1200}
+                        display={{ base: "block", lg: "none" }}
                     >
-                        <IconMenu2 />
-                    </IconButton>
-                </Box>
+                        <IconButton
+                            borderLeftRadius={0}
+                            bg="sider.background"
+                            color="white"
+                            _hover={{ bg: "sider.background" }}
+                            _active={{
+                                bg: "sider.background",
+                                transform: "translateY(1px)",
+                            }}
+                            aria-label="Open Menu"
+                            onClick={() => setOpened((prev) => !prev)}
+                        >
+                            <IconMenu2 />
+                        </IconButton>
+                    </Box>
+                )}
                 <SidebarSection pt="3">
                     <RenderToTitle collapsed={collapsed} />
                 </SidebarSection>
