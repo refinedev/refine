@@ -69,7 +69,7 @@ Select the following options to complete CLI wizard:
 
 
 :::info
- We only show important options for this example. You can also prefer to selec to select other options like [Kbar](https://github.com/timc1/kbar) and [i18n](https://www.i18next.com/). Different options selections may be result in a different project structure.
+ We only show important options for this example. You can prefer to select other options like [Kbar](https://github.com/timc1/kbar) and [i18n](https://www.i18next.com/). Different options selections may be result in a different project structure.
 :::
 
 
