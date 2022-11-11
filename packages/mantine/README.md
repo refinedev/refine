@@ -82,42 +82,11 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 ## Quick Start
 
 The fastest way to get started with **refine** is using the [superplate](https://github.com/pankod/superplate) project starter tool.
-
-
-Run the following command to create a new **refine** project
+Run the following command to create a new **refine** project configured with  [Ant Design System](https://ant.design/) as the default UI framework:
 
 ```
-npx superplate-cli -p refine-react my-project
+npx superplate-cli --preset refine-antd my-project
 ```
-
-Select the following options to complete CLI wizard:
-
-```
-? Do you want to use a UI Framework?:
-❯ Ant Design
-
-? Do you want a customized theme?:
-❯ Default theme
-
-? Router Provider:
-❯ React Router v6
-
-? Data Provider:
-❯ REST API
-
-? Auth Provider:
-❯ None
-
-? Do you want to add example pages? 
-❯ No
-
-? Do you want a customized layout?
-❯ No
-```
-
-:::note
- You can free to choose the rest of the options as you wish.
-:::
 
 Once the setup is complete, navigate to the project folder and start your project with:
 
