@@ -3,6 +3,8 @@ import { Grid, FormProps, Form, TablePaginationConfig, TableProps } from "antd";
 import { QueryObserverResult } from "@tanstack/react-query";
 import { useForm as useFormSF } from "sunflower-antd";
 
+import dayjs from "dayjs";
+
 import { SorterResult } from "antd/lib/table/interface";
 
 import {
@@ -17,6 +19,9 @@ import {
     useTable as useTableCore,
     useTableProps as useTablePropsCore,
     useTableReturnType as useTableCoreReturnType,
+    getDefaultFilter,
+    ConditionalFilter,
+    LogicalFilter,
 } from "@pankod/refine-core";
 
 import {
@@ -120,11 +125,40 @@ export const useTable = <
         dataProviderName,
     });
 
+    const defaultFormValues = React.useMemo(() => {
+        if (!syncWithLocationProp || !filters) {
+            return undefined;
+        }
+
+        return filters.reduce((acc, item) => {
+            const field =
+                (item as ConditionalFilter)?.key ||
+                (item as LogicalFilter)?.field;
+
+            const start = getDefaultFilter(field, filters, "gte");
+            const end = getDefaultFilter(field, filters, "lte");
+
+            // Date range params
+            if (start && end) {
+                return {
+                    ...acc,
+                    [field]: [dayjs(start), dayjs(end)],
+                };
+            }
+
+            return {
+                ...acc,
+                [field]: getDefaultFilter(field, filters, item.operator),
+            };
+        }, {});
+    }, [syncWithLocationProp, filters]);
+
     const breakpoint = Grid.useBreakpoint();
 
     const [form] = Form.useForm<TSearchVariables>();
     const formSF = useFormSF<any, TSearchVariables>({
         form: form,
+        defaultFormValues,
     });
 
     const liveMode = useLiveMode(liveModeFromProp);

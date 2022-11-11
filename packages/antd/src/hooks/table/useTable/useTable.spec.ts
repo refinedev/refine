@@ -1,6 +1,7 @@
 import { CrudFilters } from "@pankod/refine-core";
 import isEqual from "lodash/isEqual";
 import { renderHook, waitFor } from "@testing-library/react";
+import dayjs from "dayjs";
 
 import { act, TestWrapper } from "@test";
 
@@ -236,6 +237,46 @@ describe("useTable Hook", () => {
 
         await waitFor(() => {
             return isEqual(result.current.filters, newFilters);
+        });
+    });
+
+    it('should have initial values in "searchFormProps" when using option "syncWithLocation"', async () => {
+        const start = Date.now();
+        const end = start - 1000;
+
+        const { result } = renderHook(
+            () =>
+                useTable({
+                    syncWithLocation: true,
+                    resource: "categories",
+                    initialFilter: [
+                        {
+                            field: "name",
+                            operator: "eq",
+                            value: "test",
+                        },
+                        {
+                            field: "createdAt",
+                            operator: "gte",
+                            value: dayjs(start),
+                        },
+                        {
+                            field: "createdAt",
+                            operator: "lte",
+                            value: dayjs(end),
+                        },
+                    ],
+                }),
+            {
+                wrapper: TestWrapper({}),
+            },
+        );
+
+        await waitFor(() => {
+            expect(result.current.searchFormProps.initialValues).toStrictEqual({
+                name: "test",
+                createdAt: [dayjs(start), dayjs(end)],
+            });
         });
     });
 });

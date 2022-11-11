@@ -31,12 +31,9 @@ import {
     ExportButton,
 } from "@pankod/refine-antd";
 
-import dayjs from "dayjs";
-
 import { OrderStatus, OrderActions } from "components";
 
 import { IOrder, IStore, IOrderFilterVariables } from "interfaces";
-import { useMemo } from "react";
 
 export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, sorter, searchFormProps, filters } = useTable<
@@ -44,6 +41,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         HttpError,
         IOrderFilterVariables
     >({
+        syncWithLocation: true,
         onSearch: (params) => {
             const filters: CrudFilters = [];
             const { q, store, user, createdAt, status } = params;
@@ -271,31 +269,8 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
 
     const { RangePicker } = DatePicker;
 
-    const createdAt = useMemo(() => {
-        const start = getDefaultFilter("createdAt", filters, "gte");
-        const end = getDefaultFilter("createdAt", filters, "lte");
-
-        const startFrom = dayjs(start);
-        const endAt = dayjs(end);
-
-        if (start && end) {
-            return [startFrom, endAt];
-        }
-        return undefined;
-    }, [filters]);
-
     return (
-        <Form
-            layout="vertical"
-            {...formProps}
-            initialValues={{
-                q: getDefaultFilter("q", filters),
-                store: getDefaultFilter("store.id", filters),
-                user: getDefaultFilter("user.id", filters),
-                status: getDefaultFilter("status.text", filters, "in"),
-                createdAt,
-            }}
-        >
+        <Form layout="vertical" {...formProps}>
             <Row gutter={[10, 0]} align="bottom">
                 <Col xl={24} md={8} sm={12} xs={24}>
                     <Form.Item label={t("orders.filter.search.label")} name="q">
@@ -308,7 +283,7 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
                 <Col xl={24} md={8} sm={12} xs={24}>
                     <Form.Item
                         label={t("orders.filter.status.label")}
-                        name="status"
+                        name="status.text"
                     >
                         <Select
                             {...orderSelectProps}
@@ -321,7 +296,7 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
                 <Col xl={24} md={8} sm={12} xs={24}>
                     <Form.Item
                         label={t("orders.filter.store.label")}
-                        name="store"
+                        name="store.id"
                     >
                         <Select
                             {...storeSelectProps}
@@ -333,7 +308,7 @@ const Filter: React.FC<{ formProps: FormProps; filters: CrudFilters }> = (
                 <Col xl={24} md={8} sm={12} xs={24}>
                     <Form.Item
                         label={t("orders.filter.user.label")}
-                        name="user"
+                        name="user.id"
                     >
                         <Select
                             {...userSelectProps}
