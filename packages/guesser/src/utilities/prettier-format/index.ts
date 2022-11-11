@@ -9,5 +9,10 @@ export const prettierFormat = (code: string) => {
     return prettier.format(code, {
         parser: "typescript",
         plugins: [tsParser],
+        arrowParens: "always",
+        trailingComma: "all",
+        semi: true,
+        tabWidth: 4,
+        printWidth: 80,
     });
 };
