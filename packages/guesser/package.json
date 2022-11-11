@@ -51,7 +51,7 @@
         },
         "@tabler/icons": {
             "optional": true
-        },
+        }
     },
     "devDependencies": {
         "@pankod/refine-antd": "^3.62.0",

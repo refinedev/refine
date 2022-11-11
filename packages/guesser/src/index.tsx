@@ -5,4 +5,5 @@ export {
     AntdListGuesser,
     MantineShowGuesser,
     MantineEditGuesser,
+    MantineListGuesser,
 } from "@/guessers";
