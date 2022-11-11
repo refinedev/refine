@@ -37,7 +37,7 @@
         "ink-table": "^3.0.0",
         "ora": "^5.4.1",
         "preferred-pm": "^3.0.3",
-        "react": "^18.2.0",
+        "react": "^18.0.0",
         "tslib": "^2.3.1"
     },
     "author": "refine",
