@@ -119,7 +119,11 @@ export const EditGuesser = createGuesser({
         };
 
         const textFields = (field: GuessField) => {
-            if (field.type === "text") {
+            if (
+                field.type === "text" ||
+                field.type === "email" ||
+                field.type === "url"
+            ) {
                 initialValues = {
                     ...initialValues,
                     [field.key]: field.multiple ? [] : "",
