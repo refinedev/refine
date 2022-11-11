@@ -89,8 +89,12 @@ npm run dev
 You can now view **refine** application at [http://localhost:3000](http://localhost:3000) and you should see the output as a table populated with `post` & `category` data with filter, sort, and pagination features
 
 
+<div >
+   <img style={{width: "100%"}} src="https://github.com/refinedev/refine/blob/master/documentation/static/img/first-example-result.png?raw=true"  alt="Example result" />
+</div>
 
-![First example result](https://github.com/refinedev/refine/blob/master/documentation/static/img/first-example-result.png?raw=true)
+<br />
+
 
 
 :::tip
