@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { Command } from "commander";
+import checkUpdates from "./commands/check-updates";
 
 const bootstrap = () => {
     const program = new Command();
@@ -8,7 +9,8 @@ const bootstrap = () => {
         .usage("<command> [options]")
         .helpOption("-h, --help", "Output usage information.");
 
-    // TODO: load commands
+    // load commands
+    checkUpdates(program);
 
     program.parse(process.argv);
 
