@@ -2,10 +2,10 @@ import React from "react";
 import { Command } from "commander";
 import preferredPM from "preferred-pm";
 import { render } from "ink";
-import shell from "shelljs";
 import UpdateWarningTable from "src/components/update-warning-table";
-import ora from "ora";
 import { NpmOutdatedResponse, RefinePackages } from "src/interfaces";
+import execa from "execa";
+import spinner from "src/utils/spinner";
 
 const load = (program: Command) => {
     return program
@@ -15,9 +15,10 @@ const load = (program: Command) => {
 };
 
 const action = async () => {
-    const spinner = ora("Checking versions of `refine` packages").start();
-    const dependencies = await isRefineUptoDate();
-    spinner.stop();
+    const dependencies = await spinner(
+        isRefineUptoDate,
+        "Checking for updates...",
+    );
 
     if (!dependencies?.length) {
         console.log("All `refine` packages are up to date 🎉");
@@ -31,10 +32,10 @@ const action = async () => {
  * Displays update warning if there is any `refine` package update available.
  */
 export const getUpdateWarning = async () => {
-    const dependencies = await isRefineUptoDate();
-    if (!dependencies) return;
+    const packages = await isRefineUptoDate();
+    if (!packages) return;
 
-    render(<UpdateWarningTable data={dependencies} />);
+    render(<UpdateWarningTable data={packages} />);
 };
 
 /**
@@ -77,11 +78,12 @@ const getOutdatedRefinePackages = async (pm: "npm" | "pnpm" | "yarn") => {
 
 const getOutdatedPackageList = async (pm: "npm" | "pnpm" | "yarn") => {
     try {
-        const stdout = shell.exec(`${pm} outdated --json`, {
-            cwd: process.cwd(),
+        const { stdout } = await execa(`${pm}`, [`outdated`, `--json`], {
+            reject: false,
             timeout: 10000,
-            silent: true,
-        }).stdout;
+        });
+
+        if (!stdout) return null;
 
         return JSON.parse(stdout) as NpmOutdatedResponse | null;
     } catch (e) {
