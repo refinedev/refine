@@ -33,8 +33,6 @@ export const ShowGuesser = createGuesser({
             ["useShow", "@pankod/refine-core"],
             ["Show", "@pankod/refine-antd"],
             ["Typography", "@pankod/refine-antd"],
-            ["Row", "@pankod/refine-antd"],
-            ["Col", "@pankod/refine-antd"],
         ];
 
         const relationFields: (GuessField | null)[] = fields.filter(
@@ -428,7 +426,7 @@ export const ShowGuesser = createGuesser({
         return jsx`
         ${printImports(imports)}
         
-        const { Title, Text } = Typography;
+        const { Title } = Typography;
 
         export const ${COMPONENT_NAME} = () => {
             const { queryResult } = useShow();
