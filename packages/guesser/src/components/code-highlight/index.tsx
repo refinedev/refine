@@ -24,7 +24,13 @@ export const CodeHighlight: React.FC<{
                 }) => (
                     <pre
                         className={className}
-                        style={{ ...style, padding: "14px", marginBottom: "0" }}
+                        style={{
+                            ...style,
+                            padding: "14px 14px 14px 0",
+                            margin: "0",
+                            width: "100%",
+                            overflowY: "scroll",
+                        }}
                     >
                         {tokens.map((line, i) => (
                             <div key={i} {...getLineProps({ line, key: i })}>
