@@ -4,7 +4,7 @@ export type NpmOutdatedResponse = Record<
         current: string;
         wanted: string;
         latest: string;
-        dependet: "antd";
+        dependet: string;
     }
 >;
 
