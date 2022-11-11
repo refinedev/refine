@@ -41,8 +41,8 @@ export const getUpdateWarning = async () => {
 /**
  *
  * @returns `refine` packages that have updates.
- * @returns `null` if no refine package found.
- * @returns `null` if all `refine` packages are up to date.
+ * @returns `[]` if no refine package found.
+ * @returns `[]` if all `refine` packages are up to date.
  */
 export const isRefineUptoDate = async () => {
     const pm = await preferredPM(process.cwd());
