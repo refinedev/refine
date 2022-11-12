@@ -125,13 +125,12 @@ const Profile: React.FunctionComponent<ProfileProps> = ({ profile }): JSX.Elemen
 export default Profile;
 ```
 
-<br/>
-<div>
-<a href="https://github.com/refinedev/refine">
-  <img  src="https://refine.dev/img/github-support-banner.png" alt="github support banner" />
-</a>
-</div>
 
+---
+
+<PromotionBanner title="Is your CRUD app overloaded with technical debt?" image="/img/generic_banner.png" />
+
+---
 
 ## How to use Typescript with Next.js data fetching methods
 
@@ -302,6 +301,15 @@ export default User;
 
 This looks way better and straightforward.
 
+
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
+
+
 ## Disabling Typescript Errors in Production
 
 If you happen to have TypeScript errors while running `next build`, Next.js will fail the build but you can disable the type checks if you wish. 
@@ -328,41 +336,5 @@ Make sure you really know what you're doing before using this option.
 ## Conclusion
 We covered how to get started with **TypeScript in your Next.js** applications. We also talked about the importance and benefits associated with combining TypeScript capabilities with Next.js for a faster and easier application development experience. We hope this article helps you consider integrating **TypeScript and Next.js** in your next applications.  
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
 
 
-
----
-
-<div className="banner-container">
-<div className="banner-header" >Stop wasting your time copy/pasting your table code all over your application!</div >
-
-
-
-Meet the headless, React-based solution to build sleek **CRUD** applications. With refine, you can be confident that your codebase will always stay clean and boilerplate-free.
-
-Try [refine](https://github.com/refinedev/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
-
-    
-
-<div>
-<a href="https://github.com/refinedev/refine">
-   <img  src="/img/generic_banner.png" alt="refine blog logo" /> 
-</a>
-</div>
-
-<br/>
-
-
-**refine** is an open-source, React-based framework for building CRUD applications without constraints. It’s headless by design and seamlessly works with **any custom design** or **UI framework** you favor. For convenience, it ships with ready-made integrations for **Ant Design System, Material UI and Mantine UI**.
-
-It can **speed up your development time up to 3X** without compromising freedom on styling, customization and project workflow.
-
-Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.
-
-</div>
