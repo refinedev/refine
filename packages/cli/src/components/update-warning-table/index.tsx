@@ -22,22 +22,42 @@ const getVersions = (text: string) => {
 };
 
 const getColorsByVersionDiffrence = (
-    version1: ReturnType<typeof getVersions>,
-    version2: ReturnType<typeof getVersions>,
-    color: TextProps["color"],
+    installedVersion: ReturnType<typeof getVersions>,
+    nextVersion: ReturnType<typeof getVersions>,
 ) => {
-    const isMajorDiffrence = version1.major.trim() !== version2.major.trim();
-    const isMinorDiffrence = isMajorDiffrence
-        ? true
-        : version1.minor.trim() !== version2.minor.trim();
-    const isPatchDiffrence = isMinorDiffrence
-        ? true
-        : version1.patch.trim() !== version2.patch.trim();
+    const isMajorDiffrence =
+        installedVersion.major.trim() !== nextVersion.major.trim();
+
+    if (isMajorDiffrence)
+        return {
+            major: "red",
+            minor: "red",
+            patch: "red",
+        };
+
+    const isMinorDiffrence =
+        installedVersion.minor.trim() !== nextVersion.minor.trim();
+
+    if (isMinorDiffrence)
+        return {
+            major: "white",
+            minor: "yellow",
+            patch: "yellow",
+        };
+
+    const isPatchDiffrence =
+        installedVersion.patch.trim() !== nextVersion.patch.trim();
+    if (isPatchDiffrence)
+        return {
+            major: "white",
+            minor: "white",
+            patch: "green",
+        };
 
     return {
-        major: isMajorDiffrence ? color : "white",
-        minor: isMinorDiffrence ? color : "white",
-        patch: isPatchDiffrence ? color : "white",
+        major: "white",
+        minor: "white",
+        patch: "white",
     };
 };
 
@@ -67,61 +87,57 @@ const UpdateWarningTable: FC<UpdateWarningTableProps> = ({ data }) => {
                     const text = props.children?.toString();
                     if (!text) return TextComponent;
 
+                    const installedVersion = getVersions(
+                        data[packageIndex.current].current,
+                    );
+
                     if (cellIndex.current === columIndex.wanted) {
-                        const currentPackageCurrentVersions = getVersions(
-                            data[packageIndex.current].current,
-                        );
-                        const currentVersions = getVersions(text);
+                        const wantedVersion = getVersions(text);
 
                         const colors = getColorsByVersionDiffrence(
-                            currentPackageCurrentVersions,
-                            currentVersions,
-                            "yellow",
+                            installedVersion,
+                            wantedVersion,
                         );
 
                         TextComponent = (
                             <VersionText
                                 major={{
                                     color: colors.major,
-                                    text: currentVersions.major,
+                                    text: wantedVersion.major,
                                 }}
                                 minor={{
                                     color: colors.minor,
-                                    text: currentVersions.minor,
+                                    text: wantedVersion.minor,
                                 }}
                                 patch={{
                                     color: colors.patch,
-                                    text: currentVersions.patch,
+                                    text: wantedVersion.patch,
                                 }}
                             />
                         );
                     }
 
                     if (cellIndex.current === columIndex.latest) {
-                        const currentPackageCurrentVersions = getVersions(
-                            data[packageIndex.current].current,
-                        );
-                        const currentVersions = getVersions(text);
+                        const latestVersion = getVersions(text);
 
                         const colors = getColorsByVersionDiffrence(
-                            currentPackageCurrentVersions,
-                            currentVersions,
-                            "red",
+                            installedVersion,
+                            latestVersion,
                         );
 
                         TextComponent = (
                             <VersionText
                                 major={{
                                     color: colors.major,
-                                    text: currentVersions.major,
+                                    text: latestVersion.major,
                                 }}
                                 minor={{
                                     color: colors.minor,
-                                    text: currentVersions.minor,
+                                    text: latestVersion.minor,
                                 }}
                                 patch={{
                                     color: colors.patch,
-                                    text: currentVersions.patch,
+                                    text: latestVersion.patch,
                                 }}
                             />
                         );
