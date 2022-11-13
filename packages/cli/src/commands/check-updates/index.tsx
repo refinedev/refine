@@ -18,17 +18,14 @@ const load = (program: Command) => {
 };
 
 const action = async () => {
-    const dependencies = await spinner(
-        isRefineUptoDate,
-        "Checking for updates...",
-    );
+    const packages = await spinner(isRefineUptoDate, "Checking for updates...");
 
-    if (!dependencies?.length) {
+    if (!packages?.length) {
         console.log("All `refine` packages are up to date 🎉");
         return;
     }
 
-    render(<UpdateWarningTable data={dependencies} />);
+    render(<UpdateWarningTable data={packages} />);
 };
 
 /**
