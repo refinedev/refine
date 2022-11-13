@@ -6,7 +6,10 @@ const PromotionBanner = ({ image, title, description }) => {
         <div>
             Meet the headless, React-based solution to build sleek <b>CRUD</b>{" "}
             applications. With refine, you can be confident that your codebase
-            will always stay clean and boilerplate-free. Try{" "}
+            will always stay clean and boilerplate-free.
+            <br />
+            <br />
+            Try{" "}
             <a href="https://github.com/refinedev/refine" target="_blank">
                 refine
             </a>{" "}
