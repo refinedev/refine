@@ -8,9 +8,9 @@ export type NpmOutdatedResponse = Record<
     }
 >;
 
-export type RefinePackages = {
+export type RefinePackageInstalledVersionData = {
     name: string;
     current: string;
     wanted: string;
     latest: string;
-}[];
+};

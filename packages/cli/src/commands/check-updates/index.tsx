@@ -3,7 +3,10 @@ import { Command } from "commander";
 import preferredPM from "preferred-pm";
 import { render } from "ink";
 import UpdateWarningTable from "src/components/update-warning-table";
-import { NpmOutdatedResponse, RefinePackages } from "src/interfaces";
+import {
+    NpmOutdatedResponse,
+    RefinePackageInstalledVersionData,
+} from "src/interfaces";
 import execa from "execa";
 import spinner from "src/utils/spinner";
 
@@ -58,7 +61,7 @@ const getOutdatedRefinePackages = async (pm: "npm" | "pnpm" | "yarn") => {
     const packages = await getOutdatedPackageList(pm);
     if (!packages) return [];
 
-    const list: RefinePackages = [];
+    const list: RefinePackageInstalledVersionData[] = [];
 
     Object.keys(packages).forEach((packageName) => {
         const dependency = packages[packageName];
