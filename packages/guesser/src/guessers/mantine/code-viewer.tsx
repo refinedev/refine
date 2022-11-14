@@ -22,7 +22,7 @@ export const CodeViewerComponent: CreateGuesserConfig["codeViewerComponent"] =
 
         const copyCode = () => {
             inputRef?.current?.select();
-            inputRef?.current?.setSelectionRange(0, 99999);
+            inputRef?.current?.setSelectionRange(0, Number.MAX_SAFE_INTEGER);
             if (typeof navigator !== "undefined") {
                 navigator.clipboard.writeText(inputRef?.current?.value ?? "");
             }
