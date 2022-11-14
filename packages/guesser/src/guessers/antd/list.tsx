@@ -304,7 +304,7 @@ export const ListGuesser = createGuesser({
                         " && ",
                     );
                     render = jsx`render={(value: any) => (<>{value.map((item, index) => (
-                        <Checkbox key={!!${val}} key={index} />
+                        <Checkbox checked={!!${val}} key={index} />
                     ))}</>)}`;
                 }
 
