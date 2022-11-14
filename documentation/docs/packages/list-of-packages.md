@@ -14,6 +14,8 @@ title: List of Packages
 
 - `@pankod/refine-mantine` - [Mantine](https://mantine.dev/) UI Framework support. **20+** framework-specific **hooks** and **components** incl. *Table, Form, AutoComplete, Menu, Layout, Notification and CRUD components.*
 
+- `@pankod/refine-chakra-ui` - [Chakra UI](https://chakra-ui.com/) UI Framework support. **20+** framework-specific **components** incl. *Menu, Layout, Notification and CRUD components.*
+
 **[Data Provider](https://refine.dev/docs/core/providers/data-provider/) Packages:**
 
   

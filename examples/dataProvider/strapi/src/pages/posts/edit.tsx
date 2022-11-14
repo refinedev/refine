@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { IResourceComponentsProps, useApiUrl } from "@pankod/refine-core";
 import {
     Edit,
@@ -15,18 +15,12 @@ import {
     mediaUploadMapper,
 } from "@pankod/refine-strapi";
 
-import ReactMarkdown from "react-markdown";
-import ReactMde from "react-mde";
-import "react-mde/lib/styles/css/react-mde-all.css";
+import MDEditor from "@uiw/react-md-editor";
 
 import { TOKEN_KEY } from "../../constants";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const API_URL = useApiUrl();
-
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
-        "write",
-    );
 
     const { formProps, saveButtonProps } = useForm();
 
@@ -83,15 +77,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <ReactMde
-                        selectedTab={selectedTab}
-                        onTabChange={setSelectedTab}
-                        generateMarkdownPreview={(markdown) =>
-                            Promise.resolve(
-                                <ReactMarkdown>{markdown}</ReactMarkdown>,
-                            )
-                        }
-                    />
+                    <MDEditor data-color-mode="light" />
                 </Form.Item>
                 <Form.Item label="Cover">
                     <Form.Item

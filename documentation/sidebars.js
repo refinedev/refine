@@ -20,6 +20,7 @@ module.exports = {
             },
             items: [
                 "tutorials/ant-design-tutorial",
+                "tutorials/chakra-ui-tutorial",
                 "tutorials/mantine-tutorial",
                 "tutorials/material-ui-tutorial",
                 "tutorials/headless-tutorial",
@@ -364,6 +365,76 @@ module.exports = {
                                 "api-reference/antd/customization/antd-custom-theme",
                                 "api-reference/antd/customization/antd-custom-layout",
                                 "api-reference/antd/customization/antd-custom-sider",
+                            ],
+                        },
+                    ],
+                },
+
+                {
+                    type: "category",
+                    label: "Chakra UI API",
+                    link: {
+                        type: "generated-index",
+                        title: "Chakra UI API",
+                        slug: "/api-reference/chakra-ui",
+                    },
+                    items: [
+                        {
+                            type: "category",
+                            label: "Components",
+                            items: [
+                                "api-reference/chakra-ui/components/chakra-auth-page",
+                                {
+                                    type: "category",
+                                    label: "Basic Views",
+                                    items: [
+                                        "api-reference/chakra-ui/components/basic-views/create",
+                                        "api-reference/chakra-ui/components/basic-views/edit",
+                                        "api-reference/chakra-ui/components/basic-views/list",
+                                        "api-reference/chakra-ui/components/basic-views/show",
+                                    ],
+                                },
+                                "api-reference/chakra-ui/components/breadcrumb",
+                                {
+                                    type: "category",
+                                    label: "Buttons",
+                                    items: [
+                                        "api-reference/chakra-ui/components/buttons/clone-button",
+                                        "api-reference/chakra-ui/components/buttons/create-button",
+                                        "api-reference/chakra-ui/components/buttons/delete-button",
+                                        "api-reference/chakra-ui/components/buttons/edit-button",
+                                        "api-reference/chakra-ui/components/buttons/export-button",
+                                        "api-reference/chakra-ui/components/buttons/import-button",
+                                        "api-reference/chakra-ui/components/buttons/list-button",
+                                        "api-reference/chakra-ui/components/buttons/refresh-button",
+                                        "api-reference/chakra-ui/components/buttons/save-button",
+                                        "api-reference/chakra-ui/components/buttons/show-button",
+                                    ],
+                                },
+                                {
+                                    type: "category",
+                                    label: "Fields",
+                                    items: [
+                                        "api-reference/chakra-ui/components/fields/boolean",
+                                        "api-reference/chakra-ui/components/fields/date",
+                                        "api-reference/chakra-ui/components/fields/email",
+                                        "api-reference/chakra-ui/components/fields/file",
+                                        "api-reference/chakra-ui/components/fields/markdown",
+                                        "api-reference/chakra-ui/components/fields/number",
+                                        "api-reference/chakra-ui/components/fields/tag",
+                                        "api-reference/chakra-ui/components/fields/text",
+                                        "api-reference/chakra-ui/components/fields/url",
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            type: "category",
+                            label: "Customization",
+                            items: [
+                                "api-reference/chakra-ui/customization/theme",
+                                "api-reference/chakra-ui/customization/layout",
+                                "api-reference/chakra-ui/customization/sider",
                             ],
                         },
                     ],

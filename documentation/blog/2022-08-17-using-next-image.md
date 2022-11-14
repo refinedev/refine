@@ -52,6 +52,12 @@ Here is a non-exhaustive list of things you should consider before serving your 
 
 Once you're done optimizing your images manually, you can now proceed to use the NextJS Image component for maximum image optimization benefits. 
 
+---
+
+<PromotionBanner title="Not confident with your frontend skills?" image="/img/generic_banner.png" />
+
+---
+
 ## The NextJS image component
 
 The [`<Image />`](https://nextjs.org/docs/api-reference/next/image) component is a batteries-included modern solution for serving images in NextJS applications. It's similar to the native HTML `<img/>` element but has a few differences.
@@ -314,6 +320,16 @@ Sets how an image should be sized to its parent element when using `layout="fill
 />
 ```
 
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
+
+
+
+
 ### **`objectPosition`**
 Specifies the alignment of the image contents within the image's box. This value is passed to the [object-position CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/object-position) applied to the image. Defaults to `50% 50%`:
 
@@ -408,41 +424,4 @@ Congratulations if you made it this far! In this article, you learned how to use
 We hope this article helps you get started with building amazing developer and user experiences by leveraging the numerous customization options and features of the Image component to score good performance points.
 
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
 
-
-
----
-
-<div className="banner-container">
-<div className="banner-header" >Stop wasting your time copy/pasting your table code all over your application!</div >
-
-
-
-Meet the headless, React-based solution to build sleek **CRUD** applications. With refine, you can be confident that your codebase will always stay clean and boilerplate-free.
-
-Try [refine](https://github.com/refinedev/refine) to rapidly build your next **CRUD** project, whether it's an admin panel, dashboard, internal tool or storefront.
-
-    
-
-<div>
-<a href="https://github.com/refinedev/refine">
-   <img  src="/img/generic_banner.png" alt="refine blog logo" /> 
-</a>
-</div>
-
-<br/>
-
-
-**refine** is an open-source, React-based framework for building CRUD applications without constraints. It’s headless by design and seamlessly works with **any custom design** or **UI framework** you favor. For convenience, it ships with ready-made integrations for **Ant Design System, Material UI and Mantine UI**.
-
-It can **speed up your development time up to 3X** without compromising freedom on styling, customization and project workflow.
-
-Visit [refine GitHub repository](https://github.com/refinedev/refine) for more information, demos, tutorials, and example projects.
-
-</div>

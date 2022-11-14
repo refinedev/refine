@@ -41,9 +41,6 @@ const PostCreate: React.FC = () => {
         resource: "categories",
     });
 
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
-
     return (
         <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">

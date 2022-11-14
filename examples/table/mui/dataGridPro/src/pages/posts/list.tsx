@@ -1,6 +1,10 @@
 import React from "react";
-import { useMany } from "@pankod/refine-core";
-import { useDataGrid, List } from "@pankod/refine-mui";
+import { Option, useSelect } from "@pankod/refine-core";
+import {
+    useDataGrid,
+    List,
+    GridValueFormatterParams,
+} from "@pankod/refine-mui";
 import { DataGridPro, GridColumns } from "@mui/x-data-grid-pro";
 
 import { ICategory, IPost } from "interfaces";
@@ -34,13 +38,12 @@ export const PostsList: React.FC = () => {
         syncWithLocation: true,
     });
 
-    const categoryIds = dataGridProps.rows.map((item) => item.category.id);
-    const { data: categoriesData, isLoading } = useMany<ICategory>({
+    const {
+        options,
+        queryResult: { isLoading },
+    } = useSelect<ICategory>({
         resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
+        hasPagination: false,
     });
 
     const columns = React.useMemo<GridColumns<IPost>>(
@@ -54,25 +57,38 @@ export const PostsList: React.FC = () => {
             {
                 field: "category.id",
                 headerName: "Category",
-                type: "number",
+                type: "singleSelect",
                 headerAlign: "left",
                 align: "left",
                 minWidth: 250,
                 flex: 0.5,
+                valueOptions: options,
+                valueFormatter: (params: GridValueFormatterParams<Option>) => {
+                    return params.value;
+                },
                 renderCell: function render({ row }) {
                     if (isLoading) {
                         return "Loading...";
                     }
 
-                    const category = categoriesData?.data.find(
-                        (item) => item.id === row.category.id,
+                    const category = options.find(
+                        (item) =>
+                            item.value.toString() ===
+                            row.category.id.toString(),
                     );
-                    return category?.title;
+                    return category?.label;
                 },
             },
-            { field: "status", headerName: "Status", minWidth: 120, flex: 0.3 },
+            {
+                field: "status",
+                headerName: "Status",
+                minWidth: 120,
+                flex: 0.3,
+                type: "singleSelect",
+                valueOptions: ["draft", "published", "rejected"],
+            },
         ],
-        [categoriesData, isLoading],
+        [options, isLoading],
     );
 
     return (

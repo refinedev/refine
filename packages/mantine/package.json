@@ -1,6 +1,6 @@
 {
     "name": "@pankod/refine-mantine",
-    "version": "1.11.0",
+    "version": "1.11.4",
     "description": "refine is a React-based framework for building internal tools, rapidly.",
     "private": false,
     "main": "dist/index.js",
@@ -14,6 +14,11 @@
     },
     "peerDependencies": {
         "@pankod/refine-core": "^3.58.3",
+        "@mantine/core": "^5.5.6",
+        "@mantine/hooks": "^5.5.6",
+        "@mantine/form": "^5.5.6",
+        "@mantine/notifications": "^5.5.6",
+        "dayjs": "^1.10.7",
         "@types/react": "^17.0.0 || ^18.0.0",
         "@types/react-dom": "^17.0.0 || ^18.0.0",
         "react": "^17.0.0 || ^18.0.0",
@@ -21,7 +26,7 @@
     },
     "devDependencies": {
         "@esbuild-plugins/node-resolve": "^0.1.4",
-        "@pankod/refine-core": "^3.88.0",
+        "@pankod/refine-core": "^3.88.4",
         "@pankod/refine-ui-tests": "^0.11.0",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
@@ -42,10 +47,10 @@
     },
     "dependencies": {
         "@emotion/react": "^11.8.2",
-        "@mantine/core": "5.5.6",
-        "@mantine/hooks": "5.5.6",
-        "@mantine/form": "5.5.6",
-        "@mantine/notifications": "5.5.6",
+        "@mantine/core": "^5.5.6",
+        "@mantine/hooks": "^5.5.6",
+        "@mantine/form": "^5.5.6",
+        "@mantine/notifications": "^5.5.6",
         "@pankod/refine-ui-types": "^0.14.0",
         "dayjs": "^1.10.7",
         "react-markdown": "^6.0.1",

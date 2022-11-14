@@ -1,5 +1,17 @@
 # @pankod/refine-simple-rest
 
+## 3.35.2
+
+### Patch Changes
+
+-   [#2980](https://github.com/refinedev/refine/pull/2980) [`b8f8b0eab9`](https://github.com/refinedev/refine/commit/b8f8b0eab98e94ac243bd5aed98fe0e55e7e6762) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Added warning on unsupported filters
+
+## 3.35.1
+
+### Patch Changes
+
+-   [#2980](https://github.com/refinedev/refine/pull/2980) [`b8f8b0eab9`](https://github.com/refinedev/refine/commit/b8f8b0eab98e94ac243bd5aed98fe0e55e7e6762) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Added warning on unsupported filters
+
 ## 3.35.0
 
 ### Minor Changes

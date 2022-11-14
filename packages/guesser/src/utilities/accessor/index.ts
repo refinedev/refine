@@ -55,3 +55,25 @@ export const accessor = (
         return accessorSingle(variable, key, accessor);
     }
 };
+
+export const dotAccessor = (
+    variable: string,
+    key?: string,
+    accessor?: string | string[],
+) => {
+    let str = variable;
+
+    if (key) {
+        str += `.${key}`;
+    }
+
+    if (accessor) {
+        if (Array.isArray(accessor)) {
+            str += `.${accessor[0]}`;
+        } else {
+            str += `.${accessor}`;
+        }
+    }
+
+    return str;
+};

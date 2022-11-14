@@ -15,6 +15,10 @@ const LivePreviewSharedBase = ({
 
     React.useEffect(() => {
         setShared(String(children));
+
+        return () => {
+            setShared(undefined);
+        };
     }, [children]);
 
     return null;

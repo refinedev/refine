@@ -47,7 +47,7 @@ const NewsletterCta = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="shadow-modal fixed right-0 left-0 bottom-4 z-50 mx-auto flex w-[312px] flex-col items-center rounded-2xl bg-white sm:left-[unset] sm:right-4 sm:mx-0 lg:w-[384px] "
+                    className="shadow-modal fixed right-0 left-0 bottom-14 z-50 mx-auto flex w-[312px] flex-col items-center rounded-2xl bg-white sm:left-[unset] sm:right-4 sm:mx-0 lg:w-[384px] "
                 >
                     <button
                         className="absolute text-white bg-transparent border-none cursor-pointer top-2 right-2 hover:scale-110"

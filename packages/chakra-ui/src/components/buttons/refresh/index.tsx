@@ -58,6 +58,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
             }
             disabled={isFetching}
             data-testid={RefineButtonTestIds.RefreshButton}
+            {...rest}
         >
             <IconRefresh size={20} {...svgIconProps} />
         </IconButton>

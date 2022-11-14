@@ -12,9 +12,7 @@ import {
     Radio,
 } from "@pankod/refine-antd";
 
-import ReactMarkdown from "react-markdown";
-import ReactMde from "react-mde";
-import "react-mde/lib/styles/css/react-mde-all.css";
+import MDEditor from "@uiw/react-md-editor";
 
 import {
     useStrapiUpload,
@@ -28,10 +26,6 @@ import { IPost } from "interfaces";
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const API_URL = useApiUrl();
     const [locale, setLocale] = useState("en");
-
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
-        "write",
-    );
 
     const { formProps, saveButtonProps } = useForm<IPost>();
 
@@ -93,15 +87,7 @@ export const PostCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <ReactMde
-                        selectedTab={selectedTab}
-                        onTabChange={setSelectedTab}
-                        generateMarkdownPreview={(markdown) =>
-                            Promise.resolve(
-                                <ReactMarkdown>{markdown}</ReactMarkdown>,
-                            )
-                        }
-                    />
+                    <MDEditor data-color-mode="light" />
                 </Form.Item>
                 <Form.Item label="Cover">
                     <Form.Item

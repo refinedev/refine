@@ -225,9 +225,6 @@ const { formProps, saveButtonProps } = useForm<IPost>();
         resource: "categories",
     });
 
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
-
     return (
         <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
@@ -349,8 +346,6 @@ const PostCreate: React.FC = () => {
     const { selectProps: categorySelectProps } = useSelect<ICategory>({
         resource: "categories",
     });
-
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">("write");
 
     return (
         <Create saveButtonProps={saveButtonProps}>

@@ -10,9 +10,9 @@
     },
     "dependencies": {
         "@pankod/refine-antd": "^3.62.0",
-        "@pankod/refine-core": "^3.88.0",
+        "@pankod/refine-core": "^3.88.4",
         "@pankod/refine-nextjs-router": "^3.38.0",
-        "@pankod/refine-simple-rest": "^3.35.0",
+        "@pankod/refine-simple-rest": "^3.35.2",
         "next": "^12.1.6",
         "next-compose-plugins": "^2.2.1",
         "next-i18next": "^8.9.0",

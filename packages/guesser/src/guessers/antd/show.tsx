@@ -15,7 +15,7 @@ import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
 import { CodeViewerComponent } from "./code-viewer";
 
-import { GuessField } from "@/types";
+import { GuessField, ImportElement } from "@/types";
 
 /**
  * @experimental This is an experimental component
@@ -29,12 +29,10 @@ export const ShowGuesser = createGuesser({
     renderer: ({ resource, fields }) => {
         const COMPONENT_NAME = componentName(resource.name, "show");
         const recordName = "record";
-        const imports: Array<[element: string, module: string]> = [
+        const imports: Array<ImportElement> = [
             ["useShow", "@pankod/refine-core"],
             ["Show", "@pankod/refine-antd"],
             ["Typography", "@pankod/refine-antd"],
-            ["Row", "@pankod/refine-antd"],
-            ["Col", "@pankod/refine-antd"],
         ];
 
         const relationFields: (GuessField | null)[] = fields.filter(
@@ -398,38 +396,27 @@ export const ShowGuesser = createGuesser({
             return undefined;
         };
 
-        const wrapper = (code?: string) => {
-            if (code) {
-                return jsx`
-                <Col span={24} lg={12}>
-                    ${code}
-                </Col>
-            `;
-            }
-            return undefined;
-        };
-
         const renderedFields: Array<string | undefined> = fields.map(
             (field) => {
                 switch (field?.type) {
                     case "text":
-                        return wrapper(textFields(field));
+                        return textFields(field);
                     case "number":
-                        return wrapper(numberFields(field));
+                        return numberFields(field);
                     case "richtext":
-                        return wrapper(richtextFields(field));
+                        return richtextFields(field);
                     case "email":
-                        return wrapper(emailFields(field));
+                        return emailFields(field);
                     case "image":
-                        return wrapper(imageFields(field));
+                        return imageFields(field);
                     case "date":
-                        return wrapper(dateFields(field));
+                        return dateFields(field);
                     case "boolean":
-                        return wrapper(booleanFields(field));
+                        return booleanFields(field);
                     case "url":
-                        return wrapper(urlFields(field));
+                        return urlFields(field);
                     case "relation":
-                        return wrapper(renderRelationFields(field));
+                        return renderRelationFields(field);
                     default:
                         return undefined;
                 }
@@ -439,7 +426,7 @@ export const ShowGuesser = createGuesser({
         return jsx`
         ${printImports(imports)}
         
-        const { Title, Text } = Typography;
+        const { Title } = Typography;
 
         export const ${COMPONENT_NAME} = () => {
             const { queryResult } = useShow();
@@ -451,9 +438,7 @@ export const ShowGuesser = createGuesser({
 
             return (
                 <Show isLoading={isLoading}>
-                    <Row gutter={[12,12]}>
-                        ${renderedFields.join("")}
-                    </Row>
+                    ${renderedFields.join("")}
                 </Show>
             );
         };

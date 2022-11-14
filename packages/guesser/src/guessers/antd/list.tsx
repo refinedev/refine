@@ -15,7 +15,7 @@ import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
 import { CodeViewerComponent } from "./code-viewer";
 
-import { GuessField } from "@/types";
+import { GuessField, ImportElement } from "@/types";
 
 /**
  * @experimental This is an experimental component
@@ -29,7 +29,7 @@ export const ListGuesser = createGuesser({
     renderer: ({ resource, fields }) => {
         const COMPONENT_NAME = componentName(resource.name, "list");
         const recordName = "tableProps?.dataSource";
-        const imports: Array<[element: string, module: string]> = [
+        const imports: Array<ImportElement> = [
             ["IResourceComponentsProps", "@pankod/refine-core"],
             ["useTable", "@pankod/refine-antd"],
             ["List", "@pankod/refine-antd"],
@@ -304,7 +304,7 @@ export const ListGuesser = createGuesser({
                         " && ",
                     );
                     render = jsx`render={(value: any) => (<>{value.map((item, index) => (
-                        <Checkbox key={!!${val}} key={index} />
+                        <Checkbox checked={!!${val}} key={index} />
                     ))}</>)}`;
                 }
 
