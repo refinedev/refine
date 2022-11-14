@@ -7,9 +7,13 @@ import {
     createFileSync,
     writeFileSync,
     unlinkSync,
+    moveSync,
+    emptyDirSync,
 } from "fs-extra";
 import temp from "temp";
+import { plural } from "pluralize";
 
+const defaultActions = ["list", "create", "edit", "show"];
 const load = (program: Command) => {
     return program
         .command("generate:resource <name>")
@@ -17,15 +21,17 @@ const load = (program: Command) => {
         .option(
             "-a, --actions [actions]",
             "Only generate the specified actions. (ex: list,create,edit,delete)",
+            defaultActions,
+        )
+        .option(
+            "-p, --path [path]",
+            "Path to generate the resource",
+            "./src/pages",
         )
         .action(action);
 };
 
 const action = async (resourceName: string, options: any) => {
-    console.log(`resourceName: ${resourceName}`);
-    console.log("options", options);
-
-    const defaultActions = ["list", "create", "edit", "show"];
     const customActions = options.actions
         ? options.actions.split(",")
         : undefined;
@@ -40,7 +46,7 @@ const action = async (resourceName: string, options: any) => {
 
     // compile files
     const files = readdirSync(tempDir);
-    files.forEach((file) => {
+    files.forEach((file: string) => {
         const templateFilePath = `${tempDir}/${file}`;
         // create file
         const compiledFilePath = `${tempDir}/${file.replace(".hbs", "")}`;
@@ -69,11 +75,22 @@ const action = async (resourceName: string, options: any) => {
     }
 
     // copy to destination
-    // TODO: get destination from config
+    const resourceFolderName = plural(resourceName).toLowerCase();
 
-    // readdirSync(tempDir).forEach((file) => {
-    //     console.log(`--${file}`, readFileSync(`${tempDir}/${file}`).toString());
-    // });
+    let moveSyncOptions = {};
+
+    // empty dir override
+    if (readdirSync(`${options.path}/${resourceFolderName}`).length === 0) {
+        moveSyncOptions = { overwrite: true };
+    }
+    moveSync(tempDir, `${options.path}/${resourceFolderName}`, moveSyncOptions);
+
+    // clear temp dir
+    temp.cleanupSync();
+
+    console.log(
+        `Resource (${options.path}/${resourceFolderName}) generated successfully! 🎉`,
+    );
 };
 
 const generateTempDir = (): string => {
@@ -90,6 +107,10 @@ const compile = (filePath: string, params: any): string => {
             return options.fn(Handlebars);
         }
         return options.inverse(Handlebars);
+    });
+
+    Handlebars.registerHelper("capitalize", function (string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
     });
 
     const template = Handlebars.compile(content.toString());

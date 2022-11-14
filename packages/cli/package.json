@@ -38,7 +38,8 @@
         "commander": "^9.4.1",
         "handlebars": "^4.7.7",
         "fs-extra": "^10.1.0",
-        "temp": "^0.9.4"
+        "temp": "^0.9.4",
+        "pluralize": "^8.0.0"
     },
     "author": "refine",
     "license": "MIT",
