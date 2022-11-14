@@ -11,7 +11,11 @@ export const CodeHighlight: React.FC<{
 }> = ({ code, wrapperProps }) => {
     return (
         <div
-            style={{ maxHeight: "50vh", height: "100%", overflow: "scroll" }}
+            style={{
+                maxHeight: "50vh",
+                height: "100%",
+                overflow: "scroll",
+            }}
             {...(wrapperProps ?? {})}
         >
             <Highlight {...defaultProps} code={code} language="tsx">
@@ -26,9 +30,10 @@ export const CodeHighlight: React.FC<{
                         className={className}
                         style={{
                             ...style,
-                            padding: "14px 14px 14px 0",
+                            padding: "14px 14px 14px 14px",
                             margin: "0",
                             width: "100%",
+                            boxSizing: "border-box",
                             overflowY: "scroll",
                         }}
                     >
