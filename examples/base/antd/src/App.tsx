@@ -13,7 +13,7 @@ import {
     AntdShowGuesser,
     AntdEditGuesser,
     AntdListGuesser,
-} from "@pankod/refine-guesser";
+} from "@pankod/refine-guesser/antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
