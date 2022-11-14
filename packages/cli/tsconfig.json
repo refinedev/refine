@@ -10,11 +10,17 @@
         "importHelpers": false,
         "strict": true,
         "paths": {
-            "@services/*": [
-                "src/services/*"
+            "@definitions/*": [
+                "src/definitions/*"
             ],
-            "@services": [
-                "src/services"
+            "@definitions": [
+                "src/definitions"
+            ],
+            "@utils/*": [
+                "src/utils/*"
+            ],
+            "@utils": [
+                "src/utils"
             ],
         },
         "typeRoots": [

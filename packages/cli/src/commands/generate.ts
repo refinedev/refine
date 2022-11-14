@@ -8,10 +8,11 @@ import {
     writeFileSync,
     unlinkSync,
     moveSync,
-    emptyDirSync,
 } from "fs-extra";
 import temp from "temp";
 import { plural } from "pluralize";
+
+import { getProjectType } from "@utils/projectType";
 
 const defaultActions = ["list", "create", "edit", "show"];
 const load = (program: Command) => {
@@ -36,7 +37,10 @@ const action = async (resourceName: string, options: any) => {
         ? options.actions.split(",")
         : undefined;
 
-    const sourceDir = `${__dirname}/../templates/resource`;
+    // get the project type
+    const projectType = getProjectType();
+
+    const sourceDir = `${__dirname}/../templates/resource/${projectType}`;
 
     // create temp dir
     const tempDir = generateTempDir();
@@ -58,6 +62,7 @@ const action = async (resourceName: string, options: any) => {
             compile(templateFilePath, {
                 resourceName,
                 actions: customActions || defaultActions,
+                projectType,
             }),
         );
 
