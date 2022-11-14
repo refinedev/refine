@@ -1,5 +1,6 @@
 import * as RefineMantine from "@pankod/refine-mantine";
 import * as RefineReactTable from "@pankod/refine-react-table";
+import * as TablerIcons from "@tabler/icons";
 
 import { createGuesser } from "@/create-guesser";
 import {
@@ -18,6 +19,12 @@ import { CodeViewerComponent } from "./code-viewer";
 
 import { GuessField } from "@/types";
 
+const getAccessorKey = (field: GuessField) => {
+    return field.accessor && !Array.isArray(field.accessor) && !field.multiple
+        ? `accessorKey: "${field.key}.${field.accessor}"`
+        : `accessorKey: "${field.key}"`;
+};
+
 /**
  * @experimental This is an experimental component
  */
@@ -26,6 +33,7 @@ export const ListGuesser = createGuesser({
     additionalScope: [
         ["@pankod/refine-mantine", "RefineMantine", RefineMantine],
         ["@pankod/refine-react-table", "RefineReactTable", RefineReactTable],
+        ["@tabler/icons", "TablerIcons", TablerIcons],
     ],
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
@@ -36,6 +44,7 @@ export const ListGuesser = createGuesser({
         const imports: Array<[element: string, module: string]> = [
             ["IResourceComponentsProps", "@pankod/refine-core"],
             ["useTable", "@pankod/refine-react-table"],
+            ["Column", "@pankod/refine-react-table"],
             ["ColumnDef", "@pankod/refine-react-table"],
             ["flexRender", "@pankod/refine-react-table"],
             ["ScrollArea", "@pankod/refine-mantine"],
@@ -47,6 +56,15 @@ export const ListGuesser = createGuesser({
             ["EditButton", "@pankod/refine-mantine"],
             ["ShowButton", "@pankod/refine-mantine"],
             ["DeleteButton", "@pankod/refine-mantine"],
+            ["ActionIcon", "@pankod/refine-mantine"],
+            ["TextInput", "@pankod/refine-mantine"],
+            ["Menu", "@pankod/refine-mantine"],
+            ["Stack", "@pankod/refine-mantine"],
+            ["IconChevronDown", "@tabler/icons"],
+            ["IconSelector", "@tabler/icons"],
+            ["IconFilter", "@tabler/icons"],
+            ["IconX", "@tabler/icons"],
+            ["IconCheck", "@tabler/icons"],
         ];
 
         const relationFields: (GuessField | null)[] = fields.filter(
@@ -79,11 +97,7 @@ export const ListGuesser = createGuesser({
                     }
 
                     return `
-                    const { data: ${toPlural(
-                        field.resource.name,
-                    )}Data, isLoading: ${toPlural(
-                        field.resource.name,
-                    )}IsLoading } =
+                    const { data: ${toPlural(field.resource.name)}Data } =
                     useMany({
                         resource: "${field.resource.name}",
                         ids: ${idsString},
@@ -97,99 +111,95 @@ export const ListGuesser = createGuesser({
             })
             .filter(Boolean);
 
+        const relationVariableNames = relationFields
+            ?.map((field) => {
+                if (field && field.resource) {
+                    return `${toPlural(field.resource.name)}Data`;
+                }
+                return undefined;
+            })
+            .filter(Boolean);
+
         const renderRelationFields = (field: GuessField) => {
             if (field.relation && field.resource) {
                 const variableName = `${toPlural(
                     field.resource.name,
                 )}Data?.data`;
-                const variableIsLoading = `${toPlural(
-                    field.resource.name,
-                )}IsLoading`;
 
                 if (Array.isArray(field.accessor)) {
                     // not handled - not possible case
                     return undefined;
                 }
 
-                const loadingCondition = `${variableIsLoading} ? <>Loading...</> : `;
+                const id = `id: "${field.key}"`;
+                const header = `header: "${prettyString(field.key)}"`;
+                const accessorKey = getAccessorKey(field);
 
-                const dataIndex = field.multiple
-                    ? `dataIndex="${field.key}"`
-                    : `dataIndex={["${field.key}", ${
-                          field.accessor ? `"${field.accessor}"` : ""
-                      }]}`;
-
-                const title = `title="${prettyString(field.key)}"`;
-
-                let render = "";
+                let cell = "";
 
                 // if multiple, then map it with tagfield
                 // if not, then just show the value
 
                 if (field.multiple) {
-                    imports.push(["TagField", "@pankod/refine-mantine"]);
-                    let val = "item";
-
-                    if (field?.relationGuess) {
-                        const valSingle = `${variableName}?.find((resourceItems) => resourceItems.id === item)`;
-                        const valViewableSingle = accessor(
-                            valSingle,
-                            undefined,
-                            field?.relationGuess?.accessor,
-                        );
-                        val = valViewableSingle;
-                    }
-
-                    render = `render={(value) => ${loadingCondition} (
-                        <>
-                            {${accessor(
-                                "value",
-                                undefined,
-                                field.accessor,
-                            )}?.map((item, index) => (
-                                <TagField key={index} value={${val}} />
-                            ))}
-                        </>
-                    )}`;
+                    return undefined;
                 } else {
                     if (field?.relationGuess) {
-                        const valSingle = `${variableName}?.find((item) => item.id === value)`;
-                        const valViewableSingle = accessor(
-                            valSingle,
-                            undefined,
-                            field?.relationGuess?.accessor,
-                        );
+                        cell = `cell: function render({ getValue, table }) {
+                            const meta = table.options.meta as {
+                                ${toPlural(
+                                    field.resource.name,
+                                )}Data: GetManyResponse;
+                            };
 
-                        render = `render={(value) => ${loadingCondition} ${valViewableSingle}}`;
+                            const ${toSingular(
+                                field.resource.name,
+                            )} = meta.${variableName}?.find(
+                                (item) => item.id === getValue(),
+                            );
+
+                            return ${accessor(
+                                toSingular(field.resource.name),
+                                undefined,
+                                field?.relationGuess?.accessor,
+                            )} ?? "Loading...";
+                        },`;
                     } else {
-                        render = "";
+                        cell = "";
                     }
                 }
 
-                return jsx`<Table.Column ${dataIndex} ${title} ${render} />`;
+                return `
+                    {
+                        ${id},
+                        ${header},
+                        ${accessorKey},
+                        ${cell}
+                    }
+                `;
             }
             return undefined;
         };
 
         const imageFields = (field: GuessField) => {
             if (field.type === "image") {
-                imports.push(["ImageField", "@pankod/refine-mantine"]);
+                imports.push(["Image", "@pankod/refine-mantine"]);
 
-                const dataIndex =
-                    Array.isArray(field.accessor) || field.multiple
-                        ? `dataIndex="${field.key}"`
-                        : `dataIndex={["${field.key}", ${
-                              field.accessor ? `"${field.accessor}"` : ""
-                          }]}`;
+                const id = `id: "${field.key}"`;
+                const accessorKey = getAccessorKey(field);
+                const header = `header: "${prettyString(field.key)}"`;
 
-                const title = `title="${prettyString(field.key)}"`;
-
-                let render = jsx`render={(value: any) => <ImageField style={{ maxWidth: "100px" }} value={${accessor(
-                    "value",
-                    undefined,
-                    Array.isArray(field.accessor) ? field.accessor : undefined,
-                    " + ",
-                )}} />}`;
+                let cell = jsx`
+                    cell: function render({ getValue }) {
+                        return <Image sx={{ maxWidth: "100px" }} src={${accessor(
+                            "getValue() as string",
+                            undefined,
+                            Array.isArray(field.accessor)
+                                ? field.accessor
+                                : undefined,
+                            " + ",
+                        )}} />
+                    }
+                `;
 
                 if (field.multiple) {
                     const val = accessor(
@@ -198,77 +208,164 @@ export const ListGuesser = createGuesser({
                         field.accessor,
                         " + ",
                     );
-                    render = jsx`render={(value: any) => (<>{value.map((item, index) => (
-                        <ImageField style={{ maxWidth: "100px" }} value={${val}} key={index} />
-                    ))}</>)}`;
+
+                    cell = `
+                        cell: function render({ getValue }) {
+                            return (
+                                <Group>
+                                    {getValue()?.map((item, index) => (
+                                        <Image src={${val}} key={index} sx={{ height: "50px", maxWidth: "100px" }} />
+                                    ))}
+                                </Group>
+                            )
+                        }
+                    `;
                 }
 
-                return jsx`<Table.Column ${dataIndex} ${title} ${render} />`;
+                return `
+                    {
+                        ${id},
+                        ${accessorKey},
+                        ${header},
+                        ${cell}
+                    }
+                `;
             }
             return undefined;
         };
 
         const emailFields = (field: GuessField) => {
             if (field.type === "email") {
-                imports.push(
-                    ["TagField", "@pankod/refine-mantine"],
-                    ["EmailField", "@pankod/refine-mantine"],
-                );
-                const dataIndex =
-                    Array.isArray(field.accessor) || field.multiple
-                        ? `dataIndex="${field.key}"`
-                        : `dataIndex={["${field.key}", ${
-                              field.accessor ? `"${field.accessor}"` : ""
-                          }]}`;
+                imports.push(["EmailField", "@pankod/refine-mantine"]);
 
-                const title = `title="${prettyString(field.key)}"`;
+                const id = `id: "${field.key}"`;
+                const accessorKey = getAccessorKey(field);
+                const header = `header: "${prettyString(field.key)}"`;
 
-                let render = jsx`render={(value: any) => <EmailField value={${accessor(
-                    "value",
-                    undefined,
-                    Array.isArray(field.accessor) ? field.accessor : undefined,
-                    ' + " " + ',
-                )}} />}`;
+                let cell = jsx`
+                    cell: function render({ getValue }) {
+                        return <EmailField value={${accessor(
+                            "getValue() as string",
+                            undefined,
+                            Array.isArray(field.accessor)
+                                ? field.accessor
+                                : undefined,
+                            ' + " " + ',
+                        )}} />
+                    }
+                `;
 
                 if (field.multiple) {
+                    imports.push(["TagField", "@pankod/refine-mantine"]);
+
                     const val = accessor(
                         "item",
                         undefined,
                         field.accessor,
-                        ' + " " + ',
+                        " + ",
                     );
-                    render = jsx`render={(value: any) => (<>{value.map((item, index) => (
-                        <TagField value={${val}} key={index} />
-                    ))}</>)}`;
+
+                    cell = `
+                        cell: function render({ getValue }) {
+                            return (
+                                <Group>
+                                    {getValue()?.map((item, index) => (
+                                        <TagField value={${val}} key={index} />
+                                    ))}
+                                </Group>
+                            )
+                        }
+                    `;
                 }
 
-                return jsx`<Table.Column ${dataIndex} ${title} ${render} />`;
+                return `
+                    {
+                        ${id},
+                        ${accessorKey},
+                        ${header},
+                        ${cell}
+                    }
+                `;
             }
             return undefined;
         };
 
         const urlFields = (field: GuessField) => {
             if (field.type === "url") {
-                imports.push(
-                    ["UrlField", "@pankod/refine-mantine"],
-                    ["TagField", "@pankod/refine-mantine"],
-                );
+                imports.push(["UrlField", "@pankod/refine-mantine"]);
 
-                const dataIndex =
-                    Array.isArray(field.accessor) || field.multiple
-                        ? `dataIndex="${field.key}"`
-                        : `dataIndex={["${field.key}", ${
-                              field.accessor ? `"${field.accessor}"` : ""
-                          }]}`;
+                const id = `id: "${field.key}"`;
+                const accessorKey = getAccessorKey(field);
+                const header = `header: "${prettyString(field.key)}"`;
 
-                const title = `title="${prettyString(field.key)}"`;
+                let cell = jsx`
+                    cell: function render({ getValue }) {
+                        return <UrlField value={${accessor(
+                            "getValue() as string",
+                            undefined,
+                            Array.isArray(field.accessor)
+                                ? field.accessor
+                                : undefined,
+                            " + ",
+                        )}} />
+                    }
+                `;
 
-                let render = jsx`render={(value: any) => <UrlField value={${accessor(
-                    "value",
-                    undefined,
-                    Array.isArray(field.accessor) ? field.accessor : undefined,
-                    " + ",
-                )}} />}`;
+                if (field.multiple) {
+                    imports.push(["TagField", "@pankod/refine-mantine"]);
+
+                    const val = accessor(
+                        "item",
+                        undefined,
+                        field.accessor,
+                        " + ",
+                    );
+
+                    cell = `
+                        cell: function render({ getValue }) {
+                            return (
+                                <Group>
+                                    {getValue()?.map((item, index) => (
+                                        <TagField value={${val}} key={index} />
+                                    ))}
+                                </Group>
+                            )
+                        }
+                    `;
+                }
+
+                return `
+                    {
+                        ${id},
+                        ${accessorKey},
+                        ${header},
+                        ${cell}
+                    }
+                `;
+            }
+            return undefined;
+        };
+
+        const booleanFields = (field: GuessField) => {
+            if (field?.type === "boolean") {
+                imports.push(["BooleanField", "@pankod/refine-mantine"]);
+
+                const id = `id: "${field.key}"`;
+                const accessorKey = getAccessorKey(field);
+                const header = `header: "${prettyString(field.key)}"`;
+
+                let cell = jsx`
+                    cell: function render({ getValue }) {
+                        return <BooleanField value={${accessor(
+                            "getValue() as boolean",
+                            undefined,
+                            Array.isArray(field.accessor)
+                                ? field.accessor
+                                : undefined,
+                            " + ",
+                        )}} />
+                    }
+                `;
 
                 if (field.multiple) {
                     const val = accessor(
@@ -277,49 +374,28 @@ export const ListGuesser = createGuesser({
                         field.accessor,
                         " + ",
                     );
-                    render = jsx`render={(value: any) => (<>{value.map((item, index) => (
-                        <TagField value={${val}} key={index} />
-                    ))}</>)}`;
+
+                    cell = `
+                        cell: function render({ getValue }) {
+                            return (
+                                <Group>
+                                    {getValue()?.map((item, index) => (
+                                        <BooleanField value={${val}} key={index} />
+                                    ))}
+                                </Group>
+                            )
+                        }
+                    `;
                 }
 
-                return jsx`<Table.Column ${dataIndex} ${title} ${render} />`;
-            }
-            return undefined;
-        };
-
-        const booleanFields = (field: GuessField) => {
-            if (field?.type === "boolean") {
-                imports.push(["Checkbox", "@pankod/refine-mantine"]);
-
-                const dataIndex =
-                    Array.isArray(field.accessor) || field.multiple
-                        ? `dataIndex="${field.key}"`
-                        : `dataIndex={["${field.key}", ${
-                              field.accessor ? `"${field.accessor}"` : ""
-                          }]}`;
-
-                const title = `title="${prettyString(field.key)}"`;
-
-                let render = jsx`render={(value: any) => <Checkbox checked={!!${accessor(
-                    "value",
-                    undefined,
-                    Array.isArray(field.accessor) ? field.accessor : undefined,
-                    " && ",
-                )}} />}`;
-
-                if (field.multiple) {
-                    const val = accessor(
-                        "item",
-                        undefined,
-                        field.accessor,
-                        " && ",
-                    );
-                    render = jsx`render={(value: any) => (<>{value.map((item, index) => (
-                        <Checkbox key={!!${val}} key={index} />
-                    ))}</>)}`;
-                }
-
-                return jsx`<Table.Column ${dataIndex} ${title} ${render} />`;
+                return `
+                    {
+                        ${id},
+                        ${accessorKey},
+                        ${header},
+                        ${cell}
+                    }
+                `;
             }
 
             return undefined;
@@ -329,35 +405,52 @@ export const ListGuesser = createGuesser({
             if (field.type === "date") {
                 imports.push(["DateField", "@pankod/refine-mantine"]);
 
-                const dataIndex =
-                    Array.isArray(field.accessor) || field.multiple
-                        ? `dataIndex="${field.key}"`
-                        : `dataIndex={["${field.key}", ${
-                              field.accessor ? `"${field.accessor}"` : ""
-                          }]}`;
+                const id = `id: "${field.key}"`;
+                const accessorKey = getAccessorKey(field);
+                const header = `header: "${prettyString(field.key)}"`;
 
-                const title = `title="${prettyString(field.key)}"`;
-
-                let render = jsx`render={(value: any) => <DateField value={${accessor(
-                    "value",
-                    undefined,
-                    Array.isArray(field.accessor) ? field.accessor : undefined,
-                    ' + " " + ',
-                )}} />}`;
+                let cell = jsx`
+                    cell: function render({ getValue }) {
+                        return <DateField value={${accessor(
+                            "getValue() as string",
+                            undefined,
+                            Array.isArray(field.accessor)
+                                ? field.accessor
+                                : undefined,
+                            ' + " " + ',
+                        )}} />
+                    }
+                `;
 
                 if (field.multiple) {
                     const val = accessor(
                         "item",
                         undefined,
                         field.accessor,
-                        ' + " " + ',
+                        " + ",
                     );
-                    render = jsx`render={(value: any) => (<>{value.map((item, index) => (
-                        <DateField value={${val}} key={index} />
-                    ))}</>)}`;
+
+                    cell = `
+                        cell: function render({ getValue }) {
+                            return (
+                                <Group>
+                                    {getValue()?.map((item, index) => (
+                                        <DateField value={${val}} key={index} />
+                                    ))}
+                                </Group>
+                            )
+                        }
+                    `;
                 }
 
-                return jsx`<Table.Column ${dataIndex} ${title} ${render} />`;
+                return `
+                    {
+                        ${id},
+                        ${accessorKey},
+                        ${header},
+                        ${cell}
+                    }
+                `;
             }
             return undefined;
         };
@@ -366,34 +459,51 @@ export const ListGuesser = createGuesser({
             if (field?.type === "richtext") {
                 imports.push(["MarkdownField", "@pankod/refine-mantine"]);
 
-                const dataIndex =
-                    Array.isArray(field.accessor) || field.multiple
-                        ? `dataIndex="${field.key}"`
-                        : field.accessor
-                        ? `dataIndex={["${field.key}", "${field.accessor}"]}`
-                        : `dataIndex="${field.key}"`;
+                const id = `id: "${field.key}"`;
+                const accessorKey = getAccessorKey(field);
+                const header = `header: "${prettyString(field.key)}"`;
 
-                const title = `title="${prettyString(field.key)}"`;
-
-                let render = jsx`render={(value: any) => <MarkdownField value={(${accessor(
-                    "value",
-                    undefined,
-                    Array.isArray(field.accessor) ? field.accessor : undefined,
-                )}).slice(0, 80) + "..."} />}`;
+                let cell = jsx`
+                    cell: function render({ getValue }) {
+                        return <MarkdownField value={(${accessor(
+                            "getValue() as string",
+                            undefined,
+                            Array.isArray(field.accessor)
+                                ? field.accessor
+                                : undefined,
+                        )}).slice(0, 80) + "..." } />
+                    }
+                `;
 
                 if (field.multiple) {
                     const val = accessor(
                         "item",
                         undefined,
                         field.accessor,
-                        ' + " " + ',
+                        " + ",
                     );
-                    render = jsx`render={(value: any) => (<>{value.map((item, index) => (
-                        <MarkdownField value={(${val}).slice(0, 80) + "..."} key={index} />
-                    ))}</>)}`;
+
+                    cell = `
+                        cell: function render({ getValue }) {
+                            return (
+                                <Group>
+                                    {getValue()?.map((item, index) => (
+                                        <MarkdownField value={${val}} key={index} />
+                                    ))}
+                                </Group>
+                            )
+                        }
+                    `;
                 }
 
-                return jsx`<Table.Column ${dataIndex} ${title} ${render} />`;
+                return `
+                    {
+                        ${id},
+                        ${accessorKey},
+                        ${header},
+                        ${cell}
+                    }
+                `;
             }
 
             return undefined;
@@ -401,66 +511,90 @@ export const ListGuesser = createGuesser({
 
         const basicFields = (field: GuessField) => {
             if (field && (field.type === "text" || field.type === "number")) {
-                // const dataIndex =
-                //     field.accessor &&
-                //     !Array.isArray(field.accessor) &&
-                //     !field.multiple
-                //         ? `dataIndex={["${field.key}", "${field.accessor}"]}`
-                //         : `dataIndex="${field.key}"`;
-                // const title = `title="${prettyString(field.key)}"`;
-                // let render = "";
-                // if (field.multiple) {
-                //     imports.push(["TagField", "@pankod/refine-mantine"]);
-                //     const val = accessor(
-                //         "item",
-                //         undefined,
-                //         field.accessor,
-                //         ' + " " + ',
-                //     );
-                //     render = `render={(value: any) => (<>{value.map((item) => (
-                //         <TagField value={${val}} key={${val}} />
-                //     ))}</>)}`;
-                // }
-                // if (!field.multiple && Array.isArray(field.accessor)) {
-                //     render = `render={(value: any) => (<>{${accessor(
-                //         "value",
-                //         undefined,
-                //         field.accessor,
-                //     )}}</>)}`;
-                // }
-                // return `<Table.Column ${dataIndex} ${title} ${render} />`;
+                const id = `id: "${field.key}"`;
+                const accessorKey = getAccessorKey(field);
+                const header = `header: "${prettyString(field.key)}"`;
 
-                return jsx`{
-                    accessorKey: "title",
-                }`;
+                let cell = "";
+
+                if (field.multiple) {
+                    imports.push(["TagField", "@pankod/refine-mantine"]);
+
+                    const val = accessor(
+                        "item",
+                        undefined,
+                        field.accessor,
+                        ' + " " + ',
+                    );
+
+                    cell = `
+                        cell: function render({ getValue }) {
+                            return (
+                                <Group>
+                                    {{${accessor(
+                                        "getValue() as string",
+                                        field.key,
+                                    )}?.map((item, index) => (
+                                        <TagField value={${val}} key={index} />
+                                    ))}
+                                </Group>
+                            )
+                        }
+                    `;
+                }
+
+                if (!field.multiple && Array.isArray(field.accessor)) {
+                    cell = `
+                        cell: function render({ getValue }) {
+                            return (
+                                <>{${accessor(
+                                    "getValue()",
+                                    field.key,
+                                    field.accessor,
+                                )}}</>
+                            );
+                        }
+                    `;
+                }
+
+                return `
+                    {
+                        ${id},
+                        ${accessorKey},
+                        ${header},
+                        ${cell}
+                    }
+                `;
             }
             return undefined;
         };
 
         const actionButtons = jsx`
-                // <Table.Column
-                //     title="Actions"
-                //     dataIndex="actions"
-                //     render={(_, record) => (
-                //         <Space>
-                //             <EditButton
-                //                 hideText
-                //                 size="small"
-                //                 recordItemId={record.id}
-                //             />
-                //             <ShowButton
-                //                 hideText
-                //                 size="small"
-                //                 recordItemId={record.id}
-                //             />
-                //             <ShowButton
-                //                 hideText
-                //                 size="small"
-                //                 recordItemId={record.id}
-                //             />
-                //         </Space>
-                //     )}
-                // />
+        {
+            id: "actions",
+            accessorKey: "id",
+            header: "Actions",
+            enableColumnFilter: false,
+            enableSorting: false,
+            cell: function render({ getValue }) {
+                return (
+                    <Group spacing="xs" noWrap>
+                        <ShowButton
+                            hideText
+                            recordItemId={getValue() as string}
+                        />
+                        <EditButton
+                            hideText
+                            recordItemId={getValue() as string}
+                        />
+                        <DeleteButton
+                            hideText
+                            recordItemId={getValue() as string}
+                        />
+                    </Group>
+                );
+            },
+        },
             `;
 
         const renderedFields: Array<string | undefined> = fields.map(
@@ -470,26 +604,19 @@ export const ListGuesser = createGuesser({
                     case "number":
                         return basicFields(field);
                     case "richtext":
-                        // return richtextFields(field);
-                        return undefined;
+                        return richtextFields(field);
                     case "email":
-                        // return emailFields(field);
-                        return undefined;
+                        return emailFields(field);
                     case "image":
-                        // return imageFields(field);
-                        return undefined;
+                        return imageFields(field);
                     case "date":
-                        // return dateFields(field);
-                        return undefined;
+                        return dateFields(field);
                     case "boolean":
-                        // return booleanFields(field);
-                        return undefined;
+                        return booleanFields(field);
                     case "url":
-                        // return urlFields(field);
-                        return undefined;
+                        return urlFields(field);
                     case "relation":
-                        // return renderRelationFields(field);
-                        return undefined;
+                        return renderRelationFields(field);
                     default:
                         return undefined;
                 }
@@ -500,9 +627,8 @@ export const ListGuesser = createGuesser({
         ${printImports(imports)}
         
         export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
-            const columns = React.useMemo<ColumnDef[]>(() => [
-                ${renderedFields.join(",")}
-                ${actionButtons}
+            const columns = React.useMemo<ColumnDef<any>[]>(() => [
+                ${[...renderedFields, actionButtons].filter(Boolean).join(",")}
             ], []);
 
             const {
@@ -525,7 +651,7 @@ export const ListGuesser = createGuesser({
                 ...prev,
                 meta: {
                     ...prev.meta,
-                    categoriesData,
+                    ${relationVariableNames.join(", ")}
                 },
             }));
 
@@ -599,6 +725,136 @@ export const ListGuesser = createGuesser({
                 </ScrollArea>    
             );
         };
+
+        interface ColumnButtonProps {
+            column: Column<any, any>; // eslint-disable-line
+        }
+
+        const ColumnSorter: React.FC<ColumnButtonProps> = ({ column }) => {
+            if (!column.getCanSort()) {
+                return null;
+            }
+        
+            const sorted = column.getIsSorted();
+        
+            return (
+                <ActionIcon
+                    size="xs"
+                    onClick={column.getToggleSortingHandler()}
+                    style={{
+                        transition: "transform 0.25s",
+                        transform: \`rotate(\${
+                            sorted === "asc" ? "180" : "0"
+                        }deg)\`,
+                    }}
+                    variant={sorted ? "light" : "transparent"}
+                    color={sorted ? "primary" : "gray"}
+                >
+                    {sorted ? (
+                        <IconChevronDown size={18} />
+                    ) : (
+                        <IconSelector size={18} />
+                    )}
+                </ActionIcon>
+            );
+        };
+
+        const ColumnFilter: React.FC<ColumnButtonProps> = ({ column }) => {
+            // eslint-disable-next-line
+            const [state, setState] = React.useState(null as null | { value: any });
+        
+            if (!column.getCanFilter()) {
+                return null;
+            }
+        
+            const open = () =>
+                setState({
+                    value: column.getFilterValue(),
+                });
+        
+            const close = () => setState(null);
+        
+            // eslint-disable-next-line
+            const change = (value: any) => setState({ value });
+        
+            const clear = () => {
+                column.setFilterValue(undefined);
+                close();
+            };
+        
+            const save = () => {
+                if (!state) return;
+                column.setFilterValue(state.value);
+                close();
+            };
+        
+            const renderFilterElement = () => {
+                // eslint-disable-next-line
+                const FilterComponent = (column.columnDef?.meta as any)?.filterElement;
+        
+                if (!FilterComponent && !!state) {
+                    return (
+                        <TextInput
+                            autoComplete="off"
+                            value={state.value}
+                            onChange={(e) => change(e.target.value)}
+                        />
+                    );
+                }
+        
+                return <FilterComponent value={state?.value} onChange={change} />;
+            };
+        
+            return (
+                <Menu
+                    opened={!!state}
+                    position="bottom"
+                    withArrow
+                    transition="scale-y"
+                    shadow="xl"
+                    onClose={close}
+                    width="256px"
+                    withinPortal
+                >
+                    <Menu.Target>
+                        <ActionIcon
+                            size="xs"
+                            onClick={open}
+                            variant={column.getIsFiltered() ? "light" : "transparent"}
+                            color={column.getIsFiltered() ? "primary" : "gray"}
+                        >
+                            <IconFilter size={18} />
+                        </ActionIcon>
+                    </Menu.Target>
+                    <Menu.Dropdown>
+                        {!!state && (
+                            <Stack p="xs" spacing="xs">
+                                {renderFilterElement()}
+                                <Group position="right" spacing={6} noWrap>
+                                    <ActionIcon
+                                        size="md"
+                                        color="gray"
+                                        variant="outline"
+                                        onClick={clear}
+                                    >
+                                        <IconX size={18} />
+                                    </ActionIcon>
+                                    <ActionIcon
+                                        size="md"
+                                        onClick={save}
+                                        color="primary"
+                                        variant="outline"
+                                    >
+                                        <IconCheck size={18} />
+                                    </ActionIcon>
+                                </Group>
+                            </Stack>
+                        )}
+                    </Menu.Dropdown>
+                </Menu>
+            );
+        };
+        
         `;
     },
 });
