@@ -25,7 +25,6 @@
         "esbuild-plugin-inline-image": "^0.0.8",
         "identity-obj-proxy": "^3.0.0",
         "jest": "^27.5.1",
-        "nock": "^13.1.3",
         "ts-jest": "^27.1.3",
         "tsup": "^5.11.13",
         "typescript": "^4.7.4"
