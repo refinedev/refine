@@ -11,6 +11,7 @@ import {
     toSingular,
     isIDKey,
     getOptionLabel,
+    dotAccessor,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -99,9 +100,11 @@ export const EditGuesser = createGuesser({
                     return jsx`
                         <MultiSelect mt="sm" label="${prettyString(
                             field.key,
-                        )}" {...getInputProps("${field.key}${
-                        field.accessor ? "." + field.accessor : ""
-                    }")} {...${variableName}} filterDataOnExactSearchMatch={undefined} />
+                        )}" {...getInputProps("${dotAccessor(
+                        field.key,
+                        undefined,
+                        field.accessor,
+                    )}")} {...${variableName}} filterDataOnExactSearchMatch={undefined} />
                     `;
                 }
 
@@ -110,9 +113,11 @@ export const EditGuesser = createGuesser({
                 return jsx`
                     <Select mt="sm" label="${prettyString(
                         field.key,
-                    )}" {...getInputProps("${field.key}${
-                    field.accessor ? "." + field.accessor : ""
-                }")} {...${variableName}} />
+                    )}" {...getInputProps("${dotAccessor(
+                    field.key,
+                    undefined,
+                    field.accessor,
+                )}")} {...${variableName}} />
                 `;
             }
             return undefined;
@@ -124,23 +129,39 @@ export const EditGuesser = createGuesser({
                 field.type === "email" ||
                 field.type === "url"
             ) {
+                imports.push(["TextInput", "@pankod/refine-mantine"]);
+
                 initialValues = {
                     ...initialValues,
                     [field.key]: field.multiple ? [] : "",
                 };
 
-                imports.push(["TextInput", "@pankod/refine-mantine"]);
-
                 if (field.multiple) {
-                    return undefined;
+                    const val = dotAccessor(
+                        field.key,
+                        undefined,
+                        field.accessor,
+                    );
+
+                    return `
+                    {${accessor(recordName, field.key)}?.map((item, index) => (
+                        <TextInput mt="sm" label="${prettyString(
+                            field.key,
+                        )}" {...getInputProps(\`${val}.\${index}\`)} />
+                    ))}
+                    `;
                 }
 
                 return jsx`
                     <TextInput mt="sm" ${
                         isIDKey(field.key) ? "disabled" : ""
-                    } label="${prettyString(field.key)}" {...getInputProps("${
-                    field.key
-                }${field.accessor ? "." + field.accessor : ""}")} />
+                    } label="${prettyString(
+                    field.key,
+                )}" {...getInputProps("${dotAccessor(
+                    field.key,
+                    undefined,
+                    field.accessor,
+                )}")} />
                 `;
             }
             return undefined;
@@ -149,11 +170,12 @@ export const EditGuesser = createGuesser({
         const imageFields = (field: GuessField) => {
             if (field.type === "image") {
                 return jsx`
-                {/* You can use Dropzone component from @mantine/dropzone package
-            <Dropzone onDrop={(files) => console.log(files)}>
-                <Text align="center">Drop images here</Text>
-            </Dropzone>
-        */}
+                {/* 
+                    Dropzone component is not included in "@pankod/refine-mantine" package.
+                    To use a <Dropzone> component, you can follow the official documentation for Mantine.
+                    
+                    Docs: https://mantine.dev/others/dropzone/
+                */}
                 `;
             }
             return undefined;
@@ -161,23 +183,37 @@ export const EditGuesser = createGuesser({
 
         const booleanFields = (field: GuessField) => {
             if (field.type === "boolean") {
+                imports.push(["Checkbox", "@pankod/refine-mantine"]);
+
                 initialValues = {
                     ...initialValues,
                     [field.key]: field.multiple ? [] : "",
                 };
 
-                imports.push(["Checkbox", "@pankod/refine-mantine"]);
-
                 if (field.multiple) {
-                    return undefined;
+                    const val = dotAccessor(
+                        field.key,
+                        undefined,
+                        field.accessor,
+                    );
+
+                    return `
+                    {${accessor(recordName, field.key)}?.map((item, index) => (
+                        <Checkbox mt="sm" label="${prettyString(
+                            field.key,
+                        )}" {...getInputProps(\`${val}.\${index}\`)} />
+                    ))}
+                    `;
                 }
 
                 return jsx`
                     <Checkbox mt="sm" label="${prettyString(
                         field.key,
-                    )}" {...getInputProps("${field.key}${
-                    field.accessor ? "." + field.accessor : ""
-                }")} />
+                    )}" {...getInputProps("${dotAccessor(
+                    field.key,
+                    undefined,
+                    field.accessor,
+                )}")} />
                 `;
             }
             return undefined;
@@ -185,32 +221,16 @@ export const EditGuesser = createGuesser({
 
         const dateFields = (field: GuessField) => {
             if (field.type === "date") {
-                initialValues = {
-                    ...initialValues,
-                    [field.key]: field.multiple ? [] : "",
-                };
+                const textInputRender = textFields(field);
 
-                if (field.multiple) {
-                    return undefined;
-                }
-
-                imports.push(["TextInput", "@pankod/refine-mantine"]);
-
-                return jsx`
-                    {/* You can use DatePicker component from @mantine/dates
-            <DatePicker 
-                mt="md"
-                withinPortal
-                label="${prettyString(field.key)}"
-                {...getInputProps("${field.key}${
-                    field.accessor ? "." + field.accessor : ""
-                }")}
-        />  */}
-                    <TextInput mt="sm" ${
-                        isIDKey(field.key) ? "disabled" : ""
-                    } label="${prettyString(field.key)}" {...getInputProps("${
-                    field.key
-                }${field.accessor ? "." + field.accessor : ""}")} />
+                return `
+                    {/* 
+                        DatePicker component is not included in "@pankod/refine-mantine" package.
+                        To use a <DatePicker> component, you can follow the official documentation for Mantine.
+                        
+                        Docs: https://mantine.dev/dates/date-picker/
+                    */}
+                    ${textInputRender}
                 `;
             }
             return undefined;
@@ -218,19 +238,37 @@ export const EditGuesser = createGuesser({
 
         const richtextFields = (field: GuessField) => {
             if (field.type === "richtext") {
+                imports.push(["Textarea", "@pankod/refine-mantine"]);
+
                 initialValues = {
                     ...initialValues,
                     [field.key]: field.multiple ? [] : "",
                 };
 
-                imports.push(["Textarea", "@pankod/refine-mantine"]);
+                if (field.multiple) {
+                    const val = dotAccessor(
+                        field.key,
+                        undefined,
+                        field.accessor,
+                    );
+
+                    return `
+                    {${accessor(recordName, field.key)}?.map((item, index) => (
+                        <Textarea mt="sm" label="${prettyString(
+                            field.key,
+                        )}" {...getInputProps(\`${val}.\${index}\`)} />
+                    ))}
+                    `;
+                }
 
                 return jsx`
                     <Textarea mt="sm" label="${prettyString(
                         field.key,
-                    )}" autosize {...getInputProps("${field.key}${
-                    field.accessor ? "." + field.accessor : ""
-                }")} />
+                    )}" autosize {...getInputProps("${dotAccessor(
+                    field.key,
+                    undefined,
+                    field.accessor,
+                )}")} />
                 `;
             }
 
@@ -239,23 +277,39 @@ export const EditGuesser = createGuesser({
 
         const numberFields = (field: GuessField) => {
             if (field.type === "number") {
+                imports.push(["NumberInput", "@pankod/refine-mantine"]);
+
                 initialValues = {
                     ...initialValues,
                     [field.key]: field.multiple ? [] : "",
                 };
 
-                imports.push(["NumberInput", "@pankod/refine-mantine"]);
-
                 if (field.multiple) {
-                    return undefined;
+                    const val = dotAccessor(
+                        field.key,
+                        undefined,
+                        field.accessor,
+                    );
+
+                    return `
+                    {${accessor(recordName, field.key)}?.map((item, index) => (
+                        <NumberInput mt="sm" label="${prettyString(
+                            field.key,
+                        )}" {...getInputProps(\`${val}.\${index}\`)} />
+                    ))}
+                    `;
                 }
 
                 return jsx`
                     <NumberInput mt="sm" ${
                         isIDKey(field.key) ? "disabled" : ""
-                    } label="${prettyString(field.key)}" {...getInputProps("${
-                    field.key
-                }${field.accessor ? "." + field.accessor : ""}")}/>
+                    } label="${prettyString(
+                    field.key,
+                )}" {...getInputProps("${dotAccessor(
+                    field.key,
+                    undefined,
+                    field.accessor,
+                )}")}/>
                 `;
             }
 
