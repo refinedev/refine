@@ -42,9 +42,9 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         IOrderFilterVariables
     >({
         syncWithLocation: true,
-        onSearch: (params) => {
+        onSearch: (params: IOrderFilterVariables) => {
             const filters: CrudFilters = [];
-            const { q, store, user, createdAt, status } = params;
+            const { q, createdAt } = params;
 
             filters.push({
                 field: "q",
@@ -55,19 +55,19 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
             filters.push({
                 field: "store.id",
                 operator: "eq",
-                value: store,
+                value: params["store.id"],
             });
 
             filters.push({
                 field: "user.id",
                 operator: "eq",
-                value: user,
+                value: params["user.id"],
             });
 
             filters.push({
                 field: "status.text",
                 operator: "in",
-                value: status,
+                value: params["status.text"],
             });
 
             filters.push(

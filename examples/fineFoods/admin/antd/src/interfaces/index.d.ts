@@ -116,10 +116,10 @@ export interface ICategory {
 
 export interface IOrderFilterVariables {
     q?: string;
-    store?: string;
-    user?: string;
+    "store.id"?: string;
+    "user.id"?: string;
     createdAt?: [Dayjs, Dayjs];
-    status?: string;
+    "status.text"?: string;
 }
 
 export interface IUserFilterVariables {
