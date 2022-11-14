@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { Command } from "commander";
+import checkUpdates from "./commands/check-updates";
 
 import generate from "./commands/generate";
 
@@ -12,6 +13,7 @@ const bootstrap = () => {
 
     // load commands
     generate(program);
+    checkUpdates(program);
 
     program.parse(process.argv);
 
