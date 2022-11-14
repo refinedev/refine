@@ -6,6 +6,40 @@
     "main": "dist/index.js",
     "module": "dist/esm/index.js",
     "typings": "dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/esm/index.js",
+            "require": "./dist/index.js"
+        },
+        "./mantine": {
+            "import": "./dist/esm/mantine.js",
+            "require": "./dist/mantine.js"
+        },
+        "./antd": {
+            "import": "./dist/esm/antd.js",
+            "require": "./dist/antd.js"
+        },
+        "./mui": {
+            "import": "./dist/esm/mui.js",
+            "require": "./dist/mui.js"
+        }
+    },
+    "typesVersions": {
+        "*": {
+            ".": [
+                "dist/index.d.ts"
+            ],
+            "mantine": [
+                "dist/guessers/mantine/index.d.ts"
+            ],
+            "antd": [
+                "dist/guessers/antd/index.d.ts"
+            ],
+            "mui": [
+                "dist/guessers/mui/index.d.ts"
+            ]
+        }
+    },
     "scripts": {
         "start": "tsup --watch --format esm,cjs,iife --legacy-output",
         "build": "tsup --format esm,cjs,iife --minify --legacy-output",
@@ -20,7 +54,6 @@
         "@pankod/refine-mui": "^3.55.0",
         "@pankod/refine-react-hook-form": "^3.33.2",
         "@pankod/refine-react-table": "^4.9.0",
-        "@tabler/icons": "^1.1.0",
         "@types/react": "^17.0.0 || ^18.0.0",
         "@types/react-dom": "^17.0.0 || ^18.0.0",
         "dayjs": "^1.10.7",
@@ -48,9 +81,6 @@
         },
         "dayjs": {
             "optional": true
-        },
-        "@tabler/icons": {
-            "optional": true
         }
     },
     "devDependencies": {
@@ -61,7 +91,6 @@
         "@pankod/refine-mui": "^3.55.2",
         "@pankod/refine-react-hook-form": "^3.33.2",
         "@pankod/refine-react-table": "^4.9.0",
-        "@tabler/icons": "^1.1.0",
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^13.1.1",
@@ -83,6 +112,7 @@
         "typescript": "^4.7.4"
     },
     "dependencies": {
+        "@tabler/icons": "^1.1.0",
         "@pankod/refine-core": "^3.80.0",
         "dayjs": "^1.10.7",
         "lodash": "^4.17.21",
