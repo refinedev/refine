@@ -19,7 +19,7 @@ import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
 import { CodeViewerComponent } from "./code-viewer";
 
-import { GuessField } from "@/types";
+import { GuessField, ImportElement } from "@/types";
 
 /**
  * @experimental This is an experimental component
@@ -40,9 +40,7 @@ export const EditGuesser = createGuesser({
     renderer: ({ resource, fields }) => {
         const COMPONENT_NAME = componentName(resource.name, "edit");
         const recordName = `${toSingular(resource.name)}Data`;
-        const imports: Array<
-            [element: string, module: string, isDefaultImport?: boolean]
-        > = [
+        const imports: Array<ImportElement> = [
             ["Edit", "@pankod/refine-mui"],
             ["Box", "@pankod/refine-mui"],
             ["useForm", "@pankod/refine-react-hook-form"],

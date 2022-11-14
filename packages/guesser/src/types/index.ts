@@ -52,6 +52,12 @@ export type RecordField = {
     value: unknown;
 };
 
+export type ImportElement = [
+    element: string,
+    module: string,
+    isDefaultImport?: boolean,
+];
+
 export type CodeViewerProps = {
     code?: string;
     loading?: boolean;

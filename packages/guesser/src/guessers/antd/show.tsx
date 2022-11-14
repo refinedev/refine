@@ -15,7 +15,7 @@ import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
 import { CodeViewerComponent } from "./code-viewer";
 
-import { GuessField } from "@/types";
+import { GuessField, ImportElement } from "@/types";
 
 /**
  * @experimental This is an experimental component
@@ -29,7 +29,7 @@ export const ShowGuesser = createGuesser({
     renderer: ({ resource, fields }) => {
         const COMPONENT_NAME = componentName(resource.name, "show");
         const recordName = "record";
-        const imports: Array<[element: string, module: string]> = [
+        const imports: Array<ImportElement> = [
             ["useShow", "@pankod/refine-core"],
             ["Show", "@pankod/refine-antd"],
             ["Typography", "@pankod/refine-antd"],

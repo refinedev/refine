@@ -16,7 +16,7 @@ import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
 import { CodeViewerComponent } from "./code-viewer";
 
-import { GuessField } from "@/types";
+import { GuessField, ImportElement } from "@/types";
 
 /**
  * @experimental This is an experimental component
@@ -30,7 +30,8 @@ export const ListGuesser = createGuesser({
     renderer: ({ resource, fields }) => {
         const COMPONENT_NAME = componentName(resource.name, "list");
         const recordName = "dataGridProps?.rows";
-        const imports: Array<[element: string, module: string]> = [
+        const imports: Array<ImportElement> = [
+            ["React", "react", true],
             ["useDataGrid", "@pankod/refine-mui"],
             ["DataGrid", "@pankod/refine-mui"],
             ["GridColumns", "@pankod/refine-mui"],
