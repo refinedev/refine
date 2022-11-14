@@ -70,114 +70,97 @@ const UpdateWarningTable: FC<UpdateWarningTableProps> = ({ data }) => {
     const packageIndex = useRef(0);
 
     return (
-        <Box width={"100%"} flexDirection="column">
-            <Box flexDirection="column" justifyContent="center">
-                <Text>
-                    <Text color="red">X</Text>.<Text color="yellow">Y</Text>.
-                    <Text color="green">Z</Text>
-                </Text>
-                <Box>
-                    <Text color="red">{"<red>"}</Text>
-                    <Text>
-                        {"    "}:Major Update backward-incompatible updates
-                    </Text>
-                </Box>
-                <Box>
-                    <Text color="yellow">{"<yellow>"}</Text>
-                    <Text> :Minor Update backward-compatible features</Text>
-                </Box>
-                <Box>
-                    <Text color="green">{"<green>"}</Text>
-                    <Text>{"  "}:Patch Update backward-compatible fixes</Text>
-                </Box>
-            </Box>
-            <Box alignItems="center" flexDirection="column" marginTop={1}>
-                <Text>Update Available</Text>
-                <Table
-                    data={data}
-                    cell={(props) => {
-                        let TextComponent: JSX.Element = (
-                            <Text>{props.children}</Text>
+        <Box
+            width={"100%"}
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+        >
+            <Text>Update Available</Text>
+            <Table
+                data={data}
+                cell={(props) => {
+                    let TextComponent: JSX.Element = (
+                        <Text>{props.children}</Text>
+                    );
+
+                    const text = props.children?.toString();
+                    if (!text) return TextComponent;
+
+                    const installedVersion = getVersions(
+                        data[packageIndex.current].current,
+                    );
+
+                    if (cellIndex.current === columIndex.wanted) {
+                        const wantedVersion = getVersions(text);
+
+                        const colors = getColorsByVersionDiffrence(
+                            installedVersion,
+                            wantedVersion,
                         );
 
-                        const text = props.children?.toString();
-                        if (!text) return TextComponent;
+                        TextComponent = (
+                            <VersionText
+                                major={{
+                                    color: colors.major,
+                                    text: wantedVersion.major,
+                                }}
+                                minor={{
+                                    color: colors.minor,
+                                    text: wantedVersion.minor,
+                                }}
+                                patch={{
+                                    color: colors.patch,
+                                    text: wantedVersion.patch,
+                                }}
+                            />
+                        );
+                    }
 
-                        const installedVersion = getVersions(
-                            data[packageIndex.current].current,
+                    if (cellIndex.current === columIndex.latest) {
+                        const latestVersion = getVersions(text);
+
+                        const colors = getColorsByVersionDiffrence(
+                            installedVersion,
+                            latestVersion,
                         );
 
-                        if (cellIndex.current === columIndex.wanted) {
-                            const wantedVersion = getVersions(text);
+                        TextComponent = (
+                            <VersionText
+                                major={{
+                                    color: colors.major,
+                                    text: latestVersion.major,
+                                }}
+                                minor={{
+                                    color: colors.minor,
+                                    text: latestVersion.minor,
+                                }}
+                                patch={{
+                                    color: colors.patch,
+                                    text: latestVersion.patch,
+                                }}
+                            />
+                        );
+                    }
 
-                            const colors = getColorsByVersionDiffrence(
-                                installedVersion,
-                                wantedVersion,
-                            );
+                    if (cellIndex.current === LAST_COLUMN_INDEX) {
+                        packageIndex.current += 1;
+                        cellIndex.current = 1;
+                    } else {
+                        cellIndex.current += 1;
+                    }
 
-                            TextComponent = (
-                                <VersionText
-                                    major={{
-                                        color: colors.major,
-                                        text: wantedVersion.major,
-                                    }}
-                                    minor={{
-                                        color: colors.minor,
-                                        text: wantedVersion.minor,
-                                    }}
-                                    patch={{
-                                        color: colors.patch,
-                                        text: wantedVersion.patch,
-                                    }}
-                                />
-                            );
-                        }
-
-                        if (cellIndex.current === columIndex.latest) {
-                            const latestVersion = getVersions(text);
-
-                            const colors = getColorsByVersionDiffrence(
-                                installedVersion,
-                                latestVersion,
-                            );
-
-                            TextComponent = (
-                                <VersionText
-                                    major={{
-                                        color: colors.major,
-                                        text: latestVersion.major,
-                                    }}
-                                    minor={{
-                                        color: colors.minor,
-                                        text: latestVersion.minor,
-                                    }}
-                                    patch={{
-                                        color: colors.patch,
-                                        text: latestVersion.patch,
-                                    }}
-                                />
-                            );
-                        }
-
-                        if (cellIndex.current === LAST_COLUMN_INDEX) {
-                            packageIndex.current += 1;
-                            cellIndex.current = 1;
-                        } else {
-                            cellIndex.current += 1;
-                        }
-
-                        return TextComponent;
-                    }}
-                />
-                <Text>
-                    To upgrade <Text bold>`refine`</Text> packages with the
-                    latest version
-                </Text>
-                <Text>
-                    Run to following command{" "}
-                    <Text color="yellow">`refine upgrade`</Text>
-                </Text>
-            </Box>
+                    return TextComponent;
+                }}
+            />
+            <Text>
+                To update <Text bold>`refine`</Text> packages with the wanted
+                version
+            </Text>
+            <Text>
+                Run the following command{" "}
+                <Text color="yellow">`refine update`</Text>
+            </Text>
         </Box>
     );
 };
