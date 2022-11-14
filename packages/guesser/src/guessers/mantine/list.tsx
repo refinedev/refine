@@ -18,7 +18,7 @@ import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
 import { CodeViewerComponent } from "./code-viewer";
 
-import { GuessField } from "@/types";
+import { GuesserResultComponent, GuessField } from "@/types";
 
 const getAccessorKey = (field: GuessField) => {
     return Array.isArray(field.accessor) || field.multiple
@@ -31,7 +31,7 @@ const getAccessorKey = (field: GuessField) => {
 /**
  * @experimental This is an experimental component
  */
-export const ListGuesser = createGuesser({
+export const ListGuesser: GuesserResultComponent = createGuesser({
     type: "list",
     additionalScope: [
         ["@pankod/refine-mantine", "RefineMantine", RefineMantine],

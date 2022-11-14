@@ -18,12 +18,12 @@ import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
 import { CodeViewerComponent } from "./code-viewer";
 
-import { GuessField } from "@/types";
+import { GuesserResultComponent, GuessField } from "@/types";
 
 /**
  * @experimental This is an experimental component
  */
-export const EditGuesser = createGuesser({
+export const EditGuesser: GuesserResultComponent = createGuesser({
     type: "edit",
     additionalScope: [
         ["@pankod/refine-mantine", "RefineMantine", RefineMantine],
