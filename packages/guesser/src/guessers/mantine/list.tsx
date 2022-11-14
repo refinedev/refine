@@ -11,6 +11,7 @@ import {
     printImports,
     toPlural,
     toSingular,
+    dotAccessor,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -20,8 +21,10 @@ import { CodeViewerComponent } from "./code-viewer";
 import { GuessField } from "@/types";
 
 const getAccessorKey = (field: GuessField) => {
-    return field.accessor && !Array.isArray(field.accessor) && !field.multiple
-        ? `accessorKey: "${field.key}.${field.accessor}"`
+    return Array.isArray(field.accessor) || field.multiple
+        ? `accessorKey: "${field.key}"`
+        : field.accessor
+        ? `accessorKey: "${dotAccessor(field.key, undefined, field.accessor)}"`
         : `accessorKey: "${field.key}"`;
 };
 
@@ -141,7 +144,34 @@ export const ListGuesser = createGuesser({
                 // if not, then just show the value
 
                 if (field.multiple) {
-                    return undefined;
+                    imports.push(["TagField", "@pankod/refine-mantine"]);
+                    let val = "item";
+
+                    // for multiple
+                    if (field?.relationGuess) {
+                        const valSingle = `${variableName}?.find((resourceItems) => resourceItems.id === item)`;
+                        const valViewableSingle = accessor(
+                            valSingle,
+                            undefined,
+                            field?.relationGuess?.accessor,
+                        );
+                        val = valViewableSingle;
+                    }
+
+                    cell = `cell: function render({ getValue }) {
+                        return (
+                            <Group>
+                                {${accessor(
+                                    "getValue()",
+                                    undefined,
+                                    field.accessor,
+                                )}?.map((item, index) => (
+                                    <TagField key={index} value={${val}} />
+                                ))}
+                            </Group>
+                        )
+                    }
+                `;
                 } else {
                     if (field?.relationGuess) {
                         cell = `cell: function render({ getValue, table }) {
