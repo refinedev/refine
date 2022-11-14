@@ -21,7 +21,7 @@ const action = async () => {
     const packages = await spinner(isRefineUptoDate, "Checking for updates...");
 
     if (packages === null) {
-        console.log("No package manager found.");
+        console.log("Package manager not found.");
         return;
     }
 
@@ -55,7 +55,6 @@ export const isRefineUptoDate = async () => {
     if (!pm) return null;
 
     const refinePackages = await getOutdatedRefinePackages(pm.name);
-    if (!refinePackages.length) return null;
 
     return refinePackages;
 };
