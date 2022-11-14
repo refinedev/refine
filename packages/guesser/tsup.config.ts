@@ -2,7 +2,13 @@ import { defineConfig } from "tsup";
 import { NodeResolvePlugin } from "@esbuild-plugins/node-resolve";
 
 export default defineConfig({
-    entry: ["src/index.tsx"],
+    entry: {
+        index: "src/index.tsx",
+        mantine: "src/guessers/mantine/index.ts",
+        mui: "src/guessers/mui/index.ts",
+        antd: "src/guessers/antd/index.ts",
+    },
+    outDir: "dist",
     splitting: false,
     sourcemap: true,
     clean: false,

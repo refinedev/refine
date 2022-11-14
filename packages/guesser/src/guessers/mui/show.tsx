@@ -15,12 +15,12 @@ import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
 import { CodeViewerComponent } from "./code-viewer";
 
-import { GuessField, ImportElement } from "@/types";
+import { GuesserResultComponent, GuessField, ImportElement } from "@/types";
 
 /**
  * @experimental This is an experimental component
  */
-export const ShowGuesser = createGuesser({
+export const ShowGuesser: GuesserResultComponent = createGuesser({
     type: "show",
     additionalScope: [["@pankod/refine-mui", "RefineMui", RefineMui]],
     codeViewerComponent: CodeViewerComponent,

@@ -18,7 +18,7 @@ import {
     MuiEditGuesser,
     MuiShowGuesser,
     MuiListGuesser,
-} from "@pankod/refine-guesser";
+} from "@pankod/refine-guesser/mui";
 
 import { PostsList, PostCreate, PostEdit } from "pages/posts";
 

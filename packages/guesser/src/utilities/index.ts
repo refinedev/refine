@@ -30,3 +30,5 @@ export { toSingular } from "./to-singular";
 export { toPlural } from "./to-plural";
 
 export { isIDKey } from "./is-id-key";
+
+export { getOptionLabel } from "./get-option-label";

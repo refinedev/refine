@@ -56,15 +56,15 @@ export const createGuesser: CreateGuesser = ({
     ]);
 
     const Guesser: GuesserResultComponent = ({ name: resourceName }) => {
+        const { resource, resources } = useResource({
+            resourceNameOrRouteName: resourceName,
+        });
+
         const {
             data: record,
             loading: recordLoading,
             initial: isInitialLoad,
-        } = useGuessFetch(type, resourceName);
-
-        const { resource, resources } = useResource({
-            resourceNameOrRouteName: resourceName,
-        });
+        } = useGuessFetch(type, resourceName ?? resource?.name);
 
         const rawResults: GuessField[] = React.useMemo(() => {
             if (record) {
