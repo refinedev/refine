@@ -477,7 +477,7 @@ const authProvider = {
     logout: () => {
         localStorage.removeItem("auth");
 // highlight-next-line
-        return Promise.resolve("custom-url");
+        return Promise.resolve("/custom-url");
     }
 }
 ```
@@ -542,7 +542,7 @@ You can override the default redirection by giving a path to the rejected promis
 ```tsx
 checkError: (error) => {
     if (error.status === 401) {
-        return Promise.reject("custom-url");
+        return Promise.reject("/custom-url");
     }
     ...
 }

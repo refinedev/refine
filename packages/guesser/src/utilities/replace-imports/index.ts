@@ -27,6 +27,16 @@ export const replaceImports = (
         if (packageName in modules) {
             const importName = modules[packageName];
 
+            /**
+             * React and its exports are already available in the scope of the code.
+             * Restructuring them in import statements will cause errors.
+             * To avoid that, we are not replacing the import statements for React.
+             * This way, generated code can have "react" imports without any errors.
+             */
+            if (packageName === "react") {
+                continue;
+            }
+
             if (defaultImport) {
                 imports.add(
                     `const { default: ${defaultImport} } = ${importName};`,

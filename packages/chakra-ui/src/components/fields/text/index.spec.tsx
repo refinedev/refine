@@ -1,7 +1,7 @@
 import { fieldTextTests } from "@pankod/refine-ui-tests";
 
-import { TextFieldComponent } from "./";
+import { TextField } from "./";
 
 describe("TextField", () => {
-    fieldTextTests.bind(this)(TextFieldComponent);
+    fieldTextTests.bind(this)(TextField);
 });

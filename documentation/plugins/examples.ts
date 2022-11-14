@@ -108,7 +108,8 @@ export default function plugin(): Plugin {
                             " " +
                             doc.title
                                 .replace("antd", "Ant Design")
-                                .replace("mui", "Material UI");
+                                .replace("mui", "Material UI")
+                                .replace("chakra-ui", "Chakra UI");
 
                         return {
                             // ...doc,
@@ -116,13 +117,15 @@ export default function plugin(): Plugin {
                             baseTitle: doc.title,
                             title: doc.title
                                 .replace("antd", "Ant Design")
-                                .replace("mui", "Material UI"),
+                                .replace("mui", "Material UI")
+                                .replace("chakra-ui", "Chakra UI"),
                             displayTitle:
                                 doc.frontMatter["example-title"] ??
                                 titleFromId ??
                                 doc.title
                                     .replace("antd", "Ant Design")
-                                    .replace("mui", "Material UI"),
+                                    .replace("mui", "Material UI")
+                                    .replace("chakra-ui", "Chakra UI"),
                             description: doc.description,
                             permalink: doc.permalink,
                             tags: doc.frontMatter["example-tags"] || [],

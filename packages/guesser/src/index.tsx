@@ -1,9 +1,8 @@
 export { createGuesser } from "./create-guesser";
+export { AntdShowGuesser, AntdEditGuesser, AntdListGuesser } from "@/guessers";
 export {
-    AntdShowGuesser,
-    AntdEditGuesser,
-    AntdListGuesser,
     MantineShowGuesser,
     MantineEditGuesser,
     MantineListGuesser,
 } from "@/guessers";
+export { MuiShowGuesser, MuiEditGuesser, MuiListGuesser } from "@/guessers";

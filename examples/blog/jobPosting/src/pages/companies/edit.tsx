@@ -10,8 +10,6 @@ import {
     Typography,
 } from "@pankod/refine";
 
-import "react-mde/lib/styles/css/react-mde-all.css";
-
 import { ICompany } from "interfaces";
 
 export const CompanyEdit: React.FC<IResourceComponentsProps> = () => {

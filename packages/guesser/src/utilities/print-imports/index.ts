@@ -1,8 +1,6 @@
-export const printImports = (
-    imports: Array<
-        [element: string, module: string, isDefaultImport?: boolean]
-    >,
-) => {
+import { ImportElement } from "@/types";
+
+export const printImports = (imports: Array<ImportElement>) => {
     const byModule = imports.reduce((acc, [element, module, isDefault]) => {
         if (!acc[module]) {
             acc[module] = [] as Array<

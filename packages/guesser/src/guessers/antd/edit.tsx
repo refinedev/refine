@@ -17,7 +17,7 @@ import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
 import { CodeViewerComponent } from "./code-viewer";
 
-import { GuessField } from "@/types";
+import { GuessField, ImportElement } from "@/types";
 
 /**
  * @experimental This is an experimental component
@@ -34,9 +34,7 @@ export const EditGuesser = createGuesser({
     renderer: ({ resource, fields }) => {
         const COMPONENT_NAME = componentName(resource.name, "edit");
         const recordName = `${toSingular(resource.name)}Data`;
-        const imports: Array<
-            [element: string, module: string, isDefaultImport?: boolean]
-        > = [
+        const imports: Array<ImportElement> = [
             ["Edit", "@pankod/refine-antd"],
             ["Form", "@pankod/refine-antd"],
             ["useForm", "@pankod/refine-antd"],
@@ -52,6 +50,25 @@ export const EditGuesser = createGuesser({
             .map((field) => {
                 if (field?.relation && !field.fieldable && field.resource) {
                     imports.push(["useSelect", "@pankod/refine-antd"]);
+
+                    let val = accessor(
+                        recordName,
+                        field.key,
+                        field.accessor,
+                        false,
+                    );
+
+                    if (field.multiple && field.accessor) {
+                        val = `${accessor(
+                            recordName,
+                            field.key,
+                        )}?.map((item) => ${accessor(
+                            "item",
+                            undefined,
+                            field.accessor,
+                        )})`;
+                    }
+
                     return `
                     const { selectProps: ${
                         field.multiple
@@ -60,12 +77,20 @@ export const EditGuesser = createGuesser({
                     }SelectProps } =
                     useSelect({
                         resource: "${field.resource.name}",
-                        defaultValue: ${accessor(
-                            recordName,
-                            field.key,
-                            field.accessor,
-                            false,
-                        )},
+                        defaultValue: ${val},
+                        ${
+                            field.relationGuess
+                                ? field.relationGuess.accessor
+                                    ? typeof field.relationGuess.accessor ===
+                                      "string"
+                                        ? field.relationGuess.accessor !==
+                                          "title"
+                                            ? `optionLabel: "${field.relationGuess.accessor}",`
+                                            : ""
+                                        : `optionLabel: "${field.relationGuess.accessor[0]}",`
+                                    : ""
+                                : ""
+                        }
                     });
                 `;
                 }
@@ -103,21 +128,50 @@ export const EditGuesser = createGuesser({
             return undefined;
         };
 
-        const textFields = (field: GuessField) => {
-            if (field.type === "text") {
+        const basicInputFields = (field: GuessField) => {
+            if (
+                field.type === "text" ||
+                field.type === "url" ||
+                field.type === "email" ||
+                field.type === "number"
+            ) {
                 if (field.multiple) {
-                    const val = accessor("item", undefined, field.accessor);
-                    return jsx`
-                    <Title level={5}>${prettyString(field.key)}</Title>
-                    {${accessor(recordName, field.key)}?.map((item) => (
-                        <TagField value={${val}} key={${val}} />
-                    ))}
-                `;
+                    const val = accessor(field.key, undefined, field.accessor)
+                        .split("?.")
+                        .map((el) => `"${el}"`)
+                        .join(", ");
+
+                    return `
+                        <>
+                            {${accessor(
+                                recordName,
+                                field.key,
+                            )}?.map((item, index) => (
+                                <Form.Item
+                                    key={index}
+                                    label={\`${prettyString(
+                                        field.key,
+                                    )} \${index+1}\`}
+                                    name={[${val}, index]}
+                                >
+                                    <Input
+                                        type="${field.type}"
+                                    ${
+                                        isIDKey(field.key)
+                                            ? "readOnly disabled"
+                                            : ""
+                                    } />
+                                </Form.Item>
+                            ))}
+                        </>
+                    `;
                 }
                 return jsx`
                     <Form.Item
                         label="${prettyString(field.key)}"
-                        name="${field.key}"
+                        name={["${field.key}"${
+                    field.accessor ? ', "' + field.accessor + '"' : ""
+                }]}
                         rules={[
                             {
                                 required: true,
@@ -168,86 +222,43 @@ export const EditGuesser = createGuesser({
             return undefined;
         };
 
-        const emailFields = (field: GuessField) => {
-            if (field.type === "email") {
-                imports.push(
-                    ["TagField", "@pankod/refine-antd"],
-                    ["EmailField", "@pankod/refine-antd"],
-                );
-                if (field.multiple) {
-                    const val = accessor("item", undefined, field.accessor);
-                    return jsx`
-                    <Title level={5}>${prettyString(field.key)}</Title>
-                    {${accessor(recordName, field.key)}?.map((item) => (
-                        <TagField value={${val}} key={${val}} />
-                    ))}
-                `;
-                }
-                return jsx`
-                <Form.Item
-                    label="${prettyString(field.key)}"
-                    name="${field.key}"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input type="email" />
-                </Form.Item>
-                `;
-            }
-            return undefined;
-        };
-
-        const urlFields = (field: GuessField) => {
-            if (field.type === "url") {
-                imports.push(
-                    ["TagField", "@pankod/refine-antd"],
-                    ["UrlField", "@pankod/refine-antd"],
-                );
-                if (field.multiple) {
-                    const val = accessor("item", undefined, field.accessor);
-                    return jsx`
-                    <Title level={5}>${prettyString(field.key)}</Title>
-                    {${accessor(recordName, field.key)}?.map((item) => (
-                        <TagField value={${val}} key={${val}} />
-                    ))}
-                `;
-                }
-                return jsx`
-                    <Form.Item
-                        label="${prettyString(field.key)}"
-                        name="${field.key}"
-                        rules={[
-                            {
-                                required: true,
-                            },
-                        ]}
-                    >
-                        <Input type="url" />
-                    </Form.Item>
-                `;
-            }
-            return undefined;
-        };
-
         const booleanFields = (field: GuessField) => {
             if (field.type === "boolean") {
                 imports.push(["Checkbox", "@pankod/refine-antd"]);
+
                 if (field.multiple) {
-                    const val = accessor("item", undefined, field.accessor);
-                    return jsx`
-                    <Title level={5}>${prettyString(field.key)}</Title>
-                    {${accessor(recordName, field.key)}?.map((item) => (
-                        <TagField value={${val}} key={${val}} />
-                    ))}
-                `;
+                    const val = accessor(field.key, undefined, field.accessor)
+                        .split("?.")
+                        .map((el) => `"${el}"`)
+                        .join(", ");
+
+                    return `
+                        <>
+                            {${accessor(
+                                recordName,
+                                field.key,
+                            )}?.map((item, index) => (
+                                <Form.Item
+                                    key={index}
+                                    label={\`${prettyString(
+                                        field.key,
+                                    )} \${index+1}\`}
+                                    name={[${val}, index]}
+                                >
+                                    <Checkbox>${prettyString(
+                                        field.key,
+                                    )}</Checkbox>
+                                </Form.Item>
+                            ))}
+                        </>
+                    `;
                 }
                 return jsx`
                     <Form.Item
                         label="${prettyString(field.key)}"
-                        name="${field.key}"
+                        name={["${field.key}"${
+                    field.accessor ? ', "' + field.accessor + '"' : ""
+                }]}
                         rules={[
                             {
                                 required: true,
@@ -267,19 +278,38 @@ export const EditGuesser = createGuesser({
                     ["DatePicker", "@pankod/refine-antd"],
                     ["dayjs", "dayjs", true],
                 );
+
                 if (field.multiple) {
-                    const val = accessor("item", undefined, field.accessor);
-                    return jsx`
-                    <Title level={5}>${prettyString(field.key)}</Title>
-                    {${accessor(recordName, field.key)}?.map((item) => (
-                        <DateField value={${val}} key={${val}} />
-                    ))}
-                `;
+                    const val = accessor(field.key, undefined, field.accessor)
+                        .split("?.")
+                        .map((el) => `"${el}"`)
+                        .join(", ");
+
+                    return `
+                        <>
+                            {${accessor(
+                                recordName,
+                                field.key,
+                            )}?.map((item, index) => (
+                                <Form.Item
+                                    key={index}
+                                    label={\`${prettyString(
+                                        field.key,
+                                    )} \${index+1}\`}
+                                    name={[${val}, index]}
+                                >
+                                    <DatePicker />
+                                </Form.Item>
+                            ))}
+                        </>
+                    `;
                 }
                 return jsx`
                     <Form.Item
                         label="${prettyString(field.key)}"
-                        name="${field.key}"
+                        name={["${field.key}"${
+                    field.accessor ? ', "' + field.accessor + '"' : ""
+                }]}
                         rules={[
                             {
                                 required: true,
@@ -314,66 +344,24 @@ export const EditGuesser = createGuesser({
             return undefined;
         };
 
-        const numberFields = (field: GuessField) => {
-            if (field.type === "number") {
-                if (field.multiple) {
-                    const val = accessor("item", undefined, field.accessor);
-                    return jsx`
-                    <Title level={5}>${prettyString(field.key)}</Title>
-                    {${accessor(recordName, field.key)}?.map((item) => (
-                        <TagField value={${val}} key={${val}} />
-                    ))}
-                `;
-                }
-                return jsx`
-                <Form.Item
-                    label="${prettyString(field.key)}"
-                    name="${field.key}"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input type="number" ${
-                        isIDKey(field.key) ? "readOnly disabled" : ""
-                    } />
-                </Form.Item>
-                `;
-            }
-            return undefined;
-        };
-
-        const wrapper = (code?: string) => {
-            if (code) {
-                return jsx`
-                    ${code}
-            `;
-            }
-            return undefined;
-        };
-
         const renderedFields: Array<string | undefined> = fields.map(
             (field) => {
                 switch (field?.type) {
                     case "text":
-                        return wrapper(textFields(field));
                     case "number":
-                        return wrapper(numberFields(field));
-                    case "richtext":
-                        return wrapper(richtextFields(field));
                     case "email":
-                        return wrapper(emailFields(field));
-                    case "image":
-                        return wrapper(imageFields(field));
-                    case "date":
-                        return wrapper(dateFields(field));
-                    case "boolean":
-                        return wrapper(booleanFields(field));
                     case "url":
-                        return wrapper(urlFields(field));
+                        return basicInputFields(field);
+                    case "richtext":
+                        return richtextFields(field);
+                    case "image":
+                        return imageFields(field);
+                    case "date":
+                        return dateFields(field);
+                    case "boolean":
+                        return booleanFields(field);
                     case "relation":
-                        return wrapper(renderRelationFields(field));
+                        return renderRelationFields(field);
                     default:
                         return undefined;
                 }

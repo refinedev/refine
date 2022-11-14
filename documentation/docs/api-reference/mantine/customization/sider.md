@@ -276,7 +276,7 @@ import {
     TooltipProps,
     Styles,
     Title as DefaultTitle,
-} from "@mantine/core";
+} from "@pankod/refine-mantine";
 import {
     IconList,
     IconMenu2,

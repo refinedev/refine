@@ -1,5 +1,29 @@
 # @pankod/refine-core
 
+## 3.88.4
+
+### Patch Changes
+
+-   [#2975](https://github.com/refinedev/refine/pull/2975) [`249f9521c4`](https://github.com/refinedev/refine/commit/249f9521c4981819c2641be131d1dfb270b1d48b) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added `hasPagination` property to `useSelect` hook for disabling pagination.
+
+## 3.88.3
+
+### Patch Changes
+
+-   [#2975](https://github.com/refinedev/refine/pull/2975) [`249f9521c4`](https://github.com/refinedev/refine/commit/249f9521c4981819c2641be131d1dfb270b1d48b) Thanks [@salihozdemir](https://github.com/salihozdemir)! - Added `hasPagination` property to `useSelect` hook for disabling pagination.
+
+## 3.88.2
+
+### Patch Changes
+
+-   [#2953](https://github.com/refinedev/refine/pull/2953) [`e3642eafa2`](https://github.com/refinedev/refine/commit/e3642eafa215e354f605c57ec380bc04e1c27812) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Fix `useLogout()`'s `onSuccess`behavious according to `AuthProvider` `resolved-rejected` values.
+
+## 3.88.1
+
+### Patch Changes
+
+-   [#2953](https://github.com/refinedev/refine/pull/2953) [`e3642eafa2`](https://github.com/refinedev/refine/commit/e3642eafa215e354f605c57ec380bc04e1c27812) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Fix `useLogout()`'s `onSuccess`behavious according to `AuthProvider` `resolved-rejected` values.
+
 ## 3.88.0
 
 ### Minor Changes

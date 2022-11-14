@@ -1,18 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
 
 import { Create, Form, Input, useForm } from "@pankod/refine-antd";
 
-import ReactMarkdown from "react-markdown";
-import ReactMde from "react-mde";
-import "react-mde/lib/styles/css/react-mde-all.css";
+import MDEditor from "@uiw/react-md-editor";
+
 import { IMail } from "interfaces";
 
 export const MailCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<IMail>();
-    const [selectedTab, setSelectedTab] = useState<"write" | "preview">(
-        "write",
-    );
 
     return (
         <Create saveButtonProps={saveButtonProps}>
@@ -37,15 +33,7 @@ export const MailCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <ReactMde
-                        selectedTab={selectedTab}
-                        onTabChange={setSelectedTab}
-                        generateMarkdownPreview={(markdown) =>
-                            Promise.resolve(
-                                <ReactMarkdown>{markdown}</ReactMarkdown>,
-                            )
-                        }
-                    />
+                    <MDEditor data-color-mode="light" />
                 </Form.Item>
             </Form>
         </Create>
