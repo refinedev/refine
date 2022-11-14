@@ -221,7 +221,7 @@ export const ListGuesser = createGuesser({
                 let cell = jsx`
                     cell: function render({ getValue }) {
                         return <Image sx={{ maxWidth: "100px" }} src={${accessor(
-                            "getValue() as string",
+                            "getValue()",
                             undefined,
                             Array.isArray(field.accessor)
                                 ? field.accessor
@@ -275,7 +275,7 @@ export const ListGuesser = createGuesser({
                 let cell = jsx`
                     cell: function render({ getValue }) {
                         return <EmailField value={${accessor(
-                            "getValue() as string",
+                            "getValue()",
                             undefined,
                             Array.isArray(field.accessor)
                                 ? field.accessor
@@ -331,7 +331,7 @@ export const ListGuesser = createGuesser({
                 let cell = jsx`
                     cell: function render({ getValue }) {
                         return <UrlField value={${accessor(
-                            "getValue() as string",
+                            "getValue()",
                             undefined,
                             Array.isArray(field.accessor)
                                 ? field.accessor
@@ -387,7 +387,7 @@ export const ListGuesser = createGuesser({
                 let cell = jsx`
                     cell: function render({ getValue }) {
                         return <BooleanField value={${accessor(
-                            "getValue() as boolean",
+                            "getValue()",
                             undefined,
                             Array.isArray(field.accessor)
                                 ? field.accessor
@@ -442,7 +442,7 @@ export const ListGuesser = createGuesser({
                 let cell = jsx`
                     cell: function render({ getValue }) {
                         return <DateField value={${accessor(
-                            "getValue() as string",
+                            "getValue()",
                             undefined,
                             Array.isArray(field.accessor)
                                 ? field.accessor
@@ -496,7 +496,7 @@ export const ListGuesser = createGuesser({
                 let cell = jsx`
                     cell: function render({ getValue }) {
                         return <MarkdownField value={(${accessor(
-                            "getValue() as string",
+                            "getValue()",
                             undefined,
                             Array.isArray(field.accessor)
                                 ? field.accessor
@@ -562,7 +562,7 @@ export const ListGuesser = createGuesser({
                             return (
                                 <Group>
                                     {{${accessor(
-                                        "getValue() as string",
+                                        "getValue()",
                                         field.key,
                                     )}?.map((item, index) => (
                                         <TagField value={${val}} key={index} />
