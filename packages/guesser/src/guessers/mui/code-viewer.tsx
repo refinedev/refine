@@ -78,7 +78,7 @@ export const CodeViewerComponent: CreateGuesserConfig["codeViewerComponent"] =
                                 transform: "translate(-50%, -50%)",
                                 bgcolor: "background.paper",
                                 boxShadow: 24,
-                                borderRadius: 4,
+                                borderRadius: 1,
                                 p: 4,
                             }}
                         >
