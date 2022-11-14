@@ -52,6 +52,25 @@ export const EditGuesser = createGuesser({
             .map((field) => {
                 if (field?.relation && !field.fieldable && field.resource) {
                     imports.push(["useSelect", "@pankod/refine-antd"]);
+
+                    let val = accessor(
+                        recordName,
+                        field.key,
+                        field.accessor,
+                        false,
+                    );
+
+                    if (field.multiple && field.accessor) {
+                        val = `${accessor(
+                            recordName,
+                            field.key,
+                        )}?.map((item) => ${accessor(
+                            "item",
+                            undefined,
+                            field.accessor,
+                        )})`;
+                    }
+
                     return `
                     const { selectProps: ${
                         field.multiple
@@ -60,12 +79,20 @@ export const EditGuesser = createGuesser({
                     }SelectProps } =
                     useSelect({
                         resource: "${field.resource.name}",
-                        defaultValue: ${accessor(
-                            recordName,
-                            field.key,
-                            field.accessor,
-                            false,
-                        )},
+                        defaultValue: ${val},
+                        ${
+                            field.relationGuess
+                                ? field.relationGuess.accessor
+                                    ? typeof field.relationGuess.accessor ===
+                                      "string"
+                                        ? field.relationGuess.accessor !==
+                                          "title"
+                                            ? `optionLabel: "${field.relationGuess.accessor}",`
+                                            : ""
+                                        : `optionLabel: "${field.relationGuess.accessor[0]}",`
+                                    : ""
+                                : ""
+                        }
                     });
                 `;
                 }
