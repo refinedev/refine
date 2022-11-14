@@ -125,7 +125,7 @@ export type GuesserComponentProps = {
     /**
      * The resource name to guess from
      */
-    name: string;
+    name?: string;
     /**
      * Data accessor string to get the data from the record
      * @example your data provider returns { data: { item: { id: 1, name: "John" } } } from `getOne` then you should pass "item" as the `single` property.
