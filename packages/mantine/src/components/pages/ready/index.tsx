@@ -24,6 +24,8 @@ export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
                 minHeight: "100vh",
                 backgroundColor: "#2A132E",
             }}
+            py="xl"
+            px="sm"
             src="https://refine.ams3.cdn.digitaloceanspaces.com/login-background/background.png"
         >
             <img src={logo} alt="Refine Logo" />
@@ -31,7 +33,7 @@ export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
             <Title align="center" sx={{ color: "white", fontSize: "3rem" }}>
                 Welcome on board
             </Title>
-            <Text size="xl" sx={{ color: "white" }} mt="md">
+            <Text size="xl" sx={{ color: "white" }} mt="md" align="center">
                 Your configuration is completed.
             </Text>
             <Text size="lg" sx={{ color: "white" }} mt="md" align="center">

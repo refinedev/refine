@@ -1,4 +1,4 @@
-import { packageMap } from "@/src/scope/live-scope";
+import { packageMap } from "@/src/scope/map";
 import { prettySpaces } from "./pretty-spaces";
 
 const packageRegex =

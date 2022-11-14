@@ -7,7 +7,8 @@ export type UseStepsFormReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = Record<string, unknown>,
-> = UseFormReturnType<TData, TError, TVariables> & {
+    TTransformed = TVariables,
+> = UseFormReturnType<TData, TError, TVariables, TTransformed> & {
     steps: {
         currentStep: number;
         gotoStep: (step: number) => void;
@@ -18,7 +19,8 @@ export type UseStepsFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = Record<string, unknown>,
-> = UseFormProps<TData, TError, TVariables> & {
+    TTransformed = TVariables,
+> = UseFormProps<TData, TError, TVariables, TTransformed> & {
     stepsProps?: {
         defaultStep?: number;
         isBackValidate?: boolean;
@@ -29,14 +31,16 @@ export const useStepsForm = <
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = Record<string, unknown>,
+    TTransformed = TVariables,
 >({
     stepsProps,
     ...rest
-}: UseStepsFormProps<TData, TError, TVariables> = {}): UseStepsFormReturnType<
+}: UseStepsFormProps<
     TData,
     TError,
-    TVariables
-> => {
+    TVariables,
+    TTransformed
+> = {}): UseStepsFormReturnType<TData, TError, TVariables, TTransformed> => {
     const { defaultStep = 0, isBackValidate = false } = stepsProps ?? {};
     const [current, setCurrent] = useState(defaultStep);
 

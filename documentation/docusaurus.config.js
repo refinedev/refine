@@ -112,7 +112,7 @@ const siteConfig = {
                 },
             ],
         },
-        image: "img/refine_social.png",
+        image: "img/refine_social_new.png",
         algolia: {
             appId: "KRR9VEUPCT",
             apiKey: "cd0188125dcd31fb4b011b5e536d963a",
@@ -219,6 +219,10 @@ const siteConfig = {
                         {
                             label: "Integrations",
                             to: "integrations",
+                        },
+                        {
+                            label: "Become an Expert",
+                            to: "become-a-refine-expert",
                         },
                     ],
                 },

@@ -204,6 +204,8 @@ export function useDataGrid<
         dataProviderName,
     });
 
+    const [muiCrudFilters, setMuiCrudFilters] = useState<CrudFilters>(filters);
+
     useEffect(() => {
         warnOnce(
             !!columns,
@@ -235,7 +237,8 @@ export function useDataGrid<
 
     const handleFilterModelChange = (filterModel: GridFilterModel) => {
         const crudFilters = transformFilterModelToCrudFilters(filterModel);
-        setFilters(crudFilters);
+        setMuiCrudFilters(crudFilters);
+        setFilters(crudFilters.filter((f) => f.value !== ""));
         if (hasPagination) {
             setCurrent(1);
         }
@@ -244,7 +247,8 @@ export function useDataGrid<
     const search = async (value: TSearchVariables) => {
         if (onSearchProp) {
             const searchFilters = await onSearchProp(value);
-            setFilters(searchFilters);
+            setMuiCrudFilters(searchFilters);
+            setFilters(searchFilters.filter((f) => f.value !== ""));
             if (hasPagination) {
                 setCurrent(1);
             }
@@ -313,7 +317,7 @@ export function useDataGrid<
             onSortModelChange: handleSortModelChange,
             filterMode: "server",
             filterModel: transformCrudFiltersToFilterModel(
-                differenceWith(filters, permanentFilter ?? [], isEqual),
+                differenceWith(muiCrudFilters, permanentFilter ?? [], isEqual),
                 columnsTypes,
             ),
             onFilterModelChange: handleFilterModelChange,

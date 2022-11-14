@@ -42,7 +42,7 @@ const About: React.FC = () => {
                         <h2 className={styles.subtitle}>About</h2>
                     </div>
                     <p className={styles.aboutParagraph}>
-                        Shortly after its inital release on{" "}
+                        Shortly after its initial release on{" "}
                         <strong>September 2021</strong>, <strong>refine</strong>{" "}
                         project has gained attraction of open-source community
                         and has become increasingly popular among web

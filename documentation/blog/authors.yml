@@ -66,7 +66,7 @@ michael:
     name: Michael Hungbo
     title: Software Developer
     url: https://github.com/Mich45
-    image_url: https://pbs.twimg.com/profile_images/1476736258340794392/p7d1de3k_400x400.jpg
+    image_url: https://github.com/Mich45.png
 
 ekekenta_clinton:
     name: Ekekenta Clinton
@@ -118,7 +118,7 @@ joseph_mawa:
     name: Joseph Mawa
     title: Web Developer
     url: https://github.com/nibble0101
-    image_url: https://media-exp1.licdn.com/dms/image/C4E03AQHSDUpc44g0WA/profile-displayphoto-shrink_800_800/0/1610367557179?e=1667433600&v=beta&t=ZKdvXFLajKeMPl16UvLAEudKGgpLq4cVjqI2iFhDmTI
+    image_url: /img/generic-profile.png
 
 joel_ezimorah:
     name: Joel Ezimorah
@@ -158,3 +158,9 @@ chibuzor_otuokwu:
     name: Chibuzor Otuokwu
     title: Software Developer
     image_url: /img/generic-profile.png
+
+chidume_nnamdi:
+    name: Chidume Nnamdi
+    title: Software Engineer
+    url: https://github.com/philipszdavido
+    image_url: https://github.com/philipszdavido.png

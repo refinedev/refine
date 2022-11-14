@@ -22,6 +22,7 @@ const staticTags = [
     "antd",
     "mui",
     "mantine",
+    "chakra-ui",
     "data-provider",
     "live-provider",
     "auth-provider",
@@ -53,6 +54,7 @@ const PREDEFINED_COLORS = {
     "material-ui": "#0081cb",
     tailwind: "#38b2ac",
     mantine: "#0ea5e9",
+    "chakra-ui": "#319795",
     auth0: "#eb5424",
     appwrite: "#f24c69",
     supabase: "#00c7b7",
@@ -67,6 +69,7 @@ const PREDEFINED_NAMES = {
     tailwind: "Tailwind CSS",
     rest: "REST",
     graphql: "GraphQL",
+    "chakra-ui": "Chakra UI",
 };
 
 const ExampleList: React.FC = () => {

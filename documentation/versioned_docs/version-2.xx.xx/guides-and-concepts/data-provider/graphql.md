@@ -268,8 +268,6 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
 // highlight-end
     });
 
-    const [selectedTab, setSelectedTab] =
-        useState<"write" | "preview">("write");
 
     return (
         <Edit saveButtonProps={saveButtonProps}>
@@ -314,15 +312,7 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <ReactMde
-                        selectedTab={selectedTab}
-                        onTabChange={setSelectedTab}
-                        generateMarkdownPreview={(markdown) =>
-                            Promise.resolve(
-                                <ReactMarkdown>{markdown}</ReactMarkdown>,
-                            )
-                        }
-                    />
+                    <MDEditor data-color-mode="light" />
                 </Form.Item>
             </Form>
         </Edit>
