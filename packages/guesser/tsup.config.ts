@@ -7,6 +7,7 @@ export default defineConfig({
         mantine: "src/guessers/mantine/index.ts",
         mui: "src/guessers/mui/index.ts",
         antd: "src/guessers/antd/index.ts",
+        "chakra-ui": "src/guessers/chakra-ui/index.ts",
     },
     outDir: "dist",
     splitting: false,
