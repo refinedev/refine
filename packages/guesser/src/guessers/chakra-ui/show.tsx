@@ -11,7 +11,7 @@ import {
     toSingular,
 } from "@/utilities";
 
-// import { ErrorComponent } from "./error";
+import { ErrorComponent } from "./error";
 // import { LoadingComponent } from "./loading";
 // import { CodeViewerComponent } from "./code-viewer";
 
@@ -27,7 +27,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
     ],
     // codeViewerComponent: CodeViewerComponent,
     // loadingComponent: LoadingComponent,
-    // errorComponent: ErrorComponent,
+    errorComponent: ErrorComponent,
     renderer: ({ resource, fields }) => {
         const COMPONENT_NAME = componentName(resource.name, "show");
         const recordName = "record";

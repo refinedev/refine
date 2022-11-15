@@ -14,7 +14,7 @@ import {
     dotAccessor,
 } from "@/utilities";
 
-// import { ErrorComponent } from "../antd/error";
+import { ErrorComponent } from "./error";
 // import { LoadingComponent } from "../antd/loading";
 // import { CodeViewerComponent } from "../antd/code-viewer";
 
@@ -40,7 +40,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
     ],
     // codeViewerComponent: CodeViewerComponent,
     // loadingComponent: LoadingComponent,
-    // errorComponent: ErrorComponent,
+    errorComponent: ErrorComponent,
     renderer: ({ resource, fields }) => {
         const COMPONENT_NAME = componentName(resource.name, "list");
         const recordName = "tableData?.data";
