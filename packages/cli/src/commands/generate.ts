@@ -1,16 +1,9 @@
 import { Command } from "commander";
-import {
-    copySync,
-    readdirSync,
-    createFileSync,
-    writeFileSync,
-    unlinkSync,
-    moveSync,
-} from "fs-extra";
+import { copySync, readdirSync, unlinkSync, moveSync } from "fs-extra";
 import temp from "temp";
 import { plural } from "pluralize";
 
-import { getProjectType } from "@utils/projectType";
+import { getProjectType, getUIFramework } from "@utils/project";
 import { compileDir } from "@utils/compile";
 
 const defaultActions = ["list", "create", "edit", "show"];
@@ -38,6 +31,7 @@ const action = async (resourceName: string, options: any) => {
 
     // get the project type
     const projectType = getProjectType();
+    const uiFramework = getUIFramework();
 
     const sourceDir = `${__dirname}/../templates/resource/${projectType}`;
 
@@ -52,6 +46,7 @@ const action = async (resourceName: string, options: any) => {
         resourceName,
         actions: customActions || defaultActions,
         projectType,
+        uiFramework,
     });
 
     // delete ignored actions
