@@ -15,7 +15,7 @@ import {
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
-// import { LoadingComponent } from "../antd/loading";
+import { LoadingComponent } from "../antd/loading";
 // import { CodeViewerComponent } from "../antd/code-viewer";
 
 import { GuesserResultComponent, GuessField } from "@/types";
@@ -39,7 +39,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
         ["@tabler/icons", "TablerIcons", TablerIcons],
     ],
     // codeViewerComponent: CodeViewerComponent,
-    // loadingComponent: LoadingComponent,
+    loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
     renderer: ({ resource, fields }) => {
         const COMPONENT_NAME = componentName(resource.name, "list");
