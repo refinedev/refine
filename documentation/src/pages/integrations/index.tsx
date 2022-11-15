@@ -4,7 +4,7 @@ import Head from "@docusaurus/Head";
 import Layout from "../../theme/Layout";
 import Card from "../../components/integrations/card";
 import LargeCard from "../../components/integrations/large-card";
-import { integrations } from "../../assets/inegrations";
+import { integrations } from "../../assets/integrations";
 import styles from "./styles.module.css";
 import { Integration } from "../../types/integrations";
 

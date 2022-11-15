@@ -175,6 +175,20 @@ export const integrations: IntegrationsType = {
                 },
             ],
         },
+        {
+            name: "Elide Data Provider",
+            icon: Elide,
+            description:
+                "Connector for backends created with <strong>Elide</strong>",
+            url: "https://github.com/chirdeeptomar/refine-elide-rest",
+            status: "stable",
+            contributors: [
+                {
+                    name: "chirdeeptomar",
+                    url: "https://github.com/chirdeeptomar",
+                },
+            ],
+        },
     ],
     frameworks: [
         {
