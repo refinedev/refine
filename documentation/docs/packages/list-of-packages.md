@@ -80,6 +80,7 @@ title: List of Packages
 
 **❤️ Community Packages:**
 
-- `refine-firebase` - Support for [Firebase](https://firebase.google.com/) services.
-- `@tspvivek/refine-directus` - Connector for backends created with [Directus](https://directus.io/)
+- [`refine-firebase`](https://github.com/rturan29/refine-firebase) - Support for [Firebase](https://firebase.google.com/) services.
+- [`@tspvivek/refine-directus`](https://github.com/tspvivek/refine-directus) - Connector for backends created with [Directus](https://directus.io/)
+- [`refine-elide-rest`](https://github.com/chirdeeptomar/refine-elide-rest) - Connector for backends created with [Elide](https://elide.io/)
 - [`data-provider-customizer`](https://github.com/miyavsu-limited/data-provider-customizer) - Mix & match different data providers [miyavsu-limited](https://github.com/miyavsu-limited)

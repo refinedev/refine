@@ -67,6 +67,7 @@ const dataProvider = {
 
 -   [Firebase](https://github.com/rturan29/refine-firebase) by [rturan29](https://github.com/rturan29)
 -   [Directus](https://github.com/tspvivek/refine-directus) by [tspvivek](https://github.com/tspvivek)
+-   [Elide](https://github.com/chirdeeptomar/refine-elide-rest) by [chirdeeptomar](https://github.com/chirdeeptomar)
 
 :::
 
