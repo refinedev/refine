@@ -4,7 +4,8 @@ title: Quick Start Guide
 ---
 
 
-refine is a React framework.Thus it works on any environment that supports React.
+refine is a React framework. In other words, it works in any environment where React runs (with Next.js, Remix, CRA, Vite, etc.).  
+
 The fastest way to get started with **refine** is using the [superplate](https://github.com/pankod/superplate) project starter tool.  With your app requirements in mind, you can install third-party libraries and packages that have built-in support by **refine**.
 
 The CLI interface for installing and managing refine packages is really straightforward. 
