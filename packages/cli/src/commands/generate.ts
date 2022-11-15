@@ -11,7 +11,7 @@ import temp from "temp";
 import { plural } from "pluralize";
 
 import { getProjectType } from "@utils/projectType";
-import { compile } from "@utils/compile";
+import { compileDir } from "@utils/compile";
 
 const defaultActions = ["list", "create", "edit", "show"];
 const load = (program: Command) => {
@@ -47,26 +47,11 @@ const action = async (resourceName: string, options: any) => {
     // copy template files
     copySync(sourceDir, tempDir);
 
-    // compile files
-    const files = readdirSync(tempDir);
-    files.forEach((file: string) => {
-        const templateFilePath = `${tempDir}/${file}`;
-        // create file
-        const compiledFilePath = `${tempDir}/${file.replace(".hbs", "")}`;
-        createFileSync(compiledFilePath);
-
-        // write compiled file
-        writeFileSync(
-            compiledFilePath,
-            compile(templateFilePath, {
-                resourceName,
-                actions: customActions || defaultActions,
-                projectType,
-            }),
-        );
-
-        // delete template file (*.hbs)
-        unlinkSync(templateFilePath);
+    // compile dir
+    compileDir(tempDir, {
+        resourceName,
+        actions: customActions || defaultActions,
+        projectType,
     });
 
     // delete ignored actions
