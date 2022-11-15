@@ -28,7 +28,7 @@ npm run dev
 <br/>
 
 
-You can now view  **refine** application at [http://localhost:3000](http://localhost:3000):
+You can now view **refine** application at [http://localhost:3000](http://localhost:3000):
 
 
 ## Quick Start Example
