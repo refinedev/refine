@@ -1,9 +1,7 @@
 import { Command } from "commander";
-import Handlebars from "handlebars";
 import {
     copySync,
     readdirSync,
-    readFileSync,
     createFileSync,
     writeFileSync,
     unlinkSync,
@@ -13,6 +11,7 @@ import temp from "temp";
 import { plural } from "pluralize";
 
 import { getProjectType } from "@utils/projectType";
+import { compile } from "@utils/compile";
 
 const defaultActions = ["list", "create", "edit", "show"];
 const load = (program: Command) => {
@@ -101,25 +100,6 @@ const action = async (resourceName: string, options: any) => {
 const generateTempDir = (): string => {
     temp.track();
     return temp.mkdirSync("resource");
-};
-
-// TODO: Move to utils
-const compile = (filePath: string, params: any): string => {
-    const content = readFileSync(filePath);
-
-    Handlebars.registerHelper("ifIn", function (elem, list, options) {
-        if (elem.includes(list)) {
-            return options.fn(Handlebars);
-        }
-        return options.inverse(Handlebars);
-    });
-
-    Handlebars.registerHelper("capitalize", function (string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    });
-
-    const template = Handlebars.compile(content.toString());
-    return template(params);
 };
 
 export default load;
