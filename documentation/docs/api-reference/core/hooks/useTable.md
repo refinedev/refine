@@ -10,6 +10,7 @@ If you're looking for a complete table library, Refine supports two table librar
 
 -   [React Table](https://react-table.tanstack.com/) (for Headless users) - [Documentation](/packages/documentation/react-table.md) - [Example](/examples/table/react-table/basic.md)
 -   [Ant Design Table](https://ant.design/components/table/#header) (for Ant Design users) - [Documentation](/api-reference/antd/hooks/table/useTable.md) - [Example](/examples/table/antd/useTable.md)
+-   [Material UI Table](https://mui.com/x/react-data-grid/) (for Material UI users) - [Documentation](/api-reference/mui/hooks/useDataGrid.md) - [Example](/examples/table/mui/useDataGrid.md)
 
 :::
 
