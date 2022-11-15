@@ -4,6 +4,7 @@ title: Quick Start Guide
 ---
 
 
+refine is a React framework.Thus it works on any environment that supports React.
 The fastest way to get started with **refine** is using the [superplate](https://github.com/pankod/superplate) project starter tool.  With your app requirements in mind, you can install third-party libraries and packages that have built-in support by **refine**.
 
 The CLI interface for installing and managing refine packages is really straightforward. 
@@ -31,7 +32,7 @@ You can now view  **refine** application at [http://localhost:3000](http://local
 
 ## Quick Start Example
 
-We will show how you can use the CLI to bootstrap a **refine** app with [Ant Design](https://ant.design/) and [React](https://reactjs.org/).
+We will show how you can use the CLI to bootstrap a **refine** app with [Ant Design](https://ant.design/) and [React](https://reactjs.org/). You can also use [Material UI](https://material-ui.com/), [Chakra UI](https://chakra-ui.com/) and [Mantine)(https://mantine.dev/) as well.
 
 ```
 npx superplate-cli -p refine my-antd-project
