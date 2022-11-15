@@ -707,7 +707,7 @@ module.exports = {
                         "examples/data-provider/altogic",
                         "examples/data-provider/appwrite",
                         "examples/data-provider/directus",
-                        "examples/data-provider/elide-rest",
+                        "examples/data-provider/elide",
                         "examples/data-provider/hasura",
                         "examples/data-provider/multiple",
                         "examples/data-provider/nestjsxCrud",
