@@ -388,7 +388,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
             if (field.type === "richtext") {
                 imports.push(["MarkdownField", "@pankod/refine-chakra-ui"]);
                 return jsx`
-                    <Title mt="xs" order={5}>${prettyString(
+                    <Heading mt="xs" order={5}>${prettyString(
                         field.key,
                     )}</Heading>
                     <MarkdownField value={${accessor(
