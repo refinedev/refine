@@ -7,7 +7,7 @@
     "module": "dist/esm/index.js",
     "typings": "dist/index.d.ts",
     "scripts": {
-        "start": "tsup --watch --format esm,cjs,iife --legacy-output && cp templates dist/templates/",
+        "start": "tsup --watch --format esm,cjs,iife --legacy-output",
         "build": "tsup --format esm,cjs,iife --minify --legacy-output",
         "test": "jest --passWithNoTests --runInBand",
         "prepare": "npm run build"
