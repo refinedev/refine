@@ -573,7 +573,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         cell: function render({ getValue }) {
                             return (
                                 <HStack>
-                                    {{${accessor(
+                                    {${accessor(
                                         "getValue()",
                                         field.key,
                                     )}?.map((item, index) => (
