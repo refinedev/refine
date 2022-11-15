@@ -13,7 +13,7 @@ import {
 
 import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
-// import { CodeViewerComponent } from "./code-viewer";
+import { CodeViewerComponent } from "./code-viewer";
 
 import { GuesserResultComponent, GuessField } from "@/types";
 
@@ -25,7 +25,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
     additionalScope: [
         ["@pankod/refine-chakra-ui", "RefineChakraUI", RefineChakraUI],
     ],
-    // codeViewerComponent: CodeViewerComponent,
+    codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
     renderer: ({ resource, fields }) => {

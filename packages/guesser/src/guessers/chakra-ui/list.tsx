@@ -15,8 +15,8 @@ import {
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
-import { LoadingComponent } from "../antd/loading";
-// import { CodeViewerComponent } from "../antd/code-viewer";
+import { LoadingComponent } from "./loading";
+import { CodeViewerComponent } from "./code-viewer";
 
 import { GuesserResultComponent, GuessField } from "@/types";
 
@@ -38,7 +38,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
         ["@pankod/refine-react-table", "RefineReactTable", RefineReactTable],
         ["@tabler/icons", "TablerIcons", TablerIcons],
     ],
-    // codeViewerComponent: CodeViewerComponent,
+    codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
     renderer: ({ resource, fields }) => {
