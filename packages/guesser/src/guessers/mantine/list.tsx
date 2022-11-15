@@ -561,7 +561,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         cell: function render({ getValue }) {
                             return (
                                 <Group>
-                                    {{${accessor(
+                                    {${accessor(
                                         "getValue()",
                                         field.key,
                                     )}?.map((item, index) => (
