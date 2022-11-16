@@ -2,6 +2,7 @@ import { Command } from "commander";
 import { copySync, readdirSync, unlinkSync, moveSync } from "fs-extra";
 import temp from "temp";
 import { plural } from "pluralize";
+import execa from "execa";
 
 import { getProjectType, getUIFramework } from "@utils/project";
 import { compileDir } from "@utils/compile";
@@ -41,13 +42,15 @@ const action = async (resourceName: string, options: any) => {
     // copy template files
     copySync(sourceDir, tempDir);
 
-    // compile dir
-    compileDir(tempDir, {
+    const compileParams = {
         resourceName,
         actions: customActions || defaultActions,
         projectType,
         uiFramework,
-    });
+    };
+
+    // compile dir
+    compileDir(tempDir, compileParams);
 
     // delete ignored actions
     if (customActions) {
@@ -71,6 +74,25 @@ const action = async (resourceName: string, options: any) => {
 
     // clear temp dir
     temp.cleanupSync();
+
+    // npx jscodeshift ./src/ --extensions=ts,tsx --parser=tsx --transform=/Users/yildirayunlu/projects/refine/packages/cli/src/transformers/resource.ts
+    const { stdout, stderr } = execa.sync(`npx`, [
+        "jscodeshift",
+        "./src/",
+        "--extensions=ts,tsx,js,jsx",
+        "--parser=tsx",
+        `--transform=${__dirname}/../src/transformers/resource.ts`,
+        // pass custom params to transformer file
+        `--__actions=${compileParams.actions}`,
+        `--__path=${options.path}`,
+        `--__resourceFolderName=${resourceFolderName}`,
+    ]);
+
+    if (stderr) {
+        console.log(stderr);
+    }
+
+    console.log(stdout);
 
     console.log(
         `Resource (${options.path}/${resourceFolderName}) generated successfully! 🎉`,
