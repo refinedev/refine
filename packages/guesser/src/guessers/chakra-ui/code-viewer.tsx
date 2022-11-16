@@ -59,7 +59,7 @@ export const CodeViewerComponent: CreateGuesserConfig["codeViewerComponent"] =
                             </Button>
                         </HStack>
                     </Box>
-                    <Modal isOpen={isOpen} onClose={onClose}>
+                    <Modal size="4xl" isOpen={isOpen} onClose={onClose}>
                         <ModalOverlay />
                         <ModalContent>
                             <ModalHeader>
