@@ -25,7 +25,7 @@ export const PostPaginator = ({ posts, title }) => {
                             <Link
                                 to={`/blog/author/${post.authors[0]?.key}`}
                                 itemProp="url"
-                                className="self-end"
+                                className="self-end flex-shrink-0"
                             >
                                 <img
                                     src={post.authors[0]?.imageURL}
@@ -39,7 +39,7 @@ export const PostPaginator = ({ posts, title }) => {
                                     to={`/blog/author/${post.authors[0]?.key}`}
                                     itemProp="url"
                                     id="author-name"
-                                    className="text-color-base text-sm font-semibold"
+                                    className="text-color-base text-sm font-semibold whitespace-nowrap"
                                 >
                                     {post.authors[0]?.name}
                                 </Link>
