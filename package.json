@@ -19,6 +19,7 @@
     "nuke:node_modules": "echo 'Removing all node_modules'; find . -name 'node_modules' -type d -prune -not -path './documentation/*' -exec rm -rf '{}' +",
     "nuke:builds": "echo 'Removing all builds/dists'; find ./packages -name 'dist' -type d -prune -not -path './documentation/*' -not -path '*/node_modules/*' -exec rm -rf '{}' +",
     "nuke:lockfiles": "echo 'Removing all lockfiles'; find . \\( -name 'package-lock.json' -o -name 'yarn.lock' -o -name 'pnpm-lock.yaml' \\) -type f -prune -not -path './documentation/*' -not -path '**/node_modules/**' -exec rm -rf '{}' +",
+    "nuke": "echo 'Removing all node_modules, builds and lockfiles'; npm run nuke:node_modules; npm run nuke:builds; npm run nuke:lockfiles;",
     "coffee": "npm run nuke && npm i && npm run bootstrap && npm run build",
     "prepare": "husky install",
     "changeset": "changeset",
