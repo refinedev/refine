@@ -161,22 +161,39 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
 
                     // for multiple
                     if (field?.relationGuess) {
-                        const valSingle = `${variableName}?.find((resourceItems) => resourceItems.id === item)`;
-                        const valViewableSingle = accessor(
-                            valSingle,
+                        val = accessor(
+                            "item",
                             undefined,
-                            field?.relationGuess?.accessor,
+                            field.relationGuess.accessor,
                         );
-                        val = valViewableSingle;
                     }
 
-                    cell = `cell: function render({ getValue }) {
-                        return (
-                            <HStack>
-                                {${accessor(
-                                    "getValue()",
+                    cell = `cell: function render({ getValue, table }) {
+                        const meta = table.options.meta as {
+                            ${toPlural(
+                                field.resource.name,
+                            )}Data: GetManyResponse;
+                        };
+
+                        const ${toPlural(
+                            field.resource.name,
+                        )} = getValue<any[]>().map((item) => {
+                            return meta.${toPlural(
+                                field.resource.name,
+                            )}Data?.data?.find(
+                                (resourceItems) => resourceItems.id === ${accessor(
+                                    "item",
                                     undefined,
                                     field.accessor,
+                                )}
+                            );
+                        })
+
+
+                        return (
+                            <HStack>
+                                {${toPlural(
+                                    field.resource.name,
                                 )}?.map((item, index) => (
                                     <TagField key={index} value={${val}} />
                                 ))}
@@ -196,7 +213,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                             const ${toSingular(
                                 field.resource.name,
                             )} = meta.${variableName}?.find(
-                                (item) => item.id === getValue(),
+                                (item) => item.id === getValue<any>(),
                             );
 
                             return ${accessor(
@@ -233,7 +250,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                 let cell = jsx`
                     cell: function render({ getValue }) {
                         return <Image sx={{ maxWidth: "100px" }} src={${accessor(
-                            "getValue()",
+                            "getValue<any>()",
                             undefined,
                             Array.isArray(field.accessor)
                                 ? field.accessor
@@ -255,7 +272,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         cell: function render({ getValue }) {
                             return (
                                 <HStack>
-                                    {getValue()?.map((item, index) => (
+                                    {getValue<any[]>()?.map((item, index) => (
                                         <Image src={${val}} key={index} sx={{ height: "50px", maxWidth: "100px" }} />
                                     ))}
                                 </HStack>
@@ -287,7 +304,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                 let cell = jsx`
                     cell: function render({ getValue }) {
                         return <EmailField value={${accessor(
-                            "getValue()",
+                            "getValue<any>()",
                             undefined,
                             Array.isArray(field.accessor)
                                 ? field.accessor
@@ -311,7 +328,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         cell: function render({ getValue }) {
                             return (
                                 <HStack>
-                                    {getValue()?.map((item, index) => (
+                                    {getValue<any[]>()?.map((item, index) => (
                                         <TagField value={${val}} key={index} />
                                     ))}
                                 </HStack>
@@ -343,7 +360,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                 let cell = jsx`
                     cell: function render({ getValue }) {
                         return <UrlField value={${accessor(
-                            "getValue()",
+                            "getValue<any>()",
                             undefined,
                             Array.isArray(field.accessor)
                                 ? field.accessor
@@ -367,7 +384,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         cell: function render({ getValue }) {
                             return (
                                 <HStack>
-                                    {getValue()?.map((item, index) => (
+                                    {getValue<any[]>()?.map((item, index) => (
                                         <TagField value={${val}} key={index} />
                                     ))}
                                 </HStack>
@@ -399,7 +416,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                 let cell = jsx`
                     cell: function render({ getValue }) {
                         return <BooleanField value={${accessor(
-                            "getValue()",
+                            "getValue<any>()",
                             undefined,
                             Array.isArray(field.accessor)
                                 ? field.accessor
@@ -421,7 +438,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         cell: function render({ getValue }) {
                             return (
                                 <HStack>
-                                    {getValue()?.map((item, index) => (
+                                    {getValue<any[]>()?.map((item, index) => (
                                         <BooleanField value={${val}} key={index} />
                                     ))}
                                 </HStack>
@@ -454,7 +471,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                 let cell = jsx`
                     cell: function render({ getValue }) {
                         return <DateField value={${accessor(
-                            "getValue()",
+                            "getValue<any>()",
                             undefined,
                             Array.isArray(field.accessor)
                                 ? field.accessor
@@ -476,7 +493,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         cell: function render({ getValue }) {
                             return (
                                 <HStack>
-                                    {getValue()?.map((item, index) => (
+                                    {getValue<any[]>()?.map((item, index) => (
                                         <DateField value={${val}} key={index} />
                                     ))}
                                 </HStack>
@@ -507,13 +524,13 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
 
                 let cell = jsx`
                     cell: function render({ getValue }) {
-                        return <MarkdownField value={(${accessor(
-                            "getValue()",
+                        return <MarkdownField value={${accessor(
+                            "getValue<string>()",
                             undefined,
                             Array.isArray(field.accessor)
                                 ? field.accessor
                                 : undefined,
-                        )}).slice(0, 80) + "..." } />
+                        )}.slice(0, 80) + "..." } />
                     }
                 `;
 
@@ -529,7 +546,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         cell: function render({ getValue }) {
                             return (
                                 <HStack>
-                                    {getValue()?.map((item, index) => (
+                                    {getValue<string[]>()?.map((item, index) => (
                                         <MarkdownField value={${val}} key={index} />
                                     ))}
                                 </HStack>
@@ -573,10 +590,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         cell: function render({ getValue }) {
                             return (
                                 <HStack>
-                                    {${accessor(
-                                        "getValue()",
-                                        field.key,
-                                    )}?.map((item, index) => (
+                                    {getValue<any[]>()?.map((item, index) => (
                                         <TagField value={${val}} key={index} />
                                     ))}
                                 </HStack>
@@ -590,7 +604,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         cell: function render({ getValue }) {
                             return (
                                 <>{${accessor(
-                                    "getValue()",
+                                    "getValue<any>()",
                                     field.key,
                                     field.accessor,
                                 )}}</>
@@ -666,6 +680,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
         );
 
         return jsx`
+        import React from "react";
         ${printImports(imports)}
         
         export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
@@ -761,7 +776,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
             setCurrent: (page: number) => void;
         };
 
-        const Pagination: FC<PaginationProps> = ({
+        const Pagination: React.FC<PaginationProps> = ({
             current,
             pageCount,
             setCurrent,
@@ -850,7 +865,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
 
         const ColumnFilter: React.FC<ColumnButtonProps> = ({ column }) => {
             // eslint-disable-next-line
-            const [state, setState] = useState(null as null | { value: any });
+            const [state, setState] = React.useState(null as null | { value: any });
         
             if (!column.getCanFilter()) {
                 return null;
