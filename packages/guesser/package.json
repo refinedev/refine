@@ -129,6 +129,7 @@
         "react-markdown": "^6.0.1",
         "remark-gfm": "^1.0.0",
         "tslib": "^2.3.1",
+        "prettier": "^2.7.1",
         "react-live": "github:aliemir/react-live"
     },
     "author": "Refine",
