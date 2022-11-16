@@ -164,7 +164,7 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                                 recordName,
                                 field.key,
                             )}?.map((item, index) => (
-                                <FormControl mb="3" isInvalid={!!${accessor(
+                                <FormControl key={index} mb="3" isInvalid={!!${accessor(
                                     "errors",
                                     field.key,
                                     field.accessor,
@@ -172,7 +172,7 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                                 )}?.[index]}>
                                     <FormLabel>${prettyString(
                                         field.key,
-                                    )}</FormLabel>
+                                    )} #{index + 1}</FormLabel>
                                     <Input
                                         {...register(\`${val}.\${index}\`, {
                                             required: "This field is required",
@@ -246,7 +246,7 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                                 recordName,
                                 field.key,
                             )}?.map((item, index) => (
-                                <FormControl mb="3" isInvalid={!!${accessor(
+                                <FormControl key={index} mb="3" isInvalid={!!${accessor(
                                     "errors",
                                     field.key,
                                     field.accessor,
@@ -254,7 +254,7 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                                 )}?.[index]}>
                                     <FormLabel>${prettyString(
                                         field.key,
-                                    )}</FormLabel>
+                                    )} #{index + 1}</FormLabel>
                                     <Checkbox
                                         {...register(\`${val}.\${index}\`, {
                                             required: "This field is required",
