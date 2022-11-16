@@ -47,6 +47,19 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                 if (field?.relation && !field.fieldable && field.resource) {
                     if (field.multiple) {
                         imports.push(["useMany", "@pankod/refine-core"]);
+                        let ids = accessor(recordName, field.key);
+
+                        if (field.accessor) {
+                            ids = `${accessor(
+                                recordName,
+                                field.key,
+                            )}?.map((item) => ${accessor(
+                                "item",
+                                undefined,
+                                field.accessor,
+                            )})`;
+                        }
+
                         return `
                     const { data: ${toPlural(
                         field.resource.name,
@@ -55,12 +68,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                         )}IsLoading } =
                     useMany({
                         resource: "${field.resource.name}",
-                        ids: ${accessor(
-                            recordName,
-                            field.key,
-                            field.accessor,
-                            false,
-                        )} || [],
+                        ids: ${ids} || [],
                         queryOptions: {
                             enabled: !!${recordName},
                         },
@@ -106,7 +114,10 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                 }IsLoading`;
 
                 if (field.multiple) {
-                    imports.push(["TagField", "@pankod/refine-chakra-ui"]);
+                    imports.push(
+                        ["TagField", "@pankod/refine-chakra-ui"],
+                        ["HStack", "@pankod/refine-chakra-ui"],
+                    );
                     return jsx`
                     <Heading as="h5" size="sm" mt={4} >${prettyString(
                         field.key,
@@ -136,7 +147,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                                             undefined,
                                             field.relationGuess.accessor,
                                         );
-                                        return `{${variableName}?.data?.map((${mapItemName}) => <TagField key={${val}} value={${val}} />)}`;
+                                        return `<HStack spacing="12px">{${variableName}?.data?.map((${mapItemName}) => <TagField key={${val}} value={${val}} />)}</HStack>`;
                                     }
                                 } else {
                                     return `Not Handled.`;
@@ -203,6 +214,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                 imports.push(
                     ["TagField", "@pankod/refine-chakra-ui"],
                     ["TextField", "@pankod/refine-chakra-ui"],
+                    ["HStack", "@pankod/refine-chakra-ui"],
                 );
                 if (field.multiple) {
                     const val = accessor("item", undefined, field.accessor);
@@ -210,9 +222,11 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                     <Heading as="h5" size="sm" mt={4} >${prettyString(
                         field.key,
                     )}</Heading>
+                    <HStack spacing="12px">
                     {${accessor(recordName, field.key)}?.map((item) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
+                    </HStack>
                 `;
                 }
                 return jsx`
@@ -247,7 +261,6 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                     <Heading as="h5" size="sm" mt={4} >${prettyString(
                         field.key,
                     )}</Heading>
-                    {JSON.stringify(${accessor(recordName, field.key)})}
                     <Image sx={{ maxWidth: 200 }} src={${accessor(
                         recordName,
                         field.key,
@@ -264,6 +277,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                 imports.push(
                     ["TagField", "@pankod/refine-chakra-ui"],
                     ["EmailField", "@pankod/refine-chakra-ui"],
+                    ["HStack", "@pankod/refine-chakra-ui"],
                 );
                 if (field.multiple) {
                     const val = accessor("item", undefined, field.accessor);
@@ -271,9 +285,11 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                     <Heading as="h5" size="sm" mt={4} >${prettyString(
                         field.key,
                     )}</Heading>
+                    <HStack spacing="12px">
                     {${accessor(recordName, field.key)}?.map((item) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
+                    </HStack>
                 `;
                 }
                 return jsx`
@@ -296,6 +312,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                 imports.push(
                     ["TagField", "@pankod/refine-chakra-ui"],
                     ["UrlField", "@pankod/refine-chakra-ui"],
+                    ["HStack", "@pankod/refine-chakra-ui"],
                 );
                 if (field.multiple) {
                     const val = accessor("item", undefined, field.accessor);
@@ -303,9 +320,11 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                     <Heading as="h5" size="sm" mt={4} >${prettyString(
                         field.key,
                     )}</Heading>
+                    <HStack spacing="12px">
                     {${accessor(recordName, field.key)}?.map((item) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
+                    </HStack>
                 `;
                 }
                 return jsx`
@@ -328,6 +347,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                 imports.push(
                     ["TagField", "@pankod/refine-chakra-ui"],
                     ["BooleanField", "@pankod/refine-chakra-ui"],
+                    ["HStack", "@pankod/refine-chakra-ui"],
                 );
                 if (field.multiple) {
                     const val = accessor("item", undefined, field.accessor);
@@ -335,9 +355,11 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                     <Heading as="h5" size="sm" mt={4} >${prettyString(
                         field.key,
                     )}</Heading>
+                    <HStack spacing="12px">
                     {${accessor(recordName, field.key)}?.map((item) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
+                    </HStack>
                 `;
                 }
                 return jsx`
@@ -388,7 +410,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
             if (field.type === "richtext") {
                 imports.push(["MarkdownField", "@pankod/refine-chakra-ui"]);
                 return jsx`
-                    <Heading mt="xs" order={5}>${prettyString(
+                    <Heading as="h5" size="sm" mt={4}>${prettyString(
                         field.key,
                     )}</Heading>
                     <MarkdownField value={${accessor(
@@ -405,16 +427,22 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
 
         const numberFields = (field: GuessField) => {
             if (field.type === "number") {
-                imports.push(["NumberField", "@pankod/refine-chakra-ui"]);
+                imports.push(
+                    ["NumberField", "@pankod/refine-chakra-ui"],
+                    ["TagField", "@pankod/refine-chakra-ui"],
+                    ["HStack", "@pankod/refine-chakra-ui"],
+                );
                 if (field.multiple) {
                     const val = accessor("item", undefined, field.accessor);
                     return jsx`
                     <Heading as="h5" size="sm" mt={4} >${prettyString(
                         field.key,
                     )}</Heading>
+                    <HStack spacing="12px">
                     {${accessor(recordName, field.key)}?.map((item) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
+                    </HStack>
                 `;
                 }
                 return jsx`
