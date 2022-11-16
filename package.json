@@ -16,6 +16,8 @@
     "lint:staged": "lint-staged",
     "build": "lerna run build --ignore @pankod/refine-react-router --scope @pankod/refine*",
     "start:docs": "concurrently \"cd documentation && npm run start\" \"npm run start -- --scope @pankod/refine-live-previews\" --names docs,live --prefix-colors blue,red",
+    "nuke:node_modules": "echo 'Removing all node_modules'; find . -name 'node_modules' -type d -prune -not -path './documentation/*' -exec rm -rf '{}' +",
+    "nuke:builds": "echo 'Removing all builds/dists'; find ./packages -name 'dist' -type d -prune -not -path './documentation/*' -not -path '*/node_modules/*' -exec rm -rf '{}' +",
     "nuke": "rm -rf node_modules; for d in for d in packages/*/node_modules; do echo $d; rm -rf $d; done; for d in for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in packages/*/dist; do echo $d; rm -rf $d; done; for d in examples/*/node_modules; do echo $d; rm -rf $d; done;  for d in examples/*/package-lock.json; do echo $d; rm -rf $d; done;",
     "coffee": "npm run nuke && npm i && npm run bootstrap && npm run build",
     "prepare": "husky install",
