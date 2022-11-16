@@ -45,6 +45,19 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                 if (field?.relation && !field.fieldable && field.resource) {
                     if (field.multiple) {
                         imports.push(["useMany", "@pankod/refine-core"]);
+                        let ids = accessor(recordName, field.key);
+
+                        if (field.accessor) {
+                            ids = `${accessor(
+                                recordName,
+                                field.key,
+                            )}?.map((item) => ${accessor(
+                                "item",
+                                undefined,
+                                field.accessor,
+                            )})`;
+                        }
+
                         return `
                     const { data: ${toPlural(
                         field.resource.name,
@@ -53,12 +66,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                         )}IsLoading } =
                     useMany({
                         resource: "${field.resource.name}",
-                        ids: ${accessor(
-                            recordName,
-                            field.key,
-                            field.accessor,
-                            false,
-                        )} || [],
+                        ids: ${ids} || [],
                         queryOptions: {
                             enabled: !!${recordName},
                         },
