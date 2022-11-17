@@ -1,4 +1,4 @@
-import * as RefineMui from "@pankod/refine-mui";
+import * as RefineChakraUI from "@pankod/refine-chakra-ui";
 
 import { createGuesser } from "@/create-guesser";
 import {
@@ -15,25 +15,26 @@ import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
 import { CodeViewerComponent } from "./code-viewer";
 
-import { GuesserResultComponent, GuessField, ImportElement } from "@/types";
+import { GuesserResultComponent, GuessField } from "@/types";
 
 /**
  * @experimental This is an experimental component
  */
 export const ShowGuesser: GuesserResultComponent = createGuesser({
     type: "show",
-    additionalScope: [["@pankod/refine-mui", "RefineMui", RefineMui]],
+    additionalScope: [
+        ["@pankod/refine-chakra-ui", "RefineChakraUI", RefineChakraUI],
+    ],
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
     renderer: ({ resource, fields }) => {
         const COMPONENT_NAME = componentName(resource.name, "show");
         const recordName = "record";
-        const imports: Array<ImportElement> = [
+        const imports: Array<[element: string, module: string]> = [
             ["useShow", "@pankod/refine-core"],
-            ["Show", "@pankod/refine-mui"],
-            ["Typography", "@pankod/refine-mui"],
-            ["Stack", "@pankod/refine-mui"],
+            ["Show", "@pankod/refine-chakra-ui"],
+            ["Heading", "@pankod/refine-chakra-ui"],
         ];
 
         const relationFields: (GuessField | null)[] = fields.filter(
@@ -52,7 +53,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                             ids = `${accessor(
                                 recordName,
                                 field.key,
-                            )}?.map((item) => ${accessor(
+                            )}?.map((item: any) => ${accessor(
                                 "item",
                                 undefined,
                                 field.accessor,
@@ -113,16 +114,15 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                 }IsLoading`;
 
                 if (field.multiple) {
-                    imports.push(["TagField", "@pankod/refine-mui"]);
+                    imports.push(
+                        ["TagField", "@pankod/refine-chakra-ui"],
+                        ["HStack", "@pankod/refine-chakra-ui"],
+                    );
                     return jsx`
-                    <Typography variant="body1" fontWeight="bold">
-                        ${prettyString(field.key)}
-                    </Typography>
-                    {${variableIsLoading} ? (
-                        <>
-                            Loading...
-                        </>
-                        ) : (
+                    <Heading as="h5" size="sm" mt={4} >${prettyString(
+                        field.key,
+                    )}</Heading>
+                    {${variableIsLoading} ? <>Loading...</> : (
                         <>
                         ${(() => {
                             if (field.relationGuess) {
@@ -138,10 +138,6 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                                         //     field.relationGuess.accessor,
                                         // ).join(' + " " + ')}}`;
                                     } else {
-                                        imports.push([
-                                            "Box",
-                                            "@pankod/refine-mui",
-                                        ]);
                                         // return `Not Handled.`;
                                         const mapItemName = toSingular(
                                             field.resource?.name,
@@ -151,13 +147,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                                             undefined,
                                             field.relationGuess.accessor,
                                         );
-                                        return `
-                                            <Box style={{ display: "flex", gap: "1rem" }}>
-                                                {${variableName}?.data?.map((${mapItemName}) => (
-                                                    <TagField key={${val}} value={${val}} />
-                                                ))}
-                                            </Box>
-                                        `;
+                                        return `<HStack spacing="12px">{${variableName}?.data?.map((${mapItemName}: any) => <TagField key={${val}} value={${val}} />)}</HStack>`;
                                     }
                                 } else {
                                     return `Not Handled.`;
@@ -182,16 +172,11 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                     // `;
                 }
                 return jsx`
-                    <Typography variant="body1" fontWeight="bold">
-                        ${prettyString(field.key)}
-                    </Typography>
-                    {${variableIsLoading} ? (
-                        <p>
-                            Loading...
-                        </p>
-                    ) : (
+                    <Heading as="h5" size="sm" mt={4} >${prettyString(
+                        field.key,
+                    )}</Heading>
+                    {${variableIsLoading} ? <>Loading...</> : (
                         <>
-
                         ${(() => {
                             if (field.relationGuess) {
                                 if (field.relationGuess?.accessor) {
@@ -216,7 +201,6 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                                 return `{${variableName}?.data?.id}`;
                             }
                         })()}
-
                         </>
                     )}
                     
@@ -228,27 +212,27 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
         const textFields = (field: GuessField) => {
             if (field.type === "text") {
                 imports.push(
-                    ["TagField", "@pankod/refine-mui"],
-                    ["TextFieldComponent as TextField", "@pankod/refine-mui"],
+                    ["TagField", "@pankod/refine-chakra-ui"],
+                    ["TextField", "@pankod/refine-chakra-ui"],
+                    ["HStack", "@pankod/refine-chakra-ui"],
                 );
                 if (field.multiple) {
-                    imports.push(["Box", "@pankod/refine-mui"]);
                     const val = accessor("item", undefined, field.accessor);
                     return jsx`
-                    <Typography variant="body1" fontWeight="bold">
-                        ${prettyString(field.key)}
-                    </Typography>
-                    <Box style={{ display: "flex", gap: "1rem" }}>
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    <Heading as="h5" size="sm" mt={4} >${prettyString(
+                        field.key,
+                    )}</Heading>
+                    <HStack spacing="12px">
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
-                    </Box>
+                    </HStack>
                 `;
                 }
                 return jsx`
-                    <Typography variant="body1" fontWeight="bold">
-                        ${prettyString(field.key)}
-                    </Typography>
+                    <Heading as="h5" size="sm" mt={4} >${prettyString(
+                        field.key,
+                    )}</Heading>
                     <TextField value={${accessor(
                         recordName,
                         field.key,
@@ -261,23 +245,23 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
 
         const imageFields = (field: GuessField) => {
             if (field.type === "image") {
+                imports.push(["Image", "@pankod/refine-chakra-ui"]);
                 if (field.multiple) {
                     const val = accessor("item", undefined, field.accessor);
                     return jsx`
-                    <Typography variant="body1" fontWeight="bold">
-                        ${prettyString(field.key)}
-                    </Typography>
-                    {${accessor(recordName, field.key)}?.map((item) => (
-                        <img style={{ maxWidth: 200, width: "100%", height: 200 }} src={${val}} key={${val}} />
+                    <Heading as="h5" size="sm" mt={4} >${prettyString(
+                        field.key,
+                    )}</Heading>
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
+                        <Image sx={{ maxWidth: 200 }} src={${val}} key={${val}} />
                     ))}
                 `;
                 }
                 return jsx`
-                    <Typography variant="body1" fontWeight="bold">
-                        ${prettyString(field.key)}
-                    </Typography>
-                    {JSON.stringify(${accessor(recordName, field.key)})}
-                    <img style={{ maxWidth: 200, width: "100%", height: 200 }} src={${accessor(
+                    <Heading as="h5" size="sm" mt={4} >${prettyString(
+                        field.key,
+                    )}</Heading>
+                    <Image sx={{ maxWidth: 200 }} src={${accessor(
                         recordName,
                         field.key,
                         field.accessor,
@@ -291,27 +275,27 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
         const emailFields = (field: GuessField) => {
             if (field.type === "email") {
                 imports.push(
-                    ["TagField", "@pankod/refine-mui"],
-                    ["EmailField", "@pankod/refine-mui"],
+                    ["TagField", "@pankod/refine-chakra-ui"],
+                    ["EmailField", "@pankod/refine-chakra-ui"],
+                    ["HStack", "@pankod/refine-chakra-ui"],
                 );
                 if (field.multiple) {
-                    imports.push(["Box", "@pankod/refine-mui"]);
                     const val = accessor("item", undefined, field.accessor);
                     return jsx`
-                    <Typography variant="body1" fontWeight="bold">
-                        ${prettyString(field.key)}
-                    </Typography>
-                    <Box style={{ display: "flex", gap: "1rem" }}>
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    <Heading as="h5" size="sm" mt={4} >${prettyString(
+                        field.key,
+                    )}</Heading>
+                    <HStack spacing="12px">
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
-                    </Box>
+                    </HStack>
                 `;
                 }
                 return jsx`
-                    <Typography variant="body1" fontWeight="bold">
-                        ${prettyString(field.key)}
-                    </Typography>
+                    <Heading as="h5" size="sm" mt={4} >${prettyString(
+                        field.key,
+                    )}</Heading>
                     <EmailField value={${accessor(
                         recordName,
                         field.key,
@@ -326,27 +310,27 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
         const urlFields = (field: GuessField) => {
             if (field.type === "url") {
                 imports.push(
-                    ["TagField", "@pankod/refine-mui"],
-                    ["UrlField", "@pankod/refine-mui"],
+                    ["TagField", "@pankod/refine-chakra-ui"],
+                    ["UrlField", "@pankod/refine-chakra-ui"],
+                    ["HStack", "@pankod/refine-chakra-ui"],
                 );
                 if (field.multiple) {
-                    imports.push(["Box", "@pankod/refine-mui"]);
                     const val = accessor("item", undefined, field.accessor);
                     return jsx`
-                    <Typography variant="body1" fontWeight="bold">
-                        ${prettyString(field.key)}
-                    </Typography>
-                    <Box style={{ display: "flex", gap: "1rem" }}>
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    <Heading as="h5" size="sm" mt={4} >${prettyString(
+                        field.key,
+                    )}</Heading>
+                    <HStack spacing="12px">
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
-                    </Box>
+                    </HStack>
                 `;
                 }
                 return jsx`
-                    <Typography variant="body1" fontWeight="bold">
-                        ${prettyString(field.key)}
-                    </Typography>
+                    <Heading as="h5" size="sm" mt={4} >${prettyString(
+                        field.key,
+                    )}</Heading>
                     <UrlField value={${accessor(
                         recordName,
                         field.key,
@@ -361,28 +345,27 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
         const booleanFields = (field: GuessField) => {
             if (field.type === "boolean") {
                 imports.push(
-                    ["TagField", "@pankod/refine-mui"],
-                    ["BooleanField", "@pankod/refine-mui"],
+                    ["TagField", "@pankod/refine-chakra-ui"],
+                    ["BooleanField", "@pankod/refine-chakra-ui"],
+                    ["HStack", "@pankod/refine-chakra-ui"],
                 );
                 if (field.multiple) {
-                    imports.push(["Box", "@pankod/refine-mui"]);
-
                     const val = accessor("item", undefined, field.accessor);
                     return jsx`
-                    <Typography variant="body1" fontWeight="bold">
-                        ${prettyString(field.key)}
-                    </Typography>
-                    <Box style={{ display: "flex", gap: "1rem" }}>
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    <Heading as="h5" size="sm" mt={4} >${prettyString(
+                        field.key,
+                    )}</Heading>
+                    <HStack spacing="12px">
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
-                    </Box>
+                    </HStack>
                 `;
                 }
                 return jsx`
-                    <Typography variant="body1" fontWeight="bold">
-                        ${prettyString(field.key)}
-                    </Typography>
+                    <Heading as="h5" size="sm" mt={4} >${prettyString(
+                        field.key,
+                    )}</Heading>
                     <BooleanField value={${accessor(
                         recordName,
                         field.key,
@@ -396,22 +379,22 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
 
         const dateFields = (field: GuessField) => {
             if (field.type === "date") {
-                imports.push(["DateField", "@pankod/refine-mui"]);
+                imports.push(["DateField", "@pankod/refine-chakra-ui"]);
                 if (field.multiple) {
                     const val = accessor("item", undefined, field.accessor);
                     return jsx`
-                    <Typography variant="body1" fontWeight="bold">
-                        ${prettyString(field.key)}
-                    </Typography>
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    <Heading as="h5" size="sm" mt={4} >${prettyString(
+                        field.key,
+                    )}</Heading>
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <DateField value={${val}} key={${val}} />
                     ))}
                 `;
                 }
                 return jsx`
-                    <Typography variant="body1" fontWeight="bold">
-                        ${prettyString(field.key)}
-                    </Typography>
+                    <Heading as="h5" size="sm" mt={4} >${prettyString(
+                        field.key,
+                    )}</Heading>
                     <DateField value={${accessor(
                         recordName,
                         field.key,
@@ -425,11 +408,11 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
 
         const richtextFields = (field: GuessField) => {
             if (field.type === "richtext") {
-                imports.push(["MarkdownField", "@pankod/refine-mui"]);
+                imports.push(["MarkdownField", "@pankod/refine-chakra-ui"]);
                 return jsx`
-                    <Typography variant="body1" fontWeight="bold">
-                        ${prettyString(field.key)}
-                    </Typography>
+                    <Heading as="h5" size="sm" mt={4}>${prettyString(
+                        field.key,
+                    )}</Heading>
                     <MarkdownField value={${accessor(
                         recordName,
                         field.key,
@@ -444,32 +427,43 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
 
         const numberFields = (field: GuessField) => {
             if (field.type === "number") {
-                imports.push(["NumberField", "@pankod/refine-mui"]);
+                imports.push(
+                    ["NumberField", "@pankod/refine-chakra-ui"],
+                    ["TagField", "@pankod/refine-chakra-ui"],
+                    ["HStack", "@pankod/refine-chakra-ui"],
+                );
                 if (field.multiple) {
-                    imports.push(["Box", "@pankod/refine-mui"]);
                     const val = accessor("item", undefined, field.accessor);
                     return jsx`
-                    <Typography variant="body1" fontWeight="bold">
-                        ${prettyString(field.key)}
-                    </Typography>
-                    <Box style={{ display: "flex", gap: "1rem" }}>
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    <Heading as="h5" size="sm" mt={4} >${prettyString(
+                        field.key,
+                    )}</Heading>
+                    <HStack spacing="12px">
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
-                    </Box>
+                    </HStack>
                 `;
                 }
                 return jsx`
-                    <Typography variant="body1" fontWeight="bold">
-                        ${prettyString(field.key)}
-                    </Typography>
-
+                    <Heading as="h5" size="sm" mt={4} >${prettyString(
+                        field.key,
+                    )}</Heading>
                     <NumberField value={${accessor(
                         recordName,
                         field.key,
                         field.accessor,
                         ' + " " + ',
-                    )} ?? ""} />
+                    )} as number} />
+                `;
+            }
+            return undefined;
+        };
+
+        const wrapper = (code?: string) => {
+            if (code) {
+                return jsx`
+                    ${code}
                 `;
             }
             return undefined;
@@ -479,23 +473,23 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
             (field) => {
                 switch (field?.type) {
                     case "text":
-                        return textFields(field);
+                        return wrapper(textFields(field));
                     case "number":
-                        return numberFields(field);
+                        return wrapper(numberFields(field));
                     case "richtext":
-                        return richtextFields(field);
+                        return wrapper(richtextFields(field));
                     case "email":
-                        return emailFields(field);
+                        return wrapper(emailFields(field));
                     case "image":
-                        return imageFields(field);
+                        return wrapper(imageFields(field));
                     case "date":
-                        return dateFields(field);
+                        return wrapper(dateFields(field));
                     case "boolean":
-                        return booleanFields(field);
+                        return wrapper(booleanFields(field));
                     case "url":
-                        return urlFields(field);
+                        return wrapper(urlFields(field));
                     case "relation":
-                        return renderRelationFields(field);
+                        return wrapper(renderRelationFields(field));
                     default:
                         return undefined;
                 }
@@ -504,7 +498,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
 
         return jsx`
         ${printImports(imports)}
-
+        
         export const ${COMPONENT_NAME} = () => {
             const { queryResult } = useShow();
             const { data, isLoading } = queryResult;
@@ -515,9 +509,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
 
             return (
                 <Show isLoading={isLoading}>
-                    <Stack gap={1}>
-                        ${renderedFields.join("")}
-                    </Stack>
+                    ${renderedFields.join("")}
                 </Show>
             );
         };

@@ -22,6 +22,10 @@
         "./mui": {
             "import": "./dist/esm/mui.js",
             "require": "./dist/mui.js"
+        },
+        "./chakra-ui": {
+            "import": "./dist/esm/chakra-ui.js",
+            "require": "./dist/chakra-ui.js"
         }
     },
     "typesVersions": {
@@ -37,6 +41,9 @@
             ],
             "mui": [
                 "dist/guessers/mui/index.d.ts"
+            ],
+            "chakra-ui": [
+                "dist/guessers/chakra-ui/index.d.ts"
             ]
         }
     },
@@ -122,6 +129,7 @@
         "react-markdown": "^6.0.1",
         "remark-gfm": "^1.0.0",
         "tslib": "^2.3.1",
+        "prettier": "^2.7.1",
         "react-live": "github:aliemir/react-live"
     },
     "author": "Refine",

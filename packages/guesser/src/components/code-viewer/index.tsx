@@ -1,6 +1,6 @@
 import React from "react";
 
-import { prettyString } from "@/utilities";
+import { prettierFormat, prettyString } from "@/utilities";
 import { CreateGuesserConfig } from "@/types";
 
 import { CodeHighlight } from "../code-highlight";
@@ -10,7 +10,11 @@ import { CodeHighlight } from "../code-highlight";
  * This code is provided from props, modal toggling is handled by the component.
  */
 export const CodeViewerComponent: CreateGuesserConfig["codeViewerComponent"] =
-    ({ code, resourceName, type, loading }) => {
+    ({ code: rawCode, resourceName, type, loading }) => {
+        const code = React.useMemo(() => {
+            return prettierFormat(rawCode ?? "");
+        }, [rawCode]);
+
         const inputRef = React.useRef<HTMLInputElement>(null);
         const [visible, setVisible] = React.useState(false);
 
@@ -114,7 +118,7 @@ export const CodeViewerComponent: CreateGuesserConfig["codeViewerComponent"] =
                             <input
                                 ref={inputRef}
                                 type="text"
-                                value={(code ?? "").replace(/\s{2}/g, "")}
+                                value={(code ?? "").replace(/\\n/g, "\r\n")}
                                 id="myInput"
                                 style={{
                                     width: 0,

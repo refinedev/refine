@@ -1,4 +1,4 @@
-import * as RefineMantine from "@pankod/refine-mantine";
+import * as RefineChakraUI from "@pankod/refine-chakra-ui";
 import * as RefineReactTable from "@pankod/refine-react-table";
 import * as TablerIcons from "@tabler/icons";
 
@@ -34,7 +34,7 @@ const getAccessorKey = (field: GuessField) => {
 export const ListGuesser: GuesserResultComponent = createGuesser({
     type: "list",
     additionalScope: [
-        ["@pankod/refine-mantine", "RefineMantine", RefineMantine],
+        ["@pankod/refine-chakra-ui", "RefineChakraUI", RefineChakraUI],
         ["@pankod/refine-react-table", "RefineReactTable", RefineReactTable],
         ["@tabler/icons", "TablerIcons", TablerIcons],
     ],
@@ -50,24 +50,36 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
             ["Column", "@pankod/refine-react-table"],
             ["ColumnDef", "@pankod/refine-react-table"],
             ["flexRender", "@pankod/refine-react-table"],
-            ["ScrollArea", "@pankod/refine-mantine"],
-            ["List", "@pankod/refine-mantine"],
-            ["Table", "@pankod/refine-mantine"],
-            ["Pagination", "@pankod/refine-mantine"],
-            ["Group", "@pankod/refine-mantine"],
-            ["Box", "@pankod/refine-mantine"],
-            ["EditButton", "@pankod/refine-mantine"],
-            ["ShowButton", "@pankod/refine-mantine"],
-            ["DeleteButton", "@pankod/refine-mantine"],
-            ["ActionIcon", "@pankod/refine-mantine"],
-            ["TextInput", "@pankod/refine-mantine"],
-            ["Menu", "@pankod/refine-mantine"],
-            ["Stack", "@pankod/refine-mantine"],
+            ["List", "@pankod/refine-chakra-ui"],
+            ["TableContainer", "@pankod/refine-chakra-ui"],
+            ["Table", "@pankod/refine-chakra-ui"],
+            ["Thead", "@pankod/refine-chakra-ui"],
+            ["Tr", "@pankod/refine-chakra-ui"],
+            ["Th", "@pankod/refine-chakra-ui"],
+            ["Tbody", "@pankod/refine-chakra-ui"],
+            ["Tr", "@pankod/refine-chakra-ui"],
+            ["Td", "@pankod/refine-chakra-ui"],
+            ["HStack", "@pankod/refine-chakra-ui"],
+            ["VStack", "@pankod/refine-chakra-ui"],
+            ["Text", "@pankod/refine-chakra-ui"],
+            ["Button", "@pankod/refine-chakra-ui"],
+            ["IconButton", "@pankod/refine-chakra-ui"],
+            ["usePagination", "@pankod/refine-chakra-ui"],
+            ["Box", "@pankod/refine-chakra-ui"],
+            ["Input", "@pankod/refine-chakra-ui"],
+            ["MenuList", "@pankod/refine-chakra-ui"],
+            ["Menu", "@pankod/refine-chakra-ui"],
+            ["MenuButton", "@pankod/refine-chakra-ui"],
+            ["ShowButton", "@pankod/refine-chakra-ui"],
+            ["EditButton", "@pankod/refine-chakra-ui"],
+            ["DeleteButton", "@pankod/refine-chakra-ui"],
             ["IconChevronDown", "@tabler/icons"],
             ["IconSelector", "@tabler/icons"],
             ["IconFilter", "@tabler/icons"],
             ["IconX", "@tabler/icons"],
             ["IconCheck", "@tabler/icons"],
+            ["IconChevronRight", "@tabler/icons"],
+            ["IconChevronLeft", "@tabler/icons"],
         ];
 
         const relationFields: (GuessField | null)[] = fields.filter(
@@ -144,31 +156,48 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                 // if not, then just show the value
 
                 if (field.multiple) {
-                    imports.push(["TagField", "@pankod/refine-mantine"]);
+                    imports.push(["TagField", "@pankod/refine-chakra-ui"]);
                     let val = "item";
 
                     // for multiple
                     if (field?.relationGuess) {
-                        const valSingle = `${variableName}?.find((resourceItems) => resourceItems.id === item)`;
-                        const valViewableSingle = accessor(
-                            valSingle,
+                        val = accessor(
+                            "item",
                             undefined,
-                            field?.relationGuess?.accessor,
+                            field.relationGuess.accessor,
                         );
-                        val = valViewableSingle;
                     }
 
-                    cell = `cell: function render({ getValue }) {
-                        return (
-                            <Group>
-                                {${accessor(
-                                    "getValue()",
+                    cell = `cell: function render({ getValue, table }) {
+                        const meta = table.options.meta as {
+                            ${toPlural(
+                                field.resource.name,
+                            )}Data: GetManyResponse;
+                        };
+
+                        const ${toPlural(
+                            field.resource.name,
+                        )} = getValue<any[]>().map((item) => {
+                            return meta.${toPlural(
+                                field.resource.name,
+                            )}Data?.data?.find(
+                                (resourceItems) => resourceItems.id === ${accessor(
+                                    "item",
                                     undefined,
                                     field.accessor,
+                                )}
+                            );
+                        })
+
+
+                        return (
+                            <HStack>
+                                {${toPlural(
+                                    field.resource.name,
                                 )}?.map((item, index) => (
                                     <TagField key={index} value={${val}} />
                                 ))}
-                            </Group>
+                            </HStack>
                         )
                     }
                 `;
@@ -184,7 +213,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                             const ${toSingular(
                                 field.resource.name,
                             )} = meta.${variableName}?.find(
-                                (item) => item.id === getValue(),
+                                (item) => item.id === getValue<any>(),
                             );
 
                             return ${accessor(
@@ -212,7 +241,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
 
         const imageFields = (field: GuessField) => {
             if (field.type === "image") {
-                imports.push(["Image", "@pankod/refine-mantine"]);
+                imports.push(["Image", "@pankod/refine-chakra-ui"]);
 
                 const id = `id: "${field.key}"`;
                 const accessorKey = getAccessorKey(field);
@@ -221,7 +250,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                 let cell = jsx`
                     cell: function render({ getValue }) {
                         return <Image sx={{ maxWidth: "100px" }} src={${accessor(
-                            "getValue()",
+                            "getValue<any>()",
                             undefined,
                             Array.isArray(field.accessor)
                                 ? field.accessor
@@ -242,11 +271,11 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                     cell = `
                         cell: function render({ getValue }) {
                             return (
-                                <Group>
-                                    {getValue()?.map((item, index) => (
+                                <HStack>
+                                    {getValue<any[]>()?.map((item, index) => (
                                         <Image src={${val}} key={index} sx={{ height: "50px", maxWidth: "100px" }} />
                                     ))}
-                                </Group>
+                                </HStack>
                             )
                         }
                     `;
@@ -266,7 +295,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
 
         const emailFields = (field: GuessField) => {
             if (field.type === "email") {
-                imports.push(["EmailField", "@pankod/refine-mantine"]);
+                imports.push(["EmailField", "@pankod/refine-chakra-ui"]);
 
                 const id = `id: "${field.key}"`;
                 const accessorKey = getAccessorKey(field);
@@ -275,7 +304,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                 let cell = jsx`
                     cell: function render({ getValue }) {
                         return <EmailField value={${accessor(
-                            "getValue()",
+                            "getValue<any>()",
                             undefined,
                             Array.isArray(field.accessor)
                                 ? field.accessor
@@ -286,7 +315,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                 `;
 
                 if (field.multiple) {
-                    imports.push(["TagField", "@pankod/refine-mantine"]);
+                    imports.push(["TagField", "@pankod/refine-chakra-ui"]);
 
                     const val = accessor(
                         "item",
@@ -298,11 +327,11 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                     cell = `
                         cell: function render({ getValue }) {
                             return (
-                                <Group>
-                                    {getValue()?.map((item, index) => (
+                                <HStack>
+                                    {getValue<any[]>()?.map((item, index) => (
                                         <TagField value={${val}} key={index} />
                                     ))}
-                                </Group>
+                                </HStack>
                             )
                         }
                     `;
@@ -322,7 +351,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
 
         const urlFields = (field: GuessField) => {
             if (field.type === "url") {
-                imports.push(["UrlField", "@pankod/refine-mantine"]);
+                imports.push(["UrlField", "@pankod/refine-chakra-ui"]);
 
                 const id = `id: "${field.key}"`;
                 const accessorKey = getAccessorKey(field);
@@ -331,7 +360,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                 let cell = jsx`
                     cell: function render({ getValue }) {
                         return <UrlField value={${accessor(
-                            "getValue()",
+                            "getValue<any>()",
                             undefined,
                             Array.isArray(field.accessor)
                                 ? field.accessor
@@ -342,7 +371,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                 `;
 
                 if (field.multiple) {
-                    imports.push(["TagField", "@pankod/refine-mantine"]);
+                    imports.push(["TagField", "@pankod/refine-chakra-ui"]);
 
                     const val = accessor(
                         "item",
@@ -354,11 +383,11 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                     cell = `
                         cell: function render({ getValue }) {
                             return (
-                                <Group>
-                                    {getValue()?.map((item, index) => (
+                                <HStack>
+                                    {getValue<any[]>()?.map((item, index) => (
                                         <TagField value={${val}} key={index} />
                                     ))}
-                                </Group>
+                                </HStack>
                             )
                         }
                     `;
@@ -378,7 +407,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
 
         const booleanFields = (field: GuessField) => {
             if (field?.type === "boolean") {
-                imports.push(["BooleanField", "@pankod/refine-mantine"]);
+                imports.push(["BooleanField", "@pankod/refine-chakra-ui"]);
 
                 const id = `id: "${field.key}"`;
                 const accessorKey = getAccessorKey(field);
@@ -387,7 +416,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                 let cell = jsx`
                     cell: function render({ getValue }) {
                         return <BooleanField value={${accessor(
-                            "getValue()",
+                            "getValue<any>()",
                             undefined,
                             Array.isArray(field.accessor)
                                 ? field.accessor
@@ -408,11 +437,11 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                     cell = `
                         cell: function render({ getValue }) {
                             return (
-                                <Group>
-                                    {getValue()?.map((item, index) => (
+                                <HStack>
+                                    {getValue<any[]>()?.map((item, index) => (
                                         <BooleanField value={${val}} key={index} />
                                     ))}
-                                </Group>
+                                </HStack>
                             )
                         }
                     `;
@@ -433,7 +462,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
 
         const dateFields = (field: GuessField) => {
             if (field.type === "date") {
-                imports.push(["DateField", "@pankod/refine-mantine"]);
+                imports.push(["DateField", "@pankod/refine-chakra-ui"]);
 
                 const id = `id: "${field.key}"`;
                 const accessorKey = getAccessorKey(field);
@@ -442,7 +471,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                 let cell = jsx`
                     cell: function render({ getValue }) {
                         return <DateField value={${accessor(
-                            "getValue()",
+                            "getValue<any>()",
                             undefined,
                             Array.isArray(field.accessor)
                                 ? field.accessor
@@ -463,11 +492,11 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                     cell = `
                         cell: function render({ getValue }) {
                             return (
-                                <Group>
-                                    {getValue()?.map((item, index) => (
+                                <HStack>
+                                    {getValue<any[]>()?.map((item, index) => (
                                         <DateField value={${val}} key={index} />
                                     ))}
-                                </Group>
+                                </HStack>
                             )
                         }
                     `;
@@ -487,7 +516,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
 
         const richtextFields = (field: GuessField) => {
             if (field?.type === "richtext") {
-                imports.push(["MarkdownField", "@pankod/refine-mantine"]);
+                imports.push(["MarkdownField", "@pankod/refine-chakra-ui"]);
 
                 const id = `id: "${field.key}"`;
                 const accessorKey = getAccessorKey(field);
@@ -495,13 +524,13 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
 
                 let cell = jsx`
                     cell: function render({ getValue }) {
-                        return <MarkdownField value={(${accessor(
-                            "getValue()",
+                        return <MarkdownField value={${accessor(
+                            "getValue<string>()",
                             undefined,
                             Array.isArray(field.accessor)
                                 ? field.accessor
                                 : undefined,
-                        )}).slice(0, 80) + "..." } />
+                        )}.slice(0, 80) + "..." } />
                     }
                 `;
 
@@ -516,11 +545,11 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                     cell = `
                         cell: function render({ getValue }) {
                             return (
-                                <Group>
-                                    {getValue()?.map((item, index) => (
+                                <HStack>
+                                    {getValue<string[]>()?.map((item, index) => (
                                         <MarkdownField value={${val}} key={index} />
                                     ))}
-                                </Group>
+                                </HStack>
                             )
                         }
                     `;
@@ -548,7 +577,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                 let cell = "";
 
                 if (field.multiple) {
-                    imports.push(["TagField", "@pankod/refine-mantine"]);
+                    imports.push(["TagField", "@pankod/refine-chakra-ui"]);
 
                     const val = accessor(
                         "item",
@@ -560,14 +589,11 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                     cell = `
                         cell: function render({ getValue }) {
                             return (
-                                <Group>
-                                    {${accessor(
-                                        "getValue()",
-                                        field.key,
-                                    )}?.map((item, index) => (
+                                <HStack>
+                                    {getValue<any[]>()?.map((item, index) => (
                                         <TagField value={${val}} key={index} />
                                     ))}
-                                </Group>
+                                </HStack>
                             )
                         }
                     `;
@@ -578,7 +604,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         cell: function render({ getValue }) {
                             return (
                                 <>{${accessor(
-                                    "getValue()",
+                                    "getValue<any>()",
                                     field.key,
                                     field.accessor,
                                 )}}</>
@@ -608,7 +634,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
             enableSorting: false,
             cell: function render({ getValue }) {
                 return (
-                    <Group spacing="xs" noWrap>
+                    <HStack>
                         <ShowButton
                             hideText
                             recordItemId={getValue() as string}
@@ -621,7 +647,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                             hideText
                             recordItemId={getValue() as string}
                         />
-                    </Group>
+                    </HStack>
                 );
             },
         },
@@ -654,6 +680,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
         );
 
         return jsx`
+        import React from "react";
         ${printImports(imports)}
         
         export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
@@ -686,75 +713,121 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
             }));
 
             return (
-                <ScrollArea>
-                    <List>
-                        <Table highlightOnHover>
-                            <thead>
+                <List>
+                    <TableContainer whiteSpace="pre-line">
+                        <Table variant="simple">
+                            <Thead>
                                 {getHeaderGroups().map((headerGroup) => (
-                                    <tr key={headerGroup.id}>
-                                        {headerGroup.headers.map((header) => {
-                                            return (
-                                                <th key={header.id}>
-                                                    {!header.isPlaceholder && (
-                                                        <Group spacing="xs" noWrap>
-                                                            <Box>
-                                                                {flexRender(
-                                                                    header.column
-                                                                        .columnDef
-                                                                        .header,
-                                                                    header.getContext(),
-                                                                )}
-                                                            </Box>
-                                                            <Group spacing="xs" noWrap>
-                                                                <ColumnSorter
-                                                                    column={
-                                                                        header.column
-                                                                    }
-                                                                />
-                                                                <ColumnFilter
-                                                                    column={
-                                                                        header.column
-                                                                    }
-                                                                />
-                                                            </Group>
-                                                        </Group>
-                                                    )}
-                                                </th>
-                                            );
-                                        })}
-                                    </tr>
+                                    <Tr key={headerGroup.id}>
+                                        {headerGroup.headers.map((header) => (
+                                            <Th key={header.id}>
+                                                {!header.isPlaceholder && (
+                                                    <HStack spacing="2">
+                                                        <Text>
+                                                            {flexRender(
+                                                                header.column.columnDef
+                                                                    .header,
+                                                                header.getContext(),
+                                                            )}
+                                                        </Text>
+                                                        <HStack spacing="2">
+                                                            <ColumnSorter
+                                                                column={header.column}
+                                                            />
+                                                            <ColumnFilter
+                                                                column={header.column}
+                                                            />
+                                                        </HStack>
+                                                    </HStack>
+                                                )}
+                                            </Th>
+                                        ))}
+                                    </Tr>
                                 ))}
-                            </thead>
-                            <tbody>
-                                {getRowModel().rows.map((row) => {
-                                    return (
-                                        <tr key={row.id}>
-                                            {row.getVisibleCells().map((cell) => {
-                                                return (
-                                                    <td key={cell.id}>
-                                                        {flexRender(
-                                                            cell.column.columnDef.cell,
-                                                            cell.getContext(),
-                                                        )}
-                                                    </td>
-                                                );
-                                            })}
-                                        </tr>
-                                    );
-                                })}
-                            </tbody>
+                            </Thead>
+                            <Tbody>
+                                {getRowModel().rows.map((row) => (
+                                    <Tr key={row.id}>
+                                        {row.getVisibleCells().map((cell) => (
+                                            <Td key={cell.id}>
+                                                {flexRender(
+                                                    cell.column.columnDef.cell,
+                                                    cell.getContext(),
+                                                )}
+                                            </Td>
+                                        ))}
+                                    </Tr>
+                                ))}
+                            </Tbody>
                         </Table>
-                        <br />
-                        <Pagination
-                            position="right"
-                            total={pageCount}
-                            page={current}
-                            onChange={setCurrent}
-                        />
-                    </List>
-                </ScrollArea>    
+                    </TableContainer>
+                    <Pagination
+                        current={current}
+                        pageCount={pageCount}
+                        setCurrent={setCurrent}
+                    />
+                </List>   
             );
         };
+
+        type PaginationProps = {
+            current: number;
+            pageCount: number;
+            setCurrent: (page: number) => void;
+        };
+
+        const Pagination: React.FC<PaginationProps> = ({
+            current,
+            pageCount,
+            setCurrent,
+        }) => {
+            const pagination = usePagination({
+                current,
+                pageCount,
+            });
+        
+            return (
+                <Box display="flex" justifyContent="flex-end">
+                    <HStack my="3" spacing="1">
+                        {pagination?.prev && (
+                            <IconButton
+                                aria-label="previous page"
+                                onClick={() => setCurrent(current - 1)}
+                                disabled={!pagination?.prev}
+                                variant="outline"
+                            >
+                                <IconChevronLeft size="18" />
+                            </IconButton>
+                        )}
+        
+                        {pagination?.items.map((page) => {
+                            if (typeof page === "string")
+                                return <span key={page}>...</span>;
+        
+                            return (
+                                <Button
+                                    key={page}
+                                    onClick={() => setCurrent(page)}
+                                    variant={page === current ? "solid" : "outline"}
+                                >
+                                    {page}
+                                </Button>
+                            );
+                        })}
+                        {pagination?.next && (
+                            <IconButton
+                                aria-label="next page"
+                                onClick={() => setCurrent(current + 1)}
+                                variant="outline"
+                            >
+                                <IconChevronRight size="18" />
+                            </IconButton>
+                        )}
+                    </HStack>
+                </Box>
+            );
+        };
+        
 
         interface ColumnButtonProps {
             column: Column<any, any>; // eslint-disable-line
@@ -768,7 +841,8 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
             const sorted = column.getIsSorted();
         
             return (
-                <ActionIcon
+                <IconButton
+                    aria-label="Sort"
                     size="xs"
                     onClick={column.getToggleSortingHandler()}
                     style={{
@@ -785,7 +859,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                     ) : (
                         <IconSelector size={18} />
                     )}
-                </ActionIcon>
+                </IconButton>
             );
         };
 
@@ -824,7 +898,9 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
         
                 if (!FilterComponent && !!state) {
                     return (
-                        <TextInput
+                        <Input
+                            borderRadius="md"
+                            size="sm"
                             autoComplete="off"
                             value={state.value}
                             onChange={(e) => change(e.target.value)}
@@ -832,55 +908,49 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                     );
                 }
         
-                return <FilterComponent value={state?.value} onChange={change} />;
+                return (
+                    <FilterComponent
+                        value={state?.value}
+                        onChange={(e: any) => change(e.target.value)}
+                    />
+                );
             };
         
             return (
-                <Menu
-                    opened={!!state}
-                    position="bottom"
-                    withArrow
-                    transition="scale-y"
-                    shadow="xl"
-                    onClose={close}
-                    width="256px"
-                    withinPortal
-                >
-                    <Menu.Target>
-                        <ActionIcon
-                            size="xs"
-                            onClick={open}
-                            variant={column.getIsFiltered() ? "light" : "transparent"}
-                            color={column.getIsFiltered() ? "primary" : "gray"}
-                        >
-                            <IconFilter size={18} />
-                        </ActionIcon>
-                    </Menu.Target>
-                    <Menu.Dropdown>
+                <Menu isOpen={!!state} onClose={close}>
+                    <MenuButton
+                        onClick={open}
+                        as={IconButton}
+                        aria-label="Options"
+                        icon={<IconFilter size="16" />}
+                        variant="ghost"
+                        size="xs"
+                    />
+                    <MenuList p="2">
                         {!!state && (
-                            <Stack p="xs" spacing="xs">
+                            <VStack align="flex-start">
                                 {renderFilterElement()}
-                                <Group position="right" spacing={6} noWrap>
-                                    <ActionIcon
-                                        size="md"
-                                        color="gray"
-                                        variant="outline"
+                                <HStack spacing="1">
+                                    <IconButton
+                                        aria-label="Clear"
+                                        size="sm"
+                                        colorScheme="red"
                                         onClick={clear}
                                     >
                                         <IconX size={18} />
-                                    </ActionIcon>
-                                    <ActionIcon
-                                        size="md"
+                                    </IconButton>
+                                    <IconButton
+                                        aria-label="Save"
+                                        size="sm"
                                         onClick={save}
-                                        color="primary"
-                                        variant="outline"
+                                        colorScheme="green"
                                     >
                                         <IconCheck size={18} />
-                                    </ActionIcon>
-                                </Group>
-                            </Stack>
+                                    </IconButton>
+                                </HStack>
+                            </VStack>
                         )}
-                    </Menu.Dropdown>
+                    </MenuList>
                 </Menu>
             );
         };
