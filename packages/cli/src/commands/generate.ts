@@ -80,7 +80,7 @@ const action = async (resourceName: string, options: any) => {
     temp.cleanupSync();
 
     const jscodeshiftExecutable = require.resolve(".bin/jscodeshift");
-    const { stdout, stderr } = execa.sync(jscodeshiftExecutable, [
+    const { stderr } = execa.sync(jscodeshiftExecutable, [
         "./src/",
         "--extensions=ts,tsx,js,jsx",
         "--parser=tsx",
@@ -95,8 +95,6 @@ const action = async (resourceName: string, options: any) => {
     if (stderr) {
         console.log(stderr);
     }
-
-    console.log(stdout);
 
     console.log(
         `Resource (${options.path}/${resourceFolderName}) generated successfully! 🎉`,

@@ -36,7 +36,7 @@ export default function transformer(file: FileInfo, api: API, options: any) {
     const newImport = j.importDeclaration(
         [
             j.importDefaultSpecifier(
-                j.identifier(`{ ${actionPageComponents.join(", ")}}`),
+                j.identifier(`{ ${actionPageComponents.join(", ")} }`),
             ),
         ],
         j.stringLiteral(`${importPath}/${options.__resourceFolderName}`),
