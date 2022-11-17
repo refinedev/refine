@@ -21,11 +21,6 @@ const load = (program: Command) => {
 const action = async () => {
     const packages = await spinner(isRefineUptoDate, "Checking for updates...");
 
-    if (packages === null) {
-        console.log("Package manager not found.\n");
-        return;
-    }
-
     if (!packages.length) {
         console.log("All `refine` packages are up to date 🎉\n");
         return;
@@ -47,7 +42,6 @@ export const getUpdateWarning = async () => {
 /**
  *
  * @returns `refine` packages that have updates.
- * @returns `null` if there is no `package manager` found.
  * @returns `[]` if no refine package found.
  * @returns `[]` if all `refine` packages are up to date.
  */
