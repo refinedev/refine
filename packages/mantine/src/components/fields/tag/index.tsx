@@ -14,5 +14,9 @@ export type TagFieldProps = RefineFieldTagProps<
  * @see {@link https://refine.dev/docs/api-reference/mantine/components/fields/tag} for more details.
  */
 export const TagField: React.FC<TagFieldProps> = ({ value, ...rest }) => {
-    return <Chip {...rest}>{value?.toString()}</Chip>;
+    return (
+        <Chip checked={false} {...rest}>
+            {value?.toString()}
+        </Chip>
+    );
 };
