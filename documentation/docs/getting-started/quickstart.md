@@ -4,22 +4,20 @@ title: Quick Start Guide
 ---
 
 
-refine is a React framework. In other words, it works in any environment where React runs (with Next.js, Remix, CRA, Vite, etc.).  
+**refine** works on any environment you can run **React** (incl. *CRA, Next.js, Remix, Vite* etc.)
 
-The fastest way to get started with **refine** is using the [superplate](https://github.com/pankod/superplate) project starter tool.  With your app requirements in mind, you can install third-party libraries and packages that have built-in support by **refine**.
 
-The CLI interface for installing and managing refine packages is really straightforward. 
+Although you could take the time to manually set up your environment and install **refine** packages afterwards, the smart way to get started with **refine** is using [superplate](https://github.com/pankod/superplate) project starter tool. 
 
-First, you need to select the desired frameworks from a list of available options on CLI by running the following command:
+**superplate** provides built-in templates for *CRA*, *Next.js* and *Remix* environments so you can bootstrap a **refine** project in a couple of minutes. It also offers a wide range of options that you can automatically configure for your *UI framework*, *i18n*, *router*, *Auth.* and *data provider* settings.
+
+To get started, please run the following command. The **CLI wizard** will assist you for the rest of the setup process:
 
 ```
 npx superplate-cli -p refine my-project
 ```
 
-
-Once you have selected the desired frameworks and packages, complete setup.
-
-Then navigate to the project folder and start your project with:
+It will create your **refine** project and install the required packages according to your selections. After completing the setup, navigate to the project folder and start your application with:
 
 ```
 npm run dev
