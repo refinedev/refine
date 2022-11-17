@@ -67,16 +67,15 @@ const action = async (resourceName: string, options: any) => {
 
     // copy to destination
     const resourceFolderName = plural(resourceName).toLowerCase();
+    const destinationResourcePath = `${options.path}/${resourceFolderName}`;
 
     let moveSyncOptions = {};
 
-    const destFullPath = `${options.path}/${resourceFolderName}`;
-
     // empty dir override
-    if (readdirSync(destFullPath).length === 0) {
+    if (readdirSync(destinationResourcePath).length === 0) {
         moveSyncOptions = { overwrite: true };
     }
-    moveSync(tempDir, destFullPath, moveSyncOptions);
+    moveSync(tempDir, destinationResourcePath, moveSyncOptions);
 
     // clear temp dir
     temp.cleanupSync();
@@ -98,7 +97,9 @@ const action = async (resourceName: string, options: any) => {
         console.log(stderr);
     }
 
-    console.log(`Resource (${destFullPath}) generated successfully! 🎉`);
+    console.log(
+        `Resource (${destinationResourcePath}) generated successfully! 🎉`,
+    );
 };
 
 const generateTempDir = (): string => {
