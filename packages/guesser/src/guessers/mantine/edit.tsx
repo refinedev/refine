@@ -51,6 +51,33 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
             .map((field) => {
                 if (field?.relation && !field.fieldable && field.resource) {
                     imports.push(["useSelect", "@pankod/refine-mantine"]);
+
+                    let val = accessor(
+                        recordName,
+                        field.key,
+                        field.accessor,
+                        false,
+                    );
+
+                    if (field.multiple && field.accessor) {
+                        val = `${accessor(
+                            recordName,
+                            field.key,
+                        )}?.map((item: any) => ${accessor(
+                            "item",
+                            undefined,
+                            field.accessor,
+                        )})`;
+                    }
+
+                    let effect = "";
+
+                    if (field.multiple && field.accessor) {
+                        effect = `React.useEffect(() => {
+                            setFieldValue("${field.key}", ${val});
+                        }, [${recordName}]);`;
+                    }
+
                     return `
                     const { selectProps: ${
                         field.multiple
@@ -59,14 +86,11 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                     }SelectProps } =
                     useSelect({
                         resource: "${field.resource.name}",
-                        defaultValue: ${accessor(
-                            recordName,
-                            field.key,
-                            field.accessor,
-                            false,
-                        )},
+                        defaultValue: ${val},
                         ${getOptionLabel(field)}
                     });
+
+                    ${effect}
                 `;
                 }
                 return undefined;
@@ -77,16 +101,15 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
             if (field.relation && field.resource) {
                 initialValues = {
                     ...initialValues,
-                    [field.key]:
-                        field.multiple && field.type !== "relation"
-                            ? []
-                            : field.accessor
-                            ? {
-                                  [typeof field.accessor === "string"
-                                      ? field.accessor
-                                      : field.accessor[0]]: "",
-                              }
-                            : "",
+                    [field.key]: field.multiple
+                        ? []
+                        : field.accessor
+                        ? {
+                              [typeof field.accessor === "string"
+                                  ? field.accessor
+                                  : field.accessor[0]]: "",
+                          }
+                        : "",
                 };
 
                 const variableName = `${
@@ -104,7 +127,6 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                         )}" {...getInputProps("${dotAccessor(
                         field.key,
                         undefined,
-                        field.accessor,
                     )}")} {...${variableName}} filterDataOnExactSearchMatch={undefined} />
                     `;
                 }
@@ -216,7 +238,7 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                         )}?.map((item: any, index: number) => (
                             <Checkbox mt="sm" key={index} label={\`${prettyString(
                                 field.key,
-                            )} \${index + 1} \`} {...getInputProps(\`${val}\`)} />
+                            )} \${index + 1} \`} {...getInputProps(\`${val}\`, { type: 'checkbox' })} />
                         ))}
                     </Group>
                     `;
@@ -229,7 +251,7 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                     field.key,
                     undefined,
                     field.accessor,
-                )}")} />
+                )}", { type: 'checkbox' })} />
                 `;
             }
             return undefined;
@@ -384,7 +406,7 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
         ${printImports(imports)}
         
         export const ${COMPONENT_NAME} = () => {
-            const { getInputProps, saveButtonProps, refineCore: { queryResult } } = useForm({
+            const { getInputProps, saveButtonProps, setFieldValue, refineCore: { queryResult } } = useForm({
                 initialValues: ${JSON.stringify(initialValues)},
             });
         
