@@ -95,7 +95,7 @@ const runAll = (tag: Tag, packages: RefinePackageInstalledVersionData[]) => {
 const printInstallCommand = async (packages: string[]) => {
     const pm = await getPreferedPM();
     const commandInstall = pmCommands[pm.name].install;
-    console.log(`${pm.name} ${commandInstall} ${packages.join(" ")}`);
+    console.log(`${pm.name} ${commandInstall.join(" ")} ${packages.join(" ")}`);
 };
 
 const pmInstall = (packages: string[]) => {
