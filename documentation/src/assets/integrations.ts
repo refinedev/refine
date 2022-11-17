@@ -23,6 +23,7 @@ import {
     Kbar,
     Ably,
     Dp,
+    Elide,
 } from "./integration-icons";
 
 export const integrations: IntegrationsType = {
@@ -174,6 +175,20 @@ export const integrations: IntegrationsType = {
                 },
             ],
         },
+        {
+            name: "Elide Data Provider",
+            icon: Elide,
+            description:
+                "Connector for backends created with <strong>Elide</strong>",
+            url: "https://github.com/chirdeeptomar/refine-elide-rest",
+            status: "stable",
+            contributors: [
+                {
+                    name: "chirdeeptomar",
+                    url: "https://github.com/chirdeeptomar",
+                },
+            ],
+        },
     ],
     frameworks: [
         {
@@ -265,6 +280,20 @@ export const integrations: IntegrationsType = {
                 {
                     name: "rturan29",
                     url: "https://github.com/rturan29",
+                },
+            ],
+        },
+        {
+            name: "Elide Data Provider",
+            icon: Elide,
+            description:
+                "Connector for backends created with <strong>Elide</strong>",
+            url: "https://github.com/chirdeeptomar/refine-elide-rest",
+            status: "stable",
+            contributors: [
+                {
+                    name: "chirdeeptomar",
+                    url: "https://github.com/chirdeeptomar",
                 },
             ],
         },

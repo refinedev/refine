@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactChild } from "react";
 
 import { RefineFieldNumberProps } from "@pankod/refine-ui-types";
 import { Text, TextProps } from "@chakra-ui/react";
@@ -10,7 +10,7 @@ function toLocaleStringSupportsOptions() {
         typeof Intl.NumberFormat == "function"
     );
 }
-export type NumberFieldProps = RefineFieldNumberProps<TextProps>;
+export type NumberFieldProps = RefineFieldNumberProps<ReactChild, TextProps>;
 /**
  * This field is used to display a number formatted according to the browser locale, right aligned. and uses {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl `Intl`} to display date format
  * and Chakra UI {@link https://chakra-ui.com/docs/components/text  `<Text>`} component.
