@@ -12,8 +12,6 @@ export default function transformer(file: FileInfo, api: API, options: any) {
     const j = api.jscodeshift;
     const source = j(file.source);
 
-    console.log("options", options);
-
     const rootElement = source.find(j.JSXElement, {
         openingElement: {
             name: {
