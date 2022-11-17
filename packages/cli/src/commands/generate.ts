@@ -6,6 +6,7 @@ import execa from "execa";
 
 import { getProjectType, getUIFramework } from "@utils/project";
 import { compileDir } from "@utils/compile";
+import { uppercaseFirstChar } from "@utils/text";
 
 const defaultActions = ["list", "create", "edit", "show"];
 const load = (program: Command) => {
@@ -20,7 +21,7 @@ const load = (program: Command) => {
         .option(
             "-p, --path [path]",
             "Path to generate the resource",
-            "./src/pages",
+            "src/pages",
         )
         .action(action);
 };
@@ -29,6 +30,9 @@ const action = async (resourceName: string, options: any) => {
     const customActions = options.actions
         ? options.actions.split(",")
         : undefined;
+
+    // uppercase first letter
+    const resource = uppercaseFirstChar(resourceName);
 
     // get the project type
     const projectType = getProjectType();
@@ -43,7 +47,7 @@ const action = async (resourceName: string, options: any) => {
     copySync(sourceDir, tempDir);
 
     const compileParams = {
-        resourceName,
+        resource,
         actions: customActions || defaultActions,
         projectType,
         uiFramework,
@@ -86,6 +90,7 @@ const action = async (resourceName: string, options: any) => {
         `--__actions=${compileParams.actions}`,
         `--__path=${options.path}`,
         `--__resourceFolderName=${resourceFolderName}`,
+        `--__resource=${resource}`,
     ]);
 
     if (stderr) {

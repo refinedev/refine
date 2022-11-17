@@ -6,13 +6,13 @@ import {
     JSXExpressionContainer,
     ArrayExpression,
 } from "jscodeshift";
+import { uppercaseFirstChar } from "../utils/text";
 
 export default function transformer(file: FileInfo, api: API, options: any) {
     const j = api.jscodeshift;
     const source = j(file.source);
 
     console.log("options", options);
-    console.log("file", file.path);
 
     const rootElement = source.find(j.JSXElement, {
         openingElement: {
@@ -26,9 +26,47 @@ export default function transformer(file: FileInfo, api: API, options: any) {
         return;
     }
 
+    // prepare actions
+    const actions = options.__actions.split(",");
+    const actionPageComponents = actions.map(
+        (action: string) =>
+            `${options.__resource}${uppercaseFirstChar(action)}`,
+    );
+
+    // add import for resource
+    const importPath = options.__path.replace("src/", "");
+    const newImport = j.importDeclaration(
+        [
+            j.importDefaultSpecifier(
+                j.identifier(`{ ${actionPageComponents.join(", ")}}`),
+            ),
+        ],
+        j.stringLiteral(`${importPath}/${options.__resourceFolderName}`),
+    );
+
+    // ;
+    const resourceProperty = [
+        j.property("init", j.identifier("name"), j.stringLiteral("categories")),
+    ];
+    actions.map((item: string) => {
+        resourceProperty.push(
+            j.property(
+                "init",
+                j.identifier(item),
+                j.identifier(
+                    `${options.__resource}${uppercaseFirstChar(item)},`,
+                ),
+            ),
+        );
+    });
+
+    // find last import index
+    const lastImportIndex = source.find(j.ImportDeclaration).length - 1;
+
+    source.find(j.ImportDeclaration).at(lastImportIndex).insertAfter(newImport);
+
     rootElement.replaceWith((path) => {
         const attributes = path.node.openingElement.attributes;
-
         if (!attributes) {
             return path.node;
         }
@@ -54,13 +92,7 @@ export default function transformer(file: FileInfo, api: API, options: any) {
             j.jsxExpressionContainer(
                 j.arrayExpression([
                     ...resourceElements,
-                    j.objectExpression([
-                        j.property(
-                            "init",
-                            j.identifier("name"),
-                            j.stringLiteral("categories"),
-                        ),
-                    ]),
+                    j.objectExpression(resourceProperty),
                 ]),
             ),
         );
