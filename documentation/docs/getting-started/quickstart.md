@@ -33,7 +33,7 @@ You can now view **refine** application at [http://localhost:3000](http://localh
 
 ## Quick Start Example
 
-We will show how you can use the CLI to bootstrap a **refine** app with [Ant Design](https://ant.design/) and [React](https://reactjs.org/). You can also use [Material UI](https://material-ui.com/), [Chakra UI](https://chakra-ui.com/) and [Mantine)(https://mantine.dev/) as well.
+We will show how you can use the CLI to bootstrap a **refine** app with [Ant Design](https://ant.design/) and [React](https://reactjs.org/). You can also use [Material UI](https://material-ui.com/), [Chakra UI](https://chakra-ui.com/) and [Mantine](https://mantine.dev/) as well.
 
 ```
 npx superplate-cli -p refine my-antd-project
