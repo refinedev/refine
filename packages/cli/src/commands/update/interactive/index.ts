@@ -38,6 +38,7 @@ export const promptInteractiveRefineUpdate = async (packages: RefinePckg[]) => {
             message: "Choose packages to update",
             pageSize: inquirerUI.pageSize,
             choices: inquirerUI.choices,
+            validate: validatePrompt,
         },
     ]);
 
