@@ -6,10 +6,10 @@ import {
     getPreferedPM,
     NpmOutdatedResponse,
     RefinePackageInstalledVersionData,
+    pmCommands,
 } from "src/lib/package-manager";
 import execa from "execa";
 import spinner from "src/utils/spinner";
-import { pmCommands } from "src/lib/package-manager";
 
 const load = (program: Command) => {
     return program
