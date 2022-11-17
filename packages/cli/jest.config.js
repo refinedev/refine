@@ -5,4 +5,6 @@ module.exports = {
     displayName: "cli",
     setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
     testEnvironment: "jsdom",
+    modulePaths: ["<rootDir>", "src"],
+    moduleDirectories: ["node_modules", "src"],
 };

@@ -1,14 +1,15 @@
 import React from "react";
 import { Command } from "commander";
-import preferredPM from "preferred-pm";
 import { render } from "ink";
 import UpdateWarningTable from "src/components/update-warning-table";
 import {
+    getPreferedPM,
     NpmOutdatedResponse,
     RefinePackageInstalledVersionData,
-} from "src/interfaces";
+} from "src/lib/package-manager";
 import execa from "execa";
 import spinner from "src/utils/spinner";
+import { pmCommands } from "src/lib/package-manager";
 
 const load = (program: Command) => {
     return program
@@ -21,12 +22,12 @@ const action = async () => {
     const packages = await spinner(isRefineUptoDate, "Checking for updates...");
 
     if (packages === null) {
-        console.log("Package manager not found.");
+        console.log("Package manager not found.\n");
         return;
     }
 
     if (!packages.length) {
-        console.log("All `refine` packages are up to date 🎉");
+        console.log("All `refine` packages are up to date 🎉\n");
         return;
     }
 
@@ -51,8 +52,7 @@ export const getUpdateWarning = async () => {
  * @returns `[]` if all `refine` packages are up to date.
  */
 export const isRefineUptoDate = async () => {
-    const pm = await preferredPM(process.cwd());
-    if (!pm) return null;
+    const pm = await getPreferedPM();
 
     const refinePackages = await getOutdatedRefinePackages(pm.name);
 
@@ -83,7 +83,7 @@ const getOutdatedRefinePackages = async (pm: "npm" | "pnpm" | "yarn") => {
 
 const getOutdatedPackageList = async (pm: "npm" | "pnpm" | "yarn") => {
     try {
-        const { stdout } = await execa(`${pm}`, [`outdated`, `--json`], {
+        const { stdout } = await execa(pm, pmCommands[pm].outdatedJson, {
             reject: false,
             timeout: 10000,
         });
