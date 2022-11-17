@@ -70,7 +70,7 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                         val = `${accessor(
                             recordName,
                             field.key,
-                        )}?.map((item) => ${accessor(
+                        )}?.map((item: any) => ${accessor(
                             "item",
                             undefined,
                             field.accessor,
@@ -128,12 +128,12 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                         ))}
                     </Select>
                     <FormErrorMessage>
-                        {\`${accessor(
-                            "errors",
+                        {${accessor(
+                            "(errors as any)",
                             field.key,
                             field.accessor,
                             false,
-                        )}?.message\`}
+                        )}?.message as string}
                     </FormErrorMessage>
                 </FormControl>
                 `;
@@ -154,6 +154,17 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                 if (field.multiple) {
                     const val = dotAccessor(
                         field.key,
+                        "${index}",
+                        field.accessor,
+                    );
+
+                    const valError = accessor(
+                        accessor(
+                            "(errors as any)",
+                            field.key,
+                            undefined,
+                            false,
+                        ) + "?.[index]",
                         undefined,
                         field.accessor,
                     );
@@ -163,28 +174,21 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                             {${accessor(
                                 recordName,
                                 field.key,
-                            )}?.map((item, index) => (
-                                <FormControl key={index} mb="3" isInvalid={!!${accessor(
-                                    "errors",
-                                    field.key,
-                                    field.accessor,
-                                    false,
-                                )}?.[index]}>
+                            )}?.map((item: any, index: number) => (
+                                <FormControl key={index} mb="3" isInvalid={!!${valError}}>
                                     <FormLabel>${prettyString(
                                         field.key,
                                     )} #{index + 1}</FormLabel>
                                     <Input
-                                        {...register(\`${val}.\${index}\`, {
+                                        {...register(\`${val}\`, {
                                             required: "This field is required",
                                         })}
                                     />
                                     <FormErrorMessage>
-                                    {\`${accessor(
-                                        "errors",
-                                        field.key,
-                                        field.accessor,
-                                        false,
-                                    )}?.message\`}
+                                        {${accessor(
+                                            valError,
+                                            "message",
+                                        )} as string}
                                     </FormErrorMessage>
                                 </FormControl>
                             ))}
@@ -193,7 +197,7 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                 }
                 return jsx`
                     <FormControl mb="3" isInvalid={!!${accessor(
-                        "errors",
+                        "(errors as any)",
                         field.key,
                         field.accessor,
                         false,
@@ -216,12 +220,12 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                             })}
                         />
                         <FormErrorMessage>
-                            {\`${accessor(
-                                "errors",
+                            {${accessor(
+                                "(errors as any)",
                                 field.key,
                                 field.accessor,
                                 false,
-                            )}?.message\`}
+                            )}?.message as string}
                         </FormErrorMessage>
                     </FormControl>
                 `;
@@ -240,18 +244,21 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                         field.accessor,
                     );
 
+                    const errorVal =
+                        accessor(
+                            "(errors as any)",
+                            field.key,
+                            undefined,
+                            false,
+                        ) + "?.[index]";
+
                     return `
                         <>
                             {${accessor(
                                 recordName,
                                 field.key,
-                            )}?.map((item, index) => (
-                                <FormControl key={index} mb="3" isInvalid={!!${accessor(
-                                    "errors",
-                                    field.key,
-                                    field.accessor,
-                                    false,
-                                )}?.[index]}>
+                            )}?.map((item: any, index: number) => (
+                                <FormControl key={index} mb="3" isInvalid={!!${errorVal}}>
                                     <FormLabel>${prettyString(
                                         field.key,
                                     )} #{index + 1}</FormLabel>
@@ -261,12 +268,7 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                                         })}
                                     />
                                     <FormErrorMessage>
-                                        {\`${accessor(
-                                            "errors",
-                                            field.key,
-                                            field.accessor,
-                                            false,
-                                        )}?.message\`}
+                                        {${errorVal}?.message as string}
                                     </FormErrorMessage>
                                 </FormControl>
                             ))}
@@ -292,12 +294,12 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                             })}
                         />
                         <FormErrorMessage>
-                            {\`${accessor(
+                            {${accessor(
                                 "errors",
                                 field.key,
                                 field.accessor,
                                 false,
-                            )}?.message\`}
+                            )}?.message as string}
                         </FormErrorMessage>
                     </FormControl>
                    
