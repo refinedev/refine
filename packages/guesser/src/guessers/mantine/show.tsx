@@ -34,7 +34,6 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
         const imports: Array<[element: string, module: string]> = [
             ["useShow", "@pankod/refine-core"],
             ["Show", "@pankod/refine-mantine"],
-            ["Text", "@pankod/refine-mantine"],
             ["Title", "@pankod/refine-mantine"],
         ];
 
@@ -55,7 +54,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                             ids = `${accessor(
                                 recordName,
                                 field.key,
-                            )}?.map((item) => ${accessor(
+                            )}?.map((item: any) => ${accessor(
                                 "item",
                                 undefined,
                                 field.accessor,
@@ -78,6 +77,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                     `;
                     }
                     imports.push(["useOne", "@pankod/refine-core"]);
+
                     return `
                     const { data: ${toSingular(
                         field.resource.name,
@@ -109,6 +109,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                         ? toPlural(field.resource.name)
                         : toSingular(field.resource.name)
                 }Data`;
+
                 const variableIsLoading = `${
                     field.multiple
                         ? toPlural(field.resource.name)
@@ -116,7 +117,6 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                 }IsLoading`;
 
                 if (field.multiple) {
-                    imports.push(["TagField", "@pankod/refine-mantine"]);
                     return jsx`
                     <Title my="xs" order={5}>${prettyString(field.key)}</Title>
                     {${variableIsLoading} ? <>Loading...</> : (
@@ -130,12 +130,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                                         )
                                     ) {
                                         return `Not Handled.`;
-                                        // return `{${multipleAccessor(
-                                        //     `${variableName}?.data`,
-                                        //     field.relationGuess.accessor,
-                                        // ).join(' + " " + ')}}`;
                                     } else {
-                                        // return `Not Handled.`;
                                         const mapItemName = toSingular(
                                             field.resource?.name,
                                         );
@@ -144,11 +139,14 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                                             undefined,
                                             field.relationGuess.accessor,
                                         );
-                                        return `{${variableName}?.data?.map((${mapItemName}) => <TagField key={${val}} value={${val}} />)}`;
+                                        return `
+                                        <Group spacing="xs">
+                                            {${variableName}?.data?.map((${mapItemName}: any) => <TagField key={${val}} value={${val}} />)}
+                                        </Group>
+                                        `;
                                     }
                                 } else {
                                     return `Not Handled.`;
-                                    return `{${variableName}?.data}`;
                                 }
                             } else {
                                 return `not-handled - relation with multiple but no resource`;
@@ -157,16 +155,6 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                         </>
                     )}
                     `;
-                    // {${accessorString(variableName, {
-                    //     key: field.key,
-                    // })}?.map((item) => (
-                    //     <TagField value={${
-                    //         field.accessor ? `item?.${field.accessor}` : `item`
-                    //     }} key={${
-                    //     field.accessor ? `item?.${field.accessor}` : `item`
-                    // }} />
-                    // ))}
-                    // `;
                 }
                 return jsx`
                     <Title my="xs" order={5}>${prettyString(field.key)}</Title>
@@ -206,17 +194,26 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
 
         const textFields = (field: GuessField) => {
             if (field.type === "text") {
-                imports.push(
-                    ["TagField", "@pankod/refine-mantine"],
-                    ["TextField", "@pankod/refine-mantine"],
-                );
+                imports.push(["TextField", "@pankod/refine-mantine"]);
+
                 if (field.multiple) {
+                    imports.push(
+                        ["TagField", "@pankod/refine-mantine"],
+                        ["Group", "@pankod/refine-mantine"],
+                    );
+
                     const val = accessor("item", undefined, field.accessor);
+
                     return jsx`
                     <Title my="xs" order={5}>${prettyString(field.key)}</Title>
-                    {${accessor(recordName, field.key)}?.map((item) => (
-                        <TagField value={${val}} key={${val}} />
-                    ))}
+                    <Group spacing="xs">
+                        {${accessor(
+                            recordName,
+                            field.key,
+                        )}?.map((item: any) => (
+                            <TagField value={${val}} key={${val}} />
+                        ))}
+                    </Group>
                 `;
                 }
                 return jsx`
@@ -234,18 +231,26 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
         const imageFields = (field: GuessField) => {
             if (field.type === "image") {
                 imports.push(["Image", "@pankod/refine-mantine"]);
+
                 if (field.multiple) {
+                    imports.push(["Group", "@pankod/refine-mantine"]);
+
                     const val = accessor("item", undefined, field.accessor);
+
                     return jsx`
                     <Title my="xs" order={5}>${prettyString(field.key)}</Title>
-                    {${accessor(recordName, field.key)}?.map((item) => (
-                        <Image sx={{ maxWidth: 200 }} src={${val}} key={${val}} />
-                    ))}
+                    <Group spacing="xs">
+                        {${accessor(
+                            recordName,
+                            field.key,
+                        )}?.map((item: any) => (
+                            <Image sx={{ maxWidth: 200 }} src={${val}} key={${val}} />
+                        ))}
+                    </Group>
                 `;
                 }
                 return jsx`
                     <Title my="xs" order={5}>${prettyString(field.key)}</Title>
-                    {JSON.stringify(${accessor(recordName, field.key)})}
                     <Image sx={{ maxWidth: 200 }} src={${accessor(
                         recordName,
                         field.key,
@@ -259,17 +264,26 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
 
         const emailFields = (field: GuessField) => {
             if (field.type === "email") {
-                imports.push(
-                    ["TagField", "@pankod/refine-mantine"],
-                    ["EmailField", "@pankod/refine-mantine"],
-                );
+                imports.push(["EmailField", "@pankod/refine-mantine"]);
+
                 if (field.multiple) {
+                    imports.push(
+                        ["TagField", "@pankod/refine-mantine"],
+                        ["Group", "@pankod/refine-mantine"],
+                    );
+
                     const val = accessor("item", undefined, field.accessor);
+
                     return jsx`
                     <Title my="xs" order={5}>${prettyString(field.key)}</Title>
-                    {${accessor(recordName, field.key)}?.map((item) => (
-                        <TagField value={${val}} key={${val}} />
-                    ))}
+                    <Group spacing="xs">
+                        {${accessor(
+                            recordName,
+                            field.key,
+                        )}?.map((item: any) => (
+                            <TagField value={${val}} key={${val}} />
+                        ))}
+                    </Group>
                 `;
                 }
                 return jsx`
@@ -287,17 +301,26 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
 
         const urlFields = (field: GuessField) => {
             if (field.type === "url") {
-                imports.push(
-                    ["TagField", "@pankod/refine-mantine"],
-                    ["UrlField", "@pankod/refine-mantine"],
-                );
+                imports.push(["UrlField", "@pankod/refine-mantine"]);
+
                 if (field.multiple) {
+                    imports.push(
+                        ["TagField", "@pankod/refine-mantine"],
+                        ["Group", "@pankod/refine-mantine"],
+                    );
+
                     const val = accessor("item", undefined, field.accessor);
+
                     return jsx`
                     <Title my="xs" order={5}>${prettyString(field.key)}</Title>
-                    {${accessor(recordName, field.key)}?.map((item) => (
-                        <TagField value={${val}} key={${val}} />
-                    ))}
+                    <Group spacing="xs">
+                        {${accessor(
+                            recordName,
+                            field.key,
+                        )}?.map((item: any) => (
+                            <TagField value={${val}} key={${val}} />
+                        ))}
+                    </Group>
                 `;
                 }
                 return jsx`
@@ -315,17 +338,26 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
 
         const booleanFields = (field: GuessField) => {
             if (field.type === "boolean") {
-                imports.push(
-                    ["TagField", "@pankod/refine-mantine"],
-                    ["BooleanField", "@pankod/refine-mantine"],
-                );
+                imports.push(["BooleanField", "@pankod/refine-mantine"]);
+
                 if (field.multiple) {
+                    imports.push(
+                        ["TagField", "@pankod/refine-mantine"],
+                        ["Group", "@pankod/refine-mantine"],
+                    );
+
                     const val = accessor("item", undefined, field.accessor);
+
                     return jsx`
                     <Title my="xs" order={5}>${prettyString(field.key)}</Title>
-                    {${accessor(recordName, field.key)}?.map((item) => (
-                        <TagField value={${val}} key={${val}} />
-                    ))}
+                    <Group spacing="xs">
+                        {${accessor(
+                            recordName,
+                            field.key,
+                        )}?.map((item: any, index: number) => (
+                            <TagField value={${val}} key={index} />
+                        ))}
+                    </Group>
                 `;
                 }
                 return jsx`
@@ -344,13 +376,22 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
         const dateFields = (field: GuessField) => {
             if (field.type === "date") {
                 imports.push(["DateField", "@pankod/refine-mantine"]);
+
                 if (field.multiple) {
+                    imports.push(["Group", "@pankod/refine-mantine"]);
+
                     const val = accessor("item", undefined, field.accessor);
+
                     return jsx`
                     <Title my="xs" order={5}>${prettyString(field.key)}</Title>
-                    {${accessor(recordName, field.key)}?.map((item) => (
-                        <DateField value={${val}} key={${val}} />
-                    ))}
+                    <Group spacing="xs">
+                        {${accessor(
+                            recordName,
+                            field.key,
+                        )}?.map((item: any) => (
+                            <DateField value={${val}} key={${val}} />
+                        ))}
+                    </Group>
                 `;
                 }
                 return jsx`
@@ -369,6 +410,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
         const richtextFields = (field: GuessField) => {
             if (field.type === "richtext") {
                 imports.push(["MarkdownField", "@pankod/refine-mantine"]);
+
                 return jsx`
                     <Title mt="xs" order={5}>${prettyString(field.key)}</Title>
                     <MarkdownField value={${accessor(
@@ -386,13 +428,25 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
         const numberFields = (field: GuessField) => {
             if (field.type === "number") {
                 imports.push(["NumberField", "@pankod/refine-mantine"]);
+
                 if (field.multiple) {
+                    imports.push(
+                        ["TagField", "@pankod/refine-mantine"],
+                        ["Group", "@pankod/refine-mantine"],
+                    );
+
                     const val = accessor("item", undefined, field.accessor);
+
                     return jsx`
                     <Title my="xs" order={5}>${prettyString(field.key)}</Title>
-                    {${accessor(recordName, field.key)}?.map((item) => (
-                        <TagField value={${val}} key={${val}} />
-                    ))}
+                    <Group spacing="xs">
+                        {${accessor(
+                            recordName,
+                            field.key,
+                        )}?.map((item: any) => (
+                            <TagField value={${val}} key={${val}} />
+                        ))}
+                    </Group>
                 `;
                 }
                 return jsx`
