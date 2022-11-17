@@ -82,3 +82,26 @@ export const installPackages = async (packages: string[]) => {
         throw new Error(error);
     }
 };
+
+export interface PackageNameAndVersion {
+    name: string;
+    version: string | null;
+}
+
+export const parsePackageNameAndVersion = (
+    str: string,
+): PackageNameAndVersion => {
+    const versionStartIndex = str.lastIndexOf("@");
+
+    if (versionStartIndex <= 0) {
+        return {
+            name: str,
+            version: null,
+        };
+    }
+
+    return {
+        name: str.slice(0, versionStartIndex),
+        version: str.slice(versionStartIndex + 1),
+    };
+};

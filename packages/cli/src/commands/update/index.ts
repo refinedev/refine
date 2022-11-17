@@ -5,7 +5,9 @@ import {
     getPreferedPM,
     installPackages,
     pmCommands,
+    RefinePackageInstalledVersionData,
 } from "src/lib/package-manager";
+import { promptInteractiveRefineUpdate } from "./interactive";
 
 enum Tag {
     Wanted = "wanted",
@@ -22,9 +24,6 @@ interface OptionValues {
 const load = (program: Command) => {
     return program
         .command("update")
-        .summary(
-            "Interactively select and update all `refine` packages to selected version. To skip the interactive mode, use the `--all` option.",
-        )
         .description(
             "Interactively select and update all `refine` packages to selected version. To skip the interactive mode, use the `--all` option.",
         )
@@ -52,19 +51,27 @@ const load = (program: Command) => {
 const action = async (options: OptionValues) => {
     const { tag, dryRun, all } = options;
 
-    console.log({ tag, dryRun, all });
-
     const packages = await spinner(isRefineUptoDate, "Checking for updates...");
     if (!packages?.length) {
         console.log("All `refine` packages are up to date 🎉");
         return;
     }
 
-    if (!all) {
-        console.log("Interactive mode not implemented yet.");
+    const selectedPackages = all
+        ? runAll(tag, packages)
+        : await promptInteractiveRefineUpdate(packages);
+
+    if (!selectedPackages) return;
+
+    if (dryRun) {
+        printInstallCommand(selectedPackages);
         return;
     }
 
+    pmInstall(selectedPackages);
+};
+
+const runAll = (tag: Tag, packages: RefinePackageInstalledVersionData[]) => {
     if (tag === Tag.Wanted) {
         const isAllPackagesAtWantedVersion = packages.every(
             (pkg) => pkg.current === pkg.wanted,
@@ -73,7 +80,7 @@ const action = async (options: OptionValues) => {
             console.log(
                 "All `refine` packages are up to date with the wanted version 🎉",
             );
-            return;
+            return null;
         }
     }
 
@@ -82,16 +89,13 @@ const action = async (options: OptionValues) => {
         return `${pkg.name}@${version}`;
     });
 
-    if (dryRun) {
-        const pm = await getPreferedPM();
-        const commandInstall = pmCommands[pm.name].install;
-        console.log(
-            `${pm.name} ${commandInstall} ${packagesWithVersion.join(" ")}`,
-        );
-        return;
-    }
+    return packagesWithVersion;
+};
 
-    pmInstall(packagesWithVersion);
+const printInstallCommand = async (packages: string[]) => {
+    const pm = await getPreferedPM();
+    const commandInstall = pmCommands[pm.name].install;
+    console.log(`${pm.name} ${commandInstall} ${packages.join(" ")}`);
 };
 
 const pmInstall = (packages: string[]) => {
