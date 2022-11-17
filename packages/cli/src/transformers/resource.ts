@@ -42,9 +42,12 @@ export default function transformer(file: FileInfo, api: API, options: any) {
         j.stringLiteral(`${importPath}/${options.__resourceFolderName}`),
     );
 
-    // ;
     const resourceProperty = [
-        j.property("init", j.identifier("name"), j.stringLiteral("categories")),
+        j.property(
+            "init",
+            j.identifier("name"),
+            j.stringLiteral(options.__resource),
+        ),
     ];
     actions.map((item: string) => {
         resourceProperty.push(
@@ -52,7 +55,7 @@ export default function transformer(file: FileInfo, api: API, options: any) {
                 "init",
                 j.identifier(item),
                 j.identifier(
-                    `${options.__resource}${uppercaseFirstChar(item)},`,
+                    `${options.__resource}${uppercaseFirstChar(item)}`,
                 ),
             ),
         );
@@ -61,6 +64,7 @@ export default function transformer(file: FileInfo, api: API, options: any) {
     // find last import index
     const lastImportIndex = source.find(j.ImportDeclaration).length - 1;
 
+    // add import
     source.find(j.ImportDeclaration).at(lastImportIndex).insertAfter(newImport);
 
     rootElement.replaceWith((path) => {
@@ -69,23 +73,34 @@ export default function transformer(file: FileInfo, api: API, options: any) {
             return path.node;
         }
 
-        const resourcePropInex = attributes.findIndex(
+        const resourcePropIndex = attributes.findIndex(
             (attr) =>
                 attr.type === "JSXAttribute" && attr.name.name === "resources",
         );
 
-        if (resourcePropInex === undefined) {
+        if (resourcePropIndex === -1) {
+            attributes.push(
+                j.jsxAttribute(
+                    j.jsxIdentifier("resources"),
+                    j.jsxExpressionContainer(
+                        j.arrayExpression([
+                            j.objectExpression(resourceProperty),
+                        ]),
+                    ),
+                ),
+            );
+
             return path.node;
         }
 
         const resourceElements = (
             (
-                (attributes[resourcePropInex] as JSXAttribute)
+                (attributes[resourcePropIndex] as JSXAttribute)
                     .value as JSXExpressionContainer
             ).expression as ArrayExpression
         ).elements as ObjectExpression[];
 
-        attributes[resourcePropInex] = j.jsxAttribute(
+        attributes[resourcePropIndex] = j.jsxAttribute(
             j.jsxIdentifier("resources"),
             j.jsxExpressionContainer(
                 j.arrayExpression([
