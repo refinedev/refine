@@ -53,7 +53,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                             ids = `${accessor(
                                 recordName,
                                 field.key,
-                            )}?.map((item) => ${accessor(
+                            )}?.map((item: any) => ${accessor(
                                 "item",
                                 undefined,
                                 field.accessor,
@@ -147,7 +147,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                                             undefined,
                                             field.relationGuess.accessor,
                                         );
-                                        return `<HStack spacing="12px">{${variableName}?.data?.map((${mapItemName}) => <TagField key={${val}} value={${val}} />)}</HStack>`;
+                                        return `<HStack spacing="12px">{${variableName}?.data?.map((${mapItemName}: any) => <TagField key={${val}} value={${val}} />)}</HStack>`;
                                     }
                                 } else {
                                     return `Not Handled.`;
@@ -223,7 +223,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                         field.key,
                     )}</Heading>
                     <HStack spacing="12px">
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
                     </HStack>
@@ -252,7 +252,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                     <Heading as="h5" size="sm" mt={4} >${prettyString(
                         field.key,
                     )}</Heading>
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <Image sx={{ maxWidth: 200 }} src={${val}} key={${val}} />
                     ))}
                 `;
@@ -286,7 +286,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                         field.key,
                     )}</Heading>
                     <HStack spacing="12px">
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
                     </HStack>
@@ -321,7 +321,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                         field.key,
                     )}</Heading>
                     <HStack spacing="12px">
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
                     </HStack>
@@ -356,7 +356,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                         field.key,
                     )}</Heading>
                     <HStack spacing="12px">
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
                     </HStack>
@@ -386,7 +386,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                     <Heading as="h5" size="sm" mt={4} >${prettyString(
                         field.key,
                     )}</Heading>
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <DateField value={${val}} key={${val}} />
                     ))}
                 `;
@@ -439,7 +439,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                         field.key,
                     )}</Heading>
                     <HStack spacing="12px">
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
                     </HStack>
@@ -454,7 +454,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                         field.key,
                         field.accessor,
                         ' + " " + ',
-                    )} ?? ""} />
+                    )} as number} />
                 `;
             }
             return undefined;
