@@ -85,7 +85,6 @@ const getOutdatedPackageList = async (pm: "npm" | "pnpm" | "yarn") => {
     try {
         const { stdout } = await execa(pm, pmCommands[pm].outdatedJson, {
             reject: false,
-            timeout: 10000,
         });
 
         if (!stdout) return null;

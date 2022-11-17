@@ -52,6 +52,8 @@ const load = (program: Command) => {
 const action = async (options: OptionValues) => {
     const { tag, dryRun, all } = options;
 
+    console.log({ tag, dryRun, all });
+
     const packages = await spinner(isRefineUptoDate, "Checking for updates...");
     if (!packages?.length) {
         console.log("All `refine` packages are up to date 🎉");
@@ -75,21 +77,21 @@ const action = async (options: OptionValues) => {
         }
     }
 
-    const packagesWithVersion = packages
-        .map((pkg) => {
-            const version = tag === Tag.Wanted ? pkg.wanted : tag;
-            return `${pkg.name}@${version}`;
-        })
-        .join(" ");
+    const packagesWithVersion = packages.map((pkg) => {
+        const version = tag === Tag.Wanted ? pkg.wanted : tag;
+        return `${pkg.name}@${version}`;
+    });
 
     if (dryRun) {
         const pm = await getPreferedPM();
         const commandInstall = pmCommands[pm.name].install;
-        console.log(`${pm.name} ${commandInstall} ${packagesWithVersion}`);
+        console.log(
+            `${pm.name} ${commandInstall} ${packagesWithVersion.join(" ")}`,
+        );
         return;
     }
 
-    pmInstall(packagesWithVersion.split(" "));
+    pmInstall(packagesWithVersion);
 };
 
 const pmInstall = (packages: string[]) => {
