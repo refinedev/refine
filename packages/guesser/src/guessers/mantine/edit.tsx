@@ -77,15 +77,16 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
             if (field.relation && field.resource) {
                 initialValues = {
                     ...initialValues,
-                    [field.key]: field.multiple
-                        ? []
-                        : field.accessor
-                        ? {
-                              [typeof field.accessor === "string"
-                                  ? field.accessor
-                                  : field.accessor[0]]: "",
-                          }
-                        : "",
+                    [field.key]:
+                        field.multiple && field.type !== "relation"
+                            ? []
+                            : field.accessor
+                            ? {
+                                  [typeof field.accessor === "string"
+                                      ? field.accessor
+                                      : field.accessor[0]]: "",
+                              }
+                            : "",
                 };
 
                 const variableName = `${
@@ -127,6 +128,7 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
             if (
                 field.type === "text" ||
                 field.type === "email" ||
+                field.type === "date" ||
                 field.type === "url"
             ) {
                 imports.push(["TextInput", "@pankod/refine-mantine"]);
@@ -137,18 +139,25 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                 };
 
                 if (field.multiple) {
+                    imports.push(["Group", "@pankod/refine-mantine"]);
+
                     const val = dotAccessor(
                         field.key,
-                        undefined,
+                        "${index}",
                         field.accessor,
                     );
 
                     return `
-                    {${accessor(recordName, field.key)}?.map((item, index) => (
-                        <TextInput mt="sm" label="${prettyString(
+                    <Group spacing="xs">
+                        {${accessor(
+                            recordName,
                             field.key,
-                        )}" {...getInputProps(\`${val}.\${index}\`)} />
-                    ))}
+                        )}?.map((item: any, index: number) => (
+                            <TextInput mt="sm" key={index} label={\`${prettyString(
+                                field.key,
+                            )} \${index + 1} \`} {...getInputProps(\`${val}\`)} />
+                        ))}
+                    </Group>
                     `;
                 }
 
@@ -191,18 +200,25 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                 };
 
                 if (field.multiple) {
+                    imports.push(["Group", "@pankod/refine-mantine"]);
+
                     const val = dotAccessor(
                         field.key,
-                        undefined,
+                        "${index}",
                         field.accessor,
                     );
 
                     return `
-                    {${accessor(recordName, field.key)}?.map((item, index) => (
-                        <Checkbox mt="sm" label="${prettyString(
+                    <Group spacing="xs">
+                        {${accessor(
+                            recordName,
                             field.key,
-                        )}" {...getInputProps(\`${val}.\${index}\`)} />
-                    ))}
+                        )}?.map((item: any, index: number) => (
+                            <Checkbox mt="sm" key={index} label={\`${prettyString(
+                                field.key,
+                            )} \${index + 1} \`} {...getInputProps(\`${val}\`)} />
+                        ))}
+                    </Group>
                     `;
                 }
 
@@ -246,18 +262,25 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                 };
 
                 if (field.multiple) {
+                    imports.push(["Group", "@pankod/refine-mantine"]);
+
                     const val = dotAccessor(
                         field.key,
-                        undefined,
+                        "${index}",
                         field.accessor,
                     );
 
                     return `
-                    {${accessor(recordName, field.key)}?.map((item, index) => (
-                        <Textarea mt="sm" label="${prettyString(
+                    <Group spacing="xs">
+                        {${accessor(
+                            recordName,
                             field.key,
-                        )}" {...getInputProps(\`${val}.\${index}\`)} />
-                    ))}
+                        )}?.map((item: any, index: number) => (
+                            <Textarea mt="sm" key={index} label={\`${prettyString(
+                                field.key,
+                            )} \${index + 1} \`} {...getInputProps(\`${val}\`)} />
+                        ))}
+                    </Group>
                     `;
                 }
 
@@ -285,18 +308,25 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                 };
 
                 if (field.multiple) {
+                    imports.push(["Group", "@pankod/refine-mantine"]);
+
                     const val = dotAccessor(
                         field.key,
-                        undefined,
+                        "${index}",
                         field.accessor,
                     );
 
                     return `
-                    {${accessor(recordName, field.key)}?.map((item, index) => (
-                        <NumberInput mt="sm" label="${prettyString(
+                    <Group spacing="xs">
+                        {${accessor(
+                            recordName,
                             field.key,
-                        )}" {...getInputProps(\`${val}.\${index}\`)} />
-                    ))}
+                        )}?.map((item: any, index: number) => (
+                            <NumberInput mt="sm" key={index} label={\`${prettyString(
+                                field.key,
+                            )} \${index + 1} \`} {...getInputProps(\`${val}\`)} />
+                        ))}
+                    </Group>
                     `;
                 }
 
