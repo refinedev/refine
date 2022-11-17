@@ -79,9 +79,8 @@ const action = async (resourceName: string, options: any) => {
     // clear temp dir
     temp.cleanupSync();
 
-    // npx jscodeshift ./src/ --extensions=ts,tsx --parser=tsx --transform=/Users/yildirayunlu/projects/refine/packages/cli/src/transformers/resource.ts
-    const { stdout, stderr } = execa.sync(`npx`, [
-        "jscodeshift",
+    const jscodeshiftExecutable = require.resolve(".bin/jscodeshift");
+    const { stdout, stderr } = execa.sync(jscodeshiftExecutable, [
         "./src/",
         "--extensions=ts,tsx,js,jsx",
         "--parser=tsx",
