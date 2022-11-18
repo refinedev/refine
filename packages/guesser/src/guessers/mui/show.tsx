@@ -46,13 +46,14 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                 if (field?.relation && !field.fieldable && field.resource) {
                     if (field.multiple) {
                         imports.push(["useMany", "@pankod/refine-core"]);
+
                         let ids = accessor(recordName, field.key);
 
                         if (field.accessor) {
                             ids = `${accessor(
                                 recordName,
                                 field.key,
-                            )}?.map((item) => ${accessor(
+                            )}?.map((item: any) => ${accessor(
                                 "item",
                                 undefined,
                                 field.accessor,
@@ -74,7 +75,9 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                     });
                     `;
                     }
+
                     imports.push(["useOne", "@pankod/refine-core"]);
+
                     return `
                     const { data: ${toSingular(
                         field.resource.name,
@@ -106,6 +109,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                         ? toPlural(field.resource.name)
                         : toSingular(field.resource.name)
                 }Data`;
+
                 const variableIsLoading = `${
                     field.multiple
                         ? toPlural(field.resource.name)
@@ -114,6 +118,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
 
                 if (field.multiple) {
                     imports.push(["TagField", "@pankod/refine-mui"]);
+
                     return jsx`
                     <Typography variant="body1" fontWeight="bold">
                         ${prettyString(field.key)}
@@ -133,16 +138,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                                         )
                                     ) {
                                         return `Not Handled.`;
-                                        // return `{${multipleAccessor(
-                                        //     `${variableName}?.data`,
-                                        //     field.relationGuess.accessor,
-                                        // ).join(' + " " + ')}}`;
                                     } else {
-                                        imports.push([
-                                            "Box",
-                                            "@pankod/refine-mui",
-                                        ]);
-                                        // return `Not Handled.`;
                                         const mapItemName = toSingular(
                                             field.resource?.name,
                                         );
@@ -152,16 +148,15 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                                             field.relationGuess.accessor,
                                         );
                                         return `
-                                            <Box style={{ display: "flex", gap: "1rem" }}>
-                                                {${variableName}?.data?.map((${mapItemName}) => (
+                                            <Stack direction="row" spacing={1}>
+                                                {${variableName}?.data?.map((${mapItemName}: any) => (
                                                     <TagField key={${val}} value={${val}} />
                                                 ))}
-                                            </Box>
+                                            </Stack>
                                         `;
                                     }
                                 } else {
                                     return `Not Handled.`;
-                                    return `{${variableName}?.data}`;
                                 }
                             } else {
                                 return `not-handled - relation with multiple but no resource`;
@@ -170,28 +165,17 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                         </>
                     )}
                     `;
-                    // {${accessorString(variableName, {
-                    //     key: field.key,
-                    // })}?.map((item) => (
-                    //     <TagField value={${
-                    //         field.accessor ? `item?.${field.accessor}` : `item`
-                    //     }} key={${
-                    //     field.accessor ? `item?.${field.accessor}` : `item`
-                    // }} />
-                    // ))}
-                    // `;
                 }
+
                 return jsx`
                     <Typography variant="body1" fontWeight="bold">
                         ${prettyString(field.key)}
                     </Typography>
+
                     {${variableIsLoading} ? (
-                        <p>
-                            Loading...
-                        </p>
+                        <>Loading...</>
                     ) : (
                         <>
-
                         ${(() => {
                             if (field.relationGuess) {
                                 if (field.relationGuess?.accessor) {
@@ -216,10 +200,8 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                                 return `{${variableName}?.data?.id}`;
                             }
                         })()}
-
                         </>
                     )}
-                    
                     `;
             }
             return undefined;
@@ -227,24 +209,28 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
 
         const textFields = (field: GuessField) => {
             if (field.type === "text") {
-                imports.push(
-                    ["TagField", "@pankod/refine-mui"],
-                    ["TextFieldComponent as TextField", "@pankod/refine-mui"],
-                );
+                imports.push([
+                    "TextFieldComponent as TextField",
+                    "@pankod/refine-mui",
+                ]);
+
                 if (field.multiple) {
-                    imports.push(["Box", "@pankod/refine-mui"]);
+                    imports.push(["TagField", "@pankod/refine-mui"]);
+
                     const val = accessor("item", undefined, field.accessor);
+
                     return jsx`
                     <Typography variant="body1" fontWeight="bold">
                         ${prettyString(field.key)}
                     </Typography>
-                    <Box style={{ display: "flex", gap: "1rem" }}>
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    <Stack direction="row" spacing={1}>
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
-                    </Box>
+                    </Stack>
                 `;
                 }
+
                 return jsx`
                     <Typography variant="body1" fontWeight="bold">
                         ${prettyString(field.key)}
@@ -263,20 +249,23 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
             if (field.type === "image") {
                 if (field.multiple) {
                     const val = accessor("item", undefined, field.accessor);
+
                     return jsx`
                     <Typography variant="body1" fontWeight="bold">
                         ${prettyString(field.key)}
                     </Typography>
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    <Stack direction="row" spacing={1}>
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <img style={{ maxWidth: 200, width: "100%", height: 200 }} src={${val}} key={${val}} />
                     ))}
+                    </Stack>
                 `;
                 }
+
                 return jsx`
                     <Typography variant="body1" fontWeight="bold">
                         ${prettyString(field.key)}
                     </Typography>
-                    {JSON.stringify(${accessor(recordName, field.key)})}
                     <img style={{ maxWidth: 200, width: "100%", height: 200 }} src={${accessor(
                         recordName,
                         field.key,
@@ -290,22 +279,22 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
 
         const emailFields = (field: GuessField) => {
             if (field.type === "email") {
-                imports.push(
-                    ["TagField", "@pankod/refine-mui"],
-                    ["EmailField", "@pankod/refine-mui"],
-                );
+                imports.push(["EmailField", "@pankod/refine-mui"]);
+
                 if (field.multiple) {
-                    imports.push(["Box", "@pankod/refine-mui"]);
+                    imports.push(["TagField", "@pankod/refine-mui"]);
+
                     const val = accessor("item", undefined, field.accessor);
+
                     return jsx`
                     <Typography variant="body1" fontWeight="bold">
                         ${prettyString(field.key)}
                     </Typography>
-                    <Box style={{ display: "flex", gap: "1rem" }}>
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    <Stack direction="row" spacing={1}>
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
-                    </Box>
+                    </Stack>
                 `;
                 }
                 return jsx`
@@ -325,22 +314,22 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
 
         const urlFields = (field: GuessField) => {
             if (field.type === "url") {
-                imports.push(
-                    ["TagField", "@pankod/refine-mui"],
-                    ["UrlField", "@pankod/refine-mui"],
-                );
+                imports.push(["UrlField", "@pankod/refine-mui"]);
+
                 if (field.multiple) {
-                    imports.push(["Box", "@pankod/refine-mui"]);
+                    imports.push(["TagField", "@pankod/refine-mui"]);
+
                     const val = accessor("item", undefined, field.accessor);
+
                     return jsx`
                     <Typography variant="body1" fontWeight="bold">
                         ${prettyString(field.key)}
                     </Typography>
-                    <Box style={{ display: "flex", gap: "1rem" }}>
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    <Stack direction="row" spacing={1}>
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
-                    </Box>
+                    </Stack>
                 `;
                 }
                 return jsx`
@@ -360,25 +349,28 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
 
         const booleanFields = (field: GuessField) => {
             if (field.type === "boolean") {
-                imports.push(
-                    ["TagField", "@pankod/refine-mui"],
-                    ["BooleanField", "@pankod/refine-mui"],
-                );
+                imports.push(["BooleanField", "@pankod/refine-mui"]);
+
                 if (field.multiple) {
-                    imports.push(["Box", "@pankod/refine-mui"]);
+                    imports.push(["TagField", "@pankod/refine-mui"]);
 
                     const val = accessor("item", undefined, field.accessor);
+
                     return jsx`
                     <Typography variant="body1" fontWeight="bold">
                         ${prettyString(field.key)}
                     </Typography>
-                    <Box style={{ display: "flex", gap: "1rem" }}>
-                    {${accessor(recordName, field.key)}?.map((item) => (
-                        <TagField value={${val}} key={${val}} />
+                    <Stack direction="row" spacing={1}>
+                    {${accessor(
+                        recordName,
+                        field.key,
+                    )}?.map((item: any, index: number) => (
+                        <TagField value={${val}} key={index} />
                     ))}
-                    </Box>
+                    </Stack>
                 `;
                 }
+
                 return jsx`
                     <Typography variant="body1" fontWeight="bold">
                         ${prettyString(field.key)}
@@ -397,17 +389,22 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
         const dateFields = (field: GuessField) => {
             if (field.type === "date") {
                 imports.push(["DateField", "@pankod/refine-mui"]);
+
                 if (field.multiple) {
                     const val = accessor("item", undefined, field.accessor);
+
                     return jsx`
                     <Typography variant="body1" fontWeight="bold">
                         ${prettyString(field.key)}
                     </Typography>
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    <Stack direction="row" spacing={1}>
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <DateField value={${val}} key={${val}} />
                     ))}
+                    </Stack>
                 `;
                 }
+
                 return jsx`
                     <Typography variant="body1" fontWeight="bold">
                         ${prettyString(field.key)}
@@ -426,6 +423,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
         const richtextFields = (field: GuessField) => {
             if (field.type === "richtext") {
                 imports.push(["MarkdownField", "@pankod/refine-mui"]);
+
                 return jsx`
                     <Typography variant="body1" fontWeight="bold">
                         ${prettyString(field.key)}
@@ -445,25 +443,28 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
         const numberFields = (field: GuessField) => {
             if (field.type === "number") {
                 imports.push(["NumberField", "@pankod/refine-mui"]);
+
                 if (field.multiple) {
-                    imports.push(["Box", "@pankod/refine-mui"]);
+                    imports.push(["TagField", "@pankod/refine-mui"]);
+
                     const val = accessor("item", undefined, field.accessor);
+
                     return jsx`
                     <Typography variant="body1" fontWeight="bold">
                         ${prettyString(field.key)}
                     </Typography>
-                    <Box style={{ display: "flex", gap: "1rem" }}>
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    <Stack direction="row" spacing={1}>
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
-                    </Box>
+                    </Stack>
                 `;
                 }
+
                 return jsx`
                     <Typography variant="body1" fontWeight="bold">
                         ${prettyString(field.key)}
                     </Typography>
-
                     <NumberField value={${accessor(
                         recordName,
                         field.key,
