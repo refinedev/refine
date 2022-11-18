@@ -1,6 +1,5 @@
 import * as RefineMui from "@pankod/refine-mui";
 import * as RefineReactHookForm from "@pankod/refine-react-hook-form";
-import dayjs from "dayjs";
 
 import { createGuesser } from "@/create-guesser";
 import {
@@ -66,7 +65,7 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                         val = `${accessor(
                             recordName,
                             field.key,
-                        )}?.map((item) => ${accessor(
+                        )}?.map((item: any) => ${accessor(
                             "item",
                             undefined,
                             field.accessor,
@@ -164,13 +163,13 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                                         margin="normal"
                                         variant="outlined"
                                         error={!!${accessor(
-                                            "errors",
+                                            "(errors as any)",
                                             field.key,
                                             field.accessor,
                                             false,
                                         )}}
                                         helperText={${accessor(
-                                            "errors",
+                                            "(errors as any)",
                                             field.key,
                                             field.accessor,
                                             false,
@@ -196,35 +195,37 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                 field.type === "richtext"
             ) {
                 imports.push(["TextField", "@pankod/refine-mui"]);
+
                 if (field.multiple) {
+                    imports.push(["Box", "@pankod/refine-mui"]);
+
                     const val = dotAccessor(
                         field.key,
-                        undefined,
+                        "${index}",
                         field.accessor,
                     );
 
+                    const errorVal =
+                        accessor(
+                            "(errors as any)",
+                            field.key,
+                            undefined,
+                            false,
+                        ) + "?.[index]";
+
                     return `
-                        <>
+                        <Box sx={{display: "flex", gap: 1}}>
                             {${accessor(
                                 recordName,
                                 field.key,
-                            )}?.map((item, index) => (
+                            )}?.map((item: any, index: number) => (
                                 <TextField
-                                    {...register(\`${val}.\${index}\`, {
+                                    key={index}
+                                    {...register(\`${val}\`, {
                                         required: "This field is required",
                                     })}
-                                    error={!!${accessor(
-                                        "errors",
-                                        field.key,
-                                        field.accessor,
-                                        false,
-                                    )}?.[index]}
-                                    helperText={${accessor(
-                                        "errors",
-                                        field.key,
-                                        field.accessor,
-                                        false,
-                                    )}?.[index]?.message}
+                                    error={!!${errorVal}}
+                                    helperText={${errorVal}?.message as string}
                                     margin="normal"
                                     fullWidth
                                     InputLabelProps={{ shrink: true }}
@@ -249,7 +250,7 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                                     )}.\${index}\`}
                                 />
                             ))}
-                        </>
+                        </Box>
                     `;
                 }
                 return jsx`
@@ -262,13 +263,13 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                             required: "This field is required",
                         })}
                         error={!!${accessor(
-                            "errors",
+                            "(errors as any)",
                             field.key,
                             field.accessor,
                             false,
                         )}}
                         helperText={${accessor(
-                            "errors",
+                            "(errors as any)",
                             field.key,
                             field.accessor,
                             false,
@@ -304,21 +305,24 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                 );
 
                 if (field.multiple) {
+                    imports.push(["Box", "@pankod/refine-mui"]);
+
                     const val = dotAccessor(
                         field.key,
-                        undefined,
+                        "${index}",
                         field.accessor,
                     );
 
                     return `
-                        <>
+                        <Box sx={{display: "flex", gap: 1}}>
                             {${accessor(
                                 recordName,
                                 field.key,
-                            )}?.map((item, index) => (
+                            )}?.map((item: any, index: number) => (
                                 <Controller
+                                    key={index}
                                     control={control}
-                                    name={\`${val}.\${index}\`}
+                                    name={\`${val}\`}
                                     // eslint-disable-next-line
                                     defaultValue={null as any}
                                     render={({ field }) => (
@@ -327,7 +331,6 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                                         )} \${index+1}\`} control={
                                             <Checkbox
                                                 {...field}
-                                                label
                                                 checked={field.value}
                                                 onChange={(event) => {
                                                     field.onChange(event.target.checked);
@@ -337,7 +340,7 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                                     )}
                                 />
                             ))}
-                        </>
+                        </Box>
                     `;
                 }
 
@@ -357,7 +360,6 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                             )}" control={
                                 <Checkbox
                                     {...field}
-                                    label
                                     checked={field.value}
                                     onChange={(event) => {
                                         field.onChange(event.target.checked);
