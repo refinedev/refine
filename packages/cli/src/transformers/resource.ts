@@ -2,11 +2,12 @@ import {
     API,
     FileInfo,
     JSXAttribute,
-    ObjectExpression,
     JSXExpressionContainer,
     ArrayExpression,
 } from "jscodeshift";
 import { uppercaseFirstChar } from "../utils/text";
+
+export const parser = "tsx";
 
 export default function transformer(file: FileInfo, api: API, options: any) {
     const j = api.jscodeshift;
@@ -113,33 +114,12 @@ export default function transformer(file: FileInfo, api: API, options: any) {
         }
 
         // resources={[...resources]} => resources={[...resources, {name: "post", list: List}]}
-        if (resourceValue.expression.type === "ArrayExpression") {
-            const resourceArray = resourceValue.expression as ArrayExpression;
-            resourceArray.elements.push(j.objectExpression(resourceProperty));
-
-            return path.node;
-        }
-
-        // resouces={[{ name: "post", list: List }]}
-        const resourceElements = (
-            (
-                (attributes[resourcePropIndex] as JSXAttribute)
-                    .value as JSXExpressionContainer
-            ).expression as ArrayExpression
-        ).elements as ObjectExpression[];
-
-        attributes[resourcePropIndex] = j.jsxAttribute(
-            j.jsxIdentifier("resources"),
-            j.jsxExpressionContainer(
-                j.arrayExpression([
-                    ...resourceElements,
-                    j.objectExpression(resourceProperty),
-                ]),
-            ),
-        );
+        const resourceArray = resourceValue.expression as ArrayExpression;
+        resourceArray.elements.push(j.objectExpression(resourceProperty));
 
         return path.node;
     });
 
+    console.log(source.toSource());
     return source.toSource();
 }
