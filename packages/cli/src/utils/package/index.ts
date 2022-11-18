@@ -1,8 +1,6 @@
 import execa from "execa";
 import preferredPM from "preferred-pm";
-import spinner from "src/utils/spinner";
-
-export type PM = "npm" | "pnpm" | "yarn";
+import spinner from "@utils/spinner";
 
 export const pmCommands = {
     npm: {
