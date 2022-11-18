@@ -1,5 +1,5 @@
 import { Command } from "commander";
-import { copySync, readdirSync, unlinkSync, moveSync } from "fs-extra";
+import { copySync, unlinkSync, moveSync, pathExists } from "fs-extra";
 import temp from "temp";
 import { plural } from "pluralize";
 import execa from "execa";
@@ -47,6 +47,7 @@ const action = async (resourceName: string, options: any) => {
     copySync(sourceDir, tempDir);
 
     const compileParams = {
+        resourceName,
         resource,
         actions: customActions || defaultActions,
         projectType,
@@ -72,7 +73,7 @@ const action = async (resourceName: string, options: any) => {
     let moveSyncOptions = {};
 
     // empty dir override
-    if (readdirSync(destinationResourcePath).length === 0) {
+    if (!pathExists(destinationResourcePath)) {
         moveSyncOptions = { overwrite: true };
     }
     moveSync(tempDir, destinationResourcePath, moveSyncOptions);
@@ -91,7 +92,10 @@ const action = async (resourceName: string, options: any) => {
         `--__path=${options.path}`,
         `--__resourceFolderName=${resourceFolderName}`,
         `--__resource=${resource}`,
+        `--__resourceName=${resourceName}`,
     ]);
+
+    // console.log(stdout);
 
     if (stderr) {
         console.log(stderr);
