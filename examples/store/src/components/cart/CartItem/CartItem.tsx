@@ -164,6 +164,15 @@ export const CartItem: React.FC<CartItemProps> = ({ item }) => {
                 increase={() => increaseQuantity(1)}
                 decrease={() => increaseQuantity(-1)}
             />
+            <span className="text-sm">
+                {item && item.quantity === 6 && (
+                    <>
+                        <strong>
+                            You cannot add more items for this product
+                        </strong>
+                    </>
+                )}
+            </span>
         </li>
     );
 };
