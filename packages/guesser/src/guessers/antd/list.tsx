@@ -120,7 +120,11 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                     let val = "item";
 
                     if (field?.relationGuess) {
-                        const valSingle = `${variableName}?.find((resourceItems) => resourceItems.id === item)`;
+                        const valSingle = `${variableName}?.find((resourceItems) => resourceItems.id === ${accessor(
+                            "item",
+                            undefined,
+                            field.accessor,
+                        )})`;
                         const valViewableSingle = accessor(
                             valSingle,
                             undefined,
@@ -134,7 +138,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                             {${accessor(
                                 "value",
                                 undefined,
-                                field.accessor,
+                                // field.accessor,
                             )}?.map((item, index) => (
                                 <TagField key={index} value={${val}} />
                             ))}
