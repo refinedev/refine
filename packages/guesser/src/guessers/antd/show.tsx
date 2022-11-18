@@ -143,11 +143,10 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                                         return `{${variableName}?.data?.map((${mapItemName}) => <TagField key={${val}} value={${val}} />)}`;
                                     }
                                 } else {
-                                    return `Not Handled.`;
-                                    return `{${variableName}?.data}`;
+                                    return undefined;
                                 }
                             } else {
-                                return `not-handled - relation with multiple but no resource`;
+                                return undefined;
                             }
                         })()}
                         </>
@@ -241,7 +240,6 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                 }
                 return jsx`
                     <Title level={5}>${prettyString(field.key)}</Title>
-                    {JSON.stringify(${accessor(recordName, field.key)})}
                     <ImageField style={{ maxWidth: 200 }} value={${accessor(
                         recordName,
                         field.key,
@@ -263,9 +261,11 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                     const val = accessor("item", undefined, field.accessor);
                     return jsx`
                     <Title level={5}>${prettyString(field.key)}</Title>
+                    <>
                     {${accessor(recordName, field.key)}?.map((item) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
+                    </>
                 `;
                 }
                 return jsx`
@@ -319,8 +319,8 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                     const val = accessor("item", undefined, field.accessor);
                     return jsx`
                     <Title level={5}>${prettyString(field.key)}</Title>
-                    {${accessor(recordName, field.key)}?.map((item) => (
-                        <TagField value={${val}} key={${val}} />
+                    {${accessor(recordName, field.key)}?.map((item, index) => (
+                        <BooleanField value={${val}} key={index} />
                     ))}
                 `;
                 }
@@ -441,7 +441,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
             const { data, isLoading } = queryResult;
         
             const ${recordName} = data?.data;
-        
+
             ${relationHooksCode}
 
             return (
