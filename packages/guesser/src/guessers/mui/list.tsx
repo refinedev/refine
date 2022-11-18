@@ -9,7 +9,6 @@ import {
     printImports,
     toPlural,
     isIDKey,
-    dotAccessor,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -37,6 +36,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
             ["GridColumns", "@pankod/refine-mui"],
             ["EditButton", "@pankod/refine-mui"],
             ["ShowButton", "@pankod/refine-mui"],
+            ["DeleteButton", "@pankod/refine-mui"],
             ["List", "@pankod/refine-mui"],
         ];
 
@@ -53,14 +53,14 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                     let idsString = "";
 
                     if (field.multiple) {
-                        idsString = `[].concat(...(${recordName}?.map((item) => ${accessor(
+                        idsString = `[].concat(...(${recordName}?.map((item: any) => ${accessor(
                             "item",
                             field.key,
                             field.accessor,
                             false,
                         )}) ?? []))`;
                     } else {
-                        idsString = `${recordName}?.map((item) => ${accessor(
+                        idsString = `${recordName}?.map((item: any) => ${accessor(
                             "item",
                             field.key,
                             field.accessor,
@@ -114,18 +114,21 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
 
                 const fieldProperty = `field: "${field.key}"`;
 
-                const valueGetterProperty = field.accessor
-                    ? `valueGetter: ({ row }) => {
-                    const value = ${accessor(
-                        "row",
-                        field.key,
-                        field.accessor,
-                        false,
-                    )};
+                const valueGetterProperty =
+                    field.accessor &&
+                    !field.multiple &&
+                    !Array.isArray(field.accessor)
+                        ? `valueGetter: ({ row }) => {
+                const value = ${accessor(
+                    "row",
+                    field.key,
+                    field.accessor,
+                    false,
+                )};
 
-                    return value;
-                },`
-                    : "";
+                return value;
+            },`
+                        : "";
 
                 const headerProperty = `headerName: "${prettyString(
                     field.key,
@@ -138,11 +141,16 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
 
                 if (field.multiple) {
                     imports.push(["TagField", "@pankod/refine-mui"]);
+
                     let val = "item";
 
                     // for multiple
                     if (field?.relationGuess) {
-                        const valSingle = `${variableName}?.find((resourceItems) => resourceItems.id === item)`;
+                        const valSingle = `${variableName}?.find((resourceItems) => resourceItems.id === ${accessor(
+                            "item",
+                            undefined,
+                            field.accessor,
+                        )})`;
                         const valViewableSingle = accessor(
                             valSingle,
                             undefined,
@@ -158,8 +166,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                                 {${accessor(
                                     "value",
                                     undefined,
-                                    field.accessor,
-                                )}?.map((item, index) => (
+                                )}?.map((item: any, index: number) => (
                                     <TagField key={index} value={${val}} />
                                 ))}
                             </>
@@ -189,10 +196,8 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                 return `
                     {
                         ${fieldProperty},
-                        ${headerProperty},
-                        ${valueGetterProperty}
-                        minWidth: 300,
-                        ${renderCell}
+                        ${headerProperty},${valueGetterProperty}
+                        minWidth: 300,${renderCell}
                     }
                 `;
             }
@@ -201,20 +206,27 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
 
         const imageFields = (field: GuessField) => {
             if (field.type === "image") {
-                const fieldProperty =
-                    Array.isArray(field.accessor) || field.multiple
-                        ? `field: "${field.key}"`
-                        : field.accessor
-                        ? `field: "${dotAccessor(
-                              field.key,
-                              undefined,
-                              field.accessor,
-                          )}"`
-                        : `field: "${field.key}"`;
+                const fieldProperty = `field: "${field.key}"`;
 
                 const headerProperty = `headerName: "${prettyString(
                     field.key,
                 )}"`;
+
+                const valueGetterProperty =
+                    field.accessor &&
+                    !field.multiple &&
+                    !Array.isArray(field.accessor)
+                        ? `valueGetter: ({ row }) => {
+                const value = ${accessor(
+                    "row",
+                    field.key,
+                    field.accessor,
+                    false,
+                )};
+
+                return value;
+            },`
+                        : "";
 
                 let renderCell = `
                     renderCell: function render({ value }) {
@@ -243,7 +255,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         renderCell: function render({ value }) {
                             return (
                                 <>
-                                {value?.map((item, index) => (
+                                {value?.map((item: any, index: number) => (
                                     <img src={${val}} key={index} style={{ height: "50px", maxWidth: "100px" }} />
                                 ))}
                                 </>
@@ -255,9 +267,8 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                 return `
                     {
                         ${fieldProperty},
-                        ${headerProperty},
-                        minWidth: 250,
-                        ${renderCell}
+                        ${headerProperty},${valueGetterProperty}
+                        minWidth: 100,${renderCell}
                     }
                 `;
             }
@@ -266,25 +277,29 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
 
         const emailFields = (field: GuessField) => {
             if (field.type === "email") {
-                imports.push(
-                    ["TagField", "@pankod/refine-antd"],
-                    ["EmailField", "@pankod/refine-antd"],
-                );
+                imports.push(["EmailField", "@pankod/refine-mui"]);
 
-                const fieldProperty =
-                    Array.isArray(field.accessor) || field.multiple
-                        ? `field: "${field.key}"`
-                        : field.accessor
-                        ? `field: "${dotAccessor(
-                              field.key,
-                              undefined,
-                              field.accessor,
-                          )}"`
-                        : `field: "${field.key}"`;
+                const fieldProperty = `field: "${field.key}"`;
 
                 const headerProperty = `headerName: "${prettyString(
                     field.key,
                 )}"`;
+
+                const valueGetterProperty =
+                    field.accessor &&
+                    !field.multiple &&
+                    !Array.isArray(field.accessor)
+                        ? `valueGetter: ({ row }) => {
+                const value = ${accessor(
+                    "row",
+                    field.key,
+                    field.accessor,
+                    false,
+                )};
+
+                return value;
+            },`
+                        : "";
 
                 let renderCell = `
                 renderCell: function render({ value }) {
@@ -302,6 +317,8 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
             `;
 
                 if (field.multiple) {
+                    imports.push(["TagField", "@pankod/refine-mui"]);
+
                     const val = accessor(
                         "item",
                         undefined,
@@ -313,7 +330,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                     renderCell: function render({ value }) {
                         return (
                             <>
-                            {value?.map((item, index) => (
+                            {value?.map((item: any, index: number) => (
                                 <TagField value={${val}} key={index} />
                             ))}
                             </>
@@ -325,9 +342,8 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                 return `
                 {
                     ${fieldProperty},
-                    ${headerProperty},
-                    minWidth: 250,
-                    ${renderCell}
+                    ${headerProperty},${valueGetterProperty}
+                    minWidth: 250,${renderCell}
                 }
             `;
             }
@@ -336,25 +352,29 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
 
         const urlFields = (field: GuessField) => {
             if (field.type === "url") {
-                imports.push(
-                    ["UrlField", "@pankod/refine-mui"],
-                    ["TagField", "@pankod/refine-mui"],
-                );
+                imports.push(["UrlField", "@pankod/refine-mui"]);
 
-                const fieldProperty =
-                    Array.isArray(field.accessor) || field.multiple
-                        ? `field: "${field.key}"`
-                        : field.accessor
-                        ? `field: "${dotAccessor(
-                              field.key,
-                              undefined,
-                              field.accessor,
-                          )}"`
-                        : `field: "${field.key}"`;
+                const fieldProperty = `field: "${field.key}"`;
 
                 const headerProperty = `headerName: "${prettyString(
                     field.key,
                 )}"`;
+
+                const valueGetterProperty =
+                    field.accessor &&
+                    !field.multiple &&
+                    !Array.isArray(field.accessor)
+                        ? `valueGetter: ({ row }) => {
+                const value = ${accessor(
+                    "row",
+                    field.key,
+                    field.accessor,
+                    false,
+                )};
+
+                return value;
+            },`
+                        : "";
 
                 let renderCell = `
                     renderCell: function render({ value }) {
@@ -372,6 +392,8 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                 `;
 
                 if (field.multiple) {
+                    imports.push(["TagField", "@pankod/refine-mui"]);
+
                     const val = accessor(
                         "item",
                         undefined,
@@ -383,7 +405,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         renderCell: function render({ value }) {
                             return (
                                 <>
-                                {value?.map((item, index) => (
+                                {value?.map((item: any, index: any) => (
                                     <TagField value={${val}} key={index} />
                                 ))}
                                 </>
@@ -395,9 +417,8 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                 return `
                     {
                         ${fieldProperty},
-                        ${headerProperty},
-                        minWidth: 250,
-                        ${renderCell}
+                        ${headerProperty},${valueGetterProperty}
+                        minWidth: 250,${renderCell}
                     }
                 `;
             }
@@ -408,20 +429,27 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
             if (field?.type) {
                 imports.push(["Checkbox", "@pankod/refine-mui"]);
 
-                const fieldProperty =
-                    Array.isArray(field.accessor) || field.multiple
-                        ? `field: "${field.key}"`
-                        : field.accessor
-                        ? `field: "${dotAccessor(
-                              field.key,
-                              undefined,
-                              field.accessor,
-                          )}"`
-                        : `field: "${field.key}"`;
+                const fieldProperty = `field: "${field.key}"`;
 
                 const headerProperty = `headerName: "${prettyString(
                     field.key,
                 )}"`;
+
+                const valueGetterProperty =
+                    field.accessor &&
+                    !field.multiple &&
+                    !Array.isArray(field.accessor)
+                        ? `valueGetter: ({ row }) => {
+                const value = ${accessor(
+                    "row",
+                    field.key,
+                    field.accessor,
+                    false,
+                )};
+
+                return value;
+            },`
+                        : "";
 
                 let renderCell = `
                     renderCell: function render({ value }) {
@@ -450,7 +478,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         renderCell: function render({ value }) {
                             return (
                                 <>
-                                {value.map((item, index) => (
+                                {value.map((item: any, index: number) => (
                                     <Checkbox checked={!!${val}} key={index} />
                                 ))}
                                 </>
@@ -462,9 +490,8 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                 return `
                     {
                         ${fieldProperty},
-                        ${headerProperty},
-                        minWidth: 250,
-                        ${renderCell}
+                        ${headerProperty},${valueGetterProperty}
+                        minWidth: 250,${renderCell}
                     }
                 `;
             }
@@ -476,20 +503,27 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
             if (field.type === "date") {
                 imports.push(["DateField", "@pankod/refine-mui"]);
 
-                const fieldProperty =
-                    Array.isArray(field.accessor) || field.multiple
-                        ? `field: "${field.key}"`
-                        : field.accessor
-                        ? `field: "${dotAccessor(
-                              field.key,
-                              undefined,
-                              field.accessor,
-                          )}"`
-                        : `field: "${field.key}"`;
+                const fieldProperty = `field: "${field.key}"`;
 
                 const headerProperty = `headerName: "${prettyString(
                     field.key,
                 )}"`;
+
+                const valueGetterProperty =
+                    field.accessor &&
+                    !field.multiple &&
+                    !Array.isArray(field.accessor)
+                        ? `valueGetter: ({ row }) => {
+                const value = ${accessor(
+                    "row",
+                    field.key,
+                    field.accessor,
+                    false,
+                )};
+
+                return value;
+            },`
+                        : "";
 
                 let renderCell = `
                     renderCell: function render({ value }) {
@@ -508,7 +542,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         renderCell: function render({ value }) {
                             return (
                                 <>
-                                {value?.map((item, index) => (
+                                {value?.map((item: any, index: number) => (
                                     <DateField value={${val}} key={index} />
                                 ))}
                                 </>
@@ -520,9 +554,8 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                 return `
                     {
                         ${fieldProperty},
-                        ${headerProperty},
-                        minWidth: 250,
-                        ${renderCell}
+                        ${headerProperty},${valueGetterProperty}
+                        minWidth: 250,${renderCell}
                     }
                 `;
             }
@@ -533,20 +566,27 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
             if (field?.type === "richtext") {
                 imports.push(["MarkdownField", "@pankod/refine-mui"]);
 
-                const fieldProperty =
-                    Array.isArray(field.accessor) || field.multiple
-                        ? `field: "${field.key}"`
-                        : field.accessor
-                        ? `field: "${dotAccessor(
-                              field.key,
-                              undefined,
-                              field.accessor,
-                          )}"`
-                        : `field: "${field.key}"`;
+                const fieldProperty = `field: "${field.key}"`;
 
                 const headerProperty = `headerName: "${prettyString(
                     field.key,
                 )}"`;
+
+                const valueGetterProperty =
+                    field.accessor &&
+                    !field.multiple &&
+                    !Array.isArray(field.accessor)
+                        ? `valueGetter: ({ row }) => {
+                const value = ${accessor(
+                    "row",
+                    field.key,
+                    field.accessor,
+                    false,
+                )};
+
+                return value;
+            },`
+                        : "";
 
                 let renderCell = `
                     renderCell: function render({ value }) {
@@ -565,7 +605,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         renderCell: function render({ value }) {
                             return (
                                 <>
-                                {value?.map((item, index) => (
+                                {value?.map((item: any, index: number) => (
                                     <MarkdownField value={(${val}).slice(0, 80) + "..."} key={index} />
                                 ))}
                                 </>
@@ -577,9 +617,8 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                 return `
                     {
                         ${fieldProperty},
-                        ${headerProperty},
-                        minWidth: 250,
-                        ${renderCell}
+                        ${headerProperty},${valueGetterProperty}
+                        minWidth: 250,${renderCell}
                     }
                 `;
             }
@@ -589,16 +628,27 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
 
         const basicFields = (field: GuessField) => {
             if (field && (field.type === "text" || field.type === "number")) {
-                const fieldProperty =
-                    field.accessor &&
-                    !Array.isArray(field.accessor) &&
-                    !field.multiple
-                        ? `field: "${field.key}.${field.accessor}"`
-                        : `field: "${field.key}"`;
+                const fieldProperty = `field: "${field.key}"`;
 
                 const headerProperty = `headerName: "${prettyString(
                     field.key,
                 )}"`;
+
+                const valueGetterProperty =
+                    field.accessor &&
+                    !field.multiple &&
+                    !Array.isArray(field.accessor)
+                        ? `valueGetter: ({ row }) => {
+                const value = ${accessor(
+                    "row",
+                    field.key,
+                    field.accessor,
+                    false,
+                )};
+
+                return value;
+            },`
+                        : "";
 
                 let renderCell = "";
 
@@ -615,7 +665,10 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                     renderCell: function render({ row }) {
                         return (
                             <>
-                                {${accessor("row", field.key)}.map((item) => (
+                                {${accessor(
+                                    "row",
+                                    field.key,
+                                )}.map((item: any) => (
                                     <TagField value={${val}} key={${val}} />
                                 ))}
                             </>
@@ -636,10 +689,10 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                 return `
                 {
                     ${fieldProperty},
-                    ${headerProperty},
-                    ${field.type === "number" ? "type: 'number'," : ""}
-                    minWidth: ${isIDKey(field.key) ? 50 : 200},
-                    ${renderCell}
+                    ${headerProperty},${valueGetterProperty}${
+                    field.type === "number" ? "type: 'number'," : ""
+                }
+                    minWidth: ${isIDKey(field.key) ? 50 : 200},${renderCell}
                 }
                 `;
             }
@@ -655,6 +708,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                             <>
                                 <EditButton hideText recordItemId={row.id} />
                                 <ShowButton hideText recordItemId={row.id} />
+                                <DeleteButton hideText recordItemId={row.id} />
                             </>
                         );
                     },
@@ -699,7 +753,9 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
             ${relationHooksCode}
 
             const columns = React.useMemo<GridColumns<any>>(() => [
-                ${[...renderedFields, actionButtons].join(",\r\n")}
+                ${[...renderedFields, actionButtons]
+                    .filter(Boolean)
+                    .join(",\r\n")}
             ], [${relationVariableNames.join(",")}]);
 
             return (
