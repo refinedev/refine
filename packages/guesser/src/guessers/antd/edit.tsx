@@ -35,6 +35,8 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
         const COMPONENT_NAME = componentName(resource.name, "edit");
         const recordName = `${toSingular(resource.name)}Data`;
         const imports: Array<ImportElement> = [
+            ["React", "react", true],
+            ["IResourceComponentsProps", "@pankod/refine-core"],
             ["Edit", "@pankod/refine-antd"],
             ["Form", "@pankod/refine-antd"],
             ["useForm", "@pankod/refine-antd"],
@@ -195,8 +197,6 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                 );
                 let valueProps = 'valuePropName="fileList"';
 
-                console.log("Field", field);
-
                 if (field.multiple && !field.accessor) {
                     valueProps =
                         "getValueProps={(value) => ({ fileList: value?.map((item) => ({ url: item, name: item, uid: item }))})}";
@@ -259,6 +259,7 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                             )}?.map((item, index) => (
                                 <Form.Item
                                     key={index}
+                                    valuePropName="checked"
                                     label={\`${prettyString(
                                         field.key,
                                     )} \${index+1}\`}
@@ -275,6 +276,7 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                 return jsx`
                     <Form.Item
                         label="${prettyString(field.key)}"
+                        valuePropName="checked"
                         name={["${field.key}"${
                     field.accessor ? ', "' + field.accessor + '"' : ""
                 }]}
@@ -391,7 +393,7 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
         return jsx`
         ${printImports(imports)}
         
-        export const ${COMPONENT_NAME} = () => {
+        export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
             const { formProps, saveButtonProps, queryResult } = useForm();
         
             const ${recordName} = queryResult?.data?.data;
