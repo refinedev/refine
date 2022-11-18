@@ -1,9 +1,12 @@
+import { removeRelationSuffix } from "../remove-relation-suffix";
+
 /**
  * This helper will prettify the string.
  */
 export const prettyString = (str: string) => {
+    const clean = removeRelationSuffix(str);
     // Convert camelCase to camel Case
-    const camelCase = str.replace(/([a-z])([A-Z])/g, "$1 $2");
+    const camelCase = clean.replace(/([a-z])([A-Z])/g, "$1 $2");
     // Convert snake_case to snake case
     const snakeCase = camelCase.replace(/_/g, " ");
     // Convert kebab-case to kebab case
