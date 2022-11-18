@@ -10,8 +10,6 @@ import {
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import { ChakraUIListGuesser } from "@pankod/refine-guesser/chakra-ui";
-
 import { PostList, PostCreate, PostEdit, PostShow } from "./pages";
 
 const App: React.FC = () => {
@@ -28,18 +26,9 @@ const App: React.FC = () => {
                     {
                         name: "posts",
                         list: PostList,
+                        show: PostShow,
                         create: PostCreate,
                         edit: PostEdit,
-                        show: PostShow,
-                    },
-                    {
-                        name: "categories",
-                    },
-                    {
-                        name: "tags",
-                    },
-                    {
-                        name: "users",
                     },
                 ]}
             />

@@ -13,11 +13,6 @@ import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages";
-import {
-    MantineListGuesser,
-    MantineEditGuesser,
-    MantineShowGuesser,
-} from "@pankod/refine-guesser/mantine";
 
 const App: React.FC = () => {
     return (
@@ -36,12 +31,9 @@ const App: React.FC = () => {
                     resources={[
                         {
                             name: "posts",
-                            list: MantineListGuesser,
-                            show: MantineShowGuesser,
-                            edit: MantineEditGuesser,
-                            // list: PostList,
-                            // show: PostShow,
-                            // edit: PostEdit,
+                            list: PostList,
+                            show: PostShow,
+                            edit: PostEdit,
                             create: PostCreate,
                         },
                     ]}

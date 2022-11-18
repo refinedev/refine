@@ -14,12 +14,6 @@ import {
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import {
-    MuiEditGuesser,
-    MuiShowGuesser,
-    MuiListGuesser,
-} from "@pankod/refine-guesser/mui";
-
 import { PostsList, PostCreate, PostEdit } from "pages/posts";
 
 const App: React.FC = () => {
@@ -41,19 +35,9 @@ const App: React.FC = () => {
                     resources={[
                         {
                             name: "posts",
-                            list: MuiListGuesser,
+                            list: PostsList,
                             create: PostCreate,
-                            edit: MuiEditGuesser,
-                            show: MuiShowGuesser,
-                        },
-                        {
-                            name: "categories",
-                        },
-                        {
-                            name: "tags",
-                        },
-                        {
-                            name: "users",
+                            edit: PostEdit,
                         },
                     ]}
                 />
