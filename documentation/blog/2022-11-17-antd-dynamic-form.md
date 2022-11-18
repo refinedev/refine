@@ -1138,7 +1138,7 @@ We also looked at creating a dynamic form that renders and deletes fields on dem
 
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/blog/efine-antd-dynamic-form/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/blog/refine-antd-dynamic-form/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
      style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
      title="refine-antd-dynamic-form"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
