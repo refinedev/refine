@@ -1,77 +1,54 @@
-import {
-    Create,
-    FormControl,
-    FormErrorMessage,
-    FormLabel,
-    Input,
-    Select,
-} from "@pankod/refine-saas-ui";
+import { Create, Field, FormLayout } from "@pankod/refine-saas-ui";
 import { useSelect } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 
 import { IPost } from "../../interfaces";
 
 export const PostCreate = () => {
-    const {
-        refineCore: { formLoading },
-        saveButtonProps,
-        register,
-        formState: { errors },
-    } = useForm<IPost>();
+    const form = useForm<IPost>();
 
     const { options } = useSelect({
         resource: "categories",
     });
 
     return (
-        <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
-            <FormControl mb="3" isInvalid={!!errors?.title}>
-                <FormLabel>Title</FormLabel>
-                <Input
+        <Create form={form}>
+            <FormLayout>
+                <Field
                     id="title"
+                    name="title"
+                    label="Title"
                     type="text"
-                    {...register("title", { required: "Title is required" })}
+                    rules={{ required: "Title is required" }}
                 />
-                <FormErrorMessage>
-                    {`${errors.title?.message}`}
-                </FormErrorMessage>
-            </FormControl>
-            <FormControl mb="3" isInvalid={!!errors?.status}>
-                <FormLabel>Status</FormLabel>
-                <Select
-                    id="content"
-                    placeholder="Select Post Status"
-                    {...register("status", {
-                        required: "Status is required",
-                    })}
-                >
-                    <option>published</option>
-                    <option>draft</option>
-                    <option>rejected</option>
-                </Select>
-                <FormErrorMessage>
-                    {`${errors.status?.message}`}
-                </FormErrorMessage>
-            </FormControl>
-            <FormControl mb="3" isInvalid={!!errors?.categoryId}>
-                <FormLabel>Category</FormLabel>
-                <Select
-                    id="categoryId"
-                    placeholder="Select Category"
-                    {...register("categoryId", {
-                        required: "Category is required",
-                    })}
-                >
-                    {options?.map((option) => (
-                        <option value={option.value} key={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </Select>
-                <FormErrorMessage>
-                    {`${errors.categoryId?.message}`}
-                </FormErrorMessage>
-            </FormControl>
+                <Field
+                    name="status"
+                    label="Status"
+                    type="native-select"
+                    options={[
+                        {
+                            value: "published",
+                            label: "Published",
+                        },
+                        {
+                            value: "draft",
+                            label: "Draft",
+                        },
+                        {
+                            value: "rejected",
+                            label: "Rejected",
+                        },
+                    ]}
+                    rules={{ required: "Status is required" }}
+                />
+                <Field
+                    name="category.id"
+                    label="Category"
+                    type="native-select"
+                    options={options}
+                    rules={{ required: "Status is required" }}
+                />
+            </FormLayout>
         </Create>
     );
 };

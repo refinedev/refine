@@ -824,7 +824,7 @@ export {
     StepperStepTitle,
     StepFormProvider,
     StepForm,
-    Form,
+    Form as SaasUIForm,
     AutoForm,
     Field,
     ArrayField,

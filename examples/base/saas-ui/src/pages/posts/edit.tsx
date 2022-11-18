@@ -1,26 +1,17 @@
 import { useEffect } from "react";
-import {
-    Edit,
-    FormControl,
-    FormErrorMessage,
-    FormLabel,
-    Input,
-    Select,
-} from "@pankod/refine-saas-ui";
+import { Edit, Field, FormLayout } from "@pankod/refine-saas-ui";
 import { useSelect } from "@pankod/refine-core";
-import { Controller, useForm } from "@pankod/refine-react-hook-form";
+import { useForm } from "@pankod/refine-react-hook-form";
 
 import { IPost } from "../../interfaces";
 
 export const PostEdit = () => {
+    const form = useForm<IPost>();
+
     const {
-        refineCore: { formLoading, queryResult },
-        saveButtonProps,
-        register,
-        control,
-        formState: { errors },
+        refineCore: { queryResult },
         resetField,
-    } = useForm<IPost>();
+    } = form;
 
     const { options } = useSelect({
         resource: "categories",
@@ -33,68 +24,41 @@ export const PostEdit = () => {
     }, [options]);
 
     return (
-        <Edit isLoading={formLoading} saveButtonProps={saveButtonProps}>
-            <FormControl mb="3" isInvalid={!!errors?.title}>
-                <FormLabel>Title</FormLabel>
-                <Input
-                    id="title"
-                    type="text"
-                    {...register("title", { required: "Title is required" })}
+        <Edit form={form}>
+            <FormLayout>
+                <Field
+                    name="title"
+                    label="Title"
+                    rules={{ required: "Title is required" }}
                 />
-                <FormErrorMessage>
-                    {`${errors.title?.message}`}
-                </FormErrorMessage>
-            </FormControl>
-            <FormControl mb="3" isInvalid={!!errors?.status}>
-                <FormLabel>Status</FormLabel>
-                <Controller
+                <Field
                     name="status"
+                    label="Status"
+                    type="native-select"
+                    options={[
+                        {
+                            value: "published",
+                            label: "Published",
+                        },
+                        {
+                            value: "draft",
+                            label: "Draft",
+                        },
+                        {
+                            value: "rejected",
+                            label: "Rejected",
+                        },
+                    ]}
                     rules={{ required: "Status is required" }}
-                    control={control}
-                    render={(field) => (
-                        <Select
-                            placeholder="Select Post Status"
-                            options={[
-                                {
-                                    value: "published",
-                                    label: "Published",
-                                },
-                                {
-                                    value: "draft",
-                                    label: "Draft",
-                                },
-                                {
-                                    value: "rejected",
-                                    label: "Rejected",
-                                },
-                            ]}
-                            {...field}
-                        />
-                    )}
                 />
-                <FormErrorMessage>
-                    {`${errors.status?.message}`}
-                </FormErrorMessage>
-            </FormControl>
-            <FormControl mb="3" isInvalid={!!errors?.categoryId}>
-                <FormLabel>Category</FormLabel>
-                <Controller
+                <Field
                     name="category.id"
-                    rules={{ required: true }}
-                    control={control}
-                    render={({ field }) => (
-                        <Select
-                            placeholder="Select Category"
-                            options={options}
-                            {...field}
-                        />
-                    )}
+                    label="Category"
+                    type="native-select"
+                    options={options}
+                    rules={{ required: "Status is required" }}
                 />
-
-                <FormErrorMessage>
-                    {`${errors.categoryId?.message}`}
-                </FormErrorMessage>
-            </FormControl>
+            </FormLayout>
         </Edit>
     );
 };

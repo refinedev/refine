@@ -29,21 +29,24 @@ import {
     SaveButtonProps,
 } from "@components/buttons";
 import { Breadcrumb } from "@components/breadcrumb";
+import { Form, UseFormReturn } from "@components/form";
 
 export type EditProps = RefineCrudEditProps<
     SaveButtonProps,
     DeleteButtonProps,
     BoxProps
->;
+> & {
+    form: UseFormReturn;
+};
 
 export const Edit: React.FC<EditProps> = (props) => {
     const {
         children,
+        form,
         resource: resourceFromProps,
         recordItemId,
         deleteButtonProps,
         mutationMode: mutationModeFromProps,
-        saveButtonProps,
         canDelete,
         dataProviderName,
         isLoading,
@@ -82,6 +85,8 @@ export const Edit: React.FC<EditProps> = (props) => {
         canDelete ?? (resource.canDelete || deleteButtonProps);
 
     const id = recordItemId ?? idFromRoute;
+
+    const { saveButtonProps } = form;
 
     const loadingOverlayVisible =
         isLoading ?? saveButtonProps?.disabled ?? false;
@@ -155,41 +160,43 @@ export const Edit: React.FC<EditProps> = (props) => {
         : defaultFooterButtons;
 
     return (
-        <Card p="4" position="relative" variant="solid" {...wrapperProps}>
-            <Loader isLoading={loadingOverlayVisible} variant="overlay" />
-            <HStack spacing="4" alignItems="flex-start" {...headerProps}>
-                <Stack spacing="4" flex="1">
-                    {breadcrumb}
-                    <HStack spacing="4">
-                        {buttonBack}
-                        {title ?? (
-                            <Heading as="h3" transform="capitalize">
-                                {translate(
-                                    `${resource.name}.titles.edit`,
-                                    `Edit ${userFriendlyResourceName(
-                                        resource.label ?? resource.name,
-                                        "singular",
-                                    )}`,
-                                )}
-                            </Heading>
-                        )}
+        <Form form={form}>
+            <Card p="4" position="relative" variant="solid" {...wrapperProps}>
+                <Loader isLoading={loadingOverlayVisible} variant="overlay" />
+                <HStack spacing="4" alignItems="flex-start" {...headerProps}>
+                    <Stack spacing="4" flex="1">
+                        {breadcrumb}
+                        <HStack spacing="4">
+                            {buttonBack}
+                            {title ?? (
+                                <Heading as="h3" transform="capitalize">
+                                    {translate(
+                                        `${resource.name}.titles.edit`,
+                                        `Edit ${userFriendlyResourceName(
+                                            resource.label ?? resource.name,
+                                            "singular",
+                                        )}`,
+                                    )}
+                                </Heading>
+                            )}
+                        </HStack>
+                    </Stack>
+                    <HStack spacing="4" {...headerButtonProps}>
+                        {headerButtons}
                     </HStack>
-                </Stack>
-                <HStack spacing="4" {...headerButtonProps}>
-                    {headerButtons}
                 </HStack>
-            </HStack>
-            <Box pt="8" {...contentProps}>
-                {children}
-            </Box>
-            <HStack
-                alignItems="right"
-                spacing="xs"
-                mt="md"
-                {...footerButtonProps}
-            >
-                {footerButtons}
-            </HStack>
-        </Card>
+                <Box pt="8" {...contentProps}>
+                    {children}
+                </Box>
+                <HStack
+                    alignItems="right"
+                    spacing="xs"
+                    mt="8"
+                    {...footerButtonProps}
+                >
+                    {footerButtons}
+                </HStack>
+            </Card>
+        </Form>
     );
 };

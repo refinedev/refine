@@ -50,6 +50,7 @@ export const PostList: React.FC = () => {
                             <Select
                                 size="sm"
                                 placeholder="All Status"
+                                defaultValue=""
                                 {...props}
                                 options={[
                                     {
@@ -71,21 +72,21 @@ export const PostList: React.FC = () => {
                     filterOperator: "eq",
                 },
             },
-            // {
-            //     id: "category.id",
-            //     header: "Category",
-            //     enableColumnFilter: false,
-            //     accessorKey: "category.id",
-            //     cell: function render({ getValue, table }) {
-            //         const meta = table.options.meta as {
-            //             categoriesData: GetManyResponse<ICategory>;
-            //         };
-            //         const category = meta.categoriesData?.data.find(
-            //             (item) => item.id === getValue(),
-            //         );
-            //         return category?.title ?? "Loading...";
-            //     },
-            // },
+            {
+                id: "category.id",
+                header: "Category",
+                enableColumnFilter: false,
+                accessorKey: "category.id",
+                cell: function render({ getValue, table }) {
+                    const meta = table.options.meta as {
+                        categoriesData: GetManyResponse<ICategory>;
+                    };
+                    const category = meta.categoriesData?.data.find(
+                        (item) => item.id === getValue(),
+                    );
+                    return category?.title ?? "Loading...";
+                },
+            },
             {
                 id: "createdAt",
                 header: "Created At",

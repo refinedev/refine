@@ -31,6 +31,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
     return hideText ? (
         <IconButton
             variant="outline"
+            type="submit"
             aria-label={translate("buttons.save", "Save")}
             data-testid={RefineButtonTestIds.SaveButton}
             {...rest}
@@ -40,6 +41,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
     ) : (
         <Button
             colorScheme="green"
+            type="submit"
             leftIcon={<IconDeviceFloppy size={20} {...svgIconProps} />}
             data-testid={RefineButtonTestIds.SaveButton}
             {...rest}

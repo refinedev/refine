@@ -7,8 +7,6 @@ import {
     IconButton,
     Stack,
     Heading,
-    Icon,
-    As,
 } from "@chakra-ui/react";
 import { Card, Loader } from "@saas-ui/react";
 import {
@@ -23,14 +21,16 @@ import { IconArrowLeft } from "@tabler/icons";
 
 import { SaveButton, SaveButtonProps } from "@components/buttons";
 import { Breadcrumb } from "@components/breadcrumb";
+import { Form, UseFormReturn } from "@components/form";
 
-export type CreateProps = RefineCrudCreateProps<SaveButtonProps, BoxProps>;
+export type CreateProps = RefineCrudCreateProps<SaveButtonProps, BoxProps> & {
+    form: UseFormReturn;
+};
 
 export const Create: React.FC<CreateProps> = (props) => {
     const {
         children,
-        saveButtonProps,
-        isLoading,
+        form,
         resource: resourceFromProps,
         footerButtons: footerButtonsFromProps,
         footerButtonProps,
@@ -56,6 +56,11 @@ export const Create: React.FC<CreateProps> = (props) => {
 
     const resource = resourceWithRoute(resourceFromProps ?? routeResourceName);
 
+    const {
+        saveButtonProps,
+        refineCore: { formLoading: isLoading },
+    } = form;
+
     const loadingOverlayVisible =
         isLoading ?? saveButtonProps?.disabled ?? false;
 
@@ -75,9 +80,9 @@ export const Create: React.FC<CreateProps> = (props) => {
     const buttonBack =
         goBackFromProps === (false || null) ? null : (
             <IconButton
-                aria-label="Go back"
                 onClick={routeFromAction ? goBack : undefined}
-                icon={<Icon as={backIcon as unknown as As} />}
+                aria-label="Go back"
+                icon={backIcon}
                 size="sm"
                 variant="ghost"
             />
@@ -98,41 +103,43 @@ export const Create: React.FC<CreateProps> = (props) => {
         : defaultFooterButtons;
 
     return (
-        <Card p="4" position="relative" variant="solid" {...wrapperProps}>
-            <Loader isLoading={loadingOverlayVisible} variant="overlay" />
-            <HStack spacing="4" alignItems="flex-start" {...headerProps}>
-                <Stack spacing="4">
-                    {breadcrumb}
-                    <HStack spacing="4">
-                        {buttonBack}
-                        {title ?? (
-                            <Heading as="h3" transform="capitalize">
-                                {translate(
-                                    `${resource.name}.titles.create`,
-                                    `Create ${userFriendlyResourceName(
-                                        resource.label ?? resource.name,
-                                        "singular",
-                                    )}`,
-                                )}
-                            </Heading>
-                        )}
+        <Form form={form}>
+            <Card p="4" position="relative" variant="solid" {...wrapperProps}>
+                <Loader isLoading={loadingOverlayVisible} variant="overlay" />
+                <HStack spacing="4" alignItems="flex-start" {...headerProps}>
+                    <Stack spacing="4">
+                        {breadcrumb}
+                        <HStack spacing="4">
+                            {buttonBack}
+                            {title ?? (
+                                <Heading as="h3" transform="capitalize">
+                                    {translate(
+                                        `${resource.name}.titles.create`,
+                                        `Create ${userFriendlyResourceName(
+                                            resource.label ?? resource.name,
+                                            "singular",
+                                        )}`,
+                                    )}
+                                </Heading>
+                            )}
+                        </HStack>
+                    </Stack>
+                    <HStack spacing="4" {...headerButtonProps}>
+                        {headerButtons}
                     </HStack>
-                </Stack>
-                <HStack spacing="4" {...headerButtonProps}>
-                    {headerButtons}
                 </HStack>
-            </HStack>
-            <Box pt="8" {...contentProps}>
-                {children}
-            </Box>
-            <HStack
-                alignItems="right"
-                spacing="4"
-                mt="4"
-                {...footerButtonProps}
-            >
-                {footerButtons}
-            </HStack>
-        </Card>
+                <Box pt="8" {...contentProps}>
+                    {children}
+                </Box>
+                <HStack
+                    alignItems="right"
+                    spacing="4"
+                    mt="8"
+                    {...footerButtonProps}
+                >
+                    {footerButtons}
+                </HStack>
+            </Card>
+        </Form>
     );
 };
