@@ -753,7 +753,9 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
             ${relationHooksCode}
 
             const columns = React.useMemo<GridColumns<any>>(() => [
-                ${[...renderedFields, actionButtons].join(",\r\n")}
+                ${[...renderedFields, actionButtons]
+                    .filter(Boolean)
+                    .join(",\r\n")}
             ], [${relationVariableNames.join(",")}]);
 
             return (
