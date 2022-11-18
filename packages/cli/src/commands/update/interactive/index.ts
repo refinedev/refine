@@ -1,11 +1,9 @@
 import inquirer from "inquirer";
-import {
-    parsePackageNameAndVersion,
-    RefinePackageInstalledVersionData as RefinePckg,
-} from "src/lib/package-manager";
+import { parsePackageNameAndVersion } from "src/utils/package";
 import semverDiff from "semver-diff";
 import chalk from "chalk";
 import { findDuplicates } from "src/utils/array";
+import { RefinePackageInstalledVersionData } from "src/commands/check-updates";
 
 type UIGroup = {
     patch: {
@@ -25,7 +23,9 @@ type UIGroup = {
     }[];
 };
 
-export const promptInteractiveRefineUpdate = async (packages: RefinePckg[]) => {
+export const promptInteractiveRefineUpdate = async (
+    packages: RefinePackageInstalledVersionData[],
+) => {
     const uiGroup = createUIGroup(packages);
     const inquirerUI = createInquirerUI(uiGroup);
 
@@ -62,7 +62,9 @@ export const validatePrompt = (input: string[]) => {
     return true;
 };
 
-export const createUIGroup = (packages: RefinePckg[]): UIGroup => {
+export const createUIGroup = (
+    packages: RefinePackageInstalledVersionData[],
+): UIGroup => {
     const packagesCategorized: UIGroup = {
         patch: [],
         minor: [],

@@ -4,23 +4,6 @@ import spinner from "src/utils/spinner";
 
 export type PM = "npm" | "pnpm" | "yarn";
 
-export type NpmOutdatedResponse = Record<
-    string,
-    {
-        current: string;
-        wanted: string;
-        latest: string;
-        dependet: string;
-    }
->;
-
-export type RefinePackageInstalledVersionData = {
-    name: string;
-    current: string;
-    wanted: string;
-    latest: string;
-};
-
 export const pmCommands = {
     npm: {
         install: ["install", "--save"],

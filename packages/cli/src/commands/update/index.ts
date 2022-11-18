@@ -1,12 +1,10 @@
 import { Command, Option } from "commander";
-import { isRefineUptoDate } from "../check-updates";
-import spinner from "src/utils/spinner";
 import {
-    getPreferedPM,
-    installPackages,
-    pmCommands,
+    isRefineUptoDate,
     RefinePackageInstalledVersionData,
-} from "src/lib/package-manager";
+} from "../check-updates";
+import spinner from "src/utils/spinner";
+import { getPreferedPM, installPackages, pmCommands } from "src/utils/package";
 import { promptInteractiveRefineUpdate } from "./interactive";
 
 enum Tag {

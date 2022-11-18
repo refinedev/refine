@@ -2,14 +2,26 @@ import React from "react";
 import { Command } from "commander";
 import { render } from "ink";
 import UpdateWarningTable from "src/components/update-warning-table";
-import {
-    getPreferedPM,
-    NpmOutdatedResponse,
-    RefinePackageInstalledVersionData,
-    pmCommands,
-} from "src/lib/package-manager";
+import { getPreferedPM, pmCommands } from "src/utils/package";
 import execa from "execa";
 import spinner from "src/utils/spinner";
+
+export type NpmOutdatedResponse = Record<
+    string,
+    {
+        current: string;
+        wanted: string;
+        latest: string;
+        dependet: string;
+    }
+>;
+
+export type RefinePackageInstalledVersionData = {
+    name: string;
+    current: string;
+    wanted: string;
+    latest: string;
+};
 
 const load = (program: Command) => {
     return program
