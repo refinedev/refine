@@ -46,7 +46,7 @@ export default function transformer(file: FileInfo, api: API, options: any) {
         j.property(
             "init",
             j.identifier("name"),
-            j.stringLiteral(options.__resource),
+            j.stringLiteral(options.__resourceName),
         ),
     ];
     actions.map((item: string) => {
@@ -78,6 +78,7 @@ export default function transformer(file: FileInfo, api: API, options: any) {
                 attr.type === "JSXAttribute" && attr.name.name === "resources",
         );
 
+        // if no resources prop, add it
         if (resourcePropIndex === -1) {
             attributes.push(
                 j.jsxAttribute(
@@ -93,6 +94,33 @@ export default function transformer(file: FileInfo, api: API, options: any) {
             return path.node;
         }
 
+        const resourceValue = (attributes[resourcePropIndex] as JSXAttribute)
+            .value as JSXExpressionContainer;
+
+        // resources={RESOURCE_CONSTANT} => resources={[...RESOURCE_CONSTANT, {name: "post", list: List}]}
+        if (resourceValue.expression.type === "Identifier") {
+            attributes[resourcePropIndex] = j.jsxAttribute(
+                j.jsxIdentifier("resources"),
+                j.jsxExpressionContainer(
+                    j.arrayExpression([
+                        j.spreadElement(resourceValue.expression),
+                        j.objectExpression(resourceProperty),
+                    ]),
+                ),
+            );
+
+            return path.node;
+        }
+
+        // resources={[...resources]} => resources={[...resources, {name: "post", list: List}]}
+        if (resourceValue.expression.type === "ArrayExpression") {
+            const resourceArray = resourceValue.expression as ArrayExpression;
+            resourceArray.elements.push(j.objectExpression(resourceProperty));
+
+            return path.node;
+        }
+
+        // resouces={[{ name: "post", list: List }]}
         const resourceElements = (
             (
                 (attributes[resourcePropIndex] as JSXAttribute)
