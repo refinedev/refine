@@ -1,4 +1,4 @@
-import { findDuplicates } from ".";
+import { findDuplicates } from "@utils/array";
 
 test("Find duplicates from array", () => {
     const testCases = [

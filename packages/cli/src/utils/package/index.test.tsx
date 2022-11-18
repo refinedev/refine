@@ -1,4 +1,4 @@
-import { parsePackageNameAndVersion } from ".";
+import { parsePackageNameAndVersion } from "@utils/package";
 
 test("Get package name and version from string", () => {
     const testCases = [
