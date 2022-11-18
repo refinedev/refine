@@ -18,6 +18,7 @@ import { LoadingComponent } from "./loading";
 import { CodeViewerComponent } from "./code-viewer";
 
 import { GuesserResultComponent, GuessField, ImportElement } from "@/types";
+import { shouldDotAccess } from "@/utilities/accessor";
 
 /**
  * @experimental This is an experimental component
@@ -64,7 +65,7 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                         val = `${accessor(
                             recordName,
                             field.key,
-                        )}?.map((item) => ${accessor(
+                        )}?.map((item: any) => ${accessor(
                             "item",
                             undefined,
                             field.accessor,
@@ -109,17 +110,44 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                         : toSingular(field.resource.name)
                 }SelectProps`;
 
+                const name = field.accessor
+                    ? field.multiple
+                        ? `"${field.key}"`
+                        : `["${field.key}", "${field.accessor}"]`
+                    : `"${field.key}"`;
+
+                let valueProps = "";
+                let valueEvent = "";
+
+                if (field.accessor && field.multiple) {
+                    const canDot = shouldDotAccess(`${field.accessor}`);
+                    valueEvent = `getValueFromEvent={(selected: string[]) => {
+                        return selected?.map((item) => ({ ${
+                            canDot ? field.accessor : `["${field.accessor}"]`
+                        }: item }));
+                    }}`;
+                    valueProps = `getValueProps={(value: any[]) => {
+                        return {
+                            value: value?.map((item) => ${accessor(
+                                "item",
+                                undefined,
+                                field.accessor,
+                            )}),
+                        };
+                    }}`;
+                }
+
                 return jsx`
                     <Form.Item
                         label="${prettyString(field.key)}"
-                        name={["${field.key}"${
-                    field.accessor ? ', "' + field.accessor + '"' : ""
-                }]}
+                        name={${name}}
                         rules={[
                             {
                                 required: true,
                             },
                         ]}
+                        ${valueProps}
+                        ${valueEvent}
                     >
                         <Select ${
                             field.multiple ? 'mode="multiple"' : ""
@@ -138,23 +166,24 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                 field.type === "number"
             ) {
                 if (field.multiple) {
-                    const val = accessor(field.key, undefined, field.accessor)
+                    const val = accessor(field.key, "index", field.accessor)
                         .split("?.")
                         .map((el) => `"${el}"`)
-                        .join(", ");
+                        .join(", ")
+                        .replace(/"index"/, "index");
 
                     return `
                         <>
-                            {${accessor(
+                            {(${accessor(
                                 recordName,
                                 field.key,
-                            )}?.map((item, index) => (
+                            )} as any[])?.map((item, index) => (
                                 <Form.Item
                                     key={index}
                                     label={\`${prettyString(
                                         field.key,
                                     )} \${index+1}\`}
-                                    name={[${val}, index]}
+                                    name={[${val}]}
                                 >
                                     <Input
                                         type="${field.type}"
@@ -199,7 +228,7 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
 
                 if (field.multiple && !field.accessor) {
                     valueProps =
-                        "getValueProps={(value) => ({ fileList: value?.map((item) => ({ url: item, name: item, uid: item }))})}";
+                        "getValueProps={(value) => ({ fileList: value?.map((item: any) => ({ url: item, name: item, uid: item }))})}";
                 }
 
                 if (!field.multiple) {
@@ -246,24 +275,25 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                 imports.push(["Checkbox", "@pankod/refine-antd"]);
 
                 if (field.multiple) {
-                    const val = accessor(field.key, undefined, field.accessor)
+                    const val = accessor(field.key, "index", field.accessor)
                         .split("?.")
                         .map((el) => `"${el}"`)
-                        .join(", ");
+                        .join(", ")
+                        .replace(/"index"/, "index");
 
                     return `
                         <>
-                            {${accessor(
+                            {(${accessor(
                                 recordName,
                                 field.key,
-                            )}?.map((item, index) => (
+                            )} as any[])?.map((item, index) => (
                                 <Form.Item
                                     key={index}
                                     valuePropName="checked"
                                     label={\`${prettyString(
                                         field.key,
                                     )} \${index+1}\`}
-                                    name={[${val}, index]}
+                                    name={[${val}]}
                                 >
                                     <Checkbox>${prettyString(
                                         field.key,
@@ -301,23 +331,24 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                 );
 
                 if (field.multiple) {
-                    const val = accessor(field.key, undefined, field.accessor)
+                    const val = accessor(field.key, "index", field.accessor)
                         .split("?.")
                         .map((el) => `"${el}"`)
-                        .join(", ");
+                        .join(", ")
+                        .replace(/"index"/, "index");
 
                     return `
                         <>
-                            {${accessor(
+                            {(${accessor(
                                 recordName,
                                 field.key,
-                            )}?.map((item, index) => (
+                            )} as any[])?.map((item, index) => (
                                 <Form.Item
                                     key={index}
                                     label={\`${prettyString(
                                         field.key,
                                     )} \${index+1}\`}
-                                    name={[${val}, index]}
+                                    name={[${val}]}
                                     getValueProps={(value) => ({ value: dayjs(value) })}
                                 >
                                     <DatePicker />
