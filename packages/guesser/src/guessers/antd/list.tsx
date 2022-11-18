@@ -120,7 +120,11 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                     let val = "item";
 
                     if (field?.relationGuess) {
-                        const valSingle = `${variableName}?.find((resourceItems) => resourceItems.id === item)`;
+                        const valSingle = `${variableName}?.find((resourceItems) => resourceItems.id === ${accessor(
+                            "item",
+                            undefined,
+                            field.accessor,
+                        )})`;
                         const valViewableSingle = accessor(
                             valSingle,
                             undefined,
@@ -134,7 +138,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                             {${accessor(
                                 "value",
                                 undefined,
-                                field.accessor,
+                                // field.accessor,
                             )}?.map((item, index) => (
                                 <TagField key={index} value={${val}} />
                             ))}
@@ -278,7 +282,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
 
         const booleanFields = (field: GuessField) => {
             if (field?.type === "boolean") {
-                imports.push(["Checkbox", "@pankod/refine-antd"]);
+                imports.push(["BooleanField", "@pankod/refine-antd"]);
 
                 const dataIndex =
                     Array.isArray(field.accessor) || field.multiple
@@ -289,7 +293,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
 
                 const title = `title="${prettyString(field.key)}"`;
 
-                let render = jsx`render={(value: any) => <Checkbox checked={!!${accessor(
+                let render = jsx`render={(value: any) => <BooleanField value={${accessor(
                     "value",
                     undefined,
                     Array.isArray(field.accessor) ? field.accessor : undefined,
@@ -304,7 +308,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         " && ",
                     );
                     render = jsx`render={(value: any) => (<>{value.map((item, index) => (
-                        <Checkbox checked={!!${val}} key={index} />
+                        <BooleanField value={${val}} key={index} />
                     ))}</>)}`;
                 }
 
