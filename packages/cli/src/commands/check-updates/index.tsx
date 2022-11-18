@@ -1,10 +1,10 @@
 import React from "react";
 import { Command } from "commander";
 import { render } from "ink";
-import UpdateWarningTable from "src/components/update-warning-table";
-import { getPreferedPM, pmCommands } from "src/utils/package";
+import UpdateWarningTable from "@components/update-warning-table";
+import { getPreferedPM, pmCommands } from "@utils/package";
 import execa from "execa";
-import spinner from "src/utils/spinner";
+import spinner from "@utils/spinner";
 
 export type NpmOutdatedResponse = Record<
     string,

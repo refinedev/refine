@@ -1,9 +1,9 @@
 import inquirer from "inquirer";
-import { parsePackageNameAndVersion } from "src/utils/package";
 import semverDiff from "semver-diff";
 import chalk from "chalk";
-import { findDuplicates } from "src/utils/array";
-import { RefinePackageInstalledVersionData } from "src/commands/check-updates";
+import { findDuplicates } from "@utils/array";
+import { parsePackageNameAndVersion } from "@utils/package";
+import { RefinePackageInstalledVersionData } from "@commands/check-updates";
 
 type UIGroup = {
     patch: {
