@@ -30,6 +30,8 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
         const COMPONENT_NAME = componentName(resource.name, "show");
         const recordName = "record";
         const imports: Array<ImportElement> = [
+            ["React", "react", true],
+            ["IResourceComponentsProps", "@pankod/refine-core"],
             ["useShow", "@pankod/refine-core"],
             ["Show", "@pankod/refine-antd"],
             ["Typography", "@pankod/refine-antd"],
@@ -51,7 +53,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                             ids = `${accessor(
                                 recordName,
                                 field.key,
-                            )}?.map((item) => ${accessor(
+                            )}?.map((item: any) => ${accessor(
                                 "item",
                                 undefined,
                                 field.accessor,
@@ -140,7 +142,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                                             undefined,
                                             field.relationGuess.accessor,
                                         );
-                                        return `{${variableName}?.data?.map((${mapItemName}) => <TagField key={${val}} value={${val}} />)}`;
+                                        return `{${variableName}?.data?.map((${mapItemName}: any) => <TagField key={${val}} value={${val}} />)}`;
                                     }
                                 } else {
                                     return undefined;
@@ -209,7 +211,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                     const val = accessor("item", undefined, field.accessor);
                     return jsx`
                     <Title level={5}>${prettyString(field.key)}</Title>
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
                 `;
@@ -233,7 +235,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                     const val = accessor("item", undefined, field.accessor);
                     return jsx`
                     <Title level={5}>${prettyString(field.key)}</Title>
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <ImageField style={{ maxWidth: 200 }} value={${val}} key={${val}} />
                     ))}
                 `;
@@ -262,7 +264,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                     return jsx`
                     <Title level={5}>${prettyString(field.key)}</Title>
                     <>
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
                     </>
@@ -291,7 +293,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                     const val = accessor("item", undefined, field.accessor);
                     return jsx`
                     <Title level={5}>${prettyString(field.key)}</Title>
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
                 `;
@@ -319,7 +321,10 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                     const val = accessor("item", undefined, field.accessor);
                     return jsx`
                     <Title level={5}>${prettyString(field.key)}</Title>
-                    {${accessor(recordName, field.key)}?.map((item, index) => (
+                    {(${accessor(
+                        recordName,
+                        field.key,
+                    )} as any[])?.map((item, index) => (
                         <BooleanField value={${val}} key={index} />
                     ))}
                 `;
@@ -344,7 +349,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                     const val = accessor("item", undefined, field.accessor);
                     return jsx`
                     <Title level={5}>${prettyString(field.key)}</Title>
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <DateField value={${val}} key={${val}} />
                     ))}
                 `;
@@ -386,7 +391,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                     const val = accessor("item", undefined, field.accessor);
                     return jsx`
                     <Title level={5}>${prettyString(field.key)}</Title>
-                    {${accessor(recordName, field.key)}?.map((item) => (
+                    {${accessor(recordName, field.key)}?.map((item: any) => (
                         <TagField value={${val}} key={${val}} />
                     ))}
                 `;
@@ -436,7 +441,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
         
         const { Title } = Typography;
 
-        export const ${COMPONENT_NAME} = () => {
+        export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
             const { queryResult } = useShow();
             const { data, isLoading } = queryResult;
         

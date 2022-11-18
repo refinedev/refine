@@ -30,7 +30,9 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
         const COMPONENT_NAME = componentName(resource.name, "list");
         const recordName = "tableProps?.dataSource";
         const imports: Array<ImportElement> = [
+            ["React", "react", true],
             ["IResourceComponentsProps", "@pankod/refine-core"],
+            ["BaseRecord", "@pankod/refine-core"],
             ["useTable", "@pankod/refine-antd"],
             ["List", "@pankod/refine-antd"],
             ["Table", "@pankod/refine-antd"],
@@ -133,7 +135,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         val = valViewableSingle;
                     }
 
-                    render = `render={(value) => ${loadingCondition} (
+                    render = `render={(value: any[]) => ${loadingCondition} (
                         <>
                             {${accessor(
                                 "value",
@@ -191,7 +193,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         field.accessor,
                         " + ",
                     );
-                    render = jsx`render={(value: any) => (<>{value.map((item, index) => (
+                    render = jsx`render={(value: any[]) => (<>{value.map((item, index) => (
                         <ImageField style={{ maxWidth: "100px" }} value={${val}} key={index} />
                     ))}</>)}`;
                 }
@@ -230,7 +232,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         field.accessor,
                         ' + " " + ',
                     );
-                    render = jsx`render={(value: any) => (<>{value.map((item, index) => (
+                    render = jsx`render={(value: any[]) => (<>{value.map((item, index) => (
                         <TagField value={${val}} key={index} />
                     ))}</>)}`;
                 }
@@ -270,7 +272,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         field.accessor,
                         " + ",
                     );
-                    render = jsx`render={(value: any) => (<>{value.map((item, index) => (
+                    render = jsx`render={(value: any[]) => (<>{value.map((item, index) => (
                         <TagField value={${val}} key={index} />
                     ))}</>)}`;
                 }
@@ -307,7 +309,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         field.accessor,
                         " && ",
                     );
-                    render = jsx`render={(value: any) => (<>{value.map((item, index) => (
+                    render = jsx`render={(value: any[]) => (<>{value.map((item, index) => (
                         <BooleanField value={${val}} key={index} />
                     ))}</>)}`;
                 }
@@ -345,7 +347,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         field.accessor,
                         ' + " " + ',
                     );
-                    render = jsx`render={(value: any) => (<>{value.map((item, index) => (
+                    render = jsx`render={(value: any[]) => (<>{value.map((item, index) => (
                         <DateField value={${val}} key={index} />
                     ))}</>)}`;
                 }
@@ -381,7 +383,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         field.accessor,
                         ' + " " + ',
                     );
-                    render = jsx`render={(value: any) => (<>{value.map((item, index) => (
+                    render = jsx`render={(value: any[]) => (<>{value.map((item, index) => (
                         <MarkdownField value={(${val}).slice(0, 80) + "..."} key={index} />
                     ))}</>)}`;
                 }
@@ -413,7 +415,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                         field.accessor,
                         ' + " " + ',
                     );
-                    render = `render={(value: any) => (<>{value.map((item) => (
+                    render = `render={(value: any[]) => (<>{value.map((item) => (
                         <TagField value={${val}} key={${val}} />
                     ))}</>)}`;
                 }
@@ -434,7 +436,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                 <Table.Column
                     title="Actions"
                     dataIndex="actions"
-                    render={(_, record) => (
+                    render={(_, record: BaseRecord) => (
                         <Space>
                             <EditButton
                                 hideText
