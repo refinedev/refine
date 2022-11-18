@@ -1,5 +1,11 @@
 # @pankod/refine-mantine
 
+## 1.11.6
+
+### Patch Changes
+
+-   [#3011](https://github.com/refinedev/refine/pull/3011) [`593531713c3`](https://github.com/refinedev/refine/commit/593531713c3f88d8bca7f6b0397f4068ebc85a04) Thanks [@aliemir](https://github.com/aliemir)! - Fixed `<NumberField />` type for missing `value` prop type, which was erroring out when using `<NumberField />`.
+
 ## 1.11.5
 
 ### Patch Changes
