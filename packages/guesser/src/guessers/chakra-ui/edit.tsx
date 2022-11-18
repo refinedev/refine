@@ -352,9 +352,7 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
         
         export const ${COMPONENT_NAME} = () => {
             const {
-                refineCore: { formLoading, ${
-                    relationFields?.length > 0 ? "queryResult" : ""
-                } },
+                refineCore: { formLoading, queryResult },
                 saveButtonProps,
                 register,
                 formState: { errors },

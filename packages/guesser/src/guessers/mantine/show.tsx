@@ -117,6 +117,11 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                 }IsLoading`;
 
                 if (field.multiple) {
+                    imports.push(
+                        ["TagField", "@pankod/refine-mantine"],
+                        ["Group", "@pankod/refine-mantine"],
+                    );
+
                     return jsx`
                     <Title my="xs" order={5}>${prettyString(field.key)}</Title>
                     {${variableIsLoading} ? <>Loading...</> : (

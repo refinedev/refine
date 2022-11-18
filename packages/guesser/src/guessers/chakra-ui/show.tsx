@@ -454,7 +454,7 @@ export const ShowGuesser: GuesserResultComponent = createGuesser({
                         field.key,
                         field.accessor,
                         ' + " " + ',
-                    )} as number} />
+                    )} ?? ""} />
                 `;
             }
             return undefined;

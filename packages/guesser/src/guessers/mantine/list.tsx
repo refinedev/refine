@@ -260,7 +260,7 @@ export const ListGuesser: GuesserResultComponent = createGuesser({
                             return (
                                 <Group spacing="xs">
                                     {getValue<any[]>()?.map((item, index) => (
-                                        <Image src={${val}} key={index} sx={{ height: "50px", maxWidth: "100px" }} />
+                                        <Image src={${val}} key={index} sx={{ maxWidth: "100px" }} />
                                     ))}
                                 </Group>
                             )
