@@ -193,11 +193,30 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                     ["Upload", "@pankod/refine-antd"],
                     ["getValueFromEvent", "@pankod/refine-antd"],
                 );
+                let valueProps = 'valuePropName="fileList"';
+
+                console.log("Field", field);
+
+                if (field.multiple && !field.accessor) {
+                    valueProps =
+                        "getValueProps={(value) => ({ fileList: value?.map((item) => ({ url: item, name: item, uid: item }))})}";
+                }
+
+                if (!field.multiple) {
+                    if (field.accessor) {
+                        valueProps =
+                            "getValueProps={(value) => ({ fileList: value ? [value] : [] })}";
+                    } else {
+                        valueProps =
+                            "getValueProps={(value) => ({ fileList: [{ url: value, name: value, uid: value }]})}";
+                    }
+                }
+
                 return jsx`
                     <Form.Item label="${prettyString(field.key)}">
                         <Form.Item
                             name="${field.key}"
-                            valuePropName="fileList"
+                            ${valueProps}
                             getValueFromEvent={getValueFromEvent}
                             noStyle
                             rules={[
