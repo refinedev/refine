@@ -297,6 +297,7 @@ export const EditGuesser: GuesserResultComponent = createGuesser({
                                         field.key,
                                     )} \${index+1}\`}
                                     name={[${val}, index]}
+                                    getValueProps={(value) => ({ value: dayjs(value) })}
                                 >
                                     <DatePicker />
                                 </Form.Item>
