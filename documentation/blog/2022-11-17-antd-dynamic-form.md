@@ -1,9 +1,9 @@
 ---
-title: dynamic
-description: We'll implement React Hook Form custom validations and schema validations using yup. 
-slug: antdesign-dynamic-form
+title: How to Create Dynamic Forms in React CRUD app with Ant Design
+description: Easy way to creating dynamic forms in React CRUD apps with Ant Design	
+slug: react-crud-app-with-dynamic-form-ant-design
 authors: david_omotayo
-tags: [react, react-hook-form, refine, form-validation, yup, schema-validation]
+tags: [react, refine, form-validation, dynamic-form, ant-design]
 image: /img/blog/2022-11-17-antd-dynamic-form/social.png
 hide_table_of_contents: false
 ---
@@ -63,7 +63,7 @@ To follow along with this tutorial, you need to have a good understanding of Typ
 
 For example, say you want to create a form that lets users provide optional extended information about themselves, but you don't want to greet every user with a behemoth form. You can create a dynamic form that allows users to add or remove input fields according to their needs.
 
-For context, here's an example of the final product of the dynamic form we'll be building in this tutorial:
+For context, here's an example of the final CRUD app product of the dynamic form we'll be building in this tutorial:
 
 
 <div class="img-container">
@@ -98,7 +98,7 @@ One of refine's core features is its out-of-the-box integration with UI framewor
 
 ## Project setup
 
-Before we go any further, let's set up a refine sample project and install the required packages using superplate.
+Before we go any further, let's set up a refine sample CRUD app project and install the required packages using superplate.
 
 Superplate is a CLI tool for quickly bootstrapping a refine project. The tool provides the option of setting up a headless refine project or a project paired with third-party UI libraries such as [Ant design](https://ant.design/) and [Material UI](https://mui.com/). We'll be using the latter for this tutorial.
 
@@ -444,6 +444,11 @@ We can also add a basic validation to both fields by passing an array of objects
 
 In the subsequent sections, we'll learn how to add a more complex validation to our form. For now, this will do.
 
+---
+
+<PromotionBanner title="Is your CRUD app overloaded with technical debt?" image="/img/generic_banner.png" />
+
+---
 
 ## Adding form list
 
@@ -897,6 +902,13 @@ Now, our form is ready to validate input values and perform `POST` requests to o
 
 What's left for us now is setting up the edit page to update fetched records from the API.
 
+<br/>
+<div>
+<a href="https://discord.gg/refine">
+  <img  src="/img/discord_big_blue.png" alt="discord banner" />
+</a>
+</div>
+
 
 ## Building the edit page
 
@@ -1119,6 +1131,18 @@ As a challenge, visit refine's [documentation](https://refine.dev/docs/) to lear
 
 ## Conclusion
 
-In this article, we introduced refine and looked at how to set up a refine project with a third-party UI library - in this case, the Ant design library. Then, we looked at how to create a `List` , `Edit` , and `Create` page for handling CRUD functionalities in our app.
+In this article, we introduced refine and looked at how to set up a refine complete CRUD app  project with a third-party UI library - in this case, the Ant design library. Then, we looked at how to create a `List` , `Edit` , and `Create` page for handling CRUD functionalities in our app.
 
 We also looked at creating a dynamic form that renders and deletes fields on demand, validates input values, and handles submission using Ant's `Form` component and its sub-components.
+
+
+## Live StackBlitz Example
+
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/blog/efine-antd-dynamic-form/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
+     title="refine-antd-dynamic-form"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
+
+---
