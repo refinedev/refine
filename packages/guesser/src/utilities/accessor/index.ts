@@ -1,6 +1,6 @@
 const dotAccessableRegex = /^[a-zA-Z_$][a-zA-Z_$0-9]*$/;
 
-const shouldDotAccess = (property: string) => {
+export const shouldDotAccess = (property: string) => {
     return dotAccessableRegex.test(property);
 };
 
