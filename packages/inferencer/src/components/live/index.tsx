@@ -1,7 +1,7 @@
-import * as React from "react";
+import React from "react";
 import * as RefineCore from "@pankod/refine-core";
 
-import { LivePreview, LiveProvider, LiveContext } from "react-live";
+import { LivePreview, LiveProvider, ContextProps } from "react-live";
 
 import { replaceImports, replaceExports } from "@/utilities";
 import { AdditionalScopeType, LiveComponentProps } from "@/types";
@@ -10,6 +10,10 @@ const defaultScope: Array<AdditionalScopeType> = [
     ["react", "React", React],
     ["@pankod/refine-core", "RefineCore", RefineCore],
 ];
+
+const InferencerLiveContext = React.createContext<ContextProps>(
+    {} as ContextProps,
+);
 
 /**
  * Live Component will render the code with `react-live`.
@@ -52,6 +56,7 @@ export const LiveComponent: React.FC<LiveComponentProps> = ({
 
     const scope = React.useMemo(() => {
         return {
+            React,
             ...React,
             ...[...defaultScope, ...(additionalScope ?? [])].reduce(
                 (acc, [_packageName, variableName, packageContent]) => {
@@ -67,7 +72,7 @@ export const LiveComponent: React.FC<LiveComponentProps> = ({
 
     const ErrorComponentWithError = React.useMemo(() => {
         const LiveErrorComponent = () => {
-            const { error } = React.useContext(LiveContext);
+            const { error } = React.useContext(InferencerLiveContext);
 
             if (ErrorComponent) {
                 return (
@@ -89,8 +94,13 @@ export const LiveComponent: React.FC<LiveComponentProps> = ({
     }, [ErrorComponent, fetchError]);
 
     return (
-        <LiveProvider code={sanitized} scope={scope} noInline>
-            {!fetchError && <LivePreview />}
+        <LiveProvider
+            Context={InferencerLiveContext}
+            code={sanitized}
+            scope={scope}
+            noInline
+        >
+            {!fetchError && <LivePreview Context={InferencerLiveContext} />}
             <ErrorComponentWithError />
         </LiveProvider>
     );
