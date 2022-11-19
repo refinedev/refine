@@ -31,6 +31,18 @@ const Preview: NextPage = () => {
             const isChakra =
                 code.includes("@pankod/refine-chakra-ui") ||
                 code.includes("RefineChakra");
+            const isAntdInferencer =
+                code.includes("@pankod/refine-inferencer/antd") ||
+                code.includes("RefineAntdInferencer");
+            const isMuiInferencer =
+                code.includes("@pankod/refine-inferencer/mui") ||
+                code.includes("RefineMuiInferencer");
+            const isMantineInferencer =
+                code.includes("@pankod/refine-inferencer/mantine") ||
+                code.includes("RefineMantineInferencer");
+            const isChakraInferencer =
+                code.includes("@pankod/refine-inferencer/chakra-ui") ||
+                code.includes("RefineChakraInferencer");
 
             const antdScope = isAntd
                 ? (await import("../src/scope/antd")).default
@@ -44,6 +56,18 @@ const Preview: NextPage = () => {
             const chakraScope = isChakra
                 ? (await import("../src/scope/chakra")).default
                 : {};
+            const antdInferencerScope = isAntdInferencer
+                ? (await import("../src/scope/antd-inferencer")).default
+                : {};
+            const muiInferencerScope = isMuiInferencer
+                ? (await import("../src/scope/mui-inferencer")).default
+                : {};
+            const mantineInferencerScope = isMantineInferencer
+                ? (await import("../src/scope/mantine-inferencer")).default
+                : {};
+            const chakraInferencerScope = isChakraInferencer
+                ? (await import("../src/scope/chakra-inferencer")).default
+                : {};
 
             setScope({
                 ...RefineCommonScope,
@@ -51,6 +75,10 @@ const Preview: NextPage = () => {
                 ...muiScope,
                 ...mantineScope,
                 ...chakraScope,
+                ...antdInferencerScope,
+                ...muiInferencerScope,
+                ...mantineInferencerScope,
+                ...chakraInferencerScope,
             });
             setScopeSettled(true);
         }
