@@ -1,3 +1,4 @@
+/** @type {import('@docusaurus/plugin-content-docs/src/sidebars/types').Sidebars} */
 module.exports = {
     someSidebar: [
         {
