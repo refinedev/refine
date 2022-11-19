@@ -637,6 +637,20 @@ module.exports = {
                                 "packages/documentation/react-hook-form/useStepsForm",
                             ],
                         },
+                        {
+                            type: "category",
+                            label: "Inferencer",
+                            link: {
+                                type: "doc",
+                                id: "packages/documentation/inferencer/inferencer",
+                            },
+                            items: [
+                                "packages/documentation/inferencer/ant-design",
+                                "packages/documentation/inferencer/material-ui",
+                                "packages/documentation/inferencer/mantine",
+                                "packages/documentation/inferencer/chakra-ui",
+                            ],
+                        },
                     ],
                 },
             ],
