@@ -9,16 +9,12 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import "@pankod/refine-antd/dist/styles.min.css";
 
 import {
-    AntdShowGuesser,
-    AntdEditGuesser,
-    AntdListGuesser,
-} from "@pankod/refine-guesser/antd";
+    AntdShowInferencer,
+    AntdEditInferencer,
+    AntdListInferencer,
+} from "@pankod/refine-inferencer/antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
-
-// const PostList = () => <AntdListGuesser name="posts" />;
-// const CategoryList = () => <AntdListGuesser name="categories" />;
-// const UserList = () => <AntdListGuesser name="users" />;
 
 const App: React.FC = () => {
     return (
@@ -40,22 +36,22 @@ const App: React.FC = () => {
             resources={[
                 {
                     name: "posts",
-                    list: AntdListGuesser,
-                    edit: AntdEditGuesser,
-                    show: AntdShowGuesser,
+                    list: AntdListInferencer,
+                    edit: AntdEditInferencer,
+                    show: AntdShowInferencer,
                     canDelete: true,
                 },
                 {
                     name: "categories",
-                    list: AntdListGuesser,
-                    edit: AntdEditGuesser,
-                    show: AntdShowGuesser,
+                    list: AntdListInferencer,
+                    edit: AntdEditInferencer,
+                    show: AntdShowInferencer,
                 },
                 {
                     name: "users",
-                    list: AntdListGuesser,
-                    edit: AntdEditGuesser,
-                    show: AntdShowGuesser,
+                    list: AntdListInferencer,
+                    edit: AntdEditInferencer,
+                    show: AntdShowInferencer,
                 },
                 {
                     name: "tags",
