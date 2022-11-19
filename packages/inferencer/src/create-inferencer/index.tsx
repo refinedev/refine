@@ -59,7 +59,7 @@ export const createInferencer: CreateInferencer = ({
         ...fieldTransformers,
     ]);
 
-    const Inferencer: InferencerResultComponent = ({ name: resourceName }) => {
+    const Inferencer = ({ resourceName }: { resourceName?: string }) => {
         const { resource, resources } = useResource({
             resourceNameOrRouteName: resourceName,
         });
@@ -140,5 +140,9 @@ export const createInferencer: CreateInferencer = ({
         );
     };
 
-    return Inferencer;
+    const InferencerComponent: InferencerResultComponent = ({ name }) => {
+        return <Inferencer resourceName={name} key={name} />;
+    };
+
+    return InferencerComponent;
 };
