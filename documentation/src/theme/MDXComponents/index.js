@@ -1,5 +1,7 @@
 import React from "react";
 import MDXComponents from "@theme-original/MDXComponents";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 import DiscordBanner from "@site/src/components/blog/discord-banner";
 import GithubBanner from "@site/src/components/blog/github-banner";
@@ -16,4 +18,6 @@ export default {
     PropsTable: PropsTable,
     PropTag: PropTag,
     PromotionBanner: PromotionBanner,
+    Tabs: Tabs,
+    TabItem: TabItem,
 };
