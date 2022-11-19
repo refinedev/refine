@@ -1,7 +1,7 @@
 ---
 slug: antd-tutorial
 id: antd-tutorial-example
-title: Ant Desig
+title: Ant Design
 example-title: Ant Design UI Tutorial
 example-tags: [antd,tutorial,rest,router-provider,react-router]
 ---
