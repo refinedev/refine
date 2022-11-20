@@ -40,7 +40,8 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                         <Group spacing="xs">
                             <Button
                                 leftIcon={<IconCode size={18} />}
-                                variant="default"
+                                variant="filled"
+                                color="primary"
                                 onClick={() => setVisible(true)}
                             >
                                 Show Code
@@ -48,7 +49,9 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                             <Button
                                 leftIcon={<IconMessageCircle size={18} />}
                                 variant="default"
-                                onClick={() => alert("not implemented")}
+                                component="a"
+                                target="_blank"
+                                href="https://github.com/refinedev/refine/issues"
                             >
                                 Give Feedback
                             </Button>
