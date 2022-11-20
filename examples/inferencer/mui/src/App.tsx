@@ -15,10 +15,10 @@ import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import {
-    MuiEditGuesser,
-    MuiShowGuesser,
-    MuiListGuesser,
-} from "@pankod/refine-guesser/mui";
+    MuiEditInferencer,
+    MuiShowInferencer,
+    MuiListInferencer,
+} from "@pankod/refine-inferencer/mui";
 
 const App: React.FC = () => {
     return (
@@ -39,22 +39,22 @@ const App: React.FC = () => {
                     resources={[
                         {
                             name: "posts",
-                            list: MuiListGuesser,
-                            edit: MuiEditGuesser,
-                            show: MuiShowGuesser,
+                            list: MuiListInferencer,
+                            edit: MuiEditInferencer,
+                            show: MuiShowInferencer,
                             canDelete: true,
                         },
                         {
                             name: "categories",
-                            list: MuiListGuesser,
-                            edit: MuiEditGuesser,
-                            show: MuiShowGuesser,
+                            list: MuiListInferencer,
+                            edit: MuiEditInferencer,
+                            show: MuiShowInferencer,
                         },
                         {
                             name: "users",
-                            list: MuiListGuesser,
-                            edit: MuiEditGuesser,
-                            show: MuiShowGuesser,
+                            list: MuiListInferencer,
+                            edit: MuiEditInferencer,
+                            show: MuiShowInferencer,
                         },
                         {
                             name: "tags",

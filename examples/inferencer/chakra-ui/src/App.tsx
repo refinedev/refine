@@ -11,10 +11,10 @@ import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import {
-    ChakraUIListGuesser,
-    ChakraUIEditGuesser,
-    ChakraUIShowGuesser,
-} from "@pankod/refine-guesser/chakra-ui";
+    ChakraUIListInferencer,
+    ChakraUIEditInferencer,
+    ChakraUIShowInferencer,
+} from "@pankod/refine-inferencer/chakra-ui";
 
 const App: React.FC = () => {
     return (
@@ -29,22 +29,22 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "posts",
-                        list: ChakraUIListGuesser,
-                        edit: ChakraUIEditGuesser,
-                        show: ChakraUIShowGuesser,
+                        list: ChakraUIListInferencer,
+                        edit: ChakraUIEditInferencer,
+                        show: ChakraUIShowInferencer,
                         canDelete: true,
                     },
                     {
                         name: "categories",
-                        list: ChakraUIListGuesser,
-                        edit: ChakraUIEditGuesser,
-                        show: ChakraUIShowGuesser,
+                        list: ChakraUIListInferencer,
+                        edit: ChakraUIEditInferencer,
+                        show: ChakraUIShowInferencer,
                     },
                     {
                         name: "users",
-                        list: ChakraUIListGuesser,
-                        edit: ChakraUIEditGuesser,
-                        show: ChakraUIShowGuesser,
+                        list: ChakraUIListInferencer,
+                        edit: ChakraUIEditInferencer,
+                        show: ChakraUIShowInferencer,
                     },
                     {
                         name: "tags",

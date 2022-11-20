@@ -13,10 +13,10 @@ import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
 import {
-    MantineListGuesser,
-    MantineEditGuesser,
-    MantineShowGuesser,
-} from "@pankod/refine-guesser/mantine";
+    MantineListInferencer,
+    MantineEditInferencer,
+    MantineShowInferencer,
+} from "@pankod/refine-inferencer/mantine";
 
 const App: React.FC = () => {
     return (
@@ -35,22 +35,22 @@ const App: React.FC = () => {
                     resources={[
                         {
                             name: "posts",
-                            list: MantineListGuesser,
-                            edit: MantineEditGuesser,
-                            show: MantineShowGuesser,
+                            list: MantineListInferencer,
+                            edit: MantineEditInferencer,
+                            show: MantineShowInferencer,
                             canDelete: true,
                         },
                         {
                             name: "categories",
-                            list: MantineListGuesser,
-                            edit: MantineEditGuesser,
-                            show: MantineShowGuesser,
+                            list: MantineListInferencer,
+                            edit: MantineEditInferencer,
+                            show: MantineShowInferencer,
                         },
                         {
                             name: "users",
-                            list: MantineListGuesser,
-                            edit: MantineEditGuesser,
-                            show: MantineShowGuesser,
+                            list: MantineListInferencer,
+                            edit: MantineEditInferencer,
+                            show: MantineShowInferencer,
                         },
                         {
                             name: "tags",
