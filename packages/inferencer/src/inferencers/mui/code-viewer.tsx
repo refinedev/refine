@@ -1,9 +1,18 @@
 import React from "react";
-import { Button, Fab, Box, Modal, Typography, Stack } from "@pankod/refine-mui";
+import {
+    Button,
+    Box,
+    Modal,
+    Typography,
+    Stack,
+    IconButton,
+} from "@pankod/refine-mui";
 
 import { prettierFormat, prettyString } from "@/utilities";
 import { CreateInferencerConfig } from "@/types";
 import { CodeHighlight } from "@/components";
+import { IconCode, IconMessageCircle, IconX } from "@tabler/icons";
+import { useNotification } from "@pankod/refine-core";
 
 export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] =
     ({ code: rawCode, type, loading, resourceName }) => {
@@ -15,6 +24,8 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
 
         const [visible, setVisible] = React.useState(false);
 
+        const { open } = useNotification();
+
         if (loading) {
             return null;
         }
@@ -24,6 +35,10 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
             inputRef?.current?.setSelectionRange(0, 99999);
             if (typeof navigator !== "undefined") {
                 navigator.clipboard.writeText(inputRef?.current?.value ?? "");
+                open?.({
+                    type: "success",
+                    message: "Copied to clipboard",
+                });
             }
         };
 
@@ -38,36 +53,36 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                             minHeight: 50,
                         }}
                     >
-                        <Box sx={{ position: "fixed", bottom: 50 }}>
+                        <Box sx={{ position: "fixed", bottom: 12, right: 60 }}>
                             <Box sx={{ display: "flex", gap: 2 }}>
-                                <Fab
-                                    variant="extended"
+                                <Button
+                                    variant="contained"
                                     color="primary"
                                     onClick={() => setVisible(true)}
+                                    startIcon={<IconCode size={18} />}
                                     sx={{
                                         whiteSpace: "nowrap",
                                     }}
                                 >
                                     Show Code
-                                </Fab>
-                                <Fab
-                                    variant="extended"
+                                </Button>
+                                <Button
+                                    variant="contained"
                                     color="secondary"
-                                    onClick={() => setVisible(true)}
+                                    component="a"
+                                    target="_blank"
+                                    href="https://github.com/refinedev/refine/issues"
+                                    startIcon={<IconMessageCircle size={18} />}
                                     sx={{
                                         whiteSpace: "nowrap",
                                     }}
                                 >
                                     Give Feedback
-                                </Fab>
+                                </Button>
                             </Box>
                         </Box>
                     </Box>
-                    <Modal
-                        // width={800}
-                        open={visible}
-                        onClose={() => setVisible(false)}
-                    >
+                    <Modal open={visible} onClose={() => setVisible(false)}>
                         <Box
                             sx={{
                                 position: "absolute",
@@ -79,18 +94,35 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                                 bgcolor: "background.paper",
                                 boxShadow: 24,
                                 borderRadius: 1,
-                                p: 4,
+                                px: 3,
+                                py: 2,
                             }}
                         >
                             <Stack gap={1}>
-                                <Typography variant="h5" fontWeight="bold">
-                                    {prettyString(
-                                        `${resourceName} ${
-                                            type.charAt(0).toUpperCase() +
-                                            type.slice(1)
-                                        } Code`,
-                                    )}
-                                </Typography>
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        flexDirection: "row",
+                                        flexWrap: "nowrap",
+                                        alignItems: "center",
+                                        justifyContent: "space-between",
+                                        marginBottom: "4px",
+                                    }}
+                                >
+                                    <Typography variant="h6" fontWeight="bold">
+                                        {prettyString(
+                                            `${resourceName} ${
+                                                type.charAt(0).toUpperCase() +
+                                                type.slice(1)
+                                            } Code`,
+                                        )}
+                                    </Typography>
+                                    <IconButton
+                                        onClick={() => setVisible(false)}
+                                    >
+                                        <IconX size={18} />
+                                    </IconButton>
+                                </div>
                                 <CodeHighlight code={code} />
                                 <textarea
                                     ref={inputRef}
@@ -108,13 +140,20 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                                         border: "none",
                                     }}
                                 />
-                                <Button
-                                    key="copy"
-                                    variant="contained"
-                                    onClick={copyCode}
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        justifyContent: "flex-end",
+                                    }}
                                 >
-                                    Copy Code
-                                </Button>
+                                    <Button
+                                        key="copy"
+                                        variant="contained"
+                                        onClick={copyCode}
+                                    >
+                                        Copy Code
+                                    </Button>
+                                </div>
                             </Stack>
                         </Box>
                     </Modal>
