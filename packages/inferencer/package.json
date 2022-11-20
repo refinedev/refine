@@ -2,7 +2,7 @@
     "name": "@pankod/refine-inferencer",
     "version": "0.1.0",
     "description": "refine is a React-based framework for building internal tools, rapidly.",
-    "private": true,
+    "private": false,
     "main": "dist/index.js",
     "module": "dist/esm/index.js",
     "typings": "dist/index.d.ts",
