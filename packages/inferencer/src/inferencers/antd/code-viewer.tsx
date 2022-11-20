@@ -1,18 +1,10 @@
 import React from "react";
-import {
-    Affix,
-    Card,
-    Button,
-    Row,
-    Col,
-    Modal,
-    Icons,
-} from "@pankod/refine-antd";
+import { Button, Row, Col, Modal, Icons } from "@pankod/refine-antd";
 
 import { prettierFormat, prettyString } from "@/utilities";
 import { CreateInferencerConfig } from "@/types";
 import { CodeHighlight } from "@/components";
-import { useRefineContext } from "@pankod/refine-core";
+import { useNotification } from "@pankod/refine-core";
 
 export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] =
     ({ code: rawCode, type, loading, resourceName }) => {
@@ -24,6 +16,8 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
 
         const [visible, setVisible] = React.useState(false);
 
+        const { open } = useNotification();
+
         if (loading) {
             return null;
         }
@@ -33,6 +27,10 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
             inputRef?.current?.setSelectionRange(0, 99999);
             if (typeof navigator !== "undefined") {
                 navigator.clipboard.writeText(inputRef?.current?.value ?? "");
+                open?.({
+                    type: "success",
+                    message: "Copied to clipboard",
+                });
             }
         };
 

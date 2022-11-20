@@ -17,6 +17,7 @@ import { IconCode, IconMessageCircle, IconCopy } from "@tabler/icons";
 import { prettierFormat, prettyString } from "@/utilities";
 import { CreateInferencerConfig } from "@/types";
 import { CodeHighlight } from "@/components";
+import { useNotification } from "@pankod/refine-core";
 
 export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] =
     ({ code: rawCode, type, loading, resourceName }) => {
@@ -28,6 +29,8 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
 
         const { isOpen, onOpen, onClose } = useDisclosure();
 
+        const { open } = useNotification();
+
         if (loading) {
             return null;
         }
@@ -37,6 +40,10 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
             inputRef?.current?.setSelectionRange(0, Number.MAX_SAFE_INTEGER);
             if (typeof navigator !== "undefined") {
                 navigator.clipboard.writeText(inputRef?.current?.value ?? "");
+                open?.({
+                    type: "success",
+                    message: "Copied to clipboard",
+                });
             }
         };
 
@@ -94,6 +101,7 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                                         height: 0,
                                         opacity: 0,
                                         border: "none",
+                                        display: "block",
                                     }}
                                 />
                             </ModalBody>
