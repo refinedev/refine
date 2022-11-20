@@ -46,14 +46,21 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                     <Box position="fixed" bottom="12px" right="60px">
                         <HStack spacing={4}>
                             <Button
+                                variant="solid"
+                                bgColor="#5DAC20"
+                                color="white"
                                 leftIcon={<IconCode size={18} />}
                                 onClick={onOpen}
                             >
                                 Show Code
                             </Button>
                             <Button
+                                colorScheme="gray"
+                                variant="solid"
                                 leftIcon={<IconMessageCircle size={18} />}
-                                onClick={() => alert("not implemented")}
+                                as="a"
+                                target="_blank"
+                                href="https://github.com/refinedev/refine/issues"
                             >
                                 Give Feedback
                             </Button>
