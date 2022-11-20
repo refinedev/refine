@@ -12,6 +12,7 @@ import {
 import { prettierFormat, prettyString } from "@/utilities";
 import { CreateInferencerConfig } from "@/types";
 import { CodeHighlight } from "@/components";
+import { useRefineContext } from "@pankod/refine-core";
 
 export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] =
     ({ code: rawCode, type, loading, resourceName }) => {
@@ -44,37 +45,36 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                         style={{ minHeight: "50px" }}
                     >
                         <Col>
-                            <Affix offsetBottom={50}>
-                                <Card
-                                    style={{
-                                        boxShadow: "0 0 10px 0 rgba(0,0,0,0.1)",
-                                        background: "white",
-                                        borderRadius: 16,
-                                    }}
-                                    bodyStyle={{
-                                        padding: "12px 4px",
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                        gap: "12px",
-                                    }}
+                            <div
+                                style={{
+                                    margin: 0,
+                                    position: "fixed",
+                                    bottom: 0,
+                                    right: "calc(40px + 10px)",
+                                    padding: "10px",
+                                    height: "calc(40px + 20px)",
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    gap: "10px",
+                                }}
+                            >
+                                <Button
+                                    type="primary"
+                                    onClick={() => setVisible(true)}
+                                    icon={<Icons.CodeOutlined />}
                                 >
-                                    <Button
-                                        type="primary"
-                                        onClick={() => setVisible(true)}
-                                        icon={<Icons.CodeOutlined />}
-                                    >
-                                        Show Code
-                                    </Button>
-                                    <Button
-                                        type="default"
-                                        onClick={() => alert("not implemented")}
-                                        icon={<Icons.MessageOutlined />}
-                                    >
-                                        Give Feedback
-                                    </Button>
-                                </Card>
-                            </Affix>
+                                    Show Code
+                                </Button>
+                                <Button
+                                    type="default"
+                                    target="_blank"
+                                    href="https://github.com/refinedev/refine/issues"
+                                    icon={<Icons.MessageOutlined />}
+                                >
+                                    Give Feedback
+                                </Button>
+                            </div>
                         </Col>
                     </Row>
                     <Modal
@@ -96,12 +96,14 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                                 Copy Code
                             </Button>,
                         ]}
+                        bodyStyle={{ padding: "12px 16px" }}
                     >
                         <CodeHighlight code={code} />
                         <textarea
                             ref={inputRef}
                             defaultValue={(code ?? "").replace(/\\n/g, "\r\n")}
                             id="code-input"
+                            aria-hidden="true"
                             style={{
                                 padding: 0,
                                 margin: 0,
@@ -109,6 +111,7 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                                 height: 0,
                                 opacity: 0,
                                 border: "none",
+                                display: "block",
                             }}
                         />
                     </Modal>
