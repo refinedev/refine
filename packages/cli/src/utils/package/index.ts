@@ -27,6 +27,11 @@ export const getDevDependencies = (): string[] => {
     return Object.keys(packageJson.devDependencies || {});
 };
 
+export const getScripts = (): Record<string, string> => {
+    const packageJson = getPackageJson();
+    return packageJson.scripts;
+};
+
 export const pmCommands = {
     npm: {
         install: ["install", "--save"],
