@@ -421,7 +421,9 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
             },
         );
 
-        console.log("Imports", imports);
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore - xxx
+        window.fileImports = imports;
 
         const importLines = printImports(imports);
 
