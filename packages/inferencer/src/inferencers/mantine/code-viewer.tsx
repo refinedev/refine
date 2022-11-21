@@ -1,14 +1,20 @@
 import React from "react";
-import { Affix, Button, Modal, Group, Title } from "@pankod/refine-mantine";
-import { IconCode, IconMessageCircle, IconCopy } from "@tabler/icons";
+import {
+    Affix,
+    Button,
+    Modal,
+    Group,
+    ActionIcon,
+} from "@pankod/refine-mantine";
+import { IconCode, IconMessageCircle, IconX, IconCopy } from "@tabler/icons";
 
-import { prettierFormat, prettyString } from "@/utilities";
+import { prettierFormat } from "@/utilities";
 import { CreateInferencerConfig } from "@/types";
 import { CodeHighlight } from "@/components";
 import { useNotification } from "@pankod/refine-core";
 
 export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] =
-    ({ code: rawCode, type, loading, resourceName }) => {
+    ({ code: rawCode, loading }) => {
         const code = React.useMemo(() => {
             return prettierFormat(rawCode ?? "");
         }, [rawCode]);
@@ -29,6 +35,7 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
             if (typeof navigator !== "undefined") {
                 navigator.clipboard.writeText(inputRef?.current?.value ?? "");
                 open?.({
+                    key: "copy",
                     type: "success",
                     message: "Copied to clipboard",
                 });
@@ -38,12 +45,7 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
         if (code) {
             return (
                 <>
-                    <Affix
-                        position={{
-                            bottom: 12,
-                            right: 60,
-                        }}
-                    >
+                    <Affix position={{ bottom: 12, right: 60 }}>
                         <Group spacing="xs">
                             <Button
                                 leftIcon={<IconCode size={18} />}
@@ -67,21 +69,28 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                     <Modal
                         size={800}
                         opened={visible}
-                        title={
-                            <Title order={4}>
-                                {prettyString(
-                                    `${resourceName} ${
-                                        type.charAt(0).toUpperCase() +
-                                        type.slice(1)
-                                    } Code`,
-                                )}
-                            </Title>
-                        }
                         onClose={() => setVisible(false)}
                         styles={{
-                            header: { marginBottom: 12 },
+                            modal: {
+                                padding: "0px !important",
+                                borderRadius: 0,
+                            },
+                            header: { display: "none" },
                         }}
                     >
+                        <ActionIcon
+                            onClick={() => setVisible(false)}
+                            variant="transparent"
+                            sx={{
+                                position: "absolute",
+                                right: 0,
+                                top: 0,
+                                height: 56,
+                                width: 56,
+                            }}
+                        >
+                            <IconX size={18} style={{ color: "#666b7a" }} />
+                        </ActionIcon>
                         <CodeHighlight code={code} />
                         <textarea
                             ref={inputRef}
@@ -95,19 +104,22 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                                 opacity: 0,
                                 border: "none",
                                 display: "block",
-                                marginBottom: "16px",
                             }}
                         />
-                        <Group position="right">
-                            <Button
-                                key="copy"
-                                variant="default"
-                                leftIcon={<IconCopy size={18} />}
-                                onClick={copyCode}
-                            >
-                                Copy Code
-                            </Button>
-                        </Group>
+                        <Button
+                            sx={{
+                                position: "absolute",
+                                bottom: 12,
+                                right: 12,
+                            }}
+                            key="copy"
+                            variant="default"
+                            size="sm"
+                            leftIcon={<IconCopy size={18} />}
+                            onClick={copyCode}
+                        >
+                            Copy Code
+                        </Button>
                     </Modal>
                 </>
             );
