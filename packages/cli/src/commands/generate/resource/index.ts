@@ -25,10 +25,14 @@ const load = (program: Command) => {
         .description("Generate a new resource")
         .option(
             "-a, --actions [actions]",
-            "Only generate the specified actions. (ex: list,create,edit,delete)",
+            "Only generate the specified actions. (ex: list,create,edit,show)",
             defaultActions,
         )
-        .option("-p, --path [path]", "Path to generate the resource", path)
+        .option(
+            "-p, --path [path]",
+            "Path to generate the resource files",
+            path,
+        )
         .action(action);
 };
 
