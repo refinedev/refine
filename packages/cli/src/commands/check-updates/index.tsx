@@ -2,7 +2,7 @@ import React from "react";
 import { Command } from "commander";
 import { render } from "ink";
 import UpdateWarningTable from "@components/update-warning-table";
-import { getPreferedPM, pmCommands } from "@utils/package";
+import { pmCommands } from "@utils/package";
 import execa from "execa";
 import spinner from "@utils/spinner";
 
@@ -46,7 +46,8 @@ const action = async () => {
  */
 export const getUpdateWarning = async () => {
     const packages = await isRefineUptoDate();
-    if (!packages) return;
+
+    if (!packages.length) return;
 
     render(<UpdateWarningTable data={packages} />);
 };
@@ -58,15 +59,13 @@ export const getUpdateWarning = async () => {
  * @returns `[]` if all `refine` packages are up to date.
  */
 export const isRefineUptoDate = async () => {
-    const pm = await getPreferedPM();
-
-    const refinePackages = await getOutdatedRefinePackages(pm.name);
+    const refinePackages = await getOutdatedRefinePackages();
 
     return refinePackages;
 };
 
-const getOutdatedRefinePackages = async (pm: "npm" | "pnpm" | "yarn") => {
-    const packages = await getOutdatedPackageList(pm);
+const getOutdatedRefinePackages = async () => {
+    const packages = await getOutdatedPackageList();
     if (!packages) return [];
 
     const list: RefinePackageInstalledVersionData[] = [];
@@ -87,7 +86,9 @@ const getOutdatedRefinePackages = async (pm: "npm" | "pnpm" | "yarn") => {
     return list;
 };
 
-const getOutdatedPackageList = async (pm: "npm" | "pnpm" | "yarn") => {
+const getOutdatedPackageList = async () => {
+    const pm = "npm";
+
     try {
         const { stdout } = await execa(pm, pmCommands[pm].outdatedJson, {
             reject: false,
@@ -97,6 +98,7 @@ const getOutdatedPackageList = async (pm: "npm" | "pnpm" | "yarn") => {
 
         return JSON.parse(stdout) as NpmOutdatedResponse | null;
     } catch (e) {
+        console.log(e);
         return null;
     }
 };

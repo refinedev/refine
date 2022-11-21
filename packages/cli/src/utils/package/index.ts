@@ -1,6 +1,31 @@
+import { readFileSync, existsSync } from "fs-extra";
 import execa from "execa";
 import preferredPM from "preferred-pm";
 import spinner from "@utils/spinner";
+
+// TODO: Add package.json type
+export const getPackageJson = (): any => {
+    if (!existsSync("package.json")) {
+        throw new Error("./package.json not found");
+    }
+
+    return JSON.parse(readFileSync("package.json", "utf8"));
+};
+
+export const getDependencies = (): string[] => {
+    const packageJson = getPackageJson();
+    return Object.keys(packageJson.dependencies || {});
+};
+
+export const getDependenciesWithVersion = (): string[] => {
+    const packageJson = getPackageJson();
+    return packageJson.dependencies;
+};
+
+export const getDevDependencies = (): string[] => {
+    const packageJson = getPackageJson();
+    return Object.keys(packageJson.devDependencies || {});
+};
 
 export const pmCommands = {
     npm: {
@@ -16,7 +41,7 @@ export const pmCommands = {
     pnpm: {
         install: ["add"],
         installDev: ["add", "-D"],
-        outdatedJson: ["outdated", "--json"],
+        outdatedJson: ["outdated", "--format", "json"],
     },
 };
 
