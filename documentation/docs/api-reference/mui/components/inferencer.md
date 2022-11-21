@@ -97,6 +97,8 @@ const PostEdit = () => {
 
 ### `MuiListInferencer`
 
+Generates a sample list view for your resources according to the API response. It uses `List` component and `useDatagrid` hook from `@pankod/refine-mui`.
+
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/posts
 setInitialRoutes(["/"]);
 
@@ -167,6 +169,8 @@ render(<App/>);
 
 ### `MuiShowInferencer`
 
+Generates a sample show view for your resources according to the API response. It uses `Show` and field components from `@pankod/refine-mui` with `useShow` hook from `@pankod/refine-core`.
+
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/posts/show/123
 setInitialRoutes(["/posts/show/123"]);
 
@@ -236,6 +240,8 @@ render(<App/>);
 ```
 
 ### `MuiEditInferencer`
+
+Generates a sample edit view for your resources according to the API response. It uses `Edit` component from `@pankod/refine-mui` and `useForm` hook from `@pankod/refine-react-hook-form`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/posts/edit/123
 setInitialRoutes(["/posts/edit/123"]);

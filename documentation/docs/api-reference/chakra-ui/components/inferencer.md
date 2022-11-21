@@ -88,6 +88,8 @@ const PostEdit = () => {
 
 ### `ChakraUIListInferencer`
 
+Generates a sample list view for your resources according to the API response. It uses `List` component from `@pankod/refine-chakra-ui` and `useTable` hook from `@pankod/refine-react-table`.
+
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/posts
 setInitialRoutes(["/"]);
 
@@ -148,6 +150,8 @@ render(<App/>);
 
 ### `ChakraUIShowInferencer`
 
+Generates a sample show view for your resources according to the API response. It uses `Show` and field components from `@pankod/refine-chakra-ui` with `useShow` hook from `@pankod/refine-core`.
+
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/posts/show/123
 setInitialRoutes(["/posts/show/123"]);
 
@@ -207,6 +211,8 @@ render(<App/>);
 ```
 
 ### `ChakraUIEditInferencer`
+
+Generates a sample edit view for your resources according to the API response. It uses `Edit` component from `@pankod/refine-chakra-ui` and `useForm` hook from `@pankod/refine-react-hook-form`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/posts/edit/123
 setInitialRoutes(["/posts/edit/123"]);

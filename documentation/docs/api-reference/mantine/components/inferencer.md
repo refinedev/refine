@@ -100,6 +100,8 @@ const PostEdit = () => {
 
 ### `MantineListInferencer`
 
+Generates a sample list view for your resources according to the API response. It uses `List` component and from `@pankod/refine-mantine` and `useTable` hook from `@pankod/refine-react-table`.
+
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/posts
 setInitialRoutes(["/"]);
 
@@ -172,6 +174,8 @@ render(<App/>);
 
 ### `MantineShowInferencer`
 
+Generates a sample show view for your resources according to the API response. It uses `Show` and field components from `@pankod/refine-mantine` with `useShow` hook from `@pankod/refine-core`.
+
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/posts/show/123
 setInitialRoutes(["/posts/show/123"]);
 
@@ -243,6 +247,8 @@ render(<App/>);
 ```
 
 ### `MantineEditInferencer`
+
+Generates a sample edit view for your resources according to the API response. It uses `Edit` component and `useForm` hook from `@pankod/refine-mantine`.
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/posts/edit/123
 setInitialRoutes(["/posts/edit/123"]);
