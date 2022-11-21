@@ -44,7 +44,8 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
     renderer: ({ resource, fields }) => {
         const COMPONENT_NAME = componentName(resource.name, "list");
         const recordName = "tableData?.data";
-        const imports: Array<[element: string, module: string]> = [
+        // eslint-disable-next-line prefer-const
+        let imports: Array<[element: string, module: string]> = [
             ["IResourceComponentsProps", "@pankod/refine-core"],
             ["useTable", "@pankod/refine-react-table"],
             ["Column", "@pankod/refine-react-table"],
