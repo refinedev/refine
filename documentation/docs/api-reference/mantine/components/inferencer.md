@@ -1,13 +1,13 @@
 ---
-id: mantine
-title: Mantine
+id: inferencer
+title: Inferencer
 ---
 
-Mantine inferencer exports `MantineListInferencer`, `MantineShowInferencer` and `MantineEditInferencer` components to generate sample views for resources.
+You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `MantineListInferencer`, `MantineShowInferencer` and `MantineEditInferencer` components.
 
 ## Usage
 
-Mantine components can be imported from `@pankod/refine-inferencer/mantine`. You can directly use the components in `resources` prop of `Refine` component or you can use them in your custom components by passing the `name` prop as the resource name.
+Mantine components can be imported from `@pankod/refine-inferencer/mantine`. You can directly use the components in `resources` prop of `Refine` component or you can use them in your custom components by passing the `resource` prop as the resource name.
 
 <Tabs
 defaultValue="resources"
@@ -74,21 +74,21 @@ import {
 const PostList = () => {
     return (
         // highlight-next-line
-        <MantineListInferencer name="posts" />
+        <MantineListInferencer resource="posts" />
     );
 };
 
 const PostShow = () => {
     return (
         // highlight-next-line
-        <MantineShowInferencer name="posts" />
+        <MantineShowInferencer resource="posts" />
     );
 };
 
 const PostEdit = () => {
     return (
         // highlight-next-line
-        <MantineEditInferencer name="posts" />
+        <MantineEditInferencer resource="posts" />
     );
 };
 ```

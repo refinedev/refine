@@ -1,13 +1,13 @@
 ---
-id: material-ui
-title: Material UI
+id: inferencer
+title: Inferencer
 ---
 
-Material UI inferencer exports `MuiListInferencer`, `MuiShowInferencer` and `MuiEditInferencer` components to generate sample views for resources.
+You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `MuiListInferencer`, `MuiShowInferencer` and `MuiEditInferencer` components.
 
 ## Usage
 
-Material UI components can be imported from `@pankod/refine-inferencer/mui`. You can directly use the components in `resources` prop of `Refine` component or you can use them in your custom components by passing the `name` prop as the resource name.
+Material UI components can be imported from `@pankod/refine-inferencer/mui`. You can directly use the components in `resources` prop of `Refine` component or you can use them in your custom components by passing the `resource` prop as the resource name.
 
 <Tabs
 defaultValue="resources"
@@ -71,21 +71,21 @@ import {
 const PostList = () => {
     return (
         // highlight-next-line
-        <MuiListInferencer name="posts" />
+        <MuiListInferencer resource="posts" />
     );
 };
 
 const PostShow = () => {
     return (
         // highlight-next-line
-        <MuiShowInferencer name="posts" />
+        <MuiShowInferencer resource="posts" />
     );
 };
 
 const PostEdit = () => {
     return (
         // highlight-next-line
-        <MuiEditInferencer name="posts" />
+        <MuiEditInferencer resource="posts" />
     );
 };
 ```

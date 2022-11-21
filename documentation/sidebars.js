@@ -305,7 +305,7 @@ module.exports = {
                             label: "Components",
                             items: [
                                 "api-reference/antd/components/antd-auth-page",
-
+                                "api-reference/antd/components/inferencer",
                                 {
                                     type: "category",
                                     label: "Basic Views",
@@ -385,6 +385,7 @@ module.exports = {
                             label: "Components",
                             items: [
                                 "api-reference/chakra-ui/components/chakra-auth-page",
+                                "api-reference/chakra-ui/components/inferencer",
                                 {
                                     type: "category",
                                     label: "Basic Views",
@@ -472,6 +473,7 @@ module.exports = {
                             label: "Components",
                             items: [
                                 "api-reference/mantine/components/mantine-auth-page",
+                                "api-reference/mantine/components/inferencer",
                                 {
                                     type: "category",
                                     label: "Basic Views",
@@ -550,6 +552,7 @@ module.exports = {
                             label: "Components",
                             items: [
                                 "api-reference/mui/components/mui-auth-page",
+                                "api-reference/mui/components/inferencer",
                                 {
                                     type: "category",
                                     label: "Basic Views",
@@ -637,20 +640,7 @@ module.exports = {
                                 "packages/documentation/react-hook-form/useStepsForm",
                             ],
                         },
-                        {
-                            type: "category",
-                            label: "Inferencer",
-                            link: {
-                                type: "doc",
-                                id: "packages/documentation/inferencer/inferencer",
-                            },
-                            items: [
-                                "packages/documentation/inferencer/ant-design",
-                                "packages/documentation/inferencer/material-ui",
-                                "packages/documentation/inferencer/mantine",
-                                "packages/documentation/inferencer/chakra-ui",
-                            ],
-                        },
+                        "packages/documentation/inferencer",
                     ],
                 },
             ],

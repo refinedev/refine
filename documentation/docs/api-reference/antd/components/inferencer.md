@@ -1,13 +1,13 @@
 ---
-id: ant-design
-title: Ant Design
+id: inferencer
+title: Inferencer
 ---
 
-Ant Design inferencer exports `AntdListInferencer`, `AntdShowInferencer` and `AntdEditInferencer` components to generate sample views for resources.
+You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `AntdListInferencer`, `AntdShowInferencer` and `AntdEditInferencer` components.
 
 ## Usage
 
-Ant Design components can be imported from `@pankod/refine-inferencer/antd`. You can directly use the components in `resources` prop of `Refine` component or you can use them in your custom components by passing the `name` prop as the resource name.
+Ant Design components can be imported from `@pankod/refine-inferencer/antd`. You can directly use the components in `resources` prop of `Refine` component or you can use them in your custom components by passing the `resource` prop as the resource name.
 
 <Tabs
 defaultValue="resources"
@@ -59,21 +59,21 @@ import {
 const PostList = () => {
     return (
         // highlight-next-line
-        <AntdListInferencer name="posts" />
+        <AntdListInferencer resource="posts" />
     );
 };
 
 const PostShow = () => {
     return (
         // highlight-next-line
-        <AntdShowInferencer name="posts" />
+        <AntdShowInferencer resource="posts" />
     );
 };
 
 const PostEdit = () => {
     return (
         // highlight-next-line
-        <AntdEditInferencer name="posts" />
+        <AntdEditInferencer resource="posts" />
     );
 };
 ```

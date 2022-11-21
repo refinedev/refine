@@ -1,13 +1,13 @@
 ---
-id: chakra-ui
-title: Chakra UI
+id: inferencer
+title: Inferencer
 ---
 
-Chakra UI inferencer exports `ChakraUIListInferencer`, `ChakraUIShowInferencer` and `ChakraUIEditInferencer` components to generate sample views for resources.
+You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `ChakraUIListInferencer`, `ChakraUIShowInferencer` and `ChakraUIEditInferencer` components.
 
 ## Usage
 
-Chakra UI components can be imported from `@pankod/refine-inferencer/chakra-ui`. You can directly use the components in `resources` prop of `Refine` component or you can use them in your custom components by passing the `name` prop as the resource name.
+Chakra UI components can be imported from `@pankod/refine-inferencer/chakra-ui`. You can directly use the components in `resources` prop of `Refine` component or you can use them in your custom components by passing the `resource` prop as the resource name.
 
 <Tabs
 defaultValue="resources"
@@ -62,21 +62,21 @@ import {
 const PostList = () => {
     return (
         // highlight-next-line
-        <ChakraUIListInferencer name="posts" />
+        <ChakraUIListInferencer resource="posts" />
     );
 };
 
 const PostShow = () => {
     return (
         // highlight-next-line
-        <ChakraUIShowInferencer name="posts" />
+        <ChakraUIShowInferencer resource="posts" />
     );
 };
 
 const PostEdit = () => {
     return (
         // highlight-next-line
-        <ChakraUIEditInferencer name="posts" />
+        <ChakraUIEditInferencer resource="posts" />
     );
 };
 ```

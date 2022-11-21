@@ -33,10 +33,10 @@ yarn add @pankod/refine-inferencer
 
 ## Available UI Inferencers
 
-- [Ant Design](ant-design)
-- [Material UI](material-ui)
-- [Mantine](mantine)
-- [Chakra UI](chakra-ui)
+- [Ant Design](/docs/api-reference/antd/components/inferencer)
+- [Material UI](/docs/api-reference/mui/components/inferencer)
+- [Mantine](/docs/api-reference/mantine/components/inferencer)
+- [Chakra UI](/docs/api-reference/chakra-ui/components/inferencer)
 
 :::info
 `@pankod/refine-inferencer` is an experimental package and it is now in the early stages of development. We are working on improving the package and adding new features.
