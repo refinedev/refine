@@ -1,23 +1,6 @@
-import { IResourceComponentsProps } from "@pankod/refine-core";
-import {
-    List,
-    Table,
-    useTable,
-} from "@pankod/refine-antd";
+import { IResourceComponentsProps, GetListResponse, useMany } from "@pankod/refine-core";
+import { } from "@pankod/refine-{{uiFramework}}";
 
-import { IPost, ICategory } from "interfaces";
-
-export const {{capitalize resource}}List: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, filters } = useTable<IPost>({
-        syncWithLocation: true,
-    });
-
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-            </Table>
-        </List>
-    );
+export const PostList: React.FC<IResourceComponentsProps<GetListResponse<any>>> = ({ initialData }) => {
+    return <span>List Page</span>
 };
