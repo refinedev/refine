@@ -22,6 +22,18 @@
             "@utils": [
                 "src/utils"
             ],
+            "@commands/*": [
+                "src/commands/*"
+            ],
+            "@commands": [
+                "src/commands"
+            ],
+            "@components/*": [
+                "src/components/*"
+            ],
+            "@components": [
+                "src/components"
+            ]
         },
         "typeRoots": [
             "./src/types",
