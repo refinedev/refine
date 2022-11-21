@@ -148,8 +148,16 @@ export const createInferencer: CreateInferencer = ({
         );
     };
 
-    const InferencerComponent: InferencerResultComponent = ({ name }) => {
-        return <Inferencer resourceName={name} key={name} />;
+    const InferencerComponent: InferencerResultComponent = ({
+        name,
+        resource,
+    }) => {
+        return (
+            <Inferencer
+                resourceName={resource ?? name}
+                key={resource ?? name}
+            />
+        );
     };
 
     return InferencerComponent;
