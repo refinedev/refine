@@ -436,7 +436,7 @@ export const ShowInferencer: InferencerResultComponent = createInferencer({
             },
         );
 
-        const importLines = printImports(imports) && printImports(imports);
+        const importLines = imports ? printImports(imports) : "";
 
         return jsx`
         ${importLines}
