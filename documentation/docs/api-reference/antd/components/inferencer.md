@@ -81,6 +81,10 @@ const PostEdit = () => {
   </TabItem>
 </Tabs>
 
+:::info
+To learn more about `@pankod/refine-inferencer` package, please check out [Docs](/docs/packages/documentation/inferencer)
+:::
+
 ## Views
 
 ### `AntdListInferencer`
