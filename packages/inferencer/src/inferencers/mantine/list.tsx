@@ -12,6 +12,7 @@ import {
     toPlural,
     toSingular,
     dotAccessor,
+    noOp,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -665,6 +666,8 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                 }
             },
         );
+
+        noOp(imports);
 
         return jsx`
         import React from "react";

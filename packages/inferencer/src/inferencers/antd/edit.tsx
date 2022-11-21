@@ -423,10 +423,9 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
         );
 
         noOp(imports);
-        const importLines = printImports(imports);
 
         return jsx`
-        ${importLines}
+        ${printImports(imports)}
         
         export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
             const { formProps, saveButtonProps, queryResult } = useForm();

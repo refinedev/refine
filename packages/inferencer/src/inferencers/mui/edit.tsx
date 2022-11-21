@@ -12,6 +12,7 @@ import {
     toSingular,
     isIDKey,
     dotAccessor,
+    noOp,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -410,6 +411,8 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
                 }
             },
         );
+
+        noOp(imports);
 
         return jsx`
         ${printImports(imports)}

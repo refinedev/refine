@@ -12,6 +12,7 @@ import {
     toPlural,
     toSingular,
     dotAccessor,
+    noOp,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -44,8 +45,7 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
     renderer: ({ resource, fields }) => {
         const COMPONENT_NAME = componentName(resource.name, "list");
         const recordName = "tableData?.data";
-        // eslint-disable-next-line prefer-const
-        let imports: Array<[element: string, module: string]> = [
+        const imports: Array<[element: string, module: string]> = [
             ["IResourceComponentsProps", "@pankod/refine-core"],
             ["useTable", "@pankod/refine-react-table"],
             ["Column", "@pankod/refine-react-table"],
@@ -679,6 +679,8 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                 }
             },
         );
+
+        noOp(imports);
 
         return jsx`
         import React from "react";

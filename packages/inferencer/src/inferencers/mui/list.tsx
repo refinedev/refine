@@ -9,6 +9,7 @@ import {
     printImports,
     toPlural,
     isIDKey,
+    noOp,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -743,6 +744,8 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                 }
             },
         );
+
+        noOp(imports);
 
         return jsx`
         ${printImports(imports)}

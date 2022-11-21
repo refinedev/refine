@@ -9,6 +9,7 @@ import {
     printImports,
     toPlural,
     toSingular,
+    noOp,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -495,6 +496,8 @@ export const ShowInferencer: InferencerResultComponent = createInferencer({
                 }
             },
         );
+
+        noOp(imports);
 
         return jsx`
         ${printImports(imports)}

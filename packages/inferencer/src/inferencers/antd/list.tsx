@@ -9,6 +9,7 @@ import {
     printImports,
     toPlural,
     toSingular,
+    noOp,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -479,14 +480,10 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
             },
         );
 
-        console.log("Fields", fields);
-        console.log("Imports", imports);
-        console.log("Printed", printImports(imports));
-
-        const importLines = printImports(imports);
+        noOp(imports);
 
         return jsx`
-        ${importLines}
+        ${printImports(imports)}
         
         export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
             const { tableProps } = useTable({
