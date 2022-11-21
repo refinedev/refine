@@ -479,8 +479,10 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
             },
         );
 
+        const importLines = printImports(imports);
+
         return jsx`
-        ${printImports(imports)}
+        ${importLines}
         
         export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
             const { tableProps } = useTable({

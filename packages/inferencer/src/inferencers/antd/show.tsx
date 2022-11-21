@@ -436,8 +436,10 @@ export const ShowInferencer: InferencerResultComponent = createInferencer({
             },
         );
 
+        const importLines = printImports(imports);
+
         return jsx`
-        ${printImports(imports)}
+        ${importLines}
         
         const { Title } = Typography;
 
