@@ -149,7 +149,7 @@ render(<App/>);
 ### `ChakraUIShowInferencer`
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/posts
-setInitialRoutes(["/posts/show/1"]);
+setInitialRoutes(["/posts/show/123"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
@@ -209,7 +209,7 @@ render(<App/>);
 ### `ChakraUIEditInferencer`
 
 ```tsx live hideCode previewHeight=600px url=http://localhost:3000/posts
-setInitialRoutes(["/posts/edit/1"]);
+setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
