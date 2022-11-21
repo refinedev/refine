@@ -84,11 +84,12 @@ const action = async (resourceName: string, options: any) => {
     temp.cleanupSync();
 
     const jscodeshiftExecutable = require.resolve(".bin/jscodeshift");
-    const { stderr } = execa.sync(jscodeshiftExecutable, [
-        "./src/",
+    const { stderr, stdout } = execa.sync(jscodeshiftExecutable, [
+        "./",
         "--extensions=ts,tsx,js,jsx",
         "--parser=tsx",
         `--transform=${__dirname}/../src/transformers/resource.ts`,
+        `--ignore-pattern=**/node_modules/**`,
         // pass custom params to transformer file
         `--__actions=${compileParams.actions}`,
         `--__pathAlias=${alias}`,
