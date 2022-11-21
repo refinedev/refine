@@ -33,14 +33,15 @@ export default function transformer(file: FileInfo, api: API, options: any) {
     );
 
     // add import for resource
-    const importPath = options.__path.replace("src/", "");
     const newImport = j.importDeclaration(
         [
             j.importDefaultSpecifier(
                 j.identifier(`{ ${actionPageComponents.join(", ")} }`),
             ),
         ],
-        j.stringLiteral(`${importPath}/${options.__resourceFolderName}`),
+        j.stringLiteral(
+            `${options.__pathAlias}/${options.__resourceFolderName}`,
+        ),
     );
 
     const resourceProperty = [

@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 import { Command } from "commander";
 import checkUpdates from "./commands/check-updates";
-
-import generate from "./commands/generate";
+import resourceGenerate from "./commands/generate/resource";
 
 const bootstrap = () => {
     const program = new Command();
@@ -12,7 +11,7 @@ const bootstrap = () => {
         .helpOption("-h, --help", "Output usage information.");
 
     // load commands
-    generate(program);
+    resourceGenerate(program);
     checkUpdates(program);
 
     program.parse(process.argv);

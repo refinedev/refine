@@ -7,9 +7,13 @@ import execa from "execa";
 import { getProjectType, getUIFramework } from "@utils/project";
 import { compileDir } from "@utils/compile";
 import { uppercaseFirstChar } from "@utils/text";
+import { ProjectTypes } from "@definitions/projectTypes";
 
 const defaultActions = ["list", "create", "edit", "show"];
 const load = (program: Command) => {
+    const projectType = getProjectType();
+    const { path } = getResourcePath(projectType);
+
     return program
         .command("generate:resource <name>")
         .description("Generate a new resource")
@@ -18,11 +22,7 @@ const load = (program: Command) => {
             "Only generate the specified actions. (ex: list,create,edit,delete)",
             defaultActions,
         )
-        .option(
-            "-p, --path [path]",
-            "Path to generate the resource",
-            "src/pages",
-        )
+        .option("-p, --path [path]", "Path to generate the resource", path)
         .action(action);
 };
 
@@ -66,6 +66,8 @@ const action = async (resourceName: string, options: any) => {
         });
     }
 
+    const { alias } = getResourcePath(projectType);
+
     // copy to destination
     const resourceFolderName = plural(resourceName).toLowerCase();
     const destinationResourcePath = `${options.path}/${resourceFolderName}`;
@@ -89,7 +91,7 @@ const action = async (resourceName: string, options: any) => {
         `--transform=${__dirname}/../src/transformers/resource.ts`,
         // pass custom params to transformer file
         `--__actions=${compileParams.actions}`,
-        `--__path=${options.path}`,
+        `--__pathAlias=${alias}`,
         `--__resourceFolderName=${resourceFolderName}`,
         `--__resource=${resource}`,
         `--__resourceName=${resourceName}`,
@@ -109,6 +111,29 @@ const action = async (resourceName: string, options: any) => {
 const generateTempDir = (): string => {
     temp.track();
     return temp.mkdirSync("resource");
+};
+
+const getResourcePath = (
+    projectType: ProjectTypes,
+): { path: string; alias: string } => {
+    switch (projectType) {
+        case ProjectTypes.NEXTJS:
+            return {
+                path: "src/components",
+                alias: "@components",
+            };
+        case ProjectTypes.REMIX:
+            return {
+                path: "app/components",
+                alias: "~/components",
+            };
+    }
+
+    // vite and react
+    return {
+        path: "src/pages",
+        alias: "pages",
+    };
 };
 
 export default load;
