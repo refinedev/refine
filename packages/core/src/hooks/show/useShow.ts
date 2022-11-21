@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { QueryObserverResult } from "@tanstack/react-query";
+import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
 
 import { useOne, useResourceWithRoute, useRouterContext } from "@hooks";
 
@@ -11,6 +11,7 @@ import {
     MetaDataQuery,
     LiveModeProps,
     BaseKey,
+    HttpError,
 } from "../../interfaces";
 
 export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
@@ -19,7 +20,7 @@ export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
     setShowId: React.Dispatch<React.SetStateAction<BaseKey | undefined>>;
 };
 
-export type useShowProps = {
+export type useShowProps<TData, TError> = {
     /**
      * Resource name for API data interactions
      * @default Reads `:resource` from the URL
@@ -30,6 +31,10 @@ export type useShowProps = {
      * @default Reads `:id` from the URL
      */
     id?: BaseKey;
+    /**
+     * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
+     */
+    queryOptions?: UseQueryOptions<GetOneResponse<TData>, TError>;
     /**
      * Additional meta data to pass to the data provider's `getOne`
      */
@@ -49,7 +54,10 @@ export type useShowProps = {
  *
  * @see {@link https://refine.dev/docs/core/hooks/show/useShow} for more details.
  */
-export const useShow = <TData extends BaseRecord = BaseRecord>({
+export const useShow = <
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+>({
     resource: resourceFromProp,
     id,
     successNotification,
@@ -58,7 +66,8 @@ export const useShow = <TData extends BaseRecord = BaseRecord>({
     liveMode,
     onLiveEvent,
     dataProviderName,
-}: useShowProps = {}): useShowReturnType<TData> => {
+    queryOptions,
+}: useShowProps<TData, TError> = {}): useShowReturnType<TData> => {
     const { useParams } = useRouterContext();
 
     const { resource: routeResourceName, id: idFromRoute } =
@@ -93,6 +102,7 @@ export const useShow = <TData extends BaseRecord = BaseRecord>({
         liveMode,
         onLiveEvent,
         dataProviderName,
+        ...queryOptions,
     });
 
     return {
