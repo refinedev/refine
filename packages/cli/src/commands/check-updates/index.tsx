@@ -1,14 +1,27 @@
 import React from "react";
 import { Command } from "commander";
-import preferredPM from "preferred-pm";
 import { render } from "ink";
-import UpdateWarningTable from "src/components/update-warning-table";
-import {
-    NpmOutdatedResponse,
-    RefinePackageInstalledVersionData,
-} from "src/interfaces";
+import UpdateWarningTable from "@components/update-warning-table";
+import { getPreferedPM, pmCommands } from "@utils/package";
 import execa from "execa";
-import spinner from "src/utils/spinner";
+import spinner from "@utils/spinner";
+
+export type NpmOutdatedResponse = Record<
+    string,
+    {
+        current: string;
+        wanted: string;
+        latest: string;
+        dependet: string;
+    }
+>;
+
+export type RefinePackageInstalledVersionData = {
+    name: string;
+    current: string;
+    wanted: string;
+    latest: string;
+};
 
 const load = (program: Command) => {
     return program
@@ -20,13 +33,8 @@ const load = (program: Command) => {
 const action = async () => {
     const packages = await spinner(isRefineUptoDate, "Checking for updates...");
 
-    if (packages === null) {
-        console.log("Package manager not found.");
-        return;
-    }
-
     if (!packages.length) {
-        console.log("All `refine` packages are up to date 🎉");
+        console.log("All `refine` packages are up to date 🎉\n");
         return;
     }
 
@@ -46,13 +54,11 @@ export const getUpdateWarning = async () => {
 /**
  *
  * @returns `refine` packages that have updates.
- * @returns `null` if there is no `package manager` found.
  * @returns `[]` if no refine package found.
  * @returns `[]` if all `refine` packages are up to date.
  */
 export const isRefineUptoDate = async () => {
-    const pm = await preferredPM(process.cwd());
-    if (!pm) return null;
+    const pm = await getPreferedPM();
 
     const refinePackages = await getOutdatedRefinePackages(pm.name);
 
@@ -83,9 +89,8 @@ const getOutdatedRefinePackages = async (pm: "npm" | "pnpm" | "yarn") => {
 
 const getOutdatedPackageList = async (pm: "npm" | "pnpm" | "yarn") => {
     try {
-        const { stdout } = await execa(`${pm}`, [`outdated`, `--json`], {
+        const { stdout } = await execa(pm, pmCommands[pm].outdatedJson, {
             reject: false,
-            timeout: 10000,
         });
 
         if (!stdout) return null;
