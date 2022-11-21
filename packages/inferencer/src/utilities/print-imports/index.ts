@@ -19,7 +19,7 @@ export const printImports = (imports: Array<ImportElement>) => {
         return acc;
     }, {} as Record<string, Array<string | [variable: string, isDefault?: boolean]>>);
 
-    return Object.entries(byModule).map(([module, elements]) => {
+    const lines = Object.entries(byModule).map(([module, elements]) => {
         const defaultImport = elements.find((e) => Array.isArray(e) && e[1]);
         const named = elements.filter((e) => typeof e === "string");
         const defaultStr = defaultImport ? `${defaultImport[0]}` : "";
@@ -28,4 +28,6 @@ export const printImports = (imports: Array<ImportElement>) => {
             defaultStr && namedStr ? ", " : ""
         }${namedStr} from "${module}";`;
     });
+
+    return lines;
 };

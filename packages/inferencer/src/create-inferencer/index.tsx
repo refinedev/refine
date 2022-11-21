@@ -105,8 +105,16 @@ export const createInferencer: CreateInferencer = ({
         });
 
         const code = React.useMemo(() => {
-            return renderer({ resource, resources, fields: results, infer });
-        }, [resource, resources, results]);
+            if (!recordLoading && !relationLoading && !isInitialLoad) {
+                return renderer({
+                    resource,
+                    resources,
+                    fields: results,
+                    infer,
+                });
+            }
+            return "";
+        }, [resource, resources, results, recordLoading, relationLoading]);
 
         return (
             <>
