@@ -32,3 +32,4 @@ export { toPlural } from "./to-plural";
 export { isIDKey } from "./is-id-key";
 
 export { getOptionLabel } from "./get-option-label";
+export { noOp } from "./no-op";

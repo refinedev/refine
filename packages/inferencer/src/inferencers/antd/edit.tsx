@@ -11,6 +11,7 @@ import {
     toPlural,
     toSingular,
     isIDKey,
+    noOp,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -421,10 +422,7 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
             },
         );
 
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore - xxx
-        window.fileImports = imports;
-
+        noOp(imports);
         const importLines = printImports(imports);
 
         return jsx`
