@@ -421,6 +421,9 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
             },
         );
 
+        console.log("Imports", imports);
+        console.log("Printed", printImports(imports));
+
         return jsx`
         ${printImports(imports)}
         
