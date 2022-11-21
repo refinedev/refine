@@ -1,5 +1,11 @@
 import { Command } from "commander";
-import { copySync, unlinkSync, moveSync, pathExists } from "fs-extra";
+import {
+    copySync,
+    unlinkSync,
+    moveSync,
+    pathExistsSync,
+    mkdirSync,
+} from "fs-extra";
 import temp from "temp";
 import { plural } from "pluralize";
 import execa from "execa";
@@ -68,6 +74,9 @@ const action = async (resourceName: string, options: any) => {
 
     const { alias } = getResourcePath(projectType);
 
+    // create desctination dir
+    mkdirSync(options.path, { recursive: true });
+
     // copy to destination
     const resourceFolderName = plural(resourceName).toLowerCase();
     const destinationResourcePath = `${options.path}/${resourceFolderName}`;
@@ -75,7 +84,7 @@ const action = async (resourceName: string, options: any) => {
     let moveSyncOptions = {};
 
     // empty dir override
-    if (!pathExists(destinationResourcePath)) {
+    if (pathExistsSync(destinationResourcePath)) {
         moveSyncOptions = { overwrite: true };
     }
     moveSync(tempDir, destinationResourcePath, moveSyncOptions);
@@ -124,7 +133,7 @@ const getResourcePath = (
         case ProjectTypes.NEXTJS:
             return {
                 path: "src/components",
-                alias: "@components",
+                alias: "../src/components",
             };
         case ProjectTypes.REMIX:
             return {
