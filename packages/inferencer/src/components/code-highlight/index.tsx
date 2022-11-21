@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Highlight, { defaultProps } from "prism-react-renderer";
+import theme from "prism-react-renderer/themes/vsDark";
 
 /**
  * CodeHighlight component renders the code in a pretty way with `prism-react-renderer` library.
@@ -9,16 +10,33 @@ export const CodeHighlight: React.FC<{
     code: string;
     wrapperProps?: React.ComponentProps<"div">;
 }> = ({ code, wrapperProps }) => {
+    useEffect(() => {
+        const styleElement = document.createElement("style");
+        styleElement.appendChild(
+            document.createTextNode(
+                "div ::-webkit-scrollbar {-webkit-appearance: none;width: 10px;}div ::-webkit-scrollbar-thumb {background-color: #666b7a;-webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);}",
+            ),
+        );
+        document.getElementById("code-highlight")?.appendChild(styleElement);
+    }, []);
+
     return (
         <div
+            id="code-highlight"
             style={{
-                maxHeight: "50vh",
+                maxHeight: "75vh",
                 height: "100%",
-                overflow: "scroll",
+                overflow: "auto",
+                backgroundColor: "rgb(30, 30, 30)",
             }}
             {...(wrapperProps ?? {})}
         >
-            <Highlight {...defaultProps} code={code} language="tsx">
+            <Highlight
+                {...defaultProps}
+                theme={theme}
+                code={code}
+                language="tsx"
+            >
                 {({
                     className,
                     style,
@@ -34,7 +52,6 @@ export const CodeHighlight: React.FC<{
                             margin: "0",
                             width: "100%",
                             boxSizing: "border-box",
-                            overflowY: "scroll",
                         }}
                     >
                         {tokens.map((line, i) => (
