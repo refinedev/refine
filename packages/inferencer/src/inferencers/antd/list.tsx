@@ -479,6 +479,10 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
             },
         );
 
+        console.log("Fields", fields);
+        console.log("Imports", imports);
+        console.log("Printed", printImports(imports));
+
         const importLines = printImports(imports);
 
         return jsx`
