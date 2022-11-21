@@ -21,7 +21,7 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
 
         const inputRef = React.useRef<HTMLTextAreaElement>(null);
 
-        const [visible, setVisible] = React.useState(false);
+        const [visible, setVisible] = React.useState(true);
 
         const { open } = useNotification();
 
