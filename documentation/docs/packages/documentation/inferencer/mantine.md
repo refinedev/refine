@@ -172,7 +172,7 @@ render(<App/>);
 
 ### `MantineShowInferencer`
 
-```tsx live hideCode previewHeight=600px url=http://localhost:3000/posts
+```tsx live hideCode previewHeight=600px url=http://localhost:3000/posts/show/123
 setInitialRoutes(["/posts/show/123"]);
 
 // visible-block-start
@@ -244,7 +244,7 @@ render(<App/>);
 
 ### `MantineEditInferencer`
 
-```tsx live hideCode previewHeight=600px url=http://localhost:3000/posts
+```tsx live hideCode previewHeight=600px url=http://localhost:3000/posts/edit/123
 setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
