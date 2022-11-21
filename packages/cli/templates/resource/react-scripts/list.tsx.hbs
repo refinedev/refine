@@ -1,23 +1,6 @@
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import {
-    List,
-    Table,
-    useTable,
-} from "@pankod/refine-{{uiFramework}}";
-
-import { IPost, ICategory } from "interfaces";
+import { } from "@pankod/refine-{{uiFramework}}";
 
 export const {{capitalize resource}}List: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, filters } = useTable<IPost>({
-        syncWithLocation: true,
-    });
-
-    return (
-        <List>
-            <Table {...tableProps} rowKey="id">
-                <Table.Column dataIndex="id" title="ID" />
-                <Table.Column dataIndex="title" title="Title" />
-            </Table>
-        </List>
-    );
+    return span>List Page</span>
 };
