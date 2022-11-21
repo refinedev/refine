@@ -1,13 +1,13 @@
 import React from "react";
-import { Button, Row, Col, Modal, Icons } from "@pankod/refine-antd";
+import { Button, Modal, Icons, Space } from "@pankod/refine-antd";
 
-import { prettierFormat, prettyString } from "@/utilities";
+import { prettierFormat } from "@/utilities";
 import { CreateInferencerConfig } from "@/types";
 import { CodeHighlight } from "@/components";
 import { useNotification } from "@pankod/refine-core";
 
 export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] =
-    ({ code: rawCode, type, loading, resourceName }) => {
+    ({ code: rawCode, loading }) => {
         const code = React.useMemo(() => {
             return prettierFormat(rawCode ?? "");
         }, [rawCode]);
@@ -24,10 +24,11 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
 
         const copyCode = () => {
             inputRef?.current?.select();
-            inputRef?.current?.setSelectionRange(0, 99999);
+            inputRef?.current?.setSelectionRange(0, Number.MAX_SAFE_INTEGER);
             if (typeof navigator !== "undefined") {
                 navigator.clipboard.writeText(inputRef?.current?.value ?? "");
                 open?.({
+                    key: "copy",
                     type: "success",
                     message: "Copied to clipboard",
                 });
@@ -37,64 +38,34 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
         if (code) {
             return (
                 <>
-                    <Row
-                        justify="center"
-                        align="middle"
-                        style={{ minHeight: "50px" }}
-                    >
-                        <Col>
-                            <div
-                                style={{
-                                    margin: 0,
-                                    position: "fixed",
-                                    bottom: 0,
-                                    right: "calc(40px + 10px)",
-                                    padding: "10px",
-                                    height: "calc(40px + 20px)",
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    gap: "10px",
-                                }}
+                    <div style={{ position: "fixed", bottom: 12, right: 60 }}>
+                        <Space>
+                            <Button
+                                type="primary"
+                                onClick={() => setVisible(true)}
+                                icon={<Icons.CodeOutlined />}
                             >
-                                <Button
-                                    type="primary"
-                                    onClick={() => setVisible(true)}
-                                    icon={<Icons.CodeOutlined />}
-                                >
-                                    Show Code
-                                </Button>
-                                <Button
-                                    type="default"
-                                    target="_blank"
-                                    href="https://github.com/refinedev/refine/issues"
-                                    icon={<Icons.MessageOutlined />}
-                                >
-                                    Give Feedback
-                                </Button>
-                            </div>
-                        </Col>
-                    </Row>
+                                Show Code
+                            </Button>
+                            <Button
+                                type="default"
+                                target="_blank"
+                                href="https://github.com/refinedev/refine/issues"
+                                icon={<Icons.MessageOutlined />}
+                            >
+                                Give Feedback
+                            </Button>
+                        </Space>
+                    </div>
                     <Modal
                         width={800}
                         visible={visible}
-                        title={prettyString(
-                            `${resourceName} ${
-                                type.charAt(0).toUpperCase() + type.slice(1)
-                            } Code`,
-                        )}
                         onCancel={() => setVisible(false)}
-                        footer={[
-                            <Button
-                                key="copy"
-                                type="primary"
-                                icon={<Icons.CopyOutlined />}
-                                onClick={copyCode}
-                            >
-                                Copy Code
-                            </Button>,
-                        ]}
-                        bodyStyle={{ padding: "12px 16px" }}
+                        closeIcon={
+                            <Icons.CloseOutlined style={{ color: "#666b7a" }} />
+                        }
+                        footer={null}
+                        bodyStyle={{ padding: 0 }}
                     >
                         <CodeHighlight code={code} />
                         <textarea
@@ -112,6 +83,19 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                                 display: "block",
                             }}
                         />
+                        <Button
+                            style={{
+                                position: "absolute",
+                                bottom: 12,
+                                right: 12,
+                            }}
+                            key="copy"
+                            type="default"
+                            icon={<Icons.CopyOutlined />}
+                            onClick={copyCode}
+                        >
+                            Copy Code
+                        </Button>
                     </Modal>
                 </>
             );

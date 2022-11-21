@@ -8,19 +8,17 @@ import {
     ModalBody,
     ModalCloseButton,
     ModalContent,
-    ModalFooter,
-    ModalHeader,
     ModalOverlay,
 } from "@pankod/refine-chakra-ui";
 import { IconCode, IconMessageCircle, IconCopy } from "@tabler/icons";
 
-import { prettierFormat, prettyString } from "@/utilities";
+import { prettierFormat } from "@/utilities";
 import { CreateInferencerConfig } from "@/types";
 import { CodeHighlight } from "@/components";
 import { useNotification } from "@pankod/refine-core";
 
 export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] =
-    ({ code: rawCode, type, loading, resourceName }) => {
+    ({ code: rawCode, loading }) => {
         const code = React.useMemo(() => {
             return prettierFormat(rawCode ?? "");
         }, [rawCode]);
@@ -41,6 +39,7 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
             if (typeof navigator !== "undefined") {
                 navigator.clipboard.writeText(inputRef?.current?.value ?? "");
                 open?.({
+                    key: "copy",
                     type: "success",
                     message: "Copied to clipboard",
                 });
@@ -54,8 +53,7 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                         <HStack spacing={4}>
                             <Button
                                 variant="solid"
-                                bgColor="#5DAC20"
-                                color="white"
+                                colorScheme="green"
                                 leftIcon={<IconCode size={18} />}
                                 onClick={onOpen}
                             >
@@ -76,16 +74,17 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                     <Modal size="4xl" isOpen={isOpen} onClose={onClose}>
                         <ModalOverlay />
                         <ModalContent>
-                            <ModalHeader>
-                                {prettyString(
-                                    `${resourceName} ${
-                                        type.charAt(0).toUpperCase() +
-                                        type.slice(1)
-                                    } Code`,
-                                )}
-                            </ModalHeader>
-                            <ModalCloseButton />
-                            <ModalBody>
+                            <ModalCloseButton
+                                sx={{
+                                    position: "absolute",
+                                    right: 0,
+                                    top: 0,
+                                    height: "56px",
+                                    width: "56px",
+                                    color: "#666b7a",
+                                }}
+                            />
+                            <ModalBody sx={{ padding: 0 }}>
                                 <CodeHighlight code={code} />
                                 <textarea
                                     ref={inputRef}
@@ -105,16 +104,19 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                                     }}
                                 />
                             </ModalBody>
-
-                            <ModalFooter>
-                                <Button
-                                    key="copy"
-                                    leftIcon={<IconCopy size={18} />}
-                                    onClick={copyCode}
-                                >
-                                    Copy Code
-                                </Button>
-                            </ModalFooter>
+                            <Button
+                                sx={{
+                                    position: "absolute",
+                                    bottom: "12px",
+                                    right: "12px",
+                                }}
+                                key="copy"
+                                size="sm"
+                                leftIcon={<IconCopy size={18} />}
+                                onClick={copyCode}
+                            >
+                                Copy Code
+                            </Button>
                         </ModalContent>
                     </Modal>
                 </>
