@@ -436,6 +436,10 @@ export const ShowInferencer: InferencerResultComponent = createInferencer({
             },
         );
 
+        console.log("Fields", fields);
+        console.log("Imports", imports);
+        console.log("Printed", printImports(imports));
+
         return jsx`
         ${printImports(imports)}
         
