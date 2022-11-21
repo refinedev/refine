@@ -89,7 +89,10 @@ const action = async (resourceName: string, options: any) => {
         "--extensions=ts,tsx,js,jsx",
         "--parser=tsx",
         `--transform=${__dirname}/../src/transformers/resource.ts`,
+        `--ignore-pattern=**/.cache/**`,
         `--ignore-pattern=**/node_modules/**`,
+        `--ignore-pattern=**/build/**`,
+        `--ignore-pattern=**/.next/**`,
         // pass custom params to transformer file
         `--__actions=${compileParams.actions}`,
         `--__pathAlias=${alias}`,
