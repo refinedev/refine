@@ -7,6 +7,6 @@ export const prepareLiveCode = (code?: string, componentName?: string) => {
     return `
     ${code ?? ""}
     
-    render(typeof ${componentName} !== "undefined" ? <${componentName} /> : <>null</>);
+    render(typeof ${componentName} !== "undefined" ? <${componentName} /> : <></>);
     `;
 };
