@@ -48,7 +48,6 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
         const imports: Array<[element: string, module: string]> = [
             ["IResourceComponentsProps", "@pankod/refine-core"],
             ["useTable", "@pankod/refine-react-table"],
-            ["Column", "@pankod/refine-react-table"],
             ["ColumnDef", "@pankod/refine-react-table"],
             ["flexRender", "@pankod/refine-react-table"],
             ["List", "@pankod/refine-chakra-ui"],
@@ -61,24 +60,13 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
             ["Tr", "@pankod/refine-chakra-ui"],
             ["Td", "@pankod/refine-chakra-ui"],
             ["HStack", "@pankod/refine-chakra-ui"],
-            ["VStack", "@pankod/refine-chakra-ui"],
-            ["Text", "@pankod/refine-chakra-ui"],
             ["Button", "@pankod/refine-chakra-ui"],
             ["IconButton", "@pankod/refine-chakra-ui"],
             ["usePagination", "@pankod/refine-chakra-ui"],
             ["Box", "@pankod/refine-chakra-ui"],
-            ["Input", "@pankod/refine-chakra-ui"],
-            ["MenuList", "@pankod/refine-chakra-ui"],
-            ["Menu", "@pankod/refine-chakra-ui"],
-            ["MenuButton", "@pankod/refine-chakra-ui"],
             ["ShowButton", "@pankod/refine-chakra-ui"],
             ["EditButton", "@pankod/refine-chakra-ui"],
             ["DeleteButton", "@pankod/refine-chakra-ui"],
-            ["IconChevronDown", "@tabler/icons"],
-            ["IconSelector", "@tabler/icons"],
-            ["IconFilter", "@tabler/icons"],
-            ["IconX", "@tabler/icons"],
-            ["IconCheck", "@tabler/icons"],
             ["IconChevronRight", "@tabler/icons"],
             ["IconChevronLeft", "@tabler/icons"],
         ];
@@ -178,7 +166,7 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
 
                         const ${toPlural(
                             field.resource.name,
-                        )} = getValue<any[]>().map((item) => {
+                        )} = getValue<any[]>()?.map((item) => {
                             return meta.${toPlural(
                                 field.resource.name,
                             )}Data?.data?.find(
@@ -525,13 +513,13 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
 
                 let cell = jsx`
                     cell: function render({ getValue }) {
-                        return <MarkdownField value={${accessor(
+                        return <MarkdownField value={(${accessor(
                             "getValue<string>()",
                             undefined,
                             Array.isArray(field.accessor)
                                 ? field.accessor
                                 : undefined,
-                        )}.slice(0, 80) + "..." } />
+                        )})?.slice(0, 80) + "..." } />
                     }
                 `;
 
@@ -631,8 +619,6 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
             id: "actions",
             accessorKey: "id",
             header: "Actions",
-            enableColumnFilter: false,
-            enableSorting: false,
             cell: function render({ getValue }) {
                 return (
                     <HStack>
@@ -725,23 +711,11 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                                         {headerGroup.headers.map((header) => (
                                             <Th key={header.id}>
                                                 {!header.isPlaceholder && (
-                                                    <HStack spacing="2">
-                                                        <Text>
-                                                            {flexRender(
-                                                                header.column.columnDef
-                                                                    .header,
-                                                                header.getContext(),
-                                                            )}
-                                                        </Text>
-                                                        <HStack spacing="2">
-                                                            <ColumnSorter
-                                                                column={header.column}
-                                                            />
-                                                            <ColumnFilter
-                                                                column={header.column}
-                                                            />
-                                                        </HStack>
-                                                    </HStack>
+                                                    flexRender(
+                                                        header.column.columnDef
+                                                            .header,
+                                                        header.getContext(),
+                                                    )
                                                 )}
                                             </Th>
                                         ))}
@@ -830,134 +804,6 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                 </Box>
             );
         };
-        
-
-        interface ColumnButtonProps {
-            column: Column<any, any>; // eslint-disable-line
-        }
-
-        const ColumnSorter: React.FC<ColumnButtonProps> = ({ column }) => {
-            if (!column.getCanSort()) {
-                return null;
-            }
-        
-            const sorted = column.getIsSorted();
-        
-            return (
-                <IconButton
-                    aria-label="Sort"
-                    size="xs"
-                    onClick={column.getToggleSortingHandler()}
-                    style={{
-                        transition: "transform 0.25s",
-                        transform: \`rotate(\${
-                            sorted === "asc" ? "180" : "0"
-                        }deg)\`,
-                    }}
-                    variant={sorted ? "light" : "transparent"}
-                    color={sorted ? "primary" : "gray"}
-                >
-                    {sorted ? (
-                        <IconChevronDown size={18} />
-                    ) : (
-                        <IconSelector size={18} />
-                    )}
-                </IconButton>
-            );
-        };
-
-        const ColumnFilter: React.FC<ColumnButtonProps> = ({ column }) => {
-            // eslint-disable-next-line
-            const [state, setState] = React.useState(null as null | { value: any });
-        
-            if (!column.getCanFilter()) {
-                return null;
-            }
-        
-            const open = () =>
-                setState({
-                    value: column.getFilterValue(),
-                });
-        
-            const close = () => setState(null);
-        
-            // eslint-disable-next-line
-            const change = (value: any) => setState({ value });
-        
-            const clear = () => {
-                column.setFilterValue(undefined);
-                close();
-            };
-        
-            const save = () => {
-                if (!state) return;
-                column.setFilterValue(state.value);
-                close();
-            };
-        
-            const renderFilterElement = () => {
-                // eslint-disable-next-line
-                const FilterComponent = (column.columnDef?.meta as any)?.filterElement;
-        
-                if (!FilterComponent && !!state) {
-                    return (
-                        <Input
-                            borderRadius="md"
-                            size="sm"
-                            autoComplete="off"
-                            value={state.value}
-                            onChange={(e) => change(e.target.value)}
-                        />
-                    );
-                }
-        
-                return (
-                    <FilterComponent
-                        value={state?.value}
-                        onChange={(e: any) => change(e.target.value)}
-                    />
-                );
-            };
-        
-            return (
-                <Menu isOpen={!!state} onClose={close}>
-                    <MenuButton
-                        onClick={open}
-                        as={IconButton}
-                        aria-label="Options"
-                        icon={<IconFilter size="16" />}
-                        variant="ghost"
-                        size="xs"
-                    />
-                    <MenuList p="2">
-                        {!!state && (
-                            <VStack align="flex-start">
-                                {renderFilterElement()}
-                                <HStack spacing="1">
-                                    <IconButton
-                                        aria-label="Clear"
-                                        size="sm"
-                                        colorScheme="red"
-                                        onClick={clear}
-                                    >
-                                        <IconX size={18} />
-                                    </IconButton>
-                                    <IconButton
-                                        aria-label="Save"
-                                        size="sm"
-                                        onClick={save}
-                                        colorScheme="green"
-                                    >
-                                        <IconCheck size={18} />
-                                    </IconButton>
-                                </HStack>
-                            </VStack>
-                        )}
-                    </MenuList>
-                </Menu>
-            );
-        };
-        
         `;
     },
 });
