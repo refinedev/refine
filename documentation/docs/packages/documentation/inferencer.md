@@ -5,7 +5,7 @@ title: Inferencer
 
 `@pankod/refine-inferencer` is a package that provides a way to automatically generate views for resources based on the data structure. The aim is to reduce the amount of time spent on creating views for resources by generating the code automatically that can be customized easily. 
 
-The package exports components for **List**, **Show** and **Edit** views inside UI package scopes. For example, `@pankod/refine-inferencer/antd` exports components for `@pankod/refine-antd` package.
+The package exports components for **List**, **Show**, **Create** and **Edit** views inside UI package scopes. For example, `@pankod/refine-inferencer/antd` exports components for `@pankod/refine-antd` package.
 
 ## Installation
 

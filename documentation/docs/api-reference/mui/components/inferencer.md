@@ -3,7 +3,7 @@ id: inferencer
 title: Inferencer
 ---
 
-You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `MuiListInferencer`, `MuiShowInferencer` and `MuiEditInferencer` components.
+You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `MuiListInferencer`, `MuiShowInferencer`, `MuiCreateInferencer` and `MuiEditInferencer` components.
 
 ## Usage
 
@@ -28,6 +28,7 @@ import {
 import {
     MuiListInferencer,
     MuiShowInferencer,
+    MuiCreateInferencer,
     MuiEditInferencer
 } from "@pankod/refine-inferencer/mui";
 // highlight-end
@@ -46,6 +47,7 @@ const App = () => {
                         // highlight-start
                         list: MuiListInferencer,
                         show: MuiShowInferencer,
+                        create: MuiCreateInferencer,
                         edit: MuiEditInferencer,
                         // highlight-end
                     },
@@ -64,6 +66,7 @@ const App = () => {
 import {
     MuiListInferencer,
     MuiShowInferencer,
+    MuiCreateInferencer,
     MuiEditInferencer
 } from "@pankod/refine-inferencer/mui";
 // highlight-end
@@ -79,6 +82,13 @@ const PostShow = () => {
     return (
         // highlight-next-line
         <MuiShowInferencer resource="posts" />
+    );
+};
+
+const PostCreate = () => {
+    return (
+        // highlight-next-line
+        <MuiCreateInferencer resource="posts" />
     );
 };
 
@@ -123,6 +133,7 @@ import {
     MuiListInferencer,
     // highlight-end
     MuiShowInferencer,
+    MuiCreateInferencer,
     MuiEditInferencer
 } from "@pankod/refine-inferencer/mui";
 
@@ -146,6 +157,7 @@ const App: React.FC = () => {
                         list: MuiListInferencer,
                         // highlight-end
                         show: MuiShowInferencer,
+                        create: MuiCreateInferencer,
                         edit: MuiEditInferencer,
                     },
                     {
@@ -195,6 +207,7 @@ import {
     // highlight-start
     MuiShowInferencer,
     // highlight-end
+    MuiCreateInferencer,
     MuiEditInferencer
 } from "@pankod/refine-inferencer/mui";
 
@@ -217,6 +230,81 @@ const App: React.FC = () => {
                         list: MuiListInferencer,
                         // highlight-start
                         show: MuiShowInferencer,
+                        // highlight-end
+                        create: MuiCreateInferencer,
+                        edit: MuiEditInferencer,
+                    },
+                    {
+                        name: "categories",
+                    },
+                    {
+                        name: "tags",
+                    },
+                    {
+                        name: "languages",
+                    },
+                    {
+                        name: "users",
+                    }
+                ]}
+            />
+        </ThemeProvider>
+    );
+};
+
+// visible-block-end
+
+render(<App/>);
+```
+
+### `MuiCreateInferencer`
+
+Generates a sample create view for your resources according to the first record in list API response. It uses `Create` component from `@pankod/refine-mui` and `useForm` hook from `@pankod/refine-react-hook-form`.
+
+```tsx live hideCode previewHeight=600px url=http://localhost:3000/posts/create
+setInitialRoutes(["/posts/create"]);
+
+// visible-block-start
+import { Refine } from "@pankod/refine-core";
+import {
+    Layout,
+    ThemeProvider,
+    LightTheme,
+    CssBaseline,
+    GlobalStyles
+} from "@pankod/refine-mui";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
+
+import {
+    MuiListInferencer,
+    MuiShowInferencer,
+    // highlight-start
+    MuiCreateInferencer,
+    // highlight-end
+    MuiEditInferencer
+} from "@pankod/refine-inferencer/mui";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const App: React.FC = () => {
+    return (
+        <ThemeProvider theme={LightTheme}>
+            <CssBaseline />
+            <GlobalStyles
+                styles={{ html: { WebkitFontSmoothing: "auto" } }}
+            />
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+                Layout={Layout}
+                resources={[
+                    {
+                        name: "posts",
+                        list: MuiListInferencer,
+                        show: MuiShowInferencer,
+                        // highlight-start
+                        create: MuiCreateInferencer,
                         // highlight-end
                         edit: MuiEditInferencer,
                     },
@@ -265,6 +353,7 @@ import dataProvider from "@pankod/refine-simple-rest";
 import {
     MuiListInferencer,
     MuiShowInferencer,
+    MuiCreateInferencer,
     // highlight-start
     MuiEditInferencer
     // highlight-end
@@ -288,6 +377,7 @@ const App: React.FC = () => {
                         name: "posts",
                         list: MuiListInferencer,
                         show: MuiShowInferencer,
+                        create: MuiCreateInferencer,
                         // highlight-start
                         edit: MuiEditInferencer,
                         // highlight-end

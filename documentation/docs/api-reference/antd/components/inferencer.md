@@ -3,7 +3,7 @@ id: inferencer
 title: Inferencer
 ---
 
-You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `AntdListInferencer`, `AntdShowInferencer` and `AntdEditInferencer` components.
+You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `AntdListInferencer`, `AntdShowInferencer`, `AntdCreateInferencer` and `AntdEditInferencer` components.
 
 ## Usage
 
@@ -22,6 +22,7 @@ values={[
 import {
     AntdListInferencer,
     AntdShowInferencer,
+    AntdCreateInferencer,
     AntdEditInferencer
 } from "@pankod/refine-inferencer/antd";
 // highlight-end
@@ -35,6 +36,7 @@ const App = () => {
                     // highlight-start
                     list: AntdListInferencer,
                     show: AntdShowInferencer,
+                    create: AntdCreateInferencer,
                     edit: AntdEditInferencer,
                     // highlight-end
                 },
@@ -52,6 +54,7 @@ const App = () => {
 import {
     AntdListInferencer,
     AntdShowInferencer,
+    AntdCreateInferencer,
     AntdEditInferencer
 } from "@pankod/refine-inferencer/antd";
 // highlight-end
@@ -69,6 +72,13 @@ const PostShow = () => {
         <AntdShowInferencer resource="posts" />
     );
 };
+
+const PostCreate = () => {
+    return (
+        // highlight-next-line
+        <AntdCreateInferencer resource="posts" />
+    )
+}
 
 const PostEdit = () => {
     return (
@@ -105,6 +115,7 @@ import {
     AntdListInferencer,
     // highlight-end
     AntdShowInferencer,
+    AntdCreateInferencer,
     AntdEditInferencer
 } from "@pankod/refine-inferencer/antd";
 
@@ -123,6 +134,7 @@ const App: React.FC = () => {
                     list: AntdListInferencer,
                     // highlight-end
                     show: AntdShowInferencer,
+                    create: AntdCreateInferencer,
                     edit: AntdEditInferencer,
                 },
                 {
@@ -165,6 +177,7 @@ import {
     // highlight-start
     AntdShowInferencer,
     // highlight-end
+    AntdCreateInferencer,
     AntdEditInferencer
 } from "@pankod/refine-inferencer/antd";
 
@@ -182,6 +195,69 @@ const App: React.FC = () => {
                     list: AntdListInferencer,
                     // highlight-start
                     show: AntdShowInferencer,
+                    // highlight-end
+                    create: AntdCreateInferencer,
+                    edit: AntdEditInferencer,
+                },
+                {
+                    name: "categories",
+                },
+                {
+                    name: "tags",
+                },
+                {
+                    name: "languages",
+                },
+                {
+                    name: "users",
+                }
+            ]}
+        />
+    );
+};
+
+// visible-block-end
+
+render(<App/>);
+```
+
+### `AntdCreateInferencer`
+
+Generates a sample create view for your resources according to the first record in list API response. It uses `Create` component and `useForm` hook from `@pankod/refine-antd`.
+
+```tsx live hideCode previewHeight=600px url=http://localhost:3000/posts/create
+setInitialRoutes(["/posts/create"]);
+
+// visible-block-start
+import { Refine } from "@pankod/refine-core";
+import { Layout } from "@pankod/refine-antd";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
+
+import {
+    AntdListInferencer,
+    AntdShowInferencer,
+    // highlight-start
+    AntdCreateInferencer,
+    // highlight-end
+    AntdEditInferencer
+} from "@pankod/refine-inferencer/antd";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const App: React.FC = () => {
+    return (
+        <Refine
+            routerProvider={routerProvider}
+            dataProvider={dataProvider(API_URL)}
+            Layout={Layout}
+            resources={[
+                {
+                    name: "posts",
+                    list: AntdListInferencer,
+                    show: AntdShowInferencer,
+                    // highlight-start
+                    create: AntdCreateInferencer,
                     // highlight-end
                     edit: AntdEditInferencer,
                 },
@@ -223,6 +299,7 @@ import dataProvider from "@pankod/refine-simple-rest";
 import {
     AntdListInferencer,
     AntdShowInferencer,
+    AntdCreateInferencer,
     // highlight-start
     AntdEditInferencer
     // highlight-end
@@ -241,6 +318,7 @@ const App: React.FC = () => {
                     name: "posts",
                     list: AntdListInferencer,
                     show: AntdShowInferencer,
+                    create: AntdCreateInferencer,
                     // highlight-start
                     edit: AntdEditInferencer,
                     // highlight-end

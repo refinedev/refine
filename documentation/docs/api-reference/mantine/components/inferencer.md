@@ -3,7 +3,7 @@ id: inferencer
 title: Inferencer
 ---
 
-You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `MantineListInferencer`, `MantineShowInferencer` and `MantineEditInferencer` components.
+You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `MantineListInferencer`, `MantineShowInferencer`, `MantineCreateInferencer` and `MantineEditInferencer` components.
 
 ## Usage
 
@@ -28,6 +28,7 @@ import {
 import {
     MantineListInferencer,
     MantineShowInferencer,
+    MantineCreateInferencer,
     MantineEditInferencer
 } from "@pankod/refine-inferencer/mantine";
 // highlight-end
@@ -49,6 +50,7 @@ const App = () => {
                         // highlight-start
                         list: MantineListInferencer,
                         show: MantineShowInferencer,
+                        create: MantineCreateInferencer,
                         edit: MantineEditInferencer,
                         // highlight-end
                     },
@@ -67,6 +69,7 @@ const App = () => {
 import {
     MantineListInferencer,
     MantineShowInferencer,
+    MantineCreateInferencer,
     MantineEditInferencer
 } from "@pankod/refine-inferencer/mantine";
 // highlight-end
@@ -82,6 +85,13 @@ const PostShow = () => {
     return (
         // highlight-next-line
         <MantineShowInferencer resource="posts" />
+    );
+};
+
+const PostCreate = () => {
+    return (
+        // highlight-next-line
+        <MantineCreateInferencer resource="posts" />
     );
 };
 
@@ -125,6 +135,7 @@ import {
     MantineListInferencer,
     // highlight-end
     MantineShowInferencer,
+    MantineCreateInferencer,
     MantineEditInferencer
 } from "@pankod/refine-inferencer/mantine";
 
@@ -151,6 +162,7 @@ const App: React.FC = () => {
                         list: MantineListInferencer,
                         // highlight-end
                         show: MantineShowInferencer,
+                        create: MantineCreateInferencer,
                         edit: MantineEditInferencer,
                     },
                     {
@@ -199,6 +211,7 @@ import {
     // highlight-start
     MantineShowInferencer,
     // highlight-end
+    MantineCreateInferencer,
     MantineEditInferencer
 } from "@pankod/refine-inferencer/mantine";
 
@@ -224,6 +237,83 @@ const App: React.FC = () => {
                         list: MantineListInferencer,
                         // highlight-start
                         show: MantineShowInferencer,
+                        // highlight-end
+                        create: MantineCreateInferencer,
+                        edit: MantineEditInferencer,
+                    },
+                    {
+                        name: "categories",
+                    },
+                    {
+                        name: "tags",
+                    },
+                    {
+                        name: "languages",
+                    },
+                    {
+                        name: "users",
+                    }
+                ]}
+            />
+        </MantineProvider>
+    );
+};
+
+// visible-block-end
+
+render(<App/>);
+```
+
+### `MantineCreateInferencer`
+
+Generates a sample create view for your resources according to the first record in list API response. It uses `Create` component and `useForm` hook from `@pankod/refine-mantine`.
+
+```tsx live hideCode previewHeight=600px url=http://localhost:3000/posts/create
+setInitialRoutes(["/posts/create"]);
+
+// visible-block-start
+import { Refine } from "@pankod/refine-core";
+import {
+    Layout,
+    MantineProvider,
+    LightTheme,
+    Global,
+} from "@pankod/refine-mantine";
+import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
+
+import {
+    MantineListInferencer,
+    MantineShowInferencer,
+    // highlight-start
+    MantineCreateInferencer,
+    // highlight-end
+    MantineEditInferencer
+} from "@pankod/refine-inferencer/mantine";
+
+const API_URL = "https://api.fake-rest.refine.dev";
+
+const App: React.FC = () => {
+    return (
+        <MantineProvider
+            theme={LightTheme}
+            withNormalizeCSS
+            withGlobalStyles
+        >
+            <Global
+                styles={{ body: { WebkitFontSmoothing: "auto" } }}
+            />
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider(API_URL)}
+                Layout={Layout}
+                resources={[
+                    {
+                        name: "posts",
+                        list: MantineListInferencer,
+                        show: MantineShowInferencer,
+                        // highlight-start
+                        create: MantineCreateInferencer,
                         // highlight-end
                         edit: MantineEditInferencer,
                     },
@@ -271,6 +361,7 @@ import dataProvider from "@pankod/refine-simple-rest";
 import {
     MantineListInferencer,
     MantineShowInferencer,
+    MantineCreateInferencer,
     // highlight-start
     MantineEditInferencer
     // highlight-end
@@ -297,6 +388,7 @@ const App: React.FC = () => {
                         name: "posts",
                         list: MantineListInferencer,
                         show: MantineShowInferencer,
+                        create: MantineCreateInferencer,
                         // highlight-start
                         edit: MantineEditInferencer,
                         // highlight-end
