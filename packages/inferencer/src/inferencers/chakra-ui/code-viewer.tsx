@@ -74,6 +74,7 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                             </Button>
                         </HStack>
                     </Box>
+                    <div style={{ height: "50px" }}></div>
                     <Modal size="4xl" isOpen={isOpen} onClose={onClose}>
                         <ModalOverlay />
                         <ModalContent>
