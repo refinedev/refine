@@ -33,7 +33,7 @@ export default function Layout(props) {
             return false;
         }
 
-        if (typeof window.Intercom !== "undefined") {
+        if (typeof window !== "undefined") {
             if (location.pathname.startsWith("/blog")) {
                 window?.Intercom?.("update", { hide_default_launcher: true });
             } else {
