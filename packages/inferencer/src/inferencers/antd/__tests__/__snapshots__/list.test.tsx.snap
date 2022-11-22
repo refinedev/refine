@@ -1,20 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AntdListInferencer should match the snapshot 1`] = `
-Array [
+<DocumentFragment>
   <div>
     <div>
       <div
-        className="ant-page-header has-breadcrumb"
+        class="ant-page-header has-breadcrumb"
       >
         <div
-          className="ant-page-header-heading"
+          class="ant-page-header-heading"
         >
           <div
-            className="ant-page-header-heading-left"
+            class="ant-page-header-heading-left"
           >
             <span
-              className="ant-page-header-heading-title"
+              class="ant-page-header-heading-title"
               title="Posts"
             >
               Posts
@@ -22,565 +22,660 @@ Array [
           </div>
         </div>
         <div
-          className="ant-page-header-content"
+          class="ant-page-header-content"
         >
           <div>
             <div
-              className="ant-table-wrapper"
+              class="ant-table-wrapper"
             >
               <div
-                className="ant-spin-nested-loading"
+                class="ant-spin-nested-loading"
               >
-                <div>
-                  <div
-                    aria-busy={true}
-                    aria-live="polite"
-                    className="ant-spin ant-spin-spinning"
-                  >
-                    <span
-                      className="ant-spin-dot ant-spin-dot-spin"
-                    >
-                      <i
-                        className="ant-spin-dot-item"
-                      />
-                      <i
-                        className="ant-spin-dot-item"
-                      />
-                      <i
-                        className="ant-spin-dot-item"
-                      />
-                      <i
-                        className="ant-spin-dot-item"
-                      />
-                    </span>
-                  </div>
-                </div>
                 <div
-                  className="ant-spin-container ant-spin-blur"
+                  class="ant-spin-container"
                 >
                   <div
-                    className="ant-table ant-table-empty ant-table-scroll-horizontal"
+                    class="ant-table ant-table-scroll-horizontal"
                   >
                     <div
-                      className="ant-table-container"
+                      class="ant-table-container"
                     >
                       <div
-                        className="ant-table-content"
-                        onScroll={[Function]}
-                        style={
-                          Object {
-                            "overflowX": "auto",
-                            "overflowY": "hidden",
-                          }
-                        }
+                        class="ant-table-content"
+                        style="overflow-x: auto; overflow-y: hidden;"
                       >
                         <table
-                          style={
-                            Object {
-                              "minWidth": "100%",
-                              "tableLayout": "auto",
-                              "width": "auto",
-                            }
-                          }
+                          style="width: auto; min-width: 100%; table-layout: auto;"
                         >
                           <colgroup />
                           <thead
-                            className="ant-table-thead"
+                            class="ant-table-thead"
                           >
                             <tr>
                               <th
-                                className="ant-table-cell"
-                                colSpan={null}
-                                onMouseEnter={[Function]}
-                                onMouseLeave={[Function]}
-                                rowSpan={null}
-                                style={Object {}}
+                                class="ant-table-cell"
                               >
                                 Id
                               </th>
                               <th
-                                className="ant-table-cell"
-                                colSpan={null}
-                                onMouseEnter={[Function]}
-                                onMouseLeave={[Function]}
-                                rowSpan={null}
-                                style={Object {}}
+                                class="ant-table-cell"
                               >
                                 Title
                               </th>
                               <th
-                                className="ant-table-cell"
-                                colSpan={null}
-                                onMouseEnter={[Function]}
-                                onMouseLeave={[Function]}
-                                rowSpan={null}
-                                style={Object {}}
+                                class="ant-table-cell"
                               >
                                 Slug
                               </th>
                               <th
-                                className="ant-table-cell"
-                                colSpan={null}
-                                onMouseEnter={[Function]}
-                                onMouseLeave={[Function]}
-                                rowSpan={null}
-                                style={Object {}}
+                                class="ant-table-cell"
                               >
                                 Content
                               </th>
                               <th
-                                className="ant-table-cell"
-                                colSpan={null}
-                                onMouseEnter={[Function]}
-                                onMouseLeave={[Function]}
-                                rowSpan={null}
-                                style={Object {}}
+                                class="ant-table-cell"
                               >
                                 Hit
                               </th>
                               <th
-                                className="ant-table-cell"
-                                colSpan={null}
-                                onMouseEnter={[Function]}
-                                onMouseLeave={[Function]}
-                                rowSpan={null}
-                                style={Object {}}
+                                class="ant-table-cell"
                               >
                                 Category
                               </th>
                               <th
-                                className="ant-table-cell"
-                                colSpan={null}
-                                onMouseEnter={[Function]}
-                                onMouseLeave={[Function]}
-                                rowSpan={null}
-                                style={Object {}}
+                                class="ant-table-cell"
                               >
                                 User
                               </th>
                               <th
-                                className="ant-table-cell"
-                                colSpan={null}
-                                onMouseEnter={[Function]}
-                                onMouseLeave={[Function]}
-                                rowSpan={null}
-                                style={Object {}}
+                                class="ant-table-cell"
                               >
                                 Status
                               </th>
                               <th
-                                className="ant-table-cell"
-                                colSpan={null}
-                                onMouseEnter={[Function]}
-                                onMouseLeave={[Function]}
-                                rowSpan={null}
-                                style={Object {}}
+                                class="ant-table-cell"
                               >
                                 Status Color
                               </th>
                               <th
-                                className="ant-table-cell"
-                                colSpan={null}
-                                onMouseEnter={[Function]}
-                                onMouseLeave={[Function]}
-                                rowSpan={null}
-                                style={Object {}}
+                                class="ant-table-cell"
                               >
                                 Created At
                               </th>
                               <th
-                                className="ant-table-cell"
-                                colSpan={null}
-                                onMouseEnter={[Function]}
-                                onMouseLeave={[Function]}
-                                rowSpan={null}
-                                style={Object {}}
+                                class="ant-table-cell"
                               >
                                 Published At
                               </th>
                               <th
-                                className="ant-table-cell"
-                                colSpan={null}
-                                onMouseEnter={[Function]}
-                                onMouseLeave={[Function]}
-                                rowSpan={null}
-                                style={Object {}}
+                                class="ant-table-cell"
                               >
                                 Image
                               </th>
                               <th
-                                className="ant-table-cell"
-                                colSpan={null}
-                                onMouseEnter={[Function]}
-                                onMouseLeave={[Function]}
-                                rowSpan={null}
-                                style={Object {}}
+                                class="ant-table-cell"
                               >
                                 Tags
                               </th>
                               <th
-                                className="ant-table-cell"
-                                colSpan={null}
-                                onMouseEnter={[Function]}
-                                onMouseLeave={[Function]}
-                                rowSpan={null}
-                                style={Object {}}
+                                class="ant-table-cell"
                               >
                                 Language
                               </th>
                               <th
-                                className="ant-table-cell"
-                                colSpan={null}
-                                onMouseEnter={[Function]}
-                                onMouseLeave={[Function]}
-                                rowSpan={null}
-                                style={Object {}}
+                                class="ant-table-cell"
                               >
                                 Actions
                               </th>
                             </tr>
                           </thead>
                           <tbody
-                            className="ant-table-tbody"
+                            class="ant-table-tbody"
                           >
                             <tr
                               aria-hidden="true"
-                              className="ant-table-measure-row"
-                              style={
-                                Object {
-                                  "fontSize": 0,
-                                  "height": 0,
-                                }
-                              }
+                              class="ant-table-measure-row"
+                              style="height: 0px; font-size: 0px;"
                             >
                               <td
-                                style={
-                                  Object {
-                                    "border": 0,
-                                    "height": 0,
-                                    "padding": 0,
-                                  }
-                                }
+                                style="padding: 0px; border: 0px; height: 0px;"
                               >
                                 <div
-                                  style={
-                                    Object {
-                                      "height": 0,
-                                      "overflow": "hidden",
-                                    }
-                                  }
+                                  style="height: 0px; overflow: hidden;"
                                 >
                                    
                                 </div>
                               </td>
                               <td
-                                style={
-                                  Object {
-                                    "border": 0,
-                                    "height": 0,
-                                    "padding": 0,
-                                  }
-                                }
+                                style="padding: 0px; border: 0px; height: 0px;"
                               >
                                 <div
-                                  style={
-                                    Object {
-                                      "height": 0,
-                                      "overflow": "hidden",
-                                    }
-                                  }
+                                  style="height: 0px; overflow: hidden;"
                                 >
                                    
                                 </div>
                               </td>
                               <td
-                                style={
-                                  Object {
-                                    "border": 0,
-                                    "height": 0,
-                                    "padding": 0,
-                                  }
-                                }
+                                style="padding: 0px; border: 0px; height: 0px;"
                               >
                                 <div
-                                  style={
-                                    Object {
-                                      "height": 0,
-                                      "overflow": "hidden",
-                                    }
-                                  }
+                                  style="height: 0px; overflow: hidden;"
                                 >
                                    
                                 </div>
                               </td>
                               <td
-                                style={
-                                  Object {
-                                    "border": 0,
-                                    "height": 0,
-                                    "padding": 0,
-                                  }
-                                }
+                                style="padding: 0px; border: 0px; height: 0px;"
                               >
                                 <div
-                                  style={
-                                    Object {
-                                      "height": 0,
-                                      "overflow": "hidden",
-                                    }
-                                  }
+                                  style="height: 0px; overflow: hidden;"
                                 >
                                    
                                 </div>
                               </td>
                               <td
-                                style={
-                                  Object {
-                                    "border": 0,
-                                    "height": 0,
-                                    "padding": 0,
-                                  }
-                                }
+                                style="padding: 0px; border: 0px; height: 0px;"
                               >
                                 <div
-                                  style={
-                                    Object {
-                                      "height": 0,
-                                      "overflow": "hidden",
-                                    }
-                                  }
+                                  style="height: 0px; overflow: hidden;"
                                 >
                                    
                                 </div>
                               </td>
                               <td
-                                style={
-                                  Object {
-                                    "border": 0,
-                                    "height": 0,
-                                    "padding": 0,
-                                  }
-                                }
+                                style="padding: 0px; border: 0px; height: 0px;"
                               >
                                 <div
-                                  style={
-                                    Object {
-                                      "height": 0,
-                                      "overflow": "hidden",
-                                    }
-                                  }
+                                  style="height: 0px; overflow: hidden;"
                                 >
                                    
                                 </div>
                               </td>
                               <td
-                                style={
-                                  Object {
-                                    "border": 0,
-                                    "height": 0,
-                                    "padding": 0,
-                                  }
-                                }
+                                style="padding: 0px; border: 0px; height: 0px;"
                               >
                                 <div
-                                  style={
-                                    Object {
-                                      "height": 0,
-                                      "overflow": "hidden",
-                                    }
-                                  }
+                                  style="height: 0px; overflow: hidden;"
                                 >
                                    
                                 </div>
                               </td>
                               <td
-                                style={
-                                  Object {
-                                    "border": 0,
-                                    "height": 0,
-                                    "padding": 0,
-                                  }
-                                }
+                                style="padding: 0px; border: 0px; height: 0px;"
                               >
                                 <div
-                                  style={
-                                    Object {
-                                      "height": 0,
-                                      "overflow": "hidden",
-                                    }
-                                  }
+                                  style="height: 0px; overflow: hidden;"
                                 >
                                    
                                 </div>
                               </td>
                               <td
-                                style={
-                                  Object {
-                                    "border": 0,
-                                    "height": 0,
-                                    "padding": 0,
-                                  }
-                                }
+                                style="padding: 0px; border: 0px; height: 0px;"
                               >
                                 <div
-                                  style={
-                                    Object {
-                                      "height": 0,
-                                      "overflow": "hidden",
-                                    }
-                                  }
+                                  style="height: 0px; overflow: hidden;"
                                 >
                                    
                                 </div>
                               </td>
                               <td
-                                style={
-                                  Object {
-                                    "border": 0,
-                                    "height": 0,
-                                    "padding": 0,
-                                  }
-                                }
+                                style="padding: 0px; border: 0px; height: 0px;"
                               >
                                 <div
-                                  style={
-                                    Object {
-                                      "height": 0,
-                                      "overflow": "hidden",
-                                    }
-                                  }
+                                  style="height: 0px; overflow: hidden;"
                                 >
                                    
                                 </div>
                               </td>
                               <td
-                                style={
-                                  Object {
-                                    "border": 0,
-                                    "height": 0,
-                                    "padding": 0,
-                                  }
-                                }
+                                style="padding: 0px; border: 0px; height: 0px;"
                               >
                                 <div
-                                  style={
-                                    Object {
-                                      "height": 0,
-                                      "overflow": "hidden",
-                                    }
-                                  }
+                                  style="height: 0px; overflow: hidden;"
                                 >
                                    
                                 </div>
                               </td>
                               <td
-                                style={
-                                  Object {
-                                    "border": 0,
-                                    "height": 0,
-                                    "padding": 0,
-                                  }
-                                }
+                                style="padding: 0px; border: 0px; height: 0px;"
                               >
                                 <div
-                                  style={
-                                    Object {
-                                      "height": 0,
-                                      "overflow": "hidden",
-                                    }
-                                  }
+                                  style="height: 0px; overflow: hidden;"
                                 >
                                    
                                 </div>
                               </td>
                               <td
-                                style={
-                                  Object {
-                                    "border": 0,
-                                    "height": 0,
-                                    "padding": 0,
-                                  }
-                                }
+                                style="padding: 0px; border: 0px; height: 0px;"
                               >
                                 <div
-                                  style={
-                                    Object {
-                                      "height": 0,
-                                      "overflow": "hidden",
-                                    }
-                                  }
+                                  style="height: 0px; overflow: hidden;"
                                 >
                                    
                                 </div>
                               </td>
                               <td
-                                style={
-                                  Object {
-                                    "border": 0,
-                                    "height": 0,
-                                    "padding": 0,
-                                  }
-                                }
+                                style="padding: 0px; border: 0px; height: 0px;"
                               >
                                 <div
-                                  style={
-                                    Object {
-                                      "height": 0,
-                                      "overflow": "hidden",
-                                    }
-                                  }
+                                  style="height: 0px; overflow: hidden;"
                                 >
                                    
                                 </div>
                               </td>
                               <td
-                                style={
-                                  Object {
-                                    "border": 0,
-                                    "height": 0,
-                                    "padding": 0,
-                                  }
-                                }
+                                style="padding: 0px; border: 0px; height: 0px;"
                               >
                                 <div
-                                  style={
-                                    Object {
-                                      "height": 0,
-                                      "overflow": "hidden",
-                                    }
-                                  }
+                                  style="height: 0px; overflow: hidden;"
                                 >
                                    
                                 </div>
                               </td>
                             </tr>
                             <tr
-                              className="ant-table-placeholder"
-                              style={
-                                Object {
-                                  "display": null,
-                                }
-                              }
+                              class="ant-table-row ant-table-row-level-0"
+                              data-row-key="11"
                             >
                               <td
-                                className="ant-table-cell"
-                                colSpan={15}
-                                onMouseEnter={[Function]}
-                                onMouseLeave={[Function]}
-                                rowSpan={null}
-                                style={Object {}}
+                                class="ant-table-cell"
+                              >
+                                11
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                Nobis exercitationem officia quia est.
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                provident-culpa-facere
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                <p>
+                                  Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur vol...
+                                </p>
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                920557
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                Numquam Saepe Illo
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                Eriberto Leannon
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                draft
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                orange
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                <span
+                                  class="ant-typography"
+                                >
+                                  04/02/2022
+                                </span>
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                <span
+                                  class="ant-typography"
+                                >
+                                  08/10/2021
+                                </span>
+                              </td>
+                              <td
+                                class="ant-table-cell"
                               >
                                 <div
-                                  className="ant-table-expanded-row-fixed"
-                                  style={
-                                    Object {
-                                      "left": 0,
-                                      "overflow": "hidden",
-                                      "position": "sticky",
-                                      "width": 0,
-                                    }
-                                  }
-                                />
+                                  class="ant-image"
+                                >
+                                  <img
+                                    class="ant-image-img"
+                                    src="http://loremflickr.com/640/480/abstract"
+                                    style="max-width: 100px;"
+                                  />
+                                  <div
+                                    class="ant-image-mask"
+                                  >
+                                    <div
+                                      class="ant-image-mask-info"
+                                    >
+                                      <span
+                                        aria-label="eye"
+                                        class="anticon anticon-eye"
+                                        role="img"
+                                      >
+                                        <svg
+                                          aria-hidden="true"
+                                          data-icon="eye"
+                                          fill="currentColor"
+                                          focusable="false"
+                                          height="1em"
+                                          viewBox="64 64 896 896"
+                                          width="1em"
+                                        >
+                                          <path
+                                            d="M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 000 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z"
+                                          />
+                                        </svg>
+                                      </span>
+                                      Preview
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                <span
+                                  class="ant-tag"
+                                >
+                                  Nobis Et Ut
+                                </span>
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                2
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                <div
+                                  class="ant-space ant-space-horizontal ant-space-align-center"
+                                >
+                                  <div
+                                    class="ant-space-item"
+                                    style="margin-right: 8px;"
+                                  >
+                                    <a
+                                      href="/posts/edit/11"
+                                    >
+                                      <button
+                                        class="ant-btn ant-btn-default ant-btn-sm ant-btn-icon-only"
+                                        title=""
+                                        type="button"
+                                      >
+                                        <span
+                                          aria-label="edit"
+                                          class="anticon anticon-edit"
+                                          role="img"
+                                        >
+                                          <svg
+                                            aria-hidden="true"
+                                            data-icon="edit"
+                                            fill="currentColor"
+                                            focusable="false"
+                                            height="1em"
+                                            viewBox="64 64 896 896"
+                                            width="1em"
+                                          >
+                                            <path
+                                              d="M257.7 752c2 0 4-.2 6-.5L431.9 722c2-.4 3.9-1.3 5.3-2.8l423.9-423.9a9.96 9.96 0 000-14.1L694.9 114.9c-1.9-1.9-4.4-2.9-7.1-2.9s-5.2 1-7.1 2.9L256.8 538.8c-1.5 1.5-2.4 3.3-2.8 5.3l-29.5 168.2a33.5 33.5 0 009.4 29.8c6.6 6.4 14.9 9.9 23.8 9.9zm67.4-174.4L687.8 215l73.3 73.3-362.7 362.6-88.9 15.7 15.6-89zM880 836H144c-17.7 0-32 14.3-32 32v36c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-36c0-17.7-14.3-32-32-32z"
+                                            />
+                                          </svg>
+                                        </span>
+                                      </button>
+                                    </a>
+                                  </div>
+                                  <div
+                                    class="ant-space-item"
+                                  >
+                                    <a
+                                      href="/posts/show/11"
+                                    >
+                                      <button
+                                        class="ant-btn ant-btn-default ant-btn-sm ant-btn-icon-only"
+                                        title=""
+                                        type="button"
+                                      >
+                                        <span
+                                          aria-label="eye"
+                                          class="anticon anticon-eye"
+                                          role="img"
+                                        >
+                                          <svg
+                                            aria-hidden="true"
+                                            data-icon="eye"
+                                            fill="currentColor"
+                                            focusable="false"
+                                            height="1em"
+                                            viewBox="64 64 896 896"
+                                            width="1em"
+                                          >
+                                            <path
+                                              d="M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 000 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z"
+                                            />
+                                          </svg>
+                                        </span>
+                                      </button>
+                                    </a>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr
+                              class="ant-table-row ant-table-row-level-0"
+                              data-row-key="21"
+                            >
+                              <td
+                                class="ant-table-cell"
+                              >
+                                21
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                Eaque in nesciunt.
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                quod-quos-commodi
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                <p>
+                                  Ut velit quo. Sed beatae et sit ea. Perferendis pariatur doloremque deleniti sap...
+                                </p>
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                175149
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                Sit Natus Voluptatibus
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                Tressie Reichel
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                published
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                lime
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                <span
+                                  class="ant-typography"
+                                >
+                                  09/24/2022
+                                </span>
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                <span
+                                  class="ant-typography"
+                                >
+                                  09/01/2021
+                                </span>
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                <div
+                                  class="ant-image"
+                                >
+                                  <img
+                                    class="ant-image-img"
+                                    src="http://loremflickr.com/640/480/abstract"
+                                    style="max-width: 100px;"
+                                  />
+                                  <div
+                                    class="ant-image-mask"
+                                  >
+                                    <div
+                                      class="ant-image-mask-info"
+                                    >
+                                      <span
+                                        aria-label="eye"
+                                        class="anticon anticon-eye"
+                                        role="img"
+                                      >
+                                        <svg
+                                          aria-hidden="true"
+                                          data-icon="eye"
+                                          fill="currentColor"
+                                          focusable="false"
+                                          height="1em"
+                                          viewBox="64 64 896 896"
+                                          width="1em"
+                                        >
+                                          <path
+                                            d="M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 000 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z"
+                                          />
+                                        </svg>
+                                      </span>
+                                      Preview
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                <span
+                                  class="ant-tag"
+                                >
+                                  Error Eos Et
+                                </span>
+                                <span
+                                  class="ant-tag"
+                                >
+                                  Nobis Et Ut
+                                </span>
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                2
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                <div
+                                  class="ant-space ant-space-horizontal ant-space-align-center"
+                                >
+                                  <div
+                                    class="ant-space-item"
+                                    style="margin-right: 8px;"
+                                  >
+                                    <a
+                                      href="/posts/edit/21"
+                                    >
+                                      <button
+                                        class="ant-btn ant-btn-default ant-btn-sm ant-btn-icon-only"
+                                        title=""
+                                        type="button"
+                                      >
+                                        <span
+                                          aria-label="edit"
+                                          class="anticon anticon-edit"
+                                          role="img"
+                                        >
+                                          <svg
+                                            aria-hidden="true"
+                                            data-icon="edit"
+                                            fill="currentColor"
+                                            focusable="false"
+                                            height="1em"
+                                            viewBox="64 64 896 896"
+                                            width="1em"
+                                          >
+                                            <path
+                                              d="M257.7 752c2 0 4-.2 6-.5L431.9 722c2-.4 3.9-1.3 5.3-2.8l423.9-423.9a9.96 9.96 0 000-14.1L694.9 114.9c-1.9-1.9-4.4-2.9-7.1-2.9s-5.2 1-7.1 2.9L256.8 538.8c-1.5 1.5-2.4 3.3-2.8 5.3l-29.5 168.2a33.5 33.5 0 009.4 29.8c6.6 6.4 14.9 9.9 23.8 9.9zm67.4-174.4L687.8 215l73.3 73.3-362.7 362.6-88.9 15.7 15.6-89zM880 836H144c-17.7 0-32 14.3-32 32v36c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-36c0-17.7-14.3-32-32-32z"
+                                            />
+                                          </svg>
+                                        </span>
+                                      </button>
+                                    </a>
+                                  </div>
+                                  <div
+                                    class="ant-space-item"
+                                  >
+                                    <a
+                                      href="/posts/show/21"
+                                    >
+                                      <button
+                                        class="ant-btn ant-btn-default ant-btn-sm ant-btn-icon-only"
+                                        title=""
+                                        type="button"
+                                      >
+                                        <span
+                                          aria-label="eye"
+                                          class="anticon anticon-eye"
+                                          role="img"
+                                        >
+                                          <svg
+                                            aria-hidden="true"
+                                            data-icon="eye"
+                                            fill="currentColor"
+                                            focusable="false"
+                                            height="1em"
+                                            viewBox="64 64 896 896"
+                                            width="1em"
+                                          >
+                                            <path
+                                              d="M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 000 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z"
+                                            />
+                                          </svg>
+                                        </span>
+                                      </button>
+                                    </a>
+                                  </div>
+                                </div>
                               </td>
                             </tr>
                           </tbody>
@@ -588,6 +683,96 @@ Array [
                       </div>
                     </div>
                   </div>
+                  <ul
+                    class="ant-pagination ant-pagination-simple ant-table-pagination ant-table-pagination-center"
+                  >
+                    <li
+                      aria-disabled="true"
+                      class="ant-pagination-prev ant-pagination-disabled"
+                      title="Previous Page"
+                    >
+                      <a
+                        href="/posts?pageSize=10&current=0"
+                      >
+                        <button
+                          class="ant-pagination-item-link"
+                          tabindex="-1"
+                          type="button"
+                        >
+                          <span
+                            aria-label="left"
+                            class="anticon anticon-left"
+                            role="img"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              data-icon="left"
+                              fill="currentColor"
+                              focusable="false"
+                              height="1em"
+                              viewBox="64 64 896 896"
+                              width="1em"
+                            >
+                              <path
+                                d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 000 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"
+                              />
+                            </svg>
+                          </span>
+                        </button>
+                      </a>
+                    </li>
+                    <li
+                      class="ant-pagination-simple-pager"
+                      title="1/1"
+                    >
+                      <input
+                        size="3"
+                        type="text"
+                        value="1"
+                      />
+                      <span
+                        class="ant-pagination-slash"
+                      >
+                        /
+                      </span>
+                      1
+                    </li>
+                    <li
+                      aria-disabled="true"
+                      class="ant-pagination-next ant-pagination-disabled"
+                      title="Next Page"
+                    >
+                      <a
+                        href="/posts?pageSize=10&current=1"
+                      >
+                        <button
+                          class="ant-pagination-item-link"
+                          tabindex="-1"
+                          type="button"
+                        >
+                          <span
+                            aria-label="right"
+                            class="anticon anticon-right"
+                            role="img"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              data-icon="right"
+                              fill="currentColor"
+                              focusable="false"
+                              height="1em"
+                              viewBox="64 64 896 896"
+                              width="1em"
+                            >
+                              <path
+                                d="M765.7 486.8L314.9 134.7A7.97 7.97 0 00302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 000-50.4z"
+                              />
+                            </svg>
+                          </span>
+                        </button>
+                      </a>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -595,37 +780,24 @@ Array [
         </div>
       </div>
     </div>
-  </div>,
+  </div>
   <div
-    style={
-      Object {
-        "bottom": 12,
-        "position": "fixed",
-        "right": 60,
-      }
-    }
+    style="position: fixed; bottom: 12px; right: 60px;"
   >
     <div
-      className="ant-space ant-space-horizontal ant-space-align-center"
-      style={Object {}}
+      class="ant-space ant-space-horizontal ant-space-align-center"
     >
       <div
-        className="ant-space-item"
-        style={
-          Object {
-            "marginRight": 8,
-          }
-        }
+        class="ant-space-item"
+        style="margin-right: 8px;"
       >
         <button
-          className="ant-btn ant-btn-primary"
-          disabled={false}
-          onClick={[Function]}
+          class="ant-btn ant-btn-primary"
           type="button"
         >
           <span
             aria-label="code"
-            className="anticon anticon-code"
+            class="anticon anticon-code"
             role="img"
           >
             <svg
@@ -648,18 +820,16 @@ Array [
         </button>
       </div>
       <div
-        className="ant-space-item"
-        style={Object {}}
+        class="ant-space-item"
       >
         <a
-          className="ant-btn ant-btn-default"
+          class="ant-btn ant-btn-default"
           href="https://github.com/refinedev/refine/issues"
-          onClick={[Function]}
           target="_blank"
         >
           <span
             aria-label="message"
-            className="anticon anticon-message"
+            class="anticon anticon-message"
             role="img"
           >
             <svg
@@ -682,6 +852,6 @@ Array [
         </a>
       </div>
     </div>
-  </div>,
-]
+  </div>
+</DocumentFragment>
 `;

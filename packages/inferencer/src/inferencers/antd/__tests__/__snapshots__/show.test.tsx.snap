@@ -1,68 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AntdShowInferencer should match the snapshot 1`] = `
-Array [
+<DocumentFragment>
   <div>
     <div>
       <div
-        className="ant-page-header has-breadcrumb"
+        class="ant-page-header has-breadcrumb"
       >
         <div
-          className="ant-page-header-heading"
+          class="ant-page-header-heading"
         >
           <div
-            className="ant-page-header-heading-left"
+            class="ant-page-header-heading-left"
           >
             <span
-              className="ant-page-header-heading-title"
+              class="ant-page-header-heading-title"
               title="Show Post"
             >
               Show Post
             </span>
           </div>
           <span
-            className="ant-page-header-heading-extra"
+            class="ant-page-header-heading-extra"
           >
             <div
-              className="ant-space ant-space-horizontal ant-space-align-center"
-              style={Object {}}
+              class="ant-space ant-space-horizontal ant-space-align-center"
             >
               <div
-                className="ant-space-item"
-                style={Object {}}
+                class="ant-space-item"
               >
                 <div
-                  className="ant-space ant-space-horizontal ant-space-align-center"
-                  style={
-                    Object {
-                      "flexWrap": "wrap",
-                      "marginBottom": -8,
-                    }
-                  }
+                  class="ant-space ant-space-horizontal ant-space-align-center"
+                  style="flex-wrap: wrap; margin-bottom: -8px;"
                 >
                   <div
-                    className="ant-space-item"
-                    style={
-                      Object {
-                        "marginRight": 8,
-                        "paddingBottom": 8,
-                      }
-                    }
+                    class="ant-space-item"
+                    style="margin-right: 8px; padding-bottom: 8px;"
                   >
                     <a
                       href="/posts"
-                      onClick={[Function]}
                     >
                       <button
-                        className="ant-btn ant-btn-default"
-                        disabled={false}
-                        onClick={[Function]}
+                        class="ant-btn ant-btn-default"
                         title=""
                         type="button"
                       >
                         <span
                           aria-label="bars"
-                          className="anticon anticon-bars"
+                          class="anticon anticon-bars"
                           role="img"
                         >
                           <svg
@@ -86,22 +71,16 @@ Array [
                     </a>
                   </div>
                   <div
-                    className="ant-space-item"
-                    style={
-                      Object {
-                        "paddingBottom": 8,
-                      }
-                    }
+                    class="ant-space-item"
+                    style="padding-bottom: 8px;"
                   >
                     <button
-                      className="ant-btn ant-btn-default"
-                      disabled={false}
-                      onClick={[Function]}
+                      class="ant-btn ant-btn-default"
                       type="button"
                     >
                       <span
                         aria-label="redo"
-                        className="anticon anticon-redo"
+                        class="anticon anticon-redo"
                         role="img"
                       >
                         <svg
@@ -129,95 +108,52 @@ Array [
           </span>
         </div>
         <div
-          className="ant-page-header-content"
+          class="ant-page-header-content"
         >
           <div
-            className="ant-spin-nested-loading"
+            class="ant-spin-nested-loading"
           >
             <div
-              className="ant-spin-container"
+              class="ant-spin-container"
             >
               <div
-                className="ant-card"
+                class="ant-card"
               >
                 <div
-                  className="ant-card-body"
-                  style={Object {}}
+                  class="ant-card-body"
                 >
                   <h5
-                    className="ant-typography"
-                    onClick={null}
-                    style={
-                      Object {
-                        "WebkitLineClamp": undefined,
-                      }
-                    }
+                    class="ant-typography"
                   >
                     Id
                   </h5>
                   <span
-                    className="ant-typography"
-                    onClick={null}
-                    style={
-                      Object {
-                        "WebkitLineClamp": undefined,
-                      }
-                    }
+                    class="ant-typography"
                   >
                     11
                   </span>
                   <h5
-                    className="ant-typography"
-                    onClick={null}
-                    style={
-                      Object {
-                        "WebkitLineClamp": undefined,
-                      }
-                    }
+                    class="ant-typography"
                   >
                     Title
                   </h5>
                   <span
-                    className="ant-typography"
-                    onClick={null}
-                    style={
-                      Object {
-                        "WebkitLineClamp": undefined,
-                      }
-                    }
+                    class="ant-typography"
                   >
                     Nobis exercitationem officia quia est.
                   </span>
                   <h5
-                    className="ant-typography"
-                    onClick={null}
-                    style={
-                      Object {
-                        "WebkitLineClamp": undefined,
-                      }
-                    }
+                    class="ant-typography"
                   >
                     Slug
                   </h5>
                   <span
-                    className="ant-typography"
-                    onClick={null}
-                    style={
-                      Object {
-                        "WebkitLineClamp": undefined,
-                      }
-                    }
+                    class="ant-typography"
                   >
                     provident-culpa-facere
                   </span>
                   <h5
-                    className="ant-typography"
-                    onClick={null}
-                    style={
-                      Object {
-                        "WebkitLineClamp": undefined,
-                      }
-                    }
+                    class="ant-typography"
                   >
                     Content
                   </h5>
@@ -225,186 +161,89 @@ Array [
                     Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur voluptatibus molestias. Est nemo aut. Fugit aliquam enim eveniet veritatis. Magni et aut. Consequatur aliquid rerum vero. Quaerat debitis enim magnam. Dolorem est delectus architecto et accusantium. Velit quia vero. Aut necessitatibus quia at consequatur soluta accusantium.
                   </p>
                   <h5
-                    className="ant-typography"
-                    onClick={null}
-                    style={
-                      Object {
-                        "WebkitLineClamp": undefined,
-                      }
-                    }
+                    class="ant-typography"
                   >
                     Hit
                   </h5>
                   <span
-                    className="ant-typography"
-                    onClick={null}
-                    style={
-                      Object {
-                        "WebkitLineClamp": undefined,
-                      }
-                    }
+                    class="ant-typography"
                   >
                     920,557
                   </span>
                   <h5
-                    className="ant-typography"
-                    onClick={null}
-                    style={
-                      Object {
-                        "WebkitLineClamp": undefined,
-                      }
-                    }
+                    class="ant-typography"
                   >
                     Category
                   </h5>
-                  Loading...
+                  Numquam Saepe Illo
                   <h5
-                    className="ant-typography"
-                    onClick={null}
-                    style={
-                      Object {
-                        "WebkitLineClamp": undefined,
-                      }
-                    }
+                    class="ant-typography"
                   >
                     User
                   </h5>
-                  Loading...
+                  Eriberto Leannon
                   <h5
-                    className="ant-typography"
-                    onClick={null}
-                    style={
-                      Object {
-                        "WebkitLineClamp": undefined,
-                      }
-                    }
+                    class="ant-typography"
                   >
                     Status
                   </h5>
                   <span
-                    className="ant-typography"
-                    onClick={null}
-                    style={
-                      Object {
-                        "WebkitLineClamp": undefined,
-                      }
-                    }
+                    class="ant-typography"
                   >
                     draft
                   </span>
                   <h5
-                    className="ant-typography"
-                    onClick={null}
-                    style={
-                      Object {
-                        "WebkitLineClamp": undefined,
-                      }
-                    }
+                    class="ant-typography"
                   >
                     Status Color
                   </h5>
                   <span
-                    className="ant-typography"
-                    onClick={null}
-                    style={
-                      Object {
-                        "WebkitLineClamp": undefined,
-                      }
-                    }
+                    class="ant-typography"
                   >
                     orange
                   </span>
                   <h5
-                    className="ant-typography"
-                    onClick={null}
-                    style={
-                      Object {
-                        "WebkitLineClamp": undefined,
-                      }
-                    }
+                    class="ant-typography"
                   >
                     Created At
                   </h5>
                   <span
-                    className="ant-typography"
-                    onClick={null}
-                    style={
-                      Object {
-                        "WebkitLineClamp": undefined,
-                      }
-                    }
+                    class="ant-typography"
                   >
                     04/02/2022
                   </span>
                   <h5
-                    className="ant-typography"
-                    onClick={null}
-                    style={
-                      Object {
-                        "WebkitLineClamp": undefined,
-                      }
-                    }
+                    class="ant-typography"
                   >
                     Published At
                   </h5>
                   <span
-                    className="ant-typography"
-                    onClick={null}
-                    style={
-                      Object {
-                        "WebkitLineClamp": undefined,
-                      }
-                    }
+                    class="ant-typography"
                   >
                     08/10/2021
                   </span>
                   <h5
-                    className="ant-typography"
-                    onClick={null}
-                    style={
-                      Object {
-                        "WebkitLineClamp": undefined,
-                      }
-                    }
+                    class="ant-typography"
                   >
                     Image
                   </h5>
                   <div
-                    className="ant-image"
-                    onClick={[Function]}
-                    style={
-                      Object {
-                        "height": undefined,
-                        "width": undefined,
-                      }
-                    }
+                    class="ant-image"
                   >
                     <img
-                      className="ant-image-img"
-                      onError={[Function]}
-                      onLoad={[Function]}
+                      class="ant-image-img"
                       src="http://loremflickr.com/640/480/abstract"
-                      style={
-                        Object {
-                          "height": undefined,
-                          "maxWidth": 200,
-                        }
-                      }
+                      style="max-width: 200px;"
                     />
                     <div
-                      className="ant-image-mask"
-                      style={
-                        Object {
-                          "display": undefined,
-                        }
-                      }
+                      class="ant-image-mask"
                     >
                       <div
-                        className="ant-image-mask-info"
+                        class="ant-image-mask-info"
                       >
                         <span
                           aria-label="eye"
-                          className="anticon anticon-eye"
+                          class="anticon anticon-eye"
                           role="img"
                         >
                           <svg
@@ -426,36 +265,27 @@ Array [
                     </div>
                   </div>
                   <h5
-                    className="ant-typography"
-                    onClick={null}
-                    style={
-                      Object {
-                        "WebkitLineClamp": undefined,
-                      }
-                    }
+                    class="ant-typography"
                   >
                     Tags
                   </h5>
-                  Loading...
+                  <span
+                    class="ant-tag"
+                  >
+                    Error Eos Et
+                  </span>
+                  <span
+                    class="ant-tag"
+                  >
+                    Nobis Et Ut
+                  </span>
                   <h5
-                    className="ant-typography"
-                    onClick={null}
-                    style={
-                      Object {
-                        "WebkitLineClamp": undefined,
-                      }
-                    }
+                    class="ant-typography"
                   >
                     Language
                   </h5>
                   <span
-                    className="ant-typography"
-                    onClick={null}
-                    style={
-                      Object {
-                        "WebkitLineClamp": undefined,
-                      }
-                    }
+                    class="ant-typography"
                   >
                     2
                   </span>
@@ -466,37 +296,24 @@ Array [
         </div>
       </div>
     </div>
-  </div>,
+  </div>
   <div
-    style={
-      Object {
-        "bottom": 12,
-        "position": "fixed",
-        "right": 60,
-      }
-    }
+    style="position: fixed; bottom: 12px; right: 60px;"
   >
     <div
-      className="ant-space ant-space-horizontal ant-space-align-center"
-      style={Object {}}
+      class="ant-space ant-space-horizontal ant-space-align-center"
     >
       <div
-        className="ant-space-item"
-        style={
-          Object {
-            "marginRight": 8,
-          }
-        }
+        class="ant-space-item"
+        style="margin-right: 8px;"
       >
         <button
-          className="ant-btn ant-btn-primary"
-          disabled={false}
-          onClick={[Function]}
+          class="ant-btn ant-btn-primary"
           type="button"
         >
           <span
             aria-label="code"
-            className="anticon anticon-code"
+            class="anticon anticon-code"
             role="img"
           >
             <svg
@@ -519,18 +336,16 @@ Array [
         </button>
       </div>
       <div
-        className="ant-space-item"
-        style={Object {}}
+        class="ant-space-item"
       >
         <a
-          className="ant-btn ant-btn-default"
+          class="ant-btn ant-btn-default"
           href="https://github.com/refinedev/refine/issues"
-          onClick={[Function]}
           target="_blank"
         >
           <span
             aria-label="message"
-            className="anticon anticon-message"
+            class="anticon anticon-message"
             role="img"
           >
             <svg
@@ -553,6 +368,6 @@ Array [
         </a>
       </div>
     </div>
-  </div>,
-]
+  </div>
+</DocumentFragment>
 `;
