@@ -18,5 +18,5 @@
 ## Install
 
 ```
-npm install @pankod/refine-sdk
+npm create refine-app my-app
 ```
