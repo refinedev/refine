@@ -69,6 +69,7 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                             </Button>
                         </Group>
                     </Affix>
+                    <div style={{ height: "50px" }}></div>
                     <Modal
                         size={800}
                         opened={visible}
