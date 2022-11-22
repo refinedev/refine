@@ -379,5 +379,8 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
       />
     </div>
   </div>
+  <div
+    style="height: 50px;"
+  />
 </DocumentFragment>
 `;
