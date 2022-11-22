@@ -2,20 +2,11 @@ import execa from "execa";
 
 export const runScript = (binPath: string, args: string[]) => {
     const execution = execa(binPath, args, {
-        stdio: "inherit",
+        stdio: "pipe",
     });
 
-    execution.on("message", (message) => {
-        console.log(message);
-    });
-
-    execution.on("error", (error) => {
-        console.log(error);
-    });
-
-    execution.on("exit", (exitCode) => {
-        console.log(`Application exited with code ${exitCode}`);
-    });
+    execution.stdout?.pipe(process.stdout);
+    execution.stderr?.pipe(process.stderr);
 
     return execution;
 };

@@ -1,7 +1,62 @@
 import { ENV } from "@utils/env";
-import { shouldUpdatePackages, store, isUpdateNotifierDisabled } from ".";
+import * as notifier from "./index";
 
-test("Should update packages cache", () => {
+const {
+    store,
+    isPackagesCacheExpired,
+    isUpdateNotifierDisabled,
+    shouldUpdatePackagesCache,
+} = notifier;
+
+test("Should update packages cache", async () => {
+    const testCases = [
+        {
+            isExpired: true,
+            isKeyValid: true,
+            output: true,
+        },
+        {
+            isExpired: true,
+            isKeyValid: false,
+            output: true,
+        },
+        {
+            isExpired: false,
+            isKeyValid: false,
+            output: true,
+        },
+        {
+            isExpired: false,
+            isKeyValid: true,
+            output: false,
+        },
+        {
+            isExpired: false,
+            isKeyValid: null,
+            output: null,
+        },
+        {
+            isExpired: true,
+            isKeyValid: null,
+            output: null,
+        },
+    ];
+
+    for (const testCase of testCases) {
+        jest.spyOn(notifier, "isPackagesCacheExpired").mockReturnValueOnce(
+            testCase.isExpired,
+        );
+
+        jest.spyOn(notifier, "validateKey").mockResolvedValue(
+            testCase.isKeyValid,
+        );
+
+        const shouldUpdate = await shouldUpdatePackagesCache();
+        expect(shouldUpdate).toBe(testCase.output);
+    }
+});
+
+test("Package cache is expired", () => {
     const testCases = [
         {
             lastUpdated: 1,
@@ -28,17 +83,17 @@ test("Should update packages cache", () => {
         Date.now = jest.fn(() => testCase.now);
         store.get = jest.fn(() => testCase.lastUpdated);
 
-        expect(shouldUpdatePackages()).toBe(testCase.output);
+        expect(isPackagesCacheExpired()).toBe(testCase.output);
     });
 
     store.get = jest.fn(() => undefined);
-    expect(shouldUpdatePackages()).toBe(true);
+    expect(isPackagesCacheExpired()).toBe(true);
 
     store.get = jest.fn(() => null);
-    expect(shouldUpdatePackages()).toBe(true);
+    expect(isPackagesCacheExpired()).toBe(true);
 
     store.get = jest.fn(() => 0);
-    expect(shouldUpdatePackages()).toBe(true);
+    expect(isPackagesCacheExpired()).toBe(true);
 });
 
 test("Update notifier should not run if env.UPDATE_NOTIFIER_IS_DISABLED is true", () => {

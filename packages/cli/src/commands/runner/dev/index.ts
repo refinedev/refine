@@ -2,6 +2,7 @@ import { Command } from "commander";
 import { getProjectType } from "@utils/project";
 import { projectScripts } from "../projectScripts";
 import { runScript } from "../runScript";
+import { updateNotifier } from "src/update-notifier";
 
 const dev = (program: Command) => {
     return program
@@ -12,12 +13,14 @@ const dev = (program: Command) => {
         .action(action);
 };
 
-const action = (args: string[]) => {
+const action = async (args: string[]) => {
     const projectType = getProjectType();
 
     const binPath = projectScripts[projectType].getBin("dev");
     const script = projectScripts[projectType].dev;
     const command = [...script, ...args];
+
+    await updateNotifier();
 
     runScript(binPath, command);
 };

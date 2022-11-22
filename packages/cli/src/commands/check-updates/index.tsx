@@ -5,23 +5,10 @@ import UpdateWarningTable from "@components/update-warning-table";
 import { pmCommands } from "@utils/package";
 import execa from "execa";
 import spinner from "@utils/spinner";
-
-export type NpmOutdatedResponse = Record<
-    string,
-    {
-        current: string;
-        wanted: string;
-        latest: string;
-        dependet: string;
-    }
->;
-
-export type RefinePackageInstalledVersionData = {
-    name: string;
-    current: string;
-    wanted: string;
-    latest: string;
-};
+import {
+    NpmOutdatedResponse,
+    RefinePackageInstalledVersionData,
+} from "@definitions/package";
 
 const load = (program: Command) => {
     return program
@@ -76,18 +63,18 @@ const getOutdatedRefinePackages = async () => {
 const getOutdatedPackageList = async () => {
     const pm = "npm";
 
-    try {
-        const { stdout } = await execa(pm, pmCommands[pm].outdatedJson, {
-            reject: false,
-        });
+    const { stdout, timedOut } = await execa(pm, pmCommands[pm].outdatedJson, {
+        reject: false,
+        timeout: 25 * 1000,
+    });
 
-        if (!stdout) return null;
-
-        return JSON.parse(stdout) as NpmOutdatedResponse | null;
-    } catch (e) {
-        console.log(e);
-        return null;
+    if (timedOut) {
+        throw new Error("Timed out while checking for updates.");
     }
+
+    if (!stdout) return null;
+
+    return JSON.parse(stdout) as NpmOutdatedResponse | null;
 };
 
 export default load;

@@ -1,11 +1,9 @@
 import { Command, Option } from "commander";
-import {
-    isRefineUptoDate,
-    RefinePackageInstalledVersionData,
-} from "@commands/check-updates";
+import { isRefineUptoDate } from "@commands/check-updates";
 import spinner from "@utils/spinner";
 import { getPreferedPM, installPackages, pmCommands } from "@utils/package";
 import { promptInteractiveRefineUpdate } from "@commands/update/interactive";
+import { RefinePackageInstalledVersionData } from "@definitions/package";
 
 enum Tag {
     Wanted = "wanted",
