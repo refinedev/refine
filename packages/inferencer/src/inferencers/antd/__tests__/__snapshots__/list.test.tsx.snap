@@ -1,0 +1,687 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AntdListInferencer should match the snapshot 1`] = `
+Array [
+  <div>
+    <div>
+      <div
+        className="ant-page-header has-breadcrumb"
+      >
+        <div
+          className="ant-page-header-heading"
+        >
+          <div
+            className="ant-page-header-heading-left"
+          >
+            <span
+              className="ant-page-header-heading-title"
+              title="Posts"
+            >
+              Posts
+            </span>
+          </div>
+        </div>
+        <div
+          className="ant-page-header-content"
+        >
+          <div>
+            <div
+              className="ant-table-wrapper"
+            >
+              <div
+                className="ant-spin-nested-loading"
+              >
+                <div>
+                  <div
+                    aria-busy={true}
+                    aria-live="polite"
+                    className="ant-spin ant-spin-spinning"
+                  >
+                    <span
+                      className="ant-spin-dot ant-spin-dot-spin"
+                    >
+                      <i
+                        className="ant-spin-dot-item"
+                      />
+                      <i
+                        className="ant-spin-dot-item"
+                      />
+                      <i
+                        className="ant-spin-dot-item"
+                      />
+                      <i
+                        className="ant-spin-dot-item"
+                      />
+                    </span>
+                  </div>
+                </div>
+                <div
+                  className="ant-spin-container ant-spin-blur"
+                >
+                  <div
+                    className="ant-table ant-table-empty ant-table-scroll-horizontal"
+                  >
+                    <div
+                      className="ant-table-container"
+                    >
+                      <div
+                        className="ant-table-content"
+                        onScroll={[Function]}
+                        style={
+                          Object {
+                            "overflowX": "auto",
+                            "overflowY": "hidden",
+                          }
+                        }
+                      >
+                        <table
+                          style={
+                            Object {
+                              "minWidth": "100%",
+                              "tableLayout": "auto",
+                              "width": "auto",
+                            }
+                          }
+                        >
+                          <colgroup />
+                          <thead
+                            className="ant-table-thead"
+                          >
+                            <tr>
+                              <th
+                                className="ant-table-cell"
+                                colSpan={null}
+                                onMouseEnter={[Function]}
+                                onMouseLeave={[Function]}
+                                rowSpan={null}
+                                style={Object {}}
+                              >
+                                Id
+                              </th>
+                              <th
+                                className="ant-table-cell"
+                                colSpan={null}
+                                onMouseEnter={[Function]}
+                                onMouseLeave={[Function]}
+                                rowSpan={null}
+                                style={Object {}}
+                              >
+                                Title
+                              </th>
+                              <th
+                                className="ant-table-cell"
+                                colSpan={null}
+                                onMouseEnter={[Function]}
+                                onMouseLeave={[Function]}
+                                rowSpan={null}
+                                style={Object {}}
+                              >
+                                Slug
+                              </th>
+                              <th
+                                className="ant-table-cell"
+                                colSpan={null}
+                                onMouseEnter={[Function]}
+                                onMouseLeave={[Function]}
+                                rowSpan={null}
+                                style={Object {}}
+                              >
+                                Content
+                              </th>
+                              <th
+                                className="ant-table-cell"
+                                colSpan={null}
+                                onMouseEnter={[Function]}
+                                onMouseLeave={[Function]}
+                                rowSpan={null}
+                                style={Object {}}
+                              >
+                                Hit
+                              </th>
+                              <th
+                                className="ant-table-cell"
+                                colSpan={null}
+                                onMouseEnter={[Function]}
+                                onMouseLeave={[Function]}
+                                rowSpan={null}
+                                style={Object {}}
+                              >
+                                Category
+                              </th>
+                              <th
+                                className="ant-table-cell"
+                                colSpan={null}
+                                onMouseEnter={[Function]}
+                                onMouseLeave={[Function]}
+                                rowSpan={null}
+                                style={Object {}}
+                              >
+                                User
+                              </th>
+                              <th
+                                className="ant-table-cell"
+                                colSpan={null}
+                                onMouseEnter={[Function]}
+                                onMouseLeave={[Function]}
+                                rowSpan={null}
+                                style={Object {}}
+                              >
+                                Status
+                              </th>
+                              <th
+                                className="ant-table-cell"
+                                colSpan={null}
+                                onMouseEnter={[Function]}
+                                onMouseLeave={[Function]}
+                                rowSpan={null}
+                                style={Object {}}
+                              >
+                                Status Color
+                              </th>
+                              <th
+                                className="ant-table-cell"
+                                colSpan={null}
+                                onMouseEnter={[Function]}
+                                onMouseLeave={[Function]}
+                                rowSpan={null}
+                                style={Object {}}
+                              >
+                                Created At
+                              </th>
+                              <th
+                                className="ant-table-cell"
+                                colSpan={null}
+                                onMouseEnter={[Function]}
+                                onMouseLeave={[Function]}
+                                rowSpan={null}
+                                style={Object {}}
+                              >
+                                Published At
+                              </th>
+                              <th
+                                className="ant-table-cell"
+                                colSpan={null}
+                                onMouseEnter={[Function]}
+                                onMouseLeave={[Function]}
+                                rowSpan={null}
+                                style={Object {}}
+                              >
+                                Image
+                              </th>
+                              <th
+                                className="ant-table-cell"
+                                colSpan={null}
+                                onMouseEnter={[Function]}
+                                onMouseLeave={[Function]}
+                                rowSpan={null}
+                                style={Object {}}
+                              >
+                                Tags
+                              </th>
+                              <th
+                                className="ant-table-cell"
+                                colSpan={null}
+                                onMouseEnter={[Function]}
+                                onMouseLeave={[Function]}
+                                rowSpan={null}
+                                style={Object {}}
+                              >
+                                Language
+                              </th>
+                              <th
+                                className="ant-table-cell"
+                                colSpan={null}
+                                onMouseEnter={[Function]}
+                                onMouseLeave={[Function]}
+                                rowSpan={null}
+                                style={Object {}}
+                              >
+                                Actions
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody
+                            className="ant-table-tbody"
+                          >
+                            <tr
+                              aria-hidden="true"
+                              className="ant-table-measure-row"
+                              style={
+                                Object {
+                                  "fontSize": 0,
+                                  "height": 0,
+                                }
+                              }
+                            >
+                              <td
+                                style={
+                                  Object {
+                                    "border": 0,
+                                    "height": 0,
+                                    "padding": 0,
+                                  }
+                                }
+                              >
+                                <div
+                                  style={
+                                    Object {
+                                      "height": 0,
+                                      "overflow": "hidden",
+                                    }
+                                  }
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style={
+                                  Object {
+                                    "border": 0,
+                                    "height": 0,
+                                    "padding": 0,
+                                  }
+                                }
+                              >
+                                <div
+                                  style={
+                                    Object {
+                                      "height": 0,
+                                      "overflow": "hidden",
+                                    }
+                                  }
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style={
+                                  Object {
+                                    "border": 0,
+                                    "height": 0,
+                                    "padding": 0,
+                                  }
+                                }
+                              >
+                                <div
+                                  style={
+                                    Object {
+                                      "height": 0,
+                                      "overflow": "hidden",
+                                    }
+                                  }
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style={
+                                  Object {
+                                    "border": 0,
+                                    "height": 0,
+                                    "padding": 0,
+                                  }
+                                }
+                              >
+                                <div
+                                  style={
+                                    Object {
+                                      "height": 0,
+                                      "overflow": "hidden",
+                                    }
+                                  }
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style={
+                                  Object {
+                                    "border": 0,
+                                    "height": 0,
+                                    "padding": 0,
+                                  }
+                                }
+                              >
+                                <div
+                                  style={
+                                    Object {
+                                      "height": 0,
+                                      "overflow": "hidden",
+                                    }
+                                  }
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style={
+                                  Object {
+                                    "border": 0,
+                                    "height": 0,
+                                    "padding": 0,
+                                  }
+                                }
+                              >
+                                <div
+                                  style={
+                                    Object {
+                                      "height": 0,
+                                      "overflow": "hidden",
+                                    }
+                                  }
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style={
+                                  Object {
+                                    "border": 0,
+                                    "height": 0,
+                                    "padding": 0,
+                                  }
+                                }
+                              >
+                                <div
+                                  style={
+                                    Object {
+                                      "height": 0,
+                                      "overflow": "hidden",
+                                    }
+                                  }
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style={
+                                  Object {
+                                    "border": 0,
+                                    "height": 0,
+                                    "padding": 0,
+                                  }
+                                }
+                              >
+                                <div
+                                  style={
+                                    Object {
+                                      "height": 0,
+                                      "overflow": "hidden",
+                                    }
+                                  }
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style={
+                                  Object {
+                                    "border": 0,
+                                    "height": 0,
+                                    "padding": 0,
+                                  }
+                                }
+                              >
+                                <div
+                                  style={
+                                    Object {
+                                      "height": 0,
+                                      "overflow": "hidden",
+                                    }
+                                  }
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style={
+                                  Object {
+                                    "border": 0,
+                                    "height": 0,
+                                    "padding": 0,
+                                  }
+                                }
+                              >
+                                <div
+                                  style={
+                                    Object {
+                                      "height": 0,
+                                      "overflow": "hidden",
+                                    }
+                                  }
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style={
+                                  Object {
+                                    "border": 0,
+                                    "height": 0,
+                                    "padding": 0,
+                                  }
+                                }
+                              >
+                                <div
+                                  style={
+                                    Object {
+                                      "height": 0,
+                                      "overflow": "hidden",
+                                    }
+                                  }
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style={
+                                  Object {
+                                    "border": 0,
+                                    "height": 0,
+                                    "padding": 0,
+                                  }
+                                }
+                              >
+                                <div
+                                  style={
+                                    Object {
+                                      "height": 0,
+                                      "overflow": "hidden",
+                                    }
+                                  }
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style={
+                                  Object {
+                                    "border": 0,
+                                    "height": 0,
+                                    "padding": 0,
+                                  }
+                                }
+                              >
+                                <div
+                                  style={
+                                    Object {
+                                      "height": 0,
+                                      "overflow": "hidden",
+                                    }
+                                  }
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style={
+                                  Object {
+                                    "border": 0,
+                                    "height": 0,
+                                    "padding": 0,
+                                  }
+                                }
+                              >
+                                <div
+                                  style={
+                                    Object {
+                                      "height": 0,
+                                      "overflow": "hidden",
+                                    }
+                                  }
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style={
+                                  Object {
+                                    "border": 0,
+                                    "height": 0,
+                                    "padding": 0,
+                                  }
+                                }
+                              >
+                                <div
+                                  style={
+                                    Object {
+                                      "height": 0,
+                                      "overflow": "hidden",
+                                    }
+                                  }
+                                >
+                                   
+                                </div>
+                              </td>
+                            </tr>
+                            <tr
+                              className="ant-table-placeholder"
+                              style={
+                                Object {
+                                  "display": null,
+                                }
+                              }
+                            >
+                              <td
+                                className="ant-table-cell"
+                                colSpan={15}
+                                onMouseEnter={[Function]}
+                                onMouseLeave={[Function]}
+                                rowSpan={null}
+                                style={Object {}}
+                              >
+                                <div
+                                  className="ant-table-expanded-row-fixed"
+                                  style={
+                                    Object {
+                                      "left": 0,
+                                      "overflow": "hidden",
+                                      "position": "sticky",
+                                      "width": 0,
+                                    }
+                                  }
+                                />
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div
+    style={
+      Object {
+        "bottom": 12,
+        "position": "fixed",
+        "right": 60,
+      }
+    }
+  >
+    <div
+      className="ant-space ant-space-horizontal ant-space-align-center"
+      style={Object {}}
+    >
+      <div
+        className="ant-space-item"
+        style={
+          Object {
+            "marginRight": 8,
+          }
+        }
+      >
+        <button
+          className="ant-btn ant-btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            aria-label="code"
+            className="anticon anticon-code"
+            role="img"
+          >
+            <svg
+              aria-hidden="true"
+              data-icon="code"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M516 673c0 4.4 3.4 8 7.5 8h185c4.1 0 7.5-3.6 7.5-8v-48c0-4.4-3.4-8-7.5-8h-185c-4.1 0-7.5 3.6-7.5 8v48zm-194.9 6.1l192-161c3.8-3.2 3.8-9.1 0-12.3l-192-160.9A7.95 7.95 0 00308 351v62.7c0 2.4 1 4.6 2.9 6.1L420.7 512l-109.8 92.2a8.1 8.1 0 00-2.9 6.1V673c0 6.8 7.9 10.5 13.1 6.1zM880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zm-40 728H184V184h656v656z"
+              />
+            </svg>
+          </span>
+          <span>
+            Show Code
+          </span>
+        </button>
+      </div>
+      <div
+        className="ant-space-item"
+        style={Object {}}
+      >
+        <a
+          className="ant-btn ant-btn-default"
+          href="https://github.com/refinedev/refine/issues"
+          onClick={[Function]}
+          target="_blank"
+        >
+          <span
+            aria-label="message"
+            className="anticon anticon-message"
+            role="img"
+          >
+            <svg
+              aria-hidden="true"
+              data-icon="message"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M464 512a48 48 0 1096 0 48 48 0 10-96 0zm200 0a48 48 0 1096 0 48 48 0 10-96 0zm-400 0a48 48 0 1096 0 48 48 0 10-96 0zm661.2-173.6c-22.6-53.7-55-101.9-96.3-143.3a444.35 444.35 0 00-143.3-96.3C630.6 75.7 572.2 64 512 64h-2c-60.6.3-119.3 12.3-174.5 35.9a445.35 445.35 0 00-142 96.5c-40.9 41.3-73 89.3-95.2 142.8-23 55.4-34.6 114.3-34.3 174.9A449.4 449.4 0 00112 714v152a46 46 0 0046 46h152.1A449.4 449.4 0 00510 960h2.1c59.9 0 118-11.6 172.7-34.3a444.48 444.48 0 00142.8-95.2c41.3-40.9 73.8-88.7 96.5-142 23.6-55.2 35.6-113.9 35.9-174.5.3-60.9-11.5-120-34.8-175.6zm-151.1 438C704 845.8 611 884 512 884h-1.7c-60.3-.3-120.2-15.3-173.1-43.5l-8.4-4.5H188V695.2l-4.5-8.4C155.3 633.9 140.3 574 140 513.7c-.4-99.7 37.7-193.3 107.6-263.8 69.8-70.5 163.1-109.5 262.8-109.9h1.7c50 0 98.5 9.7 144.2 28.9 44.6 18.7 84.6 45.6 119 80 34.3 34.3 61.3 74.4 80 119 19.4 46.2 29.1 95.2 28.9 145.8-.6 99.6-39.7 192.9-110.1 262.7z"
+              />
+            </svg>
+          </span>
+          <span>
+            Give Feedback
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>,
+]
+`;

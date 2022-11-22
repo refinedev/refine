@@ -19,7 +19,8 @@ export const replaceImports = (
 
     const imports = new Set();
 
-    // @ts-expect-error matches is an iterator
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     for (const match of matches) {
         const [, defaultImport, namedImports, namespaceImport, packageName] =
             match;

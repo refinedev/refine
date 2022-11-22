@@ -65,43 +65,11 @@ export const users = [
 export const tags = [
     {
         id: 5,
-        firstName: "Pauline",
-        lastName: "Kessler",
-        email: "eliane_friesen27@gmail.com",
-        status: false,
-        birthday: "2022-08-23T03:45:48.000Z",
-        skills: ["ember.js", "html", "redis"],
-        avatar: [
-            {
-                name: "Pauline.jpg",
-                percent: 100,
-                size: 40088,
-                status: "done",
-                type: "image/jpeg",
-                uid: "rc-upload-1669061034215",
-                url: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/7.jpg",
-            },
-        ],
+        title: "Error Eos Et",
     },
     {
         id: 9,
-        firstName: "Juston",
-        lastName: "Keeling",
-        email: "erick.klocko19@yahoo.com",
-        status: true,
-        birthday: "2022-10-05T13:44:47.127Z",
-        skills: ["swift", "refine", "react"],
-        avatar: [
-            {
-                name: "Juston.jpg",
-                percent: 100,
-                size: 40088,
-                status: "done",
-                type: "image/jpeg",
-                uid: "rc-upload-1669061034215",
-                url: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/638.jpg",
-            },
-        ],
+        title: "Nobis Et Ut",
     },
 ];
 
@@ -166,7 +134,7 @@ export const posts = [
     },
 ];
 
-const data = {
+const data: Record<string, Array<any>> = {
     users,
     tags,
     posts,
@@ -176,24 +144,26 @@ const data = {
 const MockDataProvider = (): DataProvider => {
     return {
         create: ({ resource = "posts" }) => {
-            return Promise.resolve({ data: data[resource][0] as any });
+            return Promise.resolve({ data: data[resource][0] });
         },
         createMany: ({ resource = "posts" }) =>
-            Promise.resolve({ data: data[resource] as any }),
+            Promise.resolve({ data: data[resource] }),
         deleteOne: ({ resource = "posts" }) =>
-            Promise.resolve({ data: data[resource][0] as any }),
+            Promise.resolve({ data: data[resource][0] }),
         deleteMany: ({}) => Promise.resolve({ data: [] }),
         getList: ({ resource = "posts" }) =>
             Promise.resolve({
-                data: data[resource] as any,
+                data: data[resource],
                 total: data[resource].length,
             }),
         getMany: ({ resource = "posts" }) =>
-            Promise.resolve({ data: [...data[resource]] as any }),
-        getOne: ({ resource = "posts" }) =>
-            Promise.resolve({ data: data[resource][0] as any }),
+            Promise.resolve({ data: [...data[resource]] }),
+        getOne: ({ resource = "posts" }) => {
+            console.log("Resource", resource);
+            return Promise.resolve({ data: data[resource][0] });
+        },
         update: ({ resource = "posts" }) =>
-            Promise.resolve({ data: data[resource][0] as any }),
+            Promise.resolve({ data: data[resource][0] }),
         updateMany: () => Promise.resolve({ data: [] }),
         getApiUrl: () => "https://api.fake-rest.refine.dev",
         custom: () => Promise.resolve({ data: [...posts] as any }),
