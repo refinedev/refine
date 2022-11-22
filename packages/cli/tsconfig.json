@@ -1,5 +1,7 @@
 {
-    "include": ["src"],
+    "include": [
+        "src"
+    ],
     "extends": "../../tsconfig.build.json",
     "compilerOptions": {
         "rootDir": "./src",
@@ -8,15 +10,34 @@
         "importHelpers": false,
         "strict": true,
         "paths": {
-            "@definitions/*": ["src/definitions/*"],
-            "@definitions": ["src/definitions"],
-            "@utils/*": ["src/utils/*"],
-            "@utils": ["src/utils"],
-            "@commands/*": ["src/commands/*"],
-            "@commands": ["src/commands"],
-            "@components/*": ["src/components/*"],
-            "@components": ["src/components"]
+            "@definitions/*": [
+                "src/definitions/*"
+            ],
+            "@definitions": [
+                "src/definitions"
+            ],
+            "@utils/*": [
+                "src/utils/*"
+            ],
+            "@utils": [
+                "src/utils"
+            ],
+            "@commands/*": [
+                "src/commands/*"
+            ],
+            "@commands": [
+                "src/commands"
+            ],
+            "@components/*": [
+                "src/components/*"
+            ],
+            "@components": [
+                "src/components"
+            ]
         },
-        "typeRoots": ["./src/types", "../../node_modules/@types"]
+        "typeRoots": [
+            "./src/types",
+            "../../node_modules/@types"
+        ]
     }
 }
