@@ -1,20 +1,25 @@
 #!/usr/bin/env node
 import { Command } from "commander";
-import checkUpdates from "./commands/check-updates";
-import resourceGenerate from "./commands/generate/resource";
-import update from "./commands/update";
+import execa from "execa";
 
 const bootstrap = () => {
     const program = new Command();
     program
         .version("0.0.0", "-v, --version", "Output the current version.")
         .usage("<command> [options]")
-        .helpOption("-h, --help", "Output usage information.");
+        .helpOption("-h, --help", "Output usage information.")
+        .arguments("<projectName>")
+        .action((projectName) => {
+            const superplateExecutable = require.resolve(".bin/superplate");
 
-    // load commands
-    resourceGenerate(program);
-    checkUpdates(program);
-    update(program);
+            execa.sync(
+                superplateExecutable,
+                [projectName, "--project=refine"],
+                {
+                    stdio: "inherit",
+                },
+            );
+        });
 
     program.parse(process.argv);
 
