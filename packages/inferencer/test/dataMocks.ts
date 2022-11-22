@@ -159,7 +159,6 @@ const MockDataProvider = (): DataProvider => {
         getMany: ({ resource = "posts" }) =>
             Promise.resolve({ data: [...data[resource]] }),
         getOne: ({ resource = "posts" }) => {
-            console.log("Resource", resource);
             return Promise.resolve({ data: data[resource][0] });
         },
         update: ({ resource = "posts" }) =>

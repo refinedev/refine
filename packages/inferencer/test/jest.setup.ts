@@ -3,7 +3,7 @@ import "@testing-library/jest-dom/extend-expect";
 import * as util from "util";
 // import { createMockServer } from "./dataMocks";
 
-jest.setTimeout(20000);
+jest.setTimeout(30000);
 
 /** Antd mocks */
 window.matchMedia = jest.fn().mockImplementation((query) => {
