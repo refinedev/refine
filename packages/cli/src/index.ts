@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { Command } from "commander";
 import checkUpdates from "./commands/check-updates";
+import resourceGenerate from "./commands/generate/resource";
 import update from "./commands/update";
 
 const bootstrap = () => {
@@ -11,6 +12,7 @@ const bootstrap = () => {
         .helpOption("-h, --help", "Output usage information.");
 
     // load commands
+    resourceGenerate(program);
     checkUpdates(program);
     update(program);
 
