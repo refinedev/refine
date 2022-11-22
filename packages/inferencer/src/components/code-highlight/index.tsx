@@ -14,7 +14,11 @@ export const CodeHighlight: React.FC<{
         const styleElement = document.createElement("style");
         styleElement.appendChild(
             document.createTextNode(
-                "#code-highlight::-webkit-scrollbar {-webkit-appearance: none;width: 10px;} #code-highlight::-webkit-scrollbar-thumb {background-color: #666b7a;-webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);}",
+                `
+                #code-highlight::-webkit-scrollbar {-webkit-appearance: none; height: 7px; width: 7px;}
+                #code-highlight::-webkit-scrollbar-thumb {background-color: #666b7a;}
+                #code-highlight::-webkit-scrollbar-corner {background-color: rgb(30, 30, 30);}
+                `,
             ),
         );
         document.getElementById("code-highlight")?.appendChild(styleElement);
