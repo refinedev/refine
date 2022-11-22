@@ -10,12 +10,16 @@ import {
     ModalContent,
     ModalOverlay,
 } from "@pankod/refine-chakra-ui";
-import { IconCode, IconMessageCircle, IconCopy } from "@tabler/icons";
+import {
+    IconCode,
+    IconMessageCircle,
+    IconCopy,
+    IconCheck,
+} from "@tabler/icons";
 
 import { prettierFormat } from "@/utilities";
 import { CreateInferencerConfig } from "@/types";
 import { CodeHighlight } from "@/components";
-import { useNotification } from "@pankod/refine-core";
 
 export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] =
     ({ code: rawCode, loading }) => {
@@ -25,9 +29,9 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
 
         const inputRef = React.useRef<HTMLTextAreaElement>(null);
 
-        const { isOpen, onOpen, onClose } = useDisclosure();
+        const [isCopied, setIsCopied] = React.useState(false);
 
-        const { open } = useNotification();
+        const { isOpen, onOpen, onClose } = useDisclosure();
 
         if (loading) {
             return null;
@@ -38,11 +42,10 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
             inputRef?.current?.setSelectionRange(0, Number.MAX_SAFE_INTEGER);
             if (typeof navigator !== "undefined") {
                 navigator.clipboard.writeText(inputRef?.current?.value ?? "");
-                open?.({
-                    key: "copy",
-                    type: "success",
-                    message: "Copied to clipboard",
-                });
+                setIsCopied(true);
+                setTimeout(() => {
+                    setIsCopied(false);
+                }, 1000);
             }
         };
 
@@ -109,13 +112,22 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                                     position: "absolute",
                                     bottom: "12px",
                                     right: "12px",
+                                    width: 100,
                                 }}
                                 key="copy"
-                                size="sm"
-                                leftIcon={<IconCopy size={18} />}
+                                leftIcon={
+                                    isCopied ? (
+                                        <IconCheck
+                                            size={18}
+                                            style={{ color: "green" }}
+                                        />
+                                    ) : (
+                                        <IconCopy size={18} />
+                                    )
+                                }
                                 onClick={copyCode}
                             >
-                                Copy Code
+                                {isCopied ? "Copied" : "Copy"}
                             </Button>
                         </ModalContent>
                     </Modal>

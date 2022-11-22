@@ -1,11 +1,16 @@
 import React from "react";
 import { Button, Box, Modal, IconButton } from "@pankod/refine-mui";
+import {
+    IconCode,
+    IconMessageCircle,
+    IconX,
+    IconCopy,
+    IconCheck,
+} from "@tabler/icons";
 
 import { prettierFormat } from "@/utilities";
 import { CreateInferencerConfig } from "@/types";
 import { CodeHighlight } from "@/components";
-import { IconCode, IconMessageCircle, IconX, IconCopy } from "@tabler/icons";
-import { useNotification } from "@pankod/refine-core";
 
 export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] =
     ({ code: rawCode, loading }) => {
@@ -16,8 +21,7 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
         const inputRef = React.useRef<HTMLTextAreaElement>(null);
 
         const [visible, setVisible] = React.useState(false);
-
-        const { open } = useNotification();
+        const [isCopied, setIsCopied] = React.useState(false);
 
         if (loading) {
             return null;
@@ -28,11 +32,10 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
             inputRef?.current?.setSelectionRange(0, 99999);
             if (typeof navigator !== "undefined") {
                 navigator.clipboard.writeText(inputRef?.current?.value ?? "");
-                open?.({
-                    key: "copy",
-                    type: "success",
-                    message: "Copied to clipboard",
-                });
+                setIsCopied(true);
+                setTimeout(() => {
+                    setIsCopied(false);
+                }, 1000);
             }
         };
 
@@ -114,13 +117,25 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                             >
                                 <Button
                                     key="copy"
-                                    sx={{ textTransform: "capitalize" }}
-                                    startIcon={<IconCopy size={18} />}
+                                    sx={{
+                                        textTransform: "capitalize",
+                                        width: 100,
+                                    }}
+                                    startIcon={
+                                        isCopied ? (
+                                            <IconCheck
+                                                size={18}
+                                                style={{ color: "green" }}
+                                            />
+                                        ) : (
+                                            <IconCopy size={18} />
+                                        )
+                                    }
+                                    color="inherit"
                                     variant="contained"
-                                    size="small"
                                     onClick={copyCode}
                                 >
-                                    Copy Code
+                                    {isCopied ? "Copied" : "Copy"}
                                 </Button>
                             </div>
                         </Box>

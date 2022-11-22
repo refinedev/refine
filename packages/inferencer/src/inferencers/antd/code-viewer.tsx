@@ -4,7 +4,6 @@ import { Button, Modal, Icons, Space } from "@pankod/refine-antd";
 import { prettierFormat } from "@/utilities";
 import { CreateInferencerConfig } from "@/types";
 import { CodeHighlight } from "@/components";
-import { useNotification } from "@pankod/refine-core";
 
 export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] =
     ({ code: rawCode, loading }) => {
@@ -15,8 +14,7 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
         const inputRef = React.useRef<HTMLTextAreaElement>(null);
 
         const [visible, setVisible] = React.useState(false);
-
-        const { open } = useNotification();
+        const [isCopied, setIsCopied] = React.useState(false);
 
         if (loading) {
             return null;
@@ -27,11 +25,10 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
             inputRef?.current?.setSelectionRange(0, Number.MAX_SAFE_INTEGER);
             if (typeof navigator !== "undefined") {
                 navigator.clipboard.writeText(inputRef?.current?.value ?? "");
-                open?.({
-                    key: "copy",
-                    type: "success",
-                    message: "Copied to clipboard",
-                });
+                setIsCopied(true);
+                setTimeout(() => {
+                    setIsCopied(false);
+                }, 1000);
             }
         };
 
@@ -88,13 +85,22 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                                 position: "absolute",
                                 bottom: 12,
                                 right: 12,
+                                width: 100,
                             }}
                             key="copy"
                             type="default"
-                            icon={<Icons.CopyOutlined />}
+                            icon={
+                                isCopied ? (
+                                    <Icons.CheckOutlined
+                                        style={{ color: "green" }}
+                                    />
+                                ) : (
+                                    <Icons.CopyOutlined />
+                                )
+                            }
                             onClick={copyCode}
                         >
-                            Copy Code
+                            {isCopied ? "Copied" : "Copy"}
                         </Button>
                     </Modal>
                 </>
