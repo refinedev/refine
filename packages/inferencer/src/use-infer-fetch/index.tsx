@@ -8,7 +8,7 @@ import { pickDataProvider, dataProviderFromResource } from "@/utilities";
  * Data provider functions will be used respectively for the `list`, `show` and `edit` types.
  */
 export const useInferFetch = (
-    type: "list" | "show" | "edit",
+    type: "list" | "show" | "edit" | "create",
     resourceNameOrRouteName: string,
 ) => {
     const { resource, resourceName, id, resources } = useResource({
@@ -32,7 +32,7 @@ export const useInferFetch = (
             setLoading(true);
 
             try {
-                if (type === "list") {
+                if (type === "list" || type === "create") {
                     const response = await dp.getList({
                         resource: resourceName,
                     });

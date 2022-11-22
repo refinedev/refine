@@ -224,14 +224,21 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
 
                 let cell = jsx`
                     cell: function render({ getValue }) {
-                        return <Image sx={{ maxWidth: "100px" }} src={${accessor(
-                            "getValue<any>()",
-                            undefined,
-                            Array.isArray(field.accessor)
-                                ? field.accessor
-                                : undefined,
-                            " + ",
-                        )}} />
+                        ${field?.accessor ? "try {" : ""}
+                            return <Image sx={{ maxWidth: "100px" }} src={${accessor(
+                                "getValue<any>()",
+                                undefined,
+                                Array.isArray(field.accessor)
+                                    ? field.accessor
+                                    : undefined,
+                                " + ",
+                            )}} />
+                        ${
+                            field?.accessor
+                                ? " } catch (error) { return null; }"
+                                : ""
+                        }
+                       
                     }
                 `;
 
@@ -245,13 +252,19 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
 
                     cell = `
                         cell: function render({ getValue }) {
-                            return (
-                                <Group spacing="xs">
-                                    {getValue<any[]>()?.map((item, index) => (
-                                        <Image src={${val}} key={index} sx={{ maxWidth: "100px" }} />
-                                    ))}
-                                </Group>
-                            )
+                            ${field?.accessor ? "try {" : ""}
+                                return (
+                                    <Group spacing="xs">
+                                        {getValue<any[]>()?.map((item, index) => (
+                                            <Image src={${val}} key={index} sx={{ maxWidth: "100px" }} />
+                                        ))}
+                                    </Group>
+                                )
+                            ${
+                                field?.accessor
+                                    ? " } catch (error) { return null; }"
+                                    : ""
+                            }
                         }
                     `;
                 }

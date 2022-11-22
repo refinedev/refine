@@ -88,7 +88,7 @@ export type CreateInferencerConfig = {
     /**
      * Inferencer Component Type
      */
-    type: "list" | "show" | "edit";
+    type: "list" | "show" | "edit" | "create";
     /**
      * Additional packages to be included in the scope, by default RefineCore and React is included
      */

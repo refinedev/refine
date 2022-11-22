@@ -194,7 +194,7 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                         field.accessor,
                         " + ",
                     );
-                    render = jsx`render={(value: any[]) => (<>{value.map((item, index) => (
+                    render = jsx`render={(value: any[]) => (<>{value?.map((item, index) => (
                         <ImageField style={{ maxWidth: "100px" }} value={${val}} key={index} />
                     ))}</>)}`;
                 }
@@ -233,7 +233,7 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                         field.accessor,
                         ' + " " + ',
                     );
-                    render = jsx`render={(value: any[]) => (<>{value.map((item, index) => (
+                    render = jsx`render={(value: any[]) => (<>{value?.map((item, index) => (
                         <TagField value={${val}} key={index} />
                     ))}</>)}`;
                 }
@@ -273,7 +273,7 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                         field.accessor,
                         " + ",
                     );
-                    render = jsx`render={(value: any[]) => (<>{value.map((item, index) => (
+                    render = jsx`render={(value: any[]) => (<>{value?.map((item, index) => (
                         <TagField value={${val}} key={index} />
                     ))}</>)}`;
                 }
@@ -310,7 +310,7 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                         field.accessor,
                         " && ",
                     );
-                    render = jsx`render={(value: any[]) => (<>{value.map((item, index) => (
+                    render = jsx`render={(value: any[]) => (<>{value?.map((item, index) => (
                         <BooleanField value={${val}} key={index} />
                     ))}</>)}`;
                 }
@@ -348,7 +348,7 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                         field.accessor,
                         ' + " " + ',
                     );
-                    render = jsx`render={(value: any[]) => (<>{value.map((item, index) => (
+                    render = jsx`render={(value: any[]) => (<>{value?.map((item, index) => (
                         <DateField value={${val}} key={index} />
                     ))}</>)}`;
                 }
@@ -384,8 +384,8 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                         field.accessor,
                         ' + " " + ',
                     );
-                    render = jsx`render={(value: any[]) => (<>{value.map((item, index) => (
-                        <MarkdownField value={(${val}).slice(0, 80) + "..."} key={index} />
+                    render = jsx`render={(value: any[]) => (<>{value?.map((item, index) => (
+                        <MarkdownField value={(${val})?.slice(0, 80) + "..."} key={index} />
                     ))}</>)}`;
                 }
 
@@ -416,7 +416,7 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                         field.accessor,
                         ' + " " + ',
                     );
-                    render = `render={(value: any[]) => (<>{value.map((item) => (
+                    render = `render={(value: any[]) => (<>{value?.map((item) => (
                         <TagField value={${val}} key={${val}} />
                     ))}</>)}`;
                 }

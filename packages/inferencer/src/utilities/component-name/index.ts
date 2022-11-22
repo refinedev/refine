@@ -6,7 +6,7 @@ import pluralize from "pluralize";
  */
 export const componentName = (
     resourceName: string,
-    type: "list" | "show" | "edit",
+    type: "list" | "show" | "edit" | "create",
 ) => {
     const resourcePrefix = pluralize.isSingular(resourceName)
         ? resourceName

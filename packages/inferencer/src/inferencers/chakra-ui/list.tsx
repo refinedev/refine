@@ -238,14 +238,20 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
 
                 let cell = jsx`
                     cell: function render({ getValue }) {
-                        return <Image sx={{ maxWidth: "100px" }} src={${accessor(
-                            "getValue<any>()",
-                            undefined,
-                            Array.isArray(field.accessor)
-                                ? field.accessor
-                                : undefined,
-                            " + ",
-                        )}} />
+                        ${field?.accessor ? "try {" : ""}
+                            return <Image sx={{ maxWidth: "100px" }} src={${accessor(
+                                "getValue<any>()",
+                                undefined,
+                                Array.isArray(field.accessor)
+                                    ? field.accessor
+                                    : undefined,
+                                " + ",
+                            )}} />
+                        ${
+                            field?.accessor
+                                ? " } catch (error) { return null; }"
+                                : ""
+                        }
                     }
                 `;
 
@@ -259,13 +265,19 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
 
                     cell = `
                         cell: function render({ getValue }) {
-                            return (
-                                <HStack>
-                                    {getValue<any[]>()?.map((item, index) => (
-                                        <Image src={${val}} key={index} sx={{ height: "50px", maxWidth: "100px" }} />
-                                    ))}
-                                </HStack>
-                            )
+                            ${field?.accessor ? "try {" : ""}
+                                return (
+                                    <HStack>
+                                        {getValue<any[]>()?.map((item, index) => (
+                                            <Image src={${val}} key={index} sx={{ height: "50px", maxWidth: "100px" }} />
+                                        ))}
+                                    </HStack>
+                                )
+                            ${
+                                field?.accessor
+                                    ? " } catch (error) { return null; }"
+                                    : ""
+                            }
                         }
                     `;
                 }

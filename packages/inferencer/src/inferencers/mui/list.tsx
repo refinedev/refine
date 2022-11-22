@@ -479,7 +479,7 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                         renderCell: function render({ value }) {
                             return (
                                 <>
-                                {value.map((item: any, index: number) => (
+                                {value?.map((item: any, index: number) => (
                                     <Checkbox checked={!!${val}} key={index} />
                                 ))}
                                 </>
@@ -666,10 +666,10 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                     renderCell: function render({ row }) {
                         return (
                             <>
-                                {${accessor(
+                                {(${accessor(
                                     "row",
                                     field.key,
-                                )}.map((item: any) => (
+                                )})?.map((item: any) => (
                                     <TagField value={${val}} key={${val}} />
                                 ))}
                             </>
