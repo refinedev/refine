@@ -3,9 +3,11 @@ import { Command } from "commander";
 import checkUpdates from "./commands/check-updates";
 import update from "./commands/update";
 import { dev, build, start, run } from "./commands/runner";
+import "@utils/env";
 
 const bootstrap = () => {
     const program = new Command();
+
     program
         .version("0.0.0", "-v, --version", "Output the current version.")
         .usage("<command> [options]")

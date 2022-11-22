@@ -2,7 +2,6 @@ import { Command } from "commander";
 import { getProjectType } from "@utils/project";
 import { projectScripts } from "../projectScripts";
 import { runScript } from "../runScript";
-import { getUpdateWarning } from "@commands/check-updates";
 
 const dev = (program: Command) => {
     return program
@@ -13,7 +12,7 @@ const dev = (program: Command) => {
         .action(action);
 };
 
-const action = async (args: string[]) => {
+const action = (args: string[]) => {
     const projectType = getProjectType();
 
     const binPath = projectScripts[projectType].getBin("dev");
@@ -21,7 +20,6 @@ const action = async (args: string[]) => {
     const command = [...script, ...args];
 
     runScript(binPath, command);
-    getUpdateWarning();
 };
 
 export default dev;

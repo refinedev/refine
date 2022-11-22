@@ -32,23 +32,10 @@ const load = (program: Command) => {
 
 const action = async () => {
     const packages = await spinner(isRefineUptoDate, "Checking for updates...");
-
     if (!packages.length) {
         console.log("All `refine` packages are up to date 🎉\n");
         return;
     }
-
-    render(<UpdateWarningTable data={packages} />);
-};
-
-/**
- * Displays update warning if there is any `refine` package update available.
- */
-export const getUpdateWarning = async () => {
-    const packages = await isRefineUptoDate();
-
-    if (!packages.length) return;
-
     render(<UpdateWarningTable data={packages} />);
 };
 

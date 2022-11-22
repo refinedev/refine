@@ -1,4 +1,3 @@
-import { getUpdateWarning } from "@commands/check-updates";
 import { getPreferedPM, getScripts } from "@utils/package";
 import chalk from "chalk";
 import { Command } from "commander";
@@ -43,8 +42,6 @@ const action = async (args: string[]) => {
 
     const pm = await getPreferedPM();
     runScript(pm.name, ["run", script, ...restArgs]);
-
-    getUpdateWarning();
 };
 
 export default run;
