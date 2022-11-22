@@ -95,6 +95,7 @@ const siteConfig = {
                 },
             },
         ],
+        "./plugins/intercom.js",
     ],
     themeConfig: {
         prism: {
