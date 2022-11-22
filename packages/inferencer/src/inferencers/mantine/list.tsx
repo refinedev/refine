@@ -1,6 +1,5 @@
 import * as RefineMantine from "@pankod/refine-mantine";
 import * as RefineReactTable from "@pankod/refine-react-table";
-import * as TablerIcons from "@tabler/icons";
 
 import { createInferencer } from "@/create-inferencer";
 import {
@@ -37,7 +36,6 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
     additionalScope: [
         ["@pankod/refine-mantine", "RefineMantine", RefineMantine],
         ["@pankod/refine-react-table", "RefineReactTable", RefineReactTable],
-        ["@tabler/icons", "TablerIcons", TablerIcons],
     ],
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
@@ -48,7 +46,6 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
         const imports: Array<[element: string, module: string]> = [
             ["IResourceComponentsProps", "@pankod/refine-core"],
             ["useTable", "@pankod/refine-react-table"],
-            ["Column", "@pankod/refine-react-table"],
             ["ColumnDef", "@pankod/refine-react-table"],
             ["flexRender", "@pankod/refine-react-table"],
             ["ScrollArea", "@pankod/refine-mantine"],
@@ -56,19 +53,9 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
             ["Table", "@pankod/refine-mantine"],
             ["Pagination", "@pankod/refine-mantine"],
             ["Group", "@pankod/refine-mantine"],
-            ["Box", "@pankod/refine-mantine"],
             ["EditButton", "@pankod/refine-mantine"],
             ["ShowButton", "@pankod/refine-mantine"],
             ["DeleteButton", "@pankod/refine-mantine"],
-            ["ActionIcon", "@pankod/refine-mantine"],
-            ["TextInput", "@pankod/refine-mantine"],
-            ["Menu", "@pankod/refine-mantine"],
-            ["Stack", "@pankod/refine-mantine"],
-            ["IconChevronDown", "@tabler/icons"],
-            ["IconSelector", "@tabler/icons"],
-            ["IconFilter", "@tabler/icons"],
-            ["IconX", "@tabler/icons"],
-            ["IconCheck", "@tabler/icons"],
         ];
 
         const relationFields: (InferField | null)[] = fields.filter(
@@ -166,7 +153,7 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
 
                         const ${toPlural(
                             field.resource.name,
-                        )} = getValue<any[]>().map((item) => {
+                        )} = getValue<any[]>()?.map((item) => {
                             return meta.${toPlural(
                                 field.resource.name,
                             )}Data?.data?.find(
@@ -518,7 +505,7 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                             Array.isArray(field.accessor)
                                 ? field.accessor
                                 : undefined,
-                        )}).slice(0, 80) + "..." } />
+                        )})?.slice(0, 80) + "..." } />
                     }
                 `;
 
@@ -618,8 +605,6 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
             id: "actions",
             accessorKey: "id",
             header: "Actions",
-            enableColumnFilter: false,
-            enableSorting: false,
             cell: function render({ getValue }) {
                 return (
                     <Group spacing="xs" noWrap>
@@ -713,28 +698,12 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                                             return (
                                                 <th key={header.id}>
                                                     {!header.isPlaceholder && (
-                                                        <Group spacing="xs" noWrap>
-                                                            <Box>
-                                                                {flexRender(
-                                                                    header.column
-                                                                        .columnDef
-                                                                        .header,
-                                                                    header.getContext(),
-                                                                )}
-                                                            </Box>
-                                                            <Group spacing="xs" noWrap>
-                                                                <ColumnSorter
-                                                                    column={
-                                                                        header.column
-                                                                    }
-                                                                />
-                                                                <ColumnFilter
-                                                                    column={
-                                                                        header.column
-                                                                    }
-                                                                />
-                                                            </Group>
-                                                        </Group>
+                                                        flexRender(
+                                                            header.column
+                                                                .columnDef
+                                                                .header,
+                                                            header.getContext(),
+                                                        )
                                                     )}
                                                 </th>
                                             );
@@ -772,136 +741,6 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                 </ScrollArea>    
             );
         };
-
-        interface ColumnButtonProps {
-            column: Column<any, any>; // eslint-disable-line
-        }
-
-        const ColumnSorter: React.FC<ColumnButtonProps> = ({ column }) => {
-            if (!column.getCanSort()) {
-                return null;
-            }
-        
-            const sorted = column.getIsSorted();
-        
-            return (
-                <ActionIcon
-                    size="xs"
-                    onClick={column.getToggleSortingHandler()}
-                    style={{
-                        transition: "transform 0.25s",
-                        transform: \`rotate(\${
-                            sorted === "asc" ? "180" : "0"
-                        }deg)\`,
-                    }}
-                    variant={sorted ? "light" : "transparent"}
-                    color={sorted ? "primary" : "gray"}
-                >
-                    {sorted ? (
-                        <IconChevronDown size={18} />
-                    ) : (
-                        <IconSelector size={18} />
-                    )}
-                </ActionIcon>
-            );
-        };
-
-        const ColumnFilter: React.FC<ColumnButtonProps> = ({ column }) => {
-            // eslint-disable-next-line
-            const [state, setState] = React.useState(null as null | { value: any });
-        
-            if (!column.getCanFilter()) {
-                return null;
-            }
-        
-            const open = () =>
-                setState({
-                    value: column.getFilterValue(),
-                });
-        
-            const close = () => setState(null);
-        
-            // eslint-disable-next-line
-            const change = (value: any) => setState({ value });
-        
-            const clear = () => {
-                column.setFilterValue(undefined);
-                close();
-            };
-        
-            const save = () => {
-                if (!state) return;
-                column.setFilterValue(state.value);
-                close();
-            };
-        
-            const renderFilterElement = () => {
-                // eslint-disable-next-line
-                const FilterComponent = (column.columnDef?.meta as any)?.filterElement;
-        
-                if (!FilterComponent && !!state) {
-                    return (
-                        <TextInput
-                            autoComplete="off"
-                            value={state.value}
-                            onChange={(e) => change(e.target.value)}
-                        />
-                    );
-                }
-        
-                return <FilterComponent value={state?.value} onChange={change} />;
-            };
-        
-            return (
-                <Menu
-                    opened={!!state}
-                    position="bottom"
-                    withArrow
-                    transition="scale-y"
-                    shadow="xl"
-                    onClose={close}
-                    width="256px"
-                    withinPortal
-                >
-                    <Menu.Target>
-                        <ActionIcon
-                            size="xs"
-                            onClick={open}
-                            variant={column.getIsFiltered() ? "light" : "transparent"}
-                            color={column.getIsFiltered() ? "primary" : "gray"}
-                        >
-                            <IconFilter size={18} />
-                        </ActionIcon>
-                    </Menu.Target>
-                    <Menu.Dropdown>
-                        {!!state && (
-                            <Stack p="xs" spacing="xs">
-                                {renderFilterElement()}
-                                <Group position="right" spacing={6} noWrap>
-                                    <ActionIcon
-                                        size="md"
-                                        color="gray"
-                                        variant="outline"
-                                        onClick={clear}
-                                    >
-                                        <IconX size={18} />
-                                    </ActionIcon>
-                                    <ActionIcon
-                                        size="md"
-                                        onClick={save}
-                                        color="primary"
-                                        variant="outline"
-                                    >
-                                        <IconCheck size={18} />
-                                    </ActionIcon>
-                                </Group>
-                            </Stack>
-                        )}
-                    </Menu.Dropdown>
-                </Menu>
-            );
-        };
-        
         `;
     },
 });
