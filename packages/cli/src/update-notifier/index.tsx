@@ -1,7 +1,6 @@
 import React from "react";
 import { render } from "ink";
 import Conf from "conf";
-import md5 from "crypto-js/md5";
 import { isRefineUptoDate } from "@commands/check-updates";
 import UpdateWarningTable from "@components/update-warning-table";
 import { ENV } from "@utils/env";
@@ -128,13 +127,13 @@ export const generateKeyFromPackages = async () => {
         const currentVersionsWithName = packages.map(
             (p) => `${p.name}@${p.version}`,
         );
-        const hash = md5(currentVersionsWithName.toString()).toString();
+        const hash = btoa(currentVersionsWithName.toString());
 
         return hash;
     } catch (error: any) {
         console.error(
             chalk.red(
-                `Something went wrong when trying to get installed refine packages: ${error.shortMessage}`,
+                `Something went wrong when trying to get installed \`refine\` packages: ${error.shortMessage}`,
             ),
         );
 
