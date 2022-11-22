@@ -97,6 +97,20 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
                     optionLabelProperty.includes("]") ||
                     optionLabelProperty.includes("-");
 
+                const optionLabelItemValue = field.accessor
+                    ? accessor("item", undefined, field.accessor, false)
+                    : "(item?.id ?? item)";
+
+                const optionEqualValue = field.accessor
+                    ? accessor("value", undefined, field.accessor, false)
+                    : "(value?.id ?? value)";
+
+                const optionChangeValue = field.accessor
+                    ? "value"
+                    : field.multiple
+                    ? "value?.map((item: any) => item?.id ?? item)"
+                    : "value?.id ?? value";
+
                 return jsx`
                     <Controller
                         control={control}
@@ -114,19 +128,14 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
                                 {...field}
                                 ${field.multiple ? "multiple" : ""}
                                 onChange={(_, value) => {
-                                    field.onChange(value);
+                                    field.onChange(${optionChangeValue});
                                 }}
                                 getOptionLabel={(item) => {
                                     return (
                                         ${variableName}?.options?.find(
                                             (p) =>
                                                 p?.id?.toString() ===
-                                                ${accessor(
-                                                    "item",
-                                                    undefined,
-                                                    field.accessor,
-                                                    false,
-                                                )}.toString(),
+                                                ${optionLabelItemValue}?.toString(),
                                         )?.${
                                             isBracketNotation
                                                 ? `["${optionLabelProperty}"]`
@@ -136,7 +145,7 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
                                 }}
                                 isOptionEqualToValue={(option, value) =>
                                     value === undefined ||
-                                    option.id.toString() === value.toString()
+                                    option.id.toString() === ${optionEqualValue}?.toString()
                                 }
                                 renderInput={(params) => (
                                     <TextField
