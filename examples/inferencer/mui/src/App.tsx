@@ -18,6 +18,7 @@ import {
     MuiEditInferencer,
     MuiShowInferencer,
     MuiListInferencer,
+    MuiCreateInferencer,
 } from "@pankod/refine-inferencer/mui";
 
 const App: React.FC = () => {
@@ -42,6 +43,7 @@ const App: React.FC = () => {
                             list: MuiListInferencer,
                             edit: MuiEditInferencer,
                             show: MuiShowInferencer,
+                            create: MuiCreateInferencer,
                             canDelete: true,
                         },
                         {
@@ -49,12 +51,22 @@ const App: React.FC = () => {
                             list: MuiListInferencer,
                             edit: MuiEditInferencer,
                             show: MuiShowInferencer,
+                            create: MuiCreateInferencer,
                         },
                         {
                             name: "users",
                             list: MuiListInferencer,
                             edit: MuiEditInferencer,
                             show: MuiShowInferencer,
+                            create: MuiCreateInferencer,
+                        },
+                        {
+                            name: "inferences",
+                            list: MuiListInferencer,
+                            edit: MuiEditInferencer,
+                            show: MuiShowInferencer,
+                            create: MuiCreateInferencer,
+                            canDelete: true,
                         },
                         {
                             name: "tags",

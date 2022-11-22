@@ -14,6 +14,7 @@ import {
     ChakraUIListInferencer,
     ChakraUIEditInferencer,
     ChakraUIShowInferencer,
+    ChakraUICreateInferencer,
 } from "@pankod/refine-inferencer/chakra-ui";
 
 const App: React.FC = () => {
@@ -32,6 +33,7 @@ const App: React.FC = () => {
                         list: ChakraUIListInferencer,
                         edit: ChakraUIEditInferencer,
                         show: ChakraUIShowInferencer,
+                        create: ChakraUICreateInferencer,
                         canDelete: true,
                     },
                     {
@@ -39,12 +41,21 @@ const App: React.FC = () => {
                         list: ChakraUIListInferencer,
                         edit: ChakraUIEditInferencer,
                         show: ChakraUIShowInferencer,
+                        create: ChakraUICreateInferencer,
                     },
                     {
                         name: "users",
                         list: ChakraUIListInferencer,
                         edit: ChakraUIEditInferencer,
                         show: ChakraUIShowInferencer,
+                        create: ChakraUICreateInferencer,
+                    },
+                    {
+                        name: "inferences",
+                        list: ChakraUIListInferencer,
+                        edit: ChakraUIEditInferencer,
+                        show: ChakraUIShowInferencer,
+                        create: ChakraUICreateInferencer,
                     },
                     {
                         name: "tags",

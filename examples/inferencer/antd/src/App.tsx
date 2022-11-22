@@ -12,6 +12,7 @@ import {
     AntdShowInferencer,
     AntdEditInferencer,
     AntdListInferencer,
+    AntdCreateInferencer,
 } from "@pankod/refine-inferencer/antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -39,6 +40,7 @@ const App: React.FC = () => {
                     list: AntdListInferencer,
                     edit: AntdEditInferencer,
                     show: AntdShowInferencer,
+                    create: AntdCreateInferencer,
                     canDelete: true,
                 },
                 {
@@ -46,12 +48,21 @@ const App: React.FC = () => {
                     list: AntdListInferencer,
                     edit: AntdEditInferencer,
                     show: AntdShowInferencer,
+                    create: AntdCreateInferencer,
                 },
                 {
                     name: "users",
                     list: AntdListInferencer,
                     edit: AntdEditInferencer,
                     show: AntdShowInferencer,
+                    create: AntdCreateInferencer,
+                },
+                {
+                    name: "inferences",
+                    list: AntdListInferencer,
+                    edit: AntdEditInferencer,
+                    show: AntdShowInferencer,
+                    create: AntdCreateInferencer,
                 },
                 {
                     name: "tags",

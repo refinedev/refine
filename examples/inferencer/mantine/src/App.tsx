@@ -16,6 +16,7 @@ import {
     MantineListInferencer,
     MantineEditInferencer,
     MantineShowInferencer,
+    MantineCreateInferencer,
 } from "@pankod/refine-inferencer/mantine";
 
 const App: React.FC = () => {
@@ -38,6 +39,7 @@ const App: React.FC = () => {
                             list: MantineListInferencer,
                             edit: MantineEditInferencer,
                             show: MantineShowInferencer,
+                            create: MantineCreateInferencer,
                             canDelete: true,
                         },
                         {
@@ -45,12 +47,21 @@ const App: React.FC = () => {
                             list: MantineListInferencer,
                             edit: MantineEditInferencer,
                             show: MantineShowInferencer,
+                            create: MantineCreateInferencer,
                         },
                         {
                             name: "users",
                             list: MantineListInferencer,
                             edit: MantineEditInferencer,
                             show: MantineShowInferencer,
+                            create: MantineCreateInferencer,
+                        },
+                        {
+                            name: "inferences",
+                            list: MantineListInferencer,
+                            edit: MantineEditInferencer,
+                            show: MantineShowInferencer,
+                            create: MantineCreateInferencer,
                         },
                         {
                             name: "tags",
