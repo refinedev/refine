@@ -1,13 +1,23 @@
 #!/usr/bin/env node
 import { Command } from "commander";
+import { readFileSync } from "fs-extra";
+
 import checkUpdates from "./commands/check-updates";
 import resourceGenerate from "./commands/generate/resource";
 import update from "./commands/update";
 
 const bootstrap = () => {
+    const packageJson = JSON.parse(
+        readFileSync(`${__dirname}/../package.json`, "utf8"),
+    );
+
     const program = new Command();
     program
-        .version("0.0.0", "-v, --version", "Output the current version.")
+        .version(
+            packageJson.version,
+            "-v, --version",
+            "Output the current version.",
+        )
         .usage("<command> [options]")
         .helpOption("-h, --help", "Output usage information.");
 
