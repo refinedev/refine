@@ -14,7 +14,7 @@ hide_table_of_contents: false
 ## Introduction
 This post is about graceful error handling in JavaScript where we explore the use of `try/catch/finally` blocks.
 
-Steos we'll cover:
+Steps we'll cover:
 - [What are Errors?](#what-are-errors)
   - [What is Graceful Error Handling?](#what-is-graceful-error-handling)
 - [How `try/catch/finally` Blocks Work](#how-trycatchfinally-blocks-work)
