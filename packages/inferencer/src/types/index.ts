@@ -61,8 +61,6 @@ export type ImportElement = [
 export type CodeViewerProps = {
     code?: string;
     loading?: boolean;
-    type: "list" | "show" | "edit";
-    resourceName?: string;
 };
 
 export type AdditionalScopeType = [
@@ -106,15 +104,15 @@ export type CreateInferencerConfig = {
     /**
      *  Custom Code Viewer Component
      */
-    codeViewerComponent?: React.FC<CodeViewerProps>;
+    codeViewerComponent: React.FC<CodeViewerProps>;
     /**
      * Loading component to be shown while infering
      */
-    loadingComponent?: React.FC;
+    loadingComponent: React.FC;
     /**
      * Error component to be shown if infering fails or throws an error
      */
-    errorComponent?: React.FC<{ error?: string }>;
+    errorComponent: React.FC<{ error?: string }>;
     /**
      * String renderer, inferred fields and the resource will be passed to this function and the code for the component will be generated.
      */
