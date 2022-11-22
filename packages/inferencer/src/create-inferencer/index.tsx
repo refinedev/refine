@@ -12,14 +12,7 @@ import { composeTransformers } from "@/compose-transformers";
 
 import { defaultElements } from "@/field-inferencers";
 import { defaultTransformers } from "@/field-transformers";
-
-import {
-    LiveComponent,
-    LoadingComponent as DefaultLoadingComponent,
-    ErrorComponent as DefaultErrorComponent,
-    CodeViewerComponent as DefaultCodeViewerComponent,
-} from "@/components";
-
+import { LiveComponent } from "@/components";
 import { useInferFetch } from "@/use-infer-fetch";
 import { useRelationFetch } from "@/use-relation-fetch";
 
@@ -49,9 +42,9 @@ export const createInferencer: CreateInferencer = ({
     customElements = [],
     fieldTransformers = [],
     renderer,
-    loadingComponent: LoadingComponent = DefaultLoadingComponent,
-    errorComponent: ErrorComponent = DefaultErrorComponent,
-    codeViewerComponent: CodeViewerComponent = DefaultCodeViewerComponent,
+    loadingComponent: LoadingComponent,
+    errorComponent: ErrorComponent,
+    codeViewerComponent: CodeViewerComponent,
 }) => {
     const infer = composeInferencers([...defaultElements, ...customElements]);
     const transform = composeTransformers([
@@ -138,8 +131,6 @@ export const createInferencer: CreateInferencer = ({
                             <CodeViewerComponent
                                 code={removeHiddenCode(code)}
                                 loading={recordLoading || relationLoading}
-                                resourceName={resourceName}
-                                type={type}
                             />
                         )}
                     </>
