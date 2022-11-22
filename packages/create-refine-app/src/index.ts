@@ -19,7 +19,7 @@ const bootstrap = () => {
         .helpOption("-h, --help", "Output usage information.")
         .allowUnknownOption(true)
         .argument("<projectName>")
-        .action((projectName, _, command: Command) => {
+        .action((_, __, command: Command) => {
             const superplateExecutable = require.resolve(".bin/superplate");
 
             execa.sync(
