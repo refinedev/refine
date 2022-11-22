@@ -701,8 +701,8 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
             }));
 
             return (
-                <ScrollArea>
-                    <List>
+                <List>
+                    <ScrollArea>
                         <Table highlightOnHover>
                             <thead>
                                 {getHeaderGroups().map((headerGroup) => (
@@ -743,15 +743,15 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                                 })}
                             </tbody>
                         </Table>
-                        <br />
-                        <Pagination
-                            position="right"
-                            total={pageCount}
-                            page={current}
-                            onChange={setCurrent}
-                        />
-                    </List>
-                </ScrollArea>    
+                    </ScrollArea>    
+                    <br />
+                    <Pagination
+                        position="right"
+                        total={pageCount}
+                        page={current}
+                        onChange={setCurrent}
+                    />
+                </List>
             );
         };
         `;
