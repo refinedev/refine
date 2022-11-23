@@ -3,4 +3,4 @@
 "create-refine-app": minor
 ---
 
-Initial release `@pankod/refine-cli` and `refine-create-app` 🎉
+Initial release for `@pankod/refine-cli` and `refine-create-app` 🎉
