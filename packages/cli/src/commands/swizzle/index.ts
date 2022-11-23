@@ -53,7 +53,14 @@ const action = async (_options: OptionValues) => {
 
     const {
         swizzle: { items, transform },
-    } = await getRefineConfig(selectedPackage.path);
+    } = (await getRefineConfig(selectedPackage.path)) ?? {
+        swizzle: { items: [] },
+    };
+
+    if (items.length === 0) {
+        console.log(`No swizzle items found for ${selectedPackage.name}`);
+        return;
+    }
 
     const { selectedComponent } = await inquirer.prompt<{
         selectedComponent: SwizzleFile;
