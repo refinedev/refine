@@ -68,7 +68,7 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                                 leftIcon={<IconMessageCircle size={18} />}
                                 as="a"
                                 target="_blank"
-                                href="https://github.com/refinedev/refine/issues"
+                                href="https://github.com/refinedev/refine/discussions/3046"
                             >
                                 Give Feedback
                             </Button>

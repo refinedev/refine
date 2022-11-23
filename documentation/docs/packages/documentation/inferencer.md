@@ -41,7 +41,7 @@ yarn add @pankod/refine-inferencer
 :::info
 `@pankod/refine-inferencer` is an experimental package and it is now in the early stages of development. We are working on improving the package and adding new features.
 
-If you have any suggestions or feedback, please let us know in the [**Github Issue**](#)
+If you have any suggestions or feedback, please let us know in the [**Github Discussions**](https://github.com/refinedev/refine/discussions/3046)
 :::
 
 :::warning
