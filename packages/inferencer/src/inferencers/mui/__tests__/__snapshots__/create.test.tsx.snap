@@ -703,7 +703,7 @@ exports[`MuiCreateInferencer should match the snapshot 1`] = `
       </button>
       <a
         class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-sizeMedium MuiButton-containedSizeMedium css-ik8k1-MuiButtonBase-root-MuiButton-root"
-        href="https://github.com/refinedev/refine/issues"
+        href="https://github.com/refinedev/refine/discussions/3046"
         tabindex="0"
         target="_blank"
       >

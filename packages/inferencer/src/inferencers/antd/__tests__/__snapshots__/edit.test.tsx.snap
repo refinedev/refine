@@ -554,8 +554,8 @@ exports[`AntdEditInferencer should match the snapshot 1`] = `
                                   placeholder="Select date"
                                   readonly=""
                                   size="12"
-                                  title="2022-11-22"
-                                  value="2022-11-22"
+                                  title="2022-11-23"
+                                  value="2022-11-23"
                                 />
                                 <span
                                   class="ant-picker-suffix"
@@ -645,8 +645,8 @@ exports[`AntdEditInferencer should match the snapshot 1`] = `
                                   placeholder="Select date"
                                   readonly=""
                                   size="12"
-                                  title="2022-11-22"
-                                  value="2022-11-22"
+                                  title="2022-11-23"
+                                  value="2022-11-23"
                                 />
                                 <span
                                   class="ant-picker-suffix"
@@ -964,7 +964,7 @@ exports[`AntdEditInferencer should match the snapshot 1`] = `
       >
         <a
           class="ant-btn ant-btn-default"
-          href="https://github.com/refinedev/refine/issues"
+          href="https://github.com/refinedev/refine/discussions/3046"
           target="_blank"
         >
           <span

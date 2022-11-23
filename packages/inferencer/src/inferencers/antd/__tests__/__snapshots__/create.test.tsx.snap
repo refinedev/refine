@@ -853,7 +853,7 @@ exports[`AntdCreateInferencer should match the snapshot 1`] = `
       >
         <a
           class="ant-btn ant-btn-default"
-          href="https://github.com/refinedev/refine/issues"
+          href="https://github.com/refinedev/refine/discussions/3046"
           target="_blank"
         >
           <span
