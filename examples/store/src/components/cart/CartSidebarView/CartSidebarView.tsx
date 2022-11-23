@@ -60,14 +60,9 @@ export const CartSidebarView: React.FC = () => {
             ) : (
                 <>
                     <div className="flex-1 px-4 sm:px-6">
-                        <Link href="/cart">
-                            <Text
-                                variant="sectionHeading"
-                                onClick={handleClose}
-                            >
-                                My Cart
-                            </Text>
-                        </Link>
+                        <Text variant="sectionHeading" onClick={handleClose}>
+                            My Cart
+                        </Text>
                         <ul className={s.lineItemsList}>
                             {cart.items.map((item) => (
                                 <CartItem key={item.id} item={item} />
