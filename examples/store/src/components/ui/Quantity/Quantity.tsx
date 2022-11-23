@@ -57,6 +57,7 @@ export const Quantity: React.FC<QuantityProps> = ({
                 className={cn(s.actions)}
                 style={{ marginLeft: "-1px" }}
                 disabled={value < 1 || value >= max}
+                title={value < 1 || value >= max ? "Max quantity reached" : ""}
             >
                 <Plus width={18} height={18} />
             </button>
