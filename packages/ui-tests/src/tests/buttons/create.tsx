@@ -73,7 +73,7 @@ export const buttonCreateTests = function (
 
             expect(container).toBeTruthy();
 
-            waitFor(() =>
+            await waitFor(() =>
                 expect(getByText("Create").closest("button")).toBeDisabled(),
             );
         });
@@ -113,10 +113,10 @@ export const buttonCreateTests = function (
 
             expect(container).toBeTruthy();
 
-            waitFor(() =>
+            await waitFor(() =>
                 expect(getByText("Create").closest("button")).toBeDisabled(),
             );
-            waitFor(() =>
+            await waitFor(() =>
                 expect(
                     getByText("Create")
                         .closest("button")
