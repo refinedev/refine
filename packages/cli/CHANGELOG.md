@@ -1,5 +1,12 @@
 # @pankod/refine-cli
 
+## 1.1.1
+
+### Patch Changes
+
+-   [#3049](https://github.com/refinedev/refine/pull/3049) [`da4d6320580`](https://github.com/refinedev/refine/commit/da4d63205801824ece5a8ee5ba0c936d32496b90) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - - Fix `create-refine-app` argument error.
+    -   Add bin params on `refine-cli` package.json
+
 ## 1.1.0
 
 ### Minor Changes
