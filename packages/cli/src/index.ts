@@ -7,6 +7,7 @@ import resourceGenerate from "./commands/generate/resource";
 import update from "./commands/update";
 import { dev, build, start, run } from "./commands/runner";
 import "@utils/env";
+import swizzle from "@commands/swizzle";
 
 const bootstrap = () => {
     const packageJson = JSON.parse(
@@ -32,6 +33,7 @@ const bootstrap = () => {
     build(program);
     start(program);
     run(program);
+    swizzle(program);
 
     program.parse(process.argv);
 
