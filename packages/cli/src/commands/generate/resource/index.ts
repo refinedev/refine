@@ -26,7 +26,7 @@ const load = (program: Command) => {
         .option(
             "-a, --actions [actions]",
             "Only generate the specified actions. (ex: list,create,edit,show)",
-            defaultActions,
+            "list,create,edit,show",
         )
         .option(
             "-p, --path [path]",
