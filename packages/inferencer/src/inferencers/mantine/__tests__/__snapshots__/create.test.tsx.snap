@@ -1,0 +1,616 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MantineCreateInferencer should match the snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="mantine-Paper-root mantine-Card-root mantine-xoj88x"
+    >
+      <div
+        class="mantine-Group-root mantine-1dn2tzg"
+      >
+        <div
+          class="mantine-Stack-root mantine-1xft3nm"
+        >
+          <div
+            class="mantine-Group-root mantine-1g4q40w"
+          >
+            <button
+              class="mantine-UnstyledButton-root mantine-ActionIcon-root mantine-1lgihd9"
+              type="button"
+            >
+              <svg
+                class="icon icon-tabler icon-tabler-arrow-left"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                  stroke="none"
+                />
+                <line
+                  x1="5"
+                  x2="19"
+                  y1="12"
+                  y2="12"
+                />
+                <line
+                  x1="5"
+                  x2="11"
+                  y1="12"
+                  y2="18"
+                />
+                <line
+                  x1="5"
+                  x2="11"
+                  y1="12"
+                  y2="6"
+                />
+              </svg>
+            </button>
+            <h3
+              class="mantine-Text-root mantine-Title-root mantine-6hw97m"
+            >
+              Create Post
+            </h3>
+          </div>
+        </div>
+        <div
+          class="mantine-Group-root mantine-1g4q40w"
+        />
+      </div>
+      <div
+        class="mantine-1r0zdw0"
+      >
+        <div
+          class="mantine-InputWrapper-root mantine-TextInput-root mantine-e8sh7b"
+        >
+          <label
+            class="mantine-InputWrapper-label mantine-TextInput-label mantine-ittua2"
+            for="mantine-r2"
+            id="mantine-r2-label"
+          >
+            Title
+          </label>
+          <div
+            class="mantine-Input-wrapper mantine-TextInput-wrapper mantine-12sbrde"
+          >
+            <input
+              aria-invalid="false"
+              class="mantine-Input-input mantine-TextInput-input mantine-gqmpge"
+              id="mantine-r2"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="mantine-InputWrapper-root mantine-TextInput-root mantine-e8sh7b"
+        >
+          <label
+            class="mantine-InputWrapper-label mantine-TextInput-label mantine-ittua2"
+            for="mantine-r3"
+            id="mantine-r3-label"
+          >
+            Slug
+          </label>
+          <div
+            class="mantine-Input-wrapper mantine-TextInput-wrapper mantine-12sbrde"
+          >
+            <input
+              aria-invalid="false"
+              class="mantine-Input-input mantine-TextInput-input mantine-gqmpge"
+              id="mantine-r3"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="mantine-InputWrapper-root mantine-Textarea-root mantine-e8sh7b"
+        >
+          <label
+            class="mantine-InputWrapper-label mantine-Textarea-label mantine-ittua2"
+            for="mantine-r4"
+            id="mantine-r4-label"
+          >
+            Content
+          </label>
+          <div
+            class="mantine-Input-wrapper mantine-Textarea-wrapper mantine-12sbrde"
+          >
+            <textarea
+              aria-invalid="false"
+              class="mantine-Input-input mantine-Textarea-input mantine-1g5p8t1"
+              id="mantine-r4"
+            />
+          </div>
+        </div>
+        <div
+          class="mantine-InputWrapper-root mantine-NumberInput-root mantine-e8sh7b"
+        >
+          <label
+            class="mantine-InputWrapper-label mantine-NumberInput-label mantine-ittua2"
+            for="mantine-r5"
+            id="mantine-r5-label"
+          >
+            Hit
+          </label>
+          <div
+            class="mantine-Input-wrapper mantine-NumberInput-wrapper mantine-12sbrde"
+          >
+            <input
+              aria-invalid="false"
+              class="mantine-Input-input mantine-NumberInput-input mantine-fxjyvm"
+              id="mantine-r5"
+              inputmode="numeric"
+              step="1"
+              type="text"
+              value=""
+            />
+            <div
+              class="mantine-1cwybh2 mantine-Input-rightSection mantine-NumberInput-rightSection"
+            >
+              <div
+                class="mantine-1mzslog mantine-NumberInput-rightSection"
+              >
+                <button
+                  aria-hidden="true"
+                  class="mantine-NumberInput-control mantine-NumberInput-controlUp mantine-f73we9"
+                  tabindex="-1"
+                  type="button"
+                >
+                  <svg
+                    fill="none"
+                    height="14"
+                    style="transform: rotate(180deg);"
+                    viewBox="0 0 15 15"
+                    width="14"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </button>
+                <button
+                  aria-hidden="true"
+                  class="mantine-NumberInput-control mantine-NumberInput-controlDown mantine-1kz3j3d"
+                  tabindex="-1"
+                  type="button"
+                >
+                  <svg
+                    fill="none"
+                    height="14"
+                    viewBox="0 0 15 15"
+                    width="14"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="mantine-InputWrapper-root mantine-Select-root mantine-e8sh7b"
+        >
+          <label
+            class="mantine-InputWrapper-label mantine-Select-label mantine-ittua2"
+            for="mantine-r6"
+            id="mantine-r6-label"
+          >
+            Category
+          </label>
+          <div
+            aria-controls="mantine-r6"
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            class=""
+            role="combobox"
+            tabindex="-1"
+          >
+            <input
+              type="hidden"
+              value=""
+            />
+            <div
+              class="mantine-Input-wrapper mantine-Select-wrapper mantine-12sbrde"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-invalid="false"
+                autocomplete="off"
+                class="mantine-Input-input mantine-Select-input mantine-qew57g"
+                data-mantine-stop-propagation="false"
+                id="mantine-r6"
+                type="search"
+                value=""
+              />
+              <div
+                class="mantine-uquezq mantine-Input-rightSection mantine-Select-rightSection"
+              >
+                <svg
+                  data-chevron="true"
+                  fill="none"
+                  height="18"
+                  style="color: rgb(134, 142, 150);"
+                  viewBox="0 0 15 15"
+                  width="18"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M4.93179 5.43179C4.75605 5.60753 4.75605 5.89245 4.93179 6.06819C5.10753 6.24392 5.39245 6.24392 5.56819 6.06819L7.49999 4.13638L9.43179 6.06819C9.60753 6.24392 9.89245 6.24392 10.0682 6.06819C10.2439 5.89245 10.2439 5.60753 10.0682 5.43179L7.81819 3.18179C7.73379 3.0974 7.61933 3.04999 7.49999 3.04999C7.38064 3.04999 7.26618 3.0974 7.18179 3.18179L4.93179 5.43179ZM10.0682 9.56819C10.2439 9.39245 10.2439 9.10753 10.0682 8.93179C9.89245 8.75606 9.60753 8.75606 9.43179 8.93179L7.49999 10.8636L5.56819 8.93179C5.39245 8.75606 5.10753 8.75606 4.93179 8.93179C4.75605 9.10753 4.75605 9.39245 4.93179 9.56819L7.18179 11.8182C7.35753 11.9939 7.64245 11.9939 7.81819 11.8182L10.0682 9.56819Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="mantine-InputWrapper-root mantine-Select-root mantine-e8sh7b"
+        >
+          <label
+            class="mantine-InputWrapper-label mantine-Select-label mantine-ittua2"
+            for="mantine-r8"
+            id="mantine-r8-label"
+          >
+            User
+          </label>
+          <div
+            aria-controls="mantine-r8"
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            class=""
+            role="combobox"
+            tabindex="-1"
+          >
+            <input
+              type="hidden"
+              value=""
+            />
+            <div
+              class="mantine-Input-wrapper mantine-Select-wrapper mantine-12sbrde"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-invalid="false"
+                autocomplete="off"
+                class="mantine-Input-input mantine-Select-input mantine-qew57g"
+                data-mantine-stop-propagation="false"
+                id="mantine-r8"
+                type="search"
+                value=""
+              />
+              <div
+                class="mantine-uquezq mantine-Input-rightSection mantine-Select-rightSection"
+              >
+                <svg
+                  data-chevron="true"
+                  fill="none"
+                  height="18"
+                  style="color: rgb(134, 142, 150);"
+                  viewBox="0 0 15 15"
+                  width="18"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M4.93179 5.43179C4.75605 5.60753 4.75605 5.89245 4.93179 6.06819C5.10753 6.24392 5.39245 6.24392 5.56819 6.06819L7.49999 4.13638L9.43179 6.06819C9.60753 6.24392 9.89245 6.24392 10.0682 6.06819C10.2439 5.89245 10.2439 5.60753 10.0682 5.43179L7.81819 3.18179C7.73379 3.0974 7.61933 3.04999 7.49999 3.04999C7.38064 3.04999 7.26618 3.0974 7.18179 3.18179L4.93179 5.43179ZM10.0682 9.56819C10.2439 9.39245 10.2439 9.10753 10.0682 8.93179C9.89245 8.75606 9.60753 8.75606 9.43179 8.93179L7.49999 10.8636L5.56819 8.93179C5.39245 8.75606 5.10753 8.75606 4.93179 8.93179C4.75605 9.10753 4.75605 9.39245 4.93179 9.56819L7.18179 11.8182C7.35753 11.9939 7.64245 11.9939 7.81819 11.8182L10.0682 9.56819Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="mantine-InputWrapper-root mantine-TextInput-root mantine-e8sh7b"
+        >
+          <label
+            class="mantine-InputWrapper-label mantine-TextInput-label mantine-ittua2"
+            for="mantine-ra"
+            id="mantine-ra-label"
+          >
+            Status
+          </label>
+          <div
+            class="mantine-Input-wrapper mantine-TextInput-wrapper mantine-12sbrde"
+          >
+            <input
+              aria-invalid="false"
+              class="mantine-Input-input mantine-TextInput-input mantine-gqmpge"
+              id="mantine-ra"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="mantine-InputWrapper-root mantine-TextInput-root mantine-e8sh7b"
+        >
+          <label
+            class="mantine-InputWrapper-label mantine-TextInput-label mantine-ittua2"
+            for="mantine-rb"
+            id="mantine-rb-label"
+          >
+            Status Color
+          </label>
+          <div
+            class="mantine-Input-wrapper mantine-TextInput-wrapper mantine-12sbrde"
+          >
+            <input
+              aria-invalid="false"
+              class="mantine-Input-input mantine-TextInput-input mantine-gqmpge"
+              id="mantine-rb"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="mantine-InputWrapper-root mantine-TextInput-root mantine-e8sh7b"
+        >
+          <label
+            class="mantine-InputWrapper-label mantine-TextInput-label mantine-ittua2"
+            for="mantine-rc"
+            id="mantine-rc-label"
+          >
+            Created At
+          </label>
+          <div
+            class="mantine-Input-wrapper mantine-TextInput-wrapper mantine-12sbrde"
+          >
+            <input
+              aria-invalid="false"
+              class="mantine-Input-input mantine-TextInput-input mantine-gqmpge"
+              id="mantine-rc"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="mantine-InputWrapper-root mantine-TextInput-root mantine-e8sh7b"
+        >
+          <label
+            class="mantine-InputWrapper-label mantine-TextInput-label mantine-ittua2"
+            for="mantine-rd"
+            id="mantine-rd-label"
+          >
+            Published At
+          </label>
+          <div
+            class="mantine-Input-wrapper mantine-TextInput-wrapper mantine-12sbrde"
+          >
+            <input
+              aria-invalid="false"
+              class="mantine-Input-input mantine-TextInput-input mantine-gqmpge"
+              id="mantine-rd"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="mantine-InputWrapper-root mantine-MultiSelect-root mantine-e8sh7b"
+        >
+          <label
+            class="mantine-InputWrapper-label mantine-MultiSelect-label mantine-ittua2"
+            for="mantine-re"
+            id="mantine-re-label"
+          >
+            Tags
+          </label>
+          <div
+            aria-controls="mantine-re"
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            class="mantine-qqmv3w mantine-MultiSelect-wrapper"
+            role="combobox"
+            tabindex="-1"
+          >
+            <input
+              type="hidden"
+              value=""
+            />
+            <div
+              class="mantine-Input-wrapper mantine-MultiSelect-wrapper mantine-12sbrde"
+              style="overflow: hidden;"
+            >
+              <div
+                aria-invalid="false"
+                class="mantine-Input-input mantine-MultiSelect-input mantine-1e8dll4"
+              >
+                <div
+                  class="mantine-j220w7 mantine-MultiSelect-values"
+                >
+                  <input
+                    autocomplete="off"
+                    class="mantine-MultiSelect-searchInput mantine-MultiSelect-searchInputEmpty mantine-zmh4e"
+                    data-mantine-stop-propagation="false"
+                    id="mantine-re"
+                    type="search"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div
+                class="mantine-uquezq mantine-Input-rightSection mantine-MultiSelect-rightSection"
+              >
+                <svg
+                  data-chevron="true"
+                  fill="none"
+                  height="18"
+                  style="color: rgb(134, 142, 150);"
+                  viewBox="0 0 15 15"
+                  width="18"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M4.93179 5.43179C4.75605 5.60753 4.75605 5.89245 4.93179 6.06819C5.10753 6.24392 5.39245 6.24392 5.56819 6.06819L7.49999 4.13638L9.43179 6.06819C9.60753 6.24392 9.89245 6.24392 10.0682 6.06819C10.2439 5.89245 10.2439 5.60753 10.0682 5.43179L7.81819 3.18179C7.73379 3.0974 7.61933 3.04999 7.49999 3.04999C7.38064 3.04999 7.26618 3.0974 7.18179 3.18179L4.93179 5.43179ZM10.0682 9.56819C10.2439 9.39245 10.2439 9.10753 10.0682 8.93179C9.89245 8.75606 9.60753 8.75606 9.43179 8.93179L7.49999 10.8636L5.56819 8.93179C5.39245 8.75606 5.10753 8.75606 4.93179 8.93179C4.75605 9.10753 4.75605 9.39245 4.93179 9.56819L7.18179 11.8182C7.35753 11.9939 7.64245 11.9939 7.81819 11.8182L10.0682 9.56819Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="mantine-InputWrapper-root mantine-NumberInput-root mantine-e8sh7b"
+        >
+          <label
+            class="mantine-InputWrapper-label mantine-NumberInput-label mantine-ittua2"
+            for="mantine-rg"
+            id="mantine-rg-label"
+          >
+            Language
+          </label>
+          <div
+            class="mantine-Input-wrapper mantine-NumberInput-wrapper mantine-12sbrde"
+          >
+            <input
+              aria-invalid="false"
+              class="mantine-Input-input mantine-NumberInput-input mantine-fxjyvm"
+              id="mantine-rg"
+              inputmode="numeric"
+              step="1"
+              type="text"
+              value=""
+            />
+            <div
+              class="mantine-1cwybh2 mantine-Input-rightSection mantine-NumberInput-rightSection"
+            >
+              <div
+                class="mantine-1mzslog mantine-NumberInput-rightSection"
+              >
+                <button
+                  aria-hidden="true"
+                  class="mantine-NumberInput-control mantine-NumberInput-controlUp mantine-f73we9"
+                  tabindex="-1"
+                  type="button"
+                >
+                  <svg
+                    fill="none"
+                    height="14"
+                    style="transform: rotate(180deg);"
+                    viewBox="0 0 15 15"
+                    width="14"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </button>
+                <button
+                  aria-hidden="true"
+                  class="mantine-NumberInput-control mantine-NumberInput-controlDown mantine-1kz3j3d"
+                  tabindex="-1"
+                  type="button"
+                >
+                  <svg
+                    fill="none"
+                    height="14"
+                    viewBox="0 0 15 15"
+                    width="14"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mantine-Group-root mantine-n0y6vz"
+      >
+        <button
+          class="mantine-UnstyledButton-root mantine-Button-root mantine-4xmesm"
+          data-button="true"
+          type="button"
+        >
+          <div
+            class="mantine-3xbgk5 mantine-Button-inner"
+          >
+            <span
+              class="mantine-Button-icon mantine-Button-leftIcon mantine-1g4orza"
+            >
+              <svg
+                class="icon icon-tabler icon-tabler-device-floppy"
+                fill="none"
+                height="18"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="18"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                  stroke="none"
+                />
+                <path
+                  d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2"
+                />
+                <circle
+                  cx="12"
+                  cy="14"
+                  r="2"
+                />
+                <polyline
+                  points="14 4 14 8 8 8 8 4"
+                />
+              </svg>
+            </span>
+            <span
+              class="mantine-qo1k2 mantine-Button-label"
+            >
+              Save
+            </span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    style="height: 50px;"
+  />
+</DocumentFragment>
+`;
