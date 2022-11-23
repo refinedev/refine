@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import clsx from "clsx";
 import ErrorBoundary from "@docusaurus/ErrorBoundary";
 import { PageMetadata, ThemeClassNames } from "@docusaurus/theme-common";
@@ -14,6 +14,7 @@ import { LivePreviewProvider } from "../../components/live-preview-context";
 import GithubFloatingCta from "../../components/github-floating-cta";
 import { useLocation } from "@docusaurus/router";
 import BrowserOnly from "@docusaurus/BrowserOnly";
+import useIsMobile from "../../hooks/use-is-mobile";
 
 export default function Layout(props) {
     const {
@@ -28,12 +29,14 @@ export default function Layout(props) {
 
     const location = useLocation();
 
+    const isMobile = useIsMobile();
+
     const showGithubCta = useMemo(() => {
         if (location.pathname.startsWith("/docs")) {
             return false;
         }
 
-        if (typeof window !== "undefined") {
+        if (typeof window !== "undefined" && !isMobile) {
             if (location.pathname.startsWith("/blog")) {
                 window?.Intercom?.("update", { hide_default_launcher: true });
             } else {
@@ -42,7 +45,13 @@ export default function Layout(props) {
         }
 
         return true;
-    }, [location]);
+    }, [location, isMobile]);
+
+    useEffect(() => {
+        if (isMobile) {
+            window?.Intercom?.("update", { hide_default_launcher: true });
+        }
+    }, [isMobile]);
 
     return (
         <LayoutProvider>
