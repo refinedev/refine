@@ -6,6 +6,7 @@ import { getInstalledRefinePackagesFromNodeModules } from "@utils/package";
 import { ensureFile, pathExists, readFile, writeFile } from "fs-extra";
 import { getRefineConfig } from "@utils/swizzle";
 import { SwizzleFile } from "@definitions";
+import chalk from "chalk";
 
 const swizzle = (program: Command) => {
     return (
@@ -128,10 +129,18 @@ const action = async (_options: OptionValues) => {
     const createdFiles = createdResponse.filter(Boolean);
 
     if (createdFiles.length > 0) {
-        console.log("Done swizzling ${selectedComponent.label} component.");
+        console.log(`Done swizzling ${selectedComponent.label} component! 🎉`);
         console.log("Created files:");
         console.log(
-            createdFiles.filter(Boolean).map((file) => ` - ${file} \n`),
+            createdFiles
+                .filter(Boolean)
+                .map(
+                    (file) =>
+                        ` - ${chalk.cyanBright(
+                            file?.replace(process.cwd(), ""),
+                        )}`,
+                )
+                .join("\n"),
         );
     }
 };
