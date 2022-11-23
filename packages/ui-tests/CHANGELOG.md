@@ -1,5 +1,11 @@
 # @pankod/refine-ui-tests
 
+## 0.11.3
+
+### Patch Changes
+
+-   [#3045](https://github.com/refinedev/refine/pull/3045) [`753fda3186d`](https://github.com/refinedev/refine/commit/753fda3186d28ca608dd5b1c1ede304af46d44e9) Thanks [@aliemir](https://github.com/aliemir)! - Updated `CreateButton` tests to handle `disabled` check.
+
 ## 0.11.2
 
 ### Patch Changes
