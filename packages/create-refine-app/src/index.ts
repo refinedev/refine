@@ -18,17 +18,18 @@ const bootstrap = () => {
         .usage("<command> [options]")
         .helpOption("-h, --help", "Output usage information.")
         .allowUnknownOption(true)
-        .argument("<projectName>")
-        .action((_, __, command: Command) => {
+        .allowExcessArguments(true)
+        .action((_, command: Command) => {
             const superplateExecutable = require.resolve(".bin/superplate");
-
-            execa.sync(
-                superplateExecutable,
-                [...command.args, "--project=refine"],
-                {
-                    stdio: "inherit",
-                },
-            );
+            try {
+                execa.sync(
+                    superplateExecutable,
+                    [...command.args, "--project=refine"],
+                    {
+                        stdio: "inherit",
+                    },
+                );
+            } catch (err) {}
         });
 
     program.parse(process.argv);
