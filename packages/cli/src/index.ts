@@ -5,6 +5,8 @@ import { readFileSync } from "fs-extra";
 import checkUpdates from "./commands/check-updates";
 import resourceGenerate from "./commands/generate/resource";
 import update from "./commands/update";
+import { dev, build, start, run } from "./commands/runner";
+import "@utils/env";
 
 const bootstrap = () => {
     const packageJson = JSON.parse(
@@ -12,6 +14,7 @@ const bootstrap = () => {
     );
 
     const program = new Command();
+
     program
         .version(
             packageJson.version,
@@ -25,6 +28,10 @@ const bootstrap = () => {
     resourceGenerate(program);
     checkUpdates(program);
     update(program);
+    dev(program);
+    build(program);
+    start(program);
+    run(program);
 
     program.parse(process.argv);
 

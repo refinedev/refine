@@ -2,6 +2,7 @@ import { readFileSync, existsSync } from "fs-extra";
 import execa from "execa";
 import preferredPM from "preferred-pm";
 import spinner from "@utils/spinner";
+import chalk from "chalk";
 
 // TODO: Add package.json type
 export const getPackageJson = (): any => {
@@ -22,6 +23,44 @@ export const getDependenciesWithVersion = (): string[] => {
     return packageJson.dependencies;
 };
 
+export const getDevDependencies = (): string[] => {
+    const packageJson = getPackageJson();
+    return Object.keys(packageJson.devDependencies || {});
+};
+
+export const getScripts = (): Record<string, string> => {
+    const packageJson = getPackageJson();
+    return packageJson.scripts;
+};
+
+export const getInstalledRefinePackages = async () => {
+    try {
+        const execution = await execa("npm", ["ls", "--depth=0", "--json"]);
+
+        const dependencies = JSON.parse(execution.stdout)?.dependencies || {};
+        const refineDependencies = Object.keys(dependencies).filter(
+            (dependency) => dependency.startsWith("@pankod/refine"),
+        );
+
+        const normalize: {
+            name: string;
+            version: string;
+        }[] = [];
+
+        for (const dependency of refineDependencies) {
+            const version = dependencies[dependency].version;
+            normalize.push({
+                name: dependency,
+                version,
+            });
+        }
+
+        return normalize;
+    } catch (error) {
+        return Promise.reject(error);
+    }
+};
+
 export const pmCommands = {
     npm: {
         install: ["install", "--save"],
@@ -36,7 +75,7 @@ export const pmCommands = {
     pnpm: {
         install: ["add"],
         installDev: ["add", "-D"],
-        outdatedJson: ["outdated", "--json"],
+        outdatedJson: ["outdated", "--format", "json"],
     },
 };
 

@@ -1,7 +1,7 @@
 import React, { FC, useRef } from "react";
 import Table from "ink-table";
 import { Box, Text, TextProps } from "ink";
-import { RefinePackageInstalledVersionData } from "src/commands/check-updates";
+import { RefinePackageInstalledVersionData } from "@definitions/package";
 
 const columIndex = {
     name: 1,

@@ -1,9 +1,15 @@
 import { ProjectTypes, UIFrameworks } from "@definitions";
-import { getDependencies } from "@utils/package";
+import { getDependencies, getDevDependencies } from "@utils/package";
 
 export const getProjectType = (): ProjectTypes => {
     // read dependencies from package.json
     const dependencies = getDependencies();
+
+    // check for craco
+    // craco and react-scripts installs together. We need to check for craco first
+    if (dependencies.includes("@craco/craco")) {
+        return ProjectTypes.CRACO;
+    }
 
     // check for react-scripts
     if (dependencies.includes("react-scripts")) {
@@ -18,6 +24,12 @@ export const getProjectType = (): ProjectTypes => {
     // check for remix
     if (dependencies.includes("@remix-run/react")) {
         return ProjectTypes.REMIX;
+    }
+
+    // check for vite
+    const devDependencies = getDevDependencies();
+    if (devDependencies.includes("vite")) {
+        return ProjectTypes.VITE;
     }
 
     throw new Error("Project type not found");
