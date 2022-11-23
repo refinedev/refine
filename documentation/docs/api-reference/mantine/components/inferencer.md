@@ -15,7 +15,7 @@ values={[
 {label: <>In<code style={{ margin: "0 0.7ch" }}>resources</code>prop</>, value: 'resources'},
 {label: 'In Custom Components', value: 'custom'}
 ]}>
-    <TabItem value="resources">
+<TabItem value="resources">
 
 ```tsx
 import {
@@ -29,24 +29,18 @@ import {
     MantineListInferencer,
     MantineShowInferencer,
     MantineCreateInferencer,
-    MantineEditInferencer
+    MantineEditInferencer,
 } from "@pankod/refine-inferencer/mantine";
 // highlight-end
 
 const App = () => {
     return (
-        <MantineProvider
-            theme={LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
+        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <Refine
                 resources={[
                     {
-                        name: "posts",
+                        name: "samples",
                         // highlight-start
                         list: MantineListInferencer,
                         show: MantineShowInferencer,
@@ -70,35 +64,35 @@ import {
     MantineListInferencer,
     MantineShowInferencer,
     MantineCreateInferencer,
-    MantineEditInferencer
+    MantineEditInferencer,
 } from "@pankod/refine-inferencer/mantine";
 // highlight-end
 
-const PostList = () => {
+const SampleList = () => {
     return (
         // highlight-next-line
-        <MantineListInferencer resource="posts" />
+        <MantineListInferencer resource="samples" />
     );
 };
 
-const PostShow = () => {
+const SampleShow = () => {
     return (
         // highlight-next-line
-        <MantineShowInferencer resource="posts" />
+        <MantineShowInferencer resource="samples" />
     );
 };
 
-const PostCreate = () => {
+const SampleCreate = () => {
     return (
         // highlight-next-line
-        <MantineCreateInferencer resource="posts" />
+        <MantineCreateInferencer resource="samples" />
     );
 };
 
-const PostEdit = () => {
+const SampleEdit = () => {
     return (
         // highlight-next-line
-        <MantineEditInferencer resource="posts" />
+        <MantineEditInferencer resource="samples" />
     );
 };
 ```
@@ -116,7 +110,7 @@ To learn more about `@pankod/refine-inferencer` package, please check out [Docs]
 
 Generates a sample list view for your resources according to the API response. It uses `List` component and from `@pankod/refine-mantine` and `useTable` hook from `@pankod/refine-react-table`.
 
-```tsx live hideCode previewHeight=600px url=http://localhost:3000/posts
+```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples
 setInitialRoutes(["/"]);
 
 // visible-block-start
@@ -136,34 +130,29 @@ import {
     // highlight-end
     MantineShowInferencer,
     MantineCreateInferencer,
-    MantineEditInferencer
+    MantineEditInferencer,
 } from "@pankod/refine-inferencer/mantine";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <MantineProvider
-            theme={LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
+        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider(API_URL)}
                 Layout={Layout}
                 resources={[
                     {
-                        name: "posts",
+                        name: "samples",
                         // highlight-start
                         list: MantineListInferencer,
                         // highlight-end
                         show: MantineShowInferencer,
                         create: MantineCreateInferencer,
                         edit: MantineEditInferencer,
+                        canDelete: true,
                     },
                     {
                         name: "categories",
@@ -171,12 +160,6 @@ const App: React.FC = () => {
                     {
                         name: "tags",
                     },
-                    {
-                        name: "languages",
-                    },
-                    {
-                        name: "users",
-                    }
                 ]}
             />
         </MantineProvider>
@@ -185,15 +168,15 @@ const App: React.FC = () => {
 
 // visible-block-end
 
-render(<App/>);
+render(<App />);
 ```
 
 ### `MantineShowInferencer`
 
 Generates a sample show view for your resources according to the API response. It uses `Show` and field components from `@pankod/refine-mantine` with `useShow` hook from `@pankod/refine-core`.
 
-```tsx live hideCode previewHeight=600px url=http://localhost:3000/posts/show/123
-setInitialRoutes(["/posts/show/123"]);
+```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples/show/123
+setInitialRoutes(["/samples/show/123"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
@@ -212,34 +195,29 @@ import {
     MantineShowInferencer,
     // highlight-end
     MantineCreateInferencer,
-    MantineEditInferencer
+    MantineEditInferencer,
 } from "@pankod/refine-inferencer/mantine";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <MantineProvider
-            theme={LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
+        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider(API_URL)}
                 Layout={Layout}
                 resources={[
                     {
-                        name: "posts",
+                        name: "samples",
                         list: MantineListInferencer,
                         // highlight-start
                         show: MantineShowInferencer,
                         // highlight-end
                         create: MantineCreateInferencer,
                         edit: MantineEditInferencer,
+                        canDelete: true,
                     },
                     {
                         name: "categories",
@@ -247,12 +225,6 @@ const App: React.FC = () => {
                     {
                         name: "tags",
                     },
-                    {
-                        name: "languages",
-                    },
-                    {
-                        name: "users",
-                    }
                 ]}
             />
         </MantineProvider>
@@ -261,15 +233,15 @@ const App: React.FC = () => {
 
 // visible-block-end
 
-render(<App/>);
+render(<App />);
 ```
 
 ### `MantineCreateInferencer`
 
 Generates a sample create view for your resources according to the first record in list API response. It uses `Create` component and `useForm` hook from `@pankod/refine-mantine`.
 
-```tsx live hideCode previewHeight=600px url=http://localhost:3000/posts/create
-setInitialRoutes(["/posts/create"]);
+```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples/create
+setInitialRoutes(["/samples/create"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
@@ -288,34 +260,29 @@ import {
     // highlight-start
     MantineCreateInferencer,
     // highlight-end
-    MantineEditInferencer
+    MantineEditInferencer,
 } from "@pankod/refine-inferencer/mantine";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <MantineProvider
-            theme={LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
+        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider(API_URL)}
                 Layout={Layout}
                 resources={[
                     {
-                        name: "posts",
+                        name: "samples",
                         list: MantineListInferencer,
                         show: MantineShowInferencer,
                         // highlight-start
                         create: MantineCreateInferencer,
                         // highlight-end
                         edit: MantineEditInferencer,
+                        canDelete: true,
                     },
                     {
                         name: "categories",
@@ -323,12 +290,6 @@ const App: React.FC = () => {
                     {
                         name: "tags",
                     },
-                    {
-                        name: "languages",
-                    },
-                    {
-                        name: "users",
-                    }
                 ]}
             />
         </MantineProvider>
@@ -337,15 +298,15 @@ const App: React.FC = () => {
 
 // visible-block-end
 
-render(<App/>);
+render(<App />);
 ```
 
 ### `MantineEditInferencer`
 
 Generates a sample edit view for your resources according to the API response. It uses `Edit` component and `useForm` hook from `@pankod/refine-mantine`.
 
-```tsx live hideCode previewHeight=600px url=http://localhost:3000/posts/edit/123
-setInitialRoutes(["/posts/edit/123"]);
+```tsx live hideCode previewHeight=600px url=http://localhost:3000/samples/edit/123
+setInitialRoutes(["/samples/edit/123"]);
 
 // visible-block-start
 import { Refine } from "@pankod/refine-core";
@@ -363,7 +324,7 @@ import {
     MantineShowInferencer,
     MantineCreateInferencer,
     // highlight-start
-    MantineEditInferencer
+    MantineEditInferencer,
     // highlight-end
 } from "@pankod/refine-inferencer/mantine";
 
@@ -371,27 +332,22 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
     return (
-        <MantineProvider
-            theme={LightTheme}
-            withNormalizeCSS
-            withGlobalStyles
-        >
-            <Global
-                styles={{ body: { WebkitFontSmoothing: "auto" } }}
-            />
+        <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <Refine
                 routerProvider={routerProvider}
                 dataProvider={dataProvider(API_URL)}
                 Layout={Layout}
                 resources={[
                     {
-                        name: "posts",
+                        name: "samples",
                         list: MantineListInferencer,
                         show: MantineShowInferencer,
                         create: MantineCreateInferencer,
                         // highlight-start
                         edit: MantineEditInferencer,
                         // highlight-end
+                        canDelete: true,
                     },
                     {
                         name: "categories",
@@ -399,12 +355,6 @@ const App: React.FC = () => {
                     {
                         name: "tags",
                     },
-                    {
-                        name: "languages",
-                    },
-                    {
-                        name: "users",
-                    }
                 ]}
             />
         </MantineProvider>
@@ -413,7 +363,7 @@ const App: React.FC = () => {
 
 // visible-block-end
 
-render(<App/>);
+render(<App />);
 ```
 
 ## Live StackBlitz Example
