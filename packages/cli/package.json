@@ -7,7 +7,7 @@
     "module": "dist/esm/index.js",
     "typings": "dist/index.d.ts",
     "bin": {
-        "refine": "./dist/index.js"
+        "refine": "./dist/cli.js"
     },
     "scripts": {
         "start": "tsup --watch --format esm,cjs,iife --legacy-output",
