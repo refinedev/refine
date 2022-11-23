@@ -61,6 +61,10 @@ export const getInstalledRefinePackages = async () => {
     }
 };
 
+export const isPackageHaveRefineConfig = async (packagePath: string) => {
+    return await pathExists(`${packagePath}/refine.config.js`);
+};
+
 export const pmCommands = {
     npm: {
         install: ["install", "--save"],
