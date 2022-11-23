@@ -4,42 +4,42 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
 <DocumentFragment>
   <div>
     <div
-      class="mantine-ScrollArea-root mantine-jghxib"
-      dir="ltr"
-      style="position: relative; --radix-scroll-area-corner-width: 0px; --radix-scroll-area-corner-height: 0px;"
+      class="mantine-Paper-root mantine-Card-root mantine-xoj88x"
     >
-      <style>
-        [data-radix-scroll-area-viewport]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}[data-radix-scroll-area-viewport]::-webkit-scrollbar{display:none}
-      </style>
       <div
-        class="mantine-xlwgkm mantine-ScrollArea-viewport"
-        data-radix-scroll-area-viewport=""
-        style="overflow-x: scroll; overflow-y: scroll;"
+        class="mantine-Group-root mantine-1dn2tzg"
       >
         <div
-          style="min-width: 100%; display: table;"
+          class="mantine-Stack-root mantine-1xft3nm"
         >
+          <h3
+            class="mantine-Text-root mantine-Title-root mantine-6hw97m"
+          >
+            Posts
+          </h3>
+        </div>
+        <div
+          class="mantine-Group-root mantine-1g4q40w"
+        />
+      </div>
+      <div
+        class="mantine-1r0zdw0"
+      >
+        <div
+          class="mantine-ScrollArea-root mantine-jghxib"
+          dir="ltr"
+          style="position: relative; --radix-scroll-area-corner-width: 0px; --radix-scroll-area-corner-height: 0px;"
+        >
+          <style>
+            [data-radix-scroll-area-viewport]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}[data-radix-scroll-area-viewport]::-webkit-scrollbar{display:none}
+          </style>
           <div
-            class="mantine-Paper-root mantine-Card-root mantine-xoj88x"
+            class="mantine-xlwgkm mantine-ScrollArea-viewport"
+            data-radix-scroll-area-viewport=""
+            style="overflow-x: scroll; overflow-y: scroll;"
           >
             <div
-              class="mantine-Group-root mantine-1dn2tzg"
-            >
-              <div
-                class="mantine-Stack-root mantine-1xft3nm"
-              >
-                <h3
-                  class="mantine-Text-root mantine-Title-root mantine-6hw97m"
-                >
-                  Posts
-                </h3>
-              </div>
-              <div
-                class="mantine-Group-root mantine-1g4q40w"
-              />
-            </div>
-            <div
-              class="mantine-1r0zdw0"
+              style="min-width: 100%; display: table;"
             >
               <table
                 class="mantine-Table-root mantine-186fes1"
@@ -568,61 +568,61 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                   </tr>
                 </tbody>
               </table>
-              <br />
-              <div
-                class="mantine-Group-root mantine-uemwr9"
-                role="navigation"
-              >
-                <button
-                  aria-disabled="true"
-                  class="mantine-109t3tn mantine-Pagination-item"
-                  disabled=""
-                  type="button"
-                >
-                  <svg
-                    fill="none"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M7.219 8l3.3 3.3-.943.943L5.333 8l4.243-4.243.943.943-3.3 3.3z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </button>
-                <button
-                  aria-current="page"
-                  class="mantine-109t3tn mantine-Pagination-item"
-                  data-active="true"
-                  tabindex="0"
-                  type="button"
-                >
-                  1
-                </button>
-                <button
-                  aria-disabled="true"
-                  class="mantine-109t3tn mantine-Pagination-item"
-                  disabled=""
-                  type="button"
-                >
-                  <svg
-                    fill="none"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M8.781 8l-3.3-3.3.943-.943L10.667 8l-4.243 4.243-.943-.943 3.3-3.3z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </button>
-              </div>
             </div>
           </div>
+        </div>
+        <br />
+        <div
+          class="mantine-Group-root mantine-uemwr9"
+          role="navigation"
+        >
+          <button
+            aria-disabled="true"
+            class="mantine-109t3tn mantine-Pagination-item"
+            disabled=""
+            type="button"
+          >
+            <svg
+              fill="none"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.219 8l3.3 3.3-.943.943L5.333 8l4.243-4.243.943.943-3.3 3.3z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+          <button
+            aria-current="page"
+            class="mantine-109t3tn mantine-Pagination-item"
+            data-active="true"
+            tabindex="0"
+            type="button"
+          >
+            1
+          </button>
+          <button
+            aria-disabled="true"
+            class="mantine-109t3tn mantine-Pagination-item"
+            disabled=""
+            type="button"
+          >
+            <svg
+              fill="none"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8.781 8l-3.3-3.3.943-.943L10.667 8l-4.243 4.243-.943-.943 3.3-3.3z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
         </div>
       </div>
     </div>
