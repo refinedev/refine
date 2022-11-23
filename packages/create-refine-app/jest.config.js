@@ -4,8 +4,8 @@ const { compilerOptions } = require("./tsconfig");
 module.exports = {
     preset: "ts-jest",
     rootDir: "./",
-    name: "refine-cli",
-    displayName: "refine-cli",
+    name: "create-refine-app",
+    displayName: "create-refine-app",
     setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
     testEnvironment: "node",
     moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths),
