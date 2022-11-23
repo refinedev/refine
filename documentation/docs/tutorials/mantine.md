@@ -2541,7 +2541,7 @@ Let's see what's going on our `<PostEdit>` component in detail:
 ✳️ `useForm` is a refine hook for handling form data. In edit page, `useForm` hook initializes the form with current record values.
 
 :::caution Attention
-✳️ [`<TextInput>`](https://mantine.dev/core/text-input/) is Mantine component to build form inputs.
+✳️ [`<TextInput>`](https://mantine.dev/core/text-input/) is a Mantine component to build form inputs.
 
 ✳️ `<Select>` is a text input that helps you find what you're looking for by suggesting options. `useSelect` is a refine hook for handling `<Select>` data. It returns `selectProps` which includes all necessary props to build the autocomplete.
 You may refer to the [`useSelect`](/api-reference/mantine/hooks/useSelect.md) to get the full information about the hook.
