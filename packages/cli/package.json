@@ -6,7 +6,9 @@
     "main": "dist/index.js",
     "module": "dist/esm/index.js",
     "typings": "dist/index.d.ts",
-    "bin": "./dist/index.js",
+    "bin": {
+        "refine": "./dist/index.js"
+    },
     "scripts": {
         "start": "tsup --watch --format esm,cjs,iife --legacy-output",
         "build": "tsup --format esm,cjs,iife --minify --legacy-output",
