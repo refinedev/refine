@@ -39,7 +39,7 @@ const App: React.FC = () => {
                     catchAll={<ErrorComponent />}
                     resources={[
                         {
-                            name: "posts",
+                            name: "samples",
                             list: MuiListInferencer,
                             edit: MuiEditInferencer,
                             show: MuiShowInferencer,
@@ -52,16 +52,10 @@ const App: React.FC = () => {
                             edit: MuiEditInferencer,
                             show: MuiShowInferencer,
                             create: MuiCreateInferencer,
+                            canDelete: true,
                         },
                         {
                             name: "users",
-                            list: MuiListInferencer,
-                            edit: MuiEditInferencer,
-                            show: MuiShowInferencer,
-                            create: MuiCreateInferencer,
-                        },
-                        {
-                            name: "inferences",
                             list: MuiListInferencer,
                             edit: MuiEditInferencer,
                             show: MuiShowInferencer,
@@ -70,9 +64,6 @@ const App: React.FC = () => {
                         },
                         {
                             name: "tags",
-                        },
-                        {
-                            name: "languages",
                         },
                     ]}
                 />

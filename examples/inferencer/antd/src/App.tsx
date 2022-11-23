@@ -36,7 +36,7 @@ const App: React.FC = () => {
             dataProvider={dataProvider(API_URL)}
             resources={[
                 {
-                    name: "posts",
+                    name: "samples",
                     list: AntdListInferencer,
                     edit: AntdEditInferencer,
                     show: AntdShowInferencer,
@@ -49,6 +49,7 @@ const App: React.FC = () => {
                     edit: AntdEditInferencer,
                     show: AntdShowInferencer,
                     create: AntdCreateInferencer,
+                    canDelete: true,
                 },
                 {
                     name: "users",
@@ -56,19 +57,10 @@ const App: React.FC = () => {
                     edit: AntdEditInferencer,
                     show: AntdShowInferencer,
                     create: AntdCreateInferencer,
-                },
-                {
-                    name: "inferences",
-                    list: AntdListInferencer,
-                    edit: AntdEditInferencer,
-                    show: AntdShowInferencer,
-                    create: AntdCreateInferencer,
+                    canDelete: true,
                 },
                 {
                     name: "tags",
-                },
-                {
-                    name: "languages",
                 },
             ]}
             notificationProvider={notificationProvider}

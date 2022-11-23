@@ -35,7 +35,7 @@ const App: React.FC = () => {
                     Layout={Layout}
                     resources={[
                         {
-                            name: "posts",
+                            name: "samples",
                             list: MantineListInferencer,
                             edit: MantineEditInferencer,
                             show: MantineShowInferencer,
@@ -48,6 +48,7 @@ const App: React.FC = () => {
                             edit: MantineEditInferencer,
                             show: MantineShowInferencer,
                             create: MantineCreateInferencer,
+                            canDelete: true,
                         },
                         {
                             name: "users",
@@ -55,19 +56,10 @@ const App: React.FC = () => {
                             edit: MantineEditInferencer,
                             show: MantineShowInferencer,
                             create: MantineCreateInferencer,
-                        },
-                        {
-                            name: "inferences",
-                            list: MantineListInferencer,
-                            edit: MantineEditInferencer,
-                            show: MantineShowInferencer,
-                            create: MantineCreateInferencer,
+                            canDelete: true,
                         },
                         {
                             name: "tags",
-                        },
-                        {
-                            name: "languages",
                         },
                     ]}
                 />

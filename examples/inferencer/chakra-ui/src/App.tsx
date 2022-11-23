@@ -29,7 +29,7 @@ const App: React.FC = () => {
                 catchAll={<ErrorComponent />}
                 resources={[
                     {
-                        name: "posts",
+                        name: "samples",
                         list: ChakraUIListInferencer,
                         edit: ChakraUIEditInferencer,
                         show: ChakraUIShowInferencer,
@@ -42,6 +42,7 @@ const App: React.FC = () => {
                         edit: ChakraUIEditInferencer,
                         show: ChakraUIShowInferencer,
                         create: ChakraUICreateInferencer,
+                        canDelete: true,
                     },
                     {
                         name: "users",
@@ -49,19 +50,10 @@ const App: React.FC = () => {
                         edit: ChakraUIEditInferencer,
                         show: ChakraUIShowInferencer,
                         create: ChakraUICreateInferencer,
-                    },
-                    {
-                        name: "inferences",
-                        list: ChakraUIListInferencer,
-                        edit: ChakraUIEditInferencer,
-                        show: ChakraUIShowInferencer,
-                        create: ChakraUICreateInferencer,
+                        canDelete: true,
                     },
                     {
                         name: "tags",
-                    },
-                    {
-                        name: "languages",
                     },
                 ]}
             />
