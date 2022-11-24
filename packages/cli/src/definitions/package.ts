@@ -10,7 +10,7 @@ export type NpmOutdatedResponse = Record<
         current: string;
         wanted: string;
         latest: string;
-        dependet: string;
+        dependet?: string;
     }
 >;
 

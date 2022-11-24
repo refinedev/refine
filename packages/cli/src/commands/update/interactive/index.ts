@@ -27,6 +27,11 @@ export const promptInteractiveRefineUpdate = async (
     packages: RefinePackageInstalledVersionData[],
 ) => {
     const uiGroup = createUIGroup(packages);
+    if (!uiGroup) {
+        console.log("All `refine` packages are up to date. 🎉");
+        return;
+    }
+
     const inquirerUI = createInquirerUI(uiGroup);
 
     const answers = await inquirer.prompt<{
@@ -64,7 +69,11 @@ export const validatePrompt = (input: string[]) => {
 
 export const createUIGroup = (
     packages: RefinePackageInstalledVersionData[],
-): UIGroup => {
+): UIGroup | null => {
+    if (packages.length === 0) {
+        return null;
+    }
+
     const packagesCategorized: UIGroup = {
         patch: [],
         minor: [],

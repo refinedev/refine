@@ -3,11 +3,12 @@ import { getProjectType } from "@utils/project";
 import { projectScripts } from "../projectScripts";
 import { runScript } from "../runScript";
 import { updateNotifier } from "src/update-notifier";
+import { getRunnerDescription } from "../utils";
 
 const dev = (program: Command) => {
     return program
         .command("dev")
-        .description("Starts the `refine` development server.")
+        .description(getRunnerDescription("dev"))
         .allowUnknownOption(true)
         .argument("[args...]")
         .action(action);
