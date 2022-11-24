@@ -1,17 +1,25 @@
 #!/usr/bin/env node
 import { Command } from "commander";
-import { readFileSync } from "fs-extra";
 
-import checkUpdates from "./commands/check-updates";
-import createResource from "./commands/create-resource";
-import update from "./commands/update";
-import { dev, build, start, run } from "./commands/runner";
+import checkUpdates from "@commands/check-updates";
+import createResource from "@commands/create-resource";
+import update from "@commands/update";
+import { dev, build, start, run } from "@commands/runner";
 import "@utils/env";
+import { getPackageJson } from "@utils/package";
 
 const bootstrap = () => {
-    const packageJson = JSON.parse(
-        readFileSync(`${__dirname}/../package.json`, "utf8"),
-    );
+    let packageJson;
+
+    // check package json if exists
+    try {
+        packageJson = getPackageJson();
+    } catch (e) {
+        console.error(
+            "The `package.json` file required to run could not be found.",
+        );
+        process.exit(1);
+    }
 
     const program = new Command();
 
