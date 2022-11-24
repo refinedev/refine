@@ -1,8 +1,7 @@
-import React, { ReactNode } from "react";
-import { RefineFieldTagProps } from "@pankod/refine-ui-types";
-import { Tag, TagProps } from "antd";
+import React from "react";
+import { Tag } from "antd";
 
-export type TagFieldProps = RefineFieldTagProps<ReactNode, TagProps>;
+import { TagFieldProps } from "../types";
 
 /**
  * This field lets you display a value in a tag. It uses Ant Design's {@link https://ant.design/components/tag/ `<Tag>`} component.

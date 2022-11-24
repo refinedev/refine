@@ -1,17 +1,7 @@
 import React from "react";
-import { RefineFieldImageProps } from "@pankod/refine-ui-types";
-import { Image, ImageProps } from "antd";
+import { Image } from "antd";
 
-export type ImageFieldProps = RefineFieldImageProps<
-    string | undefined,
-    ImageProps,
-    {
-        /**
-         * Image title value
-         */
-        imageTitle?: string;
-    }
->;
+import { ImageFieldProps } from "../types";
 
 /**
  * This field is used to display images and uses {@link https://ant.design/components/image/#header `<Image>`} from Ant Design.

@@ -1,11 +1,9 @@
 import React from "react";
-import { RefineFieldUrlProps } from "@pankod/refine-ui-types";
 import { Typography } from "antd";
-import { LinkProps } from "antd/lib/typography/Link";
 
 const { Link } = Typography;
 
-export type UrlFieldProps = RefineFieldUrlProps<string | undefined, LinkProps>;
+import { UrlFieldProps } from "../types";
 
 /**
  * This field lets you embed a link. It uses Ant Design's {@link https://ant.design/components/typography/ `<Typography.Link>`} component.
