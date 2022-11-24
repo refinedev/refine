@@ -1,4 +1,5 @@
 export type SwizzleFile = {
+    group: string;
     label: string;
     files: { src: string; dest: string }[];
 };
