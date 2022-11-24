@@ -37,8 +37,6 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
             ["useTable", "@pankod/refine-antd"],
             ["List", "@pankod/refine-antd"],
             ["Table", "@pankod/refine-antd"],
-            ["EditButton", "@pankod/refine-antd"],
-            ["ShowButton", "@pankod/refine-antd"],
             ["Space", "@pankod/refine-antd"],
         ];
 
@@ -433,26 +431,64 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
             return undefined;
         };
 
-        const actionButtons = jsx`
+        const { canEdit, canShow, canDelete } = resource ?? {};
+
+        if (canEdit) {
+            imports.push(["EditButton", "@pankod/refine-antd"]);
+        }
+        if (canShow) {
+            imports.push(["ShowButton", "@pankod/refine-antd"]);
+        }
+        if (canDelete) {
+            imports.push(["DeleteButton", "@pankod/refine-antd"]);
+        }
+
+        const actionButtons =
+            canEdit || canShow || canDelete
+                ? jsx`
                 <Table.Column
                     title="Actions"
                     dataIndex="actions"
                     render={(_, record: BaseRecord) => (
                         <Space>
+                        ${
+                            canEdit
+                                ? jsx`
                             <EditButton
                                 hideText
                                 size="small"
                                 recordItemId={record.id}
                             />
+                            `
+                                : ""
+                        }
+                        ${
+                            canShow
+                                ? jsx`
                             <ShowButton
                                 hideText
                                 size="small"
                                 recordItemId={record.id}
                             />
+                            `
+                                : ""
+                        }
+                        ${
+                            canDelete
+                                ? jsx`
+                            <DeleteButton
+                                hideText
+                                size="small"
+                                recordItemId={record.id}
+                            />
+                            `
+                                : ""
+                        }
                         </Space>
                     )}
                 />
-            `;
+            `
+                : "";
 
         const renderedFields: Array<string | undefined> = fields.map(
             (field) => {
