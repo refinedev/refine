@@ -6,19 +6,11 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-import {
-    RefineCreateButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
-import { Button, ButtonProps, SvgIconProps } from "@mui/material";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { Button } from "@mui/material";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 
-export type CreateButtonProps = RefineCreateButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: SvgIconProps;
-    }
->;
+import { CreateButtonProps } from "../types";
 
 /**
  * <CreateButton> uses Material UI {@link https://mui.com/components/buttons/ `<Button> component`}.

@@ -1,19 +1,10 @@
 import React from "react";
 import { useTranslate } from "@pankod/refine-core";
-import {
-    RefineSaveButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
-import { LoadingButton, LoadingButtonProps } from "@mui/lab";
-import { SvgIconProps } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
 
-export type SaveButtonProps = RefineSaveButtonProps<
-    LoadingButtonProps,
-    {
-        svgIconProps?: SvgIconProps;
-    }
->;
+import { SaveButtonProps } from "../types";
 
 /**
  * `<SaveButton>` uses Material UI {@link https://mui.com/material-ui/api/loading-button/#main-content `<LoadingButton>`} component.

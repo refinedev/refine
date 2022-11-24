@@ -6,30 +6,12 @@ import {
     useCan,
     useResource,
 } from "@pankod/refine-core";
-import {
-    RefineDeleteButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
-import {
-    Button,
-    ButtonProps,
-    Dialog,
-    DialogActions,
-    DialogTitle,
-    SvgIconProps,
-} from "@mui/material";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { LoadingButton } from "@mui/lab";
 
-export type DeleteButtonProps = RefineDeleteButtonProps<
-    ButtonProps,
-    {
-        /**
-         * SVG icon props for the delete button
-         */
-        svgIconProps?: SvgIconProps;
-    }
->;
+import { DeleteButtonProps } from "../types";
 
 /**
  * `<DeleteButton>` uses Material UI {@link https://mui.com/material-ui/api/loading-button/#main-content `<LoadingButton>`} and {@link https://mui.com/material-ui/react-dialog/#main-content `<Dialog>`} components.

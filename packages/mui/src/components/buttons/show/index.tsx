@@ -6,19 +6,11 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-import {
-    RefineButtonTestIds,
-    RefineShowButtonProps,
-} from "@pankod/refine-ui-types";
-import { Button, ButtonProps, SvgIconProps } from "@mui/material";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { Button } from "@mui/material";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 
-export type ShowButtonProps = RefineShowButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: SvgIconProps;
-    }
->;
+import { ShowButtonProps } from "../types";
 
 /**
  * `<ShowButton>` uses uses Material UI {@link https://mui.com/components/buttons/ `<Button>`} component.
