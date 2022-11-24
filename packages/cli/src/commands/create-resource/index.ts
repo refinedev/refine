@@ -9,6 +9,7 @@ import {
 import temp from "temp";
 import { plural } from "pluralize";
 import execa from "execa";
+import inquirer from "inquirer";
 
 import { getProjectType, getUIFramework } from "@utils/project";
 import { compileDir } from "@utils/compile";
@@ -21,7 +22,8 @@ const load = (program: Command) => {
     const { path } = getResourcePath(projectType);
 
     return program
-        .command("create-resource <name>")
+        .command("create-resource")
+        .allowExcessArguments(true)
         .description("Create a new resource files")
         .option(
             "-a, --actions [actions]",
@@ -36,93 +38,134 @@ const load = (program: Command) => {
         .action(action);
 };
 
-const action = async (resourceName: string, options: any) => {
-    const customActions = options.actions
-        ? options.actions.split(",")
-        : undefined;
+const action = async (
+    params: { actions: string; path: string },
+    options: Command,
+) => {
+    let { args } = options;
+    let actions = params.actions;
 
-    // uppercase first letter
-    const resource = uppercaseFirstChar(resourceName);
+    // check actions
 
-    // get the project type
-    const projectType = getProjectType();
-    const uiFramework = getUIFramework();
+    if (!args.length) {
+        // TODO: Show inquirer
+        const { name, selectedActions } = await inquirer.prompt<{
+            name: string;
+            selectedActions: string[];
+        }>([
+            {
+                type: "input",
+                name: "name",
+                message: "Resource Name",
+                validate: (value) => {
+                    if (!value) {
+                        return "Resource Name is required";
+                    }
 
-    const sourceDir = `${__dirname}/../templates/resource/${projectType}`;
+                    return true;
+                },
+            },
+            {
+                type: "checkbox",
+                name: "selectedActions",
+                message: "Select Actions",
+                choices: defaultActions,
+                default: params.actions.split(","),
+            },
+        ]);
 
-    // create temp dir
-    const tempDir = generateTempDir();
-
-    // copy template files
-    copySync(sourceDir, tempDir);
-
-    const compileParams = {
-        resourceName,
-        resource,
-        actions: customActions || defaultActions,
-        projectType,
-        uiFramework,
-    };
-
-    // compile dir
-    compileDir(tempDir, compileParams);
-
-    // delete ignored actions
-    if (customActions) {
-        defaultActions.forEach((action) => {
-            if (!customActions.includes(action)) {
-                unlinkSync(`${tempDir}/${action}.tsx`);
-            }
-        });
+        args = [name];
+        actions = selectedActions.join(",");
     }
 
-    const { alias } = getResourcePath(projectType);
+    args.forEach((resourceName) => {
+        const customActions = actions ? actions.split(",") : undefined;
 
-    // create desctination dir
-    mkdirSync(options.path, { recursive: true });
+        // uppercase first letter
+        const resource = uppercaseFirstChar(resourceName);
 
-    // copy to destination
-    const resourceFolderName = plural(resourceName).toLowerCase();
-    const destinationResourcePath = `${options.path}/${resourceFolderName}`;
+        // get the project type
+        const projectType = getProjectType();
+        const uiFramework = getUIFramework();
 
-    let moveSyncOptions = {};
+        const sourceDir = `${__dirname}/../templates/resource/${projectType}`;
 
-    // empty dir override
-    if (pathExistsSync(destinationResourcePath)) {
-        moveSyncOptions = { overwrite: true };
-    }
-    moveSync(tempDir, destinationResourcePath, moveSyncOptions);
+        // create temp dir
+        const tempDir = generateTempDir();
 
-    // clear temp dir
-    temp.cleanupSync();
+        // copy template files
+        copySync(sourceDir, tempDir);
 
-    const jscodeshiftExecutable = require.resolve(".bin/jscodeshift");
-    const { stderr, stdout } = execa.sync(jscodeshiftExecutable, [
-        "./",
-        "--extensions=ts,tsx,js,jsx",
-        "--parser=tsx",
-        `--transform=${__dirname}/../src/transformers/resource.ts`,
-        `--ignore-pattern=**/.cache/**`,
-        `--ignore-pattern=**/node_modules/**`,
-        `--ignore-pattern=**/build/**`,
-        `--ignore-pattern=**/.next/**`,
-        // pass custom params to transformer file
-        `--__actions=${compileParams.actions}`,
-        `--__pathAlias=${alias}`,
-        `--__resourceFolderName=${resourceFolderName}`,
-        `--__resource=${resource}`,
-        `--__resourceName=${resourceName}`,
-    ]);
+        const compileParams = {
+            resourceName,
+            resource,
+            actions: customActions || defaultActions,
+            projectType,
+            uiFramework,
+        };
 
-    // console.log(stdout);
+        // compile dir
+        compileDir(tempDir, compileParams);
 
-    if (stderr) {
-        console.log(stderr);
-    }
+        // delete ignored actions
+        if (customActions) {
+            defaultActions.forEach((action) => {
+                if (!customActions.includes(action)) {
+                    unlinkSync(`${tempDir}/${action}.tsx`);
+                }
+            });
+        }
 
-    console.log(
-        `Resource (${destinationResourcePath}) generated successfully! 🎉`,
-    );
+        const { alias } = getResourcePath(projectType);
+
+        // create desctination dir
+        mkdirSync(params.path, { recursive: true });
+
+        // copy to destination
+        const resourceFolderName = plural(resourceName).toLowerCase();
+        const destinationResourcePath = `${params.path}/${resourceFolderName}`;
+
+        let moveSyncOptions = {};
+
+        // empty dir override
+        if (pathExistsSync(destinationResourcePath)) {
+            moveSyncOptions = { overwrite: true };
+        }
+        moveSync(tempDir, destinationResourcePath, moveSyncOptions);
+
+        // clear temp dir
+        temp.cleanupSync();
+
+        const jscodeshiftExecutable = require.resolve(".bin/jscodeshift");
+        const { stderr, stdout } = execa.sync(jscodeshiftExecutable, [
+            "./",
+            "--extensions=ts,tsx,js,jsx",
+            "--parser=tsx",
+            `--transform=${__dirname}/../src/transformers/resource.ts`,
+            `--ignore-pattern=**/.cache/**`,
+            `--ignore-pattern=**/node_modules/**`,
+            `--ignore-pattern=**/build/**`,
+            `--ignore-pattern=**/.next/**`,
+            // pass custom params to transformer file
+            `--__actions=${compileParams.actions}`,
+            `--__pathAlias=${alias}`,
+            `--__resourceFolderName=${resourceFolderName}`,
+            `--__resource=${resource}`,
+            `--__resourceName=${resourceName}`,
+        ]);
+
+        // console.log(stdout);
+
+        if (stderr) {
+            console.log(stderr);
+        }
+
+        console.log(
+            `Resource (${destinationResourcePath}) generated successfully! 🎉`,
+        );
+    });
+
+    return;
 };
 
 const generateTempDir = (): string => {
