@@ -13,6 +13,7 @@ import {
     RefineButtonTestIds,
 } from "@pankod/refine-ui-types";
 
+// swizzle-remove-start
 export type ShowButtonProps = RefineShowButtonProps<
     ButtonProps,
     {
@@ -22,6 +23,7 @@ export type ShowButtonProps = RefineShowButtonProps<
         resourceName?: string;
     }
 >;
+// swizzle-remove-end
 
 /**
  * `<ShowButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} component.
