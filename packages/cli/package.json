@@ -16,6 +16,7 @@
         "prepare": "npm run build"
     },
     "devDependencies": {
+        "@types/inquirer-autocomplete-prompt": "^2.0.0",
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@types/fs-extra": "^9.0.13",
         "@types/inquirer": "^8.2.5",
@@ -28,6 +29,7 @@
         "typescript": "^4.7.4"
     },
     "dependencies": {
+        "inquirer-autocomplete-prompt": "^2.0.0",
         "globby": "^11.1.0",
         "tslib": "^2.3.1",
         "handlebars": "^4.7.7",
