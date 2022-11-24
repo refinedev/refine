@@ -130,11 +130,11 @@ export default function FooterLayout({
     );
 
     return (
-        <footer className="px-4 pb-24 refine-footer md:px-6 pt-7 lg:pt-10 lg:pb-24">
-            <div className="flex flex-col max-w-6xl gap-5 mx-auto">
+        <footer className="refine-footer px-4 pb-24 pt-7 md:px-6 lg:pt-10 lg:pb-24">
+            <div className="mx-auto flex max-w-6xl flex-col gap-5">
                 <div className="flex flex-col items-center gap-6 lg:flex-row lg:gap-20">
                     {logo && (
-                        <div className="flex-shrink-0 max-w-full lg:max-w-[280px] w-full">
+                        <div className="w-full max-w-full flex-shrink-0 lg:max-w-[280px]">
                             {logo}
                         </div>
                     )}
@@ -152,18 +152,32 @@ export default function FooterLayout({
                             height="54"
                         />
                     </a>
+
+                    <a
+                        href="https://github.com/sponsors/refinedev"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        <iframe
+                            src="https://github.com/sponsors/refinedev/button"
+                            title="Sponsor refinedev"
+                            height="35"
+                            width="116"
+                            style={{ border: 0 }}
+                        ></iframe>
+                    </a>
                 </div>
                 <div className="flex flex-col gap-6 lg:flex-row lg:gap-20">
                     <div
-                        className="flex-shrink-0 max-w-full lg:max-w-[280px] w-full font-montserrat text-xs text-[#9696B4] tracking-wide"
+                        className="font-montserrat w-full max-w-full flex-shrink-0 text-xs tracking-wide text-[#9696B4] lg:max-w-[280px]"
                         dangerouslySetInnerHTML={{ __html: footerDescription }}
                     />
                     <div className="flex-1">{links}</div>
                 </div>
-                <div className="h-2.5 border-0 border-b-2 w-full border-solid border-b-[#9696B4]" />
-                <div className="flex flex-col-reverse gap-6 lg:gap-0 lg:flex-row">
+                <div className="h-2.5 w-full border-0 border-b-2 border-solid border-b-[#9696B4]" />
+                <div className="flex flex-col-reverse gap-6 lg:flex-row lg:gap-0">
                     <div className="flex-1">
-                        <div className="flex items-center text-[#9696B4] text-[11px] sm:text-xs leading-[12px] font-montserrat justify-center lg:justify-start">
+                        <div className="font-montserrat flex items-center justify-center text-[11px] leading-[12px] text-[#9696B4] sm:text-xs lg:justify-start">
                             © {new Date().getFullYear()}, refine from Delaware
                             to wherever you&apos;re with{" "}
                             <LoveIcon
@@ -175,8 +189,8 @@ export default function FooterLayout({
                             />
                         </div>
                     </div>
-                    <div className="flex flex-col flex-1 gap-6 sm:flex-row sm:gap-0">
-                        <div className="flex-[2] flex justify-center sm:justify-start lg:justify-end items-center gap-4 text-[#9696B4] text-xs h-[18px] font-montserrat">
+                    <div className="flex flex-1 flex-col gap-6 sm:flex-row sm:gap-0">
+                        <div className="font-montserrat flex h-[18px] flex-[2] items-center justify-center gap-4 text-xs text-[#9696B4] sm:justify-start lg:justify-end">
                             {legalLinks?.items?.map?.((item, i) => (
                                 <a
                                     key={i}
@@ -187,30 +201,30 @@ export default function FooterLayout({
                                 </a>
                             ))}
                         </div>
-                        <div className="flex-[3] flex justify-center sm:justify-end items-center gap-3 text-[#9696B4] text-xs h-[18px] font-montserrat">
+                        <div className="font-montserrat flex h-[18px] flex-[3] items-center justify-center gap-3 text-xs text-[#9696B4] sm:justify-end">
                             <span>Join us on</span>
                             {socialLinks?.items?.map?.((socialLink, i) => (
                                 <a
                                     key={i}
-                                    className="w-[22px] h-[22px]"
+                                    className="h-[22px] w-[22px]"
                                     href={socialLink.href}
                                     target="_blank"
                                     rel="noreferrer"
                                 >
                                     {socialLink.label === "github" && (
-                                        <GithubIcon className="w-[22px] h-[22px] hover:fill-[#171515] transition-colors ease-in-out duration-500" />
+                                        <GithubIcon className="h-[22px] w-[22px] transition-colors duration-500 ease-in-out hover:fill-[#171515]" />
                                     )}
                                     {socialLink.label === "twitter" && (
-                                        <TwitterIcon className="w-[22px] h-[22px] hover:fill-[#1DA1F2] transition-colors ease-in-out duration-500" />
+                                        <TwitterIcon className="h-[22px] w-[22px] transition-colors duration-500 ease-in-out hover:fill-[#1DA1F2]" />
                                     )}
                                     {socialLink.label === "linkedin" && (
-                                        <LinkedinIcon className="w-[22px] h-[22px] hover:fill-[#0077B5] transition-colors ease-in-out duration-500" />
+                                        <LinkedinIcon className="h-[22px] w-[22px] transition-colors duration-500 ease-in-out hover:fill-[#0077B5]" />
                                     )}
                                     {socialLink.label === "discord" && (
-                                        <DiscordIcon className="w-[22px] h-[22px] hover:fill-[#5865F2] transition-colors ease-in-out duration-500" />
+                                        <DiscordIcon className="h-[22px] w-[22px] transition-colors duration-500 ease-in-out hover:fill-[#5865F2]" />
                                     )}
                                     {socialLink.label === "reddit" && (
-                                        <RedditIcon className="w-[22px] h-[22px] hover:fill-[#FF4300] transition-colors ease-in-out duration-500" />
+                                        <RedditIcon className="h-[22px] w-[22px] transition-colors duration-500 ease-in-out hover:fill-[#FF4300]" />
                                     )}
                                 </a>
                             ))}
