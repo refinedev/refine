@@ -5,8 +5,7 @@ export type SwizzleFile = {
 
 export type SwizzleConfig = {
     items: Array<SwizzleFile>;
-    transform?: any;
-    move?: any;
+    transform?: (content: string, src: string, dest: string) => string;
 };
 
 export type RefineConfig = {
