@@ -1,3 +1,5 @@
+const { getImports, getNameChangeInImport } = require("@pankod/refine-cli");
+
 /** @type {import('@pankod/refine-cli').RefineConfig} */
 module.exports = {
     swizzle: {
@@ -21,7 +23,9 @@ module.exports = {
                 ],
             },
         ],
-        transform: undefined,
-        move: undefined,
+        transform: (content, src, dest) => {
+            console.log(getImports(content));
+            return content;
+        },
     },
 };
