@@ -22,7 +22,7 @@ const load = (program: Command) => {
 
     return program
         .command("create-resource <name>")
-        .description("Generate a new resource")
+        .description("Create a new resource files")
         .option(
             "-a, --actions [actions]",
             "Only generate the specified actions. (ex: list,create,edit,show)",
