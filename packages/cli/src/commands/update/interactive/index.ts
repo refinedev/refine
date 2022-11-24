@@ -70,6 +70,10 @@ export const validatePrompt = (input: string[]) => {
 export const createUIGroup = (
     packages: RefinePackageInstalledVersionData[],
 ): UIGroup | null => {
+    if (packages.length === 0) {
+        return null;
+    }
+
     const packagesCategorized: UIGroup = {
         patch: [],
         minor: [],
@@ -110,11 +114,7 @@ export const createUIGroup = (
         }
     });
 
-    const allHasPackages = Object.values(packagesCategorized).every(
-        (group) => group.length > 0,
-    );
-
-    return allHasPackages ? packagesCategorized : null;
+    return packagesCategorized;
 };
 
 const createInquirerUI = (uiGroup: UIGroup) => {
