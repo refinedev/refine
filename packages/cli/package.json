@@ -29,6 +29,7 @@
         "typescript": "^4.7.4"
     },
     "dependencies": {
+        "prettier": "^2.7.1",
         "inquirer-autocomplete-prompt": "^2.0.0",
         "globby": "^11.1.0",
         "tslib": "^2.3.1",

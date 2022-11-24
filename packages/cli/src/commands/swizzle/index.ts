@@ -1,13 +1,18 @@
 import path from "path";
-import inquirer from "inquirer";
-import inquirerAutoCompletePrompt from "inquirer-autocomplete-prompt";
-import { Command, OptionValues } from "commander";
-import { isPackageHaveRefineConfig } from "../../utils/package/index";
-import { getInstalledRefinePackagesFromNodeModules } from "@utils/package";
-import { ensureFile, pathExists, readFile, writeFile } from "fs-extra";
-import { getRefineConfig } from "@utils/swizzle";
-import { SwizzleFile } from "@definitions";
 import chalk from "chalk";
+import inquirer from "inquirer";
+import { Command, OptionValues } from "commander";
+import inquirerAutoCompletePrompt from "inquirer-autocomplete-prompt";
+import { ensureFile, pathExists, readFile, writeFile } from "fs-extra";
+
+import { getRefineConfig } from "@utils/swizzle";
+import { prettierFormat } from "@utils/swizzle/prettierFormat";
+import {
+    getInstalledRefinePackagesFromNodeModules,
+    isPackageHaveRefineConfig,
+} from "@utils/package";
+
+import { SwizzleFile } from "@definitions";
 
 const swizzle = (program: Command) => {
     return (
@@ -155,7 +160,7 @@ const action = async (_options: OptionValues) => {
                 const transformedContent =
                     transform?.(srcContent, srcPath, destPath) ?? srcContent;
 
-                await writeFile(destPath, transformedContent);
+                await writeFile(destPath, prettierFormat(transformedContent));
 
                 return destPath;
             }
