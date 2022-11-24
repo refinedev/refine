@@ -28,6 +28,10 @@ test("Validate interactive prompt", () => {
 test("Categorize UI Group", () => {
     const testCases = [
         {
+            input: [],
+            output: null,
+        },
+        {
             input: [
                 {
                     name: "@pankod/refine-airtable",
