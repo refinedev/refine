@@ -160,7 +160,9 @@ const action = async (_options: OptionValues) => {
                 const transformedContent =
                     transform?.(srcContent, srcPath, destPath) ?? srcContent;
 
-                await writeFile(destPath, prettierFormat(transformedContent));
+                const formatted = await prettierFormat(transformedContent);
+
+                await writeFile(destPath, formatted);
 
                 return destPath;
             }
