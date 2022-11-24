@@ -118,6 +118,106 @@ module.exports = {
                     },
                 ],
             },
+            {
+                group: "Fields",
+                label: "BooleanField",
+                files: [
+                    {
+                        src: "./src/components/fields/boolean/index.tsx",
+                        dest: "./src/components/fields/boolean.tsx",
+                    },
+                ],
+            },
+            {
+                group: "Fields",
+                label: "DateField",
+                files: [
+                    {
+                        src: "./src/components/fields/date/index.tsx",
+                        dest: "./src/components/fields/date.tsx",
+                    },
+                ],
+            },
+            {
+                group: "Fields",
+                label: "EmailField",
+                files: [
+                    {
+                        src: "./src/components/fields/email/index.tsx",
+                        dest: "./src/components/fields/email.tsx",
+                    },
+                ],
+            },
+            {
+                group: "Fields",
+                label: "FileField",
+                files: [
+                    {
+                        src: "./src/components/fields/file/index.tsx",
+                        dest: "./src/components/fields/file.tsx",
+                    },
+                ],
+            },
+            {
+                group: "Fields",
+                label: "ImageField",
+                files: [
+                    {
+                        src: "./src/components/fields/image/index.tsx",
+                        dest: "./src/components/fields/image.tsx",
+                    },
+                ],
+            },
+            {
+                group: "Fields",
+                label: "MarkdownField",
+                files: [
+                    {
+                        src: "./src/components/fields/markdown/index.tsx",
+                        dest: "./src/components/fields/markdown.tsx",
+                    },
+                ],
+            },
+            {
+                group: "Fields",
+                label: "NumberField",
+                files: [
+                    {
+                        src: "./src/components/fields/number/index.tsx",
+                        dest: "./src/components/fields/number.tsx",
+                    },
+                ],
+            },
+            {
+                group: "Fields",
+                label: "TagField",
+                files: [
+                    {
+                        src: "./src/components/fields/tag/index.tsx",
+                        dest: "./src/components/fields/tag.tsx",
+                    },
+                ],
+            },
+            {
+                group: "Fields",
+                label: "TextField",
+                files: [
+                    {
+                        src: "./src/components/fields/text/index.tsx",
+                        dest: "./src/components/fields/text.tsx",
+                    },
+                ],
+            },
+            {
+                group: "Fields",
+                label: "UrlField",
+                files: [
+                    {
+                        src: "./src/components/fields/url/index.tsx",
+                        dest: "./src/components/fields/url.tsx",
+                    },
+                ],
+            },
         ],
         transform: (content) => {
             let newContent = content;
