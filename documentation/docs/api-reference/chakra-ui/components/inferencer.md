@@ -144,11 +144,13 @@ const App: React.FC = () => {
                     },
                     {
                         name: "categories",
-                        list: AntdListInferencer,
+                        list: ChakraUIListInferencer,
+                        show: ChakraUIShowInferencer,
                     },
                     {
                         name: "tags",
-                        list: AntdListInferencer,
+                        list: ChakraUIListInferencer,
+                        show: ChakraUIShowInferencer,
                     },
                 ]}
             />
@@ -205,11 +207,13 @@ const App: React.FC = () => {
                     },
                     {
                         name: "categories",
-                        list: AntdListInferencer,
+                        list: ChakraUIListInferencer,
+                        show: ChakraUIShowInferencer,
                     },
                     {
                         name: "tags",
-                        list: AntdListInferencer,
+                        list: ChakraUIListInferencer,
+                        show: ChakraUIShowInferencer,
                     },
                 ]}
             />
@@ -266,11 +270,13 @@ const App: React.FC = () => {
                     },
                     {
                         name: "categories",
-                        list: AntdListInferencer,
+                        list: ChakraUIListInferencer,
+                        show: ChakraUIShowInferencer,     
                     },
                     {
                         name: "tags",
-                        list: AntdListInferencer,
+                        list: ChakraUIListInferencer,
+                        show: ChakraUIShowInferencer,
                     },
                 ]}
             />
@@ -327,11 +333,13 @@ const App: React.FC = () => {
                     },
                     {
                         name: "categories",
-                        list: AntdListInferencer,
+                        list: ChakraUIListInferencer,
+                        show: ChakraUIShowInferencer, 
                     },
                     {
                         name: "tags",
-                        list: AntdListInferencer,
+                        list: ChakraUIListInferencer,
+                        show: ChakraUIShowInferencer, 
                     },
                 ]}
             />

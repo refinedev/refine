@@ -156,11 +156,13 @@ const App: React.FC = () => {
                     },
                     {
                         name: "categories",
-                        list: AntdListInferencer,
+                        list: MantineListInferencer,
+                        show: MantineShowInferencer,
                     },
                     {
                         name: "tags",
-                        list: AntdListInferencer,
+                        list: MantineListInferencer,
+                        show: MantineShowInferencer,
                     },
                 ]}
             />
@@ -223,11 +225,13 @@ const App: React.FC = () => {
                     },
                     {
                         name: "categories",
-                        list: AntdListInferencer,
+                        list: MantineListInferencer,
+                        show: MantineShowInferencer,
                     },
                     {
                         name: "tags",
-                        list: AntdListInferencer,
+                        list: MantineListInferencer,
+                        show: MantineShowInferencer,
                     },
                 ]}
             />
@@ -290,11 +294,13 @@ const App: React.FC = () => {
                     },
                     {
                         name: "categories",
-                        list: AntdListInferencer,
+                        list: MantineListInferencer,
+                        show: MantineShowInferencer,
                     },
                     {
                         name: "tags",
-                        list: AntdListInferencer,
+                        list: MantineListInferencer,
+                        show: MantineShowInferencer,
                     },
                 ]}
             />
@@ -357,11 +363,13 @@ const App: React.FC = () => {
                     },
                     {
                         name: "categories",
-                        list: AntdListInferencer,
+                        list: MantineListInferencer,
+                        show: MantineShowInferencer,
                     },
                     {
                         name: "tags",
-                        list: AntdListInferencer,
+                        list: MantineListInferencer,
+                        show: MantineShowInferencer,
                     },
                 ]}
             />

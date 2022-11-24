@@ -159,11 +159,13 @@ const App: React.FC = () => {
                     },
                     {
                         name: "categories",
-                        list: AntdListInferencer,
+                        list: MuiListInferencer,
+                        show: MuiShowInferencer,
                     },
                     {
                         name: "tags",
-                        list: AntdListInferencer,
+                        list: MuiListInferencer,
+                        show: MuiShowInferencer,
                     },
                 ]}
             />
@@ -228,11 +230,13 @@ const App: React.FC = () => {
                     },
                     {
                         name: "categories",
-                        list: AntdListInferencer,
+                        list: MuiListInferencer,
+                        show: MuiShowInferencer,
                     },
                     {
                         name: "tags",
-                        list: AntdListInferencer,
+                        list: MuiListInferencer,
+                        show: MuiShowInferencer,
                     },
                 ]}
             />
@@ -297,11 +301,13 @@ const App: React.FC = () => {
                     },
                     {
                         name: "categories",
-                        list: AntdListInferencer,
+                        list: MuiListInferencer,
+                        show: MuiShowInferencer,
                     },
                     {
                         name: "tags",
-                        list: AntdListInferencer,
+                        list: MuiListInferencer,
+                        show: MuiShowInferencer,
                     },
                 ]}
             />
@@ -366,11 +372,13 @@ const App: React.FC = () => {
                     },
                     {
                         name: "categories",
-                        list: AntdListInferencer,
+                        list: MuiListInferencer,
+                        show: MuiShowInferencer,
                     },
                     {
                         name: "tags",
-                        list: AntdListInferencer,
+                        list: MuiListInferencer,
+                        show: MuiShowInferencer,
                     },
                 ]}
             />
