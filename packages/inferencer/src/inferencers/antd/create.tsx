@@ -264,7 +264,7 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
                                 required: true,
                             },
                         ]}
-                        getValueProps={(value) => ({ value: dayjs(value) })}
+                        getValueProps={(value) => ({ value: value ? dayjs(value) : undefined })}
                     >
                         <DatePicker />
                     </Form.Item>
