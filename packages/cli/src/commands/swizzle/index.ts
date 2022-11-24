@@ -1,5 +1,6 @@
 import path from "path";
 import inquirer from "inquirer";
+import inquirerAutoCompletePrompt from "inquirer-autocomplete-prompt";
 import { Command, OptionValues } from "commander";
 import { isPackageHaveRefineConfig } from "../../utils/package/index";
 import { getInstalledRefinePackagesFromNodeModules } from "@utils/package";
@@ -19,7 +20,41 @@ const swizzle = (program: Command) => {
     );
 };
 
+const getAutocompleteSource =
+    (
+        rawList: Array<{
+            label: string;
+            group?: string;
+            value?: Record<string, unknown>;
+        }>,
+    ) =>
+    (_answers: {}, input = "") => {
+        const filtered = rawList.filter(
+            (el) =>
+                el.label.toLowerCase().includes(input.toLowerCase()) ||
+                el.group?.toLowerCase().includes(input.toLowerCase()),
+        );
+
+        return filtered.flatMap((component, index, arr) => {
+            const hasTitle =
+                component?.group && arr[index - 1]?.group !== component.group;
+            const withTitle = hasTitle
+                ? [new inquirer.Separator(`${chalk.bold(component.group)}`)]
+                : [];
+
+            return [
+                ...withTitle,
+                {
+                    name: ` ${component.label}`,
+                    value: component?.value ? component.value : component,
+                },
+            ];
+        });
+    };
+
 const action = async (_options: OptionValues) => {
+    inquirer.registerPrompt("autocomplete", inquirerAutoCompletePrompt);
+
     const installedPackages = await getInstalledRefinePackagesFromNodeModules();
 
     const packagesWithConfig: Array<{ name: string; path: string }> = [];
@@ -42,13 +77,16 @@ const action = async (_options: OptionValues) => {
         selectedPackage: { name: string; path: string };
     }>([
         {
-            type: "list",
+            type: "autocomplete",
             name: "selectedPackage",
             message: "Which package do you want to swizzle?",
-            choices: packagesWithConfig.map((pkg) => ({
-                name: pkg.name,
-                value: pkg,
-            })),
+            emptyText: "No packages found.",
+            source: getAutocompleteSource(
+                packagesWithConfig.map((pkg) => ({
+                    label: pkg.name,
+                    value: pkg,
+                })),
+            ),
         },
     ]);
 
@@ -67,13 +105,13 @@ const action = async (_options: OptionValues) => {
         selectedComponent: SwizzleFile;
     }>([
         {
-            type: "list",
+            type: "autocomplete",
             name: "selectedComponent",
             message: "Which component do you want to swizzle?",
-            choices: items.map((component) => ({
-                name: component.label,
-                value: component,
-            })),
+            emptyText: "No components found.",
+            source: getAutocompleteSource(
+                items.sort((a, b) => a.group.localeCompare(b.group)),
+            ),
         },
     ]);
 
