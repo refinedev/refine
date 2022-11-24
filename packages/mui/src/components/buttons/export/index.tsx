@@ -1,19 +1,10 @@
 import React from "react";
 import { useTranslate } from "@pankod/refine-core";
-import {
-    RefineExportButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 import ImportExportOutlinedIcon from "@mui/icons-material/ImportExportOutlined";
-import { LoadingButton, LoadingButtonProps } from "@mui/lab";
-import { SvgIconProps } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
 
-export type ExportButtonProps = RefineExportButtonProps<
-    LoadingButtonProps,
-    {
-        svgIconProps?: SvgIconProps;
-    }
->;
+import { ExportButtonProps } from "../types";
 
 /**
  * `<ExportButton>` uses Material UI {@link https://mui.com/material-ui/api/loading-button/#main-content `<LoadingButton>`} with a default export icon and a default text with "Export".

@@ -6,19 +6,11 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-import {
-    RefineEditButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
-import { Button, ButtonProps, SvgIconProps } from "@mui/material";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { Button } from "@mui/material";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
-export type EditButtonProps = RefineEditButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: SvgIconProps;
-    }
->;
+import { EditButtonProps } from "../types";
 
 /**
  * `<EditButton>` uses uses Material UI {@link https://mui.com/components/buttons/ `<Button>`} component.

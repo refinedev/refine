@@ -1,19 +1,10 @@
 import React from "react";
 import { useOne, useTranslate, useResource } from "@pankod/refine-core";
-import {
-    RefineButtonTestIds,
-    RefineRefreshButtonProps,
-} from "@pankod/refine-ui-types";
-import { ButtonProps, SvgIconProps } from "@mui/material";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 import RefreshOutlinedIcon from "@mui/icons-material/RefreshOutlined";
 import { LoadingButton } from "@mui/lab";
 
-export type RefreshButtonProps = RefineRefreshButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: SvgIconProps;
-    }
->;
+import { RefreshButtonProps } from "../types";
 
 /**
  * `<RefreshButton>` uses uses Material UI {@link https://mui.com/material-ui/api/loading-button/#main-content `<LoadingButton>`} component
