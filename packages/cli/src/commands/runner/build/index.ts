@@ -3,11 +3,12 @@ import { getProjectType } from "@utils/project";
 import { projectScripts } from "../projectScripts";
 import { runScript } from "../runScript";
 import { updateNotifier } from "src/update-notifier";
+import { getRunnerDescription } from "../utils";
 
 const build = (program: Command) => {
     return program
         .command("build")
-        .description("Create a production build of your `refine` app.")
+        .description(getRunnerDescription("build"))
         .allowUnknownOption(true)
         .argument("[args...]")
         .action(action);

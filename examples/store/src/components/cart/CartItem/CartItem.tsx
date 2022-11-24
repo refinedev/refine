@@ -163,6 +163,7 @@ export const CartItem: React.FC<CartItemProps> = ({ item }) => {
                 handleChange={handleChange}
                 increase={() => increaseQuantity(1)}
                 decrease={() => increaseQuantity(-1)}
+                max={item.variant.inventory_quantity}
             />
         </li>
     );

@@ -9,6 +9,7 @@ import {
     NpmOutdatedResponse,
     RefinePackageInstalledVersionData,
 } from "@definitions/package";
+import semverDiff from "semver-diff";
 
 const load = (program: Command) => {
     return program
@@ -38,7 +39,7 @@ export const isRefineUptoDate = async () => {
     return refinePackages;
 };
 
-const getOutdatedRefinePackages = async () => {
+export const getOutdatedRefinePackages = async () => {
     const packages = await getOutdatedPackageList();
     if (!packages) return [];
 
@@ -57,10 +58,18 @@ const getOutdatedRefinePackages = async () => {
         }
     });
 
-    return list;
+    // When user has installed `next` version, it will be ahead of the `latest` version. But `npm outdated` command still returns as an outdated package.
+    // So we need to filter out the if `current` version is ahead of `latest` version.
+    // ex: in the npm registry `next` version is 1.1.1 -> [current:1.1.1, wanted:1.1.1, latest:1.1.0]
+    const filteredList = list.filter((item) => {
+        const diff = semverDiff(item.current, item.latest);
+        return !!diff;
+    });
+
+    return filteredList;
 };
 
-const getOutdatedPackageList = async () => {
+export const getOutdatedPackageList = async () => {
     const pm = "npm";
 
     const { stdout, timedOut } = await execa(pm, pmCommands[pm].outdatedJson, {
