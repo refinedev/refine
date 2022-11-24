@@ -3,7 +3,7 @@ const packageRegex =
 
 const nameChangeRegex = /((?:\w|\s|_)*)( as )((?:\w|\s|_)*)( |,)?/g;
 
-type ImportMatch = {
+export type ImportMatch = {
     statement: string;
     importPath: string;
     defaultImport?: string;
@@ -11,7 +11,7 @@ type ImportMatch = {
     namespaceImport?: string;
 };
 
-type NameChangeMatch = {
+export type NameChangeMatch = {
     statement: string;
     fromName: string;
     toName: string;
