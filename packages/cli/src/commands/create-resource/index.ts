@@ -21,7 +21,7 @@ const load = (program: Command) => {
     const { path } = getResourcePath(projectType);
 
     return program
-        .command("generate:resource <name>")
+        .command("create-resource <name>")
         .description("Generate a new resource")
         .option(
             "-a, --actions [actions]",

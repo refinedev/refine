@@ -3,7 +3,7 @@ import { Command } from "commander";
 import { readFileSync } from "fs-extra";
 
 import checkUpdates from "./commands/check-updates";
-import resourceGenerate from "./commands/generate/resource";
+import createResource from "./commands/create-resource";
 import update from "./commands/update";
 import { dev, build, start, run } from "./commands/runner";
 import "@utils/env";
@@ -25,7 +25,7 @@ const bootstrap = () => {
         .helpOption("-h, --help", "Output usage information.");
 
     // load commands
-    resourceGenerate(program);
+    createResource(program);
     checkUpdates(program);
     update(program);
     dev(program);
