@@ -8,7 +8,7 @@ import {
 } from "@pankod/refine-core";
 import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 import { Button } from "@mui/material";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import { EditOutlined } from "@mui/icons-material";
 
 import { EditButtonProps } from "../types";
 
@@ -90,7 +90,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
                 disabled={data?.can === false}
                 startIcon={
                     !hideText && (
-                        <EditOutlinedIcon
+                        <EditOutlined
                             sx={{ selfAlign: "center" }}
                             {...svgIconProps}
                         />
@@ -102,7 +102,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
                 {...restProps}
             >
                 {hideText ? (
-                    <EditOutlinedIcon fontSize="small" {...svgIconProps} />
+                    <EditOutlined fontSize="small" {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.edit", "Edit")
                 )}

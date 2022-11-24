@@ -9,7 +9,7 @@ import {
 } from "@pankod/refine-core";
 import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 import { Button } from "@mui/material";
-import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
+import { ListOutlined } from "@mui/icons-material";
 
 import { ListButtonProps } from "../types";
 
@@ -89,14 +89,14 @@ export const ListButton: React.FC<ListButtonProps> = ({
         >
             <Button
                 disabled={data?.can === false}
-                startIcon={!hideText && <ListOutlinedIcon {...svgIconProps} />}
+                startIcon={!hideText && <ListOutlined {...svgIconProps} />}
                 title={disabledTitle()}
                 sx={{ minWidth: 0, ...sx }}
                 data-testid={RefineButtonTestIds.ListButton}
                 {...restProps}
             >
                 {hideText ? (
-                    <ListOutlinedIcon fontSize="small" {...svgIconProps} />
+                    <ListOutlined fontSize="small" {...svgIconProps} />
                 ) : (
                     children ??
                     translate(

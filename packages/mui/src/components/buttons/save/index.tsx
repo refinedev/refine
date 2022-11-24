@@ -1,8 +1,8 @@
 import React from "react";
 import { useTranslate } from "@pankod/refine-core";
 import { RefineButtonTestIds } from "@pankod/refine-ui-types";
-import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import { LoadingButton } from "@mui/lab";
+import { SaveOutlined } from "@mui/icons-material";
 
 import { SaveButtonProps } from "../types";
 
@@ -24,14 +24,14 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
 
     return (
         <LoadingButton
-            startIcon={!hideText && <SaveOutlinedIcon {...svgIconProps} />}
+            startIcon={!hideText && <SaveOutlined {...svgIconProps} />}
             sx={{ minWidth: 0, ...sx }}
             variant="contained"
             data-testid={RefineButtonTestIds.SaveButton}
             {...restProps}
         >
             {hideText ? (
-                <SaveOutlinedIcon fontSize="small" {...svgIconProps} />
+                <SaveOutlined fontSize="small" {...svgIconProps} />
             ) : (
                 children ?? translate("buttons.save", "Save")
             )}

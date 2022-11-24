@@ -8,8 +8,8 @@ import {
 } from "@pankod/refine-core";
 import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { LoadingButton } from "@mui/lab";
+import { DeleteOutline } from "@mui/icons-material";
 
 import { DeleteButtonProps } from "../types";
 
@@ -108,14 +108,14 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                 onClick={handleClickOpen}
                 disabled={data?.can === false}
                 loading={id === variables?.id && isLoading}
-                startIcon={!hideText && <DeleteOutlineIcon {...svgIconProps} />}
+                startIcon={!hideText && <DeleteOutline {...svgIconProps} />}
                 sx={{ minWidth: 0, ...sx }}
                 loadingPosition={hideText ? "center" : "start"}
                 data-testid={RefineButtonTestIds.DeleteButton}
                 {...restProps}
             >
                 {hideText ? (
-                    <DeleteOutlineIcon fontSize="small" {...svgIconProps} />
+                    <DeleteOutline fontSize="small" {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.delete", "Delete")
                 )}

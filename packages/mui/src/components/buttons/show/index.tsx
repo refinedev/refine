@@ -8,7 +8,7 @@ import {
 } from "@pankod/refine-core";
 import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 import { Button } from "@mui/material";
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import { VisibilityOutlined } from "@mui/icons-material";
 
 import { ShowButtonProps } from "../types";
 
@@ -89,7 +89,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
             <Button
                 disabled={data?.can === false}
                 startIcon={
-                    !hideText && <VisibilityOutlinedIcon {...svgIconProps} />
+                    !hideText && <VisibilityOutlined {...svgIconProps} />
                 }
                 title={disabledTitle()}
                 sx={{ minWidth: 0, ...sx }}
@@ -97,10 +97,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
                 {...restProps}
             >
                 {hideText ? (
-                    <VisibilityOutlinedIcon
-                        fontSize="small"
-                        {...svgIconProps}
-                    />
+                    <VisibilityOutlined fontSize="small" {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.show", "Show")
                 )}

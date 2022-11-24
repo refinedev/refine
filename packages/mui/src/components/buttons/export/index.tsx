@@ -1,8 +1,8 @@
 import React from "react";
 import { useTranslate } from "@pankod/refine-core";
 import { RefineButtonTestIds } from "@pankod/refine-ui-types";
-import ImportExportOutlinedIcon from "@mui/icons-material/ImportExportOutlined";
 import { LoadingButton } from "@mui/lab";
+import { ImportExportOutlined } from "@mui/icons-material";
 
 import { ExportButtonProps } from "../types";
 
@@ -27,16 +27,14 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
         <LoadingButton
             {...rest}
             loading={loading}
-            startIcon={
-                !hideText && <ImportExportOutlinedIcon {...svgIconProps} />
-            }
+            startIcon={!hideText && <ImportExportOutlined {...svgIconProps} />}
             loadingPosition={hideText ? "center" : "start"}
             sx={{ minWidth: 0, ...sx }}
             data-testid={RefineButtonTestIds.ExportButton}
             {...restProps}
         >
             {hideText ? (
-                <ImportExportOutlinedIcon fontSize="small" {...svgIconProps} />
+                <ImportExportOutlined fontSize="small" {...svgIconProps} />
             ) : (
                 children ?? translate("buttons.export", "Export")
             )}

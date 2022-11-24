@@ -8,7 +8,7 @@ import {
 } from "@pankod/refine-core";
 import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 import { Button } from "@mui/material";
-import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
+import { AddBoxOutlined } from "@mui/icons-material";
 
 import { CloneButtonProps } from "../types";
 
@@ -89,16 +89,14 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
         >
             <Button
                 disabled={data?.can === false}
-                startIcon={
-                    !hideText && <AddBoxOutlinedIcon {...svgIconProps} />
-                }
+                startIcon={!hideText && <AddBoxOutlined {...svgIconProps} />}
                 title={disabledTitle()}
                 sx={{ minWidth: 0, ...sx }}
                 data-testid={RefineButtonTestIds.CloneButton}
                 {...restProps}
             >
                 {hideText ? (
-                    <AddBoxOutlinedIcon fontSize="small" {...svgIconProps} />
+                    <AddBoxOutlined fontSize="small" {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.clone", "Clone")
                 )}
