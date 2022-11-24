@@ -157,9 +157,7 @@ As mentioned above, Vercel is popular and feature-rich. Below are some of the be
 - Several project templates to bootstrap a new application
 - Performance monitoring with Vercel analytics
 
-#### Cons of using Vercel
 
-- Vercel is suitable for hosting static and Jamstack applications only
 
 ### Netlify
 
@@ -442,18 +440,18 @@ Though we learned how to use GitHub pages in this section, other Git providers a
 
 This section will highlight some differences and similarities among the hosting platforms described in the previous sections. Though most of the hosting platforms are for hosting specific applications, the table below will attempt to highlight some of the issues you might consider when choosing a hosting platform for your hobby project.
 
-|                                  | Netlify                                   | Vercel                                 | Render                                   | Surge.sh           | GitHub pages       |
-| -------------------------------- | ----------------------------------------- | -------------------------------------- | ---------------------------------------- | ------------------ | ------------------ |
-| Type of apps                     | Static and Jamstack apps                  | Static and Jamstack apps               | Front-end, Back-end, and Full-stack apps | Static sites       | Static sites       |
-| Documentation                    | Good                                      | Good                                   | Good                                     | Good               | Good               |
-| Build time for free plan         | 300 minutes per month per project         | 6000 minutes per month                 | 400 hours per month                      | Not applicable     | 10 builds per hour |
-| Git integration                  | GitHub, GitLab, BitBucket                 | GitHub, GitLab, BitBucket              | GitHub, GitLab                           | None               | GitHub             |
-| Community Support                | Good                                      | Good                                   | Good                                     | Good               | Good               |
-| Deployment options               | Drag and drop, Command line, Git provider | Command line, Git provider, Vercel API | Command line, Git provider               | Command line       | GitHub             |
-| Support for CI workflow          | Yes                                       | Yes                                    | Yes                                      | No                 | Yes                |
-| Pricing                          | Generous free plan                        | Generous free plan                     | Generous free plan                       | Generous free plan | Free               |
-| Secure HTTPS                     | Yes                                       | Yes                                    | Yes                                      | Yes                | Yes                |
-| Support for front-end frameworks | Good                                      | Good                                   | Good                                     | Good               | Good               |
+|                                  | Vercel                                 | Netlify                                   | Render                                   | Surge.sh           | GitHub pages       |
+| -------------------------------- | -------------------------------------- | ----------------------------------------- | ---------------------------------------- | ------------------ | ------------------ |
+| Type of apps                     | Static and Jamstack apps               | Static and Jamstack apps                  | Front-end, Back-end, and Full-stack apps | Static sites       | Static sites       |
+| Documentation                    | Good                                   | Good                                      | Good                                     | Good               | Good               |
+| Build time for free plan         | 6000 minutes per month                 | 300 minutes per month per project         | 400 hours per month                      | Not applicable     | 10 builds per hour |
+| Git integration                  | GitHub, GitLab, BitBucket              | GitHub, GitLab, BitBucket                 | GitHub, GitLab                           | None               | GitHub             |
+| Community Support                | Good                                   | Good                                      | Good                                     | Good               | Good               |
+| Deployment options               | Command line, Git provider, Vercel API | Drag and drop, Command line, Git provider | Command line, Git provider               | Command line       | GitHub             |
+| Support for CI workflow          | Yes                                    | Yes                                       | Yes                                      | No                 | Yes                |
+| Pricing                          | Generous free plan                     | Generous free plan                        | Generous free plan                       | Generous free plan | Free               |
+| Secure HTTPS                     | Yes                                    | Yes                                       | Yes                                      | Yes                | Yes                |
+| Support for front-end frameworks | Good                                   | Good                                      | Good                                     | Good               | Good               |
 
 ### Conclusion
 
