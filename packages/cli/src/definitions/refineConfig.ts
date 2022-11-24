@@ -1,14 +1,36 @@
 export type SwizzleFile = {
+    /**
+     * Group name of the item to group by
+     */
     group: string;
+    /**
+     * Name of the item to display
+     */
     label: string;
-    files: { src: string; dest: string }[];
+    /**
+     * Array of files with source and destination. `transform` can also be provided to perform transform actions specific to the file.
+     */
+    files: {
+        src: string;
+        dest: string;
+        transform?: (content: string) => string;
+    }[];
 };
 
 export type SwizzleConfig = {
+    /**
+     * Array of swizzle items
+     */
     items: Array<SwizzleFile>;
+    /**
+     * Transform function to perform on every swizzled file
+     */
     transform?: (content: string, src: string, dest: string) => string;
 };
 
 export type RefineConfig = {
+    /**
+     * Swizzle configuration of the package
+     */
     swizzle: SwizzleConfig;
 };
