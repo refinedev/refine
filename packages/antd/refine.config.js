@@ -29,6 +29,86 @@ module.exports = {
                 ],
             },
             {
+                group: "Buttons",
+                label: "CloneButton",
+                files: [
+                    {
+                        src: "./src/components/buttons/clone/index.tsx",
+                        dest: "./src/components/buttons/clone.tsx",
+                    },
+                ],
+            },
+            {
+                group: "Buttons",
+                label: "DeleteButton",
+                files: [
+                    {
+                        src: "./src/components/buttons/delete/index.tsx",
+                        dest: "./src/components/buttons/delete.tsx",
+                    },
+                ],
+            },
+            {
+                group: "Buttons",
+                label: "EditButton",
+                files: [
+                    {
+                        src: "./src/components/buttons/edit/index.tsx",
+                        dest: "./src/components/buttons/edit.tsx",
+                    },
+                ],
+            },
+            {
+                group: "Buttons",
+                label: "ExportButton",
+                files: [
+                    {
+                        src: "./src/components/buttons/export/index.tsx",
+                        dest: "./src/components/buttons/export.tsx",
+                    },
+                ],
+            },
+            {
+                group: "Buttons",
+                label: "ImportButton",
+                files: [
+                    {
+                        src: "./src/components/buttons/import/index.tsx",
+                        dest: "./src/components/buttons/import.tsx",
+                    },
+                ],
+            },
+            {
+                group: "Buttons",
+                label: "ListButton",
+                files: [
+                    {
+                        src: "./src/components/buttons/list/index.tsx",
+                        dest: "./src/components/buttons/list.tsx",
+                    },
+                ],
+            },
+            {
+                group: "Buttons",
+                label: "RefreshButton",
+                files: [
+                    {
+                        src: "./src/components/buttons/refresh/index.tsx",
+                        dest: "./src/components/buttons/refresh.tsx",
+                    },
+                ],
+            },
+            {
+                group: "Buttons",
+                label: "SaveButton",
+                files: [
+                    {
+                        src: "./src/components/buttons/save/index.tsx",
+                        dest: "./src/components/buttons/save.tsx",
+                    },
+                ],
+            },
+            {
                 group: "Basic Views",
                 label: "Create",
                 files: [
@@ -39,7 +119,7 @@ module.exports = {
                 ],
             },
         ],
-        transform: (content, src, dest) => {
+        transform: (content) => {
             let newContent = content;
             const imports = getImports(content);
 
@@ -79,6 +159,16 @@ module.exports = {
                     const testIdPropRegex = /data-testid={.*?}/g;
 
                     newContent = newContent.replace(testIdPropRegex, "");
+                }
+
+                // for prop types
+                if (importItem.importPath === "../types") {
+                    const newStatement = `import type ${importItem.namedImports} from "@pankod/refine-antd";`;
+
+                    newContent = newContent.replace(
+                        importItem.statement,
+                        newStatement,
+                    );
                 }
             });
 
