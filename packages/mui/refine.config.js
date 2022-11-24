@@ -135,7 +135,7 @@ module.exports = {
                 }
 
                 // for icons
-                if (importItem.importPath.startsWith("@mui/icons-material")) {
+                if (importItem.importPath === "@mui/icons-material") {
                     const newStatement = `import ${importItem.namedImports} from "@mui/icons-material";`;
 
                     newContent = newContent.replace(
