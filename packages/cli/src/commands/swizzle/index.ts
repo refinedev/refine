@@ -115,7 +115,7 @@ const action = async (_options: OptionValues) => {
                 await ensureFile(destPath);
 
                 const transformedContent =
-                    transform?.(srcContent) ?? srcContent;
+                    transform?.(srcContent, srcPath, destPath) ?? srcContent;
 
                 await writeFile(destPath, transformedContent);
 
