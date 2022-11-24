@@ -84,6 +84,7 @@ const action = async (_options: OptionValues) => {
     }>([
         {
             type: "autocomplete",
+            pageSize: 10,
             name: "selectedPackage",
             message: "Which package do you want to swizzle?",
             emptyText: "No packages found.",
@@ -112,6 +113,7 @@ const action = async (_options: OptionValues) => {
     }>([
         {
             type: "autocomplete",
+            pageSize: 10,
             name: "selectedComponent",
             message: "Which component do you want to swizzle?",
             emptyText: "No components found.",
@@ -168,6 +170,8 @@ const action = async (_options: OptionValues) => {
                     fileTransformedContent;
 
                 const formatted = await prettierFormat(transformedContent);
+
+                //TODO: reorganize the same imports
 
                 await writeFile(destPath, formatted);
 
