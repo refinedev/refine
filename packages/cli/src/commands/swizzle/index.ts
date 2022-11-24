@@ -160,9 +160,12 @@ const action = async (_options: OptionValues) => {
 
                 const parsedContent = parseSwizzleBlocks(srcContent);
 
+                const fileTransformedContent =
+                    file.transform?.(parsedContent) ?? parsedContent;
+
                 const transformedContent =
-                    transform?.(parsedContent, srcPath, destPath) ??
-                    parsedContent;
+                    transform?.(fileTransformedContent, srcPath, destPath) ??
+                    fileTransformedContent;
 
                 const formatted = await prettierFormat(transformedContent);
 
