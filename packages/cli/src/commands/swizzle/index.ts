@@ -13,6 +13,7 @@ import {
 } from "@utils/package";
 
 import { SwizzleFile } from "@definitions";
+import { parseSwizzleBlocks } from "@utils/swizzle/parseSwizzleBlocks";
 
 const swizzle = (program: Command) => {
     return (
@@ -157,8 +158,11 @@ const action = async (_options: OptionValues) => {
 
                 await ensureFile(destPath);
 
+                const parsedContent = parseSwizzleBlocks(srcContent);
+
                 const transformedContent =
-                    transform?.(srcContent, srcPath, destPath) ?? srcContent;
+                    transform?.(parsedContent, srcPath, destPath) ??
+                    parsedContent;
 
                 const formatted = await prettierFormat(transformedContent);
 
