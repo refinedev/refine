@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-inferencer": major
+"@pankod/refine-inferencer": minor
 ---
 
 Initial release of the **Inferencer** package.
