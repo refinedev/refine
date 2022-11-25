@@ -1,18 +1,10 @@
 import React from "react";
 import { useTranslate } from "@pankod/refine-core";
-import {
-    RefineSaveButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
-import { IconButton, Button, ButtonProps } from "@chakra-ui/react";
-import { IconDeviceFloppy, TablerIconProps } from "@tabler/icons";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { IconButton, Button } from "@chakra-ui/react";
+import { IconDeviceFloppy } from "@tabler/icons";
 
-export type SaveButtonProps = RefineSaveButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: TablerIconProps;
-    }
->;
+import { SaveButtonProps } from "../types";
 
 /**
  * `<SaveButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> `}.

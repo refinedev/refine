@@ -6,14 +6,10 @@ import {
     useCan,
     useResource,
 } from "@pankod/refine-core";
-import {
-    RefineDeleteButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 
 import {
     Button,
-    ButtonProps,
     HStack,
     IconButton,
     Popover,
@@ -23,17 +19,9 @@ import {
     PopoverHeader,
     PopoverTrigger,
 } from "@chakra-ui/react";
-import { IconTrash, TablerIconProps } from "@tabler/icons";
+import { IconTrash } from "@tabler/icons";
 
-export type DeleteButtonProps = Omit<
-    RefineDeleteButtonProps<
-        ButtonProps,
-        {
-            svgIconProps?: TablerIconProps;
-        }
-    >,
-    "ignoreAccessControlProvider"
->;
+import { DeleteButtonProps } from "../types";
 
 /**
  * `<DeleteButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button>`} and {@link https://chakra-ui.com/docs/components/popover `<Popover>`} components.
