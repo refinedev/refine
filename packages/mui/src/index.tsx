@@ -1,6 +1,25 @@
 export * from "@mui/x-data-grid";
 export * from "@mui/system";
 
+import LoadingButton from "@mui/lab/LoadingButton";
+import {
+    LoadingButtonClassKey,
+    LoadingButtonClasses,
+    LoadingButtonProps,
+    LoadingButtonTypeMap,
+    getLoadingButtonUtilityClass,
+    loadingButtonClasses,
+} from "@mui/lab/LoadingButton";
+export {
+    LoadingButton,
+    LoadingButtonClassKey,
+    LoadingButtonClasses,
+    LoadingButtonProps,
+    LoadingButtonTypeMap,
+    getLoadingButtonUtilityClass,
+    loadingButtonClasses,
+};
+
 import * as colors from "@mui/material/colors";
 
 export { colors };
