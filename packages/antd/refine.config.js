@@ -218,6 +218,30 @@ module.exports = {
                     },
                 ],
             },
+            {
+                group: "Pages",
+                label: "Error",
+                files: [
+                    {
+                        src: "./src/components/pages/error/index.tsx",
+                        dest: "./src/components/pages/error.tsx",
+                        transform: (content) => {
+                            let newContent = content;
+
+                            // for remove RefineErorrPageProps
+                            const refineErrorPagePropsRegex =
+                                /React\.FC<RefineErrorPageProps>/g;
+
+                            newContent = newContent.replace(
+                                refineErrorPagePropsRegex,
+                                "React.FC",
+                            );
+
+                            return newContent;
+                        },
+                    },
+                ],
+            },
         ],
         transform: (content) => {
             let newContent = content;
