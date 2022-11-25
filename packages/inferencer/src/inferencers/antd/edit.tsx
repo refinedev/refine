@@ -338,7 +338,7 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
                         .join(", ")
                         .replace(/"index"/, "index");
 
-                    return `
+                    return jsx`
                         <>
                             {(${accessor(
                                 recordName,
@@ -350,7 +350,7 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
                                         field.key,
                                     )} \${index+1}\`}
                                     name={[${val}]}
-                                    getValueProps={(value) => ({ value: dayjs(value) })}
+                                    getValueProps={(value) => ({ value: value ? dayjs(value) : undefined })}
                                 >
                                     <DatePicker />
                                 </Form.Item>
@@ -369,7 +369,7 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
                                 required: true,
                             },
                         ]}
-                        getValueProps={(value) => ({ value: dayjs(value) })}
+                        getValueProps={(value) => ({ value: value ? dayjs(value) : undefined })}
                     >
                         <DatePicker />
                     </Form.Item>
