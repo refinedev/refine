@@ -1,0 +1,376 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AntdShowInferencer should match the snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      <div
+        class="ant-page-header has-breadcrumb"
+      >
+        <div
+          class="ant-page-header-heading"
+        >
+          <div
+            class="ant-page-header-heading-left"
+          >
+            <span
+              class="ant-page-header-heading-title"
+              title="Show Post"
+            >
+              Show Post
+            </span>
+          </div>
+          <span
+            class="ant-page-header-heading-extra"
+          >
+            <div
+              class="ant-space ant-space-horizontal ant-space-align-center"
+            >
+              <div
+                class="ant-space-item"
+              >
+                <div
+                  class="ant-space ant-space-horizontal ant-space-align-center"
+                  style="flex-wrap: wrap; margin-bottom: -8px;"
+                >
+                  <div
+                    class="ant-space-item"
+                    style="margin-right: 8px; padding-bottom: 8px;"
+                  >
+                    <a
+                      href="/posts"
+                    >
+                      <button
+                        class="ant-btn ant-btn-default"
+                        title=""
+                        type="button"
+                      >
+                        <span
+                          aria-label="bars"
+                          class="anticon anticon-bars"
+                          role="img"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            data-icon="bars"
+                            fill="currentColor"
+                            focusable="false"
+                            height="1em"
+                            viewBox="0 0 1024 1024"
+                            width="1em"
+                          >
+                            <path
+                              d="M912 192H328c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h584c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 284H328c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h584c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 284H328c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h584c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM104 228a56 56 0 10112 0 56 56 0 10-112 0zm0 284a56 56 0 10112 0 56 56 0 10-112 0zm0 284a56 56 0 10112 0 56 56 0 10-112 0z"
+                            />
+                          </svg>
+                        </span>
+                        <span>
+                          Posts
+                        </span>
+                      </button>
+                    </a>
+                  </div>
+                  <div
+                    class="ant-space-item"
+                    style="padding-bottom: 8px;"
+                  >
+                    <button
+                      class="ant-btn ant-btn-default"
+                      type="button"
+                    >
+                      <span
+                        aria-label="redo"
+                        class="anticon anticon-redo"
+                        role="img"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          data-icon="redo"
+                          fill="currentColor"
+                          focusable="false"
+                          height="1em"
+                          viewBox="64 64 896 896"
+                          width="1em"
+                        >
+                          <path
+                            d="M758.2 839.1C851.8 765.9 912 651.9 912 523.9 912 303 733.5 124.3 512.6 124 291.4 123.7 112 302.8 112 523.9c0 125.2 57.5 236.9 147.6 310.2 3.5 2.8 8.6 2.2 11.4-1.3l39.4-50.5c2.7-3.4 2.1-8.3-1.2-11.1-8.1-6.6-15.9-13.7-23.4-21.2a318.64 318.64 0 01-68.6-101.7C200.4 609 192 567.1 192 523.9s8.4-85.1 25.1-124.5c16.1-38.1 39.2-72.3 68.6-101.7 29.4-29.4 63.6-52.5 101.7-68.6C426.9 212.4 468.8 204 512 204s85.1 8.4 124.5 25.1c38.1 16.1 72.3 39.2 101.7 68.6 29.4 29.4 52.5 63.6 68.6 101.7 16.7 39.4 25.1 81.3 25.1 124.5s-8.4 85.1-25.1 124.5a318.64 318.64 0 01-68.6 101.7c-9.3 9.3-19.1 18-29.3 26L668.2 724a8 8 0 00-14.1 3l-39.6 162.2c-1.2 5 2.6 9.9 7.7 9.9l167 .8c6.7 0 10.5-7.7 6.3-12.9l-37.3-47.9z"
+                          />
+                        </svg>
+                      </span>
+                      <span>
+                        Refresh
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </span>
+        </div>
+        <div
+          class="ant-page-header-content"
+        >
+          <div
+            class="ant-spin-nested-loading"
+          >
+            <div
+              class="ant-spin-container"
+            >
+              <div
+                class="ant-card"
+              >
+                <div
+                  class="ant-card-body"
+                >
+                  <h5
+                    class="ant-typography"
+                  >
+                    Id
+                  </h5>
+                  <span
+                    class="ant-typography"
+                  >
+                    11
+                  </span>
+                  <h5
+                    class="ant-typography"
+                  >
+                    Title
+                  </h5>
+                  <span
+                    class="ant-typography"
+                  >
+                    Nobis exercitationem officia quia est.
+                  </span>
+                  <h5
+                    class="ant-typography"
+                  >
+                    Slug
+                  </h5>
+                  <span
+                    class="ant-typography"
+                  >
+                    provident-culpa-facere
+                  </span>
+                  <h5
+                    class="ant-typography"
+                  >
+                    Content
+                  </h5>
+                  <p>
+                    Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur voluptatibus molestias. Est nemo aut. Fugit aliquam enim eveniet veritatis. Magni et aut. Consequatur aliquid rerum vero. Quaerat debitis enim magnam. Dolorem est delectus architecto et accusantium. Velit quia vero. Aut necessitatibus quia at consequatur soluta accusantium.
+                  </p>
+                  <h5
+                    class="ant-typography"
+                  >
+                    Hit
+                  </h5>
+                  <span
+                    class="ant-typography"
+                  >
+                    920,557
+                  </span>
+                  <h5
+                    class="ant-typography"
+                  >
+                    Category
+                  </h5>
+                  Numquam Saepe Illo
+                  <h5
+                    class="ant-typography"
+                  >
+                    User
+                  </h5>
+                  Eriberto Leannon
+                  <h5
+                    class="ant-typography"
+                  >
+                    Status
+                  </h5>
+                  <span
+                    class="ant-typography"
+                  >
+                    draft
+                  </span>
+                  <h5
+                    class="ant-typography"
+                  >
+                    Status Color
+                  </h5>
+                  <span
+                    class="ant-typography"
+                  >
+                    orange
+                  </span>
+                  <h5
+                    class="ant-typography"
+                  >
+                    Created At
+                  </h5>
+                  <span
+                    class="ant-typography"
+                  >
+                    04/02/2022
+                  </span>
+                  <h5
+                    class="ant-typography"
+                  >
+                    Published At
+                  </h5>
+                  <span
+                    class="ant-typography"
+                  >
+                    08/10/2021
+                  </span>
+                  <h5
+                    class="ant-typography"
+                  >
+                    Image
+                  </h5>
+                  <div
+                    class="ant-image"
+                  >
+                    <img
+                      class="ant-image-img"
+                      src="http://loremflickr.com/640/480/abstract"
+                      style="max-width: 200px;"
+                    />
+                    <div
+                      class="ant-image-mask"
+                    >
+                      <div
+                        class="ant-image-mask-info"
+                      >
+                        <span
+                          aria-label="eye"
+                          class="anticon anticon-eye"
+                          role="img"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            data-icon="eye"
+                            fill="currentColor"
+                            focusable="false"
+                            height="1em"
+                            viewBox="64 64 896 896"
+                            width="1em"
+                          >
+                            <path
+                              d="M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 000 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z"
+                            />
+                          </svg>
+                        </span>
+                        Preview
+                      </div>
+                    </div>
+                  </div>
+                  <h5
+                    class="ant-typography"
+                  >
+                    Tags
+                  </h5>
+                  <span
+                    class="ant-tag"
+                  >
+                    Error Eos Et
+                  </span>
+                  <span
+                    class="ant-tag"
+                  >
+                    Nobis Et Ut
+                  </span>
+                  <h5
+                    class="ant-typography"
+                  >
+                    Language
+                  </h5>
+                  <span
+                    class="ant-typography"
+                  >
+                    2
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    style="position: fixed; bottom: 12px; right: 60px;"
+  >
+    <div
+      class="ant-space ant-space-horizontal ant-space-align-center"
+    >
+      <div
+        class="ant-space-item"
+        style="margin-right: 8px;"
+      >
+        <button
+          class="ant-btn ant-btn-primary"
+          type="button"
+        >
+          <span
+            aria-label="code"
+            class="anticon anticon-code"
+            role="img"
+          >
+            <svg
+              aria-hidden="true"
+              data-icon="code"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M516 673c0 4.4 3.4 8 7.5 8h185c4.1 0 7.5-3.6 7.5-8v-48c0-4.4-3.4-8-7.5-8h-185c-4.1 0-7.5 3.6-7.5 8v48zm-194.9 6.1l192-161c3.8-3.2 3.8-9.1 0-12.3l-192-160.9A7.95 7.95 0 00308 351v62.7c0 2.4 1 4.6 2.9 6.1L420.7 512l-109.8 92.2a8.1 8.1 0 00-2.9 6.1V673c0 6.8 7.9 10.5 13.1 6.1zM880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zm-40 728H184V184h656v656z"
+              />
+            </svg>
+          </span>
+          <span>
+            Show Code
+          </span>
+        </button>
+      </div>
+      <div
+        class="ant-space-item"
+      >
+        <a
+          class="ant-btn ant-btn-default"
+          href="https://github.com/refinedev/refine/discussions/3046"
+          target="_blank"
+        >
+          <span
+            aria-label="message"
+            class="anticon anticon-message"
+            role="img"
+          >
+            <svg
+              aria-hidden="true"
+              data-icon="message"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M464 512a48 48 0 1096 0 48 48 0 10-96 0zm200 0a48 48 0 1096 0 48 48 0 10-96 0zm-400 0a48 48 0 1096 0 48 48 0 10-96 0zm661.2-173.6c-22.6-53.7-55-101.9-96.3-143.3a444.35 444.35 0 00-143.3-96.3C630.6 75.7 572.2 64 512 64h-2c-60.6.3-119.3 12.3-174.5 35.9a445.35 445.35 0 00-142 96.5c-40.9 41.3-73 89.3-95.2 142.8-23 55.4-34.6 114.3-34.3 174.9A449.4 449.4 0 00112 714v152a46 46 0 0046 46h152.1A449.4 449.4 0 00510 960h2.1c59.9 0 118-11.6 172.7-34.3a444.48 444.48 0 00142.8-95.2c41.3-40.9 73.8-88.7 96.5-142 23.6-55.2 35.6-113.9 35.9-174.5.3-60.9-11.5-120-34.8-175.6zm-151.1 438C704 845.8 611 884 512 884h-1.7c-60.3-.3-120.2-15.3-173.1-43.5l-8.4-4.5H188V695.2l-4.5-8.4C155.3 633.9 140.3 574 140 513.7c-.4-99.7 37.7-193.3 107.6-263.8 69.8-70.5 163.1-109.5 262.8-109.9h1.7c50 0 98.5 9.7 144.2 28.9 44.6 18.7 84.6 45.6 119 80 34.3 34.3 61.3 74.4 80 119 19.4 46.2 29.1 95.2 28.9 145.8-.6 99.6-39.7 192.9-110.1 262.7z"
+              />
+            </svg>
+          </span>
+          <span>
+            Give Feedback
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div
+    style="height: 50px;"
+  />
+</DocumentFragment>
+`;

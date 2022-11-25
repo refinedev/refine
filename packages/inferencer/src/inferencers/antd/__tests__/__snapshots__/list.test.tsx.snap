@@ -1,0 +1,696 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AntdListInferencer should match the snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      <div
+        class="ant-page-header has-breadcrumb"
+      >
+        <div
+          class="ant-page-header-heading"
+        >
+          <div
+            class="ant-page-header-heading-left"
+          >
+            <span
+              class="ant-page-header-heading-title"
+              title="Posts"
+            >
+              Posts
+            </span>
+          </div>
+        </div>
+        <div
+          class="ant-page-header-content"
+        >
+          <div>
+            <div
+              class="ant-table-wrapper"
+            >
+              <div
+                class="ant-spin-nested-loading"
+              >
+                <div
+                  class="ant-spin-container"
+                >
+                  <div
+                    class="ant-table ant-table-scroll-horizontal"
+                  >
+                    <div
+                      class="ant-table-container"
+                    >
+                      <div
+                        class="ant-table-content"
+                        style="overflow-x: auto; overflow-y: hidden;"
+                      >
+                        <table
+                          style="width: auto; min-width: 100%; table-layout: auto;"
+                        >
+                          <colgroup />
+                          <thead
+                            class="ant-table-thead"
+                          >
+                            <tr>
+                              <th
+                                class="ant-table-cell"
+                              >
+                                Id
+                              </th>
+                              <th
+                                class="ant-table-cell"
+                              >
+                                Title
+                              </th>
+                              <th
+                                class="ant-table-cell"
+                              >
+                                Slug
+                              </th>
+                              <th
+                                class="ant-table-cell"
+                              >
+                                Content
+                              </th>
+                              <th
+                                class="ant-table-cell"
+                              >
+                                Hit
+                              </th>
+                              <th
+                                class="ant-table-cell"
+                              >
+                                Category
+                              </th>
+                              <th
+                                class="ant-table-cell"
+                              >
+                                User
+                              </th>
+                              <th
+                                class="ant-table-cell"
+                              >
+                                Status
+                              </th>
+                              <th
+                                class="ant-table-cell"
+                              >
+                                Status Color
+                              </th>
+                              <th
+                                class="ant-table-cell"
+                              >
+                                Created At
+                              </th>
+                              <th
+                                class="ant-table-cell"
+                              >
+                                Published At
+                              </th>
+                              <th
+                                class="ant-table-cell"
+                              >
+                                Image
+                              </th>
+                              <th
+                                class="ant-table-cell"
+                              >
+                                Tags
+                              </th>
+                              <th
+                                class="ant-table-cell"
+                              >
+                                Language
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody
+                            class="ant-table-tbody"
+                          >
+                            <tr
+                              aria-hidden="true"
+                              class="ant-table-measure-row"
+                              style="height: 0px; font-size: 0px;"
+                            >
+                              <td
+                                style="padding: 0px; border: 0px; height: 0px;"
+                              >
+                                <div
+                                  style="height: 0px; overflow: hidden;"
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style="padding: 0px; border: 0px; height: 0px;"
+                              >
+                                <div
+                                  style="height: 0px; overflow: hidden;"
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style="padding: 0px; border: 0px; height: 0px;"
+                              >
+                                <div
+                                  style="height: 0px; overflow: hidden;"
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style="padding: 0px; border: 0px; height: 0px;"
+                              >
+                                <div
+                                  style="height: 0px; overflow: hidden;"
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style="padding: 0px; border: 0px; height: 0px;"
+                              >
+                                <div
+                                  style="height: 0px; overflow: hidden;"
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style="padding: 0px; border: 0px; height: 0px;"
+                              >
+                                <div
+                                  style="height: 0px; overflow: hidden;"
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style="padding: 0px; border: 0px; height: 0px;"
+                              >
+                                <div
+                                  style="height: 0px; overflow: hidden;"
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style="padding: 0px; border: 0px; height: 0px;"
+                              >
+                                <div
+                                  style="height: 0px; overflow: hidden;"
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style="padding: 0px; border: 0px; height: 0px;"
+                              >
+                                <div
+                                  style="height: 0px; overflow: hidden;"
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style="padding: 0px; border: 0px; height: 0px;"
+                              >
+                                <div
+                                  style="height: 0px; overflow: hidden;"
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style="padding: 0px; border: 0px; height: 0px;"
+                              >
+                                <div
+                                  style="height: 0px; overflow: hidden;"
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style="padding: 0px; border: 0px; height: 0px;"
+                              >
+                                <div
+                                  style="height: 0px; overflow: hidden;"
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style="padding: 0px; border: 0px; height: 0px;"
+                              >
+                                <div
+                                  style="height: 0px; overflow: hidden;"
+                                >
+                                   
+                                </div>
+                              </td>
+                              <td
+                                style="padding: 0px; border: 0px; height: 0px;"
+                              >
+                                <div
+                                  style="height: 0px; overflow: hidden;"
+                                >
+                                   
+                                </div>
+                              </td>
+                            </tr>
+                            <tr
+                              class="ant-table-row ant-table-row-level-0"
+                              data-row-key="11"
+                            >
+                              <td
+                                class="ant-table-cell"
+                              >
+                                11
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                Nobis exercitationem officia quia est.
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                provident-culpa-facere
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                <p>
+                                  Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur vol...
+                                </p>
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                920557
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                Numquam Saepe Illo
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                Eriberto Leannon
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                draft
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                orange
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                <span
+                                  class="ant-typography"
+                                >
+                                  04/02/2022
+                                </span>
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                <span
+                                  class="ant-typography"
+                                >
+                                  08/10/2021
+                                </span>
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                <div
+                                  class="ant-image"
+                                >
+                                  <img
+                                    class="ant-image-img"
+                                    src="http://loremflickr.com/640/480/abstract"
+                                    style="max-width: 100px;"
+                                  />
+                                  <div
+                                    class="ant-image-mask"
+                                  >
+                                    <div
+                                      class="ant-image-mask-info"
+                                    >
+                                      <span
+                                        aria-label="eye"
+                                        class="anticon anticon-eye"
+                                        role="img"
+                                      >
+                                        <svg
+                                          aria-hidden="true"
+                                          data-icon="eye"
+                                          fill="currentColor"
+                                          focusable="false"
+                                          height="1em"
+                                          viewBox="64 64 896 896"
+                                          width="1em"
+                                        >
+                                          <path
+                                            d="M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 000 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z"
+                                          />
+                                        </svg>
+                                      </span>
+                                      Preview
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                <span
+                                  class="ant-tag"
+                                >
+                                  Nobis Et Ut
+                                </span>
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                2
+                              </td>
+                            </tr>
+                            <tr
+                              class="ant-table-row ant-table-row-level-0"
+                              data-row-key="21"
+                            >
+                              <td
+                                class="ant-table-cell"
+                              >
+                                21
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                Eaque in nesciunt.
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                quod-quos-commodi
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                <p>
+                                  Ut velit quo. Sed beatae et sit ea. Perferendis pariatur doloremque deleniti sap...
+                                </p>
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                175149
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                Sit Natus Voluptatibus
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                Tressie Reichel
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                published
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                lime
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                <span
+                                  class="ant-typography"
+                                >
+                                  09/24/2022
+                                </span>
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                <span
+                                  class="ant-typography"
+                                >
+                                  09/01/2021
+                                </span>
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                <div
+                                  class="ant-image"
+                                >
+                                  <img
+                                    class="ant-image-img"
+                                    src="http://loremflickr.com/640/480/abstract"
+                                    style="max-width: 100px;"
+                                  />
+                                  <div
+                                    class="ant-image-mask"
+                                  >
+                                    <div
+                                      class="ant-image-mask-info"
+                                    >
+                                      <span
+                                        aria-label="eye"
+                                        class="anticon anticon-eye"
+                                        role="img"
+                                      >
+                                        <svg
+                                          aria-hidden="true"
+                                          data-icon="eye"
+                                          fill="currentColor"
+                                          focusable="false"
+                                          height="1em"
+                                          viewBox="64 64 896 896"
+                                          width="1em"
+                                        >
+                                          <path
+                                            d="M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 000 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z"
+                                          />
+                                        </svg>
+                                      </span>
+                                      Preview
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                <span
+                                  class="ant-tag"
+                                >
+                                  Error Eos Et
+                                </span>
+                                <span
+                                  class="ant-tag"
+                                >
+                                  Nobis Et Ut
+                                </span>
+                              </td>
+                              <td
+                                class="ant-table-cell"
+                              >
+                                2
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <ul
+                    class="ant-pagination ant-pagination-simple ant-table-pagination ant-table-pagination-center"
+                  >
+                    <li
+                      aria-disabled="true"
+                      class="ant-pagination-prev ant-pagination-disabled"
+                      title="Previous Page"
+                    >
+                      <a
+                        href="/posts?pageSize=10&current=0"
+                      >
+                        <button
+                          class="ant-pagination-item-link"
+                          tabindex="-1"
+                          type="button"
+                        >
+                          <span
+                            aria-label="left"
+                            class="anticon anticon-left"
+                            role="img"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              data-icon="left"
+                              fill="currentColor"
+                              focusable="false"
+                              height="1em"
+                              viewBox="64 64 896 896"
+                              width="1em"
+                            >
+                              <path
+                                d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 000 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"
+                              />
+                            </svg>
+                          </span>
+                        </button>
+                      </a>
+                    </li>
+                    <li
+                      class="ant-pagination-simple-pager"
+                      title="1/1"
+                    >
+                      <input
+                        size="3"
+                        type="text"
+                        value="1"
+                      />
+                      <span
+                        class="ant-pagination-slash"
+                      >
+                        /
+                      </span>
+                      1
+                    </li>
+                    <li
+                      aria-disabled="true"
+                      class="ant-pagination-next ant-pagination-disabled"
+                      title="Next Page"
+                    >
+                      <a
+                        href="/posts?pageSize=10&current=1"
+                      >
+                        <button
+                          class="ant-pagination-item-link"
+                          tabindex="-1"
+                          type="button"
+                        >
+                          <span
+                            aria-label="right"
+                            class="anticon anticon-right"
+                            role="img"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              data-icon="right"
+                              fill="currentColor"
+                              focusable="false"
+                              height="1em"
+                              viewBox="64 64 896 896"
+                              width="1em"
+                            >
+                              <path
+                                d="M765.7 486.8L314.9 134.7A7.97 7.97 0 00302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 000-50.4z"
+                              />
+                            </svg>
+                          </span>
+                        </button>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    style="position: fixed; bottom: 12px; right: 60px;"
+  >
+    <div
+      class="ant-space ant-space-horizontal ant-space-align-center"
+    >
+      <div
+        class="ant-space-item"
+        style="margin-right: 8px;"
+      >
+        <button
+          class="ant-btn ant-btn-primary"
+          type="button"
+        >
+          <span
+            aria-label="code"
+            class="anticon anticon-code"
+            role="img"
+          >
+            <svg
+              aria-hidden="true"
+              data-icon="code"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M516 673c0 4.4 3.4 8 7.5 8h185c4.1 0 7.5-3.6 7.5-8v-48c0-4.4-3.4-8-7.5-8h-185c-4.1 0-7.5 3.6-7.5 8v48zm-194.9 6.1l192-161c3.8-3.2 3.8-9.1 0-12.3l-192-160.9A7.95 7.95 0 00308 351v62.7c0 2.4 1 4.6 2.9 6.1L420.7 512l-109.8 92.2a8.1 8.1 0 00-2.9 6.1V673c0 6.8 7.9 10.5 13.1 6.1zM880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zm-40 728H184V184h656v656z"
+              />
+            </svg>
+          </span>
+          <span>
+            Show Code
+          </span>
+        </button>
+      </div>
+      <div
+        class="ant-space-item"
+      >
+        <a
+          class="ant-btn ant-btn-default"
+          href="https://github.com/refinedev/refine/discussions/3046"
+          target="_blank"
+        >
+          <span
+            aria-label="message"
+            class="anticon anticon-message"
+            role="img"
+          >
+            <svg
+              aria-hidden="true"
+              data-icon="message"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M464 512a48 48 0 1096 0 48 48 0 10-96 0zm200 0a48 48 0 1096 0 48 48 0 10-96 0zm-400 0a48 48 0 1096 0 48 48 0 10-96 0zm661.2-173.6c-22.6-53.7-55-101.9-96.3-143.3a444.35 444.35 0 00-143.3-96.3C630.6 75.7 572.2 64 512 64h-2c-60.6.3-119.3 12.3-174.5 35.9a445.35 445.35 0 00-142 96.5c-40.9 41.3-73 89.3-95.2 142.8-23 55.4-34.6 114.3-34.3 174.9A449.4 449.4 0 00112 714v152a46 46 0 0046 46h152.1A449.4 449.4 0 00510 960h2.1c59.9 0 118-11.6 172.7-34.3a444.48 444.48 0 00142.8-95.2c41.3-40.9 73.8-88.7 96.5-142 23.6-55.2 35.6-113.9 35.9-174.5.3-60.9-11.5-120-34.8-175.6zm-151.1 438C704 845.8 611 884 512 884h-1.7c-60.3-.3-120.2-15.3-173.1-43.5l-8.4-4.5H188V695.2l-4.5-8.4C155.3 633.9 140.3 574 140 513.7c-.4-99.7 37.7-193.3 107.6-263.8 69.8-70.5 163.1-109.5 262.8-109.9h1.7c50 0 98.5 9.7 144.2 28.9 44.6 18.7 84.6 45.6 119 80 34.3 34.3 61.3 74.4 80 119 19.4 46.2 29.1 95.2 28.9 145.8-.6 99.6-39.7 192.9-110.1 262.7z"
+              />
+            </svg>
+          </span>
+          <span>
+            Give Feedback
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div
+    style="height: 50px;"
+  />
+</DocumentFragment>
+`;

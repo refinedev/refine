@@ -172,7 +172,7 @@ const LivePreviewBase = ({
                                 return (
                                     <LivePreviewFrame
                                         code={`
-${shared}
+${shared ?? ""}
 ${code}
                                         `}
                                         query={

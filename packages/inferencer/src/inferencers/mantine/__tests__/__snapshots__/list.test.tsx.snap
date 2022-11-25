@@ -1,0 +1,367 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MantineListInferencer should match the snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="mantine-Paper-root mantine-Card-root mantine-xoj88x"
+    >
+      <div
+        class="mantine-Group-root mantine-1dn2tzg"
+      >
+        <div
+          class="mantine-Stack-root mantine-1xft3nm"
+        >
+          <h3
+            class="mantine-Text-root mantine-Title-root mantine-6hw97m"
+          >
+            Posts
+          </h3>
+        </div>
+        <div
+          class="mantine-Group-root mantine-1g4q40w"
+        />
+      </div>
+      <div
+        class="mantine-1r0zdw0"
+      >
+        <div
+          class="mantine-ScrollArea-root mantine-jghxib"
+          dir="ltr"
+          style="position: relative; --radix-scroll-area-corner-width: 0px; --radix-scroll-area-corner-height: 0px;"
+        >
+          <style>
+            [data-radix-scroll-area-viewport]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}[data-radix-scroll-area-viewport]::-webkit-scrollbar{display:none}
+          </style>
+          <div
+            class="mantine-xlwgkm mantine-ScrollArea-viewport"
+            data-radix-scroll-area-viewport=""
+            style="overflow-x: scroll; overflow-y: scroll;"
+          >
+            <div
+              style="min-width: 100%; display: table;"
+            >
+              <table
+                class="mantine-Table-root mantine-186fes1"
+                data-hover="true"
+              >
+                <thead>
+                  <tr>
+                    <th>
+                      Id
+                    </th>
+                    <th>
+                      Title
+                    </th>
+                    <th>
+                      Slug
+                    </th>
+                    <th>
+                      Content
+                    </th>
+                    <th>
+                      Hit
+                    </th>
+                    <th>
+                      Category
+                    </th>
+                    <th>
+                      User
+                    </th>
+                    <th>
+                      Status
+                    </th>
+                    <th>
+                      Status Color
+                    </th>
+                    <th>
+                      Created At
+                    </th>
+                    <th>
+                      Published At
+                    </th>
+                    <th>
+                      Image
+                    </th>
+                    <th>
+                      Tags
+                    </th>
+                    <th>
+                      Language
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      11
+                    </td>
+                    <td>
+                      Nobis exercitationem officia quia est.
+                    </td>
+                    <td>
+                      provident-culpa-facere
+                    </td>
+                    <td>
+                      <p>
+                        Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur vol...
+                      </p>
+                    </td>
+                    <td>
+                      920557
+                    </td>
+                    <td>
+                      Numquam Saepe Illo
+                    </td>
+                    <td>
+                      Eriberto Leannon
+                    </td>
+                    <td>
+                      draft
+                    </td>
+                    <td>
+                      orange
+                    </td>
+                    <td>
+                      <div
+                        class="mantine-Text-root mantine-1pbxw0k"
+                      >
+                        04/02/2022
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        class="mantine-Text-root mantine-1pbxw0k"
+                      >
+                        08/10/2021
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        class="mantine-Group-root mantine-1g4q40w"
+                      >
+                        <div
+                          class="mantine-Image-root mantine-r5ruyt"
+                          style="width: 100%;"
+                        >
+                          <figure
+                            class="mantine-11nhzn5 mantine-Image-figure"
+                          >
+                            <div
+                              class="mantine-qqmv3w mantine-Image-imageWrapper"
+                            >
+                              <img
+                                class="mantine-3y8yz3 mantine-Image-image"
+                                src="http://loremflickr.com/640/480/abstract"
+                                style="object-fit: cover; width: 100%; height: auto;"
+                              />
+                            </div>
+                          </figure>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        class="mantine-Group-root mantine-1g4q40w"
+                      >
+                        <div
+                          class="mantine-Chip-root mantine-15po0m8"
+                        >
+                          <input
+                            class="mantine-106387w mantine-Chip-input"
+                            id="mantine-r2"
+                            type="checkbox"
+                            value=""
+                          />
+                          <label
+                            class="__mantine-ref-label mantine-543i07 mantine-Chip-label"
+                            data-variant="outline"
+                            for="mantine-r2"
+                          >
+                            Nobis Et Ut
+                          </label>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      2
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      21
+                    </td>
+                    <td>
+                      Eaque in nesciunt.
+                    </td>
+                    <td>
+                      quod-quos-commodi
+                    </td>
+                    <td>
+                      <p>
+                        Ut velit quo. Sed beatae et sit ea. Perferendis pariatur doloremque deleniti sap...
+                      </p>
+                    </td>
+                    <td>
+                      175149
+                    </td>
+                    <td>
+                      Sit Natus Voluptatibus
+                    </td>
+                    <td>
+                      Tressie Reichel
+                    </td>
+                    <td>
+                      published
+                    </td>
+                    <td>
+                      lime
+                    </td>
+                    <td>
+                      <div
+                        class="mantine-Text-root mantine-1pbxw0k"
+                      >
+                        09/24/2022
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        class="mantine-Text-root mantine-1pbxw0k"
+                      >
+                        09/01/2021
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        class="mantine-Group-root mantine-1g4q40w"
+                      >
+                        <div
+                          class="mantine-Image-root mantine-r5ruyt"
+                          style="width: 100%;"
+                        >
+                          <figure
+                            class="mantine-11nhzn5 mantine-Image-figure"
+                          >
+                            <div
+                              class="mantine-qqmv3w mantine-Image-imageWrapper"
+                            >
+                              <img
+                                class="mantine-3y8yz3 mantine-Image-image"
+                                src="http://loremflickr.com/640/480/abstract"
+                                style="object-fit: cover; width: 100%; height: auto;"
+                              />
+                            </div>
+                          </figure>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div
+                        class="mantine-Group-root mantine-1g4q40w"
+                      >
+                        <div
+                          class="mantine-Chip-root mantine-15po0m8"
+                        >
+                          <input
+                            class="mantine-106387w mantine-Chip-input"
+                            id="mantine-r3"
+                            type="checkbox"
+                            value=""
+                          />
+                          <label
+                            class="__mantine-ref-label mantine-543i07 mantine-Chip-label"
+                            data-variant="outline"
+                            for="mantine-r3"
+                          >
+                            Error Eos Et
+                          </label>
+                        </div>
+                        <div
+                          class="mantine-Chip-root mantine-15po0m8"
+                        >
+                          <input
+                            class="mantine-106387w mantine-Chip-input"
+                            id="mantine-r4"
+                            type="checkbox"
+                            value=""
+                          />
+                          <label
+                            class="__mantine-ref-label mantine-543i07 mantine-Chip-label"
+                            data-variant="outline"
+                            for="mantine-r4"
+                          >
+                            Nobis Et Ut
+                          </label>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      2
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div
+          class="mantine-Group-root mantine-uemwr9"
+          role="navigation"
+        >
+          <button
+            aria-disabled="true"
+            class="mantine-109t3tn mantine-Pagination-item"
+            disabled=""
+            type="button"
+          >
+            <svg
+              fill="none"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.219 8l3.3 3.3-.943.943L5.333 8l4.243-4.243.943.943-3.3 3.3z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+          <button
+            aria-current="page"
+            class="mantine-109t3tn mantine-Pagination-item"
+            data-active="true"
+            tabindex="0"
+            type="button"
+          >
+            1
+          </button>
+          <button
+            aria-disabled="true"
+            class="mantine-109t3tn mantine-Pagination-item"
+            disabled=""
+            type="button"
+          >
+            <svg
+              fill="none"
+              height="16"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8.781 8l-3.3-3.3.943-.943L10.667 8l-4.243 4.243-.943-.943 3.3-3.3z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    style="height: 50px;"
+  />
+</DocumentFragment>
+`;

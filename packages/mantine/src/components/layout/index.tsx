@@ -23,6 +23,7 @@ export const Layout: React.FC<RefineLayoutLayoutProps> = ({
                     display: "flex",
                     flexDirection: "column",
                     flex: 1,
+                    overflow: "auto",
                 }}
             >
                 <HeaderToRender />
