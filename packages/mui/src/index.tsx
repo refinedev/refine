@@ -1,6 +1,9 @@
 export * from "@mui/x-data-grid";
 export * from "@mui/system";
 
+export { default as LoadingButton } from "@mui/lab/LoadingButton";
+export * from "@mui/lab/LoadingButton";
+
 import * as colors from "@mui/material/colors";
 
 export { colors };
