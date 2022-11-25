@@ -125,7 +125,10 @@ module.exports = {
 
             imports.map((importItem) => {
                 // for mui imports
-                if (importItem.importPath === "@mui/material") {
+                if (
+                    importItem.importPath === "@mui/material" ||
+                    importItem.importPath === "@mui/lab"
+                ) {
                     const newStatement = `import ${importItem.namedImports} from "@pankod/refine-mui";`;
 
                     newContent = newContent.replace(
@@ -136,7 +139,9 @@ module.exports = {
 
                 // for icons
                 if (importItem.importPath === "@mui/icons-material") {
-                    const newStatement = `import ${importItem.namedImports} from "@mui/icons-material";`;
+                    const newStatement = `
+                    // We use @mui/icons-material for icons but you can use any icon library you want.
+                    import ${importItem.namedImports} from "@mui/icons-material";`;
 
                     newContent = newContent.replace(
                         importItem.statement,
