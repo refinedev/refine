@@ -5,7 +5,6 @@ import {
     moveSync,
     pathExistsSync,
     mkdirSync,
-    existsSync,
 } from "fs-extra";
 import temp from "temp";
 import { plural } from "pluralize";
