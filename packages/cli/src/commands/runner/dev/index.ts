@@ -4,6 +4,7 @@ import { projectScripts } from "../projectScripts";
 import { runScript } from "../runScript";
 import { updateNotifier } from "src/update-notifier";
 import { getRunnerDescription } from "../utils";
+import { getTelemetryData } from "@telemetryindex";
 
 const dev = (program: Command) => {
     return program
@@ -24,6 +25,10 @@ const action = async (args: string[]) => {
     await updateNotifier();
 
     runScript(binPath, command);
+
+    setTimeout(async () => {
+        await getTelemetryData();
+    }, 2000);
 };
 
 export default dev;
