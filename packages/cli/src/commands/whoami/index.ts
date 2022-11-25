@@ -6,12 +6,12 @@ import ora from "ora";
 const whoami = (program: Command) => {
     return program
         .command("whoami")
-        .description("View the details of the development enviorment")
+        .description("View the details of the development environment")
         .action(action);
 };
 
 const action = async () => {
-    const spinner = ora("Loading enviorment details...").start();
+    const spinner = ora("Loading environment details...").start();
     const info = await envinfo.run(
         {
             System: ["OS", "CPU"],
