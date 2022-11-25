@@ -8,4 +8,8 @@ export const packageMap: Record<string, string> = {
     "@pankod/refine-simple-rest": "RefineSimpleRest",
     "@pankod/refine-react-hook-form": "RefineReactHookForm",
     "@pankod/refine-react-table": "RefineReactTable",
+    "@pankod/refine-inferencer/antd": "RefineAntdInferencer",
+    "@pankod/refine-inferencer/mui": "RefineMuiInferencer",
+    "@pankod/refine-inferencer/mantine": "RefineMantineInferencer",
+    "@pankod/refine-inferencer/chakra-ui": "RefineChakraInferencer",
 };

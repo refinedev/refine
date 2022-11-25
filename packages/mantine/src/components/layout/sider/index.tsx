@@ -248,6 +248,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                     sx={{
                         width: drawerWidth(),
                         transition: "width 200ms ease, min-width 200ms ease",
+                        flexShrink: 0,
                     }}
                 />
             </MediaQuery>
