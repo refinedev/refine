@@ -159,9 +159,13 @@ const App: React.FC = () => {
                     },
                     {
                         name: "categories",
+                        list: MuiListInferencer,
+                        show: MuiShowInferencer,
                     },
                     {
                         name: "tags",
+                        list: MuiListInferencer,
+                        show: MuiShowInferencer,
                     },
                 ]}
             />
@@ -226,9 +230,13 @@ const App: React.FC = () => {
                     },
                     {
                         name: "categories",
+                        list: MuiListInferencer,
+                        show: MuiShowInferencer,
                     },
                     {
                         name: "tags",
+                        list: MuiListInferencer,
+                        show: MuiShowInferencer,
                     },
                 ]}
             />
@@ -293,9 +301,13 @@ const App: React.FC = () => {
                     },
                     {
                         name: "categories",
+                        list: MuiListInferencer,
+                        show: MuiShowInferencer,
                     },
                     {
                         name: "tags",
+                        list: MuiListInferencer,
+                        show: MuiShowInferencer,
                     },
                 ]}
             />
@@ -360,9 +372,13 @@ const App: React.FC = () => {
                     },
                     {
                         name: "categories",
+                        list: MuiListInferencer,
+                        show: MuiShowInferencer,
                     },
                     {
                         name: "tags",
+                        list: MuiListInferencer,
+                        show: MuiShowInferencer,
                     },
                 ]}
             />

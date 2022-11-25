@@ -140,9 +140,13 @@ const App: React.FC = () => {
                 },
                 {
                     name: "categories",
+                    list: AntdListInferencer,
+                    show: AntdShowInferencer,
                 },
                 {
                     name: "tags",
+                    list: AntdListInferencer,
+                    show: AntdShowInferencer,
                 },
             ]}
         />
@@ -197,9 +201,13 @@ const App: React.FC = () => {
                 },
                 {
                     name: "categories",
+                    list: AntdListInferencer,
+                    show: AntdShowInferencer,
                 },
                 {
                     name: "tags",
+                    list: AntdListInferencer,
+                    show: AntdShowInferencer,
                 },
             ]}
         />
@@ -254,9 +262,13 @@ const App: React.FC = () => {
                 },
                 {
                     name: "categories",
+                    list: AntdListInferencer,
+                    show: AntdShowInferencer,
                 },
                 {
                     name: "tags",
+                    list: AntdListInferencer,
+                    show: AntdShowInferencer,
                 },
             ]}
         />
@@ -311,9 +323,13 @@ const App: React.FC = () => {
                 },
                 {
                     name: "categories",
+                    list: AntdListInferencer,
+                    show: AntdShowInferencer,
                 },
                 {
                     name: "tags",
+                    list: AntdListInferencer,
+                    show: AntdShowInferencer,
                 },
             ]}
         />

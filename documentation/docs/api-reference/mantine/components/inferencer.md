@@ -156,9 +156,13 @@ const App: React.FC = () => {
                     },
                     {
                         name: "categories",
+                        list: MantineListInferencer,
+                        show: MantineShowInferencer,
                     },
                     {
                         name: "tags",
+                        list: MantineListInferencer,
+                        show: MantineShowInferencer,
                     },
                 ]}
             />
@@ -221,9 +225,13 @@ const App: React.FC = () => {
                     },
                     {
                         name: "categories",
+                        list: MantineListInferencer,
+                        show: MantineShowInferencer,
                     },
                     {
                         name: "tags",
+                        list: MantineListInferencer,
+                        show: MantineShowInferencer,
                     },
                 ]}
             />
@@ -286,9 +294,13 @@ const App: React.FC = () => {
                     },
                     {
                         name: "categories",
+                        list: MantineListInferencer,
+                        show: MantineShowInferencer,
                     },
                     {
                         name: "tags",
+                        list: MantineListInferencer,
+                        show: MantineShowInferencer,
                     },
                 ]}
             />
@@ -351,9 +363,13 @@ const App: React.FC = () => {
                     },
                     {
                         name: "categories",
+                        list: MantineListInferencer,
+                        show: MantineShowInferencer,
                     },
                     {
                         name: "tags",
+                        list: MantineListInferencer,
+                        show: MantineShowInferencer,
                     },
                 ]}
             />

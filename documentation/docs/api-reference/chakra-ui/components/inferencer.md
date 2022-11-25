@@ -144,9 +144,13 @@ const App: React.FC = () => {
                     },
                     {
                         name: "categories",
+                        list: ChakraUIListInferencer,
+                        show: ChakraUIShowInferencer,
                     },
                     {
                         name: "tags",
+                        list: ChakraUIListInferencer,
+                        show: ChakraUIShowInferencer,
                     },
                 ]}
             />
@@ -203,9 +207,13 @@ const App: React.FC = () => {
                     },
                     {
                         name: "categories",
+                        list: ChakraUIListInferencer,
+                        show: ChakraUIShowInferencer,
                     },
                     {
                         name: "tags",
+                        list: ChakraUIListInferencer,
+                        show: ChakraUIShowInferencer,
                     },
                 ]}
             />
@@ -262,9 +270,13 @@ const App: React.FC = () => {
                     },
                     {
                         name: "categories",
+                        list: ChakraUIListInferencer,
+                        show: ChakraUIShowInferencer,     
                     },
                     {
                         name: "tags",
+                        list: ChakraUIListInferencer,
+                        show: ChakraUIShowInferencer,
                     },
                 ]}
             />
@@ -321,9 +333,13 @@ const App: React.FC = () => {
                     },
                     {
                         name: "categories",
+                        list: ChakraUIListInferencer,
+                        show: ChakraUIShowInferencer, 
                     },
                     {
                         name: "tags",
+                        list: ChakraUIListInferencer,
+                        show: ChakraUIShowInferencer, 
                     },
                 ]}
             />

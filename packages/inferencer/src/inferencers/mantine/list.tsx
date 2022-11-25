@@ -613,7 +613,21 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
             return undefined;
         };
 
-        const actionButtons = jsx`
+        const { canEdit, canShow, canDelete } = resource ?? {};
+
+        if (canEdit) {
+            imports.push(["EditButton", "@pankod/refine-mantine"]);
+        }
+        if (canShow) {
+            imports.push(["ShowButton", "@pankod/refine-mantine"]);
+        }
+        if (canDelete) {
+            imports.push(["DeleteButton", "@pankod/refine-mantine"]);
+        }
+
+        const actionButtons =
+            canEdit || canShow || canDelete
+                ? jsx`
         {
             id: "actions",
             accessorKey: "id",
@@ -621,23 +635,40 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
             cell: function render({ getValue }) {
                 return (
                     <Group spacing="xs" noWrap>
+                        ${
+                            canShow
+                                ? jsx`
                         <ShowButton
                             hideText
                             recordItemId={getValue() as string}
                         />
-                        <EditButton
+                        `
+                                : ""
+                        }
+                        ${
+                            canEdit
+                                ? jsx`<EditButton
                             hideText
                             recordItemId={getValue() as string}
-                        />
+                        />`
+                                : ""
+                        }
+                        ${
+                            canDelete
+                                ? jsx`
                         <DeleteButton
                             hideText
                             recordItemId={getValue() as string}
                         />
+                        `
+                                : ""
+                        }
                     </Group>
                 );
             },
         },
-            `;
+            `
+                : "";
 
         const renderedFields: Array<string | undefined> = fields.map(
             (field) => {

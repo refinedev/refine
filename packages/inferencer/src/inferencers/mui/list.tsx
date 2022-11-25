@@ -700,16 +700,42 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
             return undefined;
         };
 
-        const actionButtons = `
+        const { canEdit, canShow, canDelete } = resource ?? {};
+
+        if (canEdit) {
+            imports.push(["EditButton", "@pankod/refine-mui"]);
+        }
+        if (canShow) {
+            imports.push(["ShowButton", "@pankod/refine-mui"]);
+        }
+        if (canDelete) {
+            imports.push(["DeleteButton", "@pankod/refine-mui"]);
+        }
+
+        const actionButtons =
+            canEdit || canShow || canDelete
+                ? jsx`
                 {
                     field: "actions",
                     headerName: "Actions",
                     renderCell: function render({ row }) {
                         return (
                             <>
-                                <EditButton hideText recordItemId={row.id} />
-                                <ShowButton hideText recordItemId={row.id} />
-                                <DeleteButton hideText recordItemId={row.id} />
+                                ${
+                                    canEdit
+                                        ? jsx`<EditButton hideText recordItemId={row.id} />`
+                                        : ""
+                                }
+                                ${
+                                    canShow
+                                        ? jsx`<ShowButton hideText recordItemId={row.id} />`
+                                        : ""
+                                }
+                                ${
+                                    canDelete
+                                        ? jsx`<DeleteButton hideText recordItemId={row.id} />`
+                                        : ""
+                                }
                             </>
                         );
                     },
@@ -717,7 +743,8 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                     headerAlign: "center",
                     minWidth: 80,
                 },
-        `;
+        `
+                : "";
 
         const renderedFields: Array<string | undefined> = fields.map(
             (field) => {

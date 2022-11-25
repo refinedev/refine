@@ -89,9 +89,6 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                     <th>
                       Language
                     </th>
-                    <th>
-                      Actions
-                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -189,138 +186,6 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                     <td>
                       2
                     </td>
-                    <td>
-                      <div
-                        class="mantine-Group-root mantine-54g21i"
-                      >
-                        <a
-                          class="mantine-Text-root mantine-Anchor-root mantine-1ut1du9"
-                          href="/posts/show/11"
-                        >
-                          <button
-                            class="mantine-UnstyledButton-root mantine-ActionIcon-root mantine-1a20nyr"
-                            title=""
-                            type="button"
-                          >
-                            <svg
-                              class="icon icon-tabler icon-tabler-eye"
-                              fill="none"
-                              height="18"
-                              stroke="currentColor"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              viewBox="0 0 24 24"
-                              width="18"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M0 0h24v24H0z"
-                                fill="none"
-                                stroke="none"
-                              />
-                              <circle
-                                cx="12"
-                                cy="12"
-                                r="2"
-                              />
-                              <path
-                                d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7"
-                              />
-                            </svg>
-                          </button>
-                        </a>
-                        <a
-                          class="mantine-Text-root mantine-Anchor-root mantine-1ut1du9"
-                          href="/posts/edit/11"
-                        >
-                          <button
-                            class="mantine-UnstyledButton-root mantine-ActionIcon-root mantine-1a20nyr"
-                            title=""
-                            type="button"
-                          >
-                            <svg
-                              class="icon icon-tabler icon-tabler-pencil"
-                              fill="none"
-                              height="18"
-                              stroke="currentColor"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              viewBox="0 0 24 24"
-                              width="18"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M0 0h24v24H0z"
-                                fill="none"
-                                stroke="none"
-                              />
-                              <path
-                                d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"
-                              />
-                              <line
-                                x1="13.5"
-                                x2="17.5"
-                                y1="6.5"
-                                y2="10.5"
-                              />
-                            </svg>
-                          </button>
-                        </a>
-                        <button
-                          aria-controls="mantine-r3-dropdown"
-                          aria-expanded="false"
-                          aria-haspopup="dialog"
-                          class="mantine-UnstyledButton-root mantine-ActionIcon-root mantine-b5no9e"
-                          id="mantine-r3-target"
-                          type="button"
-                        >
-                          <svg
-                            class="icon icon-tabler icon-tabler-trash"
-                            fill="none"
-                            height="18"
-                            stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            viewBox="0 0 24 24"
-                            width="18"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M0 0h24v24H0z"
-                              fill="none"
-                              stroke="none"
-                            />
-                            <line
-                              x1="4"
-                              x2="20"
-                              y1="7"
-                              y2="7"
-                            />
-                            <line
-                              x1="10"
-                              x2="10"
-                              y1="11"
-                              y2="17"
-                            />
-                            <line
-                              x1="14"
-                              x2="14"
-                              y1="11"
-                              y2="17"
-                            />
-                            <path
-                              d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"
-                            />
-                            <path
-                              d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"
-                            />
-                          </svg>
-                        </button>
-                      </div>
-                    </td>
                   </tr>
                   <tr>
                     <td>
@@ -399,14 +264,14 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                         >
                           <input
                             class="mantine-106387w mantine-Chip-input"
-                            id="mantine-r4"
+                            id="mantine-r3"
                             type="checkbox"
                             value=""
                           />
                           <label
                             class="__mantine-ref-label mantine-543i07 mantine-Chip-label"
                             data-variant="outline"
-                            for="mantine-r4"
+                            for="mantine-r3"
                           >
                             Error Eos Et
                           </label>
@@ -416,14 +281,14 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                         >
                           <input
                             class="mantine-106387w mantine-Chip-input"
-                            id="mantine-r5"
+                            id="mantine-r4"
                             type="checkbox"
                             value=""
                           />
                           <label
                             class="__mantine-ref-label mantine-543i07 mantine-Chip-label"
                             data-variant="outline"
-                            for="mantine-r5"
+                            for="mantine-r4"
                           >
                             Nobis Et Ut
                           </label>
@@ -432,138 +297,6 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                     </td>
                     <td>
                       2
-                    </td>
-                    <td>
-                      <div
-                        class="mantine-Group-root mantine-54g21i"
-                      >
-                        <a
-                          class="mantine-Text-root mantine-Anchor-root mantine-1ut1du9"
-                          href="/posts/show/21"
-                        >
-                          <button
-                            class="mantine-UnstyledButton-root mantine-ActionIcon-root mantine-1a20nyr"
-                            title=""
-                            type="button"
-                          >
-                            <svg
-                              class="icon icon-tabler icon-tabler-eye"
-                              fill="none"
-                              height="18"
-                              stroke="currentColor"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              viewBox="0 0 24 24"
-                              width="18"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M0 0h24v24H0z"
-                                fill="none"
-                                stroke="none"
-                              />
-                              <circle
-                                cx="12"
-                                cy="12"
-                                r="2"
-                              />
-                              <path
-                                d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7"
-                              />
-                            </svg>
-                          </button>
-                        </a>
-                        <a
-                          class="mantine-Text-root mantine-Anchor-root mantine-1ut1du9"
-                          href="/posts/edit/21"
-                        >
-                          <button
-                            class="mantine-UnstyledButton-root mantine-ActionIcon-root mantine-1a20nyr"
-                            title=""
-                            type="button"
-                          >
-                            <svg
-                              class="icon icon-tabler icon-tabler-pencil"
-                              fill="none"
-                              height="18"
-                              stroke="currentColor"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              viewBox="0 0 24 24"
-                              width="18"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M0 0h24v24H0z"
-                                fill="none"
-                                stroke="none"
-                              />
-                              <path
-                                d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"
-                              />
-                              <line
-                                x1="13.5"
-                                x2="17.5"
-                                y1="6.5"
-                                y2="10.5"
-                              />
-                            </svg>
-                          </button>
-                        </a>
-                        <button
-                          aria-controls="mantine-r6-dropdown"
-                          aria-expanded="false"
-                          aria-haspopup="dialog"
-                          class="mantine-UnstyledButton-root mantine-ActionIcon-root mantine-b5no9e"
-                          id="mantine-r6-target"
-                          type="button"
-                        >
-                          <svg
-                            class="icon icon-tabler icon-tabler-trash"
-                            fill="none"
-                            height="18"
-                            stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            viewBox="0 0 24 24"
-                            width="18"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M0 0h24v24H0z"
-                              fill="none"
-                              stroke="none"
-                            />
-                            <line
-                              x1="4"
-                              x2="20"
-                              y1="7"
-                              y2="7"
-                            />
-                            <line
-                              x1="10"
-                              x2="10"
-                              y1="11"
-                              y2="17"
-                            />
-                            <line
-                              x1="14"
-                              x2="14"
-                              y1="11"
-                              y2="17"
-                            />
-                            <path
-                              d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"
-                            />
-                            <path
-                              d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"
-                            />
-                          </svg>
-                        </button>
-                      </div>
                     </td>
                   </tr>
                 </tbody>

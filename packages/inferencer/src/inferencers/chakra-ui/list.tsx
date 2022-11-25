@@ -64,9 +64,6 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
             ["IconButton", "@pankod/refine-chakra-ui"],
             ["usePagination", "@pankod/refine-chakra-ui"],
             ["Box", "@pankod/refine-chakra-ui"],
-            ["ShowButton", "@pankod/refine-chakra-ui"],
-            ["EditButton", "@pankod/refine-chakra-ui"],
-            ["DeleteButton", "@pankod/refine-chakra-ui"],
             ["IconChevronRight", "@tabler/icons"],
             ["IconChevronLeft", "@tabler/icons"],
         ];
@@ -626,7 +623,21 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
             return undefined;
         };
 
-        const actionButtons = jsx`
+        const { canEdit, canShow, canDelete } = resource ?? {};
+
+        if (canEdit) {
+            imports.push(["EditButton", "@pankod/refine-chakra-ui"]);
+        }
+        if (canShow) {
+            imports.push(["ShowButton", "@pankod/refine-chakra-ui"]);
+        }
+        if (canDelete) {
+            imports.push(["DeleteButton", "@pankod/refine-chakra-ui"]);
+        }
+
+        const actionButtons =
+            canEdit || canShow || canDelete
+                ? jsx`
         {
             id: "actions",
             accessorKey: "id",
@@ -634,23 +645,42 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
             cell: function render({ getValue }) {
                 return (
                     <HStack>
+                    ${
+                        canShow
+                            ? jsx`
                         <ShowButton
                             hideText
                             recordItemId={getValue() as string}
                         />
+                        `
+                            : ""
+                    }
+                        ${
+                            canEdit
+                                ? jsx`
                         <EditButton
                             hideText
                             recordItemId={getValue() as string}
                         />
+                        `
+                                : ""
+                        }
+                        ${
+                            canDelete
+                                ? jsx`
                         <DeleteButton
                             hideText
                             recordItemId={getValue() as string}
                         />
+                        `
+                                : ""
+                        }
                     </HStack>
                 );
             },
         },
-            `;
+            `
+                : "";
 
         const renderedFields: Array<string | undefined> = fields.map(
             (field) => {
