@@ -1,9 +1,7 @@
-import React, { ReactNode } from "react";
+import React from "react";
+import { Typography } from "@mui/material";
 
-import { RefineFieldTextProps } from "@pankod/refine-ui-types";
-import { Typography, TypographyProps } from "@mui/material";
-
-export type TextFieldProps = RefineFieldTextProps<ReactNode, TypographyProps>;
+import { TextFieldProps } from "../types";
 
 /**
  * This field lets you show basic text. It uses Materail UI {@link https://mui.com/material-ui/react-typography/#main-content `<Typography>`} component.
