@@ -10,7 +10,7 @@ import "@utils/env";
 import { getPackageJson } from "@utils/package";
 import { telemetryHook } from "@telemetryindex";
 
-const bootstrap = async () => {
+const bootstrap = () => {
     let packageJson;
 
     // check package json if exists
