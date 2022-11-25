@@ -29,6 +29,7 @@ After importing the component, you can directly use it in `<Refine/>` component'
             }
         ]}
     />
+
 ```
 
 **Tip:** Relation data is only handled if the resource is present in the `resources` array. For example, if you have a `posts` resource with a `users` relation, you need to add `users` resource to the `resources` array as well. Otherwise, inferencer will try to show the relation data as a simple field like string or a number. 
