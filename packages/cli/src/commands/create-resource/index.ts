@@ -15,7 +15,7 @@ import { join } from "path";
 import { getProjectType, getUIFramework } from "@utils/project";
 import { compileDir } from "@utils/compile";
 import { uppercaseFirstChar } from "@utils/text";
-import { ProjectTypes } from "@definitions/projectTypes";
+import { getResourcePath } from "@utils/resource";
 
 const defaultActions = ["list", "create", "edit", "show"];
 const load = (program: Command) => {
@@ -182,29 +182,6 @@ const action = async (
 const generateTempDir = (): string => {
     temp.track();
     return temp.mkdirSync("resource");
-};
-
-const getResourcePath = (
-    projectType: ProjectTypes,
-): { path: string; alias: string } => {
-    switch (projectType) {
-        case ProjectTypes.NEXTJS:
-            return {
-                path: "src/components",
-                alias: "../src/components",
-            };
-        case ProjectTypes.REMIX:
-            return {
-                path: "app/components",
-                alias: "~/components",
-            };
-    }
-
-    // vite and react
-    return {
-        path: "src/pages",
-        alias: "pages",
-    };
 };
 
 export default load;
