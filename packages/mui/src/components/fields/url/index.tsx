@@ -1,12 +1,7 @@
 import React from "react";
+import { Typography, Link } from "@mui/material";
 
-import { RefineFieldUrlProps } from "@pankod/refine-ui-types";
-import { Typography, Link, LinkProps, TypographyProps } from "@mui/material";
-
-export type UrlFieldProps = RefineFieldUrlProps<
-    string | undefined,
-    LinkProps & TypographyProps
->;
+import { UrlFieldProps } from "../types";
 
 /**
  * This field lets you embed a link.It uses the {@link https://mui.com/material-ui/react-typography/#main-content `<Typography>` }
