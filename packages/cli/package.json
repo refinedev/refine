@@ -45,7 +45,6 @@
         "node-env-type": "^0.0.8",
         "node-fetch": "^2.6.7",
         "ora": "^5.4.1",
-        "os-name": "^4.0.1",
         "pluralize": "^8.0.0",
         "preferred-pm": "^3.0.3",
         "semver-diff": "^3.1.1",
