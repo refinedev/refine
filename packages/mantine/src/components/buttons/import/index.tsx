@@ -1,21 +1,11 @@
 import React from "react";
-import { useTranslate, UseImportInputPropsType } from "@pankod/refine-core";
-import {
-    RefineImportButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
-import { ActionIcon, Button, ButtonProps } from "@mantine/core";
-import { IconFileImport, TablerIconProps } from "@tabler/icons";
+import { useTranslate } from "@pankod/refine-core";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { ActionIcon, Button } from "@mantine/core";
+import { IconFileImport } from "@tabler/icons";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
-
-export type ImportButtonProps = RefineImportButtonProps<
-    ButtonProps,
-    {
-        inputProps: UseImportInputPropsType;
-        svgIconProps?: TablerIconProps;
-    }
->;
+import { ImportButtonProps } from "../types";
 
 /**
  * `<ImportButton>` is compatible with the {@link https://refine.dev/docs/core/hooks/import-export/useImport/ `useImport`} core hook.

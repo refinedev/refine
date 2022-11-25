@@ -1,19 +1,11 @@
 import React from "react";
 import { useOne, useTranslate, useResource } from "@pankod/refine-core";
-import {
-    RefineButtonTestIds,
-    RefineRefreshButtonProps,
-} from "@pankod/refine-ui-types";
-import { ActionIcon, Button, ButtonProps } from "@mantine/core";
-import { IconRefresh, TablerIconProps } from "@tabler/icons";
-import { mapButtonVariantToActionIconVariant } from "@definitions/button";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { ActionIcon, Button } from "@mantine/core";
+import { IconRefresh } from "@tabler/icons";
 
-export type RefreshButtonProps = RefineRefreshButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: TablerIconProps;
-    }
->;
+import { mapButtonVariantToActionIconVariant } from "@definitions/button";
+import { RefreshButtonProps } from "../types";
 
 /**
  * `<RefreshButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button> `} component.
