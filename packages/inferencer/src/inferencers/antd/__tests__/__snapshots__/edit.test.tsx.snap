@@ -554,8 +554,8 @@ exports[`AntdEditInferencer should match the snapshot 1`] = `
                                   placeholder="Select date"
                                   readonly=""
                                   size="12"
-                                  title="2022-11-24"
-                                  value="2022-11-24"
+                                  title="2022-11-25"
+                                  value="2022-11-25"
                                 />
                                 <span
                                   class="ant-picker-suffix"
@@ -645,8 +645,8 @@ exports[`AntdEditInferencer should match the snapshot 1`] = `
                                   placeholder="Select date"
                                   readonly=""
                                   size="12"
-                                  title="2022-11-24"
-                                  value="2022-11-24"
+                                  title="2022-11-25"
+                                  value="2022-11-25"
                                 />
                                 <span
                                   class="ant-picker-suffix"
