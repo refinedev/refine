@@ -7,7 +7,7 @@ import {
 import { RefineBreadcrumbProps } from "@pankod/refine-ui-types";
 
 import {
-    Breadcrumbs as MuiBreadcrumbs,
+    Breadcrumbs,
     BreadcrumbsProps as MuiBreadcrumbProps,
     Typography,
     Link,
@@ -37,7 +37,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     );
 
     return (
-        <MuiBreadcrumbs
+        <Breadcrumbs
             aria-label="breadcrumb"
             sx={{
                 paddingY: 2,
@@ -97,6 +97,6 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
                     </Grid>
                 );
             })}
-        </MuiBreadcrumbs>
+        </Breadcrumbs>
     );
 };
