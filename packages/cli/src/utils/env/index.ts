@@ -12,16 +12,16 @@ const envSearchMap: Record<Exclude<NODE_ENV, "custom">, RegExp> = {
 };
 
 export const getNodeEnv = (): NODE_ENV => {
-    const nodEnv = process.env.NODE_ENV;
+    const nodeEnv = process.env.NODE_ENV;
 
-    if (!nodEnv) {
+    if (!nodeEnv) {
         return "development";
     }
 
     let env: NODE_ENV = "custom";
 
     for (const [key, value] of Object.entries(envSearchMap)) {
-        if (value.test(nodEnv)) {
+        if (value.test(nodeEnv)) {
             env = key as NODE_ENV;
             break;
         }
