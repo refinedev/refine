@@ -1,5 +1,11 @@
 # @pankod/refine-mui
 
+## 3.57.0
+
+### Minor Changes
+
+-   [#3076](https://github.com/refinedev/refine/pull/3076) [`bcd47eabbfc`](https://github.com/refinedev/refine/commit/bcd47eabbfc911ff622d30bf5bbdcc3a9a7d8565) Thanks [@ahhshm](https://github.com/ahhshm)! - exported material-ui localization files
+
 ## 3.56.0
 
 ### Minor Changes
