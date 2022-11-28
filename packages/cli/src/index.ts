@@ -5,10 +5,12 @@ import figlet from "figlet";
 
 import checkUpdates from "@commands/check-updates";
 import createResource from "@commands/create-resource";
+import whoami from "@commands/whoami";
 import update from "@commands/update";
 import { dev, build, start, run } from "@commands/runner";
 import "@utils/env";
 import { getPackageJson } from "@utils/package";
+import { telemetryHook } from "@telemetryindex";
 
 const bootstrap = () => {
     let packageJson;
@@ -62,6 +64,14 @@ const bootstrap = () => {
     build(program);
     start(program);
     run(program);
+    whoami(program);
+
+    program.hook("postAction", (thisCommand) => {
+        const command = thisCommand.args[0];
+        if (["run"].includes(command)) return;
+
+        telemetryHook();
+    });
 
     program.parse(process.argv);
 
