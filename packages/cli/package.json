@@ -17,6 +17,7 @@
     },
     "devDependencies": {
         "@esbuild-plugins/node-resolve": "^0.1.4",
+        "@types/figlet": "^1.5.5",
         "@types/envinfo": "^7.8.1",
         "@types/fs-extra": "^9.0.13",
         "@types/inquirer": "^8.2.5",
