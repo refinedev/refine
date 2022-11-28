@@ -7,7 +7,7 @@ export const getRefineConfig = async (
     isAbsolute?: boolean,
 ) => {
     try {
-        provideCliHelpers();
+        provideCliHelpers(packagePath, isAbsolute);
 
         // eslint-disable-next-line @typescript-eslint/no-var-requires
         const config = require(path.join(
