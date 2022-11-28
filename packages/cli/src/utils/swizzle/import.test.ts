@@ -97,13 +97,13 @@ import { Button, TextInput } from "zantd";
         const content = `
 import { Button, TextInput } from "antd";
 import { useEffect } from "react";
-import { useList } from "@pankod/refine-core";
-import { useOne } from "@pankod/refine-core";
+import { useList, useOtherList, } from "@pankod/refine-core";
+import { useOne, useOtherOne } from "@pankod/refine-core";
 `;
 
         const expected = `
 import { useEffect } from "react";
-import { useList, useOne } from "@pankod/refine-core";
+import { useList, useOtherList, useOne, useOtherOne } from "@pankod/refine-core";
 import { Button, TextInput } from "antd";
 `;
 

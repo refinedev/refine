@@ -186,7 +186,7 @@ export const reorderImports = (content: string): string => {
                         .split(",")
                         .map((namedImport) => namedImport.trim());
 
-                    return namedImports.join(", ");
+                    return namedImports.filter(Boolean).join(", ");
                 })
                 .join(", ");
 
