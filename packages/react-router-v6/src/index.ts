@@ -22,7 +22,7 @@ export type RefineRouteProps = RouteProps & {
 interface IReactRouterProvider extends IRouterProvider {
     useLocation: typeof useLocation;
     Link: typeof Link;
-    useParams: any;
+    useParams: <Params extends { [K in keyof Params]?: string } = {}>() => Params;
     RouterComponent: React.FC<BrowserRouterProps>;
     routes?: RefineRouteProps[];
 }
