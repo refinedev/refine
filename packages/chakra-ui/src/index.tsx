@@ -455,7 +455,7 @@ export type {
     BoxProps,
     BreadcrumbItemProps,
     BreadcrumbLinkProps,
-    BreadcrumbProps,
+    BreadcrumbProps as ChakraBreadcrumbProps,
     BreadcrumbSeparatorProps,
     ButtonGroupProps,
     ButtonProps,
