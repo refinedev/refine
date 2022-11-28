@@ -1,7 +1,9 @@
+const { dirname, join } = require("path");
 const {
     getImports,
     getNameChangeInImport,
     appendAfterImports,
+    getFileContent,
 } = require("@pankod/refine-cli");
 
 /** @type {import('@pankod/refine-cli').RefineConfig} */
@@ -355,6 +357,81 @@ module.exports = {
                                 breadcrumbImportRegex,
                                 "AntdBreadcrumb,\nBreadcrumbProps,",
                             );
+
+                            return newContent;
+                        },
+                    },
+                ],
+            },
+            {
+                group: "Layout",
+                label: "Sider",
+                files: [
+                    {
+                        src: "./src/components/layout/sider/index.tsx",
+                        dest: "./src/components/layout/sider.tsx",
+                        transform: (content) => {
+                            let newContent = content;
+                            const imports = getImports(content);
+
+                            imports.map((importItem) => {
+                                // handle antd layout rename
+                                if (importItem.importPath === "antd") {
+                                    newContent = newContent.replace(
+                                        importItem.statement,
+                                        importItem.statement.replace(
+                                            "Layout,",
+                                            "AntdLayout,",
+                                        ),
+                                    );
+
+                                    newContent = newContent.replace(
+                                        /Layout\.Sider/g,
+                                        "AntdLayout.Sider",
+                                    );
+                                }
+
+                                // handle @components import replacement
+                                if (importItem.importPath === "@components") {
+                                    const newStatement = `import ${importItem.namedImports} from "@pankod/refine-antd";`;
+
+                                    newContent = newContent.replace(
+                                        importItem.statement,
+                                        newStatement,
+                                    );
+                                }
+
+                                // add content of ./styles.ts and remove import
+                                if (importItem.importPath === "./styles") {
+                                    newContent = newContent.replace(
+                                        importItem.statement,
+                                        "",
+                                    );
+
+                                    let appending = "";
+
+                                    try {
+                                        const stylesContent = getFileContent(
+                                            join(
+                                                dirname(
+                                                    "./src/components/layout/sider/index.tsx",
+                                                ),
+                                                "/styles.ts",
+                                            ),
+                                            "utf-8",
+                                        ).replace("export const", "const");
+
+                                        appending = stylesContent;
+                                    } catch (err) {
+                                        // console.log(err);
+                                    }
+
+                                    newContent = appendAfterImports(
+                                        newContent,
+                                        appending,
+                                    );
+                                }
+                            });
 
                             return newContent;
                         },
