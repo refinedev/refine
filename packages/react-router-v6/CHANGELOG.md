@@ -1,5 +1,11 @@
 # @pankod/refine-react-router-v6
 
+## 3.36.4
+
+### Patch Changes
+
+-   [#3039](https://github.com/refinedev/refine/pull/3039) [`54eee2911a2`](https://github.com/refinedev/refine/commit/54eee2911a2196645914b2181a05d030c528b438) Thanks [@alonp99](https://github.com/alonp99)! - Fixed TypeScript type of `useParams` hook
+
 ## 3.36.3
 
 ### Patch Changes
