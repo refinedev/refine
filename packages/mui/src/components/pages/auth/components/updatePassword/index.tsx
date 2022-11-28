@@ -11,7 +11,7 @@ import {
     Typography,
     Container,
     Card,
-    CardContent as MuiCardContent,
+    CardContent,
     BoxProps,
     CardContentProps,
 } from "@mui/material";
@@ -56,9 +56,9 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
         useUpdatePassword<UpdatePasswordFormTypes>();
     const translate = useTranslate();
 
-    const CardContent = (
+    const Content = (
         <Card {...(contentProps ?? {})}>
-            <MuiCardContent sx={{ paddingX: "32px" }}>
+            <CardContent sx={{ paddingX: "32px" }}>
                 <Typography
                     component="h1"
                     variant="h5"
@@ -144,7 +144,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                         )}
                     </Button>
                 </Box>
-            </MuiCardContent>
+            </CardContent>
         </Card>
     );
 
@@ -161,7 +161,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
                         height: "100vh",
                     }}
                 >
-                    {renderContent ? renderContent(CardContent) : CardContent}
+                    {renderContent ? renderContent(Content) : Content}
                 </Container>
             </Box>
         </>
