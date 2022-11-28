@@ -451,14 +451,14 @@ Let's begin by setting up a new **refine** project.
 
 There are two alternative methods to set up a **refine** application.
 
-The recommended way is using the [superplate](https://github.com/pankod/superplate) tool. _superplate_'s _CLI wizard_ will let you create and customize your application in seconds.
+The recommended way is using the `create refine-app` tool. _create refine-app_'s _CLI wizard_ will let you create and customize your application in seconds.
 
 Alternatively, you may use the _create-react-app_ tool to create an empty _React_ application and then add **refine** module via _npm_.
 
 <Tabs
-defaultValue="superplate"
+defaultValue="create-refine-app"
 values={[
-{label: 'use superplate', value: 'superplate'},
+{label: 'use create refine-app', value: 'create-refine-app'},
 {label: 'use create-react-app', value: 'create-react-app'}
 ]}>
 <TabItem value="create-react-app">
@@ -503,14 +503,13 @@ This tutorial assumes your project is configured for absolute imports. Since CRA
 :::
 
 </TabItem>
-<TabItem value="superplate">
+<TabItem value="create-refine-app">
 
-First, run the **superplate** with the following command:
+First, run the **create refine-app** with the following command:
 
 ```
-npx superplate-cli -o refine-chakra-ui tutorial
+npm create refine-app -o refine-chakra-ui tutorial
 ```
-
 </TabItem>
 </Tabs>
 
@@ -549,7 +548,7 @@ yarn add @pankod/refine-simple-rest
 </Tabs>
 
 :::note
-If you used `superplate` to bootstrap the project, you can skip issuing this command as `superplate` already installs the selected data provider.
+If you used `create refine-app` to bootstrap the project, you can skip issuing this command as `create refine-app` already installs the selected data provider.
 :::
 
 :::note
@@ -652,19 +651,19 @@ For more information about adding font family in your Refine application, you ca
 Run the following command to launch the app in development mode:
 
 <Tabs
-defaultValue="superplate"
+defaultValue="create-refine-app"
 values={[
-{label: 'with superplate', value: 'superplate'},
+{label: 'with create refine-app', value: 'create-refine-app'},
 {label: 'with create-react-app', value: 'create-react-app'}
 ]}>
-<TabItem value="superplate">
+<TabItem value="craete-refine-app">
 
 ```sh
 npm run dev
 ```
 
-</TabItem>
-<TabItem value="create-react-app">
+  </TabItem>
+  <TabItem value="create-react-app">
 
 ```sh
 npm run start
