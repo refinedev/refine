@@ -328,6 +328,39 @@ module.exports = {
                     },
                 ],
             },
+            {
+                group: "Other",
+                label: "Breadcrumb",
+                files: [
+                    {
+                        src: "./src/components/breadcrumb/index.tsx",
+                        dest: "./src/components/breadcrumb.tsx",
+                        transform: (content) => {
+                            let newContent = content;
+
+                            // for remove type export
+                            const breadcrumbPropsExportRegex =
+                                /export type BreadcrumbProps = RefineBreadcrumbProps<AntdBreadcrumbProps>;?/g;
+
+                            newContent = newContent.replace(
+                                breadcrumbPropsExportRegex,
+                                "",
+                            );
+
+                            // change the breadcrumb import path
+                            const breadcrumbImportRegex =
+                                /Breadcrumb as AntdBreadcrumb,\n\s*BreadcrumbProps as AntdBreadcrumbProps,/g;
+
+                            newContent = newContent.replace(
+                                breadcrumbImportRegex,
+                                "AntdBreadcrumb,\nBreadcrumbProps,",
+                            );
+
+                            return newContent;
+                        },
+                    },
+                ],
+            },
         ],
         transform: (content) => {
             let newContent = content;
