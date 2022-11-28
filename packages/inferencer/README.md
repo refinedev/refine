@@ -82,11 +82,11 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 
 ## Quick Start
 
-The fastest way to get started with **refine** is using the [superplate](https://github.com/pankod/superplate) project starter tool.
+The fastest way to get started with **refine** is using the `create refine-app` project starter tool.
 Run the following command to create a new **refine** project configured with  [Ant Design System](https://ant.design/) as the default UI framework:
 
 ```
-npx superplate-cli --preset refine-antd my-project
+npm create refine-app -- --preset refine-antd my-project
 ```
 
 Once the setup is complete, navigate to the project folder and start your project with:

@@ -12,10 +12,10 @@ npm i @pankod/refine-core @pankod/refine-remix-router @pankod/refine-simple-rest
 ```
 
 :::tip
-We recommend [**superplate**][superplate] to initialize your refine projects. It configures the project according to your needs including SSR with Remix!
+We recommend using `create refine-app` to initialize your refine projects. It configures the project according to your needs including SSR with Remix!
 
 ```sh
-npx superplate-cli -o refine-remix my-refine-remix-app
+npm create refine-app -- -o refine-remix my-refine-remix-app
 ```
 
 :::
@@ -852,7 +852,6 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 [remix]: https://remix.run/
 [remixrouter]: https://www.npmjs.com/package/@pankod/remix-router
 [routerprovider]: /api-reference/core/providers/router-provider.md
-[superplate]: https://github.com/pankod/superplate
 [refine]: /api-reference/core/components/refine-config.md
 [remixroutes]: https://remix.run/docs/en/v1/api/conventions#routes
 [usetable]: /api-reference/core/hooks/useTable.md

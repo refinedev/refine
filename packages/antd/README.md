@@ -81,12 +81,12 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 
 ## Quick Start
 
-The fastest way to get started with **refine** is using the [superplate](https://github.com/pankod/superplate) project starter tool.
+The fastest way to get started with **refine** is using the `create refine-app` project starter tool.
 
 Run the following command to create a new **refine** project
 
 ```
-npx superplate-cli -p refine-react my-project
+npm create refine-app my-project
 ```
 
 Select the following options to complete CLI wizard:

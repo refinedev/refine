@@ -7,14 +7,14 @@ title: Quick Start Guide
 **refine** works on any environment you can run **React** (incl. *CRA, Next.js, Remix, Vite* etc.)
 
 
-Although you could take the time to manually set up your environment and install **refine** packages afterwards, the smart way to get started with **refine** is using [superplate](https://github.com/pankod/superplate) project starter tool. 
+Although you could take the time to manually set up your environment and install **refine** packages afterwards, the smart way to get started with **refine** is using the project starter tool. 
 
-**superplate** provides built-in templates for *CRA*, *Next.js* and *Remix* environments so you can bootstrap a **refine** project in a couple of minutes. It also offers a wide range of options that you can automatically configure for your *UI framework*, *i18n*, *router*, *Auth.* and *data provider* settings.
+`create refine-app` provides built-in templates for *CRA*, *Next.js* and *Remix* environments so you can bootstrap a **refine** project in a couple of minutes. It also offers a wide range of options that you can automatically configure for your *UI framework*, *i18n*, *router*, *Auth.* and *data provider* settings.
 
 To get started, please run the following command. The **CLI wizard** will assist you for the rest of the setup process:
 
 ```
-npx superplate-cli -p refine my-project
+npm create refine-app my-project
 ```
 
 It will create your **refine** project and install the required packages according to your selections. After completing the setup, navigate to the project folder and start your application with:
@@ -34,7 +34,7 @@ You can now view **refine** application at [http://localhost:3000](http://localh
 We will show how you can use the CLI to bootstrap a **refine** app with [Ant Design](https://ant.design/) and [React](https://reactjs.org/). You can also use [Material UI](https://material-ui.com/), [Chakra UI](https://chakra-ui.com/) and [Mantine](https://mantine.dev/) as well.
 
 ```
-npx superplate-cli -p refine my-antd-project
+npm create refine-app my-antd-project
 ```
 
 <br/>
