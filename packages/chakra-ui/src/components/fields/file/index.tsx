@@ -1,10 +1,8 @@
 import React from "react";
 
-import { RefineFieldFileProps } from "@pankod/refine-ui-types";
-import { LinkProps } from "@chakra-ui/react";
 import { UrlField } from "@components";
 
-export type FileFieldProps = RefineFieldFileProps<LinkProps>;
+import { FileFieldProps } from "../types";
 
 export const FileField: React.FC<FileFieldProps> = ({
     title,

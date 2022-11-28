@@ -1,9 +1,7 @@
-import React, { ReactNode } from "react";
+import React from "react";
+import { Tag } from "@chakra-ui/react";
 
-import { RefineFieldTagProps } from "@pankod/refine-ui-types";
-import { Tag, TagProps } from "@chakra-ui/react";
-
-export type TagFieldProps = RefineFieldTagProps<ReactNode, TagProps>;
+import { TagFieldProps } from "../types";
 
 /**
  * This field lets you display a value in a tag. It uses Chakra UI {@link https://chakra-ui.com/docs/components/tag `<Tag>`} component.
