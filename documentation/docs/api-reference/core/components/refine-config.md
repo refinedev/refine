@@ -466,7 +466,7 @@ Whether to update data automatically (`auto`) or not (`manual`) if a related liv
 
 **refine** implements a simple and transparent telemetry module for collecting usage statistics defined in a very limited scope. This telemetry module is used to improve the **refine** experience. You can disable this by setting `disableTelemetry` to `true`.
 
-[Refer to refine telemetry documentation for detailed information. &#8594](/further-readings/telemetry.md)
+[Refer to refine telemetry documentation for detailed information. &#8594](/further-readings/telemetry.mdx)
 
 ### `redirect`
 
