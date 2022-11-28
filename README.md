@@ -15,9 +15,8 @@
     <a href="https://refine.dev/docs/">Documentation</a> | 
     <a href="https://github.com/refinedev/refine/projects/1">Roadmap</a>
 </div>
-
 </div>
-<br/>
+
 
 <div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>An open source, headless web application framework developed with flexibility in mind.</div>
 
@@ -25,10 +24,8 @@
 
 <div align="center">
 
-[![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/refine)
-[![Twitter Follow](https://img.shields.io/twitter/follow/refine_dev?style=social)](https://twitter.com/refine_dev)
 
-<a href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=362220&theme=light&period=daily" alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0032;to&#0032;build&#0032;web&#0032;apps&#0032;3x&#0032;faster | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+
 
 [![Awesome](https://github.com/refinedev/awesome-refine/raw/main/images/badge.svg)](https://github.com/refinedev/awesome-refine)
 [![Maintainability](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/maintainability)](https://codeclimate.com/github/pankod/refine/maintainability)
@@ -37,7 +34,10 @@
 [![npm](https://img.shields.io/npm/dm/@pankod/refine-core)](https://www.npmjs.com/package/@pankod/refine-core)
 [![](https://img.shields.io/github/commit-activity/m/refinedev/refine)](https://github.com/refinedev/refine/commits/next)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
+[![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/refine)
+[![Twitter Follow](https://img.shields.io/twitter/follow/refine_dev?style=social)](https://twitter.com/refine_dev)
 
+<a href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=362220&theme=light&period=daily" alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0032;to&#0032;build&#0032;web&#0032;apps&#0032;3x&#0032;faster | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
 
 
@@ -69,7 +69,7 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 ## Use cases
 **refine** shines on *data-intensive⚡* applications like **admin panels**, **dashboards** and **internal tools**. Thanks to the built-in **SSR support**, **refine** can also power *customer-facing* applications like *storefronts*.
 
-You can take a look at some live examples that can be built using **refine** from scratch.
+You can take a look at some live examples that can be built using **refine** from scratch:
 
 
 
@@ -89,6 +89,7 @@ You can take a look at some live examples that can be built using **refine** fro
 </a>
 
 
+<br/>
 <br/>
 
 
