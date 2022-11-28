@@ -390,6 +390,16 @@ module.exports = {
                     },
                 ],
             },
+            {
+                group: "Other",
+                label: "UndoableNotification",
+                files: [
+                    {
+                        src: "./src/components/undoableNotification/index.tsx",
+                        dest: "./src/components/undoableNotification.tsx",
+                    },
+                ],
+            },
         ],
         transform: (content) => {
             let newContent = content;

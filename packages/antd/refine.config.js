@@ -364,6 +364,16 @@ module.exports = {
                 ],
             },
             {
+                group: "Other",
+                label: "UndoableNotification",
+                files: [
+                    {
+                        src: "./src/components/undoableNotification/index.tsx",
+                        dest: "./src/components/undoableNotification.tsx",
+                    },
+                ],
+            },
+            {
                 group: "Layout",
                 label: "Sider",
                 files: [
@@ -432,6 +442,25 @@ module.exports = {
                                     );
                                 }
                             });
+                        },
+                    },
+                ],
+            },
+            {
+                group: "Layout",
+                label: "Header",
+                files: [
+                    {
+                        src: "./src/components/layout/header/index.tsx",
+                        dest: "./src/components/layout/header.tsx",
+                        transform: (content) => {
+                            let newContent = content;
+
+                            // change the breadcrumb import path
+                            newContent = newContent.replace(
+                                /Layout as AntdLayout/g,
+                                "AntdLayout",
+                            );
 
                             return newContent;
                         },

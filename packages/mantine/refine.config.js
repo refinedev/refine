@@ -383,6 +383,16 @@ module.exports = {
                     },
                 ],
             },
+            {
+                group: "Other",
+                label: "RingCountdown",
+                files: [
+                    {
+                        src: "./src/components/ring-countdown/index.tsx",
+                        dest: "./src/components/ringCountdown.tsx",
+                    },
+                ],
+            },
         ],
         transform: (content) => {
             let newContent = content;

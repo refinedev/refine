@@ -485,7 +485,19 @@ export { default as TabScrollButton } from "@mui/material/TabScrollButton";
 export * from "@mui/material/TabScrollButton";
 
 export { default as TextField } from "@mui/material/TextField";
-export * from "@mui/material/TextField";
+export { textFieldClasses } from "@mui/material/TextField";
+export type {
+    BaseTextFieldProps,
+    FilledTextFieldProps,
+    OutlinedTextFieldProps,
+    StandardTextFieldProps,
+    TextFieldClassKey,
+    TextFieldClasses,
+    TextFieldProps as MuiTextFieldProps,
+    TextFieldPropsColorOverrides,
+    TextFieldPropsSizeOverrides,
+    getTextFieldUtilityClass,
+} from "@mui/material/TextField";
 
 export { default as TextareaAutosize } from "@mui/material/TextareaAutosize";
 export * from "@mui/material/TextareaAutosize";
