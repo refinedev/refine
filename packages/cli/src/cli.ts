@@ -1,13 +1,17 @@
 #!/usr/bin/env node
-import "@utils/env";
 import { Command } from "commander";
-import { getPackageJson } from "@utils/package";
 
-import update from "@commands/update";
-import swizzle from "@commands/swizzle";
+import figlet from "figlet";
+
 import checkUpdates from "@commands/check-updates";
 import createResource from "@commands/create-resource";
+import whoami from "@commands/whoami";
+import update from "@commands/update";
+import swizzle from "@commands/swizzle";
 import { dev, build, start, run } from "@commands/runner";
+import "@utils/env";
+import { getPackageJson } from "@utils/package";
+import { telemetryHook } from "@telemetryindex";
 
 const bootstrap = () => {
     let packageJson;
@@ -24,11 +28,34 @@ const bootstrap = () => {
 
     const program = new Command();
 
+    const fonts = [
+        "isometric1",
+        "epic",
+        "isometric3",
+        "standard",
+        "binary",
+        "isometric4",
+        "cyberlarge",
+        "hollywood",
+        "isometric2",
+    ];
+    const randomFont = fonts[
+        Math.floor(Math.random() * fonts.length)
+    ] as figlet.Fonts;
+
     program
         .version(
             packageJson.version,
             "-v, --version",
             "Output the current version.",
+        )
+        .description(
+            figlet.textSync("refine", {
+                font: randomFont,
+                horizontalLayout: "full",
+                verticalLayout: "full",
+                whitespaceBreak: true,
+            }),
         )
         .usage("<command> [options]")
         .helpOption("-h, --help", "Output usage information.");
@@ -41,7 +68,15 @@ const bootstrap = () => {
     build(program);
     start(program);
     run(program);
+    whoami(program);
     swizzle(program);
+
+    program.hook("postAction", (thisCommand) => {
+        const command = thisCommand.args[0];
+        if (["run"].includes(command)) return;
+
+        telemetryHook();
+    });
 
     program.parse(process.argv);
 
