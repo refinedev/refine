@@ -259,7 +259,7 @@ You can find refine's <a href="https://github.com/refinedev/refine/projects/1">P
 
 
 
- [👉Refer to contribution docs for more information](https://refine.dev/docs/contributing/#ways-to-contribute)
+ [👉 Refer to contribution docs for more information](https://refine.dev/docs/contributing/#ways-to-contribute)
 
 
 
