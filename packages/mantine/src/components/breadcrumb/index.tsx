@@ -8,7 +8,7 @@ import { RefineBreadcrumbProps } from "@pankod/refine-ui-types";
 
 import {
     Text,
-    Breadcrumbs as MantineBreadcrumbs,
+    Breadcrumbs,
     BreadcrumbsProps as MantineBreadcrumbProps,
     Anchor,
     Group,
@@ -31,7 +31,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     }
 
     return (
-        <MantineBreadcrumbs
+        <Breadcrumbs
             aria-label="breadcrumb"
             styles={{
                 separator: { marginRight: 8, marginLeft: 8, color: "dimgray" },
@@ -64,6 +64,6 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
                     </Group>
                 );
             })}
-        </MantineBreadcrumbs>
+        </Breadcrumbs>
     );
 };
