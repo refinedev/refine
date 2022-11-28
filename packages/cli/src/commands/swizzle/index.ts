@@ -14,6 +14,7 @@ import {
 
 import { SwizzleFile } from "@definitions";
 import { parseSwizzleBlocks } from "@utils/swizzle/parseSwizzleBlocks";
+import { reorderImports } from "@utils/swizzle/import";
 
 const swizzle = (program: Command) => {
     return (
@@ -169,9 +170,9 @@ const action = async (_options: OptionValues) => {
                     transform?.(fileTransformedContent, srcPath, destPath) ??
                     fileTransformedContent;
 
-                const formatted = await prettierFormat(transformedContent);
+                const reorderedContent = reorderImports(transformedContent);
 
-                //TODO: reorganize the same imports
+                const formatted = await prettierFormat(reorderedContent);
 
                 await writeFile(destPath, formatted);
 
