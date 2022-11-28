@@ -128,7 +128,7 @@ In addition to **shorter development** times and **overall performance gains**, 
 
 ## Quick Start
 
-Run the **create refine-app** tool with the following command:
+Run the **create refine-app** CLI  tool with the following command:
 
 ```
 npm create refine-app tutorial
