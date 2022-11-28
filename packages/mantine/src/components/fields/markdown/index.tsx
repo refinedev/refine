@@ -9,6 +9,13 @@ import { MarkdownFieldProps } from "../types";
  *
  * @see {@link https://refine.dev/docs/api-reference/mantine/components/fields/markdown} for more details.
  */
-export const MarkdownField: React.FC<MarkdownFieldProps> = ({ value = "" }) => {
-    return <ReactMarkdown plugins={[gfm]}>{value}</ReactMarkdown>;
+export const MarkdownField: React.FC<MarkdownFieldProps> = ({
+    value = "",
+    ...rest
+}) => {
+    return (
+        <ReactMarkdown plugins={[gfm]} {...rest}>
+            {value}
+        </ReactMarkdown>
+    );
 };

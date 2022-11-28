@@ -5,8 +5,10 @@ export { default as LoadingButton } from "@mui/lab/LoadingButton";
 export * from "@mui/lab/LoadingButton";
 
 import * as colors from "@mui/material/colors";
+import * as locale from "@mui/material/locale";
 
 export { colors };
+export { locale };
 export {
     alpha,
     createStyles,

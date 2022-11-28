@@ -1,0 +1,386 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MantineShowInferencer should match the snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="mantine-Paper-root mantine-Card-root mantine-xoj88x"
+    >
+      <div
+        class="mantine-Group-root mantine-1dn2tzg"
+      >
+        <div
+          class="mantine-Stack-root mantine-1xft3nm"
+        >
+          <div
+            class="mantine-Group-root mantine-1g4q40w"
+          >
+            <button
+              class="mantine-UnstyledButton-root mantine-ActionIcon-root mantine-1lgihd9"
+              type="button"
+            >
+              <svg
+                class="icon icon-tabler icon-tabler-arrow-left"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                  stroke="none"
+                />
+                <line
+                  x1="5"
+                  x2="19"
+                  y1="12"
+                  y2="12"
+                />
+                <line
+                  x1="5"
+                  x2="11"
+                  y1="12"
+                  y2="18"
+                />
+                <line
+                  x1="5"
+                  x2="11"
+                  y1="12"
+                  y2="6"
+                />
+              </svg>
+            </button>
+            <h3
+              class="mantine-Text-root mantine-Title-root mantine-6hw97m"
+            >
+              Show Post
+            </h3>
+          </div>
+        </div>
+        <div
+          class="mantine-Group-root mantine-1g4q40w"
+        >
+          <a
+            class="mantine-Text-root mantine-Anchor-root mantine-1ut1du9"
+            href="/posts"
+          >
+            <button
+              class="mantine-UnstyledButton-root mantine-Button-root mantine-1gzbrws"
+              data-button="true"
+              title=""
+              type="button"
+            >
+              <div
+                class="mantine-3xbgk5 mantine-Button-inner"
+              >
+                <span
+                  class="mantine-Button-icon mantine-Button-leftIcon mantine-1g4orza"
+                >
+                  <svg
+                    class="icon icon-tabler icon-tabler-list"
+                    fill="none"
+                    height="18"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="18"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                      stroke="none"
+                    />
+                    <line
+                      x1="9"
+                      x2="20"
+                      y1="6"
+                      y2="6"
+                    />
+                    <line
+                      x1="9"
+                      x2="20"
+                      y1="12"
+                      y2="12"
+                    />
+                    <line
+                      x1="9"
+                      x2="20"
+                      y1="18"
+                      y2="18"
+                    />
+                    <line
+                      x1="5"
+                      x2="5"
+                      y1="6"
+                      y2="6.01"
+                    />
+                    <line
+                      x1="5"
+                      x2="5"
+                      y1="12"
+                      y2="12.01"
+                    />
+                    <line
+                      x1="5"
+                      x2="5"
+                      y1="18"
+                      y2="18.01"
+                    />
+                  </svg>
+                </span>
+                <span
+                  class="mantine-qo1k2 mantine-Button-label"
+                >
+                  Posts
+                </span>
+              </div>
+            </button>
+          </a>
+          <button
+            class="mantine-UnstyledButton-root mantine-Button-root mantine-1gzbrws"
+            data-button="true"
+            type="button"
+          >
+            <div
+              class="mantine-3xbgk5 mantine-Button-inner"
+            >
+              <span
+                class="mantine-Button-icon mantine-Button-leftIcon mantine-1g4orza"
+              >
+                <svg
+                  class="icon icon-tabler icon-tabler-refresh"
+                  fill="none"
+                  height="18"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="18"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                    stroke="none"
+                  />
+                  <path
+                    d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"
+                  />
+                  <path
+                    d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"
+                  />
+                </svg>
+              </span>
+              <span
+                class="mantine-qo1k2 mantine-Button-label"
+              >
+                Refresh
+              </span>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div
+        class="mantine-1r0zdw0"
+      >
+        <h5
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+        >
+          Id
+        </h5>
+        <div
+          class="mantine-Text-root mantine-1pbxw0k"
+        >
+          11
+        </div>
+        <h5
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+        >
+          Title
+        </h5>
+        <div
+          class="mantine-Text-root mantine-1pbxw0k"
+        >
+          Nobis exercitationem officia quia est.
+        </div>
+        <h5
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+        >
+          Slug
+        </h5>
+        <div
+          class="mantine-Text-root mantine-1pbxw0k"
+        >
+          provident-culpa-facere
+        </div>
+        <h5
+          class="mantine-Text-root mantine-Title-root mantine-1lbhkzp"
+        >
+          Content
+        </h5>
+        <p>
+          Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur voluptatibus molestias. Est nemo aut. Fugit aliquam enim eveniet veritatis. Magni et aut. Consequatur aliquid rerum vero. Quaerat debitis enim magnam. Dolorem est delectus architecto et accusantium. Velit quia vero. Aut necessitatibus quia at consequatur soluta accusantium.
+        </p>
+        <h5
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+        >
+          Hit
+        </h5>
+        <div
+          class="mantine-Text-root mantine-1pbxw0k"
+        >
+          920,557
+        </div>
+        <h5
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+        >
+          Category
+        </h5>
+        Numquam Saepe Illo
+        <h5
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+        >
+          User
+        </h5>
+        Eriberto Leannon
+        <h5
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+        >
+          Status
+        </h5>
+        <div
+          class="mantine-Text-root mantine-1pbxw0k"
+        >
+          draft
+        </div>
+        <h5
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+        >
+          Status Color
+        </h5>
+        <div
+          class="mantine-Text-root mantine-1pbxw0k"
+        >
+          orange
+        </div>
+        <h5
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+        >
+          Created At
+        </h5>
+        <div
+          class="mantine-Text-root mantine-1pbxw0k"
+        >
+          04/02/2022
+        </div>
+        <h5
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+        >
+          Published At
+        </h5>
+        <div
+          class="mantine-Text-root mantine-1pbxw0k"
+        >
+          08/10/2021
+        </div>
+        <h5
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+        >
+          Image
+        </h5>
+        <div
+          class="mantine-Group-root mantine-1g4q40w"
+        >
+          <div
+            class="mantine-Image-root mantine-1sqfmsp"
+            style="width: 100%;"
+          >
+            <figure
+              class="mantine-11nhzn5 mantine-Image-figure"
+            >
+              <div
+                class="mantine-qqmv3w mantine-Image-imageWrapper"
+              >
+                <img
+                  class="mantine-3y8yz3 mantine-Image-image"
+                  src="http://loremflickr.com/640/480/abstract"
+                  style="object-fit: cover; width: 100%; height: auto;"
+                />
+              </div>
+            </figure>
+          </div>
+        </div>
+        <h5
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+        >
+          Tags
+        </h5>
+        <div
+          class="mantine-Group-root mantine-1g4q40w"
+        >
+          <div
+            class="mantine-Chip-root mantine-15po0m8"
+          >
+            <input
+              class="mantine-106387w mantine-Chip-input"
+              id="mantine-r2"
+              type="checkbox"
+              value=""
+            />
+            <label
+              class="__mantine-ref-label mantine-543i07 mantine-Chip-label"
+              data-variant="outline"
+              for="mantine-r2"
+            >
+              Error Eos Et
+            </label>
+          </div>
+          <div
+            class="mantine-Chip-root mantine-15po0m8"
+          >
+            <input
+              class="mantine-106387w mantine-Chip-input"
+              id="mantine-r3"
+              type="checkbox"
+              value=""
+            />
+            <label
+              class="__mantine-ref-label mantine-543i07 mantine-Chip-label"
+              data-variant="outline"
+              for="mantine-r3"
+            >
+              Nobis Et Ut
+            </label>
+          </div>
+        </div>
+        <h5
+          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+        >
+          Language
+        </h5>
+        <div
+          class="mantine-Text-root mantine-1pbxw0k"
+        >
+          2
+        </div>
+      </div>
+      <div
+        class="mantine-Group-root mantine-n0y6vz"
+      />
+    </div>
+  </div>
+  <div
+    style="height: 50px;"
+  />
+</DocumentFragment>
+`;

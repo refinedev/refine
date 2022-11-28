@@ -20,7 +20,10 @@ export type useShowReturnType<TData extends BaseRecord = BaseRecord> = {
     setShowId: React.Dispatch<React.SetStateAction<BaseKey | undefined>>;
 };
 
-export type useShowProps<TData, TError> = {
+export type useShowProps<
+    TData extends BaseRecord = BaseRecord,
+    TError extends HttpError = HttpError,
+> = {
     /**
      * Resource name for API data interactions
      * @default Reads `:resource` from the URL
@@ -34,7 +37,7 @@ export type useShowProps<TData, TError> = {
     /**
      * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
      */
-    queryOptions?: UseQueryOptions<GetOneResponse<TData>, TError>;
+    queryOptions?: UseQueryOptions<GetOneResponse<TData>, HttpError>;
     /**
      * Additional meta data to pass to the data provider's `getOne`
      */
@@ -95,6 +98,7 @@ export const useShow = <
         id: showId ?? "",
         queryOptions: {
             enabled: showId !== undefined,
+            ...queryOptions,
         },
         successNotification,
         errorNotification,
@@ -102,7 +106,6 @@ export const useShow = <
         liveMode,
         onLiveEvent,
         dataProviderName,
-        ...queryOptions,
     });
 
     return {

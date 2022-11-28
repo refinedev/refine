@@ -10,11 +10,12 @@ import temp from "temp";
 import { plural } from "pluralize";
 import execa from "execa";
 import inquirer from "inquirer";
+import { join } from "path";
 
 import { getProjectType, getUIFramework } from "@utils/project";
 import { compileDir } from "@utils/compile";
 import { uppercaseFirstChar } from "@utils/text";
-import { ProjectTypes } from "@definitions/projectTypes";
+import { getResourcePath } from "@utils/resource";
 
 const defaultActions = ["list", "create", "edit", "show"];
 const load = (program: Command) => {
@@ -44,8 +45,6 @@ const action = async (
 ) => {
     let { args } = options;
     let actions = params.actions;
-
-    // check actions
 
     if (!args.length) {
         // TODO: Show inquirer
@@ -80,6 +79,21 @@ const action = async (
 
     args.forEach((resourceName) => {
         const customActions = actions ? actions.split(",") : undefined;
+        const { path, alias } = getResourcePath(getProjectType());
+        const resourceFolderName = plural(resourceName).toLowerCase();
+
+        // check exist resource
+        const resourcePath = join(process.cwd(), path, resourceFolderName);
+
+        if (pathExistsSync(resourcePath)) {
+            console.error(
+                `Resource (${join(
+                    path,
+                    resourceFolderName,
+                )}) already exist! ❌`,
+            );
+            return;
+        }
 
         // uppercase first letter
         const resource = uppercaseFirstChar(resourceName);
@@ -116,13 +130,10 @@ const action = async (
             });
         }
 
-        const { alias } = getResourcePath(projectType);
-
         // create desctination dir
         mkdirSync(params.path, { recursive: true });
 
         // copy to destination
-        const resourceFolderName = plural(resourceName).toLowerCase();
         const destinationResourcePath = `${params.path}/${resourceFolderName}`;
 
         let moveSyncOptions = {};
@@ -171,29 +182,6 @@ const action = async (
 const generateTempDir = (): string => {
     temp.track();
     return temp.mkdirSync("resource");
-};
-
-const getResourcePath = (
-    projectType: ProjectTypes,
-): { path: string; alias: string } => {
-    switch (projectType) {
-        case ProjectTypes.NEXTJS:
-            return {
-                path: "src/components",
-                alias: "../src/components",
-            };
-        case ProjectTypes.REMIX:
-            return {
-                path: "app/components",
-                alias: "~/components",
-            };
-    }
-
-    // vite and react
-    return {
-        path: "src/pages",
-        alias: "pages",
-    };
 };
 
 export default load;

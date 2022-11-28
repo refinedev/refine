@@ -16,7 +16,9 @@
             "@commands/*": ["src/commands/*"],
             "@commands": ["src/commands"],
             "@components/*": ["src/components/*"],
-            "@components": ["src/components"]
+            "@components": ["src/components"],
+            "@telemetry*": ["src/telemetry/*"],
+            "@telemetry": ["src/telemetry"]
         },
         "typeRoots": ["./src/types", "../../node_modules/@types"]
     }
