@@ -41,7 +41,7 @@ values={[
 <TabItem value="preset">
 
 ```
-npm create refine-app --preset refine-antd-supabase my-supabase-app
+npm create refine-app -- --preset refine-antd-supabase my-supabase-app
 ```
 
 Also, we need to install npm packages to use markdown editor:

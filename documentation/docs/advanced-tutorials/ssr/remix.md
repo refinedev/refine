@@ -15,7 +15,7 @@ npm i @pankod/refine-core @pankod/refine-remix-router @pankod/refine-simple-rest
 We recommend using `create refine-app` to initialize your refine projects. It configures the project according to your needs including SSR with Remix!
 
 ```sh
-npm create refine-app -o refine-remix my-refine-remix-app
+npm create refine-app -- -o refine-remix my-refine-remix-app
 ```
 
 :::

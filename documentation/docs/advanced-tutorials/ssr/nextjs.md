@@ -17,7 +17,7 @@ npm i @pankod/refine-core @pankod/refine-antd @pankod/refine-nextjs-router
 We recommend using `create refine-app` to initialize your refine projects. It configures the project according to your needs including SSR with Next.js.
 
 ```
-npm create refine-app -o refine-nextjs my-refine-nextjs-app
+npm create refine-app -- -o refine-nextjs my-refine-nextjs-app
 ```
 
 :::
