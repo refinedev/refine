@@ -13,6 +13,7 @@ import {
 } from "@pankod/refine-ui-types";
 import { TablerIconProps } from "@tabler/icons";
 import { ConfigType } from "dayjs";
+import { ReactMarkdownOptions } from "react-markdown";
 
 export type BooleanFieldProps = RefineFieldBooleanProps<
     unknown,
@@ -26,11 +27,17 @@ export type EmailFieldProps = RefineFieldEmailProps<ReactNode, AnchorProps>;
 
 export type FileFieldProps = RefineFieldFileProps<TextProps>;
 
-export type MarkdownFieldProps = RefineFieldMarkdownProps<string | undefined>;
+export type MarkdownFieldProps = RefineFieldMarkdownProps<
+    string | undefined,
+    Partial<ReactMarkdownOptions>
+>;
 
 export type NumberFieldProps = RefineFieldNumberProps<ReactChild, TextProps>;
 
-export type TagFieldProps = RefineFieldTagProps<ReactNode, ChipProps>;
+export type TagFieldProps = RefineFieldTagProps<
+    ReactNode,
+    Omit<ChipProps, "children">
+>;
 
 export type TextFieldProps = RefineFieldTextProps<ReactNode, TextProps>;
 
