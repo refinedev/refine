@@ -1,5 +1,11 @@
 # create-refine-app
 
+## 1.3.1
+
+### Patch Changes
+
+-   [`9fb8c4d390b`](https://github.com/refinedev/refine/commit/9fb8c4d390b9faf1e1325b0eeabc5124983f7f96) Thanks [@omeraplak](https://github.com/omeraplak)! - remove console.log
+
 ## 1.3.0
 
 ### Minor Changes
