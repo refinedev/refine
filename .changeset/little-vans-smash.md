@@ -2,4 +2,4 @@
 "@pankod/refine-cli": minor
 ---
 
-Infererencer support added to the resources created with the `refine-cli`.
+Inferencer support added to the resources created with the `refine-cli`.
