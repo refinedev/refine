@@ -442,6 +442,8 @@ module.exports = {
                                     );
                                 }
                             });
+
+                            return newContent;
                         },
                     },
                 ],
