@@ -1,9 +1,7 @@
-import React, { ReactNode } from "react";
+import React from "react";
+import { Text } from "@chakra-ui/react";
 
-import { RefineFieldTextProps } from "@pankod/refine-ui-types";
-import { Text, TextProps } from "@chakra-ui/react";
-
-export type TextFieldProps = RefineFieldTextProps<ReactNode, TextProps>;
+import { TextFieldProps } from "../types";
 
 /**
  * This field lets you show basic text. It uses Chakra UI {@link https://chakra-ui.com/docs/components/text  `<Text>`} component.

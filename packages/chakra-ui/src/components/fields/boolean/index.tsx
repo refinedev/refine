@@ -1,13 +1,8 @@
 import React from "react";
-import { RefineFieldBooleanProps } from "@pankod/refine-ui-types";
-import { Tooltip, TooltipProps } from "@chakra-ui/react";
-import { IconMinus, IconCheck, TablerIconProps } from "@tabler/icons";
+import { Tooltip } from "@chakra-ui/react";
+import { IconMinus, IconCheck } from "@tabler/icons";
 
-export type BooleanFieldProps = RefineFieldBooleanProps<
-    unknown,
-    Omit<TooltipProps, "label" | "children">,
-    { svgIconProps?: TablerIconProps }
->;
+import { BooleanFieldProps } from "../types";
 
 /**
  * This field is used to display boolean values. It uses the {@link https://chakra-ui.com/docs/components/tooltip `<Tooltip>`} values from Chakra UI.
