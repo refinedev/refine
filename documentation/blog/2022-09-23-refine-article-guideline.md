@@ -20,15 +20,13 @@ We use Docusaurus for our blog pages. Your article should follow some standards.
 - Use tools like  Grammarly https://app.grammarly.com/ to fix all grammar mistakes and spellings
 
 ## Project installation for example app
-If you need to bootstrap a new project with React or Next.js for the article, please use our side project called superplate.
+If you need to bootstrap a new project with React or Next.js for the article, please use `create refine-app` CLI.
 
 It is a CLI tool that helps you to bootstrap a new project with a lot of features.
 
-[You can check the repo here &#8594](https://github.com/pankod/superplate)
-
 To create a project called my-app, run this command:
 ```bash
-npx superplate-cli my-app
+npm create refine-app my-app
 ```
 
 ## Adding table of contents
