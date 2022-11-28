@@ -1,5 +1,17 @@
 # @pankod/refine-cli
 
+## 1.1.4
+
+### Patch Changes
+
+-   [`1fa9e25ac23`](https://github.com/refinedev/refine/commit/1fa9e25ac23c01a7a673d069d54aa2b6d3dc4701) Thanks [@omeraplak](https://github.com/omeraplak)! - Added some fun
+
+## 1.1.3
+
+### Patch Changes
+
+-   [#3063](https://github.com/refinedev/refine/pull/3063) [`949b8bd6ac9`](https://github.com/refinedev/refine/commit/949b8bd6ac9fbb50e5bc30b8521bb618b7ecdc1c) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Added unique check on `create-resource` with `refine-cli`.
+
 ## 1.1.2
 
 ### Patch Changes

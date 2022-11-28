@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import { Command } from "commander";
 
+import figlet from "figlet";
+
 import checkUpdates from "@commands/check-updates";
 import createResource from "@commands/create-resource";
 import whoami from "@commands/whoami";
@@ -25,11 +27,31 @@ const bootstrap = () => {
 
     const program = new Command();
 
+    const fonts = [
+        "isometric1",
+        "epic",
+        "isometric3",
+        "standard",
+        "binary",
+        "isometric4",
+        "cyberlarge",
+        "hollywood",
+        "isometric2",
+    ];
+    const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
     program
         .version(
             packageJson.version,
             "-v, --version",
             "Output the current version.",
+        )
+        .description(
+            figlet.textSync("refine", {
+                font: randomFont,
+                horizontalLayout: "full",
+                verticalLayout: "full",
+                whitespaceBreak: true,
+            }),
         )
         .usage("<command> [options]")
         .helpOption("-h, --help", "Output usage information.");
