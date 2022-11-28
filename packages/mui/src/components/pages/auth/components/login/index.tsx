@@ -8,7 +8,7 @@ import {
     Checkbox,
     Container,
     Card,
-    CardContent as MuiCardContent,
+    CardContent,
     CardContentProps,
     FormControlLabel,
     TextField,
@@ -89,9 +89,9 @@ export const LoginPage: React.FC<LoginProps> = ({
         return null;
     };
 
-    const CardContent = (
+    const Content = (
         <Card {...(contentProps ?? {})}>
-            <MuiCardContent sx={{ paddingX: "32px" }}>
+            <CardContent sx={{ paddingX: "32px" }}>
                 <Typography
                     component="h1"
                     variant="h5"
@@ -221,7 +221,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                         </Box>
                     )}
                 </Box>
-            </MuiCardContent>
+            </CardContent>
         </Card>
     );
 
@@ -246,9 +246,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                             alignItems: "center",
                         }}
                     >
-                        {renderContent
-                            ? renderContent(CardContent)
-                            : CardContent}
+                        {renderContent ? renderContent(Content) : Content}
                     </Box>
                 </Container>
             </Box>
