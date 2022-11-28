@@ -99,10 +99,9 @@ const action = async (
         const resource = uppercaseFirstChar(resourceName);
 
         // get the project type
-        const projectType = getProjectType();
         const uiFramework = getUIFramework();
 
-        const sourceDir = `${__dirname}/../templates/resource/${projectType}`;
+        const sourceDir = `${__dirname}/../templates/resource`;
 
         // create temp dir
         const tempDir = generateTempDir();
@@ -114,7 +113,6 @@ const action = async (
             resourceName,
             resource,
             actions: customActions || defaultActions,
-            projectType,
             uiFramework,
         };
 
