@@ -38,7 +38,10 @@ const bootstrap = () => {
         "hollywood",
         "isometric2",
     ];
-    const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+    const randomFont = fonts[
+        Math.floor(Math.random() * fonts.length)
+    ] as figlet.Fonts;
+
     program
         .version(
             packageJson.version,
