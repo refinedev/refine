@@ -95,6 +95,7 @@ export const useShow = <
         id: showId ?? "",
         queryOptions: {
             enabled: showId !== undefined,
+            ...queryOptions,
         },
         successNotification,
         errorNotification,
@@ -102,7 +103,6 @@ export const useShow = <
         liveMode,
         onLiveEvent,
         dataProviderName,
-        ...queryOptions,
     });
 
     return {
