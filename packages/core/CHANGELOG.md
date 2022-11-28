@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.90.2
+
+### Patch Changes
+
+-   [#3073](https://github.com/refinedev/refine/pull/3073) [`38dfde0c2ec`](https://github.com/refinedev/refine/commit/38dfde0c2ec698c12f9c743881f351a2774542fa) Thanks [@samelhusseini](https://github.com/samelhusseini)! - Fixed `queryOptions` parameter of `useShow` hook
+
 ## 3.90.1
 
 ### Patch Changes

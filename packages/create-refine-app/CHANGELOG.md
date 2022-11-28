@@ -1,5 +1,23 @@
 # create-refine-app
 
+## 1.3.0
+
+### Minor Changes
+
+-   [#3077](https://github.com/refinedev/refine/pull/3077) [`d603306c531`](https://github.com/refinedev/refine/commit/d603306c531618f4a72c39e4793690c0cc2dc1cf) Thanks [@omeraplak](https://github.com/omeraplak)! - Added argument support
+
+    before:
+
+    ```bash
+    npm create refine-app -- -o refine-antd tutorial
+    ```
+
+    after:
+
+    ```bash
+    npm create refine-app -o refine-antd tutorial
+    ```
+
 ## 1.2.0
 
 ### Minor Changes
