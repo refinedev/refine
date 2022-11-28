@@ -1,5 +1,11 @@
 # @pankod/refine-cli
 
+## 1.3.1
+
+### Patch Changes
+
+-   [#3083](https://github.com/refinedev/refine/pull/3083) [`9a2f3bd2d61`](https://github.com/refinedev/refine/commit/9a2f3bd2d6174e1cced430868ff63a3907b09e32) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Added: undefined `process.NODE_ENV` value set to the `development` from `production`.
+
 ## 1.3.0
 
 ### Minor Changes
