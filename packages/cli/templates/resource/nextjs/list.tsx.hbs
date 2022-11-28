@@ -1,6 +1,6 @@
 import { IResourceComponentsProps, GetListResponse, useMany } from "@pankod/refine-core";
-import {} from "@pankod/refine-{{uiFramework}}";
+import { AntdListInferencer } from "@pankod/refine-inferencer/{{uiFramework}}";
 
 export const {{capitalize resource}}List: React.FC<IResourceComponentsProps<GetListResponse<any>>> = ({ initialData }) => {
-    return <span>List Page</span>;
+    return <AntdListInferencer />;
 };

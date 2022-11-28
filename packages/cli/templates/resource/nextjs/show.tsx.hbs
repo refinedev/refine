@@ -1,6 +1,7 @@
 import { IResourceComponentsProps, useOne, useShow } from "@pankod/refine-core";
-import {} from "@pankod/refine-{{uiFramework}}";
+import { AntdShowInferencer } from "@pankod/refine-inferencer/{{uiFramework}}";
+
 
 export const {{capitalize resource}}Show: React.FC<IResourceComponentsProps> = () => {
-    return <span>Show Page</span>;
+    return <AntdShowInferencer />;
 };

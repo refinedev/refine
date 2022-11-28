@@ -1,7 +1,8 @@
 import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import {} from "@pankod/refine-{{uiFramework}}";
+import { AntdEditInferencer } from "@pankod/refine-inferencer/{{uiFramework}}";
+
 
 export const {{capitalize resource}}Edit: React.FC<IResourceComponentsProps> = () => {
-    return <span>Edit Page</span>;
+    return <AntdEditInferencer />;
 };
