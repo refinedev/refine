@@ -52,21 +52,21 @@ You can opt out of telemetry by simply adding `disableTelemetry` prop to the `<R
 
   </TabItem>
 
-<TabItem value="refine-cli" label="refine cli">
+<TabItem value="refine-cli" label="refine CLI">
 
-After `refine cli` runs a command, a single HTTP request is sent to <a target="_blank" rel="noopener" href="https://telemetry.refine.dev/cli">https://telemetry.refine.dev/cli</a>.
+After running a command with the `refine` CLI, a single HTTP request is sent to <a target="_blank" rel="noopener" href="https://telemetry.refine.dev/cli">https://telemetry.refine.dev/cli</a>.
 
 ## What is collected?
 
-| Value            | Type                                            | Description                                                  |
-| ---------------- | -------------------------------------------     | ------------------------------------------------------------ |
-| nodeEnv          | `string`                                        | Specifies the environment in which an application is running |
-| nodeVersion      | `string`                                        | Installed Node.js version.                                   |
-| os               | `string`                                        | Operating system name.                                       |
-| osVersion        | `string`                                        | Operating system version.                                    |
-| command          | `string`                                        | Running script name.                                         |
-| packages         | `{ "name": "string", "version": "string" }[]`   | Installed `refine` packages.                                 |
-| projectFramework | `string`                                        | Installed `react` framework.                                 |
+| Value            | Type                                            | Description                                                   |
+| ---------------- | -------------------------------------------     | ------------------------------------------------------------  |
+| nodeEnv          | `string`                                        | Specifies the environment in which an application is running. |
+| nodeVersion      | `string`                                        | Installed Node.js version.                                    |
+| os               | `string`                                        | Operating system name.                                        |
+| osVersion        | `string`                                        | Operating system version.                                     |
+| command          | `string`                                        | Running script name.                                          |
+| packages         | `{ "name": "string", "version": "string" }[]`   | Installed `refine` packages.                                  |
+| projectFramework | `string`                                        | Installed `react` framework.                                  |
 
 Additionally, the following information is extracted and collected from the HTTP header:
 
