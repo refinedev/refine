@@ -142,6 +142,124 @@ module.exports = {
                     },
                 ],
             },
+            {
+                group: "Auth",
+                label: "AuthPage",
+                files: [
+                    {
+                        src: "./src/components/pages/auth/index.tsx",
+                        dest: "./src/components/pages/auth/index.tsx",
+                    },
+                    {
+                        src: "./src/components/pages/auth/components/forgotPassword/index.tsx",
+                        dest: "./src/components/pages/auth/components/forgotPassword.tsx",
+                        transform: (content) => {
+                            let newContent = content;
+
+                            // for change style import path
+                            const styleImportRegex = /"\.\.\/styles";/g;
+
+                            newContent = newContent.replace(
+                                styleImportRegex,
+                                `"./styles";`,
+                            );
+
+                            // for change index import path
+                            const indexImportRegex = /"\.\.\/\.\.\";/g;
+
+                            newContent = newContent.replace(
+                                indexImportRegex,
+                                `"../index";`,
+                            );
+
+                            return newContent;
+                        },
+                    },
+                    {
+                        src: "./src/components/pages/auth/components/login/index.tsx",
+                        dest: "./src/components/pages/auth/components/login.tsx",
+                        transform: (content) => {
+                            let newContent = content;
+
+                            // for change style import path
+                            const styleImportRegex = /"\.\.\/styles";/g;
+
+                            newContent = newContent.replace(
+                                styleImportRegex,
+                                `"./styles";`,
+                            );
+
+                            // for change index import path
+                            const indexImportRegex = /"\.\.\/\.\.\";/g;
+
+                            newContent = newContent.replace(
+                                indexImportRegex,
+                                `"../index";`,
+                            );
+
+                            return newContent;
+                        },
+                    },
+                    {
+                        src: "./src/components/pages/auth/components/register/index.tsx",
+                        dest: "./src/components/pages/auth/components/register.tsx",
+                        transform: (content) => {
+                            let newContent = content;
+
+                            // for change style import path
+                            const styleImportRegex = /"\.\.\/styles";/g;
+
+                            newContent = newContent.replace(
+                                styleImportRegex,
+                                `"./styles";`,
+                            );
+
+                            // for change index import path
+                            const indexImportRegex = /"\.\.\/\.\.\";/g;
+
+                            newContent = newContent.replace(
+                                indexImportRegex,
+                                `"../index";`,
+                            );
+
+                            return newContent;
+                        },
+                    },
+                    {
+                        src: "./src/components/pages/auth/components/updatePassword/index.tsx",
+                        dest: "./src/components/pages/auth/components/updatePassword.tsx",
+                        transform: (content) => {
+                            let newContent = content;
+
+                            // for change style import path
+                            const styleImportRegex = /"\.\.\/styles";/g;
+
+                            newContent = newContent.replace(
+                                styleImportRegex,
+                                `"./styles";`,
+                            );
+
+                            // for change index import path
+                            const indexImportRegex = /"\.\.\/\.\.\";/g;
+
+                            newContent = newContent.replace(
+                                indexImportRegex,
+                                `"../index";`,
+                            );
+
+                            return newContent;
+                        },
+                    },
+                    {
+                        src: "./src/components/pages/auth/components/index.ts",
+                        dest: "./src/components/pages/auth/components/index.ts",
+                    },
+                    {
+                        src: "./src/components/pages/auth/components/styles.ts",
+                        dest: "./src/components/pages/auth/components/styles.ts",
+                    },
+                ],
+            },
         ],
         transform: (content) => {
             let newContent = content;
@@ -194,6 +312,16 @@ module.exports = {
                 // for buttons definition function
                 if (importItem.importPath === "@definitions/button") {
                     const newStatement = `import ${importItem.namedImports} from "@pankod/refine-mantine";`;
+
+                    newContent = newContent.replace(
+                        importItem.statement,
+                        newStatement,
+                    );
+                }
+
+                // for change the import path of the FormContext component
+                if (importItem.importPath === "@contexts/form-context") {
+                    const newStatement = `import { FormContext } from "@pankod/refine-mantine";`;
 
                     newContent = newContent.replace(
                         importItem.statement,
