@@ -69,25 +69,27 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 ## Use cases
 **refine** shines on *data-intensive* applications like *admin panels*, *dashboards* and *internal tools*. Thanks to the built-in **SSR support**, **refine** can also power *customer-facing* applications like *storefronts*.
 
-You can take a look at some live examples that can be built using **refine**.
+You can take a look at some live examples that can be built using **refine** from scratch.
 
-
-<div style={{backgrounColor:"red", padding: 10}} >
-
-
-
-</div>
 
 <div>
-   <a>
- <img src="https://user-images.githubusercontent.com/18739364/204040856-34e33129-7062-49ce-aef1-d3911a198020.gif"   style="width:250px;"  />
+
+<a>
+ <img src="https://user-images.githubusercontent.com/18739364/204285956-cc20fa11-b769-4bd5-b8f6-9c05a283ac85.gif"   style="width:267px;"  />
 </a>
-    <a>
-<img src="https://user-images.githubusercontent.com/18739364/204040893-ecba221f-a443-4e19-8195-71ea5f467c66.gif"   style="width:250px;"  />
+
+ <a>
+<img src="https://user-images.githubusercontent.com/18739364/204285047-8f24f1f4-65ea-4952-83ed-81e92cdd5b90.gif"   style="width:200px;"  />
+</a>
+
+
+ <a>
+<img src="https://user-images.githubusercontent.com/18739364/204285039-1ce0cb06-fbf8-4704-89c9-2e004620c9a8.gif"   style="width:200px;"  />
 </a>
 <div>
 
 <br/>
+
 
 [Refer to most popular real use case examples ➡️](https://refine.dev/examples/)
 
