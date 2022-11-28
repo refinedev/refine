@@ -7,9 +7,9 @@ import {
 import { RefineBreadcrumbProps } from "@pankod/refine-ui-types";
 import {
     Breadcrumb as ChakraBreadcrumb,
-    BreadcrumbItem as ChakraBreadcrumbItem,
-    BreadcrumbLink,
     BreadcrumbProps as ChakraBreadcrumbProps,
+    BreadcrumbItem,
+    BreadcrumbLink,
 } from "@chakra-ui/react";
 import { IconHome } from "@tabler/icons";
 
@@ -31,15 +31,15 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     return (
         <ChakraBreadcrumb mb="3" {...breadcrumbProps}>
             {showHome && hasDashboard && (
-                <ChakraBreadcrumbItem>
+                <BreadcrumbItem>
                     <Link to="/">
                         <IconHome size={20} />
                     </Link>
-                </ChakraBreadcrumbItem>
+                </BreadcrumbItem>
             )}
             {breadcrumbs.map(({ label, icon, href }) => {
                 return (
-                    <ChakraBreadcrumbItem key={label}>
+                    <BreadcrumbItem key={label}>
                         {!hideIcons && icon}
                         {href ? (
                             <BreadcrumbLink
@@ -53,7 +53,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
                         ) : (
                             <BreadcrumbLink ml={2}>{label}</BreadcrumbLink>
                         )}
-                    </ChakraBreadcrumbItem>
+                    </BreadcrumbItem>
                 );
             })}
         </ChakraBreadcrumb>
