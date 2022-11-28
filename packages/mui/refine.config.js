@@ -360,6 +360,39 @@ module.exports = {
                     },
                 ],
             },
+            {
+                group: "Other",
+                label: "Breadcrumb",
+                files: [
+                    {
+                        src: "./src/components/breadcrumb/index.tsx",
+                        dest: "./src/components/breadcrumb.tsx",
+                        transform: (content) => {
+                            let newContent = content;
+
+                            // for remove type export
+                            const breadcrumbPropsExportRegex =
+                                /export type BreadcrumbProps = RefineBreadcrumbProps<MuiBreadcrumbProps>;?/g;
+
+                            newContent = newContent.replace(
+                                breadcrumbPropsExportRegex,
+                                "",
+                            );
+
+                            // change the breadcrumb import path
+                            const breadcrumbImportRegex =
+                                /BreadcrumbsProps as MuiBreadcrumbProps,/g;
+
+                            newContent = newContent.replace(
+                                breadcrumbImportRegex,
+                                "BreadcrumbProps,",
+                            );
+
+                            return newContent;
+                        },
+                    },
+                ],
+            },
         ],
         transform: (content) => {
             let newContent = content;
