@@ -1,9 +1,7 @@
-import React, { ReactNode } from "react";
+import React from "react";
+import { Text } from "@mantine/core";
 
-import { RefineFieldTextProps } from "@pankod/refine-ui-types";
-import { Text, TextProps } from "@mantine/core";
-
-export type TextFieldProps = RefineFieldTextProps<ReactNode, TextProps>;
+import { TextFieldProps } from "../types";
 
 /**
  * This field lets you show basic text. It uses Mantine {@link https://mantine.dev/core/text/  `<Text>`} component.

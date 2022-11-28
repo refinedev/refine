@@ -1,9 +1,7 @@
-import React, { ReactNode } from "react";
+import React from "react";
+import { Chip } from "@mantine/core";
 
-import { RefineFieldTagProps } from "@pankod/refine-ui-types";
-import { Chip, ChipProps } from "@mantine/core";
-
-export type TagFieldProps = RefineFieldTagProps<ReactNode, ChipProps>;
+import { TagFieldProps } from "../types";
 
 /**
  * This field lets you display a value in a tag. It uses Mantine {@link https://mantine.dev/core/chip/ `<Chip>`} component.

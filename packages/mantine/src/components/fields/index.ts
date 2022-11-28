@@ -7,3 +7,4 @@ export * from "./file";
 export * from "./url";
 export * from "./number";
 export * from "./markdown";
+export * from "./types";
