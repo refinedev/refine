@@ -67,26 +67,30 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 **refine** seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
 
 ## Use cases
-**refine** shines on *data-intensive* applications like *admin panels*, *dashboards* and *internal tools*. Thanks to the built-in **SSR support**, **refine** can also power *customer-facing* applications like *storefronts*.
+**refine** shines on *data-intensive⚡* applications like **admin panels**, **dashboards** and **internal tools**. Thanks to the built-in **SSR support**, **refine** can also power *customer-facing* applications like *storefronts*.
 
 You can take a look at some live examples that can be built using **refine** from scratch.
 
 
-<div>
+
+Complete CRUD Admin Panel with Authentication
 
 <a>
  <img src="https://user-images.githubusercontent.com/18739364/204285956-cc20fa11-b769-4bd5-b8f6-9c05a283ac85.gif"   style="width:267px;"  />
 </a>
 
+Exemplary fullstack Medium.com clone 
+
  <a>
 <img src="https://user-images.githubusercontent.com/18739364/204285047-8f24f1f4-65ea-4952-83ed-81e92cdd5b90.gif"   style="width:200px;"  />
 </a>
 
+Complete eCommerce storefront app built with refine, Medusa.js, Next.js, and Stripe
 
  <a>
 <img src="https://user-images.githubusercontent.com/18739364/204285039-1ce0cb06-fbf8-4704-89c9-2e004620c9a8.gif"   style="width:200px;"  />
 </a>
-<div>
+
 
 <br/>
 
