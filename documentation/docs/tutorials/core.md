@@ -191,7 +191,7 @@ values={[
 {label: 'with create refine-app', value: 'create-refine-app'},
 {label: 'with create-react-app', value: 'create-react-app'}
 ]}>
-<TabItem value="craete-refine-app">
+<TabItem value="create-refine-app">
 
 ```sh
 npm run dev
