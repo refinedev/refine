@@ -73,21 +73,18 @@ You can take a look at some live examples that can be built using **refine** fro
 
 
 
-**Complete CRUD Admin Panel with Authentication**
 
-<a>
+<a href="https://example.admin.refine.dev/" target="_blank">
  <img src="https://user-images.githubusercontent.com/18739364/204285956-cc20fa11-b769-4bd5-b8f6-9c05a283ac85.gif"   style="width:267px;"  />
 </a>
 
-**Exemplary fullstack Medium.com clone**
 
- <a>
+ <a href="https://refine-real-world.netlify.app/" target="_blank">
 <img src="https://user-images.githubusercontent.com/18739364/204285047-8f24f1f4-65ea-4952-83ed-81e92cdd5b90.gif"   style="width:200px;"  />
 </a>
 
-**Complete eCommerce storefront app built with refine, Medusa.js, Next.js, and Stripe**
 
- <a>
+ <a href="https://store.refine.dev/" target="_blank">
 <img src="https://user-images.githubusercontent.com/18739364/204285039-1ce0cb06-fbf8-4704-89c9-2e004620c9a8.gif"   style="width:200px;"  />
 </a>
 
@@ -95,9 +92,9 @@ You can take a look at some live examples that can be built using **refine** fro
 <br/>
 
 
-[Refer to most popular real use case examples ➡️](https://refine.dev/examples/)
+[👉 Refer to most popular real use case examples](https://refine.dev/examples/)
 
-[Other **refine** powered examples can be found here ➡️](https://refine.dev/docs/examples/)
+[👉 More **refine** powered different usage scenarios can be found here](https://refine.dev/docs/examples/)
 
 
 
@@ -258,13 +255,9 @@ You can find refine's <a href="https://github.com/refinedev/refine/projects/1">P
 
 ## Contribution
 
-If you discover a bug, please file a bug report at [issue](https://github.com/refinedev/refine/issues/new?assignees=&labels=bug&template=bug_report.yml&title=%5BBUG%5D). <br/>
-If you want to fix a typo or update documentation, raise an issue [here](https://github.com/refinedev/refine/issues/new?assignees=&labels=documentation&template=documentation.yml&title=%5BDOC%5D). <br/>
-If you want to propose a feature, raise a detailed issue with explanation [here](https://github.com/refinedev/refine/issues/new?assignees=&labels=enhancement&template=feature_request.yml&title=%5BFEAT%5D).
 
-If you are willing to fix an issue or propose a feature, all PRs with clear explanations are welcome and encouraged.
 
-know more about the ways to contribute [here](https://refine.dev/docs/contributing/#ways-to-contribute)
+ [👉Refer to contribution docs for more information](https://refine.dev/docs/contributing/#ways-to-contribute)
 
 
 
