@@ -17,14 +17,44 @@ const bootstrap = () => {
         )
         .usage("<command> [options]")
         .helpOption("-h, --help", "Output usage information.")
+        .option(
+            "-s, --source <source-path>",
+            "specify a custom source of plugins",
+        )
+        .option(
+            "-b, --branch <source-git-branch>",
+            "specify a custom branch in source of plugins",
+        )
+        .option(
+            "-o, --preset <preset-name>",
+            "specify a preset to use for the project",
+        )
+        .option(
+            "-l, --lucky",
+            "use this option to generate a project with random answers",
+        )
         .allowUnknownOption(true)
         .allowExcessArguments(true)
         .action((_, command: Command) => {
             const superplateExecutable = require.resolve(".bin/superplate");
+            console.log({ command: command });
             try {
                 execa.sync(
                     superplateExecutable,
-                    [...command.args, "--project=refine"],
+                    [
+                        ...command.args,
+                        "--project=refine",
+                        command.getOptionValue("source")
+                            ? "--source=" + command.getOptionValue("source")
+                            : "",
+                        command.getOptionValue("branch")
+                            ? "--branch=" + command.getOptionValue("branch")
+                            : "",
+                        command.getOptionValue("preset")
+                            ? "--preset=" + command.getOptionValue("preset")
+                            : "",
+                        command.getOptionValue("lucky") ? "--lucky" : "",
+                    ],
                     {
                         stdio: "inherit",
                     },
