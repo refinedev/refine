@@ -1,4 +1,4 @@
-import React, { DetailedHTMLProps, FormHTMLAttributes } from "react";
+import React from "react";
 import { AuthPageProps } from "@pankod/refine-core";
 import {
     LoginPage,
