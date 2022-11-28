@@ -1,8 +1,8 @@
 import { useLoaderData } from "@remix-run/react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import { AntdListInferencer } from "@pankod/refine-inferencer/{{uiFramework}}";
+import { {{capitalize uiFramework}}ListInferencer } from "@pankod/refine-inferencer/{{uiFramework}}";
 
 
 export const {{capitalize resource}}List: React.FC<IResourceComponentsProps> = () => {
-    return <AntdListInferencer />;
+    return <{{capitalize uiFramework}}ListInferencer />;
 };

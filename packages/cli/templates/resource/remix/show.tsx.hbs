@@ -1,7 +1,7 @@
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import { AntdShowInferencer } from "@pankod/refine-inferencer/{{uiFramework}}";
+import { {{capitalize uiFramework}}ShowInferencer } from "@pankod/refine-inferencer/{{uiFramework}}";
 
 
 export const {{capitalize resource}}Show: React.FC<IResourceComponentsProps> = () => {    
-    return <AntdShowInferencer />;
+    return <{{capitalize uiFramework}}ShowInferencer />;
 };

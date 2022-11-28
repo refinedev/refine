@@ -1,6 +1,6 @@
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import { AntdCreateInferencer } from "@pankod/refine-inferencer/{{uiFramework}}";
+import { {{capitalize uiFramework}}CreateInferencer } from "@pankod/refine-inferencer/{{uiFramework}}";
 
 export const {{capitalize resource}}Create: React.FC<IResourceComponentsProps> = () => {
-    return <AntdCreateInferencer />;
+    return <{{capitalize uiFramework}}CreateInferencer />;
 };
