@@ -2,9 +2,6 @@ import React from "react";
 import { useRouterContext, TitleProps } from "@pankod/refine-core";
 import { Center } from "@mantine/core";
 
-import logo from "../../../assets/images/refine.svg";
-import logoCollapsed from "../../../assets/images/refine-collapsed.svg";
-
 export const Title: React.FC<TitleProps> = ({ collapsed }) => {
     const { Link } = useRouterContext();
 
@@ -12,9 +9,16 @@ export const Title: React.FC<TitleProps> = ({ collapsed }) => {
         <Link to="/">
             <Center p="xs">
                 {collapsed ? (
-                    <img src={logoCollapsed} alt="Refine" />
+                    <img
+                        src="https://refine.ams3.cdn.digitaloceanspaces.com/logo/refine-collapsed.svg"
+                        alt="Refine"
+                    />
                 ) : (
-                    <img src={logo} alt="Refine" width="140px" />
+                    <img
+                        src="https://refine.ams3.cdn.digitaloceanspaces.com/logo/refine.svg"
+                        alt="Refine"
+                        width="140px"
+                    />
                 )}
             </Center>
         </Link>
