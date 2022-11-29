@@ -15,6 +15,10 @@ export type SwizzleFile = {
         dest: string;
         transform?: (content: string) => string;
     }[];
+    /**
+     * Success message shown after swizzle is complete. Supports markdown features.
+     */
+    message?: string;
 };
 
 export type SwizzleConfig = {

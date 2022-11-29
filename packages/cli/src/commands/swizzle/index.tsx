@@ -1,3 +1,5 @@
+import React from "react";
+import { render } from "ink";
 import path from "path";
 import chalk from "chalk";
 import inquirer from "inquirer";
@@ -11,6 +13,8 @@ import {
     getInstalledRefinePackagesFromNodeModules,
     isPackageHaveRefineConfig,
 } from "@utils/package";
+
+import SwizzleMessage from "@components/swizzle-message";
 
 import { SwizzleFile } from "@definitions";
 import { parseSwizzleBlocks } from "@utils/swizzle/parseSwizzleBlocks";
@@ -186,18 +190,12 @@ const action = async (_options: OptionValues) => {
     const createdFiles = createdResponse.filter(Boolean);
 
     if (createdFiles.length > 0) {
-        console.log(`Done swizzling ${selectedComponent.label} component! 🎉`);
-        console.log("Created files:");
-        console.log(
-            createdFiles
-                .filter(Boolean)
-                .map(
-                    (file) =>
-                        ` - ${chalk.cyanBright(
-                            file?.replace(process.cwd(), ""),
-                        )}`,
-                )
-                .join("\n"),
+        render(
+            <SwizzleMessage
+                label={selectedComponent.label}
+                files={createdFiles.filter(Boolean) as string[]}
+                message={selectedComponent.message}
+            />,
         );
     }
 };
