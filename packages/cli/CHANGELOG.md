@@ -1,6 +1,6 @@
 # @pankod/refine-cli
 
-## 1.4.1
+## 1.5.1
 
 ### Patch Changes
 
@@ -9,6 +9,12 @@
     -   If `refine CLI` is installed, It will be shown as `npm run refine update` command.
     -   IF `refine CLI` is not installed, It will be shown as `npx refine update` command.
         -   package manager will be detected automatically.
+
+## 1.5.0
+
+### Minor Changes
+
+-   [#3085](https://github.com/refinedev/refine/pull/3085) [`1ff8002f31d`](https://github.com/refinedev/refine/commit/1ff8002f31d5a9970d41c8853cbd5ed9a2d7059e) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Inferencer support added to the resources created with the `refine-cli`.
 
 ## 1.4.0
 
