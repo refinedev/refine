@@ -1,20 +1,32 @@
 import React from "react";
 import { render } from "ink";
-import { getDependencies, getPreferedPM } from "@utils/package";
+import { getDependencies, getPreferedPM, getScripts } from "@utils/package";
 import UpdateWarningTable, { UpdateWarningTableProps } from "./table";
 
-const getCommand = async () => {
+export const getCommand = async () => {
+    const fallbackCommand = `npx @pankod/refine-cli update`;
+
     const dependencies = getDependencies();
+    const scriptKeys = Object.keys(getScripts());
 
-    const isRefineCliInstalled = dependencies.includes("@pankod/refine-cli");
+    const hasCli = dependencies.includes("@pankod/refine-cli");
+    const hasScript = scriptKeys.includes("refine");
 
-    if (!isRefineCliInstalled) {
-        return `npx refine update`;
+    if (!hasCli && !hasScript) {
+        return fallbackCommand;
     }
 
     const pm = await getPreferedPM();
 
-    return `${pm.name} run refine update`;
+    if (hasScript) {
+        return `${pm.name} run refine update`;
+    }
+
+    if (hasCli) {
+        return `npx refine update`;
+    }
+
+    return fallbackCommand;
 };
 
 export const getUpdateWarningTable = async (
