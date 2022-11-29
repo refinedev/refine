@@ -6,6 +6,6 @@ import type {
 
 export type {
     RefineLayoutSiderProps,
-    RefineLayoutHeaderProps as LayoutHeaderProps,
+    RefineLayoutHeaderProps,
     RefineLayoutLayoutProps,
 };
