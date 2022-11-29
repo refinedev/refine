@@ -1,0 +1,15 @@
+import { CrudOperators } from "@pankod/refine-core";
+
+export const mapOperator = (operator: CrudOperators): string => {
+    switch (operator) {
+        case "ne":
+        case "gte":
+        case "lte":
+            return `_${operator}`;
+        case "contains":
+            return "_like";
+        case "eq":
+        default:
+            return "";
+    }
+};
