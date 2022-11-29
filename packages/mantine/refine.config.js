@@ -383,6 +383,34 @@ module.exports = {
                     },
                 ],
             },
+            {
+                group: "Other",
+                label: "Layout",
+                files: [
+                    {
+                        src: "./src/components/layout/sider/index.tsx",
+                        dest: "./src/components/layout/sider.tsx",
+                        transform: (content) => {
+                            let newContent = content;
+                            const imports = getImports(content);
+
+                            imports.map((importItem) => {
+                                // handle @components import replacement
+                                if (importItem.importPath === "@components") {
+                                    const newStatement = `import ${importItem.namedImports} from "@pankod/refine-mantine";`;
+
+                                    newContent = newContent.replace(
+                                        importItem.statement,
+                                        newStatement,
+                                    );
+                                }
+                            });
+
+                            return newContent;
+                        },
+                    },
+                ],
+            },
         ],
         transform: (content) => {
             let newContent = content;
