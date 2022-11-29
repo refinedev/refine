@@ -1,8 +1,4 @@
-const {
-    getImports,
-    getNameChangeInImport,
-    appendAfterImports,
-} = require("@pankod/refine-cli");
+const { getImports } = require("@pankod/refine-cli");
 
 /** @type {import('@pankod/refine-cli').RefineConfig} */
 module.exports = {
@@ -110,7 +106,7 @@ module.exports = {
             },
             {
                 group: "Pages",
-                label: "Error",
+                label: "ErrorPage",
                 files: [
                     {
                         src: "./src/components/pages/error/index.tsx",
@@ -233,7 +229,7 @@ module.exports = {
                 ],
             },
             {
-                group: "Auth",
+                group: "Pages",
                 label: "AuthPage",
                 files: [
                     {

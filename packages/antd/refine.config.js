@@ -1,7 +1,6 @@
 const { dirname, join } = require("path");
 const {
     getImports,
-    getNameChangeInImport,
     appendAfterImports,
     getFileContent,
 } = require("@pankod/refine-cli");
@@ -252,7 +251,7 @@ module.exports = {
             },
             {
                 group: "Pages",
-                label: "Error",
+                label: "ErrorPage",
                 files: [
                     {
                         src: "./src/components/pages/error/index.tsx",
@@ -275,7 +274,7 @@ module.exports = {
                 ],
             },
             {
-                group: "Auth",
+                group: "Pages",
                 label: "AuthPage",
                 files: [
                     {
