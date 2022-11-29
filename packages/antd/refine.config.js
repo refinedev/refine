@@ -364,16 +364,6 @@ module.exports = {
                 ],
             },
             {
-                group: "Other",
-                label: "UndoableNotification",
-                files: [
-                    {
-                        src: "./src/components/undoableNotification/index.tsx",
-                        dest: "./src/components/undoableNotification.tsx",
-                    },
-                ],
-            },
-            {
                 group: "Layout",
                 label: "Sider",
                 files: [

@@ -393,16 +393,6 @@ module.exports = {
                     },
                 ],
             },
-            {
-                group: "Other",
-                label: "CircularDeterminate",
-                files: [
-                    {
-                        src: "./src/components/circularDeterminate/index.tsx",
-                        dest: "./src/components/circularDeterminate.tsx",
-                    },
-                ],
-            },
         ],
         transform: (content) => {
             let newContent = content;
