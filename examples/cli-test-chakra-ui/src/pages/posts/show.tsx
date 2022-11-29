@@ -1,13 +1,8 @@
 import { useShow, useOne } from "@pankod/refine-core";
-import {
-    Show,
-    Heading,
-    Text,
-    MarkdownField,
-    Spacer,
-} from "@pankod/refine-chakra-ui";
+import { Heading, Text, MarkdownField, Spacer } from "@pankod/refine-chakra-ui";
 
 import { ICategory, IPost } from "../../interfaces";
+import { Show } from "../../components/crud/show";
 
 export const PostShow: React.FC = () => {
     const { queryResult } = useShow<IPost>();

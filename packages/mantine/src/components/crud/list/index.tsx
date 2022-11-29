@@ -1,15 +1,5 @@
-import React, { ReactNode } from "react";
-import { RefineCrudListProps } from "@pankod/refine-ui-types";
-import {
-    Box,
-    BoxProps,
-    Card,
-    CardProps,
-    Group,
-    GroupProps,
-    Stack,
-    Title,
-} from "@mantine/core";
+import React from "react";
+import { Box, Card, Group, Stack, Title } from "@mantine/core";
 import {
     ResourceRouterParams,
     useRefineContext,
@@ -19,16 +9,7 @@ import {
     useTranslate,
 } from "@pankod/refine-core";
 
-import { CreateButton, CreateButtonProps } from "@components/buttons";
-import { Breadcrumb } from "@components/breadcrumb";
-
-export type ListProps = RefineCrudListProps<
-    CreateButtonProps,
-    GroupProps,
-    CardProps,
-    GroupProps,
-    BoxProps
->;
+import { CreateButton, Breadcrumb, ListProps } from "@components";
 
 export const List: React.FC<ListProps> = (props) => {
     const {

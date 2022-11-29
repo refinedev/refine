@@ -1,17 +1,11 @@
 import React from "react";
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import {
-    Create,
-    Form,
-    Input,
-    Select,
-    useForm,
-    useSelect,
-} from "@pankod/refine-antd";
+import { Form, Input, Select, useForm, useSelect } from "@pankod/refine-antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
 import { IPost, ICategory } from "interfaces";
+import { Create } from "components/crud/create";
 
 export const PostCreate: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps } = useForm<IPost>({

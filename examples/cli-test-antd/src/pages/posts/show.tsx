@@ -1,7 +1,8 @@
 import { useShow, IResourceComponentsProps, useOne } from "@pankod/refine-core";
-import { Show, Typography, MarkdownField } from "@pankod/refine-antd";
+import { Typography, MarkdownField } from "@pankod/refine-antd";
 
 import { IPost, ICategory } from "interfaces";
+import { Show } from "components/crud/show";
 
 const { Title, Text } = Typography;
 

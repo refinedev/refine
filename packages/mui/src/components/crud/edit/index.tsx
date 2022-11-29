@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
 import {
     useResourceWithRoute,
@@ -10,7 +10,6 @@ import {
     ResourceRouterParams,
     useRefineContext,
 } from "@pankod/refine-core";
-import { RefineCrudEditProps } from "@pankod/refine-ui-types";
 
 import {
     Card,
@@ -18,13 +17,8 @@ import {
     IconButton,
     CardContent,
     CardActions,
-    CardProps,
-    CardHeaderProps,
-    CardContentProps,
-    CardActionsProps,
     Typography,
     Box,
-    BoxProps,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
@@ -34,41 +28,8 @@ import {
     ListButton,
     SaveButton,
     Breadcrumb,
-    SaveButtonProps,
+    EditProps,
 } from "@components";
-import { DeleteButtonProps } from "@components";
-
-export type EditProps = RefineCrudEditProps<
-    SaveButtonProps,
-    DeleteButtonProps,
-    BoxProps,
-    CardActionsProps,
-    CardProps,
-    CardHeaderProps,
-    CardContentProps,
-    {
-        /**
-         * @deprecated use `headerButtons` or `footerButtons` instead.
-         */
-        actionButtons?: React.ReactNode;
-        /**
-         * @deprecated use `wrapperProps` instead.
-         */
-        cardProps?: CardProps;
-        /**
-         * @deprecated use `headerProps` instead.
-         */
-        cardHeaderProps?: CardHeaderProps;
-        /**
-         * @deprecated use `contentProps` instead.
-         */
-        cardContentProps?: CardContentProps;
-        /**
-         * @deprecated use `footerButtonProps` instead.
-         */
-        cardActionsProps?: CardActionsProps;
-    }
->;
 
 /**
  * `<Edit>` provides us a layout for displaying the page.

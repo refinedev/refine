@@ -1,5 +1,4 @@
 import React from "react";
-import { RefineCrudShowProps } from "@pankod/refine-ui-types";
 import {
     ResourceRouterParams,
     useNavigation,
@@ -8,14 +7,9 @@ import {
     useRouterContext,
     useTranslate,
 } from "@pankod/refine-core";
-import {
-    Box,
-    BoxProps,
-    IconButton,
-    HStack,
-    Heading,
-    Spinner,
-} from "@chakra-ui/react";
+import { Box, IconButton, HStack, Heading, Spinner } from "@chakra-ui/react";
+
+// We use @tabler/icons for icons but you can use any icon library you want.
 import { IconArrowLeft } from "@tabler/icons";
 
 import {
@@ -23,16 +17,9 @@ import {
     EditButton,
     ListButton,
     RefreshButton,
-} from "@components/buttons";
-import { Breadcrumb } from "@components/breadcrumb";
-
-export type ShowProps = RefineCrudShowProps<
-    BoxProps,
-    BoxProps,
-    BoxProps,
-    BoxProps,
-    BoxProps
->;
+    Breadcrumb,
+    ShowProps,
+} from "@components";
 
 export const Show: React.FC<ShowProps> = (props) => {
     const {

@@ -121,6 +121,36 @@ module.exports = {
                 ],
             },
             {
+                group: "Basic Views",
+                label: "List",
+                files: [
+                    {
+                        src: "./src/components/crud/list/index.tsx",
+                        dest: "./src/components/crud/list.tsx",
+                    },
+                ],
+            },
+            {
+                group: "Basic Views",
+                label: "Show",
+                files: [
+                    {
+                        src: "./src/components/crud/show/index.tsx",
+                        dest: "./src/components/crud/show.tsx",
+                    },
+                ],
+            },
+            {
+                group: "Basic Views",
+                label: "Edit",
+                files: [
+                    {
+                        src: "./src/components/crud/edit/index.tsx",
+                        dest: "./src/components/crud/edit.tsx",
+                    },
+                ],
+            },
+            {
                 group: "Fields",
                 label: "BooleanField",
                 files: [
@@ -495,7 +525,10 @@ module.exports = {
 
             imports.map((importItem) => {
                 // for antd imports
-                if (importItem.importPath === "antd") {
+                if (
+                    importItem.importPath === "antd" ||
+                    importItem.importPath === "@components"
+                ) {
                     const newStatement = `import ${importItem.namedImports} from "@pankod/refine-antd";`;
 
                     newContent = newContent.replace(

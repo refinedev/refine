@@ -1,5 +1,4 @@
 import React from "react";
-import { RefineCrudCreateProps } from "@pankod/refine-ui-types";
 import {
     ResourceRouterParams,
     useNavigation,
@@ -8,28 +7,12 @@ import {
     useRouterContext,
     useTranslate,
 } from "@pankod/refine-core";
-import {
-    Box,
-    BoxProps,
-    Heading,
-    HStack,
-    IconButton,
-    Spinner,
-    StackProps,
-} from "@chakra-ui/react";
+import { Box, Heading, HStack, IconButton, Spinner } from "@chakra-ui/react";
+
+// We use @tabler/icons for icons but you can use any icon library you want.
 import { IconArrowLeft } from "@tabler/icons";
 
-import { SaveButton, SaveButtonProps } from "@components/buttons";
-import { Breadcrumb } from "@components/breadcrumb";
-
-export type CreateProps = RefineCrudCreateProps<
-    SaveButtonProps,
-    BoxProps,
-    BoxProps,
-    StackProps,
-    BoxProps,
-    BoxProps
->;
+import { Breadcrumb, CreateProps, SaveButton } from "@components";
 
 export const Create: React.FC<CreateProps> = (props) => {
     const {

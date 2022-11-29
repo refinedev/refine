@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
 import {
     useNavigation,
@@ -9,7 +9,6 @@ import {
     ResourceRouterParams,
     useRefineContext,
 } from "@pankod/refine-core";
-import { RefineCrudCreateProps } from "@pankod/refine-ui-types";
 
 import {
     Card,
@@ -17,48 +16,12 @@ import {
     CardActions,
     CardContent,
     IconButton,
-    CardProps,
-    CardHeaderProps,
-    CardContentProps,
-    CardActionsProps,
     Typography,
-    BoxProps,
     Box,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-import { Breadcrumb, SaveButton, SaveButtonProps } from "@components";
-
-export type CreateProps = RefineCrudCreateProps<
-    SaveButtonProps,
-    BoxProps,
-    CardActionsProps,
-    CardProps,
-    CardHeaderProps,
-    CardContentProps,
-    {
-        /**
-         * @deprecated use `headerButtons` or `footerButtons` instead.
-         */
-        actionButtons?: React.ReactNode;
-        /**
-         * @deprecated use `wrapperProps` instead.
-         */
-        cardProps?: CardProps;
-        /**
-         * @deprecated use `headerProps` instead.
-         */
-        cardHeaderProps?: CardHeaderProps;
-        /**
-         * @deprecated use `contentProps` instead.
-         */
-        cardContentProps?: CardContentProps;
-        /**
-         * @deprecated use `footerButtonProps` instead.
-         */
-        cardActionsProps?: CardActionsProps;
-    }
->;
+import { Breadcrumb, CreateProps, SaveButton } from "@components";
 
 /**
  * `<Create>` provides us a layout to display the page.

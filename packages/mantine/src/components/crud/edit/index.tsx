@@ -1,12 +1,8 @@
-import React, { ReactNode } from "react";
-import { RefineCrudEditProps } from "@pankod/refine-ui-types";
+import React from "react";
 import {
     Box,
-    BoxProps,
     Card,
-    CardProps,
     Group,
-    GroupProps,
     ActionIcon,
     Stack,
     Title,
@@ -23,26 +19,14 @@ import {
     useTranslate,
 } from "@pankod/refine-core";
 import { IconArrowLeft } from "@tabler/icons";
-
 import {
     DeleteButton,
-    DeleteButtonProps,
     ListButton,
     RefreshButton,
     SaveButton,
-    SaveButtonProps,
-} from "@components/buttons";
-import { Breadcrumb } from "@components/breadcrumb";
-
-export type EditProps = RefineCrudEditProps<
-    SaveButtonProps,
-    DeleteButtonProps,
-    GroupProps,
-    GroupProps,
-    CardProps,
-    GroupProps,
-    BoxProps
->;
+    Breadcrumb,
+    EditProps,
+} from "@components";
 
 export const Edit: React.FC<EditProps> = (props) => {
     const {

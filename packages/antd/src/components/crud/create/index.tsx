@@ -1,13 +1,5 @@
-import React, { ReactNode } from "react";
-import {
-    Card,
-    Space,
-    PageHeader,
-    PageHeaderProps,
-    Spin,
-    SpaceProps,
-    CardProps,
-} from "antd";
+import React from "react";
+import { Card, Space, PageHeader, Spin } from "antd";
 import {
     useNavigation,
     useResourceWithRoute,
@@ -17,37 +9,8 @@ import {
     ResourceRouterParams,
     useRefineContext,
 } from "@pankod/refine-core";
-import { RefineCrudCreateProps } from "@pankod/refine-ui-types";
 
-import { Breadcrumb, SaveButton } from "@components";
-import { SaveButtonProps } from "@components/buttons/save";
-
-export type CreateProps = RefineCrudCreateProps<
-    SaveButtonProps,
-    SpaceProps,
-    SpaceProps,
-    React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLDivElement>,
-        HTMLDivElement
-    >,
-    PageHeaderProps,
-    CardProps,
-    {
-        /**
-         * Action buttons node at the top of the view
-         * @default `<SaveButton />`
-         *
-         * @deprecated use `headerButtons` or `footerButtons` instead.
-         */
-        actionButtons?: React.ReactNode;
-        /**
-         * Additional props to be passed to the `PageHeader` component
-         *
-         * @deprecated use `headerProps`, `wrapperProps` and `contentProps` instead.
-         */
-        pageHeaderProps?: PageHeaderProps;
-    }
->;
+import { Breadcrumb, CreateProps, SaveButton } from "@components";
 
 /**
  * `<Create>` provides us a layout to display the page.

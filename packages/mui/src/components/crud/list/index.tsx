@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
 import {
     useResourceWithRoute,
@@ -8,43 +8,10 @@ import {
     ResourceRouterParams,
     useRefineContext,
 } from "@pankod/refine-core";
-import { RefineCrudListProps } from "@pankod/refine-ui-types";
 
-import {
-    Card,
-    CardHeader,
-    CardContent,
-    CardProps,
-    CardHeaderProps,
-    CardContentProps,
-    Typography,
-    Box,
-    BoxProps,
-} from "@mui/material";
+import { Card, CardHeader, CardContent, Typography, Box } from "@mui/material";
 
-import { CreateButton, CreateButtonProps, Breadcrumb } from "@components";
-
-export type ListProps = RefineCrudListProps<
-    CreateButtonProps,
-    BoxProps,
-    CardProps,
-    CardHeaderProps,
-    CardContentProps,
-    {
-        /**
-         * @deprecated use `wrapperProps` instead.
-         */
-        cardProps?: CardProps;
-        /**
-         * @deprecated use `headerProps` instead.
-         */
-        cardHeaderProps?: CardHeaderProps;
-        /**
-         * @deprecated use `contentProps` instead.
-         */
-        cardContentProps?: CardContentProps;
-    }
->;
+import { CreateButton, Breadcrumb, ListProps } from "@components";
 
 /**
  * `<List>` provides us a layout for displaying the page.

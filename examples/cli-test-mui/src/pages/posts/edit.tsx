@@ -1,12 +1,12 @@
 import { HttpError } from "@pankod/refine-core";
 import {
-    Edit,
     Box,
     TextField,
     Autocomplete,
     useAutocomplete,
 } from "@pankod/refine-mui";
 import { Controller, useForm } from "@pankod/refine-react-hook-form";
+import { Edit } from "components/crud/edit";
 
 import { IPost, ICategory } from "interfaces";
 

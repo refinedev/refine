@@ -1,5 +1,4 @@
 import {
-    Create,
     Select,
     TextInput,
     useForm,
@@ -7,6 +6,7 @@ import {
     Text,
 } from "@pankod/refine-mantine";
 import { RichTextEditor } from "@mantine/rte";
+import { Create } from "../../components/crud/create";
 
 export const PostCreate: React.FC = () => {
     const { saveButtonProps, getInputProps, errors } = useForm({

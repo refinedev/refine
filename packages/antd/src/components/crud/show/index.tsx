@@ -1,13 +1,5 @@
-import React, { ReactNode } from "react";
-import {
-    Card,
-    CardProps,
-    PageHeader,
-    PageHeaderProps,
-    Space,
-    SpaceProps,
-    Spin,
-} from "antd";
+import React from "react";
+import { Card, PageHeader, Space, Spin } from "antd";
 import {
     useNavigation,
     useResourceWithRoute,
@@ -24,29 +16,8 @@ import {
     RefreshButton,
     ListButton,
     Breadcrumb,
+    ShowProps,
 } from "@components";
-import { RefineCrudShowProps } from "@pankod/refine-ui-types";
-
-export type ShowProps = RefineCrudShowProps<
-    SpaceProps,
-    SpaceProps,
-    React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLDivElement>,
-        HTMLDivElement
-    >,
-    PageHeaderProps,
-    CardProps,
-    {
-        /**
-         * @deprecated use `headerButtons` or `footerButtons` instead.
-         */
-        actionButtons?: React.ReactNode;
-        /**
-         * @deprecated use `headerProps`, `wrapperProps` and `contentProps` instead.
-         */
-        pageHeaderProps?: PageHeaderProps;
-    }
->;
 
 /**
  * `<Show>` provides us a layout for displaying the page.

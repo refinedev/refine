@@ -4,7 +4,6 @@ import { GetManyResponse, useMany } from "@pankod/refine-core";
 import {
     Box,
     Group,
-    List,
     ScrollArea,
     Select,
     Table,
@@ -17,6 +16,7 @@ import {
 
 import { ColumnFilter, ColumnSorter } from "../../components/table";
 import { FilterElementProps, ICategory, IPost } from "../../interfaces";
+import { List } from "../../components/crud/list";
 
 export const PostList: React.FC = () => {
     const columns = React.useMemo<ColumnDef<IPost>[]>(

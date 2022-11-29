@@ -2,7 +2,6 @@ import React from "react";
 import { useTable, ColumnDef, flexRender } from "@pankod/refine-react-table";
 import { GetManyResponse, useMany } from "@pankod/refine-core";
 import {
-    List,
     Table,
     Thead,
     Tbody,
@@ -22,6 +21,7 @@ import {
 import { ColumnFilter, ColumnSorter } from "../../components/table";
 import { Pagination } from "../../components/pagination";
 import { FilterElementProps, ICategory, IPost } from "../../interfaces";
+import { List } from "../../components/crud/list";
 
 export const PostList: React.FC = () => {
     const columns = React.useMemo<ColumnDef<IPost>[]>(
