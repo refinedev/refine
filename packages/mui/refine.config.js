@@ -443,6 +443,16 @@ module.exports = {
                     },
                 ],
             },
+            {
+                group: "Layout",
+                label: "Header",
+                files: [
+                    {
+                        src: "./src/components/layout/header/index.tsx",
+                        dest: "./src/components/layout/header.tsx",
+                    },
+                ],
+            },
         ],
         transform: (content) => {
             let newContent = content;
