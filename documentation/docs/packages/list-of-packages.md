@@ -4,7 +4,8 @@ title: List of Packages
 ---
 
 - `@pankod/refine-core` - Collection of `hooks`, `components` and `providers` for **authentication**, **access control**, **routing**, **networking**, **state management** and **i18n**. Your starting point for headless projects.
-- `@pankod/refine-inferencer` Provides a way to automatically generate views for resources based on the data structure. The aim is to reduce the amount of time spent on creating views for resources by generating the code automatically that can be customized easily. 
+- `@pankod/refine-inferencer` - Provides a way to automatically generate views for resources based on the data structure. The aim is to reduce the amount of time spent on creating views for resources by generating the code automatically that can be customized easily. 
+- `@pankod/refine-cli` - It is a tool that allows you to perform important commands while developing with refine.
 
 
 **UI Framework Packages:**
