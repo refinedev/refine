@@ -10,7 +10,6 @@ import {
     useTitle,
     useTranslate,
 } from "@pankod/refine-core";
-import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
 import {
     Accordion,
     AccordionButton,
@@ -36,7 +35,8 @@ import {
     IconMenu2,
 } from "@tabler/icons";
 
-import { Title as DefaultTitle } from "../title";
+import { Title as DefaultTitle } from "@components";
+import { RefineLayoutSiderProps } from "../types";
 
 const defaultNavIcon = <IconList size={20} />;
 
