@@ -2,9 +2,9 @@ import React from "react";
 import { useGetIdentity } from "@pankod/refine-core";
 import { AppBar, Stack, Toolbar, Typography, Avatar } from "@mui/material";
 
-import { LayoutHeaderProps } from "../types";
+import { RefineLayoutHeaderProps } from "../types";
 
-export const Header: React.FC<LayoutHeaderProps> = () => {
+export const Header: React.FC<RefineLayoutHeaderProps> = () => {
     const { data: user } = useGetIdentity();
 
     const shouldRenderHeader = user && (user.name || user.avatar);
