@@ -2,7 +2,6 @@ import { readFileSync, existsSync } from "fs-extra";
 import execa from "execa";
 import preferredPM from "preferred-pm";
 import spinner from "@utils/spinner";
-import chalk from "chalk";
 
 // TODO: Add package.json type
 export const getPackageJson = (): any => {

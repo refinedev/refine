@@ -1,7 +1,5 @@
-import React from "react";
 import { Command } from "commander";
-import { render } from "ink";
-import UpdateWarningTable from "@components/update-warning-table";
+import { getUpdateWarningTable } from "@components/update-warning-table";
 import { pmCommands } from "@utils/package";
 import execa from "execa";
 import spinner from "@utils/spinner";
@@ -24,7 +22,8 @@ const action = async () => {
         console.log("All `refine` packages are up to date 🎉\n");
         return;
     }
-    render(<UpdateWarningTable data={packages} />);
+
+    await getUpdateWarningTable(packages);
 };
 
 /**
