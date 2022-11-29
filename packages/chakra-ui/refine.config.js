@@ -109,16 +109,6 @@ module.exports = {
                 ],
             },
             {
-                group: "Basic Views",
-                label: "Create",
-                files: [
-                    {
-                        src: "./src/components/crud/create/index.tsx",
-                        dest: "./src/components/crud/create.tsx",
-                    },
-                ],
-            },
-            {
                 group: "Fields",
                 label: "BooleanField",
                 files: [
@@ -427,6 +417,16 @@ module.exports = {
                     {
                         src: "./src/components/layout/index.tsx",
                         dest: "./src/components/layout/index.tsx",
+                    },
+                ],
+            },
+            {
+                group: "Basic Views",
+                label: "Create",
+                files: [
+                    {
+                        src: "./src/components/crud/create/index.tsx",
+                        dest: "./src/components/crud/create.tsx",
                     },
                 ],
             },

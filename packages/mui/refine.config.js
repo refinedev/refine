@@ -109,16 +109,6 @@ module.exports = {
                 ],
             },
             {
-                group: "Basic Views",
-                label: "Create",
-                files: [
-                    {
-                        src: "./src/components/crud/create/index.tsx",
-                        dest: "./src/components/crud/create.tsx",
-                    },
-                ],
-            },
-            {
                 group: "Pages",
                 label: "Error",
                 files: [
@@ -471,6 +461,16 @@ module.exports = {
 
                             return newContent;
                         },
+                    },
+                ],
+            },
+            {
+                group: "Basic Views",
+                label: "Create",
+                files: [
+                    {
+                        src: "./src/components/crud/create/index.tsx",
+                        dest: "./src/components/crud/create.tsx",
                     },
                 ],
             },
