@@ -41,7 +41,7 @@ export const getImports = (content: string): Array<ImportMatch> => {
         });
     }
 
-    return imports;
+    return imports?.filter(Boolean);
 };
 
 export const getNameChangeInImport = (
@@ -85,8 +85,8 @@ export const getContentBeforeImport = (
 
     // get the content between the last import statement and the current one
     const contentBetweenImports = contentBeforeImport.substring(
-        contentBeforeImport.indexOf(lastImportStatement.statement) +
-            lastImportStatement.statement.length,
+        contentBeforeImport.indexOf(lastImportStatement?.statement) +
+            lastImportStatement?.statement?.length,
     );
 
     // return the content before the current import statement and between the last import statement and the current one
@@ -98,7 +98,9 @@ export const isImportHasBeforeContent = (
     content: string,
     importMatch: ImportMatch,
 ): boolean => {
-    const contentBeforeImport = getContentBeforeImport(content, importMatch);
+    const contentBeforeImport = importMatch
+        ? getContentBeforeImport(content, importMatch)
+        : "";
 
     return !!contentBeforeImport.trim();
 };
@@ -131,7 +133,7 @@ export const reorderImports = (content: string): string => {
 
     // insertion point is the first import statement, others will be replaced to empty string and added to the first import line
     const insertionPoint = newContent.indexOf(
-        importsWithoutBeforeContent[0].statement,
+        importsWithoutBeforeContent?.[0]?.statement,
     );
 
     // remove all the imports without comments before
