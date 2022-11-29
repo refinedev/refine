@@ -364,8 +364,8 @@ module.exports = {
                 ],
             },
             {
-                group: "Layout",
-                label: "Sider",
+                group: "Other",
+                label: "Layout",
                 files: [
                     {
                         src: "./src/components/layout/sider/index.tsx",
@@ -436,23 +436,52 @@ module.exports = {
                             return newContent;
                         },
                     },
-                ],
-            },
-            {
-                group: "Layout",
-                label: "Header",
-                files: [
                     {
                         src: "./src/components/layout/header/index.tsx",
                         dest: "./src/components/layout/header.tsx",
                         transform: (content) => {
                             let newContent = content;
+                            const imports = getImports(content);
 
-                            // change the breadcrumb import path
-                            newContent = newContent.replace(
-                                /Layout as AntdLayout/g,
-                                "AntdLayout",
-                            );
+                            imports.map((importItem) => {
+                                // handle antd layout rename
+                                if (importItem.importPath === "antd") {
+                                    newContent = newContent.replace(
+                                        importItem.statement,
+                                        importItem.statement.replace(
+                                            "Layout as AntdLayout,",
+                                            "AntdLayout,",
+                                        ),
+                                    );
+                                }
+                            });
+
+                            return newContent;
+                        },
+                    },
+                    {
+                        src: "./src/components/layout/title/index.tsx",
+                        dest: "./src/components/layout/title.tsx",
+                    },
+                    {
+                        src: "./src/components/layout/index.tsx",
+                        dest: "./src/components/layout/index.tsx",
+                        transform: (content) => {
+                            let newContent = content;
+                            const imports = getImports(content);
+
+                            imports.map((importItem) => {
+                                // handle antd layout rename
+                                if (importItem.importPath === "antd") {
+                                    newContent = newContent.replace(
+                                        importItem.statement,
+                                        importItem.statement.replace(
+                                            "Layout as AntdLayout,",
+                                            "AntdLayout,",
+                                        ),
+                                    );
+                                }
+                            });
 
                             return newContent;
                         },
@@ -503,7 +532,10 @@ module.exports = {
                 }
 
                 // for prop types
-                if (importItem.importPath === "../types") {
+                if (
+                    importItem.importPath === "../types" ||
+                    importItem.importPath === "./types"
+                ) {
                     const newStatement = `import type ${importItem.namedImports} from "@pankod/refine-antd";`;
 
                     newContent = newContent.replace(
