@@ -433,25 +433,6 @@ module.exports = {
                     {
                         src: "./src/components/layout/index.tsx",
                         dest: "./src/components/layout/index.tsx",
-                        transform: (content) => {
-                            let newContent = content;
-                            const imports = getImports(content);
-
-                            imports.map((importItem) => {
-                                // handle antd layout rename
-                                if (importItem.importPath === "antd") {
-                                    newContent = newContent.replace(
-                                        importItem.statement,
-                                        importItem.statement.replace(
-                                            "Layout as AntdLayout,",
-                                            "AntdLayout,",
-                                        ),
-                                    );
-                                }
-                            });
-
-                            return newContent;
-                        },
                     },
                 ],
             },
