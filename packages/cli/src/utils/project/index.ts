@@ -50,7 +50,7 @@ export const getUIFramework = (): UIFrameworks => {
     }
 
     // check for chakra
-    if (dependencies.includes("@pankod/refine-chakra")) {
+    if (dependencies.includes("@pankod/refine-chakra-ui")) {
         return UIFrameworks.CHAKRA;
     }
 
