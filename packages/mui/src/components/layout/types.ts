@@ -1,3 +1,11 @@
-import type { RefineLayoutHeaderProps } from "@pankod/refine-ui-types";
+import type {
+    RefineLayoutSiderProps,
+    RefineLayoutHeaderProps,
+    RefineLayoutLayoutProps,
+} from "@pankod/refine-ui-types";
 
-export type { RefineLayoutHeaderProps as LayoutHeaderProps };
+export type {
+    RefineLayoutSiderProps,
+    RefineLayoutHeaderProps as LayoutHeaderProps,
+    RefineLayoutLayoutProps,
+};
