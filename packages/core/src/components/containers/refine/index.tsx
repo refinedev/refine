@@ -42,6 +42,7 @@ import {
     AuditLogProvider,
     DashboardPageProps,
     IRefineOptions,
+    INotificationContext,
 } from "../../../interfaces";
 
 interface QueryClientConfig {
@@ -300,11 +301,13 @@ export const Refine: React.FC<RefineProps> = ({
         });
     }, [reactQueryWithDefaults.clientConfig]);
 
-    const notificationProviderContextValues = React.useMemo(() => {
+    const useNotificationProviderValues = React.useMemo(() => {
         return typeof notificationProvider === "function"
-            ? notificationProvider()
-            : notificationProvider ?? {};
+            ? notificationProvider
+            : () => notificationProvider ?? ({} as INotificationContext);
     }, [notificationProvider]);
+
+    const notificationProviderContextValues = useNotificationProviderValues();
 
     const resources: IResourceItem[] = useDeepMemo(() => {
         const _resources: IResourceItem[] = [];
