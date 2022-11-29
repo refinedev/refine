@@ -1,9 +1,5 @@
 import React from "react";
-
 import { useRouterContext, TitleProps } from "@pankod/refine-core";
-
-import logo from "../../../assets/images/refine.svg";
-import logoCollapsed from "../../../assets/images/refine-collapsed.svg";
 
 export const Title: React.FC<TitleProps> = ({ collapsed }) => {
     const { Link } = useRouterContext();
@@ -12,7 +8,7 @@ export const Title: React.FC<TitleProps> = ({ collapsed }) => {
         <Link to="/">
             {collapsed ? (
                 <img
-                    src={logoCollapsed}
+                    src="https://refine.ams3.cdn.digitaloceanspaces.com/logo/refine-collapsed.svg"
                     alt="Refine"
                     style={{
                         display: "flex",
@@ -23,7 +19,7 @@ export const Title: React.FC<TitleProps> = ({ collapsed }) => {
                 />
             ) : (
                 <img
-                    src={logo}
+                    src="https://refine.ams3.cdn.digitaloceanspaces.com/logo/refine.svg"
                     alt="Refine"
                     style={{
                         width: "200px",
