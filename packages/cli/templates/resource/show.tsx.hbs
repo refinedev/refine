@@ -1,7 +1,6 @@
-import { IResourceComponentsProps, useOne, useShow } from "@pankod/refine-core";
-import { {{capitalize uiFramework}}ShowInferencer } from "@pankod/refine-inferencer/{{uiFramework}}";
-
+import { IResourceComponentsProps } from "@pankod/refine-core";
+import { {{formatInferencerComponent uiFramework}}ShowInferencer } from "@pankod/refine-inferencer/{{uiFramework}}";
 
 export const {{capitalize resource}}Show: React.FC<IResourceComponentsProps> = () => {
-    return <{{capitalize uiFramework}}ShowInferencer />;
+    return <{{formatInferencerComponent uiFramework}}ShowInferencer />;
 };

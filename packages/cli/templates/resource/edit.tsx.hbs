@@ -1,6 +1,6 @@
 import { IResourceComponentsProps } from "@pankod/refine-core";
-import { {{capitalize uiFramework}}EditInferencer } from "@pankod/refine-inferencer/{{uiFramework}}";
+import { {{formatInferencerComponent uiFramework}}EditInferencer } from "@pankod/refine-inferencer/{{uiFramework}}";
 
 export const {{capitalize resource}}Edit: React.FC<IResourceComponentsProps> = () => {
-    return <{{capitalize uiFramework}}EditInferencer />
+    return <{{formatInferencerComponent uiFramework}}EditInferencer />;
 };
