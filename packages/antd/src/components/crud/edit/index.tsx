@@ -1,14 +1,6 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
-import {
-    Card,
-    Space,
-    PageHeader,
-    PageHeaderProps,
-    Spin,
-    SpaceProps,
-    CardProps,
-} from "antd";
+import { Card, Space, PageHeader, Spin } from "antd";
 import {
     useResourceWithRoute,
     useMutationMode,
@@ -19,7 +11,6 @@ import {
     ResourceRouterParams,
     useRefineContext,
 } from "@pankod/refine-core";
-import { RefineCrudEditProps } from "@pankod/refine-ui-types";
 
 import {
     DeleteButton,
@@ -27,37 +18,8 @@ import {
     ListButton,
     SaveButton,
     Breadcrumb,
+    EditProps,
 } from "@components";
-import { DeleteButtonProps } from "../../../components";
-import { SaveButtonProps } from "@components/buttons/save";
-
-export type EditProps = RefineCrudEditProps<
-    SaveButtonProps,
-    DeleteButtonProps,
-    SpaceProps,
-    SpaceProps,
-    React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLDivElement>,
-        HTMLDivElement
-    >,
-    PageHeaderProps,
-    CardProps,
-    {
-        /**
-         * Action buttons node at the bottom of the view
-         * @default `<DeleteButton />` and `<SaveButton />`
-         *
-         * @deprecated use `headerButtons` or `footerButtons` instead.
-         */
-        actionButtons?: React.ReactNode;
-        /**
-         * Additional props to be passed to the `PageHeader` component
-         *
-         * @deprecated use `headerProps`, `wrapperProps` and `contentProps` instead.
-         */
-        pageHeaderProps?: PageHeaderProps;
-    }
->;
 
 /**
  * `<Edit>` provides us a layout for displaying the page.

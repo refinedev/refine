@@ -1,5 +1,4 @@
 import {
-    Create,
     FormControl,
     FormErrorMessage,
     FormLabel,
@@ -8,6 +7,7 @@ import {
 } from "@pankod/refine-chakra-ui";
 import { useSelect } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
+import { Create } from "../../components/crud/create";
 
 import { IPost } from "../../interfaces";
 

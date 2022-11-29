@@ -5,7 +5,6 @@ import {
 } from "@pankod/refine-core";
 
 import {
-    List,
     Table,
     TextField,
     Space,
@@ -20,6 +19,7 @@ import {
 } from "@pankod/refine-antd";
 
 import { IPost, ICategory } from "interfaces";
+import { List } from "components/crud/list";
 
 export const PostList: React.FC<IResourceComponentsProps> = () => {
     const { tableProps, filters } = useTable<IPost>({

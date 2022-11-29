@@ -436,6 +436,36 @@ module.exports = {
                     },
                 ],
             },
+            {
+                group: "Basic Views",
+                label: "List",
+                files: [
+                    {
+                        src: "./src/components/crud/list/index.tsx",
+                        dest: "./src/components/crud/list.tsx",
+                    },
+                ],
+            },
+            {
+                group: "Basic Views",
+                label: "Show",
+                files: [
+                    {
+                        src: "./src/components/crud/show/index.tsx",
+                        dest: "./src/components/crud/show.tsx",
+                    },
+                ],
+            },
+            {
+                group: "Basic Views",
+                label: "Edit",
+                files: [
+                    {
+                        src: "./src/components/crud/edit/index.tsx",
+                        dest: "./src/components/crud/edit.tsx",
+                    },
+                ],
+            },
         ],
         transform: (content) => {
             let newContent = content;
@@ -443,7 +473,10 @@ module.exports = {
 
             imports.map((importItem) => {
                 // for mantine imports
-                if (importItem.importPath === "@mantine/core") {
+                if (
+                    importItem.importPath === "@mantine/core" ||
+                    importItem.importPath === "@components"
+                ) {
                     const newStatement = `import ${importItem.namedImports} from "@pankod/refine-mantine";`;
 
                     newContent = newContent.replace(

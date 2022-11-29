@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import {
-    Edit,
     FormControl,
     FormErrorMessage,
     FormLabel,
@@ -11,6 +10,7 @@ import { useSelect } from "@pankod/refine-core";
 import { useForm } from "@pankod/refine-react-hook-form";
 
 import { IPost } from "../../interfaces";
+import { Edit } from "../../components/crud/edit";
 
 export const PostEdit = () => {
     const {

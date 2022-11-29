@@ -1,10 +1,10 @@
 import {
-    Edit,
     Select,
     TextInput,
     useForm,
     useSelect,
     Text,
+    Edit,
 } from "@pankod/refine-mantine";
 import { RichTextEditor } from "@mantine/rte";
 

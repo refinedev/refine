@@ -1,5 +1,6 @@
 import { useShow, useOne } from "@pankod/refine-core";
-import { Show, Title, Text, MarkdownField } from "@pankod/refine-mantine";
+import { Title, Text, MarkdownField } from "@pankod/refine-mantine";
+import { Show } from "../../components/crud/show";
 
 import { ICategory, IPost } from "../../interfaces";
 

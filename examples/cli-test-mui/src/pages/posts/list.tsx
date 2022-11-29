@@ -4,11 +4,14 @@ import {
     useDataGrid,
     DataGrid,
     GridColumns,
-    List,
     EditButton,
+    Stack,
+    ShowButton,
+    DeleteButton,
 } from "@pankod/refine-mui";
 
 import { ICategory, IPost } from "interfaces";
+import { List } from "components/crud/list";
 
 export const PostsList: React.FC = () => {
     const { dataGridProps } = useDataGrid<IPost>();
@@ -55,7 +58,25 @@ export const PostsList: React.FC = () => {
                 field: "actions",
                 headerName: "Actions",
                 renderCell: function render({ row }) {
-                    return <EditButton hideText recordItemId={row.id} />;
+                    return (
+                        <Stack direction="row" spacing={1}>
+                            <EditButton
+                                size="small"
+                                hideText
+                                recordItemId={row.id}
+                            />
+                            <ShowButton
+                                size="small"
+                                hideText
+                                recordItemId={row.id}
+                            />
+                            <DeleteButton
+                                size="small"
+                                hideText
+                                recordItemId={row.id}
+                            />
+                        </Stack>
+                    );
                 },
                 align: "center",
                 headerAlign: "center",

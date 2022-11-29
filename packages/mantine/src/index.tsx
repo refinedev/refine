@@ -244,6 +244,7 @@ export type {
     FocusTrapProps,
     FooterProps,
     GridProps,
+    GroupProps,
     GroupedTransitionProps,
     HighlightProps,
     HeaderProps as MatineHeaderProps,
