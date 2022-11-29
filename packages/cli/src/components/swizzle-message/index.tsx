@@ -17,6 +17,7 @@ const SwizzleMessage: React.FC<Props> = ({ label, files, message }) => {
             alignItems="flex-start"
             justifyContent="flex-start"
         >
+            <Text>&nbsp;</Text>
             <Text color="blueBright">
                 Successfully swizzled <Text bold>{label}</Text>
             </Text>
@@ -29,8 +30,12 @@ const SwizzleMessage: React.FC<Props> = ({ label, files, message }) => {
                 >{` - ${file?.replace(process.cwd(), "")}`}</Text>
             ))}
             <Text>&nbsp;</Text>
-            {message && <Markdown>{dedent("\n" + message)}</Markdown>}
-            <Text>&nbsp;</Text>
+            {message && (
+                <>
+                    <Markdown>{dedent("\n" + message)}</Markdown>
+                    <Text>&nbsp;</Text>
+                </>
+            )}
         </Box>
     );
 };
