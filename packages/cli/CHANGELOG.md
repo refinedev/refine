@@ -1,5 +1,15 @@
 # @pankod/refine-cli
 
+## 1.4.1
+
+### Patch Changes
+
+-   [#3092](https://github.com/refinedev/refine/pull/3092) [`984f1c21ab6`](https://github.com/refinedev/refine/commit/984f1c21ab66fedcedb8630248e7429f7d4f26c3) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Added: Warning command description changed according `refine CLI` installed or not.
+
+    -   If `refine CLI` is installed, It will be shown as `npm run refine update` command.
+    -   IF `refine CLI` is not installed, It will be shown as `npx refine update` command.
+        -   package manager will be detected automatically.
+
 ## 1.4.0
 
 ### Minor Changes
