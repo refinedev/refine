@@ -1,6 +1,7 @@
 ---
 id: layout
 title: Layout
+swizzle: true
 ---
 
 You can create custom layouts using [`<Refine>`][refine] and [`<LayoutWrapper>`][layoutwrapper] components.

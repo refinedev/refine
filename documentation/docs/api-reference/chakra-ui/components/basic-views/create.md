@@ -1,6 +1,7 @@
 ---
 id: create
 title: Create
+swizzle: true
 ---
 
 ```tsx live shared
