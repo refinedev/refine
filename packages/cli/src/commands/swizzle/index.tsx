@@ -85,8 +85,20 @@ const action = async (_options: OptionValues) => {
         return;
     }
 
+    const packageConfigs = await Promise.all(
+        packagesWithConfig.map(async (pkg) => {
+            const config = (await getRefineConfig(pkg.path)) ?? {
+                swizzle: { items: [] },
+            };
+            return {
+                ...pkg,
+                config,
+            };
+        }),
+    );
+
     const { selectedPackage } = await inquirer.prompt<{
-        selectedPackage: { name: string; path: string };
+        selectedPackage: typeof packageConfigs[number];
     }>([
         {
             type: "autocomplete",
@@ -95,22 +107,31 @@ const action = async (_options: OptionValues) => {
             message: "Which package do you want to swizzle?",
             emptyText: "No packages found.",
             source: getAutocompleteSource(
-                packagesWithConfig.map((pkg) => ({
-                    label: pkg.name,
-                    value: pkg,
-                })),
+                packageConfigs
+                    .sort((a, b) =>
+                        (a.config?.group ?? "").localeCompare(
+                            b.config?.group ?? "",
+                        ),
+                    )
+                    .map((pkg) => ({
+                        label: pkg.config?.name ?? pkg.name,
+                        value: pkg,
+                        group: pkg.config?.group,
+                    })),
             ),
         },
     ]);
 
     const {
         swizzle: { items, transform },
-    } = (await getRefineConfig(selectedPackage.path)) ?? {
-        swizzle: { items: [] },
-    };
+    } = selectedPackage.config;
 
     if (items.length === 0) {
-        console.log(`No swizzle items found for ${selectedPackage.name}`);
+        console.log(
+            `No swizzle items found for ${chalk.bold(
+                selectedPackage.config?.name ?? selectedPackage.name,
+            )}`,
+        );
         return;
     }
 
