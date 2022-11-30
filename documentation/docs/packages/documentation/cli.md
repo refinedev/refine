@@ -76,12 +76,12 @@ npm i @pankod/refine-cli
 Use this command to add a new resource to your project.
 
 ```bash
-npm run refine create-resource [resourceName]
+npm run refine create-resource
 ```
 
-| Argument     | Description                               |
-| ------------ | ----------------------------------------- |
-| resourceName | The name of the resource you want to add. |
+| Argument               | Description                               |
+| ---------------------- | ----------------------------------------- |
+| resourceName (optinal) | The name of the resource you want to add. |
 
 #### Options
 
@@ -113,7 +113,7 @@ src/pages/
 If we only want to use list and create actions, it should be like this.
 
 ```bash
-npm run refine create-resource category --actions list,create
+npm run refine create-resource category -- --actions list,create
 ```
 
 ```
@@ -127,7 +127,7 @@ src/pages/
 If we want to create these files in another path, use the `--path` option.
 
 ```bash
-npm run refine create-resource category --path src/resources --actions list,create
+npm run refine create-resource category -- --path src/resources --actions list,create
 ```
 
 ```
@@ -138,7 +138,76 @@ src/resources/
     └── list.tsx
 ```
 
+You can also create multiple resources at the same time. For this, you can write the sources by separating them with a space.
+
+```bash
+npm run refine create-resource category user -- --actions list,create
+
+src/pages/
+├── categories
+│   ├── create.tsx
+│   ├── index.ts
+│   └── list.tsx
+└── users
+    ├── create.tsx
+    ├── index.ts
+    └── list.tsx
+```
+
 ### check-updates
+
+Checks if all installed "refined" packages are up to date.
+
+```bash
+npm run refine check-updates
+```
+
+Update required packages will be listed as below. To update to the latest version, use the `npm run refine update` command.
+
+```
+                                       Update Available
+                      ┌─────────────────────┬─────────┬────────┬────────┐
+                      │ name                │ current │ wanted │ latest │
+                      ├─────────────────────┼─────────┼────────┼────────┤
+                      │ @pankod/refine-antd │ 3.50.0  │ 3.62.0 │ 3.62.0 │
+                      └─────────────────────┴─────────┴────────┴────────┘
+                      To update `refine` packages with the wanted version
+                           Run the following command `refine update`
+```
+
+### update
+
+You can easily update all the refine packages to the versions you want. Executing this command will show the current versions and the latest versions. You can choose the version you want to update.
+
+```bash
+
+```bash
+npm run refine update 
+
+Choose packages to update (Press <space> to select, <a> to toggle all, <i> to invert selection, and <enter> to proceed)
+
+   Package               From      To
+
+Patch Updates
+❯◯ @pankod/refine-core   3.90.2 -> 3.90.4
+
+Minor Updates
+ ◯ @pankod/refine-antd   3.50.0 -> 3.62.0
+```
+
+:::info
+Interactively select and update all `refine` packages to selected version. To skip the interactive mode, use the `--all` option.
+:::
+
+#### Options
+
+| Alias | Option      | Description                                                                                                                                                                                    |
+| ----- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -t    | --tag [tag] | Select version to update to. (choices: "next", "latest", default: Version ranges in the `package.json` will be installed)                                                                      |
+| -a    | --all       | Update all `refine` packages to the selected `tag`. If `tag` is not provided, version ranges in the `package.json` will be installed. This option skips the interactive mode. (default: false) |
+| -d    | --dry-run   | Get outdated packages installation command without automatic updating. If `tag` is not provided, version ranges in the `package.json` will be used. (default: false)                           |
+| -h    | --help      | Output usage information.                                                                                                                                                                      |
+
 ### dev
 ### build
 ### start
