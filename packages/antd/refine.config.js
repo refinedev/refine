@@ -18,6 +18,18 @@ module.exports = {
                         dest: "./src/components/buttons/show.tsx",
                     },
                 ],
+                message: `
+                    ## Test Heading 2
+
+                    \`\`\`
+                    // title: src/buttons/show.tsx
+                    console.log(a);
+
+                    const MyComponent = () => {
+                        return <div>asd</div>;
+                    }
+                    \`\`\`
+                `,
             },
             {
                 group: "Buttons",
