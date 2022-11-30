@@ -1,6 +1,7 @@
 ---
 id: text
 title: Text
+swizzle: true
 ---
 
 This field lets you show basic text. It uses Ant Design's [`<Typography.Text>`](https://ant.design/components/typography/#Typography.Text) component.

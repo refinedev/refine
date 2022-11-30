@@ -1,20 +1,10 @@
 import React from "react";
-import { useTranslate, UseImportInputPropsType } from "@pankod/refine-core";
-import {
-    RefineImportButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
-import { ButtonProps, SvgIconProps } from "@mui/material";
+import { useTranslate } from "@pankod/refine-core";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 import { LoadingButton } from "@mui/lab";
-import ImportExportOutlinedIcon from "@mui/icons-material/ImportExportOutlined";
+import { ImportExportOutlined } from "@mui/icons-material";
 
-export type ImportButtonProps = RefineImportButtonProps<
-    ButtonProps,
-    {
-        inputProps: UseImportInputPropsType;
-        svgIconProps?: SvgIconProps;
-    }
->;
+import { ImportButtonProps } from "../types";
 
 /**
  * `<ImportButton>` is compatible with the {@link https://refine.dev/docs/core/hooks/import-export/useImport/ `useImport`} core hook.
@@ -40,7 +30,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
             <LoadingButton
                 component="span"
                 startIcon={
-                    !hideText && <ImportExportOutlinedIcon {...svgIconProps} />
+                    !hideText && <ImportExportOutlined {...svgIconProps} />
                 }
                 loadingPosition={hideText ? "center" : "start"}
                 loading={loading}
@@ -49,10 +39,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
                 {...restProps}
             >
                 {hideText ? (
-                    <ImportExportOutlinedIcon
-                        fontSize="small"
-                        {...svgIconProps}
-                    />
+                    <ImportExportOutlined fontSize="small" {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.import", "Import")
                 )}

@@ -7,21 +7,12 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-import {
-    RefineButtonTestIds,
-    RefineListButtonProps,
-} from "@pankod/refine-ui-types";
-import { ActionIcon, Anchor, Button, ButtonProps } from "@mantine/core";
-import { IconList, TablerIconProps } from "@tabler/icons";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { ActionIcon, Anchor, Button } from "@mantine/core";
+import { IconList } from "@tabler/icons";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
-
-export type ListButtonProps = RefineListButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: TablerIconProps;
-    }
->;
+import { ListButtonProps } from "../types";
 
 /**
  * `<ListButton>` is using uses Mantine {@link https://mantine.dev/core/button/ `<Button> `} component.

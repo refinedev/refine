@@ -6,19 +6,11 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-import {
-    RefineEditButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
-import { Button, ButtonProps, SvgIconProps } from "@mui/material";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { Button } from "@mui/material";
+import { EditOutlined } from "@mui/icons-material";
 
-export type EditButtonProps = RefineEditButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: SvgIconProps;
-    }
->;
+import { EditButtonProps } from "../types";
 
 /**
  * `<EditButton>` uses uses Material UI {@link https://mui.com/components/buttons/ `<Button>`} component.
@@ -98,7 +90,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
                 disabled={data?.can === false}
                 startIcon={
                     !hideText && (
-                        <EditOutlinedIcon
+                        <EditOutlined
                             sx={{ selfAlign: "center" }}
                             {...svgIconProps}
                         />
@@ -110,7 +102,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
                 {...restProps}
             >
                 {hideText ? (
-                    <EditOutlinedIcon fontSize="small" {...svgIconProps} />
+                    <EditOutlined fontSize="small" {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.edit", "Edit")
                 )}

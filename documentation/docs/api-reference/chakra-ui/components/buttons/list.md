@@ -1,6 +1,7 @@
 ---
 id: list-button
 title: List
+swizzle: true
 ---
 
 ```tsx live shared

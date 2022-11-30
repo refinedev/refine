@@ -6,19 +6,11 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-import {
-    RefineCreateButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
-import { Button, ButtonProps, SvgIconProps } from "@mui/material";
-import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { Button } from "@mui/material";
+import { AddBoxOutlined } from "@mui/icons-material";
 
-export type CreateButtonProps = RefineCreateButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: SvgIconProps;
-    }
->;
+import { CreateButtonProps } from "../types";
 
 /**
  * <CreateButton> uses Material UI {@link https://mui.com/components/buttons/ `<Button> component`}.
@@ -96,9 +88,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
         >
             <Button
                 disabled={data?.can === false}
-                startIcon={
-                    !hideText && <AddBoxOutlinedIcon {...svgIconProps} />
-                }
+                startIcon={!hideText && <AddBoxOutlined {...svgIconProps} />}
                 title={disabledTitle()}
                 variant="contained"
                 sx={{ minWidth: 0, ...sx }}
@@ -106,7 +96,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
                 {...restProps}
             >
                 {hideText ? (
-                    <AddBoxOutlinedIcon fontSize="small" {...svgIconProps} />
+                    <AddBoxOutlined fontSize="small" {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.create", "Create")
                 )}

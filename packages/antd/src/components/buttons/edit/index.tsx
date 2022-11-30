@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, ButtonProps } from "antd";
+import { Button } from "antd";
 import { EditOutlined } from "@ant-design/icons";
 import {
     useCan,
@@ -8,20 +8,9 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-import {
-    RefineEditButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 
-export type EditButtonProps = RefineEditButtonProps<
-    ButtonProps,
-    {
-        /**
-         * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/refinedev/refine/issues/1618
-         */
-        resourceName?: string;
-    }
->;
+import { EditButtonProps } from "../types";
 
 /**
  * `<EditButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} component.

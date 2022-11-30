@@ -1,6 +1,7 @@
 ---
 id: export-button
 title: Export
+swizzle: true
 ---
 
 ```tsx live shared

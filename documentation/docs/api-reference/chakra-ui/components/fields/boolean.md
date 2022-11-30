@@ -1,6 +1,7 @@
 ---
 id: boolean
 title: Boolean
+swizzle: true
 ---
 
 ```tsx live shared

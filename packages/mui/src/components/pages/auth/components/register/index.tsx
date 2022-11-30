@@ -9,7 +9,7 @@ import {
     Typography,
     Container,
     Card,
-    CardContent as MuiCardContent,
+    CardContent,
     BoxProps,
     CardContentProps,
     Divider,
@@ -93,9 +93,9 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         return null;
     };
 
-    const CardContent = (
+    const Content = (
         <Card {...(contentProps ?? {})}>
-            <MuiCardContent sx={{ paddingX: "32px" }}>
+            <CardContent sx={{ paddingX: "32px" }}>
                 <Typography
                     component="h1"
                     variant="h5"
@@ -196,7 +196,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                         {translate("pages.register.signup", "Sign up")}
                     </Button>
                 </Box>
-            </MuiCardContent>
+            </CardContent>
         </Card>
     );
 
@@ -212,7 +212,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                     height: "100vh",
                 }}
             >
-                {renderContent ? renderContent(CardContent) : CardContent}
+                {renderContent ? renderContent(Content) : Content}
             </Container>
         </Box>
     );

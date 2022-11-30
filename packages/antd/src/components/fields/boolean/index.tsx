@@ -1,14 +1,9 @@
 import React from "react";
-import { RefineFieldBooleanProps } from "@pankod/refine-ui-types";
-import { AbstractTooltipProps } from "antd/lib/tooltip";
 import { Tooltip } from "antd";
 
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 
-export type BooleanFieldProps = RefineFieldBooleanProps<
-    unknown,
-    AbstractTooltipProps
->;
+import { BooleanFieldProps } from "../types";
 
 /**
  * This field is used to display boolean values. It uses the {@link https://ant.design/components/tooltip/#header `<Tooltip>`} values from Ant Design.

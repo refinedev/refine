@@ -1,8 +1,6 @@
 import React from "react";
-import dayjs, { ConfigType } from "dayjs";
-import { RefineFieldDateProps } from "@pankod/refine-ui-types";
+import dayjs from "dayjs";
 import { Typography } from "antd";
-import { TextProps } from "antd/lib/typography/Text";
 
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
 
@@ -10,7 +8,7 @@ dayjs.extend(LocalizedFormat);
 
 const defaultLocale = dayjs.locale();
 
-export type DateFieldProps = RefineFieldDateProps<ConfigType, TextProps>;
+import { DateFieldProps } from "../types";
 
 /**
  * This field is used to display dates. It uses {@link https://day.js.org/docs/en/display/format `Day.js`} to display date format.

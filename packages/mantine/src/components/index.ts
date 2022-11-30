@@ -14,3 +14,4 @@ export * from "./layout";
 export * from "./layout/header";
 export * from "./layout/sider";
 export { Title as RefineTitle } from "./layout/title";
+export * from "./layout/types";

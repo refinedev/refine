@@ -13,6 +13,7 @@
         "prepare": "npm run build"
     },
     "peerDependencies": {
+        "@pankod/refine-cli": "^1.1.1",
         "@pankod/refine-core": "^3.58.3",
         "@mantine/core": "^5.5.6",
         "@mantine/hooks": "^5.5.6",
@@ -26,6 +27,7 @@
     },
     "devDependencies": {
         "@esbuild-plugins/node-resolve": "^0.1.4",
+        "@pankod/refine-cli": "^1.1.1",
         "@pankod/refine-core": "^3.88.4",
         "@pankod/refine-ui-tests": "^0.11.4",
         "@testing-library/jest-dom": "^5.16.4",

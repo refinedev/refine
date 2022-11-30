@@ -1,8 +1,7 @@
 import React from "react";
-import { RefineLayoutHeaderProps } from "@pankod/refine-ui-types";
-import { Layout, Typography, Avatar, Space } from "antd";
+import { Layout as AntdLayout, Typography, Avatar, Space } from "antd";
 import { useGetIdentity } from "@pankod/refine-core";
-
+import { RefineLayoutHeaderProps } from "../types";
 const { Text } = Typography;
 
 export const Header: React.FC<RefineLayoutHeaderProps> = () => {
@@ -11,7 +10,7 @@ export const Header: React.FC<RefineLayoutHeaderProps> = () => {
     const shouldRenderHeader = user && (user.name || user.avatar);
 
     return shouldRenderHeader ? (
-        <Layout.Header
+        <AntdLayout.Header
             style={{
                 display: "flex",
                 justifyContent: "flex-end",
@@ -31,6 +30,6 @@ export const Header: React.FC<RefineLayoutHeaderProps> = () => {
                     <Avatar size="large" src={user?.avatar} alt={user?.name} />
                 )}
             </Space>
-        </Layout.Header>
+        </AntdLayout.Header>
     ) : null;
 };

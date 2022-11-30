@@ -18,6 +18,7 @@
         "react-dom": "^17.0.0 || ^18.0.0"
     },
     "devDependencies": {
+        "@pankod/refine-cli": "^1.1.1",
         "@pankod/refine-ui-tests": "^0.11.0",
         "@pankod/refine-core": "^3.90.2",
         "@esbuild-plugins/node-resolve": "^0.1.4",

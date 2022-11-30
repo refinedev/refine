@@ -1,9 +1,7 @@
-import React, { ReactNode } from "react";
+import React from "react";
+import { Anchor } from "@mantine/core";
 
-import { RefineFieldEmailProps } from "@pankod/refine-ui-types";
-import { Anchor, AnchorProps } from "@mantine/core";
-
-export type EmailFieldProps = RefineFieldEmailProps<ReactNode, AnchorProps>;
+import { EmailFieldProps } from "../types";
 
 /**
  * This field is used to display email values. It uses the {@link https://mantine.dev/core/text/  `<Text>` }

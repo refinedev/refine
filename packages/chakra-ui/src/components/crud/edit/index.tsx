@@ -1,5 +1,5 @@
 import React from "react";
-import { RefineCrudEditProps } from "@pankod/refine-ui-types";
+
 import {
     ResourceRouterParams,
     useMutationMode,
@@ -9,35 +9,19 @@ import {
     useRouterContext,
     useTranslate,
 } from "@pankod/refine-core";
-import {
-    Box,
-    BoxProps,
-    Heading,
-    HStack,
-    IconButton,
-    Spinner,
-} from "@chakra-ui/react";
+import { Box, Heading, HStack, IconButton, Spinner } from "@chakra-ui/react";
+
+// We use @tabler/icons for icons but you can use any icon library you want.
 import { IconArrowLeft } from "@tabler/icons";
 
 import {
     DeleteButton,
-    DeleteButtonProps,
     ListButton,
     RefreshButton,
     SaveButton,
-    SaveButtonProps,
-} from "@components/buttons";
-import { Breadcrumb } from "@components/breadcrumb";
-
-export type EditProps = RefineCrudEditProps<
-    SaveButtonProps,
-    DeleteButtonProps,
-    BoxProps,
-    BoxProps,
-    BoxProps,
-    BoxProps,
-    BoxProps
->;
+    Breadcrumb,
+    EditProps,
+} from "@components";
 
 export const Edit: React.FC<EditProps> = (props) => {
     const {

@@ -33,9 +33,9 @@ import {
     IconLogout,
     IconDashboard,
 } from "@tabler/icons";
-import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
+import { RefineLayoutSiderProps } from "../types";
 
-import { Title as DefaultTitle } from "../title";
+import { RefineTitle as DefaultTitle } from "@components";
 
 const defaultNavIcon = <IconList size={18} />;
 

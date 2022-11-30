@@ -6,22 +6,11 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-import {
-    RefineCloneButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
-import { Button, ButtonProps, IconButton } from "@chakra-ui/react";
-import { IconSquarePlus, TablerIconProps } from "@tabler/icons";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { Button, IconButton } from "@chakra-ui/react";
+import { IconSquarePlus } from "@tabler/icons";
 
-export type CloneButtonProps = Omit<
-    RefineCloneButtonProps<
-        ButtonProps,
-        {
-            svgIconProps?: TablerIconProps;
-        }
-    >,
-    "ignoreAccessControlProvider"
->;
+import { CloneButtonProps } from "../types";
 
 /**
  * `<CloneButton>` uses Mantine {@link https://chakra-ui.com/docs/components/button `<Button> component`}.

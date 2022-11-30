@@ -6,22 +6,11 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-import {
-    RefineCreateButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
-import { Button, ButtonProps, IconButton } from "@chakra-ui/react";
-import { IconSquarePlus, TablerIconProps } from "@tabler/icons";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { Button, IconButton } from "@chakra-ui/react";
+import { IconSquarePlus } from "@tabler/icons";
 
-export type CreateButtonProps = Omit<
-    RefineCreateButtonProps<
-        ButtonProps,
-        {
-            svgIconProps?: TablerIconProps;
-        }
-    >,
-    "ignoreAccessControlProvider"
->;
+import { CreateButtonProps } from "../types";
 
 export const CreateButton: React.FC<CreateButtonProps> = ({
     resourceNameOrRouteName,

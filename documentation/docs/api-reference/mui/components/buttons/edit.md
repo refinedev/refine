@@ -1,6 +1,7 @@
 ---
 id: edit-button
 title: Edit
+swizzle: true
 ---
 
 import editButton from '@site/static/img/guides-and-concepts/components/buttons/edit/edit-mui.png';

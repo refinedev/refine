@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, ButtonProps } from "antd";
+import { Button } from "antd";
 import { PlusSquareOutlined } from "@ant-design/icons";
 import {
     useCan,
@@ -8,21 +8,9 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-import {
-    RefineCloneButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 
-export type CloneButtonProps = RefineCloneButtonProps<
-    ButtonProps,
-    {
-        /**
-         * Resource name for API data interactions
-         * @deprecated `resourceName` deprecated. Use `resourceNameOrRouteName` instead [Github Issue #1618](https://github.com/refinedev/refine/issues/1618)
-         */
-        resourceName?: string;
-    }
->;
+import { CloneButtonProps } from "../types";
 
 /**
  * `<CloneButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button> component`}.

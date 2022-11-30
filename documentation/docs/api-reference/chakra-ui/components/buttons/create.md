@@ -1,6 +1,7 @@
 ---
 id: create-button
 title: Create
+swizzle: true
 ---
 
 ```tsx live shared

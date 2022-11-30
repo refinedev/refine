@@ -1,6 +1,9 @@
 export * from "@mui/x-data-grid";
 export * from "@mui/system";
 
+export { default as LoadingButton } from "@mui/lab/LoadingButton";
+export * from "@mui/lab/LoadingButton";
+
 import * as colors from "@mui/material/colors";
 import * as locale from "@mui/material/locale";
 
@@ -482,7 +485,19 @@ export { default as TabScrollButton } from "@mui/material/TabScrollButton";
 export * from "@mui/material/TabScrollButton";
 
 export { default as TextField } from "@mui/material/TextField";
-export * from "@mui/material/TextField";
+export { textFieldClasses } from "@mui/material/TextField";
+export type {
+    BaseTextFieldProps,
+    FilledTextFieldProps,
+    OutlinedTextFieldProps,
+    StandardTextFieldProps,
+    TextFieldClassKey,
+    TextFieldClasses,
+    TextFieldProps as MuiTextFieldProps,
+    TextFieldPropsColorOverrides,
+    TextFieldPropsSizeOverrides,
+    getTextFieldUtilityClass,
+} from "@mui/material/TextField";
 
 export { default as TextareaAutosize } from "@mui/material/TextareaAutosize";
 export * from "@mui/material/TextareaAutosize";

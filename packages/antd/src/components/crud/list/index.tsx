@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
-import { PageHeader, PageHeaderProps, Space, SpaceProps } from "antd";
+import React from "react";
+import { PageHeader, Space } from "antd";
 import {
     useResourceWithRoute,
     useRouterContext,
@@ -9,28 +9,7 @@ import {
     useRefineContext,
 } from "@pankod/refine-core";
 
-import { Breadcrumb, CreateButton, CreateButtonProps } from "@components";
-import { RefineCrudListProps } from "@pankod/refine-ui-types";
-
-export type ListProps = RefineCrudListProps<
-    CreateButtonProps,
-    SpaceProps,
-    React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLDivElement>,
-        HTMLDivElement
-    >,
-    PageHeaderProps,
-    React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLDivElement>,
-        HTMLDivElement
-    >,
-    {
-        /**
-         * @deprecated use `headerProps`, `wrapperProps` and `contentProps` instead.
-         */
-        pageHeaderProps?: PageHeaderProps;
-    }
->;
+import { Breadcrumb, CreateButton, ListProps } from "@components";
 
 /**
  * `<List>` provides us a layout for displaying the page.

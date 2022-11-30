@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, ButtonProps } from "antd";
+import { Button } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
 import {
     useCan,
@@ -8,20 +8,9 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-import {
-    RefineShowButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 
-export type ShowButtonProps = RefineShowButtonProps<
-    ButtonProps,
-    {
-        /**
-         * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/refinedev/refine/issues/1618
-         */
-        resourceName?: string;
-    }
->;
+import { ShowButtonProps } from "../types";
 
 /**
  * `<ShowButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} component.

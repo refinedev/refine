@@ -1,6 +1,7 @@
 ---
 id: tag
 title: Tag
+swizzle: true
 ---
 
 ```tsx live shared

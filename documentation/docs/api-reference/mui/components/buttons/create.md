@@ -1,6 +1,7 @@
 ---
 id: create-button
 title: Create
+swizzle: true
 ---
 
 import createButton from '@site/static/img/guides-and-concepts/components/buttons/create/create-mui.png';

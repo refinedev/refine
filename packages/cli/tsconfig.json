@@ -6,6 +6,7 @@
         "baseUrl": ".",
         "allowSyntheticDefaultImports": true,
         "importHelpers": false,
+        "downlevelIteration": true,
         "strict": true,
         "paths": {
             "@definitions/*": ["src/definitions/*"],

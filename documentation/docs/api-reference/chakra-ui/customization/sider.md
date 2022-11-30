@@ -1,6 +1,7 @@
 ---
 id: sider
 title: Sider
+swizzle: true
 ---
 
 There are 2 ways that will allow you to customize your `<Sider />` component if you need it.

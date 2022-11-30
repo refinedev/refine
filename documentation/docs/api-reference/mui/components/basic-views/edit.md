@@ -1,6 +1,7 @@
 ---
 id: edit
 title: Edit
+swizzle: true
 ---
 
 import actionButtonsUsage from '@site/static/img/guides-and-concepts/basic-views/edit/actionButtonUsageMui.png'

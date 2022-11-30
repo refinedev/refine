@@ -1,19 +1,10 @@
 import React from "react";
 import { useOne, useTranslate, useResource } from "@pankod/refine-core";
-import {
-    RefineButtonTestIds,
-    RefineRefreshButtonProps,
-} from "@pankod/refine-ui-types";
-import { ButtonProps, SvgIconProps } from "@mui/material";
-import RefreshOutlinedIcon from "@mui/icons-material/RefreshOutlined";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 import { LoadingButton } from "@mui/lab";
+import { RefreshOutlined } from "@mui/icons-material";
 
-export type RefreshButtonProps = RefineRefreshButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: SvgIconProps;
-    }
->;
+import { RefreshButtonProps } from "../types";
 
 /**
  * `<RefreshButton>` uses uses Material UI {@link https://mui.com/material-ui/api/loading-button/#main-content `<LoadingButton>`} component
@@ -54,7 +45,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
 
     return (
         <LoadingButton
-            startIcon={!hideText && <RefreshOutlinedIcon {...svgIconProps} />}
+            startIcon={!hideText && <RefreshOutlined {...svgIconProps} />}
             loading={isFetching}
             loadingPosition={hideText ? "center" : "start"}
             onClick={(e) => (onClick ? onClick(e) : refetch())}
@@ -63,7 +54,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
             {...restProps}
         >
             {hideText ? (
-                <RefreshOutlinedIcon fontSize="small" {...svgIconProps} />
+                <RefreshOutlined fontSize="small" {...svgIconProps} />
             ) : (
                 children ?? translate("buttons.refresh", "Refresh")
             )}

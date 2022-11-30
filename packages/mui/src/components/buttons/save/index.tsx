@@ -1,19 +1,10 @@
 import React from "react";
 import { useTranslate } from "@pankod/refine-core";
-import {
-    RefineSaveButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
-import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
-import { LoadingButton, LoadingButtonProps } from "@mui/lab";
-import { SvgIconProps } from "@mui/material";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { LoadingButton } from "@mui/lab";
+import { SaveOutlined } from "@mui/icons-material";
 
-export type SaveButtonProps = RefineSaveButtonProps<
-    LoadingButtonProps,
-    {
-        svgIconProps?: SvgIconProps;
-    }
->;
+import { SaveButtonProps } from "../types";
 
 /**
  * `<SaveButton>` uses Material UI {@link https://mui.com/material-ui/api/loading-button/#main-content `<LoadingButton>`} component.
@@ -33,14 +24,14 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
 
     return (
         <LoadingButton
-            startIcon={!hideText && <SaveOutlinedIcon {...svgIconProps} />}
+            startIcon={!hideText && <SaveOutlined {...svgIconProps} />}
             sx={{ minWidth: 0, ...sx }}
             variant="contained"
             data-testid={RefineButtonTestIds.SaveButton}
             {...restProps}
         >
             {hideText ? (
-                <SaveOutlinedIcon fontSize="small" {...svgIconProps} />
+                <SaveOutlined fontSize="small" {...svgIconProps} />
             ) : (
                 children ?? translate("buttons.save", "Save")
             )}

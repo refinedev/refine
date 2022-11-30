@@ -1,18 +1,10 @@
 import React from "react";
 import { useTranslate } from "@pankod/refine-core";
-import {
-    RefineExportButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
-import { IconButton, Button, ButtonProps } from "@chakra-ui/react";
-import { IconFileExport, TablerIconProps } from "@tabler/icons";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { IconButton, Button } from "@chakra-ui/react";
+import { IconFileExport } from "@tabler/icons";
 
-export type ExportButtonProps = RefineExportButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: TablerIconProps;
-    }
->;
+import { ExportButtonProps } from "../types";
 
 /**
  * `<ExportButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> `} component with a default export icon and a default text with "Export".

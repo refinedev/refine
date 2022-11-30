@@ -1,6 +1,7 @@
 ---
 id: number
 title: Number
+swizzle: true
 ---
 
 ```tsx live shared

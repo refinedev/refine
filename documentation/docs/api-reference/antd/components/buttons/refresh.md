@@ -1,6 +1,7 @@
 ---
 id: refresh-button
 title: Refresh
+swizzle: true
 ---
 
 import refreshButton from '@site/static/img/guides-and-concepts/components/buttons/refresh/refresh.png';

@@ -1,6 +1,7 @@
 ---
 id: date
 title: Date
+swizzle: true
 ---
 
 ```tsx live shared

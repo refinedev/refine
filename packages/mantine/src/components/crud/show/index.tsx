@@ -1,12 +1,8 @@
-import React, { ReactNode } from "react";
-import { RefineCrudShowProps } from "@pankod/refine-ui-types";
+import React from "react";
 import {
     Box,
-    BoxProps,
     Card,
-    CardProps,
     Group,
-    GroupProps,
     ActionIcon,
     Stack,
     Title,
@@ -28,16 +24,9 @@ import {
     EditButton,
     ListButton,
     RefreshButton,
-} from "@components/buttons";
-import { Breadcrumb } from "@components/breadcrumb";
-
-export type ShowProps = RefineCrudShowProps<
-    GroupProps,
-    GroupProps,
-    CardProps,
-    GroupProps,
-    BoxProps
->;
+    Breadcrumb,
+    ShowProps,
+} from "@components";
 
 export const Show: React.FC<ShowProps> = (props) => {
     const {

@@ -1,6 +1,7 @@
 ---
 id: show-button
 title: Show
+swizzle: true
 ---
 
 import showButton from '@site/static/img/guides-and-concepts/components/buttons/show/show.png';

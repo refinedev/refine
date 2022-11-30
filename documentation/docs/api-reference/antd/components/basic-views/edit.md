@@ -1,6 +1,7 @@
 ---
 id: edit
 title: Edit
+swizzle: true
 ---
 
 import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-views/edit/pageHeaderPropsUsage.png'

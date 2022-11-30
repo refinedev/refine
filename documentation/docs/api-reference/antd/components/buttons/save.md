@@ -1,6 +1,7 @@
 ---
 id: save-button
 title: Save
+swizzle: true
 ---
 
 import saveButton from '@site/static/img/guides-and-concepts/components/buttons/save/save.png';

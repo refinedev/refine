@@ -1,20 +1,11 @@
 import React from "react";
 import { useTranslate } from "@pankod/refine-core";
-import {
-    RefineSaveButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
-import { ActionIcon, Button, ButtonProps } from "@mantine/core";
-import { IconDeviceFloppy, TablerIconProps } from "@tabler/icons";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { ActionIcon, Button } from "@mantine/core";
+import { IconDeviceFloppy } from "@tabler/icons";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
-
-export type SaveButtonProps = RefineSaveButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: TablerIconProps;
-    }
->;
+import { SaveButtonProps } from "../types";
 
 /**
  * `<SaveButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button> `}.

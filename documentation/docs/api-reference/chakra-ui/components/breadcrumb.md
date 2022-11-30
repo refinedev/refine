@@ -1,6 +1,7 @@
 ---
 id: breadcrumb
 title: Breadcrumb
+swizzle: true
 ---
 
 ```tsx live shared

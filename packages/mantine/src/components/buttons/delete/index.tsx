@@ -6,28 +6,12 @@ import {
     useCan,
     useResource,
 } from "@pankod/refine-core";
-import {
-    RefineDeleteButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
-import {
-    Group,
-    Text,
-    Button,
-    ButtonProps,
-    Popover,
-    ActionIcon,
-} from "@mantine/core";
-import { IconTrash, TablerIconProps } from "@tabler/icons";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { Group, Text, Button, Popover, ActionIcon } from "@mantine/core";
+import { IconTrash } from "@tabler/icons";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
-
-export type DeleteButtonProps = RefineDeleteButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: TablerIconProps;
-    }
->;
+import { DeleteButtonProps } from "../types";
 
 /**
  * `<DeleteButton>` uses Mantine {@link https://mantine.dev/core/button/ `<Button>`} and {@link https://mantine.dev/core/modal/ `<Modal>`} components.
