@@ -74,7 +74,7 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 **refine** seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
 
 ## Use cases
-**refine** shines on *data-intensive⚡* applications like **admin panels**, **dashboards** and **internal tools**. Thanks to the built-in **SSR support**, **refine** can also power *customer-facing* applications like *storefronts*.
+**refine** shines on *data-intensive⚡* applications like **admin panels**, **dashboards** and **internal tools**. Thanks to the built-in **SSR support**, **refine** can also power *customer-facing* applications like **storefronts**.
 
 You can take a look at some live examples that can be built using **refine** from scratch:
 
@@ -216,7 +216,8 @@ const App: React.FC = () => {
 
 
 
-🚀  Thanks to `@pankod/refine-inferencer/antd` Inferencer component feature, it guesses the configuration to use for the list, show, create and edit pages based on the data fetched from the API and generates the pages automatically. You can also customize the generated pages by passing your own components as props to the resources.
+🚀  Thanks to **refine Inferencer package**, it guesses the configuration to use for the list, show, create and edit pages based on the data fetched from the API and generates the pages automatically.  
+You can also customize the generated pages by passing your own components as props to the resources.
 
 
 
