@@ -2,7 +2,7 @@ import nock from "nock";
 
 nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .post("/graphql", {
-        query: "mutation ($input: deletePostInput) {\n  deletePost (input: $input) {\n    post  { id, title }\n  }\n}",
+        query: "mutation ($input: deletePostInput) {\n      deletePost (input: $input) {\n    post  { id, title }\n  }\n    }",
         variables: { input: { where: { id: "37" } } },
     })
     .reply(
@@ -34,7 +34,7 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
 
 nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .post("/graphql", {
-        query: "mutation ($input: deletePostInput) {\n  deletePost (input: $input) {\n    post  { id, title }\n  }\n}",
+        query: "mutation ($input: deletePostInput) {\n      deletePost (input: $input) {\n    post  { id, title }\n  }\n    }",
         variables: { input: { where: { id: "38" } } },
     })
     .reply(
@@ -66,7 +66,7 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
 
 nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .post("/graphql", {
-        query: "mutation ($input: deletePostInput) {\n  deletePost (input: $input) {\n    post  { id }\n  }\n}",
+        query: "mutation ($input: deletePostInput) {\n      deletePost (input: $input) {\n    post  { id }\n  }\n    }",
         variables: { input: { where: { id: "34" } } },
     })
     .reply(200, { data: { deletePost: { post: { id: "34" } } } }, [
@@ -94,7 +94,7 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
 
 nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .post("/graphql", {
-        query: "mutation ($input: deletePostInput) {\n  deletePost (input: $input) {\n    post  { id }\n  }\n}",
+        query: "mutation ($input: deletePostInput) {\n      deletePost (input: $input) {\n    post  { id }\n  }\n    }",
         variables: { input: { where: { id: "35" } } },
     })
     .reply(200, { data: { deletePost: { post: { id: "35" } } } }, [

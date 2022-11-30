@@ -90,7 +90,7 @@ nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
 
 nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($where: posts_bool_exp!) {\n  delete_posts (where: $where) {\n    returning { id, title }\n  }\n}",
+        query: "mutation ($where: posts_bool_exp!) {\n      delete_posts (where: $where) {\n    returning { id, title }\n  }\n    }",
         variables: {
             where: {
                 id: {
@@ -219,7 +219,7 @@ nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
 
 nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($where: posts_bool_exp!) {\n  delete_posts (where: $where) {\n    returning { id }\n  }\n}",
+        query: "mutation ($where: posts_bool_exp!) {\n      delete_posts (where: $where) {\n    returning { id }\n  }\n    }",
         variables: {
             where: {
                 id: {

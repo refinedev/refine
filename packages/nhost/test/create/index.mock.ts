@@ -90,7 +90,7 @@ nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
 
 nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($object: posts_insert_input!) {\n  insert_posts_one (object: $object) {\n    id, title, content, category { id }\n  }\n}",
+        query: "mutation ($object: posts_insert_input!) {\n      insert_posts_one (object: $object) {\n    id, title, content, category { id }\n  }\n    }",
         variables: {
             object: {
                 content: "Lorem ipsum dolor sit amet.",

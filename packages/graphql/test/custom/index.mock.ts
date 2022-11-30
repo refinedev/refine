@@ -41,7 +41,7 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
 
 nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .post("/graphql", {
-        query: "mutation ($input: updatePostInput) {\n  updatePost (input: $input) {\n    post  { id, title }\n  }\n}",
+        query: "mutation ($input: updatePostInput) {\n      updatePost (input: $input) {\n    post  { id, title }\n  }\n    }",
         variables: {
             input: { where: { id: "32" }, data: { title: "custom-foo" } },
         },
