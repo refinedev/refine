@@ -3,6 +3,7 @@ import Markdown from "ink-markdown";
 import dedent from "dedent";
 import { Box, Text } from "ink";
 import { SWIZZLE_CODES } from "@utils/swizzle/codes";
+import { renderCodeMarkdown } from "@utils/swizzle/renderCodeMarkdown";
 
 type Props = {
     label: string;
@@ -38,6 +39,97 @@ const SwizzleMessage: React.FC<Props> = ({
             break;
     }
 
+    const renderStatusMessage = () => {
+        switch (status) {
+            case "success":
+                return (
+                    <Text color="blueBright">
+                        Successfully swizzled <Text bold>{label}</Text>
+                    </Text>
+                );
+            case "warning":
+                return (
+                    <Text color="yellowBright">
+                        Swizzle completed with errors for{" "}
+                        <Text bold>{label}</Text>
+                    </Text>
+                );
+            case "error":
+                return (
+                    <Text color="redBright">
+                        Swizzle failed for <Text bold>{label}</Text>
+                    </Text>
+                );
+        }
+        return null;
+    };
+
+    const renderFiles = () => {
+        return (
+            <>
+                <Text dimColor>File{files.length > 1 ? "s" : ""} created:</Text>
+                {files.map(([targetPath, statusCode], index) => {
+                    if (statusCode === SWIZZLE_CODES.SUCCESS) {
+                        return (
+                            <Text
+                                key={index}
+                                dimColor
+                                color="cyanBright"
+                            >{` - ${targetPath?.replace(
+                                process.cwd(),
+                                "",
+                            )}`}</Text>
+                        );
+                    }
+                    if (statusCode === SWIZZLE_CODES.TARGET_ALREADY_EXISTS) {
+                        return (
+                            <Text key={index} dimColor color="cyanBright">
+                                {` - `}
+                                <Text color="yellowBright" bold>
+                                    [FILE_ALREADY_EXISTS]{" "}
+                                </Text>
+                                {`${targetPath?.replace(process.cwd(), "")}`}
+                            </Text>
+                        );
+                    }
+                    if (statusCode === SWIZZLE_CODES.SOURCE_PATH_NOT_A_FILE) {
+                        return (
+                            <Text key={index} dimColor color="cyanBright">
+                                {` - `}
+                                <Text color="yellowBright" bold>
+                                    [SOURCE NOT FOUND]{" "}
+                                </Text>
+                                {`${targetPath?.replace(process.cwd(), "")}`}
+                            </Text>
+                        );
+                    }
+                    return (
+                        <Text key={index} dimColor color="cyanBright">
+                            {` - `}
+                            <Text color="yellowBright" bold>
+                                [{statusCode}]
+                            </Text>
+                        </Text>
+                    );
+                })}
+            </>
+        );
+    };
+
+    const renderSwizzleMessage = () => {
+        if (message && status !== "error") {
+            return (
+                <>
+                    <Markdown code={renderCodeMarkdown}>
+                        {dedent("\n" + message)}
+                    </Markdown>
+                    <Text>&nbsp;</Text>
+                </>
+            );
+        }
+        return null;
+    };
+
     return (
         <Box
             width={"100%"}
@@ -46,70 +138,10 @@ const SwizzleMessage: React.FC<Props> = ({
             justifyContent="flex-start"
         >
             <Text>&nbsp;</Text>
-            {status === "success" && (
-                <Text color="blueBright">
-                    Successfully swizzled <Text bold>{label}</Text>
-                </Text>
-            )}
-            {status === "warning" && (
-                <Text color="yellowBright">
-                    Swizzle completed with errors for <Text bold>{label}</Text>
-                </Text>
-            )}
-            {status === "error" && (
-                <Text color="redBright">
-                    Swizzle failed for <Text bold>{label}</Text>
-                </Text>
-            )}
-            <Text dimColor>File{files.length > 1 ? "s" : ""} created:</Text>
-            {files.map(([targetPath, statusCode], index) => {
-                if (statusCode === SWIZZLE_CODES.SUCCESS) {
-                    return (
-                        <Text
-                            key={index}
-                            dimColor
-                            color="cyanBright"
-                        >{` - ${targetPath?.replace(process.cwd(), "")}`}</Text>
-                    );
-                }
-                if (statusCode === SWIZZLE_CODES.TARGET_ALREADY_EXISTS) {
-                    return (
-                        <Text key={index} dimColor color="cyanBright">
-                            {` - `}
-                            <Text color="yellowBright" bold>
-                                [FILE_ALREADY_EXISTS]{" "}
-                            </Text>
-                            {`${targetPath?.replace(process.cwd(), "")}`}
-                        </Text>
-                    );
-                }
-                if (statusCode === SWIZZLE_CODES.SOURCE_PATH_NOT_A_FILE) {
-                    return (
-                        <Text key={index} dimColor color="cyanBright">
-                            {` - `}
-                            <Text color="yellowBright" bold>
-                                [SOURCE NOT FOUND]{" "}
-                            </Text>
-                            {`${targetPath?.replace(process.cwd(), "")}`}
-                        </Text>
-                    );
-                }
-                return (
-                    <Text key={index} dimColor color="cyanBright">
-                        {` - `}
-                        <Text color="yellowBright" bold>
-                            [{statusCode}]
-                        </Text>
-                    </Text>
-                );
-            })}
+            {renderStatusMessage()}
+            {renderFiles()}
             <Text>&nbsp;</Text>
-            {message && (
-                <>
-                    <Markdown>{dedent("\n" + message)}</Markdown>
-                    <Text>&nbsp;</Text>
-                </>
-            )}
+            {renderSwizzleMessage()}
         </Box>
     );
 };
