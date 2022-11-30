@@ -36,14 +36,14 @@ yarn add @pankod/refine-cli
 
 
 <Tabs
-    defaultValue="cra"
+    defaultValue="react"
     values={[
-        {label: 'Create React App', value: 'cra'},
+        {label: 'React', value: 'react'},
         {label: 'Next.js', value: 'nextjs'},
         {label: 'Remix', value: 'remix'}
     ]}
 >
-<TabItem value="cra">
+<TabItem value="react">
 
 ```diff title="package.json"
 {
@@ -107,11 +107,11 @@ Use this command to add a new resource to your project. CRUD components are crea
 
 #### Options
 
-| Alias | Option    | Default                                                            | Description                                                                                |
-| ----- | --------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| -a    | --actions | `list`,`create`,`edit`,`show`                                      | Only generate the specified actions.                                                       |
-| -p    | --path    | cra: `src/pages` next.js: `src/components` remix: `app/components` | The path to create source files. (It is created automatically according to the framework.) |
-| -h    | --help    |                                                                    | Output usage information                                                                   |
+| Alias | Option    | Default                                                              | Description                                                                                |
+| ----- | --------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| -a    | --actions | `list`,`create`,`edit`,`show`                                        | Only generate the specified actions.                                                       |
+| -p    | --path    | react: `src/pages` next.js: `src/components` remix: `app/components` | The path to create source files. (It is created automatically according to the framework.) |
+| -h    | --help    |                                                                      | Output usage information                                                                   |
  
 #### Usage **Examples**
 
