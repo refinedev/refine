@@ -221,7 +221,7 @@ Now, you should see the output as a table populated with `post` & `category` dat
 
 ![First example result](https://github.com/refinedev/refine/blob/master/documentation/static/img/readme-quick-start.png?raw=true)
 
-You can get the auto-generated `list`, `show`, `create`, and `edit` pages codes by clicking the `Show Code` button on each page. Afterward, simply pass the pages to the `resources` array by replacing with the Inferencer components
+You can get the auto-generated pages codes by clicking the `Show Code` button on each page. Afterward, simply pass the pages to the `resources` array by replacing with the Inferencer components.
 ## Next Steps
 
 👉 Jump to [Refine<>Ant Design Tutorial](https://refine.dev/docs/ui-frameworks/antd/tutorial/) to continue your work and turn the example into a full-blown CRUD application.
