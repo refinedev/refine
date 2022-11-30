@@ -1,5 +1,11 @@
 # @pankod/refine-core
 
+## 3.90.3
+
+### Patch Changes
+
+-   [#3098](https://github.com/refinedev/refine/pull/3098) [`a241ef3c957`](https://github.com/refinedev/refine/commit/a241ef3c95718340544dcf84e8432b53a5dc02be) Thanks [@aliemir](https://github.com/aliemir)! - Update `notificationProvider` prop handling by converting to a custom hook to prevent hook usage errors.
+
 ## 3.90.2
 
 ### Patch Changes

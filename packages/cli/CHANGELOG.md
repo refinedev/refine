@@ -1,5 +1,11 @@
 # @pankod/refine-cli
 
+## 1.5.2
+
+### Patch Changes
+
+-   [#3101](https://github.com/refinedev/refine/pull/3101) [`355937d7032`](https://github.com/refinedev/refine/commit/355937d703280e6c8c3cd66d744d07363126f84d) Thanks [@omeraplak](https://github.com/omeraplak)! - No more joke for CLI :(
+
 ## 1.5.1
 
 ### Patch Changes
