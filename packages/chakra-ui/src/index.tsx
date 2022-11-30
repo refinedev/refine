@@ -515,7 +515,7 @@ export type {
     LinkOverlayProps,
     LinkProps,
     ListItemProps,
-    ListProps,
+    ListProps as ChakraListProps,
     MarkProps,
     MenuButtonProps,
     MenuCommandProps,
