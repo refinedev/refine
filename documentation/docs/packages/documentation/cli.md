@@ -252,7 +252,7 @@ npm run refine dev
 ```
 
 ```bash
-# Creates a production build of your app. Equivalent to `react-scripts build`.
+# Creates a production build of your app. Equivalent to `react-scripts build` or `vite build`.
 npm run refine build
 ```
 </TabItem>
