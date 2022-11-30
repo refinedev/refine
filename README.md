@@ -147,11 +147,16 @@ npm run dev
 ```
 
 Your **refine** application will be accessible at [http://localhost:3000](http://localhost:3000):
+
+<br/>
+
 <a href="http://localhost:3000">![Welcome on board](https://github.com/refinedev/refine/blob/master/documentation/static/img/welcome-on-board.png?raw=true)</a>
+
+<br/>
+
 Let's consume a public `fake REST API` and add two resources (*posts*, *categories*) to our project. Replace the contents of `src/App.tsx` with the following code:
 
 ```tsx title="src/App.tsx"
-
 import { Refine, useMany } from "@pankod/refine-core";
 import {
     useTable,
@@ -166,6 +171,13 @@ import {
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
+import {
+    AntdListInferencer,
+    AntdShowInferencer,
+    AntdCreateInferencer,
+    AntdEditInferencer,
+} from '@pankod/refine-inferencer/antd';
+
 import "@pankod/refine-antd/dist/styles.min.css";
 
 const App: React.FC = () => {
@@ -178,63 +190,24 @@ const App: React.FC = () => {
             ReadyPage={ReadyPage}
             notificationProvider={notificationProvider}
             catchAll={<ErrorComponent />}
+            resources={[
+                {
+                    name: 'posts',
+                    list: AntdListInferencer,
+                    show: AntdShowInferencer,
+                    create: AntdCreateInferencer,
+                    edit: AntdEditInferencer,
+                    canDelete: true,
+                },
+                {
+                    name: 'categories',
+                    list: AntdListInferencer,
+                    show: AntdShowInferencer,
+                }
+            ]}
         />
     );
-};
-
-export const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
-
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-
-    const { data, isLoading } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
-
-    return (
-        <List>
-            <Table<IPost> {...tableProps} rowKey="id">
-                <Table.Column dataIndex="title" title="title" />
-                <Table.Column
-                    dataIndex={["category", "id"]}
-                    title="category"
-                    render={(value: number) => {
-                        if (isLoading) {
-                            return "loading...";
-                        }
-
-                        return data?.data.find(
-                            (item: ICategory) => item.id === value,
-                        )?.title;
-                    }}
-                />
-                <Table.Column
-                    dataIndex="createdAt"
-                    title="createdAt"
-                    render={(value) => <DateField format="LLL" value={value} />}
-                />
-            </Table>
-        </List>
-    );
-};
-
-export default App;
-
-interface IPost {
-  title: string;
-  createdAt: string;
-  category: { id: number };
-}
-
-interface ICategory {
-  id: number;
-  title: string;
-}
+};   
 ```
 
 Now, you should see the output as a table populated with `post` & `category` data:
