@@ -36,7 +36,7 @@ const bootstrap = () => {
         )
         .description(
             figlet.textSync("refine", {
-                font: "isometric1",
+                font: "Isometric1",
                 horizontalLayout: "full",
                 verticalLayout: "full",
                 whitespaceBreak: true,
