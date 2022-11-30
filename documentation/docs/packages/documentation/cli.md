@@ -243,6 +243,8 @@ Also you can pass environment variables, and all the options that are available 
 
 [Refer to the Create React App documentation for detailed usage. &#8594](https://create-react-app.dev/docs/available-scripts)
 
+[Refer to the Vite documentation for detailed usage. &#8594](https://vitejs.dev/guide/#command-line-interface)
+
 
 ```bash
  # Starts application in development mode. Equivalent to `react-scripts start`.
