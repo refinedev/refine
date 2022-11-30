@@ -391,6 +391,14 @@ module.exports = {
             {
                 group: "Other",
                 label: "Breadcrumb",
+                message: `
+                **\`Warning:\`**
+                This component is used in the below components. If you want to change it, you can use props to override the default breadcrumb or you can manage globally with the **options** prop to the **<Refine/>** component.
+                    - <Edit/>
+                    - <List/>
+                    - <Show/>
+                    - <Create/>
+                `,
                 files: [
                     {
                         src: "./src/components/breadcrumb/index.tsx",
@@ -424,6 +432,10 @@ module.exports = {
             {
                 group: "Other",
                 label: "Layout",
+                message: `
+                **\`Warning:\`**
+                If you want to change the default layout, you should pass \`layout/index.tsx\` with the **Layout** prop to the **<Refine/>** component.
+                `,
                 files: [
                     {
                         src: "./src/components/layout/sider/index.tsx",
