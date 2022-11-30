@@ -229,7 +229,7 @@ Show the running versions of the installed **refine** packages.
 ### dev,  start,  build
 When you run `npm run refine [dev | start | build]` It will detect the framework you are using and run the commands accordingly.
 
-Also you can pass environment variables, and all the options that are available in the framework. For example, you can run `NODE_ENV=production npm run refine dev --port 3001` to run the app on port 3001.
+Also you can pass environment variables, and all the options that are available in the framework. For example, you can run `NODE_ENV=production npm run refine dev --port 3001` to run the app on port `3001`.
 
 <Tabs
     defaultValue="cra"
