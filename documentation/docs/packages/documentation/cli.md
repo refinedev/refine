@@ -85,11 +85,11 @@ npm run refine create-resource
 
 #### Options
 
-| Alias | Option    | Description                                                                   |
-| ----- | --------- | ----------------------------------------------------------------------------- |
-| -a    | --actions | Only generate the specified actions. (default: `list`,`create`,`edit`,`show`) |
-| -p    | --path    | Path to generate the resource files (default: `src/pages`)                    |
-| -h    | --help    | Output usage information                                                      |
+| Alias | Option    | Default                                                            | Description                                                                                |
+| ----- | --------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| -a    | --actions | `list`,`create`,`edit`,`show`                                      | Only generate the specified actions.                                                       |
+| -p    | --path    | cra: `src/pages` next.js: `src/components` remix: `app/components` | The path to create source files. (It is created automatically according to the framework.) |
+| -h    | --help    |                                                                    | Output usage information                                                                   |
  
 #### Examples
 
@@ -138,6 +138,22 @@ src/resources/
     └── list.tsx
 ```
 
+You can also create multiple resources at the same time. For this, you can write the sources by separating them with a space.
+
+```bash
+npm run refine create-resource category user -- --actions list,create
+
+src/pages/
+├── categories
+│   ├── create.tsx
+│   ├── index.ts
+│   └── list.tsx
+└── users
+    ├── create.tsx
+    ├── index.ts
+    └── list.tsx
+```
+
 ### update
 Interactively update your outdated **refine** packages. To skip interactive mode, use the `--all` flag to update all outdated **refine** packages to selected tag.
 
@@ -163,7 +179,7 @@ Major Updates
  ◯ @pankod/refine-simple-rest        2.6.0 -> 3.35.2
  ```
 
-#### update Options
+#### Options
 | Option    | Alias | Description                                                                                 | Values           | Default                                                    |
 | --------- | ----- | ------------------------------------------------------------------------------------------- | ---------------- | ---------------------------------------------------------- |
 | --tag     | -t    | Select version to update to.                                                                | `latest`, `next` | Version ranges in the `package.json` will be installed.    |
