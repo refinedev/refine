@@ -226,37 +226,91 @@ Show the running versions of the installed **refine** packages.
                         Run the following command npx refine update
 ```
 
-### dev
-Starts the development server of your `react` app. It will detect the framework you are using and start the development server accordingly.
-If you are using  `remix`, It will start `remix build` command.
+### dev,  start,  build
+When you run `npm run refine [dev | start | build]` It will detect the framework you are using and run the commands accordingly.
+
+Also you can pass environment variables, and all the options that are available in the framework. For example, you can run `NODE_ENV=production npm run refine dev --port 3001` to run the app on port 3001.
+
+<Tabs
+    defaultValue="cra"
+    values={[
+        {label: 'Create React App', value: 'cra'},
+        {label: 'Next.js', value: 'nextjs'},
+        {label: 'Remix', value: 'remix'}
+    ]}
+>
+<TabItem value="cra"> 
+
+[Refer to the Create React App documentation for detailed usage. &#8594](https://create-react-app.dev/docs/available-scripts)
+
+
 ```bash
+ # Starts application in development mode. Equivalent to `react-scripts start`.
 npm run refine dev
 ```
 
-### build
-Create a production build of your `react` app. It will detect the framework you are using and build the app accordingly. 
-If you are using  `remix`, It will start `remix build` command.
 ```bash
+# Creates a production build of your app. Equivalent to `react-scripts build`.
 npm run refine build
 ```
+</TabItem>
 
-### start
-Starts the production server of your `react` app. It will detect the framework you are using and start the production server accordingly. 
-If you are using  `create-react-app`, It will start `react-scripts start` command.
+<TabItem value="nextjs">
+
+[Refer to the Next.js documentation for detailed usage. &#8594](https://nextjs.org/docs/api-reference/cli)
+
 ```bash
+# Starts application in development mode. Equivalent to `next dev`.
+npm run refine dev
+```
+
+```bash
+# Starts application in production mode. Equivalent to `next start`.
 npm run refine start
 ```
-### run
-Run a custom command in the context of your **refine** project. It will pass all the arguments to the command.
+
+
 ```bash
-npm run refine run <command> [...args]
+# Creates a production build of your app. Equivalent to `next build`.
+npm run refine build
+```
+</TabItem>
+
+<TabItem value="remix">
+
+[Refer to the Remix documentation for detailed usage. &#8594](https://remix.run/docs/en/v1/other-api/dev)
+
+```bash
+# Starts application in development mode. Equivalent to `remix dev`.
+npm run refine dev
+```
+
+```bash
+# Starts application in production mode. Equivalent to `remix-serve start`.
+npm run refine start
+```
+
+
+```bash
+# Creates a production build of your app. Equivalent to `next build`.
+npm run refine build
+```
+</TabItem>
+</Tabs>
+
+### run
+Runs a custom script in the context of your **refine** project. Also It will pass all the arguments to the script.
+
+First it will check `package.json` to see if there is a script with the given name. If there is, it will run that script. Otherwise, it will run in `node_modules/.bin`.
+
+With this way you can run unsupported commands via **refine**.
+
+```bash
+npm run refine run react-app-rewired start
 ```
 
 ### whoami
 View the details of the development environment.
-```bash
-npm run refine whoami
-``` 
 
 ```bash
 > npm run refine whoami
