@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-mui": minor
+"@pankod/refine-chakra-ui": minor
 ---
 
 - Updated components and their type imports to make them compatible with `swizzle` feature.

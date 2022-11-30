@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-mui": minor
+"@pankod/refine-mantine": minor
 ---
 
 - Updated components and their type imports to make them compatible with `swizzle` feature.
