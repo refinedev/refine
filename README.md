@@ -216,7 +216,8 @@ const App: React.FC = () => {
 
 
 
-🚀  Thanks to **refine Inferencer package**, it guesses the configuration to use for the list, show, create and edit pages based on the data fetched from the API and generates the pages automatically.  
+🚀  Thanks to **refine Inferencer package**, it guesses the configuration to use for the `list`, `show`, `create`, and `edit` pages based on the data fetched from the API and generates the pages automatically.  
+
 You can also customize the generated pages by passing your own components as props to the resources.
 
 
