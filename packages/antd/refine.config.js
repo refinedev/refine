@@ -286,6 +286,10 @@ module.exports = {
             {
                 group: "Pages",
                 label: "ErrorPage",
+                message: ` 
+                **\`Warning:\`**
+                If you want to change the default error page, you should pass it with the **catchAll** prop to the **<Refine/>** component.
+                `,
                 files: [
                     {
                         src: "./src/components/pages/error/index.tsx",
@@ -310,6 +314,10 @@ module.exports = {
             {
                 group: "Pages",
                 label: "AuthPage",
+                message: ` 
+                **\`Warning:\`**
+                If you want to change the default auth pages, you should pass it with the **AuthPage** prop to the **<Refine/>** component.
+                `,
                 files: [
                     {
                         src: "./src/components/pages/auth/index.tsx",
