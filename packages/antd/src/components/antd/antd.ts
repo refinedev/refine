@@ -98,7 +98,7 @@ export type {
     ImageProps,
     InputNumberProps,
     LayoutProps,
-    ListProps,
+    ListProps as AntdListProps,
     MessageArgsProps,
     MentionProps,
     MenuProps,
