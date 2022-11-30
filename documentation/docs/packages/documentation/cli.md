@@ -3,7 +3,7 @@ id: cli
 title: CLI
 ---
 
-refine CLI is a command line application that allows you to interact with your **refine** project and perform some tasks. This includes creating projects, adding a new resource, running runners (build, start, dev) and managing updates.
+refine CLI is a command line application that allows you to interact with your **refine** project and perform some tasks. This includes adding a new resource, running runners (build, start, dev), managing updates and swizzle components.
 
 ## Installation
 
@@ -70,7 +70,74 @@ npm i @pankod/refine-cli
 </Tabs>
 
 ## Commands
+### swizzle
 ### create-resource
+
+Use this command to add a new resource to your project.
+
+```bash
+npm run refine create-resource [resourceName]
+```
+
+| Argument     | Description                               |
+| ------------ | ----------------------------------------- |
+| resourceName | The name of the resource you want to add. |
+
+#### Options
+
+| Alias | Option    | Description                                                           |
+| ----- | --------- | --------------------------------------------------------------------- |
+| -a    | --actions | Only generate the specified actions. (default: list,create,edit,show) |
+| -p    | --path    | Path to generate the resource files (default: "src/pages")            |
+| -h    | --help    | Output useage information                                             |
+ 
+#### Examples
+
+Let's create a `Category` resource with all the actions.
+
+```bash
+npm run refine create-resource category
+```
+The following files are produced.
+
+```
+src/pages/
+└── categories
+    ├── create.tsx
+    ├── edit.tsx
+    ├── index.ts
+    ├── list.tsx
+    └── show.tsx
+```
+
+If we only want to use list and create actions, it should be like this.
+
+```bash
+npm run refine create-resource category --actions list,create
+```
+
+```
+src/pages/
+└── categories
+    ├── create.tsx
+    ├── index.ts
+    └── list.tsx
+```
+
+If we want to create these files in another path, use the `--path` option.
+
+```bash
+npm run refine create-resource category --path src/resources --actions list,create
+```
+
+```
+src/resources/
+└── categories
+    ├── create.tsx
+    ├── index.ts
+    └── list.tsx
+```
+
 ### check-updates
 ### dev
 ### build
