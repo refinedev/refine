@@ -10,27 +10,27 @@ module.exports = {
                 files: [
                     {
                         src: "./src/provider.ts",
-                        dest: "./src/rest-data-provider/index.ts",
+                        dest: "./rest-data-provider/index.ts",
                     },
                     {
                         src: "./src/utils/axios.ts",
-                        dest: "./src/rest-data-provider/utils/axios.ts",
+                        dest: "./rest-data-provider/utils/axios.ts",
                     },
                     {
                         src: "./src/utils/generateFilter.ts",
-                        dest: "./src/rest-data-provider/utils/generateFilter.ts",
+                        dest: "./rest-data-provider/utils/generateFilter.ts",
                     },
                     {
                         src: "./src/utils/generateSort.ts",
-                        dest: "./src/rest-data-provider/utils/generateSort.ts",
+                        dest: "./rest-data-provider/utils/generateSort.ts",
                     },
                     {
                         src: "./src/utils/mapOperator.ts",
-                        dest: "./src/rest-data-provider/utils/mapOperator.ts",
+                        dest: "./rest-data-provider/utils/mapOperator.ts",
                     },
                     {
                         src: "./src/utils/index.ts",
-                        dest: "./src/rest-data-provider/utils/index.ts",
+                        dest: "./rest-data-provider/utils/index.ts",
                     },
                 ],
                 message:
