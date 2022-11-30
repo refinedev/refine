@@ -19,6 +19,7 @@ import SwizzleMessage from "@components/swizzle-message";
 import { SwizzleFile } from "@definitions";
 import { parseSwizzleBlocks } from "@utils/swizzle/parseSwizzleBlocks";
 import { reorderImports } from "@utils/swizzle/import";
+import { SWIZZLE_CODES } from "@utils/swizzle/codes";
 
 const swizzle = (program: Command) => {
     return (
@@ -128,39 +129,49 @@ const action = async (_options: OptionValues) => {
         },
     ]);
 
-    const createdResponse = await Promise.all(
+    const createdFiles = await Promise.all(
         selectedComponent.files.map(async (file) => {
-            const srcPath = file.src
-                ? path.join(selectedPackage.path, file.src)
-                : undefined;
-            const destPath = file.dest
-                ? path.join(process.cwd(), file.dest)
-                : undefined;
+            try {
+                const srcPath = file.src
+                    ? path.join(selectedPackage.path, file.src)
+                    : undefined;
+                const destPath = file.dest
+                    ? path.join(process.cwd(), file.dest)
+                    : undefined;
 
-            if (!srcPath) {
-                console.log("Source path is not defined");
-                return;
-            }
+                if (!srcPath) {
+                    console.log("No src path found for file", file);
+                    return ["", SWIZZLE_CODES.SOURCE_PATH_NOT_FOUND] as [
+                        targetPath: string,
+                        statusCode: string,
+                    ];
+                }
 
-            if (!destPath) {
-                console.log("Destination path is not defined");
-                return;
-            }
+                if (!destPath) {
+                    console.log("No destination path found for file", file);
+                    return ["", SWIZZLE_CODES.TARGET_PATH_NOT_FOUND] as [
+                        targetPath: string,
+                        statusCode: string,
+                    ];
+                }
 
-            const hasSrc = await pathExists(srcPath);
+                const hasSrc = await pathExists(srcPath);
 
-            if (!hasSrc) {
-                console.log(`Source file not found: ${srcPath}`);
-                return;
-            }
+                if (!hasSrc) {
+                    return [destPath, SWIZZLE_CODES.SOURCE_PATH_NOT_A_FILE] as [
+                        targetPath: string,
+                        statusCode: string,
+                    ];
+                }
 
-            if (hasSrc) {
                 const srcContent = await readFile(srcPath, "utf-8");
                 const isDestExist = await pathExists(destPath);
 
                 if (isDestExist) {
-                    console.log("File already exist");
-                    return;
+                    return [destPath, SWIZZLE_CODES.TARGET_ALREADY_EXISTS] as [
+                        targetPath: string,
+                        statusCode: string,
+                    ];
                 }
 
                 await ensureFile(destPath);
@@ -180,20 +191,24 @@ const action = async (_options: OptionValues) => {
 
                 await writeFile(destPath, formatted);
 
-                return destPath;
+                return [destPath, SWIZZLE_CODES.SUCCESS] as [
+                    targetPath: string,
+                    statusCode: string,
+                ];
+            } catch (error) {
+                return ["", SWIZZLE_CODES.UNKNOWN_ERROR] as [
+                    targetPath: string,
+                    statusCode: string,
+                ];
             }
-
-            return undefined;
         }),
     );
-
-    const createdFiles = createdResponse.filter(Boolean);
 
     if (createdFiles.length > 0) {
         render(
             <SwizzleMessage
                 label={selectedComponent.label}
-                files={createdFiles.filter(Boolean) as string[]}
+                files={createdFiles}
                 message={selectedComponent.message}
             />,
         );
