@@ -21,6 +21,7 @@ import { parseSwizzleBlocks } from "@utils/swizzle/parseSwizzleBlocks";
 import { reorderImports } from "@utils/swizzle/import";
 import { SWIZZLE_CODES } from "@utils/swizzle/codes";
 import boxen from "boxen";
+import { getPathPrefix } from "@utils/swizzle/getPathPrefix";
 
 const swizzle = (program: Command) => {
     return (
@@ -169,6 +170,9 @@ const action = async (_options: OptionValues) => {
         },
     ]);
 
+    // this will be prepended to `destPath` values
+    const projectPathPrefix = getPathPrefix();
+
     const createdFiles = await Promise.all(
         selectedComponent.files.map(async (file) => {
             try {
@@ -176,7 +180,7 @@ const action = async (_options: OptionValues) => {
                     ? path.join(selectedPackage.path, file.src)
                     : undefined;
                 const destPath = file.dest
-                    ? path.join(process.cwd(), file.dest)
+                    ? path.join(process.cwd(), projectPathPrefix, file.dest)
                     : undefined;
 
                 if (!srcPath) {

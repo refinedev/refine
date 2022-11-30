@@ -64,6 +64,18 @@ const SwizzleMessage: React.FC<Props> = ({
         return null;
     };
 
+    const clearFilePath = (filePath: string) => {
+        const relative = filePath?.replace(process.cwd(), "");
+
+        if (relative?.startsWith("/")) {
+            return relative.slice(1);
+        }
+        if (relative?.startsWith("./")) {
+            return relative.slice(2);
+        }
+        return relative;
+    };
+
     const renderFiles = () => {
         return (
             <>
@@ -75,10 +87,7 @@ const SwizzleMessage: React.FC<Props> = ({
                                 key={index}
                                 dimColor
                                 color="cyanBright"
-                            >{` - ${targetPath?.replace(
-                                process.cwd(),
-                                "",
-                            )}`}</Text>
+                            >{` - ${clearFilePath(targetPath)}`}</Text>
                         );
                     }
                     if (statusCode === SWIZZLE_CODES.TARGET_ALREADY_EXISTS) {
@@ -88,7 +97,7 @@ const SwizzleMessage: React.FC<Props> = ({
                                 <Text color="yellowBright" bold>
                                     [FILE_ALREADY_EXISTS]{" "}
                                 </Text>
-                                {`${targetPath?.replace(process.cwd(), "")}`}
+                                {`${clearFilePath(targetPath)}`}
                             </Text>
                         );
                     }
@@ -99,7 +108,7 @@ const SwizzleMessage: React.FC<Props> = ({
                                 <Text color="yellowBright" bold>
                                     [SOURCE NOT FOUND]{" "}
                                 </Text>
-                                {`${targetPath?.replace(process.cwd(), "")}`}
+                                {`${clearFilePath(targetPath)}`}
                             </Text>
                         );
                     }
