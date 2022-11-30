@@ -267,5 +267,3 @@ npm run refine whoami
  - @pankod/refine-simple-rest: 2.6.0
  - @pankod/refine-strapi: 3.18.0
 ```
-
-### help
