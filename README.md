@@ -146,9 +146,11 @@ Once the setup is complete, navigate to the project folder and start your projec
 npm run dev
 ```
 
+<br/>
+
 Your **refine** application will be accessible at [http://localhost:3000](http://localhost:3000):
 
-<br/>
+
 
 <a href="http://localhost:3000">![Welcome on board](https://github.com/refinedev/refine/blob/master/documentation/static/img/welcome-on-board.png?raw=true)</a>
 
@@ -210,7 +212,16 @@ const App: React.FC = () => {
 };   
 ```
 
+<br/>
+
+
+
+🚀  Thanks to `@pankod/refine-inferencer/antd` Inferencer component feature, it guesses the configuration to use for the list, show, create and edit pages based on the data fetched from the API and generates the pages automatically. You can also customize the generated pages by passing your own components as props to the resources.
+
+
+
 Now, you should see the output as a table populated with `post` & `category` data:
+
 ![First example result](https://github.com/refinedev/refine/blob/master/documentation/static/img/first-example-result.png?raw=true)
 ## Next Steps
 
