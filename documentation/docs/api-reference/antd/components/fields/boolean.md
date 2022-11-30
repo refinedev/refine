@@ -1,6 +1,7 @@
 ---
 id: boolean
 title: Boolean
+swizzle: true
 ---
 
 import booleanField from '@site/static/img/guides-and-concepts/fields/boolean/booleanfield.png'

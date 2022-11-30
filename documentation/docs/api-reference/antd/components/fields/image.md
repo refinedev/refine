@@ -1,6 +1,7 @@
 ---
 id: image
 title: Image
+swizzle: true
 ---
 
 import imageField from '@site/static/img/guides-and-concepts/fields/image/imageField.png'

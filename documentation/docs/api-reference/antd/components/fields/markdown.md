@@ -1,6 +1,7 @@
 ---
 id: markdown
 title: Markdown
+swizzle: true
 ---
 
 import markdownField from '@site/static/img/guides-and-concepts/fields/markdown/markdownfield.png';
