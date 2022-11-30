@@ -50,9 +50,10 @@ const getAutocompleteSource =
         return filtered.flatMap((component, index, arr) => {
             const hasTitle =
                 component?.group && arr[index - 1]?.group !== component.group;
-            const withTitle = hasTitle
-                ? [new inquirer.Separator(`${chalk.bold(component.group)}`)]
-                : [];
+            const withTitle =
+                hasTitle && component.group
+                    ? [new inquirer.Separator(`${chalk.bold(component.group)}`)]
+                    : [];
 
             return [
                 ...withTitle,
