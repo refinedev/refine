@@ -208,16 +208,6 @@ module.exports = {
             },
             {
                 group: "Fields",
-                label: "FileField",
-                files: [
-                    {
-                        src: "./src/components/fields/file/index.tsx",
-                        dest: "./src/components/fields/file.tsx",
-                    },
-                ],
-            },
-            {
-                group: "Fields",
                 label: "MarkdownField",
                 files: [
                     {
