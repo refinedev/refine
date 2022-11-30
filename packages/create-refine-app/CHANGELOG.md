@@ -1,5 +1,11 @@
 # create-refine-app
 
+## 1.3.8
+
+### Patch Changes
+
+-   [#3105](https://github.com/refinedev/refine/pull/3105) [`727e64dd50d`](https://github.com/refinedev/refine/commit/727e64dd50d1f51dc9e2d4da03c24a7afbbf2d8e) Thanks [@omeraplak](https://github.com/omeraplak)! - bump superplate version to 1.10.2
+
 ## 1.3.7
 
 ### Patch Changes
