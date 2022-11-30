@@ -87,9 +87,9 @@ npm run refine create-resource [resourceName]
 
 | Alias | Option    | Description                                                           |
 | ----- | --------- | --------------------------------------------------------------------- |
-| -a    | --actions | Only generate the specified actions. (default: list,create,edit,show) |
-| -p    | --path    | Path to generate the resource files (default: "src/pages")            |
-| -h    | --help    | Output useage information                                             |
+| -a    | --actions | Only generate the specified actions. (default: `list`,`create`,`edit`,`show`) |
+| -p    | --path    | Path to generate the resource files (default: `src/pages`)            |
+| -h    | --help    | Output usage information                                             |
  
 #### Examples
 
