@@ -10,24 +10,16 @@ describe("createMany", () => {
                 {
                     content: "Vestibulum vulputate sapien arcu.",
                     title: "Aenean ultricies non libero sit amet pellentesque",
-                    status: "draft",
                     category_id: "317cea5e-fef3-4858-8043-4496e5c7f5ab",
                 },
                 {
                     content: "Aliquam nibh erat.",
                     title: "Etiam tincidunt ex ut auctor faucibus",
-                    status: "draft",
                     category_id: "317cea5e-fef3-4858-8043-4496e5c7f5ab",
                 },
             ],
             metaData: {
-                fields: [
-                    "id",
-                    "title",
-                    "content",
-                    "status",
-                    { category: ["id"] },
-                ],
+                fields: ["id", "title", "content", { category: ["id"] }],
             },
         });
 
@@ -38,7 +30,6 @@ describe("createMany", () => {
         expect(data[0]["category"].id).toEqual(
             "317cea5e-fef3-4858-8043-4496e5c7f5ab",
         );
-        expect(data[0]["status"]).toEqual("draft");
 
         expect(data[1]["title"]).toEqual(
             "Etiam tincidunt ex ut auctor faucibus",
@@ -47,7 +38,6 @@ describe("createMany", () => {
         expect(data[1]["category"].id).toEqual(
             "317cea5e-fef3-4858-8043-4496e5c7f5ab",
         );
-        expect(data[1]["status"]).toEqual("draft");
     });
 
     it("correct response without metaData", async () => {
@@ -57,19 +47,17 @@ describe("createMany", () => {
                 {
                     content: "Vestibulum vulputate sapien arcu.",
                     title: "Aenean ultricies non libero sit amet pellentesque",
-                    status: "draft",
                     category_id: "317cea5e-fef3-4858-8043-4496e5c7f5ab",
                 },
                 {
                     content: "Aliquam nibh erat.",
                     title: "Etiam tincidunt ex ut auctor faucibus",
-                    status: "draft",
                     category_id: "317cea5e-fef3-4858-8043-4496e5c7f5ab",
                 },
             ],
         });
 
-        expect(data[0]["id"]).toEqual("8428ad6a-2492-4cc2-84dd-09ed01cf6858");
-        expect(data[1]["id"]).toEqual("83c30a85-5eb6-4441-be06-deb6b398285d");
+        expect(data[0]["id"]).toEqual("1b9cd474-eda2-47d4-ac58-8b7b59a91f1f");
+        expect(data[1]["id"]).toEqual("62291ce3-5e88-43bb-ae78-cb65dcb143eb");
     });
 });

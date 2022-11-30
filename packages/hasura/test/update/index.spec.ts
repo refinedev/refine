@@ -6,7 +6,7 @@ describe("update", () => {
     it("correct response with metaData", async () => {
         const { data } = await dataProvider(client).update({
             resource: "posts",
-            id: "c82c71c5-0f0b-4042-b9a3-db977fe28a83",
+            id: "eb824b2e-986d-4d19-b6a9-98ca620df046",
             variables: {
                 title: "E-business alarm Bedfordshire",
                 content: "Updated Content",
@@ -17,7 +17,7 @@ describe("update", () => {
             },
         });
 
-        expect(data["id"]).toEqual("c82c71c5-0f0b-4042-b9a3-db977fe28a83");
+        expect(data["id"]).toEqual("eb824b2e-986d-4d19-b6a9-98ca620df046");
         expect(data["title"]).toEqual("E-business alarm Bedfordshire");
         expect(data["content"]).toEqual("Updated Content");
         expect(data["category"].id).toEqual(
@@ -28,12 +28,12 @@ describe("update", () => {
     it("correct response without metaData", async () => {
         const { data } = await dataProvider(client).update({
             resource: "posts",
-            id: "ecd7aa21-19f4-46c9-bc3e-227dcd0807fd",
+            id: "eb824b2e-986d-4d19-b6a9-98ca620df046",
             variables: {
                 title: "E-business alarm",
             },
         });
 
-        expect(data["id"]).toEqual("ecd7aa21-19f4-46c9-bc3e-227dcd0807fd");
+        expect(data["id"]).toEqual("eb824b2e-986d-4d19-b6a9-98ca620df046");
     });
 });

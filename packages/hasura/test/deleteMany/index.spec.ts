@@ -7,31 +7,31 @@ describe("deleteMany", () => {
         const { data } = await dataProvider(client).deleteMany!({
             resource: "posts",
             ids: [
-                "bb5e4a56-504d-4561-ad8c-fd8198e2e32a",
-                "823a7094-1d5b-4404-80f4-575a99a69280",
+                "cddd4ced-651d-4039-abe0-2a9dffbc8c82",
+                "c82c71c5-0f0b-4042-b9a3-db977fe28a83",
             ],
             metaData: {
                 fields: ["id", "title"],
             },
         });
 
-        expect(data[0].id).toEqual("bb5e4a56-504d-4561-ad8c-fd8198e2e32a");
-        expect(data[0].title).toEqual("Table Industrial Checking Account");
+        expect(data[0].id).toEqual("cddd4ced-651d-4039-abe0-2a9dffbc8c82");
+        expect(data[0].title).toEqual("Focus group Human Sleek");
 
-        expect(data[1].id).toEqual("823a7094-1d5b-4404-80f4-575a99a69280");
-        expect(data[1].title).toEqual("Handmade Mouse Fresh");
+        expect(data[1].id).toEqual("c82c71c5-0f0b-4042-b9a3-db977fe28a83");
+        expect(data[1].title).toEqual("E-business alarm Bedfordshire");
     });
 
     it("correct response without metaData", async () => {
         const { data } = await dataProvider(client).deleteMany!({
             resource: "posts",
             ids: [
-                "72182c50-32e5-40bb-b259-67d49c2530ec",
-                "86f4a3b3-a328-4fa5-9d7e-f06a35e3635f",
+                "ecd7aa21-19f4-46c9-bc3e-227dcd0807fd",
+                "88a479ec-296d-48a4-9c57-7b48048a8067",
             ],
         });
 
-        expect(data[0].id).toEqual("72182c50-32e5-40bb-b259-67d49c2530ec");
-        expect(data[1].id).toEqual("86f4a3b3-a328-4fa5-9d7e-f06a35e3635f");
+        expect(data[0].id).toEqual("ecd7aa21-19f4-46c9-bc3e-227dcd0807fd");
+        expect(data[1].id).toEqual("88a479ec-296d-48a4-9c57-7b48048a8067");
     });
 });
