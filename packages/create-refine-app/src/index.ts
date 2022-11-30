@@ -37,7 +37,6 @@ const bootstrap = () => {
         .allowExcessArguments(true)
         .action((_, command: Command) => {
             const superplateExecutable = require.resolve(".bin/superplate");
-            console.log({ command: command });
             try {
                 execa.sync(
                     superplateExecutable,

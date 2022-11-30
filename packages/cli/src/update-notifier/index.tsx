@@ -1,12 +1,10 @@
-import React from "react";
-import { render } from "ink";
 import Conf from "conf";
+import chalk from "chalk";
 import { isRefineUptoDate } from "@commands/check-updates";
-import UpdateWarningTable from "@components/update-warning-table";
-import { ENV } from "@utils/env";
+import { getUpdateWarningTable } from "@components/update-warning-table";
 import { RefinePackageInstalledVersionData } from "@definitions/package";
 import { getInstalledRefinePackages } from "@utils/package";
-import chalk from "chalk";
+import { ENV } from "@utils/env";
 
 const STORE_NAME = "refine-update-notifier";
 
@@ -43,11 +41,11 @@ export const updateNotifier = async () => {
 /**
  * renders outdated packages table if there is any
  */
-const showWarning = () => {
+const showWarning = async () => {
     const packages = store.get("packages");
     if (!packages?.length) return;
 
-    render(<UpdateWarningTable data={packages} />);
+    await getUpdateWarningTable(packages);
     console.log("\n");
 };
 

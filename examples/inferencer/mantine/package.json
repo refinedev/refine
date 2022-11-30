@@ -8,9 +8,9 @@
   },
   "dependencies": {
     "@pankod/refine-mantine": "^1.11.7",
-    "@pankod/refine-core": "^3.88.4",
+    "@pankod/refine-core": "^3.90.3",
     "@pankod/refine-inferencer": "^1.1.0",
-    "@pankod/refine-react-router-v6": "^3.36.2",
+    "@pankod/refine-react-router-v6": "^3.36.4",
     "@pankod/refine-simple-rest": "^3.35.2",
     "@pankod/refine-react-table": "^4.9.0",
     "@mantine/rte": "^5.4.1",

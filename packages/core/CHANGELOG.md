@@ -1,5 +1,23 @@
 # @pankod/refine-core
 
+## 3.90.3
+
+### Patch Changes
+
+-   [#3098](https://github.com/refinedev/refine/pull/3098) [`a241ef3c957`](https://github.com/refinedev/refine/commit/a241ef3c95718340544dcf84e8432b53a5dc02be) Thanks [@aliemir](https://github.com/aliemir)! - Update `notificationProvider` prop handling by converting to a custom hook to prevent hook usage errors.
+
+## 3.90.2
+
+### Patch Changes
+
+-   [#3073](https://github.com/refinedev/refine/pull/3073) [`38dfde0c2ec`](https://github.com/refinedev/refine/commit/38dfde0c2ec698c12f9c743881f351a2774542fa) Thanks [@samelhusseini](https://github.com/samelhusseini)! - Fixed `queryOptions` parameter of `useShow` hook
+
+## 3.90.1
+
+### Patch Changes
+
+-   [#3073](https://github.com/refinedev/refine/pull/3073) [`38dfde0c2ec`](https://github.com/refinedev/refine/commit/38dfde0c2ec698c12f9c743881f351a2774542fa) Thanks [@samelhusseini](https://github.com/samelhusseini)! - Fixed `queryOptions` parameter of `useShow` hook
+
 ## 3.90.0
 
 ### Minor Changes

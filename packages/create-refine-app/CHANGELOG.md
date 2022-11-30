@@ -1,5 +1,77 @@
 # create-refine-app
 
+## 1.3.6
+
+### Patch Changes
+
+-   [`fdd9c7f9d7c`](https://github.com/refinedev/refine/commit/fdd9c7f9d7c5ec1af6f95d2716a721968c86cfd7) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed superplate version
+
+## 1.3.5
+
+### Patch Changes
+
+-   [#3094](https://github.com/refinedev/refine/pull/3094) [`de043f7a8a7`](https://github.com/refinedev/refine/commit/de043f7a8a7c06684502745dfd40373351bd535a) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed superplate version
+
+## 1.3.4
+
+### Patch Changes
+
+-   [#3094](https://github.com/refinedev/refine/pull/3094) [`de043f7a8a7`](https://github.com/refinedev/refine/commit/de043f7a8a7c06684502745dfd40373351bd535a) Thanks [@omeraplak](https://github.com/omeraplak)! - Upgrade superplate-cli version
+
+## 1.3.3
+
+### Patch Changes
+
+-   [#3094](https://github.com/refinedev/refine/pull/3094) [`de043f7a8a7`](https://github.com/refinedev/refine/commit/de043f7a8a7c06684502745dfd40373351bd535a) Thanks [@omeraplak](https://github.com/omeraplak)! - Upgrade superplate-cli version
+
+## 1.3.2
+
+### Patch Changes
+
+-   [`9fb8c4d390b`](https://github.com/refinedev/refine/commit/9fb8c4d390b9faf1e1325b0eeabc5124983f7f96) Thanks [@omeraplak](https://github.com/omeraplak)! - remove console.log
+
+## 1.3.1
+
+### Patch Changes
+
+-   [`9fb8c4d390b`](https://github.com/refinedev/refine/commit/9fb8c4d390b9faf1e1325b0eeabc5124983f7f96) Thanks [@omeraplak](https://github.com/omeraplak)! - remove console.log
+
+## 1.3.0
+
+### Minor Changes
+
+-   [#3077](https://github.com/refinedev/refine/pull/3077) [`d603306c531`](https://github.com/refinedev/refine/commit/d603306c531618f4a72c39e4793690c0cc2dc1cf) Thanks [@omeraplak](https://github.com/omeraplak)! - Added argument support
+
+    before:
+
+    ```bash
+    npm create refine-app -- -o refine-antd tutorial
+    ```
+
+    after:
+
+    ```bash
+    npm create refine-app -o refine-antd tutorial
+    ```
+
+## 1.2.0
+
+### Minor Changes
+
+-   [#3077](https://github.com/refinedev/refine/pull/3077) [`d603306c531`](https://github.com/refinedev/refine/commit/d603306c531618f4a72c39e4793690c0cc2dc1cf) Thanks [@omeraplak](https://github.com/omeraplak)! - Added argument support
+
+    before:
+
+    ```bash
+    npm create refine-app -- -o refine-antd tutorial
+    ```
+
+    after:
+
+    ```bash
+    npm create refine-app -o refine-antd tutorial
+    ```
+
 ## 1.1.1
 
 ### Patch Changes

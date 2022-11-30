@@ -1,0 +1,6 @@
+import { IResourceComponentsProps, GetListResponse } from "@pankod/refine-core";
+import { {{formatInferencerComponent uiFramework}}ListInferencer } from "@pankod/refine-inferencer/{{uiFramework}}";
+
+export const {{capitalize resource}}List: React.FC<IResourceComponentsProps<GetListResponse<{}>>> = () => {
+    return <{{formatInferencerComponent uiFramework}}ListInferencer />;
+};

@@ -19,7 +19,7 @@ const SectionReady = () => {
 
                 <div className="border border-dashed border-[#acacb68b] w-full h-[1px] my-12" />
 
-                <p className="text-center max-w-[408px] text-[16px] leading-[20px] mb-0 font-medium">
+                <p className="text-center max-w-[408px] text-[16px] leading-[20px] mb-0 font-medium text-[#242436]">
                     <strong className="block font-bold">
                         NEED ANY FURTHER INFORMATION?
                     </strong>

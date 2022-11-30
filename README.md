@@ -15,20 +15,28 @@
     <a href="https://refine.dev/docs/">Documentation</a> | 
     <a href="https://github.com/refinedev/refine/projects/1">Roadmap</a>
 </div>
-
 </div>
-<br/>
-
-<div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>An open source, headless web application framework developed with flexibility in mind.</div>
 
 <br />
 
-<div align="center">
+<div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>An open source, headless web application framework developed with flexibility in mind.
+
+<br />
+<br />
+
 
 [![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/refine)
 [![Twitter Follow](https://img.shields.io/twitter/follow/refine_dev?style=social)](https://twitter.com/refine_dev)
 
 <a href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=362220&theme=light&period=daily" alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0032;to&#0032;build&#0032;web&#0032;apps&#0032;3x&#0032;faster | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+
+</div>
+
+
+<div align="center">
+
+
+
 
 [![Awesome](https://github.com/refinedev/awesome-refine/raw/main/images/badge.svg)](https://github.com/refinedev/awesome-refine)
 [![Maintainability](https://api.codeclimate.com/v1/badges/99a65a191bdd26f4601c/maintainability)](https://codeclimate.com/github/pankod/refine/maintainability)
@@ -37,7 +45,6 @@
 [![npm](https://img.shields.io/npm/dm/@pankod/refine-core)](https://www.npmjs.com/package/@pankod/refine-core)
 [![](https://img.shields.io/github/commit-activity/m/refinedev/refine)](https://github.com/refinedev/refine/commits/next)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
-
 
 
 
@@ -67,7 +74,38 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 **refine** seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
 
 ## Use cases
-**refine** shines on *data-intensive* applications like *admin panels*, *dashboards* and *internal tools*. Thanks to the built-in **SSR support**, **refine** can also power *customer-facing* applications like *storefronts*.
+**refine** shines on *data-intensive⚡* applications like **admin panels**, **dashboards** and **internal tools**. Thanks to the built-in **SSR support**, **refine** can also power *customer-facing* applications like *storefronts*.
+
+You can take a look at some live examples that can be built using **refine** from scratch:
+
+
+
+
+<a href="https://s.refine.dev/readme-admin-panel" target="_blank">
+ <img src="https://user-images.githubusercontent.com/18739364/204285956-cc20fa11-b769-4bd5-b8f6-9c05a283ac85.gif"   style="width:267px;"  />
+</a>
+
+
+ <a href="https://s.refine.dev/readme-medium-clone" target="_blank">
+<img src="https://user-images.githubusercontent.com/18739364/204285047-8f24f1f4-65ea-4952-83ed-81e92cdd5b90.gif"   style="width:200px;"  />
+</a>
+
+
+ <a href="https://s.refine.dev/readme-ssr-storefront" target="_blank">
+<img src="https://user-images.githubusercontent.com/18739364/204285039-1ce0cb06-fbf8-4704-89c9-2e004620c9a8.gif"   style="width:200px;"  />
+</a>
+
+
+<br/>
+<br/>
+
+
+[👉 Refer to most popular real use case examples](https://refine.dev/examples/)
+
+[👉 More **refine** powered different usage scenarios can be found here](https://refine.dev/docs/examples/)
+
+
+
 
 ## Key Features
 
@@ -95,11 +133,11 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 
 ## Quick Start
 
-The fastest way to get started with **refine** is by using the [superplate](https://github.com/pankod/superplate) project starter tool.
+The fastest way to get started with **refine** is by using the `create refine-app` project starter tool.
 Run the following command to create a new **refine** project configured with  [Ant Design System](https://ant.design/) as the default UI framework:
 
 ```
-npx superplate-cli --preset refine-antd my-project
+npm create refine-app -- --preset refine-antd my-project
 ```
 
 Once the setup is complete, navigate to the project folder and start your project with:
@@ -225,13 +263,9 @@ You can find refine's <a href="https://github.com/refinedev/refine/projects/1">P
 
 ## Contribution
 
-If you discover a bug, please file a bug report at [issue](https://github.com/refinedev/refine/issues/new?assignees=&labels=bug&template=bug_report.yml&title=%5BBUG%5D). <br/>
-If you want to fix a typo or update documentation, raise an issue [here](https://github.com/refinedev/refine/issues/new?assignees=&labels=documentation&template=documentation.yml&title=%5BDOC%5D). <br/>
-If you want to propose a feature, raise a detailed issue with explanation [here](https://github.com/refinedev/refine/issues/new?assignees=&labels=enhancement&template=feature_request.yml&title=%5BFEAT%5D).
 
-If you are willing to fix an issue or propose a feature, all PRs with clear explanations are welcome and encouraged.
 
-know more about the ways to contribute [here](https://refine.dev/docs/contributing/#ways-to-contribute)
+ [👉 Refer to contribution docs for more information](https://refine.dev/docs/contributing/#ways-to-contribute)
 
 
 

@@ -128,10 +128,10 @@ In addition to **shorter development** times and **overall performance gains**, 
 
 ## Quick Start
 
-Run the **superplate** tool with the following command:
+Run the **create refine-app** CLI tool with the following command:
 
 ```
-npx superplate-cli -p refine-react tutorial
+npm create refine-app tutorial
 ```
 
 Follow the _CLI wizard_ to select options and start creating your project.

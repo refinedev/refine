@@ -17,6 +17,16 @@ export const compile = (filePath: string, params: any): string => {
         return options.inverse(Handlebars);
     });
 
+    Handlebars.registerHelper("formatInferencerComponent", function (string) {
+        switch (string) {
+            case "chakra-ui":
+                return "ChakraUI";
+
+            default:
+                return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+    });
+
     Handlebars.registerHelper("capitalize", function (string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     });

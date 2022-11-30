@@ -6,7 +6,7 @@ title: List of Packages
 - `@pankod/refine-core` - Collection of `hooks`, `components` and `providers` for **authentication**, **access control**, **routing**, **networking**, **state management** and **i18n**. Your starting point for headless projects.
 
 
-**UI Framework Packages:**
+### UI Framework Packages:
 
 - `@pankod/refine-antd` -  [Ant Design](https://ant.design/) System UI Framework support.  **20+** *framework-specific*  `hooks` and  `components`  incl. *Table, Form, Select, Menu, Layout, Notification and CRUD components.*
 
@@ -16,7 +16,7 @@ title: List of Packages
 
 - `@pankod/refine-chakra-ui` - [Chakra UI](https://chakra-ui.com/) UI Framework support. **20+** framework-specific **components** incl. *Menu, Layout, Notification and CRUD components.*
 
-**[Data Provider](https://refine.dev/docs/core/providers/data-provider/) Packages:**
+### [Data Provider](https://refine.dev/docs/core/providers/data-provider/) Packages:
 
   
 
@@ -46,7 +46,7 @@ title: List of Packages
 - `@pankod/refine-nhost` -   [Nhost](https://nhost.io/) data provider. Supports **GraphQL Subscriptions** for **live/realtime** projects.
 
 
-**[Router Provider](https://refine.dev/docs/core/providers/router-provider/) Packages**
+### [Router Provider](https://refine.dev/docs/core/providers/router-provider/) Packages
 
 
 - `@pankod/refine-react-router-v6` - Router Provider for [React Router (v6)](https://reactrouter.com)
@@ -60,25 +60,25 @@ title: List of Packages
 - `@pankod/refine-remix-router` - Router Provider for [Remix](https://remix.run/)
 
 
-**[Live Provider](https://refine.dev/docs/core/providers/live-provider/) Packages**
+### [Live Provider](https://refine.dev/docs/core/providers/live-provider/) Packages
 
 
 - `@pankod/refine-ably` - [React Table](https://ably.com/) support for for **live/realtime** projects.
 
 
-**Integrations**
+### Integrations
 
 - `@pankod/refine-kbar` - [kbar](https://kbar.vercel.app/) integration. Add `command`/`crtrl`+`k` interfaces to your project.
 -  `@pankod/refine-react-table` - [kbar](https://tanstack.com/table/v8) integration. Powerful tables & datagrids for your headless projects. 
 -  `@pankod/refine-react-hook-form` - [React Hook Form](https://react-hook-form.com/) integration. Extensible forms and validation for your projects.
 
-**React Frameworks**
+### React Frameworks
  `NextJS` - SSR and SSG support for your projects.
 
-**React Frameworks**
+### React Frameworks
  `Remix` - SSR support for your projects.
 
-**❤️ Community Packages:**
+### ❤️ Community Packages:
 
 - [`refine-firebase`](https://github.com/rturan29/refine-firebase) - Support for [Firebase](https://firebase.google.com/) services.
 - [`@tspvivek/refine-directus`](https://github.com/tspvivek/refine-directus) - Connector for backends created with [Directus](https://directus.io/)

@@ -30,7 +30,7 @@ We are assuming that you have already know how refine works. If not, please chec
 
 ## Project Setup
 
-We'll be using [superplate](https://github.com/pankod/superplate) CLI to bootstrap our example project with a special preset defined to Supabase example
+We'll be using `create refine-app` CLI to bootstrap our example project with a special preset defined to Supabase example
 
 <Tabs
 defaultValue="preset"
@@ -41,7 +41,7 @@ values={[
 <TabItem value="preset">
 
 ```
-npx superplate-cli --preset refine-antd-supabase my-supabase-app
+npm create refine-app -- --preset refine-antd-supabase my-supabase-app
 ```
 
 Also, we need to install npm packages to use markdown editor:
@@ -58,7 +58,7 @@ This will create a new refine app with Supabase data provider and Ant Desing as 
 You are free to bootstrap a **refine** app with any other features you want. To do so, you can run the following command and choose any data provider or feature you want.
 
 ```
-npx superplate-cli example-app
+npm create refine-app example-app
 ```
 
 Then choose the following options:

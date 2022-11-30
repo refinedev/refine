@@ -1,6 +1,6 @@
 import { NODE_ENV } from "@definitions/node";
 import { ProjectTypes } from "@definitions/projectTypes";
-import { ENV, parseNodeEnv } from "@utils/env";
+import { ENV } from "@utils/env";
 import { getOS } from "@utils/os";
 import { getInstalledRefinePackages } from "@utils/package";
 import { getProjectType } from "@utils/project";
@@ -23,7 +23,7 @@ export const getTelemetryData = async (): Promise<TelemetryData> => {
     const os = await getOS();
 
     const data = {
-        nodeEnv: parseNodeEnv(),
+        nodeEnv: ENV.NODE_ENV,
         nodeVersion: process.version,
         os: os.name,
         osVersion: os.version,
