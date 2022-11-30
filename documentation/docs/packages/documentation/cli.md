@@ -247,7 +247,7 @@ Also you can pass environment variables, and all the options that are available 
 
 
 ```bash
- # Starts application in development mode. Equivalent to `react-scripts start`.
+ # Starts application in development mode. Equivalent to `react-scripts start` or `vite`.
 npm run refine dev
 ```
 
