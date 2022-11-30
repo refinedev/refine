@@ -7,6 +7,7 @@ const {
 
 /** @type {import('@pankod/refine-cli').RefineConfig} */
 module.exports = {
+    group: "UI Framework",
     swizzle: {
         items: [
             {

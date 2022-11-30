@@ -2,6 +2,7 @@ const { getImports } = require("@pankod/refine-cli");
 
 /** @type {import('@pankod/refine-cli').RefineConfig} */
 module.exports = {
+    group: "UI Framework",
     swizzle: {
         items: [
             {

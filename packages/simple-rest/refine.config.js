@@ -2,11 +2,11 @@ const { getImports } = require("@pankod/refine-cli");
 
 /** @type {import('@pankod/refine-cli').RefineConfig} */
 module.exports = {
+    group: "Data Provider",
     swizzle: {
         items: [
             {
-                group: "Providers",
-                label: "Simple Rest Data Provider",
+                label: "Data Provider",
                 files: [
                     {
                         src: "./src/provider.ts",
