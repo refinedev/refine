@@ -17,7 +17,7 @@ npm i @pankod/refine-cli
     defaultValue="cra"
     values={[
         {label: 'Create React App', value: 'cra'},
-        {label: 'Nextjs', value: 'nextjs'},
+        {label: 'Next.js', value: 'nextjs'},
         {label: 'Remix', value: 'remix'}
     ]}
 >
