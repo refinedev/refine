@@ -234,7 +234,7 @@ Also you can pass environment variables, and all the options that are available 
 <Tabs
     defaultValue="cra"
     values={[
-        {label: 'Create React App', value: 'cra'},
+        {label: 'React', value: 'cra'},
         {label: 'Next.js', value: 'nextjs'},
         {label: 'Remix', value: 'remix'}
     ]}
