@@ -27,21 +27,6 @@ const bootstrap = () => {
 
     const program = new Command();
 
-    const fonts = [
-        "isometric1",
-        "epic",
-        "isometric3",
-        "standard",
-        "binary",
-        "isometric4",
-        "cyberlarge",
-        "hollywood",
-        "isometric2",
-    ];
-    const randomFont = fonts[
-        Math.floor(Math.random() * fonts.length)
-    ] as figlet.Fonts;
-
     program
         .version(
             packageJson.version,
@@ -50,7 +35,7 @@ const bootstrap = () => {
         )
         .description(
             figlet.textSync("refine", {
-                font: randomFont,
+                font: "isometric1",
                 horizontalLayout: "full",
                 verticalLayout: "full",
                 whitespaceBreak: true,
