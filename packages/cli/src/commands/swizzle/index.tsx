@@ -20,6 +20,7 @@ import { SwizzleFile } from "@definitions";
 import { parseSwizzleBlocks } from "@utils/swizzle/parseSwizzleBlocks";
 import { reorderImports } from "@utils/swizzle/import";
 import { SWIZZLE_CODES } from "@utils/swizzle/codes";
+import boxen from "boxen";
 
 const swizzle = (program: Command) => {
     return (
@@ -82,9 +83,26 @@ const action = async (_options: OptionValues) => {
     );
 
     if (packagesWithConfig.length === 0) {
-        console.log("No refine packages found with refine.config.js");
+        console.log("No refine packages found with swizzle configuration.");
         return;
     }
+
+    console.log(
+        `${boxen(
+            `Found ${chalk.blueBright(
+                packagesWithConfig.length,
+            )} installed ${chalk.blueBright.bold(
+                "refine",
+            )} packages with swizzle configuration.`,
+            {
+                padding: 1,
+                textAlignment: "center",
+                dimBorder: true,
+                borderColor: "blueBright",
+                borderStyle: "round",
+            },
+        )}\n`,
+    );
 
     const packageConfigs = await Promise.all(
         packagesWithConfig.map(async (pkg) => {
