@@ -1,6 +1,7 @@
 ---
 id: delete-button
 title: Delete
+swizzle: true
 ---
 
 import deleteButton from '@site/static/img/guides-and-concepts/components/buttons/delete/delete.png';

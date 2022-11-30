@@ -118,14 +118,14 @@ const action = async (_options: OptionValues) => {
         selectedComponent: SwizzleFile;
     }>([
         {
-            type: "autocomplete",
+            type: "list",
             pageSize: 10,
             name: "selectedComponent",
             message: "Which component do you want to swizzle?",
             emptyText: "No components found.",
-            source: getAutocompleteSource(
+            choices: getAutocompleteSource(
                 items.sort((a, b) => a.group.localeCompare(b.group)),
-            ),
+            )({}, ""),
         },
     ]);
 

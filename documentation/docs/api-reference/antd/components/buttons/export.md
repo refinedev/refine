@@ -1,6 +1,7 @@
 ---
 id: export-button
 title: Export
+swizzle: true
 ---
 
 import exportButton from '@site/static/img/guides-and-concepts/components/buttons/export/export.png';

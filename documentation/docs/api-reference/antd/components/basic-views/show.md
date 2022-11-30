@@ -1,6 +1,7 @@
 ---
 id: show
 title: Show
+swizzle: true
 ---
 
 import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-views/show/pageHeaderPropsUsage.png'
