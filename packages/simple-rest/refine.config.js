@@ -41,38 +41,41 @@ module.exports = {
             let newContent = content;
             const imports = getImports(content);
 
-            //             imports?.map((importItem) => {
-            //                 if (
-            //                     importItem?.importPath === "axios" &&
-            //                     importItem?.defaultImport === "axios"
-            //                 ) {
-            //                     // add comment for axios import
-            //                     newContent = newContent.replace(
-            //                         importItem.statement,
-            //                         `// "axios" package should be installed to customize the http client
-            // ${importItem.statement}`,
-            //                     );
-            //                 }
-            //                 if (importItem?.importPath === "query-string") {
-            //                     // update query-string import
-            //                     newContent = newContent.replace(
-            //                         importItem?.statement,
-            //                         `// "stringify" function is re-exported from "query-string" package by "@pankod/refine-simple-rest"
-            // ${importItem.statement.replace("query-string", "@pankod/refine-simple-rest")}`,
-            //                     );
-            //                 }
-            //                 if (
-            //                     importItem?.importPath === "axios" &&
-            //                     importItem?.namedImports
-            //                 ) {
-            //                     // update axios type import
-            //                     newContent = newContent.replace(
-            //                         importItem.statement,
-            //                         `// "axios" package needs to be installed
-            // ${importItem.statement}`,
-            //                     );
-            //                 }
-            //             });
+            imports?.map((importItem) => {
+                if (
+                    importItem?.importPath === "axios" &&
+                    importItem?.defaultImport === "axios"
+                ) {
+                    // add comment for axios import
+                    newContent = newContent.replace(
+                        importItem.statement,
+                        `// "axios" package should be installed to customize the http client
+            ${importItem.statement}`,
+                    );
+                }
+                if (importItem?.importPath === "query-string") {
+                    // update query-string import
+                    newContent = newContent.replace(
+                        importItem?.statement,
+                        `// "stringify" function is re-exported from "query-string" package by "@pankod/refine-simple-rest"
+            ${importItem.statement.replace(
+                "query-string",
+                "@pankod/refine-simple-rest",
+            )}`,
+                    );
+                }
+                if (
+                    importItem?.importPath === "axios" &&
+                    importItem?.namedImports
+                ) {
+                    // update axios type import
+                    newContent = newContent.replace(
+                        importItem.statement,
+                        `// "axios" package needs to be installed
+            ${importItem.statement}`,
+                    );
+                }
+            });
 
             return newContent;
         },
