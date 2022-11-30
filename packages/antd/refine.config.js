@@ -22,6 +22,11 @@ module.exports = {
             {
                 group: "Buttons",
                 label: "CreateButton",
+                message: ` 
+                **\`Warning:\`**
+                This component is used in the below component. If you want to change it, you can run the **swizzle** command for the below component or you can use props to override the default buttons.
+                    - <List/>
+                `,
                 files: [
                     {
                         src: "./src/components/buttons/create/index.tsx",
@@ -42,6 +47,12 @@ module.exports = {
             {
                 group: "Buttons",
                 label: "DeleteButton",
+                message: ` 
+                **\`Warning:\`**
+                This component is used in the below components. If you want to change it, you can run the **swizzle** command for the below components or you can use props to override the default buttons.
+                    - <Edit/>
+                    - <List/>
+                `,
                 files: [
                     {
                         src: "./src/components/buttons/delete/index.tsx",
@@ -52,6 +63,11 @@ module.exports = {
             {
                 group: "Buttons",
                 label: "EditButton",
+                message: ` 
+                **\`Warning:\`**
+                This component is used in the below component. If you want to change it, you can run the **swizzle** command for the below component or you can use props to override the default buttons.
+                    - <Show/>
+                `,
                 files: [
                     {
                         src: "./src/components/buttons/edit/index.tsx",
@@ -82,6 +98,12 @@ module.exports = {
             {
                 group: "Buttons",
                 label: "ListButton",
+                message: ` 
+                **\`Warning:\`**
+                This component is used in the below components. If you want to change it, you can run the **swizzle** command for the below components or you can use props to override the default buttons.
+                    - <Edit/>
+                    - <Show/>
+                `,
                 files: [
                     {
                         src: "./src/components/buttons/list/index.tsx",
@@ -92,6 +114,12 @@ module.exports = {
             {
                 group: "Buttons",
                 label: "RefreshButton",
+                message: ` 
+                **\`Warning:\`**
+                This component is used in the below components. If you want to change it, you can run the **swizzle** command for the below components or you can use props to override the default buttons.
+                    - <Edit/>
+                    - <Show/>
+                `,
                 files: [
                     {
                         src: "./src/components/buttons/refresh/index.tsx",
@@ -102,6 +130,12 @@ module.exports = {
             {
                 group: "Buttons",
                 label: "SaveButton",
+                message: ` 
+                **\`Warning:\`**
+                This component is used in the below components. If you want to change it, you can run the **swizzle** command for the below components or you can use props to override the default buttons.
+                    - <Create/>
+                    - <Edit/>
+                `,
                 files: [
                     {
                         src: "./src/components/buttons/save/index.tsx",
