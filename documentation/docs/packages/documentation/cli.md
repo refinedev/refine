@@ -223,7 +223,7 @@ Show the running versions of the installed **refine** packages.
                 │ @pankod/refine-strapi          │ 3.18.0  │ 3.37.0 │ 3.37.0 │
                 └────────────────────────────────┴─────────┴────────┴────────┘
                     To update `refine` packages with the wanted version
-                        Run the following command npx refine update
+                        Run the following command npm run refine update
 ```
 
 ### dev,  start,  build
