@@ -8,10 +8,32 @@ refine CLI is a command line application that allows you to interact with your *
 ## Installation
 
 Install the [@pankod/refine-cli](https://github.com/refinedev/refine/tree/master/packages/cli) library.
+It is available by default if you create a project with `npm create refine-app`.
+We also recommend adding it as a dependency.
+
+**How to add for existing project?**
+
+<Tabs
+    defaultValue="npm"
+    values={[
+        {label: 'use npm', value: 'npm'},
+        {label: 'use yarn', value: 'yarn'},
+    ]}
+>
+<TabItem value="npm">
 
 ```bash
 npm i @pankod/refine-cli
 ```
+</TabItem>
+<TabItem value="yarn">
+
+```bash
+yarn add @pankod/refine-cli
+```
+</TabItem>
+</Tabs>
+
 
 <Tabs
     defaultValue="cra"
@@ -73,10 +95,10 @@ npm i @pankod/refine-cli
 ### swizzle
 ### create-resource
 
-Use this command to add a new resource to your project.
+Use this command to add a new resource to your project. CRUD components are created for the selected actions. These components are put on the specified path. The folder name here becomes plural.
 
 ```bash
-npm run refine create-resource
+> npm run refine create-resource
 ```
 
 | Argument               | Description                               |
@@ -91,16 +113,13 @@ npm run refine create-resource
 | -p    | --path    | cra: `src/pages` next.js: `src/components` remix: `app/components` | The path to create source files. (It is created automatically according to the framework.) |
 | -h    | --help    |                                                                    | Output usage information                                                                   |
  
-#### Examples
+#### Usage **Examples**
 
 Let's create a `Category` resource with all the actions.
 
 ```bash
-npm run refine create-resource category
-```
-The following files are produced.
+> npm run refine create-resource category
 
-```
 src/pages/
 └── categories
     ├── create.tsx
@@ -113,10 +132,8 @@ src/pages/
 If we only want to use list and create actions, it should be like this.
 
 ```bash
-npm run refine create-resource category -- --actions list,create
-```
+> npm run refine create-resource category -- --actions list,create
 
-```
 src/pages/
 └── categories
     ├── create.tsx
@@ -127,10 +144,8 @@ src/pages/
 If we want to create these files in another path, use the `--path` option.
 
 ```bash
-npm run refine create-resource category -- --path src/resources --actions list,create
-```
+> npm run refine create-resource category -- --path src/resources --actions list,create
 
-```
 src/resources/
 └── categories
     ├── create.tsx
@@ -141,7 +156,7 @@ src/resources/
 You can also create multiple resources at the same time. For this, you can write the sources by separating them with a space.
 
 ```bash
-npm run refine create-resource category user -- --actions list,create
+> npm run refine create-resource category user -- --actions list,create
 
 src/pages/
 ├── categories
