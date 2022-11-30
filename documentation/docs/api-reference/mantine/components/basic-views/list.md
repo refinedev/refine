@@ -1,6 +1,7 @@
 ---
 id: list
 title: List
+swizzle: true
 ---
 
 ```tsx live shared

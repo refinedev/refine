@@ -1,6 +1,7 @@
 ---
 id: import-button
 title: Import
+swizzle: true
 ---
 
 ```tsx live shared

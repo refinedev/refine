@@ -1,6 +1,7 @@
 ---
 id: save-button
 title: Save
+swizzle: true
 ---
 
 ```tsx live shared

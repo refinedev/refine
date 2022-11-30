@@ -1,6 +1,7 @@
 ---
 id: delete-button
 title: Delete
+swizzle: true
 ---
 
 ```tsx live shared

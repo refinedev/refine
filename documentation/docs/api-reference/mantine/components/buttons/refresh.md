@@ -1,6 +1,7 @@
 ---
 id: refresh-button
 title: Refresh
+swizzle: true
 ---
 
 ```tsx live shared

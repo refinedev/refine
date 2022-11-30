@@ -1,6 +1,7 @@
 ---
 id: text
 title: Text
+swizzle: true
 ---
 
 ```tsx live shared

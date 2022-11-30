@@ -1,6 +1,7 @@
 ---
 id: url
 title: Url
+swizzle: true
 ---
 
 ```tsx live shared

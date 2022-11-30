@@ -1,6 +1,7 @@
 ---
 id: email
 title: Email
+swizzle: true
 ---
 
 ```tsx live shared
