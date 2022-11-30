@@ -235,7 +235,6 @@ View the details of the development environment.
 npm run refine whoami
 ``` 
 
-#### whoami Example
 ```bash
 > npm run refine whoami
 
@@ -260,6 +259,5 @@ npm run refine whoami
  - @pankod/refine-simple-rest: 2.6.0
  - @pankod/refine-strapi: 3.18.0
 ```
-
 
 ### help
