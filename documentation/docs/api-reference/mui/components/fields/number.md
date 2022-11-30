@@ -1,6 +1,7 @@
 ---
 id: number
 title: Number
+swizzle: true
 ---
 
 import numberField from '@site/static/img/guides-and-concepts/fields/number/numberFieldMui.png'

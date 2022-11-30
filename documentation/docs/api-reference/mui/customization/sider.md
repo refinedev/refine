@@ -1,6 +1,7 @@
 ---
 id: mui-custom-sider
 title: Sider
+swizzle: true
 ---
 
 import customMenu from '@site/static/img/guides-and-concepts/hooks/useMenu/mui/custom-menu.gif';

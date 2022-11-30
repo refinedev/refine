@@ -1,6 +1,7 @@
 ---
 id: import-button
 title: Import
+swizzle: true
 ---
 
 import importButton from '@site/static/img/guides-and-concepts/components/buttons/import/import-mui.png';

@@ -1,6 +1,7 @@
 ---
 id: tag
 title: Tag
+swizzle: true
 ---
 
 import tagField from '@site/static/img/guides-and-concepts/fields/tag/tagFieldMui.png';

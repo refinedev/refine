@@ -3,6 +3,7 @@ id: mui-auth-page
 title: <AuthPage>
 sidebar_label: <AuthPage>
 description: <AuthPage> component from refine is a authentication page that can be used to login, register, forgot password and update password.
+swizzle: true
 ---
 
 `<AuthPage>` component from **refine** for **Material UI** contains authentication pages that can be used to login, register, forgot password and update password.

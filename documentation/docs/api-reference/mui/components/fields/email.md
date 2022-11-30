@@ -1,6 +1,7 @@
 ---
 id: email
 title: Email
+swizzle: true
 ---
 
 import emailField from '@site/static/img/guides-and-concepts/fields/email/emailFieldMui.png'
