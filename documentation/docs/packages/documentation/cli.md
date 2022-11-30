@@ -144,4 +144,29 @@ src/resources/
 ### start
 ### run
 ### whoami
+
+`whoiam` gives information about the system. This will help to solve the problem. It produces an output like the one below.
+
+```bash
+npm run refine whoiam
+
+## System:
+ - OS: macOS 13.0.1
+ - CPU: (8) arm64 Apple M1
+## Binaries:
+ - Node: 16.18.0 - /opt/homebrew/opt/node@16/bin/node
+ - Yarn: 1.22.19 - /opt/homebrew/bin/yarn
+ - npm: 8.19.2 - /opt/homebrew/opt/node@16/bin/npm
+## Browsers:
+ - Chrome: Not Found
+ - Firefox: 107.0
+ - Safari: 16.1
+
+## Refine Packages:
+ - @pankod/refine-antd: 3.62.0
+ - @pankod/refine-core: 3.90.2
+ - @pankod/refine-react-router-v6: 3.36.4
+ - @pankod/refine-simple-rest: 3.35.2
+```
+
 ### help
