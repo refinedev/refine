@@ -159,12 +159,8 @@ Your **refine** application will be accessible at [http://localhost:3000](http:/
 Let's consume a public `fake REST API` and add two resources (*posts*, *categories*) to our project. Replace the contents of `src/App.tsx` with the following code:
 
 ```tsx title="src/App.tsx"
-import { Refine, useMany } from "@pankod/refine-core";
+import { Refine } from "@pankod/refine-core";
 import {
-    useTable,
-    List,
-    Table,
-    DateField,
     Layout,
     ReadyPage,
     notificationProvider,
@@ -187,7 +183,6 @@ const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[{ name: "posts", list: PostList }]}
             Layout={Layout}
             ReadyPage={ReadyPage}
             notificationProvider={notificationProvider}
@@ -210,6 +205,8 @@ const App: React.FC = () => {
         />
     );
 };   
+
+export default App;
 ```
 
 <br/>
@@ -224,7 +221,7 @@ You can also customize the generated pages by passing your own components as pro
 
 Now, you should see the output as a table populated with `post` & `category` data:
 
-![First example result](https://github.com/refinedev/refine/blob/master/documentation/static/img/first-example-result.png?raw=true)
+![First example result](https://github.com/refinedev/refine/blob/master/documentation/static/img/readme-quick-start.png?raw=true)
 ## Next Steps
 
 👉 Jump to [Refine<>Ant Design Tutorial](https://refine.dev/docs/ui-frameworks/antd/tutorial/) to continue your work and turn the example into a full-blown CRUD application.
