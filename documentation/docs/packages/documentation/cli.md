@@ -140,11 +140,7 @@ src/resources/
 
 ### update
 Interactively update your outdated **refine** packages. To skip interactive mode, use the `--all` flag to update all outdated **refine** packages to selected tag.
-```bash
-npm run refine update   
-```
 
-#### update Example
 ```bash
 > npm run refine update
 
@@ -176,31 +172,27 @@ Major Updates
 
 ### check-updates
 Show the running versions of the installed **refine** packages.
-```bash
-npm run refine check-updates
-```
 
-#### check-updates Example
-```
+```bash
 > npm run refine check-updates
-                                                                Update Available
-                                          ┌────────────────────────────────┬─────────┬────────┬────────┐
-                                          │ name                           │ current │ wanted │ latest │
-                                          ├────────────────────────────────┼─────────┼────────┼────────┤
-                                          │ @pankod/refine-airtable        │ 2.1.1   │ 2.7.8  │ 3.33.0 │
-                                          ├────────────────────────────────┼─────────┼────────┼────────┤
-                                          │ @pankod/refine-cli             │ 1.5.1   │ 1.5.3  │ 1.5.3  │
-                                          ├────────────────────────────────┼─────────┼────────┼────────┤
-                                          │ @pankod/refine-core            │ 3.88.1  │ 3.90.4 │ 3.90.4 │
-                                          ├────────────────────────────────┼─────────┼────────┼────────┤
-                                          │ @pankod/refine-react-hook-form │ 3.31.0  │ 3.33.2 │ 3.33.2 │
-                                          ├────────────────────────────────┼─────────┼────────┼────────┤
-                                          │ @pankod/refine-simple-rest     │ 2.6.0   │ 2.7.8  │ 3.35.2 │
-                                          ├────────────────────────────────┼─────────┼────────┼────────┤
-                                          │ @pankod/refine-strapi          │ 3.18.0  │ 3.37.0 │ 3.37.0 │
-                                          └────────────────────────────────┴─────────┴────────┴────────┘
-                                               To update `refine` packages with the wanted version
-                                                   Run the following command npx refine update
+                                    Update Available
+                ┌────────────────────────────────┬─────────┬────────┬────────┐
+                │ name                           │ current │ wanted │ latest │
+                ├────────────────────────────────┼─────────┼────────┼────────┤
+                │ @pankod/refine-airtable        │ 2.1.1   │ 2.7.8  │ 3.33.0 │
+                ├────────────────────────────────┼─────────┼────────┼────────┤
+                │ @pankod/refine-cli             │ 1.5.1   │ 1.5.3  │ 1.5.3  │
+                ├────────────────────────────────┼─────────┼────────┼────────┤
+                │ @pankod/refine-core            │ 3.88.1  │ 3.90.4 │ 3.90.4 │
+                ├────────────────────────────────┼─────────┼────────┼────────┤
+                │ @pankod/refine-react-hook-form │ 3.31.0  │ 3.33.2 │ 3.33.2 │
+                ├────────────────────────────────┼─────────┼────────┼────────┤
+                │ @pankod/refine-simple-rest     │ 2.6.0   │ 2.7.8  │ 3.35.2 │
+                ├────────────────────────────────┼─────────┼────────┼────────┤
+                │ @pankod/refine-strapi          │ 3.18.0  │ 3.37.0 │ 3.37.0 │
+                └────────────────────────────────┴─────────┴────────┴────────┘
+                    To update `refine` packages with the wanted version
+                        Run the following command npx refine update
 ```
 
 ### dev
