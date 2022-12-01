@@ -4,10 +4,10 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-    "@pankod/refine-antd": "^3.63.0",
+    "@pankod/refine-antd": "^3.64.0",
     "@pankod/refine-core": "^3.90.4",
     "@pankod/refine-react-router-v6": "^3.36.4",
-    "@pankod/refine-simple-rest": "^3.36.0",
+    "@pankod/refine-simple-rest": "^3.37.0",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
