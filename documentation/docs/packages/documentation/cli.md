@@ -3,94 +3,47 @@ id: cli
 title: CLI
 ---
 
-refine CLI is a command line application that allows you to interact with your **refine** project and perform some tasks. This includes adding a new resource, running runners (build, start, dev), managing updates and swizzle components. 
-
-It is available by default if you create a project with `npm create refine-app`. 
-If you want to add it to an existing project, you can checkout **how to add to an existing project?** section.
-
-<details><summary>How to add to an existing project?</summary>
-<p>
-Install the [@pankod/refine-cli](https://github.com/refinedev/refine/tree/master/packages/cli) library. We also recommend adding it as a dependency.
-
-<Tabs
-    defaultValue="npm"
-    values={[
-        {label: 'use npm', value: 'npm'},
-        {label: 'use yarn', value: 'yarn'},
-    ]}
->
-<TabItem value="npm">
+refine CLI is a command line application that allows you to interact with your **refine** project and perform some tasks. This includes [creating a new resource](#create-resource), [managing updates](#update), [swizzle](#swizzle) components, and [runs your project](#dev--start--build) (build, start, dev).
 
 ```bash
-npm i @pankod/refine-cli
+> npm run refine 
+Usage: refine <command> [options]
+
+      ___           ___           ___                       ___           ___     
+     /\  \         /\  \         /\  \          ___        /\__\         /\  \    
+    /::\  \       /::\  \       /::\  \        /\  \      /::|  |       /::\  \   
+   /:/\:\  \     /:/\:\  \     /:/\:\  \       \:\  \    /:|:|  |      /:/\:\  \  
+  /::\~\:\  \   /::\~\:\  \   /::\~\:\  \      /::\__\  /:/|:|  |__   /::\~\:\  \ 
+ /:/\:\ \:\__\ /:/\:\ \:\__\ /:/\:\ \:\__\  __/:/\/__/ /:/ |:| /\__\ /:/\:\ \:\__\
+ \/_|::\/:/  / \:\~\:\ \/__/ \/__\:\ \/__/ /\/:/  /    \/__|:|/:/  / \:\~\:\ \/__/
+    |:|::/  /   \:\ \:\__\        \:\__\   \::/__/         |:/:/  /   \:\ \:\__\  
+    |:|\/__/     \:\ \/__/         \/__/    \:\__\         |::/  /     \:\ \/__/  
+    |:|  |        \:\__\                     \/__/         /:/  /       \:\__\    
+     \|__|         \/__/                                   \/__/         \/__/    
+
+Options:
+  -v, --version              Output the current version.
+  -h, --help                 Output usage information.
+
+Commands:
+  create-resource [options]  Create a new resource files
+  check-updates              Check all installed `refine` packages are up to date
+  update [options]           Interactively select and update all `refine` packages to selected version. To skip the interactive mode, use the `--all` option.
+  dev [args...]              It runs: `nextjs dev`. Also accepts all the arguments `nextjs` accepts.
+  build [args...]            It runs: `nextjs build`. Also accepts all the arguments `nextjs` accepts.
+  start [args...]            It runs: `nextjs start`. Also accepts all the arguments `nextjs` accepts.
+  run [command] [args...]    Runs a defined package script. If no `command` is provided, it will list the available scripts
+  whoami                     View the details of the development environment
+  help [command]             display help for command
+
 ```
-</TabItem>
-<TabItem value="yarn">
-
-```bash
-yarn add @pankod/refine-cli
-```
-</TabItem>
-</Tabs>
 
 
-<Tabs
-    defaultValue="react"
-    values={[
-        {label: 'React', value: 'react'},
-        {label: 'Next.js', value: 'nextjs'},
-        {label: 'Remix', value: 'remix'}
-    ]}
->
-<TabItem value="react">
+:::tip Installation
+CLI is automatically installed in projects created with the `create fine-app` command. You can use the [commands](#commands) immediately 🎉
 
-```diff title="package.json"
-{
-    "scripts": {
--        "dev": "react-scripts start",
--        "build": "react-scripts build",
-+        "dev": "refine start",
-+        "build": "refine build",
-+        "refine": "refine"
-    }
-}    
-```
-</TabItem>
-<TabItem value="nextjs">
-
-```diff title="package.json"
-{
-    "scripts": {
--        "dev": "next dev",
--        "build": "next build",
--        "start": "next start",
-+        "dev": "refine dev",
-+        "build": "refine build",
-+        "start": "refine start",
-+        "refine": "refine"
-    }
-}    
-```
-</TabItem>
-<TabItem value="remix">
-
-```diff title="package.json"
-{
-    "scripts": {
--       "dev": "remix dev",
--       "build": "remix build",
--       "start": "remix-serve build"
-+       "dev": "refine dev",
-+       "build": "refine build",
-+       "start": "refine start",
-+       "refine": "refine"
-    }
-}    
-```
-</TabItem>
-</Tabs>
-</p>
-</details>
+If you want to add it to your existing project, checkout [how to add to an existing project?](#how-to-add-to-an-existing-project) section.
+:::
 
 ## Commands
 ### swizzle
@@ -230,7 +183,7 @@ Show the running versions of the installed **refine** packages.
 ### dev,  start,  build
 When you run `npm run refine [dev | start | build]` It will detect the framework you are using and run the commands accordingly.
 
-Also you can pass environment variables, and all the options that are available in the framework. For example, you can run `NODE_ENV=production npm run refine dev --port 3001` to run the app on port `3001`.
+Also you can pass environment variables, and all the options that are available in the framework. For example, you can run `npm run refine dev --port 3001` to run the app on port `3001`.
 
 <Tabs
     defaultValue="cra"
@@ -242,11 +195,6 @@ Also you can pass environment variables, and all the options that are available 
 >
 <TabItem value="cra"> 
 
-[Refer to the Create React App documentation for detailed usage. &#8594](https://create-react-app.dev/docs/available-scripts)
-
-[Refer to the Vite documentation for detailed usage. &#8594](https://vitejs.dev/guide/#command-line-interface)
-
-
 ```bash
  # Starts application in development mode. Equivalent to `react-scripts start` or `vite`.
 npm run refine dev
@@ -256,11 +204,15 @@ npm run refine dev
 # Creates a production build of your app. Equivalent to `react-scripts build` or `vite build`.
 npm run refine build
 ```
+
+[Refer to the Create React App documentation for detailed usage. &#8594](https://create-react-app.dev/docs/available-scripts)
+
+[Refer to the Vite documentation for detailed usage. &#8594](https://vitejs.dev/guide/#command-line-interface)
+
+
 </TabItem>
 
 <TabItem value="nextjs">
-
-[Refer to the Next.js documentation for detailed usage. &#8594](https://nextjs.org/docs/api-reference/cli)
 
 ```bash
 # Starts application in development mode. Equivalent to `next dev`.
@@ -277,11 +229,12 @@ npm run refine start
 # Creates a production build of your app. Equivalent to `next build`.
 npm run refine build
 ```
+
+[Refer to the Next.js documentation for detailed usage. &#8594](https://nextjs.org/docs/api-reference/cli)
+
 </TabItem>
 
 <TabItem value="remix">
-
-[Refer to the Remix documentation for detailed usage. &#8594](https://remix.run/docs/en/v1/other-api/dev)
 
 ```bash
 # Starts application in development mode. Equivalent to `remix dev`.
@@ -298,6 +251,8 @@ npm run refine start
 # Creates a production build of your app. Equivalent to `next build`.
 npm run refine build
 ```
+
+[Refer to the Remix documentation for detailed usage. &#8594](https://remix.run/docs/en/v1/other-api/dev)
 </TabItem>
 </Tabs>
 
@@ -339,3 +294,128 @@ View the details of the development environment.
  - @pankod/refine-simple-rest: 2.6.0
  - @pankod/refine-strapi: 3.18.0
 ```
+
+
+## How to add to an existing project?
+
+If you want to add the [@pankod/refine-cli](https://github.com/refinedev/refine/tree/next/packages/cli) to your existing project, you have to add it to your project's `dependencies`.
+
+<Tabs
+    defaultValue="npm"
+    values={[
+        {label: 'use npm', value: 'npm'},
+        {label: 'use yarn', value: 'yarn'},
+    ]}
+>
+<TabItem value="npm">
+
+```bash
+npm i @pankod/refine-cli
+```
+</TabItem>
+<TabItem value="yarn">
+
+```bash
+yarn add @pankod/refine-cli
+```
+</TabItem>
+</Tabs>
+
+Then add the `refine` command to your scripts in your `package.json` file
+```diff title="package.json"
+{
+    "scripts": {
++       "refine": "refine"
+    }
+}    
+```
+
+Hooray!
+```bash
+> npm run refine 
+Usage: refine <command> [options]
+
+      ___           ___           ___                       ___           ___     
+     /\  \         /\  \         /\  \          ___        /\__\         /\  \    
+    /::\  \       /::\  \       /::\  \        /\  \      /::|  |       /::\  \   
+   /:/\:\  \     /:/\:\  \     /:/\:\  \       \:\  \    /:|:|  |      /:/\:\  \  
+  /::\~\:\  \   /::\~\:\  \   /::\~\:\  \      /::\__\  /:/|:|  |__   /::\~\:\  \ 
+ /:/\:\ \:\__\ /:/\:\ \:\__\ /:/\:\ \:\__\  __/:/\/__/ /:/ |:| /\__\ /:/\:\ \:\__\
+ \/_|::\/:/  / \:\~\:\ \/__/ \/__\:\ \/__/ /\/:/  /    \/__|:|/:/  / \:\~\:\ \/__/
+    |:|::/  /   \:\ \:\__\        \:\__\   \::/__/         |:/:/  /   \:\ \:\__\  
+    |:|\/__/     \:\ \/__/         \/__/    \:\__\         |::/  /     \:\ \/__/  
+    |:|  |        \:\__\                     \/__/         /:/  /       \:\__\    
+     \|__|         \/__/                                   \/__/         \/__/    
+
+Options:
+  -v, --version              Output the current version.
+  -h, --help                 Output usage information.
+
+Commands:
+  create-resource [options]  Create a new resource files
+  check-updates              Check all installed `refine` packages are up to date
+  update [options]           Interactively select and update all `refine` packages to selected version. To skip the interactive mode, use the `--all` option.
+  dev [args...]              It runs: `nextjs dev`. Also accepts all the arguments `nextjs` accepts.
+  build [args...]            It runs: `nextjs build`. Also accepts all the arguments `nextjs` accepts.
+  start [args...]            It runs: `nextjs start`. Also accepts all the arguments `nextjs` accepts.
+  run [command] [args...]    Runs a defined package script. If no `command` is provided, it will list the available scripts
+  whoami                     View the details of the development environment
+  help [command]             display help for command
+
+```
+
+
+You can optionally modify your scripts in `package.json` with `refine CLI` [commands](#dev--start--build). The benefit it will provide you is that it gives warnings to keep your `refine` packages always up to date.
+
+<Tabs
+    defaultValue="react"
+    values={[
+        {label: 'React', value: 'react'},
+        {label: 'Next.js', value: 'nextjs'},
+        {label: 'Remix', value: 'remix'}
+    ]}
+>
+<TabItem value="react">
+
+```diff title="package.json"
+{
+    "scripts": {
+-       "dev": "react-scripts start",
+-       "build": "react-scripts build",
++       "dev": "refine start",
++       "build": "refine build",
+    }
+}    
+```
+</TabItem>
+<TabItem value="nextjs">
+
+```diff title="package.json"
+{
+    "scripts": {
+-       "dev": "next dev",
+-       "build": "next build",
+-       "start": "next start",
++       "dev": "refine dev",
++       "build": "refine build",
++       "start": "refine start",
+    }
+}    
+```
+</TabItem>
+<TabItem value="remix">
+
+```diff title="package.json"
+{
+    "scripts": {
+-       "dev": "remix dev",
+-       "build": "remix build",
+-       "start": "remix-serve build"
++       "dev": "refine dev",
++       "build": "refine build",
++       "start": "refine start",
+    }
+}    
+```
+</TabItem>
+</Tabs>
