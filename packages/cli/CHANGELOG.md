@@ -1,5 +1,13 @@
 # @pankod/refine-cli
 
+## 1.7.0
+
+### Minor Changes
+
+-   [#3062](https://github.com/refinedev/refine/pull/3062) [`6c2ed708a9a`](https://github.com/refinedev/refine/commit/6c2ed708a9a76faddb9d27a0aca9f4ada3c270af) Thanks [@aliemir](https://github.com/aliemir)! - `swizzle` command added to the CLI. 🎉
+
+    It allows you to copy the latest version of supported components and functions to your project and customize it the way you want. `swizzle` command will prompt you with package and component selection, then copy the latest version of the component to your project and log the path of the copied files.
+
 ## 1.6.0
 
 ### Minor Changes
