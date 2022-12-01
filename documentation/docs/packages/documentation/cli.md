@@ -57,17 +57,19 @@ In this command, you can swizzle the components of the **refine**. This allows y
 
 <summary>Why is it called swizzling?</summary>
 
-**The name comes from Objective-C and Swift-UI**: [method swizzling](https://pspdfkit.com/blog/2019/swizzling-in-swift/) is the process of changing the implementation of an existing selector (method).
+The term comes from Objective-C and Swift-UI: [method swizzling](https://pspdfkit.com/blog/2019/swizzling-in-swift/) is the process of changing the implementation of an existing selector (method).
 
-**For Refine, component swizzling means providing an alternative component that will be used instead of the default one.**
+For **refine**, component swizzling means providing an alternative component that will be used instead of the default one.
 
-You can think of it as [Monkey Patching](https://en.wikipedia.org/wiki/Monkey_patch) for React components, enabling you to override the default implementation. Gatsby has a similar concept called [theme shadowing](https://www.gatsbyjs.com/docs/how-to/plugins-and-themes/shadowing/).
+You can think of it as [Monkey Patching](https://en.wikipedia.org/wiki/Monkey_patch) for React components, which allows you to change the default implementation. Gatsby has a similar feature called [theme shadowing](https://www.gatsbyjs.com/docs/how-to/plugins-and-themes/shadowing/).
+
+**Thanks to the [Docusaurus](https://docusaurus.io) team for this great feature 🙏🏻 We hadn't heard of swizzle before and we are very happy to launch it with refine. 🥳**
 
 </details>
 
 #### Do I need to swizzle?
 
-Swizzle is not a single way to customize the components. Many **refine** components are customizable with _props_. However, if you want to customize the components in a more complex way, you can swizzle them.
+**refine** packages provide data providers, UI frameworks, and components that make it easy to build a project. Most these are customizable and can be used as is. However, sometimes you may want to customize it as if you created it yourself. This is where swizzling comes in. Most of **refine** packages provide a swizzle command that ejects the files to your project. You can then customize them as you wish.
 
 #### Usage
 
@@ -95,7 +97,6 @@ First, you need to select the package you want to swizzle. In this example, we w
 ```bash
 ? Which component do you want to swizzle?
 
-Data Provider
  ◯ TagField
  ◯ TextField
  ◯ UrlField
@@ -132,8 +133,6 @@ Finally, the swizzle command will create a new folder in the `src/components/lay
 If there is already a file with the same name in the directory, the swizzle command will not overwrite it.
 
 :::
-
-> Thanks to the [Docusaurus](https://docusaurus.io) team for this great feature 🙏🏻 We hadn't heard of swizzle before and we are very happy to launch it with **refine**. 🥳
 
 ### create-resource
 
@@ -395,8 +394,8 @@ defaultValue="npm"
 values={[
 {label: 'use npm', value: 'npm'},
 {label: 'use yarn', value: 'yarn'},
-]}
->
+]}>
+
 <TabItem value="npm">
 
 ```bash
@@ -466,8 +465,8 @@ values={[
 {label: 'React', value: 'react'},
 {label: 'Next.js', value: 'nextjs'},
 {label: 'Remix', value: 'remix'}
-]}
->
+]}>
+
 <TabItem value="react">
 
 ```diff title="package.json"
