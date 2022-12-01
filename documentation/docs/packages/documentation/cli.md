@@ -112,12 +112,32 @@ Pages
 Then, you need to select the component you want to swizzle. In this example, we will swizzle the `Layout` component.
 
 ```bash
-src/components/
-└── layout
-    ├── sider.tsx
-    ├── header.tsx
-    ├── title.tsx
-    ├── index.ts
+Successfully swizzled Layout
+Files created:
+ - src/components/layout/sider.tsx
+ - src/components/layout/header.tsx
+ - src/components/layout/title.tsx
+ - src/components/layout/index.tsx
+
+Warning:
+If you want to change the default layout;
+You should pass layout/index.tsx with the Layout prop to the <Refine/>
+component.
+
+    ╭ App.tsx ────────────────────────────────────────╮
+    │                                                 │
+    │   import { Layout } from "components/layout";   │
+    │                                                 │
+    │   const App = () => {                           │
+    │       return (                                  │
+    │           <Refine                               │
+    │               Layout={Layout}                   │
+    │               /* ... */                         │
+    │           />                                    │
+    │       );                                        │
+    │   }                                             │
+    │                                                 │
+    ╰─────────────────────────────────────────────────╯
 ```
 
 Finally, the swizzle command will create a new folder in the `src/components/layout` directory and generate the layout components of the `@pankod/refine-antd` package in it.
