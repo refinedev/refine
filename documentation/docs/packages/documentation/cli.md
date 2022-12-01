@@ -82,7 +82,7 @@ Let's create a new component by swizzling the `Layout` components.
 
 Data Provider
  ◯ @pankod/refine-simple-rest
-Minor Updates
+UI Framework
  ◉ @pankod/refine-antd
 ```
 
