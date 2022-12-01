@@ -24,14 +24,14 @@ import boxen from "boxen";
 import { getPathPrefix } from "@utils/swizzle/getPathPrefix";
 
 const swizzle = (program: Command) => {
-    return (
-        program
-            .command("swizzle")
-            .description("Swizzle")
-            // .option("-c, --component <component>", "Component to swizzle.")
-            // .option("-l, --list", "List all the components available to swizzle.")
-            .action(action)
-    );
+    return program
+        .command("swizzle")
+        .description(
+            `Export a component or a function from ${chalk.bold(
+                "refine",
+            )} packages to customize it in your project`,
+        )
+        .action(action);
 };
 
 const getAutocompleteSource =
