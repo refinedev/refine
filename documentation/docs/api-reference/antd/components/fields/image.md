@@ -8,6 +8,10 @@ import imageField from '@site/static/img/guides-and-concepts/fields/image/imageF
 
 This field is used to display images and uses [`<Image>`](https://ant.design/components/image/#header) from Ant Design.
 
+:::info-tip Swizzle
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+:::
+
 ## Usage
 
 Let's see how we can use `<ImageField>` with the example in the edit page.

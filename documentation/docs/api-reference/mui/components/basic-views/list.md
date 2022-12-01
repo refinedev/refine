@@ -11,6 +11,10 @@ import cardHeaderPropsTitle from '@site/static/img/guides-and-concepts/basic-vie
 
 We will show what `<List>` does using properties with examples.
 
+:::info-tip Swizzle
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+:::
+
 ## Properties
 
 ### `title`

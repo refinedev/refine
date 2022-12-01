@@ -8,6 +8,10 @@ import fileField from '@site/static/img/guides-and-concepts/fields/file/fileFiel
 
 This field is used to display files and uses [`<Typography.Link>`](https://ant.design/components/typography) from Ant Design.
 
+:::info-tip Swizzle
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+:::
+
 ## Usage
 
 Let's see how we can use `<FileField>` with the example in the edit page. 

@@ -49,8 +49,8 @@ const PostIcon = (
 
 A breadcrumb displays the current location within a hierarchy. It allows going back to states higher up in the hierarchy. `<Breadcrumb>` component built with Chakra UI [Breadcrumb][chakra-ui-breadcrumb] components using the [`useBreadcrumb`](/api-reference/core/hooks/useBreadcrumb.md) hook.
 
-:::info
-You can refer to the [source-code][source-code] of the `<Breadcrumb>` component to see how it is built. You can also create your custom breadcrumb component inspired by the source code.
+:::info-tip Swizzle
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
 :::
 
 ## Properties
@@ -224,4 +224,3 @@ render(
 <PropsTable module="@pankod/refine-chakra-ui/Breadcrumb" />
 
 [chakra-ui-breadcrumb]: https://chakra-ui.com/docs/components/breadcrumb/usage
-[source-code]: https://github.com/refinedev/refine/blob/master/packages/chakra-ui/src/components/breadcrumb/index.tsx

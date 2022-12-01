@@ -8,6 +8,10 @@ import booleanField from '@site/static/img/guides-and-concepts/fields/boolean/bo
 
 This field is used to display boolean values. It uses the [`<Tooltip>`](https://mui.com/material-ui/react-tooltip/#main-content) values from Material UI.
 
+:::info-tip Swizzle
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+:::
+
 ## Usage
 
 Let's see how we can use `<BooleanField>` with the example in the post list.

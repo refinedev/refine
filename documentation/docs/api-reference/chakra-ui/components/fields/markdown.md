@@ -25,6 +25,10 @@ const Wrapper = ({ children }) => {
 
 This field lets you display markdown content. It supports [GitHub Flavored Markdown](https://github.github.com/gfm/).
 
+:::info-tip Swizzle
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+:::
+
 ## Usage
 
 Let's see how we can use `<MarkdownField>` in a show page.
