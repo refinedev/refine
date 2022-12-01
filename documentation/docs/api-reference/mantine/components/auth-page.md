@@ -10,6 +10,10 @@ swizzle: true
 
 Before using `<AuthPage>` component you need to add [authProvider](/api-reference/core/providers/auth-provider.md) that will be used to handle authentication.
 
+:::info-tip Swizzle
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+:::
+
 ```tsx live shared
 
 const { default: dataProvider } = RefineSimpleRest;

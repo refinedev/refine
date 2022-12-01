@@ -25,6 +25,10 @@ const Wrapper = ({ children }) => {
 
 This field lets you embed a link. It uses Chakra UI [`<Link>`](https://chakra-ui.com/docs/components/link/usage) component. You can pass a URL in its `value` prop and you can show a text in its place by passing any `children`.
 
+:::info-tip Swizzle
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+:::
+
 ## Usage
 
 Let's see how we can use `<UrlField>` with an example:

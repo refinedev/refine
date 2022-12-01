@@ -35,6 +35,10 @@ const Wrapper = ({ children }) => {
 
 This field lets you show basic text. It uses Mantine [`<Text>`](https://mantine.dev/core/text/) component.
 
+:::info-tip Swizzle
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+:::
+
 ## Usage
 
 Let's see how to use it in a basic show page:

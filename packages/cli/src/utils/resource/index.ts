@@ -22,3 +22,16 @@ export const getResourcePath = (
         alias: "pages",
     };
 };
+
+export const getFilesPathByProject = (projectType?: ProjectTypes) => {
+    switch (projectType) {
+        case ProjectTypes.REMIX:
+            return "./app";
+        case ProjectTypes.NEXTJS:
+        case ProjectTypes.REACT_SCRIPT:
+        case ProjectTypes.VITE:
+        case ProjectTypes.CRACO:
+        default:
+            return "./src";
+    }
+};

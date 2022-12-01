@@ -20,16 +20,18 @@ import { SwizzleFile } from "@definitions";
 import { parseSwizzleBlocks } from "@utils/swizzle/parseSwizzleBlocks";
 import { reorderImports } from "@utils/swizzle/import";
 import { SWIZZLE_CODES } from "@utils/swizzle/codes";
+import boxen from "boxen";
+import { getPathPrefix } from "@utils/swizzle/getPathPrefix";
 
 const swizzle = (program: Command) => {
-    return (
-        program
-            .command("swizzle")
-            .description("Swizzle")
-            // .option("-c, --component <component>", "Component to swizzle.")
-            // .option("-l, --list", "List all the components available to swizzle.")
-            .action(action)
-    );
+    return program
+        .command("swizzle")
+        .description(
+            `Export a component or a function from ${chalk.bold(
+                "refine",
+            )} packages to customize it in your project`,
+        )
+        .action(action);
 };
 
 const getAutocompleteSource =
@@ -50,9 +52,10 @@ const getAutocompleteSource =
         return filtered.flatMap((component, index, arr) => {
             const hasTitle =
                 component?.group && arr[index - 1]?.group !== component.group;
-            const withTitle = hasTitle
-                ? [new inquirer.Separator(`${chalk.bold(component.group)}`)]
-                : [];
+            const withTitle =
+                hasTitle && component.group
+                    ? [new inquirer.Separator(`${chalk.bold(component.group)}`)]
+                    : [];
 
             return [
                 ...withTitle,
@@ -81,12 +84,41 @@ const action = async (_options: OptionValues) => {
     );
 
     if (packagesWithConfig.length === 0) {
-        console.log("No refine packages found with refine.config.js");
+        console.log("No refine packages found with swizzle configuration.");
         return;
     }
 
+    console.log(
+        `${boxen(
+            `Found ${chalk.blueBright(
+                packagesWithConfig.length,
+            )} installed ${chalk.blueBright.bold(
+                "refine",
+            )} packages with swizzle configuration.`,
+            {
+                padding: 1,
+                textAlignment: "center",
+                dimBorder: true,
+                borderColor: "blueBright",
+                borderStyle: "round",
+            },
+        )}\n`,
+    );
+
+    const packageConfigs = await Promise.all(
+        packagesWithConfig.map(async (pkg) => {
+            const config = (await getRefineConfig(pkg.path)) ?? {
+                swizzle: { items: [] },
+            };
+            return {
+                ...pkg,
+                config,
+            };
+        }),
+    );
+
     const { selectedPackage } = await inquirer.prompt<{
-        selectedPackage: { name: string; path: string };
+        selectedPackage: typeof packageConfigs[number];
     }>([
         {
             type: "autocomplete",
@@ -95,22 +127,31 @@ const action = async (_options: OptionValues) => {
             message: "Which package do you want to swizzle?",
             emptyText: "No packages found.",
             source: getAutocompleteSource(
-                packagesWithConfig.map((pkg) => ({
-                    label: pkg.name,
-                    value: pkg,
-                })),
+                packageConfigs
+                    .sort((a, b) =>
+                        (a.config?.group ?? "").localeCompare(
+                            b.config?.group ?? "",
+                        ),
+                    )
+                    .map((pkg) => ({
+                        label: pkg.config?.name ?? pkg.name,
+                        value: pkg,
+                        group: pkg.config?.group,
+                    })),
             ),
         },
     ]);
 
     const {
         swizzle: { items, transform },
-    } = (await getRefineConfig(selectedPackage.path)) ?? {
-        swizzle: { items: [] },
-    };
+    } = selectedPackage.config;
 
     if (items.length === 0) {
-        console.log(`No swizzle items found for ${selectedPackage.name}`);
+        console.log(
+            `No swizzle items found for ${chalk.bold(
+                selectedPackage.config?.name ?? selectedPackage.name,
+            )}`,
+        );
         return;
     }
 
@@ -129,6 +170,9 @@ const action = async (_options: OptionValues) => {
         },
     ]);
 
+    // this will be prepended to `destPath` values
+    const projectPathPrefix = getPathPrefix();
+
     const createdFiles = await Promise.all(
         selectedComponent.files.map(async (file) => {
             try {
@@ -136,7 +180,7 @@ const action = async (_options: OptionValues) => {
                     ? path.join(selectedPackage.path, file.src)
                     : undefined;
                 const destPath = file.dest
-                    ? path.join(process.cwd(), file.dest)
+                    ? path.join(process.cwd(), projectPathPrefix, file.dest)
                     : undefined;
 
                 if (!srcPath) {

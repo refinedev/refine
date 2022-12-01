@@ -8,6 +8,10 @@ import tagField from '@site/static/img/guides-and-concepts/fields/tag/tagFieldMu
 
 This field lets you display a value in a tag. It uses Material UI [`<Chip>`](https://mui.com/material-ui/react-chip/#main-content) component.
 
+:::info-tip Swizzle
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+:::
+
 ## Usage
 
 Let's see how we can use it in a basic list page:

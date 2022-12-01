@@ -15,6 +15,10 @@ Both of these components can accept the listed props for customization. [`<Refin
 -   [`OffLayoutArea`][offlayoutarea]
 -   [`Title`][title]
 
+:::info-tip Swizzle
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+:::
+
 ## Creating a Custom Layout
 
 Let's start with creating a `<CustomLayout/>` component using `LayoutProps` from `@pankod/refine-core` with the following code:
