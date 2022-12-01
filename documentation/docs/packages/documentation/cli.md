@@ -6,7 +6,7 @@ title: CLI
 refine CLI is a command line application that allows you to interact with your **refine** project and perform some tasks. This includes adding a new resource, running runners (build, start, dev), managing updates and swizzle components. 
 
 It is available by default if you create a project with `npm create refine-app`. 
-If you want to add it to an existing project, you can checkout **How to add to an existing project?** section.
+If you want to add it to an existing project, you can checkout **how to add to an existing project?** section.
 
 <details><summary>How to add to an existing project?</summary>
 <p>
