@@ -37,6 +37,17 @@ const siteConfig = {
                         },
                     },
                     lastVersion: "current",
+                    admonitions: {
+                        tag: ":::",
+                        keywords: [
+                            "note",
+                            "tip",
+                            "info-tip",
+                            "info",
+                            "caution",
+                            "danger",
+                        ],
+                    },
                 },
                 blog: false,
                 theme: {
