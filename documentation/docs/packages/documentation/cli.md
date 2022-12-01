@@ -11,7 +11,7 @@ Install the [@pankod/refine-cli](https://github.com/refinedev/refine/tree/master
 It is available by default if you create a project with `npm create refine-app`.
 We also recommend adding it as a dependency.
 
-**How to add for existing project?**
+**How to add to an existing project?**
 
 <Tabs
     defaultValue="npm"
