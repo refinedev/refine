@@ -1,5 +1,11 @@
 # @pankod/refine-simple-rest
 
+## 3.37.3
+
+### Patch Changes
+
+-   [#3115](https://github.com/refinedev/refine/pull/3115) [`836f7091c13`](https://github.com/refinedev/refine/commit/836f7091c130ee0220105646869b484253525a7d) Thanks [@aliemir](https://github.com/aliemir)! - Add `refine.config.js` to included package files.
+
 ## 3.37.2
 
 ### Patch Changes
