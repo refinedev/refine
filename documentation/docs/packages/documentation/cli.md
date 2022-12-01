@@ -3,6 +3,9 @@ id: cli
 title: CLI
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 refine CLI is a command line application that allows you to interact with your **refine** project and perform some tasks. This includes adding a new resource, running runners (build, start, dev), managing updates and swizzle components.
 
 ## Installation
@@ -14,35 +17,36 @@ We also recommend adding it as a dependency.
 **How to add to an existing project?**
 
 <Tabs
-    defaultValue="npm"
-    values={[
-        {label: 'use npm', value: 'npm'},
-        {label: 'use yarn', value: 'yarn'},
-    ]}
->
+defaultValue="npm"
+values={[
+{label: 'use npm', value: 'npm'},
+{label: 'use yarn', value: 'yarn'},
+]}>
+
 <TabItem value="npm">
 
 ```bash
 npm i @pankod/refine-cli
 ```
+
 </TabItem>
 <TabItem value="yarn">
 
 ```bash
 yarn add @pankod/refine-cli
 ```
+
 </TabItem>
 </Tabs>
 
-
 <Tabs
-    defaultValue="react"
-    values={[
-        {label: 'React', value: 'react'},
-        {label: 'Next.js', value: 'nextjs'},
-        {label: 'Remix', value: 'remix'}
-    ]}
->
+defaultValue="react"
+values={[
+{label: 'React', value: 'react'},
+{label: 'Next.js', value: 'nextjs'},
+{label: 'Remix', value: 'remix'}
+]}>
+
 <TabItem value="react">
 
 ```diff title="package.json"
@@ -54,8 +58,9 @@ yarn add @pankod/refine-cli
 +        "build": "refine build",
 +        "refine": "refine"
     }
-}    
+}
 ```
+
 </TabItem>
 <TabItem value="nextjs">
 
@@ -70,8 +75,9 @@ yarn add @pankod/refine-cli
 +        "start": "refine start",
 +        "refine": "refine"
     }
-}    
+}
 ```
+
 </TabItem>
 <TabItem value="remix">
 
@@ -86,13 +92,100 @@ yarn add @pankod/refine-cli
 +       "start": "refine start",
 +       "refine": "refine"
     }
-}    
+}
 ```
+
 </TabItem>
 </Tabs>
 
 ## Commands
+
 ### swizzle
+
+In this command, you can swizzle the components of the **refine**. This allows you to customize the components and use your own components.
+
+<details>
+
+<summary>Why is it called swizzling?</summary>
+
+**The name comes from Objective-C and Swift-UI**: [method swizzling](https://pspdfkit.com/blog/2019/swizzling-in-swift/) is the process of changing the implementation of an existing selector (method).
+
+**For Refine, component swizzling means providing an alternative component that will be used instead of the default one.**
+
+You can think of it as [Monkey Patching](https://en.wikipedia.org/wiki/Monkey_patch) for React components, enabling you to override the default implementation. Gatsby has a similar concept called [theme shadowing](https://www.gatsbyjs.com/docs/how-to/plugins-and-themes/shadowing/).
+
+</details>
+
+#### Do I need to swizzle?
+
+Swizzle is not a single way to customize the components. Many **refine** components are customizable with _props_. However, if you want to customize the components in a more complex way, you can swizzle them.
+
+#### Usage
+
+Let's create a new component by swizzling the `Layout` components.
+
+```bash
+> npm run refine swizzle
+
+? Which package do you want to swizzle? (Use arrow keys or type to search)
+
+Data Provider
+ ◯ @pankod/refine-simple-rest
+Minor Updates
+ ◉ @pankod/refine-antd
+```
+
+First, you need to select the package you want to swizzle. In this example, we will swizzle the `@pankod/refine-antd` package.
+
+:::info
+
+**refine** CLI will only show the packages that are installed in your project.
+
+:::
+
+```bash
+? Which component do you want to swizzle?
+
+Data Provider
+ ◯ TagField
+ ◯ TextField
+ ◯ UrlField
+Other
+ ◯ Breadcrumb
+❯◉ Layout
+Pages
+ ◯ ErrorPage
+ ◯ AuthPage
+(Move up and down to reveal more choices)
+```
+
+Then, you need to select the component you want to swizzle. In this example, we will swizzle the `Layout` component.
+
+```bash
+src/components/
+└── layout
+    ├── sider.tsx
+    ├── header.tsx
+    ├── title.tsx
+    ├── index.ts
+```
+
+Finally, the swizzle command will create a new folder in the `src/components/layout` directory and generate the layout components of the `@pankod/refine-antd` package in it.
+
+:::info
+
+**refine** CLI determines the path to create a new folder according to the framework you are using. For example, if you are using the `remix`, the path will be `app/components/layout`.
+
+:::
+
+:::caution
+
+If there is already a file with the same name in the directory, the swizzle command will not overwrite it.
+
+:::
+
+> Thanks to the [Docusaurus](https://docusaurus.io) team for this great feature 🙏🏻 We hadn't heard of swizzle before and we are very happy to launch it with **refine**. 🥳
+
 ### create-resource
 
 Use this command to add a new resource to your project. CRUD components are created for the selected actions. These components are put on the specified path. The folder name here becomes plural.
@@ -112,7 +205,7 @@ Use this command to add a new resource to your project. CRUD components are crea
 | -a    | --actions | `list`,`create`,`edit`,`show`                                        | Only generate the specified actions.                                                       |
 | -p    | --path    | react: `src/pages` next.js: `src/components` remix: `app/components` | The path to create source files. (It is created automatically according to the framework.) |
 | -h    | --help    |                                                                      | Output usage information                                                                   |
- 
+
 #### Usage **Examples**
 
 Let's create a `Category` resource with all the actions.
@@ -170,6 +263,7 @@ src/pages/
 ```
 
 ### update
+
 Interactively update your outdated **refine** packages. To skip interactive mode, use the `--all` flag to update all outdated **refine** packages to selected tag.
 
 ```bash
@@ -192,9 +286,10 @@ Minor Updates
 Major Updates
  ◯ @pankod/refine-airtable           2.1.1 -> 3.33.0
  ◯ @pankod/refine-simple-rest        2.6.0 -> 3.35.2
- ```
+```
 
 #### Options
+
 | Option    | Alias | Description                                                                                 | Values           | Default                                                    |
 | --------- | ----- | ------------------------------------------------------------------------------------------- | ---------------- | ---------------------------------------------------------- |
 | --tag     | -t    | Select version to update to.                                                                | `latest`, `next` | Version ranges in the `package.json` will be installed.    |
@@ -202,6 +297,7 @@ Major Updates
 | --dry-run | -d    | Use to skip automatic installation. Prints the update command of the packages.              |                  | `false` Selected packages will be installed automatically. |
 
 ### check-updates
+
 Show the running versions of the installed **refine** packages.
 
 ```bash
@@ -226,25 +322,25 @@ Show the running versions of the installed **refine** packages.
                         Run the following command npm run refine update
 ```
 
-### dev,  start,  build
+### dev, start, build
+
 When you run `npm run refine [dev | start | build]` It will detect the framework you are using and run the commands accordingly.
 
 Also you can pass environment variables, and all the options that are available in the framework. For example, you can run `NODE_ENV=production npm run refine dev --port 3001` to run the app on port `3001`.
 
 <Tabs
-    defaultValue="cra"
-    values={[
-        {label: 'React', value: 'cra'},
-        {label: 'Next.js', value: 'nextjs'},
-        {label: 'Remix', value: 'remix'}
-    ]}
->
-<TabItem value="cra"> 
+defaultValue="cra"
+values={[
+{label: 'React', value: 'cra'},
+{label: 'Next.js', value: 'nextjs'},
+{label: 'Remix', value: 'remix'}
+]}>
+
+<TabItem value="cra">
 
 [Refer to the Create React App documentation for detailed usage. &#8594](https://create-react-app.dev/docs/available-scripts)
 
 [Refer to the Vite documentation for detailed usage. &#8594](https://vitejs.dev/guide/#command-line-interface)
-
 
 ```bash
  # Starts application in development mode. Equivalent to `react-scripts start` or `vite`.
@@ -255,6 +351,7 @@ npm run refine dev
 # Creates a production build of your app. Equivalent to `react-scripts build` or `vite build`.
 npm run refine build
 ```
+
 </TabItem>
 
 <TabItem value="nextjs">
@@ -271,11 +368,11 @@ npm run refine dev
 npm run refine start
 ```
 
-
 ```bash
 # Creates a production build of your app. Equivalent to `next build`.
 npm run refine build
 ```
+
 </TabItem>
 
 <TabItem value="remix">
@@ -292,15 +389,16 @@ npm run refine dev
 npm run refine start
 ```
 
-
 ```bash
 # Creates a production build of your app. Equivalent to `next build`.
 npm run refine build
 ```
+
 </TabItem>
 </Tabs>
 
 ### run
+
 Runs a custom script in the context of your **refine** project. Also It will pass all the arguments to the script.
 
 First it will check `package.json` to see if there is a script with the given name. If there is, it will run that script. Otherwise, it will run in `node_modules/.bin`.
@@ -312,6 +410,7 @@ npm run refine run react-app-rewired start
 ```
 
 ### whoami
+
 View the details of the development environment.
 
 ```bash
