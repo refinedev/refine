@@ -19,18 +19,6 @@ module.exports = {
                         dest: "./components/buttons/show.tsx",
                     },
                 ],
-                message: `
-                    ## Test Heading 2
-
-                    \`\`\`
-                    // title: src/buttons/show.tsx
-                    console.log(a);
-
-                    const MyComponent = () => {
-                        return <div>asd</div>;
-                    }
-                    \`\`\`
-                `,
             },
             {
                 group: "Buttons",
@@ -301,7 +289,22 @@ module.exports = {
                 label: "ErrorPage",
                 message: ` 
                 **\`Warning:\`**
-                If you want to change the default error page, you should pass it with the **catchAll** prop to the **<Refine/>** component.
+                If you want to change the default error page;
+                You should pass it with the **catchAll** prop to the **<Refine/>** component.
+
+                \`\`\`
+                // title: App.tsx
+                import { ErrorPage } from "components/pages/error";
+
+                const App = () => {
+                    return (
+                        <Refine
+                            catchAll={ErrorPage}
+                            /* ... */
+                        />
+                    );
+                }
+                \`\`\`
                 `,
                 files: [
                     {
@@ -329,7 +332,22 @@ module.exports = {
                 label: "AuthPage",
                 message: ` 
                 **\`Warning:\`**
-                If you want to change the default auth pages, you should pass it with the **AuthPage** prop to the **<Refine/>** component.
+                If you want to change the default auth pages;
+                You should pass it with the **LoginPage** prop to the **<Refine/>** component.
+
+                \`\`\`
+                // title: App.tsx
+                import { AuthPage } from "components/pages/auth";
+
+                const App = () => {
+                    return (
+                        <Refine
+                            LoginPage={AuthPage}
+                            /* ... */
+                        />
+                    );
+                }
+                \`\`\`
                 `,
                 files: [
                     {
@@ -424,6 +442,25 @@ module.exports = {
                     - <List/>
                     - <Show/>
                     - <Create/>
+
+                **\`Passing Breadcrumb Globally:\`**
+
+                \`\`\`
+                // title: App.tsx
+                import { Breadcrumb } from "components/breadcrumb";
+
+                const App = () => {
+                    return (
+                        <Refine
+                            options={{
+                                breadcrumb: <Breadcrumb />
+                                /* ... */
+                            }}
+                            /* ... */
+                        />
+                    );
+                }
+                \`\`\`
                 `,
                 files: [
                     {
@@ -460,7 +497,22 @@ module.exports = {
                 label: "Layout",
                 message: `
                 **\`Warning:\`**
-                If you want to change the default layout, you should pass \`layout/index.tsx\` with the **Layout** prop to the **<Refine/>** component.
+                If you want to change the default layout;
+                You should pass \`layout/index.tsx\` with the **Layout** prop to the **<Refine/>** component.
+
+                \`\`\`
+                // title: App.tsx
+                import { Layout } from "components/layout";
+
+                const App = () => {
+                    return (
+                        <Refine
+                            Layout={Layout}
+                            /* ... */
+                        />
+                    );
+                }
+                \`\`\`
                 `,
                 files: [
                     {
