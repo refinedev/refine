@@ -2,6 +2,7 @@
 id: list
 title: List
 sidebar_label: List
+swizzle: true
 ---
 
 import cardHeaderPropsTitle from '@site/static/img/guides-and-concepts/basic-views/list/cardHeaderPropsTitle.png'

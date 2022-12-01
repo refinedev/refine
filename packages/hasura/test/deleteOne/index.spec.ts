@@ -6,22 +6,22 @@ describe("deleteOne", () => {
     it("correct response with metaData", async () => {
         const { data } = await dataProvider(client).deleteOne({
             resource: "posts",
-            id: "52218781-f240-48d3-8407-fca1d163d3ce",
+            id: "bac2ef0a-899f-4694-84ef-b9c6fe4dc2b7",
             metaData: {
                 fields: ["id", "title"],
             },
         });
 
-        expect(data.id).toEqual("52218781-f240-48d3-8407-fca1d163d3ce");
-        expect(data.title).toEqual("Intangible open-source Licensed");
+        expect(data.id).toEqual("bac2ef0a-899f-4694-84ef-b9c6fe4dc2b7");
+        expect(data.title).toEqual("asdfasdfsadf");
     });
 
     it("correct response without metaData", async () => {
         const { data } = await dataProvider(client).deleteOne({
             resource: "posts",
-            id: "b65b724e-7f21-47ad-aa37-194c4dbcf7cd",
+            id: "b19c9bd4-dff9-4ecf-acfe-aea2c4c9ec41",
         });
 
-        expect(data.id).toEqual("b65b724e-7f21-47ad-aa37-194c4dbcf7cd");
+        expect(data.id).toEqual("b19c9bd4-dff9-4ecf-acfe-aea2c4c9ec41");
     });
 });

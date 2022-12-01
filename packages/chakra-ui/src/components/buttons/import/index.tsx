@@ -1,19 +1,10 @@
 import React from "react";
-import { useTranslate, UseImportInputPropsType } from "@pankod/refine-core";
-import {
-    RefineImportButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
-import { IconButton, Button, ButtonProps } from "@chakra-ui/react";
-import { IconFileImport, TablerIconProps } from "@tabler/icons";
+import { useTranslate } from "@pankod/refine-core";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { IconButton, Button } from "@chakra-ui/react";
+import { IconFileImport } from "@tabler/icons";
 
-export type ImportButtonProps = RefineImportButtonProps<
-    ButtonProps,
-    {
-        inputProps: UseImportInputPropsType;
-        svgIconProps?: TablerIconProps;
-    }
->;
+import { ImportButtonProps } from "../types";
 
 /**
  * `<ImportButton>` is compatible with the {@link https://refine.dev/docs/core/hooks/import-export/useImport/ `useImport`} core hook.

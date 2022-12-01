@@ -1,5 +1,4 @@
 import React from "react";
-import { RefineCrudListProps } from "@pankod/refine-ui-types";
 import {
     ResourceRouterParams,
     useResourceWithRoute,
@@ -7,18 +6,9 @@ import {
     useRouterContext,
     useTranslate,
 } from "@pankod/refine-core";
-import { Box, Heading, BoxProps } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 
-import { CreateButton, CreateButtonProps } from "@components/buttons";
-import { Breadcrumb } from "@components/breadcrumb";
-
-export type ListProps = RefineCrudListProps<
-    CreateButtonProps,
-    BoxProps,
-    BoxProps,
-    BoxProps,
-    BoxProps
->;
+import { CreateButton, Breadcrumb, ListProps } from "@components";
 
 export const List: React.FC<ListProps> = (props) => {
     const {

@@ -1,12 +1,8 @@
-import React, { ReactNode } from "react";
-import { RefineCrudCreateProps } from "@pankod/refine-ui-types";
+import React from "react";
 import {
     Box,
-    BoxProps,
     Card,
-    CardProps,
     Group,
-    GroupProps,
     ActionIcon,
     Stack,
     Title,
@@ -22,18 +18,7 @@ import {
     useTranslate,
 } from "@pankod/refine-core";
 import { IconArrowLeft } from "@tabler/icons";
-
-import { SaveButton, SaveButtonProps } from "@components/buttons";
-import { Breadcrumb } from "@components/breadcrumb";
-
-export type CreateProps = RefineCrudCreateProps<
-    SaveButtonProps,
-    GroupProps,
-    GroupProps,
-    CardProps,
-    GroupProps,
-    BoxProps
->;
+import { SaveButton, Breadcrumb, CreateProps } from "@components";
 
 export const Create: React.FC<CreateProps> = (props) => {
     const {

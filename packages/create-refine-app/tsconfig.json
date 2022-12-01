@@ -11,7 +11,7 @@
         "strict": true,
         "paths": {
             "@utils/*": ["src/utils/*"],
-            "@utils": ["src/utils"],
+            "@utils": ["src/utils"]
         },
         "typeRoots": [
             "./src/types",

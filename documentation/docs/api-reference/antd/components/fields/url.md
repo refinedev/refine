@@ -1,6 +1,7 @@
 ---
 id: url
 title: Url
+swizzle: true
 ---
 
 import urlField from '@site/static/img/guides-and-concepts/fields/url/urlField.png'

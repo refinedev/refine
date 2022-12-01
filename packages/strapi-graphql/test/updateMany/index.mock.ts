@@ -2,7 +2,7 @@ import nock from "nock";
 
 nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .post("/graphql", {
-        query: "mutation ($input: updatePostInput) {\n  updatePost (input: $input) {\n    post  { id, title, content, category { id } }\n  }\n}",
+        query: "mutation ($input: updatePostInput) {\n      updatePost (input: $input) {\n    post  { id, title, content, category { id } }\n  }\n    }",
         variables: {
             input: {
                 where: { id: "24" },
@@ -54,7 +54,7 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
 
 nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .post("/graphql", {
-        query: "mutation ($input: updatePostInput) {\n  updatePost (input: $input) {\n    post  { id, title, content, category { id } }\n  }\n}",
+        query: "mutation ($input: updatePostInput) {\n      updatePost (input: $input) {\n    post  { id, title, content, category { id } }\n  }\n    }",
         variables: {
             input: {
                 where: { id: "25" },
@@ -106,7 +106,7 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
 
 nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .post("/graphql", {
-        query: "mutation ($input: updatePostInput) {\n  updatePost (input: $input) {\n    post  { id }\n  }\n}",
+        query: "mutation ($input: updatePostInput) {\n      updatePost (input: $input) {\n    post  { id }\n  }\n    }",
         variables: {
             input: {
                 where: { id: "24" },
@@ -143,7 +143,7 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
 
 nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .post("/graphql", {
-        query: "mutation ($input: updatePostInput) {\n  updatePost (input: $input) {\n    post  { id }\n  }\n}",
+        query: "mutation ($input: updatePostInput) {\n      updatePost (input: $input) {\n    post  { id }\n  }\n    }",
         variables: {
             input: {
                 where: { id: "25" },

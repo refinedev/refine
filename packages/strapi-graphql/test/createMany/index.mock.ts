@@ -2,7 +2,7 @@ import nock from "nock";
 
 nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .post("/graphql", {
-        query: "mutation ($input: createPostInput) {\n  createPost (input: $input) {\n    post  { id, title, content, category { id } }\n  }\n}",
+        query: "mutation ($input: createPostInput) {\n      createPost (input: $input) {\n    post  { id, title, content, category { id } }\n  }\n    }",
         variables: {
             input: { data: { title: "foo", content: "bar", category: "2" } },
         },
@@ -47,7 +47,7 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
 
 nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .post("/graphql", {
-        query: "mutation ($input: createPostInput) {\n  createPost (input: $input) {\n    post  { id, title, content, category { id } }\n  }\n}",
+        query: "mutation ($input: createPostInput) {\n      createPost (input: $input) {\n    post  { id, title, content, category { id } }\n  }\n    }",
         variables: {
             input: {
                 data: { title: "foo-2", content: "bar-2", category: "3" },
@@ -94,7 +94,7 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
 
 nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .post("/graphql", {
-        query: "mutation ($input: createPostInput) {\n  createPost (input: $input) {\n    post  { id }\n  }\n}",
+        query: "mutation ($input: createPostInput) {\n      createPost (input: $input) {\n    post  { id }\n  }\n    }",
         variables: {
             input: { data: { title: "foo", content: "bar", category: "2" } },
         },
@@ -124,7 +124,7 @@ nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
 
 nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
     .post("/graphql", {
-        query: "mutation ($input: createPostInput) {\n  createPost (input: $input) {\n    post  { id }\n  }\n}",
+        query: "mutation ($input: createPostInput) {\n      createPost (input: $input) {\n    post  { id }\n  }\n    }",
         variables: {
             input: {
                 data: { title: "foo-2", content: "bar-2", category: "3" },

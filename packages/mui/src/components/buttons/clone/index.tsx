@@ -6,19 +6,11 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-import {
-    RefineCloneButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
-import { Button, ButtonProps, SvgIconProps } from "@mui/material";
-import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { Button } from "@mui/material";
+import { AddBoxOutlined } from "@mui/icons-material";
 
-export type CloneButtonProps = RefineCloneButtonProps<
-    ButtonProps,
-    {
-        svgIconProps?: SvgIconProps;
-    }
->;
+import { CloneButtonProps } from "../types";
 
 /**
  * `<CloneButton>` uses Material UI {@link https://mui.com/components/buttons/ `<Button> component`}.
@@ -97,16 +89,14 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
         >
             <Button
                 disabled={data?.can === false}
-                startIcon={
-                    !hideText && <AddBoxOutlinedIcon {...svgIconProps} />
-                }
+                startIcon={!hideText && <AddBoxOutlined {...svgIconProps} />}
                 title={disabledTitle()}
                 sx={{ minWidth: 0, ...sx }}
                 data-testid={RefineButtonTestIds.CloneButton}
                 {...restProps}
             >
                 {hideText ? (
-                    <AddBoxOutlinedIcon fontSize="small" {...svgIconProps} />
+                    <AddBoxOutlined fontSize="small" {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.clone", "Clone")
                 )}

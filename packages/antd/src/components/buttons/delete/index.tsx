@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, ButtonProps, Popconfirm } from "antd";
+import { Button, Popconfirm } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import {
     useDelete,
@@ -8,20 +8,9 @@ import {
     useCan,
     useResource,
 } from "@pankod/refine-core";
-import {
-    RefineDeleteButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 
-export type DeleteButtonProps = RefineDeleteButtonProps<
-    ButtonProps,
-    {
-        /**
-         * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/refinedev/refine/issues/1618
-         */
-        resourceName?: string;
-    }
->;
+import { DeleteButtonProps } from "../types";
 
 /**
  * `<DeleteButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} and {@link https://ant.design/components/button/ `<Popconfirm>`} components.

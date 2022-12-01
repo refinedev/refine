@@ -1,8 +1,7 @@
 import React from "react";
-import { RefineLayoutLayoutProps } from "@pankod/refine-ui-types";
-
 import { Box } from "@mui/material";
 
+import { RefineLayoutLayoutProps } from "./types";
 import { Sider as DefaultSider } from "./sider";
 import { Header as DefaultHeader } from "./header";
 

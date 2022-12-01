@@ -1,6 +1,7 @@
 ---
 id: create
 title: Create
+swizzle: true
 ---
 
 import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-views/create/pageHeaderPropsUsage.png'

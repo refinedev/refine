@@ -6,22 +6,11 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-import {
-    RefineEditButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
-import { IconPencil, TablerIconProps } from "@tabler/icons";
-import { Button, ButtonProps, IconButton } from "@chakra-ui/react";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { IconPencil } from "@tabler/icons";
+import { Button, IconButton } from "@chakra-ui/react";
 
-export type EditButtonProps = Omit<
-    RefineEditButtonProps<
-        ButtonProps,
-        {
-            svgIconProps?: TablerIconProps;
-        }
-    >,
-    "ignoreAccessControlProvider"
->;
+import { EditButtonProps } from "../types";
 
 /**
  * `<EditButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> component`}.

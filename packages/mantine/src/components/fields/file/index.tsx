@@ -1,10 +1,8 @@
 import React from "react";
 
-import { RefineFieldFileProps } from "@pankod/refine-ui-types";
-import { TextProps } from "@mantine/core";
 import { UrlField } from "@components";
 
-export type FileFieldProps = RefineFieldFileProps<TextProps>;
+import { FileFieldProps } from "../types";
 
 export const FileField: React.FC<FileFieldProps> = ({
     title,

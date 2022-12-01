@@ -1,6 +1,7 @@
 ---
 id: date
 title: Date
+swizzle: true
 ---
 
 import dateField from '@site/static/img/guides-and-concepts/fields/date/dateFieldMui.png'

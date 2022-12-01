@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, ButtonProps } from "antd";
+import { Button } from "antd";
 import { PlusSquareOutlined } from "@ant-design/icons";
 import {
     useNavigation,
@@ -8,20 +8,9 @@ import {
     useResource,
     useRouterContext,
 } from "@pankod/refine-core";
-import {
-    RefineCreateButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 
-export type CreateButtonProps = RefineCreateButtonProps<
-    ButtonProps,
-    {
-        /**
-         * @deprecated resourceName deprecated. Use resourceNameOrRouteName instead # https://github.com/refinedev/refine/issues/1618
-         */
-        resourceName?: string;
-    }
->;
+import { CreateButtonProps } from "../types";
 
 /**
  * <CreateButton> uses Ant Design's {@link https://ant.design/components/button/ `<Button> component`}.
@@ -44,7 +33,6 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
         accessControl?.enabled ?? !ignoreAccessControlProvider;
     const hideIfUnauthorized = accessControl?.hideIfUnauthorized ?? false;
     const translate = useTranslate();
-
     const { Link } = useRouterContext();
 
     const { createUrl: generateCreateUrl } = useNavigation();

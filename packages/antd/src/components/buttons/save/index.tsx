@@ -1,13 +1,10 @@
 import React from "react";
-import { Button, ButtonProps } from "antd";
+import { Button } from "antd";
 import { SaveOutlined } from "@ant-design/icons";
 import { useTranslate } from "@pankod/refine-core";
-import {
-    RefineButtonTestIds,
-    RefineSaveButtonProps,
-} from "@pankod/refine-ui-types";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
 
-export type SaveButtonProps = RefineSaveButtonProps<ButtonProps>;
+import { SaveButtonProps } from "../types";
 
 /**
  * `<SaveButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} component.

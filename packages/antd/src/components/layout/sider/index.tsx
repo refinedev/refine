@@ -20,7 +20,8 @@ import {
 import { Title as DefaultTitle } from "@components";
 
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
-import { RefineLayoutSiderProps } from "@pankod/refine-ui-types";
+import { RefineLayoutSiderProps } from "../types";
+
 const { SubMenu } = Menu;
 
 export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {

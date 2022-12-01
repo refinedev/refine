@@ -1,9 +1,7 @@
-import React, { ReactNode } from "react";
+import React from "react";
+import { Link } from "@chakra-ui/react";
 
-import { RefineFieldEmailProps } from "@pankod/refine-ui-types";
-import { Link, LinkProps } from "@chakra-ui/react";
-
-export type EmailFieldProps = RefineFieldEmailProps<ReactNode, LinkProps>;
+import { EmailFieldProps } from "../types";
 
 /**
  * This field is used to display email values. It uses the {@link https://chakra-ui.com/docs/components/text  `<Text>` }

@@ -1,6 +1,7 @@
 ---
 id: file
 title: File
+swizzle: true
 ---
 
 import fileField from '@site/static/img/guides-and-concepts/fields/file/fileFieldMui.png'

@@ -1,6 +1,7 @@
 ---
 id: clone-button
 title: Clone
+swizzle: true
 ---
 
 import cloneButton from '@site/static/img/guides-and-concepts/components/buttons/clone/clone-mui.png';

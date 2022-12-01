@@ -6,30 +6,12 @@ import {
     useCan,
     useResource,
 } from "@pankod/refine-core";
-import {
-    RefineDeleteButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
-import {
-    Button,
-    ButtonProps,
-    Dialog,
-    DialogActions,
-    DialogTitle,
-    SvgIconProps,
-} from "@mui/material";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
+import { DeleteOutline } from "@mui/icons-material";
 
-export type DeleteButtonProps = RefineDeleteButtonProps<
-    ButtonProps,
-    {
-        /**
-         * SVG icon props for the delete button
-         */
-        svgIconProps?: SvgIconProps;
-    }
->;
+import { DeleteButtonProps } from "../types";
 
 /**
  * `<DeleteButton>` uses Material UI {@link https://mui.com/material-ui/api/loading-button/#main-content `<LoadingButton>`} and {@link https://mui.com/material-ui/react-dialog/#main-content `<Dialog>`} components.
@@ -126,14 +108,14 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
                 onClick={handleClickOpen}
                 disabled={data?.can === false}
                 loading={id === variables?.id && isLoading}
-                startIcon={!hideText && <DeleteOutlineIcon {...svgIconProps} />}
+                startIcon={!hideText && <DeleteOutline {...svgIconProps} />}
                 sx={{ minWidth: 0, ...sx }}
                 loadingPosition={hideText ? "center" : "start"}
                 data-testid={RefineButtonTestIds.DeleteButton}
                 {...restProps}
             >
                 {hideText ? (
-                    <DeleteOutlineIcon fontSize="small" {...svgIconProps} />
+                    <DeleteOutline fontSize="small" {...svgIconProps} />
                 ) : (
                     children ?? translate("buttons.delete", "Delete")
                 )}

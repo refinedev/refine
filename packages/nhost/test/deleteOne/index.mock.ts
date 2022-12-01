@@ -90,7 +90,7 @@ nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
 
 nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($id: uuid!) {\n  delete_posts_by_pk (id: $id) {\n    id, title\n  }\n}",
+        query: "mutation ($id: uuid!) {\n      delete_posts_by_pk (id: $id) {\n    id, title\n  }\n    }",
         variables: { id: "92bbb942-a5a7-4cd9-8232-d7aa544a0c40" },
     })
     .reply(
@@ -210,7 +210,7 @@ nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
 
 nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($id: uuid!) {\n  delete_posts_by_pk (id: $id) {\n    id\n  }\n}",
+        query: "mutation ($id: uuid!) {\n      delete_posts_by_pk (id: $id) {\n    id\n  }\n    }",
         variables: { id: "2d0c792c-4d28-4dff-a5b8-37858d0faa54" },
     })
     .reply(

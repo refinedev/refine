@@ -1,5 +1,6 @@
 import dataProvider from "../../src/index";
 import client from "../gqlClient";
+
 import "./index.mock";
 
 describe("create", () => {
@@ -9,17 +10,10 @@ describe("create", () => {
             variables: {
                 content: "Lorem ipsum dolor sit amet.",
                 title: "Lorem ipsum dolore",
-                status: "draft",
                 category_id: "317cea5e-fef3-4858-8043-4496e5c7f5ab",
             },
             metaData: {
-                fields: [
-                    "id",
-                    "title",
-                    "status",
-                    "content",
-                    { category: ["id"] },
-                ],
+                fields: ["id", "title", "content", { category: ["id"] }],
             },
         });
 
@@ -28,6 +22,5 @@ describe("create", () => {
         expect(data["category"].id).toEqual(
             "317cea5e-fef3-4858-8043-4496e5c7f5ab",
         );
-        expect(data["status"]).toEqual("draft");
     });
 });

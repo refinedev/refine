@@ -1,6 +1,7 @@
 ---
 id: show-button
 title: Show
+swizzle: true
 ---
 
 ```tsx live shared

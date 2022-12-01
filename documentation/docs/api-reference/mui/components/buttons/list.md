@@ -1,6 +1,7 @@
 ---
 id: list-button
 title: List
+swizzle: true
 ---
 
 import listButton from '@site/static/img/guides-and-concepts/components/buttons/list/list-mui.png';

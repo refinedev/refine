@@ -1,6 +1,7 @@
 ---
 id: edit
 title: Edit
+swizzle: true
 ---
 
 ```tsx live shared

@@ -11,7 +11,7 @@ import {
     Typography,
     Container,
     Card,
-    CardContent as MuiCardContent,
+    CardContent,
     BoxProps,
     CardContentProps,
     Link as MuiLink,
@@ -58,9 +58,9 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
     const translate = useTranslate();
     const { Link } = useRouterContext();
 
-    const CardContent = (
+    const Content = (
         <Card {...(contentProps ?? {})}>
-            <MuiCardContent sx={{ paddingX: "32px" }}>
+            <CardContent sx={{ paddingX: "32px" }}>
                 <Typography
                     component="h1"
                     variant="h5"
@@ -141,7 +141,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
                         )}
                     </Button>
                 </Box>
-            </MuiCardContent>
+            </CardContent>
         </Card>
     );
 
@@ -158,7 +158,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
                         height: "100vh",
                     }}
                 >
-                    {renderContent ? renderContent(CardContent) : CardContent}
+                    {renderContent ? renderContent(Content) : Content}
                 </Container>
             </Box>
         </>

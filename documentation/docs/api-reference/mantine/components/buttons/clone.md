@@ -1,6 +1,7 @@
 ---
 id: clone-button
 title: Clone
+swizzle: true
 ---
 
 ```tsx live shared

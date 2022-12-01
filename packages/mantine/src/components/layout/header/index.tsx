@@ -1,12 +1,8 @@
 import React from "react";
-import { RefineLayoutHeaderProps } from "@pankod/refine-ui-types";
 import { useGetIdentity } from "@pankod/refine-core";
-import {
-    Avatar,
-    Group,
-    Header as MantineHeader,
-    Title as MantineTitle,
-} from "@mantine/core";
+import { Avatar, Group, Header as MantineHeader, Title } from "@mantine/core";
+
+import { RefineLayoutHeaderProps } from "../types";
 
 export const Header: React.FC<RefineLayoutHeaderProps> = () => {
     const { data: user } = useGetIdentity();
@@ -16,7 +12,7 @@ export const Header: React.FC<RefineLayoutHeaderProps> = () => {
     return shouldRenderHeader ? (
         <MantineHeader height={50} py={6} px="sm">
             <Group position="right">
-                <MantineTitle order={6}>{user?.name}</MantineTitle>
+                <Title order={6}>{user?.name}</Title>
                 <Avatar src={user?.avatar} alt={user?.name} radius="xl" />
             </Group>
         </MantineHeader>

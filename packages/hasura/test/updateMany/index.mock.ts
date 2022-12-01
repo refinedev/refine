@@ -2,13 +2,13 @@ import nock from "nock";
 
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($where: posts_bool_exp!, $_set: posts_set_input!) {\n  update_posts (where: $where, _set: $_set) {\n    returning { id, title, content }\n  }\n}",
+        query: "mutation ($where: posts_bool_exp!, $_set: posts_set_input!) {\n      update_posts (where: $where, _set: $_set) {\n    returning { id, title, content }\n  }\n    }",
         variables: {
             where: {
                 id: {
                     _in: [
-                        "487524fd-1160-45c8-a28d-717f78893c37",
-                        "55c37980-05e5-45b3-8368-a2d8c2210436",
+                        "8f11b716-1d5a-4b56-831f-7aaf8c6ce36c",
+                        "92345710-b197-49ed-a00f-f52b32536acc",
                     ],
                 },
             },
@@ -18,11 +18,11 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .reply(
         200,
         [
-            "1f8b0800000000000403a58d4b0e83300c05af12794daa7c49e020dd545545135321d10405b342dcbd41ed0dbab2fd9e35b3431c68807e876da91b3e96bcd27ade05692b694a2f603dbbed3045e8c1786795192397b215dcd8e0f9a07ce44ebad179dfe9a01d344013cd58dfbfccc8c79cb9ac79c88930516dae38b3882b962d112b75bc19d2058e86fd4cd65654e70517166d353d35f7ba3d75d107a5a430bafdcb743f8ee303bd0e6cdafe000000",
+            "1f8b08000000000004038d8d316ec3300c45af22708e0acbb224db5b7a840e5d8aa0a0252a15922881444f86ef1e05e8d0b1c3073ff108be0d0232c2bcc1fa688dbe1ff7caf5b517e2b5e494cf2066f1b5410a30c318955a9cb252058372588c95a356513ac4387aeb495b0f07e0c4576ae758437ca56288c3d837e2ef992973639f7415812a9535b3286ddc04f11bec07f1eb9a7a3d18a73ab9a8c9c961a220b1eba28ca65f746fb445ffd7753cb7bfe29dcaa5fea442e263ad9cbc9becbfaca77ddf9fec0c2fd20c010000",
         ],
         [
             "Date",
-            "Tue, 19 Oct 2021 13:00:38 GMT",
+            "Wed, 30 Nov 2022 12:04:29 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Transfer-Encoding",
@@ -30,31 +30,39 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Connection",
             "close",
             "x-request-id",
-            "0c952a8e38c209c55da473e874af3fdc",
+            "1da3c37bb1c2ae89726087499a30bd5d",
             "Content-Encoding",
             "gzip",
-            "Strict-Transport-Security",
-            "max-age=31536000; includeSubDomains",
             "CF-Cache-Status",
             "DYNAMIC",
-            "Expect-CT",
-            'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+            "Content-Security-Policy",
+            "upgrade-insecure-requests",
+            "Referrer-Policy",
+            "strict-origin-when-cross-origin",
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-Frame-Options",
+            "SAMEORIGIN",
+            "X-XSS-Protection",
+            "0",
             "Server",
             "cloudflare",
             "CF-RAY",
-            "6a0a30ba4c535481-IST",
+            "7723721b298f9b83-FRA",
         ],
     );
 
 nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($where: posts_bool_exp!, $_set: posts_set_input!) {\n  update_posts (where: $where, _set: $_set) {\n    returning { id }\n  }\n}",
+        query: "mutation ($where: posts_bool_exp!, $_set: posts_set_input!) {\n      update_posts (where: $where, _set: $_set) {\n    returning { id }\n  }\n    }",
         variables: {
             where: {
                 id: {
                     _in: [
-                        "487524fd-1160-45c8-a28d-717f78893c37",
-                        "55c37980-05e5-45b3-8368-a2d8c2210436",
+                        "8f11b716-1d5a-4b56-831f-7aaf8c6ce36c",
+                        "92345710-b197-49ed-a00f-f52b32536acc",
                     ],
                 },
             },
@@ -64,11 +72,11 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
     .reply(
         200,
         [
-            "1f8b08000000000004032d8bcb0ac32010007f45f6dc055fab1b7f259462d5945cd2909893f8ef35d0db0ccc34c8b146080dae7d5079eddfb39eb71fa55ec7b66e1f1041cc0dd60c012c7bd276c9a8949368293146cd19bdf28b679e4c321efa43fc73a2e1134b945468e46f836cdcfd644e5a2b698d83feecbdff00f6692c0888000000",
+            "1f8b08000000000004032dcacb0a83301040d15f915977209377fc152965f22a6eac685c85fc7b2d74772f9c0e991bc3dce1daef2aaffd73b6f3f74769d7b1addb1ba6795a3aac1966f095283ab248d930ea682c7a45151d73f5c9a6a26c82f198fe3c48a58d23819182431d4a4616a26235322a6994e574f3e718e30b5ed7ec1888000000",
         ],
         [
             "Date",
-            "Tue, 19 Oct 2021 13:03:07 GMT",
+            "Wed, 30 Nov 2022 12:05:01 GMT",
             "Content-Type",
             "application/json; charset=utf-8",
             "Transfer-Encoding",
@@ -76,64 +84,26 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
             "Connection",
             "close",
             "x-request-id",
-            "58639b0036af33e1a8fbb73cf73234fc",
+            "cfb64f6437b9a814808f2634cba17359",
             "Content-Encoding",
             "gzip",
-            "Strict-Transport-Security",
-            "max-age=31536000; includeSubDomains",
             "CF-Cache-Status",
             "DYNAMIC",
-            "Expect-CT",
-            'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+            "Content-Security-Policy",
+            "upgrade-insecure-requests",
+            "Referrer-Policy",
+            "strict-origin-when-cross-origin",
+            "Strict-Transport-Security",
+            "max-age=31536000; includeSubDomains",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-Frame-Options",
+            "SAMEORIGIN",
+            "X-XSS-Protection",
+            "0",
             "Server",
             "cloudflare",
             "CF-RAY",
-            "6a0a345b2cdd5488-IST",
-        ],
-    );
-
-nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
-    .post("/v1/graphql", {
-        query: "mutation ($where: posts_bool_exp!, $_set: posts_set_input!) {\n  update_posts (where: $where, _set: $_set) {\n    returning { id }\n  }\n}",
-        variables: {
-            where: {
-                id: {
-                    _in: [
-                        "487524fd-1160-45c8-a28d-717f78893c37",
-                        "55c37980-05e5-45b3-8368-a2d8c2210436",
-                    ],
-                },
-            },
-            _set: { title: "updated-foo-1", content: "updated-bar-1" },
-        },
-    })
-    .reply(
-        200,
-        [
-            "1f8b08000000000004032d8bcb0ac32010007f45f6dc055fab1b7f259462d5945cd2909893f8ef35d0db0ccc34c8b146080dae7d5079eddfb39eb71fa55ec7b66e1f1041cc0dd60c012c7bd276c9a8949368293146cd19bdf28b679e4c321efa43fc73a2e1134b945468e46f836cdcfd644e5a2b698d83feecbdff00f6692c0888000000",
-        ],
-        [
-            "Date",
-            "Wed, 20 Oct 2021 08:44:31 GMT",
-            "Content-Type",
-            "application/json; charset=utf-8",
-            "Transfer-Encoding",
-            "chunked",
-            "Connection",
-            "close",
-            "x-request-id",
-            "c977780342afaba2339bc77459d0c3b0",
-            "Content-Encoding",
-            "gzip",
-            "Strict-Transport-Security",
-            "max-age=31536000; includeSubDomains",
-            "CF-Cache-Status",
-            "DYNAMIC",
-            "Expect-CT",
-            'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
-            "Server",
-            "cloudflare",
-            "CF-RAY",
-            "6a10f6e91c5d5482-IST",
+            "772372e36fe0bb7a-FRA",
         ],
     );

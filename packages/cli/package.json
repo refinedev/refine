@@ -1,13 +1,13 @@
 {
     "name": "@pankod/refine-cli",
-    "version": "1.4.0",
+    "version": "1.7.0",
     "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
     "private": false,
     "main": "dist/index.js",
     "module": "dist/esm/index.js",
     "typings": "dist/index.d.ts",
     "bin": {
-        "refine": "./dist/index.js"
+        "refine": "./dist/cli.js"
     },
     "scripts": {
         "start": "tsup --watch --format esm,cjs,iife --legacy-output",
@@ -16,7 +16,9 @@
         "prepare": "npm run build"
     },
     "devDependencies": {
+        "@types/inquirer-autocomplete-prompt": "^2.0.0",
         "@esbuild-plugins/node-resolve": "^0.1.4",
+        "@types/dedent": "^0.7.0",
         "@types/figlet": "^1.5.5",
         "@types/envinfo": "^7.8.1",
         "@types/fs-extra": "^9.0.13",
@@ -31,6 +33,10 @@
         "typescript": "^4.7.4"
     },
     "dependencies": {
+        "prettier": "^2.7.1",
+        "inquirer-autocomplete-prompt": "^2.0.0",
+        "dedent": "^0.7.0",
+        "globby": "^11.1.0",
         "figlet": "^1.5.2",
         "chalk": "^4.1.2",
         "commander": "9.4.1",
@@ -42,6 +48,7 @@
         "handlebars": "^4.7.7",
         "ink": "^3.2.0",
         "ink-table": "^3.0.0",
+        "ink-markdown": "^1.0.1",
         "inquirer": "^8.2.5",
         "jscodeshift": "^0.14.0",
         "node-env-type": "^0.0.8",

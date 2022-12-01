@@ -1,7 +1,8 @@
 import React from "react";
-import { RefineLayoutHeaderProps } from "@pankod/refine-ui-types";
 import { useGetIdentity } from "@pankod/refine-core";
 import { Box, Avatar, Text, HStack } from "@chakra-ui/react";
+
+import { RefineLayoutHeaderProps } from "../types";
 
 export const Header: React.FC<RefineLayoutHeaderProps> = () => {
     const { data: user } = useGetIdentity();

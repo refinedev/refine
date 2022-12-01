@@ -7,8 +7,8 @@ describe("updateMany", () => {
         const { data } = await dataProvider(client).updateMany!({
             resource: "posts",
             ids: [
-                "487524fd-1160-45c8-a28d-717f78893c37",
-                "55c37980-05e5-45b3-8368-a2d8c2210436",
+                "8f11b716-1d5a-4b56-831f-7aaf8c6ce36c",
+                "92345710-b197-49ed-a00f-f52b32536acc",
             ],
             variables: {
                 content: "Vel deserunt rerum et.",
@@ -18,12 +18,12 @@ describe("updateMany", () => {
             },
         });
 
-        expect(data[0]["id"]).toEqual("487524fd-1160-45c8-a28d-717f78893c37");
-        expect(data[0]["title"]).toEqual("updated-foo-1");
+        expect(data[0]["id"]).toEqual("8f11b716-1d5a-4b56-831f-7aaf8c6ce36c");
+        expect(data[0]["title"]).toEqual("asdfasdfsadf482");
         expect(data[0]["content"]).toEqual("Vel deserunt rerum et.");
 
-        expect(data[1]["id"]).toEqual("55c37980-05e5-45b3-8368-a2d8c2210436");
-        expect(data[1]["title"]).toEqual("updated-foo-1");
+        expect(data[1]["id"]).toEqual("92345710-b197-49ed-a00f-f52b32536acc");
+        expect(data[1]["title"]).toEqual("Agent Berkshire Rustic796");
         expect(data[1]["content"]).toEqual("Vel deserunt rerum et.");
     });
 
@@ -31,8 +31,8 @@ describe("updateMany", () => {
         const { data } = await dataProvider(client).updateMany!({
             resource: "posts",
             ids: [
-                "487524fd-1160-45c8-a28d-717f78893c37",
-                "55c37980-05e5-45b3-8368-a2d8c2210436",
+                "8f11b716-1d5a-4b56-831f-7aaf8c6ce36c",
+                "92345710-b197-49ed-a00f-f52b32536acc",
             ],
             variables: {
                 title: "updated-foo-1",
@@ -40,7 +40,7 @@ describe("updateMany", () => {
             },
         });
 
-        expect(data[0]["id"]).toEqual("487524fd-1160-45c8-a28d-717f78893c37");
-        expect(data[1]["id"]).toEqual("55c37980-05e5-45b3-8368-a2d8c2210436");
+        expect(data[0]["id"]).toEqual("8f11b716-1d5a-4b56-831f-7aaf8c6ce36c");
+        expect(data[1]["id"]).toEqual("92345710-b197-49ed-a00f-f52b32536acc");
     });
 });

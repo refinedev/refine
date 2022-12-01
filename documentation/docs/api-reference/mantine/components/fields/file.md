@@ -1,6 +1,7 @@
 ---
 id: file
 title: File
+swizzle: true
 ---
 
 ```tsx live shared

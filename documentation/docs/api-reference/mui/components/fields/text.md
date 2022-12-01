@@ -1,6 +1,7 @@
 ---
 id: text
 title: Text
+swizzle: true
 ---
 
 import textField from '@site/static/img/guides-and-concepts/fields/text/textFieldMui.png';

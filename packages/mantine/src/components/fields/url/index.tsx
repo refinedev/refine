@@ -1,15 +1,7 @@
 import React from "react";
+import { Anchor } from "@mantine/core";
 
-import { RefineFieldUrlProps } from "@pankod/refine-ui-types";
-import { TextProps, Anchor, AnchorProps } from "@mantine/core";
-
-export type UrlFieldProps = RefineFieldUrlProps<
-    string | undefined,
-    AnchorProps & TextProps,
-    {
-        title?: string;
-    }
->;
+import { UrlFieldProps } from "../types";
 
 /**
  * This field is used to display email values. It uses the {@link https://mantine.dev/core/text/  `<Text>` }

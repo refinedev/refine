@@ -1,6 +1,7 @@
 ---
 id: markdown
 title: Markdown
+swizzle: true
 ---
 
 ```tsx live shared

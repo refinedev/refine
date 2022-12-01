@@ -1,5 +1,47 @@
 # create-refine-app
 
+## 1.3.9
+
+### Patch Changes
+
+-   [#3105](https://github.com/refinedev/refine/pull/3105) [`727e64dd50d`](https://github.com/refinedev/refine/commit/727e64dd50d1f51dc9e2d4da03c24a7afbbf2d8e) Thanks [@omeraplak](https://github.com/omeraplak)! - bump superplate version to 1.10.2
+
+## 1.3.8
+
+### Patch Changes
+
+-   [#3105](https://github.com/refinedev/refine/pull/3105) [`727e64dd50d`](https://github.com/refinedev/refine/commit/727e64dd50d1f51dc9e2d4da03c24a7afbbf2d8e) Thanks [@omeraplak](https://github.com/omeraplak)! - bump superplate version to 1.10.2
+
+## 1.3.7
+
+### Patch Changes
+
+-   [`fdd9c7f9d7c`](https://github.com/refinedev/refine/commit/fdd9c7f9d7c5ec1af6f95d2716a721968c86cfd7) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed superplate version
+
+## 1.3.6
+
+### Patch Changes
+
+-   [`fdd9c7f9d7c`](https://github.com/refinedev/refine/commit/fdd9c7f9d7c5ec1af6f95d2716a721968c86cfd7) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed superplate version
+
+## 1.3.5
+
+### Patch Changes
+
+-   [#3094](https://github.com/refinedev/refine/pull/3094) [`de043f7a8a7`](https://github.com/refinedev/refine/commit/de043f7a8a7c06684502745dfd40373351bd535a) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed superplate version
+
+## 1.3.4
+
+### Patch Changes
+
+-   [#3094](https://github.com/refinedev/refine/pull/3094) [`de043f7a8a7`](https://github.com/refinedev/refine/commit/de043f7a8a7c06684502745dfd40373351bd535a) Thanks [@omeraplak](https://github.com/omeraplak)! - Upgrade superplate-cli version
+
+## 1.3.3
+
+### Patch Changes
+
+-   [#3094](https://github.com/refinedev/refine/pull/3094) [`de043f7a8a7`](https://github.com/refinedev/refine/commit/de043f7a8a7c06684502745dfd40373351bd535a) Thanks [@omeraplak](https://github.com/omeraplak)! - Upgrade superplate-cli version
+
 ## 1.3.2
 
 ### Patch Changes

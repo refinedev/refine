@@ -1,8 +1,8 @@
-import { readFileSync, existsSync } from "fs-extra";
+import { readFileSync, existsSync, readJSON, pathExists } from "fs-extra";
+import globby from "globby";
 import execa from "execa";
 import preferredPM from "preferred-pm";
 import spinner from "@utils/spinner";
-import chalk from "chalk";
 
 // TODO: Add package.json type
 export const getPackageJson = (): any => {
@@ -59,6 +59,44 @@ export const getInstalledRefinePackages = async () => {
     } catch (error) {
         return Promise.reject(error);
     }
+};
+
+export const getInstalledRefinePackagesFromNodeModules = async () => {
+    try {
+        const packageDirsFromModules = await globby(
+            "node_modules/@pankod/refine-*",
+            {
+                onlyDirectories: true,
+            },
+        );
+
+        const refinePackages: Array<{ name: string; path: string }> = [];
+
+        await Promise.all(
+            packageDirsFromModules.map(async (packageDir) => {
+                const hasPackageJson = await pathExists(
+                    `${packageDir}/package.json`,
+                );
+                if (hasPackageJson) {
+                    const packageJson = await readJSON(
+                        `${packageDir}/package.json`,
+                    );
+
+                    refinePackages.push({
+                        name: packageJson.name,
+                        path: packageDir,
+                    });
+                }
+            }),
+        );
+
+        return refinePackages;
+    } catch (err) {
+        return [];
+    }
+};
+export const isPackageHaveRefineConfig = async (packagePath: string) => {
+    return await pathExists(`${packagePath}/refine.config.js`);
 };
 
 export const pmCommands = {

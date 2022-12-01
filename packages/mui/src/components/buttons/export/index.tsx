@@ -1,19 +1,10 @@
 import React from "react";
 import { useTranslate } from "@pankod/refine-core";
-import {
-    RefineExportButtonProps,
-    RefineButtonTestIds,
-} from "@pankod/refine-ui-types";
-import ImportExportOutlinedIcon from "@mui/icons-material/ImportExportOutlined";
-import { LoadingButton, LoadingButtonProps } from "@mui/lab";
-import { SvgIconProps } from "@mui/material";
+import { RefineButtonTestIds } from "@pankod/refine-ui-types";
+import { LoadingButton } from "@mui/lab";
+import { ImportExportOutlined } from "@mui/icons-material";
 
-export type ExportButtonProps = RefineExportButtonProps<
-    LoadingButtonProps,
-    {
-        svgIconProps?: SvgIconProps;
-    }
->;
+import { ExportButtonProps } from "../types";
 
 /**
  * `<ExportButton>` uses Material UI {@link https://mui.com/material-ui/api/loading-button/#main-content `<LoadingButton>`} with a default export icon and a default text with "Export".
@@ -36,16 +27,14 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
         <LoadingButton
             {...rest}
             loading={loading}
-            startIcon={
-                !hideText && <ImportExportOutlinedIcon {...svgIconProps} />
-            }
+            startIcon={!hideText && <ImportExportOutlined {...svgIconProps} />}
             loadingPosition={hideText ? "center" : "start"}
             sx={{ minWidth: 0, ...sx }}
             data-testid={RefineButtonTestIds.ExportButton}
             {...restProps}
         >
             {hideText ? (
-                <ImportExportOutlinedIcon fontSize="small" {...svgIconProps} />
+                <ImportExportOutlined fontSize="small" {...svgIconProps} />
             ) : (
                 children ?? translate("buttons.export", "Export")
             )}

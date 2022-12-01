@@ -90,7 +90,7 @@ nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
 
 nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($pk_columns: posts_pk_columns_input!, $_set: posts_set_input!) {\n  update_posts_by_pk (pk_columns: $pk_columns, _set: $_set) {\n    id, title, content, category { id }\n  }\n}",
+        query: "mutation ($pk_columns: posts_pk_columns_input!, $_set: posts_set_input!) {\n      update_posts_by_pk (pk_columns: $pk_columns, _set: $_set) {\n    id, title, content, category { id }\n  }\n    }",
         variables: {
             pk_columns: { id: "6a117e72-9446-4413-9760-30d66b9a27dc" },
             _set: {
@@ -217,7 +217,7 @@ nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
 
 nock("https://oxhhlmqsjahbyedrmvll.nhost.run:443", { encodedQueryParams: true })
     .post("/v1/graphql", {
-        query: "mutation ($pk_columns: posts_pk_columns_input!, $_set: posts_set_input!) {\n  update_posts_by_pk (pk_columns: $pk_columns, _set: $_set) {\n    id\n  }\n}",
+        query: "mutation ($pk_columns: posts_pk_columns_input!, $_set: posts_set_input!) {\n      update_posts_by_pk (pk_columns: $pk_columns, _set: $_set) {\n    id\n  }\n    }",
         variables: {
             pk_columns: { id: "eccfaeb9-7fc7-45f6-b546-cb6e14109087" },
             _set: { title: "Updated Title" },
