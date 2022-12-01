@@ -63,7 +63,7 @@ For **refine**, component swizzling means providing an alternative component tha
 
 You can think of it as [Monkey Patching](https://en.wikipedia.org/wiki/Monkey_patch) for React components, which allows you to change the default implementation. Gatsby has a similar feature called [theme shadowing](https://www.gatsbyjs.com/docs/how-to/plugins-and-themes/shadowing/).
 
-**Thanks to the [Docusaurus](https://docusaurus.io) team for this great feature 🙏🏻 We hadn't heard of swizzle before and we are very happy to launch it with refine. 🥳**
+**Thanks to the [Docusaurus](https://docusaurus.io) team for inspiring us for this feature.**
 
 </details>
 
