@@ -629,6 +629,7 @@ module.exports = {
                         slug: "/packages/documentation",
                     },
                     items: [
+                        "packages/documentation/cli",
                         "packages/documentation/command-palette",
                         "packages/documentation/react-table",
                         {
