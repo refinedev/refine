@@ -33,8 +33,26 @@ module.exports = {
                         dest: "./rest-data-provider/utils/index.ts",
                     },
                 ],
-                message:
-                    "**`Info`**: You will also need to add `axios` to your project dependencies.",
+                message: `
+                **\`Warning:\`**
+                You will also need to add \`axios\` to your project dependencies.
+
+                **\`Usage\`**
+
+                \`\`\`
+                // title: App.tsx
+                import { dataProvider } from "./rest-data-provider";
+
+                const App = () => {
+                    return (
+                        <Refine
+                            dataProvider={dataProvider}
+                            /* ... */
+                        />
+                    );
+                }
+                \`\`\`
+                `,
             },
         ],
         transform: (content) => {
