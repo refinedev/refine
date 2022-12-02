@@ -10,7 +10,7 @@ import {
 } from "@pankod/refine-core";
 import type { ResourceRouterParams } from "@pankod/refine-core";
 
-export function NextAppRouteComponent(
+export function NextRouteComponent(
     this: { initialRoute?: string },
     props: any,
 ): React.ReactNode {
