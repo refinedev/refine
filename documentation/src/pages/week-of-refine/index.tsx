@@ -12,6 +12,7 @@ import {
 import LinkButton from "../../components/link-button";
 import GradientButton from "../../components/gradient-button";
 import { Tweet } from "react-twitter-widgets";
+import * as styles from "./style.module.css";
 
 const timeline = [
     {
@@ -123,10 +124,10 @@ const RefineWeek = () => {
             <Head title="Week of Refine | refine">
                 <html data-page="week-of-refine" data-customized="true" />
             </Head>
-            <div className="pt-12 pb-24 lg:pb-48 lg:pt-24 relative px-4 lg:px-0">
-                <div className="font-montserrat flex flex-col mx-auto max-w-[904px]">
-                    <div className="flex flex-col md:flex-row h-auto lg:h-[432px]">
-                        <div className="flex flex-col justify-center items-center lg:items-start">
+            <div className="pt-0 pb-24 lg:pb-48 md:pt-12 lg:pt-24 relative px-2 md:px-4 lg:px-0">
+                <div className="font-montserrat flex flex-col">
+                    <div className="flex flex-col-reverse md:flex-row h-auto lg:h-[432px] max-w-[904px] mx-auto">
+                        <div className="flex flex-col justify-center items-center md:items-start">
                             <div className="flex items-center gap-2">
                                 <img
                                     src="/week-of-refine/refine-week-calendar.png"
@@ -139,14 +140,14 @@ const RefineWeek = () => {
                                     className="block w-[160px] h-[46px]"
                                 />
                             </div>
-                            <h2 className="font-montserrat text-[#242436] text-[28px] leading-9 font-medium mt-8 mb-0 max-w-[384px]">
+                            <h2 className="font-montserrat text-[#242436] text-xl lg:text-[28px] lg:leading-9 font-medium mt-8 mb-0 max-w-[384px] text-center md:text-start">
                                 Stay tuned all week and learn the basics of
                                 creating a CRUD app via{" "}
                                 <strong className="font-bold">refine</strong> &{" "}
                                 <strong className="font-bold">supabase</strong>{" "}
                                 on a fun project in a week.
                             </h2>
-                            <div className="flex flex-wrap gap-2 mt-4">
+                            <div className="flex flex-wrap gap-[2px] md:gap-2 mt-4">
                                 <GradientButton onClick={goToTimeline}>
                                     Join Event
                                 </GradientButton>
@@ -168,7 +169,7 @@ const RefineWeek = () => {
                                 </LinkButton>
                             </div>
                         </div>
-                        <div className="flex-1 lg:translate-x-[80px] lg:translate-y-[-64px] min-h-[318px]">
+                        <div className="flex-1 lg:translate-x-[80px] lg:translate-y-[-22px] min-h-[318px]">
                             <img
                                 src="/week-of-refine/refine-week-pixel-logo.png"
                                 alt="Refine Pixel app logo"
@@ -177,7 +178,7 @@ const RefineWeek = () => {
                         </div>
                     </div>
 
-                    <div className="mt-8">
+                    <div className="mt-16 md:mt-8">
                         <div
                             ref={timelineRef}
                             className="flex items-center justify-center"
@@ -188,7 +189,7 @@ const RefineWeek = () => {
                             </h2>
                         </div>
 
-                        <div className="flex flex-col items-center gap-[2px] mt-8">
+                        <div className="flex flex-col items-center gap-[2px] mt-8 pr-1 sm:pr-0">
                             {timeline.map((item, index) => {
                                 const { title, description, date, link } = item;
 
@@ -201,7 +202,7 @@ const RefineWeek = () => {
                                 return (
                                     <div
                                         key={index}
-                                        className="flex w-[384px] h-[285px]"
+                                        className="flex max-w-[384px] h-[285px]"
                                     >
                                         <div className="flex flex-col items-center">
                                             <div
@@ -275,7 +276,7 @@ const RefineWeek = () => {
                         </div>
                     </div>
 
-                    <div className="flex flex-col items-center justify-center mt-24 max-w-[904px] mx-auto">
+                    <div className="flex flex-col items-center justify-center mt-24 mx-auto max-w-[1024px]">
                         <div className="flex items-center justify-center">
                             <div className="flex items-center justify-center w-[24px] h-[24px] mr-4 bg-[#00AAEC] rounded-full">
                                 <TwitterIcon
@@ -293,9 +294,13 @@ const RefineWeek = () => {
                                 </span>
                             </h2>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 mt-8">
+                        <div className="grid grid-cols-1 mx-6 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8 min-w-full">
                             {tweetIDs.map((id) => {
-                                return <Tweet key={id} tweetId={id} />;
+                                return (
+                                    <div key={id} className="w-full">
+                                        <Tweet tweetId={id} />
+                                    </div>
+                                );
                             })}
                         </div>
                     </div>
@@ -307,7 +312,7 @@ const RefineWeek = () => {
                                 WIN SWAG
                             </h2>
                         </div>
-                        <p className="font-montserrat font-medium text-xs text-[#242436] text-center mb-0 mt-8">
+                        <p className="font-montserrat font-medium text-xs text-[#242436] text-center mb-0 mt-8 px-2 sm:px-0">
                             If you build something cool during{" "}
                             <strong className="font-bold">
                                 refine WEEK#1,
