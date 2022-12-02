@@ -1,4 +1,4 @@
-import { CardProps, PageHeaderProps, SpaceProps } from "@components/antd";
+import { CardProps, SpaceProps } from "@components/antd";
 import {
     CreateButtonProps,
     DeleteButtonProps,
@@ -10,6 +10,7 @@ import {
     RefineCrudListProps,
     RefineCrudShowProps,
 } from "@pankod/refine-ui-types";
+import { PageHeaderProps } from "@components/pageHeader";
 
 export type CreateProps = RefineCrudCreateProps<
     SaveButtonProps,

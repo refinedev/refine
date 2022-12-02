@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Space, PageHeader, Spin } from "antd";
+import { Card, Space, Spin } from "antd";
 import {
     useNavigation,
     useResourceWithRoute,
@@ -10,7 +10,7 @@ import {
     useRefineContext,
 } from "@pankod/refine-core";
 
-import { Breadcrumb, CreateProps, SaveButton } from "@components";
+import { Breadcrumb, CreateProps, SaveButton, PageHeader } from "@components";
 
 /**
  * `<Create>` provides us a layout to display the page.

@@ -1,5 +1,5 @@
 import React from "react";
-import { PageHeader, Space } from "antd";
+import { Space } from "antd";
 import {
     useResourceWithRoute,
     useRouterContext,
@@ -9,7 +9,7 @@ import {
     useRefineContext,
 } from "@pankod/refine-core";
 
-import { Breadcrumb, CreateButton, ListProps } from "@components";
+import { Breadcrumb, CreateButton, ListProps, PageHeader } from "@components";
 
 /**
  * `<List>` provides us a layout for displaying the page.

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Card, Space, PageHeader, Spin } from "antd";
+import { Card, Space, Spin } from "antd";
 import {
     useResourceWithRoute,
     useMutationMode,
@@ -19,6 +19,7 @@ import {
     SaveButton,
     Breadcrumb,
     EditProps,
+    PageHeader,
 } from "@components";
 
 /**

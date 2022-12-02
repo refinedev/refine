@@ -16,3 +16,4 @@ export * from "./fields";
 export * from "./table";
 export * from "./pages";
 export * from "./breadcrumb";
+export * from "./pageHeader";

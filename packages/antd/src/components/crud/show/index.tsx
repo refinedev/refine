@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, PageHeader, Space, Spin } from "antd";
+import { Card, Space, Spin } from "antd";
 import {
     useNavigation,
     useResourceWithRoute,
@@ -17,6 +17,7 @@ import {
     ListButton,
     Breadcrumb,
     ShowProps,
+    PageHeader,
 } from "@components";
 
 /**
