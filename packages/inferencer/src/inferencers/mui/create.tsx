@@ -13,6 +13,7 @@ import {
     isIDKey,
     dotAccessor,
     noOp,
+    getVariableName,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -59,11 +60,10 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
                     imports.push(["useAutocomplete", "@pankod/refine-mui"]);
 
                     return `
-                    const { autocompleteProps: ${
-                        field.multiple
-                            ? toPlural(field.resource.name)
-                            : toSingular(field.resource.name)
-                    }AutocompleteProps } =
+                    const { autocompleteProps: ${getVariableName(
+                        field.key,
+                        "AutocompleteProps",
+                    )} } =
                     useAutocomplete({
                         resource: "${field.resource.name}",
                     });
@@ -79,11 +79,10 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
                     ["Autocomplete", "@pankod/refine-mui"],
                     ["Controller", "@pankod/refine-react-hook-form"],
                 );
-                const variableName = `${
-                    field.multiple
-                        ? toPlural(field.resource.name)
-                        : toSingular(field.resource.name)
-                }AutocompleteProps`;
+                const variableName = getVariableName(
+                    field.key,
+                    "AutocompleteProps",
+                );
 
                 const optionLabelProperty = field.relationInfer
                     ? field.relationInfer.accessor

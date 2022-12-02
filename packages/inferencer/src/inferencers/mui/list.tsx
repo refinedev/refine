@@ -10,6 +10,7 @@ import {
     toPlural,
     isIDKey,
     noOp,
+    getVariableName,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -73,11 +74,13 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                     }
 
                     return `
-                    const { data: ${toPlural(
-                        field.resource.name,
-                    )}Data, isLoading: ${toPlural(
-                        field.resource.name,
-                    )}IsLoading } =
+                    const { data: ${getVariableName(
+                        field.key,
+                        "Data",
+                    )}, isLoading: ${getVariableName(
+                        field.key,
+                        "IsLoading",
+                    )} } =
                     useMany({
                         resource: "${field.resource.name}",
                         ids: ${idsString},
@@ -94,7 +97,7 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
         const relationVariableNames = relationFields
             ?.map((field) => {
                 if (field && field.resource) {
-                    return `${toPlural(field.resource.name)}Data?.data`;
+                    return `${getVariableName(field.key, "Data")}?.data`;
                 }
                 return undefined;
             })
@@ -102,12 +105,14 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
 
         const renderRelationFields = (field: InferField) => {
             if (field.relation && field.resource) {
-                const variableName = `${toPlural(
-                    field.resource.name,
-                )}Data?.data`;
-                const variableIsLoading = `${toPlural(
-                    field.resource.name,
-                )}IsLoading`;
+                const variableName = `${getVariableName(
+                    field.key,
+                    "Data",
+                )}?.data`;
+                const variableIsLoading = getVariableName(
+                    field.key,
+                    "IsLoading",
+                );
 
                 if (Array.isArray(field.accessor)) {
                     // not handled - not possible case
