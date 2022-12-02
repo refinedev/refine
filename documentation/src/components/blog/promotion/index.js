@@ -26,7 +26,7 @@ const PromotionBanner = ({ image, title, description }) => {
 
             {renderDescription}
             <div>
-                <a href="https://github.com/refinedev/refine">
+                <a href="https://github.com/refinedev/refine" target="_blank">
                     <img
                         src={image ?? "/img/generic_banner.png"}
                         alt="refine blog logo"

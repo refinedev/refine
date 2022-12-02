@@ -74,7 +74,7 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 **refine** seamlessly works with any **custom design** or **UI framework** that you favor. For convenience, it ships with ready-made integrations for [Ant Design System](https://ant.design/), [Material UI](https://mui.com/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/).
 
 ## Use cases
-**refine** shines on *data-intensive⚡* applications like **admin panels**, **dashboards** and **internal tools**. Thanks to the built-in **SSR support**, **refine** can also power *customer-facing* applications like *storefronts*.
+**refine** shines on *data-intensive⚡* applications like **admin panels**, **dashboards** and **internal tools**. Thanks to the built-in **SSR support**, **refine** can also power *customer-facing* applications like **storefronts**.
 
 You can take a look at some live examples that can be built using **refine** from scratch:
 
@@ -137,7 +137,7 @@ The fastest way to get started with **refine** is by using the `create refine-ap
 Run the following command to create a new **refine** project configured with  [Ant Design System](https://ant.design/) as the default UI framework:
 
 ```
-npm create refine-app -- --preset refine-antd my-project
+npm create refine-app -- -o refine-antd
 ```
 
 Once the setup is complete, navigate to the project folder and start your project with:
@@ -146,18 +146,21 @@ Once the setup is complete, navigate to the project folder and start your projec
 npm run dev
 ```
 
+<br/>
+
 Your **refine** application will be accessible at [http://localhost:3000](http://localhost:3000):
+
+
+
 <a href="http://localhost:3000">![Welcome on board](https://github.com/refinedev/refine/blob/master/documentation/static/img/welcome-on-board.png?raw=true)</a>
+
+<br/>
+
 Let's consume a public `fake REST API` and add two resources (*posts*, *categories*) to our project. Replace the contents of `src/App.tsx` with the following code:
 
 ```tsx title="src/App.tsx"
-
-import { Refine, useMany } from "@pankod/refine-core";
+import { Refine } from "@pankod/refine-core";
 import {
-    useTable,
-    List,
-    Table,
-    DateField,
     Layout,
     ReadyPage,
     notificationProvider,
@@ -166,6 +169,13 @@ import {
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
+import {
+    AntdListInferencer,
+    AntdShowInferencer,
+    AntdCreateInferencer,
+    AntdEditInferencer,
+} from '@pankod/refine-inferencer/antd';
+
 import "@pankod/refine-antd/dist/styles.min.css";
 
 const App: React.FC = () => {
@@ -173,72 +183,48 @@ const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            resources={[{ name: "posts", list: PostList }]}
             Layout={Layout}
             ReadyPage={ReadyPage}
             notificationProvider={notificationProvider}
             catchAll={<ErrorComponent />}
+            resources={[
+                {
+                    name: 'posts',
+                    list: AntdListInferencer,
+                    show: AntdShowInferencer,
+                    create: AntdCreateInferencer,
+                    edit: AntdEditInferencer,
+                    canDelete: true,
+                },
+                {
+                    name: 'categories',
+                    list: AntdListInferencer,
+                    show: AntdShowInferencer,
+                }
+            ]}
         />
     );
-};
-
-export const PostList: React.FC = () => {
-    const { tableProps } = useTable<IPost>();
-
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-
-    const { data, isLoading } = useMany<ICategory>({
-        resource: "categories",
-        ids: categoryIds,
-        queryOptions: {
-            enabled: categoryIds.length > 0,
-        },
-    });
-
-    return (
-        <List>
-            <Table<IPost> {...tableProps} rowKey="id">
-                <Table.Column dataIndex="title" title="title" />
-                <Table.Column
-                    dataIndex={["category", "id"]}
-                    title="category"
-                    render={(value: number) => {
-                        if (isLoading) {
-                            return "loading...";
-                        }
-
-                        return data?.data.find(
-                            (item: ICategory) => item.id === value,
-                        )?.title;
-                    }}
-                />
-                <Table.Column
-                    dataIndex="createdAt"
-                    title="createdAt"
-                    render={(value) => <DateField format="LLL" value={value} />}
-                />
-            </Table>
-        </List>
-    );
-};
+};   
 
 export default App;
-
-interface IPost {
-  title: string;
-  createdAt: string;
-  category: { id: number };
-}
-
-interface ICategory {
-  id: number;
-  title: string;
-}
 ```
 
+<br/>
+
+
+
+🚀  Thanks to **refine Inferencer package**, it guesses the configuration to use for the `list`, `show`, `create`, and `edit` pages based on the data fetched from the API and generates the pages automatically.  
+
+
+
 Now, you should see the output as a table populated with `post` & `category` data:
-![First example result](https://github.com/refinedev/refine/blob/master/documentation/static/img/first-example-result.png?raw=true)
+
+![First example result](https://github.com/refinedev/refine/blob/master/documentation/static/img/readme-quick-start.png?raw=true)
+
+<br/>
+
+You can get the auto-generated pages codes by clicking the `Show Code` button on each page. Afterward, simply pass the pages to the `resources` array by replacing with the Inferencer components.
+
 ## Next Steps
 
 👉 Jump to [Refine<>Ant Design Tutorial](https://refine.dev/docs/ui-frameworks/antd/tutorial/) to continue your work and turn the example into a full-blown CRUD application.
