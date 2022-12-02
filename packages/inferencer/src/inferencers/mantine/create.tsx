@@ -32,7 +32,10 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
     renderer: ({ resource, fields }) => {
-        const COMPONENT_NAME = componentName(resource.name, "create");
+        const COMPONENT_NAME = componentName(
+            resource.label ?? resource.name,
+            "create",
+        );
         const imports: Array<
             [element: string, module: string, isDefaultImport?: boolean]
         > = [

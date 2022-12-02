@@ -122,7 +122,10 @@ export const createInferencer: CreateInferencer = ({
                             }
                             code={prepareLiveCode(
                                 code,
-                                componentName(resource.name, type),
+                                componentName(
+                                    resource.label ?? resource.name,
+                                    type,
+                                ),
                             )}
                             errorComponent={ErrorComponent}
                             additionalScope={additionalScope}

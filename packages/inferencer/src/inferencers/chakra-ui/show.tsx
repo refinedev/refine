@@ -30,7 +30,10 @@ export const ShowInferencer: InferencerResultComponent = createInferencer({
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
     renderer: ({ resource, fields }) => {
-        const COMPONENT_NAME = componentName(resource.name, "show");
+        const COMPONENT_NAME = componentName(
+            resource.label ?? resource.name,
+            "show",
+        );
         const recordName = "record";
         const imports: Array<[element: string, module: string]> = [
             ["useShow", "@pankod/refine-core"],

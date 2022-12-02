@@ -35,7 +35,10 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
     renderer: ({ resource, fields }) => {
-        const COMPONENT_NAME = componentName(resource.name, "create");
+        const COMPONENT_NAME = componentName(
+            resource.label ?? resource.name,
+            "create",
+        );
         const imports: Array<ImportElement> = [
             ["React", "react", true],
             ["IResourceComponentsProps", "@pankod/refine-core"],

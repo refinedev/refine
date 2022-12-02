@@ -28,7 +28,10 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
     renderer: ({ resource, fields }) => {
-        const COMPONENT_NAME = componentName(resource.name, "list");
+        const COMPONENT_NAME = componentName(
+            resource.label ?? resource.name,
+            "list",
+        );
         const recordName = "tableProps?.dataSource";
         const imports: Array<ImportElement> = [
             ["React", "react", true],

@@ -34,7 +34,10 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
     renderer: ({ resource, fields }) => {
-        const COMPONENT_NAME = componentName(resource.name, "edit");
+        const COMPONENT_NAME = componentName(
+            resource.label ?? resource.name,
+            "edit",
+        );
         const recordName = `${toSingular(resource.name)}Data`;
         const imports: Array<ImportElement> = [
             ["React", "react", true],

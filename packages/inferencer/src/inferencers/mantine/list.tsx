@@ -41,7 +41,10 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
     renderer: ({ resource, fields }) => {
-        const COMPONENT_NAME = componentName(resource.name, "list");
+        const COMPONENT_NAME = componentName(
+            resource.label ?? resource.name,
+            "list",
+        );
         const recordName = "tableData?.data";
         const imports: Array<[element: string, module: string]> = [
             ["IResourceComponentsProps", "@pankod/refine-core"],
