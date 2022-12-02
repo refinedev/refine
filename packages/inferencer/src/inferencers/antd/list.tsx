@@ -7,9 +7,8 @@ import {
     prettyString,
     accessor,
     printImports,
-    toPlural,
-    toSingular,
     noOp,
+    getVariableName,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -72,11 +71,13 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                     }
 
                     return `
-                    const { data: ${toPlural(
-                        field.resource.name,
-                    )}Data, isLoading: ${toPlural(
-                        field.resource.name,
-                    )}IsLoading } =
+                    const { data: ${getVariableName(
+                        field.key,
+                        "Data",
+                    )}, isLoading: ${getVariableName(
+                        field.key,
+                        "IsLoading",
+                    )} } =
                     useMany({
                         resource: "${field.resource.name}",
                         ids: ${idsString},
@@ -92,12 +93,12 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
 
         const renderRelationFields = (field: InferField) => {
             if (field.relation && field.resource) {
-                const variableName = `${toPlural(
-                    field.resource.name,
-                )}Data?.data`;
-                const variableIsLoading = `${toPlural(
-                    field.resource.name,
-                )}IsLoading`;
+                const validVariableName = getVariableName(field.key, "Data");
+                const variableName = `${validVariableName}?.data`;
+                const variableIsLoading = getVariableName(
+                    field.key,
+                    "IsLoading",
+                );
 
                 if (Array.isArray(field.accessor)) {
                     // not handled - not possible case

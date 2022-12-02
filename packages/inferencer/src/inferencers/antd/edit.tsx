@@ -8,10 +8,10 @@ import {
     prettyString,
     accessor,
     printImports,
-    toPlural,
     toSingular,
     isIDKey,
     noOp,
+    getVariableName,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -77,11 +77,10 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
                     }
 
                     return `
-                    const { selectProps: ${
-                        field.multiple
-                            ? toPlural(field.resource.name)
-                            : toSingular(field.resource.name)
-                    }SelectProps } =
+                    const { selectProps: ${getVariableName(
+                        field.key,
+                        "SelectProps",
+                    )} } =
                     useSelect({
                         resource: "${field.resource.name}",
                         defaultValue: ${val},
@@ -108,11 +107,7 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
         const renderRelationFields = (field: InferField) => {
             if (field.relation && field.resource) {
                 imports.push(["Select", "@pankod/refine-antd"]);
-                const variableName = `${
-                    field.multiple
-                        ? toPlural(field.resource.name)
-                        : toSingular(field.resource.name)
-                }SelectProps`;
+                const variableName = getVariableName(field.key, "SelectProps");
 
                 const name = field.accessor
                     ? field.multiple
