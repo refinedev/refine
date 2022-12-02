@@ -12,7 +12,6 @@ import {
 import LinkButton from "../../components/link-button";
 import GradientButton from "../../components/gradient-button";
 import { Tweet } from "react-twitter-widgets";
-import * as styles from "./style.module.css";
 
 const timeline = [
     {
