@@ -19,7 +19,7 @@
     "@pankod/refine-strapi-v4": "^3.39.0",
     "axios": "^0.26.1",
     "framer-motion": "^7.5.3",
-    "next": "^12.1.6",
+    "next": "^13.0.6",
     "next-compose-plugins": "^2.2.1",
     "nookies": "^2.5.2",
     "react": "^18.0.0",
