@@ -30,6 +30,7 @@ export type InferField = {
     resource?: IResourceItem;
     priority?: number;
     relationInfer?: InferField | null | false;
+    canRelation?: boolean;
 };
 
 export type FieldInferencer = (
