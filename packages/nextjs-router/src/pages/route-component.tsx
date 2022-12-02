@@ -9,9 +9,9 @@ import {
 } from "@pankod/refine-core";
 import type { ResourceRouterParams } from "@pankod/refine-core";
 
-import { RouterProvider } from "./routerProvider";
+import { routerProvider } from "./router-provider";
 
-const { useHistory, useLocation, useParams } = RouterProvider;
+const { useHistory, useLocation, useParams } = routerProvider;
 
 type NextRouteComponentProps = {
     initialData?: any;
