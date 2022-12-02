@@ -18,13 +18,13 @@ const timeline = [
         date: "30th October 2022",
         title: "Pilot & refine architecture",
         description: `Overview about <strong className="font-bold">refine</strong> and the app we built during the article series`,
-        link: "https://refine.dev",
+        link: null,
     },
     {
         date: "30th October 2022",
         title: "Installation of the Client App",
         description: `Bootstraping the <strong className="font-bold">refine</strong> client app with <strong className="font-bold">superplate CLI</strong> by choosing <strong className="font-bold">Ant Design</strong> as a UI framework and <strong className="font-bold">Supabase</strong> as a dataprovider`,
-        link: "https://refine.dev",
+        link: null,
     },
     {
         date: "30th October 2022",
@@ -94,9 +94,9 @@ const additionalSources = [
 
 const tweetUrl = "https://twitter.com/intent/tweet?text=%23refineweek";
 const tweetIDs = [
-    "1598232457966678016",
+    "1598580077146640384",
     "1597878371760979970",
-    "1597599491531628552",
+    "1598232457966678016",
 ];
 
 const RefineWeek = () => {
@@ -146,7 +146,7 @@ const RefineWeek = () => {
                                 <strong className="font-bold">supabase</strong>{" "}
                                 on a fun project in a week.
                             </h2>
-                            <div className="flex flex-wrap gap-[2px] md:gap-2 mt-4">
+                            <div className="flex flex-col sm:flex-row gap-2 mt-4">
                                 <GradientButton onClick={goToTimeline}>
                                     Join Event
                                 </GradientButton>
@@ -168,7 +168,7 @@ const RefineWeek = () => {
                                 </LinkButton>
                             </div>
                         </div>
-                        <div className="flex-1 lg:translate-x-[80px] lg:translate-y-[-22px] min-h-[318px]">
+                        <div className="flex-1 lg:translate-x-[80px] min-h-[318px]">
                             <img
                                 src="/week-of-refine/refine-week-pixel-logo.png"
                                 alt="Refine Pixel app logo"
