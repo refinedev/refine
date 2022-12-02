@@ -2,7 +2,12 @@ import { defineConfig } from "tsup";
 import { NodeResolvePlugin } from "@esbuild-plugins/node-resolve";
 
 export default defineConfig({
-    entry: ["src/index.ts"],
+    entry: {
+        index: "src/index.ts",
+        pages: "src/pages/index.ts",
+        app: "src/app/index.ts",
+    },
+    outDir: "dist",
     splitting: false,
     sourcemap: true,
     clean: false,

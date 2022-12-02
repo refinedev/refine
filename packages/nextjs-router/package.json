@@ -1,54 +1,85 @@
 {
-  "name": "@pankod/refine-nextjs-router",
-  "description": "refine Next.js router provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
-  "version": "3.38.0",
-  "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "private": false,
-  "files": [
-    "dist",
-    "src"
-  ],
-  "engines": {
-    "node": ">=10"
-  },
-  "scripts": {
-    "start": "tsup --watch --format esm,cjs,iife --legacy-output",
-    "build": "tsup --format esm,cjs,iife  --legacy-output",
-    "test": "jest --passWithNoTests --runInBand",
-    "prepare": "npm run build"
-  },
-  "author": "refine",
-  "module": "dist/esm/index.js",
-  "devDependencies": {
-    "@pankod/refine-core": "^3.74.0",
-    "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@types/qs": "^6.9.7",
-    "jest": "^27.5.1",
-    "next": "^12.1.6",
-    "ts-jest": "^27.1.3",
-    "tslib": "^2.3.1",
-    "tsup": "^5.11.13"
-  },
-  "dependencies": {
-    "qs": "^6.10.1"
-  },
-  "peerDependencies": {
-    "@pankod/refine-core": "^3.23.2",
-    "next": "*",
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0",
-    "@types/react": "^17.0.0 || ^18.0.0",
-    "@types/react-dom": "^17.0.0 || ^18.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/refinedev/refine.git",
-    "directory": "packages/nextjs-router"
-  },
-  "gitHead": "17dd5af3e4c9f7f09e1e707362c6f5a9d1cab8a8",
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@pankod/refine-nextjs-router",
+    "description": "refine Next.js router provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
+    "version": "3.38.0",
+    "license": "MIT",
+    "private": false,
+    "main": "dist/index.js",
+    "module": "dist/esm/index.js",
+    "typings": "dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/esm/index.js",
+            "require": "./dist/index.js"
+        },
+        "./app": {
+            "types": "./dist/app/index.d.ts",
+            "import": "./dist/esm/app.js",
+            "require": "./dist/app.js"
+        },
+        "./pages": {
+            "types": "./dist/pages/index.d.ts",
+            "import": "./dist/esm/pages.js",
+            "require": "./dist/pages.js"
+        }
+    },
+    "typesVersions": {
+        "*": {
+            ".": [
+                "dist/index.d.ts"
+            ],
+            "app": [
+                "dist/app/index.d.ts"
+            ],
+            "pages": [
+                "dist/pages/index.d.ts"
+            ]
+        }
+    },
+    "files": [
+        "dist",
+        "src"
+    ],
+    "engines": {
+        "node": ">=10"
+    },
+    "scripts": {
+        "start": "tsup --watch --format esm,cjs,iife --legacy-output",
+        "build": "tsup --format esm,cjs,iife  --legacy-output",
+        "test": "jest --passWithNoTests --runInBand",
+        "prepare": "npm run build"
+    },
+    "author": "refine",
+    "devDependencies": {
+        "@pankod/refine-core": "^3.74.0",
+        "@esbuild-plugins/node-resolve": "^0.1.4",
+        "@types/qs": "^6.9.7",
+        "jest": "^27.5.1",
+        "next": "^13.0.6",
+        "ts-jest": "^27.1.3",
+        "tslib": "^2.3.1",
+        "tsup": "^5.11.13"
+    },
+    "dependencies": {
+        "qs": "^6.10.1",
+        "warn-once": "^0.1.0"
+    },
+    "peerDependencies": {
+        "@pankod/refine-core": "^3.23.2",
+        "next": "*",
+        "react": "^17.0.0 || ^18.0.0",
+        "react-dom": "^17.0.0 || ^18.0.0",
+        "@types/react": "^17.0.0 || ^18.0.0",
+        "@types/react-dom": "^17.0.0 || ^18.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/refinedev/refine.git",
+        "directory": "packages/nextjs-router"
+    },
+    "gitHead": "17dd5af3e4c9f7f09e1e707362c6f5a9d1cab8a8",
+    "publishConfig": {
+        "access": "public"
+    }
 }
