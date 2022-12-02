@@ -192,6 +192,7 @@ const RefineWeek = () => {
                             {timeline.map((item, index) => {
                                 const { title, description, date, link } = item;
 
+                                const hasBorder = index !== timeline.length - 1;
                                 const dayText = `DAY ${index + 1}:`;
                                 const hasLink = !!link;
                                 const hasNewBadge =
@@ -212,14 +213,16 @@ const RefineWeek = () => {
                                                         : "border-[#C1C1C6]",
                                                 )}
                                             />
-                                            <div
-                                                className={clsx(
-                                                    " w-[2px] h-full rounded-sm",
-                                                    hasLink
-                                                        ? "bg-[#1890FF]"
-                                                        : "bg-[#C1C1C6]",
-                                                )}
-                                            />
+                                            {hasBorder && (
+                                                <div
+                                                    className={clsx(
+                                                        " w-[2px] h-full rounded-sm",
+                                                        hasLink
+                                                            ? "bg-[#1890FF]"
+                                                            : "bg-[#C1C1C6]",
+                                                    )}
+                                                />
+                                            )}
                                         </div>
 
                                         <div className="ml-4">
