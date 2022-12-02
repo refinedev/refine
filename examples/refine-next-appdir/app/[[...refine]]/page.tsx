@@ -1,5 +1,5 @@
 "use client";
 
-import { NextAppRouteComponent } from "@pankod/refine-nextjs-router/app";
+import { NextRouteComponent } from "@pankod/refine-nextjs-router/app";
 
-export default NextAppRouteComponent;
+export default NextRouteComponent;
