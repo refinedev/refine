@@ -44,6 +44,6 @@ yarn add @pankod/refine-inferencer
 If you have any suggestions or feedback, please let us know in the [**GitHub Discussions**](https://github.com/refinedev/refine/discussions/3046)
 :::
 
-:::warning
+:::caution Warning
 `@pankod/refine-inferencer` components are meant to be used in development environments. They are not meant to be used in production environments.
 :::
