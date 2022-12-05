@@ -7,9 +7,9 @@ import {
     prettyString,
     accessor,
     printImports,
-    toPlural,
     toSingular,
     noOp,
+    getVariableName,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -66,11 +66,13 @@ export const ShowInferencer: InferencerResultComponent = createInferencer({
                         }
 
                         return `
-                    const { data: ${toPlural(
-                        field.resource.name,
-                    )}Data, isLoading: ${toPlural(
-                            field.resource.name,
-                        )}IsLoading } =
+                    const { data: ${getVariableName(
+                        field.key,
+                        "Data",
+                    )}, isLoading: ${getVariableName(
+                            field.key,
+                            "IsLoading",
+                        )} } =
                     useMany({
                         resource: "${field.resource.name}",
                         ids: ${ids} || [],
@@ -83,11 +85,13 @@ export const ShowInferencer: InferencerResultComponent = createInferencer({
                     imports.push(["useOne", "@pankod/refine-core"]);
 
                     return `
-                    const { data: ${toSingular(
-                        field.resource.name,
-                    )}Data, isLoading: ${toSingular(
-                        field.resource.name,
-                    )}IsLoading } =
+                    const { data: ${getVariableName(
+                        field.key,
+                        "Data",
+                    )}, isLoading: ${getVariableName(
+                        field.key,
+                        "IsLoading",
+                    )} } =
                     useOne({
                         resource: "${field.resource.name}",
                         id: ${accessor(
@@ -108,17 +112,11 @@ export const ShowInferencer: InferencerResultComponent = createInferencer({
 
         const renderRelationFields = (field: InferField) => {
             if (field.relation && field.resource) {
-                const variableName = `${
-                    field.multiple
-                        ? toPlural(field.resource.name)
-                        : toSingular(field.resource.name)
-                }Data`;
-
-                const variableIsLoading = `${
-                    field.multiple
-                        ? toPlural(field.resource.name)
-                        : toSingular(field.resource.name)
-                }IsLoading`;
+                const variableName = getVariableName(field.key, "Data");
+                const variableIsLoading = getVariableName(
+                    field.key,
+                    "IsLoading",
+                );
 
                 if (field.multiple) {
                     imports.push(

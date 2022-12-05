@@ -7,12 +7,12 @@ import {
     prettyString,
     accessor,
     printImports,
-    toPlural,
     toSingular,
     isIDKey,
     getOptionLabel,
     dotAccessor,
     noOp,
+    getVariableName,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -83,11 +83,10 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
                     }
 
                     return `
-                    const { selectProps: ${
-                        field.multiple
-                            ? toPlural(field.resource.name)
-                            : toSingular(field.resource.name)
-                    }SelectProps } =
+                    const { selectProps: ${getVariableName(
+                        field.key,
+                        "SelectProps",
+                    )} } =
                     useSelect({
                         resource: "${field.resource.name}",
                         defaultValue: ${val},
@@ -116,11 +115,7 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
                         : "",
                 };
 
-                const variableName = `${
-                    field.multiple
-                        ? toPlural(field.resource.name)
-                        : toSingular(field.resource.name)
-                }SelectProps`;
+                const variableName = getVariableName(field.key, "SelectProps");
 
                 if (field.multiple) {
                     imports.push(["MultiSelect", "@pankod/refine-mantine"]);
