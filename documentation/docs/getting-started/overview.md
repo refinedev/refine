@@ -36,7 +36,7 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 
 ⚛ Perfect **state management** & **mutations** with **React Query**
 
-🔀 **Advanced routing** with any drouter library of your choice
+🔀 **Advanced routing** with any router library of your choice
 
 🔐 Providers for seamless **authentication** and **access control** flows
 
