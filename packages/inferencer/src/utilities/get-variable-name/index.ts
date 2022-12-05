@@ -6,7 +6,7 @@ import { prettyString } from "../pretty-string";
  * @example getVariableName("1234", "data") === "data1234"
  * @example getVariableName("users-account", "selectProps") === "usersAccountSelectProps"
  */
-export const getVariableName = (fieldKey: string, suffixOrPrefix: string) => {
+export const getVariableName = (fieldKey: string, suffixOrPrefix = "") => {
     // if fieldKey is number, return with prefix
     // e.g. (12345, Data) => "data12345"
     if (Number.isInteger(Number(fieldKey))) {
