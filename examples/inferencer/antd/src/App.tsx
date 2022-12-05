@@ -59,9 +59,6 @@ const App: React.FC = () => {
                     create: AntdCreateInferencer,
                     canDelete: true,
                 },
-                {
-                    name: "tags",
-                },
             ]}
             notificationProvider={notificationProvider}
             Layout={Layout}

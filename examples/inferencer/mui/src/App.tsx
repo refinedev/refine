@@ -62,9 +62,6 @@ const App: React.FC = () => {
                             create: MuiCreateInferencer,
                             canDelete: true,
                         },
-                        {
-                            name: "tags",
-                        },
                     ]}
                 />
             </RefineSnackbarProvider>

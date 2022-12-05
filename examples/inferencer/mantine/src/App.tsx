@@ -58,9 +58,6 @@ const App: React.FC = () => {
                             create: MantineCreateInferencer,
                             canDelete: true,
                         },
-                        {
-                            name: "tags",
-                        },
                     ]}
                 />
             </NotificationsProvider>

@@ -52,9 +52,6 @@ const App: React.FC = () => {
                         create: ChakraUICreateInferencer,
                         canDelete: true,
                     },
-                    {
-                        name: "tags",
-                    },
                 ]}
             />
         </ChakraProvider>
