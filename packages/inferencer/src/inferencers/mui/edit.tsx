@@ -8,7 +8,6 @@ import {
     prettyString,
     accessor,
     printImports,
-    toPlural,
     toSingular,
     isIDKey,
     dotAccessor,

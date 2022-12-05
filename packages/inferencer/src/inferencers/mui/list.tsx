@@ -7,7 +7,6 @@ import {
     prettyString,
     accessor,
     printImports,
-    toPlural,
     isIDKey,
     noOp,
     getVariableName,
