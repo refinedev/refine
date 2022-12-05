@@ -13,6 +13,7 @@ import {
     toSingular,
     dotAccessor,
     noOp,
+    getVariableName,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -101,7 +102,7 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                     }
 
                     return `
-                    const { data: ${toPlural(field.resource.name)}Data } =
+                    const { data: ${getVariableName(field.key, "Data")} } =
                     useMany({
                         resource: "${field.resource.name}",
                         ids: ${idsString},
@@ -118,7 +119,7 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
         const relationVariableNames = relationFields
             ?.map((field) => {
                 if (field && field.resource) {
-                    return `${toPlural(field.resource.name)}Data`;
+                    return getVariableName(field.key, "Data");
                 }
                 return undefined;
             })
@@ -126,9 +127,10 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
 
         const renderRelationFields = (field: InferField) => {
             if (field.relation && field.resource) {
-                const variableName = `${toPlural(
-                    field.resource.name,
-                )}Data?.data`;
+                const variableName = `${getVariableName(
+                    field.key,
+                    "Data",
+                )}?.data`;
 
                 if (Array.isArray(field.accessor)) {
                     // not handled - not possible case

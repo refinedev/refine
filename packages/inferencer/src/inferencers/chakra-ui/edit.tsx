@@ -15,6 +15,7 @@ import {
     dotAccessor,
     getOptionLabel,
     noOp,
+    getVariableName,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -82,11 +83,10 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
                     }
 
                     return `
-                    const { options: ${
-                        field.multiple
-                            ? toPlural(field.resource.name)
-                            : toSingular(field.resource.name)
-                    }Options } =
+                    const { options: ${getVariableName(
+                        field.key,
+                        "Options",
+                    )} } =
                     useSelect({
                         resource: "${field.resource.name}",
                         defaultValue: ${val},
@@ -103,11 +103,7 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
                 imports.push(["useSelect", "@pankod/refine-core"]);
                 imports.push(["Select", "@pankod/refine-chakra-ui"]);
 
-                const variableName = `${
-                    field.multiple
-                        ? toPlural(field.resource.name)
-                        : toSingular(field.resource.name)
-                }Options`;
+                const variableName = getVariableName(field.key, "Options");
 
                 return jsx`
                 <FormControl mb="3" isInvalid={!!errors?.${dotAccessor(

@@ -9,12 +9,12 @@ import {
     prettyString,
     accessor,
     printImports,
-    toPlural,
     toSingular,
     isIDKey,
     dotAccessor,
     getOptionLabel,
     noOp,
+    getVariableName,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -64,11 +64,10 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
                     imports.push(["useSelect", "@pankod/refine-core"]);
 
                     return `
-                    const { options: ${
-                        field.multiple
-                            ? toPlural(field.resource.name)
-                            : toSingular(field.resource.name)
-                    }Options } =
+                    const { options: ${getVariableName(
+                        field.key,
+                        "Options",
+                    )} } =
                     useSelect({
                         resource: "${field.resource.name}",
                         ${getOptionLabel(field)}
@@ -84,11 +83,7 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
                 imports.push(["useSelect", "@pankod/refine-core"]);
                 imports.push(["Select", "@pankod/refine-chakra-ui"]);
 
-                const variableName = `${
-                    field.multiple
-                        ? toPlural(field.resource.name)
-                        : toSingular(field.resource.name)
-                }Options`;
+                const variableName = getVariableName(field.key, "Options");
 
                 return jsx`
                 <FormControl mb="3" isInvalid={!!errors?.${dotAccessor(
