@@ -1,6 +1,12 @@
 import { IResourceComponentsProps } from "@pankod/refine-core";
+{{#if uiFramework}}
 import { {{formatInferencerComponent uiFramework}}EditInferencer } from "@pankod/refine-inferencer/{{uiFramework}}";
+{{/if}}
 
 export const {{capitalize resource}}Edit: React.FC<IResourceComponentsProps> = () => {
+    {{#if uiFramework}}
     return <{{formatInferencerComponent uiFramework}}EditInferencer />;
+    {{else}}
+    return <span>EditPage</span>;
+    {{/if}}
 };
