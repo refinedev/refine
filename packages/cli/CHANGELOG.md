@@ -1,5 +1,11 @@
 # @pankod/refine-cli
 
+## 1.11.0
+
+### Minor Changes
+
+-   [#3130](https://github.com/refinedev/refine/pull/3130) [`0b428512b98`](https://github.com/refinedev/refine/commit/0b428512b98ac010cbff9d343f6b12fa2980a662) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Removed UI framework requirement in `create-resource` command.
+
 ## 1.10.0
 
 ### Minor Changes

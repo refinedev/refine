@@ -5,10 +5,10 @@
     "dependencies": {
         "@nhost/nhost-js": "^0.3.9",
         "@nhost/react-auth": "^2.0.7",
-        "@pankod/refine-antd": "^3.64.3",
+        "@pankod/refine-antd": "^3.64.4",
         "@pankod/refine-core": "^3.90.4",
         "@pankod/refine-nhost": "^3.41.0",
-        "@pankod/refine-react-router-v6": "^3.36.5",
+        "@pankod/refine-react-router-v6": "^3.36.6",
         "@types/node": "^12.20.11",
         "@types/react": "^18.0.0",
         "@types/react-dom": "^18.0.0",
