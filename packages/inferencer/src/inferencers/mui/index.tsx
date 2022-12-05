@@ -10,11 +10,12 @@ import type { InferencerComponentProps } from "@/types";
 const MuiInferencer: React.FC<InferencerComponentProps> = ({
     resource,
     name,
+    action: actionFromProps,
 }) => {
     const { useParams } = useRouterContext();
     const { action } = useParams<ResourceRouterParams>();
 
-    switch (action) {
+    switch (actionFromProps ?? action) {
         case "show":
             return <ShowInferencer name={name} resource={resource} />;
         case "create":

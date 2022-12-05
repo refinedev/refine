@@ -130,6 +130,11 @@ export type InferencerComponentProps = {
      */
     resource?: string;
     /**
+     * The action to infer page
+     * @default "list"
+     * */
+    action?: "list" | "show" | "edit" | "create";
+    /**
      * Data accessor string to get the data from the record
      * @example your data provider returns { data: { item: { id: 1, name: "John" } } } from `getOne` then you should pass "item" as the `single` property.
      * @example your data provider returns { data: { items: [{ id: 1, name: "John" }] } } from `getMany` then you should pass "items" as the `many` property.
