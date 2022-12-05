@@ -3,7 +3,7 @@ id: inferencer
 title: Inferencer
 ---
 
-You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `ChakraUIListInferencer`, `ChakraUIShowInferencer`, `ChakraUICreateInferencer` and `ChakraUIEditInferencer` components.
+You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `ChakraUIInferencer`, `ChakraUIInferencer`, `ChakraUIInferencer` and `ChakraUIInferencer` components.
 
 ## Usage
 
@@ -19,14 +19,9 @@ values={[
 
 ```tsx
 import { Layout, ChakraProvider, refineTheme } from "@pankod/refine-chakra-ui";
-// highlight-start
-import {
-    ChakraUIListInferencer,
-    ChakraUIShowInferencer,
-    ChakraUICreateInferencer,
-    ChakraUIEditInferencer,
-} from "@pankod/refine-inferencer/chakra-ui";
-// highlight-end
+
+// highlight-next-line
+import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
 const App = () => {
     return (
@@ -36,10 +31,10 @@ const App = () => {
                     {
                         name: "samples",
                         // highlight-start
-                        list: ChakraUIListInferencer,
-                        show: ChakraUIShowInferencer,
-                        create: ChakraUICreateInferencer,
-                        edit: ChakraUIEditInferencer,
+                        list: ChakraUIInferencer,
+                        show: ChakraUIInferencer,
+                        create: ChakraUIInferencer,
+                        edit: ChakraUIInferencer,
                         // highlight-end
                     },
                 ]}
@@ -53,40 +48,34 @@ const App = () => {
   <TabItem value="custom">
 
 ```tsx
-// highlight-start
-import {
-    ChakraUIListInferencer,
-    ChakraUIShowInferencer,
-    ChakraUICreateInferencer,
-    ChakraUIEditInferencer,
-} from "@pankod/refine-inferencer/chakra-ui";
-// highlight-end
+// highlight-next-line
+import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
 const SampleList = () => {
     return (
         // highlight-next-line
-        <ChakraUIListInferencer resource="samples" />
+        <ChakraUIInferencer resource="samples" action="list" />
     );
 };
 
 const SampleShow = () => {
     return (
         // highlight-next-line
-        <ChakraUIShowInferencer resource="samples" />
+        <ChakraUIInferencer resource="samples" action="show" />
     );
 };
 
 const SampleCreate = () => {
     return (
         // highlight-next-line
-        <ChakraUICreateInferencer resource="samples" />
+        <ChakraUIInferencer resource="samples" action="create" />
     );
 };
 
 const SampleEdit = () => {
     return (
         // highlight-next-line
-        <ChakraUIEditInferencer resource="samples" />
+        <ChakraUIInferencer resource="samples" action="edit" />
     );
 };
 ```
@@ -100,7 +89,7 @@ To learn more about `@pankod/refine-inferencer` package, please check out [Docs]
 
 ## Views
 
-### `ChakraUIListInferencer`
+### `List`
 
 Generates a sample list view for your resources according to the API response. It uses `List` component from `@pankod/refine-chakra-ui` and `useTable` hook from `@pankod/refine-react-table`.
 
@@ -113,14 +102,8 @@ import { Layout, ChakraProvider, refineTheme } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import {
-    // highlight-start
-    ChakraUIListInferencer,
-    // highlight-end
-    ChakraUIShowInferencer,
-    ChakraUICreateInferencer,
-    ChakraUIEditInferencer,
-} from "@pankod/refine-inferencer/chakra-ui";
+// highlight-next-line
+import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -134,23 +117,24 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "samples",
-                        // highlight-start
-                        list: ChakraUIListInferencer,
-                        // highlight-end
-                        show: ChakraUIShowInferencer,
-                        create: ChakraUICreateInferencer,
-                        edit: ChakraUIEditInferencer,
+                        // highlight-next-line
+                        list: ChakraUIInferencer,
+                        show: ChakraUIInferencer,
+                        create: ChakraUIInferencer,
+                        edit: ChakraUIInferencer,
                         canDelete: true,
                     },
                     {
                         name: "categories",
-                        list: ChakraUIListInferencer,
-                        show: ChakraUIShowInferencer,
+                        // highlight-next-line
+                        list: ChakraUIInferencer,
+                        show: ChakraUIInferencer,
                     },
                     {
                         name: "tags",
-                        list: ChakraUIListInferencer,
-                        show: ChakraUIShowInferencer,
+                        // highlight-next-line
+                        list: ChakraUIInferencer,
+                        show: ChakraUIInferencer,
                     },
                 ]}
             />
@@ -163,7 +147,7 @@ const App: React.FC = () => {
 render(<App />);
 ```
 
-### `ChakraUIShowInferencer`
+### `Show`
 
 Generates a sample show view for your resources according to the API response. It uses `Show` and field components from `@pankod/refine-chakra-ui` with `useShow` hook from `@pankod/refine-core`.
 
@@ -176,14 +160,8 @@ import { Layout, ChakraProvider, refineTheme } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import {
-    ChakraUIListInferencer,
-    // highlight-start
-    ChakraUIShowInferencer,
-    // highlight-end
-    ChakraUICreateInferencer,
-    ChakraUIEditInferencer,
-} from "@pankod/refine-inferencer/chakra-ui";
+// highlight-next-line
+import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -197,23 +175,24 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "samples",
-                        list: ChakraUIListInferencer,
-                        // highlight-start
-                        show: ChakraUIShowInferencer,
-                        // highlight-end
-                        create: ChakraUICreateInferencer,
-                        edit: ChakraUIEditInferencer,
+                        list: ChakraUIInferencer,
+                        // highlight-next-line
+                        show: ChakraUIInferencer,
+                        create: ChakraUIInferencer,
+                        edit: ChakraUIInferencer,
                         canDelete: true,
                     },
                     {
                         name: "categories",
-                        list: ChakraUIListInferencer,
-                        show: ChakraUIShowInferencer,
+                        list: ChakraUIInferencer,
+                        // highlight-next-line
+                        show: ChakraUIInferencer,
                     },
                     {
                         name: "tags",
-                        list: ChakraUIListInferencer,
-                        show: ChakraUIShowInferencer,
+                        list: ChakraUIInferencer,
+                        // highlight-next-line
+                        show: ChakraUIInferencer,
                     },
                 ]}
             />
@@ -226,7 +205,7 @@ const App: React.FC = () => {
 render(<App />);
 ```
 
-### `ChakraUICreateInferencer`
+### `Create`
 
 Generates a sample create view for your resources according to the first record in list API response. It uses `Create` component from `@pankod/refine-chakra-ui` and `useForm` hook from `@pankod/refine-react-hook-form`.
 
@@ -239,14 +218,8 @@ import { Layout, ChakraProvider, refineTheme } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import {
-    ChakraUIListInferencer,
-    ChakraUIShowInferencer,
-    // highlight-start
-    ChakraUICreateInferencer,
-    // highlight-end
-    ChakraUIEditInferencer,
-} from "@pankod/refine-inferencer/chakra-ui";
+// highlight-next-line
+import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -260,23 +233,22 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "samples",
-                        list: ChakraUIListInferencer,
-                        show: ChakraUIShowInferencer,
-                        // highlight-start
-                        create: ChakraUICreateInferencer,
-                        // highlight-end
-                        edit: ChakraUIEditInferencer,
+                        list: ChakraUIInferencer,
+                        show: ChakraUIInferencer,
+                        // highlight-next-line
+                        create: ChakraUIInferencer,
+                        edit: ChakraUIInferencer,
                         canDelete: true,
                     },
                     {
                         name: "categories",
-                        list: ChakraUIListInferencer,
-                        show: ChakraUIShowInferencer,     
+                        list: ChakraUIInferencer,
+                        show: ChakraUIInferencer,
                     },
                     {
                         name: "tags",
-                        list: ChakraUIListInferencer,
-                        show: ChakraUIShowInferencer,
+                        list: ChakraUIInferencer,
+                        show: ChakraUIInferencer,
                     },
                 ]}
             />
@@ -289,7 +261,7 @@ const App: React.FC = () => {
 render(<App />);
 ```
 
-### `ChakraUIEditInferencer`
+### `Edit`
 
 Generates a sample edit view for your resources according to the API response. It uses `Edit` component from `@pankod/refine-chakra-ui` and `useForm` hook from `@pankod/refine-react-hook-form`.
 
@@ -302,14 +274,8 @@ import { Layout, ChakraProvider, refineTheme } from "@pankod/refine-chakra-ui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import {
-    ChakraUIListInferencer,
-    ChakraUIShowInferencer,
-    ChakraUICreateInferencer,
-    // highlight-start
-    ChakraUIEditInferencer,
-    // highlight-end
-} from "@pankod/refine-inferencer/chakra-ui";
+// highlight-next-line
+import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -323,23 +289,22 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "samples",
-                        list: ChakraUIListInferencer,
-                        show: ChakraUIShowInferencer,
-                        create: ChakraUICreateInferencer,
-                        // highlight-start
-                        edit: ChakraUIEditInferencer,
-                        // highlight-end
+                        list: ChakraUIInferencer,
+                        show: ChakraUIInferencer,
+                        create: ChakraUIInferencer,
+                        // highlight-next-line
+                        edit: ChakraUIInferencer,
                         canDelete: true,
                     },
                     {
                         name: "categories",
-                        list: ChakraUIListInferencer,
-                        show: ChakraUIShowInferencer, 
+                        list: ChakraUIInferencer,
+                        show: ChakraUIInferencer,
                     },
                     {
                         name: "tags",
-                        list: ChakraUIListInferencer,
-                        show: ChakraUIShowInferencer, 
+                        list: ChakraUIInferencer,
+                        show: ChakraUIInferencer,
                     },
                 ]}
             />
