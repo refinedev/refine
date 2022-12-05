@@ -8,7 +8,7 @@
     },
     "dependencies": {
         "@pankod/refine-core": "^3.90.4",
-        "@pankod/refine-react-router-v6": "^3.36.4",
+        "@pankod/refine-react-router-v6": "^3.36.6",
         "@pankod/refine-simple-rest": "^3.37.4",
         "@handsontable/react": "^12.1.2",
         "handsontable": "^12.1.2",

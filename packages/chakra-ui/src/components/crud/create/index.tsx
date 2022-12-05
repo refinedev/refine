@@ -12,7 +12,8 @@ import { Box, Heading, HStack, IconButton, Spinner } from "@chakra-ui/react";
 // We use @tabler/icons for icons but you can use any icon library you want.
 import { IconArrowLeft } from "@tabler/icons";
 
-import { Breadcrumb, CreateProps, SaveButton } from "@components";
+import { Breadcrumb, SaveButton } from "@components";
+import { CreateProps } from "../types";
 
 export const Create: React.FC<CreateProps> = (props) => {
     const {
