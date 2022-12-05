@@ -1,5 +1,17 @@
 # @pankod/refine-react-router-v6
 
+## 3.36.6
+
+### Patch Changes
+
+-   [#3126](https://github.com/refinedev/refine/pull/3126) [`ccaf8bde357`](https://github.com/refinedev/refine/commit/ccaf8bde35737558de69953b5b0c7de64df351cd) Thanks [@thaihuynhxyz](https://github.com/thaihuynhxyz)! - fix: react extract incorrect resource from encoded pathname
+
+## 3.36.5
+
+### Patch Changes
+
+-   [#3126](https://github.com/refinedev/refine/pull/3126) [`ccaf8bde357`](https://github.com/refinedev/refine/commit/ccaf8bde35737558de69953b5b0c7de64df351cd) Thanks [@thaihuynhxyz](https://github.com/thaihuynhxyz)! - fix: react extract incorrect resource from encoded pathname
+
 ## 3.36.4
 
 ### Patch Changes

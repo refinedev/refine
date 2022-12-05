@@ -21,7 +21,8 @@ import {
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-import { Breadcrumb, CreateProps, SaveButton } from "@components";
+import { Breadcrumb, SaveButton } from "@components";
+import { CreateProps } from "../types";
 
 /**
  * `<Create>` provides us a layout to display the page.

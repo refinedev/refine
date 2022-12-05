@@ -1,6 +1,12 @@
 import { IResourceComponentsProps } from "@pankod/refine-core";
+{{#if uiFramework}}
 import { {{formatInferencerComponent uiFramework}}Inferencer } from "@pankod/refine-inferencer/{{uiFramework}}";
+{{/if}}
 
 export const {{capitalize resource}}Create: React.FC<IResourceComponentsProps> = () => {
+    {{#if uiFramework}}
     return <{{formatInferencerComponent uiFramework}}Inferencer />;
+    {{else}}
+    return <span>CreatePage</span>;
+    {{/if}}  
 };

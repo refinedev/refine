@@ -15,12 +15,6 @@ Install the [@pankod/refine-kbar][refine-kbar] library.
 ```bash
 npm i @pankod/refine-kbar
 ```
-
-:::info
-If your are going to use the [`superplate`][superplate-url] to create new project, you can select the `kbar` as a command palette.
-
-:::
-
 ## Basic Usage
 
 First of all, you need to import the `@pankod/refine-kbar` library and we will use `RefineKbarProvider` to wrap the whole application.
@@ -139,4 +133,3 @@ useRegisterActions(customAction);
 [access-contol]: https://refine.dev/docs/core/providers/accessControl-provider/
 [usecanwithoutcache]: https://github.com/refinedev/refine/blob/master/packages/core/src/hooks/accessControl/useCanWithoutCache.ts
 [refine-finefoods]: https://github.com/refinedev/refine/blob/master/examples/fineFoods/admin/mui/src/hooks/useOrderCustomKbarActions/index.tsx
-[superplate-url]: https://github.com/pankod/superplate

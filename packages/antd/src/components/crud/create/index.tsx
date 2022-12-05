@@ -10,7 +10,8 @@ import {
     useRefineContext,
 } from "@pankod/refine-core";
 
-import { Breadcrumb, CreateProps, SaveButton } from "@components";
+import { Breadcrumb, SaveButton } from "@components";
+import { CreateProps } from "../types";
 
 /**
  * `<Create>` provides us a layout to display the page.

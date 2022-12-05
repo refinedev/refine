@@ -9,7 +9,8 @@ import {
     useRefineContext,
 } from "@pankod/refine-core";
 
-import { Breadcrumb, CreateButton, ListProps } from "@components";
+import { Breadcrumb, CreateButton } from "@components";
+import { ListProps } from "../types";
 
 /**
  * `<List>` provides us a layout for displaying the page.

@@ -11,7 +11,8 @@ import {
 
 import { Card, CardHeader, CardContent, Typography, Box } from "@mui/material";
 
-import { CreateButton, Breadcrumb, ListProps } from "@components";
+import { CreateButton, Breadcrumb } from "@components";
+import { ListProps } from "../types";
 
 /**
  * `<List>` provides us a layout for displaying the page.

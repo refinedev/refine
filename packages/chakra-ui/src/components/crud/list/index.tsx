@@ -8,7 +8,8 @@ import {
 } from "@pankod/refine-core";
 import { Box, Heading } from "@chakra-ui/react";
 
-import { CreateButton, Breadcrumb, ListProps } from "@components";
+import { CreateButton, Breadcrumb } from "@components";
+import { ListProps } from "../types";
 
 export const List: React.FC<ListProps> = (props) => {
     const {

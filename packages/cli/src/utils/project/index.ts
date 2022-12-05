@@ -35,7 +35,7 @@ export const getProjectType = (): ProjectTypes => {
     throw new Error("Project type not found");
 };
 
-export const getUIFramework = (): UIFrameworks => {
+export const getUIFramework = (): UIFrameworks | undefined => {
     // read dependencies from package.json
     const dependencies = getDependencies();
 
@@ -59,5 +59,5 @@ export const getUIFramework = (): UIFrameworks => {
         return UIFrameworks.MANTINE;
     }
 
-    throw new Error("UI Framework type not found");
+    return;
 };
