@@ -1,6 +1,12 @@
 import { IResourceComponentsProps, GetListResponse } from "@pankod/refine-core";
+{{#if uiFramework}}
 import { {{formatInferencerComponent uiFramework}}ListInferencer } from "@pankod/refine-inferencer/{{uiFramework}}";
+{{/if}}
 
 export const {{capitalize resource}}List: React.FC<IResourceComponentsProps<GetListResponse<{}>>> = () => {
+    {{#if uiFramework}}
     return <{{formatInferencerComponent uiFramework}}ListInferencer />;
+    {{else}}
+    return <span>ListPage</span>;
+    {{/if}}
 };

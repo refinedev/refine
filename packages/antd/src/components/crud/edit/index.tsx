@@ -18,8 +18,8 @@ import {
     ListButton,
     SaveButton,
     Breadcrumb,
-    EditProps,
 } from "@components";
+import { EditProps } from "../types";
 
 /**
  * `<Edit>` provides us a layout for displaying the page.
