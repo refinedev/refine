@@ -25,8 +25,8 @@ import {
     ListButton,
     RefreshButton,
     Breadcrumb,
-    ShowProps,
 } from "@components";
+import { ShowProps } from "../types";
 
 export const Show: React.FC<ShowProps> = (props) => {
     const {

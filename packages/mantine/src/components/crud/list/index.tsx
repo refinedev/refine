@@ -9,7 +9,8 @@ import {
     useTranslate,
 } from "@pankod/refine-core";
 
-import { CreateButton, Breadcrumb, ListProps } from "@components";
+import { CreateButton, Breadcrumb } from "@components";
+import { ListProps } from "../types";
 
 export const List: React.FC<ListProps> = (props) => {
     const {
