@@ -8,7 +8,6 @@ import {
     prettyString,
     accessor,
     printImports,
-    toSingular,
     isIDKey,
     noOp,
     getVariableName,
@@ -38,7 +37,10 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
             resource.label ?? resource.name,
             "edit",
         );
-        const recordName = `${toSingular(resource.name)}Data`;
+        const recordName = getVariableName(
+            resource.label ?? resource.name,
+            "Data",
+        );
         const imports: Array<ImportElement> = [
             ["React", "react", true],
             ["IResourceComponentsProps", "@pankod/refine-core"],

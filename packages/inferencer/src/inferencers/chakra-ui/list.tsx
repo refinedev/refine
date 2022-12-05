@@ -9,8 +9,6 @@ import {
     prettyString,
     accessor,
     printImports,
-    toPlural,
-    toSingular,
     dotAccessor,
     noOp,
     getVariableName,

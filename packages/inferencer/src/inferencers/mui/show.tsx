@@ -7,8 +7,6 @@ import {
     prettyString,
     accessor,
     printImports,
-    toPlural,
-    toSingular,
     noOp,
     getVariableName,
 } from "@/utilities";
@@ -113,17 +111,11 @@ export const ShowInferencer: InferencerResultComponent = createInferencer({
 
         const renderRelationFields = (field: InferField) => {
             if (field.relation && field.resource) {
-                const variableName = `${
-                    field.multiple
-                        ? toPlural(field.resource.name)
-                        : toSingular(field.resource.name)
-                }Data`;
-
-                const variableIsLoading = `${
-                    field.multiple
-                        ? toPlural(field.resource.name)
-                        : toSingular(field.resource.name)
-                }IsLoading`;
+                const variableName = getVariableName(field.key, "Data");
+                const variableIsLoading = getVariableName(
+                    field.key,
+                    "IsLoading",
+                );
 
                 if (field.multiple) {
                     imports.push(["TagField", "@pankod/refine-mui"]);
@@ -148,8 +140,8 @@ export const ShowInferencer: InferencerResultComponent = createInferencer({
                                     ) {
                                         return `Not Handled.`;
                                     } else {
-                                        const mapItemName = toSingular(
-                                            field.resource?.name,
+                                        const mapItemName = getVariableName(
+                                            field.key,
                                         );
                                         const val = accessor(
                                             mapItemName,

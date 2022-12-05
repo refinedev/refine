@@ -8,8 +8,6 @@ import {
     prettyString,
     accessor,
     printImports,
-    toPlural,
-    toSingular,
     dotAccessor,
     noOp,
     getVariableName,
@@ -151,17 +149,19 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
 
                     cell = `cell: function render({ getValue, table }) {
                         const meta = table.options.meta as {
-                            ${toPlural(
-                                field.resource.name,
-                            )}Data: GetManyResponse;
+                            ${getVariableName(
+                                field.key,
+                                "Data",
+                            )}: GetManyResponse;
                         };
 
-                        const ${toPlural(
-                            field.resource.name,
+                        const ${getVariableName(
+                            field.key,
                         )} = getValue<any[]>()?.map((item) => {
-                            return meta.${toPlural(
-                                field.resource.name,
-                            )}Data?.data?.find(
+                            return meta.${getVariableName(
+                                field.key,
+                                "Data",
+                            )}?.data?.find(
                                 (resourceItems) => resourceItems.id === ${accessor(
                                     "item",
                                     undefined,
@@ -172,8 +172,8 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
 
                         return (
                             <Group spacing="xs">
-                                {${toPlural(
-                                    field.resource.name,
+                                {${getVariableName(
+                                    field.key,
                                 )}?.map((item, index) => (
                                     <TagField key={index} value={${val}} />
                                 ))}
@@ -185,19 +185,20 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                     if (field?.relationInfer) {
                         cell = `cell: function render({ getValue, table }) {
                             const meta = table.options.meta as {
-                                ${toPlural(
-                                    field.resource.name,
-                                )}Data: GetManyResponse;
+                                ${getVariableName(
+                                    field.key,
+                                    "Data",
+                                )}: GetManyResponse;
                             };
 
-                            const ${toSingular(
-                                field.resource.name,
+                            const ${getVariableName(
+                                field.key,
                             )} = meta.${variableName}?.find(
                                 (item) => item.id === getValue<any>(),
                             );
 
                             return ${accessor(
-                                toSingular(field.resource.name),
+                                getVariableName(field.key),
                                 undefined,
                                 field?.relationInfer?.accessor,
                             )} ?? "Loading...";
