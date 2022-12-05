@@ -9,7 +9,6 @@ import {
     prettyString,
     accessor,
     printImports,
-    toPlural,
     toSingular,
     isIDKey,
     dotAccessor,
@@ -46,7 +45,10 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
             resource.label ?? resource.name,
             "edit",
         );
-        const recordName = `${toSingular(resource.name)}Data`;
+        const recordName = getVariableName(
+            resource.label ?? resource.name,
+            "Data",
+        );
         const imports: Array<ImportElement> = [
             ["Edit", "@pankod/refine-chakra-ui"],
             ["FormControl", "@pankod/refine-chakra-ui"],

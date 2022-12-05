@@ -7,8 +7,6 @@ import {
     prettyString,
     accessor,
     printImports,
-    toPlural,
-    toSingular,
     noOp,
     getVariableName,
 } from "@/utilities";
@@ -143,8 +141,8 @@ export const ShowInferencer: InferencerResultComponent = createInferencer({
                                         // ).join(' + " " + ')}}`;
                                     } else {
                                         // return `Not Handled.`;
-                                        const mapItemName = toSingular(
-                                            field.resource?.name,
+                                        const mapItemName = getVariableName(
+                                            field.key,
                                         );
                                         const val = accessor(
                                             mapItemName,
