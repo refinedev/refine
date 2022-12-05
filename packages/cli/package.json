@@ -52,7 +52,7 @@
         "ink-table": "^3.0.0",
         "ink-markdown": "^1.0.1",
         "inquirer": "^8.2.5",
-        "jscodeshift": "^0.14.0",
+        "jscodeshift": "0.13.1",
         "node-env-type": "^0.0.8",
         "node-fetch": "^2.6.7",
         "ora": "^5.4.1",
