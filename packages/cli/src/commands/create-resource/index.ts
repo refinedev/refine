@@ -116,8 +116,6 @@ const action = async (
             uiFramework,
         };
 
-        console.log(compileParams);
-
         // compile dir
         compileDir(tempDir, compileParams);
 
