@@ -39,8 +39,20 @@ export const authProvider: AuthProvider = {
         return Promise.resolve();
     },
     checkAuth: (ctx) => {
-        const cookies = nookies.get(ctx);
-        return cookies["auth"] ? Promise.resolve() : Promise.reject();
+        if (ctx) {
+            if (ctx.cookies?.get?.("auth")) {
+                return Promise.resolve();
+            } else {
+                return Promise.reject();
+            }
+        } else {
+            const cookies = nookies.get(null);
+            if (cookies.auth) {
+                return Promise.resolve();
+            } else {
+                return Promise.reject();
+            }
+        }
     },
     getPermissions: () => {
         const auth = nookies.get()["auth"];
@@ -54,7 +66,7 @@ export const authProvider: AuthProvider = {
         const auth = nookies.get()["auth"];
         if (auth) {
             const parsedUser = JSON.parse(auth);
-            return Promise.resolve(parsedUser.username);
+            return Promise.resolve(parsedUser.username ?? parsedUser.email);
         }
         return Promise.reject();
     },
