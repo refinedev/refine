@@ -25,8 +25,8 @@ import {
     RefreshButton,
     SaveButton,
     Breadcrumb,
-    EditProps,
 } from "@components";
+import { EditProps } from "../types";
 
 export const Edit: React.FC<EditProps> = (props) => {
     const {
