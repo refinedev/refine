@@ -4,10 +4,10 @@ import { NodeResolvePlugin } from "@esbuild-plugins/node-resolve";
 export default defineConfig({
     entry: {
         index: "src/index.tsx",
-        mantine: "src/inferencers/mantine/index.ts",
-        mui: "src/inferencers/mui/index.ts",
-        antd: "src/inferencers/antd/index.ts",
-        "chakra-ui": "src/inferencers/chakra-ui/index.ts",
+        mantine: "src/inferencers/mantine/index.tsx",
+        mui: "src/inferencers/mui/index.tsx",
+        antd: "src/inferencers/antd/index.tsx",
+        "chakra-ui": "src/inferencers/chakra-ui/index.tsx",
     },
     outDir: "dist",
     splitting: false,
