@@ -31,7 +31,8 @@ This comparison table strives to be as accurate and as unbiased as possible. If 
 | Own Advanced Tutorial Examples       | Yes - **50+** Examples 🚀                                              | Yes - Few Examples                         | No                               | No                          |
 | Architecture                         | **Hooks Based** 🚀                                                     | Component Based                            | Hooks Based                      | -                           |
 | Dynamic Multi-level Menus            | **Yes** 🚀🚀                                                            | No                                         | No                               | -                           |
-| Project Creator CLI                  | ✅ &nbsp;[_(Superplate)_][pankod-superplate]                           | 🛑                                          | 🛑                                | 🛑                           |
+| Project Creator CLI                  | ✅                                                                     | 🛑                                          | 🛑                                | 🛑                           |
+| Project CLI                          | ✅                                                                     | 🛑                                          | 🛑                                | 🛑                           |
 | Auth Provider                        | ✅                                                                     | ✅                                          | ✅                                | ✅                           |
 | Data Provider                        | ✅                                                                     | ✅                                          | 🔶                                | ✅                           |
 | i18n                                 | ✅                                                                     | ✅                                          | ✅                                | -                           |
@@ -60,7 +61,6 @@ This comparison table strives to be as accurate and as unbiased as possible. If 
 [gh-refine]: https://github.com/refinedev/refine
 [bpl-refine]: https://bundlephobia.com/result?p=@pankod/refine-core
 [bp-refine]: https://badgen.net/bundlephobia/minzip/@pankod/refine-core?label=💾
-[pankod-superplate]: https://pankod.github.io/superplate/
 [command-palette]: /docs/examples/command-palette.md
 
 <!-- -->

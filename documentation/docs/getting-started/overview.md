@@ -32,9 +32,11 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 
 🌐 **SSR support** with **Next.js** or **Remix**
 
+🔍 Auto-generated **CRUD** UIs from **your API data structure**
+
 ⚛ Perfect **state management** & **mutations** with **React Query**
 
-🔀 **Advanced routing** with any router library of your choice
+🔀 **Advanced routing** with any drouter library of your choice
 
 🔐 Providers for seamless **authentication** and **access control** flows
 
@@ -45,6 +47,8 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 💬 Support for any **i18n** framework
 
 💪 Future-proof, **robust architecture**
+
+⌛️ Built-in [CLI](https://refine.dev/docs/packages/documentation/cli/) with time-saving features
 
 ✅ Full **test coverage**
 
