@@ -9,15 +9,9 @@ import {
     LightTheme,
     Global,
 } from "@pankod/refine-mantine";
+import { MantineInferencer } from "@pankod/refine-inferencer/mantine";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
-
-import {
-    MantineListInferencer,
-    MantineEditInferencer,
-    MantineShowInferencer,
-    MantineCreateInferencer,
-} from "@pankod/refine-inferencer/mantine";
 
 const App: React.FC = () => {
     return (
@@ -36,26 +30,26 @@ const App: React.FC = () => {
                     resources={[
                         {
                             name: "samples",
-                            list: MantineListInferencer,
-                            edit: MantineEditInferencer,
-                            show: MantineShowInferencer,
-                            create: MantineCreateInferencer,
+                            list: MantineInferencer,
+                            edit: MantineInferencer,
+                            show: MantineInferencer,
+                            create: MantineInferencer,
                             canDelete: true,
                         },
                         {
                             name: "categories",
-                            list: MantineListInferencer,
-                            edit: MantineEditInferencer,
-                            show: MantineShowInferencer,
-                            create: MantineCreateInferencer,
+                            list: MantineInferencer,
+                            edit: MantineInferencer,
+                            show: MantineInferencer,
+                            create: MantineInferencer,
                             canDelete: true,
                         },
                         {
                             name: "users",
-                            list: MantineListInferencer,
-                            edit: MantineEditInferencer,
-                            show: MantineShowInferencer,
-                            create: MantineCreateInferencer,
+                            list: MantineInferencer,
+                            edit: MantineInferencer,
+                            show: MantineInferencer,
+                            create: MantineInferencer,
                             canDelete: true,
                         },
                     ]}

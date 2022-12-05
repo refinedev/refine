@@ -7,15 +7,9 @@ import {
     ReadyPage,
     notificationProvider,
 } from "@pankod/refine-chakra-ui";
+import { ChakraUIInferencer } from "@pankod/refine-inferencer/chakra-ui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
-
-import {
-    ChakraUIListInferencer,
-    ChakraUIEditInferencer,
-    ChakraUIShowInferencer,
-    ChakraUICreateInferencer,
-} from "@pankod/refine-inferencer/chakra-ui";
 
 const App: React.FC = () => {
     return (
@@ -30,26 +24,26 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "samples",
-                        list: ChakraUIListInferencer,
-                        edit: ChakraUIEditInferencer,
-                        show: ChakraUIShowInferencer,
-                        create: ChakraUICreateInferencer,
+                        list: ChakraUIInferencer,
+                        edit: ChakraUIInferencer,
+                        show: ChakraUIInferencer,
+                        create: ChakraUIInferencer,
                         canDelete: true,
                     },
                     {
                         name: "categories",
-                        list: ChakraUIListInferencer,
-                        edit: ChakraUIEditInferencer,
-                        show: ChakraUIShowInferencer,
-                        create: ChakraUICreateInferencer,
+                        list: ChakraUIInferencer,
+                        edit: ChakraUIInferencer,
+                        show: ChakraUIInferencer,
+                        create: ChakraUIInferencer,
                         canDelete: true,
                     },
                     {
                         name: "users",
-                        list: ChakraUIListInferencer,
-                        edit: ChakraUIEditInferencer,
-                        show: ChakraUIShowInferencer,
-                        create: ChakraUICreateInferencer,
+                        list: ChakraUIInferencer,
+                        edit: ChakraUIInferencer,
+                        show: ChakraUIInferencer,
+                        create: ChakraUIInferencer,
                         canDelete: true,
                     },
                 ]}
