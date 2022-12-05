@@ -115,6 +115,8 @@ You can take a look at some live examples that can be built using **refine** fro
 
 🌐 **SSR support** with **Next.js** or **Remix**
 
+🔍 Auto-generated **CRUD** UIs from **your API data structure**
+
 ⚛ Perfect **state management** & **mutations** with **React Query**
 
 🔀 **Advanced routing** with any router library of your choice
@@ -128,6 +130,8 @@ You can take a look at some live examples that can be built using **refine** fro
 💬 Support for any **i18n** framework
 
 💪 Future-proof, **robust architecture**
+
+⌛️ Built-in CLI with time-saving features
 
 ✅ Full **test coverage**
 
