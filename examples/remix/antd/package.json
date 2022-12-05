@@ -14,7 +14,7 @@
     "@pankod/refine-core": "^3.90.4",
     "@pankod/refine-simple-rest": "^3.37.4",
     "@pankod/refine-remix-router": "^1.7.0",
-    "@pankod/refine-antd": "^3.64.2",
+    "@pankod/refine-antd": "^3.64.3",
     "cookie": "^0.5.0",
     "js-cookie": "^3.0.1",
     "react": "^18.0.0",
