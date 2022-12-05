@@ -169,12 +169,7 @@ import {
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import {
-    AntdListInferencer,
-    AntdShowInferencer,
-    AntdCreateInferencer,
-    AntdEditInferencer,
-} from '@pankod/refine-inferencer/antd';
+import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 
 import "@pankod/refine-antd/dist/styles.min.css";
 
@@ -190,16 +185,16 @@ const App: React.FC = () => {
             resources={[
                 {
                     name: 'posts',
-                    list: AntdListInferencer,
-                    show: AntdShowInferencer,
-                    create: AntdCreateInferencer,
-                    edit: AntdEditInferencer,
+                    list: AntdInferencer,
+                    show: AntdInferencer,
+                    create: AntdInferencer,
+                    edit: AntdInferencer,
                     canDelete: true,
                 },
                 {
                     name: 'categories',
-                    list: AntdListInferencer,
-                    show: AntdShowInferencer,
+                    list: AntdInferencer,
+                    show: AntdInferencer,
                 }
             ]}
         />
