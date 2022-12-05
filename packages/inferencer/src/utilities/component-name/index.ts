@@ -13,10 +13,10 @@ export const componentName = (
         ? resourceName
         : pluralize.singular(resourceName);
 
-    // if resourcePrefix is number, return capitalized type
-    // e.g. 1 => "List"
+    // if resourcePrefix is number, return Resource + capitalized type
+    // e.g. 1 => "ResourceList"
     if (Number.isInteger(Number(resourcePrefix))) {
-        return type.charAt(0).toUpperCase() + type.slice(1);
+        return "Resource" + type.charAt(0).toUpperCase() + type.slice(1);
     }
 
     // if resourcePrefix is start with numbers, replace the numbers with empty string

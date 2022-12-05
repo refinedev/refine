@@ -11,7 +11,7 @@ describe("componentName", () => {
         expect(componentName("user", "edit")).toBe("UserEdit");
     });
     it("should return Edit", () => {
-        expect(componentName("12345", "edit")).toBe("Edit");
+        expect(componentName("12345", "edit")).toBe("ResourceEdit");
     });
     it("should return UserEdit", () => {
         expect(componentName("12345User", "edit")).toBe("UserEdit");
