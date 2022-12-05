@@ -54,7 +54,10 @@ const RouterProvider: IReactRouterProvider = {
             resource:
                 Object.keys(params).length === 0
                     ? pathname.substring(1)
-                    : decodeURIComponent(pathname.substring(1)).replace(paramsString, ""),
+                    : decodeURIComponent(pathname.substring(1)).replace(
+                          paramsString,
+                          "",
+                      ),
         });
     },
     Prompt: Prompt as any,
