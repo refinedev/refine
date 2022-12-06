@@ -1,5 +1,4 @@
 import { defineConfig } from "tsup";
-import * as fs from "fs";
 import copyStaticFiles from "esbuild-copy-static-files";
 import { NodeResolvePlugin } from "@esbuild-plugins/node-resolve";
 
@@ -36,14 +35,6 @@ export default defineConfig({
                 });
             },
         },
-        copyStaticFiles({
-            src: "./src/assets/styles/styles.min.css",
-            dest: "./dist/styles.min.css",
-        }),
-        copyStaticFiles({
-            src: "./src/assets/styles/antd.min.css",
-            dest: "./dist/antd.min.css",
-        }),
         copyStaticFiles({
             src: "./src/assets/styles/reset.min.css",
             dest: "./dist/reset.min.css",
