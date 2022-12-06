@@ -27,7 +27,7 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
-    renderer: ({ resource, fields }) => {
+    renderer: ({ resource, fields, isCustomPage }) => {
         const COMPONENT_NAME = componentName(
             resource.label ?? resource.name,
             "list",
@@ -785,7 +785,9 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
         ${printImports(imports)}
         
         export const ${COMPONENT_NAME} = () => {
-            const { dataGridProps } = useDataGrid();
+            const { dataGridProps } = useDataGrid(
+                ${isCustomPage ? `{ resource: "${resource.name}" }` : ""} 
+            );
         
             ${relationHooksCode}
 

@@ -11,19 +11,44 @@ const MuiInferencer: React.FC<InferencerComponentProps> = ({
     resource,
     name,
     action: actionFromProps,
+    id: idFromProps,
 }) => {
     const { useParams } = useRouterContext();
-    const { action } = useParams<ResourceRouterParams>();
+    const { action, id } = useParams<ResourceRouterParams>();
 
     switch (actionFromProps ?? action) {
         case "show":
-            return <ShowInferencer name={name} resource={resource} />;
+            return (
+                <ShowInferencer
+                    name={name}
+                    resource={resource}
+                    id={idFromProps ?? id}
+                />
+            );
         case "create":
-            return <CreateInferencer name={name} resource={resource} />;
+            return (
+                <CreateInferencer
+                    name={name}
+                    resource={resource}
+                    id={idFromProps ?? id}
+                />
+            );
         case "edit":
-            return <EditInferencer name={name} resource={resource} />;
+            return (
+                <EditInferencer
+                    name={name}
+                    resource={resource}
+                    id={idFromProps ?? id}
+                />
+            );
         default:
-            return <ListInferencer name={name} resource={resource} />;
+            return (
+                <ListInferencer
+                    name={name}
+                    resource={resource}
+                    id={idFromProps ?? id}
+                />
+            );
     }
 };
 
