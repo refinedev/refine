@@ -83,6 +83,8 @@ export type RendererContext = {
     resources: IResourceItem[];
     fields: Array<InferField | null>;
     infer: FieldInferencer;
+    isCustomPage: boolean;
+    id?: string | number;
 };
 
 export type CreateInferencerConfig = {
@@ -134,6 +136,10 @@ export type InferencerComponentProps = {
      * @default "list"
      * */
     action?: "list" | "show" | "edit" | "create";
+    /**
+     * The record to infer from, use this when `action` is `show` or `edit`
+     * */
+    id?: string | number;
     /**
      * Data accessor string to get the data from the record
      * @example your data provider returns { data: { item: { id: 1, name: "John" } } } from `getOne` then you should pass "item" as the `single` property.
