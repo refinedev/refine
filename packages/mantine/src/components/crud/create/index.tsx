@@ -18,7 +18,8 @@ import {
     useTranslate,
 } from "@pankod/refine-core";
 import { IconArrowLeft } from "@tabler/icons";
-import { SaveButton, Breadcrumb, CreateProps } from "@components";
+import { SaveButton, Breadcrumb } from "@components";
+import { CreateProps } from "../types";
 
 export const Create: React.FC<CreateProps> = (props) => {
     const {

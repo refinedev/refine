@@ -8,6 +8,10 @@ import textField from '@site/static/img/guides-and-concepts/fields/text/textFiel
 
 This field lets you show basic text. It uses Material UI [`<Typography>`](https://mui.com/material-ui/react-typography/#main-content) component.
 
+:::info-tip Swizzle
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+:::
+
 ## Usage
 
 Let's see how to use it in a basic list page:

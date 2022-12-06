@@ -72,6 +72,10 @@ const IconCheck = (
 
 This field is used to display boolean values. It uses the [`<Tooltip>`](https://mantine.dev/core/tooltip/) values from Mantine.
 
+:::info-tip Swizzle
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+:::
+
 ## Usage
 
 Let's see how we can use `<BooleanField>` with the example in the post list.

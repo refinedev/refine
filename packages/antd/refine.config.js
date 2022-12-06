@@ -7,6 +7,7 @@ const {
 
 /** @type {import('@pankod/refine-cli').RefineConfig} */
 module.exports = {
+    group: "UI Framework",
     swizzle: {
         items: [
             {
@@ -15,7 +16,7 @@ module.exports = {
                 files: [
                     {
                         src: "./src/components/buttons/show/index.tsx",
-                        dest: "./src/components/buttons/show.tsx",
+                        dest: "./components/buttons/show.tsx",
                     },
                 ],
             },
@@ -30,7 +31,7 @@ module.exports = {
                 files: [
                     {
                         src: "./src/components/buttons/create/index.tsx",
-                        dest: "./src/components/buttons/create.tsx",
+                        dest: "./components/buttons/create.tsx",
                     },
                 ],
             },
@@ -40,7 +41,7 @@ module.exports = {
                 files: [
                     {
                         src: "./src/components/buttons/clone/index.tsx",
-                        dest: "./src/components/buttons/clone.tsx",
+                        dest: "./components/buttons/clone.tsx",
                     },
                 ],
             },
@@ -56,7 +57,7 @@ module.exports = {
                 files: [
                     {
                         src: "./src/components/buttons/delete/index.tsx",
-                        dest: "./src/components/buttons/delete.tsx",
+                        dest: "./components/buttons/delete.tsx",
                     },
                 ],
             },
@@ -71,7 +72,7 @@ module.exports = {
                 files: [
                     {
                         src: "./src/components/buttons/edit/index.tsx",
-                        dest: "./src/components/buttons/edit.tsx",
+                        dest: "./components/buttons/edit.tsx",
                     },
                 ],
             },
@@ -81,7 +82,7 @@ module.exports = {
                 files: [
                     {
                         src: "./src/components/buttons/export/index.tsx",
-                        dest: "./src/components/buttons/export.tsx",
+                        dest: "./components/buttons/export.tsx",
                     },
                 ],
             },
@@ -91,7 +92,7 @@ module.exports = {
                 files: [
                     {
                         src: "./src/components/buttons/import/index.tsx",
-                        dest: "./src/components/buttons/import.tsx",
+                        dest: "./components/buttons/import.tsx",
                     },
                 ],
             },
@@ -107,7 +108,7 @@ module.exports = {
                 files: [
                     {
                         src: "./src/components/buttons/list/index.tsx",
-                        dest: "./src/components/buttons/list.tsx",
+                        dest: "./components/buttons/list.tsx",
                     },
                 ],
             },
@@ -123,7 +124,7 @@ module.exports = {
                 files: [
                     {
                         src: "./src/components/buttons/refresh/index.tsx",
-                        dest: "./src/components/buttons/refresh.tsx",
+                        dest: "./components/buttons/refresh.tsx",
                     },
                 ],
             },
@@ -139,7 +140,7 @@ module.exports = {
                 files: [
                     {
                         src: "./src/components/buttons/save/index.tsx",
-                        dest: "./src/components/buttons/save.tsx",
+                        dest: "./components/buttons/save.tsx",
                     },
                 ],
             },
@@ -149,7 +150,7 @@ module.exports = {
                 files: [
                     {
                         src: "./src/components/crud/create/index.tsx",
-                        dest: "./src/components/crud/create.tsx",
+                        dest: "./components/crud/create.tsx",
                     },
                 ],
             },
@@ -159,7 +160,7 @@ module.exports = {
                 files: [
                     {
                         src: "./src/components/crud/list/index.tsx",
-                        dest: "./src/components/crud/list.tsx",
+                        dest: "./components/crud/list.tsx",
                     },
                 ],
             },
@@ -169,7 +170,7 @@ module.exports = {
                 files: [
                     {
                         src: "./src/components/crud/show/index.tsx",
-                        dest: "./src/components/crud/show.tsx",
+                        dest: "./components/crud/show.tsx",
                     },
                 ],
             },
@@ -179,7 +180,7 @@ module.exports = {
                 files: [
                     {
                         src: "./src/components/crud/edit/index.tsx",
-                        dest: "./src/components/crud/edit.tsx",
+                        dest: "./components/crud/edit.tsx",
                     },
                 ],
             },
@@ -189,7 +190,7 @@ module.exports = {
                 files: [
                     {
                         src: "./src/components/fields/boolean/index.tsx",
-                        dest: "./src/components/fields/boolean.tsx",
+                        dest: "./components/fields/boolean.tsx",
                     },
                 ],
             },
@@ -199,7 +200,7 @@ module.exports = {
                 files: [
                     {
                         src: "./src/components/fields/date/index.tsx",
-                        dest: "./src/components/fields/date.tsx",
+                        dest: "./components/fields/date.tsx",
                     },
                 ],
             },
@@ -209,7 +210,7 @@ module.exports = {
                 files: [
                     {
                         src: "./src/components/fields/email/index.tsx",
-                        dest: "./src/components/fields/email.tsx",
+                        dest: "./components/fields/email.tsx",
                     },
                 ],
             },
@@ -219,7 +220,7 @@ module.exports = {
                 files: [
                     {
                         src: "./src/components/fields/file/index.tsx",
-                        dest: "./src/components/fields/file.tsx",
+                        dest: "./components/fields/file.tsx",
                     },
                 ],
             },
@@ -229,7 +230,7 @@ module.exports = {
                 files: [
                     {
                         src: "./src/components/fields/image/index.tsx",
-                        dest: "./src/components/fields/image.tsx",
+                        dest: "./components/fields/image.tsx",
                     },
                 ],
             },
@@ -239,7 +240,7 @@ module.exports = {
                 files: [
                     {
                         src: "./src/components/fields/markdown/index.tsx",
-                        dest: "./src/components/fields/markdown.tsx",
+                        dest: "./components/fields/markdown.tsx",
                     },
                 ],
             },
@@ -249,7 +250,7 @@ module.exports = {
                 files: [
                     {
                         src: "./src/components/fields/number/index.tsx",
-                        dest: "./src/components/fields/number.tsx",
+                        dest: "./components/fields/number.tsx",
                     },
                 ],
             },
@@ -259,7 +260,7 @@ module.exports = {
                 files: [
                     {
                         src: "./src/components/fields/tag/index.tsx",
-                        dest: "./src/components/fields/tag.tsx",
+                        dest: "./components/fields/tag.tsx",
                     },
                 ],
             },
@@ -269,7 +270,7 @@ module.exports = {
                 files: [
                     {
                         src: "./src/components/fields/text/index.tsx",
-                        dest: "./src/components/fields/text.tsx",
+                        dest: "./components/fields/text.tsx",
                     },
                 ],
             },
@@ -279,7 +280,7 @@ module.exports = {
                 files: [
                     {
                         src: "./src/components/fields/url/index.tsx",
-                        dest: "./src/components/fields/url.tsx",
+                        dest: "./components/fields/url.tsx",
                     },
                 ],
             },
@@ -288,12 +289,27 @@ module.exports = {
                 label: "ErrorPage",
                 message: ` 
                 **\`Warning:\`**
-                If you want to change the default error page, you should pass it with the **catchAll** prop to the **<Refine/>** component.
+                If you want to change the default error page;
+                You should pass it with the **catchAll** prop to the **<Refine/>** component.
+
+                \`\`\`
+                // title: App.tsx
+                import { ErrorPage } from "components/pages/error";
+
+                const App = () => {
+                    return (
+                        <Refine
+                            catchAll={ErrorPage}
+                            /* ... */
+                        />
+                    );
+                }
+                \`\`\`
                 `,
                 files: [
                     {
                         src: "./src/components/pages/error/index.tsx",
-                        dest: "./src/components/pages/error.tsx",
+                        dest: "./components/pages/error.tsx",
                         transform: (content) => {
                             let newContent = content;
 
@@ -316,16 +332,31 @@ module.exports = {
                 label: "AuthPage",
                 message: ` 
                 **\`Warning:\`**
-                If you want to change the default auth pages, you should pass it with the **AuthPage** prop to the **<Refine/>** component.
+                If you want to change the default auth pages;
+                You should pass it with the **LoginPage** prop to the **<Refine/>** component.
+
+                \`\`\`
+                // title: App.tsx
+                import { AuthPage } from "components/pages/auth";
+
+                const App = () => {
+                    return (
+                        <Refine
+                            LoginPage={AuthPage}
+                            /* ... */
+                        />
+                    );
+                }
+                \`\`\`
                 `,
                 files: [
                     {
                         src: "./src/components/pages/auth/index.tsx",
-                        dest: "./src/components/pages/auth/index.tsx",
+                        dest: "./components/pages/auth/index.tsx",
                     },
                     {
                         src: "./src/components/pages/auth/components/forgotPassword/index.tsx",
-                        dest: "./src/components/pages/auth/components/forgotPassword.tsx",
+                        dest: "./components/pages/auth/components/forgotPassword.tsx",
                         transform: (content) => {
                             let newContent = content;
 
@@ -342,7 +373,7 @@ module.exports = {
                     },
                     {
                         src: "./src/components/pages/auth/components/login/index.tsx",
-                        dest: "./src/components/pages/auth/components/login.tsx",
+                        dest: "./components/pages/auth/components/login.tsx",
                         transform: (content) => {
                             let newContent = content;
 
@@ -359,7 +390,7 @@ module.exports = {
                     },
                     {
                         src: "./src/components/pages/auth/components/register/index.tsx",
-                        dest: "./src/components/pages/auth/components/register.tsx",
+                        dest: "./components/pages/auth/components/register.tsx",
                         transform: (content) => {
                             let newContent = content;
 
@@ -376,7 +407,7 @@ module.exports = {
                     },
                     {
                         src: "./src/components/pages/auth/components/updatePassword/index.tsx",
-                        dest: "./src/components/pages/auth/components/updatePassword.tsx",
+                        dest: "./components/pages/auth/components/updatePassword.tsx",
                         transform: (content) => {
                             let newContent = content;
 
@@ -393,11 +424,11 @@ module.exports = {
                     },
                     {
                         src: "./src/components/pages/auth/components/index.tsx",
-                        dest: "./src/components/pages/auth/components/index.tsx",
+                        dest: "./components/pages/auth/components/index.tsx",
                     },
                     {
                         src: "./src/components/pages/auth/components/styles.ts",
-                        dest: "./src/components/pages/auth/components/styles.ts",
+                        dest: "./components/pages/auth/components/styles.ts",
                     },
                 ],
             },
@@ -411,11 +442,30 @@ module.exports = {
                     - <List/>
                     - <Show/>
                     - <Create/>
+
+                **\`Passing Breadcrumb Globally:\`**
+
+                \`\`\`
+                // title: App.tsx
+                import { Breadcrumb } from "components/breadcrumb";
+
+                const App = () => {
+                    return (
+                        <Refine
+                            options={{
+                                breadcrumb: <Breadcrumb />
+                                /* ... */
+                            }}
+                            /* ... */
+                        />
+                    );
+                }
+                \`\`\`
                 `,
                 files: [
                     {
                         src: "./src/components/breadcrumb/index.tsx",
-                        dest: "./src/components/breadcrumb.tsx",
+                        dest: "./components/breadcrumb.tsx",
                         transform: (content) => {
                             let newContent = content;
 
@@ -447,12 +497,27 @@ module.exports = {
                 label: "Layout",
                 message: `
                 **\`Warning:\`**
-                If you want to change the default layout, you should pass \`layout/index.tsx\` with the **Layout** prop to the **<Refine/>** component.
+                If you want to change the default layout;
+                You should pass \`layout/index.tsx\` with the **Layout** prop to the **<Refine/>** component.
+
+                \`\`\`
+                // title: App.tsx
+                import { Layout } from "components/layout";
+
+                const App = () => {
+                    return (
+                        <Refine
+                            Layout={Layout}
+                            /* ... */
+                        />
+                    );
+                }
+                \`\`\`
                 `,
                 files: [
                     {
                         src: "./src/components/layout/sider/index.tsx",
-                        dest: "./src/components/layout/sider.tsx",
+                        dest: "./components/layout/sider.tsx",
                         transform: (content) => {
                             let newContent = content;
                             const imports = getImports(content);
@@ -521,7 +586,7 @@ module.exports = {
                     },
                     {
                         src: "./src/components/layout/header/index.tsx",
-                        dest: "./src/components/layout/header.tsx",
+                        dest: "./components/layout/header.tsx",
                         transform: (content) => {
                             let newContent = content;
                             const imports = getImports(content);
@@ -544,11 +609,11 @@ module.exports = {
                     },
                     {
                         src: "./src/components/layout/title/index.tsx",
-                        dest: "./src/components/layout/title.tsx",
+                        dest: "./components/layout/title.tsx",
                     },
                     {
                         src: "./src/components/layout/index.tsx",
-                        dest: "./src/components/layout/index.tsx",
+                        dest: "./components/layout/index.tsx",
                         transform: (content) => {
                             let newContent = content;
                             const imports = getImports(content);

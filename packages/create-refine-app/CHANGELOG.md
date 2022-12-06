@@ -1,5 +1,17 @@
 # create-refine-app
 
+## 1.3.11
+
+### Patch Changes
+
+-   [`8088a228f21`](https://github.com/refinedev/refine/commit/8088a228f21e2cd13ba12ba493c90062de016c13) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed zero argument state
+
+## 1.3.10
+
+### Patch Changes
+
+-   [`8088a228f21`](https://github.com/refinedev/refine/commit/8088a228f21e2cd13ba12ba493c90062de016c13) Thanks [@omeraplak](https://github.com/omeraplak)! - Fixed zero argument state
+
 ## 1.3.9
 
 ### Patch Changes

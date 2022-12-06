@@ -52,7 +52,7 @@ const App: React.FC = () => {
 ## Example
 
 :::tip
-We recommend [**superplate**][superplate] to initialize your refine projects. It configures the project according to your needs including i18n provider.
+We recommend using [`create refine-app`][create-refine-app] to initialize your refine projects. It configures the project according to your needs including i18n provider.
 :::
 
 :::caution
@@ -822,4 +822,4 @@ export interface IPost {
    ></iframe>
 
 [i18nnextjs]: /examples/i18n/i18n-nextjs.md
-[superplate]: https://github.com/pankod/superplate
+[create-refine-app]: /docs/getting-started/quickstart.md

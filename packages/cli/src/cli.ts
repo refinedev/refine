@@ -46,15 +46,15 @@ const bootstrap = () => {
         .helpOption("-h, --help", "Output usage information.");
 
     // load commands
+    swizzle(program);
     createResource(program);
-    checkUpdates(program);
     update(program);
     dev(program);
     build(program);
     start(program);
     run(program);
+    checkUpdates(program);
     whoami(program);
-    swizzle(program);
 
     program.hook("postAction", (thisCommand) => {
         const command = thisCommand.args[0];

@@ -2,39 +2,57 @@ const { getImports } = require("@pankod/refine-cli");
 
 /** @type {import('@pankod/refine-cli').RefineConfig} */
 module.exports = {
+    group: "Data Provider",
     swizzle: {
         items: [
             {
-                group: "Providers",
-                label: "Simple Rest Data Provider",
+                label: "Data Provider",
                 files: [
                     {
                         src: "./src/provider.ts",
-                        dest: "./src/rest-data-provider/index.ts",
+                        dest: "./rest-data-provider/index.ts",
                     },
                     {
                         src: "./src/utils/axios.ts",
-                        dest: "./src/rest-data-provider/utils/axios.ts",
+                        dest: "./rest-data-provider/utils/axios.ts",
                     },
                     {
                         src: "./src/utils/generateFilter.ts",
-                        dest: "./src/rest-data-provider/utils/generateFilter.ts",
+                        dest: "./rest-data-provider/utils/generateFilter.ts",
                     },
                     {
                         src: "./src/utils/generateSort.ts",
-                        dest: "./src/rest-data-provider/utils/generateSort.ts",
+                        dest: "./rest-data-provider/utils/generateSort.ts",
                     },
                     {
                         src: "./src/utils/mapOperator.ts",
-                        dest: "./src/rest-data-provider/utils/mapOperator.ts",
+                        dest: "./rest-data-provider/utils/mapOperator.ts",
                     },
                     {
                         src: "./src/utils/index.ts",
-                        dest: "./src/rest-data-provider/utils/index.ts",
+                        dest: "./rest-data-provider/utils/index.ts",
                     },
                 ],
-                message:
-                    "**`Info`**: You will also need to add `axios` to your project dependencies.",
+                message: `
+                **\`Warning:\`**
+                You will also need to add \`axios\` to your project dependencies.
+
+                **\`Usage\`**
+
+                \`\`\`
+                // title: App.tsx
+                import { dataProvider } from "./rest-data-provider";
+
+                const App = () => {
+                    return (
+                        <Refine
+                            dataProvider={dataProvider}
+                            /* ... */
+                        />
+                    );
+                }
+                \`\`\`
+                `,
             },
         ],
         transform: (content) => {

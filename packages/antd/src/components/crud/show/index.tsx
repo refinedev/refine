@@ -16,9 +16,9 @@ import {
     RefreshButton,
     ListButton,
     Breadcrumb,
-    ShowProps,
     PageHeader,
 } from "@components";
+import { ShowProps } from "../types";
 
 /**
  * `<Show>` provides us a layout for displaying the page.

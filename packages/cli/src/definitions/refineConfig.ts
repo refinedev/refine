@@ -33,6 +33,8 @@ export type SwizzleConfig = {
 };
 
 export type RefineConfig = {
+    name?: string;
+    group?: string;
     /**
      * Swizzle configuration of the package
      */

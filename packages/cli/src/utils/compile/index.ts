@@ -18,6 +18,10 @@ export const compile = (filePath: string, params: any): string => {
     });
 
     Handlebars.registerHelper("formatInferencerComponent", function (string) {
+        if (!string) {
+            return;
+        }
+
         switch (string) {
             case "chakra-ui":
                 return "ChakraUI";
@@ -28,6 +32,10 @@ export const compile = (filePath: string, params: any): string => {
     });
 
     Handlebars.registerHelper("capitalize", function (string) {
+        if (!string) {
+            return;
+        }
+
         return string.charAt(0).toUpperCase() + string.slice(1);
     });
 

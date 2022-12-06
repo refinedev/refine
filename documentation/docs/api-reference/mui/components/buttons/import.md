@@ -10,6 +10,10 @@ import importButton from '@site/static/img/guides-and-concepts/components/button
 
 [Refer to the for more detailed information about `useImport`. &#8594][useimport]
 
+:::info-tip Swizzle
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+:::
+
 ## Usage
 
 Use it like any other Material UI [`<LoadingButton>`][button]. You can use it with [useImport][useimport]:

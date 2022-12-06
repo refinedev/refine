@@ -85,7 +85,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-TextInput-input mantine-gqmpge"
+              class="mantine-Input-input mantine-TextInput-input mantine-1g14e8k"
               id="mantine-r2"
               type="text"
               value=""
@@ -107,7 +107,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-TextInput-input mantine-gqmpge"
+              class="mantine-Input-input mantine-TextInput-input mantine-1g14e8k"
               id="mantine-r3"
               type="text"
               value=""
@@ -129,7 +129,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
           >
             <textarea
               aria-invalid="false"
-              class="mantine-Input-input mantine-Textarea-input mantine-1g5p8t1"
+              class="mantine-Input-input mantine-Textarea-input mantine-1cp6ct5"
               id="mantine-r4"
             />
           </div>
@@ -149,7 +149,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-NumberInput-input mantine-fxjyvm"
+              class="mantine-Input-input mantine-NumberInput-input mantine-rum3t1"
               id="mantine-r5"
               inputmode="numeric"
               step="1"
@@ -238,7 +238,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
                 aria-autocomplete="list"
                 aria-invalid="false"
                 autocomplete="off"
-                class="mantine-Input-input mantine-Select-input mantine-qew57g"
+                class="mantine-Input-input mantine-Select-input mantine-149ccxv"
                 data-mantine-stop-propagation="false"
                 id="mantine-r6"
                 type="search"
@@ -296,7 +296,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
                 aria-autocomplete="list"
                 aria-invalid="false"
                 autocomplete="off"
-                class="mantine-Input-input mantine-Select-input mantine-qew57g"
+                class="mantine-Input-input mantine-Select-input mantine-149ccxv"
                 data-mantine-stop-propagation="false"
                 id="mantine-r8"
                 type="search"
@@ -340,7 +340,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-TextInput-input mantine-gqmpge"
+              class="mantine-Input-input mantine-TextInput-input mantine-1g14e8k"
               id="mantine-ra"
               type="text"
               value=""
@@ -362,7 +362,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-TextInput-input mantine-gqmpge"
+              class="mantine-Input-input mantine-TextInput-input mantine-1g14e8k"
               id="mantine-rb"
               type="text"
               value=""
@@ -384,7 +384,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-TextInput-input mantine-gqmpge"
+              class="mantine-Input-input mantine-TextInput-input mantine-1g14e8k"
               id="mantine-rc"
               type="text"
               value=""
@@ -406,7 +406,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-TextInput-input mantine-gqmpge"
+              class="mantine-Input-input mantine-TextInput-input mantine-1g14e8k"
               id="mantine-rd"
               type="text"
               value=""
@@ -441,7 +441,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
             >
               <div
                 aria-invalid="false"
-                class="mantine-Input-input mantine-MultiSelect-input mantine-1e8dll4"
+                class="mantine-Input-input mantine-MultiSelect-input mantine-zunujd"
               >
                 <div
                   class="mantine-j220w7 mantine-MultiSelect-values"
@@ -494,7 +494,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-NumberInput-input mantine-fxjyvm"
+              class="mantine-Input-input mantine-NumberInput-input mantine-rum3t1"
               id="mantine-rg"
               inputmode="numeric"
               step="1"

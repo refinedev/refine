@@ -41,7 +41,7 @@ export const telemetryHook = async () => {
     try {
         const data = await getTelemetryData();
 
-        fetch("https://telemetry.refine.dev/cli", {
+        await fetch("https://telemetry.refine.dev/cli", {
             method: "POST",
             body: JSON.stringify(data),
             headers: { "Content-Type": "application/json" },

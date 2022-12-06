@@ -10,7 +10,11 @@ import customMenuLogout from '@site/static/img/guides-and-concepts/hooks/useMenu
 
 import customMobileMenu from '@site/static/img/guides-and-concepts/hooks/useMenu/mui/custom-menu-mobile.gif';
 
-You can access the `logout`, `dashboard`, `items` elements and `collapsed` state that we use in our default `Sider` component by using `render` properties. Customize it to your needs or you can create a custom `<Sider />` component and use it either by passing it to [`<Refine />`][refine] or using a [Custom Layout][antdcustomlayout].
+You can access the `logout`, `dashboard`, `items` elements and `collapsed` state that we use in our default `Sider` component by using `render` properties. Customize it to your needs or you can create a custom `<Sider />` component and use it either by passing it to [`<Refine />`][refine] or using a [Custom Layout][muicustomlayout].
+
+:::info-tip Swizzle
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+:::
 
 ## Customize Sider by Using `render` property
 
@@ -88,6 +92,10 @@ You can also use the `collapsed` state to manage the component that you want to 
 You can also customize your Sider component by creating the `CustomSider` component.
 
 When you examine the code of the live-preview example below, you will see the same code that we used for the `default sider` component. You can create a customized `CustomSider` component for yourself by following this code.
+
+:::info-tip Swizzle
+You can also run the `swizzle` command to export the source code of the default sider component. Refer to [**refine CLI**](/docs/packages/documentation/cli) for more information.
+:::
 
 ```tsx title="src/CustomSider.tsx"
 import React, { useState } from "react";
@@ -588,4 +596,4 @@ export default App;
 </div>
 
 [refine]: /api-reference/core/components/refine-config.md
-[antdcustomlayout]: /api-reference/mui/customization/layout.md
+[muicustomlayout]: /api-reference/mui/customization/layout.md

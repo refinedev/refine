@@ -8,6 +8,10 @@ There are 2 ways that will allow you to customize your `<Sider />` component if 
 
 You can access the `logout`, `dashboard`, `items` elements and `collapsed` state that we use in our default `Sider` component by using `render` properties. Customize it to your needs or you can create a custom `<Sider />` component and use it either by passing it to [`<Refine />`][refine] or using a [Custom Layout][antdcustomlayout].
 
+:::info-tip Swizzle
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+:::
+
 ## Customize Sider by Using `render` property
 
 ```tsx live previewHeight=360px hideCode disableScroll url=http://localhost:3000/posts
@@ -95,6 +99,10 @@ The `Menu.Item` component gives you an implemention ready component compatible w
 You can also customize your Sider component by creating the `CustomSider` component.
 
 When you examine the code of the live-preview example below, you will see the same code that we used for the `default sider` component. You can create a customized `CustomSider` component for yourself by following this code.
+
+:::info-tip Swizzle
+You can also run the `swizzle` command to export the source code of the default sider component. Refer to [**refine CLI**](/docs/packages/documentation/cli) for more information.
+:::
 
 ```tsx live hideCode disableScroll url=http://localhost:3000/posts
 setInitialRoutes(["/posts"]);

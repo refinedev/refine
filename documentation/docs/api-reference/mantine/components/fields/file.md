@@ -35,6 +35,10 @@ const Wrapper = ({ children }) => {
 
 This field is used to display files and it uses the [`<Anchor>`](https://mantine.dev/core/anchor/) component of Mantine.
 
+:::info-tip Swizzle
+You can swizzle this component to customize it with the [**refine CLI**](/docs/packages/documentation/cli)
+:::
+
 ## Usage
 
 Let's see how we can use `<FileField>` with the example in the list page.
