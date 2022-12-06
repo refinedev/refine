@@ -16,7 +16,7 @@ export const useModal = ({
     modalProps = {},
 }: useModalProps = {}): useModalReturnType => {
     const { show, close, visible } = useCoreModal({
-        defaultVisible: modalProps.visible,
+        defaultVisible: modalProps.open,
     });
 
     return {
@@ -26,6 +26,7 @@ export const useModal = ({
                 modalProps.onCancel?.(e);
                 close();
             },
+            open: visible,
             visible,
         },
         show,

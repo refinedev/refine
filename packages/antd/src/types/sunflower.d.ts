@@ -54,7 +54,7 @@ declare module "sunflower-antd" {
         config: Omit<UseModalFormConfig, "defaultFormValues">,
     ) => {
         form: FormInstance<TVariables>;
-        visible: boolean;
+        open: boolean;
         show: () => void;
         close: () => void;
         modalProps: {
@@ -80,5 +80,7 @@ declare module "sunflower-antd" {
         initialValues: {};
         formResult: undefined;
         submit: (values?: TVariables) => Promise<TData>;
+        /** @deprecated Please use `open` instead. */
+        visible: boolean;
     };
 }

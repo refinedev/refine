@@ -22,8 +22,8 @@ import {
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 
 export type useModalFormFromSFReturnType<TData, TVariables> = {
+    open: boolean;
     form: FormInstance<TVariables>;
-    visible: boolean;
     show: (id?: BaseKey) => void;
     close: () => void;
     modalProps: ModalProps;
@@ -34,6 +34,8 @@ export type useModalFormFromSFReturnType<TData, TVariables> = {
     initialValues: {};
     formResult: undefined;
     submit: (values?: TVariables) => Promise<TData>;
+    /** @deprecated Please use `open` instead. */
+    visible: boolean;
 };
 
 type useModalFormConfig = {
@@ -183,6 +185,7 @@ export const useModalForm = <
         ...sunflowerUseModal,
         show: handleShow,
         close: handleClose,
+        open: visible,
         formProps: {
             ...modalFormProps,
             ...useFormProps.formProps,
