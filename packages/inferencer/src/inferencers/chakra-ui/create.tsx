@@ -40,7 +40,7 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
-    renderer: ({ resource, fields, isCustomPage, id }) => {
+    renderer: ({ resource, fields, isCustomPage }) => {
         const COMPONENT_NAME = componentName(
             resource.label ?? resource.name,
             "create",
