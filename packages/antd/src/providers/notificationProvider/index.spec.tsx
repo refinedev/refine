@@ -19,7 +19,7 @@ describe("Antd notificationProvider", () => {
     });
 
     const notificationOpenSpy = jest.spyOn(notification, "open");
-    const notificationCloseSpy = jest.spyOn(notification, "close");
+    const notificationCloseSpy = jest.spyOn(notification, "destroy");
 
     it("should render notification type succes notification", async () => {
         notificationProvider.open?.(mockNotification);

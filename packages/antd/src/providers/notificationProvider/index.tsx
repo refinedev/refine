@@ -37,5 +37,5 @@ export const notificationProvider: NotificationProvider = {
             });
         }
     },
-    close: (key) => notification.close(key),
+    close: (key) => notification.destroy(key),
 };
