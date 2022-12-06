@@ -59,6 +59,7 @@ export {
     Typography,
     Upload,
     version,
+    theme,
 } from "antd";
 
 export type {
