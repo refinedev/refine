@@ -121,7 +121,7 @@ sup {
   top: -0.5em;
 }
 a {
-  color: #67be23;
+  color: inherit;
   text-decoration: none;
   background-color: transparent;
   outline: none;
@@ -130,10 +130,10 @@ a {
   -webkit-text-decoration-skip: objects;
 }
 a:hover {
-  color: #84cc45;
+  color: inherit;
 }
 a:active {
-  color: #499914;
+  color: inherit
 }
 a:active,
 a:hover {
