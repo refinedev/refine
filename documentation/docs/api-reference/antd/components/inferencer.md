@@ -57,7 +57,7 @@ const SampleList = () => {
 const SampleShow = () => {
     return (
         // highlight-next-line
-        <AntdInferencer resource="samples" action="show" />
+        <AntdInferencer resource="samples" action="show" id="1" />
     );
 };
 
@@ -71,7 +71,7 @@ const SampleCreate = () => {
 const SampleEdit = () => {
     return (
         // highlight-next-line
-        <AntdInferencer resource="samples" action="edit" />
+        <AntdInferencer resource="samples" action="edit" id="1" />
     );
 };
 ```

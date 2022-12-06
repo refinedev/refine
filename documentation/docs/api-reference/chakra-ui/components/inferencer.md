@@ -61,7 +61,7 @@ const SampleList = () => {
 const SampleShow = () => {
     return (
         // highlight-next-line
-        <ChakraUIInferencer resource="samples" action="show" />
+        <ChakraUIInferencer resource="samples" action="show" id="1" />
     );
 };
 
@@ -75,7 +75,7 @@ const SampleCreate = () => {
 const SampleEdit = () => {
     return (
         // highlight-next-line
-        <ChakraUIInferencer resource="samples" action="edit" />
+        <ChakraUIInferencer resource="samples" action="edit" id="1" />
     );
 };
 ```

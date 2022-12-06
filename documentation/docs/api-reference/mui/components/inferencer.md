@@ -68,7 +68,7 @@ const SampleList = () => {
 const SampleShow = () => {
     return (
         // highlight-next-line
-        <MuiInferencer resource="samples" action="show" />
+        <MuiInferencer resource="samples" action="show" id="1" />
     );
 };
 
@@ -82,7 +82,7 @@ const SampleCreate = () => {
 const SampleEdit = () => {
     return (
         // highlight-next-line
-        <MuiInferencer resource="samples" action="edit" />
+        <MuiInferencer resource="samples" action="edit" id="1" />
     );
 };
 ```
