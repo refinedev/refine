@@ -26,7 +26,7 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
-    renderer: ({ resource, fields }) => {
+    renderer: ({ resource, fields, isCustomPage }) => {
         const COMPONENT_NAME = componentName(
             resource.label ?? resource.name,
             "list",
@@ -528,6 +528,7 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
         export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
             const { tableProps } = useTable({
                 syncWithLocation: true,
+                ${isCustomPage ? ` resource: "${resource.name}",` : ""}
             });
         
             ${relationHooksCode}

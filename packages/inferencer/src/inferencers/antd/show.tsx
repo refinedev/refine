@@ -27,7 +27,7 @@ export const ShowInferencer: InferencerResultComponent = createInferencer({
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
-    renderer: ({ resource, fields }) => {
+    renderer: ({ resource, fields, isCustomPage, id }) => {
         const COMPONENT_NAME = componentName(
             resource.label ?? resource.name,
             "show",
@@ -447,7 +447,14 @@ export const ShowInferencer: InferencerResultComponent = createInferencer({
         const { Title } = Typography;
 
         export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
-            const { queryResult } = useShow();
+            const { queryResult } = useShow(${
+                isCustomPage
+                    ? `{ 
+                        resource: "${resource.name}", 
+                        id: ${id}
+                    }`
+                    : ""
+            });
             const { data, isLoading } = queryResult;
         
             const ${recordName} = data?.data;
