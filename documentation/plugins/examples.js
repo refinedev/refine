@@ -105,7 +105,8 @@ function plugin() {
                             " " +
                             doc.title
                                 .replace("antd", "Ant Design")
-                                .replace("mui", "Material UI");
+                                .replace("mui", "Material UI")
+                                .replace("chakra-ui", "Chakra UI");
 
                         return {
                             // ...doc,
@@ -113,7 +114,8 @@ function plugin() {
                             baseTitle: doc.title,
                             title: doc.title
                                 .replace("antd", "Ant Design")
-                                .replace("mui", "Material UI"),
+                                .replace("mui", "Material UI")
+                                .replace("chakra-ui", "Chakra UI"),
                             displayTitle: _nullishCoalesce(
                                 _nullishCoalesce(
                                     doc.frontMatter["example-title"],
@@ -122,7 +124,8 @@ function plugin() {
                                 () =>
                                     doc.title
                                         .replace("antd", "Ant Design")
-                                        .replace("mui", "Material UI"),
+                                        .replace("mui", "Material UI")
+                                        .replace("chakra-ui", "Chakra UI"),
                             ),
                             description: doc.description,
                             permalink: doc.permalink,
