@@ -30,13 +30,11 @@ import {
  */
 export const Edit: React.FC<EditProps> = ({
     title,
-    actionButtons,
     saveButtonProps,
     mutationMode: mutationModeProp,
     recordItemId,
     children,
     deleteButtonProps,
-    pageHeaderProps,
     canDelete,
     resource: resourceFromProps,
     isLoading = false,
@@ -150,7 +148,6 @@ export const Edit: React.FC<EditProps> = ({
                         <Breadcrumb />
                     )
                 }
-                {...(pageHeaderProps ?? {})}
                 {...(headerProps ?? {})}
             >
                 <Spin spinning={isLoading}>
@@ -173,8 +170,6 @@ export const Edit: React.FC<EditProps> = ({
                                                   defaultFooterButtons,
                                           })
                                         : footerButtons
-                                    : actionButtons
-                                    ? actionButtons
                                     : defaultFooterButtons}
                             </Space>,
                         ]}

@@ -4,8 +4,6 @@ title: Show
 swizzle: true
 ---
 
-import pageHeaderPropsUsage from '@site/static/img/guides-and-concepts/basic-views/show/pageHeaderPropsUsage.png'
-import actionButtonsUsage from '@site/static/img/guides-and-concepts/basic-views/show/actionButtonsUsage.png'
 import isLoading from '@site/static/img/guides-and-concepts/basic-views/show/isLoading.png'
 
 `<Show>` provides us a layout for displaying the page. It does not contain any logic but adds extra functionalities like a refresh button or giving title to the page.
@@ -820,91 +818,13 @@ render(
 );
 ```
 
-### ~~`actionButtons`~~
-
-:::caution Deprecated
-Use `headerButtons` or `footerButtons` instead.
-:::
-
-`<Show>` uses the Ant Design [`<Card>`](https://ant.design/components/card/) component so you can customize the `action` property with the properties of `actionButtons`. By default, the `action` property of the `<Card>` component shows nothing in the `<Show>` component.
-
-```tsx
-import { Show, Space, Button } from "@pankod/refine-antd";
-
-export const ShowPage: React.FC = () => {
-    return (
-        <Show
-            actionButtons={
-                <Space>
-                    <Button type="primary">Custom Button 1</Button>
-                    <Button type="default">Custom Button 2</Button>
-                </Space>
-            }
-        >
-            ...
-        </Show>
-    );
-};
-```
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src={actionButtonsUsage} alt="actionButton Usage" />
-</div>
-<br/>
-
-### ~~`pageHeaderProps`~~
-
-:::caution Deprecated
-Use `headerProps`, `wrapperProps` or `contentProps` instead.
-:::
-
-`<Show>` uses the Ant Design [`<PageHeader>`](https://ant.design/components/page-header/#API) components so you can customize it with the properties of `pageHeaderProps`.
-
-By default, the `extra` property of the `<PageHeader>` component shows `<RefreshButton>`, `<ListButton>`, `<EditButton>` and `<DeleteButton>` based on your resource definition in the `resources` property you pass to `<Refine>` and the `breadcrumb` property shows [`<Breadcrumb>`][breadcrumb-component] component.
-
-```tsx
-import { Show } from "@pankod/refine-antd";
-
-export const ShowPage: React.FC = () => {
-    return (
-        <Show
-            pageHeaderProps={{
-                onBack: () => console.log("Hello, refine"),
-                subTitle: "Subtitle",
-            }}
-        >
-            ...
-        </Show>
-    );
-};
-```
-
-<div class="img-container">
-    <div class="window">
-        <div class="control red"></div>
-        <div class="control orange"></div>
-        <div class="control green"></div>
-    </div>
-    <img src={pageHeaderPropsUsage} alt="pageHeaderProps Usage"/>
-</div>
-<br/>
-
-:::caution
-The `<Show>` component needs the `id` information for work properly, so if you use the `<Show>` component in custom pages, you should pass the `recordItemId` property.
-:::
-
 ## API Reference
 
 ### Properties
 
 <PropsTable module="@pankod/refine-antd/Show"
 contentProps-type="[`CardProps`](https://ant.design/components/card/#API)"
-headerProps-type="[`PageHeaderProps`](https://ant.design/components/page-header/#API)"
+headerProps-type="[`PageHeaderProps`](https://procomponents.ant.design/en-US/components/page-header)" 
 headerButtons-default="[`ListButton`](https://refine.dev/docs/api-reference/antd/components/buttons/list-button/), [`RefreshButton`](https://refine.dev/docs/api-reference/antd/components/buttons/refresh-button/), [`EditButton`](https://refine.dev/docs/api-reference/antd/components/buttons/edit-button/) and [`DeleteButton`](https://refine.dev/docs/api-reference/antd/components/buttons/delete-button/)"
 headerButtonProps-type="[`SpaceProps`](https://ant.design/components/space/)"
 deleteButtonProps-type="[`DeleteButtonProps`](/docs/api-reference/antd/components/buttons/delete-button/)"
@@ -914,26 +834,3 @@ breadcrumb-default="[`<Breadcrumb>`](https://ant.design/components/breadcrumb/)"
 goBack-default="`<ArrowLeft />`"
 goBack-type="`ReactNode`"
 />
-
-| Property                                                                                                     | Description                                                       | Type                                                                            | Default                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| title                                                                                                        | Adds a title                                                      | `React.ReactNode`                                                               | `"Show"` prefix and singular of `resource.name`                                                                                |
-| resource                                                                                                     | Resource name for API data interactions                           | `string`                                                                        | Resource name that it reads from the URL.                                                                                      |
-| canDelete                                                                                                    | Adds a delete button                                              | `boolean`                                                                       | If the resource has `canDelete` prop it is `true` else `false`                                                                 |
-| canEdit                                                                                                      | Adds an edit button                                               | `boolean`                                                                       | If the resource has `canEdit` prop it is `true` else `false`                                                                   |
-| recordItemId                                                                                                 | The record id for `<RefreshButton>`                               | [`BaseKey`](/api-reference/core/interfaces.md#basekey)                          |                                                                                                                                |
-| dataProviderName                                                                                             | To specify a data provider other than `default` use this property | `string`                                                                        |                                                                                                                                |
-| goBack                                                                                                       | Custom back icon element                                          | `React.ReactNode`                                                               | `<ArrowLeft />`                                                                                                                |
-| isLoading                                                                                                    | Gets passed to the `loading` prop of the `<Card>`                 | `boolean`                                                                       | `false`                                                                                                                        |
-| breadcrumb                                                                                                   | Custom breadcrumb element                                         | `React.ReactNode`                                                               | `<Breadcrumb/>`                                                                                                                |
-| wrapperProps                                                                                                 | Wrapper element props                                             | `React.DetailedHTMLProps<HTMLDivElement>`                                       |                                                                                                                                |
-| headerProps                                                                                                  | Header element props                                              | `PageHeaderProps`                                                               |                                                                                                                                |
-| contentProps                                                                                                 | Content wrapper element props                                     | `CardProps`                                                                     |                                                                                                                                |
-| headerButtons                                                                                                | Header buttons element or render function                         | `({ defaultButtons: React.ReactNode }) => React.ReactNode` \| `React.ReactNode` |                                                                                                                                |
-| headerButtonProps                                                                                            | Header buttons wrapper element props                              | `SpaceProps`                                                                    |                                                                                                                                |
-| footerButtons                                                                                                | Footer buttons element or render function                         | `({ defaultButtons: React.ReactNode }) => React.ReactNode` \| `React.ReactNode` |                                                                                                                                |
-| footerButtonProps                                                                                            | Footer buttons wrapper element props                              | `SpaceProps`                                                                    |                                                                                                                                |
-| <div className="required-block"><div>actionButtons</div> <div className=" required">deprecated</div></div>   | Gets passed to the `extra` prop of the `<Card>`                   | `React.ReactNode`                                                               | `<SaveButton>` and depending on your resource configuration (`canDelete` prop)                                                 |
-| <div className="required-block"><div>pageHeaderProps</div> <div className=" required">deprecated</div></div> | Passes props for `<PageHeader>`                                   | [PageHeaderProps](https://ant.design/components/page-header/#API)               | { ghost: false, [title](#title), extra: `<ListButton>` and `<RefreshButton>`, breadcrumb: [Breadcrumb][breadcrumb-component] } |
-
-[breadcrumb-component]: /api-reference/antd/components/breadcrumb.md
