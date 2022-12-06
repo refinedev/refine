@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Layout, Menu, Grid, ConfigProvider } from "antd";
+import { Layout, Menu, Grid, ConfigProvider, Drawer, Button } from "antd";
 import {
     DashboardOutlined,
     LogoutOutlined,
     UnorderedListOutlined,
+    BarsOutlined,
 } from "@ant-design/icons";
 import {
     useTranslate,
@@ -19,13 +20,14 @@ import {
 
 import { Title as DefaultTitle } from "@components";
 
-import { antLayoutSider, antLayoutSiderMobile } from "./styles";
+import { drawerButtonStyles } from "./styles";
 import { RefineLayoutSiderProps } from "../types";
 
 const { SubMenu } = Menu;
 
 export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
+    const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
     const isExistAuthentication = useIsExistAuthentication();
     const { Link } = useRouterContext();
     const { mutate: mutateLogout } = useLogout();
@@ -139,6 +141,77 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
         );
     };
 
+    const renderMenu = () => {
+        return (
+            <>
+                <RenderToTitle collapsed={false} />
+                <Menu
+                    selectedKeys={[selectedKey]}
+                    defaultOpenKeys={defaultOpenKeys}
+                    mode="inline"
+                    onClick={() => {
+                        setDrawerOpen(false);
+                        if (!breakpoint.lg) {
+                            setCollapsed(true);
+                        }
+                    }}
+                >
+                    {renderSider()}
+                </Menu>
+            </>
+        );
+    };
+
+    const renderDrawerSider = () => {
+        return (
+            <>
+                <Drawer
+                    open={drawerOpen}
+                    onClose={() => setDrawerOpen(false)}
+                    placement="left"
+                    closable={false}
+                    width={200}
+                    bodyStyle={{
+                        padding: 0,
+                    }}
+                    maskClosable={true}
+                >
+                    <Layout>
+                        <Layout.Sider style={{ height: "100vh" }}>
+                            {renderMenu()}
+                        </Layout.Sider>
+                    </Layout>
+                </Drawer>
+                <Button
+                    style={drawerButtonStyles}
+                    size="large"
+                    onClick={() => setDrawerOpen(true)}
+                    icon={<BarsOutlined />}
+                ></Button>
+            </>
+        );
+    };
+
+    const renderContent = () => {
+        if (isMobile) {
+            return renderDrawerSider();
+        }
+
+        return (
+            <Layout.Sider
+                collapsible
+                collapsed={collapsed}
+                onCollapse={(collapsed: boolean): void =>
+                    setCollapsed(collapsed)
+                }
+                collapsedWidth={80}
+                breakpoint="lg"
+            >
+                {renderMenu()}
+            </Layout.Sider>
+        );
+    };
+
     return (
         <ConfigProvider
             theme={{
@@ -153,30 +226,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                 },
             }}
         >
-            <Layout.Sider
-                collapsible
-                collapsed={collapsed}
-                onCollapse={(collapsed: boolean): void =>
-                    setCollapsed(collapsed)
-                }
-                collapsedWidth={isMobile ? 0 : 80}
-                breakpoint="lg"
-                style={isMobile ? antLayoutSiderMobile : antLayoutSider}
-            >
-                <RenderToTitle collapsed={collapsed} />
-                <Menu
-                    selectedKeys={[selectedKey]}
-                    defaultOpenKeys={defaultOpenKeys}
-                    mode="inline"
-                    onClick={() => {
-                        if (!breakpoint.lg) {
-                            setCollapsed(true);
-                        }
-                    }}
-                >
-                    {renderSider()}
-                </Menu>
-            </Layout.Sider>
+            {renderContent()}
         </ConfigProvider>
     );
 };
