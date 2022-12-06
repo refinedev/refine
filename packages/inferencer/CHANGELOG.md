@@ -1,5 +1,41 @@
 # @pankod/refine-mantine
 
+## 1.2.2
+
+### Patch Changes
+
+-   [#3123](https://github.com/refinedev/refine/pull/3123) [`5e480338852`](https://github.com/refinedev/refine/commit/5e48033885273a05f3eebbcb4bcf1d28220bb6b3) Thanks [@salihozdemir](https://github.com/salihozdemir)! - - Removed the requirement to define resource for relations.
+    -   Component names and variable names are now generated primarily by label after the resource name.
+    -   Added a new base interface component
+        > ```diff
+        > - import {
+        > -    AntdShowInferencer,
+        > -    AntdEditInferencer,
+        > -    AntdListInferencer,
+        > -    AntdEditInferencer,
+        > - } from "@pankod/refine-inferencer/antd";
+        > + import { AntdInferencer } from "@pankod/refine-inferencer/antd";
+        >
+        > <Refine
+        >     ...
+        >     resources={[
+        >         {
+        >             name: "samples",
+        > -           list: AntdListInferencer,
+        > +           list: AntdInferencer,
+        > -           edit: AntdEditInferencer,
+        > +           edit: AntdInferencer,
+        > -           show: AntdShowInferencer,
+        > +           show: AntdInferencer,
+        > -           create: AntdEditInferencer,
+        > +           create: AntdInferencer,
+        >         },
+        >
+        >     ]}
+        > />
+        >
+        > ```
+
 ## 1.2.1
 
 ### Patch Changes
