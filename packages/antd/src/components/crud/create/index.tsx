@@ -20,10 +20,8 @@ import { Breadcrumb, CreateProps, SaveButton, PageHeader } from "@components";
  */
 export const Create: React.FC<CreateProps> = ({
     title,
-    actionButtons,
     saveButtonProps,
     children,
-    pageHeaderProps,
     resource: resourceFromProps,
     isLoading = false,
     breadcrumb: breadcrumbFromProps,
@@ -55,13 +53,11 @@ export const Create: React.FC<CreateProps> = ({
 
     const defaultFooterButtons = (
         <>
-            {actionButtons ?? (
-                <SaveButton
-                    {...(isLoading ? { disabled: true } : {})}
-                    {...saveButtonProps}
-                    htmlType="submit"
-                />
-            )}
+            <SaveButton
+                {...(isLoading ? { disabled: true } : {})}
+                {...saveButtonProps}
+                htmlType="submit"
+            />
         </>
     );
 
@@ -99,7 +95,6 @@ export const Create: React.FC<CreateProps> = ({
                             : null}
                     </Space>
                 }
-                {...(pageHeaderProps ?? {})}
                 {...(headerProps ?? {})}
             >
                 <Spin spinning={isLoading}>

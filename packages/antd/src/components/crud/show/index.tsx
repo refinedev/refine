@@ -30,10 +30,8 @@ export const Show: React.FC<ShowProps> = ({
     title,
     canEdit,
     canDelete,
-    actionButtons,
     isLoading = false,
     children,
-    pageHeaderProps,
     resource: resourceFromProps,
     recordItemId,
     dataProviderName,
@@ -142,7 +140,6 @@ export const Show: React.FC<ShowProps> = ({
                         <Breadcrumb />
                     )
                 }
-                {...(pageHeaderProps ?? {})}
                 {...(headerProps ?? {})}
             >
                 <Spin spinning={isLoading}>
@@ -163,8 +160,6 @@ export const Show: React.FC<ShowProps> = ({
                                               : footerButtons}
                                       </Space>,
                                   ]
-                                : actionButtons
-                                ? [actionButtons]
                                 : undefined
                         }
                         {...(contentProps ?? {})}

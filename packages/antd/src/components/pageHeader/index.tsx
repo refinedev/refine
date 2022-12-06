@@ -1,27 +1,11 @@
 import React, { FC } from "react";
+import {
+    PageHeader as AntdPageHeader,
+    PageHeaderProps as AntdPageHeaderProps,
+} from "@ant-design/pro-layout";
 
-export type PageHeaderProps = {
-    ghost?: boolean;
-    backIcon?: React.ReactNode;
-    onBack?: (() => void) | undefined;
-    title?: React.ReactNode;
-    breadcrumb?: React.ReactNode;
-    extra?: React.ReactNode;
-    children?: JSX.Element;
-};
+export type PageHeaderProps = AntdPageHeaderProps;
 
-export const PageHeader: FC<PageHeaderProps> = ({
-    title,
-    breadcrumb,
-    extra,
-    children,
-}) => {
-    return (
-        <>
-            <h4>{title}</h4>
-            <div>{breadcrumb}</div>
-            <div>{extra}</div>
-            {children}
-        </>
-    );
+export const PageHeader: FC<AntdPageHeaderProps> = ({ children, ...props }) => {
+    return <AntdPageHeader {...props}>{children}</AntdPageHeader>;
 };

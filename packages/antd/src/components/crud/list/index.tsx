@@ -22,7 +22,6 @@ export const List: React.FC<ListProps> = ({
     title,
     children,
     createButtonProps,
-    pageHeaderProps,
     resource: resourceFromProps,
     wrapperProps,
     contentProps,
@@ -91,7 +90,6 @@ export const List: React.FC<ListProps> = ({
                         <Breadcrumb />
                     )
                 }
-                {...(pageHeaderProps ?? {})}
                 {...(headerProps ?? {})}
             >
                 <div {...(contentProps ?? {})}>{children}</div>
