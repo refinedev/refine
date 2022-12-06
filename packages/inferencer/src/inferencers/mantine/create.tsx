@@ -30,7 +30,7 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
-    renderer: ({ resource, fields }) => {
+    renderer: ({ resource, fields, isCustomPage }) => {
         const COMPONENT_NAME = componentName(
             resource.label ?? resource.name,
             "create",
@@ -305,6 +305,14 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
         export const ${COMPONENT_NAME} = () => {
             const { getInputProps, saveButtonProps, setFieldValue, refineCore: { formLoading } } = useForm({
                 initialValues: ${JSON.stringify(initialValues)},
+                ${
+                    isCustomPage
+                        ? `refineCoreProps: {
+                            resource: "${resource.name}",
+                            action: "create",  
+                        }`
+                        : ""
+                }
             });
         
             ${relationHooksCode}

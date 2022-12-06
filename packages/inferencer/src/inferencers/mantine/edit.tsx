@@ -31,7 +31,7 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
-    renderer: ({ resource, fields }) => {
+    renderer: ({ resource, fields, isCustomPage, id }) => {
         const COMPONENT_NAME = componentName(
             resource.label ?? resource.name,
             "edit",
@@ -411,6 +411,15 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
         export const ${COMPONENT_NAME} = () => {
             const { getInputProps, saveButtonProps, setFieldValue, refineCore: { queryResult } } = useForm({
                 initialValues: ${JSON.stringify(initialValues)},
+                ${
+                    isCustomPage
+                        ? `refineCoreProps: {
+                            resource: "${resource.name}",
+                            id: ${id},
+                            action: "edit",  
+                        }`
+                        : ""
+                }
             });
         
             const ${recordName} = queryResult?.data?.data;

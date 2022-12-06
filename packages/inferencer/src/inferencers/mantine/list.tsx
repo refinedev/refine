@@ -39,7 +39,7 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
-    renderer: ({ resource, fields }) => {
+    renderer: ({ resource, fields, isCustomPage }) => {
         const COMPONENT_NAME = componentName(
             resource.label ?? resource.name,
             "list",
@@ -725,6 +725,15 @@ export const ListInferencer: InferencerResultComponent = createInferencer({
                 },
             } = useTable({
                 columns,
+                ${
+                    isCustomPage
+                        ? `
+                refineCoreProps: {
+                    resource: "${resource.name}",
+                }
+                `
+                        : ""
+                }
             });
 
             ${relationHooksCode}

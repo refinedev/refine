@@ -29,7 +29,7 @@ export const ShowInferencer: InferencerResultComponent = createInferencer({
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
-    renderer: ({ resource, fields }) => {
+    renderer: ({ resource, fields, isCustomPage, id }) => {
         const COMPONENT_NAME = componentName(
             resource.label ?? resource.name,
             "show",
@@ -511,7 +511,14 @@ export const ShowInferencer: InferencerResultComponent = createInferencer({
         ${printImports(imports)}
         
         export const ${COMPONENT_NAME} = () => {
-            const { queryResult } = useShow();
+            const { queryResult } = useShow(${
+                isCustomPage
+                    ? `{ 
+                        resource: "${resource.name}", 
+                        id: ${id}
+                    }`
+                    : ""
+            });
             const { data, isLoading } = queryResult;
         
             const ${recordName} = data?.data;
