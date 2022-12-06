@@ -9,12 +9,12 @@ import {
     prettyString,
     accessor,
     printImports,
-    toPlural,
     toSingular,
     isIDKey,
     dotAccessor,
     getOptionLabel,
     noOp,
+    getVariableName,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -40,9 +40,15 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
-    renderer: ({ resource, fields }) => {
-        const COMPONENT_NAME = componentName(resource.name, "edit");
-        const recordName = `${toSingular(resource.name)}Data`;
+    renderer: ({ resource, fields, isCustomPage, id }) => {
+        const COMPONENT_NAME = componentName(
+            resource.label ?? resource.name,
+            "edit",
+        );
+        const recordName = getVariableName(
+            resource.label ?? resource.name,
+            "Data",
+        );
         const imports: Array<ImportElement> = [
             ["Edit", "@pankod/refine-chakra-ui"],
             ["FormControl", "@pankod/refine-chakra-ui"],
@@ -79,11 +85,10 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
                     }
 
                     return `
-                    const { options: ${
-                        field.multiple
-                            ? toPlural(field.resource.name)
-                            : toSingular(field.resource.name)
-                    }Options } =
+                    const { options: ${getVariableName(
+                        field.key,
+                        "Options",
+                    )} } =
                     useSelect({
                         resource: "${field.resource.name}",
                         defaultValue: ${val},
@@ -100,11 +105,7 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
                 imports.push(["useSelect", "@pankod/refine-core"]);
                 imports.push(["Select", "@pankod/refine-chakra-ui"]);
 
-                const variableName = `${
-                    field.multiple
-                        ? toPlural(field.resource.name)
-                        : toSingular(field.resource.name)
-                }Options`;
+                const variableName = getVariableName(field.key, "Options");
 
                 return jsx`
                 <FormControl mb="3" isInvalid={!!errors?.${dotAccessor(
@@ -359,7 +360,20 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
                 saveButtonProps,
                 register,
                 formState: { errors },
-            } = useForm();
+            } = useForm(
+                ${
+                    isCustomPage
+                        ? `
+                { 
+                    refineCoreProps: {
+                        resource: "${resource.name}",
+                        id: ${id},
+                        action: "edit",
+                    }
+                }`
+                        : ""
+                }
+            );
         
             const ${recordName} = queryResult?.data?.data;
         

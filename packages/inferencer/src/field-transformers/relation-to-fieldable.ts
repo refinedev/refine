@@ -21,6 +21,7 @@ export const relationToFieldable: FieldTransformer = (
                     fieldable: true,
                     relation: false,
                     type: inferredType.type,
+                    canRelation: true,
                 };
             }
         }

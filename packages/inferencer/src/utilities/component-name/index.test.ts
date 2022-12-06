@@ -10,4 +10,16 @@ describe("componentName", () => {
     it("should return UserEdit", () => {
         expect(componentName("user", "edit")).toBe("UserEdit");
     });
+    it("should return Edit", () => {
+        expect(componentName("12345", "edit")).toBe("ResourceEdit");
+    });
+    it("should return UserEdit", () => {
+        expect(componentName("12345User", "edit")).toBe("UserEdit");
+        expect(componentName("12345-User", "edit")).toBe("UserEdit");
+    });
+    it("should return UsersAccountEdit", () => {
+        expect(componentName("user/account", "edit")).toBe("UserAccountEdit");
+        expect(componentName("user-account", "edit")).toBe("UserAccountEdit");
+        expect(componentName("user?.account", "edit")).toBe("UserAccountEdit");
+    });
 });

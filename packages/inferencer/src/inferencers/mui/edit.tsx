@@ -8,11 +8,10 @@ import {
     prettyString,
     accessor,
     printImports,
-    toPlural,
-    toSingular,
     isIDKey,
     dotAccessor,
     noOp,
+    getVariableName,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -37,9 +36,15 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
-    renderer: ({ resource, fields }) => {
-        const COMPONENT_NAME = componentName(resource.name, "edit");
-        const recordName = `${toSingular(resource.name)}Data`;
+    renderer: ({ resource, fields, isCustomPage, id }) => {
+        const COMPONENT_NAME = componentName(
+            resource.label ?? resource.name,
+            "edit",
+        );
+        const recordName = getVariableName(
+            resource.label ?? resource.name,
+            "Data",
+        );
         const imports: Array<ImportElement> = [
             ["Edit", "@pankod/refine-mui"],
             ["Box", "@pankod/refine-mui"],
@@ -74,11 +79,10 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
                     }
 
                     return `
-                    const { autocompleteProps: ${
-                        field.multiple
-                            ? toPlural(field.resource.name)
-                            : toSingular(field.resource.name)
-                    }AutocompleteProps } =
+                    const { autocompleteProps: ${getVariableName(
+                        field.key,
+                        "AutocompleteProps",
+                    )} } =
                     useAutocomplete({
                         resource: "${field.resource.name}",
                         defaultValue: ${val},
@@ -95,11 +99,10 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
                     ["Autocomplete", "@pankod/refine-mui"],
                     ["Controller", "@pankod/refine-react-hook-form"],
                 );
-                const variableName = `${
-                    field.multiple
-                        ? toPlural(field.resource.name)
-                        : toSingular(field.resource.name)
-                }AutocompleteProps`;
+                const variableName = getVariableName(
+                    field.key,
+                    "AutocompleteProps",
+                );
 
                 const optionLabelProperty = field.relationInfer
                     ? field.relationInfer.accessor
@@ -433,7 +436,19 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
                 register,
                 control,
                 formState: { errors },
-            } = useForm();
+            } = useForm(
+                ${
+                    isCustomPage
+                        ? `{ 
+                    refineCoreProps: {
+                        resource: "${resource.name}",
+                        id: ${id},
+                        action: "edit",
+                    }
+                }`
+                        : ""
+                }
+            );
         
             const ${recordName} = queryResult?.data?.data;
         

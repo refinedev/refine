@@ -10,10 +10,19 @@ import { pickDataProvider, dataProviderFromResource } from "@/utilities";
 export const useInferFetch = (
     type: "list" | "show" | "edit" | "create",
     resourceNameOrRouteName: string,
+    idFromProps?: string | number,
 ) => {
-    const { resource, resourceName, id, resources } = useResource({
+    const {
+        resource,
+        resourceName,
+        id: idFromURL,
+        resources,
+    } = useResource({
         resourceNameOrRouteName,
     });
+
+    const id = idFromProps ?? idFromURL;
+
     const dataProvider = useDataProvider();
 
     const [data, setData] = React.useState<Record<string, unknown> | undefined>(

@@ -7,9 +7,9 @@ import {
     prettyString,
     accessor,
     printImports,
-    toPlural,
     toSingular,
     noOp,
+    getVariableName,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -27,8 +27,11 @@ export const ShowInferencer: InferencerResultComponent = createInferencer({
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
-    renderer: ({ resource, fields }) => {
-        const COMPONENT_NAME = componentName(resource.name, "show");
+    renderer: ({ resource, fields, isCustomPage, id }) => {
+        const COMPONENT_NAME = componentName(
+            resource.label ?? resource.name,
+            "show",
+        );
         const recordName = "record";
         const imports: Array<ImportElement> = [
             ["React", "react", true],
@@ -62,11 +65,13 @@ export const ShowInferencer: InferencerResultComponent = createInferencer({
                         }
 
                         return `
-                    const { data: ${toPlural(
-                        field.resource.name,
-                    )}Data, isLoading: ${toPlural(
-                            field.resource.name,
-                        )}IsLoading } =
+                    const { data: ${getVariableName(
+                        field.key,
+                        "Data",
+                    )}, isLoading: ${getVariableName(
+                            field.key,
+                            "IsLoading",
+                        )} } =
                     useMany({
                         resource: "${field.resource.name}",
                         ids: ${ids} || [],
@@ -78,11 +83,13 @@ export const ShowInferencer: InferencerResultComponent = createInferencer({
                     }
                     imports.push(["useOne", "@pankod/refine-core"]);
                     return `
-                    const { data: ${toSingular(
-                        field.resource.name,
-                    )}Data, isLoading: ${toSingular(
-                        field.resource.name,
-                    )}IsLoading } =
+                    const { data: ${getVariableName(
+                        field.key,
+                        "Data",
+                    )}, isLoading: ${getVariableName(
+                        field.key,
+                        "IsLoading",
+                    )} } =
                     useOne({
                         resource: "${field.resource.name}",
                         id: ${accessor(
@@ -103,16 +110,11 @@ export const ShowInferencer: InferencerResultComponent = createInferencer({
 
         const renderRelationFields = (field: InferField) => {
             if (field.relation && field.resource) {
-                const variableName = `${
-                    field.multiple
-                        ? toPlural(field.resource.name)
-                        : toSingular(field.resource.name)
-                }Data`;
-                const variableIsLoading = `${
-                    field.multiple
-                        ? toPlural(field.resource.name)
-                        : toSingular(field.resource.name)
-                }IsLoading`;
+                const variableName = getVariableName(field.key, "Data");
+                const variableIsLoading = getVariableName(
+                    field.key,
+                    "IsLoading",
+                );
 
                 if (field.multiple) {
                     imports.push(["TagField", "@pankod/refine-antd"]);
@@ -445,7 +447,14 @@ export const ShowInferencer: InferencerResultComponent = createInferencer({
         const { Title } = Typography;
 
         export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
-            const { queryResult } = useShow();
+            const { queryResult } = useShow(${
+                isCustomPage
+                    ? `{ 
+                        resource: "${resource.name}", 
+                        id: ${id}
+                    }`
+                    : ""
+            });
             const { data, isLoading } = queryResult;
         
             const ${recordName} = data?.data;
