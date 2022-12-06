@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Layout, Menu, Grid } from "antd";
+import { Layout, Menu, Grid, ConfigProvider } from "antd";
 import {
     DashboardOutlined,
     LogoutOutlined,
@@ -140,27 +140,43 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     };
 
     return (
-        <Layout.Sider
-            collapsible
-            collapsed={collapsed}
-            onCollapse={(collapsed: boolean): void => setCollapsed(collapsed)}
-            collapsedWidth={isMobile ? 0 : 80}
-            breakpoint="lg"
-            style={isMobile ? antLayoutSiderMobile : antLayoutSider}
+        <ConfigProvider
+            theme={{
+                components: {
+                    Menu: {
+                        colorItemBg: "transparent",
+                        colorItemText: "#fff",
+                        colorItemTextSelected: "#fff",
+                        colorItemBgSelected: "transparent",
+                        colorItemTextHover: "#fff",
+                    },
+                },
+            }}
         >
-            <RenderToTitle collapsed={collapsed} />
-            <Menu
-                selectedKeys={[selectedKey]}
-                defaultOpenKeys={defaultOpenKeys}
-                mode="inline"
-                onClick={() => {
-                    if (!breakpoint.lg) {
-                        setCollapsed(true);
-                    }
-                }}
+            <Layout.Sider
+                collapsible
+                collapsed={collapsed}
+                onCollapse={(collapsed: boolean): void =>
+                    setCollapsed(collapsed)
+                }
+                collapsedWidth={isMobile ? 0 : 80}
+                breakpoint="lg"
+                style={isMobile ? antLayoutSiderMobile : antLayoutSider}
             >
-                {renderSider()}
-            </Menu>
-        </Layout.Sider>
+                <RenderToTitle collapsed={collapsed} />
+                <Menu
+                    selectedKeys={[selectedKey]}
+                    defaultOpenKeys={defaultOpenKeys}
+                    mode="inline"
+                    onClick={() => {
+                        if (!breakpoint.lg) {
+                            setCollapsed(true);
+                        }
+                    }}
+                >
+                    {renderSider()}
+                </Menu>
+            </Layout.Sider>
+        </ConfigProvider>
     );
 };
