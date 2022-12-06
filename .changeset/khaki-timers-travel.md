@@ -74,3 +74,7 @@ export default NextRouteComponent;
 **Warning**
 
 You need to add `"use client";` directive to both `layout.tsx` and `page.tsx` inside `app/[[...refine]]` directory.
+
+**Warning**
+
+`checkAuthentication` does not work with `appDir`. We're aiming to release a substitute for it using middleware but for now its not included in this release.
