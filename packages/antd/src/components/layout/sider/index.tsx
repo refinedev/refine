@@ -177,7 +177,9 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                     maskClosable={true}
                 >
                     <Layout>
-                        <Layout.Sider style={{ height: "100vh" }}>
+                        <Layout.Sider
+                            style={{ height: "100vh", overflow: "hidden" }}
+                        >
                             {renderMenu()}
                         </Layout.Sider>
                     </Layout>
