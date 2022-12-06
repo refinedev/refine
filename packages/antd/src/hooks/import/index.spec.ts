@@ -23,7 +23,7 @@ describe("useImport hook", () => {
     });
 
     const notificationOpenSpy = jest.spyOn(notification, "open");
-    const notificationCloseSpy = jest.spyOn(notification, "close");
+    const notificationCloseSpy = jest.spyOn(notification, "destroy");
 
     it("should return false from uploadProps.beforeUpload callback", async () => {
         const { result } = renderHook(

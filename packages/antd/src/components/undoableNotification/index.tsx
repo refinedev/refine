@@ -37,7 +37,7 @@ export const UndoableNotification: React.FC<UndoableNotificationProps> = ({
             style={{ flexShrink: 0 }}
             onClick={() => {
                 cancelMutation?.();
-                notification.close(notificationKey ?? "");
+                notification.destroy(notificationKey ?? "");
             }}
             disabled={undoableTimeout === 0}
             icon={<UndoOutlined />}
