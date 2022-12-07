@@ -33,17 +33,19 @@
 
 This is a source code for example app built in [WIN95 style CRUD app tutorial](https://refine.dev/blog/awesome-react-windows95-ui-with-refine/).
 
-[Live Demo](https://beie0q.csb.app/)
+[Live Demo ➡️](https://beie0q.csb.app/)
 
 The tutorial section will take you through the steps involved in creating a modern CRUD app with Windows 95 UI from scratch using refine.
 
-You can use the source code as a starting point for your own custom apps.  We hope that these examples and tutorials will be a great resource for you.
+This just a fun example app that we built to demonstrate the power of refine. You can use any design or UI framework of your choice with refine.
 
+
+<div align="center">
 <a href="https://github.com/refinedev/refine">
- <img src="https://github.com/refinedev/refine/blob/master/documentation/static/img/blog/2022-03-22-refine-with-react95/top_menu.gif?raw=true"   style="width:650px;" align="center" />
+ <img src="https://github.com/refinedev/refine/blob/master/documentation/static/img/blog/2022-03-22-refine-with-react95/overview.gif?raw=true"  align="center" />
  </a>
 </div>
-</div>
+
 
 <br/>
 
