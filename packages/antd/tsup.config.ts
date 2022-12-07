@@ -36,12 +36,8 @@ export default defineConfig({
             },
         },
         copyStaticFiles({
-            src: "./src/assets/styles/styles.min.css",
-            dest: "./dist/styles.min.css",
-        }),
-        copyStaticFiles({
-            src: "./src/assets/styles/reset.min.css",
-            dest: "./dist/reset.min.css",
+            src: "./src/assets/styles/reset.css",
+            dest: "./dist/reset.css",
         }),
         NodeResolvePlugin({
             extensions: [".js", "ts", "tsx", "jsx"],
