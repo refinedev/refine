@@ -18,6 +18,7 @@ export const Title: React.FC<TitleProps> = ({ collapsed }) => {
                     src="https://refine.ams3.cdn.digitaloceanspaces.com/logo/refine.svg"
                     alt="Refine"
                     width="140px"
+                    style={{ minHeight: "38px" }}
                 />
             )}
         </ChakraLink>
