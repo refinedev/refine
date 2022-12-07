@@ -15,7 +15,7 @@ export const Title: React.FC<TitleProps> = ({ collapsed }) => {
                     }}
                 >
                     <img
-                        src="https://refine.ams3.cdn.digitaloceanspaces.com/logo/refine-collapsed.svg"
+                        src="https://refine.ams3.cdn.digitaloceanspaces.com/logo/refine-mini.svg"
                         alt="Refine"
                         style={{
                             margin: "0 auto",
