@@ -1,10 +1,4 @@
-import {
-    API,
-    Collection,
-    FileInfo,
-    JSCodeshift,
-    JSXAttribute,
-} from "jscodeshift";
+import { API, Collection, FileInfo, JSCodeshift } from "jscodeshift";
 
 export const parser = "tsx";
 
