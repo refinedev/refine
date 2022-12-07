@@ -8,11 +8,10 @@ import {
     prettyString,
     accessor,
     printImports,
-    toPlural,
-    toSingular,
     isIDKey,
     noOp,
     getOptionLabel,
+    getVariableName,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -34,8 +33,11 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
-    renderer: ({ resource, fields }) => {
-        const COMPONENT_NAME = componentName(resource.name, "create");
+    renderer: ({ resource, fields, isCustomPage }) => {
+        const COMPONENT_NAME = componentName(
+            resource.label ?? resource.name,
+            "create",
+        );
         const imports: Array<ImportElement> = [
             ["React", "react", true],
             ["IResourceComponentsProps", "@pankod/refine-core"],
@@ -56,11 +58,10 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
                     imports.push(["useSelect", "@pankod/refine-antd"]);
 
                     return `
-                    const { selectProps: ${
-                        field.multiple
-                            ? toPlural(field.resource.name)
-                            : toSingular(field.resource.name)
-                    }SelectProps } =
+                    const { selectProps: ${getVariableName(
+                        field.key,
+                        "SelectProps",
+                    )} } =
                     useSelect({
                         resource: "${field.resource.name}",
                         ${getOptionLabel(field)}
@@ -74,11 +75,7 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
         const renderRelationFields = (field: InferField) => {
             if (field.relation && field.resource) {
                 imports.push(["Select", "@pankod/refine-antd"]);
-                const variableName = `${
-                    field.multiple
-                        ? toPlural(field.resource.name)
-                        : toSingular(field.resource.name)
-                }SelectProps`;
+                const variableName = getVariableName(field.key, "SelectProps");
 
                 const name = field.accessor
                     ? field.multiple
@@ -323,7 +320,14 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
         ${printImports(imports)}
         
         export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
-            const { formProps, saveButtonProps, queryResult } = useForm();
+            const { formProps, saveButtonProps, queryResult } = useForm(${
+                isCustomPage
+                    ? `{
+                          resource: "${resource.name}",
+                          action: "create",
+                      }`
+                    : ""
+            });
         
             ${relationHooksCode}
 

@@ -52,16 +52,24 @@ export const createInferencer: CreateInferencer = ({
         ...fieldTransformers,
     ]);
 
-    const Inferencer = ({ resourceName }: { resourceName?: string }) => {
+    const Inferencer = ({
+        resourceName,
+        id,
+    }: {
+        resourceName?: string;
+        id?: string | number;
+    }) => {
         const { resource, resources } = useResource({
             resourceNameOrRouteName: resourceName,
         });
+
+        const { resource: resourceFromURL } = useResource();
 
         const {
             data: record,
             loading: recordLoading,
             initial: isInitialLoad,
-        } = useInferFetch(type, resourceName ?? resource?.name);
+        } = useInferFetch(type, resourceName ?? resource?.name, id);
 
         const rawResults: InferField[] = React.useMemo(() => {
             if (record) {
@@ -104,6 +112,8 @@ export const createInferencer: CreateInferencer = ({
                     resources,
                     fields: results,
                     infer,
+                    isCustomPage: resource.name !== resourceFromURL.name,
+                    id,
                 });
             }
             return "";
@@ -122,7 +132,10 @@ export const createInferencer: CreateInferencer = ({
                             }
                             code={prepareLiveCode(
                                 code,
-                                componentName(resource.name, type),
+                                componentName(
+                                    resource.label ?? resource.name,
+                                    type,
+                                ),
                             )}
                             errorComponent={ErrorComponent}
                             additionalScope={additionalScope}
@@ -142,11 +155,13 @@ export const createInferencer: CreateInferencer = ({
     const InferencerComponent: InferencerResultComponent = ({
         name,
         resource,
+        id,
     }) => {
         return (
             <Inferencer
                 resourceName={resource ?? name}
                 key={resource ?? name}
+                id={id}
             />
         );
     };

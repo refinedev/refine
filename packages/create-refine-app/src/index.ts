@@ -33,6 +33,11 @@ const bootstrap = () => {
             "-l, --lucky",
             "use this option to generate a project with random answers",
         )
+        .option(
+            "-d, --download <download>",
+            "specify a download type (zip | git) of source",
+            "zip",
+        )
         .allowUnknownOption(true)
         .allowExcessArguments(true)
         .action((_, command: Command) => {
@@ -43,6 +48,7 @@ const bootstrap = () => {
                     [
                         ...command.args,
                         "--project=refine",
+                        "--download=zip",
                         command.getOptionValue("source")
                             ? "--source=" + command.getOptionValue("source")
                             : "",
@@ -53,6 +59,9 @@ const bootstrap = () => {
                             ? "--preset=" + command.getOptionValue("preset")
                             : "",
                         command.getOptionValue("lucky") ? "--lucky" : "",
+                        command.getOptionValue("download")
+                            ? "--download=" + command.getOptionValue("download")
+                            : "",
                     ],
                     {
                         stdio: "inherit",

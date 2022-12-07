@@ -3,7 +3,7 @@ id: inferencer
 title: Inferencer
 ---
 
-You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `MuiListInferencer`, `MuiShowInferencer`, `MuiCreateInferencer` and `MuiEditInferencer` components.
+You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `MuiInferencer`, `MuiInferencer`, `MuiInferencer` and `MuiInferencer` components.
 
 ## Usage
 
@@ -24,14 +24,9 @@ import {
     CssBaseline,
     GlobalStyles,
 } from "@pankod/refine-mui";
-// highlight-start
-import {
-    MuiListInferencer,
-    MuiShowInferencer,
-    MuiCreateInferencer,
-    MuiEditInferencer,
-} from "@pankod/refine-inferencer/mui";
-// highlight-end
+
+// highlight-next-line
+import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 
 const App = () => {
     return (
@@ -43,10 +38,10 @@ const App = () => {
                     {
                         name: "samples",
                         // highlight-start
-                        list: MuiListInferencer,
-                        show: MuiShowInferencer,
-                        create: MuiCreateInferencer,
-                        edit: MuiEditInferencer,
+                        list: MuiInferencer,
+                        show: MuiInferencer,
+                        create: MuiInferencer,
+                        edit: MuiInferencer,
                         // highlight-end
                     },
                 ]}
@@ -60,40 +55,34 @@ const App = () => {
   <TabItem value="custom">
 
 ```tsx
-// highlight-start
-import {
-    MuiListInferencer,
-    MuiShowInferencer,
-    MuiCreateInferencer,
-    MuiEditInferencer,
-} from "@pankod/refine-inferencer/mui";
-// highlight-end
+// highlight-next-line
+import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 
 const SampleList = () => {
     return (
         // highlight-next-line
-        <MuiListInferencer resource="samples" />
+        <MuiInferencer resource="samples" action="list" />
     );
 };
 
 const SampleShow = () => {
     return (
         // highlight-next-line
-        <MuiShowInferencer resource="samples" />
+        <MuiInferencer resource="samples" action="show" id="1" />
     );
 };
 
 const SampleCreate = () => {
     return (
         // highlight-next-line
-        <MuiCreateInferencer resource="samples" />
+        <MuiInferencer resource="samples" action="create" />
     );
 };
 
 const SampleEdit = () => {
     return (
         // highlight-next-line
-        <MuiEditInferencer resource="samples" />
+        <MuiInferencer resource="samples" action="edit" id="1" />
     );
 };
 ```
@@ -107,7 +96,7 @@ To learn more about `@pankod/refine-inferencer` package, please check out [Docs]
 
 ## Views
 
-### `MuiListInferencer`
+### `List`
 
 Generates a sample list view for your resources according to the API response. It uses `List` component and `useDatagrid` hook from `@pankod/refine-mui`.
 
@@ -126,14 +115,8 @@ import {
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import {
-    // highlight-start
-    MuiListInferencer,
-    // highlight-end
-    MuiShowInferencer,
-    MuiCreateInferencer,
-    MuiEditInferencer,
-} from "@pankod/refine-inferencer/mui";
+// highlight-next-line
+import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -149,23 +132,24 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "samples",
-                        // highlight-start
-                        list: MuiListInferencer,
-                        // highlight-end
-                        show: MuiShowInferencer,
-                        create: MuiCreateInferencer,
-                        edit: MuiEditInferencer,
+                        // highlight-next-line
+                        list: MuiInferencer,
+                        show: MuiInferencer,
+                        create: MuiInferencer,
+                        edit: MuiInferencer,
                         canDelete: true,
                     },
                     {
                         name: "categories",
-                        list: MuiListInferencer,
-                        show: MuiShowInferencer,
+                        // highlight-next-line
+                        list: MuiInferencer,
+                        show: MuiInferencer,
                     },
                     {
                         name: "tags",
-                        list: MuiListInferencer,
-                        show: MuiShowInferencer,
+                        // highlight-next-line
+                        list: MuiInferencer,
+                        show: MuiInferencer,
                     },
                 ]}
             />
@@ -178,7 +162,7 @@ const App: React.FC = () => {
 render(<App />);
 ```
 
-### `MuiShowInferencer`
+### `Show`
 
 Generates a sample show view for your resources according to the API response. It uses `Show` and field components from `@pankod/refine-mui` with `useShow` hook from `@pankod/refine-core`.
 
@@ -197,14 +181,8 @@ import {
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import {
-    MuiListInferencer,
-    // highlight-start
-    MuiShowInferencer,
-    // highlight-end
-    MuiCreateInferencer,
-    MuiEditInferencer,
-} from "@pankod/refine-inferencer/mui";
+// highlight-next-line
+import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -220,23 +198,24 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "samples",
-                        list: MuiListInferencer,
-                        // highlight-start
-                        show: MuiShowInferencer,
-                        // highlight-end
-                        create: MuiCreateInferencer,
-                        edit: MuiEditInferencer,
+                        list: MuiInferencer,
+                        // highlight-next-line
+                        show: MuiInferencer,
+                        create: MuiInferencer,
+                        edit: MuiInferencer,
                         canDelete: true,
                     },
                     {
                         name: "categories",
-                        list: MuiListInferencer,
-                        show: MuiShowInferencer,
+                        list: MuiInferencer,
+                        // highlight-next-line
+                        show: MuiInferencer,
                     },
                     {
                         name: "tags",
-                        list: MuiListInferencer,
-                        show: MuiShowInferencer,
+                        list: MuiInferencer,
+                        // highlight-next-line
+                        show: MuiInferencer,
                     },
                 ]}
             />
@@ -249,7 +228,7 @@ const App: React.FC = () => {
 render(<App />);
 ```
 
-### `MuiCreateInferencer`
+### `Create`
 
 Generates a sample create view for your resources according to the first record in list API response. It uses `Create` component from `@pankod/refine-mui` and `useForm` hook from `@pankod/refine-react-hook-form`.
 
@@ -268,14 +247,8 @@ import {
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import {
-    MuiListInferencer,
-    MuiShowInferencer,
-    // highlight-start
-    MuiCreateInferencer,
-    // highlight-end
-    MuiEditInferencer,
-} from "@pankod/refine-inferencer/mui";
+// highlight-next-line
+import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -291,23 +264,22 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "samples",
-                        list: MuiListInferencer,
-                        show: MuiShowInferencer,
-                        // highlight-start
-                        create: MuiCreateInferencer,
-                        // highlight-end
-                        edit: MuiEditInferencer,
+                        list: MuiInferencer,
+                        show: MuiInferencer,
+                        // highlight-next-line
+                        create: MuiInferencer,
+                        edit: MuiInferencer,
                         canDelete: true,
                     },
                     {
                         name: "categories",
-                        list: MuiListInferencer,
-                        show: MuiShowInferencer,
+                        list: MuiInferencer,
+                        show: MuiInferencer,
                     },
                     {
                         name: "tags",
-                        list: MuiListInferencer,
-                        show: MuiShowInferencer,
+                        list: MuiInferencer,
+                        show: MuiInferencer,
                     },
                 ]}
             />
@@ -320,7 +292,7 @@ const App: React.FC = () => {
 render(<App />);
 ```
 
-### `MuiEditInferencer`
+### `Edit`
 
 Generates a sample edit view for your resources according to the API response. It uses `Edit` component from `@pankod/refine-mui` and `useForm` hook from `@pankod/refine-react-hook-form`.
 
@@ -339,14 +311,8 @@ import {
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import {
-    MuiListInferencer,
-    MuiShowInferencer,
-    MuiCreateInferencer,
-    // highlight-start
-    MuiEditInferencer,
-    // highlight-end
-} from "@pankod/refine-inferencer/mui";
+// highlight-next-line
+import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -362,23 +328,22 @@ const App: React.FC = () => {
                 resources={[
                     {
                         name: "samples",
-                        list: MuiListInferencer,
-                        show: MuiShowInferencer,
-                        create: MuiCreateInferencer,
-                        // highlight-start
-                        edit: MuiEditInferencer,
-                        // highlight-end
+                        list: MuiInferencer,
+                        show: MuiInferencer,
+                        create: MuiInferencer,
+                        // highlight-next-line
+                        edit: MuiInferencer,
                         canDelete: true,
                     },
                     {
                         name: "categories",
-                        list: MuiListInferencer,
-                        show: MuiShowInferencer,
+                        list: MuiInferencer,
+                        show: MuiInferencer,
                     },
                     {
                         name: "tags",
-                        list: MuiListInferencer,
-                        show: MuiShowInferencer,
+                        list: MuiInferencer,
+                        show: MuiInferencer,
                     },
                 ]}
             />

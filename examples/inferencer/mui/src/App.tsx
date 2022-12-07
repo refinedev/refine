@@ -11,15 +11,9 @@ import {
     CssBaseline,
     GlobalStyles,
 } from "@pankod/refine-mui";
+import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
-
-import {
-    MuiEditInferencer,
-    MuiShowInferencer,
-    MuiListInferencer,
-    MuiCreateInferencer,
-} from "@pankod/refine-inferencer/mui";
 
 const App: React.FC = () => {
     return (
@@ -40,30 +34,27 @@ const App: React.FC = () => {
                     resources={[
                         {
                             name: "samples",
-                            list: MuiListInferencer,
-                            edit: MuiEditInferencer,
-                            show: MuiShowInferencer,
-                            create: MuiCreateInferencer,
+                            list: MuiInferencer,
+                            edit: MuiInferencer,
+                            show: MuiInferencer,
+                            create: MuiInferencer,
                             canDelete: true,
                         },
                         {
                             name: "categories",
-                            list: MuiListInferencer,
-                            edit: MuiEditInferencer,
-                            show: MuiShowInferencer,
-                            create: MuiCreateInferencer,
+                            list: MuiInferencer,
+                            edit: MuiInferencer,
+                            show: MuiInferencer,
+                            create: MuiInferencer,
                             canDelete: true,
                         },
                         {
                             name: "users",
-                            list: MuiListInferencer,
-                            edit: MuiEditInferencer,
-                            show: MuiShowInferencer,
-                            create: MuiCreateInferencer,
+                            list: MuiInferencer,
+                            edit: MuiInferencer,
+                            show: MuiInferencer,
+                            create: MuiInferencer,
                             canDelete: true,
-                        },
-                        {
-                            name: "tags",
                         },
                     ]}
                 />

@@ -9,12 +9,12 @@ import {
     prettyString,
     accessor,
     printImports,
-    toPlural,
     toSingular,
     isIDKey,
     dotAccessor,
     getOptionLabel,
     noOp,
+    getVariableName,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -40,8 +40,11 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
-    renderer: ({ resource, fields }) => {
-        const COMPONENT_NAME = componentName(resource.name, "create");
+    renderer: ({ resource, fields, isCustomPage }) => {
+        const COMPONENT_NAME = componentName(
+            resource.label ?? resource.name,
+            "create",
+        );
         const imports: Array<ImportElement> = [
             ["Create", "@pankod/refine-chakra-ui"],
             ["FormControl", "@pankod/refine-chakra-ui"],
@@ -61,11 +64,10 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
                     imports.push(["useSelect", "@pankod/refine-core"]);
 
                     return `
-                    const { options: ${
-                        field.multiple
-                            ? toPlural(field.resource.name)
-                            : toSingular(field.resource.name)
-                    }Options } =
+                    const { options: ${getVariableName(
+                        field.key,
+                        "Options",
+                    )} } =
                     useSelect({
                         resource: "${field.resource.name}",
                         ${getOptionLabel(field)}
@@ -81,11 +83,7 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
                 imports.push(["useSelect", "@pankod/refine-core"]);
                 imports.push(["Select", "@pankod/refine-chakra-ui"]);
 
-                const variableName = `${
-                    field.multiple
-                        ? toPlural(field.resource.name)
-                        : toSingular(field.resource.name)
-                }Options`;
+                const variableName = getVariableName(field.key, "Options");
 
                 return jsx`
                 <FormControl mb="3" isInvalid={!!errors?.${dotAccessor(
@@ -269,7 +267,19 @@ export const CreateInferencer: InferencerResultComponent = createInferencer({
                 saveButtonProps,
                 register,
                 formState: { errors },
-            } = useForm();
+            } = useForm(
+                ${
+                    isCustomPage
+                        ? `
+                { 
+                    refineCoreProps: {
+                        resource: "${resource.name}",
+                        action: "create",
+                    }
+                }`
+                        : ""
+                }
+            );
         
             ${relationHooksCode}
 

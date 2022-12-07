@@ -9,6 +9,7 @@ import path from "path";
 import fs from "fs-extra";
 import {} from "react-docgen-typescript";
 import { ParentType, Props } from "react-docgen-typescript/lib/parser";
+import ts from "typescript";
 
 /** TYPES */
 type DeclarationType = Omit<ComponentDoc, "methods"> &
@@ -35,6 +36,8 @@ const excludedFilePatterns = [
     ".test.",
     ".spec.",
 ];
+
+const excludedValueDeclarationPatterns = ["node_modules/antd/lib/list/"];
 
 const excludePropPatterns = [/^__.*/];
 
@@ -192,15 +195,29 @@ const declarationFilter = (declaration: ParentType) => {
     );
 };
 
+const valueDeclarationFilter = (tsDeclaration?: ts.Declaration) => {
+    // excludedValueDeclarationPatterns includes fileNames of source files to be ignored (partially)
+    const sourceFileName = tsDeclaration?.getSourceFile().fileName;
+    // if sourceFileName includes any of the excludedValueDeclarationPatterns then ignore it
+    const isIgnored = excludedValueDeclarationPatterns.some((pattern) =>
+        sourceFileName?.includes(pattern),
+    );
+
+    return !isIgnored;
+};
+
 const createParser = (configPath: string) => {
     const docgenParser = withCustomConfig(path.join(configPath), {
         savePropValueAsString: true,
         shouldExtractLiteralValuesFromEnum: true,
         shouldRemoveUndefinedFromOptional: true,
         shouldIncludePropTagMap: true,
-
         componentNameResolver: (exp, source) => {
-            return getComponentName(exp.getName(), source.fileName);
+            const name = getComponentName(exp.getName(), source.fileName);
+            if (valueDeclarationFilter(exp.valueDeclaration)) {
+                return name;
+            }
+            return `IGNORED_${name}`;
         },
         propFilter: (prop: PropItem) => {
             const isExcluded =

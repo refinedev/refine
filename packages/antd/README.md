@@ -115,6 +115,8 @@ You can take a look at some live examples that can be built using **refine** fro
 
 🌐 **SSR support** with **Next.js** or **Remix**
 
+🔍 Auto-generated **CRUD** UIs from **your API data structure**
+
 ⚛ Perfect **state management** & **mutations** with **React Query**
 
 🔀 **Advanced routing** with any router library of your choice
@@ -128,6 +130,8 @@ You can take a look at some live examples that can be built using **refine** fro
 💬 Support for any **i18n** framework
 
 💪 Future-proof, **robust architecture**
+
+⌛️ Built-in [CLI](https://refine.dev/docs/packages/documentation/cli/) with time-saving features
 
 ✅ Full **test coverage**
 
@@ -169,12 +173,7 @@ import {
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import {
-    AntdListInferencer,
-    AntdShowInferencer,
-    AntdCreateInferencer,
-    AntdEditInferencer,
-} from '@pankod/refine-inferencer/antd';
+import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 
 import "@pankod/refine-antd/dist/styles.min.css";
 
@@ -190,16 +189,16 @@ const App: React.FC = () => {
             resources={[
                 {
                     name: 'posts',
-                    list: AntdListInferencer,
-                    show: AntdShowInferencer,
-                    create: AntdCreateInferencer,
-                    edit: AntdEditInferencer,
+                    list: AntdInferencer,
+                    show: AntdInferencer,
+                    create: AntdInferencer,
+                    edit: AntdInferencer,
                     canDelete: true,
                 },
                 {
                     name: 'categories',
-                    list: AntdListInferencer,
-                    show: AntdShowInferencer,
+                    list: AntdInferencer,
+                    show: AntdInferencer,
                 }
             ]}
         />

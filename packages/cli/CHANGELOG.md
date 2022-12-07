@@ -1,5 +1,37 @@
 # @pankod/refine-cli
 
+## 1.13.0
+
+### Minor Changes
+
+-   [#3136](https://github.com/refinedev/refine/pull/3136) [`b5b99b485f2`](https://github.com/refinedev/refine/commit/b5b99b485f213147a436c6fe7e69ef8974408981) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Downgrade `jscodeshift` `"^0.14.0"` to `"0.13.0"`.
+
+### Patch Changes
+
+-   [#3133](https://github.com/refinedev/refine/pull/3133) [`87c875fcf51`](https://github.com/refinedev/refine/commit/87c875fcf51b7f1c88a4a3687d61a09ce3abbedb) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Fixed: add await to `telemetry` `fetch()`
+
+## 1.12.0
+
+### Minor Changes
+
+-   [#3136](https://github.com/refinedev/refine/pull/3136) [`b5b99b485f2`](https://github.com/refinedev/refine/commit/b5b99b485f213147a436c6fe7e69ef8974408981) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Downgrade `jscodeshift` `"^0.14.0"` to `"0.13.0"`.
+
+### Patch Changes
+
+-   [#3133](https://github.com/refinedev/refine/pull/3133) [`87c875fcf51`](https://github.com/refinedev/refine/commit/87c875fcf51b7f1c88a4a3687d61a09ce3abbedb) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - Fixed: add await to `telemetry` `fetch()`
+
+## 1.11.0
+
+### Minor Changes
+
+-   [#3130](https://github.com/refinedev/refine/pull/3130) [`0b428512b98`](https://github.com/refinedev/refine/commit/0b428512b98ac010cbff9d343f6b12fa2980a662) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Removed UI framework requirement in `create-resource` command.
+
+## 1.10.0
+
+### Minor Changes
+
+-   [#3130](https://github.com/refinedev/refine/pull/3130) [`0b428512b98`](https://github.com/refinedev/refine/commit/0b428512b98ac010cbff9d343f6b12fa2980a662) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Removed UI framework requirement in `create-resource` command.
+
 ## 1.9.0
 
 ### Minor Changes

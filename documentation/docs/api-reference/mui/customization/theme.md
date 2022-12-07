@@ -64,7 +64,7 @@ export default App;
 ```
 
 :::tip
-We recommend [**superplate**][superplate] to initialize your Refine projects. It configures the project according to your needs including SSR and Theme with Next.js.
+We recommend using [`create refine-app`][create-refine-app] to initialize your Refine projects. It configures the project according to your needs including SSR and Theme with Next.js.
 :::
 
 ## Passing the Theme to ThemeProvider
@@ -733,4 +733,4 @@ export default App;
 If you want to use notistack snackbars with the default style, simply wrap Refine in `<SnackbarProvider>`.
 :::
 
-[superplate]: https://github.com/pankod/superplate
+[create-refine-app]: /docs/getting-started/quickstart.md
