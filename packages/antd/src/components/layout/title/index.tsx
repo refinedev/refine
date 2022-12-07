@@ -7,16 +7,23 @@ export const Title: React.FC<TitleProps> = ({ collapsed }) => {
     return (
         <Link to="/">
             {collapsed ? (
-                <img
-                    src="https://refine.ams3.cdn.digitaloceanspaces.com/logo/refine-collapsed.svg"
-                    alt="Refine"
+                <div
                     style={{
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        padding: "12px 24px",
                     }}
-                />
+                >
+                    <img
+                        src="https://refine.ams3.cdn.digitaloceanspaces.com/logo/refine-collapsed.svg"
+                        alt="Refine"
+                        style={{
+                            margin: "0 auto",
+                            padding: "12px 0",
+                            maxHeight: "65.5px",
+                        }}
+                    />
+                </div>
             ) : (
                 <img
                     src="https://refine.ams3.cdn.digitaloceanspaces.com/logo/refine.svg"
