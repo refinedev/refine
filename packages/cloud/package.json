@@ -1,5 +1,5 @@
 {
-    "version": "7.0.0",
+    "version": "8.0.0",
     "license": "MIT",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
@@ -23,7 +23,7 @@
     "module": "dist/esm/index.js",
     "peerDependencies": {
         "@pankod/refine-core": "^3.23.2",
-        "@pankod/refine-sdk": "^0.7.0",
+        "@pankod/refine-sdk": "^0.8.0",
         "react": "^17.0.0 || ^18.0.0",
         "react-dom": "^17.0.0 || ^18.0.0",
         "@types/react": "^17.0.0 || ^18.0.0",
@@ -31,7 +31,7 @@
     },
     "devDependencies": {
         "@pankod/refine-core": "^3.69.9",
-        "@pankod/refine-sdk": "^0.7.0",
+        "@pankod/refine-sdk": "^0.8.0",
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@types/lodash": "^4.14.171",
         "@tanstack/react-query": "^4.10.1",
