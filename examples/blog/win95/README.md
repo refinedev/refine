@@ -42,7 +42,7 @@ This just a fun example app that we built to demonstrate the power of refine. Yo
 
 <div align="center">
 <a href="https://github.com/refinedev/refine">
- <img src="https://github.com/refinedev/refine/blob/master/documentation/static/img/blog/2022-03-22-refine-with-react95/overview.gif?raw=true"  align="center" />
+ <img src="https://github.com/refinedev/refine/blob/master/documentation/static/img/blog/2022-03-22-refine-with-react95/overview.gif?raw=true" style="width:650px;  align="center" />
  </a>
 </div>
 
