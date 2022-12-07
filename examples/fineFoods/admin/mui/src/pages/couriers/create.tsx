@@ -320,11 +320,11 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                                         ),
                                                     })}
                                                 >
-                                                    {/* // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                                                    // @ts-expect-error */}
+                                                    {/* @ts-expect-error False alarm */}
                                                     {(
                                                         props: TextFieldProps,
                                                     ) => (
+                                                        // @ts-expect-error Incompatible types
                                                         <TextField
                                                             {...props}
                                                             size="small"
