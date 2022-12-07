@@ -4,6 +4,7 @@
     ],
     "extends": "../../tsconfig.build.json",
     "compilerOptions": {
+        "target": "ES6",
         "rootDir": "./src",
         "baseUrl": ".",
         "allowSyntheticDefaultImports": true,
