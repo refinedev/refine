@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-nextjs-router": major
+"@pankod/refine-nextjs-router": minor
 ---
 
 - Bumped Next.js to 13
