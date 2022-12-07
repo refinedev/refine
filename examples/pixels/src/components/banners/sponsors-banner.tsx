@@ -1,9 +1,8 @@
-import React from "react";
-import { Image, Space } from "@pankod/refine-antd";
+import { Image } from "@pankod/refine-antd";
 
 export function SponsorsBanner() {
     return (
-        <Space
+        <div
             style={{
                 width: "320px",
                 height: "56px",
@@ -13,10 +12,15 @@ export function SponsorsBanner() {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                alignContent: "center",
+                margin: "0 auto",
             }}
         >
-            <Image height={24} src="/sponsors.png" />
-        </Space>
+            <Image
+                height={24}
+                preview={false}
+                src="/sponsors.png"
+                alt="Made with refine and Supabase"
+            />
+        </div>
     );
 }

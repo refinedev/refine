@@ -1,65 +1,101 @@
 import React from "react";
-import { useGetIdentity, useLogout } from "@pankod/refine-core";
 import {
-    AntdLayout,
-    Typography,
-    Avatar,
-    Space,
-    Icons,
-    Menu,
-    Button,
-} from "@pankod/refine-antd";
+    useGetIdentity,
+    useLogout,
+    useMenu,
+    useNavigation,
+    useRouterContext,
+} from "@pankod/refine-core";
+import { Button, Image, Space, Icons, useModalForm } from "@pankod/refine-antd";
 
-const { Text } = Typography;
-const { UserOutlined, LogoutOutlined } = Icons;
+import { CreateCanvas } from "components/canvas";
+import { Canvas } from "types";
+
+const { PlusSquareOutlined, LogoutOutlined, LoginOutlined } = Icons;
 
 export const Header: React.FC = () => {
+    const { Link } = useRouterContext();
     const { data: user } = useGetIdentity();
     const { mutate: mutateLogout } = useLogout();
+    const { push } = useNavigation();
+    const { selectedKey } = useMenu();
 
-    // const shouldRenderHeader = user?.name && (user.name || user.avatar);
+    const { modalProps, formProps, show } = useModalForm<Canvas>({
+        resource: "canvases",
+        action: "create",
+        redirect: "show",
+    });
 
-    // return shouldRenderHeader ? (
     return (
-        <AntdLayout.Header
-            style={{
-                display: "flex",
-                justifyContent: "flex-end",
-                alignItems: "center",
-                padding: "0px 24px",
-                height: "64px",
-                backgroundColor: "#FFF",
-            }}
-        >
-            <Space>
-                {user?.name ? (
-                    <Text ellipsis strong>
-                        {user.name}
-                    </Text>
-                ) : null}
-                {user?.avatar_url ? (
-                    <Avatar
-                        size="large"
-                        icon={<UserOutlined />}
-                        src={user?.avatar_url}
-                        alt={user?.name}
+        <div className="container">
+            <div className="layout-header">
+                <Link to="/">
+                    <Image
+                        width="120px"
+                        src="/pixels-logo.svg"
+                        alt="Pixels Logo"
+                        preview={false}
                     />
-                ) : null}
-
-                {user?.name ? (
-                    <Button
-                        type="primary"
-                        danger
-                        onClick={() => {
-                            mutateLogout();
-                        }}
-                        icon={<LogoutOutlined />}
+                </Link>
+                <Space size="large">
+                    <Link
+                        to="/"
+                        className={`nav-button ${
+                            selectedKey === "/" ? "active" : ""
+                        }`}
                     >
-                        Logout
+                        <span className="dot-icon" />
+                        HOME
+                    </Link>
+                    <Link
+                        to="/canvases"
+                        className={`nav-button ${
+                            selectedKey === "/canvases" ? "active" : ""
+                        }`}
+                    >
+                        <span className="dot-icon" />
+                        NEW
+                    </Link>
+                </Space>
+                <Space>
+                    <Button
+                        icon={<PlusSquareOutlined />}
+                        onClick={() => {
+                            if (user) {
+                                show();
+                            } else {
+                                push("/login");
+                            }
+                        }}
+                        title="Create a new canvas"
+                    >
+                        Create
                     </Button>
-                ) : null}
-            </Space>
-        </AntdLayout.Header>
+                    {user ? (
+                        <Button
+                            type="primary"
+                            danger
+                            onClick={() => {
+                                mutateLogout();
+                            }}
+                            icon={<LogoutOutlined />}
+                            title="Logout"
+                        />
+                    ) : (
+                        <Button
+                            type="primary"
+                            onClick={() => {
+                                push("/login");
+                            }}
+                            icon={<LoginOutlined />}
+                            title="Login"
+                        >
+                            Login
+                        </Button>
+                    )}
+                </Space>
+            </div>
+            <CreateCanvas modalProps={modalProps} formProps={formProps} />
+        </div>
     );
-    // ) : null;
 };

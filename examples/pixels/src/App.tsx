@@ -9,21 +9,16 @@ import {
     Icons,
     Image,
 } from "@pankod/refine-antd";
-
 import { dataProvider, liveProvider } from "@pankod/refine-supabase";
 import routerProvider from "@pankod/refine-react-router-v6";
-import { supabaseClient } from "utility";
-import "styles/antd.less";
-import {
-    Title,
-    Footer,
-    Layout,
-    OffLayoutArea,
-    PixelsHeader,
-} from "components/layout";
-import authProvider from "./authProvider";
-import { CanvasList, CanvasShow } from "pages";
+
+import { Layout } from "components/layout";
 import { SponsorsBanner } from "components/banners";
+import { CanvasFeaturedList, CanvasList, CanvasShow } from "pages";
+import { supabaseClient } from "utility";
+import authProvider from "./auth-provider";
+
+import "styles/antd.less";
 
 const { GoogleOutlined, GithubOutlined } = Icons;
 const { Link } = routerProvider;
@@ -126,12 +121,10 @@ function App() {
                     },
                 ],
             }}
+            DashboardPage={() => <CanvasFeaturedList />}
             resources={[
                 {
                     name: "canvases",
-                    options: {
-                        label: "Featured Canvases",
-                    },
                     list: CanvasList,
                     show: CanvasShow,
                 },
@@ -139,11 +132,7 @@ function App() {
             notificationProvider={notificationProvider}
             ReadyPage={ReadyPage}
             catchAll={<ErrorComponent />}
-            Title={Title}
-            Header={PixelsHeader}
-            Footer={Footer}
             Layout={Layout}
-            OffLayoutArea={OffLayoutArea}
         />
     );
 }

@@ -8,7 +8,7 @@ type DisplayCanvasProps = {
     children: (pixels: Pixel[] | undefined) => ReactElement;
 };
 
-const DisplayCanvas: React.FC<DisplayCanvasProps> = ({
+export const DisplayCanvas: React.FC<DisplayCanvasProps> = ({
     canvas: { id },
     children,
 }) => {
@@ -39,5 +39,3 @@ const DisplayCanvas: React.FC<DisplayCanvasProps> = ({
 
     return <>{children(pixels)}</>;
 };
-
-export default DisplayCanvas;

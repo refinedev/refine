@@ -1,28 +1,28 @@
-import React from "react";
-import { Button, Col, Row, Typography, Icons } from "@pankod/refine-antd";
+import { useState } from "react";
 import {
     useCreate,
     useGetIdentity,
     useNavigation,
     useShow,
 } from "@pankod/refine-core";
-import { Canvas } from "types/canvas";
-import { ColorSelect, CanvasItem } from "components";
+import { Button, Typography, Icons } from "@pankod/refine-antd";
+
+import { CanvasItem, DisplayCanvas } from "components/canvas";
+import { ColorSelect } from "components/color-select";
+import { AvatarPanel } from "components/avatar";
 import { colors } from "utility";
-import DisplayCanvas from "components/canvas/display";
-import AvatarPanel from "components/avatar/avatar-panel";
+import { Canvas } from "types";
 
 const { LeftOutlined } = Icons;
+const { Title } = Typography;
 
-export const CanvasShow = () => {
+export const CanvasShow: React.FC = () => {
+    const [color, setColor] = useState<typeof colors[number]>("black");
+
     const { data: identity } = useGetIdentity();
-
     const {
         queryResult: { data: { data: canvas } = {} },
     } = useShow<Canvas>();
-
-    const [color, setColor] = React.useState<typeof colors[number]>("black");
-
     const { mutate } = useCreate();
     const { list, push } = useNavigation();
 
@@ -41,14 +41,15 @@ export const CanvasShow = () => {
                     canvas_id: canvas?.id,
                     user_id: identity.id,
                 },
+                successNotification: false,
             });
         }
     };
 
     return (
-        <div className="page-shadow">
-            <Row style={{ marginBottom: "24px" }}>
-                <Col>
+        <div className="container">
+            <div className="paper">
+                <div className="paper-header">
                     <Button
                         type="text"
                         onClick={() => list("canvases")}
@@ -57,54 +58,52 @@ export const CanvasShow = () => {
                         <LeftOutlined />
                         Back
                     </Button>
-                </Col>
-                <Col flex="1" style={{ textAlign: "center" }}>
-                    <Typography.Title level={3}>
-                        {canvas?.name ?? canvas?.id ?? ""}
-                    </Typography.Title>
-                </Col>
-                <Col>
-                    <Button disabled style={{ visibility: "hidden" }}>
+                    <Title level={3}>{canvas?.name ?? canvas?.id ?? ""}</Title>
+                    <Button type="text" style={{ visibility: "hidden" }}>
+                        <LeftOutlined />
                         Back
                     </Button>
-                </Col>
-            </Row>
+                </div>
 
-            {canvas && (
-                <DisplayCanvas canvas={canvas}>
-                    {(pixels) => (
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "row",
-                                justifyContent: "center",
-                                paddingTop: "24px",
-                            }}
-                        >
-                            <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    margin: "0 56px",
-                                }}
-                            >
-                                <ColorSelect
-                                    selected={color}
-                                    onChange={setColor}
-                                />
-                            </div>
-                            <CanvasItem
-                                canvas={canvas}
-                                pixels={pixels}
-                                onPixelClick={onSubmit}
-                                scale={(20 / (canvas?.width ?? 20)) * 2}
-                                active={true}
-                            />
-                            <AvatarPanel pixels={pixels} />
-                        </div>
-                    )}
-                </DisplayCanvas>
-            )}
+                {canvas ? (
+                    <DisplayCanvas canvas={canvas}>
+                        {(pixels) =>
+                            pixels ? (
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        gap: 48,
+                                    }}
+                                >
+                                    <div>
+                                        <ColorSelect
+                                            selected={color}
+                                            onChange={setColor}
+                                        />
+                                    </div>
+                                    <CanvasItem
+                                        canvas={canvas}
+                                        pixels={pixels}
+                                        onPixelClick={onSubmit}
+                                        scale={(20 / (canvas?.width ?? 20)) * 2}
+                                        active={true}
+                                    />
+                                    <div style={{ width: 120 }}>
+                                        <AvatarPanel pixels={pixels} />
+                                    </div>
+                                </div>
+                            ) : (
+                                //TODO: show skeleton loading
+                                <></>
+                            )
+                        }
+                    </DisplayCanvas>
+                ) : (
+                    //TODO: show skeleton loading
+                    <></>
+                )}
+            </div>
         </div>
     );
 };

@@ -4,7 +4,7 @@ import { CanvasTile } from "components/canvas";
 import { SponsorsBanner } from "components/banners";
 import { Canvas } from "types";
 
-export const CanvasList: React.FC = () => {
+export const CanvasFeaturedList: React.FC = () => {
     const { listProps } = useSimpleList<Canvas>({
         resource: "canvases",
         pagination: {
@@ -14,6 +14,13 @@ export const CanvasList: React.FC = () => {
             {
                 field: "created_at",
                 order: "desc",
+            },
+        ],
+        initialFilter: [
+            {
+                field: "is_featured",
+                operator: "eq",
+                value: true,
             },
         ],
     });

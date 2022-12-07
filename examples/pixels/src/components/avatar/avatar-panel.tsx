@@ -1,46 +1,34 @@
-import { Avatar, Icons } from "@pankod/refine-antd";
 import React from "react";
-import { Pixel } from "types/pixel";
-import { getContributorsAvatarSet } from "utility/getContributorsAvatarSet";
+import { Typography, Space, Avatar, Icons } from "@pankod/refine-antd";
+
+import { getUniqueContributorsAvatarURL } from "utility";
+import { Pixel } from "types";
+
+const { Title } = Typography;
 
 type AvatarPanelProps = {
-    pixels: Pixel[] | undefined;
+    pixels: Pixel[];
 };
 
-const AvatarPanel: React.FC<AvatarPanelProps> = ({ pixels }) => {
-    const contributors = getContributorsAvatarSet(pixels);
+export const AvatarPanel: React.FC<AvatarPanelProps> = ({ pixels }) => {
+    const contributors = getUniqueContributorsAvatarURL(pixels);
+
+    if (contributors.length === 0) {
+        return null;
+    }
 
     return (
-        <div style={{ padding: "0 24px" }}>
-            <h2
-                style={{
-                    textTransform: "uppercase",
-                    fontSize: "12px",
-                    fontWeight: 800,
-                }}
-            >
-                Users
-            </h2>
-            <div
-                style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(3, 1fr)",
-                    justifyContent: "center",
-                    alignItems: "start",
-                    gap: "8px",
-                }}
-            >
-                {contributors?.map((avatar_url: any) => (
+        <div>
+            <Title level={4}>Users</Title>
+            <Space wrap>
+                {contributors.map((avatar_url) => (
                     <Avatar
                         key={avatar_url}
                         icon={<Icons.UserOutlined />}
                         src={avatar_url}
-                        size={{ xs: 24, sm: 32, md: 40 }}
                     />
                 ))}
-            </div>
+            </Space>
         </div>
     );
 };
-
-export default AvatarPanel;

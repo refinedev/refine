@@ -1,55 +1,39 @@
-import { Button, Col, Space } from "@pankod/refine-antd";
-import { useNavigation } from "@pankod/refine-core";
-import Contributors from "components/avatar/contributors";
 import React from "react";
-import { Canvas } from "types/canvas";
-import { CanvasItem } from ".";
-import DisplayCanvas from "./display";
+import { useRouterContext } from "@pankod/refine-core";
+
+import { CanvasItem, DisplayCanvas } from "./index";
+import { Contributors } from "components/avatar";
+import { Canvas } from "types";
 
 type CanvasTileProps = {
     canvas: Canvas;
 };
 
-const CanvasTile: React.FC<CanvasTileProps> = ({ canvas }) => {
-    const { show } = useNavigation();
+export const CanvasTile: React.FC<CanvasTileProps> = ({ canvas }) => {
+    const { Link } = useRouterContext();
 
     return (
-        <>
-            <DisplayCanvas canvas={canvas}>
-                {(pixels) => (
-                    <Col
+        <DisplayCanvas canvas={canvas}>
+            {(pixels) =>
+                pixels ? (
+                    <Link
                         key={canvas.id}
-                        style={{
-                            height: "auto",
-                            width: "100%",
-                            maxWidth: "248px",
-                        }}
+                        className="canvas-item"
+                        to={`/canvases/show/${canvas.id}`}
                     >
-                        <Button
-                            onClick={() => {
-                                show("canvases", canvas.id);
-                            }}
-                            style={{
-                                height: "auto",
-                                maxHeight: "auto",
-                                paddingTop: "15px",
-                                display: "flex",
-                                alignItems: "stretch",
-                            }}
-                        >
-                            <CanvasItem
-                                canvas={canvas}
-                                pixels={pixels}
-                                scale={20 / canvas.width}
-                                active={false}
-                            />
-                        </Button>
+                        <CanvasItem
+                            canvas={canvas}
+                            pixels={pixels}
+                            scale={22 / canvas.width}
+                            active={false}
+                        />
                         <Contributors pixels={pixels} />
-                    </Col>
-                )}
-            </DisplayCanvas>
-        </>
+                    </Link>
+                ) : (
+                    //TODO: show skeleton loading
+                    <></>
+                )
+            }
+        </DisplayCanvas>
     );
 };
-
-export default CanvasTile;
