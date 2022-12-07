@@ -219,7 +219,7 @@ const App: React.FC = () => {
                 },
             }}
         >
-            // highlight-end
+            {/* highlight-end */}
             <Refine
                 dataProvider={dataProvider(API_URL)}
                 routerProvider={routerProvider}
