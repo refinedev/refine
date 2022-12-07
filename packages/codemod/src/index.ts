@@ -130,6 +130,10 @@ const TRANSFORMER_INQUIRER_CHOICES = [
         name: "refine1-to-refine2: Transform from refine 1.x.x to at least 2.0.0",
         value: "refine1-to-refine2",
     },
+    {
+        name: "antd4-to-antd5: Transform from antd 4.x.x to at least 5.0.0",
+        value: "antd4-to-antd5",
+    },
 ];
 
 function expandFilePathsIfNeeded(filesBeforeExpansion) {
