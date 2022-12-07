@@ -19,7 +19,6 @@ import {
     titleStyles,
     imageContainer,
 } from "./styles";
-import logo from "../../../assets/images/refine.svg";
 
 const { Text, Title } = Typography;
 export interface ILoginForm {
@@ -58,7 +57,10 @@ export const LoginPage: React.FC<LoginPageProps> = () => {
                 <Col xs={22}>
                     <div style={containerStyles}>
                         <div style={imageContainer}>
-                            <img src={logo} alt="Refine Logo" />
+                            <img
+                                src="https://refine.ams3.cdn.digitaloceanspaces.com/logo/refine.svg"
+                                alt="Refine Logo"
+                            />
                         </div>
                         <Card title={CardTitle} headStyle={{ borderBottom: 0 }}>
                             <Form<ILoginForm>
