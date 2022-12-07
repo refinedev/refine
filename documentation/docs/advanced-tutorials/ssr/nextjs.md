@@ -396,9 +396,86 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 `parseTableParams` parses the query string and returns query parameters([refer here for their interfaces][interfaces]). They can be directly used for `dataProvider` methods that accepts them.
 
+## `appDir` Support
+
+Next.js introduced a new way of defining pages within the `app/` directory. _This new directory has support for layouts, nested routes, and uses Server Components by default._ To learn more about the feature check out [Next.js Beta docs](https://beta.nextjs.org/docs/upgrade-guide)
+
+**refine** also follows this feature and provides a way to use `appDir` with your **refine** apps. 
+
+:::caution
+
+`app/` is currently in beta and is **not recommended** for production use in Next.js. In **refine**, we're providing the `app/` support as experimental and not recommended for production use.
+
+:::
+
+To start using `app/` with **refine**, you need to set create the **refine** routes in your `/app` directory with the following convention:
+
+```bash
+
+your-project
+└── app
+    └── [[...refine]]
+        ├── layout.tsx
+        └── page.tsx
+
+```
+
+**Initializing `<Refine/>` in `layout.tsx`**
+
+```tsx title="app/[[...refine]]/layout.tsx"
+"use client";
+
+import routerProvider from "@pankod/refine-nextjs-router/app";
+
+export default function RefineLayout({
+    children,
+    params,
+}: {
+    children: React.ReactNode;
+    params: Record<"refine", string[]>;
+}) {
+    return (
+        <Refine
+            routerProvider={routerProvider.call({ params })}
+            /* ... */
+        >
+            {children}
+        </Refine>
+    );
+}
+```
+
+We need to bind the `params` to the `routerProvider` and call it to initialize the `routerProvider`. This is because the `params` are not available via hooks for **refine** to use.
+
+**Creating `page.tsx`**
+
+```tsx title="app/[[...refine]]/page.tsx"
+"use client";
+
+import { NextRouteComponent } from "@pankod/refine-nextjs-router/app";
+
+export default NextRouteComponent;
+```
+
+Note that we're importing `NextRouteComponent` from `@pankod/refine-nextjs-router/app` instead of `@pankod/refine-nextjs-router`. This is because we're using the `app/` directory and we need to import the `app` version of the `NextRouteComponent`.
+
+:::note
+`"use client";` is a directive that instructs Next.js to opt-out from Server Components. This is because **refine** and dependencies are not yet compatible with Server Components. Thats why we're using it in both `layout.tsx` and `page.tsx` files.
+:::
+
+:::note
+`checkAuthentication` does not work with `app/` directory. You need to handle the authentication your views while using `app/` directory.
+
+**refine** aims to provide a middleware for `app/` directory to substitue `checkAuthentication` but it's not available yet.
+:::
+
+:::info
+You can find the `app/` directory example with **refine** in [examples/nextjs/appdir](https://github.com/refinedev/refine/tree/next/examples/remix/antd)
+:::
+
 ## Live StackBlitz Example
 
-<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/refine-next/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
+<iframe loading="lazy" src="https://stackblitz.com/github/refinedev/refine/tree/master/examples/nextjs/base/?embed=1&view=preview&theme=dark&preset=node&ctl=1"
     style={{width: "100%", height:"80vh", border: "0px", borderRadius: "8px", overflow:"hidden"}}
     title="refine-next"
 ></iframe>

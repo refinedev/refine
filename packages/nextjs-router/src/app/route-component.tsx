@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import {
     useRefineContext,
     LayoutWrapper,
@@ -6,22 +6,15 @@ import {
     useResource,
     LoginPage as DefaultLoginPage,
     CanAccess,
+    useRouterContext,
 } from "@pankod/refine-core";
 import type { ResourceRouterParams } from "@pankod/refine-core";
 
-import { RouterProvider } from "./routerProvider";
-
-const { useHistory, useLocation, useParams } = RouterProvider;
-
-type NextRouteComponentProps = {
-    initialData?: any;
-    children: ReactNode;
-};
-
 export function NextRouteComponent(
     this: { initialRoute?: string },
-    { initialData, children: _children, ...rest }: NextRouteComponentProps,
+    props: any,
 ): React.ReactNode {
+    const { useHistory, useLocation, useParams } = useRouterContext();
     const { resources } = useResource();
     const { push } = useHistory();
     const {
@@ -61,7 +54,7 @@ export function NextRouteComponent(
                             resource,
                         }}
                     >
-                        <DashboardPage initialData={initialData} {...rest} />
+                        <DashboardPage {...props} />
                     </CanAccess>
                 </LayoutWrapper>
             );
@@ -124,9 +117,8 @@ export function NextRouteComponent(
                                 canEdit={canEdit}
                                 canDelete={canDelete}
                                 canShow={canShow}
-                                initialData={initialData}
                                 options={options}
-                                {...rest}
+                                {...props}
                             />
                         </CanAccess>
                     );
@@ -149,9 +141,8 @@ export function NextRouteComponent(
                                 canEdit={canEdit}
                                 canDelete={canDelete}
                                 canShow={canShow}
-                                initialData={initialData}
                                 options={options}
-                                {...rest}
+                                {...props}
                             />
                         </CanAccess>
                     );
@@ -171,9 +162,8 @@ export function NextRouteComponent(
                                 canEdit={canEdit}
                                 canDelete={canDelete}
                                 canShow={canShow}
-                                initialData={initialData}
                                 options={options}
-                                {...rest}
+                                {...props}
                             />
                         </CanAccess>
                     );
@@ -193,9 +183,8 @@ export function NextRouteComponent(
                                 canEdit={canEdit}
                                 canDelete={canDelete}
                                 canShow={canShow}
-                                initialData={initialData}
                                 options={options}
-                                {...rest}
+                                {...props}
                             />
                         </CanAccess>
                     );

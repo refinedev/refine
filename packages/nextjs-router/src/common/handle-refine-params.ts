@@ -1,10 +1,4 @@
-import { useRouter } from "next/router";
-import {
-    handleUseParams,
-    IRouterProvider,
-    ResourceRouterParams,
-    RouteAction,
-} from "@pankod/refine-core";
+import { ResourceRouterParams, RouteAction } from "@pankod/refine-core";
 
 const actions: RouteAction[] = ["clone", "create", "edit", "show"];
 
@@ -49,14 +43,3 @@ export const handleRefineParams = (
     refineParams?: string | string[],
 ): ResourceRouterParams | Record<string, string> =>
     Array.isArray(refineParams) ? composeParams(refineParams) : {};
-
-export const useParams: IRouterProvider["useParams"] = <Params>() => {
-    const router = useRouter();
-
-    const { query } = router;
-    const { refine } = query;
-    return {
-        ...handleRefineParams(refine),
-        ...handleUseParams(query),
-    } as Params;
-};
