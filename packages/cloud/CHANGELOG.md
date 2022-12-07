@@ -1,5 +1,12 @@
 # @pankod/refine-cloud
 
+## 7.0.0
+
+### Patch Changes
+
+-   Updated dependencies [[`15d3fd535a2`](https://github.com/refinedev/refine/commit/15d3fd535a2f2ec18e984ee20c9064e35ce3f8b8)]:
+    -   @pankod/refine-sdk@0.7.0
+
 ## 6.0.0
 
 ### Patch Changes
