@@ -17,7 +17,7 @@
         "typescript": "^4.7.4"
     },
     "scripts": {
-        "start": "DISABLE_ESLINT_PLUGIN=true PORT=3001 react-scripts start",
+        "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
         "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
