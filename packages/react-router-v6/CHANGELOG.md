@@ -1,5 +1,11 @@
 # @pankod/refine-react-router-v6
 
+## 3.37.0
+
+### Minor Changes
+
+-   [#3144](https://github.com/refinedev/refine/pull/3144) [`c0aea17837c`](https://github.com/refinedev/refine/commit/c0aea17837c02a68d6be333925ff21fb24f0e4ec) Thanks [@omeraplak](https://github.com/omeraplak)! - Added react-router-dom's exports
+
 ## 3.36.6
 
 ### Patch Changes
