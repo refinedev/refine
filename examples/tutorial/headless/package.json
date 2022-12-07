@@ -5,7 +5,7 @@
     "dependencies": {
         "@pankod/refine-core": "^3.90.4",
         "@pankod/refine-react-hook-form": "^3.33.2",
-        "@pankod/refine-react-router-v6": "^3.37.0",
+        "@pankod/refine-react-router-v6": "^3.38.0",
         "@pankod/refine-react-table": "^4.9.0",
         "@pankod/refine-simple-rest": "^3.37.4",
         "@types/node": "^12.20.11",

@@ -15,7 +15,7 @@
     "@pankod/refine-mui": "^3.59.4",
     "@pankod/refine-react-hook-form": "^3.27.1",
     "@mui/icons-material": "^5.8.3",
-    "@pankod/refine-react-router-v6": "^3.37.0",
+    "@pankod/refine-react-router-v6": "^3.38.0",
     "@pankod/refine-simple-rest": "^3.37.4",
     "@hookform/resolvers": "^2.9.8",
     "yup": "^0.32.11"
