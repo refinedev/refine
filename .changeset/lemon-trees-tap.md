@@ -1,5 +1,5 @@
 ---
-"@pankod/refine-antd": patch
+"@pankod/refine-antd": minor
 ---
 
-Chore: on `ReadyPage` and `LoginPage` get **refine** logo from cdn instead of importing it
+Updated `LoginPage` and `ReadyPage` to use **refine** logos from CDN rather than bundled svg files.
