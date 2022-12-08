@@ -119,7 +119,7 @@ export function runTransform({ files, flags, transformer }) {
 
 const TRANSFORMER_INQUIRER_CHOICES = [
     {
-        name: "antd4-to-antd5: Transform from antd 4.x.x to at least 5.0.0",
+        name: "antd4-to-antd5: Transform from antd 4.x.x to at least 5.x.x",
         value: "antd4-to-antd5",
     },
     {
