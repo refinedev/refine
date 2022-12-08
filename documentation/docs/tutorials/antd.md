@@ -3,13 +3,6 @@ id: ant-design-tutorial
 title: Your First App using Ant Design
 ---
 
-import readyPage from '@site/static/img/tutorial/ready-page.png';
-import resourceFirst from '@site/static/img/tutorial/resource-1.png';
-import resourceSecond from '@site/static/img/tutorial/resource-2.png';
-import createGif from '@site/static/img/tutorial/create.gif';
-import editGif from '@site/static/img/tutorial/edit.gif';
-import filter from '@site/static/img/tutorial/filter.gif';
-import showGif from '@site/static/img/tutorial/show.gif';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
