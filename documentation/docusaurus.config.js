@@ -40,12 +40,14 @@ const siteConfig = {
                     admonitions: {
                         tag: ":::",
                         keywords: [
+                            "additional",
                             "note",
                             "tip",
                             "info-tip",
                             "info",
                             "caution",
                             "danger",
+                            "sourcecode",
                         ],
                     },
                 },
@@ -314,6 +316,8 @@ const siteConfig = {
         /** Live Preview */
         LIVE_PREVIEW_URL:
             process.env.LIVE_PREVIEW_URL ?? "http://localhost:3030/preview",
+        STACKBLITZ_EXAMPLE_BRANCH:
+            process.env.STACKBLITZ_EXAMPLE_BRANCH ?? "master",
     },
 };
 
