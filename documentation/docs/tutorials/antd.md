@@ -84,6 +84,7 @@ First, run the **create refine-app** with the following command:
 ```
 npm create refine-app -- -o refine-antd tutorial
 ```
+
 </TabItem>
 </Tabs>
 
@@ -171,7 +172,7 @@ import {
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 const App: React.FC = () => {
     return (
@@ -283,7 +284,7 @@ import {
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 export const App: React.FC = () => {
     return (
@@ -428,7 +429,7 @@ import {
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 // highlight-next-line
 import { PostList } from "./pages/posts";
@@ -810,7 +811,7 @@ import {
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 // highlight-next-line
 import { PostList, PostShow } from "./pages/posts";
@@ -1067,7 +1068,7 @@ import {
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 // highlight-next-line
 import { PostList, PostShow, PostEdit } from "./pages/posts";
@@ -1343,7 +1344,7 @@ import {
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 // highlight-next-line
 import { PostList, PostShow, PostEdit, PostCreate } from "./pages/posts";
@@ -1535,7 +1536,7 @@ import {
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { PostList, PostShow, PostEdit, PostCreate } from "./pages/posts";
 

@@ -24,11 +24,16 @@ Let's look at an example of modifying the default layout to have a top menu layo
 
 ```tsx title="/src/App.tsx"
 import { Refine } from "@pankod/refine-core";
-import { AntdLayout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
+import {
+    AntdLayout,
+    ReadyPage,
+    notificationProvider,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { PostList } from "pages/posts";
 // highlight-next-line
@@ -43,7 +48,7 @@ const App: React.FC = () => {
         <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider(API_URL)}
-// highlight-start
+            // highlight-start
             Layout={({ children, Footer, OffLayoutArea }) => (
                 <AntdLayout>
                     <AntdLayout.Header>
@@ -60,7 +65,7 @@ const App: React.FC = () => {
                     {OffLayoutArea && <OffLayoutArea />}
                 </AntdLayout>
             )}
-// highlight-end
+            // highlight-end
             Title={() => (
                 <Link to="/" style={{ float: "left", marginRight: "10px" }}>
                     <img src="/refine.svg" alt="Refine" />
@@ -80,7 +85,7 @@ Here, we override the [`<Title>`][title] and [`<Layout>`][layout] components. Wh
 
 So, we just provided a custom [`<Sider>`][sider]. Here's our custom sider that looks horizontal, instead of the default vertical one:
 
-```tsx  title="/src/components/sider/index.tsx"
+```tsx title="/src/components/sider/index.tsx"
 import { useTitle, useMenu } from "@pankod/refine-core";
 import { Menu } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
@@ -88,14 +93,14 @@ import routerProvider from "@pankod/refine-react-router-v6";
 const { Link } = routerProvider;
 
 export const CustomSider: React.FC = () => {
-// highlight-start
+    // highlight-start
     const Title = useTitle();
     const { menuItems, selectedKey } = useMenu();
-// highlight-end
+    // highlight-end
 
     return (
         <>
-// highlight-start
+            // highlight-start
             {Title && <Title collapsed={false} />}
             <Menu selectedKeys={[selectedKey]} mode="horizontal">
                 {menuItems.map(({ icon, route, label }) => (
@@ -104,7 +109,7 @@ export const CustomSider: React.FC = () => {
                     </Menu.Item>
                 ))}
             </Menu>
-// highlight-end
+            // highlight-end
         </>
     );
 };

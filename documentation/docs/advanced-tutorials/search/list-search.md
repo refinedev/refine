@@ -11,9 +11,9 @@ We will examine how to make an extensive search and filtering with the [`useSimp
 To do this, let's list posts using the posts resource.
 
 ```tsx title="pages/posts/list.tsx"
-import { 
+import {
     // highlight-next-line
-    useMany 
+    useMany,
 } from "@pankod/refine-core";
 import {
     List,
@@ -95,11 +95,16 @@ After creating the `<PostList>` component, add it to resource with `list` prop:
 
 ```tsx
 import { Refine } from "@pankod/refine-core";
-import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
+import {
+    Layout,
+    ReadyPage,
+    notificationProvider,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 // highlight-next-line
 import { PostList } from "pages/posts";

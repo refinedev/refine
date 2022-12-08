@@ -56,7 +56,7 @@ import {
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 //highlight-next-line
 import { liveProvider } from "@pankod/refine-ably";
@@ -125,8 +125,9 @@ We will be alerting about changes in an alert box on top of the form instead of 
 
 export const PostEdit: React.FC = () => {
     //highlight-start
-    const [deprecated, setDeprecated] =
-        useState<"deleted" | "updated" | undefined>();
+    const [deprecated, setDeprecated] = useState<
+        "deleted" | "updated" | undefined
+    >();
     //highlight-end
 
     const { formProps, saveButtonProps, queryResult } = useForm<IPost>({

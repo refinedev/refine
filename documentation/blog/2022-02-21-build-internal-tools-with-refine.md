@@ -183,7 +183,7 @@ The main building blocks of a Refine app are `resources`. A resource is an entit
 ```tsx
 import { Refine } from "@pankod/refine-core";
 import dataProvider from "@pankod/refine-json-server";
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 

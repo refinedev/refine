@@ -36,11 +36,16 @@ To make this example more visual, we used the [`@pankod/refine-antd`](https://gi
 
 ```tsx
 import { Refine } from "@pankod/refine-core";
-import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
+import {
+    Layout,
+    ReadyPage,
+    notificationProvider,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import { dataProvider } from "@pankod/refine-appwrite";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { appwriteClient } from "utility";
 import { authProvider } from "./authProvider";
@@ -126,7 +131,7 @@ import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod
 import { dataProvider } from "@pankod/refine-appwrite";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { appwriteClient } from "utility";
 import { authProvider } from "./authProvider";
@@ -217,12 +222,7 @@ import {
     CanAccess,
     useRouterContext,
 } from "@pankod/refine-core";
-import {
-    AntdLayout,
-    Menu,
-    Grid,
-    Icons,
-} from "@pankod/refine-antd";
+import { AntdLayout, Menu, Grid, Icons } from "@pankod/refine-antd";
 import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 import { StoreSelect } from "components/select";
@@ -237,7 +237,7 @@ export const CustomSider: React.FC = () => {
 
     const isMobile =
         typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
-    
+
     const renderTreeView = (tree: ITreeMenu[], selectedKey: string) => {
         return tree.map((item: ITreeMenu) => {
             const { icon, label, route, name, children, parentName } = item;
@@ -268,7 +268,9 @@ export const CustomSider: React.FC = () => {
                         style={{
                             fontWeight: isSelected ? "bold" : "normal",
                         }}
-                        icon={icon ?? (isRoute && <Icons.UnorderedListOutlined />)}
+                        icon={
+                            icon ?? (isRoute && <Icons.UnorderedListOutlined />)
+                        }
                     >
                         <Link to={route}>{label}</Link>
                         {!collapsed && isSelected && (
@@ -482,13 +484,11 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                     }}
                     //highlight-start
                     onFinish={(values) => {
-                        return (
-                            formProps.onFinish?.({
-                                ...values,
-                                storeId: store,
-                                image: JSON.stringify(values.image),
-                            })
-                        );
+                        return formProps.onFinish?.({
+                            ...values,
+                            storeId: store,
+                            image: JSON.stringify(values.image),
+                        });
                     }}
                     //highlight-end
                 >
@@ -591,11 +591,16 @@ Appwrite Realtime API support is out-of-the-box supported by **refine**, just ad
 
 ```tsx
 import { Refine } from "@pankod/refine-core";
-import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
+import {
+    Layout,
+    ReadyPage,
+    notificationProvider,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import { dataProvider, liveProvider } from "@pankod/refine-appwrite";
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { appwriteClient } from "utility";
 import { authProvider } from "./authProvider";

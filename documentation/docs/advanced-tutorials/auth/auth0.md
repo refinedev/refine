@@ -34,7 +34,7 @@ const container = document.getElementById("root");
 const root = createRoot(container!);
 root.render(
     <React.StrictMode>
-// highlight-start
+        // highlight-start
         <Auth0Provider
             domain="YOUR_DOMAIN"
             clientId="YOUR_CLIENT_ID"
@@ -42,10 +42,9 @@ root.render(
         >
             <App />
         </Auth0Provider>
-// highlight-end
+        // highlight-end
     </React.StrictMode>,
 );
-
 ```
 
 :::important
@@ -110,12 +109,17 @@ In refine, authentication and authorization processes are performed with the aut
 
 ```tsx title="App.tsx"
 import { Refine, AuthProvider } from "@pankod/refine-core";
-import { Layout, ReadyPage, notificationProvider, ErrorComponent } from "@pankod/refine-antd";
+import {
+    Layout,
+    ReadyPage,
+    notificationProvider,
+    ErrorComponent,
+} from "@pankod/refine-antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { Login } from "pages/login";
 
@@ -124,13 +128,8 @@ import axios from "axios";
 const API_URL = "https://api.fake-rest.refine.dev";
 
 const App = () => {
-    const {
-        isLoading,
-        isAuthenticated,
-        user,
-        logout,
-        getIdTokenClaims,
-    } = useAuth0();
+    const { isLoading, isAuthenticated, user, logout, getIdTokenClaims } =
+        useAuth0();
 
     if (isLoading) {
         return <span>loading...</span>;
@@ -184,7 +183,7 @@ const App = () => {
             resources={[
                 {
                     name: "posts",
-                }
+                },
             ]}
         />
     );
