@@ -2,8 +2,6 @@ import * as React from "react";
 import { RefineReadyPageProps } from "@pankod/refine-ui-types";
 import { Stack, Grid, Typography, Button, Link } from "@mui/material";
 
-import logo from "../../../assets/images/refine.svg";
-
 export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
     const renderCode = (text: string) => (
         <Typography
@@ -44,7 +42,7 @@ export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
                     <Typography display="flex" justifyContent="center">
                         <img
                             style={{ marginBottom: "48px" }}
-                            src={logo}
+                            src="https://refine.ams3.cdn.digitaloceanspaces.com/logo/refine.svg"
                             alt="Refine Logo"
                         />
                     </Typography>

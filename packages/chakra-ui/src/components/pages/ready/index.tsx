@@ -10,8 +10,6 @@ import {
     Image,
 } from "@chakra-ui/react";
 
-import logo from "../../../assets/images/refine.svg";
-
 export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
     return (
         <Box
@@ -24,7 +22,11 @@ export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
             bg="sider.background"
             bgImage="https://refine.ams3.cdn.digitaloceanspaces.com/login-background/background.png"
         >
-            <Image mb="8" src={logo} alt="Refine Logo" />
+            <Image
+                mb="8"
+                src="https://refine.ams3.cdn.digitaloceanspaces.com/logo/refine.svg"
+                alt="Refine Logo"
+            />
 
             <Heading mb="6" as="h1" size="3xl" color="white" textAlign="center">
                 Welcome on board
