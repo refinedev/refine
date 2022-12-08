@@ -72,7 +72,9 @@ In Reactjs, components are either classes or functions that are exported from .j
 
 In Svelte, components are written in .svelte files and Svelte exports it, we don't have to do anything.
 
+```ts
 import FilterButton from "./FilterButton.svelte";
+````
 
 Our UI elements are written in the .svelte and Svelte does the magic behind the scene.
 In terms of styling, Svelte modularized their styling or we can say that Svelte scoped the styling in components. This means that the styling will be unique to the component, there will not be any conflicts in the styling. This just like in Nextjs(a SSR-version of Reactjs), we can either create global styling or unique styling for components.
