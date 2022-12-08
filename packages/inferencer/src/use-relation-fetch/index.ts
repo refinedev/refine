@@ -7,7 +7,7 @@ import {
     toPlural,
     toSingular,
 } from "@/utilities";
-import { FieldInferencer, InferField } from "@/types";
+import { FieldInferencer, InferField, ResourceInferenceAttempt } from "@/types";
 import { get } from "lodash";
 
 type UseRelationFetchProps = {
@@ -30,6 +30,10 @@ export const useRelationFetch = ({
 
     const resolver = React.useCallback(
         async (allFields: (InferField | false | null)[]) => {
+            console.groupCollapsed(
+                "@pankod/refine-inferencer is trying to detect relations",
+            );
+            const attempts: Array<ResourceInferenceAttempt> = [];
             setLoading(true);
             try {
                 const promises = allFields.map(async (field) => {
@@ -55,22 +59,40 @@ export const useRelationFetch = ({
                                 : record[field.key];
 
                             if (requestId && field.resource) {
-                                const { data } = await dp.getOne({
-                                    resource: field.resource.name,
-                                    id: requestId,
-                                });
+                                try {
+                                    const { data } = await dp.getOne({
+                                        resource: field.resource.name,
+                                        id: requestId,
+                                    });
 
-                                const relationInfer = infer(
-                                    "__",
-                                    data,
-                                    {},
-                                    infer,
-                                );
+                                    attempts.push({
+                                        status: "success",
+                                        resource: field.resource.name,
+                                        field: field.key,
+                                    });
 
-                                return {
-                                    ...field,
-                                    relationInfer,
-                                };
+                                    const relationInfer = infer(
+                                        "__",
+                                        data,
+                                        {},
+                                        infer,
+                                    );
+
+                                    return {
+                                        ...field,
+                                        relationInfer,
+                                    };
+                                } catch (error) {
+                                    attempts.push({
+                                        status: "error",
+                                        resource: field.resource.name,
+                                        field: field.key,
+                                    });
+                                    return {
+                                        ...field,
+                                        relationInfer: null,
+                                    };
+                                }
                             }
 
                             if (requestId) {
@@ -85,9 +107,25 @@ export const useRelationFetch = ({
                                         id: requestId,
                                     });
 
+                                    attempts.push({
+                                        status: "success",
+                                        resource: toPlural(
+                                            removeRelationSuffix(field.key),
+                                        ),
+                                        field: field.key,
+                                    });
+
                                     responseData = data;
                                     isPlural = true;
                                 } catch (error) {
+                                    attempts.push({
+                                        status: "error",
+                                        resource: toPlural(
+                                            removeRelationSuffix(field.key),
+                                        ),
+                                        field: field.key,
+                                    });
+
                                     try {
                                         const { data } = await dp.getOne({
                                             resource: toSingular(
@@ -96,9 +134,25 @@ export const useRelationFetch = ({
                                             id: requestId,
                                         });
 
+                                        attempts.push({
+                                            status: "success",
+                                            resource: toSingular(
+                                                removeRelationSuffix(field.key),
+                                            ),
+                                            field: field.key,
+                                        });
+
                                         responseData = data;
                                         isPlural = false;
                                     } catch (error) {
+                                        attempts.push({
+                                            status: "error",
+                                            resource: toSingular(
+                                                removeRelationSuffix(field.key),
+                                            ),
+                                            field: field.key,
+                                        });
+
                                         return {
                                             ...field,
                                             relationInfer: null,
@@ -155,6 +209,16 @@ export const useRelationFetch = ({
                     setLoading(false);
                 }, 500);
             }
+            setTimeout(() => {
+                console.log(
+                    `Tried to detect relations with ${
+                        attempts.length
+                    } attempts and succeeded with ${
+                        attempts.filter((el) => el.status === "success").length
+                    } attempts.`,
+                );
+                console.groupEnd();
+            }, 500);
         },
         [dataProvider, record],
     );
