@@ -1,5 +1,5 @@
 import cn from "clsx";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { FC, useMemo, useState } from "react";
 import { Product, ProductVariant } from "@medusajs/medusa";
 
