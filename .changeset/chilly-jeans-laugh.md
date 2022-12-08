@@ -2,4 +2,4 @@
 "@pankod/refine-codemod": minor
 ---
 
-Add Antd v4 to Antd v5 updateder.
+Added Ant design v4 to v5 codemod support.
