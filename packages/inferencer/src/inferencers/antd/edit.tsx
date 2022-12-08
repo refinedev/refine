@@ -8,10 +8,9 @@ import {
     prettyString,
     accessor,
     printImports,
-    toPlural,
-    toSingular,
     isIDKey,
     noOp,
+    getVariableName,
 } from "@/utilities";
 
 import { ErrorComponent } from "./error";
@@ -33,9 +32,15 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
     codeViewerComponent: CodeViewerComponent,
     loadingComponent: LoadingComponent,
     errorComponent: ErrorComponent,
-    renderer: ({ resource, fields }) => {
-        const COMPONENT_NAME = componentName(resource.name, "edit");
-        const recordName = `${toSingular(resource.name)}Data`;
+    renderer: ({ resource, fields, isCustomPage, id }) => {
+        const COMPONENT_NAME = componentName(
+            resource.label ?? resource.name,
+            "edit",
+        );
+        const recordName = getVariableName(
+            resource.label ?? resource.name,
+            "Data",
+        );
         const imports: Array<ImportElement> = [
             ["React", "react", true],
             ["IResourceComponentsProps", "@pankod/refine-core"],
@@ -74,11 +79,10 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
                     }
 
                     return `
-                    const { selectProps: ${
-                        field.multiple
-                            ? toPlural(field.resource.name)
-                            : toSingular(field.resource.name)
-                    }SelectProps } =
+                    const { selectProps: ${getVariableName(
+                        field.key,
+                        "SelectProps",
+                    )} } =
                     useSelect({
                         resource: "${field.resource.name}",
                         defaultValue: ${val},
@@ -105,11 +109,7 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
         const renderRelationFields = (field: InferField) => {
             if (field.relation && field.resource) {
                 imports.push(["Select", "@pankod/refine-antd"]);
-                const variableName = `${
-                    field.multiple
-                        ? toPlural(field.resource.name)
-                        : toSingular(field.resource.name)
-                }SelectProps`;
+                const variableName = getVariableName(field.key, "SelectProps");
 
                 const name = field.accessor
                     ? field.multiple
@@ -428,7 +428,15 @@ export const EditInferencer: InferencerResultComponent = createInferencer({
         ${printImports(imports)}
         
         export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
-            const { formProps, saveButtonProps, queryResult } = useForm();
+            const { formProps, saveButtonProps, queryResult } = useForm(${
+                isCustomPage
+                    ? `{
+                          resource: "${resource.name}",
+                          id: ${id},
+                          action: "edit",
+                      }`
+                    : ""
+            });
         
             const ${recordName} = queryResult?.data?.data;
         

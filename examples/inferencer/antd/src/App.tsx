@@ -4,16 +4,10 @@ import {
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
+import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 import dataProvider from "@pankod/refine-simple-rest";
 import routerProvider from "@pankod/refine-react-router-v6";
 import "@pankod/refine-antd/dist/reset.css";
-
-import {
-    AntdShowInferencer,
-    AntdEditInferencer,
-    AntdListInferencer,
-    AntdCreateInferencer,
-} from "@pankod/refine-inferencer/antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -37,30 +31,27 @@ const App: React.FC = () => {
             resources={[
                 {
                     name: "samples",
-                    list: AntdListInferencer,
-                    edit: AntdEditInferencer,
-                    show: AntdShowInferencer,
-                    create: AntdCreateInferencer,
+                    list: AntdInferencer,
+                    edit: AntdInferencer,
+                    show: AntdInferencer,
+                    create: AntdInferencer,
                     canDelete: true,
                 },
                 {
                     name: "categories",
-                    list: AntdListInferencer,
-                    edit: AntdEditInferencer,
-                    show: AntdShowInferencer,
-                    create: AntdCreateInferencer,
+                    list: AntdInferencer,
+                    edit: AntdInferencer,
+                    show: AntdInferencer,
+                    create: AntdInferencer,
                     canDelete: true,
                 },
                 {
                     name: "users",
-                    list: AntdListInferencer,
-                    edit: AntdEditInferencer,
-                    show: AntdShowInferencer,
-                    create: AntdCreateInferencer,
+                    list: AntdInferencer,
+                    edit: AntdInferencer,
+                    show: AntdInferencer,
+                    create: AntdInferencer,
                     canDelete: true,
-                },
-                {
-                    name: "tags",
                 },
             ]}
             notificationProvider={notificationProvider}

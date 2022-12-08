@@ -3,7 +3,7 @@ id: inferencer
 title: Inferencer
 ---
 
-You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `AntdListInferencer`, `AntdShowInferencer`, `AntdCreateInferencer` and `AntdEditInferencer` components.
+You can automatically generate views for your resources using `@pankod/refine-inferencer`. Inferencer exports `AntdInferencer`, `AntdInferencer`, `AntdInferencer` and `AntdInferencer` components.
 
 ## Usage
 
@@ -18,14 +18,8 @@ values={[
 <TabItem value="resources">
 
 ```tsx
-// highlight-start
-import {
-    AntdListInferencer,
-    AntdShowInferencer,
-    AntdCreateInferencer,
-    AntdEditInferencer,
-} from "@pankod/refine-inferencer/antd";
-// highlight-end
+// highlight-next-line
+import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 
 const App = () => {
     return (
@@ -34,10 +28,10 @@ const App = () => {
                 {
                     name: "samples",
                     // highlight-start
-                    list: AntdListInferencer,
-                    show: AntdShowInferencer,
-                    create: AntdCreateInferencer,
-                    edit: AntdEditInferencer,
+                    list: AntdInferencer,
+                    show: AntdInferencer,
+                    create: AntdInferencer,
+                    edit: AntdInferencer,
                     // highlight-end
                 },
             ]}
@@ -50,40 +44,34 @@ const App = () => {
   <TabItem value="custom">
 
 ```tsx
-// highlight-start
-import {
-    AntdListInferencer,
-    AntdShowInferencer,
-    AntdCreateInferencer,
-    AntdEditInferencer,
-} from "@pankod/refine-inferencer/antd";
-// highlight-end
+// highlight-next-line
+import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 
 const SampleList = () => {
     return (
         // highlight-next-line
-        <AntdListInferencer resource="samples" />
+        <AntdInferencer resource="samples" action="list" />
     );
 };
 
 const SampleShow = () => {
     return (
         // highlight-next-line
-        <AntdShowInferencer resource="samples" />
+        <AntdInferencer resource="samples" action="show" id="1" />
     );
 };
 
 const SampleCreate = () => {
     return (
         // highlight-next-line
-        <AntdCreateInferencer resource="samples" />
+        <AntdInferencer resource="samples" action="create" />
     );
 };
 
 const SampleEdit = () => {
     return (
         // highlight-next-line
-        <AntdEditInferencer resource="samples" />
+        <AntdInferencer resource="samples" action="edit" id="1" />
     );
 };
 ```
@@ -97,7 +85,7 @@ To learn more about `@pankod/refine-inferencer` package, please check out [Docs]
 
 ## Views
 
-### `AntdListInferencer`
+### `List`
 
 Generates a sample list view for your resources according to the API response. It uses `List` and `Table` components with `useTable` hook from `@pankod/refine-antd`.
 
@@ -110,14 +98,8 @@ import { Layout } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import {
-    // highlight-start
-    AntdListInferencer,
-    // highlight-end
-    AntdShowInferencer,
-    AntdCreateInferencer,
-    AntdEditInferencer,
-} from "@pankod/refine-inferencer/antd";
+// highlight-next-line
+import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -130,23 +112,24 @@ const App: React.FC = () => {
             resources={[
                 {
                     name: "samples",
-                    // highlight-start
-                    list: AntdListInferencer,
-                    // highlight-end
-                    show: AntdShowInferencer,
-                    create: AntdCreateInferencer,
-                    edit: AntdEditInferencer,
+                    // highlight-next-line
+                    list: AntdInferencer,
+                    show: AntdInferencer,
+                    create: AntdInferencer,
+                    edit: AntdInferencer,
                     canDelete: true,
                 },
                 {
                     name: "categories",
-                    list: AntdListInferencer,
-                    show: AntdShowInferencer,
+                    // highlight-next-line
+                    list: AntdInferencer,
+                    show: AntdInferencer,
                 },
                 {
                     name: "tags",
-                    list: AntdListInferencer,
-                    show: AntdShowInferencer,
+                    // highlight-next-line
+                    list: AntdInferencer,
+                    show: AntdInferencer,
                 },
             ]}
         />
@@ -158,7 +141,7 @@ const App: React.FC = () => {
 render(<App />);
 ```
 
-### `AntdShowInferencer`
+### `Show`
 
 Generates a sample show view for your resources according to the API response. It uses `Show` and field components from `@pankod/refine-antd` with `useShow` hook from `@pankod/refine-core`.
 
@@ -171,14 +154,8 @@ import { Layout } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import {
-    AntdListInferencer,
-    // highlight-start
-    AntdShowInferencer,
-    // highlight-end
-    AntdCreateInferencer,
-    AntdEditInferencer,
-} from "@pankod/refine-inferencer/antd";
+// highlight-next-line
+import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -191,23 +168,24 @@ const App: React.FC = () => {
             resources={[
                 {
                     name: "samples",
-                    list: AntdListInferencer,
-                    // highlight-start
-                    show: AntdShowInferencer,
-                    // highlight-end
-                    create: AntdCreateInferencer,
-                    edit: AntdEditInferencer,
+                    list: AntdInferencer,
+                    // highlight-next-line
+                    show: AntdInferencer,
+                    create: AntdInferencer,
+                    edit: AntdInferencer,
                     canDelete: true,
                 },
                 {
                     name: "categories",
-                    list: AntdListInferencer,
-                    show: AntdShowInferencer,
+                    list: AntdInferencer,
+                    // highlight-next-line
+                    show: AntdInferencer,
                 },
                 {
                     name: "tags",
-                    list: AntdListInferencer,
-                    show: AntdShowInferencer,
+                    list: AntdInferencer,
+                    // highlight-next-line
+                    show: AntdInferencer,
                 },
             ]}
         />
@@ -219,7 +197,7 @@ const App: React.FC = () => {
 render(<App />);
 ```
 
-### `AntdCreateInferencer`
+### `Create`
 
 Generates a sample create view for your resources according to the first record in list API response. It uses `Create` component and `useForm` hook from `@pankod/refine-antd`.
 
@@ -232,14 +210,8 @@ import { Layout } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import {
-    AntdListInferencer,
-    AntdShowInferencer,
-    // highlight-start
-    AntdCreateInferencer,
-    // highlight-end
-    AntdEditInferencer,
-} from "@pankod/refine-inferencer/antd";
+// highlight-next-line
+import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -252,23 +224,22 @@ const App: React.FC = () => {
             resources={[
                 {
                     name: "samples",
-                    list: AntdListInferencer,
-                    show: AntdShowInferencer,
-                    // highlight-start
-                    create: AntdCreateInferencer,
-                    // highlight-end
-                    edit: AntdEditInferencer,
+                    list: AntdInferencer,
+                    show: AntdInferencer,
+                    // highlight-next-line
+                    create: AntdInferencer,
+                    edit: AntdInferencer,
                     canDelete: true,
                 },
                 {
                     name: "categories",
-                    list: AntdListInferencer,
-                    show: AntdShowInferencer,
+                    list: AntdInferencer,
+                    show: AntdInferencer,
                 },
                 {
                     name: "tags",
-                    list: AntdListInferencer,
-                    show: AntdShowInferencer,
+                    list: AntdInferencer,
+                    show: AntdInferencer,
                 },
             ]}
         />
@@ -280,7 +251,7 @@ const App: React.FC = () => {
 render(<App />);
 ```
 
-### `AntdEditInferencer`
+### `Edit`
 
 Generates a sample edit view for your resources according to the API response. It uses `Edit` component and `useForm` hook from `@pankod/refine-antd`.
 
@@ -293,14 +264,8 @@ import { Layout } from "@pankod/refine-antd";
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 
-import {
-    AntdListInferencer,
-    AntdShowInferencer,
-    AntdCreateInferencer,
-    // highlight-start
-    AntdEditInferencer,
-    // highlight-end
-} from "@pankod/refine-inferencer/antd";
+// highlight-next-line
+import { AntdInferencer } from "@pankod/refine-inferencer/antd";
 
 const API_URL = "https://api.fake-rest.refine.dev";
 
@@ -313,23 +278,22 @@ const App: React.FC = () => {
             resources={[
                 {
                     name: "samples",
-                    list: AntdListInferencer,
-                    show: AntdShowInferencer,
-                    create: AntdCreateInferencer,
-                    // highlight-start
-                    edit: AntdEditInferencer,
-                    // highlight-end
+                    list: AntdInferencer,
+                    show: AntdInferencer,
+                    create: AntdInferencer,
+                    // highlight-next-line
+                    edit: AntdInferencer,
                     canDelete: true,
                 },
                 {
                     name: "categories",
-                    list: AntdListInferencer,
-                    show: AntdShowInferencer,
+                    list: AntdInferencer,
+                    show: AntdInferencer,
                 },
                 {
                     name: "tags",
-                    list: AntdListInferencer,
-                    show: AntdShowInferencer,
+                    list: AntdInferencer,
+                    show: AntdInferencer,
                 },
             ]}
         />

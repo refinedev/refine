@@ -1,7 +1,12 @@
 import React from "react";
 import { useDataProvider } from "@pankod/refine-core";
 
-import { dataProviderFromResource } from "@/utilities";
+import {
+    dataProviderFromResource,
+    removeRelationSuffix,
+    toPlural,
+    toSingular,
+} from "@/utilities";
 import { FieldInferencer, InferField } from "@/types";
 import { get } from "lodash";
 
@@ -28,8 +33,8 @@ export const useRelationFetch = ({
             setLoading(true);
             try {
                 const promises = allFields.map(async (field) => {
-                    if (field && field.relation) {
-                        if (field.resource && record) {
+                    if (field && (field.relation || field.canRelation)) {
+                        if (record) {
                             const dataProviderName = dataProviderFromResource(
                                 field.resource,
                             );
@@ -49,7 +54,7 @@ export const useRelationFetch = ({
                                 ? get(record[field.key], field.accessor)
                                 : record[field.key];
 
-                            if (requestId) {
+                            if (requestId && field.resource) {
                                 const { data } = await dp.getOne({
                                     resource: field.resource.name,
                                     id: requestId,
@@ -67,6 +72,69 @@ export const useRelationFetch = ({
                                     relationInfer,
                                 };
                             }
+
+                            if (requestId) {
+                                let responseData;
+                                let isPlural;
+
+                                try {
+                                    const { data } = await dp.getOne({
+                                        resource: toPlural(
+                                            removeRelationSuffix(field.key),
+                                        ),
+                                        id: requestId,
+                                    });
+
+                                    responseData = data;
+                                    isPlural = true;
+                                } catch (error) {
+                                    try {
+                                        const { data } = await dp.getOne({
+                                            resource: toSingular(
+                                                removeRelationSuffix(field.key),
+                                            ),
+                                            id: requestId,
+                                        });
+
+                                        responseData = data;
+                                        isPlural = false;
+                                    } catch (error) {
+                                        return {
+                                            ...field,
+                                            relationInfer: null,
+                                        };
+                                    }
+                                }
+
+                                const relationInfer = infer(
+                                    "__",
+                                    responseData,
+                                    {},
+                                    infer,
+                                );
+
+                                const resourceNameWithoutRelationSuffix =
+                                    removeRelationSuffix(field.key);
+
+                                return {
+                                    ...field,
+                                    relation: true,
+                                    type: "relation",
+                                    resource: {
+                                        name: isPlural
+                                            ? toPlural(
+                                                  resourceNameWithoutRelationSuffix,
+                                              )
+                                            : toSingular(
+                                                  resourceNameWithoutRelationSuffix,
+                                              ),
+                                    },
+                                    fieldable: false,
+                                    canRelation: undefined,
+                                    relationInfer,
+                                };
+                            }
+
                             return {
                                 ...field,
                                 relationInfer: null,

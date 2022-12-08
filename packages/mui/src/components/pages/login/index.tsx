@@ -21,8 +21,6 @@ import {
     useTranslate,
 } from "@pankod/refine-core";
 
-import refine from "../../../assets/images/refine.svg";
-
 type ILoginForm = {
     username: string;
     password: string;
@@ -73,7 +71,11 @@ export const LoginPage: React.FC<LoginPageProps> = () => {
                         }}
                     >
                         <div>
-                            <img src={refine} alt="Refine Logo" />
+                            <img
+                                src="https://refine.ams3.cdn.digitaloceanspaces.com/logo/refine.svg"
+                                alt="Refine Logo"
+                                style={{ maxWidth: 200 }}
+                            />
                         </div>
                         <Box mt={4}>
                             <Card>

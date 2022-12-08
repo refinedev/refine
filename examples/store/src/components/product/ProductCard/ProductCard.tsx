@@ -14,7 +14,7 @@ interface ProductCardProps {
     noNameTag?: boolean;
     imgProps?: Omit<
         ImageProps,
-        "src" | "layout" | "placeholder" | "blurDataURL"
+        "src" | "layout" | "placeholder" | "blurDataURL" | "alt"
     >;
     variant?: "default" | "slim" | "simple";
 }

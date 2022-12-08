@@ -1,5 +1,17 @@
 # @pankod/refine-sdk
 
+## 0.8.0
+
+### Minor Changes
+
+-   [#3149](https://github.com/refinedev/refine/pull/3149) [`15d3fd535a2`](https://github.com/refinedev/refine/commit/15d3fd535a2f2ec18e984ee20c9064e35ce3f8b8) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Update compiler option on target `es6` for `@pankod/refine-sdk`.
+
+## 0.7.0
+
+### Minor Changes
+
+-   [#3149](https://github.com/refinedev/refine/pull/3149) [`15d3fd535a2`](https://github.com/refinedev/refine/commit/15d3fd535a2f2ec18e984ee20c9064e35ce3f8b8) Thanks [@yildirayunlu](https://github.com/yildirayunlu)! - Update compiler option on target `es6` for `@pankod/refine-sdk`.
+
 ## 0.6.0
 
 ### Minor Changes

@@ -3,8 +3,6 @@ import { RefineReadyPageProps } from "@pankod/refine-ui-types";
 import { Row, Col, Typography, Space, Button } from "antd";
 import { ReadOutlined, FolderOutlined, TeamOutlined } from "@ant-design/icons";
 
-import logo from "../../../assets/images/refine.svg";
-
 const styles: { [key: string]: React.CSSProperties } = {
     root: {
         height: "100vh",
@@ -48,7 +46,7 @@ export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
             <Col style={{ textAlign: "center" }}>
                 <img
                     style={{ marginBottom: "48px" }}
-                    src={logo}
+                    src="https://refine.ams3.cdn.digitaloceanspaces.com/logo/refine.svg"
                     alt="Refine Logo"
                 />
                 <Title style={styles.title}>Welcome on board</Title>

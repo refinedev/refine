@@ -38,8 +38,6 @@ import {
 import { Title as DefaultTitle } from "@components";
 import { RefineLayoutSiderProps } from "../types";
 
-const defaultNavIcon = <IconList size={20} />;
-
 export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const [collapsed, setCollapsed] = useState(false);
     const [opened, setOpened] = useState(false);
@@ -111,7 +109,12 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
                                         color="white"
                                         fontWeight="normal"
                                         leftIcon={
-                                            icon ?? (defaultNavIcon as any)
+                                            icon ??
+                                            ((
+                                                <>
+                                                    <IconList size={20} />
+                                                </>
+                                            ) as any)
                                         }
                                         rightIcon={
                                             isParent ? (

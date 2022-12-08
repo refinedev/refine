@@ -64,6 +64,8 @@ const RouterProvider: IReactRouterProvider = {
     Link,
     RouterComponent: BrowserRouterComponent,
 };
-export default RouterProvider;
 
+export * from "react-router-dom";
+
+export default RouterProvider;
 export { MemoryRouterComponent, HashRouterComponent, BrowserRouterComponent };
