@@ -112,7 +112,7 @@ const liveProvider = (client: Ably.Realtime): LiveProvider => {
 | ----- |
 | `any` |
 
-:::important
+:::caution
 The values returned from the `subscribe` method are passed to the `unsubscribe` method. Thus values needed for `unsubscription` must be returned from `subscribe` method.
 :::
 

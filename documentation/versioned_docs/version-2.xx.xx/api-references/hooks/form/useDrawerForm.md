@@ -193,7 +193,7 @@ interface IPost {
 }
 ```
 
-:::important
+:::caution
 refine doesn't automatically add a edit button to the each record in `<PostList>` which opens edit form in `<Drawer>` when clicking.
 
 So, we have to put the edit buttons on our list. In that way, `<Edit>` form in `<Drawer>` can fetch data by the record `id`.

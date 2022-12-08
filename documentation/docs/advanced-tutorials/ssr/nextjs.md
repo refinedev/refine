@@ -118,11 +118,11 @@ interface IUser {
 export default UserList;
 ```
 
-:::important
+:::caution
 Notice how we passed `resource` prop to [`useTable`][usetable]. This is necessary since for `useTable` to be able to get `resource` name from route, it needs to be a route parameter in a dynamic route. [Refer here](#standard-crud-page) where standard CRUD pages can be built with dynamic routing.
 :::
 
-:::important
+:::caution
 We also used `<LayoutWrapper>` to show the page in the layout provided to [`<Refine>`][refine]. This is deliberately opt-in to provide flexibility. [If you're building a standard CRUD page layout can be baked in automatically](#standart-crud-page).
 :::
 
@@ -221,7 +221,7 @@ Export `NextRouteComponent` as default in the following pages:
 
 :::
 
-:::important
+:::caution
 `NextRouteComponent` will wrap the page with `Layout` provided to [`<Refine>`][refine]
 :::
 

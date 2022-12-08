@@ -25,7 +25,7 @@ const authProvider = {
 };
 ```
 
-:::important
+:::caution
 **refine** consumes these methods using [authorization hooks](api-references/hooks/auth/useLogin.md).
 Authorization hooks are used to manage authentication and authorization operations like login, logout and catching **HTTP** errors etc.
 :::
@@ -156,7 +156,7 @@ After submission, login form calls the `login` method from `authProvider`.
 <br />
 <br />
 
-:::important
+:::caution
 If an `authProvider` is given, `resources` passed to `<Refine>` as propery are only accessible if the login is successful. if no `authProvider` was provided, they are accessible without authentication.  
 :::
 
@@ -309,7 +309,7 @@ checkError: (error) => {
 }
 ```
 
-:::important
+:::caution
 Redirection path given to `checkError` overrides the one on `logout`.
 :::
 

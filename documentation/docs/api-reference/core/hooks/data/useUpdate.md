@@ -108,7 +108,7 @@ Queries that use `/categories` endpoint will be automatically invalidated to sho
 `useUpdate` returns `react-query`'s `useMutation` result. This result includes [a lot of properties](https://react-query.tanstack.com/reference/useMutation), one of which being `mutate`.
 :::
 
-:::important
+:::caution
 Values passed to `mutate` must have these types.
 
 ```tsx

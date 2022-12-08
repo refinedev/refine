@@ -80,7 +80,7 @@ const authProvider: AuthProvider = {
 }
 ```
 
-:::important
+:::caution
 Custom url given to mutate function from `useLogout` overrides the one on the `authProvider`.
 :::
 

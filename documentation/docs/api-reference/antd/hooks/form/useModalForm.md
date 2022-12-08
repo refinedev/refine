@@ -173,7 +173,7 @@ interface IPost {
 
 <br />
 
-:::important
+:::caution
 **refine** doesn't automatically add a edit button to the each record in `<PostList>` which opens edit form in `<Modal>` when clicked.
 
 So, we have to put the edit buttons on our list. In that way, `<Edit>` form in `<Modal>` can fetch data by the record `id`.
