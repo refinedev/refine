@@ -144,7 +144,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({ render }) => {
     const renderMenu = () => {
         return (
             <>
-                <RenderToTitle collapsed={false} />
+                <RenderToTitle collapsed={collapsed} />
                 <Menu
                     selectedKeys={[selectedKey]}
                     defaultOpenKeys={defaultOpenKeys}
