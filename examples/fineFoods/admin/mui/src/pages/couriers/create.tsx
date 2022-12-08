@@ -321,7 +321,7 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
                                                     })}
                                                 >
                                                     {/* // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                                                    // @ts-expect-error */}
+                                                // @ts-expect-error */}
                                                     {(
                                                         props: TextFieldProps,
                                                     ) => (
@@ -573,7 +573,7 @@ export const CourierCreate: React.FC<IResourceComponentsProps> = () => {
     return (
         <Create
             isLoading={formLoading}
-            actionButtons={
+            headerButtons={
                 <>
                     {currentStep > 0 && (
                         <Button

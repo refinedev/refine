@@ -208,7 +208,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
 
     const renderDeliverables = () => (
         <List
-            pageHeaderProps={{ style: { marginTop: 20 } }}
+            headerProps={{ style: { marginTop: 20 } }}
             title={
                 <Text style={{ fontSize: 22, fontWeight: 800 }}>
                     {t("orders.deliverables.deliverables")}

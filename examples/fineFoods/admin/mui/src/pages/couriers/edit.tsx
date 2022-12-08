@@ -260,7 +260,7 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                                         ),
                                                     }}
                                                     // eslint-disable-next-line
-                                                    defaultValue={null as any}
+                                                defaultValue={null as any}
                                                     render={({ field }) => (
                                                         <Autocomplete
                                                             size="small"
@@ -333,8 +333,8 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
                                                     })}
                                                 >
                                                     {/* 
-                                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                                            // @ts-expect-error */}
+                                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                        // @ts-expect-error */}
                                                     {(
                                                         props: TextFieldProps,
                                                     ) => (
@@ -587,7 +587,7 @@ export const CourierEdit: React.FC<IResourceComponentsProps> = () => {
     return (
         <Edit
             isLoading={formLoading}
-            actionButtons={
+            headerButtons={
                 <>
                     {currentStep > 0 && (
                         <Button

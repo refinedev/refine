@@ -112,7 +112,7 @@ export const EditForm: React.FC = () => {
     return (
         <Edit
             isLoading={formLoading}
-            actionButtons={
+            headerButtons={
                 <>
                     {currentStep > 0 && (
                         <Button

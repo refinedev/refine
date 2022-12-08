@@ -118,7 +118,7 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                 <Col xl={18} xs={24}>
                     <List
                         title={t("orders.orders")}
-                        pageHeaderProps={{
+                        headerProps={{
                             extra: <></>,
                         }}
                     >
@@ -218,7 +218,7 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
                     </List>
                     <List
                         title={t("users.addresses.addresses")}
-                        pageHeaderProps={{
+                        headerProps={{
                             extra: <></>,
                             style: {
                                 marginTop: "1em",

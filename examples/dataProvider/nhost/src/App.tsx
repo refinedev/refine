@@ -9,7 +9,7 @@ import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-nhost";
 import { NhostAuthProvider } from "@nhost/react-auth";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 
 import { nhost } from "utility";
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";

@@ -8,7 +8,7 @@ import {
 
 import routerProvider from "@pankod/refine-react-router-v6";
 
-import "@pankod/refine-antd/dist/styles.min.css";
+import "@pankod/refine-antd/dist/reset.css";
 import { DataProvider } from "@pankod/refine-strapi";
 import strapiAuthProvider from "authProvider";
 import { Header, Layout, OffLayoutArea } from "components";

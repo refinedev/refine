@@ -129,7 +129,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
             </Col>
             <Col xl={18} xs={24}>
                 <List
-                    pageHeaderProps={{
+                    headerProps={{
                         extra: <Actions />,
                     }}
                 >

@@ -245,7 +245,7 @@ export const CouriersEdit: React.FC<IResourceComponentsProps> = () => {
             <Edit
                 isLoading={queryResult?.isFetching}
                 saveButtonProps={saveButtonProps}
-                actionButtons={
+                headerButtons={
                     <>
                         {current > 0 && (
                             <Button
