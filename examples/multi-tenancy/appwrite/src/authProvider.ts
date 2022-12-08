@@ -1,24 +1,29 @@
+import { AppwriteException } from "@pankod/refine-appwrite";
 import { AuthProvider } from "@pankod/refine-core";
 
-import { appwriteClient } from "utility";
+import { account } from "utility";
 
 export const authProvider: AuthProvider = {
     login: async ({ email, password }) => {
         try {
-            await appwriteClient.account.createSession(email, password);
+            await account.createEmailSession(email, password);
             return Promise.resolve();
         } catch (e) {
-            return Promise.reject();
+            const { type, message, code } = e as AppwriteException;
+            return Promise.reject({
+                message,
+                name: `${code} - ${type}`,
+            });
         }
     },
     logout: async () => {
-        await appwriteClient.account.deleteSession("current");
+        await account.deleteSession("current");
 
         return "/";
     },
     checkError: () => Promise.resolve(),
     checkAuth: async () => {
-        const session = await appwriteClient.account.getSession("current");
+        const session = await account.getSession("current");
 
         if (session) {
             return Promise.resolve();
@@ -28,7 +33,7 @@ export const authProvider: AuthProvider = {
     },
     getPermissions: () => Promise.resolve(),
     getUserIdentity: async () => {
-        const user = await appwriteClient.account.get();
+        const user = await account.get();
 
         if (user) {
             return user;
