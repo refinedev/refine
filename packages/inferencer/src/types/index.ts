@@ -154,13 +154,6 @@ export type InferencerComponentProps = {
     fieldTransformer?: (
         field: InferField,
     ) => InferField | undefined | null | false;
-    /**
-     * Data accessor string to get the data from the record
-     * @example your data provider returns { data: { item: { id: 1, name: "John" } } } from `getOne` then you should pass "item" as the `single` property.
-     * @example your data provider returns { data: { items: [{ id: 1, name: "John" }] } } from `getMany` then you should pass "items" as the `many` property.
-     * @example your data provider returns { data: { items: [{ id: 1, name: "John" }], total: 1 } } from `getList` then you should pass "items" as the `many` property.
-     */
-    // dataAccessors?: Partial<Record<"single" | "list" | "many", string>>;
 };
 
 export type InferencerResultComponent = React.FC<InferencerComponentProps>;
