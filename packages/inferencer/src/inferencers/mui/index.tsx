@@ -5,50 +5,26 @@ import { ShowInferencer } from "./show";
 import { ListInferencer } from "./list";
 import { CreateInferencer } from "./create";
 import { EditInferencer } from "./edit";
-import type { InferencerComponentProps } from "@/types";
+
+import type { InferencerComponentProps } from "../../types";
 
 const MuiInferencer: React.FC<InferencerComponentProps> = ({
-    resource,
-    name,
     action: actionFromProps,
     id: idFromProps,
+    ...props
 }) => {
     const { useParams } = useRouterContext();
     const { action, id } = useParams<ResourceRouterParams>();
 
     switch (actionFromProps ?? action) {
         case "show":
-            return (
-                <ShowInferencer
-                    name={name}
-                    resource={resource}
-                    id={idFromProps ?? id}
-                />
-            );
+            return <ShowInferencer {...props} id={idFromProps ?? id} />;
         case "create":
-            return (
-                <CreateInferencer
-                    name={name}
-                    resource={resource}
-                    id={idFromProps ?? id}
-                />
-            );
+            return <CreateInferencer {...props} id={idFromProps ?? id} />;
         case "edit":
-            return (
-                <EditInferencer
-                    name={name}
-                    resource={resource}
-                    id={idFromProps ?? id}
-                />
-            );
+            return <EditInferencer {...props} id={idFromProps ?? id} />;
         default:
-            return (
-                <ListInferencer
-                    name={name}
-                    resource={resource}
-                    id={idFromProps ?? id}
-                />
-            );
+            return <ListInferencer {...props} id={idFromProps ?? id} />;
     }
 };
 
@@ -57,3 +33,4 @@ export { ShowInferencer as MuiShowInferencer } from "./show";
 export { EditInferencer as MuiEditInferencer } from "./edit";
 export { ListInferencer as MuiListInferencer } from "./list";
 export { CreateInferencer as MuiCreateInferencer } from "./create";
+export * from "../../types";

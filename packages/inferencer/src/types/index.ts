@@ -33,6 +33,12 @@ export type InferField = {
     canRelation?: boolean;
 };
 
+export type ResourceInferenceAttempt = {
+    status: "success" | "error";
+    resource: string;
+    field: string;
+};
+
 export type FieldInferencer = (
     key: string,
     value: unknown,
@@ -140,6 +146,14 @@ export type InferencerComponentProps = {
      * The record to infer from, use this when `action` is `show` or `edit`
      * */
     id?: string | number;
+    /**
+     * Field transformer function, you can use this to transform the inferred field or ignore it by returning `undefined`, `null` or `false`
+     * Example: you can remove a field you want to hide by returning `undefined`, `null` or `false`
+     * Example: you can change the `accessor` of an element by returning a new field with the new `accessor` to update the render
+     */
+    fieldTransformer?: (
+        field: InferField,
+    ) => InferField | undefined | null | false;
     /**
      * Data accessor string to get the data from the record
      * @example your data provider returns { data: { item: { id: 1, name: "John" } } } from `getOne` then you should pass "item" as the `single` property.
