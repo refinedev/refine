@@ -9,6 +9,7 @@ export const DropdownMenuItem = DropdownMenu.Item;
 export const DropdownTrigger = DropdownMenu.Trigger;
 export const DropdownMenuLabel = DropdownMenu.Label;
 export const DropdownMenuGroup = DropdownMenu.Group;
+export const DropdownMenuPortal = DropdownMenu.Portal;
 
 export const DropdownContent = React.forwardRef<
     HTMLDivElement,

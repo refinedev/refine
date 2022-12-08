@@ -1,5 +1,5 @@
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import cn from "clsx";
 import { useDelete, useInvalidate, useUpdate } from "@pankod/refine-core";

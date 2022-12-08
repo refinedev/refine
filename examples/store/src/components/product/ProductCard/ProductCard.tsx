@@ -1,6 +1,6 @@
 import cn from "clsx";
 import Link from "next/link";
-import Image, { ImageProps } from "next/image";
+import Image, { ImageProps } from "next/legacy/image";
 import { Product } from "@medusajs/medusa";
 
 import { currencySymbolFromCode } from "@components/product/helpers";
