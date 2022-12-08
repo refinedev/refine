@@ -86,7 +86,7 @@ Although we didn't pass any sort order configurations to `useList`, data comes i
 }
 ```
 
-:::important
+:::caution
 `getList` also has default values for pagination:
 
 ```ts
