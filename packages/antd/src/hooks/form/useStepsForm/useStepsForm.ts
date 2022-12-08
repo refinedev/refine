@@ -29,14 +29,14 @@ export type useStepsFormFromSFReturnType<TData, TVariables> = {
     submit: (values?: TVariables) => Promise<TData>;
 };
 
-export type useStepsFormReturnType<
+export type UseStepsFormReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
 > = UseFormReturnType<TData, TError, TVariables> &
     useStepsFormFromSFReturnType<TData, TVariables>;
 
-export type useStepsFormProps<
+export type UseStepsFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
@@ -61,7 +61,7 @@ export const useStepsForm = <
     TVariables = {},
 >(
     props: useStepsFormProps<TData, TError, TVariables> = {},
-): useStepsFormReturnType<TData, TError, TVariables> => {
+): UseStepsFormReturnType<TData, TError, TVariables> => {
     const useFormProps = useForm<TData, TError, TVariables>({ ...props });
     const { form, formProps } = useFormProps;
 

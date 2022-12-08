@@ -1,1 +1,5 @@
-export { useStepsForm, useStepsFormProps } from "./useStepsForm";
+export {
+    useStepsForm,
+    UseStepsFormProps,
+    UseStepsFormReturnType,
+} from "./useStepsForm";

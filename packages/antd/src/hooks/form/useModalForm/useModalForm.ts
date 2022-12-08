@@ -42,7 +42,7 @@ type useModalFormConfig = {
     action: "show" | "edit" | "create" | "clone";
 };
 
-export type useModalFormReturnType<
+export type UseModalFormReturnType<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
@@ -52,7 +52,7 @@ export type useModalFormReturnType<
 > &
     useModalFormFromSFReturnType<TData, TVariables>;
 
-export type useModalFormProps<
+export type UseModalFormProps<
     TData extends BaseRecord = BaseRecord,
     TError extends HttpError = HttpError,
     TVariables = {},
@@ -79,7 +79,7 @@ export const useModalForm = <
 >({
     mutationMode: mutationModeProp,
     ...rest
-}: useModalFormProps<TData, TError, TVariables>): useModalFormReturnType<
+}: UseModalFormProps<TData, TError, TVariables>): UseModalFormReturnType<
     TData,
     TError,
     TVariables
@@ -191,7 +191,7 @@ export const useModalForm = <
             ...useFormProps.formProps,
             onValuesChange: formProps?.onValuesChange,
             onKeyUp: formProps?.onKeyUp,
-            onFinish: formProps?.onFinish,
+            onFinish: formProps.onFinish,
         },
         modalProps: {
             ...modalProps,
