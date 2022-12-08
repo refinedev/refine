@@ -148,7 +148,7 @@ export const useForm = <
         formProps: {
             ...formSF.formProps,
             onFinish: (values: TVariables) =>
-                onFinish?.(values).catch((error) => error),
+                onFinish(values).catch((error) => error),
             onKeyUp,
             onValuesChange,
             initialValues: queryResult?.data?.data,
@@ -156,7 +156,7 @@ export const useForm = <
         saveButtonProps,
         ...useFormCoreResult,
         onFinish: async (values?: TVariables) => {
-            return await onFinish?.(values ?? formSF.form.getFieldsValue(true));
+            return await onFinish(values ?? formSF.form.getFieldsValue(true));
         },
     };
 };

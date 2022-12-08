@@ -154,7 +154,7 @@ export const useDrawerForm = <
             ...useFormProps.formProps,
             onValuesChange: formProps?.onValuesChange,
             onKeyUp: formProps?.onKeyUp,
-            onFinish: formProps?.onFinish,
+            onFinish: formProps.onFinish,
         },
         drawerProps: {
             width: "500px",
