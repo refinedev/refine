@@ -119,7 +119,7 @@ What we need now is an upload end-point that accepts multipart uploads. We write
 }
 ```
 
-:::important
+:::caution
 This end-point should be `Content-type: multipart/form-data` and `Form Data: file: binary`?.
 :::
 
@@ -141,7 +141,7 @@ This end-point should respond similarly.
 </div>
 <br/>
 
-:::important
+:::caution
 We have to use the `getValueFromEvent` method to convert the uploaded files to [Antd UploadFile](https://ant.design/components/upload/#UploadFile) object.
 :::
 
@@ -164,7 +164,7 @@ This data is sent to the API when form submitted.
 }
 ```
 
-:::important
+:::caution
 The following data are required for the [Antd Upload](https://ant.design/components/upload) component and all should be saved.
 :::
 

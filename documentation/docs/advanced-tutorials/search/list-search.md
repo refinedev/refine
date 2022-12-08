@@ -236,7 +236,7 @@ When the form is submitted, the `onSearch` method runs and we get the search for
 
 <br />
 
-:::important
+:::caution
 [`CrudFilters`](/api-reference/core/interfaces.md#crudfilters) type object has `field`, `operator` and `value` properties. These properties help us to filter in which field, with which operator, and with which data.
 :::
 

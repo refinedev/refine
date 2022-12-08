@@ -116,7 +116,7 @@ const { searchFormProps } = useTable<IPost, { title: string; createdAt: [Dayjs, 
 ...
 ```
 
-:::important
+:::caution
 `CrudFilters` types object has `field`, `operator` and `value` properties. These properties help us to filter in which field, with which operator, and with which data.
 :::
 

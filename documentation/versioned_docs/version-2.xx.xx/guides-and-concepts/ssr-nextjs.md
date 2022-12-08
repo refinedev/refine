@@ -86,11 +86,11 @@ interface IPost {
 export default UserList;
 ```
 
-:::important
+:::caution
 Notice how we passed `resource` prop to [`useTable`][useTable]. This is necessary since for `useTable` to be able to get `resource` name from route, it needs to be a route parameter in a dynamic route. [Refer here](#standard-crud-page) where standard CRUD pages can be built with dynamic routing.
 :::
 
-:::important
+:::caution
 We also used `<LayoutWrapper>` to show the page in the layout provided to [`<Refine>`][refine]. This is deliberately opt-in to provide flexibility. [If you're building a standard CRUD page layout can be baked in automatically](#standart-crud-page).
 :::
 
@@ -192,7 +192,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 - `create`, `edit` and `show` will be rendered for `/[resource]/[action]` and `/[resource]/[action]/[id]` routes
 - For the root `/` route, it will render `DashboardPage` if it's defined and if not will navigate to the first resource in `resources`.
 
-:::important
+:::caution
 `NextRouteComponent` will wrap the page with `Layout` provided to [`<Refine>`][refine]
 :::
 

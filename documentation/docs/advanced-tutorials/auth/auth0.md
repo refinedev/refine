@@ -48,7 +48,7 @@ root.render(
 
 ```
 
-:::important
+:::caution
 Refer to [**Auth0 docs**](https://auth0.com/docs/quickstart/spa/react#configure-auth0) for detailed configuration.
 :::
 
