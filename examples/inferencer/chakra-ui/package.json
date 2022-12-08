@@ -7,7 +7,7 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "@pankod/refine-chakra-ui": "^1.5.0",
+        "@pankod/refine-chakra-ui": "^1.6.0",
         "@tabler/icons": "^1.1.0",
         "@pankod/refine-core": "^3.90.4",
         "@pankod/refine-inferencer": "^1.2.2",
