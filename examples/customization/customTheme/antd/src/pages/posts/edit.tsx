@@ -7,9 +7,7 @@ import {
     Input,
     Select,
     useForm,
-    useModalForm,
     useSelect,
-    useStepsForm,
 } from "@pankod/refine-antd";
 
 import MDEditor from "@uiw/react-md-editor";
@@ -24,9 +22,6 @@ export const PostEdit: React.FC<IResourceComponentsProps> = () => {
         resource: "categories",
         defaultValue: postData?.category.id,
     });
-
-    const {} = useModalForm({ action: "create" });
-    const {} = useStepsForm({ action: "create" });
 
     return (
         <Edit saveButtonProps={saveButtonProps}>
