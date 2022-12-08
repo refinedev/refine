@@ -283,7 +283,13 @@ interface HeaderProps {
 
 const Header: FC<HeaderProps> = (props) => {
     return (
-        <Space direction="vertical" align="end">
+        <Space
+            direction="vertical"
+            align="end"
+            style={{
+                padding: "1rem",
+            }}
+        >
             <Button
                 onClick={() => {
                     props.setTheme(props.theme === "light" ? "dark" : "light");
