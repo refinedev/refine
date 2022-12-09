@@ -18,6 +18,25 @@ function GithubIcon() {
     );
 }
 
+function TerminalIcon() {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        >
+            <polyline points="4 17 10 11 4 5"></polyline>
+            <line x1="12" y1="19" x2="20" y2="19"></line>
+        </svg>
+    );
+}
+
 function NoteIcon() {
     return (
         <svg viewBox="0 0 14 16">
@@ -207,11 +226,11 @@ const AdmonitionBase = (props) => {
 
 export default function AdmonitionWrapper(props) {
     if (props.type === "info-tip") {
-        return <Admonition {...props} icon={<TipIcon />} />;
+        return <AdmonitionBase {...props} icon={<TipIcon />} />;
     }
     if (props.type === "additional") {
         return (
-            <Admonition
+            <AdmonitionBase
                 {...props}
                 type="note"
                 icon={<NoteIcon />}
@@ -240,9 +259,23 @@ export default function AdmonitionWrapper(props) {
             </AdmonitionBase>
         );
     }
+    if (props.type === "create-example") {
+        return (
+            <AdmonitionBase
+                {...props}
+                type="caution"
+                icon={<TerminalIcon />}
+                title={
+                    <span style={{ marginLeft: "4px" }}>RUN IN YOUR LOCAL</span>
+                }
+            >
+                {props.children}
+            </AdmonitionBase>
+        );
+    }
     return (
         <>
-            <Admonition {...props} />
+            <AdmonitionBase {...props} />
         </>
     );
 }

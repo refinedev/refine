@@ -818,7 +818,7 @@ export const PostsEdit: React.FC<IResourceComponentsProps> = () => {
     <img src={edit} alt="edit" />
 </div>
 
-## Live StackBlitz Example
+## Example
 
 :::additional
 
@@ -828,4 +828,4 @@ Password: `demodemo`
 
 :::
 
-<StackblitzExample title="refine-appwrite-example" path="examples/dataProvider/appwrite" />
+<StackblitzExample path="data-provider-appwrite" />
