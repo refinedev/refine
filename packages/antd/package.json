@@ -50,7 +50,7 @@
         "@ant-design/pro-layout": "^7.3.4",
         "@pankod/refine-ui-types": "^0.14.0",
         "@tanstack/react-query": "^4.10.1",
-        "antd": "^5.0.3",
+        "antd": "^5.0.5",
         "dayjs": "^1.10.7",
         "react-markdown": "^6.0.1",
         "remark-gfm": "^1.0.0",
