@@ -14,7 +14,6 @@ import de_DE from "antd/lib/locale/de_DE";
 import { authProvider } from "authProvider";
 import dayjs from "dayjs";
 
-import "styles/antd.less";
 import "dayjs/locale/de";
 
 import { DashboardPage } from "./pages/dashboard";
@@ -34,6 +33,8 @@ import { ReviewsList } from "./pages/reviews";
 import { useTranslation } from "react-i18next";
 import { Header, Title, OffLayoutArea } from "components";
 import { BikeWhiteIcon, PizzaIcon } from "components/icons";
+
+import "@pankod/refine-antd/dist/reset.css";
 
 const App: React.FC = () => {
     const API_URL = "https://api.finefoods.refine.dev";
@@ -59,7 +60,16 @@ const App: React.FC = () => {
 
     return (
         <RefineKbarProvider>
-            <ConfigProvider locale={locale === "de" ? de_DE : undefined}>
+            <ConfigProvider
+                locale={locale === "de" ? de_DE : undefined}
+                theme={{
+                    token: {
+                        fontFamily: `"Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                            Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+                            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
+                    },
+                }}
+            >
                 <Refine
                     routerProvider={{
                         ...routerProvider,

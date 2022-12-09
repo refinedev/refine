@@ -7,7 +7,7 @@ import { ColumnConfig } from "@ant-design/plots/lib/components/column";
 import { IncreaseIcon, DecreaseIcon } from "components/icons";
 
 import { ISalesChart } from "interfaces";
-import "./style.less";
+import { DailyOrderWrapper, TitleAreNumber, TitleArea } from "./styled";
 
 export const DailyOrders: React.FC = () => {
     const t = useTranslate();
@@ -56,10 +56,10 @@ export const DailyOrders: React.FC = () => {
     }, [data]);
 
     return (
-        <div className="daily-order-wrapper">
-            <div className="title-area">
+        <DailyOrderWrapper>
+            <TitleArea>
                 <Title level={3}>{t("dashboard.dailyOrders.title")}</Title>
-                <div className="title-area__number">
+                <TitleAreNumber>
                     <Text strong>{data?.data.total ?? 0} </Text>
 
                     {(data?.data?.trend ?? 0) > 0 ? (
@@ -67,13 +67,13 @@ export const DailyOrders: React.FC = () => {
                     ) : (
                         <DecreaseIcon />
                     )}
-                </div>
-            </div>
+                </TitleAreNumber>
+            </TitleArea>
             <Column
                 style={{ padding: 0, height: 135 }}
                 appendPadding={10}
                 {...config}
             />
-        </div>
+        </DailyOrderWrapper>
     );
 };

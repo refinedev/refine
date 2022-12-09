@@ -11,7 +11,6 @@ import {
     Button,
     Icons,
     Steps,
-    PageHeader,
     Grid,
     Space,
     Avatar,
@@ -29,7 +28,17 @@ import { BikeWhiteIcon } from "components/icons";
 import { useOrderCustomKbarActions } from "hooks";
 import { IEvent, IOrder, IProduct } from "interfaces";
 
-import "./style.less";
+import {
+    Courier,
+    CourierBoxContainer,
+    CourierInfoBox,
+    CourierInfoBoxText,
+    CourierInfoText,
+    PageHeader,
+    Product,
+    ProductFooter,
+    ProductText,
+} from "./styled";
 
 const { useBreakpoint } = Grid;
 const { Text } = Typography;
@@ -83,7 +92,6 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
 
         return (
             <PageHeader
-                className="pageHeader"
                 ghost={false}
                 onBack={() => window.history.back()}
                 title={t("orders.fields.orderID")}
@@ -151,25 +159,25 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
     };
 
     const courierInfoBox = (text: string, icon: ReactNode, value?: string) => (
-        <div className="courier-infoBox">
+        <CourierInfoBox>
             {icon}
-            <div className="text">
+            <CourierInfoBoxText>
                 <Text style={{ color: "#ffffff" }}>{text.toUpperCase()}</Text>
                 <Text style={{ color: "#ffffff" }}>{value}</Text>
-            </div>
-        </div>
+            </CourierInfoBoxText>
+        </CourierInfoBox>
     );
 
     const renderCourierInfo = () => (
         <Card>
             <Row justify="center">
                 <Col xl={12} lg={10}>
-                    <div className="courier">
+                    <Courier>
                         <Avatar
                             size={108}
                             src={record?.courier.avatar[0].url}
                         />
-                        <div className="info-text">
+                        <CourierInfoText>
                             <Text style={{ fontSize: 16 }}>COURIER</Text>
                             <Text
                                 style={{
@@ -180,15 +188,14 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                                 {record?.courier.name} {record?.courier.surname}
                             </Text>
                             <Text>ID #{record?.courier.id}</Text>
-                        </div>
-                    </div>
+                        </CourierInfoText>
+                    </Courier>
                 </Col>
 
-                <Col xl={12} lg={14} md={24} className="courier-box-container">
+                <CourierBoxContainer xl={12} lg={14} md={24}>
                     {courierInfoBox(
                         t("orders.courier.phone"),
                         <Icons.MobileOutlined
-                            className="mobile"
                             style={{ color: "#ffff", fontSize: 32 }}
                         />,
                         record?.courier.gsm,
@@ -196,12 +203,11 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                     {courierInfoBox(
                         t("orders.courier.deliveryTime"),
                         <BikeWhiteIcon
-                            className="mobile"
                             style={{ color: "#ffff", fontSize: 32 }}
                         />,
                         "15:05",
                     )}
-                </Col>
+                </CourierBoxContainer>
             </Row>
         </Card>
     );
@@ -219,10 +225,10 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 pagination={false}
                 dataSource={record?.products}
                 footer={(_data) => (
-                    <div className="product-footer">
+                    <ProductFooter>
                         <Text>{t("orders.deliverables.mainTotal")}</Text>
                         <Text>{record?.amount}$</Text>
-                    </div>
+                    </ProductFooter>
                 )}
             >
                 <Table.Column<IProduct>
@@ -233,7 +239,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="name"
                     title={t("orders.deliverables.fields.items")}
                     render={(value, record) => (
-                        <div className="product">
+                        <Product>
                             <Avatar
                                 size={{
                                     md: 60,
@@ -243,13 +249,13 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                                 }}
                                 src={record.images[0].url}
                             />
-                            <div className="product-text">
+                            <ProductText>
                                 <Text style={{ fontSize: 22, fontWeight: 800 }}>
                                     {value}
                                 </Text>
                                 <Text>#{record.id}</Text>
-                            </div>
-                        </div>
+                            </ProductText>
+                        </Product>
                     )}
                 />
                 <Table.Column

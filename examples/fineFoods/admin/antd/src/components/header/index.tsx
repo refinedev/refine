@@ -33,7 +33,7 @@ const { Text } = Typography;
 const { useBreakpoint } = Grid;
 
 import { IOrder, IStore, ICourier } from "interfaces";
-import "./style.less";
+import { HeaderTitle } from "./styled";
 
 interface IOptionGroup {
     value: string;
@@ -56,10 +56,10 @@ export const Header: React.FC = () => {
     const currentLocale = locale();
 
     const renderTitle = (title: string) => (
-        <div className="header-title">
+        <HeaderTitle>
             <Text style={{ fontSize: "16px" }}>{title}</Text>
             <Link to={`/${title.toLowerCase()}`}>{t("search.more")}</Link>
-        </div>
+        </HeaderTitle>
     );
 
     const renderItem = (title: string, imageUrl: string, link: string) => ({
@@ -187,6 +187,8 @@ export const Header: React.FC = () => {
         </Menu>
     );
 
+    console.log(screens);
+
     return (
         <AntdLayout.Header
             style={{
@@ -198,7 +200,6 @@ export const Header: React.FC = () => {
             <Row align="middle" justify={screens.sm ? "space-between" : "end"}>
                 <Col xs={0} sm={12}>
                     <AutoComplete
-                        dropdownClassName="header-search"
                         style={{ width: "100%", maxWidth: "550px" }}
                         options={options}
                         filterOption={false}
@@ -215,7 +216,7 @@ export const Header: React.FC = () => {
                     </AutoComplete>
                 </Col>
                 <Col>
-                    <Space size="middle">
+                    <Space size="middle" align="center">
                         <Dropdown overlay={menu}>
                             <a
                                 style={{ color: "inherit" }}
@@ -246,7 +247,13 @@ export const Header: React.FC = () => {
                                 </Space>
                             </a>
                         </Dropdown>
-                        <Text ellipsis strong>
+                        <Text
+                            ellipsis
+                            strong
+                            style={{
+                                display: "flex",
+                            }}
+                        >
                             {user?.name}
                         </Text>
                         <Avatar

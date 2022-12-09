@@ -30,7 +30,7 @@ import {
     ProductItem,
     ProductCategoryFilter,
 } from "components/product";
-import "./style.less";
+import { StyledStoreProducts } from "./styled";
 
 type StoreProductsProps = {
     record: IStore;
@@ -139,7 +139,7 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
                 >
                     <Row gutter={[16, 16]}>
                         <Col xs={24} sm={18}>
-                            <div className="store-products">
+                            <StyledStoreProducts>
                                 <Text style={{ fontSize: "24px" }} strong>
                                     {t("stores.storeProducts")}
                                 </Text>
@@ -153,7 +153,7 @@ export const StoreProducts: React.FC<StoreProductsProps> = ({
                                 <CreateButton onClick={() => createShow()}>
                                     {t("stores.buttons.addProduct")}
                                 </CreateButton>
-                            </div>
+                            </StyledStoreProducts>
                             <AntdList
                                 grid={{
                                     gutter: 8,

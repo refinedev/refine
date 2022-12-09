@@ -1,5 +1,7 @@
-.toggle-container {
-    position: fixed;
+import styled from "@emotion/styled";
+
+export const ToggleContainer = styled.div`
+   position: fixed;
     top: calc(50% - 28px);
     right: 0px;
     transform: translateX(101px);
@@ -12,7 +14,7 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    transition: transform 0.8s ease-out;
+    transition: transform 0.3s ease-out;
     z-index: 2;
 
     &:hover {
@@ -43,4 +45,4 @@
     to {
         transform: scale(1.3) translateX(-2px);
     }
-}
+`;

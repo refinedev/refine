@@ -10,7 +10,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
 import { IOrder } from "interfaces";
-import "./style.less";
+import { TimelineContent, CreatedAt, Number } from "./styled";
 
 dayjs.extend(relativeTime);
 
@@ -39,18 +39,40 @@ export const OrderTimeline: React.FC = () => {
 
     const orderStatusColor = (
         id: string,
-    ): { color: string; text: string } | undefined => {
+    ):
+        | { indicatorColor: string; backgroundColor: string; text: string }
+        | undefined => {
         switch (id) {
             case "1":
-                return { color: "orange", text: "pending" };
+                return {
+                    indicatorColor: "orange",
+                    backgroundColor: "#fff7e6",
+                    text: "pending",
+                };
             case "2":
-                return { color: "cyan", text: "ready" };
+                return {
+                    indicatorColor: "cyan",
+                    backgroundColor: "#e6fffb",
+                    text: "ready",
+                };
             case "3":
-                return { color: "green", text: "on the way" };
+                return {
+                    indicatorColor: "green",
+                    backgroundColor: "#e6f7ff",
+                    text: "on the way",
+                };
             case "4":
-                return { color: "blue", text: "delivered" };
+                return {
+                    indicatorColor: "blue",
+                    backgroundColor: "#e6fffb",
+                    text: "delivered",
+                };
             case "5":
-                return { color: "red", text: "cancelled" };
+                return {
+                    indicatorColor: "red",
+                    backgroundColor: "#fff1f0",
+                    text: "cancelled",
+                };
             default:
                 break;
         }
@@ -61,14 +83,17 @@ export const OrderTimeline: React.FC = () => {
             <Timeline>
                 {dataSource?.map(({ createdAt, orderNumber, status, id }) => (
                     <Timeline.Item
-                        className="timeline__point"
                         key={orderNumber}
-                        color={orderStatusColor(status.id.toString())?.color}
+                        color={
+                            orderStatusColor(status.id.toString())
+                                ?.indicatorColor
+                        }
                     >
-                        <div
-                            className={`timeline ${
-                                orderStatusColor(status.id.toString())?.color
-                            }`}
+                        <TimelineContent
+                            backgroundColor={
+                                orderStatusColor(status.id.toString())
+                                    ?.backgroundColor || "transparent"
+                            }
                         >
                             <Tooltip
                                 overlayInnerStyle={{ color: "#626262" }}
@@ -76,9 +101,9 @@ export const OrderTimeline: React.FC = () => {
                                 placement="topLeft"
                                 title={dayjs(createdAt).format("lll")}
                             >
-                                <Text italic className="createdAt">
+                                <CreatedAt italic>
                                     {dayjs(createdAt).fromNow()}
-                                </Text>
+                                </CreatedAt>
                             </Tooltip>
                             <Text>
                                 {t(
@@ -88,14 +113,10 @@ export const OrderTimeline: React.FC = () => {
                                     }`,
                                 )}
                             </Text>
-                            <Text
-                                onClick={() => show("orders", id)}
-                                strong
-                                className="number"
-                            >
+                            <Number onClick={() => show("orders", id)} strong>
                                 #{orderNumber}
-                            </Text>
-                        </div>
+                            </Number>
+                        </TimelineContent>
                     </Timeline.Item>
                 ))}
             </Timeline>
