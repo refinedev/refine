@@ -12,7 +12,7 @@ import {
 
 import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
 
-export type useStepsFormFromSFReturnType<TData, TVariables> = {
+export type UseStepsFormFromSFReturnType<TData, TVariables> = {
     current: number;
     gotoStep: (step: number) => void;
     stepsProps: {
@@ -34,7 +34,7 @@ export type UseStepsFormReturnType<
     TError extends HttpError = HttpError,
     TVariables = {},
 > = UseFormReturnType<TData, TError, TVariables> &
-    useStepsFormFromSFReturnType<TData, TVariables>;
+    UseStepsFormFromSFReturnType<TData, TVariables>;
 
 export type UseStepsFormProps<
     TData extends BaseRecord = BaseRecord,
