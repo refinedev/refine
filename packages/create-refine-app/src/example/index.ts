@@ -9,7 +9,8 @@ import ora from "ora";
 
 const GITHUB_ORG = "refinedev";
 const GITHUB_REPO = "refine";
-const GITHUB_BRANCH = "master";
+// const GITHUB_BRANCH = "master";
+const GITHUB_BRANCH = "feat/create-with-example";
 
 const run = async (
     example: string | boolean | undefined,
