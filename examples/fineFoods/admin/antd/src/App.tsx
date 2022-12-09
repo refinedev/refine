@@ -1,18 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Refine } from "@pankod/refine-core";
 import { RefineKbarProvider } from "@pankod/refine-kbar";
 import routerProvider from "@pankod/refine-react-router-v6";
 import {
     Icons,
-    ConfigProvider,
     notificationProvider,
     Layout,
     ErrorComponent,
 } from "@pankod/refine-antd";
 import jsonServerDataProvider from "@pankod/refine-simple-rest";
-import de_DE from "antd/lib/locale/de_DE";
 import { authProvider } from "authProvider";
-import dayjs from "dayjs";
 
 import "dayjs/locale/de";
 
@@ -35,6 +32,7 @@ import { Header, Title, OffLayoutArea } from "components";
 import { BikeWhiteIcon, PizzaIcon } from "components/icons";
 
 import "@pankod/refine-antd/dist/reset.css";
+import { ConfigProvider } from "providers";
 
 const App: React.FC = () => {
     const API_URL = "https://api.finefoods.refine.dev";
@@ -48,28 +46,9 @@ const App: React.FC = () => {
         getLocale: () => i18n.language,
     };
 
-    const locale = i18nProvider.getLocale();
-
-    useEffect(() => {
-        if (locale === "de") {
-            dayjs.locale("de");
-        } else {
-            dayjs.locale("en");
-        }
-    }, [locale]);
-
     return (
         <RefineKbarProvider>
-            <ConfigProvider
-                locale={locale === "de" ? de_DE : undefined}
-                theme={{
-                    token: {
-                        fontFamily: `"Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
-                            Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-                            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
-                    },
-                }}
-            >
+            <ConfigProvider>
                 <Refine
                     routerProvider={{
                         ...routerProvider,

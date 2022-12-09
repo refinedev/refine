@@ -34,6 +34,7 @@ const { useBreakpoint } = Grid;
 
 import { IOrder, IStore, ICourier } from "interfaces";
 import { HeaderTitle } from "./styled";
+import ThemeToggle from "components/ThemeToggle";
 
 interface IOptionGroup {
     value: string;
@@ -195,7 +196,7 @@ export const Header: React.FC = () => {
                 backgroundColor: "#FFF",
             }}
         >
-            <Row align="middle" justify={screens.sm ? "space-between" : "end"}>
+            <Row align="middle" justify="space-between">
                 <Col xs={0} sm={12}>
                     <AutoComplete
                         style={{ width: "100%", maxWidth: "550px" }}
@@ -215,6 +216,7 @@ export const Header: React.FC = () => {
                 </Col>
                 <Col>
                     <Space size="middle" align="center">
+                        <ThemeToggle />
                         <Dropdown overlay={menu}>
                             <a
                                 style={{ color: "inherit" }}
@@ -245,6 +247,7 @@ export const Header: React.FC = () => {
                                 </Space>
                             </a>
                         </Dropdown>
+
                         <Text
                             ellipsis
                             strong
