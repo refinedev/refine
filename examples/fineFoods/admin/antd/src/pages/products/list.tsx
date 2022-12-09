@@ -82,7 +82,11 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
     });
 
     return (
-        <>
+        <div
+            style={{
+                padding: "24px",
+            }}
+        >
             <Form
                 {...searchFormProps}
                 onValuesChange={() => {
@@ -174,6 +178,6 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                 formProps={editFormProps}
                 saveButtonProps={editSaveButtonProps}
             />
-        </>
+        </div>
     );
 };

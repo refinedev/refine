@@ -66,12 +66,26 @@ export const UserShow: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <>
-            <Row gutter={[16, 16]}>
+            <Row
+                gutter={[16, 16]}
+                style={{
+                    marginTop: "24px",
+                }}
+            >
                 <Col xl={6} lg={24} xs={24}>
-                    <Card bordered={false} style={{ height: "100%" }}>
+                    <Card
+                        bordered={false}
+                        style={{
+                            height: "100%",
+                            marginLeft: "24px",
+                        }}
+                    >
                         <Space
                             direction="vertical"
-                            style={{ width: "100%", height: "100%" }}
+                            style={{
+                                width: "100%",
+                                height: "100%",
+                            }}
                         >
                             <Space
                                 direction="vertical"

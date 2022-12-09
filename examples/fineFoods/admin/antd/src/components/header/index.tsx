@@ -187,8 +187,6 @@ export const Header: React.FC = () => {
         </Menu>
     );
 
-    console.log(screens);
-
     return (
         <AntdLayout.Header
             style={{

@@ -6,6 +6,12 @@ export const RecentOrdersColumn = styled(Table.Column<IOrder>)`
     vertical-align: top;
 `;
 
+export const TitleWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+`;
+
 export const Title = styled(Typography.Text)`
     font-size: 16px;
 `;

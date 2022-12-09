@@ -7,7 +7,13 @@ import {
     Space,
     Tag,
 } from "@pankod/refine-antd";
-import { RecentOrdersColumn, Price, OrderId, Title } from "./styled";
+import {
+    RecentOrdersColumn,
+    Price,
+    OrderId,
+    Title,
+    TitleWrapper,
+} from "./styled";
 
 import { OrderActions } from "components";
 
@@ -62,7 +68,7 @@ export const RecentOrders: React.FC = () => {
             <RecentOrdersColumn
                 key="summary"
                 render={(_, record) => (
-                    <div>
+                    <TitleWrapper>
                         <Title strong>{record.products[0]?.name}</Title>
                         <Paragraph
                             ellipsis={{
@@ -82,7 +88,7 @@ export const RecentOrders: React.FC = () => {
                         >
                             #{record.orderNumber}
                         </OrderId>
-                    </div>
+                    </TitleWrapper>
                 )}
             />
             <RecentOrdersColumn
