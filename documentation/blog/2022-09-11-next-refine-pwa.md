@@ -4,19 +4,19 @@ description: We will walk you through the entire process of building a PWA using
 slug: next-js-pwa
 authors: david_omotayo
 tags: [nextjs, react, pwa, refine]
-image: /img/blog/2022-09-11-next-refine-pwa/social.png
-featured_image: /img/blog/2022-09-11-next-refine-pwa/featured.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/social.png
+featured_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/featured.png
 is_featured: true
 hide_table_of_contents: false
 ---
 
 
-import cli from '@site/static/img/blog/2022-09-11-next-refine-pwa/cli.png';
-import welcome from '@site/static/img/blog/2022-09-11-next-refine-pwa/welcome.png';
-import final from '@site/static/img/blog/2022-09-11-next-refine-pwa/final.png';
-import layout from '@site/static/img/blog/2022-09-11-next-refine-pwa/layout.png';
-import manifest from '@site/static/img/blog/2022-09-11-next-refine-pwa/manifest.png';
-import pwa from '@site/static/img/blog/2022-09-11-next-refine-pwa/pwa.png';
+
+
+
+
+
+
 
  
 
@@ -91,7 +91,7 @@ npx superplate-cli -p refine-nextjs refine-storefront
 After running the command, you’ll be prompted to choose your preferences for the project. Select the following options to proceed:
 
  <div class="img-container">
-    <img src={cli} alt="cli" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/cli.png" alt="cli" />
 </div>
 
 <br/>
@@ -200,7 +200,7 @@ Within seconds it should automatically bring up your default browser with the pr
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={welcome} alt="welcome" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/welcome.png" alt="welcome" />
 </div>
 
 
@@ -375,7 +375,7 @@ Now if you save your progress and go back to the browser, you should see the Lay
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={layout} alt="layout" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/layout.png" alt="layout" />
 </div>
 
 <br/>
@@ -581,7 +581,7 @@ If you save your progress and go back to the browser, you should see a nicely re
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={final} alt="final" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/final.png" alt="final" />
 </div>
 
 <br/>
@@ -603,7 +603,7 @@ Generating a manifest file manually is tedious. Fortunately for us, we can use s
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={manifest} alt="manifest" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/manifest.png" alt="manifest" />
 </div>
 
 <br/>
@@ -704,7 +704,7 @@ After starting the server, head over to your browser and visit http://localhost:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={pwa} alt="pwa" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-11-next-refine-pwa/pwa.png" alt="pwa" />
 </div>
 
 <br/>

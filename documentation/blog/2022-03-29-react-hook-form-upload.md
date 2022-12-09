@@ -4,13 +4,13 @@ description: In this guide, I'm going to show you how to multipart files upload 
 slug: how-to-multipart-file-upload-with-react-hook-form
 authors: melih
 tags: [refine, react, react-hook-form, multipart-upload, form-data, file-upload]
-image: /img/blog/2022-03-29-react-hook-form-upload/social.jpg
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-29-react-hook-form-upload/social.jpg
 hide_table_of_contents: false
 ---
 
-import server_start from '@site/static/img/blog/2022-03-29-react-hook-form-upload/server_start.gif';
-import image_upload from '@site/static/img/blog/2022-03-29-react-hook-form-upload/image_upload.gif';
-import overview from '@site/static/img/blog/2022-03-29-react-hook-form-upload/overview.gif';
+
+
+
 
 <div class="img-container">
     <div class="window">
@@ -18,7 +18,7 @@ import overview from '@site/static/img/blog/2022-03-29-react-hook-form-upload/ov
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={overview} alt="Refine Example Overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-29-react-hook-form-upload/overview.gif" alt="Refine Example Overview" />
 </div>
 <br />
 
@@ -101,7 +101,7 @@ app.listen(port, () => console.log(`Server started on port ${port}`));
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={server_start} alt="Express Server" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-29-react-hook-form-upload/server_start.gif" alt="Express Server" />
 </div>
 <br />
 
@@ -232,7 +232,7 @@ Our project is ready! With React Hook Form, we can now send the selected file to
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={image_upload} alt="multipart/form-data file upload" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-29-react-hook-form-upload/image_upload.gif" alt="multipart/form-data file upload" />
 </div>
 <br />
 
@@ -396,7 +396,7 @@ export const PostCreate: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={overview} alt="Refine Example Overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-29-react-hook-form-upload/overview.gif" alt="Refine Example Overview" />
 </div>
 <br />
 

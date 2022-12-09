@@ -4,17 +4,11 @@ description: How to build CRUD admin panel with Material UI?
 slug: build-admin-panel-with-material-ui-and-strapi
 authors: necati
 tags: [refine, fundamentals, react, javascript, low-code, internal-tools, crud, material-ui, mui]
-image: /img/blog/2022-07-21-admin-panel-with-materialui-and-strapi/social.png
-featured_image: /img/blog/2022-07-21-admin-panel-with-materialui-and-strapi/featured.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/social.png
+featured_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/featured.png
 is_featured: true
 hide_table_of_contents: false
 ---
-
-
-import listpage from '@site/static/img/blog/2022-07-21-admin-panel-with-materialui-and-strapi/list-page.png';
-import createGif from '@site/static/img/blog/2022-07-21-admin-panel-with-materialui-and-strapi/create.gif'
-import deleteGif from '@site/static/img/blog/2022-07-21-admin-panel-with-materialui-and-strapi/delete-record.gif'
-import undoableGif from '@site/static/img/blog/2022-07-21-admin-panel-with-materialui-and-strapi/undoable-mode.gif'
 
 ## Introduction
 We will build an **admin panel** that supports **CRUD** operations, has built-in **authentication**, and a [mutation mode](https://refine.dev/docs/guides-and-concepts/mutation-mode/)  feature using industry-standard best tools. 
@@ -382,7 +376,7 @@ We use benefits of Strapi V4 relational population feature by using `populate` p
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={listpage} alt="Resource only List component" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/list-page.png" alt="Resource only List component" />
 </div>
 <br/>
 
@@ -548,7 +542,7 @@ Try it on the browser and see if you can create new posts from scratch.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={createGif} alt="Create record action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/create.gif" alt="Create record action" />
 </div>
 
 <br/>
@@ -618,7 +612,7 @@ export const PostEdit: React.FC = () => {
                     control={control}
                     name="category"
                     rules={{ required: "Category is required" }}
-                    defaultValue={null as any}
+                    defaultValue={ as any}
                     render={({ field }) => (
                         <Autocomplete
                             {...autocompleteProps}
@@ -887,7 +881,7 @@ Now we are able to delete record by clicking delete button and confirmation.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={deleteGif} alt="Create record action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/delete-record.gif" alt="Create record action" />
 </div>
 
 <br/>
@@ -1008,7 +1002,7 @@ The default timeout period setted to 5000ms. You can change it by setting `undoa
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={undoableGif} alt="Create record action" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/undoable-mode.gif" alt="Create record action" />
 </div>
 
 <br/>

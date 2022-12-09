@@ -8,8 +8,8 @@ image: /img/placeholder.png
 hide_table_of_contents: false
 ---
 
-import upload from '@site/static/img/blog/2021-12-27-multipart-upload/upload.png';
-import overview from '@site/static/img/blog/2021-12-27-multipart-upload/overview.gif';
+
+
 
 In this guide, we will look at how we can upload a file from HTML form data to a server with the multipart-upload method. Multipart-Upload is commonly used method for sending files or data to a server.
 
@@ -45,7 +45,7 @@ We will take a file from the user with [FormData](https://developer.mozilla.org/
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={upload} alt="upload_screen" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-12-27-multipart-upload/upload.png" alt="upload_screen" />
 </div>
 <br />
 
@@ -128,7 +128,7 @@ The requests we created to send files by JavaScript will now be sent to our loca
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={overview} alt="upload overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-12-27-multipart-upload/overview.gif" alt="upload overview" />
 </div>
 <br />
 

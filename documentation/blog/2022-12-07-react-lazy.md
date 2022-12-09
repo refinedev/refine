@@ -4,7 +4,7 @@ description: We will be looking at what lazy loading is, how it works, and how i
 slug: react-lazy-loading
 authors: chidume_nnamdi
 tags: [react, react-lazy-loading, react-performance]
-image: /img/blog/2022-12-07-react-lazy/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-07-react-lazy/social.png
 hide_table_of_contents: false
 ---
 

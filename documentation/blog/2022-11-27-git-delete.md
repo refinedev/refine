@@ -4,20 +4,20 @@ description: We will take a look the example of deleting local and remote Git br
 slug: git-delete-remote-branch-and-local-branch
 authors: muhammad_khabbab
 tags: [git, dev-tools]
-image: /img/blog/2022-11-27-git-delete/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/social.png
 hide_table_of_contents: false
 ---
 
 
-import gitdelete1 from '@site/static/img/blog/2022-11-27-git-delete/git-delete-branch-1.png';
-import gitdelete2 from '@site/static/img/blog/2022-11-27-git-delete/git-delete-branch-2.png';
-import gitdelete3 from '@site/static/img/blog/2022-11-27-git-delete/git-delete-branch-3.png';
-import gitdelete4 from '@site/static/img/blog/2022-11-27-git-delete/git-delete-branch-4.png';
-import gitdelete5 from '@site/static/img/blog/2022-11-27-git-delete/git-delete-branch-5.png';
-import gitdelete6 from '@site/static/img/blog/2022-11-27-git-delete/git-delete-branch-6.png';
-import gitdelete7 from '@site/static/img/blog/2022-11-27-git-delete/git-delete-branch-7.png';
-import gitdelete8 from '@site/static/img/blog/2022-11-27-git-delete/git-delete-branch-8.png';
-import gitdelete9 from '@site/static/img/blog/2022-11-27-git-delete/git-delete-branch-9.png';
+
+
+
+
+
+
+
+
+
 
 
 ## Introduction
@@ -64,7 +64,7 @@ git branch -d "branch name"
 ```
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src={gitdelete1}  alt="git delete branch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-1.png"  alt="git delete branch" />
 </div>
 
 <br/>
@@ -91,7 +91,7 @@ git push origin -d "branch name"
 ```
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", }}  src={gitdelete2}  alt="git delete branch" />
+   <img style={{alignSelf:"center", }}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-2.png"  alt="git delete branch" />
 </div>
 
 <br/>
@@ -118,7 +118,7 @@ git branch -d <BranchName>
 ```
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src={gitdelete3}  alt="git delete branch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-3.png"  alt="git delete branch" />
 </div>
 
 
@@ -130,7 +130,7 @@ git branch -D <branchName>
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src={gitdelete4}  alt="git delete branch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-4.png"  alt="git delete branch" />
 </div>
 
 <br/>
@@ -161,7 +161,7 @@ Note that if you delete a remote branch "X" from the command line using `git pus
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src={gitdelete5}  alt="git delete branch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-5.png"  alt="git delete branch" />
 </div>
 
 <br/>
@@ -186,7 +186,7 @@ git branch –r
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src={gitdelete6}  alt="git delete branch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-6.png"  alt="git delete branch" />
 </div>
 
 <br/>
@@ -207,7 +207,7 @@ Solution: You cannot delete a branch you are already on. You must first switch t
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src={gitdelete7}  alt="git delete branch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-7.png"  alt="git delete branch" />
 </div>
 
 <br/>
@@ -225,7 +225,7 @@ The below snapshot provides an example where a branch named "dev-arsam" will be 
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src={gitdelete8}  alt="git delete branch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-8.png"  alt="git delete branch" />
 </div>
 
 <br/>
@@ -239,7 +239,7 @@ To avoid dangling branches, you can set up the configuration so that your branch
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src={gitdelete9}  alt="git delete branch" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/git-delete-branch-9.png"  alt="git delete branch" />
 </div>
 
 <br/>

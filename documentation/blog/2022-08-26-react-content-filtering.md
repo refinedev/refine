@@ -4,22 +4,9 @@ description: Article about how to create Search bar and filter component in Reac
 slug: react-search-bar-and-filtering
 authors: madars_biss
 tags: [react, refine, search-bar, filtering]
-image: /img/blog/2022-08-26-react-content-filtering/refine-filter-social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/refine-filter-social.png
 hide_table_of_contents: false
 ---
-
-
-import boilerplate from '@site/static/img/blog/2022-08-26-react-content-filtering/boilerplate.png';
-import demo from '@site/static/img/blog/2022-08-26-react-content-filtering/demo.png';
-import filters from '@site/static/img/blog/2022-08-26-react-content-filtering/filters.gif';
-import mobile from '@site/static/img/blog/2022-08-26-react-content-filtering/mobile.gif';
-import search from '@site/static/img/blog/2022-08-26-react-content-filtering/search.gif';
-import terminal from '@site/static/img/blog/2022-08-26-react-content-filtering/terminal.png';
-import wireframe from '@site/static/img/blog/2022-08-26-react-content-filtering/wireframe.png';
-import social from '@site/static/img/blog/2022-08-26-react-content-filtering/refine-filter-social.png';
-
-
-
 
 ## Introduction
 Filtering systems are common for most modern web applications. They are especially useful if there are large amounts of data. They allow users to save time and easily access the information they are looking for.
@@ -59,7 +46,7 @@ Today we will be building a filtering system that will let us sort the results t
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={demo} alt="demo" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/demo.png" alt="demo" />
 </div>
 
 <br/>
@@ -87,7 +74,7 @@ When putting everything into the wireframe, we get the following schema:
 
 
 <div class="img-container">
- <img src={wireframe} alt="wireframe" /> 
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/wireframe.png" alt="wireframe" /> 
 </div>
 
 <br/>
@@ -101,7 +88,7 @@ Run `npx superplate-cli -p refine-react tutorial` and select your package manage
 
 
 <div class="img-container">
- <img src={terminal} alt="terminal" /> 
+ <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/terminal.png" alt="terminal" /> 
 </div>
 
 <br/>
@@ -119,7 +106,7 @@ Within seconds it should automatically bring up your default browser with the pr
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={boilerplate} alt="boilerplate" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/boilerplate.png" alt="boilerplate" />
 </div>
 
 <br/>
@@ -571,7 +558,7 @@ First, we will test the functionality of the filter buttons.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={filters} alt="filters" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/filters.gif" alt="filters" />
 </div>
 
 <br/>
@@ -586,7 +573,7 @@ Now type in some search queries in the search bar.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={search} alt="search" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/search.gif" alt="search" />
 </div>
 
 <br/>
@@ -602,7 +589,7 @@ Finally, let's test the app on different screen sizes.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={mobile} alt="mobile" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-26-react-content-filtering/mobile.gif" alt="mobile" />
 </div>
 
 <br/>

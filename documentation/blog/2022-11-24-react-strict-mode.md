@@ -4,7 +4,7 @@ description: What is Strict Mode in React 18 and how to use it to find and fix b
 slug: react-strict-mode-in-react-18
 authors: deborah_emeni
 tags: [react, react-strict-mode]
-image: /img/blog/2022-11-24-react-strict-mode/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-24-react-strict-mode/social.png
 hide_table_of_contents: false
 ---
 

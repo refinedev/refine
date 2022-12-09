@@ -4,7 +4,7 @@ description: We'll discover how to access the parameters of the current route wi
 slug: react-router-useparams
 authors: joseph_mawa
 tags: [react, react-router, useparams]
-image: /img/blog/2022-09-24-router-use-params/social.jpg
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-24-router-use-params/social.jpg
 hide_table_of_contents: false
 ---
 

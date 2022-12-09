@@ -4,15 +4,9 @@ description: We will explain the entire process of how to use Next.js in TypeScr
 slug: next-js-with-typescript
 authors: michael
 tags: [nextjs, typescript]
-image: /img/blog/2022-09-12-next-typescript/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-12-next-typescript/social.png
 hide_table_of_contents: false
 ---
-
-
-import social from '@site/static/img/blog/2022-09-12-next-typescript/social.png';
-import tsconfig from '@site/static/img/blog/2022-09-12-next-typescript/tsconfig.png';
-
- 
 
 ## Introduction
 
@@ -91,7 +85,7 @@ Installing devDependencies (yarn):
 When the installation is complete, open `tsconfig.json` and you'll see it populated with values like below: 
 
  <div class="img-container">
-    <img src={tsconfig} alt="tsconfig" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-12-next-typescript/tsconfig.png" alt="tsconfig" />
 </div>
 
 <br/>

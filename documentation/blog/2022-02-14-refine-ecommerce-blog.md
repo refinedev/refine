@@ -8,12 +8,12 @@ image: /img/placeholder.png
 hide_table_of_contents: false
 ---
 
-import products from '@site/static/img/blog/2022-02-14-refine-ecommerce-blog/products.png';
-import pagination from '@site/static/img/blog/2022-02-14-refine-ecommerce-blog/pagination.gif';
-import layout from '@site/static/img/blog/2022-02-14-refine-ecommerce-blog/layout.png';
-import sample_product from '@site/static/img/blog/2022-02-14-refine-ecommerce-blog/sample_product.png';
-import basket from '@site/static/img/blog/2022-02-14-refine-ecommerce-blog/basket.gif';
-import page_size from '@site/static/img/blog/2022-02-14-refine-ecommerce-blog/page_size.gif';
+
+
+
+
+
+
 
 <div class="img-container">
     <div class="window">
@@ -21,7 +21,7 @@ import page_size from '@site/static/img/blog/2022-02-14-refine-ecommerce-blog/pa
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={basket} alt="basket" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-14-refine-ecommerce-blog/basket.gif" alt="basket" />
 </div>
 <br />
 
@@ -199,7 +199,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={layout} alt="layout" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-14-refine-ecommerce-blog/layout.png" alt="layout" />
 </div>
 <br />
 
@@ -266,7 +266,7 @@ export const ProductCard: React.FC<ProductProps> = ({
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={sample_product} alt="sample_product" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-14-refine-ecommerce-blog/sample_product.png" alt="sample_product" />
 </div>
 <br />
 
@@ -376,7 +376,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={products} alt="products" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-14-refine-ecommerce-blog/products.png" alt="products" />
 </div>
 <br />
 
@@ -530,7 +530,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={pagination} alt="pagination" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-14-refine-ecommerce-blog/pagination.gif" alt="pagination" />
 </div>
 <br />
 
@@ -677,7 +677,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={page_size} alt="page_size" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-14-refine-ecommerce-blog/page_size.gif" alt="page_size" />
 </div>
 <br />
 
@@ -805,7 +805,7 @@ export const ProductCard: React.FC<ProductProps> = ({
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={basket} alt="basket" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-14-refine-ecommerce-blog/basket.gif" alt="basket" />
 </div>
 <br />
 

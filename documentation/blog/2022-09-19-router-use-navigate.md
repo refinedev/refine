@@ -4,7 +4,7 @@ description: We'll discover how to perform a redirect using useNavigate in React
 slug: usenavigate-react-router-redirect
 authors: joseph_mawa
 tags: [react, react-router, usenavigate]
-image: /img/blog/2022-09-19-router-use-navigate/social.jpg
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-19-router-use-navigate/social.jpg
 hide_table_of_contents: false
 ---
 

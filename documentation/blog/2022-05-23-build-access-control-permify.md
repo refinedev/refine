@@ -4,17 +4,17 @@ description: In this article, I will explain how to build an Access Control n Re
 slug: build-access-control-permify
 authors: ege
 tags: [rbac, permissions, open-source, react, access, authorization, keystone, role, refine, abac]
-image: /img/blog/2022-05-21-build-access-control-permify/social.jpg
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-21-build-access-control-permify/social.jpg
 hide_table_of_contents: false
 ---
 
-import create_option from '@site/static/img/blog/2022-05-21-build-access-control-permify/create_option.png';
-import create_resource from '@site/static/img/blog/2022-05-21-build-access-control-permify/create_resource.png';
-import create_rule_working_hours from '@site/static/img/blog/2022-05-21-build-access-control-permify/create_rule_working_hours.png';
-import create_rule from '@site/static/img/blog/2022-05-21-build-access-control-permify/create_rule.png';
-import edit_owner_id_attribute from '@site/static/img/blog/2022-05-21-build-access-control-permify/edit_owner_id_attribute.png';
-import rule_template from '@site/static/img/blog/2022-05-21-build-access-control-permify/rule_template.png';
-import policy_table from '@site/static/img/blog/2022-05-21-build-access-control-permify/policy_table.png';
+
+
+
+
+
+
+
 
 ## Build Access Control Mechanism using Permify
 
@@ -104,7 +104,7 @@ To create resources use [createResource](https://docs.permify.co/docs/api-refere
 
 For testing purposes, let’s create resource from Panel with entering refine **params.id** as **resource.id** and **type** as ***resource name*** as shown below
 
-<img src={create_resource} alt="create_resource" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-21-build-access-control-permify/create_resource.png" alt="create_resource" />
 
 ### Step 4: Define access control rules & options on Permify
 
@@ -116,7 +116,7 @@ Let's say we have **“admin”** and **“editor”** role and the basic access
 
 Let’s create rules for these comparisons. Open [Rules Section](https://panel.permify.co/access-control/rules) and click **Create Rule** button
 
-<img src={create_rule} alt="create_rule" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-21-build-access-control-permify/create_rule.png" alt="create_rule" />
 
 We can create an **is-editor** rule to check the editor role as same as checking admin. 
 
@@ -129,17 +129,17 @@ Alternatively you can create rules using or modifying **rule templates**. For ou
 
 Click use a template button and choose **is Owner** rule template for checking whether user is owner of the resource.
 
-<img src={rule_template} alt="rule_template" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-21-build-access-control-permify/rule_template.png" alt="rule_template" />
 
 Then let's attach these rules to our policies in order to meet with our access conditions defined above. After editing **policies** your table should look like this
 
-<img src={policy_table} alt="policy_table" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-21-build-access-control-permify/policy_table.png" alt="policy_table" />
 
 Before testing these policies, let's set the owner of the test resource (params.id === 1000) as our editor rule user. 
 
 Open up [Resources Section](https://panel.permify.co/customers/resources) and change the attributes object of **post item 1000** as follows:
 
-<img src={edit_owner_id_attribute} alt="edit_owner_id_attribute" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-21-build-access-control-permify/edit_owner_id_attribute.png" alt="edit_owner_id_attribute" />
 
 Now let's run the application again to see results for both roles.
 
@@ -158,11 +158,11 @@ Basically if the user is in working hours approximately (8:00 am to 6.00 pm) use
 
 Firstly we need to create a rule to check whether user perform access checks in working hours or not. Create this rule like below: 
 
-<img src={create_rule_working_hours} alt="create_rule_working_hours" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-21-build-access-control-permify/create_rule_working_hours.png" alt="create_rule_working_hours" />
 
 Also we need to check that the user should have an editor role to access content. There is the point where rule sets(options) come up. Lets create an option from option section as follows: 
 
-<img src={create_option} alt="create_option" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-21-build-access-control-permify/create_option.png" alt="create_option" />
 
 Now add this rule to our edit policy and test the results with running our app. 
 

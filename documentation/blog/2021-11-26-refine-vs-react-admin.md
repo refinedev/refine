@@ -11,9 +11,9 @@ hide_table_of_contents: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-import admin_flow from '@site/static/img/blog/2021-11-26-refine-vs-react-admin/admin_flow.png';
-import refine_flow from '@site/static/img/blog/2021-11-26-refine-vs-react-admin/refine_flow.png';
-import project_setup from '@site/static/img/blog/2021-11-26-refine-vs-react-admin/project_setup.gif';
+
+
+
 
 If you are reading this, chances are you are a developer researching options for delivering an admin panel or another internal tool. Together with you, we will take a look at the best admin panel frameworks in response to this need.
 
@@ -98,7 +98,7 @@ Now, when a user browses to /foo or /bar, the components you defined will appear
 ### Data Provider Logic
 When React-admin needs to communicate with API, it uses Data Provider.
 
-<img src={admin_flow} alt="admin" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-26-refine-vs-react-admin/admin_flow.png" alt="admin" />
 
 Here are the React-Admin data provider methods:
 
@@ -241,7 +241,7 @@ Although **refine** is a newer framework, it is successful in identifying defici
 npx superplate-cli demo-refine-project
 ```
 
-<img src={project_setup} alt="setup" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-26-refine-vs-react-admin/project_setup.gif" alt="setup" />
 
 ### Features
 
@@ -380,7 +380,7 @@ You just need to tell the route of your component to the routerProvider.
 
 A data provider is the place where a **refine** app communicates with an API.
 
-<img src={refine_flow} alt="refine" />
+<img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-26-refine-vs-react-admin/refine_flow.png" alt="refine" />
 
 
 A data provider must include following methods:

@@ -4,18 +4,18 @@ description: We'll discover the Material UI (MUI) Tooltip component with example
 slug: material-ui-tooltip-component
 authors: doro_onome
 tags: [material-ui, react, mui, mui-tooltip,]
-image: /img/blog/2022-11-29-mui-tooltip/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/social.png
 hide_table_of_contents: false
 ---
 
-import tooltip1 from '@site/static/img/blog/2022-11-29-mui-tooltip/tooltip-1.gif';
-import tooltip2 from '@site/static/img/blog/2022-11-29-mui-tooltip/tooltip-2.gif';
-import tooltip3 from '@site/static/img/blog/2022-11-29-mui-tooltip/tooltip-3.gif';
-import tooltip4 from '@site/static/img/blog/2022-11-29-mui-tooltip/tooltip-4.gif';
-import tooltip5 from '@site/static/img/blog/2022-11-29-mui-tooltip/tooltip-5.gif';
-import tooltip6 from '@site/static/img/blog/2022-11-29-mui-tooltip/tooltip-6.gif';
-import tooltip7 from '@site/static/img/blog/2022-11-29-mui-tooltip/tooltip-7.gif';
-import tooltip8 from '@site/static/img/blog/2022-11-29-mui-tooltip/tooltip-8.gif';
+
+
+
+
+
+
+
+
 
 ## Introduction
 
@@ -72,7 +72,7 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"250px"}}  src={tooltip1}  alt="MUI tooltip " />
+   <img style={{alignSelf:"center", width:"250px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-1.gif"  alt="MUI tooltip " />
 </div>
 
 
@@ -161,7 +161,7 @@ export default function PositionedTooltips() {
 </details>
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src={tooltip2}  alt="MUI tooltip " />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-2.gif"  alt="MUI tooltip " />
 </div>
 
 
@@ -198,7 +198,7 @@ Here’s what it looks like:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src={tooltip3}  alt="MUI tooltip " />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-3.gif"  alt="MUI tooltip " />
 </div>
 
 ---
@@ -260,7 +260,7 @@ export default function VariableWidth() {
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src={tooltip4}  alt="MUI tooltip " />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-4.gif"  alt="MUI tooltip " />
 </div>
 
 
@@ -304,7 +304,7 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src={tooltip5}  alt="MUI tooltip " />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-5.gif"  alt="MUI tooltip " />
 </div>
 
 
@@ -379,7 +379,7 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src={tooltip6}  alt="MUI tooltip " />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-6.gif"  alt="MUI tooltip " />
 </div>
 
 
@@ -443,7 +443,7 @@ Here’s the result:
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src={tooltip7}  alt="MUI tooltip" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-7.gif"  alt="MUI tooltip" />
 </div>
 
 
@@ -524,7 +524,7 @@ The code above illustrates a simple login form UI with instructions provided to 
 Here’s the result:
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src={tooltip8}  alt="MUI tooltip" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-8.gif"  alt="MUI tooltip" />
 </div>
 
 
