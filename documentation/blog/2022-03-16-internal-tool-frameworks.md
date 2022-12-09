@@ -18,11 +18,11 @@ image: /img/placeholder.png
 hide_table_of_contents: false
 ---
 
-import superplate from '@site/static/img/blog/2022-03-16-internal-tool-frameworks/superplate.gif';
-import refine_admin_panel from '@site/static/img/blog/2022-03-16-internal-tool-frameworks/refine-admin-panel.png';
-import refine_client from '@site/static/img/blog/2022-03-16-internal-tool-frameworks/refine_client.png';
-import redwood from '@site/static/img/blog/2022-03-16-internal-tool-frameworks/redwood.png';
-import react_admin from '@site/static/img/blog/2022-03-16-internal-tool-frameworks/react_admin.png';
+
+
+
+
+
 
 ## Best Internal Tool Frameworks for ReactJS
 
@@ -99,7 +99,7 @@ You can quickly create the project containing **refine** and all the features yo
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={superplate} alt="Refine Project Creator CLI" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-16-internal-tool-frameworks/superplate.gif" alt="Refine Project Creator CLI" />
 </div>
 <br />
 
@@ -119,7 +119,7 @@ npm i @pankod/refine-core @pankod/refine-antd
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={refine_admin_panel} alt="Refine Admin Panel Example" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-16-internal-tool-frameworks/refine-admin-panel.png" alt="Refine Admin Panel Example" />
 </div>
 
 <br/>
@@ -132,7 +132,7 @@ npm i @pankod/refine-core @pankod/refine-antd
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={refine_client} alt="Refine Client Example" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-16-internal-tool-frameworks/refine_client.png" alt="Refine Client Example" />
 </div>
 
 ## 3. RedwoodJS
@@ -167,7 +167,7 @@ Redwood includes deploy support for Netlify, Vercel, Render.com, AWS and more. B
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={redwood} alt="Redwood Example" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-16-internal-tool-frameworks/redwood.png" alt="Redwood Example" />
 </div>
 
 ## 4. React Admin
@@ -203,7 +203,7 @@ yarn add react-admin
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={react_admin} alt="React Admin Example" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-16-internal-tool-frameworks/react_admin.png" alt="React Admin Example" />
 </div>
 
 <br/>

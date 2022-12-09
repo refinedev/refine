@@ -8,7 +8,7 @@ import {
     RcFile,
 } from "@pankod/refine-antd";
 
-import { appwriteClient, normalizeFile } from "utility";
+import { normalizeFile, storage } from "utility";
 
 type EditProductProps = {
     modalProps: ModalProps;
@@ -70,20 +70,17 @@ export const EditProduct: React.FC<EditProductProps> = ({
                                 try {
                                     const rcFile = file as RcFile;
 
-                                    const { $id } =
-                                        await appwriteClient.storage.createFile(
-                                            "default",
-                                            rcFile.name,
-                                            rcFile,
-                                            ["role:all"],
-                                            ["role:all"],
-                                        );
+                                    const { $id } = await storage.createFile(
+                                        "default",
+                                        rcFile.name,
+                                        rcFile,
+                                        ["role:all"],
+                                    );
 
-                                    const url =
-                                        appwriteClient.storage.getFileView(
-                                            "default",
-                                            $id,
-                                        );
+                                    const url = storage.getFileView(
+                                        "default",
+                                        $id,
+                                    );
 
                                     onSuccess?.({ url }, new XMLHttpRequest());
                                 } catch (error) {

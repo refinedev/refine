@@ -1,5 +1,25 @@
 # @pankod/refine-mantine
 
+## 1.5.0
+
+### Minor Changes
+
+-   [#3173](https://github.com/refinedev/refine/pull/3173) [`15402d3a70f`](https://github.com/refinedev/refine/commit/15402d3a70fead18bb7d49eae75fe5afa6b9b4f3) Thanks [@aliemir](https://github.com/aliemir)! - - Added `fieldTransformer` prop to inferencer components to let users transform or hide the field to be rendered.
+    -   Hide networks errors caused by the relation detection process.
+    -   Added the ability to detect relations from basic types like `"text"` and `"number"`.
+
+## 1.4.0
+
+### Minor Changes
+
+-   [#3166](https://github.com/refinedev/refine/pull/3166) [`b41e89ea7eb`](https://github.com/refinedev/refine/commit/b41e89ea7eb9c2a930dcf41713c527a875de7cbf) Thanks [@aliemir](https://github.com/aliemir)! - Replaced `react-live` package with a maintained fork `@aliemir/react-live` with TypeScript support.
+
+## 1.3.0
+
+### Minor Changes
+
+-   [#3166](https://github.com/refinedev/refine/pull/3166) [`b41e89ea7eb`](https://github.com/refinedev/refine/commit/b41e89ea7eb9c2a930dcf41713c527a875de7cbf) Thanks [@aliemir](https://github.com/aliemir)! - Replaced `react-live` package with a maintained fork `@aliemir/react-live` with TypeScript support.
+
 ## 1.2.2
 
 ### Patch Changes

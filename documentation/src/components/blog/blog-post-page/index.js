@@ -39,7 +39,7 @@ export const BlogPostPageView = ({ children }) => {
         <BlogPostItemContainer className="blog-post-item-shadow rounded-[10px] p-4">
             <div className="relative">
                 <div className="absolute top-0 right-0 rounded-bl-[10px] bg-white">
-                    <div className="flex items-center px-2 py-1 space-x-2">
+                    <div className="flex items-center space-x-2 px-2 py-1">
                         <TwitterShareButton
                             windowWidth={750}
                             windowHeight={800}
@@ -72,7 +72,10 @@ export const BlogPostPageView = ({ children }) => {
                 </div>
                 <img
                     className="mb-2 rounded-xl"
-                    src={`https://refine-web.imgix.net${frontMatter.image}?w=800`}
+                    src={`https://refine-web.imgix.net${frontMatter.image?.replace(
+                        "https://refine.ams3.cdn.digitaloceanspaces.com",
+                        "",
+                    )}?w=800`}
                     alt="Post image"
                 />
             </div>

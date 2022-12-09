@@ -17,12 +17,12 @@ image: /img/placeholder.png
 hide_table_of_contents: false
 ---
 
-import company from '@site/static/img/blog/2022-02-22-refine-invoice-genarator/company.png';
-import client from '@site/static/img/blog/2022-02-22-refine-invoice-genarator/client.png';
-import contact from '@site/static/img/blog/2022-02-22-refine-invoice-genarator/contact.png';
-import refine_company from '@site/static/img/blog/2022-02-22-refine-invoice-genarator/refine_company.png';
-import refine_contacts from '@site/static/img/blog/2022-02-22-refine-invoice-genarator/refine_contacts.png';
-import clients_overview from '@site/static/img/blog/2022-02-22-refine-invoice-genarator/clients_overview.gif';
+
+
+
+
+
+
 
 Invoice management can be a daunting task for any business. With so many different software programs and options, it's hard to know where you need start or what will work best with your company culture! You can solve this problem with **refine**. With Refine, you can develop your own customizable invoice generator with ease.
 
@@ -194,7 +194,7 @@ We created three collections on Strapi as `company`, `client` and `contact` and 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={company} alt="Strapi Company Collection" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/company.png" alt="Strapi Company Collection" />
 </div>
 <br />
 
@@ -209,7 +209,7 @@ We created three collections on Strapi as `company`, `client` and `contact` and 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={client} alt="Strapi Client Collection" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/client.png" alt="Strapi Client Collection" />
 </div>
 <br />
 
@@ -228,7 +228,7 @@ We created three collections on Strapi as `company`, `client` and `contact` and 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={contact} alt="Strapi Contact Collection" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/contact.png" alt="Strapi Contact Collection" />
 </div>
 <br />
 
@@ -392,7 +392,7 @@ function App() {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={refine_company} alt="Refine Company List" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/refine_company.png" alt="Refine Company List" />
 </div>
 <br />
 
@@ -496,7 +496,7 @@ export const ContactsList: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={refine_contacts} alt="Refine Contacts List" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/refine_contacts.png" alt="Refine Contacts List" />
 </div>
 <br />
 
@@ -888,7 +888,7 @@ We created our `Client` and `Contact` pages. Now, let's create a Client with **r
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={clients_overview} alt="Refine Clients Overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-22-refine-invoice-genarator/clients_overview.gif" alt="Refine Clients Overview" />
 </div>
 <br />
 

@@ -4,24 +4,9 @@ description: The refine swag store is now open for those who enjoy this open sou
 slug: refine-swag-store
 authors: eren_erkalkan
 tags: [store, refine]
-image: /img/blog/2022-09-08-swag-store/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-08-swag-store/social.png
 hide_table_of_contents: false
 ---
-
-<br />
-
-import coaster from '@site/static/img/blog/2022-09-08-swag-store/coaster.png';
-import discord from '@site/static/img/blog/2022-09-08-swag-store/discord.png';
-import github from '@site/static/img/blog/2022-09-08-swag-store/github.png';
-import reddit from '@site/static/img/blog/2022-09-08-swag-store/reddit.png';
-import social from '@site/static/img/blog/2022-09-08-swag-store/social.png';
-import twitter from '@site/static/img/blog/2022-09-08-swag-store/twitter.png';
-import products from '@site/static/img/blog/2022-09-08-swag-store/products.png';
-
-
-
-
-
 
 Today, we are delighted to respond to one of the most often asked questions we have received since the **refine** project reached a certain size: "**Yes, we do have a swag store.**"
 💪
@@ -38,7 +23,7 @@ As is clear from the last sentence, gifting is the fundamental goal of our swag 
 
  <div align="center">
  <a href="https://store.refine.dev/">
-    <img style={{ width:"600px"}} src={products} alt="products" />
+    <img style={{ width:"600px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-08-swag-store/products.png" alt="products" />
     </a>
 </div>
 
@@ -67,7 +52,7 @@ For the launch of our [swag store](https://store.refine.dev/), we have prepared 
 **
  <div>
  <a href="https://store.refine.dev/product/coaster">
-    <img width="200px" src={coaster} alt="coaster" />
+    <img width="200px" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-08-swag-store/coaster.png" alt="coaster" />
   </a>
 </div>
 
@@ -78,16 +63,16 @@ For the launch of our [swag store](https://store.refine.dev/), we have prepared 
 
  <div>
       <a href="https://github.com/refinedev/refine">
-        <img style={{marginRight: "20px", width:"300px"}} src={github} alt="github" />
+        <img style={{marginRight: "20px", width:"300px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-08-swag-store/github.png" alt="github" />
       </a>
       <a href="https://discord.gg/refine">
-         <img style={{ width:"300px", marginRight: "20px" }} src={discord} alt="discord" />
+         <img style={{ width:"300px", marginRight: "20px" }} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-08-swag-store/discord.png" alt="discord" />
       </a>
          <a href="https://twitter.com/refine_dev">
-         <img style={{marginRight: "20px", width:"300px"}} src={twitter} alt="twitter" />
+         <img style={{marginRight: "20px", width:"300px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-08-swag-store/twitter.png" alt="twitter" />
       </a>
       <a href="https://www.reddit.com/r/refine/">
-         <img width="300px" src={reddit} alt="reddit" />
+         <img width="300px" src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-08-swag-store/reddit.png" alt="reddit" />
       </a>
   </div>
   <div>

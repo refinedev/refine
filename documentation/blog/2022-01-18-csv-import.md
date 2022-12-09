@@ -8,9 +8,9 @@ image: /img/placeholder.png
 hide_table_of_contents: false
 ---
 
-import console from '@site/static/img/blog/2022-01-18-csv-import/console.gif';
-import overview from '@site/static/img/blog/2022-01-18-csv-import/overview.gif';
-import importing from '@site/static/img/blog/2022-01-18-csv-import/importing.gif';
+
+
+
 
 In this guide, we will learn how to import any CSV file received from the user with React. Our application will consist of two parts. We will create a form for the user to select a file. Next, we will do some operations with JavaScript to be able to view this CSV file. Let's start with our example.
 
@@ -94,7 +94,7 @@ Here, once the user-selected file has been successfully uploaded, we can process
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={console} alt="console_csv_output" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-01-18-csv-import/console.gif" alt="console_csv_output" />
 </div>
 <br />
 
@@ -198,7 +198,7 @@ function App() {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={overview} alt="overview_csv" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-01-18-csv-import/overview.gif" alt="overview_csv" />
 </div>
 <br />
 
@@ -237,7 +237,7 @@ The CSV import with **refine** is very simple and out-of-the-box feature. How to
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={importing} alt="importing_csv" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-01-18-csv-import/importing.gif" alt="importing_csv" />
 </div>
 <br />
 

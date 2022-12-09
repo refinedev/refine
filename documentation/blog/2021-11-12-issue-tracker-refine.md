@@ -8,28 +8,6 @@ image: /img/placeholder.png
 hide_table_of_contents: false
 ---
 
-import start from '@site/static/img/blog/2021-11-12-issue-tracker-refine/start.png';
-import login from '@site/static/img/blog/2021-11-12-issue-tracker-refine/login.gif';
-import labelTable from '@site/static/img/blog/2021-11-12-issue-tracker-refine/label_table.png';
-import common from '@site/static/img/blog/2021-11-12-issue-tracker-refine/common_table.png';
-import userTable from '@site/static/img/blog/2021-11-12-issue-tracker-refine/user_table.png';
-import taskTable from '@site/static/img/blog/2021-11-12-issue-tracker-refine/task_table.png';
-import labelValue from '@site/static/img/blog/2021-11-12-issue-tracker-refine/label_value.png';
-import priorityValue from '@site/static/img/blog/2021-11-12-issue-tracker-refine/priority_value.png';
-import statusValue from '@site/static/img/blog/2021-11-12-issue-tracker-refine/status_value.png';
-import list from '@site/static/img/blog/2021-11-12-issue-tracker-refine/list.png';
-import taskList from '@site/static/img/blog/2021-11-12-issue-tracker-refine/task_list.png';
-import create from '@site/static/img/blog/2021-11-12-issue-tracker-refine/create.png';
-import edit from '@site/static/img/blog/2021-11-12-issue-tracker-refine/edit.png';
-import show from '@site/static/img/blog/2021-11-12-issue-tracker-refine/show.png';
-import dashOverview from '@site/static/img/blog/2021-11-12-issue-tracker-refine/dash_overview.png';
-import overview from '@site/static/img/blog/2021-11-12-issue-tracker-refine/overview-project.gif';
-import filter from '@site/static/img/blog/2021-11-12-issue-tracker-refine/filter.gif';
-import dashboard from '@site/static/img/blog/2021-11-12-issue-tracker-refine/dashboard.gif';
-import taskTest from '@site/static/img/blog/2021-11-12-issue-tracker-refine/task_test.gif';
-import createTest from '@site/static/img/blog/2021-11-12-issue-tracker-refine/create_test.gif';
-import editTest from '@site/static/img/blog/2021-11-12-issue-tracker-refine/edit_test.gif';
-
 
 In this article, we will make a customizable internal issue tracker web application with supabase and refine.
 
@@ -52,7 +30,7 @@ We have to go to [Supabase](https://supabase.io/) and create an organization and
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={start} alt="overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/start.png" alt="overview" />
 </div>
 <br />
  
@@ -70,7 +48,7 @@ The tables we need to create for our project are as follows:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={labelTable} alt="overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/label_table.png" alt="overview" />
 </div>
 <br />
 
@@ -85,7 +63,7 @@ The tables we need to create for our project are as follows:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={common} alt="overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/common_table.png" alt="overview" />
 </div>
 <br />
  
@@ -101,7 +79,7 @@ The tables we need to create for our project are as follows:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={common} alt="overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/common_table.png" alt="overview" />
 </div>
 <br />
 
@@ -116,7 +94,7 @@ The tables we need to create for our project are as follows:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={userTable} alt="overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/user_table.png" alt="overview" />
 </div>
 <br />
 
@@ -139,7 +117,7 @@ The tables we need to create for our project are as follows:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={taskTable} alt="overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/task_table.png" alt="overview" />
 </div>
 <br />
  
@@ -173,7 +151,7 @@ Now let's go to the Supabase Table editor and create our constant values.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={labelValue} alt="overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/label_value.png" alt="overview" />
 </div>
 <br />
 
@@ -185,7 +163,7 @@ Now let's go to the Supabase Table editor and create our constant values.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={priorityValue} alt="overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/priority_value.png" alt="overview" />
 </div>
 <br />
 
@@ -198,7 +176,7 @@ Now let's go to the Supabase Table editor and create our constant values.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={statusValue} alt="overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/status_value.png" alt="overview" />
 </div>
 <br />
  
@@ -210,7 +188,7 @@ Let's create a test task to better understand key relation.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={taskTest} alt="overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/task_test.gif" alt="overview" />
 </div>
 <br />
 
@@ -602,7 +580,7 @@ Here we define our login and signup pages. We then use the refine's [router-prov
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={login} alt="overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/login.gif" alt="overview" />
 </div>
 <br />
  
@@ -670,7 +648,7 @@ export default App;
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={list} alt="overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/list.png" alt="overview" />
 </div>
 <br />
  
@@ -1079,7 +1057,7 @@ export interface ITaskFilterVariables {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={taskList} alt="overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/task_list.png" alt="overview" />
 </div>
 <br />
 
@@ -1175,7 +1153,7 @@ export const TaskCreate: React.FC<IResourceComponentsProps> = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={createTest} alt="overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/create_test.gif" alt="overview" />
 </div>
 <br />
 
@@ -1251,7 +1229,7 @@ export const EditTask: React.FC<IResourceComponentsProps> = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={editTest} alt="overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/edit_test.gif" alt="overview" />
 </div>
 <br />
 
@@ -1331,7 +1309,7 @@ export const TaskShow: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={show} alt="overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/show.png" alt="overview" />
 </div>
 <br />
  
@@ -1486,7 +1464,7 @@ export const Dashboard = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={dashOverview} alt="overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/dash_overview.png" alt="overview" />
 </div>
 <br/>
 
@@ -1566,7 +1544,7 @@ Our project is done. Lets see how its look like.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={overview} alt="overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/overview-project.gif" alt="overview" />
 </div>
 <br />
 
@@ -1578,7 +1556,7 @@ Our project is done. Lets see how its look like.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={filter} alt="overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/filter.gif" alt="overview" />
 </div>
 <br />
 
@@ -1590,7 +1568,7 @@ Our project is done. Lets see how its look like.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={dashboard} alt="overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-11-12-issue-tracker-refine/dashboard.gif" alt="overview" />
 </div>
 <br />
 

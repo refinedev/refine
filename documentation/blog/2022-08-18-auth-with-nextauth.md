@@ -4,25 +4,25 @@ description: How to implement Google and GitHub authentications using NextAuth.j
 slug: nextauth-google-github-authentication-nextjs
 authors: ekekenta_clinton
 tags: [nextjs, nextauth, github-authentication, google-authentication, oauth]
-image: /img/blog/2022-08-18-auth-with-nextauth/social.png
-social_image: /img/blog/2022-08-18-auth-with-nextauth/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/social.png
+social_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/social.png
 hide_table_of_contents: false
 ---
 
-import authClientCreated from '@site/static/img/blog/2022-08-18-auth-with-nextauth/auth-client-created.png';
-import authorisedOrigins from '@site/static/img/blog/2022-08-18-auth-with-nextauth/authorised-origins.png';
-import googleCreate from '@site/static/img/blog/2022-08-18-auth-with-nextauth/google-create.jpeg';
-import googleSelectAuth from '@site/static/img/blog/2022-08-18-auth-with-nextauth/google-select-auth.png';
-import googleSelectProject from '@site/static/img/blog/2022-08-18-auth-with-nextauth/google-select-project.png';
-import googleSelectType from '@site/static/img/blog/2022-08-18-auth-with-nextauth/google-select-type.png';
-import redirectUrl from '@site/static/img/blog/2022-08-18-auth-with-nextauth/redirect-url.png';
-import githubRegister from '@site/static/img/blog/2022-08-18-auth-with-nextauth/github_register.png';
-import githubRegisterEnable from '@site/static/img/blog/2022-08-18-auth-with-nextauth/github_register_enable.png';
-import githubSecrets from '@site/static/img/blog/2022-08-18-auth-with-nextauth/github_client_secrets.png';
-import notSignIn from '@site/static/img/blog/2022-08-18-auth-with-nextauth/not_signed_in.png';
-import resultView from '@site/static/img/blog/2022-08-18-auth-with-nextauth/result_view.png';
-import resultWithSign from '@site/static/img/blog/2022-08-18-auth-with-nextauth/result_with_sign.png';
-import signInBox from '@site/static/img/blog/2022-08-18-auth-with-nextauth/sign_in_box.png';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Introduction
 We know how exhausting and time-consuming it can be to set up authentication, which includes handling databases, cookies, JWT, sessions, etc., on your own.
@@ -132,7 +132,7 @@ Navigate to your [Google console](https://console.developers.google.com/apis/cre
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={googleCreate} alt="Create a Google project" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/google-create.jpeg" alt="Create a Google project" />
 </div>
 
 <br/>
@@ -148,7 +148,7 @@ When that is done, ensure you select the project you just created when notified.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={googleSelectProject} alt="Google select project" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/google-select-project.png" alt="Google select project" />
 </div>
 
 <br/>
@@ -162,7 +162,7 @@ Once that is done, proceed to create credentials by clicking on the "CREATE CRED
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={googleSelectAuth} alt="Google select auth provider" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/google-select-auth.png" alt="Google select auth provider" />
 </div>
 
 <br/>
@@ -180,7 +180,7 @@ Please, go ahead to configure the consent screen by providing some information o
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={googleSelectType} alt="Create an auth client" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/google-select-type.png" alt="Create an auth client" />
 </div>
 
 <br/>
@@ -194,7 +194,7 @@ After entering the name of your OAuth 2.0 client. You will see a section that re
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={authorisedOrigins} alt="Authorised origins" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/authorised-origins.png" alt="Authorised origins" />
 </div>
 
 <br/>
@@ -211,7 +211,7 @@ For the **"Authorised redirect URIs"**, you must include your full domain and en
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={redirectUrl} alt="Redirect URL" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/redirect-url.png" alt="Redirect URL" />
 </div>
 
 <br/>
@@ -231,7 +231,7 @@ Please verify the details provided and if they are all correct, click on "CREATE
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={authClientCreated} alt="Auth client verified" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/auth-client-created.png" alt="Auth client verified" />
 </div>
 
 <br/>
@@ -278,7 +278,7 @@ To create your GithubProvider ID and SECRET, navigate to your GitHub account [de
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={githubRegister} alt="Github register" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/github_register.png" alt="Github register" />
 </div>
 
 <br/>
@@ -293,7 +293,7 @@ Complete application registration by filling out the fields.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={githubRegisterEnable} alt="Github register enable" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/github_register_enable.png" alt="Github register enable" />
 </div>
 
 <br/>
@@ -308,7 +308,7 @@ Remember to go back and change the URIs to your production URI once you push to 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={githubSecrets} alt="Github secrets" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/github_client_secrets.png" alt="Github secrets" />
 </div>
 
 <br/>
@@ -512,7 +512,7 @@ So if you refresh the application, you should see the blog application as shown 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={resultView} alt="Result view" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/result_view.png" alt="Result view" />
 </div>
 
 <br/>
@@ -603,7 +603,7 @@ Now, if you refresh the application, it will look like the screenshot below for 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={notSignIn} alt="Not sign in" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/not_signed_in.png" alt="Not sign in" />
 </div>
 
 <br/>
@@ -617,7 +617,7 @@ When the user clicks the sign-in button, they will be redirected to the sign-in 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={signInBox} alt="Sign in box" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/sign_in_box.png" alt="Sign in box" />
 </div>
 
 <br/>
@@ -632,7 +632,7 @@ Now when they click on any of the buttons, they will be redirected to the  Googl
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={resultWithSign} alt="Sign in result" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/result_with_sign.png" alt="Sign in result" />
 </div>
 
 <br/>

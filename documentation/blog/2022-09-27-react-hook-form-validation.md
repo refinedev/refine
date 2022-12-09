@@ -4,18 +4,18 @@ description: We'll implement React Hook Form custom validations and schema valid
 slug: react-hook-form-validation-examples
 authors: david_omotayo
 tags: [react, react-hook-form, refine, form-validation, yup, schema-validation]
-image: /img/blog/2022-09-27-react-hook-form-validation/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/social.png
 hide_table_of_contents: false
 ---
 
-import cli from '@site/static/img/blog/2022-09-27-react-hook-form-validation/react-hook-form-cli.png';
-import dashboard from '@site/static/img/blog/2022-09-27-react-hook-form-validation/react-hook-form-dashboard.png';
-import packageSize from '@site/static/img/blog/2022-09-27-react-hook-form-validation/react-hook-form-package-size.png';
-import view from '@site/static/img/blog/2022-09-27-react-hook-form-validation/react-hook-form.png';
-import gif1 from '@site/static/img/blog/2022-09-27-react-hook-form-validation/react-hook-form.gif';
-import gif2 from '@site/static/img/blog/2022-09-27-react-hook-form-validation/react-hook-form-big.gif';
-import gif3 from '@site/static/img/blog/2022-09-27-react-hook-form-validation/react-hook-form-big2.gif';
-import gifConsole from '@site/static/img/blog/2022-09-27-react-hook-form-validation/react-hook-form-console.gif';
+
+
+
+
+
+
+
+
 
 ## Introduction
 Forms are crucial in how web administrators connect with their audience and how users interact with web applications. Hence, form validation is often the utmost priority for a developer when building web applications.
@@ -55,7 +55,7 @@ React Hook Form uses its constraint-based validation API to validate forms by le
 The package is super light, it has a minified size of 24.6kb and a minified + gzipped size of 8.8kb. This is because the library doesn’t use any dependencies to handle any of its functionalities under the hood.
 
 <div class="img-container" align-items="center" >
-   <img   src={packageSize}  alt="react Hook Form package size" />
+   <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-package-size.png"  alt="react Hook Form package size" />
 </div>
 
 <br/>
@@ -86,7 +86,7 @@ After running the command, you’ll be prompted to choose your preferences for t
 Select the following options to proceed:
 
 <div class="img-container" align-items="center" >
-   <img   src={cli}  alt="react Hook Form cli" />
+   <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-cli.png"  alt="react Hook Form cli" />
 </div>
 
 <br/>
@@ -109,7 +109,7 @@ The second command will start the development server for our project and automat
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img   src={dashboard}  alt="react Hook Form dashboard" />
+   <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-dashboard.png"  alt="react Hook Form dashboard" />
 
 </div>
 
@@ -301,7 +301,7 @@ If you save your progress and open up the browser, you should see a form similar
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={view}  alt="react Hook Form view" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form.png"  alt="react Hook Form view" />
 
 </div>
 
@@ -652,7 +652,7 @@ To display the error, we’d have to render a message based on the state of the 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={gif1}  alt="react Hook Form input" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form.gif"  alt="react Hook Form input" />
 
 </div>
 
@@ -792,7 +792,7 @@ This will check if there's an error with the `error` prop, then it'll display a 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={gif2}  alt="react Hook Form yup" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-big.gif"  alt="react Hook Form yup" />
 
 </div>
 
@@ -881,7 +881,7 @@ Now, if you save your progress and go to the browser, the company and role field
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={gif3}  alt="react Hook Form error handling" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-big2.gif"  alt="react Hook Form error handling" />
 
 </div>
 
@@ -930,7 +930,7 @@ Now, if you save your progress and head over to the browser, you should get a lo
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={gifConsole}  alt="React Hook Form error handling" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-27-react-hook-form-validation/react-hook-form-console.gif"  alt="React Hook Form error handling" />
 
 </div>
 

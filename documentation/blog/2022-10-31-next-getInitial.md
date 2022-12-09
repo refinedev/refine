@@ -4,13 +4,13 @@ description: We will deep dive into Next.js getInitialProps and getServerSidePro
 slug: next-js-getinitialprops-and-getserversideprops
 authors: michael
 tags: [nextjs, getInitialProps, getServerSideProps]
-image: /img/blog/2022-10-31-next-getInitial/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-31-next-getInitial/social.png
 hide_table_of_contents: false
 ---
 
 
-import getInit from '@site/static/img/blog/2022-10-31-next-getInitial/getInitProp.gif';
-import getServer from '@site/static/img/blog/2022-10-31-next-getInitial/getServerProp.gif';
+
+
 
 ## Introduction 
 
@@ -207,7 +207,7 @@ The GIF below shows how `getInitialProps` behaves when it's used to fetch data f
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={getInit}  alt="getinitialprops" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-31-next-getInitial/getInitProp.gif"  alt="getinitialprops" />
 
 </div>
 
@@ -275,7 +275,7 @@ The GIF below shows the same example from the previous section using `getServerS
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={getServer}  alt="getserversideprops" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-31-next-getInitial/getServerProp.gif"  alt="getserversideprops" />
 
 </div>
 

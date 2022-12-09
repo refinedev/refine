@@ -4,25 +4,9 @@ description: A complete guide on using Material UI (MUI) button in a React app
 slug: mui-button-in-react
 authors: doro_onome
 tags: [material-ui, react, mui, mui-button]
-image: /img/blog/2022-09-05-mui-button/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/social.png
 hide_table_of_contents: false
 ---
-
-import buttonColor from '@site/static/img/blog/2022-09-05-mui-button/buttonColor.png';
-import buttonSize from '@site/static/img/blog/2022-09-05-mui-button/buttonSize.png';
-import containedButton from '@site/static/img/blog/2022-09-05-mui-button/containedButton.png';
-import final from '@site/static/img/blog/2022-09-05-mui-button/final.gif';
-import button1 from '@site/static/img/blog/2022-09-05-mui-button/button1.png';
-import IconButton from '@site/static/img/blog/2022-09-05-mui-button/IconButton.png';
-import labelButton from '@site/static/img/blog/2022-09-05-mui-button/labelButton.png';
-import loadingButton from '@site/static/img/blog/2022-09-05-mui-button/loadingButton.gif';
-import mainComponent from '@site/static/img/blog/2022-09-05-mui-button/mainComponent.png';
-import navbar from '@site/static/img/blog/2022-09-05-mui-button/navbar.gif';
-import outlinedButton from '@site/static/img/blog/2022-09-05-mui-button/outlinedButton.png';
-import textButton from '@site/static/img/blog/2022-09-05-mui-button/textButton.png';
-import social from '@site/static/img/blog/2022-09-05-mui-button/social.png';
-
- 
 
 ## Introduction
 Material UI is a dynamic React library because it provides numerous component infrastructures for responsive web design. One such essential component is the `Button`. 
@@ -87,7 +71,7 @@ Here’s what they look like:
 <br />
 
  <div class="img-container">
-    <img src={button1} alt="button1" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/button1.png" alt="button1" />
 </div>
 
 ### MUI Button Colors
@@ -153,7 +137,7 @@ Here’s the result:
 
 <br />
  <div class="img-container">
-    <img src={buttonSize} alt="buttonSize" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/buttonSize.png" alt="buttonSize" />
 </div>
 
 
@@ -180,7 +164,7 @@ Here’s a simple illustration of the MUI Text Button
 
 <br />
  <div class="img-container">
-    <img src={textButton} alt="textButton" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/textButton.png" alt="textButton" />
 </div>
 
 <br />
@@ -204,7 +188,7 @@ Here’s an example:
 
 <br />
  <div class="img-container">
-    <img src={containedButton} alt="containedButton" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/containedButton.png" alt="containedButton" />
 </div>
 
 ### Outlined Button
@@ -224,7 +208,7 @@ You can use Outlined **MUI button** by specifying the `outlined` prop when calli
 
 <br />
  <div class="img-container">
-    <img src={outlinedButton} alt="outlinedButton" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/outlinedButton.png" alt="outlinedButton" />
 </div>
 
 ### IconButton
@@ -272,7 +256,7 @@ Here’s the result:
 
 <br />
  <div class="img-container">
-    <img src={IconButton} alt="IconButton" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/IconButton.png" alt="IconButton" />
 </div>
 
 ### Loading Button
@@ -320,7 +304,7 @@ export default LoadingButtons;
  Here’s the result:
 <br />
  <div class="img-container">
-    <img src={loadingButton} alt="loadingButton" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/loadingButton.gif" alt="loadingButton" />
 </div>
 
 
@@ -352,7 +336,7 @@ export default IconLabelButtons
 ```
 <br />
  <div class="img-container">
-    <img src={labelButton} alt="labelButton" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/labelButton.png" alt="labelButton" />
 </div>
 
 
@@ -413,7 +397,7 @@ Here’s the result:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={navbar} alt="navbar" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/navbar.gif" alt="navbar" />
 </div>
 
 
@@ -469,7 +453,7 @@ Here’s the result:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={mainComponent} alt="mainComponent" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/mainComponent.png" alt="mainComponent" />
 </div>
 
 <br/>
@@ -510,7 +494,7 @@ Here’s what our final app looks like:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={final} alt="final" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/final.gif" alt="final" />
 </div>
 
 ## Conclusion

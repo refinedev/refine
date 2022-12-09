@@ -2,7 +2,11 @@ import cn from "clsx";
 import { useRouter } from "next/router";
 import { useLogout } from "@pankod/refine-core";
 
-import { DropdownContent, DropdownMenuItem } from "@components/ui";
+import {
+    DropdownContent,
+    DropdownMenuItem,
+    DropdownMenuPortal,
+} from "@components/ui";
 
 import s from "./CustomerMenuContent.module.css";
 
@@ -38,27 +42,28 @@ export const CustomerMenuContent: React.FC = () => {
     }
 
     return (
-        <DropdownContent
-            asChild
-            side="bottom"
-            sideOffset={10}
-            className={s.root}
-            id="CustomerMenuContent"
-        >
-            {LINKS.map(({ name, href }) => (
-                <DropdownMenuItem key={href}>
-                    <a
-                        className={cn(s.link, {
-                            [s.active]: pathname === href,
-                        })}
-                        onClick={(e) => handleClick(e, href)}
-                    >
-                        {name}
-                    </a>
-                </DropdownMenuItem>
-            ))}
-            {/* TODO: uncomment dark mode when theme is ready */}
-            {/* <DropdownMenuItem>
+        <DropdownMenuPortal>
+            <DropdownContent
+                asChild
+                side="bottom"
+                sideOffset={10}
+                className={s.root}
+                id="CustomerMenuContent"
+            >
+                {LINKS.map(({ name, href }) => (
+                    <DropdownMenuItem key={href}>
+                        <a
+                            className={cn(s.link, {
+                                [s.active]: pathname === href,
+                            })}
+                            onClick={(e) => handleClick(e, href)}
+                        >
+                            {name}
+                        </a>
+                    </DropdownMenuItem>
+                ))}
+                {/* TODO: uncomment dark mode when theme is ready */}
+                {/* <DropdownMenuItem>
                 <a
                     className={cn(s.link, "justify-between")}
                     onClick={() => {
@@ -77,18 +82,19 @@ export const CustomerMenuContent: React.FC = () => {
                     </div>
                 </a>
             </DropdownMenuItem> */}
-            <DropdownMenuItem>
-                <a
-                    className={cn(s.link, "border-accent-2 mt-4 border-t")}
-                    onClick={() =>
-                        logout({
-                            redirectPath: "/",
-                        })
-                    }
-                >
-                    Logout
-                </a>
-            </DropdownMenuItem>
-        </DropdownContent>
+                <DropdownMenuItem>
+                    <a
+                        className={cn(s.link, "border-accent-2 mt-4 border-t")}
+                        onClick={() =>
+                            logout({
+                                redirectPath: "/",
+                            })
+                        }
+                    >
+                        Logout
+                    </a>
+                </DropdownMenuItem>
+            </DropdownContent>
+        </DropdownMenuPortal>
     );
 };

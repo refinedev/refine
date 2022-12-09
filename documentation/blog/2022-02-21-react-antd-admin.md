@@ -8,12 +8,12 @@ image: /img/placeholder.png
 hide_table_of_contents: false
 ---
 
-import i18n_overview from '@site/static/img/blog/2022-02-21-react-antd-admin/i8n-overview.gif';
-import access_control from '@site/static/img/blog/2022-02-21-react-antd-admin/access-control.gif';
-import access_button from '@site/static/img/blog/2022-02-21-react-antd-admin/access_button.png';
-import realtime from '@site/static/img/blog/2022-02-21-react-antd-admin/realtime.gif';
-import tutorial from '@site/static/img/blog/2022-02-21-react-antd-admin/refine_tutorial.gif';
-import table_i18n from '@site/static/img/blog/2022-02-21-react-antd-admin/table-i18n.gif';
+
+
+
+
+
+
 
 [**refine**](https://refine.dev/) is a **headless** [React](https://en.reactjs.org/) **internal tool** framework. It helps you develop quickly while developing both B2B and B2C applications. While speeding you up, it is never restricted and has a fully customizable structure.
 
@@ -89,7 +89,7 @@ npm run dev
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={tutorial} alt="Refine Tutorial" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/refine_tutorial.gif" alt="Refine Tutorial" />
 </div>
 <br />
 
@@ -348,7 +348,7 @@ Now our i18n Provider is ready to use, let's test it together.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={i18n_overview} alt="Refine i18n Provider" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/i8n-overview.gif" alt="Refine i18n Provider" />
 </div>
 <br />
 
@@ -439,7 +439,7 @@ export const PostList: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={table_i18n} alt="Refine i18n Provider" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/table-i18n.gif" alt="Refine i18n Provider" />
 </div>
 <br />
 
@@ -540,7 +540,7 @@ Let's see how our RealTime Project works.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={realtime} alt="Refine Live Provider" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/realtime.gif" alt="Refine Live Provider" />
 </div>
 <br />
 
@@ -636,7 +636,7 @@ export const Header: React.FC<HeaderProps> = ({ role }) => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={access_button} alt="Refine Access Control Provider" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/access_button.png" alt="Refine Access Control Provider" />
 </div>
 <br />
 
@@ -863,7 +863,7 @@ Here, if the selected role is Admin, the 'Hit' section will appear in our Table.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={access_control} alt="Refine Access Control Provider" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-21-react-antd-admin/access-control.gif" alt="Refine Access Control Provider" />
 </div>
 <br />
 

@@ -1,7 +1,7 @@
 import React from "react";
 import cn from "clsx";
 import { Image as MedusaImage } from "@medusajs/medusa";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import { PlaceholderImage } from "@icons";
 

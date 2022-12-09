@@ -4,7 +4,7 @@ description: We'll looking The Advantages and Disadvantages of Working on Open S
 slug: open-source-advantages-disadvantages
 authors: ozkalai
 tags: [refine, react, framework, webdev, opensource, ant-design, material-ui, react-bootstrap, opensource]
-image: /img/blog/2022-04-29-open-source-adv-disadv/social.jpg
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-04-29-open-source-adv-disadv/social.jpg
 hide_table_of_contents: false
 ---
 

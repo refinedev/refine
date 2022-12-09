@@ -17,13 +17,13 @@ image: /img/placeholder.png
 hide_table_of_contents: false
 ---
 
-import missions from '@site/static/img/blog/2022-03-01-refine-invoice-generator-p2/missions.png';
-import invoice from '@site/static/img/blog/2022-03-01-refine-invoice-generator-p2/invoice.png';
-import mission_page from '@site/static/img/blog/2022-03-01-refine-invoice-generator-p2/mission_page.png';
-import mission_create from '@site/static/img/blog/2022-03-01-refine-invoice-generator-p2/mission_create.gif';
-import invoice_list from '@site/static/img/blog/2022-03-01-refine-invoice-generator-p2/invoice_list.png';
-import create_invoice from '@site/static/img/blog/2022-03-01-refine-invoice-generator-p2/create_invoice.gif';
-import invoice_pdf from '@site/static/img/blog/2022-03-01-refine-invoice-generator-p2/invoice_pdf.gif';
+
+
+
+
+
+
+
 
 Looking for an invoice generator that is easy to use and lets you customize your invoices? With **refine** simple and intuitive interface, you can create your own invoices in few hours. Plus, we offer a wide range of templates and customization options so you can get the exact look you want. Learn more about our invoice generator here!
 
@@ -58,7 +58,7 @@ In our Part I article, we created our company, contact and client collections. I
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={missions} alt="Strapi Mission Collection" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/missions.png" alt="Strapi Mission Collection" />
 </div>
 <br />
 
@@ -79,7 +79,7 @@ In our Part I article, we created our company, contact and client collections. I
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={invoice} alt="Strapi Mission Collection" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/invoice.png" alt="Strapi Mission Collection" />
 </div>
 <br />
 
@@ -160,7 +160,7 @@ We defined the fields we created on the strapi side with the **refine** Table an
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={mission_page} alt="Refine Missions Page" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/mission_page.png" alt="Refine Missions Page" />
 </div>
 <br />
 
@@ -308,7 +308,7 @@ export const MissionList: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={mission_create} alt="Refine Mission Create Page" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/mission_create.gif" alt="Refine Mission Create Page" />
 </div>
 <br />
 
@@ -462,7 +462,7 @@ export const InvoiceList: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={invoice_list} alt="Refine Invoice List Page" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/invoice_list.png" alt="Refine Invoice List Page" />
 </div>
 <br />
 
@@ -583,7 +583,7 @@ export const CreateInvoice: React.FC<IResourceComponentsProps> = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={create_invoice} alt="Refine Invoice Create" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/create_invoice.gif" alt="Refine Invoice Create" />
 </div>
 <br />
 
@@ -1056,7 +1056,7 @@ const styles = StyleSheet.create({
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={invoice_pdf} alt="Refine Invoice PDF Export" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-01-refine-invoice-generator-p2/invoice_pdf.gif" alt="Refine Invoice PDF Export" />
 </div>
 <br />
 

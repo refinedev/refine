@@ -8,8 +8,8 @@ image: /img/placeholder.png
 hide_table_of_contents: false
 ---
 
-import hackathons from '@site/static/img/blog/2021-10-4-manage-hackathons/hackathons.png';
-import create from '@site/static/img/blog/2021-10-4-manage-hackathons/create.png';
+
+
 
 We'll be building a demo app to manage hackathons with [refine](https://refine.dev/). We'll be able to create new hackathons, new project entries for a hackathon and criterias for a hackathon.
 
@@ -21,7 +21,7 @@ We'll be building a demo app to manage hackathons with [refine](https://refine.d
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={hackathons} alt="hackathons" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-manage-hackathons/hackathons.png" alt="hackathons" />
 </div>
 <br/>
 
@@ -198,7 +198,7 @@ export default App;
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={create} alt="create" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2021-10-4-manage-hackathons/create.png" alt="create" />
 </div>
 <br/>
 

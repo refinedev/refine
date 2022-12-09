@@ -4,12 +4,12 @@ description: We'll dive into the TypeScript Omit utility type with examples
 slug: typescript-omit-utility-type
 authors: abdullah_numan
 tags: [typescript, typescript-omit, typescript-utility-types]
-image: /img/blog/2022-10-03-typescript-omit/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-03-typescript-omit/social.png
 hide_table_of_contents: false
 ---
 
 
-import visualize from '@site/static/img/blog/2022-10-03-typescript-omit/ts-omit-visualize.png';
+
 
 
 ## Introduction
@@ -30,7 +30,7 @@ Step we'll cover:
 Looking back at the ERD, the `Subscriber` entity has all the same properties as `SuperbUser` - except `roles`:
 
 <div class="img-container" align-items="center" >
-   <img  src={visualize}  alt="TypeScript Omit Type" />
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-03-typescript-omit/ts-omit-visualize.png"  alt="TypeScript Omit Type" />
 
 </div>
 
