@@ -4,16 +4,9 @@ description: Share data across components with React Context in TypeScript and 
 slug: usecontext-and-react-context
 authors: chibuzor_otuokwu
 tags: [react, usecontext,context, nextjs]
-image: /img/blog/2022-10-23-react-context/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-23-react-context/social.png
 hide_table_of_contents: false
 ---
-
-
-
-import cartHome from '@site/static/img/blog/2022-10-23-react-context/cart-home.png';
-import favouriteProduct from '@site/static/img/blog/2022-10-23-react-context/favorite-product-list.png';
-import propDrilling from '@site/static/img/blog/2022-10-23-react-context/prop-drilling.png';
-import propDrillingFav from '@site/static/img/blog/2022-10-23-react-context/prop-drill-favorite.png';
 
 When building React applications, we typically share data across several components from parent to child via props. Passing data from parent to child components would be easy if just a few layers of components were involved.
 
@@ -378,7 +371,7 @@ If you click the favorite icon for each product, you should see it listed under 
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-   <img src={favouriteProduct}  alt="React context API favouriteProduct" />
+   <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-23-react-context/favorite-product-list.png"  alt="React context API favouriteProduct" />
 
 </div>
 
@@ -402,7 +395,7 @@ To add a product as a favorite, we need to pass the `favorites` state and `handl
 
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center", width:"300px"}}  src={propDrillingFav}  alt="React context API propDrillingFav" />
+   <img style={{alignSelf:"center", width:"300px"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-23-react-context/prop-drill-favorite.png"  alt="React context API propDrillingFav" />
 </div>
 
 

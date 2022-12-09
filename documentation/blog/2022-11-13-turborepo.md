@@ -4,11 +4,11 @@ description: The advantages of using Turborepo for monorepo development.
 slug: how-to-use-turborepo
 authors: muhammad_khabbab
 tags: [nextjs, turborepo, dev-tools]
-image: /img/blog/2022-11-13-turborepo/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-13-turborepo/social.png
 hide_table_of_contents: false
 ---
 
-import image from '@site/static/img/blog/2022-11-13-turborepo/turbopack.png';
+
 
 ## Introduction
 Monorepos are very popular in modern application development because of their immense benefits. A monorepo is a single repository having multiple distinct projects with well-defined associations. Note that monorepo is not a monolith; in fact, it is the opposite of a monolith.  
@@ -59,7 +59,7 @@ With your remote caching, builds can achieve amazingly fast build times by provi
 <br/>
 
 <div className="centered-image"  >
-   <img style={{alignSelf:"center"}}  src={image}  alt="turbopack" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-13-turborepo/turbopack.png"  alt="turbopack" />
 <em> Source - </em>
 </div>
 

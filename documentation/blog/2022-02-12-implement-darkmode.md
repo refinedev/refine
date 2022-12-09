@@ -8,9 +8,9 @@ image: /img/placeholder.png
 hide_table_of_contents: false
 ---
 
-import css from '@site/static/img/blog/2022-02-12-implement-darkmode/css.png';
-import light from '@site/static/img/blog/2022-02-12-implement-darkmode/light.png';
-import dark from '@site/static/img/blog/2022-02-12-implement-darkmode/dark.png';
+
+
+
 
 In this article, we will provide an example on how to implement darkmode with **refine**. In order to switch between light and dark mode, we need 2 different styles and the possibility to switch between one and the other without restarting the application. Since the Less stylesheets with React doesn't allow variables to be modified without compilation and therefore a restart of the application. To solve this, we are going to use **gulp** that will compile the Less files into swappable CSS, directly accessible to the running application.
 
@@ -164,7 +164,7 @@ this command must be repeated each time the Less files are modified and the appl
 
 You should now have 2 CSS files inside the public folder: `antd.dark-theme.css`and `antd.light-theme.css`
 <div class="img-container">
-    <img src={css} alt="signin" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-12-implement-darkmode/css.png" alt="signin" />
 </div>
 
 ## Adapt the Refine application to be able to switch between the 2 styles
@@ -285,7 +285,7 @@ You should now have a light/dark mode switcher in the header:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={light} alt="signin" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-12-implement-darkmode/light.png" alt="signin" />
 </div>
 <br />
 
@@ -295,6 +295,6 @@ You should now have a light/dark mode switcher in the header:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={dark} alt="signin" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-02-12-implement-darkmode/dark.png" alt="signin" />
 </div>
 <br />

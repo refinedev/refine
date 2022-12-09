@@ -4,24 +4,9 @@ description: Find out what the five most common mistakes React developers make w
 slug: common-usestate-mistakes-and-how-to-avoid
 authors: david_herbert
 tags: [react, usestate, best-practices ]
-image: /img/blog/2022-08-29-usestate-mistakes/usestate-mistakes-social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/usestate-mistakes-social.png
 hide_table_of_contents: false
 ---
-
-
-import social from '@site/static/img/blog/2022-08-29-usestate-mistakes/usestate-mistakes-social.png';
-import blank from '@site/static/img/blog/2022-08-29-usestate-mistakes/blank-page-error.png';
-import chain from '@site/static/img/blog/2022-08-29-usestate-mistakes/chain-error.png';
-import directUpdateError from '@site/static/img/blog/2022-08-29-usestate-mistakes/direct-update-error.gif';
-import directUpdateGif from '@site/static/img/blog/2022-08-29-usestate-mistakes/direct-update.gif';
-import fixBlankPage from '@site/static/img/blog/2022-08-29-usestate-mistakes/fix-blank-page-error.png';
-import functionalState from '@site/static/img/blog/2022-08-29-usestate-mistakes/functional-state-update.gif';
-import initializeError from '@site/static/img/blog/2022-08-29-usestate-mistakes/initialize-error.png';
-import objectAssign from '@site/static/img/blog/2022-08-29-usestate-mistakes/object-property-assignment.png';
-import objectStateError from '@site/static/img/blog/2022-08-29-usestate-mistakes/object-property-state-error.png';
-import objectState from '@site/static/img/blog/2022-08-29-usestate-mistakes/object-property-state.png';
-
-
 
 ## Introduction
 
@@ -51,7 +36,7 @@ The problem is that useState allows you to define its initial state using anythi
 
 For example, we have a component expecting a user object state containing the user's name, image, and bio - and in this component, we are rendering the user's properties. 
 
-Initializing useState with a different data type, such as an empty state or a null value, would result in a blank page error, as shown below.
+Initializing useState with a different data type, such as an empty state or a  value, would result in a blank page error, as shown below.
 
 ```ts
 import { useState } from "react";
@@ -63,7 +48,7 @@ function App() {
   // Render UI
   return (
     <div className='App'>
-      <img src={user.image} alt='profile image' />
+      <img src="https://refine.ams3.cdn.digitaloceanspaces.comundefined" alt='profile image' />
       <p>User: {user.name}</p>
       <p>About: {user.bio}</p>
     </div>
@@ -79,14 +64,14 @@ Output:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={blank} alt="blank" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/blank-page-error.png" alt="blank" />
 </div>
 
 <br/>
 
 Inspecting the console would throw a similar error as shown below:
 <div class="img-container">
-    <img src={initializeError} alt="initializeError" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/initialize-error.png" alt="initializeError" />
 </div>
 <br/>
 
@@ -104,7 +89,7 @@ function App() {
   // Render UI
   return (
     <div className='App'>
-      <img src={user.image} alt='profile image' />
+      <img src="https://refine.ams3.cdn.digitaloceanspaces.comundefined" alt='profile image' />
       <p>User: {user.name}</p>
       <p>About: {user.bio}</p>
     </div>
@@ -120,7 +105,7 @@ Output:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={fixBlankPage} alt="fixBlankPage" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/fix-blank-page-error.png" alt="fixBlankPage" />
 </div>
 
 <br/>
@@ -141,7 +126,7 @@ function App() {
   // Render UI
   return (
     <div className='App'>
-      <img src={user.image} alt='profile image' />
+      <img src="https://refine.ams3.cdn.digitaloceanspaces.comundefined" alt='profile image' />
       <p>User: {user.name}</p>
       <p>About: {user.bio}</p>
     </div>
@@ -175,7 +160,7 @@ function App() {
   // Render UI
   return (
     <div className='App'>
-      <img src={user.image} alt='profile image' />
+      <img src="https://refine.ams3.cdn.digitaloceanspaces.comundefined" alt='profile image' />
       <p>User: {user.names.firstName}</p>
       <p>About: {user.bio}</p>
     </div>
@@ -188,7 +173,7 @@ export default App;
 Output error:
 
 <div class="img-container">
-    <img src={chain} alt="chain" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/chain-error.png" alt="chain" />
 </div>
 <br/>
 
@@ -196,7 +181,7 @@ Output error:
 
 A typical solution to this error and UI not rendering is using conditional checks to validate the state's existence to check if it is accessible before rendering the component, e.g., `user.names && user.names.firstName`, which only evaluates the right expression if the left expression is true (if the `user.names` exist). However, this solution is a messy one as it would require several checks for each object chain.
 
-Using the optional chaining operator `(?.)`, you can read the value of a property that is buried deep inside a related chain of objects without needing to verify that each referenced object is valid. The optional chaining operator `(?.)` is just like the dot chaining operator `(.)`, except that if the referenced object or property is missing (i.e., null or undefined), the expression short-circuits and returns a value of undefined. In simpler terms, if any chained object is missing, it doesn't continue with the chain operation (short-circuits).
+Using the optional chaining operator `(?.)`, you can read the value of a property that is buried deep inside a related chain of objects without needing to verify that each referenced object is valid. The optional chaining operator `(?.)` is just like the dot chaining operator `(.)`, except that if the referenced object or property is missing (i.e.,  or undefined), the expression short-circuits and returns a value of undefined. In simpler terms, if any chained object is missing, it doesn't continue with the chain operation (short-circuits).
 
  For example, `user?.names?.firstName` would not throw any error or break the page because once it detects that the user or names object is missing, it immediately terminates the operation.
 
@@ -210,7 +195,7 @@ function App() {
   // Render UI
   return (
     <div className='App'>
-      <img src={user.image} alt='profile image' />
+      <img src="https://refine.ams3.cdn.digitaloceanspaces.comundefined" alt='profile image' />
       <p>User: {user?.names?.firstName}</p>
       <p>About: {user.bio}</p>
     </div>
@@ -257,7 +242,7 @@ The output:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={directUpdateGif} alt="directUpdateGif" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/direct-update.gif" alt="directUpdateGif" />
 </div>
 
 <br/>
@@ -302,7 +287,7 @@ Pay attention to the bug in the output:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={directUpdateError} alt="directUpdateError" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/direct-update-error.gif" alt="directUpdateError" />
 </div>
 
 <br/>
@@ -349,7 +334,7 @@ Output:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={functionalState} alt="functionalState" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/functional-state-update.gif" alt="functionalState" />
 </div>
 
 <br/>
@@ -396,7 +381,7 @@ Initial state before the button is clicked:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={objectState} alt="objectState" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/object-property-state.png" alt="objectState" />
 </div>
 
 <br/>
@@ -411,7 +396,7 @@ Updated state after the button is clicked:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={objectStateError} alt="objectStateError" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/object-property-state-error.png" alt="objectStateError" />
 </div>
 
 <br/>
@@ -455,7 +440,7 @@ Updated state after the button is clicked:
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={objectAssign} alt="objectAssign" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-29-usestate-mistakes/object-property-assignment.png" alt="objectAssign" />
 </div>
 
 <br/>

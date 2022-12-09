@@ -5,18 +5,18 @@ slug: awesome-react-windows95-ui-with-refine
 authors: melih
 tags:
     [refine, react, admin-panel, Windows95, React95, Supabase, B2B, open-source]
-image: /img/blog/2022-03-22-refine-with-react95/social.jpg
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/social.jpg
 hide_table_of_contents: false
 ---
 
-import refine_setup from '@site/static/img/blog/2022-03-22-refine-with-react95/refine_setup.gif';
-import refine_login from '@site/static/img/blog/2022-03-22-refine-with-react95/refine_login.png';
-import table from '@site/static/img/blog/2022-03-22-refine-with-react95/table.png';
-import advanced_table from '@site/static/img/blog/2022-03-22-refine-with-react95/advanced_table.gif';
-import create_edit from '@site/static/img/blog/2022-03-22-refine-with-react95/create_edit.gif';
-import menu from '@site/static/img/blog/2022-03-22-refine-with-react95/menu.gif';
-import top_menu from '@site/static/img/blog/2022-03-22-refine-with-react95/top_menu.gif';
-import overview from '@site/static/img/blog/2022-03-22-refine-with-react95/overview.gif';
+
+
+
+
+
+
+
+
 
 <div class="img-container">
     <div class="window">
@@ -24,7 +24,7 @@ import overview from '@site/static/img/blog/2022-03-22-refine-with-react95/overv
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={overview} alt="Refine Overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/overview.gif" alt="Refine Overview" />
 </div>
 <br />
 
@@ -45,7 +45,7 @@ Let's start by creating our **refine** project. You can use the superplate to cr
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={refine_setup} alt="Refine Project Setup" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/refine_setup.gif" alt="Refine Project Setup" />
 </div>
 <br />
 
@@ -326,7 +326,7 @@ export const LoginPage = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={refine_login} alt="Refine Login Page" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/refine_login.png" alt="Refine Login Page" />
 </div>
 <br />
 
@@ -465,7 +465,7 @@ export const PostList = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={table} alt="Refine Table" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/table.png" alt="Refine Table" />
 </div>
 <br />
 
@@ -673,7 +673,7 @@ export const opt = [
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={advanced_table} alt="Refine Table" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/advanced_table.gif" alt="Refine Table" />
 </div>
 <br />
 
@@ -891,7 +891,7 @@ export const PostEdit: React.FC = () => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={create_edit} alt="Refine Create and Edit Page" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/create_edit.gif" alt="Refine Create and Edit Page" />
 </div>
 <br />
 
@@ -1040,7 +1040,7 @@ export default App;
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={menu} alt="Refine95 Menu" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/menu.gif" alt="Refine95 Menu" />
 </div>
 <br />
 
@@ -1121,7 +1121,7 @@ export const TopMenu: React.FC<TopMenuProps> = ({ children }) => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={top_menu} alt="Refine Top Menu" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/top_menu.gif" alt="Refine Top Menu" />
 </div>
 <br />
 
@@ -1133,7 +1133,7 @@ export const TopMenu: React.FC<TopMenuProps> = ({ children }) => {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={overview} alt="Refine Project Overview" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-03-22-refine-with-react95/overview.gif" alt="Refine Project Overview" />
 </div>
 <br />
 

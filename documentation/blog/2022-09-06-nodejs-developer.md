@@ -4,14 +4,9 @@ description: The most essential skills to have as a modern Node.js developer
 slug: node-js-developer-skills
 authors: david_herbert
 tags: [nodejs, javascript]
-image: /img/blog/2022-09-06-nodejs-developer/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-06-nodejs-developer/social.png
 hide_table_of_contents: false
 ---
-
-
-import social from '@site/static/img/blog/2022-09-06-nodejs-developer/social.png';
-
- 
 
 ## Introduction
 This year marks JavaScript's tenth consecutive year as the most widely used programming language, according to the Stack Overflow Developer Survey for 2022. Furthermore, the JavaScript tooling landscape has dramatically improved in recent years. As a result, Node.js and React.js are the two most popular web technologies among professionals and beginners. 

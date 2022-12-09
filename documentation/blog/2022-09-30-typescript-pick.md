@@ -4,12 +4,12 @@ description: We'll deep dive into the TypeScript Pick utility type with examples
 slug: typescript-pick-utility-type
 authors: abdullah_numan
 tags: [typescript, typescript-pick, typescript-utility-types]
-image: /img/blog/2022-09-30-typescript-pick/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-30-typescript-pick/social.png
 hide_table_of_contents: false
 ---
 
 
-import visualize from '@site/static/img/blog/2022-09-30-typescript-pick/ts-pick-visualize.png';
+
 
 ## Introduction
 This is a series on Object Type Transformations in TypeScript. In this series, we will first look into what object type transformations are, the situations that necessitate a transformation and how they are different from object interface extensions. Then we will closely examine various utilities that TypeScript provides to facilitate object type transformations, such as  `Pick<>`, `Omit<>` and `Partial<>`.
@@ -42,7 +42,7 @@ We'll build the examples in this series based on the following scenario that inv
 Let's say we have a bunch of user entities that differ in terms of how they interact with a blog. Basically, whether they are a `GuestUser`, a `Subscriber`, an `Editor` or an `Admin`, etc.  The following ERD shows how their shapes may differ in the backend:
 
 <div class="img-container" align-items="center" >
-   <img   src={visualize}  alt="TypeScript Omit Type" />
+   <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-30-typescript-pick/ts-pick-visualize.png"  alt="TypeScript Omit Type" />
 
 </div>
 

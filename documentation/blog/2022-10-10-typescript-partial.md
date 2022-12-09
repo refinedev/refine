@@ -4,7 +4,7 @@ description: We'll explain the TypeScript Partial utility type with examples
 slug: typescript-partial-utility-type
 authors: abdullah_numan
 tags: [typescript, typescript-partial, typescript-utility-types]
-image: /img/blog/2022-10-10-typescript-partial/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-10-typescript-partial/social.png
 hide_table_of_contents: false
 ---
 

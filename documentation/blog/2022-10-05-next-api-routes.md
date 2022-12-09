@@ -4,14 +4,14 @@ description: We will deep dive into Next.js API Routes with Dynamic Routes.
 slug: next-js-api-routes
 authors: michael
 tags: [nextjs, nextjs-api-routes]
-image: /img/blog/2022-10-05-next-api-routes/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-05-next-api-routes/social.png
 hide_table_of_contents: false
 ---
 
 
 
-import response from '@site/static/img/blog/2022-10-05-next-api-routes/response.png';
-import dynamic from '@site/static/img/blog/2022-10-05-next-api-routes/dynamic-routes.gif';
+
+
 
 ## Introduction
 
@@ -60,7 +60,7 @@ Navigating to `localhost:3000/api/hello` in the browser or making a `GET` reques
 
 
 <div class="img-container" align-items="center" >
-   <img   src={response}  alt="response" />
+   <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-05-next-api-routes/response.png"  alt="response" />
 </div>
 
 <br/>
@@ -206,7 +206,7 @@ Here's a GIF showing an example:
 
 
 <div class="img-container" align-items="center" >
-   <img   src={dynamic}  alt="dynamic API routes" />
+   <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-05-next-api-routes/dynamic-routes.gif"  alt="dynamic API routes" />
 </div>
 
 <br/>

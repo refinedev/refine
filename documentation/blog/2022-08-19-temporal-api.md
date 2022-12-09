@@ -4,7 +4,7 @@ description: Are we saying goodbye to the JavaScript Date object? Use the Tempor
 slug: temporal-date-api
 authors: muhammed_arslan
 tags: [javascript, date, temporal-api, time]
-image: /img/blog/2022-08-19-temporal-api/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-19-temporal-api/social.png
 hide_table_of_contents: false
 ---
 

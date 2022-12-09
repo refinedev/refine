@@ -4,22 +4,22 @@ description: We'll implement OTP(SMS) authorization using Twilio and Supabase in
 slug: supabase-twilio-otp-authentication-in-react
 authors: vijit_ail
 tags: [react, supabase, refine, authentication,otp,login]
-image: /img/blog/2022-09-22-refine-supabase-auth/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/social.png
 hide_table_of_contents: false
 ---
 
-import terminal from '@site/static/img/blog/2022-09-22-refine-supabase-auth/terminal.png';
-import dashboard from '@site/static/img/blog/2022-09-22-refine-supabase-auth/dashboard.png';
-import setupSupabase from '@site/static/img/blog/2022-09-22-refine-supabase-auth/setupSupabase.png';
-import supabase2 from '@site/static/img/blog/2022-09-22-refine-supabase-auth/supabase2.png';
-import supabase3 from '@site/static/img/blog/2022-09-22-refine-supabase-auth/supabase3.png';
-import supabase4 from '@site/static/img/blog/2022-09-22-refine-supabase-auth/supabase4.png';
-import login from '@site/static/img/blog/2022-09-22-refine-supabase-auth/login.png';
-import loginInvalid from '@site/static/img/blog/2022-09-22-refine-supabase-auth/loginInvalid.png';
-import loginToken from '@site/static/img/blog/2022-09-22-refine-supabase-auth/loginToken.png';
-import supabaseDB from '@site/static/img/blog/2022-09-22-refine-supabase-auth/supabaseDB.png';
-import supabaseDB2 from '@site/static/img/blog/2022-09-22-refine-supabase-auth/supabaseDB2.png';
-import final from '@site/static/img/blog/2022-09-22-refine-supabase-auth/final.png';
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -73,7 +73,7 @@ npx superplate-cli -p refine-react refine-supabase-auth
 ```
 
 <div class="img-container" align-items="center" >
-   <img   src={terminal}  alt="terminal" />
+   <img   src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/terminal.png"  alt="terminal" />
 </div>
 
 <br/>
@@ -160,7 +160,7 @@ yarn dev
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={dashboard} alt="dashboard" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/dashboard.png" alt="dashboard" />
 </div>
 
 <br/>
@@ -178,7 +178,7 @@ Head over to app.supabase.com and sign in to your Supabase account. Next, create
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img src={setupSupabase} alt="setupSupabase" />
+    <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/setupSupabase.png" alt="setupSupabase" />
 </div>
 
 <br/>
@@ -194,7 +194,7 @@ Once the project is created, go to Authentication -> Settings to configure the A
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-    <img style={{alignSelf:"center", width:"400px"}} src={supabase2} alt="supabase2" />
+    <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase2.png" alt="supabase2" />
 </div>
 
 <br/>
@@ -204,7 +204,7 @@ Once the project is created, go to Authentication -> Settings to configure the A
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-     <img style={{alignSelf:"center", width:"400px"}} src={supabase3} alt="supabase3" />
+     <img style={{alignSelf:"center", width:"400px"}} src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase3.png" alt="supabase3" />
 </div>
 
 <br/>
@@ -219,7 +219,7 @@ You will find the Phone Auth option in the Auth providers section; enable it and
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src={supabase4} alt="supabase4" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabase4.png" alt="supabase4" />
 </div>
 
 <br/>
@@ -396,7 +396,7 @@ To send the OTP message to the user, use the `supabase.auth.signIn()` method and
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src={login} alt="login" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/login.png" alt="login" />
 </div>
 
 <br/>
@@ -406,7 +406,7 @@ To send the OTP message to the user, use the `supabase.auth.signIn()` method and
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src={loginInvalid} alt="loginInvalid" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/loginInvalid.png" alt="loginInvalid" />
 </div>
 
 <br/>
@@ -457,7 +457,7 @@ If the OTP is invalid, the error message will be displayed as shown below.
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src={loginToken} alt="loginToken" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/loginToken.png" alt="loginToken" />
 </div>
 
 <br/>
@@ -472,7 +472,7 @@ In your Supabase project, head to the SQL editor page and click on the “Countr
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src={supabaseDB} alt="supabaseDB" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabaseDB.png" alt="supabaseDB" />
 </div>
 
 <br/>
@@ -482,7 +482,7 @@ In your Supabase project, head to the SQL editor page and click on the “Countr
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src={supabaseDB2} alt="supabaseDB2" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/supabaseDB2.png" alt="supabaseDB2" />
 </div>
 
 <br/>
@@ -599,7 +599,7 @@ function App() {
         <div class="control orange"></div>
         <div class="control green"></div>
     </div>
-         <img src={final} alt="final" />
+         <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-22-refine-supabase-auth/final.png" alt="final" />
 </div>
 
 <br/>

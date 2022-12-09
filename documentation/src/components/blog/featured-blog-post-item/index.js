@@ -25,9 +25,12 @@ export const FeaturedBlogPostItem = () => {
                 <Link itemProp="url" to={permalink}>
                     <div className="relative h-40 w-full hover:brightness-90 lg:h-full lg:w-44">
                         <img
-                            src={`https://refine-web.imgix.net${
+                            src={`https://refine-web.imgix.net${(
                                 frontMatter.featured_image ?? frontMatter.image
-                            }?w=500`}
+                            ).replace(
+                                "https//refine.ams3.cdn.digitaloceanspaces.com",
+                                "",
+                            )}?w=500`}
                             alt="Post image"
                             className="absolute inset-0 h-full w-full rounded-tl-[10px] rounded-tr-[10px] object-cover transition duration-150 lg:rounded-tr-none lg:rounded-bl-[10px]"
                             loading="lazy"

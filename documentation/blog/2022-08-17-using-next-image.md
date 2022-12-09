@@ -4,7 +4,7 @@ description: Built-in image optimization using next image component
 slug: using-next-image
 authors: michael
 tags: [nextjs, img, image, next-image,image-optimization]
-image: /img/blog/2022-08-17-using-next-image/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-17-using-next-image/social.png
 hide_table_of_contents: false
 ---
 
