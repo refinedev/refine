@@ -11,7 +11,7 @@ import {
     RcFile,
 } from "@pankod/refine-antd";
 
-import { appwriteClient, normalizeFile } from "utility";
+import { appwriteClient, normalizeFile, storage } from "utility";
 import { StoreContext } from "context/store";
 import { useContext } from "react";
 
@@ -90,19 +90,17 @@ export const CreateProduct: React.FC<CreateProductProps> = ({
                                         const rcFile = file as RcFile;
 
                                         const { $id } =
-                                            await appwriteClient.storage.createFile(
+                                            await storage.createFile(
                                                 "default",
                                                 rcFile.name,
                                                 rcFile,
                                                 ["role:all"],
-                                                ["role:all"],
                                             );
 
-                                        const url =
-                                            appwriteClient.storage.getFileView(
-                                                "default",
-                                                $id,
-                                            );
+                                        const url = storage.getFileView(
+                                            "default",
+                                            $id,
+                                        );
 
                                         onSuccess?.(
                                             { url },
