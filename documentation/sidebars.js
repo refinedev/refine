@@ -298,6 +298,13 @@ module.exports = {
                                         "api-reference/antd/hooks/table/useTable",
                                     ],
                                 },
+                                {
+                                    type: "category",
+                                    label: "UI",
+                                    items: [
+                                        "api-reference/antd/hooks/ui/useModal",
+                                    ],
+                                },
                             ],
                         },
                         {
