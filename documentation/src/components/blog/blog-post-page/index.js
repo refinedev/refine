@@ -73,7 +73,7 @@ export const BlogPostPageView = ({ children }) => {
                 <img
                     className="mb-2 rounded-xl"
                     src={`https://refine-web.imgix.net${frontMatter.image?.replace(
-                        "https//refine.ams3.cdn.digitaloceanspaces.com",
+                        "https://refine.ams3.cdn.digitaloceanspaces.com",
                         "",
                     )}?w=800`}
                     alt="Post image"

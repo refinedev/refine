@@ -26,7 +26,7 @@ export default function BlogPostItem({ className }) {
                     <div className="relative m-0 h-40 overflow-hidden pt-[56.25%] hover:brightness-90">
                         <img
                             src={`https://refine-web.imgix.net${frontMatter.image?.replace(
-                                "https//refine.ams3.cdn.digitaloceanspaces.com",
+                                "https://refine.ams3.cdn.digitaloceanspaces.com",
                                 "",
                             )}?w=500`}
                             alt="Post image"

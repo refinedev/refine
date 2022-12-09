@@ -28,7 +28,7 @@ export const FeaturedBlogPostItem = () => {
                             src={`https://refine-web.imgix.net${(
                                 frontMatter.featured_image ?? frontMatter.image
                             ).replace(
-                                "https//refine.ams3.cdn.digitaloceanspaces.com",
+                                "https://refine.ams3.cdn.digitaloceanspaces.com",
                                 "",
                             )}?w=500`}
                             alt="Post image"
