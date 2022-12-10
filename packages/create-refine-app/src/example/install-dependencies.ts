@@ -11,8 +11,13 @@ export function findPM() {
 }
 
 export async function installDependencies(root: string) {
-    await execa(findPM(), ["install"], {
-        cwd: root,
-        stdio: "inherit",
-    });
+    try {
+        await execa(findPM(), ["install"], {
+            cwd: root,
+            stdio: "ignore",
+        });
+        return true;
+    } catch (err) {
+        return false;
+    }
 }
