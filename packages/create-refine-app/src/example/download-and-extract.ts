@@ -11,9 +11,13 @@ const pipeline = promisify(Stream.pipeline);
 const TEMP_PREFIX = "refine-example.temp";
 
 async function downloadTar(url: string) {
-    const tempFile = join(tmpdir(), `${TEMP_PREFIX}-${Date.now()}`);
-    await pipeline(got.stream(url), createWriteStream(tempFile));
-    return tempFile;
+    try {
+        const tempFile = join(tmpdir(), `${TEMP_PREFIX}-${Date.now()}`);
+        await pipeline(got.stream(url), createWriteStream(tempFile));
+        return tempFile;
+    } catch (err) {
+        return undefined;
+    }
 }
 
 export async function downloadAndExtract({
@@ -33,12 +37,31 @@ export async function downloadAndExtract({
         `https://codeload.github.com/${org}/${repo}/tar.gz/${branch}`,
     );
 
-    await tar.x({
-        file: tempFile,
-        cwd: root,
-        strip: 3,
-        filter: (p) => p.includes(`${repo}-${branch}/examples/${name}/`),
-    });
+    if (!tempFile) {
+        return "download-failed";
+    }
 
-    await fs.unlink(tempFile);
+    try {
+        await tar.x({
+            file: tempFile,
+            cwd: root,
+            strip: 3,
+            filter: (p) => {
+                if (p.includes(`${repo}-${branch}/examples/${name}/`)) {
+                    return true;
+                }
+                return false;
+            },
+        });
+    } catch (err) {
+        return "extract-failed";
+    }
+
+    try {
+        await fs.unlink(tempFile);
+    } catch (err) {
+        // ignore
+    }
+
+    return "success";
 }
