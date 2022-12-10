@@ -1,4 +1,3 @@
-//
 import path from "path";
 import chalk from "chalk";
 import { existsInRepo } from "./exists-in-repo";
