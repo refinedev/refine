@@ -2,7 +2,6 @@ import ora from "ora";
 import path from "path";
 import chalk from "chalk";
 import boxen from "boxen";
-import { readFileSync } from "fs";
 import { gitInit } from "./git-init";
 import { makeDir } from "./make-dir";
 import { existsInRepo } from "./exists-in-repo";
@@ -18,7 +17,26 @@ const run = async (
 
     if (typeof example !== "string") {
         ora("You must specify an example name").fail();
-        return;
+        console.log(
+            boxen(
+                [
+                    chalk`You can find {bold refine} examples at:`,
+                    "",
+                    chalk`{dim.cyan github.com/}{cyan refinedev/refine/tree/master/examples}`,
+                ].join("\n"),
+                {
+                    title: chalk`No example provided`,
+                    titleAlignment: "center",
+                    borderStyle: "round",
+                    borderColor: "gray",
+                    padding: 1,
+                    textAlignment: "center",
+                    margin: 1,
+                    float: "center",
+                },
+            ),
+        );
+        process.exit(1);
     }
 
     const root = path.resolve(destination || example);
@@ -36,6 +54,25 @@ const run = async (
     } else {
         existSpinner.fail(
             `Could not locate an example named ${chalk.red(`"${example}"`)}`,
+        );
+        console.log(
+            boxen(
+                [
+                    chalk`You can find {bold refine} examples at:`,
+                    "",
+                    chalk`{dim.cyan github.com/}{cyan refinedev/refine/tree/master/examples}`,
+                ].join("\n"),
+                {
+                    title: chalk`Example not found`,
+                    titleAlignment: "center",
+                    borderStyle: "round",
+                    borderColor: "gray",
+                    padding: 1,
+                    textAlignment: "center",
+                    margin: 1,
+                    float: "center",
+                },
+            ),
         );
         process.exit(1);
     }
