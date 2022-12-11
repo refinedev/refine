@@ -147,4 +147,4 @@ export type {
     UploadProps,
 } from "antd";
 
-export type { TitleProps } from "antd/lib/typography/Title";
+export type { TitleProps } from "antd/es/typography/Title";
