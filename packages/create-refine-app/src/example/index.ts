@@ -1,21 +1,21 @@
+import ora from "ora";
 import path from "path";
 import chalk from "chalk";
-import { existsInRepo } from "./exists-in-repo";
+import boxen from "boxen";
+import { readFileSync } from "fs";
+import { gitInit } from "./git-init";
 import { makeDir } from "./make-dir";
+import { existsInRepo } from "./exists-in-repo";
 import { downloadAndExtract } from "./download-and-extract";
 import { findPM, installDependencies } from "./install-dependencies";
-import { gitInit } from "./git-init";
-import ora from "ora";
-
-const GITHUB_ORG = "refinedev";
-const GITHUB_REPO = "refine";
-const GITHUB_BRANCH = "master";
-// const GITHUB_BRANCH = "feat/create-with-example";
+import { GITHUB_ORG, GITHUB_REPO, GITHUB_BRANCH } from "./constants";
 
 const run = async (
     example: string | boolean | undefined,
     destination?: string,
 ) => {
+    const pm = findPM();
+
     if (typeof example !== "string") {
         ora("You must specify an example name").fail();
         return;
@@ -145,23 +145,30 @@ const run = async (
         gitSpinner.succeed("Created Git repository with initial commit.");
     }
 
-    const packageManager = findPM();
+    const pmRun = pm === "yarn" ? "" : "run ";
 
-    const packageManagerRun = packageManager === "yarn" ? "" : "run ";
-
-    console.log();
     console.log(
-        `${chalk.green("Success!")} Created ${chalk.cyan(
-            example,
-        )} at ${chalk.cyan(cdPath)}`,
+        boxen(
+            [
+                chalk`Created {cyan ${example}} at {cyan ${cdPath}}`,
+                "",
+                chalk`Start using your new {bold refine} app by running:`,
+                "",
+                chalk`  {bold cd} {cyan ${cdPath}}`,
+                chalk`  {bold ${pm} ${pmRun}}{cyan start}`,
+            ].join("\n"),
+            {
+                // title: `create-refine-app${version ? ` v${version}` : ""}`,
+                title: chalk`{bold.green Success!}`,
+                titleAlignment: "center",
+                borderStyle: "round",
+                padding: 1,
+                float: "center",
+                margin: 1,
+                borderColor: "gray",
+            },
+        ),
     );
-    console.log();
-    console.log(`Start using ${chalk.bold("refine")} by running:`);
-    console.log();
-    console.log(chalk.cyan("  cd"), cdPath);
-    console.log();
-    console.log(chalk.cyan(`  ${packageManager} ${packageManagerRun}start`));
-    console.log();
 };
 
 export default run;

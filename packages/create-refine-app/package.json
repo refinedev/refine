@@ -26,6 +26,7 @@
         "@types/which-pm-runs": "^1.0.0"
     },
     "dependencies": {
+        "boxen": "^5.1.2",
         "tslib": "^2.3.1",
         "commander": "9.4.1",
         "execa": "^5.1.1",
