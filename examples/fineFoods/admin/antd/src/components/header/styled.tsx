@@ -13,6 +13,10 @@ export const AntdHeader = styled(AntdLayout.Header)`
         border-color: #303030;
     }
 
+    .ant-input-suffix {
+        color: #ffffffac;
+    }
+
     .ant-input::placeholder {
         color: #424242;
     }
