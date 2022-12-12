@@ -80,6 +80,7 @@ export type {
     UseControllerReturn,
     UseFieldArrayProps,
     UseFieldArrayReturn,
+    UseFieldArrayReplace,
     UseFormClearErrors,
     UseFormGetValues,
     UseFormHandleSubmit,
