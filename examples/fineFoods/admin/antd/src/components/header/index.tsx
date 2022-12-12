@@ -8,7 +8,6 @@ import {
 } from "@pankod/refine-core";
 
 import {
-    AntdLayout,
     Menu,
     Icons,
     Dropdown,
@@ -33,7 +32,7 @@ const { Text } = Typography;
 const { useBreakpoint } = Grid;
 
 import { IOrder, IStore, ICourier } from "interfaces";
-import { HeaderTitle } from "./styled";
+import { AntdHeader, HeaderTitle } from "./styled";
 import ThemeToggle from "components/ThemeToggle";
 
 interface IOptionGroup {
@@ -189,17 +188,14 @@ export const Header: React.FC = () => {
     );
 
     return (
-        <AntdLayout.Header
-            style={{
-                padding: "0px 24px",
-                height: "64px",
-                backgroundColor: "#FFF",
-            }}
-        >
+        <AntdHeader>
             <Row align="middle" justify="space-between">
                 <Col xs={0} sm={12}>
                     <AutoComplete
-                        style={{ width: "100%", maxWidth: "550px" }}
+                        style={{
+                            width: "100%",
+                            maxWidth: "550px",
+                        }}
                         options={options}
                         filterOption={false}
                         onSearch={debounce(
@@ -229,6 +225,7 @@ export const Header: React.FC = () => {
                                     />
                                     <div
                                         style={{
+                                            color: "white",
                                             display: screens.lg
                                                 ? "block"
                                                 : "none",
@@ -239,6 +236,7 @@ export const Header: React.FC = () => {
                                             : "German"}
                                         <DownOutlined
                                             style={{
+                                                color: "white",
                                                 fontSize: "12px",
                                                 marginLeft: "6px",
                                             }}
@@ -252,6 +250,7 @@ export const Header: React.FC = () => {
                             ellipsis
                             strong
                             style={{
+                                color: "white",
                                 display: "flex",
                             }}
                         >
@@ -265,6 +264,6 @@ export const Header: React.FC = () => {
                     </Space>
                 </Col>
             </Row>
-        </AntdLayout.Header>
+        </AntdHeader>
     );
 };

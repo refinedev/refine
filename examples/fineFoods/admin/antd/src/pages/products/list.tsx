@@ -97,10 +97,7 @@ export const ProductList: React.FC<IResourceComponentsProps> = () => {
                     categories: getDefaultFilter("category.id", filters, "in"),
                 }}
             >
-                <Row
-                    gutter={[16, 16]}
-                    style={{ background: "#fff", padding: "16px 24px" }}
-                >
+                <Row gutter={[16, 16]} style={{ padding: "16px 24px" }}>
                     <Col xs={24} sm={18}>
                         <div
                             style={{
