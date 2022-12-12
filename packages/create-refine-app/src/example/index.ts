@@ -81,28 +81,28 @@ const run = async (
         ? root.replace(path.resolve(process.cwd()), ".")
         : root;
 
+    const dirSpinner = ora(`Creating directory ${chalk.cyan(cdPath)}.`).start();
+
+    const dirStatus = await makeDir(root);
+
+    if (dirStatus === "already") {
+        dirSpinner.warn(
+            `Directory ${chalk.cyan(
+                cdPath,
+            )} already exists. Files will be overwritten.`,
+        );
+    } else if (dirStatus === "failed") {
+        dirSpinner.fail(`Failed to create directory ${chalk.cyan(cdPath)}.`);
+        process.exit(1);
+    } else {
+        dirSpinner.succeed(`Directory ${chalk.cyan(cdPath)} created.`);
+    }
+
     const downloadSpinner = ora(
         `Downloading files for example ${chalk.cyan(
             example,
         )}. This might take a moment.`,
     ).start();
-
-    const dirStatus = await makeDir(root);
-
-    if (dirStatus === "already") {
-        downloadSpinner.warn(
-            `Directory ${chalk.cyan(
-                cdPath,
-            )} already exists. Files will be overwritten.`,
-        );
-    }
-
-    if (dirStatus === "failed") {
-        downloadSpinner.fail(
-            `Failed to create directory ${chalk.cyan(cdPath)}.`,
-        );
-        process.exit(1);
-    }
 
     const downloadStatus = await downloadAndExtract({
         root,
