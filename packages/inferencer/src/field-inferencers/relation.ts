@@ -1,6 +1,6 @@
 import { FieldInferencer } from "@/types";
 
-const relationRegexp = /(_id|_ids|Id|Ids|ID|IDs)(\[\])?$/;
+export const relationRegexp = /(-id|-ids|_id|_ids|Id|Ids|ID|IDs)(\[\])?$/;
 
 export const relationInfer: FieldInferencer = (key, value) => {
     const isRelation = relationRegexp.test(key);
