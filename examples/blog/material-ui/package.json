@@ -16,7 +16,7 @@
         "@pankod/refine-react-hook-form": "^3.36.0",
         "@mui/icons-material": "^5.8.3",
         "@pankod/refine-react-router-v6": "^3.38.0",
-        "@pankod/refine-strapi-v4": "^3.39.0",
+        "@pankod/refine-strapi-v4": "^3.39.1",
         "axios": "^0.26.1"
     },
     "devDependencies": {
