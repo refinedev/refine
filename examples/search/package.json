@@ -1,5 +1,5 @@
 {
-    "name": "search",
+    "name": "refine-search-example",
     "version": "3.25.0",
     "private": true,
     "dependencies": {

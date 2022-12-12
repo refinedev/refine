@@ -1,5 +1,5 @@
 {
-    "name": "store",
+    "name": "refine-store",
     "version": "3.25.0",
     "private": true,
     "scripts": {
