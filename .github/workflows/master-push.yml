@@ -336,15 +336,6 @@ jobs:
           npm run bootstrap
           cd documentation
           npm ci
-      - name: Deploy static files to DigitalOcean Spaces
-        uses: BetaHuhn/do-spaces-action@v2
-        with:
-          access_key: ${{ secrets.ACCESS_KEY}}
-          secret_key: ${{ secrets.SECRET_KEY }}
-          space_name: ${{ secrets.SPACE_NAME }}
-          space_region: ${{ secrets.SPACE_REGION }}
-          source: documentation/static
-          out_dir: website/static
       - name: Release to GitHub Pages
         env:
           USE_SSH: true
