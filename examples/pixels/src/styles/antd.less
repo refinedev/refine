@@ -110,7 +110,7 @@
         grid-template-columns: repeat(auto-fill, 275px);
         gap: 16px;
         align-items: flex-start;
-        justify-content: space-between;
+        justify-content: center;
     }
 }
 
@@ -142,9 +142,18 @@
 
 .layout-header {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+    gap: 16px;
     padding: 16px 0px;
+
+    @media screen and (max-width: 600px) {
+        a {
+            flex: 100%;
+            text-align: center;
+        }
+    }
 }
 
 .dot-icon {
