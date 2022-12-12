@@ -14,7 +14,7 @@
     "@pankod/refine-core": "^3.90.4",
     "@pankod/refine-simple-rest": "^3.37.4",
     "@pankod/refine-remix-router": "^1.7.0",
-    "@pankod/refine-react-hook-form": "^3.35.0",
+    "@pankod/refine-react-hook-form": "^3.36.0",
     "@pankod/refine-react-table": "^4.9.0",
     "js-cookie": "^3.0.1",
     "react": "^18.0.0",
