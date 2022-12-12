@@ -109,7 +109,7 @@ If your `dataProvider` and `resources` has a different way of work that makes it
 ### How the components are rendered and the code is generated?
 
 :::tip rendering
-To render the components we use a fork of [`react-live`](https://github.com/aliemir/react-live) package with Typescript support.
+To render the components we use a [fork](https://github.com/aliemir/react-live) of [`react-live`](https://github.com/FormidableLabs/react-live) package with Typescript support.
 :::
 
 After the fields are determined, we use the `renderer` functions to create the code for the components and also use the same code to render the components in the view. `renderer` functions are constructed per action type and the UI package. This means, `@pankod/refine-inferencer/antd` and other UI scopes has different `renderer` functions for `list`, `show`, `edit` and `create` actions. 
