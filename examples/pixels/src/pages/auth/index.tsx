@@ -39,7 +39,12 @@ const renderAuthContent = (content: React.ReactNode) => {
             }}
         >
             <Link to="/" style={{ marginBottom: "32px" }}>
-                <Image height="160" src="/pixels-logo.svg" alt="pixels-logo" />
+                <Image
+                    height="160"
+                    src="/pixels-logo.svg"
+                    alt="pixels-logo"
+                    preview={false}
+                />
             </Link>
             {content}
             <SponsorsBanner />
