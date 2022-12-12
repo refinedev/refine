@@ -14,17 +14,26 @@ import { Canvas } from "types";
 const { PlusSquareOutlined, LogoutOutlined, LoginOutlined } = Icons;
 
 export const Header: React.FC = () => {
-    const { Link } = useRouterContext();
+    const { Link, useLocation } = useRouterContext();
     const { data: user } = useGetIdentity();
     const { mutate: mutateLogout } = useLogout();
     const { push } = useNavigation();
     const { selectedKey } = useMenu();
+    const { pathname } = useLocation();
 
     const { modalProps, formProps, show } = useModalForm<Canvas>({
         resource: "canvases",
         action: "create",
         redirect: "show",
     });
+
+    const handleRedirect = () => {
+        if (pathname === "/") {
+            push("/login");
+        }
+
+        push(`/login?to=${encodeURIComponent(pathname)}`);
+    };
 
     return (
         <div className="container">
@@ -64,7 +73,7 @@ export const Header: React.FC = () => {
                             if (user) {
                                 show();
                             } else {
-                                push("/login");
+                                handleRedirect();
                             }
                         }}
                         title="Create a new canvas"
@@ -85,7 +94,7 @@ export const Header: React.FC = () => {
                         <Button
                             type="primary"
                             onClick={() => {
-                                push("/login");
+                                handleRedirect();
                             }}
                             icon={<LoginOutlined />}
                             title="Login"
