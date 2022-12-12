@@ -54,7 +54,7 @@ Simply, `@pankod/refine-inferencer` generates views and codes based on the data 
 
 ### How the data is obtained?
 
-For, `edit` and `show` actions, we send the request with `resource` and `id`. For `list` and `create` actions, we send a list request with `resource` and use one of the items to generate the view. These actions will take place in your app and **will not** be sent to any external API for any purpose.
+For, `edit` and `show` actions, we send the request with `resource` and `id`. For `list` and `create` actions, we send a list request with `resource` and use one of the items to generate the view. These actions will take place in your app. 
 
 ### How the fields are inferred?
 
